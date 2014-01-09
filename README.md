@@ -1,3 +1,3 @@
 ---
-[mdTranslator](adiwg.github.io/projects#mdTranslator)
+[mdTranslator](http://adiwg.github.io/mdTranslator)
 ---
