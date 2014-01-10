@@ -36,7 +36,7 @@ links:
   - title: News
     url: /news/
   - title: Demo
-    url: http://murmuring-sea-5569.herokuapp.com/iso19115
+    url: http://mdtranslator.herokuapp.com/iso19115
     external: true
   - title: GitHub
     url: https://github.com/adiwg/mdTranslator
