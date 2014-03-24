@@ -1,7 +1,7 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+When we get it finished, this readme will contain the instructions necessary to
+get the mdTranslator up and running.
 
 Things you may want to cover:
 
