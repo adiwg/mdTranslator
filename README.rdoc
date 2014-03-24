@@ -3,7 +3,7 @@
 When we get it finished, this readme will contain the instructions necessary to
 get the mdTranslator up and running.
 
-Things you may want to cover:
+Things we will want to cover:
 
 * Ruby version
 
