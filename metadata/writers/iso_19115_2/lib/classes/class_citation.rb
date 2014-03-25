@@ -6,8 +6,8 @@
 # 	Stan Smith 2013-12-30 added ISBN, ISSN
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_date'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_date'
 
 class CI_Citation
 

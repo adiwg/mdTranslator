@@ -7,10 +7,10 @@
 # 	Stan Smith 2013-11-15 add vertical elements
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_geographicBoundingBox'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_boundingPolygon'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_temporalExtent'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_verticalExtent'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_geographicBoundingBox'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_boundingPolygon'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_temporalExtent'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_verticalExtent'
 
 class EX_Extent
 

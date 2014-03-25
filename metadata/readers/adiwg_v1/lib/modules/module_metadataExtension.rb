@@ -1,10 +1,10 @@
-# unpack metadata extension information
+# unpack metadataxx extension information
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
 # 	Stan Smith 2013-11-22 original script
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
 
 module AdiwgV1MetadataExtension
 

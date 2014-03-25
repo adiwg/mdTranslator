@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-08-14 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_onlineFunction'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_onlineFunction'
 
 class CI_OnlineResource
 

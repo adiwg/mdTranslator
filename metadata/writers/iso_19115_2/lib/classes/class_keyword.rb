@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-09-18 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_keywordType'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_citation'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_keywordType'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_citation'
 
 class MD_Keywords
 

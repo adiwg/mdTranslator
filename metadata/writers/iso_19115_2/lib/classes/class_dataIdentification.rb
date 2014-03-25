@@ -7,27 +7,27 @@
 # 	Stan Smith 2013-11-01 add constraints
 # 	Stan Smith 2013-11-08 add extents
 # 	Stan Smith 2013-11-21 add taxonomy
-# 	Stan Smith 2013-11-22 add metadata extension
+# 	Stan Smith 2013-11-22 add metadataxx extension
 # 	Stan Smith 2013-11-25 add resource usage
 # 	Stan Smith 2013-11-25 add spatial resolution
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_progress'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_topicCategory'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_spatialRepresentationType'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_citation'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_format'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_keyword'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_browseGraphic'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_maintenanceInformation'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_useConstraints'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_legalConstraints'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_securityConstraints'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_extent'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_taxonSystem'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_usage'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_resolution'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_progress'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_topicCategory'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_spatialRepresentationType'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_citation'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_format'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_keyword'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_browseGraphic'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_maintenanceInformation'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_useConstraints'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_legalConstraints'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_securityConstraints'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_extent'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_taxonSystem'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_usage'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_resolution'
 
 class MD_DataIdentification
 

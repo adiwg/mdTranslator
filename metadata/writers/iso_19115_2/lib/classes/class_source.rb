@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-20 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_citation'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_processStep'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_citation'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_processStep'
 
 class LI_Source
 

@@ -42,7 +42,7 @@ class InternalMetadata
 	def newBase
 		intObj = {
 			contacts: [],
-			metadata: {}
+			metadataxx: {}
 		}
 	end
 

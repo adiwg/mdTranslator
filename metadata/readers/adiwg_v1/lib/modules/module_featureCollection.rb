@@ -4,8 +4,8 @@
 # History:
 # 	Stan Smith 2013-11-08 original script
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_geographicElement'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_geographicElement'
 
 module AdiwgV1FeatureCollection
 

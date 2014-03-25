@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-18 original script
 # 	Stan Smith 2013-12-11 modified to handle single vertical element
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
 
 module AdiwgV1VerticalElement
 

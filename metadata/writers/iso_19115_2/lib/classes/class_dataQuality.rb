@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-20 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_scope'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_lineage'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_scope'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_lineage'
 
 class DQ_DataQuality
 

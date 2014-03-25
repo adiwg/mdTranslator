@@ -4,8 +4,8 @@
 # History:
 # 	Stan Smith 2013-12-11 original script
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_dateTime'
 
 module AdiwgV1TimeInstant
 

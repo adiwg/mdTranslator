@@ -5,10 +5,10 @@
 # 	Stan Smith 2013-11-22 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_obligation'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_datatype'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_onlineResource'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_obligation'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_datatype'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_onlineResource'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
 
 class MD_MetadataExtensionInformation
 
@@ -26,7 +26,7 @@ class MD_MetadataExtensionInformation
 
 		@xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
-			# metadata extension - online resource - CI_OnLineResource
+			# metadataxx extension - online resource - CI_OnLineResource
 			hOLResource = hExtension[:onLineResource]
 			if !hOLResource.empty?
 				@xml.tag!('gmd:extensionOnLineResource') do
@@ -36,7 +36,7 @@ class MD_MetadataExtensionInformation
 				@xml.tag!('gmd:extensionOnLineResource')
 			end
 
-			# metadata extension = extended element information
+			# metadataxx extension = extended element information
 			@xml.tag!('gmd:extendedElementInformation') do
 				@xml.tag!('gmd:MD_ExtendedElementInformation') do
 

@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-08-09 original script
 # 	Stan Smith 2013-09-25 added distribution
 # 	Stan Smith 2013-09-25 added data quality
-# 	Stan Smith 2013-09-25 added metadata maintenance
+# 	Stan Smith 2013-09-25 added metadataxx maintenance
 # 	Stan Smith 2013-09-25 added reference system info
 # 	Stan Smith 2013-12-27 added parent identifier
 
@@ -15,16 +15,16 @@ $idCount = 'ID_000'
 require 'builder'
 require 'uuidtools'
 require 'date'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_characterSet'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_scope'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_referenceSystemInfo'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_dataIdentification'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_distribution'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_metadataExtension'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_dataQuality'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_maintenanceInformation'
-require Rails.root + 'metadata/internal/module_dateTimeFun'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_characterSet'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_scope'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_referenceSystemInfo'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_dataIdentification'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_distribution'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_metadataExtension'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_dataQuality'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_maintenanceInformation'
+require Rails.root + 'metadataxx/internal/module_dateTimeFun'
 
 class MI_Metadata
 
@@ -46,7 +46,7 @@ class MI_Metadata
 		dqClass = DQ_DataQuality.new(xml)
 		metaMaintClass = MD_MaintenanceInformation.new(xml)
 
-		intMetadata = @internalObj[:metadata]
+		intMetadata = @internalObj[:metadataxx]
 
 		# document head
 		xml.instruct! :xml, encoding: 'UTF-8'
@@ -65,7 +65,7 @@ class MI_Metadata
 									'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
 									'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gmi ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'}) do
 
-			# metadata information - file identifier - default
+			# metadataxx information - file identifier - default
 			xml.tag!('gmd:fileIdentifier') do
 				s = intMetadata[:fileIdentifier]
 				if s.nil?
@@ -76,19 +76,19 @@ class MI_Metadata
 				end
 			end
 
-			# metadata information - file language - default
+			# metadataxx information - file language - default
 			xml.tag!('gmd:language') do
 				# all xml is written in US English
 				xml.tag!('gco:CharacterString','eng; USA')
 			end
 
-			# metadata information - character set - default
+			# metadataxx information - character set - default
 			xml.tag!('gmd:characterSet') do
 				# all out put is in utf8
 				charCode.writeXML('utf8')
 			end
 
-			# metadata information - parent identifier
+			# metadataxx information - parent identifier
 			s = intMetadata[:parentIdentifier]
 			if !s.nil?
 				xml.tag!('gmd:parentIdentifier') do
@@ -98,7 +98,7 @@ class MI_Metadata
 				xml.tag!('gmd:parentIdentifier')
 			end
 
-			# metadata information - file hierarchy - default dataset
+			# metadataxx information - file hierarchy - default dataset
 			aHierarchy = intMetadata[:hierarchies]
 			if aHierarchy.empty?
 				xml.tag!('gmd:hierarchyLevel') do
@@ -112,7 +112,7 @@ class MI_Metadata
 				end
 			end
 
-			# metadata information - metadata custodian - required
+			# metadataxx information - metadataxx custodian - required
 			aCustodians = intMetadata[:metadataCustodians]
 			if aCustodians.empty?
 				xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
@@ -124,7 +124,7 @@ class MI_Metadata
 				end
 			end
 
-			# metadata information - date stamp - required - default to now()
+			# metadataxx information - date stamp - required - default to now()
 			xml.tag!('gmd:dateStamp') do
 				# if date not supplied fill with today
 				hDate = intMetadata[:metadataDate]
@@ -142,17 +142,17 @@ class MI_Metadata
 				xml.tag!('gco:Date',mDate)
 			end
 
-			# metadata information - metadata standard name - default
+			# metadataxx information - metadataxx standard name - default
 			xml.tag!('gmd:metadataStandardName') do
 				xml.tag!('gco:CharacterString','ISO 19115-2')
 			end
 
-			# metadata information - metadata standard version - default
+			# metadataxx information - metadataxx standard version - default
 			xml.tag!('gmd:metadataStandardVersion') do
 				xml.tag!('gco:CharacterString','ISO 19115-2:2009(E)')
 			end
 
-			# metadata information - dataset URI
+			# metadataxx information - dataset URI
 			dataURI = intMetadata[:datasetURI]
 			if !dataURI.nil?
 				xml.tag!('gmd:dataSetURI') do
@@ -162,7 +162,7 @@ class MI_Metadata
 				xml.tag!('gmd:dataSetURI')
 			end
 
-			# metadata information - reference system
+			# metadataxx information - reference system
 			aRefSystems = intMetadata[:referenceSystems]
 			if !aRefSystems.empty?
 				aRefSystems.each do |rSystem|
@@ -172,7 +172,7 @@ class MI_Metadata
 				xml.tag!('gmd:referenceSystemInfo')
 			end
 
-			# metadata information - metadata extension info
+			# metadataxx information - metadataxx extension info
 			aExtensions = intMetadata[:extensions]
 			if !aExtensions.empty?
 				aExtensions.each do |hExtension|
@@ -184,7 +184,7 @@ class MI_Metadata
 				xml.tag!('gmd:metadataExtensionInfo')
 			end
 
-			# metadata information - identification info - required
+			# metadataxx information - identification info - required
 			hDataID = intMetadata[:dataIdentification]
 			if hDataID.empty?
 				xml.tag!('gmd:identificationInfo', {'gco:nilReason' => 'missing'})
@@ -194,11 +194,11 @@ class MI_Metadata
 				end
 			end
 
-			# metadata information - content info
+			# metadataxx information - content info
 			# ... information about data and link to 19110
 			# ... on hold until 19115-1 release
 
-			# metadata information - distribution info []
+			# metadataxx information - distribution info []
 			aDistInfo = intMetadata[:distributorInfo]
 			if !aDistInfo.empty?
 				xml.tag!('gmd:distributionInfo') do
@@ -208,7 +208,7 @@ class MI_Metadata
 				xml.tag!('gmd:distributionInfo')
 			end
 
-			# metadata information - data quality info
+			# metadataxx information - data quality info
 			aDQInfo = intMetadata[:dataQualityInfo]
 			if !aDQInfo.empty?
 				aDQInfo.each do |hDQInfo|
@@ -220,7 +220,7 @@ class MI_Metadata
 				xml.tag!('gmd:dataQualityInfo')
 			end
 
-			# metadata information - metadata maintenance
+			# metadataxx information - metadataxx maintenance
 			hMetaMaint = intMetadata[:maintInfo]
 			if !hMetaMaint.empty?
 				xml.tag!('gmd:metadataMaintenance') do

@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-13 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_genericMetaData'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_genericMetaData'
 
 class LineString
 
@@ -31,7 +31,7 @@ class LineString
 
 		@xml.tag!('gml:LineString',attributes) do
 
-			# line string - metadata property
+			# line string - metadataxx property
 			aTempEle = hLine[:temporalElements]
 			if !aTempEle.empty?
 				@xml.tag!('gml:metaDataProperty') do

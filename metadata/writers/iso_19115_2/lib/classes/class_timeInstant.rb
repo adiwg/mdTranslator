@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-04 original script
 
 require 'builder'
-require Rails.root + 'metadata/internal/module_dateTimeFun'
+require Rails.root + 'metadataxx/internal/module_dateTimeFun'
 
 class TimeInstant
 

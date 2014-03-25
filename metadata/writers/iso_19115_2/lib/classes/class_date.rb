@@ -6,8 +6,8 @@
 # 	Stan Smith 2013-11-21 support for date or datetime
 
 require 'builder'
-require Rails.root + 'metadata/internal/module_dateTimeFun'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_dateType'
+require Rails.root + 'metadataxx/internal/module_dateTimeFun'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_dateType'
 
 class CI_Date
 

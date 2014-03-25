@@ -6,10 +6,10 @@
 # 	Stan Smith 2013-09-25 moved onlineResource to new module
 # 	Stan Smith 2013-10-21 moved address to new module
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_address'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_phone'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_address'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_onlineResource'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_phone'
 
 module AdiwgV1Contacts
 
@@ -20,7 +20,7 @@ module AdiwgV1Contacts
 		aContacts = Array.new
 
 		# add default contacts
-		# ... contacts to support metadata extensions
+		# ... contacts to support metadataxx extensions
 		intCont = intMetadataClass.newContact
 		intCont[:contactID] = 'ADIwgBio'
 		intCont[:orgName] = 'National Biological Information Infrastructure (NBII)'

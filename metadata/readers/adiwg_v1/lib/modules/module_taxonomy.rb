@@ -4,11 +4,11 @@
 # History:
 # 	Stan Smith 2013-11-20 original script
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_voucher'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_taxonClass'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_citation'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_voucher'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_taxonClass'
 
 module AdiwgV1Taxonomy
 

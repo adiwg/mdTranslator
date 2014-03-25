@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-25 original script
 # 	Stan Smith 2013-11-27 modified to process a single resource usage
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
 module AdiwgV1ResourceSpecificUsage
 

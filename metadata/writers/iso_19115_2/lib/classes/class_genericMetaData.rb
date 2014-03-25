@@ -1,6 +1,6 @@
 # ISO <<Class>> GenericMetaData
 # writer output in XML
-# generic metadata only supports ...
+# generic metadataxx only supports ...
 	# time instant
 	# time period
 
@@ -8,9 +8,9 @@
 # 	Stan Smith 2013-11-04 original script
 
 require 'builder'
-require Rails.root + 'metadata/internal/module_dateTimeFun'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_timeInstant'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_timePeriod'
+require Rails.root + 'metadataxx/internal/module_dateTimeFun'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_timeInstant'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_timePeriod'
 
 class GenericMetaData
 
@@ -28,7 +28,7 @@ class GenericMetaData
 
 			aTempExt.each do |hTempExt|
 
-				# metadata - date
+				# metadataxx - date
 				hTimeD = hTempExt[:date]
 				unless hTimeD.empty?
 					date = hTimeD[:dateTime]
@@ -39,13 +39,13 @@ class GenericMetaData
 					end
 				end
 
-				# metadata - time instant
+				# metadataxx - time instant
 				hTimeI = hTempExt[:timeInstant]
 				unless hTimeI.empty?
 					timeIClass.writeXML(hTimeI)
 				end
 
-				# metadata - time period
+				# metadataxx - time period
 				hTimeP = hTempExt[:timePeriod]
 				unless hTimeP.empty?
 					timePClass.writeXML(hTimeP)

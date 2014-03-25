@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-09-26 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_onlineResource'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_medium'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_onlineResource'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_medium'
 
 class MD_DigitalTransferOptions
 

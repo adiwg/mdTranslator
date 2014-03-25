@@ -1,22 +1,22 @@
-# unpack metadata
+# unpack metadataxx
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
 # 	Stan Smith 2013-08-22 original script
 #   Stan Smith 2013-09-23 added distributor info section
-#   Stan Smith 2013-11-26 added metadata maintenance section
+#   Stan Smith 2013-11-26 added metadataxx maintenance section
 #   Stan Smith 2013-11-26 added hierarchy section
 #   Stan Smith 2013-11-26 added data quality section
 #   Stan Smith 2013-12-27 added parent identifier
 
-require Rails.root + 'metadata/internal/internal_metadata_obj'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dataIdentification'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_distributionInfo'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadataExtension'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceMaintenance'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dataQuality'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
+require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_dataIdentification'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_distributionInfo'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_metadataExtension'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_resourceMaintenance'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_dataQuality'
+require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_dateTime'
 
 
 module AdiwgV1Metadata
@@ -26,10 +26,10 @@ module AdiwgV1Metadata
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 
-		# instance a new internal object for metadata
+		# instance a new internal object for metadataxx
 		intMetadata = intMetadataClass.newMetadata
 
-		# metadata - file identifier
+		# metadataxx - file identifier
 		if metadata.has_key?('fileIdentifier')
 			s = metadata['fileIdentifier']
 			if s != ''
@@ -37,7 +37,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - parent identifier
+		# metadataxx - parent identifier
 		if metadata.has_key?('parentIdentifier')
 			s = metadata['parentIdentifier']
 			if s != ''
@@ -45,13 +45,13 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - language
+		# metadataxx - language
 			# fixed to US English and handled in the writer
 
-		# metadata - character set
+		# metadataxx - character set
 			# fixed to utf8 and handled in the writer
 
-		# metadata - hierarchy
+		# metadataxx - hierarchy
 		if metadata.has_key?('hierarchyLevel')
 			aHierarchy = metadata['hierarchyLevel']
 			unless aHierarchy.empty?
@@ -59,7 +59,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - metadata contacts, custodians
+		# metadataxx - metadataxx contacts, custodians
 		if metadata.has_key?('contact')
 			aCust = metadata['contact']
 			unless aCust.empty?
@@ -69,7 +69,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - date stamp
+		# metadataxx - date stamp
 		if metadata.has_key?('dateStamp')
 			s = metadata['dateStamp']
 			if s != ''
@@ -77,7 +77,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - dataset URI
+		# metadataxx - dataset URI
 		if metadata.has_key?('dataSetURI')
 			s = metadata['dataSetURI']
 			if s != ''
@@ -85,7 +85,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - reference system info
+		# metadataxx - reference system info
 		if metadata.has_key?('spatialReference')
 			aRSystems = metadata['spatialReference']
 			unless aRSystems.empty?
@@ -96,7 +96,7 @@ module AdiwgV1Metadata
 
 		end
 
-		# metadata - extension info - biological extension
+		# metadataxx - extension info - biological extension
 		if metadata.has_key?('identificationInfo')
 			dataInfo = metadata['identificationInfo']
 			if dataInfo.has_key?('taxonomy')
@@ -107,15 +107,15 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - data identification info
+		# metadataxx - data identification info
 		if metadata.has_key?('identificationInfo')
 			dataInfo = metadata['identificationInfo']
 			intMetadata[:dataIdentification] = AdiwgV1DataIdentification.unpack(dataInfo)
 		end
 
-		# metadata - content info
+		# metadataxx - content info
 
-		# metadata - distribution info
+		# metadataxx - distribution info
 		if metadata.has_key?('distributionInfo')
 			aDistributors = metadata['distributionInfo']
 			unless aDistributors.empty?
@@ -125,7 +125,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - data quality info
+		# metadataxx - data quality info
 		if metadata.has_key?('dataQualityInfo')
 			aDataQual = metadata['dataQualityInfo']
 			unless aDataQual.empty?
@@ -135,7 +135,7 @@ module AdiwgV1Metadata
 			end
 		end
 
-		# metadata - metadata maintenance info
+		# metadataxx - metadataxx maintenance info
 		if metadata.has_key?('metadataMaintenance')
 			hMetaMaint = metadata['metadataMaintenance']
 			unless hMetaMaint.empty?

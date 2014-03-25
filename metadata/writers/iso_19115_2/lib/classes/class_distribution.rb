@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-09-25 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_distributor'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_distributor'
 
 class MD_Distribution
 

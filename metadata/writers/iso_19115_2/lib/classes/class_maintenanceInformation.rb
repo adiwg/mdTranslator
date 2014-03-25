@@ -6,8 +6,8 @@
 # 	Stan Smith 2013-12-18 added contact
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_maintenanceFrequency'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_maintenanceFrequency'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
 
 class MD_MaintenanceInformation
 

@@ -6,9 +6,9 @@
 # 	Stan Smith 2013-11-13 add line string
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_point'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_lineString'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_polygon'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_point'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_lineString'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_polygon'
 
 class MultiGeometry
 

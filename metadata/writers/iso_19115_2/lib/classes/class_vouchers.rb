@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-19 original script
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
 
 class MD_Vouchers
 
