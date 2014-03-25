@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-20 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/internal/module_dateTimeFun'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadata/internal/module_dateTimeFun'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
 
 class LI_ProcessStep
 

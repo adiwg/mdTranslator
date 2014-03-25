@@ -4,8 +4,8 @@
 # History:
 # 	Stan Smith 2013-12-11 original script
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/internal/module_dateTimeFun'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/internal/module_dateTimeFun'
 
 module AdiwgV1DateTime
 

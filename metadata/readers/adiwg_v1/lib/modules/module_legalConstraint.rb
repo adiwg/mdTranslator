@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-14 original script
 # 	Stan Smith 2013-11-27 modified to process a single legal constraint
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
 
 module AdiwgV1LegalConstraints
 

@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-15 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_timeInstant'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_timePeriod'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_timeInstant'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_timePeriod'
 
 class EX_TemporalExtent
 

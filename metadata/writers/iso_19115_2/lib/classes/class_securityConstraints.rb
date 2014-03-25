@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-01 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_classification'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_classification'
 
 class MD_SecurityConstraints
 

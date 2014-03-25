@@ -11,10 +11,10 @@
 # 	Stan Smith 2013-12-11 modified to handle single temporal element
 
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_dateTime'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_timeInstant'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_timePeriod'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_timeInstant'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_timePeriod'
 
 module AdiwgV1TemporalElement
 

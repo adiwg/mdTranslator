@@ -8,12 +8,12 @@
 # 	Stan Smith 2013-11-13 added multi line string
 # 	Stan Smith 2013-11-18 added polygon
 
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_boundingBox'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_point'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_featureCollection'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_lineString'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_multiLineString'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_polygon'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_boundingBox'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_point'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_featureCollection'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_lineString'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_multiLineString'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_polygon'
 
 module AdiwgV1GeographicElement
 

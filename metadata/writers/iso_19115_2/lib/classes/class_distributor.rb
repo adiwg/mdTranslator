@@ -5,10 +5,10 @@
 # 	Stan Smith 2013-09-25 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_standardOrderProcess'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_format'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_digitalTransferOptions'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_standardOrderProcess'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_format'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_digitalTransferOptions'
 
 class MD_Distributor
 

@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-08-13 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_contact'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_role'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_contact'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_role'
 
 class CI_ResponsibleParty
 

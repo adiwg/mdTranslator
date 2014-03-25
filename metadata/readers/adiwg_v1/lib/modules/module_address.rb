@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2013-10-21 original script
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
 
 module AdiwgV1Address
 

@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-01 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_genericMetaData'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_genericMetaData'
 
 class Point
 
@@ -31,7 +31,7 @@ class Point
 
 		@xml.tag!('gml:Point',attributes) do
 
-			# point - metadataxx property
+			# point - metadata property
 			aTempEle = hPoint[:temporalElements]
 			if !aTempEle.empty?
 				@xml.tag!('gml:metaDataProperty') do

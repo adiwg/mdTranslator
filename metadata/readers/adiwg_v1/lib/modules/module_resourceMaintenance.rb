@@ -6,8 +6,8 @@
 # 	Stan Smith 2013-12-18 made note an array
 # 	Stan Smith 2013-12-18 added contact
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
 module AdiwgV1ResourceMaintenance
 

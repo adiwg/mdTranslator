@@ -5,10 +5,10 @@
 # 	Stan Smith 2013-11-19 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_citation'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_responsibleParty'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_vouchers'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_taxonClassification'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_citation'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_responsibleParty'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_vouchers'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_taxonClassification'
 
 class MD_TaxonSys
 

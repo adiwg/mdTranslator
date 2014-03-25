@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-09-25 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/internal/module_dateTimeFun'
+require Rails.root + 'metadata/internal/module_dateTimeFun'
 
 class MD_StandardOrderProcess
 

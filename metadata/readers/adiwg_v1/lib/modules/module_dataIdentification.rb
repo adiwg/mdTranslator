@@ -9,19 +9,19 @@
 # 	Stan Smith 2013-11-25 resource specific usage
 # 	Stan Smith 2013-11-26 spatial resolution
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_citation'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_resourceFormat'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_responsibleParty'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_descriptiveKeyword'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_browseGraphic'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_resourceMaintenance'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_extent'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_legalConstraint'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_securityConstraint'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_taxonomy'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_resourceSpecificUsage'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_resolution'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceFormat'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_descriptiveKeyword'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_browseGraphic'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceMaintenance'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_extent'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_legalConstraint'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_securityConstraint'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_taxonomy'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceSpecificUsage'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resolution'
 
 module AdiwgV1DataIdentification
 
@@ -30,7 +30,7 @@ module AdiwgV1DataIdentification
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 
-		# instance a new internal object for metadataxx
+		# instance a new internal object for metadata
 		intDataId = intMetadataClass.newDataId
 
 		# data identification - citation

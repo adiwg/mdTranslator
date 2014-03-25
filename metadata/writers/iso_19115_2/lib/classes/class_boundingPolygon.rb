@@ -8,10 +8,10 @@
 # 	Stan Smith 2013-11-18 added polygon
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_point'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_lineString'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_multiGeometry'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_polygon'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_point'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_lineString'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_multiGeometry'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_polygon'
 
 class EX_BoundingPolygon
 

@@ -8,10 +8,10 @@
 # 	Stan Smith 2013-11-27 modified to process a single extent
 # 	Stan Smith 2013-12-05 modified to for new temporalElement schema
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_geographicElement'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_temporalElement'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_verticalElement'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_geographicElement'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_temporalElement'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_verticalElement'
 
 module AdiwgV1Extent
 

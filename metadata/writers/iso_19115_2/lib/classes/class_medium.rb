@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-09-26 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_mediumName'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/codelists/code_mediumFormat'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_mediumName'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_mediumFormat'
 
 class MD_Medium
 

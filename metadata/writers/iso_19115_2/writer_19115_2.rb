@@ -4,7 +4,7 @@
 # 	Stan Smith 2013-08-10 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_metadata'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_metadata'
 
 class Iso19115_2
 

@@ -4,9 +4,9 @@
 # History:
 # 	Stan Smith 2013-11-26 original script
 
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_citation'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_processStep'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_processStep'
 
 module AdiwgV1Source
 

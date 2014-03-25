@@ -1531,7 +1531,7 @@
         "metadataMaintenance": {
             "maintFreq": "annually",
             "maintNote": [
-                "metadataxx is updated each year after data from that year has been added to the dataset",
+                "metadata is updated each year after data from that year has been added to the dataset",
                 "Oh, and this is a second note."
             ],
             "maintContact": [

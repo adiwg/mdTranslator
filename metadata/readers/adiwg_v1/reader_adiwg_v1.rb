@@ -3,12 +3,12 @@
 # History:
 # 	Stan Smith 2013-08-09 original script
 # 	Stan Smith 2013-08-19 split out contacts to module_contacts
-# 	Stan Smith 2013-08-23 split out metadataxx to module_metadata
+# 	Stan Smith 2013-08-23 split out metadata to module_metadata
 
 require 'json'
-require Rails.root + 'metadataxx/internal/internal_metadata_obj'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_contacts'
-require Rails.root + 'metadataxx/readers/adiwg_v1/lib/modules/module_metadata'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_contacts'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadata'
 
 class ReaderAdiwgV1
 
@@ -20,8 +20,8 @@ class ReaderAdiwgV1
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 
-		# create new internal metadataxx container for the reader
-		# this is a empty copy of the ADIwg internal metadataxx format
+		# create new internal metadata container for the reader
+		# this is a empty copy of the ADIwg internal metadata format
 		intBase = intMetadataClass.newBase
 
 		# convert the received JSON to a Ruby hash
@@ -29,16 +29,16 @@ class ReaderAdiwgV1
 
 		# load array of contacts from the hash object
 			# the contacts array supports using a shorthand reference to a
-		 	# contact in the metadataxx sections
+		 	# contact in the metadata sections
 		if hashObj.has_key?('contacts')
 			contacts = hashObj['contacts']
 			intBase[:contacts] = AdiwgV1Contacts.unpack(contacts)
 		end
 
-		# load metadataxx from the hash object
-		if hashObj.has_key?('metadataxx')
-			metadata = hashObj['metadataxx']
-			intBase[:metadataxx] = AdiwgV1Metadata.unpack(metadata)
+		# load metadata from the hash object
+		if hashObj.has_key?('metadata')
+			metadata = hashObj['metadata']
+			intBase[:metadata] = AdiwgV1Metadata.unpack(metadata)
 		end
 
 		# return ADIwg internal container

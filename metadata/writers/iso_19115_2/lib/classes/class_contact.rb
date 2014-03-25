@@ -5,9 +5,9 @@
 # 	Stan Smith 2013-08-12 original script
 
 require 'builder'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_telephone'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_address'
-require Rails.root + 'metadataxx/writers/iso_19115_2/lib/classes/class_onlineResource'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_telephone'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_address'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_onlineResource'
 
 class CI_Contact
 
