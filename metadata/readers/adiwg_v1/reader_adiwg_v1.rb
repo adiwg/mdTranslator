@@ -11,8 +11,6 @@ require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_contacts'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadata'
 
-require 'pp'
-
 class ReaderAdiwgV1
 
 	def initialize
@@ -57,8 +55,6 @@ class ReaderAdiwgV1
 			hMetadata = hashObj['metadata']
 			intBase[:metadata] = AdiwgV1Metadata.unpack(hMetadata)
 		end
-
-		pp intBase
 
 		# return ADIwg internal container
 		return intBase
