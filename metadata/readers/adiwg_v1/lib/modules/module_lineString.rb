@@ -4,102 +4,21 @@
 
 # History:
 # 	Stan Smith 2013-11-13 original script
+#   Stan Smith 2014-04-30 reorganized for json schema 0.3.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_temporalElement'
 
 module AdiwgV1LineString
 
-
-	def self.unpack(hGeoElement)
+	def self.unpack(aCoords)
 		intMetadataClass = InternalMetadata.new
-		intElement = intMetadataClass.newGeoElement
-		intLine = intMetadataClass.newLineString
+		intLine = intMetadataClass.newGeometry
 
-		# get geometry ...
-		# existence of geometry and type validated in module_geographicElement
-		hGeometry = hGeoElement['geometry']
+		intLine[:geometry] = aCoords
+		intLine[:dimension] = AdiwgV1Coordinates.getDimension(aCoords)
 
-		# get id
-		if hGeoElement.has_key?('id')
-
-			# line string - ID - required
-			# null ids will be substituted in writer
-			intLine[:lineID] = hGeoElement['id']
-
-		end
-
-		# get crs
-		if hGeoElement.has_key?('crs')
-			hCRS = hGeoElement['crs']
-
-			# line string - srs name
-			# null crs will default to CRS84 in writer
-			if hCRS.has_key?('type')
-				crsType = hCRS['type']
-				if crsType == 'name'
-					if hCRS.has_key?('properties')
-						hCRSProp = hCRS['properties']
-						if hCRSProp.has_key?('name')
-							s = hCRSProp['name']
-							if s != ''
-								intLine[:srsName] = s
-							end
-						end
-					end
-				end
-			end
-
-		end
-
-		# get properties
-		if hGeoElement.has_key?('properties')
-			hProps = hGeoElement['properties']
-
-			# line string  - description
-			if hProps.has_key?('description')
-				s = hProps['description']
-				if s != ''
-					intLine[:lineDescription] = s
-				end
-			end
-
-			# line string - name
-			if hProps.has_key?('name')
-				s = hProps['name']
-				if s != ''
-					intLine[:lineName] = s
-				end
-			end
-
-			# multiple temporal elements are allowed
-			# each definition will create a new element
-			# line string - temporal elements
-			if hProps.has_key?('temporalElement')
-				aTempElements = hProps['temporalElement']
-				unless aTempElements.empty?
-					intLine[:temporalElements] = AdiwgV1TemporalElement.unpack(aTempElements)
-				end
-			end
-
-		end
-
-		# line string - coordinate(s)
-		# line string - srs dimension
-		if hGeometry.has_key?('coordinates')
-			aCoords = hGeometry['coordinates']
-			intLine[:srsDim] = AdiwgV1Coordinates.getDimension(aCoords)
-			intLine[:lineRing] = AdiwgV1Coordinates.unpack(aCoords)
-		end
-
-
-		# load internal geo element
-		intElement[:elementType] = 'lineString'
-		intElement[:elementExtent] = 'inapplicable'
-		intElement[:element] = intLine
-
-		return intElement
+		return intLine
 	end
 
 end

@@ -44,9 +44,9 @@ module AdiwgV1DescriptiveKeyword
 				end
 
 				# thesaurus - citation
-				citation = keyThesaurus['citation']
-				if s != ''
-					intKeyword[:keyTheCitation] = AdiwgV1Citation.unpack(citation)
+				hCitation = keyThesaurus['citation']
+				unless hCitation.empty?
+					intKeyword[:keyTheCitation] = AdiwgV1Citation.unpack(hCitation)
 				end
 
 			end

@@ -3,6 +3,8 @@
 
 # History:
 # 	Stan Smith 2013-11-20 original script
+#   Stan Smith 2014-05-02 fixed assignment problem with taxon general scope
+#   Stan Smith 2014-05-02 fixed assignment problem with taxonomic procedures
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
@@ -19,8 +21,8 @@ module AdiwgV1Taxonomy
 		intTaxSys = intMetadataClass.newTaxonSystem
 
 		# taxonomy - taxonomy class system - citation
-		if hTaxonomy.has_key?('classSystem')
-			aClassSys = hTaxonomy['classSystem']
+		if hTaxonomy.has_key?('classificationSystem')
+			aClassSys = hTaxonomy['classificationSystem']
 			unless aClassSys.empty?
 				aClassSys.each do |hCitation|
 					intTaxSys[:taxClassSys] << AdiwgV1Citation.unpack(hCitation)
@@ -32,7 +34,7 @@ module AdiwgV1Taxonomy
 		if hTaxonomy.has_key?('taxonGeneralScope')
 			s = hTaxonomy['taxonGeneralScope']
 			if s != ''
-				intTaxSys[:taxGeneralScope]
+				intTaxSys[:taxGeneralScope] = s
 			end
 		end
 
@@ -53,7 +55,7 @@ module AdiwgV1Taxonomy
 		if hTaxonomy.has_key?('taxonomicProcedures')
 			s = hTaxonomy['taxonomicProcedures']
 			if s != ''
-				intTaxSys[:taxIdProcedures]
+				intTaxSys[:taxIdProcedures] = s
 			end
 		end
 

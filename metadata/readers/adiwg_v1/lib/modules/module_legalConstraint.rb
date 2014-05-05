@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-11-14 original script
 # 	Stan Smith 2013-11-27 modified to process a single legal constraint
+#   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
@@ -16,24 +17,24 @@ module AdiwgV1LegalConstraints
 		hIntCon = intMetadataClass.newLegalConstraint
 
 		# legal constraint - access code
-		if hLegalCon.has_key?('accessConstraints')
-			aAccCodes = hLegalCon['accessConstraints']
+		if hLegalCon.has_key?('accessConstraint')
+			aAccCodes = hLegalCon['accessConstraint']
 			unless aAccCodes.empty?
 				hIntCon[:accessCodes] = aAccCodes
 			end
 		end
 
 		# legal constraint - use code
-		if hLegalCon.has_key?('useConstraints')
-			aUseCodes = hLegalCon['useConstraints']
+		if hLegalCon.has_key?('useConstraint')
+			aUseCodes = hLegalCon['useConstraint']
 			unless aUseCodes.empty?
 				hIntCon[:useCodes] = aUseCodes
 			end
 		end
 
 		# legal constraint - other constraints
-		if hLegalCon.has_key?('otherConstraints')
-			aOtherCons = hLegalCon['otherConstraints']
+		if hLegalCon.has_key?('otherConstraint')
+			aOtherCons = hLegalCon['otherConstraint']
 			unless aOtherCons.empty?
 				hIntCon[:otherCons] = aOtherCons
 			end

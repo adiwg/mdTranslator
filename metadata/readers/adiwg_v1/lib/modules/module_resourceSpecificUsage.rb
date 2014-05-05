@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-11-25 original script
 # 	Stan Smith 2013-11-27 modified to process a single resource usage
+#   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
@@ -25,8 +26,8 @@ module AdiwgV1ResourceSpecificUsage
 		end
 
 		# resource specific usage - user determined limitations
-		if hUsage.has_key?('userDeterminedLimitations')
-			s = hUsage['userDeterminedLimitations']
+		if hUsage.has_key?('userDeterminedLimitation')
+			s = hUsage['userDeterminedLimitation']
 			if s != ''
 				intUsage[:userLimits] = s
 			end

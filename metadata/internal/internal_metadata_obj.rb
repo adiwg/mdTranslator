@@ -29,6 +29,16 @@
 # 	Stan Smith 2013-11-20 added data quality
 # 	Stan Smith 2013-11-20 modified citation
 # 	Stan Smith 2013-12-16 added phone book
+#   Stan Smith 2014-04-23 added protocol and doi to online resource
+#   Stan Smith 2014-04-24 added jsonVersion to newBase
+#   Stan Smith 2014-04-24 renamed newDataId to newResourceInfo
+#   Stan Smith 2014-04-24 reorganized newMetadata, newResourceInfo
+#   Stan Smith 2014-04-24 added newMetadataInfo
+#   Stan Smith 2014-04-25 modified newCitation for json schema 0.3.0
+#   Stan Smith 2014-04-25 added resource Ids to newCitation
+#   Stan Smith 2014-04-30 reorganized geometry blocks for json schema 0.3.0
+#   Stan Smith 2014-05-02 added associatedResource
+#   Stan Smith 2014-05-02 added additionalDocument
 
 class InternalMetadata
 
@@ -41,6 +51,7 @@ class InternalMetadata
 
 	def newBase
 		intObj = {
+			jsonVersion: {},
 			contacts: [],
 			metadata: {}
 		}
@@ -89,41 +100,55 @@ class InternalMetadata
 
 	def newMetadata
 		intObj = {
-			fileIdentifier: nil,
-			parentIdentifier: nil,
-			hierarchies: [],
-			metadataCustodians: [],
-			metadataDate: {},
-			datasetURI: nil,
-			referenceSystems: [],
-			extensions: [],
-			dataIdentification: {},
+			metadataInfo: {},
+			resourceInfo: {},
 			distributorInfo: [],
-			dataQualityInfo: [],
-			maintInfo: {}
+			associatedResources: [],
+			additionalDocuments: []
 		}
 	end
 
-	def newContactById
+	def newMetadataInfo
+		intObj = {
+			metadataId: nil,
+			parentMetadataId: nil,
+			metadataScope: [],
+			metadataCustodians: [],
+			metadataCreateDate: {},
+			metadataUpdateDate: {},
+			metadataURI: nil,
+			metadataStatus: nil,
+			maintInfo: {},
+			extensions: []
+		}
+	end
+
+	def newRespParty
 		intObj = {
 			contactID: nil,
-			roleName: nil
+			roleName: nil,
+			resourceId: []
 		}
 	end
 
 	def newOnlineResource
 		intObj = {
 			olResLink: nil,
+			olResProtocol: nil,
 		    olResName: nil,
 			olResDesc: nil,
-			olResFunction: nil
+			olResFunction: nil,
+			olResDoi: nil
 		}
 	end
 
-	def newDataId
+	def newResourceInfo
 		intObj = {
 			citation: {},
 			abstract: nil,
+			shortAbstract: nil,
+			hasMapLocation?: nil,
+			hasDataAvailable?: nil,
 			purpose: nil,
 			credits: [],
 			status: nil,
@@ -131,18 +156,20 @@ class InternalMetadata
 			resourceMaint: [],
 			graphicOverview: [],
 			resourceFormats: [],
+			resourceLanguages: [],
 			descriptiveKeywords: [],
 			resourceUses: [],
 			useLimitations: [],
 			legalConstraints: [],
 			securityConstraints: [],
 			taxonomy: {},
-			spatialRepTypes: [],
+			spatialReferenceSystems: [],
+			spatialRepresentationTypes: [],
 			spatialResolutions: [],
-			contentLanguages: [],
 			topicCategories: [],
-			environDescription: nil,
+			environmentDescription: nil,
 			extents: [],
+			dataQualityInfo: [],
 			supplementalInfo: nil
 		}
 	end
@@ -153,9 +180,18 @@ class InternalMetadata
 			citDate: [],
 			citEdition: nil,
 			citResParty: [],
-			citForm: nil,
+			citResourceForms: [],
+			citDOI: nil,
 			citISBN: nil,
-			citISSN: nil
+			citISSN: nil,
+			citOlResources: []
+		}
+	end
+
+	def newResourceId
+		intObj = {
+			identifierName: nil,
+			identifier: nil
 		}
 	end
 
@@ -235,10 +271,10 @@ class InternalMetadata
 
 	def newBrowseGraphic
 		intObj = {
-			bGLink: nil,
 			bGName: nil,
 			bGDescription: nil,
-			bGType: nil
+			bGType: nil,
+			bGURI: nil
 		}
 	end
 
@@ -254,8 +290,32 @@ class InternalMetadata
 	def newGeoElement
 		intObj = {
 			elementType: nil,
-			elementExtent: nil,
-			element: {}
+			elementId: nil,
+			elementIncludeData: nil,
+			elementName: nil,
+			elementDescription: nil,
+			temporalElement: [],
+			verticalElement: [],
+			elementIdentifiers: [],
+			elementScope: nil,
+			elementAcquisition: nil,
+			elementSrs: {},
+			elementGeometry: []
+		}
+	end
+
+	def newSRS
+		intObj = {
+			srsName: nil,
+			srsHref: nil,
+			sysType: nil
+		}
+	end
+
+	def newGeometry
+		intObj = {
+			geometry: {},
+			dimension: nil
 		}
 	end
 
@@ -268,50 +328,10 @@ class InternalMetadata
 		}
 	end
 
-	def newMultiGeo
+	def newPolygonSet
 		intObj = {
-			mGeoID: nil,
-			mGeoDescription: nil,
-			mGeoName: nil,
-			mGeos: []
-		}
-	end
-
-	def newPoint
-		intObj = {
-			pointID: nil,
-			srsName: nil,
-			srsDim: nil,
-			temporalElements: [],
-			pointDescription: nil,
-			identifier: nil,
-			identCodeSpace: nil,
-			pointName: nil,
-			pointRing: {}
-		}
-	end
-
-	def newLineString
-		intObj = {
-			lineID: nil,
-			srsName: nil,
-			srsDim: nil,
-			temporalElements: [],
-			lineDescription: nil,
-			lineName: nil,
-			lineRing: {}
-		}
-	end
-
-	def newPolygon
-		intObj = {
-			polygonID: nil,
-			srsName: nil,
-			srsDim: nil,
-			polygonDescription: nil,
-			polygonName: nil,
 			exteriorRing: {},
-			interiorRings: []
+			exclusionRings: []
 		}
 	end
 
@@ -454,6 +474,14 @@ class InternalMetadata
 			rule: nil,
 			rationales: [],
 			extSources: []
+		}
+	end
+
+	def newAssociatedResource
+		intObj = {
+			associationType: nil,
+			resourceType: nil,
+			resourceCitation: {}
 		}
 	end
 

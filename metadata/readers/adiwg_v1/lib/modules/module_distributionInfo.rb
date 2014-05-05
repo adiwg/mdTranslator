@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-09-23 original script
 # 	Stan Smith 2013-11-27 changed to receive single distributor rather than array
 # 	Stan Smith 2013-12-18 changed to unpack contact using responsible party
+#   Stan Smith 2014-05-02 changed to support responsible party as hash, not array
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
@@ -106,7 +107,9 @@ module AdiwgV1DistributionInfo
 
 					if distTransOpt.has_key?('online')
 						aOnlineOption = distTransOpt['online']
-						intTransOpt[:online] = AdiwgV1OnlineResource.unpack(aOnlineOption)
+						aOnlineOption.each do |hOlOption|
+							intTransOpt[:online] << AdiwgV1OnlineResource.unpack(hOlOption)
+						end
 					end
 
 					if distTransOpt.has_key?('offline')

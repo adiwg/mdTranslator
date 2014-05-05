@@ -207,7 +207,7 @@
         "fileIdentifier": "a2342cc0-e1db-0130-e0b7-080027a263b8",
         "parentIdentifier": "Biomonitoring of Environmental Status and Trends - Large Rivers Monitoring Network",
         "hierarchyLevel": ["dataset","nonGeographicDataset","attribute"],
-        "contact": [
+        "metadataContact": [
             {
                 "contactId": "1",
                 "role": "custodian"

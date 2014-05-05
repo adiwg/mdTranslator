@@ -7,11 +7,10 @@
 
 module AdiwgV1Coordinates
 
+	# repack coordinate array into single string for ISO
 	def self.unpack(aCoords)
 
-		# repack coordinate array into single string for ISO
 		s = ''
-
 		i = 0
 		coordCount = aCoords.length
 		aCoords.each do |coord|
@@ -31,6 +30,7 @@ module AdiwgV1Coordinates
 
 	end
 
+	# get the number of dimensions in a coordinate array
 	def self.getDimension(aCoords)
 		if aCoords[0].kind_of?(Array)
 			coordDim = getDimension(aCoords[0])

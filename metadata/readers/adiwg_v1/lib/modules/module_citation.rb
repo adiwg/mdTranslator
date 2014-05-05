@@ -3,10 +3,12 @@
 
 # History:
 # 	Stan Smith 2013-08-26 original script
+#   Stan Smith 2014-04-25 modified to support json schema 0.3.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
 
 module AdiwgV1Citation
 
@@ -28,19 +30,17 @@ module AdiwgV1Citation
 		if hCitation.has_key?('date')
 			aCitDates = hCitation['date']
 			unless aCitDates.empty?
-				aCitDates.each do |citDate|
-					if citDate.has_key?('date')
-						s = citDate['date']
+				aCitDates.each do |hCitDate|
+					if hCitDate.has_key?('date')
+						s = hCitDate['date']
 						if s != ''
 							intDateTime = AdiwgV1DateTime.unpack(s)
-
-							if citDate.has_key?('dateType')
-								s = citDate['dateType']
+							if hCitDate.has_key?('dateType')
+								s = hCitDate['dateType']
 								if s != ''
 									intDateTime[:dateType] = s
 								end
 							end
-
 							intCitation[:citDate] << intDateTime
 						end
 					end
@@ -57,11 +57,11 @@ module AdiwgV1Citation
 		end
 
 		# citation - responsible party
-		if hCitation.has_key?('citedResponsibleParty')
-			aRParty = hCitation['citedResponsibleParty']
+		if hCitation.has_key?('responsibleParty')
+			aRParty = hCitation['responsibleParty']
 			unless aRParty.empty?
-				aRParty.each do |rParty|
-					intCitation[:citResParty] << AdiwgV1ResponsibleParty.unpack(rParty)
+				aRParty.each do |hRParty|
+					intCitation[:citResParty] << AdiwgV1ResponsibleParty.unpack(hRParty)
 				end
 			end
 		end
@@ -70,23 +70,46 @@ module AdiwgV1Citation
 		if hCitation.has_key?('presentationForm')
 			s = hCitation['presentationForm']
 			if s != ''
-				intCitation[:citForm]  = s
+				intCitation[:citResourceForms]  = s
 			end
 		end
 
-		# citation - ISBN
-		if hCitation.has_key?('isbn')
-			s = hCitation['isbn']
-			if s != ''
-				intCitation[:citISBN]  = s
+		# citation - additional identifiers
+		if hCitation.has_key?('additionalIdentifier')
+			hAddIds = hCitation['additionalIdentifier']
+
+			# citation - doi
+			if hAddIds.has_key?('doi')
+				s = hAddIds['doi']
+				if s != ''
+					intCitation[:citDOI] = s
+				end
+			end
+
+			# citation - ISBN
+			if hAddIds.has_key?('isbn')
+				s = hAddIds['isbn']
+				if s != ''
+					intCitation[:citISBN]  = s
+				end
+			end
+
+			# citation - ISSN
+			if hAddIds.has_key?('issn')
+				s = hAddIds['issn']
+				if s != ''
+					intCitation[:citISSN]  = s
+				end
 			end
 		end
 
-		# citation - ISSN
-		if hCitation.has_key?('issn')
-			s = hCitation['issn']
-			if s != ''
-				intCitation[:citISSN]  = s
+		# citation - online resources
+		if hCitation.has_key?('onlineResource')
+			aOlRes = hCitation['onlineResource']
+			aOlRes.each do |hOlRes|
+				unless hOlRes.empty?
+					intCitation[:citOlResources] << AdiwgV1OnlineResource.unpack(hOlRes)
+				end
 			end
 		end
 

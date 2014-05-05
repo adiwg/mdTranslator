@@ -56,6 +56,7 @@ module AdiwgV1Extent
 		end
 
 		return intExtent
+
 	end
 
 end

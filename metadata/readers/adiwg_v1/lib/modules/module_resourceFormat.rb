@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-08-26 original script
 # 	Stan Smith 2013-11-27 modified to process single resource format rather than array
+#   Stan Smith 2014-04-28 changed attribute names
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
@@ -16,8 +17,8 @@ module AdiwgV1ResourceFormat
 		rFormat = intMetadataClass.newResourceFormat
 
 		# format - name
-		if hResFormat.has_key?('name')
-			s = hResFormat['name']
+		if hResFormat.has_key?('formatName')
+			s = hResFormat['formatName']
 			if s != ''
 				rFormat[:formatName] = s
 			end

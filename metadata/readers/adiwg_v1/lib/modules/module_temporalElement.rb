@@ -41,21 +41,16 @@ module AdiwgV1TemporalElement
 			aTimeInst = hTempElement['timeInstant']
 			unless aTimeInst.empty?
 				aTimeInst.each do |hTimeInst|
-
-					# time instant will only be inserted if time position provided
 					if hTimeInst.has_key?('timePosition')
 						s = hTimeInst['timePosition']
 						if s != ''
 							intTempEle = intMetadataClass.newTemporalElement
 							intTempEle[:timeInstant] = AdiwgV1TimeInstant.unpack(hTimeInst)
 							aIntTempElements << intTempEle
-
 						end
 					end
-
 				end
 			end
-
 		end
 
 		# temporal element - time period

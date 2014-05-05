@@ -12,7 +12,7 @@ module AdiwgV1ResponsibleParty
 
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
-		intContactById = intMetadataClass.newContactById
+		intContactById = intMetadataClass.newRespParty
 
 		# responsible party - contact
 		if hRParty.has_key?('contactId')
@@ -29,7 +29,31 @@ module AdiwgV1ResponsibleParty
 				intContactById[:roleName] = s
 			end
 		end
-		intContactById
+
+		# responsible party - resource ids
+		if hRParty.has_key?('resourceIdentifier')
+			aResIds = hRParty['resourceIdentifier']
+			unless aResIds.empty?
+				aResIds.each do |hResId|
+					unless hResId.empty?
+						intResId = intMetadataClass.newResourceId
+						if hResId.has_key?('identifierName')
+							s = hResId['identifierName']
+							if s != ''
+								intResId[:identifierName] = s
+							end
+						end
+						if hResId.has_key?('identifier')
+							s = hResId['identifier']
+							if s != ''
+								intResId[:identifier] = s
+							end
+						end
+						intContactById[:resourceId] << intResId
+					end
+				end
+			end
+		end
 
 		return intContactById
 	end

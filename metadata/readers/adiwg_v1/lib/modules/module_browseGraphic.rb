@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-10-17 original script
 # 	Stan Smith 2013-11-27 modified to process single browse graphic rather than array
+#   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 
 module AdiwgV1BrowseGraphic
 
@@ -14,10 +15,10 @@ module AdiwgV1BrowseGraphic
 		intBGraphic = intMetadataClass.newBrowseGraphic
 
 		# graphic - web link
-		if hBgraphic.has_key?('fileLink')
-			s = hBgraphic['fileLink']
+		if hBgraphic.has_key?('uri')
+			s = hBgraphic['uri']
 			if s != ''
-				intBGraphic[:bGLink] = s
+				intBGraphic[:bGURI] = s
 			end
 		end
 

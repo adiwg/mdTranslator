@@ -4,11 +4,14 @@
 # 	Stan Smith 2013-08-09 original script
 # 	Stan Smith 2013-08-19 split out contacts to module_contacts
 # 	Stan Smith 2013-08-23 split out metadata to module_metadata
+#	Stan Smith 2014-04-23 add json schema version to internal object
 
 require 'json'
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_contacts'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadata'
+
+require 'pp'
 
 class ReaderAdiwgV1
 
@@ -21,28 +24,45 @@ class ReaderAdiwgV1
 		intMetadataClass = InternalMetadata.new
 
 		# create new internal metadata container for the reader
-		# this is a empty copy of the ADIwg internal metadata format
 		intBase = intMetadataClass.newBase
 
 		# convert the received JSON to a Ruby hash
 		hashObj = JSON.parse(jsonObj)
 
-		# load array of contacts from the hash object
-			# the contacts array supports using a shorthand reference to a
-		 	# contact in the metadata sections
-		if hashObj.has_key?('contacts')
-			contacts = hashObj['contacts']
-			intBase[:contacts] = AdiwgV1Contacts.unpack(contacts)
+		# jsonVersion
+		# get json schema name and version
+		if hashObj.has_key?('jsonVersion')
+			intBase[:jsonVersion] = hashObj['jsonVersion']
 		end
 
+		# contact
+		# load the array of contacts from the json object
+			# the contacts array uses a local id to reference the
+		 	# contact in the array from elsewhere in the json metadata
+		if hashObj.has_key?('contact')
+			aContacts = hashObj['contact']
+			aContacts.each do |hContact|
+				unless hContact.empty?
+					intBase[:contacts] << AdiwgV1Contact.unpack(hContact)
+				end
+			end
+		end
+
+		# add default contacts
+		intBase[:contacts].concat(AdiwgV1Contact.getDefaultContacts)
+
+		# metadata
 		# load metadata from the hash object
 		if hashObj.has_key?('metadata')
-			metadata = hashObj['metadata']
-			intBase[:metadata] = AdiwgV1Metadata.unpack(metadata)
+			hMetadata = hashObj['metadata']
+			intBase[:metadata] = AdiwgV1Metadata.unpack(hMetadata)
 		end
+
+		pp intBase
 
 		# return ADIwg internal container
 		return intBase
+
 	end
 
 end
