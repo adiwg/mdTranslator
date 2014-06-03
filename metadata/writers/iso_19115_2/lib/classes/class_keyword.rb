@@ -14,7 +14,7 @@ class MD_Keywords
 		@xml = xml
 	end
 
-	def writeXML(dKeyword)
+	def writeXML(hDKeyword)
 
 		# classes used
 		citationClass = CI_Citation.new(@xml)
@@ -23,7 +23,7 @@ class MD_Keywords
 		@xml.tag!('gmd:MD_Keywords') do
 
 			# keywords - keyword - required
-			aKeywords = dKeyword[:keyword]
+			aKeywords = hDKeyword[:keyword]
 			if aKeywords.empty?
 				@xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
 			else
@@ -35,7 +35,7 @@ class MD_Keywords
 			end
 
 			# keywords - type - MD_KeywordTypeCode
-			s = dKeyword[:keywordType]
+			s = hDKeyword[:keywordType]
 			if !s.nil?
 				@xml.tag!('gmd:type') do
 					keywordCode.writeXML(s)
@@ -44,8 +44,8 @@ class MD_Keywords
 				@xml.tag!('gmd:type')
 			end
 
-			hKeyCitation = dKeyword[:keyTheCitation]
-			keyLink = dKeyword[:keyTheLink]
+			hKeyCitation = hDKeyword[:keyTheCitation]
+			keyLink = hDKeyword[:keyTheLink]
 			if !hKeyCitation.empty?
 
 				# thesaurus - web link - attribute optional

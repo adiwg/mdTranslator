@@ -13,9 +13,11 @@ module AdiwgV1BoundingBox
 
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
-		intBBox = intMetadataClass.newBoundingBox
+		intGeometry = intMetadataClass.newGeometry
+		intGeometry[:geoType] = 'BoundingBox'
 
 		# unpack GeoJSON bounding box elements
+		intBBox = intMetadataClass.newBoundingBox
 		west = aBBox[0]
 		south = aBBox[1]
 		east = aBBox[2]
@@ -39,7 +41,9 @@ module AdiwgV1BoundingBox
 			intBBox[:eastLong] = east
 			intBBox[:southLat] = south
 			intBBox[:northLat] = north
-			return intBBox
+			intGeometry[:geometry] = intBBox
+
+			return intGeometry
 		else
 			return nil
 		end

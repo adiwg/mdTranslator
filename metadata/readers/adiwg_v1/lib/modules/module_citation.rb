@@ -61,16 +61,18 @@ module AdiwgV1Citation
 			aRParty = hCitation['responsibleParty']
 			unless aRParty.empty?
 				aRParty.each do |hRParty|
-					intCitation[:citResParty] << AdiwgV1ResponsibleParty.unpack(hRParty)
+					intCitation[:citResponsibleParty] << AdiwgV1ResponsibleParty.unpack(hRParty)
 				end
 			end
 		end
 
 		# citation - presentation form
 		if hCitation.has_key?('presentationForm')
-			s = hCitation['presentationForm']
-			if s != ''
-				intCitation[:citResourceForms]  = s
+			aPForms = hCitation['presentationForm']
+			unless aPForms.empty?
+				aPForms.each do |pForm|
+					intCitation[:citResourceForms] << pForm
+				end
 			end
 		end
 

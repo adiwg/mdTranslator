@@ -47,7 +47,7 @@ class ReaderAdiwgV1
 		end
 
 		# add default contacts
-		intBase[:contacts].concat(AdiwgV1Contact.getDefaultContacts)
+		intBase[:contacts].concat(AdiwgV1Contact.setDefaultContacts)
 
 		# metadata
 		# load metadata from the hash object

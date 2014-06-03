@@ -26,7 +26,7 @@ class MD_MetadataExtensionInformation
 
 		@xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
-			# metadatametadataon - online resource - CI_OnLineResource
+			# metadata extension - online resource - CI_OnLineResource
 			hOLResource = hExtension[:onLineResource]
 			if !hOLResource.empty?
 				@xml.tag!('gmd:extensionOnLineResource') do

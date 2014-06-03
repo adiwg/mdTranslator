@@ -3,6 +3,8 @@
 
 # History:
 # 	Stan Smith 2013-08-12 original script
+#   Stan Smith 2014-05-14 modified for JSON schema version 0.4.0
+#   Stan Smith 2014-05-16 added method to return contact from array
 
 require 'builder'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_telephone'
@@ -15,7 +17,7 @@ class CI_Contact
 		@xml = xml
 	end
 
-	def writeXML(contact)
+	def writeXML(hContact)
 
 		# classes used in MD_Metadata
 		pBookClass = CI_Telephone.new(@xml)
@@ -24,24 +26,18 @@ class CI_Contact
 
 		@xml.tag!('gmd:CI_Contact') do
 
-			# contact - phone list
-			hPhoneBook = {}
-			if !contact[:voicePhones].empty?
-				hPhoneBook[:voice] = contact[:voicePhones]
-			end
-			if !contact[:faxPhones].empty?
-				hPhoneBook[:fax] = contact[:faxPhones]
-			end
-			if !hPhoneBook.empty?
+			# contact - phone list - all services
+			aPhones = hContact[:phones]
+			if !aPhones.empty?
 				@xml.tag!('gmd:phone') do
-					pBookClass.writeXML(hPhoneBook)
+					pBookClass.writeXML(aPhones)
 				end
 			elsif $showEmpty
 				@xml.tag!('gmd:phone')
 			end
 
 			# contact - address
-			hAddress = contact[:address]
+			hAddress = hContact[:address]
 			if !hAddress.empty?
 				@xml.tag!('gmd:address') do
 					addClass.writeXML(hAddress)
@@ -51,7 +47,7 @@ class CI_Contact
 			end
 
 			# contact - online resource
-			aResource = contact[:onlineRes]
+			aResource = hContact[:onlineRes]
 			if !aResource.empty?
 				@xml.tag!('gmd:onlineResource') do
 					resourceClass.writeXML(aResource[0])
@@ -61,10 +57,10 @@ class CI_Contact
 			end
 
 			# contact - contact instructions
-			s = contact[:contactInstructions]
+			s = hContact[:contactInstructions]
 			if !s.nil?
 				@xml.tag!('gmd:contactInstructions') do
-					@xml.tag!('gco:CharacterString',contact[:contactInstructions])
+					@xml.tag!('gco:CharacterString',hContact[:contactInstructions])
 				end
 			elsif $showEmpty
 				@xml.tag!('gmd:contactInstructions')
@@ -72,4 +68,18 @@ class CI_Contact
 
 		end
 	end
+
+	def getContact(contactID)
+
+		# find contact in contact array and return the hash
+		$intContactList.each do |hContact|
+			if hContact[:contactID] == contactID
+				return hContact
+			end
+		end
+
+		return {}
+
+	end
+
 end

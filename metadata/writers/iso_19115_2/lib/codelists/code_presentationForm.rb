@@ -6,7 +6,7 @@
 
 require 'builder'
 
-class CI_PresentationForm
+class CI_PresentationFormCode
 	def initialize(xml)
 		@xml = xml
 	end
@@ -33,7 +33,7 @@ class CI_PresentationForm
 		end
 
 		# write xml
-		@xml.tag!('gmd:CI_PresentationForm',{:codeList=>'http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationForm',
+		@xml.tag!('gmd:CI_PresentationFormCode',{:codeList=>'http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode',
 											 :codeListValue=>"#{codeName}",
 											 :codeSpace=>"#{codeID}"})
 	end

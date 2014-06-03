@@ -6,6 +6,8 @@
 # 	Stan Smith 2013-11-12 added multi geometry
 # 	Stan Smith 2013-11-13 added line string
 # 	Stan Smith 2013-11-18 added polygon
+#   Stan Smith 2014-05-30 modified for version 0.5.0
+#   Stan Smith 2014-05-30 added multi-point, multi-linestring, multi-polygon support
 
 require 'builder'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_point'
@@ -19,7 +21,7 @@ class EX_BoundingPolygon
 		@xml = xml
 	end
 
-	def writeXML(hElement)
+	def writeXML(hGeoElement)
 
 		# classes used by MD_Metadata
 		pointClass = Point.new(@xml)
@@ -27,13 +29,13 @@ class EX_BoundingPolygon
 		multiGeoClass = MultiGeometry.new(@xml)
 		polygonClass = Polygon.new(@xml)
 
-		polyType = hElement[:elementType]
-		extentType = hElement[:elementExtent]
-		hBPolygon = hElement[:element]
+		hGeometry = hGeoElement[:elementGeometry]
+		polyType = hGeometry[:geoType]
 
 		@xml.tag!('gmd:EX_BoundingPolygon') do
 
 			# bounding polygon - extent type - required
+			extentType = hGeoElement[:elementIncludeData]
 			if extentType.nil?
 				@xml.tag!('gmd:extentTypeCode',{'gco:nilReason'=>'missing'})
 			elsif extentType == true || extentType == false
@@ -45,19 +47,21 @@ class EX_BoundingPolygon
 			end
 
 			# bounding polygon - polygon - required
-			if hBPolygon.empty?
+			if hGeometry[:geometry].empty?
 				@xml.tag!('gmd:polygon', {'gco:nilReason' => 'missing'})
 			else
 				@xml.tag!('gmd:polygon') do
 					case polyType
-						when 'point'
-							pointClass.writeXML(hBPolygon)
-						when 'lineString'
-							lineClass.writeXML(hBPolygon)
-						when 'polygon'
-							polygonClass.writeXML(hBPolygon)
-						when 'multiGeo'
-							multiGeoClass.writeXML(hBPolygon)
+						when 'Point'
+							pointClass.writeXML(hGeoElement)
+						when 'LineString'
+							lineClass.writeXML(hGeoElement)
+						when 'Polygon'
+							polygonClass.writeXML(hGeoElement)
+						when 'MultiPoint', 'MultiLineString', 'MultiPolygon', 'MultiGeometry'
+							multiGeoClass.writeXML(hGeoElement)
+						when 'MultiGeometry'
+							multiGeoClass.writeXML(hGeoElement)
 						else
 							# log - the bounding polygon type is not supported
 					end

@@ -39,6 +39,7 @@
 #   Stan Smith 2014-04-30 reorganized geometry blocks for json schema 0.3.0
 #   Stan Smith 2014-05-02 added associatedResource
 #   Stan Smith 2014-05-02 added additionalDocument
+#   Stan Smith 2014-05-28 modified resourceId & responsibleParty for schema 0.5.0
 
 class InternalMetadata
 
@@ -71,9 +72,7 @@ class InternalMetadata
 			indName: nil,
 			orgName: nil,
 			position: nil,
-			voicePhones: [],
-			faxPhones: [],
-			smsPhones: [],
+			phones: [],
 			address: {},
 			onlineRes: [],
 			contactInstructions: nil
@@ -82,6 +81,7 @@ class InternalMetadata
 
 	def newPhone
 		intObj = {
+			phoneServiceType: nil,
 			phoneName: nil,
 			phoneNumber: nil
 		}
@@ -126,8 +126,7 @@ class InternalMetadata
 	def newRespParty
 		intObj = {
 			contactID: nil,
-			roleName: nil,
-			resourceId: []
+			roleName: nil
 		}
 	end
 
@@ -159,7 +158,7 @@ class InternalMetadata
 			resourceLanguages: [],
 			descriptiveKeywords: [],
 			resourceUses: [],
-			useLimitations: [],
+			useConstraints: [],
 			legalConstraints: [],
 			securityConstraints: [],
 			taxonomy: {},
@@ -179,7 +178,8 @@ class InternalMetadata
 			citTitle: nil,
 			citDate: [],
 			citEdition: nil,
-			citResParty: [],
+			citResourceIDs: [],
+			citResponsibleParty: [],
 			citResourceForms: [],
 			citDOI: nil,
 			citISBN: nil,
@@ -190,8 +190,8 @@ class InternalMetadata
 
 	def newResourceId
 		intObj = {
-			identifierName: nil,
-			identifier: nil
+			identifier: nil,
+			identifierCitation: {}
 		}
 	end
 
@@ -282,6 +282,7 @@ class InternalMetadata
 		intObj = {
 			extDesc: nil,
 			extGeoElements: [],
+			extIdElements: [],
 			extTempElements: [],
 			extVertElements: []
 		}
@@ -289,7 +290,6 @@ class InternalMetadata
 
 	def newGeoElement
 		intObj = {
-			elementType: nil,
 			elementId: nil,
 			elementIncludeData: nil,
 			elementName: nil,
@@ -300,7 +300,7 @@ class InternalMetadata
 			elementScope: nil,
 			elementAcquisition: nil,
 			elementSrs: {},
-			elementGeometry: []
+			elementGeometry: {}
 		}
 	end
 
@@ -314,6 +314,7 @@ class InternalMetadata
 
 	def newGeometry
 		intObj = {
+			geoType: nil,
 			geometry: {},
 			dimension: nil
 		}
@@ -481,7 +482,8 @@ class InternalMetadata
 		intObj = {
 			associationType: nil,
 			resourceType: nil,
-			resourceCitation: {}
+			resourceCitation: {},
+			metadataCitation: {}
 		}
 	end
 

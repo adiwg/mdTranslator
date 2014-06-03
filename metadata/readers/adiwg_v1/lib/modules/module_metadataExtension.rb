@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2013-11-22 original script
+#   Stan Smith 2014-05-15 modified for JSON schema 0.4.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
@@ -12,7 +13,7 @@ module AdiwgV1MetadataExtension
 
 		intMetadataClass = InternalMetadata.new
 		intMetaExt = intMetadataClass.newMetadataExtension
-		intContactRole = intMetadataClass.newContactById
+		intContactRole = intMetadataClass.newRespParty
 
 		# extension online information
 		intMetaExt[:onLineResource] = {}

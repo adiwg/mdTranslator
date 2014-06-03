@@ -5,10 +5,12 @@
 # 	Stan Smith 2013-11-01 original script
 # 	Stan Smith 2013-11-15 add temporal elements
 # 	Stan Smith 2013-11-15 add vertical elements
+#   Stan Smith 2014-05-29 changes for json schema version 0.5.0
+#   Stan Smith 2014-05-29 ... added new class for geographicElement
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_geographicBoundingBox'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_boundingPolygon'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_geographicElement'
+require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_geographicDescription'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_temporalExtent'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_verticalExtent'
 
@@ -21,10 +23,10 @@ class EX_Extent
 	def writeXML(hExtent)
 
 		# classes used by MD_Metadata
-		geoBBoxClass = EX_GeographicBoundingBox.new(@xml)
-		geoBPolyClass = EX_BoundingPolygon.new(@xml)
 		tempExtClass = EX_TemporalExtent.new(@xml)
 		vertExtClass = EX_VerticalExtent.new(@xml)
+		geoEleClass = GeographicElement.new(@xml)
+		geoEleIdClass = EX_GeographicDescription.new(@xml)
 
 		@xml.tag!('gmd:EX_Extent') do
 
@@ -38,24 +40,25 @@ class EX_Extent
 				@xml.tag!('gmd:description')
 			end
 
-			# extent - geographic element
+			# extent - geographic element - for geometry
 			aGeoElements = hExtent[:extGeoElements]
 			if !aGeoElements.empty?
-				aGeoElements.each do |geoElement|
-					eType = geoElement[:elementType]
-					case eType
-						when 'bbox'
-							@xml.tag!('gmd:geographicElement') do
-								geoBBoxClass.writeXML(geoElement)
-							end
-						when 'point', 'lineString' ,'polygon', 'multiGeo'
-							@xml.tag!('gmd:geographicElement') do
-								geoBPolyClass.writeXML(geoElement)
-							end
-						else
-							@xml.tag!('gmd:geographicElement',{'gco:nilReason'=>'unknown'})
+				aGeoElements.each do |hGeoElement|
+					@xml.tag!('gmd:geographicElement') do
+						geoEleClass.writeXML(hGeoElement)
 					end
+				end
+			elsif $showEmpty
+				@xml.tag!('gmd:geographicElement')
+			end
 
+			# extent - geographic element - for identifier
+			aGeoElements = hExtent[:extIdElements]
+			if !aGeoElements.empty?
+				aGeoElements.each do |hGeoElement|
+					@xml.tag!('gmd:geographicElement') do
+						geoEleIdClass.writeXML(hGeoElement)
+					end
 				end
 			elsif $showEmpty
 				@xml.tag!('gmd:geographicElement')

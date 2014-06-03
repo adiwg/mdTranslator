@@ -13,7 +13,7 @@ class CI_OnlineResource
 		@xml = xml
 	end
 
-	def writeXML(resource)
+	def writeXML(hOlResource)
 
 		# classes used
 		olFunctionCode = CI_OnLineFunctionCode.new(@xml)
@@ -21,7 +21,7 @@ class CI_OnlineResource
 		@xml.tag! 'gmd:CI_OnlineResource' do
 
 			# online resource - link - required
-			s = resource[:olResLink]
+			s = hOlResource[:olResLink]
 			if s.nil?
 				@xml.tag!('gmd:linkage',{'gco:nilReason'=>'missing'})
 			else
@@ -31,7 +31,7 @@ class CI_OnlineResource
 			end
 
 			# online resource - link name
-			s = resource[:olResName]
+			s = hOlResource[:olResName]
 			if !s.nil?
 				@xml.tag!('gmd:name') do
 					@xml.tag!('gco:CharacterString',s)
@@ -41,7 +41,7 @@ class CI_OnlineResource
 			end
 
 			# online resource - link description
-			s = resource[:olResDesc]
+			s = hOlResource[:olResDesc]
 			if !s.nil?
 				@xml.tag!('gmd:description') do
 					@xml.tag!('gco:CharacterString',s)
@@ -51,7 +51,7 @@ class CI_OnlineResource
 			end
 
 			# online resource - link function - CI_OnLineFunctionCode
-			s = resource[:olResFunction]
+			s = hOlResource[:olResFunction]
 			if !s.nil?
 				@xml.tag!('gmd:function') do
 					olFunctionCode.writeXML(s)

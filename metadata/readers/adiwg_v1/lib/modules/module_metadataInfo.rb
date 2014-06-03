@@ -12,11 +12,12 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadataExten
 
 module AdiwgV1MetadataInfo
 
-	def self.unpack(hMetadataInfo)
+	def self.unpack(hMetadata)
 
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 		intMetadataInfo = intMetadataClass.newMetadataInfo
+		hMetadataInfo = hMetadata['metadataInfo']
 
 		# metadata - metadata identifier
 		if hMetadataInfo.has_key?('metadataIdentifier')
@@ -97,8 +98,8 @@ module AdiwgV1MetadataInfo
 		end
 
 		# metadata - extension info - if biological extension
-		if hMetadataInfo.has_key?('resourceInfo')
-		resourceInfo = hMetadataInfo['resourceInfo']
+		if hMetadata.has_key?('resourceInfo')
+		resourceInfo = hMetadata['resourceInfo']
 			if resourceInfo.has_key?('taxonomy')
 				hTaxonomy = resourceInfo['taxonomy']
 				unless hTaxonomy.empty?

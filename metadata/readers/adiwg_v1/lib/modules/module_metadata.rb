@@ -28,9 +28,9 @@ module AdiwgV1Metadata
 		intMetadata = intMetadataClass.newMetadata
 
 		# metadata - metadataInfo
+		# metadataInfo needs access to resourceInfo to check taxonomy
 		if hMetadata.has_key?('metadataInfo')
-			hMetadataInfo = hMetadata['metadataInfo']
-			intMetadata[:metadataInfo] = AdiwgV1MetadataInfo.unpack(hMetadataInfo)
+			intMetadata[:metadataInfo] = AdiwgV1MetadataInfo.unpack(hMetadata)
 		end
 
 		# metadata - resource identification info

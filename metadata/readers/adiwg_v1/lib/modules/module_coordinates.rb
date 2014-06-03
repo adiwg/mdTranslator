@@ -4,12 +4,12 @@
 # History:
 # 	Stan Smith 2013-11-07 original script
 # 	Stan Smith 2013-11-13 added getDimension
+#   Stan Smith 2014-05-23 added getLevels
 
 module AdiwgV1Coordinates
 
 	# repack coordinate array into single string for ISO
 	def self.unpack(aCoords)
-
 		s = ''
 		i = 0
 		coordCount = aCoords.length
@@ -27,7 +27,6 @@ module AdiwgV1Coordinates
 		end
 
 		return s
-
 	end
 
 	# get the number of dimensions in a coordinate array
@@ -37,8 +36,17 @@ module AdiwgV1Coordinates
 		else
 			coordDim = aCoords.length
 		end
-		return coordDim
 
+		return coordDim
+	end
+
+	# get the number of levels in the coordinate array
+	def self.getLevels(aCoords)
+		i = 1
+		if aCoords[0].kind_of?(Array)
+			i = i + getLevels(aCoords[0])
+		end
+		return i
 	end
 
 end

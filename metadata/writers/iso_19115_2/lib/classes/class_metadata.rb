@@ -8,9 +8,9 @@
 # 	Stan Smith 2013-09-25 added metadata maintenance
 # 	Stan Smith 2013-09-25 added reference system info
 # 	Stan Smith 2013-12-27 added parent identifier
-
-$showEmpty = true
-$idCount = 'ID_000'
+#   Stan Smith 2014-05-14 modify for JSON schema 0.4.0
+#   Stan Smith 2014-05-14 refactored method calls to be consistent w/ other classes
+#   Stan Smith 2014-05-28 added resource URI
 
 require 'builder'
 require 'uuidtools'
@@ -28,30 +28,33 @@ require Rails.root + 'metadata/internal/module_dateTimeFun'
 
 class MI_Metadata
 
-	def initialize(internalObj)
-		@internalObj = internalObj
-		$intContactList = internalObj[:contacts]
+	def initialize(xml)
+		@xml = xml
 	end
 
-	def writeXML(xml)
+	def writeXML(internalObj)
 
 		# classes used in MD_Metadata
-		charCode = MD_CharacterSetCode.new(xml)
-		scopeCode = MD_ScopeCode.new(xml)
-		rSysCode = ReferenceSystemInfo.new(xml)
-		rPartyClass = CI_ResponsibleParty.new(xml)
-		dataIdClass = MD_DataIdentification.new(xml)
-		distClass = MD_Distribution.new(xml)
-		mdExtClass = MD_MetadataExtensionInformation.new(xml)
-		dqClass = DQ_DataQuality.new(xml)
-		metaMaintClass = MD_MaintenanceInformation.new(xml)
+		charCode = MD_CharacterSetCode.new(@xml)
+		scopeCode = MD_ScopeCode.new(@xml)
+		rSysCode = ReferenceSystemInfo.new(@xml)
+		rPartyClass = CI_ResponsibleParty.new(@xml)
+		dataIdClass = MD_DataIdentification.new(@xml)
+		distClass = MD_Distribution.new(@xml)
+		mdExtClass = MD_MetadataExtensionInformation.new(@xml)
+		dqClass = DQ_DataQuality.new(@xml)
+		metaMaintClass = MD_MaintenanceInformation.new(@xml)
 
-		intMetadata = @internalObj[:metadata]
+		intMetadata = internalObj[:metadata]
+		hMetaInfo = intMetadata[:metadataInfo]
+		hResInfo = intMetadata[:resourceInfo]
+		aAssocRes = intMetadata[:associatedResources]
+		$intContactList = internalObj[:contacts]
 
 		# document head
-		xml.instruct! :xml, encoding: 'UTF-8'
-		xml.comment!('core gmi based instance document ISO 19115-2')
-		xml.tag!('gmi:MI_Metadata',{'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
+		@xml.instruct! :xml, encoding: 'UTF-8'
+		@xml.comment!('core gmi based instance document ISO 19115-2')
+		@xml.tag!('gmi:MI_Metadata',{'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
 									'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
 									'xmlns:gco' => 'http://www.isotc211.org/2005/gco',
 									'xmlns:gml' => 'http://www.opengis.net/gml/3.2',
@@ -66,68 +69,69 @@ class MI_Metadata
 									'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gmi ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'}) do
 
 			# metadata information - file identifier - default
-			xml.tag!('gmd:fileIdentifier') do
-				s = intMetadata[:fileIdentifier]
+			@xml.tag!('gmd:fileIdentifier') do
+				s = hMetaInfo[:metadataId]
 				if s.nil?
 					# generate fileIdentifier if one not provided
-					xml.tag!('gco:CharacterString',UUIDTools::UUID.random_create.to_s)
+					@xml.tag!('gco:CharacterString',UUIDTools::UUID.random_create.to_s)
 				else
-					xml.tag!('gco:CharacterString',s)
+					@xml.tag!('gco:CharacterString',s)
 				end
 			end
 
 			# metadata information - file language - default
-			xml.tag!('gmd:language') do
+			@xml.tag!('gmd:language') do
 				# all xml is written in US English
-				xml.tag!('gco:CharacterString','eng; USA')
+				@xml.tag!('gco:CharacterString','eng; USA')
 			end
 
 			# metadata information - character set - default
-			xml.tag!('gmd:characterSet') do
+			@xml.tag!('gmd:characterSet') do
 				# all out put is in utf8
 				charCode.writeXML('utf8')
 			end
 
 			# metadata information - parent identifier
-			s = intMetadata[:parentIdentifier]
+			s = hMetaInfo[:parentMetadataId]
 			if !s.nil?
-				xml.tag!('gmd:parentIdentifier') do
-					xml.tag!('gco:CharacterString',s)
+				@xml.tag!('gmd:parentIdentifier') do
+					@xml.tag!('gco:CharacterString',s)
 				end
 			elsif $showEmpty
-				xml.tag!('gmd:parentIdentifier')
+				@xml.tag!('gmd:parentIdentifier')
 			end
 
 			# metadata information - file hierarchy - default dataset
-			aHierarchy = intMetadata[:hierarchies]
+			aHierarchy = hMetaInfo[:metadataScope]
 			if aHierarchy.empty?
-				xml.tag!('gmd:hierarchyLevel') do
+				@xml.tag!('gmd:hierarchyLevel') do
 					scopeCode.writeXML('dataset')
 				end
 			else
 				aHierarchy.each do |hierarchy|
-					xml.tag!('gmd:hierarchyLevel') do
+					@xml.tag!('gmd:hierarchyLevel') do
 						scopeCode.writeXML(hierarchy)
 					end
 				end
 			end
 
 			# metadata information - metadata custodian - required
-			aCustodians = intMetadata[:metadataCustodians]
+			aCustodians = hMetaInfo[:metadataCustodians]
 			if aCustodians.empty?
-				xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
+				@xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
 			else
-				aCustodians.each do |mCustodian|
-					xml.tag!('gmd:contact') do
-						rPartyClass.writeXML(mCustodian)
+				aCustodians.each do |hCustodian|
+					@xml.tag!('gmd:contact') do
+						rPartyClass.writeXML(hCustodian)
 					end
 				end
 			end
 
 			# metadata information - date stamp - required - default to now()
-			xml.tag!('gmd:dateStamp') do
-				# if date not supplied fill with today
-				hDate = intMetadata[:metadataDate]
+			@xml.tag!('gmd:dateStamp') do
+
+				# if date not supplied, fill with today's date
+				hDate = hMetaInfo[:metadataCreateDate]
 				if hDate.empty?
 					mDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
 				else
@@ -139,58 +143,48 @@ class MI_Metadata
 						mDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
 					end
 				end
-				xml.tag!('gco:Date',mDate)
+
+				@xml.tag!('gco:Date',mDate)
 			end
 
 			# metadata information - metadata standard name - default
-			xml.tag!('gmd:metadataStandardName') do
-				xml.tag!('gco:CharacterString','ISO 19115-2')
+			@xml.tag!('gmd:metadataStandardName') do
+				@xml.tag!('gco:CharacterString','ISO 19115-2')
 			end
 
 			# metadata information - metadata standard version - default
-			xml.tag!('gmd:metadataStandardVersion') do
-				xml.tag!('gco:CharacterString','ISO 19115-2:2009(E)')
-			end
-
-			# metadata information - dataset URI
-			dataURI = intMetadata[:datasetURI]
-			if !dataURI.nil?
-				xml.tag!('gmd:dataSetURI') do
-					xml.tag!('gco:CharacterString',dataURI)
-				end
-			elsif $showEmpty
-				xml.tag!('gmd:dataSetURI')
+			@xml.tag!('gmd:metadataStandardVersion') do
+				@xml.tag!('gco:CharacterString','ISO 19115-2:2009(E)')
 			end
 
 			# metadata information - reference system
-			aRefSystems = intMetadata[:referenceSystems]
+			aRefSystems = hResInfo[:spatialReferenceSystems]
 			if !aRefSystems.empty?
 				aRefSystems.each do |rSystem|
 					rSysCode.writeXML(rSystem)
 				end
 			elsif $showEmpty
-				xml.tag!('gmd:referenceSystemInfo')
+				@xml.tag!('gmd:referenceSystemInfo')
 			end
 
 			# metadata information - metadata extension info
-			aExtensions = intMetadata[:extensions]
+			aExtensions = hMetaInfo[:extensions]
 			if !aExtensions.empty?
 				aExtensions.each do |hExtension|
-					xml.tag!('gmd:metadataExtensionInfo') do
+					@xml.tag!('gmd:metadataExtensionInfo') do
 						mdExtClass.writeXML(hExtension)
 					end
 				end
 			elsif $showEmpty
-				xml.tag!('gmd:metadataExtensionInfo')
+				@xml.tag!('gmd:metadataExtensionInfo')
 			end
 
 			# metadata information - identification info - required
-			hDataID = intMetadata[:dataIdentification]
-			if hDataID.empty?
-				xml.tag!('gmd:identificationInfo', {'gco:nilReason' => 'missing'})
+			if hResInfo.empty?
+				@xml.tag!('gmd:identificationInfo', {'gco:nilReason' => 'missing'})
 			else
-				xml.tag!('gmd:identificationInfo') do
-					dataIdClass.writeXML(hDataID)
+				@xml.tag!('gmd:identificationInfo') do
+					dataIdClass.writeXML(hResInfo, aAssocRes)
 				end
 			end
 
@@ -201,18 +195,18 @@ class MI_Metadata
 			# metadata information - distribution info []
 			aDistInfo = intMetadata[:distributorInfo]
 			if !aDistInfo.empty?
-				xml.tag!('gmd:distributionInfo') do
+				@xml.tag!('gmd:distributionInfo') do
 					distClass.writeXML(aDistInfo)
 				end
 			elsif $showEmpty
-				xml.tag!('gmd:distributionInfo')
+				@xml.tag!('gmd:distributionInfo')
 			end
 
 			# metadata information - data quality info
-			aDQInfo = intMetadata[:dataQualityInfo]
+			aDQInfo = hResInfo[:dataQualityInfo]
 			if !aDQInfo.empty?
 				aDQInfo.each do |hDQInfo|
-					xml.tag!('gmd:dataQualityInfo') do
+					@xml.tag!('gmd:dataQualityInfo') do
 						dqClass.writeXML(hDQInfo)
 					end
 				end
@@ -221,9 +215,9 @@ class MI_Metadata
 			end
 
 			# metadata information - metadata maintenance
-			hMetaMaint = intMetadata[:maintInfo]
+			hMetaMaint = hMetaInfo[:maintInfo]
 			if !hMetaMaint.empty?
-				xml.tag!('gmd:metadataMaintenance') do
+				@xml.tag!('gmd:metadataMaintenance') do
 					metaMaintClass.writeXML(hMetaMaint)
 				end
 			elsif $showEmpty

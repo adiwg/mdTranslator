@@ -7,6 +7,7 @@
 # 	Stan Smith 2013-10-21 moved address to new module
 #	Stan Smith 2014-04-23 modify for json schema version 0.3.0
 #   Stan Smith 2014-04-24 split default contacts to a separate method
+#   Stan Smith 2014-05-14 combine phone service types
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_address'
@@ -71,19 +72,11 @@ module AdiwgV1Contact
 			end
 		end
 
-		# phones - voice
+		# phones - all service types
 		if hContact.has_key?('phoneBook')
 			aPhones = hContact['phoneBook']
 			aPhones.each do |hPhone|
-				if hPhone['service'].include?('voice')
-					intCont[:voicePhones] << AdiwgV1Phone.unpack(hPhone)
-				end
-				if hPhone['service'].include?('fax')
-					intCont[:faxPhones] << AdiwgV1Phone.unpack(hPhone)
-				end
-				if hPhone['service'].include?('sms')
-					intCont[:smsPhones] << AdiwgV1Phone.unpack(hPhone)
-				end
+				intCont[:phones].concat(AdiwgV1Phone.unpack(hPhone))
 			end
 		end
 
@@ -97,7 +90,7 @@ module AdiwgV1Contact
 
 	end
 
-	def self.getDefaultContacts()
+	def self.setDefaultContacts()
 
 		# add default contacts
 		intMetadataClass = InternalMetadata.new
@@ -107,6 +100,17 @@ module AdiwgV1Contact
 		intCont = intMetadataClass.newContact
 		intCont[:contactID] = 'ADIwgBio'
 		intCont[:orgName] = 'National Biological Information Infrastructure (NBII)'
+		aDefContacts << intCont
+
+		# contact to support doi (digital object identifier)
+		intCont = intMetadataClass.newContact
+		intCont[:contactID] = 'ADIwgDOI'
+		intCont[:orgName] = 'International DOI Foundation (IDF)'
+
+		intOlRes = intMetadataClass.newOnlineResource
+		intOlRes[:olResLink] = 'http://www.doi.org'
+		intCont[:onlineRes] << intOlRes
+
 		aDefContacts << intCont
 
 		return aDefContacts

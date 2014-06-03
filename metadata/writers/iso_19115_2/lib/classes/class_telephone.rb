@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2013-08-12 original script
+#   Stan Smith 2014-05-14 reorganized for JSON schema 0.4.0
 
 require 'builder'
 
@@ -12,21 +13,32 @@ class CI_Telephone
 		@xml = xml
 	end
 
-	def writeXML(hPhoneBook)
+	def writeXML(aPhones)
 
-		aVoiceLines = hPhoneBook[:voice]
-		aFaxLines = hPhoneBook[:fax]
-		voiceLines = aVoiceLines.length
-		faxLines = aFaxLines.length
+	    # ISO requires phones to be in proper order (voice, fax)
+		# Need to count phones of each type to be able to include empty tag
+		voiceCount = 0
+		faxCount = 0
+		aPhones.each do |hPhone|
+			if hPhone[:phoneServiceType].nil?
+				hPhone[:phoneServiceType] = 'voice'
+			end
+			if hPhone[:phoneServiceType] == 'voice'
+				voiceCount += 1
+			end
+			if hPhone[:phoneServiceType] == 'fax'
+				faxCount += 1
+			end
+		end
 
-		if voiceLines + faxLines > 0
-			@xml.tag!('gmd:CI_Telephone') do
+		@xml.tag!('gmd:CI_Telephone') do
 
-				# telephone - voice
-				if !aVoiceLines.empty?
-					aVoiceLines.each do |phone|
-						pName = phone[:phoneName]
-						pNumber = phone[:phoneNumber]
+			# phone - voice phones
+			if voiceCount > 0
+				aPhones.each do |hPhone|
+					if hPhone[:phoneServiceType] == 'voice'
+						pName = hPhone[:phoneName]
+						pNumber = hPhone[:phoneNumber]
 						if pName.nil?
 							s = pNumber
 						else
@@ -36,15 +48,17 @@ class CI_Telephone
 							@xml.tag!('gco:CharacterString',s)
 						end
 					end
-				elsif $showEmpty
-					@xml.tag!('gmd:voice')
 				end
+			elsif $showEmpty
+				@xml.tag!('gmd:voice')
+			end
 
-				# telephone - fax
-				if !aFaxLines.empty?
-					aFaxLines.each do |phone|
-						pName = phone[:phoneName]
-						pNumber = phone[:phoneNumber]
+			# phone - fax phones
+			if faxCount > 0
+				aPhones.each do |hPhone|
+					if hPhone[:phoneServiceType] == 'fax'
+						pName = hPhone[:phoneName]
+						pNumber = hPhone[:phoneNumber]
 						if pName.nil?
 							s = pNumber
 						else
@@ -54,12 +68,10 @@ class CI_Telephone
 							@xml.tag!('gco:CharacterString',s)
 						end
 					end
-				elsif $showEmpty
-					@xml.tag!('gmd:facsimile')
 				end
-
+			elsif $showEmpty
+				@xml.tag!('gmd:facsimile')
 			end
-
 		end
 
 	end

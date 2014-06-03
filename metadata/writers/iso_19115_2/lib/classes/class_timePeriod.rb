@@ -18,7 +18,7 @@ class TimePeriod
 		timeID = hTempP[:timeID]
 		if timeID.nil?
 			$idCount = $idCount.succ
-			timeID = $idCount
+			timeID = 'timePeriod' + $idCount
 		end
 
 		@xml.tag!('gml:TimePeriod',{'gml:id'=>timeID}) do

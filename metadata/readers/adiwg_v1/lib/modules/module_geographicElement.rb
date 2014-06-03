@@ -8,6 +8,11 @@
 # 	Stan Smith 2013-11-13 added multi line string
 # 	Stan Smith 2013-11-18 added polygon
 #   Stan Smith 2014-04-30 complete redesign for json schema 0.3.0
+#   Stan Smith 2014-05-22 added multi polygon
+#   Stan Smith 2014-05-23 cleaned up hash copy problem by using Marshal
+#   Stan Smith 2014-05-23 added direct geometry support for Point, Line, Polygon
+#   Stan Smith 2014-05-23 added direct geometry support for MultiPoint, MultiLine, MultiPolygon
+#   Stan Smith 2014-05-23 added direct support for geometryCollection
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_geoCoordSystem'
@@ -28,104 +33,124 @@ module AdiwgV1GeographicElement
 		# instance classes needed in script
 		aIntGeoEle = Array.new
 
-		aGeoElements.each do |hGeoElement|
+		aGeoElements.each do |hGeoJsonElement|
 
 			# instance classes needed in script
 			intMetadataClass = InternalMetadata.new
-			intElement = intMetadataClass.newGeoElement
+			hGeoElement = intMetadataClass.newGeoElement
 
 			# find geographic element type
-			if hGeoElement.has_key?('type')
-				elementType = hGeoElement['type']
+			if hGeoJsonElement.has_key?('type')
+				elementType = hGeoJsonElement['type']
 			else
 				# invalid geographic element
 				return nil
 			end
 
 			# set geographic element id
-			if hGeoElement.has_key?('id')
-				s = hGeoElement['id']
+			if hGeoJsonElement.has_key?('id')
+				s = hGeoJsonElement['id']
 				if s != ''
-					intElement[:elementId] = s
+					hGeoElement[:elementId] = s
 				end
 			end
 
 			# set geographic element coordinate reference system - CRS
-			if hGeoElement.has_key?('crs')
-				hGeoCrs = hGeoElement['crs']
-				AdiwgV1GeoCoordSystem.unpack(hGeoCrs, intElement)
+			if hGeoJsonElement.has_key?('crs')
+				hGeoCrs = hGeoJsonElement['crs']
+				AdiwgV1GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
 			end
 
 			# set geographic element properties
-			if hGeoElement.has_key?('properties')
-				hGeoProps = hGeoElement['properties']
-				AdiwgV1GeoProperties.unpack(hGeoProps, intElement)
+			if hGeoJsonElement.has_key?('properties')
+				hGeoProps = hGeoJsonElement['properties']
+				AdiwgV1GeoProperties.unpack(hGeoProps, hGeoElement)
 			end
 
 			# process geographic element bounding box
-			if hGeoElement.has_key?('bbox')
-				if hGeoElement['bbox'].length == 4
-					aBBox = hGeoElement['bbox']
+			# the bounding box must be represented as a separate geographic element for ISO
+			# need to make a deep copy of current state of geographic element for bounding box
+			if hGeoJsonElement.has_key?('bbox')
+				if hGeoJsonElement['bbox'].length == 4
+					aBBox = hGeoJsonElement['bbox']
 
-					boxElement = intElement
-					boxElement[:elementType] = 'boundingBox'
-					boxElement[:elementGeometry] << AdiwgV1BoundingBox.unpack(aBBox)
+					boxElement = Marshal.load(Marshal.dump(hGeoElement))
+					boxElement[:elementGeometry] = AdiwgV1BoundingBox.unpack(aBBox)
 
 					aIntGeoEle << boxElement
 				end
 			end
 
-			# unpack a feature geometry
-			if elementType == 'Feature'
-				if hGeoElement.has_key?('geometry')
-					hGeometry = hGeoElement['geometry']
-					unless hGeometry.empty?
-						geoElement = intElement
-						if hGeometry.has_key?('type')
-							geometryType = hGeometry['type']
-							aCoordinates = hGeometry['coordinates']
-							unless aCoordinates.empty?
-								case geometryType
-									when 'Point'
-										geoElement[:elementType] = 'point'
-										geoElement[:elementGeometry] << AdiwgV1Point.unpack(aCoordinates)
-									when 'MultiPoint'
-										aCoordinates.each do |aPoint|
-											geoElement[:elementType] = 'multiPoint'
-											geoElement[:elementGeometry] << AdiwgV1Point.unpack(aPoint)
-										end
-									when 'LineString'
-										geoElement[:elementType] = 'lineString'
-										geoElement[:elementGeometry] << AdiwgV1LineString.unpack(aCoordinates)
-									when 'MultiLineString'
-										aCoordinates.each do |aLine|
-											geoElement[:elementType] = 'multiLineString'
-											geoElement[:elementGeometry] << AdiwgV1LineString.unpack(aLine)
-										end
-									when 'Polygon'
-										geoElement[:elementType] = 'polygon'
-										geoElement[:elementGeometry] << AdiwgV1Polygon.unpack(aCoordinates)
-									else
-										# log - the GeoJSON geometry type is not supported
+			# unpack geographic element
+			case elementType
+
+				# GeoJSON Features
+				when 'Feature'
+					if hGeoJsonElement.has_key?('geometry')
+						hGeometry = hGeoJsonElement['geometry']
+						unless hGeometry.empty?
+							if hGeometry.has_key?('type')
+								geometryType = hGeometry['type']
+								aCoordinates = hGeometry['coordinates']
+								unless aCoordinates.empty?
+									case geometryType
+										when 'Point', 'MultiPoint'
+											hGeoElement[:elementGeometry] = AdiwgV1Point.unpack(aCoordinates, geometryType)
+										when 'LineString', 'MultiLineString'
+											hGeoElement[:elementGeometry] = AdiwgV1LineString.unpack(aCoordinates, geometryType)
+										when 'Polygon', 'MultiPolygon'
+											hGeoElement[:elementGeometry] = AdiwgV1Polygon.unpack(aCoordinates, geometryType)
+										else
+											# log - the GeoJSON geometry type is not supported
+									end
+									aIntGeoEle << hGeoElement
 								end
-								aIntGeoEle << geoElement
 							end
 						end
 					end
-				end
-			end
 
-			# process a feature collection
-			if elementType == 'FeatureCollection'
-				if hGeoElement.has_key?('features')
-					aFeatures = hGeoElement['features']
-					unless aFeatures.empty?
-						multiElement = intElement
-						multiElement[:elementType] = 'multiGeometry'
-						multiElement[:elementGeometry] = AdiwgV1GeographicElement.unpack(aFeatures)
-						aIntGeoEle << multiElement
+				# GeoJSON Feature Collection
+				when 'FeatureCollection'
+					if hGeoJsonElement.has_key?('features')
+						aFeatures = hGeoJsonElement['features']
+						unless aFeatures.empty?
+							intGeometry = intMetadataClass.newGeometry
+							intGeometry[:geoType] = 'MultiGeometry'
+							intGeometry[:geometry] = AdiwgV1GeographicElement.unpack(aFeatures)
+							hGeoElement[:elementGeometry] = intGeometry
+							aIntGeoEle << hGeoElement
+						end
 					end
-				end
+
+				# GeoJSON Geometries
+				when 'Point', 'MultiPoint'
+					aCoordinates = hGeoJsonElement['coordinates']
+					hGeoElement[:elementGeometry] = AdiwgV1Point.unpack(aCoordinates, elementType)
+					aIntGeoEle << hGeoElement
+
+				when 'LineString', 'MultiLineString'
+					aCoordinates = hGeoJsonElement['coordinates']
+					hGeoElement[:elementGeometry] = AdiwgV1LineString.unpack(aCoordinates, elementType)
+					aIntGeoEle << hGeoElement
+
+				when 'Polygon', 'MultiPolygon'
+					aCoordinates = hGeoJsonElement['coordinates']
+					hGeoElement[:elementGeometry] = AdiwgV1Polygon.unpack(aCoordinates, elementType)
+					aIntGeoEle << hGeoElement
+
+				# GeoJSON Geometry Collection
+				when 'GeometryCollection'
+					if hGeoJsonElement.has_key?('geometries')
+						aGeometries = hGeoJsonElement['geometries']
+						unless aGeometries.empty?
+							intGeometry = intMetadataClass.newGeometry
+							intGeometry[:geoType] = 'MultiGeometry'
+							intGeometry[:geometry] = AdiwgV1GeographicElement.unpack(aGeometries)
+							hGeoElement[:elementGeometry] = intGeometry
+							aIntGeoEle << hGeoElement
+						end
+					end
+
 			end
 
 		end

@@ -275,7 +275,7 @@
         "metadataInfo": {
             "metadataIdentifier": "D5D16D06-CEEB-E011-8260-000C2952247E",
             "parentMetadataIdentifier": "D5D16D06-TFDE-lE01-9427-000C548U45JA",
-            "metadataScope": ["project"],
+            "metadataScope": ["dataset","project"],
             "metadataContact": [
                 {
                     "contactId": "7",
@@ -306,30 +306,15 @@
                         "dateType": "revision"
                     }
                 ],
+                "edition": "First Edition plus edits",
                 "responsibleParty": [
                     {
                         "contactId": "1",
-                        "role": "owner",
-                        "resourceIdentifier": [
-                            {
-                                "identifierName": "ASC Project ID",
-                                "identifier": "32"
-                            }
-                        ]
+                        "role": "owner"
                     },
                     {
                         "contactId": "2",
                         "role": "principleInvestigator"
-                    },
-                    {
-                        "contactId": "9",
-                        "role": "funder",
-                        "resourceIdentifier": [
-                            {
-                                "identifierName": "NSF Grant Award Number",
-                                "identifier": "A516548V0034"
-                            }
-                        ]
                     },
                     {
                         "contactId": "3",
@@ -360,6 +345,43 @@
                     }
                 ]
             },
+            "resourceIdentifier": [
+                {
+                    "title": "ASC Project ID",
+                    "date": [
+                        {
+                            "date": "2014-05-27",
+                            "dateType": "publication"
+                        }
+                    ],
+                    "responsibleParty": [
+                        {
+                            "contactId": "1",
+                            "role": "owner"
+                        }
+                    ],
+                    "identifier": "32"
+                },
+                {
+                    "title": "NSF Grant Award Number",
+                    "responsibleParty": [
+                        {
+                            "contactId": "9",
+                            "role": "funder"
+                        }
+                    ],
+                    "onlineResource": [
+                        {
+                            "uri": "http://thisisanexample.com",
+                            "protocol": "HTTP",
+                            "name": "Example is the name",
+                            "description": "It's an example!",
+                            "function": "See description"
+                        }
+                    ],
+                    "identifier": "A516548V0034"
+                }
+            ],
             "pointOfContact": [
                 {
                     "contactId": "2",
@@ -373,9 +395,10 @@
             "abstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS). DOI/GTN-P consists of two subnetworks: 1) a network of 15 automated surface stations, and 2) a 20-element deep borehole array. The surface stations continuously monitor changes in permafrost active-layer as well as a number of other climate parameters, including: permafrost temperature, soil moisture, snow depth, air temperature, wind speed and direction, up- and downwelling shortwave radiation, albedo, and cloudiness. A portion of the surface network is now available in near real-time through radio telemetry. Vegetation changes are coincidentally monitored at these sites. The borehole array is used to monitor the thermal state of the underlying permafrost. This is the largest array of deep boreholes in the world currently available for monitoring the thermal state of permafrost. Many of the surface stations are co-located with deep boreholes, effectively forming 'permafrost observatories.' In conjunction with DOI/GTN-P, we are developing models for synthesizing climate observations and for investigating how the cryosphere responds to climate change. These models will improve existing predictive capabilities for DOI lands. Climate projections by global coupled Atmosphere-Ocean General Circulation Models (AOGCMs) suggest significant environmental changes will occur in the Arctic during the next 80 years (http://www.acia.uaf.edu). According to these models, climate change will be Arctic-wide with a pronounced enhancement over the Arctic Ocean and adjacent coastal plains. These projections suggest large climate-induced landscape and ecosystem changes are likely to occur in northern Alaska during the next few decades. Important issues for DOI lands in this region include: permafrost degradation; vulnerability of high northern infrastructure to permafrost instability; large potential greenhouse gas (CO2, methane) emissions form warming permafrost; shifting vegetation patterns; impacts of habitat changes of wildlife; changing stream flow and lake levels; impacts of ecosystem changes on Native peoples: and, coastal erosion, inundation of coastal areas by storm surges. Given the large potential impacts, and the significant uncertainty in the model projections, a comprehensive monitoring effort is warranted.",
             "shortAbstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS).",
             "status": "onGoing",
+            "resourceUri": "http://alaska.usgs.gov/rex/adiwg/public/projects/32",
             "hasMapLocation": true,
             "hasDataAvailable": true,
-            "language": ["eng; USA"],
+            "language": ["eng; USA","esp; MEX"],
             "purpose": "Long-term monitoring of permafrost conditions in the Alaska Arctic",
             "credit": ["Allison Gaylord - Nunatech", "Mike Dover - Critigen"],
             "topicCategory": ["climatology", "geoscientificInformation", "location"],
@@ -411,7 +434,7 @@
                                 }
                             ],
                             "edition": "Version 8.0.0.0.0",
-                            "presentationForm": "documentDigital",
+                            "presentationForm": ["documentDigital"],
                             "doi": "10.1000/182"
                         }
                     }
@@ -429,7 +452,7 @@
                                     "role": "author"
                                 }
                             ],
-                            "presentationForm": "documentDigital"
+                            "presentationForm": ["documentDigital"]
                         }
                     }
                 },
@@ -446,7 +469,7 @@
                                     "dateType": "creation"
                                 }
                             ],
-                            "presentationForm": "documentDigital"
+                            "presentationForm": ["documentDigital"]
                         }
                     }
                 }
@@ -626,7 +649,7 @@
                     }
                 ]
             },
-            "spatialDatum": ["EPSG:4326"],
+            "spatialDatum": ["NAD27","MLW"],
             "spatialRepresentation": ["textTable"],
             "spatialResolution": [
                 {
@@ -639,12 +662,12 @@
             ],
             "extent": [
                 {
-                    "description": "Spatial extent for North Slope borehole project",
+                    "description": "Spatial extent for GeoJSON Geometry and GeometryCollection",
                     "geographicElement": [
                         {
-                            "type": "Feature",
-                            "id": "boundingBox",
+                            "type": "Point",
                             "bbox": [-161.45, 68.25, -148.272, 71.22],
+                            "coordinates": [-160.123, 45.678, 500],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -652,17 +675,15 @@
                                     "href": "",
                                     "type": ""
                                 }
-                            },
-                            "properties": {
-                                "featureName": "Project bounding box",
-                                "description": "bounding box for DOI/GTN-P Deep Borehole Array",
-                                "includesData": true
                             }
                         },
                         {
-                            "type": "Feature",
-                            "id": "point001",
-                            "bbox": [],
+                            "type": "LineString",
+                            "coordinates": [
+                                [-120.717181, 70.879761, 5],
+                                [-130.964531, 41.946544, 6],
+                                [-140.3232, 87.12121, 7]
+                            ],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -670,25 +691,34 @@
                                     "href": "",
                                     "type": ""
                                 }
-                            },
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [
-                                    -160.77777,
-                                    45.88888,
-                                    500
+                            }
+                        },
+                        {
+                            "type": "Polygon",
+                            "coordinates": [
+                                [
+                                    [-139.000, 59.000],
+                                    [-140.882186, 59.839602],
+                                    [-143.101425, 60.22375],
+                                    [-147.056503, 60.829147],
+                                    [-148.902206, 59.982807],
+                                    [-148.792343, 57.944338],
+                                    [-134.576034, 57.663361]
+                                ],
+                                [
+                                    [-139.111, 59.111],
+                                    [-140.882186, 59.839602],
+                                    [-148.792343, 57.944338],
+                                    [-134.576034, 57.663361]
+                                ],
+                                [
+                                    [-139.222, 59.222],
+                                    [-147.056503, 60.829147],
+                                    [-148.902206, 59.982807],
+                                    [-148.792343, 57.944338],
+                                    [-134.576034, 57.663361]
                                 ]
-                            },
-                            "properties": {
-                                "featureName": "test point",
-                                "description": "testing point in geographic element",
-                                "includesData": false
-                            }
-                        },
-                        {
-                            "type": "Feature",
-                            "id": "multiPoint011",
-                            "bbox": [],
+                            ],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -696,31 +726,15 @@
                                     "href": "",
                                     "type": ""
                                 }
-                            },
-                            "geometry": {
-                                "type": "MultiPoint",
-                                "coordinates": [
-                                    [
-                                        -151.717181,
-                                        70.879761,
-                                        5
-                                    ],[
-                                        -134.964531,
-                                        41.946544,
-                                        236
-                                    ]
-                                ]
-                            },
-                            "properties": {
-                                "featureName": "test multi-point",
-                                "description": "testing multi-point in geographic element",
-                                "includesData": false
                             }
                         },
                         {
-                            "type": "Feature",
-                            "id": "line001",
-                            "bbox": [],
+                            "type": "MultiPoint",
+                            "coordinates": [
+                                [-160.111, 45.678],
+                                [-160.222, 45.678, 50],
+                                [-160.333, 45.678, 500]
+                            ],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -728,35 +742,30 @@
                                     "href": "",
                                     "type": ""
                                 }
-                            },
-                            "geometry": {
-                                "type": "LineString",
-                                "coordinates": [
-                                    [
-                                        -120.717181,
-                                        70.879761,
-                                        5
-                                    ],[
-                                        -130.964531,
-                                        41.946544,
-                                        6
-                                    ],[
-                                        -140.3232,
-                                        87.12121,
-                                        7
-                                    ]
-                                ]
-                            },
-                            "properties": {
-                                "featureName": "test single linestring",
-                                "description": "testing lineString in geographic element",
-                                "includesData": false
                             }
                         },
                         {
-                            "type": "Feature",
-                            "id": "multiLine011",
-                            "bbox": [],
+                            "type": "MultiLineString",
+                            "coordinates": [
+                                [
+                                    [-120.111, 70.879761, 5],
+                                    [-130.222, 41.946544, 6],
+                                    [-140.333, 87.12121, 7],
+                                    [-140.444, 87.12121, 7]
+                                ],
+                                [
+                                    [-120.555, 70.879761, 5],
+                                    [-130.666, 41.946544, 6],
+                                    [-140.777, 87.12121, 7],
+                                    [-140.888, 87.12121, 7]
+                                ],
+                                [
+                                    [-120.999, 70.879761, 5],
+                                    [-130.000, 41.946544, 6],
+                                    [-140.111, 87.12121, 7],
+                                    [-140.222, 87.12121, 7]
+                                ]
+                            ],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -764,297 +773,75 @@
                                     "href": "",
                                     "type": ""
                                 }
-                            },
-                            "geometry": {
-                                "type": "MultiLineString",
-                                "coordinates": [
-                                    [
-                                        [
-                                            -120.717181,
-                                            70.879761,
-                                            5
-                                        ],[
-                                            -130.964531,
-                                            41.946544,
-                                            6
-                                        ],[
-                                            -140.3232,
-                                            87.12121,
-                                            7
-                                        ]
-                                    ],[
-                                        [
-                                            -125.717181,
-                                            70.879761,
-                                            5
-                                        ],[
-                                            -135.964531,
-                                            60.946544,
-                                            6
-                                        ],[
-                                            -145.3232,
-                                            50.12121,
-                                            7
-                                        ]
-                                    ]
-                                ]
-                            },
-                            "properties": {
-                                "featureName": "test single linestring",
-                                "description": "testing lineString in geographic element",
-                                "includesData": false
                             }
                         },
                         {
-                            "type": "Feature",
-                            "id": "boundingPolygon",
-                            "geometry": {
-                                "type": "Polygon",
-                                "coordinates": [
+                            "type": "MultiPolygon",
+                            "coordinates": [
+                                [
                                     [
-                                        [-139.388046, 59.828561],
+                                        [-139.000, 59.000],
                                         [-140.882186, 59.839602],
                                         [-143.101425, 60.22375],
                                         [-147.056503, 60.829147],
                                         [-148.902206, 59.982807],
                                         [-148.792343, 57.944338],
                                         [-134.576034, 57.663361]
-                                    ]
-                                ]
-                            },
-                            "crs": {
-                                "type": "name",
-                                "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
-                                }
-                            },
-                            "properties": {
-                                "featureName": "Project boundary polygon",
-                                "description": "bounding polygon for DOI/GTN-P Deep Borehole Array",
-                                "includesData": true
-                            }
-                        },
-                        {
-                            "type": "Feature",
-                            "id": "boundingPolygonHoles",
-                            "geometry": {
-                                "type": "Polygon",
-                                "coordinates": [
+                                    ],
                                     [
-                                        [-139.388046, 59.828561],
-                                        [-140.882186, 59.839602],
-                                        [-143.101425, 60.22375],
-                                        [-147.056503, 60.829147],
-                                        [-148.902206, 59.982807],
-                                        [-148.792343, 57.944338],
-                                        [-134.576034, 57.663361]
-                                    ],[
-                                        [-139.388046, 59.828561],
+                                        [-139.111, 59.111],
                                         [-140.882186, 59.839602],
                                         [-148.792343, 57.944338],
                                         [-134.576034, 57.663361]
-                                    ],[
-                                        [-139.388046, 59.828561],
+                                    ],
+                                    [
+                                        [-139.222, 59.222],
                                         [-147.056503, 60.829147],
                                         [-148.902206, 59.982807],
                                         [-148.792343, 57.944338],
                                         [-134.576034, 57.663361]
                                     ]
+                                ],
+                                [
+                                    [
+                                        [-39.000, 59.000],
+                                        [-40.882186, 59.0],
+                                        [-43.101425, 60.0],
+                                        [-47.056503, 60.0],
+                                        [-48.902206, 59.0],
+                                        [-48.792343, 57.0],
+                                        [-34.576034, 57.0]
+                                    ],
+                                    [
+                                        [-39.111, 59.111],
+                                        [-40.882186, 59.0],
+                                        [-48.792343, 57.0],
+                                        [-34.576034, 57.0]
+                                    ],
+                                    [
+                                        [-39.222, 59.222],
+                                        [-47.056503, 60.0],
+                                        [-48.902206, 59.0],
+                                        [-48.792343, 57.0],
+                                        [-34.576034, 57.0]
+                                    ]
                                 ]
-                            },
-                            "crs": {
-                                "type": "name",
-                                "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
-                                }
-                            },
-                            "properties": {
-                                "featureName": "Project boundary polygon with holes",
-                                "description": "bounding polygon with holes for DOI/GTN-P Deep Borehole Array",
-                                "includesData": true
-                            }
+                            ]
                         },
                         {
-                            "type": "FeatureCollection",
-                            "id": "barrowSiteMap",
-                            "properties": {
-                                "featureName": "North Slope Borehole Locations",
-                                "description": "Borehole Locations for DOI/GTN-P Deep Borehole Array",
-                                "includesData": true
-                            },
-                            "crs": {
-                                "type": "name",
-                                "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
-                                }
-                            },
-                            "features": [
+                            "type": "GeometryCollection",
+                            "geometries": [
                                 {
-                                    "type": "Feature",
-                                    "id": "borehole010",
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [
-                                            -151.717181,
-                                            70.556119,
-                                            2
-                                        ]
-                                    },
-                                    "properties": {
-                                        "featureName": "Atigaru",
-                                        "description": "Deep permafrost borehole",
-                                        "includesData": true,
-                                        "assignedId": [
-                                            {
-                                                "contactId": "3",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "Global Terrestrial Network for Permafrost Identifiers",
-                                                        "identifier": "US 01"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "contactId": "8",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "US Geological Survey borehole identifier",
-                                                        "identifier": "ATI"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "featureScope": "borehole",
-                                        "featureAcquisitionMethod": "DGPS",
-                                        "temporalElement": {
-                                            "timePeriod": [
-                                                {
-                                                    "id": "timePeriod010",
-                                                    "description": "Period of borehole operation",
-                                                    "beginPosition": "1977-12-14",
-                                                    "endPosition": "2007-08-13"
-                                                }
-                                            ]
-                                        }
-                                    }
+                                    "type": "Point",
+                                    "coordinates": [100.0, 200.0, 0.0]
                                 },
                                 {
-                                    "type": "Feature",
-                                    "id": "borehole020",
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [
-                                            -158.022575,
-                                            69.153217,
-                                            337
-                                        ]
-                                    },
-                                    "properties": {
-                                        "featureName": "Awuna",
-                                        "description": "Deep permafrost borehole",
-                                        "includesData": true,
-                                        "assignedId": [
-                                            {
-                                                "contactId": "3",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "Global Terrestrial Network for Permafrost Identifiers",
-                                                        "identifier": "US 02"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "contactId": "8",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "US Geological Survey borehole identifier",
-                                                        "identifier": "AWUN"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "featureScope": "borehole",
-                                        "featureAcquisitionMethod": "DGPS",
-                                        "temporalElement": {
-                                            "timePeriod": [
-                                                {
-                                                    "id": "timePeriod0120",
-                                                    "description": "Period of borehole operation",
-                                                    "beginPosition": "1981-08-22",
-                                                    "endPosition": ""
-                                                }
-                                            ]
-                                        }
-                                    }
-                                },
-                                {
-                                    "type": "Feature",
-                                    "id": "borehole030",
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [
-                                            -151.717181,
-                                            70.879761,
-                                            5
-                                        ]
-                                    },
-                                    "properties": {
-                                        "featureName": "Drew Point",
-                                        "description": "Deep permafrost borehole",
-                                        "includesData": true,
-                                        "assignedId": [
-                                            {
-                                                "contactId": "3",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "Global Terrestrial Network for Permafrost Identifiers",
-                                                        "identifier": "US 03"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "contactId": "8",
-                                                "role": "originator",
-                                                "resourceIdentifier": [
-                                                    {
-                                                        "identifierName": "US Geological Survey borehole identifier",
-                                                        "identifier": "DWPT"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "featureScope": "borehole",
-                                        "featureAcquisitionMethod": "DGPS",
-                                        "temporalElement": {
-                                            "timePeriod": [
-                                                {
-                                                    "id": "timePeriod030",
-                                                    "description": "Period of borehole operation",
-                                                    "beginPosition": "1987-09-17",
-                                                    "endPosition": "2007-08-13"
-                                                }
-                                            ]
-                                        },
-                                        "verticalElement": [
-                                            {
-                                                "minimumValue": -653,
-                                                "maximumValue": 12,
-                                                "verticalCRSTitle": "NAVD88 depth",
-                                                "verticalCRSLink": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
-                                            }
-                                        ]
-                                    }
+                                    "type": "LineString",
+                                    "coordinates": [
+                                        [101.0, 7.0],
+                                        [105.5, 8.0],
+                                        [109.8, 9.0]
+                                    ]
                                 }
                             ]
                         }
@@ -1103,6 +890,420 @@
                             "verticalCRSLink":"http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
                         }
 
+                    ]
+                },
+                {
+                    "description": "Spatial extent for GeoJSON Feature and FeatureCollection",
+                    "geographicElement": [
+                        {
+                            "type": "Feature",
+                            "id": "boundingBoxFeature",
+                            "bbox": [-161.00, 68.00, -148.00, 71.00],
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "properties": {
+                                "featureName": "Project bounding box",
+                                "description": "bounding box for DOI/GTN-P Deep Borehole Array",
+                                "includesData": true
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "point001",
+                            "bbox": [],
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [-160.77777, 45.88888, 500]
+                            },
+                            "properties": {
+                                "featureName": "test point",
+                                "description": "testing point in feature element",
+                                "includesData": false
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "multiPoint011",
+                            "bbox": [],
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "geometry": {
+                                "type": "MultiPoint",
+                                "coordinates": [
+                                    [-151.717181, 70.879761, 5],
+                                    [-134.964531, 41.946544, 236]
+                                ]
+                            },
+                            "properties": {
+                                "featureName": "test multi-point",
+                                "description": "testing multi-point in feature element",
+                                "includesData": false
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "line001",
+                            "bbox": [],
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "geometry": {
+                                "type": "LineString",
+                                "coordinates": [
+                                    [-120.717181, 70.879761, 5],
+                                    [-130.964531, 41.946544, 6],
+                                    [-140.3232, 87.12121, 7]
+                                ]
+                            },
+                            "properties": {
+                                "featureName": "test single linestring",
+                                "description": "testing lineString in feature element",
+                                "includesData": false
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "multiLine011",
+                            "bbox": [],
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "geometry": {
+                                "type": "MultiLineString",
+                                "coordinates": [
+                                    [
+                                        [-120.717181, 70.879761, 5],
+                                        [-130.964531, 41.946544, 6],
+                                        [-140.3232, 87.12121, 7]
+                                    ],
+                                    [
+                                        [-125.717181, 70.879761, 5],
+                                        [-135.964531, 60.946544, 6],
+                                        [-145.3232, 50.12121, 7]
+                                    ]
+                                ]
+                            },
+                            "properties": {
+                                "featureName": "test multi linestring",
+                                "description": "testing multi lineString in feature element",
+                                "includesData": false
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "boundingPolygon",
+                            "geometry": {
+                                "type": "Polygon",
+                                "coordinates": [
+                                    [
+                                        [-139.388046, 59.828561],
+                                        [-140.882186, 59.839602],
+                                        [-143.101425, 60.22375],
+                                        [-147.056503, 60.829147],
+                                        [-148.902206, 59.982807],
+                                        [-148.792343, 57.944338],
+                                        [-134.576034, 57.663361]
+                                    ]
+                                ]
+                            },
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "properties": {
+                                "featureName": "Project boundary polygon",
+                                "description": "bounding polygon for DOI/GTN-P Deep Borehole Array",
+                                "includesData": true
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "boundingPolygonHoles",
+                            "geometry": {
+                                "type": "Polygon",
+                                "coordinates": [
+                                    [
+                                        [-139.111111, 59.828561],
+                                        [-140.882186, 59.839602],
+                                        [-143.101425, 60.22375],
+                                        [-147.056503, 60.829147],
+                                        [-148.902206, 59.982807],
+                                        [-148.792343, 57.944338],
+                                        [-134.576034, 57.663361]
+                                    ],
+                                    [
+                                        [-139.222222, 59.828561],
+                                        [-140.882186, 59.839602],
+                                        [-148.792343, 57.944338],
+                                        [-134.576034, 57.663361]
+                                    ],
+                                    [
+                                        [-139.333333, 59.828561],
+                                        [-147.056503, 60.829147],
+                                        [-148.902206, 59.982807],
+                                        [-148.792343, 57.944338],
+                                        [-134.576034, 57.663361]
+                                    ]
+                                ]
+                            },
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "properties": {
+                                "featureName": "Project boundary polygon with holes",
+                                "description": "bounding polygon with holes for DOI/GTN-P Deep Borehole Array",
+                                "includesData": true
+                            }
+                        },
+                        {
+                            "type": "Feature",
+                            "id": "multiPolygon",
+                            "geometry": {
+                                "type": "MultiPolygon",
+                                "coordinates": [
+                                    [
+                                        [
+                                            [-139.111111, 59.828561],
+                                            [-140.111111, 59.839602],
+                                            [-143.111111, 60.22375],
+                                            [-147.111111, 60.829147],
+                                            [-148.111111, 59.982807],
+                                            [-148.111111, 57.944338],
+                                            [-134.111111, 57.663361]
+                                        ]
+                                    ],
+                                    [
+                                        [
+                                            [-139.222222, 59.828561],
+                                            [-140.222222, 59.839602],
+                                            [-143.222222, 60.22375],
+                                            [-147.222222, 60.829147],
+                                            [-148.222222, 59.982807],
+                                            [-148.222222, 57.944338],
+                                            [-134.222222, 57.663361]
+                                        ],
+                                        [
+                                            [-139.333333, 59.828561],
+                                            [-140.333333, 59.839602],
+                                            [-148.333333, 57.944338],
+                                            [-134.333333, 57.663361]
+                                        ],
+                                        [
+                                            [-139.444444, 59.828561],
+                                            [-147.444444, 60.829147],
+                                            [-148.444444, 59.982807],
+                                            [-148.444444, 57.944338],
+                                            [-134.444444, 57.663361]
+                                        ]
+                                    ]
+                                ]
+                            },
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "properties": {
+                                "featureName": "Project boundary multi polygon",
+                                "description": "Two bounding polygons, the second with holes",
+                                "includesData": true
+                            }
+                        },                {
+                            "type": "FeatureCollection",
+                            "id": "barrowSiteMap",
+                            "properties": {
+                                "featureName": "North Slope Borehole Locations",
+                                "description": "Borehole Locations for DOI/GTN-P Deep Borehole Array",
+                                "includesData": true
+                            },
+                            "crs": {
+                                "type": "name",
+                                "properties": {
+                                    "name": "EPSG:4326",
+                                    "href": "",
+                                    "type": ""
+                                }
+                            },
+                            "features": [
+                                {
+                                    "type": "Feature",
+                                    "id": "borehole010",
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [-151.717181, 70.556119, 2]
+                                    },
+                                    "properties": {
+                                        "featureName": "Atigaru",
+                                        "description": "Deep permafrost borehole",
+                                        "includesData": true,
+                                        "assignedId": [
+                                            {
+                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
+                                                "responsibleParty": [
+                                                    {
+                                                        "contactId": "8",
+                                                        "role": "originator"
+                                                    }
+                                                ],
+                                                "onlineResource": [
+                                                    {
+                                                        "uri": "http://www.gtnp.org"
+                                                    }
+                                                ],
+                                                "identifier": "US 01"
+                                            },
+                                            {
+                                                "title": "US Geological Survey borehole identifier",
+                                                "responsibleParty": [
+                                                    {
+                                                        "contactId": "3",
+                                                        "role": "originator"
+                                                    }
+                                                ],
+                                                "onlineResource": [
+                                                    {
+                                                        "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska"
+                                                    }
+                                                ],
+                                                "identifier": "ATI"
+                                            }
+                                        ],
+                                        "featureScope": "borehole",
+                                        "featureAcquisitionMethod": "DGPS",
+                                        "temporalElement": {
+                                            "timePeriod": [
+                                                {
+                                                    "id": "timePeriod010",
+                                                    "description": "Period of borehole operation",
+                                                    "beginPosition": "1977-12-14",
+                                                    "endPosition": "2007-08-13"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "Feature",
+                                    "id": "borehole020",
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [-158.022575, 69.153217, 337]
+                                    },
+                                    "properties": {
+                                        "featureName": "Awuna",
+                                        "description": "Deep permafrost borehole",
+                                        "includesData": true,
+                                        "assignedId": [
+                                            {
+                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
+                                                "identifier": "US 02"
+                                            },
+                                            {
+                                                "title": "US Geological Survey borehole identifier",
+                                                "identifier": "AWUN"
+                                            }
+                                        ],
+                                        "featureScope": "borehole",
+                                        "featureAcquisitionMethod": "DGPS",
+                                        "temporalElement": {
+                                            "timePeriod": [
+                                                {
+                                                    "id": "timePeriod0120",
+                                                    "description": "Period of borehole operation",
+                                                    "beginPosition": "1981-08-22",
+                                                    "endPosition": ""
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "type": "Feature",
+                                    "id": "borehole030",
+                                    "geometry": {
+                                        "type": "Point",
+                                        "coordinates": [-151.717181, 70.879761, 5]
+                                    },
+                                    "properties": {
+                                        "featureName": "Drew Point",
+                                        "description": "Deep permafrost borehole",
+                                        "includesData": true,
+                                        "assignedId": [
+                                            {
+                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
+                                                "identifier": "US 03"
+                                            },
+                                            {
+                                                "title": "US Geological Survey borehole identifier",
+                                                "identifier": "DWPT"
+                                            }
+                                        ],
+                                        "featureScope": "borehole",
+                                        "featureAcquisitionMethod": "DGPS",
+                                        "temporalElement": {
+                                            "timePeriod": [
+                                                {
+                                                    "id": "timePeriod030",
+                                                    "description": "Period of borehole operation",
+                                                    "beginPosition": "1987-09-17",
+                                                    "endPosition": "2007-08-13"
+                                                }
+                                            ]
+                                        },
+                                        "verticalElement": [
+                                            {
+                                                "minimumValue": -653,
+                                                "maximumValue": 12,
+                                                "verticalCRSTitle": "NAVD88 depth",
+                                                "verticalCRSLink": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
                     ]
                 }
             ],
@@ -1158,7 +1359,7 @@
                                             "role": "originator"
                                         }
                                     ],
-                                    "presentationForm": "documentDigital",
+                                    "presentationForm": ["documentDigital"],
                                     "additionalIdentifier": {
                                         "isbn": "HB12365.214",
                                         "issn": "0ab4-dd983c01"
@@ -1325,12 +1526,56 @@
                             "role": "pointOfContact"
                         }
                     ],
-                    "presentationForm": "digitalData",
+                    "presentationForm": ["digitalData"],
                     "onlineResource": [
                         {
                             "uri": "http://esp.cr.usgs.gov/data/bht_alaska/",
                             "protocol": "http",
-                            "name": "This dataset consists of borehole temperature measurements acquired in permafrost regions of arctic Alaska between 1950 and 1988 by the U.S. Geological Survey. A large number of the 87 sites (boreholes) represented in this dataset are deep enough to penetrate the base of permafrost."
+                            "description": "This dataset consists of borehole temperature measurements acquired in permafrost regions of arctic Alaska between 1950 and 1988 by the U.S. Geological Survey. A large number of the 87 sites (boreholes) represented in this dataset are deep enough to penetrate the base of permafrost."
+                        }
+                    ]
+                },
+                "resourceIdentifier": [
+                    {
+                        "title": "NCCWSC Grant Award Number",
+                        "responsibleParty": [
+                            {
+                                "contactId": "9",
+                                "role": "funder"
+                            }
+                        ],
+                        "identifier": "2014AKCSC-03"
+                    }
+                ],
+                "metadataCitation": {
+                    "title": "Borehole Temperature Logs Metadata",
+                    "date": [
+                        {
+                            "date": "2013-08-15",
+                            "dateType": "revision"
+                        }
+                    ],
+                    "edition": "0.6.0",
+                    "responsibleParty": [
+                        {
+                            "contactId": "5",
+                            "role": "owner"
+                        }
+                    ],
+                    "presentationForm": ["digitalDocument"],
+                    "additionalIdentifier": {
+                        "doi": "",
+                        "isbn": "",
+                        "issn": ""
+                    },
+                    "onlineResource": [
+                        {
+                            "uri": "http://alaska.usgs.gov/rex/adiwg/public/projects/263?format=xml",
+                            "protocol": "HTTP",
+                            "name": "",
+                            "description": "project metadata record",
+                            "function": "",
+                            "doi": ""
                         }
                     ]
                 }
@@ -1351,7 +1596,7 @@
                         "role": "author"
                     }
                 ],
-                "presentationForm": "documentDigital",
+                "presentationForm": ["documentDigital"],
                 "onlineResource": [
                     {
                         "uri": "http://www.igsoc.org/journal.old/42/142/igs_journal_vol42_issue142_pg576-584.pdf",
@@ -1377,7 +1622,7 @@
                         "role": "funder"
                     }
                 ],
-                "presentationForm": "documentDigital",
+                "presentationForm": ["documentDigital"],
                 "onlineResource": [
                     {
                         "uri": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0520578",

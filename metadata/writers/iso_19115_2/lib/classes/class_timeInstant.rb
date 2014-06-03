@@ -18,7 +18,7 @@ class TimeInstant
 		timeID = hTempI[:timeID]
 		if timeID.nil?
 			$idCount = $idCount.succ
-			timeID = $idCount
+			timeID = 'timeInstant' + $idCount
 		end
 
 		@xml.tag!('gml:TimeInstant',{'gml:id'=>timeID}) do

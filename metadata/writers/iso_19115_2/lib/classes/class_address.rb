@@ -12,10 +12,10 @@ class CI_Address
 		@xml = xml
 	end
 
-	def writeXML(address)
+	def writeXML(hAddress)
 
-		deliveryPoints = address[:deliveryPoints].length
-		eMails = address[:eMailList].length
+		deliveryPoints = hAddress[:deliveryPoints].length
+		eMails = hAddress[:eMailList].length
 
 		if deliveryPoints + eMails > 0
 			@xml.tag!('gmd:CI_Address') do
@@ -23,7 +23,7 @@ class CI_Address
 				if deliveryPoints > 0
 
 					# address - delivery points (address lines)
-					aDeliveryPoints = address[:deliveryPoints]
+					aDeliveryPoints = hAddress[:deliveryPoints]
 					aDeliveryPoints.each do |myPoint|
 						@xml.tag!('gmd:deliveryPoint') do
 							@xml.tag!('gco:CharacterString',myPoint)
@@ -35,7 +35,7 @@ class CI_Address
 				end
 
 				# address - city
-				s = address[:city]
+				s = hAddress[:city]
 				if !s.nil?
 					@xml.tag!('gmd:city') do
 						@xml.tag!('gco:CharacterString',s)
@@ -45,7 +45,7 @@ class CI_Address
 				end
 
 				# address - admin area (state)
-				s = address[:adminArea]
+				s = hAddress[:adminArea]
 				if !s.nil?
 					@xml.tag!('gmd:administrativeArea') do
 						@xml.tag!('gco:CharacterString',s)
@@ -55,7 +55,7 @@ class CI_Address
 				end
 
 				# address - postal code
-				s = address[:postalCode]
+				s = hAddress[:postalCode]
 				if !s.nil?
 					@xml.tag!('gmd:postalCode') do
 						@xml.tag!('gco:CharacterString',s)
@@ -65,7 +65,7 @@ class CI_Address
 				end
 
 				# address - country
-				s = address[:country]
+				s = hAddress[:country]
 				if !s.nil?
 					@xml.tag!('gmd:country') do
 						@xml.tag!('gco:CharacterString',s)
@@ -76,7 +76,7 @@ class CI_Address
 
 				# address - email addresses
 				if eMails > 0
-					address[:eMailList].each do |myEmail|
+					hAddress[:eMailList].each do |myEmail|
 						@xml.tag!('gmd:electronicMailAddress') do
 							@xml.tag!('gco:CharacterString',myEmail)
 						end

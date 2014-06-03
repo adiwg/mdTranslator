@@ -9,9 +9,11 @@
 # 	Stan Smith 2013-11-25 resource specific usage
 # 	Stan Smith 2013-11-26 spatial resolution
 #   Stan Smith 2014-04-25 revised to support json schema version 0.3.0
+#   Stan Smith 2014-05-28 added resource identifier to citation json schema 0.5.0
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceIdentifier'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceFormat'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_descriptiveKeyword'
@@ -37,6 +39,18 @@ module AdiwgV1ResourceInfo
 		if hResourceInfo.has_key?('citation')
 			hCitation = hResourceInfo['citation']
 			intResInfo[:citation] = AdiwgV1Citation.unpack(hCitation)
+
+			# resource information - resource identifier
+			# resource identifiers reference the citation,
+			# ... they are only valid if there is a citation
+			if hResourceInfo.has_key?('resourceIdentifier')
+				aResID = hResourceInfo['resourceIdentifier']
+				unless aResID.empty?
+					aResID.each do |resID|
+						intResInfo[:citation][:citResourceIDs] << AdiwgV1ResourceIdentifier.unpack(resID)
+					end
+				end
+			end
 		end
 
 		# resource information - point of contact
@@ -185,7 +199,7 @@ module AdiwgV1ResourceInfo
 			end
 		end
 
-		# resource information - constraints
+		# resource information - use constraints
 		if hResourceInfo.has_key?('constraint')
 			hConstraint = hResourceInfo['constraint']
 
@@ -194,7 +208,7 @@ module AdiwgV1ResourceInfo
 				aUseLimits = hConstraint['useLimitation']
 				unless aUseLimits.empty?
 					aUseLimits.each do |useLimit|
-						intResInfo[:useLimitations] << useLimit
+						intResInfo[:useConstraints] << useLimit
 					end
 				end
 			end

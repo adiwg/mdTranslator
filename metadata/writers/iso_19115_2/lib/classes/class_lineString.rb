@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2013-11-13 original script
+#   Stan Smith 2014-05-30 modified for version 0.5.0
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_genericMetaData'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
 class LineString
 
@@ -13,55 +14,55 @@ class LineString
 		@xml = xml
 	end
 
-	def writeXML(hLine)
+	def writeXML(hGeoElement)
 
-		# classes used
-		metaDataClass = GenericMetaData.new(@xml)
+		# gml:LineString attributes
+		attributes = {}
 
-		lineID = hLine[:lineID]
+		# gml:LineString attributes - gml:id - required
+		lineID = hGeoElement[:elementId]
 		if lineID.nil?
 			$idCount = $idCount.succ
-			lineID = $idCount
+			lineID = 'line' + $idCount
+		end
+		attributes['gml:id'] = lineID
+
+		# gml:LineString attributes - srsDimension
+		s = hGeoElement[:elementGeometry][:dimension]
+		if !s.nil?
+			attributes[:srsDimension] = s
 		end
 
-		attributes = {}
-		attributes[:srsName] = hLine[:srsName]
-		attributes[:srsDimension] = hLine[:srsDim]
-		attributes['gml:id'] = lineID
+		# gml:LineString attributes - srsName
+		s = hGeoElement[:elementSrs][:srsName]
+		if !s.nil?
+			attributes[:srsName] = s
+		end
 
 		@xml.tag!('gml:LineString',attributes) do
 
-			# line string - metadata property
-			aTempEle = hLine[:temporalElements]
-			if !aTempEle.empty?
-				@xml.tag!('gml:metaDataProperty') do
-					metaDataClass.writeXML(aTempEle)
-				end
-			elsif $showEmpty
-				@xml.tag!('gml:metaDataProperty')
-			end
-
-			# line string - description
-			s = hLine[:lineDescription]
+			# lineString - description
+			s = hGeoElement[:elementDescription]
 			if !s.nil?
 				@xml.tag!('gml:description',s)
 			elsif $showEmpty
 				@xml.tag!('gml:description')
 			end
 
-			# line string - name
-			s = hLine[:lineName]
+			# lineString - name
+			s = hGeoElement[:elementName]
 			if !s.nil?
 				@xml.tag!('gml:name',s)
 			elsif $showEmpty
 				@xml.tag!('gml:name')
 			end
 
-			# line string - coordinates - required
-			# gml does not support nilReason
-			# coordinates are converted to string in reader
-			s = hLine[:lineRing]
+			# lineString - coordinates - required
+			# gml does not support nilReason for coordinates
+			# convert coordinate string from geoJSON to gml
+			s = hGeoElement[:elementGeometry][:geometry]
 			if !s.nil?
+				s = AdiwgV1Coordinates.unpack(s)
 				@xml.tag!('gml:coordinates',s)
 			else
 				@xml.tag!('gml:coordinates')

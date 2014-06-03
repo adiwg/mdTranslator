@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2013-11-01 original script
+#   Stan Smith 2014-05-30 hElement attributes changed for version 0.5.0
 
 require 'builder'
 
@@ -14,8 +15,8 @@ class EX_GeographicBoundingBox
 
 	def writeXML(hElement)
 
-		extentType = hElement[:elementExtent]
-		hBBox = hElement[:element]
+		extentType = hElement[:elementIncludeData]
+		hBBox = hElement[:elementGeometry][:geometry]
 
 		@xml.tag!('gmd:EX_GeographicBoundingBox') do
 

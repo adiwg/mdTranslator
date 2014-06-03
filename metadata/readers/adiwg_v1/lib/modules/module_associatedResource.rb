@@ -3,9 +3,12 @@
 
 # History:
 # 	Stan Smith 2014-05-02 original script
+# 	Stan Smith 2014-05-28 added resource identifier section
+# 	Stan Smith 2014-06-02 added resource metadata citation section
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceIdentifier'
 
 module AdiwgV1AssociatedResource
 
@@ -36,6 +39,26 @@ module AdiwgV1AssociatedResource
 			hCitation = hAssocRes['resourceCitation']
 			unless hCitation.empty?
 				intAssocRes[:resourceCitation] = AdiwgV1Citation.unpack(hCitation)
+
+				# associated resource - resource identifier
+				# resource identifiers reference the citation,
+				# ... they are only valid if there is a citation
+				if hAssocRes.has_key?('resourceIdentifier')
+					aResID = hAssocRes['resourceIdentifier']
+					unless aResID.empty?
+						aResID.each do |resID|
+							intAssocRes[:resourceCitation][:citResourceIDs] << AdiwgV1ResourceIdentifier.unpack(resID)
+						end
+					end
+				end
+			end
+		end
+
+		# associated resource - metadata citation
+		if hAssocRes.has_key?('metadataCitation')
+			hCitation = hAssocRes['metadataCitation']
+			unless hCitation.empty?
+				intAssocRes[:metadataCitation] = AdiwgV1Citation.unpack(hCitation)
 			end
 		end
 

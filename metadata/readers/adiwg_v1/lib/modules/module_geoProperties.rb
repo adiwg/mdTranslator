@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_temporalElement'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_verticalElement'
-require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceIdentifier'
 
 module AdiwgV1GeoProperties
 
@@ -60,7 +60,7 @@ module AdiwgV1GeoProperties
 			aAssignId = hGeoProps['assignedId']
 			unless aAssignId.empty?
 				aAssignId.each do |hAssignId|
-					intElement[:elementIdentifiers] << AdiwgV1ResponsibleParty.unpack(hAssignId)
+					intElement[:elementIdentifiers] << AdiwgV1ResourceIdentifier.unpack(hAssignId)
 				end
 			end
 		end
@@ -80,6 +80,8 @@ module AdiwgV1GeoProperties
 				intElement[:elementAcquisition] = s
 			end
 		end
+
+		return intElement
 
 	end
 

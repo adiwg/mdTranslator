@@ -3,8 +3,10 @@
 
 # History:
 # 	Stan Smith 2013-11-18 original script
+#   Stan Smith 2014-05-30 modified for version 0.5.0
 
 require 'builder'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
 class Polygon
 
@@ -12,23 +14,35 @@ class Polygon
 		@xml = xml
 	end
 
-	def writeXML(hPolygon)
+	def writeXML(hGeoElement)
 
-		polyID = hPolygon[:polygonID]
-		if polyID.nil?
+		# gml:Polygon attributes
+		attributes = {}
+
+		# gml:Polygon attributes - gml:id - required
+		lineID = hGeoElement[:elementId]
+		if lineID.nil?
 			$idCount = $idCount.succ
-			polyID = $idCount
+			lineID = 'polygon' + $idCount
+		end
+		attributes['gml:id'] = lineID
+
+		# gml:Polygon attributes - srsDimension
+		s = hGeoElement[:elementGeometry][:dimension]
+		if !s.nil?
+			attributes[:srsDimension] = s
 		end
 
-		attributes = {}
-		attributes[:srsName] = hPolygon[:srsName]
-		attributes[:srsDimension] = hPolygon[:srsDim]
-		attributes['gml:id'] = polyID
+		# gml:Polygon attributes - srsName
+		s = hGeoElement[:elementSrs][:srsName]
+		if !s.nil?
+			attributes[:srsName] = s
+		end
 
 		@xml.tag!('gml:Polygon',attributes) do
 
 			# polygon - description
-			s = hPolygon[:polygonDescription]
+			s = hGeoElement[:elementDescription]
 			if !s.nil?
 				@xml.tag!('gml:description',s)
 			elsif $showEmpty
@@ -36,17 +50,19 @@ class Polygon
 			end
 
 			# polygon - name
-			s = hPolygon[:polygonName]
+			s = hGeoElement[:elementName]
 			if !s.nil?
 				@xml.tag!('gml:name',s)
 			elsif $showEmpty
 				@xml.tag!('gml:name')
 			end
 
+
 			# polygon - exterior ring
-			# coordinates are converted to string by reader
-			s = hPolygon[:exteriorRing]
-			if !s.nil?
+			# convert coordinate string from geoJSON to gml
+			aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
+			if !aCoords.empty?
+				s = AdiwgV1Coordinates.unpack(aCoords)
 				@xml.tag!('gml:exterior') do
 					@xml.tag!('gml:LinearRing') do
 						@xml.tag!('gml:coordinates',s)
@@ -57,13 +73,15 @@ class Polygon
 			end
 
 			# polygon - interior ring
-			# coordinates are converted to string by reader
-			aRings = hPolygon[:interiorRings]
+			# convert coordinate string from geoJSON to gml
+			# XSDs do not all gml:interior to be displayed empty
+			aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
 			unless aRings.empty?
-				aRings.each do |ring|
+				aRings.each do |aRing|
+					s = AdiwgV1Coordinates.unpack(aRing)
 					@xml.tag!('gml:interior') do
 						@xml.tag!('gml:LinearRing') do
-							@xml.tag!('gml:coordinates', ring)
+							@xml.tag!('gml:coordinates', s)
 						end
 					end
 				end

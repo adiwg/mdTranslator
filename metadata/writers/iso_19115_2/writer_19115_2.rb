@@ -3,6 +3,9 @@
 # History:
 # 	Stan Smith 2013-08-10 original script
 
+$showEmpty = true
+$idCount = '_000'
+
 require 'builder'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_metadata'
 
@@ -15,9 +18,8 @@ class Iso19115_2
 
 		# create new XML document
 		xml = Builder::XmlMarkup.new(indent: 3)
-
-		iso19115_2 = MI_Metadata.new(internalObj)
-		iso19115_2.writeXML(xml)
+		iso19115_2 = MI_Metadata.new(xml)
+		iso19115_2.writeXML(internalObj)
 
 		return xml
 	end

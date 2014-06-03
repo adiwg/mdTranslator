@@ -3,9 +3,11 @@
 
 # History:
 # 	Stan Smith 2013-11-01 original script
+#   Stan Smith 2014-05-30 modified for version 0.5.0
 
 require 'builder'
-require Rails.root + 'metadata/writers/iso_19115_2/lib/classes/class_genericMetaData'
+require Rails.root + 'metadata/internal/internal_metadata_obj'
+require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
 class Point
 
@@ -13,59 +15,43 @@ class Point
 		@xml = xml
 	end
 
-	def writeXML(hPoint)
+	def writeXML(hGeoElement)
 
-		# classes used
-		metaDataClass = GenericMetaData.new(@xml)
+		# gml:Point attributes
+		attributes = {}
 
-		pointID = hPoint[:pointID]
+		# gml:Point attributes - gml:id - required
+		pointID = hGeoElement[:elementId]
 		if pointID.nil?
 			$idCount = $idCount.succ
-			pointID = $idCount
+			pointID = 'point' + $idCount
+		end
+		attributes['gml:id'] = pointID
+
+		# gml:Point attributes - srsDimension
+		s = hGeoElement[:elementGeometry][:dimension]
+		if !s.nil?
+			attributes[:srsDimension] = s
 		end
 
-		attributes = {}
-		attributes[:srsName] = hPoint[:srsName]
-		attributes[:srsDimension] = hPoint[:srsDim]
-		attributes['gml:id'] = pointID
+		# gml:Point attributes - srsName
+		s = hGeoElement[:elementSrs][:srsName]
+		if !s.nil?
+			attributes[:srsName] = s
+		end
 
 		@xml.tag!('gml:Point',attributes) do
 
-			# point - metadata property
-			aTempEle = hPoint[:temporalElements]
-			if !aTempEle.empty?
-				@xml.tag!('gml:metaDataProperty') do
-					metaDataClass.writeXML(aTempEle)
-				end
-			elsif $showEmpty
-				@xml.tag!('gml:metaDataProperty')
-			end
-
 			# point - description
-			s = hPoint[:pointDescription]
+			s = hGeoElement[:elementDescription]
 			if !s.nil?
 				@xml.tag!('gml:description',s)
 			elsif $showEmpty
 				@xml.tag!('gml:description')
 			end
 
-			# point - identifier
-			# gml:identifier cannot be shown empty
-			s = hPoint[:identifier]
-			unless s.nil?
-				codeSpace = hPoint[:identCodeSpace]
-				if codeSpace.nil?
-					codeSpace = 'MISSING'
-				end
-				attributes = {}
-				attributes[:codeSpace] = codeSpace
-				attributes['xsi:type'] = 'gml:CodeWithAuthorityType'
-
-				@xml.tag!('gml:identifier', attributes, s)
-			end
-
 			# point - name
-			s = hPoint[:pointName]
+			s = hGeoElement[:elementName]
 			if !s.nil?
 				@xml.tag!('gml:name',s)
 			elsif $showEmpty
@@ -73,14 +59,36 @@ class Point
 			end
 
 			# point - coordinates - required
-			# gml does not support nilReason
-			# coordinates are converted to string in reader
-			s = hPoint[:pointRing]
+			# gml does not support nilReason for coordinates
+			# convert coordinate string from geoJSON to gml
+			s = hGeoElement[:elementGeometry][:geometry]
 			if !s.nil?
+				s = AdiwgV1Coordinates.unpack(s)
 				@xml.tag!('gml:coordinates',s)
 			else
 				@xml.tag!('gml:coordinates')
 			end
+		end
+
+		# write new extent to portray supplemental information
+		# pass the new extent back to MD_DataIdentification for writing to ISO
+		if !hGeoElement[:temporalElement].empty? ||
+			!hGeoElement[:verticalElement].empty? ||
+			!hGeoElement[:elementIdentifiers].empty?
+
+			intMetadataClass = InternalMetadata.new
+			intExtent = intMetadataClass.newExtent
+			intGeoEle = intMetadataClass.newGeoElement
+
+			intGeoEle[:elementGeometry] = hGeoElement[:elementGeometry]
+
+			intExtent[:extDesc] = 'Supplemental information for point ' + pointID
+			intExtent[:extGeoElements] << intGeoEle
+			intExtent[:extIdElements] = hGeoElement[:elementIdentifiers]
+			intExtent[:extTempElements] = hGeoElement[:temporalElement]
+			intExtent[:extVertElements] = hGeoElement[:verticalElement]
+
+			$otherExtents << intExtent
 		end
 
 	end

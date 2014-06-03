@@ -11,10 +11,11 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
 module AdiwgV1Point
 
-	def self.unpack(aCoords)
+	def self.unpack(aCoords,geoType)
 		intMetadataClass = InternalMetadata.new
 		intPoint = intMetadataClass.newGeometry
 
+		intPoint[:geoType] = geoType
 		intPoint[:geometry] = aCoords
 		intPoint[:dimension] = AdiwgV1Coordinates.getDimension(aCoords)
 

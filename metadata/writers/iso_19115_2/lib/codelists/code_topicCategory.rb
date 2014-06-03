@@ -34,7 +34,10 @@ class MD_TopicCategoryCode
 				'transportation',
 				'utilitiesCommunication'
 			else
-				codeName = 'INVALID TOPIC CATEGORY'
+				# topics not in the standard ISO list will not pass validation
+				# the domain is validated by the XSD
+				# this codelist cannot be extended
+				return
 		end
 
 		# write xml
