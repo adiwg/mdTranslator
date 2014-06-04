@@ -41,7 +41,7 @@ module AdiwgV1GeoProperties
 		if hGeoProps.has_key?('temporalElement')
 			hTempEle = hGeoProps['temporalElement']
 			unless hTempEle.empty?
-				intElement[:temporalElement] = AdiwgV1TemporalElement.unpack(hTempEle)
+				intElement[:temporalElements] = AdiwgV1TemporalElement.unpack(hTempEle)
 			end
 		end
 
@@ -50,7 +50,7 @@ module AdiwgV1GeoProperties
 			aVertEle = hGeoProps['verticalElement']
 			unless aVertEle.empty?
 				aVertEle.each do |hVertEle|
-					intElement[:verticalElement] << AdiwgV1VerticalElement.unpack(hVertEle)
+					intElement[:verticalElements] << AdiwgV1VerticalElement.unpack(hVertEle)
 				end
 			end
 		end

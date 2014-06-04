@@ -13,8 +13,6 @@
 #   Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
 #   Stan Smith 2014-05-21 added aggregate information section
 
-$otherExtents = []
-
 require 'builder'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_progress'
 require Rails.root + 'metadata/writers/iso_19115_2/lib/codelists/code_topicCategory'
@@ -319,18 +317,6 @@ class MD_DataIdentification
 				end
 			elsif $showEmpty
 				@xml.tag!('gmd:extent')
-			end
-
-			# data identification - other extents
-			# these extents are a result of including supplementation
-			# ... information with geographicElements via the properties
-			# ... attribute of GeoJSON
-			unless $otherExtents.empty?
-				$otherExtents.each do |hExtent|
-					@xml.tag!('gmd:extent') do
-						extentClass.writeXML(hExtent)
-					end
-				end
 			end
 
 			# data identification - supplemental info

@@ -1261,7 +1261,7 @@
                                 },
                                 {
                                     "type": "Feature",
-                                    "id": "borehole030",
+                                    "id": "",
                                     "geometry": {
                                         "type": "Point",
                                         "coordinates": [-151.717181, 70.879761, 5]

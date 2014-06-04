@@ -6,7 +6,6 @@
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 
 require 'builder'
-require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
 class Point
@@ -68,27 +67,6 @@ class Point
 			else
 				@xml.tag!('gml:coordinates')
 			end
-		end
-
-		# write new extent to portray supplemental information
-		# pass the new extent back to MD_DataIdentification for writing to ISO
-		if !hGeoElement[:temporalElement].empty? ||
-			!hGeoElement[:verticalElement].empty? ||
-			!hGeoElement[:elementIdentifiers].empty?
-
-			intMetadataClass = InternalMetadata.new
-			intExtent = intMetadataClass.newExtent
-			intGeoEle = intMetadataClass.newGeoElement
-
-			intGeoEle[:elementGeometry] = hGeoElement[:elementGeometry]
-
-			intExtent[:extDesc] = 'Supplemental information for point ' + pointID
-			intExtent[:extGeoElements] << intGeoEle
-			intExtent[:extIdElements] = hGeoElement[:elementIdentifiers]
-			intExtent[:extTempElements] = hGeoElement[:temporalElement]
-			intExtent[:extVertElements] = hGeoElement[:verticalElement]
-
-			$otherExtents << intExtent
 		end
 
 	end
