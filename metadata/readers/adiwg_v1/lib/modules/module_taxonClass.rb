@@ -6,7 +6,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1TaxonCl
+module Adiwg_TaxonCl
 
 	def self.unpack(hTaxClass)
 

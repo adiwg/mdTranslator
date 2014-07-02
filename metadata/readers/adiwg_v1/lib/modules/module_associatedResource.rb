@@ -10,7 +10,7 @@ require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceIdentifier'
 
-module AdiwgV1AssociatedResource
+module Adiwg_AssociatedResource
 
 	def self.unpack(hAssocRes)
 
@@ -38,7 +38,7 @@ module AdiwgV1AssociatedResource
 		if hAssocRes.has_key?('resourceCitation')
 			hCitation = hAssocRes['resourceCitation']
 			unless hCitation.empty?
-				intAssocRes[:resourceCitation] = AdiwgV1Citation.unpack(hCitation)
+				intAssocRes[:resourceCitation] = Adiwg_Citation.unpack(hCitation)
 
 				# associated resource - resource identifier
 				# resource identifiers reference the citation,
@@ -47,7 +47,7 @@ module AdiwgV1AssociatedResource
 					aResID = hAssocRes['resourceIdentifier']
 					unless aResID.empty?
 						aResID.each do |resID|
-							intAssocRes[:resourceCitation][:citResourceIDs] << AdiwgV1ResourceIdentifier.unpack(resID)
+							intAssocRes[:resourceCitation][:citResourceIDs] << Adiwg_ResourceIdentifier.unpack(resID)
 						end
 					end
 				end
@@ -58,7 +58,7 @@ module AdiwgV1AssociatedResource
 		if hAssocRes.has_key?('metadataCitation')
 			hCitation = hAssocRes['metadataCitation']
 			unless hCitation.empty?
-				intAssocRes[:metadataCitation] = AdiwgV1Citation.unpack(hCitation)
+				intAssocRes[:metadataCitation] = Adiwg_Citation.unpack(hCitation)
 			end
 		end
 

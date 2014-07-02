@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1Phone
+module Adiwg_Phone
 
 	def self.unpack(hPhone)
 

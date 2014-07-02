@@ -8,7 +8,7 @@ require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_processStep'
 
-module AdiwgV1Source
+module Adiwg_Source
 
 	def self.unpack(hSource)
 
@@ -28,7 +28,7 @@ module AdiwgV1Source
 		if hSource.has_key?('citation')
 			hCitation = hSource['citation']
 			unless hCitation.empty?
-				intDataSource[:sourceCitation] = AdiwgV1Citation.unpack(hCitation)
+				intDataSource[:sourceCitation] = Adiwg_Citation.unpack(hCitation)
 			end
 		end
 
@@ -37,7 +37,7 @@ module AdiwgV1Source
 			aSourceSteps = hSource['processStep']
 			unless aSourceSteps.empty?
 				aSourceSteps.each do |hStep|
-					intDataSource[:sourceSteps] << AdiwgV1ProcessStep.unpack(hStep)
+					intDataSource[:sourceSteps] << Adiwg_ProcessStep.unpack(hStep)
 				end
 			end
 		end

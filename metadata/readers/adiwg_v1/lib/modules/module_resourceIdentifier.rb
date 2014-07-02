@@ -9,7 +9,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
 
-module AdiwgV1ResourceIdentifier
+module Adiwg_ResourceIdentifier
 
 	def self.unpack(hResID)
 
@@ -26,7 +26,7 @@ module AdiwgV1ResourceIdentifier
 		end
 
 		# resource identifier - authority (expressed as a citation)
-		intResID[:identifierCitation] =  AdiwgV1Citation.unpack(hResID)
+		intResID[:identifierCitation] =  Adiwg_Citation.unpack(hResID)
 
 		return intResID
 

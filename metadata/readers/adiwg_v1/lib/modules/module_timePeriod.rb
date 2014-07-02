@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 
-module AdiwgV1TimePeriod
+module Adiwg_TimePeriod
 
 	def self.unpack(hTimePeriod)
 
@@ -34,7 +34,7 @@ module AdiwgV1TimePeriod
 		if hTimePeriod.has_key?('beginPosition')
 			s = hTimePeriod['beginPosition']
 			if s != ''
-				intTimePer[:beginTime] = AdiwgV1DateTime.unpack(s)
+				intTimePer[:beginTime] = Adiwg_DateTime.unpack(s)
 
 			end
 		end
@@ -42,7 +42,7 @@ module AdiwgV1TimePeriod
 		if hTimePeriod.has_key?('endPosition')
 			s = hTimePeriod['endPosition']
 			if s != ''
-				intTimePer[:endTime] = AdiwgV1DateTime.unpack(s)
+				intTimePer[:endTime] = Adiwg_DateTime.unpack(s)
 
 			end
 		end

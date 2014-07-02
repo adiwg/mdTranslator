@@ -10,7 +10,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceMaintenance'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadataExtension'
 
-module AdiwgV1MetadataInfo
+module Adiwg_MetadataInfo
 
 	def self.unpack(hMetadata)
 
@@ -48,7 +48,7 @@ module AdiwgV1MetadataInfo
 			aCust = hMetadataInfo['metadataContact']
 			unless aCust.empty?
 				aCust.each do |rParty|
-					intMetadataInfo[:metadataCustodians] << AdiwgV1ResponsibleParty.unpack(rParty)
+					intMetadataInfo[:metadataCustodians] << Adiwg_ResponsibleParty.unpack(rParty)
 				end
 			end
 		end
@@ -57,7 +57,7 @@ module AdiwgV1MetadataInfo
 		if hMetadataInfo.has_key?('metadataCreationDate')
 			s = hMetadataInfo['metadataCreationDate']
 			if s != ''
-				hDateTime = AdiwgV1DateTime.unpack(s)
+				hDateTime = Adiwg_DateTime.unpack(s)
 				hDateTime[:dateType] = 'publication'
 				intMetadataInfo[:metadataCreateDate] = hDateTime
 			end
@@ -67,7 +67,7 @@ module AdiwgV1MetadataInfo
 		if hMetadataInfo.has_key?('metadataLastUpdate')
 			s = hMetadataInfo['metadataLastUpdate']
 			if s != ''
-				hDateTime = AdiwgV1DateTime.unpack(s)
+				hDateTime = Adiwg_DateTime.unpack(s)
 				hDateTime[:dateType] = 'revision'
 				intMetadataInfo[:metadataUpdateDate] = hDateTime
 			end
@@ -93,7 +93,7 @@ module AdiwgV1MetadataInfo
 		if hMetadataInfo.has_key?('metadataMaintenance')
 			hMetaMaint = hMetadataInfo['metadataMaintenance']
 			unless hMetaMaint.empty?
-				intMetadataInfo[:maintInfo] = AdiwgV1ResourceMaintenance.unpack(hMetaMaint)
+				intMetadataInfo[:maintInfo] = Adiwg_ResourceMaintenance.unpack(hMetaMaint)
 			end
 		end
 
@@ -103,7 +103,7 @@ module AdiwgV1MetadataInfo
 			if resourceInfo.has_key?('taxonomy')
 				hTaxonomy = resourceInfo['taxonomy']
 				unless hTaxonomy.empty?
-					intMetadataInfo[:extensions] << AdiwgV1MetadataExtension.addExtensionISObio
+					intMetadataInfo[:extensions] << Adiwg_MetadataExtension.addExtensionISObio
 				end
 			end
 		end

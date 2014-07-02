@@ -1,7 +1,7 @@
 {
-    "jsonVersion": {
+    "version": {
         "name": "adiwgJSON",
-        "version": "0.3.0"
+        "version": "0.5.0"
     },
     "contact": [
         {
@@ -435,7 +435,9 @@
                             ],
                             "edition": "Version 8.0.0.0.0",
                             "presentationForm": ["documentDigital"],
-                            "doi": "10.1000/182"
+                            "additionalIdentifier": {
+                                "doi": "10.1000/182"
+                            }
                         }
                     }
                 },
@@ -443,7 +445,7 @@
                     "keyword": ["Cryosphere"],
                     "keywordType": "theme",
                     "thesaurus": {
-                        "thesaurusLink": "",
+                        "thesaurusLink": "http://example.com",
                         "citation": {
                             "title": "NSF IPY Discipline Codes",
                             "responsibleParty": [
@@ -557,7 +559,7 @@
                     {
                         "classification": "unclassified",
                         "userNote": "security clearance not required",
-                        "classSystem": "none",
+                        "classificationSystem": "none",
                         "handlingDescription": "this is how to handle things..."
                     }, {
                         "classification": "intellectualPropertyRights"
@@ -596,7 +598,7 @@
                         "role": "pointOfContact"
                     }
                 ],
-                "taxonomicProcedures": "volunteers observed sea otters using binoculars in pairs",
+                "taxonomicProcedure": "volunteers observed sea otters using binoculars in pairs",
                 "voucher": {
                     "specimen": "weathered skull found on beach",
                     "repository": {
@@ -671,9 +673,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             }
                         },
@@ -687,9 +687,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             }
                         },
@@ -722,9 +720,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             }
                         },
@@ -736,11 +732,10 @@
                                 [-160.333, 45.678, 500]
                             ],
                             "crs": {
-                                "type": "name",
+                                "type": "link",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "href": "http://spatialreference.org/ref/epsg/wgs-84/proj4/",
+                                    "type": "proj4"
                                 }
                             }
                         },
@@ -769,9 +764,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             }
                         },
@@ -900,11 +893,10 @@
                             "id": "boundingBoxFeature",
                             "bbox": [-161.00, 68.00, -148.00, 71.00],
                             "crs": {
-                                "type": "name",
+                                "type": "link",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "href": "http://spatialreference.org/ref/epsg/wgs-84/proj4/",
+                                    "type": "proj4"
                                 }
                             },
                             "properties": {
@@ -920,9 +912,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "geometry": {
@@ -942,9 +932,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "geometry": {
@@ -967,9 +955,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "geometry": {
@@ -993,9 +979,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "geometry": {
@@ -1039,9 +1023,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "properties": {
@@ -1083,9 +1065,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "properties": {
@@ -1140,9 +1120,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "properties": {
@@ -1161,9 +1139,7 @@
                             "crs": {
                                 "type": "name",
                                 "properties": {
-                                    "name": "EPSG:4326",
-                                    "href": "",
-                                    "type": ""
+                                    "name": "EPSG:4326"
                                 }
                             },
                             "features": [
@@ -1410,7 +1386,8 @@
                                     "title": "Example_dataset_20111009_turner_v1-12.csv",
                                     "date": [
                                         {
-                                            "date": "2011-10-09"
+                                            "date": "2011-10-09",
+                                            "dateType": "revision"
                                         }
                                     ]
                                 }
@@ -1469,15 +1446,15 @@
                 ],
                 "distributorFormat": [
                     {
-                        "name": "netCDF",
+                        "formatName": "netCDF",
                         "version": "4.0"
                     },
                     {
-                        "name": "Excel Spreadsheet",
+                        "formatName": "Excel Spreadsheet",
                         "version": "xlsx"
                     },
                     {
-                        "name": "CSV"
+                        "formatName": "CSV"
                     }
                 ],
                 "distributorTransferOptions": [

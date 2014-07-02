@@ -9,7 +9,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
-module AdiwgV1Point
+module Adiwg_Point
 
 	def self.unpack(aCoords,geoType)
 		intMetadataClass = InternalMetadata.new
@@ -17,7 +17,7 @@ module AdiwgV1Point
 
 		intPoint[:geoType] = geoType
 		intPoint[:geometry] = aCoords
-		intPoint[:dimension] = AdiwgV1Coordinates.getDimension(aCoords)
+		intPoint[:dimension] = Adiwg_Coordinates.getDimension(aCoords)
 
 		return intPoint
 	end

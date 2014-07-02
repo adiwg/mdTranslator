@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1SecurityConstraints
+module Adiwg_SecurityConstraints
 
 	def self.unpack(hSecurityCon)
 
@@ -32,8 +32,8 @@ module AdiwgV1SecurityConstraints
 		end
 
 		# security constraint - classification system
-		if hSecurityCon.has_key?('classSystem')
-			s = hSecurityCon['classSystem']
+		if hSecurityCon.has_key?('classificationSystem')
+			s = hSecurityCon['classificationSystem']
 			if s != ''
 				hIntCon[:classSystem] = s
 			end

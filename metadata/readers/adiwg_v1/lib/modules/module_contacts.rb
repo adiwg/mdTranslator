@@ -14,7 +14,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_address'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_phone'
 
-module AdiwgV1Contact
+module Adiwg_Contact
 
 	def self.unpack(hContact)
 
@@ -59,7 +59,7 @@ module AdiwgV1Contact
 			aOlRes = hContact['onlineResource']
 			aOlRes.each do |hOlRes|
 				unless hOlRes.empty?
-					intCont[:onlineRes] << AdiwgV1OnlineResource.unpack(hOlRes)
+					intCont[:onlineRes] << Adiwg_OnlineResource.unpack(hOlRes)
 				end
 			end
 		end
@@ -76,14 +76,14 @@ module AdiwgV1Contact
 		if hContact.has_key?('phoneBook')
 			aPhones = hContact['phoneBook']
 			aPhones.each do |hPhone|
-				intCont[:phones].concat(AdiwgV1Phone.unpack(hPhone))
+				intCont[:phones].concat(Adiwg_Phone.unpack(hPhone))
 			end
 		end
 
 		# address
 		if hContact.has_key?('address')
 			conAddress = hContact['address']
-			intCont[:address] = AdiwgV1Address.unpack(conAddress)
+			intCont[:address] = Adiwg_Address.unpack(conAddress)
 		end
 
 		return intCont

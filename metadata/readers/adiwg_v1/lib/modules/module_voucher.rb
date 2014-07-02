@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
-module AdiwgV1Voucher
+module Adiwg_Voucher
 
 	def self.unpack(hVoucher)
 
@@ -27,7 +27,7 @@ module AdiwgV1Voucher
 		if hVoucher.has_key?('repository')
 			hRepository = hVoucher['repository']
 			unless hRepository.empty?
-				intTaxVoucher[:repository] = AdiwgV1ResponsibleParty.unpack(hRepository)
+				intTaxVoucher[:repository] = Adiwg_ResponsibleParty.unpack(hRepository)
 			end
 		end
 

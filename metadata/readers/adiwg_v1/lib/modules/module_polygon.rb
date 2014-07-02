@@ -10,7 +10,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
-module AdiwgV1Polygon
+module Adiwg_Polygon
 
 	def self.unpack(aCoords, geoType)
 		intMetadataClass = InternalMetadata.new
@@ -20,7 +20,7 @@ module AdiwgV1Polygon
 		# polygon - coordinate(s)
 		if geoType == 'Polygon'
 			intGeometry[:geometry] = splitPolygons(aCoords)
-			intGeometry[:dimension] = AdiwgV1Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
+			intGeometry[:dimension] = Adiwg_Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
 		elsif geoType == 'MultiPolygon'
 			aPolySets = Array.new
 			aCoords.each do |aPolygonSet|

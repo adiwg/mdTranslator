@@ -6,7 +6,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1GeoCoordSystem
+module Adiwg_GeoCoordSystem
 
 	def self.unpack(hGeoCrs, intElement)
 

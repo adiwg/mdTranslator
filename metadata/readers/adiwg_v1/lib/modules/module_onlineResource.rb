@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1OnlineResource
+module Adiwg_OnlineResource
 
 	def self.unpack(hOlResource)
 

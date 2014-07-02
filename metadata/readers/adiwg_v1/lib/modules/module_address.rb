@@ -6,7 +6,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1Address
+module Adiwg_Address
 
 	def self.unpack(hConAddress)
 

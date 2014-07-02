@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/internal/module_dateTimeFun'
 
-module AdiwgV1DateTime
+module Adiwg_DateTime
 
 	def self.unpack(sDateTime)
 

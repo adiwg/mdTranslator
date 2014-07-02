@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1BoundingBox
+module Adiwg_BoundingBox
 
 	def self.unpack(aBBox)
 

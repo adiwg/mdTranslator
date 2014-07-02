@@ -12,7 +12,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsiblePa
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_voucher'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_taxonClass'
 
-module AdiwgV1Taxonomy
+module Adiwg_Taxonomy
 
 	def self.unpack(hTaxonomy)
 
@@ -25,7 +25,7 @@ module AdiwgV1Taxonomy
 			aClassSys = hTaxonomy['classificationSystem']
 			unless aClassSys.empty?
 				aClassSys.each do |hCitation|
-					intTaxSys[:taxClassSys] << AdiwgV1Citation.unpack(hCitation)
+					intTaxSys[:taxClassSys] << Adiwg_Citation.unpack(hCitation)
 				end
 			end
 		end
@@ -46,14 +46,14 @@ module AdiwgV1Taxonomy
 			aObservers = hTaxonomy['observer']
 			unless aObservers.empty?
 				aObservers.each do |observer|
-					intTaxSys[:taxObservers] << AdiwgV1ResponsibleParty.unpack(observer)
+					intTaxSys[:taxObservers] << Adiwg_ResponsibleParty.unpack(observer)
 				end
 			end
 		end
 
 		# taxonomy - taxonomic procedures
-		if hTaxonomy.has_key?('taxonomicProcedures')
-			s = hTaxonomy['taxonomicProcedures']
+		if hTaxonomy.has_key?('taxonomicProcedure')
+			s = hTaxonomy['taxonomicProcedure']
 			if s != ''
 				intTaxSys[:taxIdProcedures] = s
 			end
@@ -63,7 +63,7 @@ module AdiwgV1Taxonomy
 		if hTaxonomy.has_key?('voucher')
 			hVoucher = hTaxonomy['voucher']
 			unless hVoucher.empty?
-				intTaxSys[:taxVoucher] = AdiwgV1Voucher.unpack(hVoucher)
+				intTaxSys[:taxVoucher] = Adiwg_Voucher.unpack(hVoucher)
 			end
 		end
 
@@ -72,7 +72,7 @@ module AdiwgV1Taxonomy
 			aTaxClass = hTaxonomy['taxonClass']
 			unless aTaxClass.empty?
 				aTaxClass.each do |hTaxClass|
-					intTaxSys[:taxClasses] << AdiwgV1TaxonCl.unpack(hTaxClass)
+					intTaxSys[:taxClasses] << Adiwg_TaxonCl.unpack(hTaxClass)
 				end
 			end
 		end

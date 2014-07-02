@@ -8,7 +8,7 @@ require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_processStep'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_source'
 
-module AdiwgV1Lineage
+module Adiwg_Lineage
 
 	def self.unpack(hLineage)
 
@@ -29,7 +29,7 @@ module AdiwgV1Lineage
 			aProcSteps = hLineage['processStep']
 			unless aProcSteps.empty?
 				aProcSteps.each do |hProcStep|
-					intDataLine[:processSteps] << AdiwgV1ProcessStep.unpack(hProcStep)
+					intDataLine[:processSteps] << Adiwg_ProcessStep.unpack(hProcStep)
 				end
 			end
 		end
@@ -39,7 +39,7 @@ module AdiwgV1Lineage
 			aSources = hLineage['source']
 			unless aSources.empty?
 				aSources.each do |hSource|
-					intDataLine[:dataSources] << AdiwgV1Source.unpack(hSource)
+					intDataLine[:dataSources] << Adiwg_Source.unpack(hSource)
 				end
 			end
 		end

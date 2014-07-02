@@ -9,7 +9,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_coordinates'
 
-module AdiwgV1LineString
+module Adiwg_LineString
 
 	def self.unpack(aCoords, geoType)
 		intMetadataClass = InternalMetadata.new
@@ -17,7 +17,7 @@ module AdiwgV1LineString
 
 		intLine[:geoType] = geoType
 		intLine[:geometry] = aCoords
-		intLine[:dimension] = AdiwgV1Coordinates.getDimension(aCoords)
+		intLine[:dimension] = Adiwg_Coordinates.getDimension(aCoords)
 
 		return intLine
 	end

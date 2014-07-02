@@ -19,7 +19,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_distributionI
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_associatedResource'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
 
-module AdiwgV1Metadata
+module Adiwg_Metadata
 
 	def self.unpack(hMetadata)
 
@@ -30,13 +30,13 @@ module AdiwgV1Metadata
 		# metadata - metadataInfo
 		# metadataInfo needs access to resourceInfo to check taxonomy
 		if hMetadata.has_key?('metadataInfo')
-			intMetadata[:metadataInfo] = AdiwgV1MetadataInfo.unpack(hMetadata)
+			intMetadata[:metadataInfo] = Adiwg_MetadataInfo.unpack(hMetadata)
 		end
 
 		# metadata - resource identification info
 		if hMetadata.has_key?('resourceInfo')
 			hResourceInfo = hMetadata['resourceInfo']
-			intMetadata[:resourceInfo] = AdiwgV1ResourceInfo.unpack(hResourceInfo)
+			intMetadata[:resourceInfo] = Adiwg_ResourceInfo.unpack(hResourceInfo)
 		end
 
 		# metadata - distribution info
@@ -44,7 +44,7 @@ module AdiwgV1Metadata
 			aDistributors = hMetadata['distributionInfo']
 			unless aDistributors.empty?
 				aDistributors.each do |hDistributor|
-					intMetadata[:distributorInfo] << AdiwgV1DistributionInfo.unpack(hDistributor)
+					intMetadata[:distributorInfo] << Adiwg_DistributionInfo.unpack(hDistributor)
 				end
 			end
 		end
@@ -54,7 +54,7 @@ module AdiwgV1Metadata
 			aAssocRes = hMetadata['associatedResource']
 			unless aAssocRes.empty?
 				aAssocRes.each do |hAssocRes|
-					intMetadata[:associatedResources] << AdiwgV1AssociatedResource.unpack(hAssocRes)
+					intMetadata[:associatedResources] << Adiwg_AssociatedResource.unpack(hAssocRes)
 				end
 			end
 		end
@@ -64,7 +64,7 @@ module AdiwgV1Metadata
 			aCitation = hMetadata['additionalDocumentation']
 			unless aCitation.empty?
 				aCitation.each do |hCitation|
-					intMetadata[:additionalDocuments] << AdiwgV1Citation.unpack(hCitation)
+					intMetadata[:additionalDocuments] << Adiwg_Citation.unpack(hCitation)
 				end
 			end
 		end

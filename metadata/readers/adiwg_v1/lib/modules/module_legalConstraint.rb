@@ -8,7 +8,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1LegalConstraints
+module Adiwg_LegalConstraints
 
 	def self.unpack(hLegalCon)
 

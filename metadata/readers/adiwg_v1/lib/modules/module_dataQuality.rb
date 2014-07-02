@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_lineage'
 
-module AdiwgV1DataQuality
+module Adiwg_DataQuality
 
 	def self.unpack(hDataQual)
 
@@ -30,7 +30,7 @@ module AdiwgV1DataQuality
 		if hDataQual.has_key?('lineage')
 			hLineage = hDataQual['lineage']
 			unless hLineage.empty?
-				intDataQual[:dataLineage] = AdiwgV1Lineage.unpack(hLineage)
+				intDataQual[:dataLineage] = Adiwg_Lineage.unpack(hLineage)
 			end
 		end
 

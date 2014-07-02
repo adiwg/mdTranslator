@@ -8,7 +8,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1ResponsibleParty
+module Adiwg_ResponsibleParty
 
 	def self.unpack(hRParty)
 

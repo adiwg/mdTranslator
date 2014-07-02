@@ -42,6 +42,7 @@ class MD_SecurityConstraints
 
 			# security constraints - classification system
 			s = hSecurityCons[:classSystem]
+
 			if !s.nil?
 				@xml.tag!('gmd:classificationSystem') do
 					@xml.tag!('gco:CharacterString',s)

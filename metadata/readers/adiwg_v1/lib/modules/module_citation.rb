@@ -10,7 +10,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResource'
 
-module AdiwgV1Citation
+module Adiwg_Citation
 
 	def self.unpack(hCitation)
 
@@ -34,7 +34,7 @@ module AdiwgV1Citation
 					if hCitDate.has_key?('date')
 						s = hCitDate['date']
 						if s != ''
-							intDateTime = AdiwgV1DateTime.unpack(s)
+							intDateTime = Adiwg_DateTime.unpack(s)
 							if hCitDate.has_key?('dateType')
 								s = hCitDate['dateType']
 								if s != ''
@@ -61,7 +61,7 @@ module AdiwgV1Citation
 			aRParty = hCitation['responsibleParty']
 			unless aRParty.empty?
 				aRParty.each do |hRParty|
-					intCitation[:citResponsibleParty] << AdiwgV1ResponsibleParty.unpack(hRParty)
+					intCitation[:citResponsibleParty] << Adiwg_ResponsibleParty.unpack(hRParty)
 				end
 			end
 		end
@@ -110,7 +110,7 @@ module AdiwgV1Citation
 			aOlRes = hCitation['onlineResource']
 			aOlRes.each do |hOlRes|
 				unless hOlRes.empty?
-					intCitation[:citOlResources] << AdiwgV1OnlineResource.unpack(hOlRes)
+					intCitation[:citOlResources] << Adiwg_OnlineResource.unpack(hOlRes)
 				end
 			end
 		end

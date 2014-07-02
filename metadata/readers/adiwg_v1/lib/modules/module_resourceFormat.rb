@@ -8,7 +8,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1ResourceFormat
+module Adiwg_ResourceFormat
 
 	def self.unpack(hResFormat)
 

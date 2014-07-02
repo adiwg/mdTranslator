@@ -62,7 +62,7 @@ class Point
 			# convert coordinate string from geoJSON to gml
 			s = hGeoElement[:elementGeometry][:geometry]
 			if !s.nil?
-				s = AdiwgV1Coordinates.unpack(s)
+				s = Adiwg_Coordinates.unpack(s)
 				@xml.tag!('gml:coordinates',s)
 			else
 				@xml.tag!('gml:coordinates')

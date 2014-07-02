@@ -13,7 +13,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_geographicEle
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_temporalElement'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_verticalElement'
 
-module AdiwgV1Extent
+module Adiwg_Extent
 
 	def self.unpack(hExtent)
 
@@ -33,7 +33,7 @@ module AdiwgV1Extent
 		if hExtent.has_key?('geographicElement')
 			aGeoElements = hExtent['geographicElement']
 			unless aGeoElements.empty?
-				intExtent[:extGeoElements] = AdiwgV1GeographicElement.unpack(aGeoElements)
+				intExtent[:extGeoElements] = Adiwg_GeographicElement.unpack(aGeoElements)
 			end
 		end
 
@@ -41,7 +41,7 @@ module AdiwgV1Extent
 		if hExtent.has_key?('temporalElement')
 			hTempElement = hExtent['temporalElement']
 			unless hTempElement.empty?
-				intExtent[:extTempElements] = AdiwgV1TemporalElement.unpack(hTempElement)
+				intExtent[:extTempElements] = Adiwg_TemporalElement.unpack(hTempElement)
 			end
 		end
 
@@ -50,7 +50,7 @@ module AdiwgV1Extent
 			aVertElements = hExtent['verticalElement']
 			unless aVertElements.empty?
 				aVertElements.each do |hVertElement|
-					intExtent[:extVertElements] << AdiwgV1VerticalElement.unpack(hVertElement)
+					intExtent[:extVertElements] << Adiwg_VerticalElement.unpack(hVertElement)
 				end
 			end
 		end

@@ -9,7 +9,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
-module AdiwgV1ResourceSpecificUsage
+module Adiwg_ResourceSpecificUsage
 
 	def self.unpack(hUsage)
 
@@ -38,7 +38,7 @@ module AdiwgV1ResourceSpecificUsage
 			aContacts = hUsage['userContactInfo']
 			unless aContacts.empty?
 				aContacts.each do |hContact|
-					intUsage[:userContacts] << AdiwgV1ResponsibleParty.unpack(hContact)
+					intUsage[:userContacts] << Adiwg_ResponsibleParty.unpack(hContact)
 				end
 			end
 		end

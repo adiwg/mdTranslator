@@ -8,7 +8,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_citation'
 
-module AdiwgV1DescriptiveKeyword
+module Adiwg_DescriptiveKeyword
 
 	def self.unpack(hDesKeyword)
 
@@ -46,7 +46,7 @@ module AdiwgV1DescriptiveKeyword
 				# thesaurus - citation
 				hCitation = keyThesaurus['citation']
 				unless hCitation.empty?
-					intKeyword[:keyTheCitation] = AdiwgV1Citation.unpack(hCitation)
+					intKeyword[:keyTheCitation] = Adiwg_Citation.unpack(hCitation)
 				end
 
 			end

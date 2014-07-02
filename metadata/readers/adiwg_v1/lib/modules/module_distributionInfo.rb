@@ -12,7 +12,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_onlineResourc
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
-module AdiwgV1DistributionInfo
+module Adiwg_DistributionInfo
 
 	def self.unpack(hDistributor)
 
@@ -24,7 +24,7 @@ module AdiwgV1DistributionInfo
 		if hDistributor.has_key?('distributorContact')
 			hContact = hDistributor['distributorContact']
 			unless hContact.empty?
-				intDistributor[:distContact] = AdiwgV1ResponsibleParty.unpack(hContact)
+				intDistributor[:distContact] = Adiwg_ResponsibleParty.unpack(hContact)
 			end
 		end
 
@@ -46,7 +46,7 @@ module AdiwgV1DistributionInfo
 					if distOrderProcess.has_key?('plannedAvailabilityDateTime')
 						s = distOrderProcess['plannedAvailabilityDateTime']
 						if s != ''
-							intDistOrder[:plannedDateTime] = AdiwgV1DateTime.unpack(s)
+							intDistOrder[:plannedDateTime] = Adiwg_DateTime.unpack(s)
 						end
 					end
 
@@ -78,8 +78,8 @@ module AdiwgV1DistributionInfo
 				aDistFormat.each do |distFormat|
 					intResFormat = intMetadataClass.newResourceFormat
 
-					if distFormat.has_key?('name')
-						s = distFormat['name']
+					if distFormat.has_key?('formatName')
+						s = distFormat['formatName']
 						if s != ''
 							intResFormat[:formatName] = s
 						end
@@ -108,7 +108,7 @@ module AdiwgV1DistributionInfo
 					if distTransOpt.has_key?('online')
 						aOnlineOption = distTransOpt['online']
 						aOnlineOption.each do |hOlOption|
-							intTransOpt[:online] << AdiwgV1OnlineResource.unpack(hOlOption)
+							intTransOpt[:online] << Adiwg_OnlineResource.unpack(hOlOption)
 						end
 					end
 

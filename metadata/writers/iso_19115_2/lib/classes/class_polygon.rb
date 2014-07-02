@@ -62,7 +62,7 @@ class Polygon
 			# convert coordinate string from geoJSON to gml
 			aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
 			if !aCoords.empty?
-				s = AdiwgV1Coordinates.unpack(aCoords)
+				s = Adiwg_Coordinates.unpack(aCoords)
 				@xml.tag!('gml:exterior') do
 					@xml.tag!('gml:LinearRing') do
 						@xml.tag!('gml:coordinates',s)
@@ -78,7 +78,7 @@ class Polygon
 			aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
 			unless aRings.empty?
 				aRings.each do |aRing|
-					s = AdiwgV1Coordinates.unpack(aRing)
+					s = Adiwg_Coordinates.unpack(aRing)
 					@xml.tag!('gml:interior') do
 						@xml.tag!('gml:LinearRing') do
 							@xml.tag!('gml:coordinates', s)

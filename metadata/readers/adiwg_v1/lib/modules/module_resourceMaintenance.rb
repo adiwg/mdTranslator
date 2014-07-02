@@ -10,7 +10,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 
-module AdiwgV1ResourceMaintenance
+module Adiwg_ResourceMaintenance
 
 	def self.unpack(hResource)
 
@@ -39,7 +39,7 @@ module AdiwgV1ResourceMaintenance
 			aContact = hResource['maintenanceContact']
 			unless aContact.empty?
 				aContact.each do |hContact|
-					intResMaint[:maintContacts] << AdiwgV1ResponsibleParty.unpack(hContact)
+					intResMaint[:maintContacts] << Adiwg_ResponsibleParty.unpack(hContact)
 				end
 			end
 		end

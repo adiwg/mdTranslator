@@ -5,13 +5,16 @@
 # 	Stan Smith 2013-08-19 split out contacts to module_contacts
 # 	Stan Smith 2013-08-23 split out metadata to module_metadata
 #	Stan Smith 2014-04-23 add json schema version to internal object
+#   Stan Smith 2014-06-05 capture an test json version
+
+$jsonVersion = 'unknown'
 
 require 'json'
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_contacts'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_metadata'
 
-class ReaderAdiwgV1
+class Adiwg_Reader
 
 	def initialize
 	end
@@ -29,8 +32,30 @@ class ReaderAdiwgV1
 
 		# jsonVersion
 		# get json schema name and version
-		if hashObj.has_key?('jsonVersion')
-			intBase[:jsonVersion] = hashObj['jsonVersion']
+		if hashObj.has_key?('version')
+			hVersion = hashObj['version']
+			intBase[:jsonVersion] = hVersion
+
+			# name must be 'adiwgJSON' to proceed
+			if hVersion.has_key?('name')
+				s = hVersion['name']
+				if s != 'adiwgJSON'
+					return false
+				end
+			end
+
+			# capture version to use in directory traversing
+			# must have valid version to proceed
+			if hVersion.has_key?('version')
+				s = hVersion['version']
+				if !s.nil?
+					$jsonVersion = s
+				end
+			end
+			if $jsonVersion == 'unknown'
+				return false
+			end
+
 		end
 
 		# contact
@@ -41,19 +66,19 @@ class ReaderAdiwgV1
 			aContacts = hashObj['contact']
 			aContacts.each do |hContact|
 				unless hContact.empty?
-					intBase[:contacts] << AdiwgV1Contact.unpack(hContact)
+					intBase[:contacts] << Adiwg_Contact.unpack(hContact)
 				end
 			end
 		end
 
 		# add default contacts
-		intBase[:contacts].concat(AdiwgV1Contact.setDefaultContacts)
+		intBase[:contacts].concat(Adiwg_Contact.setDefaultContacts)
 
 		# metadata
 		# load metadata from the hash object
 		if hashObj.has_key?('metadata')
 			hMetadata = hashObj['metadata']
-			intBase[:metadata] = AdiwgV1Metadata.unpack(hMetadata)
+			intBase[:metadata] = Adiwg_Metadata.unpack(hMetadata)
 		end
 
 		# return ADIwg internal container

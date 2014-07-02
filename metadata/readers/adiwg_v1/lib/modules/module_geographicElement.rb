@@ -22,7 +22,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_point'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_lineString'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_polygon'
 
-module AdiwgV1GeographicElement
+module Adiwg_GeographicElement
 
 	def self.unpack(aGeoElements)
 
@@ -58,13 +58,13 @@ module AdiwgV1GeographicElement
 			# set geographic element coordinate reference system - CRS
 			if hGeoJsonElement.has_key?('crs')
 				hGeoCrs = hGeoJsonElement['crs']
-				AdiwgV1GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
+				Adiwg_GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
 			end
 
 			# set geographic element properties
 			if hGeoJsonElement.has_key?('properties')
 				hGeoProps = hGeoJsonElement['properties']
-				AdiwgV1GeoProperties.unpack(hGeoProps, hGeoElement)
+				Adiwg_GeoProperties.unpack(hGeoProps, hGeoElement)
 			end
 
 			# process geographic element bounding box
@@ -75,7 +75,7 @@ module AdiwgV1GeographicElement
 					aBBox = hGeoJsonElement['bbox']
 
 					boxElement = Marshal.load(Marshal.dump(hGeoElement))
-					boxElement[:elementGeometry] = AdiwgV1BoundingBox.unpack(aBBox)
+					boxElement[:elementGeometry] = Adiwg_BoundingBox.unpack(aBBox)
 
 					aIntGeoEle << boxElement
 				end
@@ -95,11 +95,11 @@ module AdiwgV1GeographicElement
 								unless aCoordinates.empty?
 									case geometryType
 										when 'Point', 'MultiPoint'
-											hGeoElement[:elementGeometry] = AdiwgV1Point.unpack(aCoordinates, geometryType)
+											hGeoElement[:elementGeometry] = Adiwg_Point.unpack(aCoordinates, geometryType)
 										when 'LineString', 'MultiLineString'
-											hGeoElement[:elementGeometry] = AdiwgV1LineString.unpack(aCoordinates, geometryType)
+											hGeoElement[:elementGeometry] = Adiwg_LineString.unpack(aCoordinates, geometryType)
 										when 'Polygon', 'MultiPolygon'
-											hGeoElement[:elementGeometry] = AdiwgV1Polygon.unpack(aCoordinates, geometryType)
+											hGeoElement[:elementGeometry] = Adiwg_Polygon.unpack(aCoordinates, geometryType)
 										else
 											# log - the GeoJSON geometry type is not supported
 									end
@@ -116,7 +116,7 @@ module AdiwgV1GeographicElement
 						unless aFeatures.empty?
 							intGeometry = intMetadataClass.newGeometry
 							intGeometry[:geoType] = 'MultiGeometry'
-							intGeometry[:geometry] = AdiwgV1GeographicElement.unpack(aFeatures)
+							intGeometry[:geometry] = Adiwg_GeographicElement.unpack(aFeatures)
 							hGeoElement[:elementGeometry] = intGeometry
 							aIntGeoEle << hGeoElement
 						end
@@ -125,17 +125,17 @@ module AdiwgV1GeographicElement
 				# GeoJSON Geometries
 				when 'Point', 'MultiPoint'
 					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = AdiwgV1Point.unpack(aCoordinates, elementType)
+					hGeoElement[:elementGeometry] = Adiwg_Point.unpack(aCoordinates, elementType)
 					aIntGeoEle << hGeoElement
 
 				when 'LineString', 'MultiLineString'
 					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = AdiwgV1LineString.unpack(aCoordinates, elementType)
+					hGeoElement[:elementGeometry] = Adiwg_LineString.unpack(aCoordinates, elementType)
 					aIntGeoEle << hGeoElement
 
 				when 'Polygon', 'MultiPolygon'
 					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = AdiwgV1Polygon.unpack(aCoordinates, elementType)
+					hGeoElement[:elementGeometry] = Adiwg_Polygon.unpack(aCoordinates, elementType)
 					aIntGeoEle << hGeoElement
 
 				# GeoJSON Geometry Collection
@@ -145,7 +145,7 @@ module AdiwgV1GeographicElement
 						unless aGeometries.empty?
 							intGeometry = intMetadataClass.newGeometry
 							intGeometry[:geoType] = 'MultiGeometry'
-							intGeometry[:geometry] = AdiwgV1GeographicElement.unpack(aGeometries)
+							intGeometry[:geometry] = Adiwg_GeographicElement.unpack(aGeometries)
 							hGeoElement[:elementGeometry] = intGeometry
 							aIntGeoEle << hGeoElement
 						end

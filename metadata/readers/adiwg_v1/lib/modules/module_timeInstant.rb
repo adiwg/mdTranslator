@@ -7,7 +7,7 @@
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 
-module AdiwgV1TimeInstant
+module Adiwg_TimeInstant
 
 	def self.unpack(hTimeInst)
 
@@ -35,7 +35,7 @@ module AdiwgV1TimeInstant
 		if hTimeInst.has_key?('timePosition')
 			s = hTimeInst['timePosition']
 			if s != ''
-				intTimeInst[:timePosition] = AdiwgV1DateTime.unpack(s)
+				intTimeInst[:timePosition] = Adiwg_DateTime.unpack(s)
 			end
 		end
 

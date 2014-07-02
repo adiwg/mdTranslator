@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1MetadataExtension
+module Adiwg_MetadataExtension
 
 	def self.addExtensionISObio()
 

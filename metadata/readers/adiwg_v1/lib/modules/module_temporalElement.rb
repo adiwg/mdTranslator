@@ -16,7 +16,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_timeInstant'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_timePeriod'
 
-module AdiwgV1TemporalElement
+module Adiwg_TemporalElement
 
 	def self.unpack(hTempElement)
 
@@ -30,7 +30,7 @@ module AdiwgV1TemporalElement
 			unless aDates.empty?
 				aDates.each do |s|
 					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:date] = AdiwgV1DateTime.unpack(s)
+					intTempEle[:date] = Adiwg_DateTime.unpack(s)
 					aIntTempElements << intTempEle
 				end
 			end
@@ -45,7 +45,7 @@ module AdiwgV1TemporalElement
 						s = hTimeInst['timePosition']
 						if s != ''
 							intTempEle = intMetadataClass.newTemporalElement
-							intTempEle[:timeInstant] = AdiwgV1TimeInstant.unpack(hTimeInst)
+							intTempEle[:timeInstant] = Adiwg_TimeInstant.unpack(hTimeInst)
 							aIntTempElements << intTempEle
 						end
 					end
@@ -59,7 +59,7 @@ module AdiwgV1TemporalElement
 			unless aTimePeriod.empty?
 				aTimePeriod.each do |hTimePeriod|
 					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:timePeriod] = AdiwgV1TimePeriod.unpack(hTimePeriod)
+					intTempEle[:timePeriod] = Adiwg_TimePeriod.unpack(hTimePeriod)
 					aIntTempElements << intTempEle
 				end
 			end

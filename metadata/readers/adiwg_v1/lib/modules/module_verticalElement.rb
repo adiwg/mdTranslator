@@ -7,7 +7,7 @@
 
 require Rails.root + 'metadata/internal/internal_metadata_obj'
 
-module AdiwgV1VerticalElement
+module Adiwg_VerticalElement
 
 	def self.unpack(hVertElement)
 

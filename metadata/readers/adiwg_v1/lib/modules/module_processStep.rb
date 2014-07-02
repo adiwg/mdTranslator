@@ -8,7 +8,7 @@ require Rails.root + 'metadata/internal/internal_metadata_obj'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_responsibleParty'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_dateTime'
 
-module AdiwgV1ProcessStep
+module Adiwg_ProcessStep
 
 	def self.unpack(hProcStep)
 
@@ -44,7 +44,7 @@ module AdiwgV1ProcessStep
 		if hProcStep.has_key?('dateTime')
 			s = hProcStep['dateTime']
 			if s != ''
-				intDataPStep[:stepDateTime] = AdiwgV1DateTime.unpack(s)
+				intDataPStep[:stepDateTime] = Adiwg_DateTime.unpack(s)
 			end
 		end
 
@@ -53,7 +53,7 @@ module AdiwgV1ProcessStep
 			aProcessors = hProcStep['processor']
 			unless aProcessors.empty?
 				aProcessors.each do |processor|
-					intDataPStep[:stepProcessors] << AdiwgV1ResponsibleParty.unpack(processor)
+					intDataPStep[:stepProcessors] << Adiwg_ResponsibleParty.unpack(processor)
 				end
 			end
 		end

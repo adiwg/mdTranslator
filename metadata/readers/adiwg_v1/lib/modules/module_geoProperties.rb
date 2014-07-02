@@ -9,7 +9,7 @@ require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_temporalEleme
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_verticalElement'
 require Rails.root + 'metadata/readers/adiwg_v1/lib/modules/module_resourceIdentifier'
 
-module AdiwgV1GeoProperties
+module Adiwg_GeoProperties
 
 	def self.unpack(hGeoProps, intElement)
 
@@ -41,7 +41,7 @@ module AdiwgV1GeoProperties
 		if hGeoProps.has_key?('temporalElement')
 			hTempEle = hGeoProps['temporalElement']
 			unless hTempEle.empty?
-				intElement[:temporalElements] = AdiwgV1TemporalElement.unpack(hTempEle)
+				intElement[:temporalElements] = Adiwg_TemporalElement.unpack(hTempEle)
 			end
 		end
 
@@ -50,7 +50,7 @@ module AdiwgV1GeoProperties
 			aVertEle = hGeoProps['verticalElement']
 			unless aVertEle.empty?
 				aVertEle.each do |hVertEle|
-					intElement[:verticalElements] << AdiwgV1VerticalElement.unpack(hVertEle)
+					intElement[:verticalElements] << Adiwg_VerticalElement.unpack(hVertEle)
 				end
 			end
 		end
@@ -60,7 +60,7 @@ module AdiwgV1GeoProperties
 			aAssignId = hGeoProps['assignedId']
 			unless aAssignId.empty?
 				aAssignId.each do |hAssignId|
-					intElement[:elementIdentifiers] << AdiwgV1ResourceIdentifier.unpack(hAssignId)
+					intElement[:elementIdentifiers] << Adiwg_ResourceIdentifier.unpack(hAssignId)
 				end
 			end
 		end
