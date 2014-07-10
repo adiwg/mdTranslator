@@ -40,6 +40,7 @@
 #   Stan Smith 2014-05-02 added associatedResource
 #   Stan Smith 2014-05-02 added additionalDocument
 #   Stan Smith 2014-05-28 modified resourceId & responsibleParty for schema 0.5.0
+#   just a comment
 
 class InternalMetadata
 
