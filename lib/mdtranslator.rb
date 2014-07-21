@@ -15,7 +15,7 @@ require 'internal_metadata_obj'
 
 module Mdtranslator
 
-	def self.translate(file, reader='adiwg_1', writer='iso19115_2')
+	def self.translate(file, reader='adiwg_1', writer='iso19115_2', showEmpty=true, valLevel='none')
 
 		@reader = reader
 		@writer = writer
@@ -23,6 +23,8 @@ module Mdtranslator
 		case @reader
 			when 'adiwg_1'
 				require 'json'
+				require 'json-schema'
+				require 'adiwig/json_schemas'
 				require 'adiwg_1/adiwg_1_validator'
 
 				# validate json file
@@ -48,7 +50,7 @@ module Mdtranslator
 				require 'uuidtools'
 				require 'iso_19115_2/iso_19115_2_writer'
 
-				$showEmpty = true
+				$showEmpty = showEmpty
 
 				writerClass = Iso191152Writer.new
 

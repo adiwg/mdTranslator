@@ -3,11 +3,6 @@
 # History:
 # 	Stan Smith 2014-07-02 original script
 
-# add gem library to LOAD_PATH
-lib = File.expand_path('lib')
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-
-require 'pp'
 require 'mdtranslator'
 
 puts 'start test script'

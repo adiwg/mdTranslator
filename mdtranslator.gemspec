@@ -13,7 +13,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://www.adiwg.org/mdTranslator"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split('\x0')
+  spec.files         = %x(git ls-files).split($/)
+  spec.files         = ['test/test.rb']
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
@@ -21,7 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
 
-  spec.add_runtime_dependency "builder"
-  spec.add_runtime_dependency "thor"
-  spec.add_runtime_dependency "uuidtools"
+  spec.add_runtime_dependency "json", "~>1.8"
+  spec.add_runtime_dependency "builder", "~>3.2"
+  spec.add_runtime_dependency "thor", "~>0.19"
+  spec.add_runtime_dependency "uuidtools", "~>2.1"
 end
