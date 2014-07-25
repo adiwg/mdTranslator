@@ -5,6 +5,9 @@
 # History:
 # 	Stan Smith 2014-07-02 original script
 #   Stan Smith 2014-07-21 added ADIWG namespace
+#   Stan Smith 2014-07-21 added validation of json structure
+#   Stan Smith 2014-07-23 moved all validations to readers/adiwg_1/adiwg_1_validator.rb
+#   ... each reader will have it's own validator
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/internal'))
@@ -25,16 +28,14 @@ module ADIWG
 
 			case @reader
 				when 'adiwg_1'
-					require 'json'
-					require 'json-schema'
-					require 'adiwg-json_schemas'
 					require 'adiwg_1/adiwg_1_validator'
 
-					# validate json file
-					# ... tbd
-
-					# set $jsonVersion
-					Adiwg1JsonValidation.getVersion(file)
+					# validate adiwg_1 json file
+					success, retMessage = Adiwg1JsonValidation.validate(file, valLevel)
+					if !success
+						err = "ADIwg JSON did not validate... see message below for more information: \n" + retMessage
+						return err
+					end
 
 					# initiate the reader
 					require 'adiwg_1/adiwg_1_reader'
@@ -45,12 +46,10 @@ module ADIWG
 
 			case @writer
 				when 'iso19115_2'
+
 					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso_19115_2/codelists'))
 					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso_19115_2/classes'))
 
-					require 'builder'
-					require 'date'
-					require 'uuidtools'
 					require 'iso_19115_2/iso_19115_2_writer'
 
 					$showEmpty = showEmpty
@@ -59,6 +58,7 @@ module ADIWG
 
 					# initiate the writer
 					metadata = writerClass.writeXML(internalObj)
+					metadata = 'I could do it'
 			end
 
 			return metadata

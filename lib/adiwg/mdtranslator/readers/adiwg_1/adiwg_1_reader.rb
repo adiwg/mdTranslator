@@ -9,8 +9,9 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-07-08 moved json schema version testing to 'adiwg_1_get_version'
 
-require ADIWG::Mdtranslator.reader_module('module_contacts', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_metadata', $jsonVersion)
+require 'json'
+require ADIWG::Mdtranslator.reader_module('module_contacts', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_metadata', $jsonVersionNum)
 
 class Adiwg1Reader
 

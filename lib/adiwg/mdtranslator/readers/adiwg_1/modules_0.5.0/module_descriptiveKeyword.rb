@@ -6,7 +6,7 @@
 # 	Stan Smith 2013-11-27 modified to process single keyword collection
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 
 module Adiwg_DescriptiveKeyword
 

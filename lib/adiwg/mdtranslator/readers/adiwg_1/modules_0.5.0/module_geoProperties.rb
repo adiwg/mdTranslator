@@ -5,9 +5,9 @@
 # 	Stan Smith 2014-04-29 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_temporalElement', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_verticalElement', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_temporalElement', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_verticalElement', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
 
 module Adiwg_GeoProperties
 

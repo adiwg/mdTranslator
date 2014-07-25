@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-21 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
 
 module Adiwg_Voucher
 

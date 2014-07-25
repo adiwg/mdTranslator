@@ -7,8 +7,8 @@
 # 	Stan Smith 2014-06-02 added resource metadata citation section
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
 
 module Adiwg_AssociatedResource
 

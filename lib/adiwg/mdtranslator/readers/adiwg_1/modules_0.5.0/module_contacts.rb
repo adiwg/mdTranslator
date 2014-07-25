@@ -10,9 +10,9 @@
 #   Stan Smith 2014-05-14 combine phone service types
 #   Stan Smith 2014-07-03 added module_path method to support versioning
 
-require ADIWG::Mdtranslator.reader_module('module_address', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_phone', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_address', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_phone', $jsonVersionNum)
 
 module Adiwg_Contact
 

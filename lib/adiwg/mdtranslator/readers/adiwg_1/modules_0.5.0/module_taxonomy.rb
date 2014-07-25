@@ -7,10 +7,10 @@
 #   Stan Smith 2014-05-02 fixed assignment problem with taxonomic procedures
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_voucher', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_taxonClass', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_voucher', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_taxonClass', $jsonVersionNum)
 
 module Adiwg_Taxonomy
 

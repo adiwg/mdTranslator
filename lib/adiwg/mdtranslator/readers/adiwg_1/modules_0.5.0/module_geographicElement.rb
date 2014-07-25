@@ -15,12 +15,12 @@
 #   Stan Smith 2014-05-23 added direct support for geometryCollection
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_geoCoordSystem', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_geoProperties', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_boundingBox', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_point', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_lineString', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_polygon', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_geoCoordSystem', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_geoProperties', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_boundingBox', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_point', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_lineString', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_polygon', $jsonVersionNum)
 
 module Adiwg_GeographicElement
 

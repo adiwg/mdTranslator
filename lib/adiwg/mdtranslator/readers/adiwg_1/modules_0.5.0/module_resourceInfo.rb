@@ -12,20 +12,20 @@
 #   Stan Smith 2014-05-28 added resource identifier to citation json schema 0.5.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceFormat', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_descriptiveKeyword', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceSpecificUsage', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_browseGraphic', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_legalConstraint', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_securityConstraint', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_taxonomy', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resolution', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_extent', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_dataQuality', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceFormat', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_descriptiveKeyword', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceSpecificUsage', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_browseGraphic', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_legalConstraint', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_securityConstraint', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_taxonomy', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resolution', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_extent', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_dataQuality', $jsonVersionNum)
 
 module Adiwg_ResourceInfo
 

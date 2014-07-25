@@ -5,10 +5,10 @@
 # 	Stan Smith 2014-04-24 original script - moved from module_metadata
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $jsonVersionNum)
 
 module Adiwg_MetadataInfo
 

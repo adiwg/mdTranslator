@@ -5,9 +5,9 @@
 # 	Stan Smith 2014-05-28 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersionNum)
 
 module Adiwg_ResourceIdentifier
 

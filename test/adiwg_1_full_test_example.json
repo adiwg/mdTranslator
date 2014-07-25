@@ -901,6 +901,7 @@
                             "type": "Feature",
                             "id": "boundingBoxFeature",
                             "bbox": [-161.00, 68.00, -148.00, 71.00],
+                            "geometry": null,
                             "crs": {
                                 "type": "link",
                                 "properties": {
@@ -917,7 +918,6 @@
                         {
                             "type": "Feature",
                             "id": "point001",
-                            "bbox": [],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -937,7 +937,6 @@
                         {
                             "type": "Feature",
                             "id": "multiPoint011",
-                            "bbox": [],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -960,7 +959,6 @@
                         {
                             "type": "Feature",
                             "id": "line001",
-                            "bbox": [],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -984,7 +982,6 @@
                         {
                             "type": "Feature",
                             "id": "multiLine011",
-                            "bbox": [],
                             "crs": {
                                 "type": "name",
                                 "properties": {
@@ -1237,8 +1234,7 @@
                                                 {
                                                     "id": "timePeriod0120",
                                                     "description": "Period of borehole operation",
-                                                    "beginPosition": "1981-08-22",
-                                                    "endPosition": ""
+                                                    "beginPosition": "1981-08-22"
                                                 }
                                             ]
                                         }

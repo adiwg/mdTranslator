@@ -8,7 +8,7 @@
 #   Stan Smith 2014-05-23 modified to handle MultiPolygon objects
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_coordinates', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_coordinates', $jsonVersionNum)
 
 module Adiwg_Polygon
 

@@ -8,9 +8,9 @@
 #   Stan Smith 2014-05-02 changed to support responsible party as hash, not array
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
 
 module Adiwg_DistributionInfo
 

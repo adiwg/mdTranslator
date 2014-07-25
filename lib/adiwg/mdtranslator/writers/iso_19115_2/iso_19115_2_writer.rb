@@ -6,8 +6,12 @@
 #   ... for geometry supplemental information
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 
-$idCount = '_000'
+require 'builder'
+require 'date'
+require 'uuidtools'
 require 'class_metadata'
+
+$idCount = '_000'
 
 class Iso191152Writer
 

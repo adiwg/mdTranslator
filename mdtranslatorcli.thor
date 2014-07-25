@@ -5,7 +5,7 @@
 
 #!/usr/bin/env ruby
 require 'thor'
-require 'mdtranslator'
+require 'adiwg-mdtranslator'
 
 class Mdtranslatorcli < Thor
 

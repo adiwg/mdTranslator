@@ -6,9 +6,9 @@
 #   Stan Smith 2014-04-25 modified to support json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersion)
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersion)
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersionNum)
 
 module Adiwg_Citation
 

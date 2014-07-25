@@ -3,11 +3,10 @@
 # History:
 # 	Stan Smith 2014-07-02 original script
 
-# to run local code ...
-# lib = File.expand_path('lib')
-# $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+# to run local code uncomment next 2 lines ...
+lib = File.expand_path('lib')
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-# to run gem ...
 require 'adiwg/mdtranslator'
 
 puts 'start test script'
@@ -20,7 +19,9 @@ file.close
 # call opening module in mdTranslator
 metadata = ADIWG::Mdtranslator.translate(jsonObj)
 
+# send the output to the terminal
 puts '---------------------=======================BEGIN=========================---------------------------'
 puts metadata.to_s
 puts '---------------------========================END==========================---------------------------'
+
 puts 'test script has completed'
