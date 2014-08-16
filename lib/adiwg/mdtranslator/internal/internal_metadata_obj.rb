@@ -40,6 +40,7 @@
 #   Stan Smith 2014-05-02 added associatedResource
 #   Stan Smith 2014-05-02 added additionalDocument
 #   Stan Smith 2014-05-28 modified resourceId & responsibleParty for schema 0.5.0
+#   Stan Smith 2014-08-15 modified citation, onlineResource, resourceId for 0.6.0
 
 class InternalMetadata
 
@@ -136,8 +137,7 @@ class InternalMetadata
 			olResProtocol: nil,
 		    olResName: nil,
 			olResDesc: nil,
-			olResFunction: nil,
-			olResDoi: nil
+			olResFunction: nil
 		}
 	end
 
@@ -181,9 +181,6 @@ class InternalMetadata
 			citResourceIDs: [],
 			citResponsibleParty: [],
 			citResourceForms: [],
-			citDOI: nil,
-			citISBN: nil,
-			citISSN: nil,
 			citOlResources: []
 		}
 	end
@@ -191,6 +188,7 @@ class InternalMetadata
 	def newResourceId
 		intObj = {
 			identifier: nil,
+			identifierType: nil,
 			identifierCitation: {}
 		}
 	end
@@ -274,7 +272,7 @@ class InternalMetadata
 			bGName: nil,
 			bGDescription: nil,
 			bGType: nil,
-			bGURI: nil
+			bGURL: nil
 		}
 	end
 

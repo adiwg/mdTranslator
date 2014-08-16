@@ -88,25 +88,31 @@ module Adiwg_GeographicElement
 				when 'Feature'
 					if hGeoJsonElement.has_key?('geometry')
 						hGeometry = hGeoJsonElement['geometry']
-						unless hGeometry.empty?
-							if hGeometry.has_key?('type')
-								geometryType = hGeometry['type']
-								aCoordinates = hGeometry['coordinates']
-								unless aCoordinates.empty?
-									case geometryType
-										when 'Point', 'MultiPoint'
-											hGeoElement[:elementGeometry] = Adiwg_Point.unpack(aCoordinates, geometryType)
-										when 'LineString', 'MultiLineString'
-											hGeoElement[:elementGeometry] = Adiwg_LineString.unpack(aCoordinates, geometryType)
-										when 'Polygon', 'MultiPolygon'
-											hGeoElement[:elementGeometry] = Adiwg_Polygon.unpack(aCoordinates, geometryType)
-										else
-											# log - the GeoJSON geometry type is not supported
+
+						# geoJSON requires geometry to be 'null' when geometry is bounding box only
+						# JSON null converts in parsing to ruby nil
+						unless hGeometry.nil?
+							unless hGeometry.empty?
+								if hGeometry.has_key?('type')
+									geometryType = hGeometry['type']
+									aCoordinates = hGeometry['coordinates']
+									unless aCoordinates.empty?
+										case geometryType
+											when 'Point', 'MultiPoint'
+												hGeoElement[:elementGeometry] = Adiwg_Point.unpack(aCoordinates, geometryType)
+											when 'LineString', 'MultiLineString'
+												hGeoElement[:elementGeometry] = Adiwg_LineString.unpack(aCoordinates, geometryType)
+											when 'Polygon', 'MultiPolygon'
+												hGeoElement[:elementGeometry] = Adiwg_Polygon.unpack(aCoordinates, geometryType)
+											else
+												# log - the GeoJSON geometry type is not supported
+										end
+										aIntGeoEle << hGeoElement
 									end
-									aIntGeoEle << hGeoElement
 								end
 							end
 						end
+
 					end
 
 				# GeoJSON Feature Collection

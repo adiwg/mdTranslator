@@ -58,7 +58,6 @@ module ADIWG
 
 					# initiate the writer
 					metadata = writerClass.writeXML(internalObj)
-					metadata = 'I could do it'
 			end
 
 			return metadata

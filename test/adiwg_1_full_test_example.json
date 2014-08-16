@@ -1,7 +1,7 @@
 {
     "version": {
         "name": "adiwgJSON",
-        "version": "0.5.0"
+        "version": "0.6.0"
     },
     "contact": [
         {
@@ -9,7 +9,7 @@
             "organizationName": "US Geological Survey - Alaska Science Center",
             "onlineResource": [
                 {
-                    "uri": "http://alaska.usgs.gov/",
+                    "url": "http://alaska.usgs.gov/",
                     "protocol": "http",
                     "name": "Alaska Science Center Home Page",
                     "description": "Alaska Science Center home page",
@@ -44,14 +44,14 @@
             "positionName": "Research Geologist",
             "onlineResource": [
                 {
-                    "uri": "http://academic.research.microsoft.com/Author/27724864/frank-e-urban",
+                    "url": "http://academic.research.microsoft.com/Author/27724864/frank-e-urban",
                     "protocol": "http",
                     "name": "Microsoft Academic Search",
                     "description": "Academic publications of Frank Urban",
                     "function": "information"
                 },
                 {
-                    "uri": "http://www.linkedin.com/pub/frank-urban/27/565/1a8",
+                    "url": "http://www.linkedin.com/pub/frank-urban/27/565/1a8",
                     "protocol": "http",
                     "name": "LinkedIn",
                     "description": "Frank Urban's Linked In page",
@@ -85,7 +85,7 @@
             "organizationName": "US Geological Survey - Permafrost and Climate Monitoring",
             "onlineResource": [
                 {
-                    "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
+                    "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
                     "protocol": "http",
                     "name": "Real-Time Permafrost and Climate Monitoring Network - Arctic Alaska",
                     "description": "",
@@ -113,7 +113,7 @@
             "organizationName": "FWS - Arctic National Wildlife Refuge",
             "onlineResource": [
                 {
-                    "uri": "http://www.fws.gov/alaska/nwr/arctic/",
+                    "url": "http://www.fws.gov/alaska/nwr/arctic/",
                     "name": "Arctic National Wildlife Refuge",
                     "description": "Arctic National Wildlife Refuge home page",
                     "function": "information"
@@ -151,7 +151,7 @@
             "organizationName": "BLM - Arctic Field Office",
             "onlineResource": [
                 {
-                    "uri": "http://www.blm.gov/ak/st/en/fo/fdo/arctic_field_office.html",
+                    "url": "http://www.blm.gov/ak/st/en/fo/fdo/arctic_field_office.html",
                     "name": "Bureau of Land Management - Alaska",
                     "description": "Arctic Field office home page",
                     "function": "information"
@@ -238,7 +238,7 @@
             "positionName": "Permafrost Research Scientist ",
             "onlineResource": [
                 {
-                    "uri": "http://www.gtnp.org/",
+                    "url": "http://www.gtnp.org/",
                     "protocol": "http",
                     "name": "Global Terrestrial Network for Permafrost",
                     "description": "Home page for the network initiative",
@@ -262,7 +262,7 @@
             "organizationName": "U.S. National Science Foundation, Division of Polar Programs, Directorate for Geosciences",
             "onlineResource": [
                 {
-                    "uri": "http://www.nsf.gov",
+                    "url": "http://www.nsf.gov",
                     "protocol": "http",
                     "name": "U.S.  National Science Foundation",
                     "description": "Home page for the agency",
@@ -285,7 +285,7 @@
             "metadataCreationDate": "2014-02-28",
             "metadataLastUpdate": "2012-12-21",
             "metadataCharacterSet": "utf8",
-            "metadataUri": "http://alaska.usgs.gov/rex/adiwg/public/projects/32.xml",
+            "metadataUrl": "http://alaska.usgs.gov/rex/adiwg/public/projects/32.xml",
             "metadataStatus": "completed",
             "metadataMaintenance": {
                 "maintenanceFrequency": "asNeeded",
@@ -331,14 +331,59 @@
                     }
                 ],
                 "presentationForm": ["documentDigital", "tableDigital"],
-                "additionalIdentifier": {
-                    "doi": "10/1256.321475266",
-                    "isbn": "ISBNYYt470098j",
-                    "issn": ""
-                },
+                "identifier": [
+                    {
+                        "identifier": "10/1256.0011",
+                        "type": "doi"
+                    },
+                    {
+                        "identifier": "978-1490564098",
+                        "type": "isbn"
+                    },
+                    {
+                        "identifier": "32",
+                        "type": "projectId",
+                        "authority": {
+                            "title": "ASC Project ID",
+                            "date": [
+                                {
+                                    "date": "2014-05-27",
+                                    "dateType": "publication"
+                                }
+                            ],
+                            "responsibleParty": [
+                                {
+                                    "contactId": "1",
+                                    "role": "owner"
+                                }
+                            ],
+                            "onlineResource": [
+                                {
+                                    "url": "http://alaska.usgs.gov/portal/project.php?project_id=32",
+                                    "protocol": "http",
+                                    "name": "DOI/GTN-Permafrost and Climate-Monitoring Network",
+                                    "description": "Project detail page",
+                                    "function": "information"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "identifier": "A516548V0034",
+                        "type": "awardNum",
+                        "authority": {
+                            "title": "NSF Grant Award Number",
+                            "onlineResource": [
+                                {
+                                    "url": "http://NSFexample.org/grants/thisone"
+                                }
+                            ]
+                        }
+                    }
+                ],
                 "onlineResource": [
                     {
-                        "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
+                        "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
                         "protocol": "http",
                         "name": "U.S. Geological Survey: Real-Time Permafrost and Climate Monitoring Network - Arctic Alaska",
                         "description": "project website",
@@ -346,43 +391,6 @@
                     }
                 ]
             },
-            "resourceIdentifier": [
-                {
-                    "title": "ASC Project ID",
-                    "date": [
-                        {
-                            "date": "2014-05-27",
-                            "dateType": "publication"
-                        }
-                    ],
-                    "responsibleParty": [
-                        {
-                            "contactId": "1",
-                            "role": "owner"
-                        }
-                    ],
-                    "identifier": "32"
-                },
-                {
-                    "title": "NSF Grant Award Number",
-                    "responsibleParty": [
-                        {
-                            "contactId": "9",
-                            "role": "funder"
-                        }
-                    ],
-                    "onlineResource": [
-                        {
-                            "uri": "http://thisisanexample.com",
-                            "protocol": "HTTP",
-                            "name": "Example is the name",
-                            "description": "It's an example!",
-                            "function": "See description"
-                        }
-                    ],
-                    "identifier": "A516548V0034"
-                }
-            ],
             "pointOfContact": [
                 {
                     "contactId": "2",
@@ -396,7 +404,7 @@
             "abstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS). DOI/GTN-P consists of two subnetworks: 1) a network of 15 automated surface stations, and 2) a 20-element deep borehole array. The surface stations continuously monitor changes in permafrost active-layer as well as a number of other climate parameters, including: permafrost temperature, soil moisture, snow depth, air temperature, wind speed and direction, up- and downwelling shortwave radiation, albedo, and cloudiness. A portion of the surface network is now available in near real-time through radio telemetry. Vegetation changes are coincidentally monitored at these sites. The borehole array is used to monitor the thermal state of the underlying permafrost. This is the largest array of deep boreholes in the world currently available for monitoring the thermal state of permafrost. Many of the surface stations are co-located with deep boreholes, effectively forming 'permafrost observatories.' In conjunction with DOI/GTN-P, we are developing models for synthesizing climate observations and for investigating how the cryosphere responds to climate change. These models will improve existing predictive capabilities for DOI lands. Climate projections by global coupled Atmosphere-Ocean General Circulation Models (AOGCMs) suggest significant environmental changes will occur in the Arctic during the next 80 years (http://www.acia.uaf.edu). According to these models, climate change will be Arctic-wide with a pronounced enhancement over the Arctic Ocean and adjacent coastal plains. These projections suggest large climate-induced landscape and ecosystem changes are likely to occur in northern Alaska during the next few decades. Important issues for DOI lands in this region include: permafrost degradation; vulnerability of high northern infrastructure to permafrost instability; large potential greenhouse gas (CO2, methane) emissions form warming permafrost; shifting vegetation patterns; impacts of habitat changes of wildlife; changing stream flow and lake levels; impacts of ecosystem changes on Native peoples: and, coastal erosion, inundation of coastal areas by storm surges. Given the large potential impacts, and the significant uncertainty in the model projections, a comprehensive monitoring effort is warranted.",
             "shortAbstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS).",
             "status": "onGoing",
-            "resourceUri": "http://alaska.usgs.gov/rex/adiwg/public/projects/32",
+            "resourceUrl": "http://alaska.usgs.gov/rex/adiwg/public/projects/32",
             "hasMapLocation": true,
             "hasDataAvailable": true,
             "language": ["eng; USA","esp; MEX"],
@@ -444,9 +452,12 @@
                             ],
                             "edition": "Version 8.0.0.0.0",
                             "presentationForm": ["documentDigital"],
-                            "additionalIdentifier": {
-                                "doi": "10.1000/182"
-                            }
+                            "identifier": [
+                                {
+                                    "identifier": "10.1000/182",
+                                    "type": "doi"
+                                }
+                            ]
                         }
                     }
                 },
@@ -532,13 +543,13 @@
                     "fileName": "GTNP AK Collection Site Map",
                     "fileDescription": "Map of borehole locations for permafrost data collection in Alaska in association with the Global Terrestrial Network forr Permafrost",
                     "fileType": "Map image in PDF format",
-                    "uri": "http://alaska.usgs.gov/free/maps/GTNP North Slope.pdf"
+                    "fileLink": "http://alaska.usgs.gov/free/maps/GTNP North Slope.pdf"
                 },
                 {
                     "fileName": "allRecs_callCounts_bowhead_2010.jpg",
                     "fileDescription": "This image is a spectraplot visualizing the density of Bowhead whale calls in the Northeast Chukchi Sea, AMAR recorder locations, and industry lease areas.",
                     "fileType": "JPEG",
-                    "uri": "http://aoos.org/aoos-data-resources/bowhead_images2010_0114.jpg"
+                    "fileLink": "http://aoos.org/aoos-data-resources/bowhead_images2010_0114.jpg"
                 }, {
                     "fileName": "pln40_perc_2010_01.png",
                     "fileType": "PNG"
@@ -1160,36 +1171,42 @@
                                         "featureName": "Atigaru",
                                         "description": "Deep permafrost borehole",
                                         "includesData": true,
-                                        "assignedId": [
+                                        "identifier": [
                                             {
-                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
-                                                "responsibleParty": [
-                                                    {
-                                                        "contactId": "8",
-                                                        "role": "originator"
-                                                    }
-                                                ],
-                                                "onlineResource": [
-                                                    {
-                                                        "uri": "http://www.gtnp.org"
-                                                    }
-                                                ],
-                                                "identifier": "US 01"
+                                                "identifier": "US 01",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "Global Terrestrial Network for Permafrost Identifiers",
+                                                    "responsibleParty": [
+                                                        {
+                                                            "contactId": "8",
+                                                            "role": "originator"
+                                                        }
+                                                    ],
+                                                    "onlineResource": [
+                                                        {
+                                                            "url": "http://www.gtnp.org"
+                                                        }
+                                                    ]
+                                                }
                                             },
                                             {
-                                                "title": "US Geological Survey borehole identifier",
-                                                "responsibleParty": [
-                                                    {
-                                                        "contactId": "3",
-                                                        "role": "originator"
-                                                    }
-                                                ],
-                                                "onlineResource": [
-                                                    {
-                                                        "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska"
-                                                    }
-                                                ],
-                                                "identifier": "ATI"
+                                                "identifier": "ATI",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "US Geological Survey borehole identifier",
+                                                    "responsibleParty": [
+                                                        {
+                                                            "contactId": "3",
+                                                            "role": "originator"
+                                                        }
+                                                    ],
+                                                    "onlineResource": [
+                                                        {
+                                                            "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska"
+                                                        }
+                                                    ]
+                                                }
                                             }
                                         ],
                                         "featureScope": "borehole",
@@ -1217,14 +1234,20 @@
                                         "featureName": "Awuna",
                                         "description": "Deep permafrost borehole",
                                         "includesData": true,
-                                        "assignedId": [
+                                        "identifier": [
                                             {
-                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
-                                                "identifier": "US 02"
+                                                "identifier": "US 02",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "Global Terrestrial Network for Permafrost Identifiers"
+                                                }
                                             },
                                             {
-                                                "title": "US Geological Survey borehole identifier",
-                                                "identifier": "AWUN"
+                                                "identifier": "AWUN",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "US Geological Survey borehole identifier"
+                                                }
                                             }
                                         ],
                                         "featureScope": "borehole",
@@ -1234,7 +1257,8 @@
                                                 {
                                                     "id": "timePeriod0120",
                                                     "description": "Period of borehole operation",
-                                                    "beginPosition": "1981-08-22"
+                                                    "beginPosition": "1981-08-22",
+                                                    "endPosition": "2007-08-13"
                                                 }
                                             ]
                                         }
@@ -1251,14 +1275,20 @@
                                         "featureName": "Drew Point",
                                         "description": "Deep permafrost borehole",
                                         "includesData": true,
-                                        "assignedId": [
+                                        "identifier": [
                                             {
-                                                "title": "Global Terrestrial Network for Permafrost Identifiers",
-                                                "identifier": "US 03"
+                                                "identifier": "US 03",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "Global Terrestrial Network for Permafrost Identifiers"
+                                                }
                                             },
                                             {
-                                                "title": "US Geological Survey borehole identifier",
-                                                "identifier": "DWPT"
+                                                "identifier": "DWPT",
+                                                "type": "databaseId",
+                                                "authority": {
+                                                    "title": "US Geological Survey borehole identifier"
+                                                }
                                             }
                                         ],
                                         "featureScope": "borehole",
@@ -1341,10 +1371,16 @@
                                         }
                                     ],
                                     "presentationForm": ["documentDigital"],
-                                    "additionalIdentifier": {
-                                        "isbn": "HB12365.214",
-                                        "issn": "0ab4-dd983c01"
-                                    }
+                                    "identifier": [
+                                        {
+                                            "identifier": "0ab4-dd983c01",
+                                            "type": "issn"
+                                        },
+                                        {
+                                            "identifier": "547-2239078752",
+                                            "type": "isbn"
+                                        }
+                                    ]
                                 },
                                 "processStep": [
                                     {
@@ -1466,13 +1502,13 @@
                     {
                         "online": [
                             {
-                                "uri": "http://aoos.org/aoos-data-resources",
+                                "url": "http://aoos.org/aoos-data-resources",
                                 "name": "AOOS Data Resources",
                                 "description": "This page provides links to interactive maps and data discovery tools.",
                                 "function": "information"
                             },
                             {
-                                "uri": "http://aoos.org/fake_resource_location"
+                                "url": "http://aoos.org/fake_resource_location"
                             }
                         ],
                         "offline": {
@@ -1509,26 +1545,29 @@
                         }
                     ],
                     "presentationForm": ["digitalData"],
+                    "identifier": [
+                        {
+                            "identifier": "2014AKCSC-03",
+                            "type": "awardNum",
+                            "authority": {
+                                "title": "NCCWSC Grant Award Number",
+                                "responsibleParty": [
+                                    {
+                                        "contactId": "9",
+                                        "role": "funder"
+                                    }
+                                ]
+                            }
+                        }
+                    ],
                     "onlineResource": [
                         {
-                            "uri": "http://esp.cr.usgs.gov/data/bht_alaska/",
+                            "url": "http://esp.cr.usgs.gov/data/bht_alaska/",
                             "protocol": "http",
                             "description": "This dataset consists of borehole temperature measurements acquired in permafrost regions of arctic Alaska between 1950 and 1988 by the U.S. Geological Survey. A large number of the 87 sites (boreholes) represented in this dataset are deep enough to penetrate the base of permafrost."
                         }
                     ]
                 },
-                "resourceIdentifier": [
-                    {
-                        "title": "NCCWSC Grant Award Number",
-                        "responsibleParty": [
-                            {
-                                "contactId": "9",
-                                "role": "funder"
-                            }
-                        ],
-                        "identifier": "2014AKCSC-03"
-                    }
-                ],
                 "metadataCitation": {
                     "title": "Borehole Temperature Logs Metadata",
                     "date": [
@@ -1545,19 +1584,13 @@
                         }
                     ],
                     "presentationForm": ["digitalDocument"],
-                    "additionalIdentifier": {
-                        "doi": "",
-                        "isbn": "",
-                        "issn": ""
-                    },
                     "onlineResource": [
                         {
-                            "uri": "http://alaska.usgs.gov/rex/adiwg/public/projects/263?format=xml",
+                            "url": "http://alaska.usgs.gov/rex/adiwg/public/projects/263?format=xml",
                             "protocol": "HTTP",
                             "name": "",
                             "description": "project metadata record",
-                            "function": "",
-                            "doi": ""
+                            "function": ""
                         }
                     ]
                 }
@@ -1579,14 +1612,19 @@
                     }
                 ],
                 "presentationForm": ["documentDigital"],
+                "identifier": [
+                    {
+                        "identifier": "10/00125.55517",
+                        "type": "doi"
+                    }
+                ],
                 "onlineResource": [
                     {
-                        "uri": "http://www.igsoc.org/journal.old/42/142/igs_journal_vol42_issue142_pg576-584.pdf",
+                        "url": "http://www.igsoc.org/journal.old/42/142/igs_journal_vol42_issue142_pg576-584.pdf",
                         "protocol": "http",
                         "name": "Journal of Glaciology",
                         "description": "Publication document",
-                        "function": "download",
-                        "doi": "10.1594/PANGAEA.55517"
+                        "function": "download"
                     }
                 ]
             },
@@ -1607,7 +1645,7 @@
                 "presentationForm": ["documentDigital"],
                 "onlineResource": [
                     {
-                        "uri": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0520578",
+                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0520578",
                         "protocol": "http",
                         "name": "U.S.  National Science Foundation Award database",
                         "description": "Grant award"

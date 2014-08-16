@@ -68,7 +68,7 @@ module Adiwg1JsonValidation
 			else
 				errors = JSON::Validator.fully_validate(schema, file)
 			end
-			if errors
+			if errors.length > 0
 				return false, errors.to_s
 			end
 		rescue JSON::Schema::ValidationError

@@ -1,7 +1,7 @@
 {
     "version": {
         "name": "adiwgJSON",
-        "version": "0.5.0"
+        "version": "0.6.0"
     },
     "contact": [
         {
@@ -11,12 +11,11 @@
             "positionName": "",
             "onlineResource": [
                 {
-                    "uri": "http://thisisanexample.com",
+                    "url": "http://thisisanexample.com",
                     "protocol": "",
                     "name": "",
                     "description": "",
-                    "function": "",
-                    "doi": ""
+                    "function": ""
                 }
             ],
             "contactInstructions": "",
@@ -51,7 +50,7 @@
             "metadataCreationDate": "0000-00-00",
             "metadataLastUpdate": "0000-00-00",
             "metadataCharacterSet": "utf8",
-            "metadataUri": "http://thisisanexample.com",
+            "metadataUrl": "http://thisisanexample.com",
             "metadataStatus": "",
             "metadataMaintenance": {
                 "maintenanceFrequency": "",
@@ -81,50 +80,46 @@
                     }
                 ],
                 "presentationForm": [""],
-                "additionalIdentifier": {
-                    "doi": "",
-                    "isbn": "",
-                    "issn": ""
-                },
+                "identifier": [
+                    {
+                        "identifier": "",
+                        "type": "",
+                        "authority": {
+                            "title": "",
+                            "date": [
+                                {
+                                    "date": "0000-00-00",
+                                    "dateType": ""
+                                }
+                            ],
+                            "responsibleParty": [
+                                {
+                                    "contactId": "",
+                                    "role": ""
+                                }
+                            ],
+                            "onlineResource": [
+                                {
+                                    "url": "http://thisisanexample.com",
+                                    "protocol": "",
+                                    "name": "",
+                                    "description": "",
+                                    "function": ""
+                                }
+                            ]
+                        }
+                    }
+                ],
                 "onlineResource": [
                     {
-                        "uri": "http://thisisanexample.com",
+                        "url": "http://thisisanexample.com",
                         "protocol": "",
                         "name": "",
                         "description": "",
-                        "function": "",
-                        "doi": ""
+                        "function": ""
                     }
                 ]
             },
-            "resourceIdentifier": [
-                {
-                    "title": "",
-                    "date": [
-                        {
-                            "date": "0000-00-00",
-                            "dateType": ""
-                        }
-                    ],
-                    "responsibleParty": [
-                        {
-                            "contactId": "",
-                            "role": ""
-                        }
-                    ],
-                    "onlineResource": [
-                        {
-                            "uri": "http://thisisanexample.com",
-                            "protocol": "",
-                            "name": "",
-                            "description": "",
-                            "function": "",
-                            "doi": ""
-                        }
-                    ],
-                    "identifier": ""
-                }
-            ],
             "pointOfContact": [
                 {
                     "contactId": "",
@@ -169,11 +164,36 @@
                                 }
                             ],
                             "presentationForm": [""],
-                            "additionalIdentifier": {
-                                "doi": "",
-                                "isbn": "",
-                                "issn": ""
-                            }
+                            "identifier": [
+                                {
+                                    "identifier": "",
+                                    "type": "",
+                                    "authority": {
+                                        "title": "",
+                                        "date": [
+                                            {
+                                                "date": "0000-00-00",
+                                                "dateType": ""
+                                            }
+                                        ],
+                                        "responsibleParty": [
+                                            {
+                                                "contactId": "",
+                                                "role": ""
+                                            }
+                                        ],
+                                        "onlineResource": [
+                                            {
+                                                "url": "http://thisisanexample.com",
+                                                "protocol": "",
+                                                "name": "",
+                                                "description": "",
+                                                "function": ""
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     }
                 }
@@ -246,11 +266,36 @@
                             }
                         ],
                         "presentationForm": [""],
-                        "additionalIdentifier": {
-                            "doi": "",
-                            "isbn": "",
-                            "issn": ""
-                        }
+                        "identifier": [
+                            {
+                                "identifier": "",
+                                "type": "",
+                                "authority": {
+                                    "title": "",
+                                    "date": [
+                                        {
+                                            "date": "0000-00-00",
+                                            "dateType": ""
+                                        }
+                                    ],
+                                    "responsibleParty": [
+                                        {
+                                            "contactId": "",
+                                            "role": ""
+                                        }
+                                    ],
+                                    "onlineResource": [
+                                        {
+                                            "url": "http://thisisanexample.com",
+                                            "protocol": "",
+                                            "name": "",
+                                            "description": "",
+                                            "function": ""
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
                     }
                 ],
                 "taxonGeneralScope": "",
@@ -489,32 +534,34 @@
                                         "verticalCRSLink": "http://thisisanexample.com"
                                     }
                                 ],
-                                "assignedId": [
+                                "identifier": [
                                     {
-                                        "title": "",
-                                        "date": [
-                                            {
-                                            "date": "0000-00-00",
-                                            "dateType": ""
-                                            }
-                                        ],
-                                        "responsibleParty": [
-                                            {
-                                                "contactId": "",
-                                                "role": ""
-                                            }
-                                        ],
-                                        "onlineResource": [
-                                            {
-                                                "uri": "http://thisisanexample.com",
-                                                "protocol": "",
-                                                "name": "",
-                                                "description": "",
-                                                "function": "",
-                                                "doi": ""
-                                            }
-                                        ],
-                                        "identifier": ""
+                                        "identifier": "",
+                                        "type": "",
+                                        "authority": {
+                                            "title": "",
+                                            "date": [
+                                                {
+                                                    "date": "0000-00-00",
+                                                    "dateType": ""
+                                                }
+                                            ],
+                                            "responsibleParty": [
+                                                {
+                                                    "contactId": "",
+                                                    "role": ""
+                                                }
+                                            ],
+                                            "onlineResource": [
+                                                {
+                                                    "url": "http://thisisanexample.com",
+                                                    "protocol": "",
+                                                    "name": "",
+                                                    "description": "",
+                                                    "function": ""
+                                                }
+                                            ]
+                                        }
                                     }
                                 ],
                                 "featureScope": "",
@@ -606,11 +653,36 @@
                                         }
                                     ],
                                     "presentationForm": [""],
-                                    "additionalIdentifier": {
-                                        "doi": "",
-                                        "isbn": "",
-                                        "issn": ""
-                                    }
+                                    "identifier": [
+                                        {
+                                            "identifier": "",
+                                            "type": "",
+                                            "authority": {
+                                                "title": "",
+                                                "date": [
+                                                    {
+                                                        "date": "0000-00-00",
+                                                        "dateType": ""
+                                                    }
+                                                ],
+                                                "responsibleParty": [
+                                                    {
+                                                        "contactId": "",
+                                                        "role": ""
+                                                    }
+                                                ],
+                                                "onlineResource": [
+                                                    {
+                                                        "url": "http://thisisanexample.com",
+                                                        "protocol": "",
+                                                        "name": "",
+                                                        "description": "",
+                                                        "function": ""
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
                                 },
                                 "processStep": [
                                     {
@@ -657,7 +729,7 @@
                     {
                         "online": [
                             {
-                                "uri": "http://thisisanexample.com",
+                                "url": "http://thisisanexample.com",
                                 "protocol": "",
                                 "name": "",
                                 "description": "",
@@ -694,50 +766,46 @@
                         }
                     ],
                     "presentationForm": [""],
-                    "additionalIdentifier": {
-                        "doi": "",
-                        "isbn": "",
-                        "issn": ""
-                    },
+                    "identifier": [
+                        {
+                            "identifier": "",
+                            "type": "",
+                            "authority": {
+                                "title": "",
+                                "date": [
+                                    {
+                                        "date": "0000-00-00",
+                                        "dateType": ""
+                                    }
+                                ],
+                                "responsibleParty": [
+                                    {
+                                        "contactId": "",
+                                        "role": ""
+                                    }
+                                ],
+                                "onlineResource": [
+                                    {
+                                        "url": "http://thisisanexample.com",
+                                        "protocol": "",
+                                        "name": "",
+                                        "description": "",
+                                        "function": ""
+                                    }
+                                ]
+                            }
+                        }
+                    ],
                     "onlineResource": [
                         {
-                            "uri": "http://thisisanexample.com",
+                            "url": "http://thisisanexample.com",
                             "protocol": "",
                             "name": "",
                             "description": "",
-                            "function": "",
-                            "doi": ""
+                            "function": ""
                         }
                     ]
                 },
-                "resourceIdentifier": [
-                    {
-                        "title": "",
-                        "date": [
-                            {
-                                "date": "0000-00-00",
-                                "dateType": ""
-                            }
-                        ],
-                        "responsibleParty": [
-                            {
-                                "contactId": "",
-                                "role": ""
-                            }
-                        ],
-                        "onlineResource": [
-                            {
-                                "uri": "http://thisisanexample.com",
-                                "protocol": "",
-                                "name": "",
-                                "description": "",
-                                "function": "",
-                                "doi": ""
-                            }
-                        ],
-                        "identifier": ""
-                    }
-                ],
                 "metadataCitation": {
                     "title": "",
                     "date": [
@@ -754,19 +822,43 @@
                         }
                     ],
                     "presentationForm": [""],
-                    "additionalIdentifier": {
-                        "doi": "",
-                        "isbn": "",
-                        "issn": ""
-                    },
+                    "identifier": [
+                        {
+                            "identifier": "",
+                            "type": "",
+                            "authority": {
+                                "title": "",
+                                "date": [
+                                    {
+                                        "date": "0000-00-00",
+                                        "dateType": ""
+                                    }
+                                ],
+                                "responsibleParty": [
+                                    {
+                                        "contactId": "",
+                                        "role": ""
+                                    }
+                                ],
+                                "onlineResource": [
+                                    {
+                                        "url": "http://thisisanexample.com",
+                                        "protocol": "",
+                                        "name": "",
+                                        "description": "",
+                                        "function": ""
+                                    }
+                                ]
+                            }
+                        }
+                    ],
                     "onlineResource": [
                         {
-                            "uri": "http://thisisanexample.com",
+                            "url": "http://thisisanexample.com",
                             "protocol": "",
                             "name": "",
                             "description": "",
-                            "function": "",
-                            "doi": ""
+                            "function": ""
                         }
                     ]
                 }
@@ -787,19 +879,43 @@
                     "role": ""
                 },
                 "presentationForm": [""],
-                "additionalIdentifier": {
-                    "doi": "",
-                    "isbn": "",
-                    "issn": ""
-                },
+                "identifier": [
+                    {
+                        "identifier": "",
+                        "type": "",
+                        "authority": {
+                            "title": "",
+                            "date": [
+                                {
+                                    "date": "0000-00-00",
+                                    "dateType": ""
+                                }
+                            ],
+                            "responsibleParty": [
+                                {
+                                    "contactId": "",
+                                    "role": ""
+                                }
+                            ],
+                            "onlineResource": [
+                                {
+                                    "url": "http://thisisanexample.com",
+                                    "protocol": "",
+                                    "name": "",
+                                    "description": "",
+                                    "function": ""
+                                }
+                            ]
+                        }
+                    }
+                ],
                 "onlineResource": [
                     {
-                        "uri": "http://thisisanexample.com",
+                        "url": "http://thisisanexample.com",
                         "protocol": "",
                         "name": "",
                         "description": "",
-                        "function": "",
-                        "doi": ""
+                        "function": ""
                     }
                 ]
             }
