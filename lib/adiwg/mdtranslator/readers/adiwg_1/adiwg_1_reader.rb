@@ -8,6 +8,7 @@
 #   Stan Smith 2014-06-05 capture an test json version
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-07-08 moved json schema version testing to 'adiwg_1_get_version'
+#   Stan Smith 2014-08-18 add json name/version to internal object
 
 require 'json'
 require ADIWG::Mdtranslator.reader_module('module_contacts', $jsonVersionNum)
@@ -28,6 +29,25 @@ class Adiwg1Reader
 
 		# convert the received JSON to a Ruby hash
 		hashObj = JSON.parse(jsonObj)
+
+		# get json schema name and version
+		if hashObj.has_key?('version')
+			hVersion = hashObj['version']
+		    unless hVersion.empty?
+				if hVersion.has_key?('name')
+					s = hVersion['name']
+					if !s.nil?
+						intBase[:jsonVersion][:name] = s
+					end
+				end
+				if hVersion.has_key?('version')
+					s = hVersion['version']
+					if !s.nil?
+						intBase[:jsonVersion][:version] = s
+					end
+				end
+			end
+		end
 
 		# contact
 		# load the array of contacts from the json object

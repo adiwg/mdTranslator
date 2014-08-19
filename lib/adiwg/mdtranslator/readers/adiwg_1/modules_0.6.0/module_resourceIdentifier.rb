@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-05-28 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-18 added type to identifier schema 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
@@ -25,8 +26,21 @@ module Adiwg_ResourceIdentifier
 			end
 		end
 
+		# resource identifier - identifier type
+		if hResID.has_key?('type')
+			s = hResID['type']
+			if s != ''
+				intResID[:identifierType] = s
+			end
+		end
+
 		# resource identifier - authority (expressed as a citation)
-		intResID[:identifierCitation] =  Adiwg_Citation.unpack(hResID)
+		if hResID.has_key?('authority')
+			hCitation = hResID['authority']
+			unless hCitation.empty?
+				intResID[:identifierCitation] =  Adiwg_Citation.unpack(hCitation)
+			end
+		end
 
 		return intResID
 

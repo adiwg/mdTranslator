@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-09-25 original script
 #   Stan Smith 2014-04-23 modified for json 0.3.0
+#   Stan Smith 2014-08-18 removed doi section for json 0.6.0
 
 module Adiwg_OnlineResource
 
@@ -15,8 +16,8 @@ module Adiwg_OnlineResource
 
 		# unpack the online resource
 		# resource - web link
-		if hOlResource.has_key?('uri')
-			s = hOlResource['uri']
+		if hOlResource.has_key?('url')
+			s = hOlResource['url']
 			if s != ''
 				intOLRes[:olResLink] = s
 			end
@@ -51,14 +52,6 @@ module Adiwg_OnlineResource
 			s = hOlResource['function']
 			if s != ''
 				intOLRes[:olResFunction] = s
-			end
-		end
-
-		# resource - web link document object identifier (doi)
-		if hOlResource.has_key?('doi')
-			s = hOlResource['doi']
-			if s != ''
-				intOLRes[:olResDoi] = s
 			end
 		end
 

@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-10-17 original script
 # 	Stan Smith 2013-11-27 modified to process single browse graphic rather than array
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
+#   Stan Smith 2014-08-18 changed graphic link from uri to url schema 0.6.0
 
 module Adiwg_BrowseGraphic
 
@@ -13,14 +14,6 @@ module Adiwg_BrowseGraphic
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 		intBGraphic = intMetadataClass.newBrowseGraphic
-
-		# graphic - web link
-		if hBgraphic.has_key?('uri')
-			s = hBgraphic['uri']
-			if s != ''
-				intBGraphic[:bGURI] = s
-			end
-		end
 
 		# graphic - file name
 		if hBgraphic.has_key?('fileName')
@@ -43,6 +36,14 @@ module Adiwg_BrowseGraphic
 			s = hBgraphic['fileType']
 			if s != ''
 				intBGraphic[:bGType] = s
+			end
+		end
+
+		# graphic - web link
+		if hBgraphic.has_key?('fileLink')
+			s = hBgraphic['fileLink']
+			if s != ''
+				intBGraphic[:bGURL] = s
 			end
 		end
 

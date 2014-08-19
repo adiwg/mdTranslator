@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-04-29 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-18 changed assignedId to identifier schema 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_temporalElement', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_verticalElement', $jsonVersionNum)
@@ -56,11 +57,11 @@ module Adiwg_GeoProperties
 		end
 
 		# set other assigned IDs
-		if hGeoProps.has_key?('assignedId')
-			aAssignId = hGeoProps['assignedId']
-			unless aAssignId.empty?
-				aAssignId.each do |hAssignId|
-					intElement[:elementIdentifiers] << Adiwg_ResourceIdentifier.unpack(hAssignId)
+		if hGeoProps.has_key?('identifier')
+			aResIds = hGeoProps['identifier']
+			unless aResIds.empty?
+				aResIds.each do |hIdentifier|
+					intElement[:elementIdentifiers] << Adiwg_ResourceIdentifier.unpack(hIdentifier)
 				end
 			end
 		end

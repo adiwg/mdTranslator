@@ -11,6 +11,7 @@
 #   Stan Smith 2014-04-25 revised to support json schema version 0.3.0
 #   Stan Smith 2014-05-28 added resource identifier to citation json schema 0.5.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
@@ -38,18 +39,8 @@ module Adiwg_ResourceInfo
 		# resource information - citation
 		if hResourceInfo.has_key?('citation')
 			hCitation = hResourceInfo['citation']
-			intResInfo[:citation] = Adiwg_Citation.unpack(hCitation)
-
-			# resource information - resource identifier
-			# resource identifiers reference the citation,
-			# ... they are only valid if there is a citation
-			if hResourceInfo.has_key?('resourceIdentifier')
-				aResID = hResourceInfo['resourceIdentifier']
-				unless aResID.empty?
-					aResID.each do |resID|
-						intResInfo[:citation][:citResourceIDs] << Adiwg_ResourceIdentifier.unpack(resID)
-					end
-				end
+			unless hCitation.empty?
+				intResInfo[:citation] = Adiwg_Citation.unpack(hCitation)
 			end
 		end
 

@@ -53,7 +53,10 @@ class InternalMetadata
 
 	def newBase
 		intObj = {
-			jsonVersion: {},
+			jsonVersion: {
+				name: nil,
+				version: nil
+			},
 			contacts: [],
 			metadata: {}
 		}

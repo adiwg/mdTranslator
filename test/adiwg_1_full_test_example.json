@@ -285,7 +285,7 @@
             "metadataCreationDate": "2014-02-28",
             "metadataLastUpdate": "2012-12-21",
             "metadataCharacterSet": "utf8",
-            "metadataUrl": "http://alaska.usgs.gov/rex/adiwg/public/projects/32.xml",
+            "metadataUri": "http://alaska.usgs.gov/rex/adiwg/public/projects/32.xml",
             "metadataStatus": "completed",
             "metadataMaintenance": {
                 "maintenanceFrequency": "asNeeded",
@@ -339,6 +339,10 @@
                     {
                         "identifier": "978-1490564098",
                         "type": "isbn"
+                    },
+                    {
+                        "identifier": "1234-5017",
+                        "type": "issn"
                     },
                     {
                         "identifier": "32",
@@ -1145,7 +1149,8 @@
                                 "description": "Two bounding polygons, the second with holes",
                                 "includesData": true
                             }
-                        },                {
+                        },
+                        {
                             "type": "FeatureCollection",
                             "id": "barrowSiteMap",
                             "properties": {

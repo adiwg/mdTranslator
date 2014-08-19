@@ -8,6 +8,8 @@
 #   Stan Smith 2014-05-16 added MD_Identifier
 #   Stan Smith 2014-05-28 modified for json schema 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-08-18 modify identifier section for schema 0.6.0
+#   Stan Smith 2014-08-18 process isbn and issn from identifier section per 0.6.0
 
 require 'code_presentationForm'
 require 'class_responsibleParty'
@@ -23,7 +25,6 @@ class CI_Citation
 	def writeXML(hCitation)
 
 		# classes used in MD_Metadata
-		intMetadataClass = InternalMetadata.new
 		presFormClass = CI_PresentationFormCode.new(@xml)
 		rPartyClass = CI_ResponsibleParty.new(@xml)
 		dateClass = CI_Date.new(@xml)
@@ -64,37 +65,18 @@ class CI_Citation
 			end
 
 			# citation - resource identifiers - MD_Identifier
-			#   resource identifiers come from 2 sources
-			#      1. from resourceIdentifier block
+			# do not process ISBN and ISSN as MD_identifier(s)
+			# ... these are processed separately in ISO 19115-2
 			aResIDs = hCitation[:citResourceIDs]
-			needIdTag = true
-			unless aResIDs.empty?
+			if !aResIDs.empty?
 				aResIDs.each do |hResID|
+					next if hResID[:identifierType].downcase == 'isbn'
+					next if hResID[:identifierType].downcase == 'issn'
 					@xml.tag!('gmd:identifier') do
-						needIdTag = false
 						idClass.writeXML(hResID)
 					end
 				end
-			end
-
-			#      2. from additionalIdentifier > doi
-			# MD_Identifier from doi
-			s = hCitation[:citDOI]
-			unless s.nil?
-				intResID = intMetadataClass.newResourceId
-				intResID[:identifier] = s
-				intCit = intMetadataClass.newCitation
-				intCit[:citTitle] = 'Document Object Identifier'
-				intResID[:identifierCitation] = intCit
-				@xml.tag!('gmd:identifier') do
-					needIdTag = false
-					idClass.writeXML(intResID)
-				end
-			end
-
-			# if show empty identifier tags is true,
-			#    only show 1 empty MD_Identifier tag per citation
-			if $showEmpty && needIdTag
+			elsif $showEmpty
 				@xml.tag!('gmd:identifier')
 			end
 
@@ -123,22 +105,42 @@ class CI_Citation
 			end
 
 			# citation - ISBN
-			s = hCitation[:citISBN]
-			if !s.nil?
-				@xml.tag!('gmd:ISBN') do
-					@xml.tag!('gco:CharacterString',s)
+			needTag = true
+			aResIDs = hCitation[:citResourceIDs]
+			if !aResIDs.empty?
+				aResIDs.each do |hResID|
+					if hResID[:identifierType].downcase == 'isbn'
+						s = hResID[:identifier]
+						if !s.nil?
+							@xml.tag!('gmd:ISBN') do
+								@xml.tag!('gco:CharacterString',s)
+								needTag = false
+							end
+						end
+					end
 				end
-			elsif $showEmpty
+			end
+			if $showEmpty && needTag
 				@xml.tag!('gmd:ISBN')
 			end
 
 			# citation - ISSN
-			s = hCitation[:citISSN]
-			if !s.nil?
-				@xml.tag!('gmd:ISSN') do
-					@xml.tag!('gco:CharacterString',s)
+			needTag = true
+			aResIDs = hCitation[:citResourceIDs]
+			if !aResIDs.empty?
+				aResIDs.each do |hResID|
+					if hResID[:identifierType].downcase == 'issn'
+						s = hResID[:identifier]
+						if !s.nil?
+							@xml.tag!('gmd:ISSN') do
+								@xml.tag!('gco:CharacterString',s)
+								needTag = false
+							end
+						end
+					end
 				end
-			elsif $showEmpty
+			end
+			if $showEmpty && needTag
 				@xml.tag!('gmd:ISSN')
 			end
 

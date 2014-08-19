@@ -34,7 +34,7 @@ module ADIWG
 					success, retMessage = Adiwg1JsonValidation.validate(file, valLevel)
 					if !success
 						err = "ADIwg JSON did not validate... see message below for more information: \n" + retMessage
-						return err
+						return err + retMessage
 					end
 
 					# initiate the reader

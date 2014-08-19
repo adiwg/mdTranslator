@@ -50,7 +50,7 @@
             "metadataCreationDate": "0000-00-00",
             "metadataLastUpdate": "0000-00-00",
             "metadataCharacterSet": "utf8",
-            "metadataUrl": "http://thisisanexample.com",
+            "metadataUri": "http://thisisanexample.com",
             "metadataStatus": "",
             "metadataMaintenance": {
                 "maintenanceFrequency": "",

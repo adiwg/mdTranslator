@@ -12,6 +12,7 @@
 #   Stan Smith 2014-05-14 refactored method calls to be consistent w/ other classes
 #   Stan Smith 2014-05-28 added resource URI
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-08-18 add dataSetURI
 
 require 'code_characterSet'
 require 'code_scope'
@@ -153,6 +154,16 @@ class MI_Metadata
 			# metadata information - metadata standard version - default
 			@xml.tag!('gmd:metadataStandardVersion') do
 				@xml.tag!('gco:CharacterString','ISO 19115-2:2009(E)')
+			end
+
+			# metadata information - dataset URI
+			s = hMetaInfo[:metadataURI]
+			if !s.nil?
+				@xml.tag!('gmd:dataSetURI') do
+					@xml.tag!('gco:CharacterString',s)
+				end
+			elsif $showEmpty
+				@xml.tag!('gmd:dataSetURI')
 			end
 
 			# metadata information - reference system

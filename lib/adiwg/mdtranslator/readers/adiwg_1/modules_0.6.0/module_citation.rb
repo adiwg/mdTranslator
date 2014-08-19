@@ -5,10 +5,12 @@
 # 	Stan Smith 2013-08-26 original script
 #   Stan Smith 2014-04-25 modified to support json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-18 changed additionalIdentifier section to identifier schema 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_onlineResource', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
 
 module Adiwg_Citation
 
@@ -76,31 +78,12 @@ module Adiwg_Citation
 			end
 		end
 
-		# citation - additional identifiers
-		if hCitation.has_key?('additionalIdentifier')
-			hAddIds = hCitation['additionalIdentifier']
-
-			# citation - doi
-			if hAddIds.has_key?('doi')
-				s = hAddIds['doi']
-				if s != ''
-					intCitation[:citDOI] = s
-				end
-			end
-
-			# citation - ISBN
-			if hAddIds.has_key?('isbn')
-				s = hAddIds['isbn']
-				if s != ''
-					intCitation[:citISBN]  = s
-				end
-			end
-
-			# citation - ISSN
-			if hAddIds.has_key?('issn')
-				s = hAddIds['issn']
-				if s != ''
-					intCitation[:citISSN]  = s
+		# citation - resource identifiers
+		if hCitation.has_key?('identifier')
+			aResIds = hCitation['identifier']
+			aResIds.each do |hIdentifier|
+				unless hIdentifier.empty?
+					intCitation[:citResourceIDs] << Adiwg_ResourceIdentifier.unpack(hIdentifier)
 				end
 			end
 		end

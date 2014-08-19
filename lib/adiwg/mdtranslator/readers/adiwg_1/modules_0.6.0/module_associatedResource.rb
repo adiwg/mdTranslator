@@ -6,6 +6,7 @@
 # 	Stan Smith 2014-05-28 added resource identifier section
 # 	Stan Smith 2014-06-02 added resource metadata citation section
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
@@ -39,18 +40,6 @@ module Adiwg_AssociatedResource
 			hCitation = hAssocRes['resourceCitation']
 			unless hCitation.empty?
 				intAssocRes[:resourceCitation] = Adiwg_Citation.unpack(hCitation)
-
-				# associated resource - resource identifier
-				# resource identifiers reference the citation,
-				# ... they are only valid if there is a citation
-				if hAssocRes.has_key?('resourceIdentifier')
-					aResID = hAssocRes['resourceIdentifier']
-					unless aResID.empty?
-						aResID.each do |resID|
-							intAssocRes[:resourceCitation][:citResourceIDs] << Adiwg_ResourceIdentifier.unpack(resID)
-						end
-					end
-				end
 			end
 		end
 
