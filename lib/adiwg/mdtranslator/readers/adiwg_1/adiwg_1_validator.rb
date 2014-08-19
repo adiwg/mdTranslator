@@ -61,19 +61,19 @@ module Adiwg1JsonValidation
 		end
 
 		# validate json schema
-		# begin
-		# 	schema = ADIWG::JsonSchemas::Utils.schema_path
-		# 	if valLevel == 'strict'
-		# 		errors = JSON::Validator.fully_validate(schema, file, :strict => true)
-		# 	else
-		# 		errors = JSON::Validator.fully_validate(schema, file)
-		# 	end
-		# 	if errors.length > 0
-		# 		return false, errors.to_s
-		# 	end
-		# rescue JSON::Schema::ValidationError
-		# 	return false, $!.message
-		# end
+		begin
+			schema = ADIWG::JsonSchemas::Utils.schema_path
+			if valLevel == 'strict'
+				errors = JSON::Validator.fully_validate(schema, file, :strict => true)
+			else
+				errors = JSON::Validator.fully_validate(schema, file)
+			end
+			if errors.length > 0
+				return false, errors.to_s
+			end
+		rescue JSON::Schema::ValidationError
+			return false, $!.message
+		end
 
 		return true, 'Passed all JSON validation tests'
 
