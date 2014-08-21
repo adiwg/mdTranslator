@@ -36,7 +36,7 @@ class EX_VerticalExtent
 
 			# vertical extent - vertical crs - attributes only - required
 			attributes = {}
-			s = hVertEle[:crsLink]
+			s = hVertEle[:crsURI]
 			unless s.nil?
 				attributes['xlink:href'] = s
 			end

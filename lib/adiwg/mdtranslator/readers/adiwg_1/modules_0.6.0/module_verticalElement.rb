@@ -39,10 +39,10 @@ module Adiwg_VerticalElement
 		end
 
 		# vertical element - vertical crs link attribute
-		if hVertElement.has_key?('verticalCRSLink')
-			s = hVertElement['verticalCRSLink']
+		if hVertElement.has_key?('verticalCRSUri')
+			s = hVertElement['verticalCRSUri']
 			if s != ''
-				intVertEle[:crsLink] = s
+				intVertEle[:crsURI] = s
 			end
 		end
 

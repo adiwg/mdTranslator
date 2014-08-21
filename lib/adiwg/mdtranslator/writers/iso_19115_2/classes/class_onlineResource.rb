@@ -22,7 +22,7 @@ class CI_OnlineResource
 		@xml.tag! 'gmd:CI_OnlineResource' do
 
 			# online resource - link - required
-			s = hOlResource[:olResLink]
+			s = hOlResource[:olResURI]
 			if s.nil?
 				@xml.tag!('gmd:linkage',{'gco:nilReason'=>'missing'})
 			else

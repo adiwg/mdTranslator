@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-09-18 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-08-21 removed keyword thesaurus link; use citation onlineResource
 
 require 'code_keywordType'
 require 'class_citation'
@@ -45,19 +46,10 @@ class MD_Keywords
 			end
 
 			hKeyCitation = hDKeyword[:keyTheCitation]
-			keyLink = hDKeyword[:keyTheLink]
 			if !hKeyCitation.empty?
-
-				# thesaurus - web link - attribute optional
-				attributes = {}
-				attributes['xlink:href'] = keyLink if keyLink
-				@xml.tag!('gmd:thesaurusName', attributes) do
-
-					# thesaurus - citation - CI_Citation (w/o responsible party)
+				@xml.tag!('gmd:thesaurusName') do
 					citationClass.writeXML(hKeyCitation)
-
 				end
-
 			elsif $showEmpty
 				@xml.tag!('gmd:thesaurusName')
 			end

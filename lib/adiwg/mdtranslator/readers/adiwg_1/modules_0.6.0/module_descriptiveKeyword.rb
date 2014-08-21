@@ -5,6 +5,8 @@
 # 	Stan Smith 2013-09-18 original script
 # 	Stan Smith 2013-11-27 modified to process single keyword collection
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-08-21 removed thesaurus link; replaced by onlineResource to citation
+#   Stan Smith 2014-08-21 removed extra level of encapsulation "citation" under "thesaurus"
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 
@@ -34,21 +36,9 @@ module Adiwg_DescriptiveKeyword
 
 		# descriptive keyword - thesaurus
 		if hDesKeyword.has_key?('thesaurus')
-			keyThesaurus = hDesKeyword['thesaurus']
-			if keyThesaurus != ''
-
-				# thesaurus - link
-				s = keyThesaurus['thesaurusLink']
-				if s != ''
-					intKeyword[:keyTheLink] = s
-				end
-
-				# thesaurus - citation
-				hCitation = keyThesaurus['citation']
-				unless hCitation.empty?
-					intKeyword[:keyTheCitation] = Adiwg_Citation.unpack(hCitation)
-				end
-
+			hCitation = hDesKeyword['thesaurus']
+			unless hCitation.empty?
+				intKeyword[:keyTheCitation] = Adiwg_Citation.unpack(hCitation)
 			end
 
 		end

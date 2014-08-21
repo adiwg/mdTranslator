@@ -108,7 +108,7 @@ module Adiwg_Contact
 		intCont[:orgName] = 'International DOI Foundation (IDF)'
 
 		intOlRes = intMetadataClass.newOnlineResource
-		intOlRes[:olResLink] = 'http://www.doi.org'
+		intOlRes[:olResURI] = 'http://www.doi.org'
 		intCont[:onlineRes] << intOlRes
 
 		aDefContacts << intCont

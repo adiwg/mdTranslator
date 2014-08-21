@@ -9,7 +9,7 @@
             "organizationName": "US Geological Survey - Alaska Science Center",
             "onlineResource": [
                 {
-                    "url": "http://alaska.usgs.gov/",
+                    "uri": "http://alaska.usgs.gov/",
                     "protocol": "http",
                     "name": "Alaska Science Center Home Page",
                     "description": "Alaska Science Center home page",
@@ -44,14 +44,14 @@
             "positionName": "Research Geologist",
             "onlineResource": [
                 {
-                    "url": "http://academic.research.microsoft.com/Author/27724864/frank-e-urban",
+                    "uri": "http://academic.research.microsoft.com/Author/27724864/frank-e-urban",
                     "protocol": "http",
                     "name": "Microsoft Academic Search",
                     "description": "Academic publications of Frank Urban",
                     "function": "information"
                 },
                 {
-                    "url": "http://www.linkedin.com/pub/frank-urban/27/565/1a8",
+                    "uri": "http://www.linkedin.com/pub/frank-urban/27/565/1a8",
                     "protocol": "http",
                     "name": "LinkedIn",
                     "description": "Frank Urban's Linked In page",
@@ -85,7 +85,7 @@
             "organizationName": "US Geological Survey - Permafrost and Climate Monitoring",
             "onlineResource": [
                 {
-                    "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
+                    "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
                     "protocol": "http",
                     "name": "Real-Time Permafrost and Climate Monitoring Network - Arctic Alaska",
                     "description": "",
@@ -113,7 +113,7 @@
             "organizationName": "FWS - Arctic National Wildlife Refuge",
             "onlineResource": [
                 {
-                    "url": "http://www.fws.gov/alaska/nwr/arctic/",
+                    "uri": "http://www.fws.gov/alaska/nwr/arctic/",
                     "name": "Arctic National Wildlife Refuge",
                     "description": "Arctic National Wildlife Refuge home page",
                     "function": "information"
@@ -151,7 +151,7 @@
             "organizationName": "BLM - Arctic Field Office",
             "onlineResource": [
                 {
-                    "url": "http://www.blm.gov/ak/st/en/fo/fdo/arctic_field_office.html",
+                    "uri": "http://www.blm.gov/ak/st/en/fo/fdo/arctic_field_office.html",
                     "name": "Bureau of Land Management - Alaska",
                     "description": "Arctic Field office home page",
                     "function": "information"
@@ -238,7 +238,7 @@
             "positionName": "Permafrost Research Scientist ",
             "onlineResource": [
                 {
-                    "url": "http://www.gtnp.org/",
+                    "uri": "http://www.gtnp.org/",
                     "protocol": "http",
                     "name": "Global Terrestrial Network for Permafrost",
                     "description": "Home page for the network initiative",
@@ -262,7 +262,7 @@
             "organizationName": "U.S. National Science Foundation, Division of Polar Programs, Directorate for Geosciences",
             "onlineResource": [
                 {
-                    "url": "http://www.nsf.gov",
+                    "uri": "http://www.nsf.gov",
                     "protocol": "http",
                     "name": "U.S.  National Science Foundation",
                     "description": "Home page for the agency",
@@ -363,7 +363,7 @@
                             ],
                             "onlineResource": [
                                 {
-                                    "url": "http://alaska.usgs.gov/portal/project.php?project_id=32",
+                                    "uri": "http://alaska.usgs.gov/portal/project.php?project_id=32",
                                     "protocol": "http",
                                     "name": "DOI/GTN-Permafrost and Climate-Monitoring Network",
                                     "description": "Project detail page",
@@ -379,7 +379,7 @@
                             "title": "NSF Grant Award Number",
                             "onlineResource": [
                                 {
-                                    "url": "http://NSFexample.org/grants/thisone"
+                                    "uri": "http://NSFexample.org/grants/thisone"
                                 }
                             ]
                         }
@@ -387,7 +387,7 @@
                 ],
                 "onlineResource": [
                     {
-                        "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
+                        "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska",
                         "protocol": "http",
                         "name": "U.S. Geological Survey: Real-Time Permafrost and Climate Monitoring Network - Arctic Alaska",
                         "description": "project website",
@@ -408,7 +408,7 @@
             "abstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS). DOI/GTN-P consists of two subnetworks: 1) a network of 15 automated surface stations, and 2) a 20-element deep borehole array. The surface stations continuously monitor changes in permafrost active-layer as well as a number of other climate parameters, including: permafrost temperature, soil moisture, snow depth, air temperature, wind speed and direction, up- and downwelling shortwave radiation, albedo, and cloudiness. A portion of the surface network is now available in near real-time through radio telemetry. Vegetation changes are coincidentally monitored at these sites. The borehole array is used to monitor the thermal state of the underlying permafrost. This is the largest array of deep boreholes in the world currently available for monitoring the thermal state of permafrost. Many of the surface stations are co-located with deep boreholes, effectively forming 'permafrost observatories.' In conjunction with DOI/GTN-P, we are developing models for synthesizing climate observations and for investigating how the cryosphere responds to climate change. These models will improve existing predictive capabilities for DOI lands. Climate projections by global coupled Atmosphere-Ocean General Circulation Models (AOGCMs) suggest significant environmental changes will occur in the Arctic during the next 80 years (http://www.acia.uaf.edu). According to these models, climate change will be Arctic-wide with a pronounced enhancement over the Arctic Ocean and adjacent coastal plains. These projections suggest large climate-induced landscape and ecosystem changes are likely to occur in northern Alaska during the next few decades. Important issues for DOI lands in this region include: permafrost degradation; vulnerability of high northern infrastructure to permafrost instability; large potential greenhouse gas (CO2, methane) emissions form warming permafrost; shifting vegetation patterns; impacts of habitat changes of wildlife; changing stream flow and lake levels; impacts of ecosystem changes on Native peoples: and, coastal erosion, inundation of coastal areas by storm surges. Given the large potential impacts, and the significant uncertainty in the model projections, a comprehensive monitoring effort is warranted.",
             "shortAbstract": "DOI is developing a long-term permafrost monitoring network on federal lands in northern Alaska as part of the Global Terrestrial Network for Permafrost (GTN-P) and the Global Climate Observing System (GCOS).",
             "status": "onGoing",
-            "resourceUrl": "http://alaska.usgs.gov/rex/adiwg/public/projects/32",
+            "resourceUri": "http://alaska.usgs.gov/rex/adiwg/public/projects/32",
             "hasMapLocation": true,
             "hasDataAvailable": true,
             "language": ["eng; USA","esp; MEX"],
@@ -445,58 +445,64 @@
                         "Cryosphere > Frozen Ground > Soil Temperature"],
                     "keywordType": "theme",
                     "thesaurus": {
-                        "thesaurusLink": "http://gcmdservices.gsfc.nasa.gov/static/kms/sciencekeywords/sciencekeywords.csv",
-                        "citation": {
-                            "title": "NASA/Global Change Master Directory (GCMD) Earth Science Keywords",
-                            "date": [
-                                {
-                                    "date": "2013-09-19",
-                                    "dateType": "revision"
-                                }
-                            ],
-                            "edition": "Version 8.0.0.0.0",
-                            "presentationForm": ["documentDigital"],
-                            "identifier": [
-                                {
-                                    "identifier": "10.1000/182",
-                                    "type": "doi"
-                                }
-                            ]
-                        }
+                        "title": "NASA/Global Change Master Directory (GCMD) Earth Science Keywords",
+                        "date": [
+                            {
+                                "date": "2013-09-19",
+                                "dateType": "revision"
+                            }
+                        ],
+                        "edition": "Version 8.0.0.0.0",
+                        "presentationForm": ["documentDigital"],
+                        "identifier": [
+                            {
+                                "identifier": "10.1000/182",
+                                "type": "doi"
+                            }
+                        ],
+                        "onlineResource": [
+                            {
+                                "uri": "http://gcmdservices.gsfc.nasa.gov/static/kms/sciencekeywords/sciencekeywords.csv"
+                            }
+                        ]
                     }
                 },
                 {
                     "keyword": ["Cryosphere"],
                     "keywordType": "theme",
                     "thesaurus": {
-                        "thesaurusLink": "http://example.com",
-                        "citation": {
-                            "title": "NSF IPY Discipline Codes",
-                            "responsibleParty": [
-                                {
-                                    "contactId": "9",
-                                    "role": "author"
-                                }
-                            ],
-                            "presentationForm": ["documentDigital"]
-                        }
+                        "title": "NSF IPY Discipline Codes",
+                        "responsibleParty": [
+                            {
+                                "contactId": "9",
+                                "role": "author"
+                            }
+                        ],
+                        "presentationForm": ["documentDigital"],
+                        "onlineResource": [
+                            {
+                                "uri": "http://example.com"
+                            }
+                        ]
                     }
                 },
                 {
                     "keyword": ["North Slope Borough", "Barrow", "Point Barrow"],
                     "keywordType": "place",
                     "thesaurus": {
-                        "thesaurusLink": "http://geonames.usgs.gov/",
-                        "citation": {
-                            "title": "United States Board on Geographic Names",
-                            "date": [
-                                {
-                                    "date": "1993-02-01",
-                                    "dateType": "creation"
-                                }
-                            ],
-                            "presentationForm": ["documentDigital"]
-                        }
+                        "title": "United States Board on Geographic Names",
+                        "date": [
+                            {
+                                "date": "1993-02-01",
+                                "dateType": "creation"
+                            }
+                        ],
+                        "presentationForm": ["documentDigital"],
+                        "onlineResource": [
+                            {
+                                "uri": "http://geonames.usgs.gov/"
+                            }
+                        ]
                     }
                 }
             ],
@@ -547,13 +553,13 @@
                     "fileName": "GTNP AK Collection Site Map",
                     "fileDescription": "Map of borehole locations for permafrost data collection in Alaska in association with the Global Terrestrial Network forr Permafrost",
                     "fileType": "Map image in PDF format",
-                    "fileLink": "http://alaska.usgs.gov/free/maps/GTNP North Slope.pdf"
+                    "fileUri": "http://alaska.usgs.gov/free/maps/GTNP North Slope.pdf"
                 },
                 {
                     "fileName": "allRecs_callCounts_bowhead_2010.jpg",
                     "fileDescription": "This image is a spectraplot visualizing the density of Bowhead whale calls in the Northeast Chukchi Sea, AMAR recorder locations, and industry lease areas.",
                     "fileType": "JPEG",
-                    "fileLink": "http://aoos.org/aoos-data-resources/bowhead_images2010_0114.jpg"
+                    "fileUri": "http://aoos.org/aoos-data-resources/bowhead_images2010_0114.jpg"
                 }, {
                     "fileName": "pln40_perc_2010_01.png",
                     "fileType": "PNG"
@@ -898,13 +904,13 @@
                             "minimumValue": 125,
                             "maximumValue": 222,
                             "verticalCRSTitle": "NAVD88 height (ftUS)",
-                            "verticalCRSLink": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:axis-name:EPSG::9904"
+                            "verticalCRSUri": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:axis-name:EPSG::9904"
                         },
                         {
                             "minimumValue":1500,
                             "maximumValue":0,
                             "verticalCRSTitle":"NAVD88 depth",
-                            "verticalCRSLink":"http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
+                            "verticalCRSUri":"http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
                         }
 
                     ]
@@ -1190,7 +1196,7 @@
                                                     ],
                                                     "onlineResource": [
                                                         {
-                                                            "url": "http://www.gtnp.org"
+                                                            "uri": "http://www.gtnp.org"
                                                         }
                                                     ]
                                                 }
@@ -1208,7 +1214,7 @@
                                                     ],
                                                     "onlineResource": [
                                                         {
-                                                            "url": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska"
+                                                            "uri": "http://data.usgs.gov/climateMonitoring/region/show?region=alaska"
                                                         }
                                                     ]
                                                 }
@@ -1313,7 +1319,7 @@
                                                 "minimumValue": -653,
                                                 "maximumValue": 12,
                                                 "verticalCRSTitle": "NAVD88 depth",
-                                                "verticalCRSLink": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
+                                                "verticalCRSUri": "http://www.epsg-registry.org/export.htm?gml=urn:ogc:def:crs:EPSG::6357"
                                             }
                                         ]
                                     }
@@ -1507,13 +1513,13 @@
                     {
                         "online": [
                             {
-                                "url": "http://aoos.org/aoos-data-resources",
+                                "uri": "http://aoos.org/aoos-data-resources",
                                 "name": "AOOS Data Resources",
                                 "description": "This page provides links to interactive maps and data discovery tools.",
                                 "function": "information"
                             },
                             {
-                                "url": "http://aoos.org/fake_resource_location"
+                                "uri": "http://aoos.org/fake_resource_location"
                             }
                         ],
                         "offline": {
@@ -1567,7 +1573,7 @@
                     ],
                     "onlineResource": [
                         {
-                            "url": "http://esp.cr.usgs.gov/data/bht_alaska/",
+                            "uri": "http://esp.cr.usgs.gov/data/bht_alaska/",
                             "protocol": "http",
                             "description": "This dataset consists of borehole temperature measurements acquired in permafrost regions of arctic Alaska between 1950 and 1988 by the U.S. Geological Survey. A large number of the 87 sites (boreholes) represented in this dataset are deep enough to penetrate the base of permafrost."
                         }
@@ -1591,7 +1597,7 @@
                     "presentationForm": ["digitalDocument"],
                     "onlineResource": [
                         {
-                            "url": "http://alaska.usgs.gov/rex/adiwg/public/projects/263?format=xml",
+                            "uri": "http://alaska.usgs.gov/rex/adiwg/public/projects/263?format=xml",
                             "protocol": "HTTP",
                             "name": "",
                             "description": "project metadata record",
@@ -1625,7 +1631,7 @@
                 ],
                 "onlineResource": [
                     {
-                        "url": "http://www.igsoc.org/journal.old/42/142/igs_journal_vol42_issue142_pg576-584.pdf",
+                        "uri": "http://www.igsoc.org/journal.old/42/142/igs_journal_vol42_issue142_pg576-584.pdf",
                         "protocol": "http",
                         "name": "Journal of Glaciology",
                         "description": "Publication document",
@@ -1650,7 +1656,7 @@
                 "presentationForm": ["documentDigital"],
                 "onlineResource": [
                     {
-                        "url": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0520578",
+                        "uri": "http://www.nsf.gov/awardsearch/showAward?AWD_ID=0520578",
                         "protocol": "http",
                         "name": "U.S.  National Science Foundation Award database",
                         "description": "Grant award"

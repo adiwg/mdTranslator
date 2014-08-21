@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-09-25 original script
 #   Stan Smith 2014-04-23 modified for json 0.3.0
 #   Stan Smith 2014-08-18 removed doi section for json 0.6.0
+#   Stan Smith 2014-08-21 changed url to uri for json 0.6.0
 
 module Adiwg_OnlineResource
 
@@ -16,10 +17,10 @@ module Adiwg_OnlineResource
 
 		# unpack the online resource
 		# resource - web link
-		if hOlResource.has_key?('url')
-			s = hOlResource['url']
+		if hOlResource.has_key?('uri')
+			s = hOlResource['uri']
 			if s != ''
-				intOLRes[:olResLink] = s
+				intOLRes[:olResURI] = s
 			end
 		end
 

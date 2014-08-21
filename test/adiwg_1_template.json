@@ -11,7 +11,7 @@
             "positionName": "",
             "onlineResource": [
                 {
-                    "url": "http://thisisanexample.com",
+                    "uri": "http://thisisanexample.com",
                     "protocol": "",
                     "name": "",
                     "description": "",
@@ -100,7 +100,7 @@
                             ],
                             "onlineResource": [
                                 {
-                                    "url": "http://thisisanexample.com",
+                                    "uri": "http://thisisanexample.com",
                                     "protocol": "",
                                     "name": "",
                                     "description": "",
@@ -112,7 +112,7 @@
                 ],
                 "onlineResource": [
                     {
-                        "url": "http://thisisanexample.com",
+                        "uri": "http://thisisanexample.com",
                         "protocol": "",
                         "name": "",
                         "description": "",
@@ -147,54 +147,60 @@
                     "keyword": [""],
                     "keywordType": "",
                     "thesaurus": {
-                        "thesaurusLink": "http://thisisanexample.com",
-                        "citation": {
-                            "title": "",
-                            "date": [
-                                {
-                                    "date": "0000-00-00",
-                                    "dateType": ""
+                        "title": "",
+                        "date": [
+                            {
+                                "date": "0000-00-00",
+                                "dateType": ""
+                            }
+                        ],
+                        "edition": "",
+                        "responsibleParty": [
+                            {
+                                "contactId": "",
+                                "role": ""
+                            }
+                        ],
+                        "presentationForm": [""],
+                        "identifier": [
+                            {
+                                "identifier": "",
+                                "type": "",
+                                "authority": {
+                                    "title": "",
+                                    "date": [
+                                        {
+                                            "date": "0000-00-00",
+                                            "dateType": ""
+                                        }
+                                    ],
+                                    "responsibleParty": [
+                                        {
+                                            "contactId": "",
+                                            "role": ""
+                                        }
+                                    ],
+                                    "onlineResource": [
+                                        {
+                                            "uri": "http://thisisanexample.com",
+                                            "protocol": "",
+                                            "name": "",
+                                            "description": "",
+                                            "function": ""
+                                        }
+                                    ]
                                 }
-                            ],
-                            "edition": "",
-                            "responsibleParty": [
-                                {
-                                    "contactId": "",
-                                    "role": ""
-                                }
-                            ],
-                            "presentationForm": [""],
-                            "identifier": [
-                                {
-                                    "identifier": "",
-                                    "type": "",
-                                    "authority": {
-                                        "title": "",
-                                        "date": [
-                                            {
-                                                "date": "0000-00-00",
-                                                "dateType": ""
-                                            }
-                                        ],
-                                        "responsibleParty": [
-                                            {
-                                                "contactId": "",
-                                                "role": ""
-                                            }
-                                        ],
-                                        "onlineResource": [
-                                            {
-                                                "url": "http://thisisanexample.com",
-                                                "protocol": "",
-                                                "name": "",
-                                                "description": "",
-                                                "function": ""
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        }
+                            }
+                        ],
+                        "onlineResource": [
+                            {
+                                "uri": "http://thisisanexample.com",
+                                "protocol": "",
+                                "name": "",
+                                "description": "",
+                                "function": ""
+                            }
+                        ]
                     }
                 }
             ],
@@ -227,7 +233,7 @@
                     "fileName": "",
                     "fileDescription": "",
                     "fileType": "",
-                    "fileLink": "http://thisisanexample.com"
+                    "fileUri": "http://thisisanexample.com"
                 }
             ],
             "constraint": {
@@ -286,7 +292,7 @@
                                     ],
                                     "onlineResource": [
                                         {
-                                            "url": "http://thisisanexample.com",
+                                            "uri": "http://thisisanexample.com",
                                             "protocol": "",
                                             "name": "",
                                             "description": "",
@@ -294,6 +300,15 @@
                                         }
                                     ]
                                 }
+                            }
+                        ],
+                        "onlineResource": [
+                            {
+                                "uri": "http://thisisanexample.com",
+                                "protocol": "",
+                                "name": "",
+                                "description": "",
+                                "function": ""
                             }
                         ]
                     }
@@ -531,7 +546,7 @@
                                         "minimumValue": 0,
                                         "maximumValue": 0,
                                         "verticalCRSTitle": "",
-                                        "verticalCRSLink": "http://thisisanexample.com"
+                                        "verticalCRSUri": "http://thisisanexample.com"
                                     }
                                 ],
                                 "identifier": [
@@ -554,7 +569,7 @@
                                             ],
                                             "onlineResource": [
                                                 {
-                                                    "url": "http://thisisanexample.com",
+                                                    "uri": "http://thisisanexample.com",
                                                     "protocol": "",
                                                     "name": "",
                                                     "description": "",
@@ -610,7 +625,7 @@
                             "minimumValue": 0,
                             "maximumValue": 0,
                             "verticalCRSTitle": "",
-                            "verticalCRSLink": "http://thisisanexample.com"
+                            "verticalCRSUri": "http://thisisanexample.com"
                         }
                     ]
                 }
@@ -673,7 +688,7 @@
                                                 ],
                                                 "onlineResource": [
                                                     {
-                                                        "url": "http://thisisanexample.com",
+                                                        "uri": "http://thisisanexample.com",
                                                         "protocol": "",
                                                         "name": "",
                                                         "description": "",
@@ -729,7 +744,7 @@
                     {
                         "online": [
                             {
-                                "url": "http://thisisanexample.com",
+                                "uri": "http://thisisanexample.com",
                                 "protocol": "",
                                 "name": "",
                                 "description": "",
@@ -786,7 +801,7 @@
                                 ],
                                 "onlineResource": [
                                     {
-                                        "url": "http://thisisanexample.com",
+                                        "uri": "http://thisisanexample.com",
                                         "protocol": "",
                                         "name": "",
                                         "description": "",
@@ -798,7 +813,7 @@
                     ],
                     "onlineResource": [
                         {
-                            "url": "http://thisisanexample.com",
+                            "uri": "http://thisisanexample.com",
                             "protocol": "",
                             "name": "",
                             "description": "",
@@ -842,7 +857,7 @@
                                 ],
                                 "onlineResource": [
                                     {
-                                        "url": "http://thisisanexample.com",
+                                        "uri": "http://thisisanexample.com",
                                         "protocol": "",
                                         "name": "",
                                         "description": "",
@@ -854,7 +869,7 @@
                     ],
                     "onlineResource": [
                         {
-                            "url": "http://thisisanexample.com",
+                            "uri": "http://thisisanexample.com",
                             "protocol": "",
                             "name": "",
                             "description": "",
@@ -899,7 +914,7 @@
                             ],
                             "onlineResource": [
                                 {
-                                    "url": "http://thisisanexample.com",
+                                    "uri": "http://thisisanexample.com",
                                     "protocol": "",
                                     "name": "",
                                     "description": "",
@@ -911,7 +926,7 @@
                 ],
                 "onlineResource": [
                     {
-                        "url": "http://thisisanexample.com",
+                        "uri": "http://thisisanexample.com",
                         "protocol": "",
                         "name": "",
                         "description": "",

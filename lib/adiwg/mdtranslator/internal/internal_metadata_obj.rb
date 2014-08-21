@@ -136,7 +136,7 @@ class InternalMetadata
 
 	def newOnlineResource
 		intObj = {
-			olResLink: nil,
+			olResURI: nil,
 			olResProtocol: nil,
 		    olResName: nil,
 			olResDesc: nil,
@@ -215,7 +215,6 @@ class InternalMetadata
 		intObj = {
 			keyword: [],
 			keywordType: nil,
-			keyTheLink: nil,
 			keyTheCitation: {}
 		}
 	end
@@ -275,7 +274,7 @@ class InternalMetadata
 			bGName: nil,
 			bGDescription: nil,
 			bGType: nil,
-			bGURL: nil
+			bGURI: nil
 		}
 	end
 
@@ -366,7 +365,7 @@ class InternalMetadata
 		intObj = {
 			minValue: nil,
 			maxValue: nil,
-			crsLink: nil,
+			crsURI: nil,
 			crsTitle: nil
 		}
 	end
