@@ -13,7 +13,7 @@ class Mdtranslatorcli < Thor
 	desc "mdTranslator CLI (FILE)", "Pass file or JSON with parameters to mdtranslatorcli:translate"
 
 	# define cli options
-	method_option :reader, :aliases => "-r", :desc => "Provide name of reader (default: 'adiwg_1')", :default => "adiwg_1"
+	method_option :reader, :aliases => "-r", :desc => "Provide name of reader (default: 'adiwg')", :default => "adiwg"
 	method_option :writer, :aliases => "-w", :desc => "Provide name of writer (default: 'iso19115_2')", :default => "iso19115_2"
 	method_option :showtags, :aliases => "-s", :desc => "Show empty XML tags (default: 'true')", :default => "true", :type => :boolean
 	method_option :validation, :aliases => "-v", :desc => "Specify JSON validation level (default: 'none')", :enum => %w{none, json, schema}, :default => "none"

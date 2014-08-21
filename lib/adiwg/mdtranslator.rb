@@ -6,7 +6,7 @@
 # 	Stan Smith 2014-07-02 original script
 #   Stan Smith 2014-07-21 added ADIWG namespace
 #   Stan Smith 2014-07-21 added validation of json structure
-#   Stan Smith 2014-07-23 moved all validations to readers/adiwg_1/adiwg_1_validator.rb
+#   Stan Smith 2014-07-23 moved all validations to readers/adiwg/adiwg_validator.rb
 #   ... each reader will have it's own validator
 
 # add main directories to load_path
@@ -21,16 +21,16 @@ module ADIWG
 
 	module Mdtranslator
 
-		def self.translate(file, reader='adiwg_1', writer='iso19115_2', showEmpty=true, valLevel='none')
+		def self.translate(file, reader='adiwg', writer='iso19115_2', showEmpty=true, valLevel='none')
 
 			@reader = reader
 			@writer = writer
 
 			case @reader
-				when 'adiwg_1'
-					require 'adiwg_1/adiwg_1_validator'
+				when 'adiwg'
+					require 'adiwg/adiwg_validator'
 
-					# validate adiwg_1 json file
+					# validate adiwg json file
 					success, retMessage = Adiwg1JsonValidation.validate(file, valLevel)
 					if !success
 						err = "ADIwg JSON did not validate... see message below for more information: \n" + retMessage
@@ -38,7 +38,7 @@ module ADIWG
 					end
 
 					# initiate the reader
-					require 'adiwg_1/adiwg_1_reader'
+					require 'adiwg/adiwg_reader'
 					readerClass = Adiwg1Reader.new
 					internalObj = readerClass.unpack(file)
 
