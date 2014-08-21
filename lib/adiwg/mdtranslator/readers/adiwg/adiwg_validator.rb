@@ -3,6 +3,7 @@
 # History:
 # 	Stan Smith 2014-07-09 original script
 #   Stan Smith 2014-07-21 added json structure validation method
+#   Stan Smith 2014-08-21 parsed json-schema validation message to readable text
 
 require 'json'
 require 'json-schema'
@@ -16,9 +17,9 @@ module Adiwg1JsonValidation
 		begin
 			hashObj = JSON.parse(file)
 		rescue JSON::JSONError => err
-			errMessage = "JSON structure error... \nMessage received from parser: \n"
-			errMessage = errMessage + err.to_s.slice(0,500)
-			return false, errMessage
+			parseErr = "JSON structure error... \nMessage received from parser: \n"
+			parseErr = parseErr + err.to_s.slice(0,500)
+			return false, parseErr
 		end
 
 		# validate json version
@@ -29,8 +30,8 @@ module Adiwg1JsonValidation
 		if hashObj.has_key?('version')
 			hVersion = hashObj['version']
 		else
-			errMessage = "JSON schema error... \nJSON file is missing the version:{} block"
-			return false, errMessage
+			versionErr = "JSON schema error... \nJSON file is missing the version:{} block"
+			return false, versionErr
 		end
 
 		# get the version name
@@ -39,14 +40,14 @@ module Adiwg1JsonValidation
 			if !s.nil?
 				$jsonVersionName = s
 				if s != 'adiwgJSON'
-					errMessage = "JSON schema error... \nJSON version name is '#{s}'\n"
-					errMessage = errMessage + "JSON schema must be 'adiwgJSON' for this reader"
-					return false, errMessage
+					versionErr = "JSON schema error... \nJSON version name is '#{s}'\n"
+					versionErr = versionErr + "JSON schema must be 'adiwgJSON' to use this reader"
+					return false, versionErr
 				end
 			end
 		else
-			errMessage = "JSON schema error... \nJSON version:{} block is missing the name attribute"
-			return false, errMessage
+			versionErr = "JSON schema error... \nJSON version:{} block is missing the name attribute"
+			return false, versionErr
 		end
 
 		# get version number
@@ -56,21 +57,32 @@ module Adiwg1JsonValidation
 				$jsonVersionNum = s
 			end
 		else
-			errMessage = "JSON schema error... \nJSON version:{} block is missing the version attribute"
-			return false, errMessage
+			versionErr = "JSON schema error... \nJSON version:{} block is missing the version attribute"
+			return false, versionErr
 		end
 
 		# validate json schema
 		begin
 			schema = ADIWG::JsonSchemas::Utils.schema_path
+			aValErrs = []
+			validationErr = ''
+			errNum = 0
 			if valLevel == 'strict'
-				errors = JSON::Validator.fully_validate(schema, file, :strict => true)
-			else
-				errors = JSON::Validator.fully_validate(schema, file)
+				aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
+			elsif valLevel == 'json'
+				aValErrs = JSON::Validator.fully_validate(schema, file, :errors_as_objects => true)
 			end
-			if errors.length > 0
-				return false, errors.to_s
+
+			if aValErrs.length > 0
+				aValErrs.each do |valError|
+					errNum += 1
+					validationErr += "\nError: #{errNum}\n"
+					validationErr += "JSON Path: #{valError[:fragment]}\n"
+					validationErr += "Message: #{valError[:message]}\n"
+				end
+				return false, validationErr
 			end
+
 		rescue JSON::Schema::ValidationError
 			return false, $!.message
 		end

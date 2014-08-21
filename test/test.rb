@@ -17,7 +17,7 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj)
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'none')
 
 # send the output to the terminal
 puts '---------------------=======================BEGIN=========================---------------------------'
