@@ -9,6 +9,9 @@ require 'json'
 require 'json-schema'
 require 'adiwg-json_schemas'
 
+$jsonVersionName = ''
+$jsonVersionNum = ''
+
 module Adiwg1JsonValidation
 
 	def self.validate(file, valLevel)
@@ -22,10 +25,7 @@ module Adiwg1JsonValidation
 			return false, parseErr
 		end
 
-		# validate json version
-		$jsonVersionName = ''
-		$jsonVersionNum = ''
-
+		# set json name and version
 		# get json schema name and version
 		if hashObj.has_key?('version')
 			hVersion = hashObj['version']

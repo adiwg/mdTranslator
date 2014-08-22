@@ -3,7 +3,6 @@
 # History:
 # 	Stan Smith 2014-07-02 original script
 
-# to run local code uncomment next 2 lines ...
 lib = File.expand_path('lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -17,7 +16,7 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'none')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'json')
 
 # send the output to the terminal
 puts '---------------------=======================BEGIN=========================---------------------------'

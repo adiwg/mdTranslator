@@ -14,7 +14,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/internal'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/readers'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers'))
 
-require 'mdtranslator/version'
+require 'adiwg/mdtranslator/version'
 require 'internal_metadata_obj'
 
 module ADIWG
@@ -33,7 +33,9 @@ module ADIWG
 					# validate adiwg json file
 					success, retMessage = Adiwg1JsonValidation.validate(file, valLevel)
 					if !success
-						err = "ADIwg JSON did not validate... see message below for more information: \n"
+						err = "-----------------------VALIDATION ERROR------------------------------- \n"
+						err += "ADIwg JSON did not validate... see message below for more information: \n"
+						err += "---------------------------------------------------------------------- \n"
 						return err + retMessage
 					end
 
