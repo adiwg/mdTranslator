@@ -6,7 +6,7 @@
 lib = File.expand_path('lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-require 'adiwg/mdtranslator'
+require 'adiwg-mdtranslator'
 
 puts 'start test script'
 

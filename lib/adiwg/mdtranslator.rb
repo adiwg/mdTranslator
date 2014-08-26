@@ -10,11 +10,12 @@
 #   ... each reader will have it's own validator
 
 # add main directories to load_path
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/internal'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/readers'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers'))
 
-require 'adiwg/mdtranslator/version'
+require 'version'
 require 'internal_metadata_obj'
 
 module ADIWG
