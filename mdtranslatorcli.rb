@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-07-15 original script
 
+# uncomment next 2 lines to run code (not gem) ....
 lib = File.expand_path('lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -51,12 +52,13 @@ class Mdtranslatorcli < Thor
 		metadata = ADIWG::Mdtranslator.translate(readerObj, options[:reader], options[:writer], options[:showtags], options[:validation])
 
 		# for testing
-		# puts ''
-		# puts '---------------------=======================BEGIN=========================---------------------------'
-		# puts metadata.to_s
-		# puts '---------------------========================END==========================---------------------------'
+		puts ''
+		puts '---------------------=======================BEGIN=========================---------------------------'
+		puts metadata.to_s
+		puts '---------------------========================END==========================---------------------------'
 
-		return metadata
+		return metadata.to_s
+
 	end
 
 	Mdtranslatorcli.start(ARGV)

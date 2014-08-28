@@ -3,6 +3,7 @@
 # History:
 # 	Stan Smith 2014-07-02 original script
 
+# uncomment next 2 lines to run code (not gem) ....
 lib = File.expand_path('lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -16,7 +17,7 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'json')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'none')
 
 # send the output to the terminal
 puts '---------------------=======================BEGIN=========================---------------------------'

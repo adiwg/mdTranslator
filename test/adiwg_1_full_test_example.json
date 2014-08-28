@@ -337,6 +337,13 @@
                         "type": "doi"
                     },
                     {
+                        "identifier": "id with nil type",
+                        "type": ""
+                    },
+                    {
+                        "identifier": "id with missing type"
+                    },
+                    {
                         "identifier": "978-1490564098",
                         "type": "isbn"
                     },

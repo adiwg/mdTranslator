@@ -336,7 +336,11 @@
                     }
                 ]
             },
-            "spatialDatum": [""],
+            "spatialReferenceSystem": {
+                "name": [""],
+                "epsgNumber": [0],
+                "wkt": [""]
+            },
             "spatialRepresentation": [""],
             "spatialResolution": [
                 {

@@ -70,8 +70,10 @@ class CI_Citation
 			aResIDs = hCitation[:citResourceIDs]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
-					next if hResID[:identifierType].downcase == 'isbn'
-					next if hResID[:identifierType].downcase == 'issn'
+					if !hResID[:identifierType].nil?
+						next if hResID[:identifierType].downcase == 'isbn'
+						next if hResID[:identifierType].downcase == 'issn'
+					end
 					@xml.tag!('gmd:identifier') do
 						idClass.writeXML(hResID)
 					end
@@ -109,12 +111,14 @@ class CI_Citation
 			aResIDs = hCitation[:citResourceIDs]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
-					if hResID[:identifierType].downcase == 'isbn'
-						s = hResID[:identifier]
-						if !s.nil?
-							@xml.tag!('gmd:ISBN') do
-								@xml.tag!('gco:CharacterString',s)
-								needTag = false
+					if !hResID[:identifierType].nil?
+						if hResID[:identifierType].downcase == 'isbn'
+							s = hResID[:identifier]
+							if !s.nil?
+								@xml.tag!('gmd:ISBN') do
+									@xml.tag!('gco:CharacterString',s)
+									needTag = false
+								end
 							end
 						end
 					end
@@ -129,12 +133,14 @@ class CI_Citation
 			aResIDs = hCitation[:citResourceIDs]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
-					if hResID[:identifierType].downcase == 'issn'
-						s = hResID[:identifier]
-						if !s.nil?
-							@xml.tag!('gmd:ISSN') do
-								@xml.tag!('gco:CharacterString',s)
-								needTag = false
+					if !hResID[:identifierType].nil?
+						if hResID[:identifierType].downcase == 'issn'
+							s = hResID[:identifier]
+							if !s.nil?
+								@xml.tag!('gmd:ISSN') do
+									@xml.tag!('gco:CharacterString',s)
+									needTag = false
+								end
 							end
 						end
 					end
