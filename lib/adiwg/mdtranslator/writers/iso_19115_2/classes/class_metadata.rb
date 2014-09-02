@@ -14,7 +14,7 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-18 add dataSetURI
 #   Stan Smith 2014-09-03 replaced spatial reference system code with named, epsg, and
-#   ... wkt reference system descriptions using RS_Identifier
+#   ... wkt reference system descriptions using RS_Identifier for 0.7.0
 
 require 'code_characterSet'
 require 'code_scope'

@@ -12,7 +12,7 @@
 #   Stan Smith 2014-05-28 added resource identifier to citation json schema 0.5.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
-#   Stan Smith 2014-09-03 added spatial reference system module for 0.6.0
+#   Stan Smith 2014-09-03 added spatial reference system module for 0.7.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
