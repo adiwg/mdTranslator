@@ -41,6 +41,7 @@
 #   Stan Smith 2014-05-02 added additionalDocument
 #   Stan Smith 2014-05-28 modified resourceId & responsibleParty for schema 0.5.0
 #   Stan Smith 2014-08-15 modified citation, onlineResource, resourceId for 0.6.0
+#   Stan Smith 2014-09-03 added spatialReferenceSystems for name, EPSG, and WKT for 0.6.0
 
 class InternalMetadata
 
@@ -165,7 +166,7 @@ class InternalMetadata
 			legalConstraints: [],
 			securityConstraints: [],
 			taxonomy: {},
-			spatialReferenceSystems: [],
+			spatialReferenceSystem: {},
 			spatialRepresentationTypes: [],
 			spatialResolutions: [],
 			topicCategories: [],
@@ -275,6 +276,14 @@ class InternalMetadata
 			bGDescription: nil,
 			bGType: nil,
 			bGURI: nil
+		}
+	end
+
+	def newSpatialReferenceSystem
+		intObj = {
+			sRNames: [],
+			sREPSGs: [],
+			sRWKTs: []
 		}
 	end
 

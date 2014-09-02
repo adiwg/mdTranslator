@@ -13,16 +13,18 @@
 #   Stan Smith 2014-05-28 added resource URI
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-18 add dataSetURI
+#   Stan Smith 2014-09-03 replaced spatial reference system code with named, epsg, and
+#   ... wkt reference system descriptions using RS_Identifier
 
 require 'code_characterSet'
 require 'code_scope'
-require 'code_referenceSystemInfo'
 require 'class_responsibleParty'
 require 'class_metadataExtension'
 require 'class_dataIdentification'
 require 'class_distribution'
 require 'class_dataQuality'
 require 'class_maintenanceInformation'
+require 'class_referenceSystem'
 require 'module_dateTimeFun'
 
 class MI_Metadata
@@ -36,13 +38,13 @@ class MI_Metadata
 		# # classes used in MD_Metadata
 		charCode = MD_CharacterSetCode.new(@xml)
 		scopeCode = MD_ScopeCode.new(@xml)
-		rSysCode = ReferenceSystemInfo.new(@xml)
 		rPartyClass = CI_ResponsibleParty.new(@xml)
 		mdExtClass = MD_MetadataExtensionInformation.new(@xml)
 		dataIdClass = MD_DataIdentification.new(@xml)
 		distClass = MD_Distribution.new(@xml)
 		dqClass = DQ_DataQuality.new(@xml)
 		metaMaintClass = MD_MaintenanceInformation.new(@xml)
+		refSysClass = MD_ReferenceSystem.new(@xml)
 
 		intMetadata = internalObj[:metadata]
 		hMetaInfo = intMetadata[:metadataInfo]
@@ -167,11 +169,33 @@ class MI_Metadata
 			end
 
 			# metadata information - reference system
-			aRefSystems = hResInfo[:spatialReferenceSystems]
-			if !aRefSystems.empty?
-				aRefSystems.each do |rSystem|
-					rSysCode.writeXML(rSystem)
+			hRefSystems = hResInfo[:spatialReferenceSystem]
+			if !hRefSystems.empty?
+
+				# named reference systems
+				aRefNames = hRefSystems[:sRNames]
+				aRefNames.each do |refName|
+					@xml.tag!('gmd:referenceSystemInfo') do
+						refSysClass.writeXML(refName, 'name')
+					end
 				end
+
+				# epsg reference systems
+				aRefNames = hRefSystems[:sREPSGs]
+				aRefNames.each do |refName|
+					@xml.tag!('gmd:referenceSystemInfo') do
+						refSysClass.writeXML(refName, 'epsg')
+					end
+				end
+
+				# wkt reference systems
+				aRefNames = hRefSystems[:sRWKTs]
+				aRefNames.each do |refName|
+					@xml.tag!('gmd:referenceSystemInfo') do
+						refSysClass.writeXML(refName, 'wkt')
+					end
+				end
+
 			elsif $showEmpty
 				@xml.tag!('gmd:referenceSystemInfo')
 			end

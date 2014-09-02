@@ -688,7 +688,14 @@
                     }
                 ]
             },
-            "spatialDatum": ["NAD27","MLW"],
+            "spatialReferenceSystem": {
+                "name": ["Alaska State Plane Zone 4", "UTM Zone 9"],
+                "epsgNumber": [3572,4326],
+                "wkt": [
+                    "GEOGCS ['Longitude / Latitude (Old Hawaiian)', DATUM ['Old Hawaiian', SPHEROID ['Clarke 1866', 6378206.400000, 294.978698]], PRIMEM ['Greenwich', 0.000000 ], UNIT ['Decimal Degree', 0.01745329251994330]]",
+                    "PROJCS ['Wyoming 4901, Eastern Zone (1983, meters)', GEOGCS ['GRS 80', DATUM ['GRS 80', SPHEROID ['GRS 80', 6378137.000000, 298.257222]], PRIMEM ['Greenwich', 0.000000 ], UNIT ['Decimal Degree', 0.01745329251994330]], PROJECTION ['Transverse Mercator'], PARAMETER ['Scale_Factor', 0.999938], PARAMETER ['Central_Meridian', -105.166667], PARAMETER ['Latitude_Of_Origin', 40.500000], PARAMETER ['False_Easting', 200000.000000], UNIT ['Meter', 1.000000000000]]"
+                ]
+            },
             "spatialRepresentation": ["textTable"],
             "spatialResolution": [
                 {

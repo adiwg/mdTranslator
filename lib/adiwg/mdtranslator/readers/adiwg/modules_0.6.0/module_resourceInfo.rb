@@ -12,6 +12,7 @@
 #   Stan Smith 2014-05-28 added resource identifier to citation json schema 0.5.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
+#   Stan Smith 2014-09-03 added spatial reference system module for 0.6.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $jsonVersionNum)
@@ -27,6 +28,7 @@ require ADIWG::Mdtranslator.reader_module('module_taxonomy', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_resolution', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_extent', $jsonVersionNum)
 require ADIWG::Mdtranslator.reader_module('module_dataQuality', $jsonVersionNum)
+require ADIWG::Mdtranslator.reader_module('module_spatialReference', $jsonVersionNum)
 
 module Adiwg_ResourceInfo
 
@@ -235,12 +237,10 @@ module Adiwg_ResourceInfo
 		end
 
 		# resource information - spatial reference systems
-		if hResourceInfo.has_key?('spatialDatum')
-			aSpatialDatum = hResourceInfo['spatialDatum']
-			unless aSpatialDatum.empty?
-				aSpatialDatum.each do |spDatum|
-					intResInfo[:spatialReferenceSystems] << spDatum
-				end
+		if hResourceInfo.has_key?('spatialReferenceSystem')
+			hSpatialRef = hResourceInfo['spatialReferenceSystem']
+			unless hSpatialRef.empty?
+				intResInfo[:spatialReferenceSystem] = Adiwg_SpatialReferenceSystem.unpack(hSpatialRef)
 			end
 		end
 
