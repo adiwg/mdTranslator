@@ -3,20 +3,21 @@
 
 # History:
 # 	Stan Smith 2014-07-15 original script
+#   Stan Smith 2014-09-02 changed name to mdtranslator
 
 # uncomment next 2 lines during development to run from code (not gem) ....
-lib = File.expand_path('lib')
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+# lib = File.expand_path('lib')
+# $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'thor'
 require 'adiwg-mdtranslator'
 
-class Mdtranslatorcli < Thor
+class Mdtranslator < Thor
 
 	# basic cli description
 	desc 'translate [FILE]', %q{Pass file name or JSON plus parameters to mdtranslator translate}
 	long_desc <<-LONGDESC
-	    'mdtranslatorcli translate' provides command line access to the ADIWG metadata translator
+	    'mdtranslator translate' provides command line access to the ADIWG metadata translator
  with options to select the input file reader, select writer output format, show empty tags
  in XML outputs, and choose level of validation for JSON inputs.
 	LONGDESC
@@ -52,15 +53,15 @@ class Mdtranslatorcli < Thor
 		metadata = ADIWG::Mdtranslator.translate(readerObj, options[:reader], options[:writer], options[:showtags], options[:validation])
 
 		# for testing
-		puts ''
-		puts '---------------------=======================BEGIN=========================---------------------------'
-		puts metadata.to_s
-		puts '---------------------========================END==========================---------------------------'
+		# puts ''
+		# puts '---------------------=======================BEGIN=========================---------------------------'
+		# puts metadata.to_s
+		# puts '---------------------========================END==========================---------------------------'
 
 		return metadata.to_s
 
 	end
 
-	Mdtranslatorcli.start(ARGV)
+	Mdtranslator.start(ARGV)
 
 end
