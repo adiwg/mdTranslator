@@ -11,17 +11,21 @@ require 'adiwg-mdtranslator'
 
 puts 'start test script'
 
-# read test adiwg version 1 json example
-file = File.open('test/adiwg_1_full_test_example.json', 'r')
+# read test adiwg full json test
+file = File.open('test/adiwgJson_full_test_example.json', 'r')
 jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwg','iso19115_2',true,'none')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwgJson','iso19115_2','none','true')
 
-# send the output to the terminal
+# send all the output to the terminal
+require 'pp'
+writerOut = metadata[:writerOutput]
+metadata[:writerOutput] = 'Extracted'
 puts '---------------------=======================BEGIN=========================---------------------------'
-puts metadata.to_s
+pp metadata
+puts writerOut.to_s
 puts '---------------------========================END==========================---------------------------'
 
 puts 'test script has completed'

@@ -115,8 +115,8 @@ class InternalMetadata
 
 	def newMetadataInfo
 		intObj = {
-			metadataId: nil,
-			parentMetadataId: nil,
+			metadataId: {},
+			parentMetadata: {},
 			metadataScope: [],
 			metadataCustodians: [],
 			metadataCreateDate: {},

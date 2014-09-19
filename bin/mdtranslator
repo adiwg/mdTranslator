@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-07-15 original script
 #   Stan Smith 2014-09-02 changed name to mdtranslator
+#   Stan Smith 2014-09-15 added format and callback options
 
 # uncomment next 2 lines during development to run from code (not gem) ....
 # lib = File.expand_path('lib')
@@ -15,17 +16,17 @@ require 'adiwg-mdtranslator'
 class Mdtranslator < Thor
 
 	# basic cli description
-	desc 'translate [FILE]', %q{Pass file name or JSON plus parameters to mdtranslator translate}
+	desc 'translate [FILE]', %q{Pass JSON string or filename plus parameters to mdtranslator translate}
 	long_desc <<-LONGDESC
 	    'mdtranslator translate' provides command line access to the ADIWG metadata translator
  with options to select the input file reader, select writer output format, show empty tags
  in XML outputs, and choose level of validation for JSON inputs.
 	LONGDESC
 	# define cli options
-	method_option :reader, :aliases => '-r', :desc => "Provide name of reader (default: 'adiwg')", :default => 'adiwg'
-	method_option :writer, :aliases => '-w', :desc => "Provide name of writer (default: 'iso19115_2')", :default => 'iso19115_2'
-	method_option :showtags, :aliases => '-s', :desc => "Show empty XML tags (default: 'true')", :type => :boolean, :default => true
-	method_option :validation, :aliases => '-v', :desc => "Specify JSON validation level (default: 'none')", :enum => %w{none json schema}, :default => 'none'
+	method_option :reader, :aliases => '-r', :desc => 'Name of reader to read your input', :default => 'adiwgJson'
+	method_option :writer, :aliases => '-w', :desc => 'Name of writer to create your metadata, or leave blank to validate input only'
+	method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed', :enum => %w{none normal strict}, :default => 'normal'
+	method_option :showAllTags, :aliases => '-s', :desc => 'Include tags for unused attributes', :type => :boolean, :default => false
 
 	# accept command and options
 	def translate(file)
@@ -41,16 +42,16 @@ class Mdtranslator < Thor
 		end
 
 		# for testing
-		# puts 'My reader is: ' + options[:reader]
-		# puts 'My writer is: ' + options[:writer]
-		# puts 'My show tags is: ' + options[:showtags].to_s
-		# puts 'My JSON validation level is: ' + options[:validation]
-		# puts 'my JSON object is: ' + readerObj.to_s
+		# puts 'reader: ' + options[:reader]
+		# puts 'writer: ' + options[:writer]
+		# puts 'showAllTags: ' + options[:showAllTags].to_s
+		# puts 'validation level: ' + options[:validate]
 		# require 'pp'
 		# pp $LOAD_PATH
+		# pp fileObj
 
 		# call mdtranslator
-		metadata = ADIWG::Mdtranslator.translate(readerObj, options[:reader], options[:writer], options[:showtags], options[:validation])
+		metadata = ADIWG::Mdtranslator.translate(readerObj, options[:reader], options[:writer], options[:showAllTags], options[:validate])
 
 		# for testing
 		# puts ''

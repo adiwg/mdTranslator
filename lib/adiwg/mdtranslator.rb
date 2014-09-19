@@ -22,53 +22,70 @@ module ADIWG
 
 	module Mdtranslator
 
-		def self.translate(file, reader='adiwg', writer='iso19115_2', showEmpty=true, valLevel='none')
+		def self.translate(file, reader, writer, validate, showAllTags)
 
-			@reader = reader
-			@writer = writer
+			$showAllTags = showAllTags
+			$response = {
+				readerFormat: nil,
+				readerStructurePass: nil,
+				readerStructureMessages: [],
+				readerName: reader,
+				readerNameFound: nil,
+				readerVersionFound: nil,
+				readerValidationLevel: validate,
+				readerValidationPass: nil,
+				readerValidationMessages: [],
+				writerName: writer,
+				writerFormat: nil,
+				writerPass: nil,
+				writerMessages: [],
+				writerOutput: nil
+			}
 
-			case @reader
-				when 'adiwg'
-					require 'adiwg/adiwg_validator'
+			# the mdtranslator gem loads and returns the above hash
 
-					# validate adiwg json file
-					success, retMessage = Adiwg1JsonValidation.validate(file, valLevel)
-					if !success
-						err = "-----------------------VALIDATION ERROR------------------------------- \n"
-						err += "ADIwg JSON did not validate... see message below for more information: \n"
-						err += "---------------------------------------------------------------------- \n"
-						return err + retMessage
+			case reader
+				when 'adiwgJson'
+					require 'adiwgJson/adiwgJson_validator'
+
+					# validate adiwgJson file
+					AdiwgJsonValidation.validate(file)
+					if $response[:readerStructurePass] && $response[:readerValidationPass]
+						# initiate the reader
+						require 'adiwgJson/adiwgJson_reader'
+						readerClass = AdiwgJsonReader.new
+						internalObj = readerClass.unpack(file)
+					else
+						return $response
 					end
-
-					# initiate the reader
-					require 'adiwg/adiwg_reader'
-					readerClass = Adiwg1Reader.new
-					internalObj = readerClass.unpack(file)
-
 			end
 
-			case @writer
+			case writer
 				when 'iso19115_2'
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso19115_2/codelists'))
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso19115_2/classes'))
+					require 'iso19115_2/iso19115_2_writer'
 
-					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso_19115_2/codelists'))
-					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso_19115_2/classes'))
-
-					require 'iso_19115_2/iso_19115_2_writer'
-
-					$showEmpty = showEmpty
+					# set the format of the output file based on the writer specified
+					$response[:writerFormat] = 'xml'
 
 					writerClass = Iso191152Writer.new
 
 					# initiate the writer
-					metadata = writerClass.writeXML(internalObj)
+					$response[:writerOutput] = writerClass.writeXML(internalObj)
+					if $response[:writerMessages].length > 0
+						$response[:writerPass] = false
+					else
+						$response[:writerPass] = true
+					end
 			end
 
-			return metadata
+			return $response
 
 		end
 
 		def self.reader_module(moduleName, version)
-			dir = File.join(@reader, 'modules_' + version)
+			dir = File.join($response[:readerName], 'modules_' + version)
 			file = File.join(dir, moduleName)
 			return file
 		end
@@ -76,4 +93,3 @@ module ADIWG
 	end
 
 end
-
