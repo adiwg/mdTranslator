@@ -17,7 +17,7 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwgJson','iso19115_2','none','true')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwgJson','iso19115_2','normal','true')
 
 # send all the output to the terminal
 require 'pp'
@@ -26,6 +26,7 @@ metadata[:writerOutput] = 'Extracted'
 puts '---------------------=======================BEGIN=========================---------------------------'
 pp metadata
 puts writerOut.to_s
+# pp writerOut
 puts '---------------------========================END==========================---------------------------'
 
 puts 'test script has completed'

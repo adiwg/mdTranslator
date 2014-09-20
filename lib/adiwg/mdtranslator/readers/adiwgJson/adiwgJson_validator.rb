@@ -8,6 +8,8 @@
 require 'json'
 require 'json-schema'
 require 'adiwg-json_schemas'
+#json-schema patch
+require 'validator.rb'
 
 module AdiwgJsonValidation
 
