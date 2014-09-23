@@ -61,13 +61,13 @@ module AdiwgJsonValidation
 			s = hVersion['version']
 			if !s.nil?
 				$response[:readerVersionFound] = s
-				if !File.directory?('lib/adiwg/mdtranslator/readers/adiwgJson/modules_' + s)
+				dir = File.join(File.dirname(__FILE__),'modules_' + s)
+				if !File.directory?(dir)
 					$response[:readerStructurePass] = false
 					$response[:readerStructureMessages] << 'input file version is not supported'
 					$response[:readerStructureMessages] << "adiwgJson version requested was '#{s}'"
 					return
 				end
-
 			end
 		else
 			$response[:readerStructurePass] = false
