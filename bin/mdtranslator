@@ -11,6 +11,12 @@ require 'adiwg-mdtranslator'
 
 class Mdtranslator < Thor
 
+	# exit_on_failure added to exit with code 1 if thor cannot complete task
+	# such as if required parameters are missing
+	def self.exit_on_failure?
+		true
+	end
+
 	# basic cli description
 	desc 'translate [FILE]', %q{Pass JSON string or filename plus parameters to mdtranslator translate}
 	long_desc <<-LONGDESC

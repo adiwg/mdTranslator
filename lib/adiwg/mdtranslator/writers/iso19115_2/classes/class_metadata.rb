@@ -107,7 +107,7 @@ class MI_Metadata
 					if aResIds.length > 0
 						s += ' ids: | '
 						aResIds.each do |resource|
-							s += resource[:identifier] + ' | '
+							s += resource[:identifierType] + ': ' + resource[:identifier] + ' | '
 						end
 					end
 					@xml.tag!('gco:CharacterString',s)
