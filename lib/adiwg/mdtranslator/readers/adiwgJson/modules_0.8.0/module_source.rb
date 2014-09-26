@@ -5,8 +5,8 @@
 # 	Stan Smith 2013-11-26 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:readerVersionUsed])
 
 module Adiwg_Source
 

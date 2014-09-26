@@ -8,8 +8,8 @@
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 
 module Adiwg_AssociatedResource
 

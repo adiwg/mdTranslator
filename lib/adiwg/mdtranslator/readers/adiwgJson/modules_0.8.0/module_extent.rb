@@ -9,9 +9,9 @@
 # 	Stan Smith 2013-12-05 modified to for new temporalElement schema
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_geographicElement', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_geographicElement', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
 
 module Adiwg_Extent
 

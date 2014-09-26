@@ -6,9 +6,9 @@
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 changed assignedId to identifier schema 0.6.0
 
-require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 
 module Adiwg_GeoProperties
 

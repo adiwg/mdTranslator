@@ -7,7 +7,7 @@
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 
-require ADIWG::Mdtranslator.reader_module('module_point', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_point', $response[:readerVersionUsed])
 require 'class_point'
 require 'class_lineString'
 require 'class_polygon'

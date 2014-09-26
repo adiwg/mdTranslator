@@ -4,6 +4,7 @@
 # 	Stan Smith 2014-07-09 original script
 #   Stan Smith 2014-07-21 added json structure validation method
 #   Stan Smith 2014-08-21 parsed json-schema validation message to readable text
+#   Stan Smith 2014-09-26 added processing of minor release numbers
 
 require 'json'
 require 'json-schema'
@@ -58,16 +59,23 @@ module AdiwgJsonValidation
 
 		# get version number
 		if hVersion.has_key?('version')
-			s = hVersion['version']
-			if !s.nil?
-				$response[:readerVersionFound] = s
-				dir = File.join(File.dirname(__FILE__),'modules_' + s)
+			requestReaderVersion = hVersion['version']
+			$response[:readerVersionFound] = requestReaderVersion
+			# test if reader version is supported
+			# remove minor release number
+			# ...and look for a module folder name ending with the requested version
+			# ...example: 'modules_1.2.0'
+			if !requestReaderVersion.nil?
+				aVersionParts = requestReaderVersion.split('.')
+				readerVersion = aVersionParts[0] +'.' + aVersionParts[1] + '.0'
+				dir = File.join(File.dirname(__FILE__),'modules_' + readerVersion)
 				if !File.directory?(dir)
 					$response[:readerStructurePass] = false
 					$response[:readerStructureMessages] << 'input file version is not supported'
-					$response[:readerStructureMessages] << "adiwgJson version requested was '#{s}'"
+					$response[:readerStructureMessages] << "adiwgJson version requested was '#{requestReaderVersion}'"
 					return
 				end
+				$response[:readerVersionUsed] = readerVersion
 			end
 		else
 			$response[:readerStructurePass] = false

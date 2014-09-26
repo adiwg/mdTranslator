@@ -8,7 +8,7 @@
 #   Stan Smith 2014-08-21 removed thesaurus link; replaced by onlineResource to citation
 #   Stan Smith 2014-08-21 removed extra level of encapsulation "citation" under "thesaurus"
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
 module Adiwg_DescriptiveKeyword
 

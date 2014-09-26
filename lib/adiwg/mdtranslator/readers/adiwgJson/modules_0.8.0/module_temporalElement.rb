@@ -11,9 +11,9 @@
 # 	Stan Smith 2013-12-11 modified to handle single temporal element
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_timeInstant', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_timeInstant', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionUsed])
 
 module Adiwg_TemporalElement
 

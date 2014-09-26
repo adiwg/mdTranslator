@@ -11,8 +11,8 @@
 #   Stan Smith 2014-08-18 add json name/version to internal object
 
 require 'json'
-require ADIWG::Mdtranslator.reader_module('module_contacts', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_metadata', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_contacts', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_metadata', $response[:readerVersionUsed])
 
 class AdiwgJsonReader
 

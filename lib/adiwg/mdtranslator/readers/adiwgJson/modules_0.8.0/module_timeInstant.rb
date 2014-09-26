@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-12-11 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
 
 module Adiwg_TimeInstant
 

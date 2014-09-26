@@ -8,7 +8,7 @@
 #   Stan Smith 2014-04-24 modified for json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 
 module Adiwg_ResourceMaintenance
 

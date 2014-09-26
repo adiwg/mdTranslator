@@ -8,6 +8,7 @@
 #   Stan Smith 2014-07-21 added validation of json structure
 #   Stan Smith 2014-07-23 moved all validations to readers/adiwg/adiwg_validator.rb
 #   ... each reader will have it's own validator
+#   Stan Smith 2014-09-26 added processing of minor release numbers
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
@@ -32,6 +33,7 @@ module ADIWG
 				readerName: reader,
 				readerNameFound: nil,
 				readerVersionFound: nil,
+				readerVersionUsed: nil,
 				readerValidationLevel: validate,
 				readerValidationPass: nil,
 				readerValidationMessages: [],

@@ -13,11 +13,11 @@
 #   Stan Smith 2014-05-02 added additional documentation
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_metadataInfo', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceInfo', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_distributionInfo', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_associatedResource', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_metadataInfo', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceInfo', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_distributionInfo', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_associatedResource', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
 module Adiwg_Metadata
 

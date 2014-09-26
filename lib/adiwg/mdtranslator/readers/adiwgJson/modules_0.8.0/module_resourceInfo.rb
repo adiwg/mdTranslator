@@ -14,21 +14,21 @@
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 #   Stan Smith 2014-09-03 added spatial reference system module for 0.7.0
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceFormat', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_descriptiveKeyword', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceSpecificUsage', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_browseGraphic', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_legalConstraint', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_securityConstraint', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_taxonomy', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resolution', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_extent', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_dataQuality', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_spatialReference', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceFormat', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_descriptiveKeyword', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceSpecificUsage', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_browseGraphic', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_legalConstraint', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_securityConstraint', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_taxonomy', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resolution', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_extent', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_dataQuality', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_spatialReference', $response[:readerVersionUsed])
 
 module Adiwg_ResourceInfo
 

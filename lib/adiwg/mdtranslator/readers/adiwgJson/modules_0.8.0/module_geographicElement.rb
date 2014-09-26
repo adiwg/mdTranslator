@@ -15,12 +15,12 @@
 #   Stan Smith 2014-05-23 added direct support for geometryCollection
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 
-require ADIWG::Mdtranslator.reader_module('module_geoCoordSystem', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_geoProperties', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_boundingBox', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_point', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_lineString', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_polygon', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_geoCoordSystem', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_geoProperties', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_boundingBox', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_point', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_lineString', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_polygon', $response[:readerVersionUsed])
 
 module Adiwg_GeographicElement
 

@@ -7,12 +7,12 @@
 #   Stan Smith 2014-09-19 changed metadata identifier type resource identifier json 0.8.0
 #   Stan Smith 2014-09-19 changed parent metadata identifier type citation json 0.8.0
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
 module Adiwg_MetadataInfo
 

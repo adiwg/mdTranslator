@@ -6,9 +6,9 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 added type to identifier schema 0.6.0
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionFound])
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionFound])
+require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionUsed])
 
 module Adiwg_ResourceIdentifier
 
