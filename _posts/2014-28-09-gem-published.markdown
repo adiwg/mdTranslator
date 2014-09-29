@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Initial mdTranslator gem released"
-date:   2014-09-28
+date:   2014-09-29 08:00:00
 categories: website update mdTranslator
 ---
 
