@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/adiwg/mdTranslator.svg?branch=master)](https://travis-ci.org/adiwg/mdTranslator)
+
 # Mdtranslator
 
 TODO: Write a gem description
