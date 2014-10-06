@@ -1,4 +1,4 @@
-# ISO <<Class>> MI_Metadata
+# ISO 19115-2 <<Class>> MI_Metadata
 # writer output in XML
 
 # History:
@@ -17,6 +17,8 @@
 #   ... wkt reference system descriptions using RS_Identifier for 0.7.0
 #   Stan Smith 2014-09-19 changed file identifier to read from internal storage as
 #   ... an MD_Identifier class.  To support version 0.8.0 json.
+#   Stan Smith 2014-10-07 changed source of dataSetURI to
+#   ... metadata: {resourceInfo: {citation: {citOlResources[0]: {olResURI:}}}}
 
 require 'code_characterSet'
 require 'code_scope'
@@ -173,7 +175,20 @@ class MI_Metadata
 			end
 
 			# metadata information - dataset URI
-			s = hMetaInfo[:metadataURI]
+			# for the dataset URI adiwgJson follows the ISO 19115-1 convention which is
+			# ... to include links to the resource in the onlineResource section of the
+			# ... resource citation.  Because citation onlineResource(s) are not supported
+			# ... in -2, the URI from the first onlineResource in the adiwgJson is used
+			# ... for the datasetURI.
+			# ... metadata: {resourceInfo: {citation: {citOlResources[0]: {olResURI:}}}}
+			s = nil
+			if hResInfo[:citation]
+				if hResInfo[:citation][:citOlResources][0]
+					if hResInfo[:citation][:citOlResources][0][:olResURI]
+						s = hResInfo[:citation][:citOlResources][0][:olResURI]
+					end
+				end
+			end
 			if !s.nil?
 				@xml.tag!('gmd:dataSetURI') do
 					@xml.tag!('gco:CharacterString',s)
