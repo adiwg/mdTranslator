@@ -29,4 +29,7 @@ puts writerOut.to_s
 # pp writerOut
 puts '---------------------========================END==========================---------------------------'
 
+# test for resource path
+puts ADIWG::Mdtranslator.path_to_resources
+
 puts 'test script has completed'

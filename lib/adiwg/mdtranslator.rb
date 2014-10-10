@@ -9,6 +9,7 @@
 #   Stan Smith 2014-07-23 moved all validations to readers/adiwg/adiwg_validator.rb
 #   ... each reader will have it's own validator
 #   Stan Smith 2014-09-26 added processing of minor release numbers
+#   Stan Smith 2014-10-10 added method to return path to readers and writers
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
@@ -90,6 +91,11 @@ module ADIWG
 			dir = File.join($response[:readerName], 'modules_' + version)
 			file = File.join(dir, moduleName)
 			return file
+		end
+
+		# return path to readers and writers
+		def self.path_to_resources
+			File.join(File.dirname(File.expand_path(__FILE__)),'mdtranslator')
 		end
 
 	end

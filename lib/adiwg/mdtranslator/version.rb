@@ -8,11 +8,13 @@
 #              ... removed resourceURI from resourceInfo section of adiwgJson
 # 0.8.2 2014-10-09 added the 'version' command to the CLI for returning the
 #              ... mdTranslator version number
+# 0.8.3 2014-10-10 added readme files for each reader and writer
+#              ... the readme files are used as the content for api web pages
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.8.2"
+		VERSION = "0.8.3"
 	end
 end
 
