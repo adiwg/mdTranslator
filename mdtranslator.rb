@@ -5,6 +5,7 @@
 # 	Stan Smith 2014-07-15 original script
 #   Stan Smith 2014-09-02 changed name to mdtranslator
 #   Stan Smith 2014-09-21 coded cli to 0.8.0 api
+#   Stan Smith 2014-10-09 added version command to the CLI
 
 # uncomment next 2 lines during development to run from code (not gem) ....
 lib = File.expand_path('lib')
@@ -171,6 +172,14 @@ class Mdtranslator < Thor
 			end
 		end
 
+	end
+
+	desc 'version', %q{Returns the version of mdTranslator}
+	long_desc <<-LONGDESC
+		'mdtranslator version' returns the version number for mdTranslator
+	LONGDESC
+	def version
+		$stdout.write ADIWG::Mdtranslator::VERSION
 	end
 
 	Mdtranslator.start(ARGV)
