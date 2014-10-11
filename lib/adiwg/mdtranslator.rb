@@ -10,6 +10,7 @@
 #   ... each reader will have it's own validator
 #   Stan Smith 2014-09-26 added processing of minor release numbers
 #   Stan Smith 2014-10-10 added method to return path to readers and writers
+#   Stan Smith 2014-10-11 added methods to return content of readme files
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
@@ -96,6 +97,30 @@ module ADIWG
 		# return path to readers and writers
 		def self.path_to_resources
 			File.join(File.dirname(File.expand_path(__FILE__)),'mdtranslator')
+		end
+
+		# return reader readme text
+		def self.get_reader_readme(reader)
+			readmeText = 'No text found'
+			path = File.join(path_to_resources, 'readers', reader, 'readme.md')
+			if File.exist?(path)
+				file = File.open(path, 'r')
+				readmeText = file.read
+				file.close
+			end
+			return readmeText
+		end
+
+		# return writer readme text
+		def self.get_writer_readme(writer)
+			readmeText = 'No text found'
+			path = File.join(path_to_resources, 'writers', writer, 'readme.md')
+			if File.exist?(path)
+				file = File.open(path, 'r')
+				readmeText = file.read
+				file.close
+			end
+			return readmeText
 		end
 
 	end

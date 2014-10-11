@@ -1,8 +1,5 @@
 # MdTranslator - code to test mdtranslator from Ruby Terminal during development
 
-# History:
-# 	Stan Smith 2014-07-02 original script
-
 # uncomment next 2 lines to run code (not gem) ....
 lib = File.expand_path('lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -31,5 +28,10 @@ puts '---------------------========================END==========================
 
 # # test for resource path
 # puts ADIWG::Mdtranslator.path_to_resources
+
+# # test reader readme
+# puts ADIWG::Mdtranslator.get_reader_readme('adiwgJson')
+# puts '================================================='
+# puts ADIWG::Mdtranslator.get_writer_readme('iso19115_2')
 
 puts 'test script has completed'
