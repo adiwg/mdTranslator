@@ -19,6 +19,8 @@
 #   ... an MD_Identifier class.  To support version 0.8.0 json.
 #   Stan Smith 2014-10-07 changed source of dataSetURI to
 #   ... metadata: {resourceInfo: {citation: {citOlResources[0]: {olResURI:}}}}
+#   Stan Smith 2014-10-10 modified to pass minimum metadata input test
+#   ... test were added to handle a missing metadata > metadataInfo block in the input
 
 require 'code_characterSet'
 require 'code_scope'
@@ -75,14 +77,22 @@ class MI_Metadata
 
 			# metadata information - file identifier - default
 			# the internal object stores the file identifier as a MD_Identifier to support 19115-1
+			# hMetaInfo => metadata > metadataInfo
+			# hMetaInfo[:metadataId] => MD_Identifier
 			# ISO 19115-2 only support the file identifier as a character string
 			@xml.tag!('gmd:fileIdentifier') do
-				hMetadataId = hMetaInfo[:metadataId]
-				if hMetadataId[:identifier].nil?
+				s = nil
+				if hMetaInfo
+					if hMetaInfo[:metadataId]
+						s = hMetaInfo[:metadataId][:identifier]
+						unless s.nil?
+							@xml.tag!('gco:CharacterString',s)
+						end
+					end
+				end
+				if s.nil?
 					# generate fileIdentifier if one not provided
 					@xml.tag!('gco:CharacterString',UUIDTools::UUID.random_create.to_s)
-				else
-					@xml.tag!('gco:CharacterString',hMetadataId[:identifier])
 				end
 			end
 
@@ -100,67 +110,88 @@ class MI_Metadata
 
 			# metadata information - parent identifier
 			# the internal object stores the parent identifier as a CI_Citation to support 19115-1
+			# hMetaInfo => metadata > metadataInfo
+			# hMetaInfo[:parentMetadata] => hParent => CI_Citation
 			# ISO 19115-2 only support the parent identifier as a character string
-			hParent = hMetaInfo[:parentMetadata]
-			if !hParent.empty?
-				@xml.tag!('gmd:parentIdentifier') do
-					s = hParent[:citTitle]
-					aResIds = hParent[:citResourceIDs]
-					if aResIds.length > 0
-						s += ' ids: | '
-						aResIds.each do |resource|
-							s += resource[:identifierType] + ': ' + resource[:identifier] + ' | '
+			s = nil
+			if hMetaInfo
+				if hMetaInfo[:parentMetadata]
+					hParent = hMetaInfo[:parentMetadata]
+					if !hParent.empty?
+						s = hParent[:citTitle]
+						aResIds = hParent[:citResourceIDs]
+						if aResIds.length > 0
+							s += ' ids: | '
+							aResIds.each do |resource|
+								s += resource[:identifierType] + ': ' + resource[:identifier] + ' | '
+							end
 						end
 					end
+				end
+			end
+			if !s.nil?
+				@xml.tag!('gmd:parentIdentifier') do
 					@xml.tag!('gco:CharacterString',s)
 				end
 			elsif $showAllTags
 				@xml.tag!('gmd:parentIdentifier')
 			end
 
-			# metadata information - file hierarchy - default dataset
-			aHierarchy = hMetaInfo[:metadataScope]
-			if aHierarchy.empty?
+			# metadata information - file hierarchy - defaults to 'dataset'
+			fileHierarchy = false
+			if hMetaInfo
+				if hMetaInfo[:metadataScope]
+					aHierarchy = hMetaInfo[:metadataScope]
+					unless aHierarchy.empty?
+						fileHierarchy = true
+						aHierarchy.each do |hierarchy|
+							@xml.tag!('gmd:hierarchyLevel') do
+								scopeCode.writeXML(hierarchy)
+							end
+						end
+					end
+				end
+			end
+			if !fileHierarchy
 				@xml.tag!('gmd:hierarchyLevel') do
 					scopeCode.writeXML('dataset')
-				end
-			else
-				aHierarchy.each do |hierarchy|
-					@xml.tag!('gmd:hierarchyLevel') do
-						scopeCode.writeXML(hierarchy)
-					end
 				end
 			end
 
 			# metadata information - metadata custodian - required
-			aCustodians = hMetaInfo[:metadataCustodians]
-			if aCustodians.empty?
-				@xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
-			else
-				aCustodians.each do |hCustodian|
-					@xml.tag!('gmd:contact') do
-						rPartyClass.writeXML(hCustodian)
+			custodians = false
+			if hMetaInfo
+			    if hMetaInfo[:metadataCustodians]
+					aCustodians = hMetaInfo[:metadataCustodians]
+					unless aCustodians.empty?
+						custodians = true
+						aCustodians.each do |hCustodian|
+							@xml.tag!('gmd:contact') do
+								rPartyClass.writeXML(hCustodian)
+							end
+						end
 					end
 				end
 			end
+			if !custodians
+				@xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
+			end
 
 			# metadata information - date stamp - required - default to now()
-			@xml.tag!('gmd:dateStamp') do
-
-				# if date not supplied, fill with today's date
-				hDate = hMetaInfo[:metadataCreateDate]
-				if hDate.empty?
-					mDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
-				else
-					mDateTime = hDate[:dateTime]
-					mDateRes = hDate[:dateResolution]
-					if mDateTime.nil?
-						mDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
-					else
-						mDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
+			mDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
+			if hMetaInfo
+				if hMetaInfo[:metadataCreateDate]
+					hDate = hMetaInfo[:metadataCreateDate]
+					unless hDate.empty?
+						mDateTime = hDate[:dateTime]
+						mDateRes = hDate[:dateResolution]
+						if mDateTime.nil?
+							mDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
+						end
 					end
 				end
-
+			end
+			@xml.tag!('gmd:dateStamp') do
 				@xml.tag!('gco:Date',mDate)
 			end
 
@@ -230,14 +261,21 @@ class MI_Metadata
 			end
 
 			# metadata information - metadata extension info
-			aExtensions = hMetaInfo[:extensions]
-			if !aExtensions.empty?
-				aExtensions.each do |hExtension|
-					@xml.tag!('gmd:metadataExtensionInfo') do
-						mdExtClass.writeXML(hExtension)
+			extensions = false
+			if hMetaInfo
+				if hMetaInfo[:extensions]
+					aExtensions = hMetaInfo[:extensions]
+					if !aExtensions.empty?
+						extensions = true
+						aExtensions.each do |hExtension|
+							@xml.tag!('gmd:metadataExtensionInfo') do
+								mdExtClass.writeXML(hExtension)
+							end
+						end
 					end
 				end
-			elsif $showAllTags
+			end
+			if !extensions && $showAllTags
 				@xml.tag!('gmd:metadataExtensionInfo')
 			end
 
@@ -273,17 +311,24 @@ class MI_Metadata
 					end
 				end
 			elsif $showAllTags
-				xml.tag!('gmd:dataQualityInfo')
+				@xml.tag!('gmd:dataQualityInfo')
 			end
 
 			# metadata information - metadata maintenance
-			hMetaMaint = hMetaInfo[:maintInfo]
-			if !hMetaMaint.empty?
-				@xml.tag!('gmd:metadataMaintenance') do
-					metaMaintClass.writeXML(hMetaMaint)
+			maintInfo = false
+			if hMetaInfo
+				if hMetaInfo[:maintInfo]
+					hMetaMaint = hMetaInfo[:maintInfo]
+					if !hMetaMaint.empty?
+						maintInfo = true
+						@xml.tag!('gmd:metadataMaintenance') do
+							metaMaintClass.writeXML(hMetaMaint)
+						end
+					end
 				end
-			elsif $showAllTags
-				xml.tag!('gmd:metadataMaintenance')
+			end
+			if !maintInfo && $showAllTags
+				@xml.tag!('gmd:metadataMaintenance')
 			end
 
 		end

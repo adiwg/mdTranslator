@@ -10,11 +10,14 @@
 #              ... mdTranslator version number
 # 0.8.3 2014-10-10 added readme files for each reader and writer
 #              ... the readme files are used as the content for api web pages
+# 0.8.4 2014-10-10 modified to pass minimum metadata input test
+#              ... test were added to handle a missing metadata > metadataInfo
+#              ... block in the input.
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.8.3"
+		VERSION = "0.8.4"
 	end
 end
 
