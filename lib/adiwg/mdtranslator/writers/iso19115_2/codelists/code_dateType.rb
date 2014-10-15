@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-08-09 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class CI_DateTypeCode
 
@@ -16,8 +17,7 @@ class CI_DateTypeCode
 			when 'publication' then codeID = '002'
 			when 'revision' then codeID = '003'
 			else
-				codeName = 'INVALID DATE TYPE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

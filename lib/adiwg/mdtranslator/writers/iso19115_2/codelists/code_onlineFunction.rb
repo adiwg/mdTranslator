@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-09-26 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class CI_OnLineFunctionCode
 
@@ -18,8 +19,7 @@ class CI_OnLineFunctionCode
 			when 'order' then codeID = '004'
 			when 'search' then codeID = '005'
 			else
-				codeName = 'INVALID ONLINE FUNCTION CODE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

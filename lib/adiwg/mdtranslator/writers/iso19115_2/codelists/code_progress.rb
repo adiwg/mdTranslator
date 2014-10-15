@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-08-26 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_ProgressCode
 	def initialize(xml)
@@ -20,8 +21,7 @@ class MD_ProgressCode
 			when 'required' then codeID = '006'
 			when 'underDevelopment' then codeID = '007'
 			else
-				codeName = 'INVALID ROLE CODE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-10-21 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_RestrictionCode
 	def initialize(xml)
@@ -20,8 +21,7 @@ class MD_RestrictionCode
 			when 'restricted' then codeID = '007'
 			when 'otherRestrictions' then codeID = '008'
 			else
-				codeName = 'INVALID RESTRICTION'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

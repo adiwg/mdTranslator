@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-09-18 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_KeywordTypeCode
 
@@ -20,8 +21,7 @@ class MD_KeywordTypeCode
 			when 'taxon' then codeID = '006'
 			when 'instrument' then codeID = 'ADIwg-001'
 			else
-				codeName = 'INVALID KEYWORD TYPE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

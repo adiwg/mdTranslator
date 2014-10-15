@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-10-21 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_MaintenanceFrequencyCode
 	def initialize(xml)
@@ -24,8 +25,7 @@ class MD_MaintenanceFrequencyCode
 			when 'notPlanned' then codeID = '011'
 			when 'unknown' then codeID = '012'
 			else
-				codeName = 'INVALID MAINTENANCE FREQUENCY'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

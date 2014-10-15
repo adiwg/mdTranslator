@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-08-09 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_CharacterSetCode
 	def initialize(xml)
@@ -40,8 +41,7 @@ class MD_CharacterSetCode
 			when 'big5' then codeID = '028'
 			when 'GB2312' then codeID = '029'
 			else
-				codeName = 'INVALID CHARACTER SET'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-09-24 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_MediumFormatCode
 
@@ -19,8 +20,7 @@ class MD_MediumFormatCode
 			when 'iso9660RockRidge' then codeID = '005'
 			when 'iso9660AppleHFS' then codeID = '006'
 			else
-				codeName = 'INVALID MEDIUM FORMAT TYPE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-08-09 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class MD_ScopeCode
 	def initialize(xml)
@@ -28,8 +29,7 @@ class MD_ScopeCode
 			when 'model' then codeID = '015'
 			when 'tile' then codeID = '016'
 			else
-				codeName = 'INVALID SCOPE CODE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2013-11-20 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class CI_PresentationFormCode
 	def initialize(xml)
@@ -26,8 +27,7 @@ class CI_PresentationFormCode
 			when 'videoDigital' then codeID = '013'
 			when 'videoHardcopy' then codeID = '014'
 			else
-				codeName = 'INVALID PRESENTATION FORM SET'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml

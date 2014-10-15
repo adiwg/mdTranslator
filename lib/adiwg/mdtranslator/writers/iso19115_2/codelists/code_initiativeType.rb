@@ -3,6 +3,7 @@
 # from http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml
 # History:
 # 	Stan Smith 2014-05-21 original script
+#   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 
 class DS_InitiativeTypeCode
 	def initialize(xml)
@@ -17,8 +18,7 @@ class DS_InitiativeTypeCode
 			when 'experiment' then codeID = '004'
 			when 'investigation' then codeID = '005'
 			else
-				codeName = 'INVALID CLASSIFICATION CODE'
-				codeID = '999'
+				codeID = 'non-ISO codeName'
 		end
 
 		# write xml
