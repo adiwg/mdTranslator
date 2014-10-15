@@ -13,11 +13,12 @@
 #              ... test were added to handle a missing metadata > metadataInfo
 #              ... block in the input.
 # 0.8.5 2014-10-11 added methods to pass content of readme files
+# 0.8.6 2014-10-15 added cli option to return entire content mdTranslator response
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.8.5"
+		VERSION = "0.8.6"
 	end
 end
 
