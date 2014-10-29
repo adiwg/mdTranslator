@@ -13,6 +13,7 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 #   Stan Smith 2014-09-03 added spatial reference system module for 0.7.0
+#   Stan Smith 2014-10-29 added support for resource time period
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
@@ -29,6 +30,7 @@ require ADIWG::Mdtranslator.reader_module('module_resolution', $response[:reader
 require ADIWG::Mdtranslator.reader_module('module_extent', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_dataQuality', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_spatialReference', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionUsed])
 
 module Adiwg_ResourceInfo
 
@@ -43,6 +45,14 @@ module Adiwg_ResourceInfo
 			hCitation = hResourceInfo['citation']
 			unless hCitation.empty?
 				intResInfo[:citation] = Adiwg_Citation.unpack(hCitation)
+			end
+		end
+
+		# resource information - resource time period
+		if hResourceInfo.has_key?('resourceTimePeriod')
+			hResPeriod = hResourceInfo['resourceTimePeriod']
+			unless hResPeriod.empty?
+				intResInfo[:timePeriod] = Adiwg_TimePeriod.unpack(hResPeriod)
 			end
 		end
 

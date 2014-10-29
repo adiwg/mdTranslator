@@ -13,6 +13,7 @@
 #   Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
 #   Stan Smith 2014-05-21 added aggregate information section
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-10-29 add resource time period as a extent temporal element
 
 require 'code_progress'
 require 'code_topicCategory'
@@ -46,6 +47,7 @@ class MD_DataIdentification
 		topicCode = MD_TopicCategoryCode.new(@xml)
 
 		# classes used by MD_Metadata
+		intMetadataClass = InternalMetadata.new
 		citationClass = CI_Citation.new(@xml)
 		rPartyClass = CI_ResponsibleParty.new(@xml)
 		mInfoClass = MD_MaintenanceInformation.new(@xml)
@@ -310,6 +312,23 @@ class MD_DataIdentification
 			end
 
 			# data identification - extent
+			# if resource time period, represent the time period as
+			# a temporal element in the first extent
+			needTag = true
+			hTimePeriod = hDataId[:timePeriod]
+			if !hTimePeriod.empty?
+				hTempEle = intMetadataClass.newTemporalElement
+				hTempEle[:timePeriod] = hTimePeriod
+				hExt = intMetadataClass.newExtent
+				hExt[:extDesc] = 'Temporal span of the resource (data or project)'
+				hExt[:extTempElements] << hTempEle
+				@xml.tag!('gmd:extent') do
+					extentClass.writeXML(hExt)
+				end
+				needTag = false
+			end
+
+			# add the remaining geographic, temporal, and veritcal extents
 			aExtents = hDataId[:extents]
 			if !aExtents.empty?
 				aExtents.each do |hExtent|
@@ -317,7 +336,7 @@ class MD_DataIdentification
 						extentClass.writeXML(hExtent)
 					end
 				end
-			elsif $showAllTags
+			elsif $showAllTags && needTag
 				@xml.tag!('gmd:extent')
 			end
 

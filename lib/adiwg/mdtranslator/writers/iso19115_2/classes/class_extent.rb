@@ -60,8 +60,6 @@ class EX_Extent
 						geoEleIdClass.writeXML(hGeoElement)
 					end
 				end
-			elsif $showAllTags
-				@xml.tag!('gmd:geographicElement')
 			end
 
 			# extent - temporal element

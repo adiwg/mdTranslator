@@ -148,6 +148,7 @@ class InternalMetadata
 	def newResourceInfo
 		intObj = {
 			citation: {},
+			timePeriod: {},
 			abstract: nil,
 			shortAbstract: nil,
 			hasMapLocation?: nil,

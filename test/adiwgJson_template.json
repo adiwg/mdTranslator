@@ -1,7 +1,7 @@
 {
     "version": {
         "name": "adiwgJSON",
-        "version": "0.8.0"
+        "version": "0.8.2"
     },
     "contact": [
         {
@@ -153,6 +153,11 @@
                         "function": ""
                     }
                 ]
+            },
+            "resourceTimePeriod": {
+                "description": "",
+                "beginPosition": "0000-00-00",
+                "endPosition": "0000-00-00"
             },
             "pointOfContact": [
                 {

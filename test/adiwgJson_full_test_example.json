@@ -1,7 +1,7 @@
 {
     "version": {
         "name": "adiwgJson",
-        "version": "0.8.1"
+        "version": "0.8.2"
     },
     "contact": [
         {
@@ -436,6 +436,11 @@
                         "function": "information"
                     }
                 ]
+            },
+            "resourceTimePeriod": {
+                "description": "Span of project activity",
+                "beginPosition": "2011-09-03",
+                "endPosition": "2014-11-15"
             },
             "pointOfContact": [
                 {

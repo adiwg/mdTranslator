@@ -14,11 +14,12 @@
 #              ... block in the input.
 # 0.8.5 2014-10-11 added methods to pass content of readme files
 # 0.8.6 2014-10-15 added cli option to return entire content mdTranslator response
+# 0.8.7 2014-10-29 added support for resource time period
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.8.6"
+		VERSION = "0.8.7"
 	end
 end
 
