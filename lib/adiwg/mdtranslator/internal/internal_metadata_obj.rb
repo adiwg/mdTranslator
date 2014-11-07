@@ -42,6 +42,9 @@
 #   Stan Smith 2014-05-28 modified resourceId & responsibleParty for schema 0.5.0
 #   Stan Smith 2014-08-15 modified citation, onlineResource, resourceId for 0.6.0
 #   Stan Smith 2014-09-03 added spatialReferenceSystems for name, EPSG, and WKT for 0.6.0
+#   Stan Smith 2014-11-06 added resourceType to resourceInfo for 0.9.0
+#   Stan Smith 2014-11-06 removed metadataScope from metadataInfo for 0.9.0
+#   Stan Smith 2014-11-06 added newAdditionalDocumentation
 
 class InternalMetadata
 
@@ -117,7 +120,6 @@ class InternalMetadata
 		intObj = {
 			metadataId: {},
 			parentMetadata: {},
-			metadataScope: [],
 			metadataCustodians: [],
 			metadataCreateDate: {},
 			metadataUpdateDate: {},
@@ -147,6 +149,7 @@ class InternalMetadata
 
 	def newResourceInfo
 		intObj = {
+			resourceType: nil,
 			citation: {},
 			timePeriod: {},
 			abstract: nil,
@@ -491,9 +494,17 @@ class InternalMetadata
 	def newAssociatedResource
 		intObj = {
 			associationType: nil,
+			initiativeType: nil,
 			resourceType: nil,
 			resourceCitation: {},
 			metadataCitation: {}
+		}
+	end
+
+	def newAdditionalDocumentation
+		intObj = {
+			resourceType: nil,
+			citation: {}
 		}
 	end
 

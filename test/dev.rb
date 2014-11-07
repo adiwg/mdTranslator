@@ -14,7 +14,7 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwgJson','iso19115_2','normal','true')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'adiwgJson','iso19115_2','none','true')
 
 # send all the output to the terminal
 require 'pp'

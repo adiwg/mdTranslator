@@ -7,9 +7,10 @@
 # 	Stan Smith 2014-06-02 added resource metadata citation section
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
+#   Stan Smith 2014-11-06 changed resourceType to initiative type for 0.9.0
+#   Stan Smith 2014-11-06 added resourceType for 0.9.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 
 module Adiwg_AssociatedResource
 
@@ -19,7 +20,7 @@ module Adiwg_AssociatedResource
 		intMetadataClass = InternalMetadata.new
 		intAssocRes = intMetadataClass.newAssociatedResource
 
-		# associated resource - resource type - initiativeTypeCode
+		# associated resource - association type
 		if hAssocRes.has_key?('associationType')
 			s = hAssocRes['associationType']
 			if s != ''
@@ -27,7 +28,15 @@ module Adiwg_AssociatedResource
 			end
 		end
 
-		# associated resource - association type - associationTypeCode
+		# associated resource - initiative type
+		if hAssocRes.has_key?('initiativeType')
+			s = hAssocRes['initiativeType']
+			if s != ''
+				intAssocRes[:initiativeType] = s
+			end
+		end
+
+		# associated resource - resource type
 		if hAssocRes.has_key?('resourceType')
 			s = hAssocRes['resourceType']
 			if s != ''

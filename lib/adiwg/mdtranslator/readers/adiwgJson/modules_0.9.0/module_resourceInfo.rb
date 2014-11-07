@@ -14,6 +14,7 @@
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 #   Stan Smith 2014-09-03 added spatial reference system module for 0.7.0
 #   Stan Smith 2014-10-29 added support for resource time period
+#   Stan Smith 2014-11-06 added resourceType for 0.9.0
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
@@ -39,6 +40,14 @@ module Adiwg_ResourceInfo
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
 		intResInfo = intMetadataClass.newResourceInfo
+
+		# resource information - resource type
+		if hResourceInfo.has_key?('resourceType')
+			s = hResourceInfo['resourceType']
+			if s != ''
+				intResInfo[:resourceType] = s
+			end
+		end
 
 		# resource information - citation
 		if hResourceInfo.has_key?('citation')

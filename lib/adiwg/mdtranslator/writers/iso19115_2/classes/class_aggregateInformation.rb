@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2014-05-29 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-11-06 take initiativeType from internal initiativeType
+#   ... rather than resourceType for 0.9.0
 
 require 'code_associationType'
 require 'code_initiativeType'
@@ -52,7 +54,7 @@ class MD_AggregateInformation
 			end
 
 			# aggregate information - initiative type
-			s = hAssocRes[:resourceType]
+			s = hAssocRes[:initiativeType]
 			if !s.nil?
 				@xml.tag!('gmd:initiativeType') do
 					initCode.writeXML(s)

@@ -21,6 +21,7 @@
 #   ... metadata: {resourceInfo: {citation: {citOlResources[0]: {olResURI:}}}}
 #   Stan Smith 2014-10-10 modified to pass minimum metadata input test
 #   ... test were added to handle a missing metadata > metadataInfo block in the input
+#   Stan Smith 2014-11-06 changed hierarchy level to load values from resourceInfo > resourceType
 
 require 'code_characterSet'
 require 'code_scope'
@@ -137,21 +138,16 @@ class MI_Metadata
 				@xml.tag!('gmd:parentIdentifier')
 			end
 
-			# metadata information - file hierarchy - defaults to 'dataset'
+			# metadata information - hierarchy level - defaults to 'dataset',
+			# values taken from resourceInfo > resourceType
 			fileHierarchy = false
-			if hMetaInfo
-				if hMetaInfo[:metadataScope]
-					aHierarchy = hMetaInfo[:metadataScope]
-					unless aHierarchy.empty?
-						fileHierarchy = true
-						aHierarchy.each do |hierarchy|
-							@xml.tag!('gmd:hierarchyLevel') do
-								scopeCode.writeXML(hierarchy)
-							end
-						end
+				s = hResInfo[:resourceType]
+				if s != ''
+					fileHierarchy = true
+					@xml.tag!('gmd:hierarchyLevel') do
+						scopeCode.writeXML(s)
 					end
 				end
-			end
 			if !fileHierarchy
 				@xml.tag!('gmd:hierarchyLevel') do
 					scopeCode.writeXML('dataset')

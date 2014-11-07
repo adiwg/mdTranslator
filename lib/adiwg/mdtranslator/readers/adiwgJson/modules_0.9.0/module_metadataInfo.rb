@@ -6,6 +6,7 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-09-19 changed metadata identifier type resource identifier json 0.8.0
 #   Stan Smith 2014-09-19 changed parent metadata identifier type citation json 0.8.0
+#   Stan Smith 2014-11-06 removed metadataScope, moved to resourceType under resourceInfo json 0.9.0
 
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
@@ -36,14 +37,6 @@ module Adiwg_MetadataInfo
 			hParent = hMetadataInfo['parentMetadata']
 			unless hParent.empty?
 				intMetadataInfo[:parentMetadata] = Adiwg_Citation.unpack(hParent)
-			end
-		end
-
-		# metadata - scope - from codeList
-		if hMetadataInfo.has_key?('metadataScope')
-			aMetadataScope = hMetadataInfo['metadataScope']
-			unless aMetadataScope.empty?
-				intMetadataInfo[:metadataScope] = aMetadataScope
 			end
 		end
 

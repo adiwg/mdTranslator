@@ -17,6 +17,7 @@ require ADIWG::Mdtranslator.reader_module('module_metadataInfo', $response[:read
 require ADIWG::Mdtranslator.reader_module('module_resourceInfo', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_distributionInfo', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_associatedResource', $response[:readerVersionUsed])
+require ADIWG::Mdtranslator.reader_module('module_additionalDocumentation', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
 module Adiwg_Metadata
@@ -61,10 +62,10 @@ module Adiwg_Metadata
 
 		# metadata - additional documents
 		if hMetadata.has_key?('additionalDocumentation')
-			aCitation = hMetadata['additionalDocumentation']
-			unless aCitation.empty?
-				aCitation.each do |hCitation|
-					intMetadata[:additionalDocuments] << Adiwg_Citation.unpack(hCitation)
+			aAddDocs = hMetadata['additionalDocumentation']
+			unless aAddDocs.empty?
+				aAddDocs.each do |hAddDoc|
+					intMetadata[:additionalDocuments] << Adiwg_AdditionalDocumentation.unpack(hAddDoc)
 				end
 			end
 		end

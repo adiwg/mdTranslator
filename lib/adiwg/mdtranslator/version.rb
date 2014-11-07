@@ -15,11 +15,13 @@
 # 0.8.5 2014-10-11 added methods to pass content of readme files
 # 0.8.6 2014-10-15 added cli option to return entire content mdTranslator response
 # 0.8.7 2014-10-29 added support for resource time period
+# 0.9.0 2014-11-06 added resourceType to associatedResource and additionalInformation
+#              ... moved resourceType from metadataInfo to resourceInfo in json
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.8.7"
+		VERSION = "0.9.0"
 	end
 end
 
