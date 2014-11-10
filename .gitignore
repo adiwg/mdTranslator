@@ -17,6 +17,7 @@ test/tmp
 test/version_tmp
 test/adiwgJson_full_test_example.json
 test/adiwgJson_min_test_example.json
+test/adiwgJson_template_data.json
 test/dev.rb
 tmp
 *.bundle

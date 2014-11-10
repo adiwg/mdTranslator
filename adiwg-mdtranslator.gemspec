@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
 	spec.add_runtime_dependency "builder", "~>3.2"
 	spec.add_runtime_dependency "thor", "~>0.19"
 	spec.add_runtime_dependency "uuidtools", "~>2.1"
-	spec.add_runtime_dependency "json-schema", "~>2.2"
-	spec.add_runtime_dependency "adiwg-json_schemas", "~>0.8"
+	spec.add_runtime_dependency "json-schema", "~>2.4"
+	spec.add_runtime_dependency "adiwg-json_schemas", "~>0.9"
 end
