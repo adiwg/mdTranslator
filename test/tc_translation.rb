@@ -8,7 +8,7 @@ require 'minitest/autorun'
 require 'json'
 require File.join(File.expand_path('..', __FILE__),'..','lib', 'adiwg-mdtranslator.rb')
 
-class TestTranslation_v0_9 < MiniTest::Unit::TestCase
+class TestTranslation_v0_9 < Minitest::Test
   @@reader = 'adiwgJson'
   @@writer = 'iso19115_2'
 
