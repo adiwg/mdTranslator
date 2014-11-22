@@ -1,7 +1,7 @@
 {
     "version": {
-        "name": "adiwgJSON",
-        "version": "0.9.0"
+        "name": "mdJson",
+        "version": "0.9.1"
     },
     "contact": [
         {
@@ -980,6 +980,77 @@
                         }
                     ]
                 }
+            }
+        ]
+    },
+    "dataDictionary": {
+        "name": "",
+        "description": "",
+        "resourceType": "",
+        "version": "",
+        "versionDate": [
+            {
+                "date": "0000-00-00",
+                "dateType": ""
+            }
+        ],
+        "language": "",
+        "dictionaryContact": [
+            {
+                "contactId": "",
+                "role": ""
+            }
+        ],
+        "domain": [
+            {
+                "domainId": "",
+                "commonName": "",
+                "codeName": "",
+                "description": "",
+                "member": [
+                    {
+                        "name": "",
+                        "value": "",
+                        "definition": ""
+                    }
+                ]
+            }
+        ],
+        "entity": [
+            {
+                "entityId": "",
+                "commonName": "",
+                "codeName": "",
+                "definition": "",
+                "isAbstract": false,
+                "primaryKeyAttributeCodeName": [""],
+                "index": [
+                    {
+                        "codeName": "",
+                        "unique": true,
+                        "attributeCodeName": [""]
+                    }
+                ],
+                "attribute": [
+                    {
+                        "commonName": "",
+                        "codeName": "",
+                        "definition": "",
+                        "dataType": "",
+                        "required": true,
+                        "units": "",
+                        "domainId": "",
+                        "minValue": "",
+                        "maxValue": ""
+                    }
+                ],
+                "foreignKey": [
+                    {
+                        "localAttributeCodeName": [""],
+                        "referencedEntityCodeName": "",
+                        "referencedAttributeCodeName": [""]
+                    }
+                ]
             }
         ]
     }
