@@ -984,23 +984,34 @@
         ]
     },
     "dataDictionary": {
-        "name": "",
-        "description": "",
-        "resourceType": "",
-        "version": "",
-        "versionDate": [
-            {
-                "date": "0000-00-00",
-                "dateType": ""
-            }
-        ],
-        "language": "",
-        "dictionaryContact": [
-            {
-                "contactId": "",
-                "role": ""
-            }
-        ],
+        "dictionaryInfo": {
+            "citation": {
+                "title": "",
+                "date": [
+                    {
+                        "date": "0000-00-00",
+                        "dateType": ""
+                    }
+                ],
+                "edition": "",
+                "responsibleParty": {
+                    "contactId": "",
+                    "role": ""
+                },
+                "onlineResource": [
+                    {
+                        "uri": "http://thisisanexample.com",
+                        "protocol": "",
+                        "name": "",
+                        "description": "",
+                        "function": ""
+                    }
+                ]
+            },
+            "resourceType": "",
+            "description": "",
+            "language": ""
+        },
         "domain": [
             {
                 "domainId": "",
@@ -1022,7 +1033,6 @@
                 "commonName": "",
                 "codeName": "",
                 "definition": "",
-                "isAbstract": false,
                 "primaryKeyAttributeCodeName": [""],
                 "index": [
                     {
