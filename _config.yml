@@ -1,6 +1,6 @@
 title: mdTranslator
 tagline:
-description:      Describe your website.
+description: The website for the mdTranslator project.
 # Your site's domain goes here. Leave localhost server or blank when working locally.
 url: http://www.adiwg.org/mdTranslator
 #url: http://localhost:4000
@@ -35,15 +35,15 @@ links:
     url: /about/
   - title: News
     url: /news/
-  - title: Demo
-    url: http://mdtranslator.herokuapp.com/api/v1/demo
+  - title: API
+    url: http://mdtranslator.adiwg.org
     external: true
   - title: GitHub
     url: https://github.com/adiwg/mdTranslator
     external: true
   - title: ADIwg
     notransform: true
-    url: http://adiwg.github.io
+    url: http://adiwg.org
     external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
