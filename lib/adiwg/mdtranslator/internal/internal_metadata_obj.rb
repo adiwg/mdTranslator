@@ -45,6 +45,7 @@
 #   Stan Smith 2014-11-06 added resourceType to resourceInfo for 0.9.0
 #   Stan Smith 2014-11-06 removed metadataScope from metadataInfo for 0.9.0
 #   Stan Smith 2014-11-06 added newAdditionalDocumentation
+#   Stan Smith 2014-12-01 added data dictionary
 
 class InternalMetadata
 
@@ -62,7 +63,8 @@ class InternalMetadata
 				version: nil
 			},
 			contacts: [],
-			metadata: {}
+			metadata: {},
+			dataDictionary: {}
 		}
 	end
 
@@ -505,6 +507,84 @@ class InternalMetadata
 		intObj = {
 			resourceType: nil,
 			citation: {}
+		}
+	end
+
+	def newDataDictionary
+		intObj = {
+			dictionaryInfo: {},
+			domains: [],
+			entities: []
+		}
+	end
+
+	def newDictionaryInfo
+		intObj = {
+			dictCitation: {},
+			dictDescription: nil,
+			dictResourceType: nil,
+			dictLanguage: nil
+		}
+	end
+
+	def newDictionaryDomain
+		intObj = {
+			domainId: nil,
+			domainName: nil,
+			domainCode: nil,
+			domainDescription: nil,
+			domainItems: []
+		}
+	end
+
+	def newDomainItem
+		intObj = {
+			itemName: nil,
+			itemValue: nil,
+			itemDefinition: nil
+		}
+	end
+
+	def newEntity
+		intObj = {
+			entityId: nil,
+			entityName: nil,
+			entityCode: nil,
+			entityDefinition: nil,
+			primaryKey: [],
+			indexes: [],
+			attributes: [],
+			foreignKeys: []
+		}
+	end
+
+	def newEntityIndex
+		intObj = {
+			indexCode: nil,
+            duplicate: false,
+			attributeNames: []
+		}
+	end
+
+	def newEntityAttribute
+		intObj = {
+			attributeName: nil,
+			attributeCode: nil,
+			attributeDefinition: nil,
+			dataType: nil,
+			required: true,
+			unitOfMeasure: nil,
+			domainId: nil,
+			minValue: nil,
+			maxValue: nil
+		}
+	end
+
+	def newEntityForeignKey
+		intObj = {
+			fkLocalAttributes: [],
+			fkReferencedEntity: nil,
+			fkReferencedAttributes: []
 		}
 	end
 

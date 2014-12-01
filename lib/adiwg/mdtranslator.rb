@@ -11,6 +11,7 @@
 #   Stan Smith 2014-09-26 added processing of minor release numbers
 #   Stan Smith 2014-10-10 added method to return path to readers and writers
 #   Stan Smith 2014-10-11 added methods to return content of readme files
+#   Stan Smith 2014-12-01 changed adiwgJson ot mdJson
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
@@ -49,14 +50,14 @@ module ADIWG
 			# the mdtranslator gem loads and returns the above hash
 
 			case reader
-				when 'adiwgJson'
-					require 'adiwgJson/adiwgJson_validator'
+				when 'mdJson'
+					require 'mdJson/mdJson_validator'
 
 					# validate adiwgJson file
 					AdiwgJsonValidation.validate(file)
 					if $response[:readerStructurePass] && $response[:readerValidationPass]
 						# initiate the reader
-						require 'adiwgJson/adiwgJson_reader'
+						require 'mdJson/mdJson_reader'
 						readerClass = AdiwgJsonReader.new
 						internalObj = readerClass.unpack(file)
 					else

@@ -5,6 +5,7 @@
 #   Stan Smith 2014-07-21 added json structure validation method
 #   Stan Smith 2014-08-21 parsed json-schema validation message to readable text
 #   Stan Smith 2014-09-26 added processing of minor release numbers
+#   Stan Smith 2014-12-01 changed adiwgJson to mdJson in version name check
 
 require 'json'
 require 'json-schema'
@@ -44,9 +45,9 @@ module AdiwgJsonValidation
 			s = hVersion['name']
 			if !s.nil?
 				$response[:readerNameFound] = s
-				if s != 'adiwgJson'
+				if s != 'mdJson'
 					$response[:readerStructurePass] = false
-					$response[:readerStructureMessages] << "input file version name must be 'adiwgJson'"
+					$response[:readerStructureMessages] << "input file version name must be 'mdJson'"
 					$response[:readerStructureMessages] << "found version name '#{s}'"
 					return
 				end

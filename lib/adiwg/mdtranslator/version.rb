@@ -17,11 +17,13 @@
 # 0.8.7 2014-10-29 added support for resource time period
 # 0.9.0 2014-11-06 added resourceType to associatedResource and additionalInformation
 #              ... moved resourceType from metadataInfo to resourceInfo in json
+# 0.9.1 2014-12-01 changed adiwgJson to mdJson
+# 0.9.2 2014-12-01 added data dictionary support
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.9.0"
+		VERSION = "0.9.2"
 	end
 end
 

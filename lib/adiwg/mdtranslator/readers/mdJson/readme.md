@@ -1,11 +1,11 @@
 
-## adiwgJson
+## mdJson
 
 ### Supported versions
 
-> 0.8.0
+> 0.9.0
 
-### Reader for ADIwg JSON metadata format
+### Reader for ADIwg JSON metadata format (mdJson)
 
 The adiwgJson format is a simple JSON format for documenting and exchanging information
 about scientific projects and data.  The Alaska Data Integration working group (ADIwg) wrote the
