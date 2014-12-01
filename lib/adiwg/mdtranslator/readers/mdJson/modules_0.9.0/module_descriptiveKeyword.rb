@@ -10,7 +10,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
-module Adiwg_DescriptiveKeyword
+module Md_DescriptiveKeyword
 
 	def self.unpack(hDesKeyword)
 
@@ -38,7 +38,7 @@ module Adiwg_DescriptiveKeyword
 		if hDesKeyword.has_key?('thesaurus')
 			hCitation = hDesKeyword['thesaurus']
 			unless hCitation.empty?
-				intKeyword[:keyTheCitation] = Adiwg_Citation.unpack(hCitation)
+				intKeyword[:keyTheCitation] = Md_Citation.unpack(hCitation)
 			end
 
 		end

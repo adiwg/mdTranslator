@@ -9,7 +9,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:readerVersionUsed])
 
-module Adiwg_LineString
+module Md_LineString
 
 	def self.unpack(aCoords, geoType)
 		intMetadataClass = InternalMetadata.new
@@ -17,7 +17,7 @@ module Adiwg_LineString
 
 		intLine[:geoType] = geoType
 		intLine[:geometry] = aCoords
-		intLine[:dimension] = Adiwg_Coordinates.getDimension(aCoords)
+		intLine[:dimension] = Md_Coordinates.getDimension(aCoords)
 
 		return intLine
 	end

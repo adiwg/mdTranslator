@@ -8,7 +8,7 @@ require ADIWG::Mdtranslator.reader_module('module_entityIndex', $response[:reade
 require ADIWG::Mdtranslator.reader_module('module_entityAttribute', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_entityForeignKey', $response[:readerVersionUsed])
 
-module Adiwg_Entity
+module Md_Entity
 
 	def self.unpack(hEntity)
 
@@ -61,7 +61,7 @@ module Adiwg_Entity
 			aIndexes = hEntity['index']
 			aIndexes.each do |hIndex|
 				unless hIndex.empty?
-					intEntity[:indexes] << Adiwg_EntityIndex.unpack(hIndex)
+					intEntity[:indexes] << Md_EntityIndex.unpack(hIndex)
 				end
 			end
 		end
@@ -71,7 +71,7 @@ module Adiwg_Entity
 			aAttributes = hEntity['attribute']
 			aAttributes.each do |hAttribute|
 				unless hAttribute.empty?
-					intEntity[:attributes] << Adiwg_EntityAttribute.unpack(hAttribute)
+					intEntity[:attributes] << Md_EntityAttribute.unpack(hAttribute)
 				end
 			end
 		end
@@ -81,7 +81,7 @@ module Adiwg_Entity
 			aFKeys = hEntity['foreignKey']
 			aFKeys.each do |hFKey|
 				unless hFKey.empty?
-					intEntity[:foreignKeys] << Adiwg_EntityForeignKey.unpack(hFKey)
+					intEntity[:foreignKeys] << Md_EntityForeignKey.unpack(hFKey)
 				end
 			end
 		end

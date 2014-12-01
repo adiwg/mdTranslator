@@ -8,7 +8,7 @@
 require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_source', $response[:readerVersionUsed])
 
-module Adiwg_Lineage
+module Md_Lineage
 
 	def self.unpack(hLineage)
 
@@ -29,7 +29,7 @@ module Adiwg_Lineage
 			aProcSteps = hLineage['processStep']
 			unless aProcSteps.empty?
 				aProcSteps.each do |hProcStep|
-					intDataLine[:processSteps] << Adiwg_ProcessStep.unpack(hProcStep)
+					intDataLine[:processSteps] << Md_ProcessStep.unpack(hProcStep)
 				end
 			end
 		end
@@ -39,7 +39,7 @@ module Adiwg_Lineage
 			aSources = hLineage['source']
 			unless aSources.empty?
 				aSources.each do |hSource|
-					intDataLine[:dataSources] << Adiwg_Source.unpack(hSource)
+					intDataLine[:dataSources] << Md_Source.unpack(hSource)
 				end
 			end
 		end

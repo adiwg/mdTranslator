@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2013-11-21 original script
 
-module Adiwg_TaxonCl
+module Md_TaxonCl
 
 	def self.unpack(hTaxClass)
 

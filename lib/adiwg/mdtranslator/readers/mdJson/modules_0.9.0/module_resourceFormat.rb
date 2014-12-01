@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-08-26 original script
 # 	Stan Smith 2013-11-27 modified to process single resource format rather than array
 
-module Adiwg_ResourceFormat
+module Md_ResourceFormat
 
 	def self.unpack(hResFormat)
 

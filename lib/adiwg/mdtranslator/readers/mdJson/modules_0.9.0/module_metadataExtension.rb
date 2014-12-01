@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-22 original script
 #   Stan Smith 2014-05-15 modified for JSON schema 0.4.0
 
-module Adiwg_MetadataExtension
+module Md_MetadataExtension
 
 	def self.addExtensionISObio()
 

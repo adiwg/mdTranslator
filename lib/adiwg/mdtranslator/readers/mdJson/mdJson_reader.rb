@@ -59,25 +59,25 @@ class AdiwgJsonReader
 			aContacts = hashObj['contact']
 			aContacts.each do |hContact|
 				unless hContact.empty?
-					intBase[:contacts] << Adiwg_Contact.unpack(hContact)
+					intBase[:contacts] << Md_Contact.unpack(hContact)
 				end
 			end
 		end
 
 		# add default contacts
-		intBase[:contacts].concat(Adiwg_Contact.setDefaultContacts)
+		intBase[:contacts].concat(Md_Contact.setDefaultContacts)
 
 		# metadata
 		# load metadata from the hash object
 		if hashObj.has_key?('metadata')
 			hMetadata = hashObj['metadata']
-			intBase[:metadata] = Adiwg_Metadata.unpack(hMetadata)
+			intBase[:metadata] = Md_Metadata.unpack(hMetadata)
 		end
 
 		# data dictionary
 		if hashObj.has_key?('dataDictionary')
 			hDictionary = hashObj['dataDictionary']
-			intBase[:dataDictionary] = Adiwg_DataDictionary.unpack(hDictionary)
+			intBase[:dataDictionary] = Md_DataDictionary.unpack(hDictionary)
 		end
 
 		# return ADIwg internal container

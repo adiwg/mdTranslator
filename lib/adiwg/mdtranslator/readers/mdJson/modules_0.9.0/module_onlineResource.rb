@@ -7,7 +7,7 @@
 #   Stan Smith 2014-08-18 removed doi section for json 0.6.0
 #   Stan Smith 2014-08-21 changed url to uri for json 0.6.0
 
-module Adiwg_OnlineResource
+module Md_OnlineResource
 
 	def self.unpack(hOlResource)
 

@@ -33,7 +33,7 @@ require ADIWG::Mdtranslator.reader_module('module_dataQuality', $response[:reade
 require ADIWG::Mdtranslator.reader_module('module_spatialReference', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionUsed])
 
-module Adiwg_ResourceInfo
+module Md_ResourceInfo
 
 	def self.unpack(hResourceInfo)
 
@@ -53,7 +53,7 @@ module Adiwg_ResourceInfo
 		if hResourceInfo.has_key?('citation')
 			hCitation = hResourceInfo['citation']
 			unless hCitation.empty?
-				intResInfo[:citation] = Adiwg_Citation.unpack(hCitation)
+				intResInfo[:citation] = Md_Citation.unpack(hCitation)
 			end
 		end
 
@@ -61,7 +61,7 @@ module Adiwg_ResourceInfo
 		if hResourceInfo.has_key?('resourceTimePeriod')
 			hResPeriod = hResourceInfo['resourceTimePeriod']
 			unless hResPeriod.empty?
-				intResInfo[:timePeriod] = Adiwg_TimePeriod.unpack(hResPeriod)
+				intResInfo[:timePeriod] = Md_TimePeriod.unpack(hResPeriod)
 			end
 		end
 
@@ -70,7 +70,7 @@ module Adiwg_ResourceInfo
 			aPOC = hResourceInfo['pointOfContact']
 			unless aPOC.empty?
 				aPOC.each do |rParty|
-					intResInfo[:pointsOfContact] << Adiwg_ResponsibleParty.unpack(rParty)
+					intResInfo[:pointsOfContact] << Md_ResponsibleParty.unpack(rParty)
 				end
 			end
 		end
@@ -166,7 +166,7 @@ module Adiwg_ResourceInfo
 			aResFormat = hResourceInfo['resourceNativeFormat']
 			unless aResFormat.empty?
 				aResFormat.each do |hResFormat|
-					intResInfo[:resourceFormats] << Adiwg_ResourceFormat.unpack(hResFormat)
+					intResInfo[:resourceFormats] << Md_ResourceFormat.unpack(hResFormat)
 				end
 			end
 		end
@@ -176,7 +176,7 @@ module Adiwg_ResourceInfo
 			aDesKeywords = hResourceInfo['keyword']
 			unless aDesKeywords.empty?
 				aDesKeywords.each do |hDesKeyword|
-					intResInfo[:descriptiveKeywords] << Adiwg_DescriptiveKeyword.unpack(hDesKeyword)
+					intResInfo[:descriptiveKeywords] << Md_DescriptiveKeyword.unpack(hDesKeyword)
 				end
 			end
 		end
@@ -186,7 +186,7 @@ module Adiwg_ResourceInfo
 			aResMaint = hResourceInfo['resourceMaintenance']
 			unless aResMaint.empty?
 				aResMaint.each do |hResource|
-					intResInfo[:resourceMaint] << Adiwg_ResourceMaintenance.unpack(hResource)
+					intResInfo[:resourceMaint] << Md_ResourceMaintenance.unpack(hResource)
 				end
 			end
 		end
@@ -196,7 +196,7 @@ module Adiwg_ResourceInfo
 			aResUses = hResourceInfo['resourceSpecificUsage']
 			unless aResUses.empty?
 				aResUses.each do |hUsage|
-					intResInfo[:resourceUses] << Adiwg_ResourceSpecificUsage.unpack(hUsage)
+					intResInfo[:resourceUses] << Md_ResourceSpecificUsage.unpack(hUsage)
 				end
 			end
 		end
@@ -206,7 +206,7 @@ module Adiwg_ResourceInfo
 			aBrowseGraph = hResourceInfo['graphicOverview']
 			unless aBrowseGraph.empty?
 				aBrowseGraph.each do |hBGraphic|
-					intResInfo[:graphicOverview] << Adiwg_BrowseGraphic.unpack(hBGraphic)
+					intResInfo[:graphicOverview] << Md_BrowseGraphic.unpack(hBGraphic)
 				end
 			end
 		end
@@ -230,7 +230,7 @@ module Adiwg_ResourceInfo
 				aLegalCons = hConstraint['legalConstraint']
 				unless aLegalCons.empty?
 					aLegalCons.each do |hLegalCon|
-						intResInfo[:legalConstraints] << Adiwg_LegalConstraints.unpack(hLegalCon)
+						intResInfo[:legalConstraints] << Md_LegalConstraints.unpack(hLegalCon)
 					end
 				end
 			end
@@ -240,7 +240,7 @@ module Adiwg_ResourceInfo
 				aSecurityCons = hConstraint['securityConstraint']
 				unless aSecurityCons.empty?
 					aSecurityCons.each do |hSecurityCon|
-						intResInfo[:securityConstraints] << Adiwg_SecurityConstraints.unpack(hSecurityCon)
+						intResInfo[:securityConstraints] << Md_SecurityConstraints.unpack(hSecurityCon)
 					end
 				end
 			end
@@ -251,7 +251,7 @@ module Adiwg_ResourceInfo
 		if hResourceInfo.has_key?('taxonomy')
 			hTaxonomy = hResourceInfo['taxonomy']
 			unless hTaxonomy.empty?
-				intResInfo[:taxonomy] = Adiwg_Taxonomy.unpack(hTaxonomy)
+				intResInfo[:taxonomy] = Md_Taxonomy.unpack(hTaxonomy)
 			end
 		end
 
@@ -259,7 +259,7 @@ module Adiwg_ResourceInfo
 		if hResourceInfo.has_key?('spatialReferenceSystem')
 			hSpatialRef = hResourceInfo['spatialReferenceSystem']
 			unless hSpatialRef.empty?
-				intResInfo[:spatialReferenceSystem] = Adiwg_SpatialReferenceSystem.unpack(hSpatialRef)
+				intResInfo[:spatialReferenceSystem] = Md_SpatialReferenceSystem.unpack(hSpatialRef)
 			end
 		end
 
@@ -278,7 +278,7 @@ module Adiwg_ResourceInfo
 			aSpRes = hResourceInfo['spatialResolution']
 			unless aSpRes.empty?
 				aSpRes.each do |hResolution|
-					intResInfo[:spatialResolutions] << Adiwg_Resolution.unpack(hResolution)
+					intResInfo[:spatialResolutions] << Md_Resolution.unpack(hResolution)
 				end
 			end
 		end
@@ -288,7 +288,7 @@ module Adiwg_ResourceInfo
 			aExtents = hResourceInfo['extent']
 			unless aExtents.empty?
 				aExtents.each do |hExtent|
-					intResInfo[:extents] << Adiwg_Extent.unpack(hExtent)
+					intResInfo[:extents] << Md_Extent.unpack(hExtent)
 				end
 			end
 		end
@@ -298,7 +298,7 @@ module Adiwg_ResourceInfo
 			aDataQual = hResourceInfo['dataQualityInfo']
 			unless aDataQual.empty?
 				aDataQual.each do |hDQ|
-					intResInfo[:dataQualityInfo] << Adiwg_DataQuality.unpack(hDQ)
+					intResInfo[:dataQualityInfo] << Md_DataQuality.unpack(hDQ)
 				end
 			end
 		end

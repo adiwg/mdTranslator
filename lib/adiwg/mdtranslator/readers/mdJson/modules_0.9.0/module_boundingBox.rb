@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-07 original script
 #   Stan Smith 2014-04-28 reorganized for json schema 0.3.0
 
-module Adiwg_BoundingBox
+module Md_BoundingBox
 
 	def self.unpack(aBBox)
 

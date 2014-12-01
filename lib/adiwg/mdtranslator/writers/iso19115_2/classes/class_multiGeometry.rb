@@ -79,7 +79,7 @@ class MultiGeometry
 							aPoints.each do |aCoords|
 								intPoint = intMetadataClass.newGeoElement
 								intPoint[:elementSrs] = hGeoElement[:elementSrs]
-								intPoint[:elementGeometry] = Adiwg_Point.unpack(aCoords,'Point')
+								intPoint[:elementGeometry] = Md_Point.unpack(aCoords,'Point')
 								pointClass.writeXML(intPoint)
 							end
 						end
@@ -91,7 +91,7 @@ class MultiGeometry
 							aLines.each do |aCoords|
 								intLine = intMetadataClass.newGeoElement
 								intLine[:elementSrs] = hGeoElement[:elementSrs]
-								intLine[:elementGeometry] = Adiwg_LineString.unpack(aCoords,'LineString')
+								intLine[:elementGeometry] = Md_LineString.unpack(aCoords,'LineString')
 								lineClass.writeXML(intLine)
 							end
 						end
@@ -103,7 +103,7 @@ class MultiGeometry
 							aPolygons.each do |aCoords|
 								intPolygon = intMetadataClass.newGeoElement
 								intPolygon[:elementSrs] = hGeoElement[:elementSrs]
-								intPolygon[:elementGeometry] = Adiwg_LineString.unpack(aCoords,'Polygon')
+								intPolygon[:elementGeometry] = Md_LineString.unpack(aCoords,'Polygon')
 								polygonClass.writeXML(intPolygon)
 							end
 						end

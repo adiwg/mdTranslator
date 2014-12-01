@@ -7,7 +7,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 
-module Adiwg_Voucher
+module Md_Voucher
 
 	def self.unpack(hVoucher)
 
@@ -27,7 +27,7 @@ module Adiwg_Voucher
 		if hVoucher.has_key?('repository')
 			hRepository = hVoucher['repository']
 			unless hRepository.empty?
-				intTaxVoucher[:repository] = Adiwg_ResponsibleParty.unpack(hRepository)
+				intTaxVoucher[:repository] = Md_ResponsibleParty.unpack(hRepository)
 			end
 		end
 

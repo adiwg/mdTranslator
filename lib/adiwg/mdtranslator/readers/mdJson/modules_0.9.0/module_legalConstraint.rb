@@ -6,7 +6,7 @@
 # 	Stan Smith 2013-11-27 modified to process a single legal constraint
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 
-module Adiwg_LegalConstraints
+module Md_LegalConstraints
 
 	def self.unpack(hLegalCon)
 

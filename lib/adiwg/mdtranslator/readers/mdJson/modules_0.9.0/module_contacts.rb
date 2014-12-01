@@ -14,7 +14,7 @@ require ADIWG::Mdtranslator.reader_module('module_address', $response[:readerVer
 require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_phone', $response[:readerVersionUsed])
 
-module Adiwg_Contact
+module Md_Contact
 
 	def self.unpack(hContact)
 
@@ -59,7 +59,7 @@ module Adiwg_Contact
 			aOlRes = hContact['onlineResource']
 			aOlRes.each do |hOlRes|
 				unless hOlRes.empty?
-					intCont[:onlineRes] << Adiwg_OnlineResource.unpack(hOlRes)
+					intCont[:onlineRes] << Md_OnlineResource.unpack(hOlRes)
 				end
 			end
 		end
@@ -76,14 +76,14 @@ module Adiwg_Contact
 		if hContact.has_key?('phoneBook')
 			aPhones = hContact['phoneBook']
 			aPhones.each do |hPhone|
-				intCont[:phones].concat(Adiwg_Phone.unpack(hPhone))
+				intCont[:phones].concat(Md_Phone.unpack(hPhone))
 			end
 		end
 
 		# address
 		if hContact.has_key?('address')
 			conAddress = hContact['address']
-			intCont[:address] = Adiwg_Address.unpack(conAddress)
+			intCont[:address] = Md_Address.unpack(conAddress)
 		end
 
 		return intCont

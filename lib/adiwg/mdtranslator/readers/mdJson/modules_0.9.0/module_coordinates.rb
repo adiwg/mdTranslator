@@ -6,7 +6,7 @@
 # 	Stan Smith 2013-11-13 added getDimension
 #   Stan Smith 2014-05-23 added getLevels
 
-module Adiwg_Coordinates
+module Md_Coordinates
 
 	# repack coordinate array into single string for ISO
 	def self.unpack(aCoords)

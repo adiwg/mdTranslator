@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 
-module Adiwg_EntityForeignKey
+module Md_EntityForeignKey
 
 	def self.unpack(hFKey)
 

@@ -8,7 +8,7 @@ require ADIWG::Mdtranslator.reader_module('module_dictionaryInfo', $response[:re
 require ADIWG::Mdtranslator.reader_module('module_domain', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_entity', $response[:readerVersionUsed])
 
-module Adiwg_DataDictionary
+module Md_DataDictionary
 
 	def self.unpack(hDictionary)
 
@@ -21,7 +21,7 @@ module Adiwg_DataDictionary
 			# data dictionary - dictionary information
 			if hDictionary.has_key?('dictionaryInfo')
 				hDictInfo = hDictionary['dictionaryInfo']
-				intDict[:dictionaryInfo] = Adiwg_DictionaryInfo.unpack(hDictInfo)
+				intDict[:dictionaryInfo] = Md_DictionaryInfo.unpack(hDictInfo)
 			end
 
 			# data dictionary - domains
@@ -29,7 +29,7 @@ module Adiwg_DataDictionary
 				aDomains = hDictionary['domain']
 				aDomains.each do |hDomain|
 					unless hDomain.empty?
-						intDict[:domains] << Adiwg_Domain.unpack(hDomain)
+						intDict[:domains] << Md_Domain.unpack(hDomain)
 					end
 				end
 			end
@@ -39,7 +39,7 @@ module Adiwg_DataDictionary
 				aEntities = hDictionary['entity']
 				aEntities.each do |hEntity|
 					unless hEntity.empty?
-						intDict[:entities] << Adiwg_Entity.unpack(hEntity)
+						intDict[:entities] << Md_Entity.unpack(hEntity)
 					end
 				end
 			end

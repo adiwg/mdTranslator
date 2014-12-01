@@ -12,7 +12,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
-module Adiwg_AssociatedResource
+module Md_AssociatedResource
 
 	def self.unpack(hAssocRes)
 
@@ -48,7 +48,7 @@ module Adiwg_AssociatedResource
 		if hAssocRes.has_key?('resourceCitation')
 			hCitation = hAssocRes['resourceCitation']
 			unless hCitation.empty?
-				intAssocRes[:resourceCitation] = Adiwg_Citation.unpack(hCitation)
+				intAssocRes[:resourceCitation] = Md_Citation.unpack(hCitation)
 			end
 		end
 
@@ -56,7 +56,7 @@ module Adiwg_AssociatedResource
 		if hAssocRes.has_key?('metadataCitation')
 			hCitation = hAssocRes['metadataCitation']
 			unless hCitation.empty?
-				intAssocRes[:metadataCitation] = Adiwg_Citation.unpack(hCitation)
+				intAssocRes[:metadataCitation] = Md_Citation.unpack(hCitation)
 			end
 		end
 

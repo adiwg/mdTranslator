@@ -10,7 +10,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 
-module Adiwg_ResourceMaintenance
+module Md_ResourceMaintenance
 
 	def self.unpack(hResource)
 
@@ -39,7 +39,7 @@ module Adiwg_ResourceMaintenance
 			aContact = hResource['maintenanceContact']
 			unless aContact.empty?
 				aContact.each do |hContact|
-					intResMaint[:maintContacts] << Adiwg_ResponsibleParty.unpack(hContact)
+					intResMaint[:maintContacts] << Md_ResponsibleParty.unpack(hContact)
 				end
 			end
 		end

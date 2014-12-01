@@ -24,7 +24,7 @@ writerOut = metadata[:writerOutput]
 metadata[:writerOutput] = 'Extracted'
 puts '---------------------=======================BEGIN=========================---------------------------'
 pp metadata
-# puts writerOut.to_s
+puts writerOut.to_s
 # pp writerOut
 puts '---------------------========================END==========================---------------------------'
 

@@ -6,7 +6,7 @@
 
 require 'module_dateTimeFun'
 
-module Adiwg_DateTime
+module Md_DateTime
 
 	def self.unpack(sDateTime)
 

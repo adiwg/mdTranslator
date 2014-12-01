@@ -6,7 +6,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_domainItem', $response[:readerVersionUsed])
 
-module Adiwg_Domain
+module Md_Domain
 
 	def self.unpack(hDomain)
 
@@ -51,7 +51,7 @@ module Adiwg_Domain
 			aDoItems = hDomain['member']
 			aDoItems.each do |hDoItem|
 				unless hDoItem.empty?
-					intDomain[:domainItems] << Adiwg_DomainItem.unpack(hDoItem)
+					intDomain[:domainItems] << Md_DomainItem.unpack(hDoItem)
 				end
 			end
 		end

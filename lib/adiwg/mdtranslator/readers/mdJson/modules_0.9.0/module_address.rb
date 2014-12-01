@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2013-10-21 original script
 
-module Adiwg_Address
+module Md_Address
 
 	def self.unpack(hConAddress)
 

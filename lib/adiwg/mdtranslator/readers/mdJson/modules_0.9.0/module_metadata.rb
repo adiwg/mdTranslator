@@ -20,7 +20,7 @@ require ADIWG::Mdtranslator.reader_module('module_associatedResource', $response
 require ADIWG::Mdtranslator.reader_module('module_additionalDocumentation', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
-module Adiwg_Metadata
+module Md_Metadata
 
 	def self.unpack(hMetadata)
 
@@ -31,13 +31,13 @@ module Adiwg_Metadata
 		# metadata - metadataInfo
 		# metadataInfo needs access to resourceInfo to check taxonomy
 		if hMetadata.has_key?('metadataInfo')
-			intMetadata[:metadataInfo] = Adiwg_MetadataInfo.unpack(hMetadata)
+			intMetadata[:metadataInfo] = Md_MetadataInfo.unpack(hMetadata)
 		end
 
 		# metadata - resource identification info
 		if hMetadata.has_key?('resourceInfo')
 			hResourceInfo = hMetadata['resourceInfo']
-			intMetadata[:resourceInfo] = Adiwg_ResourceInfo.unpack(hResourceInfo)
+			intMetadata[:resourceInfo] = Md_ResourceInfo.unpack(hResourceInfo)
 		end
 
 		# metadata - distribution info
@@ -45,7 +45,7 @@ module Adiwg_Metadata
 			aDistributors = hMetadata['distributionInfo']
 			unless aDistributors.empty?
 				aDistributors.each do |hDistributor|
-					intMetadata[:distributorInfo] << Adiwg_DistributionInfo.unpack(hDistributor)
+					intMetadata[:distributorInfo] << Md_DistributionInfo.unpack(hDistributor)
 				end
 			end
 		end
@@ -55,7 +55,7 @@ module Adiwg_Metadata
 			aAssocRes = hMetadata['associatedResource']
 			unless aAssocRes.empty?
 				aAssocRes.each do |hAssocRes|
-					intMetadata[:associatedResources] << Adiwg_AssociatedResource.unpack(hAssocRes)
+					intMetadata[:associatedResources] << Md_AssociatedResource.unpack(hAssocRes)
 				end
 			end
 		end
@@ -65,7 +65,7 @@ module Adiwg_Metadata
 			aAddDocs = hMetadata['additionalDocumentation']
 			unless aAddDocs.empty?
 				aAddDocs.each do |hAddDoc|
-					intMetadata[:additionalDocuments] << Adiwg_AdditionalDocumentation.unpack(hAddDoc)
+					intMetadata[:additionalDocuments] << Md_AdditionalDocumentation.unpack(hAddDoc)
 				end
 			end
 		end

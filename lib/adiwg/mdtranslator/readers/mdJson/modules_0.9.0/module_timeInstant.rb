@@ -7,7 +7,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
 
-module Adiwg_TimeInstant
+module Md_TimeInstant
 
 	def self.unpack(hTimeInst)
 
@@ -35,7 +35,7 @@ module Adiwg_TimeInstant
 		if hTimeInst.has_key?('timePosition')
 			s = hTimeInst['timePosition']
 			if s != ''
-				intTimeInst[:timePosition] = Adiwg_DateTime.unpack(s)
+				intTimeInst[:timePosition] = Md_DateTime.unpack(s)
 			end
 		end
 

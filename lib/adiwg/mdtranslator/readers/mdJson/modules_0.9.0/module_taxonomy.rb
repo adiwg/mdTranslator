@@ -12,7 +12,7 @@ require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:
 require ADIWG::Mdtranslator.reader_module('module_voucher', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_taxonClass', $response[:readerVersionUsed])
 
-module Adiwg_Taxonomy
+module Md_Taxonomy
 
 	def self.unpack(hTaxonomy)
 
@@ -25,7 +25,7 @@ module Adiwg_Taxonomy
 			aClassSys = hTaxonomy['classificationSystem']
 			unless aClassSys.empty?
 				aClassSys.each do |hCitation|
-					intTaxSys[:taxClassSys] << Adiwg_Citation.unpack(hCitation)
+					intTaxSys[:taxClassSys] << Md_Citation.unpack(hCitation)
 				end
 			end
 		end
@@ -46,7 +46,7 @@ module Adiwg_Taxonomy
 			aObservers = hTaxonomy['observer']
 			unless aObservers.empty?
 				aObservers.each do |observer|
-					intTaxSys[:taxObservers] << Adiwg_ResponsibleParty.unpack(observer)
+					intTaxSys[:taxObservers] << Md_ResponsibleParty.unpack(observer)
 				end
 			end
 		end
@@ -63,7 +63,7 @@ module Adiwg_Taxonomy
 		if hTaxonomy.has_key?('voucher')
 			hVoucher = hTaxonomy['voucher']
 			unless hVoucher.empty?
-				intTaxSys[:taxVoucher] = Adiwg_Voucher.unpack(hVoucher)
+				intTaxSys[:taxVoucher] = Md_Voucher.unpack(hVoucher)
 			end
 		end
 
@@ -72,7 +72,7 @@ module Adiwg_Taxonomy
 			aTaxClass = hTaxonomy['taxonClass']
 			unless aTaxClass.empty?
 				aTaxClass.each do |hTaxClass|
-					intTaxSys[:taxClasses] << Adiwg_TaxonCl.unpack(hTaxClass)
+					intTaxSys[:taxClasses] << Md_TaxonCl.unpack(hTaxClass)
 				end
 			end
 		end

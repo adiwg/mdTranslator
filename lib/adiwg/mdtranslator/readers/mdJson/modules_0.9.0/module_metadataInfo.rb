@@ -15,7 +15,7 @@ require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $response[
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
-module Adiwg_MetadataInfo
+module Md_MetadataInfo
 
 	def self.unpack(hMetadata)
 
@@ -28,7 +28,7 @@ module Adiwg_MetadataInfo
 		if hMetadataInfo.has_key?('metadataIdentifier')
 			hMetadataId = hMetadataInfo['metadataIdentifier']
 			unless hMetadataId.empty?
-				intMetadataInfo[:metadataId] = Adiwg_ResourceIdentifier.unpack(hMetadataId)
+				intMetadataInfo[:metadataId] = Md_ResourceIdentifier.unpack(hMetadataId)
 			end
 		end
 
@@ -36,7 +36,7 @@ module Adiwg_MetadataInfo
 		if hMetadataInfo.has_key?('parentMetadata')
 			hParent = hMetadataInfo['parentMetadata']
 			unless hParent.empty?
-				intMetadataInfo[:parentMetadata] = Adiwg_Citation.unpack(hParent)
+				intMetadataInfo[:parentMetadata] = Md_Citation.unpack(hParent)
 			end
 		end
 
@@ -45,7 +45,7 @@ module Adiwg_MetadataInfo
 			aCust = hMetadataInfo['metadataContact']
 			unless aCust.empty?
 				aCust.each do |rParty|
-					intMetadataInfo[:metadataCustodians] << Adiwg_ResponsibleParty.unpack(rParty)
+					intMetadataInfo[:metadataCustodians] << Md_ResponsibleParty.unpack(rParty)
 				end
 			end
 		end
@@ -54,7 +54,7 @@ module Adiwg_MetadataInfo
 		if hMetadataInfo.has_key?('metadataCreationDate')
 			s = hMetadataInfo['metadataCreationDate']
 			if s != ''
-				hDateTime = Adiwg_DateTime.unpack(s)
+				hDateTime = Md_DateTime.unpack(s)
 				hDateTime[:dateType] = 'publication'
 				intMetadataInfo[:metadataCreateDate] = hDateTime
 			end
@@ -64,7 +64,7 @@ module Adiwg_MetadataInfo
 		if hMetadataInfo.has_key?('metadataLastUpdate')
 			s = hMetadataInfo['metadataLastUpdate']
 			if s != ''
-				hDateTime = Adiwg_DateTime.unpack(s)
+				hDateTime = Md_DateTime.unpack(s)
 				hDateTime[:dateType] = 'revision'
 				intMetadataInfo[:metadataUpdateDate] = hDateTime
 			end
@@ -90,7 +90,7 @@ module Adiwg_MetadataInfo
 		if hMetadataInfo.has_key?('metadataMaintenance')
 			hMetaMaint = hMetadataInfo['metadataMaintenance']
 			unless hMetaMaint.empty?
-				intMetadataInfo[:maintInfo] = Adiwg_ResourceMaintenance.unpack(hMetaMaint)
+				intMetadataInfo[:maintInfo] = Md_ResourceMaintenance.unpack(hMetaMaint)
 			end
 		end
 
@@ -100,7 +100,7 @@ module Adiwg_MetadataInfo
 			if resourceInfo.has_key?('taxonomy')
 				hTaxonomy = resourceInfo['taxonomy']
 				unless hTaxonomy.empty?
-					intMetadataInfo[:extensions] << Adiwg_MetadataExtension.addExtensionISObio
+					intMetadataInfo[:extensions] << Md_MetadataExtension.addExtensionISObio
 				end
 			end
 		end

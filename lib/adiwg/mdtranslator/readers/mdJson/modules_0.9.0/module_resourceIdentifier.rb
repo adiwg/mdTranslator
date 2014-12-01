@@ -10,7 +10,7 @@ require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVe
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionUsed])
 
-module Adiwg_ResourceIdentifier
+module Md_ResourceIdentifier
 
 	def self.unpack(hResID)
 
@@ -38,7 +38,7 @@ module Adiwg_ResourceIdentifier
 		if hResID.has_key?('authority')
 			hCitation = hResID['authority']
 			unless hCitation.empty?
-				intResID[:identifierCitation] =  Adiwg_Citation.unpack(hCitation)
+				intResID[:identifierCitation] =  Md_Citation.unpack(hCitation)
 			end
 		end
 

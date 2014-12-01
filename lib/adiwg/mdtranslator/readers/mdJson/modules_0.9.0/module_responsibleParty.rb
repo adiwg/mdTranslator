@@ -6,7 +6,7 @@
 #   Stan Smith 2014-05-28 modified to support JSON schema 0.5.0
 #   ... removed resource IDs associated with contact
 
-module Adiwg_ResponsibleParty
+module Md_ResponsibleParty
 
 	def self.unpack(hRParty)
 

@@ -7,7 +7,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_lineage', $response[:readerVersionUsed])
 
-module Adiwg_DataQuality
+module Md_DataQuality
 
 	def self.unpack(hDataQual)
 
@@ -30,7 +30,7 @@ module Adiwg_DataQuality
 		if hDataQual.has_key?('lineage')
 			hLineage = hDataQual['lineage']
 			unless hLineage.empty?
-				intDataQual[:dataLineage] = Adiwg_Lineage.unpack(hLineage)
+				intDataQual[:dataLineage] = Md_Lineage.unpack(hLineage)
 			end
 		end
 

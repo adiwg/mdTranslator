@@ -8,7 +8,7 @@
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:readerVersionUsed])
 
-module Adiwg_Source
+module Md_Source
 
 	def self.unpack(hSource)
 
@@ -28,7 +28,7 @@ module Adiwg_Source
 		if hSource.has_key?('citation')
 			hCitation = hSource['citation']
 			unless hCitation.empty?
-				intDataSource[:sourceCitation] = Adiwg_Citation.unpack(hCitation)
+				intDataSource[:sourceCitation] = Md_Citation.unpack(hCitation)
 			end
 		end
 
@@ -37,7 +37,7 @@ module Adiwg_Source
 			aSourceSteps = hSource['processStep']
 			unless aSourceSteps.empty?
 				aSourceSteps.each do |hStep|
-					intDataSource[:sourceSteps] << Adiwg_ProcessStep.unpack(hStep)
+					intDataSource[:sourceSteps] << Md_ProcessStep.unpack(hStep)
 				end
 			end
 		end

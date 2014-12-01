@@ -8,7 +8,7 @@
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
 
-module Adiwg_ProcessStep
+module Md_ProcessStep
 
 	def self.unpack(hProcStep)
 
@@ -44,7 +44,7 @@ module Adiwg_ProcessStep
 		if hProcStep.has_key?('dateTime')
 			s = hProcStep['dateTime']
 			if s != ''
-				intDataPStep[:stepDateTime] = Adiwg_DateTime.unpack(s)
+				intDataPStep[:stepDateTime] = Md_DateTime.unpack(s)
 			end
 		end
 
@@ -53,7 +53,7 @@ module Adiwg_ProcessStep
 			aProcessors = hProcStep['processor']
 			unless aProcessors.empty?
 				aProcessors.each do |processor|
-					intDataPStep[:stepProcessors] << Adiwg_ResponsibleParty.unpack(processor)
+					intDataPStep[:stepProcessors] << Md_ResponsibleParty.unpack(processor)
 				end
 			end
 		end

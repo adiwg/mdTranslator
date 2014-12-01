@@ -9,7 +9,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 
-module Adiwg_ResourceSpecificUsage
+module Md_ResourceSpecificUsage
 
 	def self.unpack(hUsage)
 
@@ -38,7 +38,7 @@ module Adiwg_ResourceSpecificUsage
 			aContacts = hUsage['userContactInfo']
 			unless aContacts.empty?
 				aContacts.each do |hContact|
-					intUsage[:userContacts] << Adiwg_ResponsibleParty.unpack(hContact)
+					intUsage[:userContacts] << Md_ResponsibleParty.unpack(hContact)
 				end
 			end
 		end

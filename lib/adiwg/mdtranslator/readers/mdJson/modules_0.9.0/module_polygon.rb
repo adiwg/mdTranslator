@@ -10,7 +10,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:readerVersionUsed])
 
-module Adiwg_Polygon
+module Md_Polygon
 
 	def self.unpack(aCoords, geoType)
 		intMetadataClass = InternalMetadata.new
@@ -20,7 +20,7 @@ module Adiwg_Polygon
 		# polygon - coordinate(s)
 		if geoType == 'Polygon'
 			intGeometry[:geometry] = splitPolygons(aCoords)
-			intGeometry[:dimension] = Adiwg_Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
+			intGeometry[:dimension] = Md_Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
 		elsif geoType == 'MultiPolygon'
 			aPolySets = Array.new
 			aCoords.each do |aPolygonSet|

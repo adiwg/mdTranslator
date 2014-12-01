@@ -12,7 +12,7 @@ require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:
 require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 
-module Adiwg_Citation
+module Md_Citation
 
 	def self.unpack(hCitation)
 
@@ -36,7 +36,7 @@ module Adiwg_Citation
 					if hCitDate.has_key?('date')
 						s = hCitDate['date']
 						if s != ''
-							intDateTime = Adiwg_DateTime.unpack(s)
+							intDateTime = Md_DateTime.unpack(s)
 							if hCitDate.has_key?('dateType')
 								s = hCitDate['dateType']
 								if s != ''
@@ -63,7 +63,7 @@ module Adiwg_Citation
 			aRParty = hCitation['responsibleParty']
 			unless aRParty.empty?
 				aRParty.each do |hRParty|
-					intCitation[:citResponsibleParty] << Adiwg_ResponsibleParty.unpack(hRParty)
+					intCitation[:citResponsibleParty] << Md_ResponsibleParty.unpack(hRParty)
 				end
 			end
 		end
@@ -83,7 +83,7 @@ module Adiwg_Citation
 			aResIds = hCitation['identifier']
 			aResIds.each do |hIdentifier|
 				unless hIdentifier.empty?
-					intCitation[:citResourceIDs] << Adiwg_ResourceIdentifier.unpack(hIdentifier)
+					intCitation[:citResourceIDs] << Md_ResourceIdentifier.unpack(hIdentifier)
 				end
 			end
 		end
@@ -93,7 +93,7 @@ module Adiwg_Citation
 			aOlRes = hCitation['onlineResource']
 			aOlRes.each do |hOlRes|
 				unless hOlRes.empty?
-					intCitation[:citOlResources] << Adiwg_OnlineResource.unpack(hOlRes)
+					intCitation[:citOlResources] << Md_OnlineResource.unpack(hOlRes)
 				end
 			end
 		end

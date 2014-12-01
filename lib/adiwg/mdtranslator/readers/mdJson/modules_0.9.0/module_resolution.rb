@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2013-11-26 original script
 
-module Adiwg_Resolution
+module Md_Resolution
 
 	def self.unpack(hResolution)
 

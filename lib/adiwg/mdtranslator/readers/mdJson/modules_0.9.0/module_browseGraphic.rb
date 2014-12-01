@@ -6,7 +6,7 @@
 # 	Stan Smith 2013-11-27 modified to process single browse graphic rather than array
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 
-module Adiwg_BrowseGraphic
+module Md_BrowseGraphic
 
 	def self.unpack(hBgraphic)
 

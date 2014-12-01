@@ -7,7 +7,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
 
-module Adiwg_TimePeriod
+module Md_TimePeriod
 
 	def self.unpack(hTimePeriod)
 
@@ -34,7 +34,7 @@ module Adiwg_TimePeriod
 		if hTimePeriod.has_key?('beginPosition')
 			s = hTimePeriod['beginPosition']
 			if s != ''
-				intTimePer[:beginTime] = Adiwg_DateTime.unpack(s)
+				intTimePer[:beginTime] = Md_DateTime.unpack(s)
 
 			end
 		end
@@ -42,7 +42,7 @@ module Adiwg_TimePeriod
 		if hTimePeriod.has_key?('endPosition')
 			s = hTimePeriod['endPosition']
 			if s != ''
-				intTimePer[:endTime] = Adiwg_DateTime.unpack(s)
+				intTimePer[:endTime] = Md_DateTime.unpack(s)
 
 			end
 		end

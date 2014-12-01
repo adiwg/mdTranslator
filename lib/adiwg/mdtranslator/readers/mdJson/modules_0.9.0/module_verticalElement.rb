@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-11-18 original script
 # 	Stan Smith 2013-12-11 modified to handle single vertical element
 
-module Adiwg_VerticalElement
+module Md_VerticalElement
 
 	def self.unpack(hVertElement)
 

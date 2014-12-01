@@ -6,7 +6,7 @@
 
 require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
 
-module Adiwg_DictionaryInfo
+module Md_DictionaryInfo
 
 	def self.unpack(hDictInfo)
 
@@ -18,7 +18,7 @@ module Adiwg_DictionaryInfo
 		if hDictInfo.has_key?('citation')
 			hCitation = hDictInfo['citation']
 			unless hCitation.empty?
-				intDictInfo[:dictCitation] = Adiwg_Citation.unpack(hCitation)
+				intDictInfo[:dictCitation] = Md_Citation.unpack(hCitation)
 			end
 		end
 

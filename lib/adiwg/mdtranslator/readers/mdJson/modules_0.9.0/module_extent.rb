@@ -13,7 +13,7 @@ require ADIWG::Mdtranslator.reader_module('module_geographicElement', $response[
 require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
 
-module Adiwg_Extent
+module Md_Extent
 
 	def self.unpack(hExtent)
 
@@ -33,7 +33,7 @@ module Adiwg_Extent
 		if hExtent.has_key?('geographicElement')
 			aGeoElements = hExtent['geographicElement']
 			unless aGeoElements.empty?
-				intExtent[:extGeoElements] = Adiwg_GeographicElement.unpack(aGeoElements)
+				intExtent[:extGeoElements] = Md_GeographicElement.unpack(aGeoElements)
 			end
 		end
 
@@ -41,7 +41,7 @@ module Adiwg_Extent
 		if hExtent.has_key?('temporalElement')
 			hTempElement = hExtent['temporalElement']
 			unless hTempElement.empty?
-				intExtent[:extTempElements] = Adiwg_TemporalElement.unpack(hTempElement)
+				intExtent[:extTempElements] = Md_TemporalElement.unpack(hTempElement)
 			end
 		end
 
@@ -50,7 +50,7 @@ module Adiwg_Extent
 			aVertElements = hExtent['verticalElement']
 			unless aVertElements.empty?
 				aVertElements.each do |hVertElement|
-					intExtent[:extVertElements] << Adiwg_VerticalElement.unpack(hVertElement)
+					intExtent[:extVertElements] << Md_VerticalElement.unpack(hVertElement)
 				end
 			end
 		end

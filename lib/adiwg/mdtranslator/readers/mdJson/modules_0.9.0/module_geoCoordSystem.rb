@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2014-04-30 original script
 
-module Adiwg_GeoCoordSystem
+module Md_GeoCoordSystem
 
 	def self.unpack(hGeoCrs, intElement)
 

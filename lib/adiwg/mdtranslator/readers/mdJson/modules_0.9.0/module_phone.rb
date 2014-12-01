@@ -5,7 +5,7 @@
 # 	Stan Smith 2013-12-16 original script
 #   Stan Smith 2014-05-14 combine phone service types
 
-module Adiwg_Phone
+module Md_Phone
 
 	def self.unpack(hPhone)
 

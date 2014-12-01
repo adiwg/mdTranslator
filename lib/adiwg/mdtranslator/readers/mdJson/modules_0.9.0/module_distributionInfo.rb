@@ -12,7 +12,7 @@ require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:re
 require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
 
-module Adiwg_DistributionInfo
+module Md_DistributionInfo
 
 	def self.unpack(hDistributor)
 
@@ -24,7 +24,7 @@ module Adiwg_DistributionInfo
 		if hDistributor.has_key?('distributorContact')
 			hContact = hDistributor['distributorContact']
 			unless hContact.empty?
-				intDistributor[:distContact] = Adiwg_ResponsibleParty.unpack(hContact)
+				intDistributor[:distContact] = Md_ResponsibleParty.unpack(hContact)
 			end
 		end
 
@@ -46,7 +46,7 @@ module Adiwg_DistributionInfo
 					if distOrderProcess.has_key?('plannedAvailabilityDateTime')
 						s = distOrderProcess['plannedAvailabilityDateTime']
 						if s != ''
-							intDistOrder[:plannedDateTime] = Adiwg_DateTime.unpack(s)
+							intDistOrder[:plannedDateTime] = Md_DateTime.unpack(s)
 						end
 					end
 
@@ -108,7 +108,7 @@ module Adiwg_DistributionInfo
 					if distTransOpt.has_key?('online')
 						aOnlineOption = distTransOpt['online']
 						aOnlineOption.each do |hOlOption|
-							intTransOpt[:online] << Adiwg_OnlineResource.unpack(hOlOption)
+							intTransOpt[:online] << Md_OnlineResource.unpack(hOlOption)
 						end
 					end
 

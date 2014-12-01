@@ -10,7 +10,7 @@ require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:r
 require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
 
-module Adiwg_GeoProperties
+module Md_GeoProperties
 
 	def self.unpack(hGeoProps, intElement)
 
@@ -42,7 +42,7 @@ module Adiwg_GeoProperties
 		if hGeoProps.has_key?('temporalElement')
 			hTempEle = hGeoProps['temporalElement']
 			unless hTempEle.empty?
-				intElement[:temporalElements] = Adiwg_TemporalElement.unpack(hTempEle)
+				intElement[:temporalElements] = Md_TemporalElement.unpack(hTempEle)
 			end
 		end
 
@@ -51,7 +51,7 @@ module Adiwg_GeoProperties
 			aVertEle = hGeoProps['verticalElement']
 			unless aVertEle.empty?
 				aVertEle.each do |hVertEle|
-					intElement[:verticalElements] << Adiwg_VerticalElement.unpack(hVertEle)
+					intElement[:verticalElements] << Md_VerticalElement.unpack(hVertEle)
 				end
 			end
 		end
@@ -61,7 +61,7 @@ module Adiwg_GeoProperties
 			aResIds = hGeoProps['identifier']
 			unless aResIds.empty?
 				aResIds.each do |hIdentifier|
-					intElement[:elementIdentifiers] << Adiwg_ResourceIdentifier.unpack(hIdentifier)
+					intElement[:elementIdentifiers] << Md_ResourceIdentifier.unpack(hIdentifier)
 				end
 			end
 		end

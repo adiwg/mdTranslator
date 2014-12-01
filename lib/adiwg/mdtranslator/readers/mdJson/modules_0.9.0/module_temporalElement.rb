@@ -15,7 +15,7 @@ require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVe
 require ADIWG::Mdtranslator.reader_module('module_timeInstant', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionUsed])
 
-module Adiwg_TemporalElement
+module Md_TemporalElement
 
 	def self.unpack(hTempElement)
 
@@ -29,7 +29,7 @@ module Adiwg_TemporalElement
 			unless aDates.empty?
 				aDates.each do |s|
 					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:date] = Adiwg_DateTime.unpack(s)
+					intTempEle[:date] = Md_DateTime.unpack(s)
 					aIntTempElements << intTempEle
 				end
 			end
@@ -44,7 +44,7 @@ module Adiwg_TemporalElement
 						s = hTimeInst['timePosition']
 						if s != ''
 							intTempEle = intMetadataClass.newTemporalElement
-							intTempEle[:timeInstant] = Adiwg_TimeInstant.unpack(hTimeInst)
+							intTempEle[:timeInstant] = Md_TimeInstant.unpack(hTimeInst)
 							aIntTempElements << intTempEle
 						end
 					end
@@ -58,7 +58,7 @@ module Adiwg_TemporalElement
 			unless aTimePeriod.empty?
 				aTimePeriod.each do |hTimePeriod|
 					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:timePeriod] = Adiwg_TimePeriod.unpack(hTimePeriod)
+					intTempEle[:timePeriod] = Md_TimePeriod.unpack(hTimePeriod)
 					aIntTempElements << intTempEle
 				end
 			end

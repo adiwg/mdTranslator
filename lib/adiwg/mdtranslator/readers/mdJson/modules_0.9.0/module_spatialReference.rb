@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2014-09-03 original script
 
-module Adiwg_SpatialReferenceSystem
+module Md_SpatialReferenceSystem
 
 	def self.unpack(hSpatialRef)
 
