@@ -78,7 +78,7 @@ class InternalMetadata
 
 	def newContact
 		intObj =  {
-			contactID: nil,
+			contactId: nil,
 			indName: nil,
 			orgName: nil,
 			position: nil,
@@ -134,7 +134,7 @@ class InternalMetadata
 
 	def newRespParty
 		intObj = {
-			contactID: nil,
+			contactId: nil,
 			roleName: nil
 		}
 	end
@@ -188,7 +188,7 @@ class InternalMetadata
 			citTitle: nil,
 			citDate: [],
 			citEdition: nil,
-			citResourceIDs: [],
+			citResourceIds: [],
 			citResponsibleParty: [],
 			citResourceForms: [],
 			citOlResources: []
@@ -361,7 +361,7 @@ class InternalMetadata
 
 	def newTimeInstant
 		intObj = {
-			timeID: nil,
+			timeId: nil,
 			description: nil,
 		    timePosition: {}
 		}
@@ -369,7 +369,7 @@ class InternalMetadata
 
 	def newTimePeriod
 		intObj = {
-			timeID: nil,
+			timeId: nil,
 			description: nil,
 			beginTime: {},
 			endTime: {}
@@ -461,7 +461,7 @@ class InternalMetadata
 
 	def newDataProcessStep
 		intObj = {
-			stepID: nil,
+			stepId: nil,
 			stepDescription: nil,
 			stepRationale: nil,
 			stepDateTime: {},

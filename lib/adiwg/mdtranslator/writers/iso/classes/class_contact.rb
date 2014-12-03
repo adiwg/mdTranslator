@@ -73,7 +73,7 @@ class CI_Contact
 
 		# find contact in contact array and return the hash
 		$intContactList.each do |hContact|
-			if hContact[:contactID] == contactID
+			if hContact[:contactId] == contactID
 				return hContact
 			end
 		end

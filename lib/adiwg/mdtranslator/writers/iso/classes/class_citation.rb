@@ -67,7 +67,7 @@ class CI_Citation
 			# citation - resource identifiers - MD_Identifier
 			# do not process ISBN and ISSN as MD_identifier(s)
 			# ... these are processed separately in ISO 19115-2
-			aResIDs = hCitation[:citResourceIDs]
+			aResIDs = hCitation[:citResourceIds]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
 					if !hResID[:identifierType].nil?
@@ -108,7 +108,7 @@ class CI_Citation
 
 			# citation - ISBN
 			needTag = true
-			aResIDs = hCitation[:citResourceIDs]
+			aResIDs = hCitation[:citResourceIds]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
 					if !hResID[:identifierType].nil?
@@ -130,7 +130,7 @@ class CI_Citation
 
 			# citation - ISSN
 			needTag = true
-			aResIDs = hCitation[:citResourceIDs]
+			aResIDs = hCitation[:citResourceIds]
 			if !aResIDs.empty?
 				aResIDs.each do |hResID|
 					if !hResID[:identifierType].nil?

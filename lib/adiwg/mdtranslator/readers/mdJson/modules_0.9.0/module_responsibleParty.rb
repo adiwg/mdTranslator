@@ -18,7 +18,7 @@ module Md_ResponsibleParty
 		if hRParty.has_key?('contactId')
 			s = hRParty['contactId']
 			if s != ''
-				intResById[:contactID] = s
+				intResById[:contactId] = s
 			end
 		end
 

@@ -15,7 +15,7 @@ class TimePeriod
 
 	def writeXML(hTempP)
 
-		timeID = hTempP[:timeID]
+		timeID = hTempP[:timeId]
 		if timeID.nil?
 			$idCount = $idCount.succ
 			timeID = 'timePeriod' + $idCount

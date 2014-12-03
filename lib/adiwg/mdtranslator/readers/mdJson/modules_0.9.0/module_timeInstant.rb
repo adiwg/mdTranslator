@@ -20,7 +20,7 @@ module Md_TimeInstant
 		if hTimeInst.has_key?('id')
 			s = hTimeInst['id']
 			if s != ''
-				intTimeInst[:timeID] = s
+				intTimeInst[:timeId] = s
 			end
 		end
 

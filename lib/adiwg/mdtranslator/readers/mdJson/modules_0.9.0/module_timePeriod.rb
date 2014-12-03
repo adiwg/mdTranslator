@@ -20,7 +20,7 @@ module Md_TimePeriod
 		if hTimePeriod.has_key?('id')
 			s = hTimePeriod['id']
 			if s != ''
-				intTimePer[:timeID] = s
+				intTimePer[:timeId] = s
 			end
 		end
 

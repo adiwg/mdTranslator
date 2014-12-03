@@ -30,7 +30,7 @@ module Md_MetadataExtension
 			'taxonomic sources, procedures, and treatments.'
 
 		# source information
-		intContactRole[:contactID] = 'ADIwgBio'
+		intContactRole[:contactId] = 'ADIwgBio'
 		intContactRole[:roleName] = 'resourceProvider'
 		intMetaExt[:extSources] << intContactRole
 

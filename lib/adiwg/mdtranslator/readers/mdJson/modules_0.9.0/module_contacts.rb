@@ -26,7 +26,7 @@ module Md_Contact
 		if hContact.has_key?('contactId')
 			s = hContact['contactId']
 			if s != ''
-				intCont[:contactID] = s
+				intCont[:contactId] = s
 			end
 		end
 
@@ -98,13 +98,13 @@ module Md_Contact
 
 		# contact to support biological extensions
 		intCont = intMetadataClass.newContact
-		intCont[:contactID] = 'ADIwgBio'
+		intCont[:contactId] = 'ADIwgBio'
 		intCont[:orgName] = 'National Biological Information Infrastructure (NBII)'
 		aDefContacts << intCont
 
 		# contact to support doi (digital object identifier)
 		intCont = intMetadataClass.newContact
-		intCont[:contactID] = 'ADIwgDOI'
+		intCont[:contactId] = 'ADIwgDOI'
 		intCont[:orgName] = 'International DOI Foundation (IDF)'
 
 		intOlRes = intMetadataClass.newOnlineResource

@@ -20,7 +20,7 @@ module Md_ProcessStep
 		if hProcStep.has_key?('stepId')
 			s = hProcStep['stepId']
 			if s != ''
-				intDataPStep[:stepID] = s
+				intDataPStep[:stepId] = s
 			end
 		end
 

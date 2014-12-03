@@ -120,7 +120,7 @@ class MI_Metadata
 					hParent = hMetaInfo[:parentMetadata]
 					if !hParent.empty?
 						s = hParent[:citTitle]
-						aResIds = hParent[:citResourceIDs]
+						aResIds = hParent[:citResourceIds]
 						if aResIds.length > 0
 							s += ' ids: | '
 							aResIds.each do |resource|

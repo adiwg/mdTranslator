@@ -21,7 +21,7 @@ class LI_ProcessStep
 
 		# process step - id
 		attributes = {}
-		s = hProcessStep[:stepID]
+		s = hProcessStep[:stepId]
 		unless s.nil?
 			attributes['id' => s]
 		end

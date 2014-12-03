@@ -22,7 +22,7 @@ class CI_ResponsibleParty
 		ciRoleCode = CI_RoleCode.new(@xml)
 
 		# search array of responsible party for matches in contact object
-		rpID = rParty[:contactID]
+		rpID = rParty[:contactId]
 		unless rpID.nil?
 			hContact = ciContactClass.getContact(rpID)
 			unless hContact.empty?

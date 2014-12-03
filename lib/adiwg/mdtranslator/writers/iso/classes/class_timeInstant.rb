@@ -15,7 +15,7 @@ class TimeInstant
 
 	def writeXML(hTempI)
 
-		timeID = hTempI[:timeID]
+		timeID = hTempI[:timeId]
 		if timeID.nil?
 			$idCount = $idCount.succ
 			timeID = 'timeInstant' + $idCount

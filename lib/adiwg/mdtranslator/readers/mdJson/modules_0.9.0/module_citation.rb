@@ -83,7 +83,7 @@ module Md_Citation
 			aResIds = hCitation['identifier']
 			aResIds.each do |hIdentifier|
 				unless hIdentifier.empty?
-					intCitation[:citResourceIDs] << Md_ResourceIdentifier.unpack(hIdentifier)
+					intCitation[:citResourceIds] << Md_ResourceIdentifier.unpack(hIdentifier)
 				end
 			end
 		end
