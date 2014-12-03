@@ -12,6 +12,9 @@
 #   Stan Smith 2014-10-10 added method to return path to readers and writers
 #   Stan Smith 2014-10-11 added methods to return content of readme files
 #   Stan Smith 2014-12-01 changed adiwgJson ot mdJson
+#   Stan Smith 2014-12-01 added writer iso19110 (feature catalogue)
+#   Stan Smith 2014-12-01 added translator version to $response
+#   Stan Smith 2014-12-02 organized shared class/code/units folders for 19115-2, 19110
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator'))
@@ -29,6 +32,8 @@ module ADIWG
 		def self.translate(file, reader, writer, validate, showAllTags)
 
 			$showAllTags = showAllTags
+
+			# load and return this hash
 			$response = {
 				readerFormat: nil,
 				readerStructurePass: nil,
@@ -41,15 +46,16 @@ module ADIWG
 				readerValidationPass: nil,
 				readerValidationMessages: [],
 				writerName: writer,
+				writerVersion: ADIWG::Mdtranslator::VERSION,
 				writerFormat: nil,
 				writerPass: nil,
 				writerMessages: [],
 				writerOutput: nil
 			}
 
-			# the mdtranslator gem loads and returns the above hash
-
 			case reader
+
+				# ADIwg mdJson JSON schema
 				when 'mdJson'
 					require 'mdJson/mdJson_validator'
 
@@ -66,9 +72,30 @@ module ADIWG
 			end
 
 			case writer
+
+				# ISO 19110 standard for feature catalogue used to describe tabular data dictionaries
+				when 'iso19110'
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/codelists'))
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/classes'))
+					require 'iso19110/iso19110_writer'
+
+					# set the format of the output file based on the writer specified
+					$response[:writerFormat] = 'xml'
+
+					writerClass = Iso19110Writer.new
+
+					# initiate the writer
+					$response[:writerOutput] = writerClass.writeXML(internalObj)
+					if $response[:writerMessages].length > 0
+						$response[:writerPass] = false
+					else
+						$response[:writerPass] = true
+					end
+
+				# ISO 19115-2:2009 standard for geospatial metadata
 				when 'iso19115_2'
-					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso19115_2/codelists'))
-					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso19115_2/classes'))
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/codelists'))
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/classes'))
 					require 'iso19115_2/iso19115_2_writer'
 
 					# set the format of the output file based on the writer specified

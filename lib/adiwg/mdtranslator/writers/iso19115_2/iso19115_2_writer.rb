@@ -9,7 +9,7 @@
 require 'builder'
 require 'date'
 require 'uuidtools'
-require 'class_metadata'
+require 'class_MImetadata'
 
 $idCount = '_000'
 

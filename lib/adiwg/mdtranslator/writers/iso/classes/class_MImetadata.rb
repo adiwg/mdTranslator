@@ -42,7 +42,7 @@ class MI_Metadata
 
 	def writeXML(internalObj)
 
-		# # classes used in MD_Metadata
+		# classes used in MD_Metadata
 		charCode = MD_CharacterSetCode.new(@xml)
 		scopeCode = MD_ScopeCode.new(@xml)
 		rPartyClass = CI_ResponsibleParty.new(@xml)
@@ -181,7 +181,7 @@ class MI_Metadata
 					unless hDate.empty?
 						mDateTime = hDate[:dateTime]
 						mDateRes = hDate[:dateResolution]
-						if mDateTime.nil?
+						unless mDateTime.nil?
 							mDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
 						end
 					end

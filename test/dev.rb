@@ -16,14 +16,15 @@ jsonObj = file.read
 file.close
 
 # call opening module in mdTranslator
-metadata = ADIWG::Mdtranslator.translate(jsonObj,'mdJson','iso19115_2','normal','true')
+#metadata = ADIWG::Mdtranslator.translate(jsonObj,'mdJson','iso19115_2','normal','true')
+metadata = ADIWG::Mdtranslator.translate(jsonObj,'mdJson','iso19110','normal','true')
 
 # send all the output to the terminal
 require 'pp'
 writerOut = metadata[:writerOutput]
 metadata[:writerOutput] = 'Extracted'
-puts '---------------------=======================BEGIN=========================---------------------------'
 pp metadata
+puts '---------------------=======================BEGIN=========================---------------------------'
 puts writerOut.to_s
 # pp writerOut
 puts '---------------------========================END==========================---------------------------'

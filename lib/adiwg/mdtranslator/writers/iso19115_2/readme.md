@@ -11,5 +11,5 @@ The two significant sections not supported by the writer are the Feature Catalog
 
 The Feature Catalogue section (which contains entity and attribute
 information) is saved as separate file in 19115-2.  This inconvenient implementation was
-corrected in the ISO 19115-1:2014 revision and will be supported in the
+corrected in the ISO 19115-1:2014 revision and will be supported by the
 iso19115_1 writer.
