@@ -73,7 +73,7 @@ module ADIWG
 				# reader name not provided or not supported
 				else
 					$response[:readerValidationPass] = false
-					$response[:readerValidationMessages] = 'Reader name is missing or not supported.'
+					$response[:readerValidationMessages] << 'Reader name is missing or not supported.'
 					return $response
 
 			end
@@ -122,7 +122,7 @@ module ADIWG
 				# writer name is missing or not supported
 				else
 					$response[:writerPass] = false
-					$response[:writerMessages] = 'Writer name is missing or not supported.'
+					$response[:writerMessages] << 'Writer name is missing or not supported.'
 
 			end
 

@@ -2164,7 +2164,7 @@
                         "definition": "NH (Amount of the sky covered by all clouds) is part of the Cloud/WX mandatory 9 digit group. All nine digits must be entered, regardless of the presence or absence of clouds or significant weather conditions. Cloud/WX group format: NH CL h CM CH W W W W",
                         "dataType": "char(1)",
                         "allowNull": true,
-                        "units": "sunnyDays",
+                        "units": "okta",
                         "domainId": "domain003"
                     },
                     {
