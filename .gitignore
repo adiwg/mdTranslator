@@ -13,7 +13,7 @@ lib/bundler/man
 pkg
 rdoc
 spec/reports
-dev/
+dev
 tmp
 *.bundle
 *.so
