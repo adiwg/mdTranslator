@@ -69,15 +69,21 @@ module MdJsonValidation
 			# ...example: 'modules_1.2.0'
 			if !requestReaderVersion.nil?
 				aVersionParts = requestReaderVersion.split('.')
-				readerVersion = aVersionParts[0] +'.' + aVersionParts[1] + '.0'
-				dir = File.join(File.dirname(__FILE__),'modules_' + readerVersion)
-				if !File.directory?(dir)
+				if 3 == aVersionParts.length
+					readerVersion = aVersionParts[0] +'.' + aVersionParts[1] + '.0'
+					dir = File.join(File.dirname(__FILE__),'modules_' + readerVersion)
+					if !File.directory?(dir)
+						$response[:readerStructurePass] = false
+						$response[:readerStructureMessages] << 'input file version is not supported'
+						$response[:readerStructureMessages] << "adiwgJson version requested was '#{requestReaderVersion}'"
+						return
+					end
+					$response[:readerVersionUsed] = readerVersion
+				else
 					$response[:readerStructurePass] = false
-					$response[:readerStructureMessages] << 'input file version is not supported'
-					$response[:readerStructureMessages] << "adiwgJson version requested was '#{requestReaderVersion}'"
+					$response[:readerStructureMessages] << "input file version must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3"
 					return
 				end
-				$response[:readerVersionUsed] = readerVersion
 			end
 		else
 			$response[:readerStructurePass] = false
