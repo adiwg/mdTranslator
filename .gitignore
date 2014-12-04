@@ -13,12 +13,7 @@ lib/bundler/man
 pkg
 rdoc
 spec/reports
-test/tmp
-test/version_tmp
-test/mdJson_full_test_example.json
-test/mdJson_min_test_example.json
-test/mdJson_template.json
-test/dev.rb
+dev/
 tmp
 *.bundle
 *.so

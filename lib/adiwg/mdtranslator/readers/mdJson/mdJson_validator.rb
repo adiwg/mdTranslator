@@ -6,6 +6,7 @@
 #   Stan Smith 2014-08-21 parsed json-schema validation message to readable text
 #   Stan Smith 2014-09-26 added processing of minor release numbers
 #   Stan Smith 2014-12-01 changed adiwgJson to mdJson in version name check
+#   Stan Smith 2014-12-03 changed class name to MdJsonValidation from AdiwgJsonValidation
 
 require 'json'
 require 'json-schema'
@@ -13,7 +14,7 @@ require 'adiwg-json_schemas'
 #json-schema patch
 require 'validator.rb'
 
-module AdiwgJsonValidation
+module MdJsonValidation
 
 	def self.validate(file)
 
@@ -44,7 +45,7 @@ module AdiwgJsonValidation
 		if hVersion.has_key?('name')
 			s = hVersion['name']
 			if !s.nil?
-				$response[:readerNameFound] = s
+				$response[:readerFound] = s
 				if s != 'mdJson'
 					$response[:readerStructurePass] = false
 					$response[:readerStructureMessages] << "input file version name must be 'mdJson'"

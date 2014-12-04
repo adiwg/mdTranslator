@@ -7,8 +7,8 @@
 # ... propertyType is to default to 1.
 # ... I assume this is using cardinality like optionality.
 # ... therefore ...
-# ... lower = 0 => optional
-# ... lower = 1 => mandatory
+# ... lower = 0 => Null
+# ... lower = 1 => NotNull
 # ... upper not provided a value, but is required to be present
 
 # History:
@@ -20,14 +20,14 @@ class Multiplicity
 		@xml = xml
 	end
 
-	def writeXML(optionality)
+	def writeXML(allowNull)
 
 		# xml for iso classes Multiplicity and MultiplicityRange
 		@xml.tag!('gco:Multiplicity') do
 			@xml.tag!('gco:range') do
 				@xml.tag!('gco:MultiplicityRange') do
 					@xml.tag!('gco:lower') do
-						if optionality
+						if !allowNull
 							range = 1
 						else
 							range = 0

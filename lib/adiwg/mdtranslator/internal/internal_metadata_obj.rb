@@ -572,7 +572,7 @@ class InternalMetadata
 			attributeCode: nil,
 			attributeDefinition: nil,
 			dataType: nil,
-			required: true,
+			allowNull: true,
 			unitOfMeasure: nil,
 			domainId: nil,
 			minValue: nil,

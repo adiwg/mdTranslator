@@ -45,10 +45,10 @@ module Md_EntityAttribute
 		end
 
 		# attribute - required attribute?
-		if hAttribute.has_key?('required')
-			s = hAttribute['required']
+		if hAttribute.has_key?('allowNull')
+			s = hAttribute['allowNull']
 			if s != ''
-				intAttribute[:required] = s
+				intAttribute[:allowNull] = s
 			end
 		end
 

@@ -10,13 +10,14 @@
 #   Stan Smith 2014-07-08 moved json schema version testing to 'adiwg_1_get_version'
 #   Stan Smith 2014-08-18 add json name/version to internal object
 #   Stan Smith 2014-12-01 add data dictionary
+#   Stan Smith 2014-12-03 changed class name to MdJsonReader from AdiwgJsonReader
 
 require 'json'
 require ADIWG::Mdtranslator.reader_module('module_contacts', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_metadata', $response[:readerVersionUsed])
 require ADIWG::Mdtranslator.reader_module('module_dataDictionary', $response[:readerVersionUsed])
 
-class AdiwgJsonReader
+class MdJsonReader
 
 	def initialize
 	end

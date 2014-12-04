@@ -38,8 +38,8 @@ module ADIWG
 				readerFormat: nil,
 				readerStructurePass: nil,
 				readerStructureMessages: [],
-				readerName: reader,
-				readerNameFound: nil,
+				readerRequested: reader,
+				readerFound: nil,
 				readerVersionFound: nil,
 				readerVersionUsed: nil,
 				readerValidationLevel: validate,
@@ -60,15 +60,22 @@ module ADIWG
 					require 'mdJson/mdJson_validator'
 
 					# validate adiwgJson file
-					AdiwgJsonValidation.validate(file)
+					MdJsonValidation.validate(file)
 					if $response[:readerStructurePass] && $response[:readerValidationPass]
 						# initiate the reader
 						require 'mdJson/mdJson_reader'
-						readerClass = AdiwgJsonReader.new
+						readerClass = MdJsonReader.new
 						internalObj = readerClass.unpack(file)
 					else
 						return $response
 					end
+
+				# reader name not provided or not supported
+				else
+					$response[:readerValidationPass] = false
+					$response[:readerValidationMessages] = 'Reader name is missing or not supported.'
+					return $response
+
 			end
 
 			case writer
@@ -77,6 +84,7 @@ module ADIWG
 				when 'iso19110'
 					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/codelists'))
 					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/classes'))
+					$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/writers/iso/units'))
 					require 'iso19110/iso19110_writer'
 
 					# set the format of the output file based on the writer specified
@@ -110,6 +118,12 @@ module ADIWG
 					else
 						$response[:writerPass] = true
 					end
+
+				# writer name is missing or not supported
+				else
+					$response[:writerPass] = false
+					$response[:writerMessages] = 'Writer name is missing or not supported.'
+
 			end
 
 			return $response
@@ -117,7 +131,7 @@ module ADIWG
 		end
 
 		def self.reader_module(moduleName, version)
-			dir = File.join($response[:readerName], 'modules_' + version)
+			dir = File.join($response[:readerFound], 'modules_' + version)
 			file = File.join(dir, moduleName)
 			return file
 		end

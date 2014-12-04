@@ -7,6 +7,7 @@
 
 require 'class_multiplicity'
 require 'class_listedValue'
+require 'class_unitsOfMeasure'
 
 class FC_FeatureAttribute
 
@@ -19,6 +20,7 @@ class FC_FeatureAttribute
 		# classes used in FC_FeatureAttribute
 		multiClass = Multiplicity.new(@xml)
 		listClass = FC_ListedValue.new(@xml)
+		uomClass = UnitsOfMeasure.new(@xml)
 
 		@xml.tag!('gfc:FC_FeatureAttribute') do
 
@@ -44,7 +46,7 @@ class FC_FeatureAttribute
 			end
 
 			# feature attribute - cardinality - required
-			b = hAttribute[:required]
+			b = hAttribute[:allowNull]
 			if !b.nil?
 				@xml.tag!('gfc:cardinality') do
 					multiClass.writeXML(b)
@@ -64,6 +66,12 @@ class FC_FeatureAttribute
 			end
 
 			# feature attribute - value measurement unit (units of measure)
+			s = hAttribute[:unitOfMeasure]
+			if !s.nil?
+				@xml.tag!('gfc:valueMeasurementUnit') do
+					uomClass.writeUnits(s)
+				end
+			end
 
 			# feature attribute - value type (datatype)
 			s = hAttribute[:dataType]
