@@ -20,11 +20,12 @@
 # 0.9.1 2014-12-01 changed adiwgJson to mdJson
 # 0.9.2 2014-12-01 added data dictionary support
 # 0.10.0 2014-12-01 added ISO 19110 writer
+# 0.10.1 2014-12-04 fixed problem with messages not returned in an array
 
 module ADIWG
 	module Mdtranslator
 		# current mdtranslator version
-		VERSION = "0.10.0"
+		VERSION = "0.10.1"
 	end
 end
 
