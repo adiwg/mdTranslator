@@ -60,10 +60,10 @@ class Mdtranslator < Thor
 				# ...no writer output will have been generated,
 				# ...and the return will be a string unless json was requested
 				if options[:messages] == 'json'
-					$stdout.write mdReturn.to_json
+					$stdout.puts mdReturn.to_json
 					return
 				else
-					$stdout.write 'Success'
+					$stdout.puts 'Success'
 					return
 				end
 			else
@@ -73,17 +73,17 @@ class Mdtranslator < Thor
 				    # writer output was generated
 					# ...return the writer output in its native format unless json was requested
 					if options[:returnObject]
-						$stdout.write mdReturn.to_json
+						$stdout.puts mdReturn.to_json
 						return
 					else
-						$stdout.write mdReturn[:writerOutput].to_s
+						$stdout.puts mdReturn[:writerOutput].to_s
 						return
 					end
 				else
 					# the writer failed or generated warnings to be reported
 					# ...return the messages as a string unless json was requested
 					if options[:messages] == 'json'
-						$stdout.write mdReturn.to_json
+						$stdout.puts mdReturn.to_json
 						return
 					else
 						# build a string with messages issues from parser and validator
@@ -100,7 +100,7 @@ class Mdtranslator < Thor
 							s += message + "\n"
 						end
 
-						$stdout.write s
+						$stdout.puts s
 						return
 
 					end
@@ -115,7 +115,7 @@ class Mdtranslator < Thor
 			# ...no writer output will have been generated,
 			# ...and return is always expected to be a string
 			if options[:messages] == 'json'
-				$stdout.write mdReturn.to_json
+				$stdout.puts mdReturn.to_json
 				return
 			else
 				# build a string with messages issues from parser and validator
@@ -152,7 +152,7 @@ class Mdtranslator < Thor
 					end
 				end
 
-				$stdout.write s
+				$stdout.puts s
 				return
 
 			end
@@ -165,7 +165,7 @@ class Mdtranslator < Thor
 		'mdtranslator version' returns the version number for mdTranslator
 	LONGDESC
 	def version
-		$stdout.write ADIWG::Mdtranslator::VERSION
+		$stdout.puts ADIWG::Mdtranslator::VERSION
 	end
 
 	Mdtranslator.start(ARGV)
