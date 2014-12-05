@@ -75,7 +75,7 @@ module MdJsonValidation
 					if !File.directory?(dir)
 						$response[:readerStructurePass] = false
 						$response[:readerStructureMessages] << 'input file version is not supported'
-						$response[:readerStructureMessages] << "adiwgJson version requested was '#{requestReaderVersion}'"
+						$response[:readerStructureMessages] << "mdJson version requested was '#{requestReaderVersion}'"
 						return
 					end
 					$response[:readerVersionUsed] = readerVersion

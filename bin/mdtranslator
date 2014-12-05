@@ -26,7 +26,7 @@ class Mdtranslator < Thor
  in XML outputs, and choose level of validation for JSON inputs.
 	LONGDESC
 	# define cli options
-	method_option :reader, :aliases => '-r', :desc => 'Name of reader to read your input', :default => 'adiwgJson'
+	method_option :reader, :aliases => '-r', :desc => 'Name of reader to read your input', :default => 'mdJson'
 	method_option :writer, :aliases => '-w', :desc => 'Name of writer to create your metadata, or leave blank to validate input only'
 	method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed', :enum => %w{none normal strict}, :default => 'normal'
 	method_option :showAllTags, :aliases => '-s', :desc => 'Include tags for unused attributes', :type => :boolean, :default => false
