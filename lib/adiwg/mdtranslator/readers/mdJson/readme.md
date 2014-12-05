@@ -16,4 +16,4 @@ to many. The mdJson standard is also a convenient format to exchange directly wi
 the JSON structure is easier create and ingest by programming languages.
 
 The mdJson format is fully documented on the interactive
-[adiwgJson Viewer](http://www.adiwg.org/mdJson-schema-viewer/prod/0.1.0/20141114/1/) website.
+[mdJson Viewer](http://www.adiwg.org/mdJson-schema-viewer) website.
