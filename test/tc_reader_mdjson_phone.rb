@@ -74,7 +74,7 @@ class TestReaderMdjsonAddress < MiniTest::Test
 			'"phoneName": "Aa",' +
 			'"phoneNumber": "(999)999-9999",' +
 			'"service": ""' +
-		'}'
+			'}'
 		hIn = JSON.parse(json_string)
 
 		intObj = []
@@ -84,6 +84,39 @@ class TestReaderMdjsonAddress < MiniTest::Test
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
+
+		@return = Md_Phone.unpack(hIn)
+
+		assert_equal intObj, @return
+
+	end
+
+	def test_missing_phone_number
+
+		json_string = '{ ' +
+			'"service": ["aa"]' +
+			'}'
+		hIn = JSON.parse(json_string)
+
+		intObj = []
+
+		@return = Md_Phone.unpack(hIn)
+
+		assert_equal intObj, @return
+
+	end
+
+	def test_null_phone_number
+
+		# missing phone number should return empty object
+		json_string = '{ ' +
+			'"phoneName": "",' +
+			'"phoneNumber": "",' +
+			'"service": ""' +
+			'}'
+		hIn = JSON.parse(json_string)
+
+		intObj = []
 
 		@return = Md_Phone.unpack(hIn)
 
@@ -103,6 +136,4 @@ class TestReaderMdjsonAddress < MiniTest::Test
 
 	end
 
-
-
-	end
+end

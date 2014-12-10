@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-16 original script
 #   Stan Smith 2014-05-14 combine phone service types
+#   Stan Smith 2014-12-09 return empty phone object if no phone number
 
 module Md_Phone
 
@@ -15,6 +16,24 @@ module Md_Phone
 
 		unless hPhone.empty?
 
+			# phone - name
+			phoneName = nil
+			if hPhone.has_key?('phoneName')
+				phoneName = hPhone['phoneName']
+			end
+
+			# phone - number
+			# return empty phone array if no phone number is provided
+			if hPhone.has_key?('phoneNumber')
+				phoneNum = hPhone['phoneNumber']
+				if phoneNum == ''
+					return aPhones
+				end
+			else
+				return aPhones
+			end
+
+			# phone - service
 			# create a separate phone for each phone service type
 			# if service is missing, default service to 'voice'
 			if hPhone.has_key?('service')
@@ -33,22 +52,8 @@ module Md_Phone
 
 				# phone - service
 				intPhone[:phoneServiceType] = phService
-
-				# phone - name
-				if hPhone.has_key?('phoneName')
-					s = hPhone['phoneName']
-					unless s.nil?
-						intPhone[:phoneName] = s
-					end
-				end
-
-				# phone - number
-				if hPhone.has_key?('phoneNumber')
-					s = hPhone['phoneNumber']
-					unless s.nil?
-						intPhone[:phoneNumber] = s
-					end
-				end
+				intPhone[:phoneName] = phoneName
+				intPhone[:phoneNumber] = phoneNum
 
 				aPhones << intPhone
 

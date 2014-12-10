@@ -38,6 +38,28 @@ class TestReaderMdjsonAddress < MiniTest::Test
 
 	end
 
+	def test_email_address_only
+
+		json_string = '{ ' +
+			'"electronicMailAddress": ["hello@example.com"]' +
+			'}'
+		hIn = JSON.parse(json_string)
+
+		intObj = {
+			deliveryPoints: [],
+			city: nil,
+			adminArea: nil,
+			postalCode: nil,
+			country: nil,
+			eMailList: %w[hello@example.com]
+		}
+
+		@return = Md_Address.unpack(hIn)
+
+		assert_equal intObj, @return
+
+	end
+
 	def test_build_empty_address_object
 
 		json_string = '{}'
