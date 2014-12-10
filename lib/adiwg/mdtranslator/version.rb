@@ -21,6 +21,7 @@
 # 0.9.2 2014-12-01 added data dictionary support
 # 0.10.0 2014-12-01 added ISO 19110 writer
 # 0.10.1 2014-12-04 fixed problem with messages not returned in an array
+# 0.10.2 2014-12-05
 
 module ADIWG
 	module Mdtranslator
