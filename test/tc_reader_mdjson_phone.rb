@@ -9,12 +9,12 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules_0.9.0/module_phone'
 
-class TestReaderMdjsonAddress < MiniTest::Test
+class TestReaderMdJsonAddress < MiniTest::Test
 
 	def test_build_full_phone_object
 
 		json_string = '{ ' +
-			'"phoneName": "Aa",' +
+			'"phoneName": "Name",' +
 			'"phoneNumber": "(999)999-9999",' +
 			'"service": ["voice","fax","sms"]' +
 		'}'
@@ -23,33 +23,31 @@ class TestReaderMdjsonAddress < MiniTest::Test
 		intObj = []
 		intObjPart = {
 			phoneServiceType: 'voice',
-			phoneName: 'Aa',
+			phoneName: 'Name',
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
 		intObjPart = {
 			phoneServiceType: 'fax',
-			phoneName: 'Aa',
+			phoneName: 'Name',
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
 		intObjPart = {
 			phoneServiceType: 'sms',
-			phoneName: 'Aa',
+			phoneName: 'Name',
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 
 	def test_missing_phone_service
 
 		json_string = '{ ' +
-			'"phoneName": "Aa",' +
+			'"phoneName": "Name",' +
 			'"phoneNumber": "(999)999-9999"' +
 		'}'
 		hIn = JSON.parse(json_string)
@@ -57,21 +55,19 @@ class TestReaderMdjsonAddress < MiniTest::Test
 		intObj = []
 		intObjPart = {
 			phoneServiceType: 'voice',
-			phoneName: 'Aa',
+			phoneName: 'Name',
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 
 	def test_null_phone_service
 
 		json_string = '{ ' +
-			'"phoneName": "Aa",' +
+			'"phoneName": "Name",' +
 			'"phoneNumber": "(999)999-9999",' +
 			'"service": ""' +
 			'}'
@@ -80,29 +76,25 @@ class TestReaderMdjsonAddress < MiniTest::Test
 		intObj = []
 		intObjPart = {
 			phoneServiceType: 'voice',
-			phoneName: 'Aa',
+			phoneName: 'Name',
 			phoneNumber: '(999)999-9999'
 		}
 		intObj << intObjPart
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 
 	def test_missing_phone_number
 
 		json_string = '{ ' +
-			'"service": ["aa"]' +
+			'"service": ["service"]' +
 			'}'
 		hIn = JSON.parse(json_string)
 
 		intObj = []
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 
@@ -118,9 +110,7 @@ class TestReaderMdjsonAddress < MiniTest::Test
 
 		intObj = []
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 
@@ -130,9 +120,7 @@ class TestReaderMdjsonAddress < MiniTest::Test
 		hIn = JSON.parse(json_string)
 		intObj = []
 
-		@return = Md_Phone.unpack(hIn)
-
-		assert_equal intObj, @return
+		assert_equal intObj, Md_Phone.unpack(hIn)
 
 	end
 

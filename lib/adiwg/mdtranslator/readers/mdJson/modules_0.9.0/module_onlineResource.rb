@@ -6,6 +6,7 @@
 #   Stan Smith 2014-04-23 modified for json 0.3.0
 #   Stan Smith 2014-08-18 removed doi section for json 0.6.0
 #   Stan Smith 2014-08-21 changed url to uri for json 0.6.0
+#   Stan Smith 2014-12-10 changed to return nil intOlRes if input empty
 
 module Md_OnlineResource
 
@@ -13,47 +14,52 @@ module Md_OnlineResource
 
 		# instance classes needed in script
 		intMetadataClass = InternalMetadata.new
-		intOLRes = intMetadataClass.newOnlineResource
+		intOLRes = nil
 
-		# unpack the online resource
-		# resource - web link
-		if hOlResource.has_key?('uri')
-			s = hOlResource['uri']
-			if s != ''
-				intOLRes[:olResURI] = s
-			end
-		end
+		unless hOlResource.empty?
+			intOLRes = intMetadataClass.newOnlineResource
 
-		# resource - web link protocol
-		if hOlResource.has_key?('protocol')
-			s = hOlResource['protocol']
-			if s != ''
-				intOLRes[:olResProtocol] = s
+			# unpack the online resource
+			# resource - web link
+			if hOlResource.has_key?('uri')
+				s = hOlResource['uri']
+				if s != ''
+					intOLRes[:olResURI] = s
+				end
 			end
-		end
 
-		# resource - web link name
-		if hOlResource.has_key?('name')
-			s = hOlResource['name']
-			if s != ''
-				intOLRes[:olResName] = s
+			# resource - web link protocol
+			if hOlResource.has_key?('protocol')
+				s = hOlResource['protocol']
+				if s != ''
+					intOLRes[:olResProtocol] = s
+				end
 			end
-		end
 
-		# resource - web link description
-		if hOlResource.has_key?('description')
-			s = hOlResource['description']
-			if s != ''
-				intOLRes[:olResDesc] = s
+			# resource - web link name
+			if hOlResource.has_key?('name')
+				s = hOlResource['name']
+				if s != ''
+					intOLRes[:olResName] = s
+				end
 			end
-		end
 
-		# resource - web link function
-		if hOlResource.has_key?('function')
-			s = hOlResource['function']
-			if s != ''
-				intOLRes[:olResFunction] = s
+			# resource - web link description
+			if hOlResource.has_key?('description')
+				s = hOlResource['description']
+				if s != ''
+					intOLRes[:olResDesc] = s
+				end
 			end
+
+			# resource - web link function
+			if hOlResource.has_key?('function')
+				s = hOlResource['function']
+				if s != ''
+					intOLRes[:olResFunction] = s
+				end
+			end
+
 		end
 
 		return intOLRes
