@@ -11,50 +11,50 @@ require 'code_dateType'
 
 class CI_Date
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hDate)
+    def writeXML(hDate)
 
-		# classes used
-		dateTypeCode = CI_DateTypeCode.new(@xml)
+        # classes used
+        dateTypeCode = CI_DateTypeCode.new(@xml)
 
-		citDateTime = hDate[:dateTime]
-		citDateRes = hDate[:dateResolution]
-		citDateType = hDate[:dateType]
+        citDateTime = hDate[:dateTime]
+        citDateRes = hDate[:dateResolution]
+        citDateType = hDate[:dateType]
 
-		@xml.tag!('gmd:CI_Date') do
+        @xml.tag!('gmd:CI_Date') do
 
-			# date - date - required
-			if citDateTime.nil?
-				@xml.tag!('gmd:date',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:date') do
+            # date - date - required
+            if citDateTime.nil?
+                @xml.tag!('gmd:date', {'gco:nilReason' => 'missing'})
+            else
+                @xml.tag!('gmd:date') do
 
-					if citDateRes.length > 3
-						# if time, requires all time fields
-						dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(citDateTime,'YMDhmsZ')
-						@xml.tag!('gco:DateTime',dateStr)
-					else
-						dateStr = AdiwgDateTimeFun.stringDateFromDateTime(citDateTime,citDateRes)
-						@xml.tag!('gco:Date',dateStr)
-					end
+                    if citDateRes.length > 3
+                        # if time, requires all time fields
+                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(citDateTime, 'YMDhmsZ')
+                        @xml.tag!('gco:DateTime', dateStr)
+                    else
+                        dateStr = AdiwgDateTimeFun.stringDateFromDateTime(citDateTime, citDateRes)
+                        @xml.tag!('gco:Date', dateStr)
+                    end
 
-				end
+                end
 
-			end
+            end
 
-			# date - date type - required
-			if citDateType.nil?
-				@xml.tag!('gmd:dateType',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:dateType') do
-					dateTypeCode.writeXML(citDateType)
-				end
-			end
-		end
+            # date - date type - required
+            if citDateType.nil?
+                @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
+            else
+                @xml.tag!('gmd:dateType') do
+                    dateTypeCode.writeXML(citDateType)
+                end
+            end
+        end
 
-	end
+    end
 
 end

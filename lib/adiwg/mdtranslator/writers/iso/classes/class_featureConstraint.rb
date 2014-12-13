@@ -9,47 +9,47 @@
 
 class FC_Constraint
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(conType, hConstraint)
+    def writeXML(conType, hConstraint)
 
-		@xml.tag!('gfc:FC_Constraint') do
-			@xml.tag!('gfc:description') do
+        @xml.tag!('gfc:FC_Constraint') do
+            @xml.tag!('gfc:description') do
 
-				# find type of constraint (primary key or index)
-				case conType
+                # find type of constraint (primary key or index)
+                case conType
 
-					# primary keys
-					when 'pk'
-						s = 'primary key: '
-						s += hConstraint.to_s
+                    # primary keys
+                    when 'pk'
+                        s = 'primary key: '
+                        s += hConstraint.to_s
 
-					# indexes
-					when 'index'
-						if hConstraint[:duplicate]
-							indexType = 'duplicate'
-						else
-							indexType = 'unique'
-						end
-						s = indexType + ' index ' + hConstraint[:indexCode]
-						s += ' on ' + hConstraint[:attributeNames].to_s
+                    # indexes
+                    when 'index'
+                        if hConstraint[:duplicate]
+                            indexType = 'duplicate'
+                        else
+                            indexType = 'unique'
+                        end
+                        s = indexType + ' index ' + hConstraint[:indexCode]
+                        s += ' on ' + hConstraint[:attributeNames].to_s
 
-					# foreign keys
-					when 'fk'
-						s = 'foreign key '
-						s += hConstraint[:fkLocalAttributes].to_s
-						s += ' references ' + hConstraint[:fkReferencedEntity] + '.'
-						s += hConstraint[:fkReferencedAttributes].to_s
+                    # foreign keys
+                    when 'fk'
+                        s = 'foreign key '
+                        s += hConstraint[:fkLocalAttributes].to_s
+                        s += ' references ' + hConstraint[:fkReferencedEntity] + '.'
+                        s += hConstraint[:fkReferencedAttributes].to_s
 
-				end
+                end
 
-				@xml.tag!('gco:CharacterString',s)
+                @xml.tag!('gco:CharacterString', s)
 
-			end
-		end
+            end
+        end
 
-	end
+    end
 
 end

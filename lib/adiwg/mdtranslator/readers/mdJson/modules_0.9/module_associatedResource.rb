@@ -14,53 +14,53 @@ require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVe
 
 module Md_AssociatedResource
 
-	def self.unpack(hAssocRes)
+    def self.unpack(hAssocRes)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intAssocRes = intMetadataClass.newAssociatedResource
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intAssocRes = intMetadataClass.newAssociatedResource
 
-		# associated resource - association type
-		if hAssocRes.has_key?('associationType')
-			s = hAssocRes['associationType']
-			if s != ''
-				intAssocRes[:associationType] = s
-			end
-		end
+        # associated resource - association type
+        if hAssocRes.has_key?('associationType')
+            s = hAssocRes['associationType']
+            if s != ''
+                intAssocRes[:associationType] = s
+            end
+        end
 
-		# associated resource - initiative type
-		if hAssocRes.has_key?('initiativeType')
-			s = hAssocRes['initiativeType']
-			if s != ''
-				intAssocRes[:initiativeType] = s
-			end
-		end
+        # associated resource - initiative type
+        if hAssocRes.has_key?('initiativeType')
+            s = hAssocRes['initiativeType']
+            if s != ''
+                intAssocRes[:initiativeType] = s
+            end
+        end
 
-		# associated resource - resource type
-		if hAssocRes.has_key?('resourceType')
-			s = hAssocRes['resourceType']
-			if s != ''
-				intAssocRes[:resourceType] = s
-			end
-		end
+        # associated resource - resource type
+        if hAssocRes.has_key?('resourceType')
+            s = hAssocRes['resourceType']
+            if s != ''
+                intAssocRes[:resourceType] = s
+            end
+        end
 
-		# associated resource - resource citation
-		if hAssocRes.has_key?('resourceCitation')
-			hCitation = hAssocRes['resourceCitation']
-			unless hCitation.empty?
-				intAssocRes[:resourceCitation] = Md_Citation.unpack(hCitation)
-			end
-		end
+        # associated resource - resource citation
+        if hAssocRes.has_key?('resourceCitation')
+            hCitation = hAssocRes['resourceCitation']
+            unless hCitation.empty?
+                intAssocRes[:resourceCitation] = Md_Citation.unpack(hCitation)
+            end
+        end
 
-		# associated resource - metadata citation
-		if hAssocRes.has_key?('metadataCitation')
-			hCitation = hAssocRes['metadataCitation']
-			unless hCitation.empty?
-				intAssocRes[:metadataCitation] = Md_Citation.unpack(hCitation)
-			end
-		end
+        # associated resource - metadata citation
+        if hAssocRes.has_key?('metadataCitation')
+            hCitation = hAssocRes['metadataCitation']
+            unless hCitation.empty?
+                intAssocRes[:metadataCitation] = Md_Citation.unpack(hCitation)
+            end
+        end
 
-		return intAssocRes
-	end
+        return intAssocRes
+    end
 
 end

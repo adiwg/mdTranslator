@@ -8,30 +8,30 @@
 
 module Md_ResponsibleParty
 
-	def self.unpack(hRParty)
+    def self.unpack(hRParty)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intResById = intMetadataClass.newRespParty
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intResById = intMetadataClass.newRespParty
 
-		# responsible party - contact
-		if hRParty.has_key?('contactId')
-			s = hRParty['contactId']
-			if s != ''
-				intResById[:contactId] = s
-			end
-		end
+        # responsible party - contact
+        if hRParty.has_key?('contactId')
+            s = hRParty['contactId']
+            if s != ''
+                intResById[:contactId] = s
+            end
+        end
 
-		# responsible party - role - required
-		if hRParty.has_key?('role')
-			s = hRParty['role']
-			if s != ''
-				intResById[:roleName] = s
-			end
-		end
+        # responsible party - role - required
+        if hRParty.has_key?('role')
+            s = hRParty['role']
+            if s != ''
+                intResById[:roleName] = s
+            end
+        end
 
-		return intResById
+        return intResById
 
-	end
+    end
 
 end

@@ -6,26 +6,26 @@
 
 class DerivedUnit
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hDerived)
+    def writeXML(hDerived)
 
-		# create and identity for the unit
-		$idCount = $idCount.succ
-		unitID = 'unit' + $idCount
-		@xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
-		    @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
-			@xml.tag!('gml:name', hDerived[:name])
-			@xml.tag!('gml:remarks', hDerived[:remarks])
-			@xml.tag!('gml:catalogSymbol', hDerived[:catalogSymbol])
-			aTerms = hDerived[:derivationUnitTerm]
-			aTerms.each do |term|
-				@xml.tag!('gml:derivationUnitTerm',term)
-			end
-		end
+        # create and identity for the unit
+        $idCount = $idCount.succ
+        unitID = 'unit' + $idCount
+        @xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
+            @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
+            @xml.tag!('gml:name', hDerived[:name])
+            @xml.tag!('gml:remarks', hDerived[:remarks])
+            @xml.tag!('gml:catalogSymbol', hDerived[:catalogSymbol])
+            aTerms = hDerived[:derivationUnitTerm]
+            aTerms.each do |term|
+                @xml.tag!('gml:derivationUnitTerm', term)
+            end
+        end
 
-	end
+    end
 
 end

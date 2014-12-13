@@ -10,41 +10,41 @@ require ADIWG::Mdtranslator.reader_module('module_source', $response[:readerVers
 
 module Md_Lineage
 
-	def self.unpack(hLineage)
+    def self.unpack(hLineage)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDataLine = intMetadataClass.newLineage
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDataLine = intMetadataClass.newLineage
 
-		# lineage - statement
-		if hLineage.has_key?('statement')
-			s = hLineage['statement']
-			if s != ''
-				intDataLine[:statement] = s
-			end
-		end
+        # lineage - statement
+        if hLineage.has_key?('statement')
+            s = hLineage['statement']
+            if s != ''
+                intDataLine[:statement] = s
+            end
+        end
 
-		# lineage - process steps
-		if hLineage.has_key?('processStep')
-			aProcSteps = hLineage['processStep']
-			unless aProcSteps.empty?
-				aProcSteps.each do |hProcStep|
-					intDataLine[:processSteps] << Md_ProcessStep.unpack(hProcStep)
-				end
-			end
-		end
+        # lineage - process steps
+        if hLineage.has_key?('processStep')
+            aProcSteps = hLineage['processStep']
+            unless aProcSteps.empty?
+                aProcSteps.each do |hProcStep|
+                    intDataLine[:processSteps] << Md_ProcessStep.unpack(hProcStep)
+                end
+            end
+        end
 
-		# lineage - data sources
-		if hLineage.has_key?('source')
-			aSources = hLineage['source']
-			unless aSources.empty?
-				aSources.each do |hSource|
-					intDataLine[:dataSources] << Md_Source.unpack(hSource)
-				end
-			end
-		end
+        # lineage - data sources
+        if hLineage.has_key?('source')
+            aSources = hLineage['source']
+            unless aSources.empty?
+                aSources.each do |hSource|
+                    intDataLine[:dataSources] << Md_Source.unpack(hSource)
+                end
+            end
+        end
 
-		return intDataLine
-	end
+        return intDataLine
+    end
 
 end

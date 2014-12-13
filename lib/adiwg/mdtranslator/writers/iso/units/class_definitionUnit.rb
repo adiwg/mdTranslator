@@ -6,19 +6,19 @@
 
 class UnitDefinition
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(unit)
+    def writeXML(unit)
 
-		# create and identity for the unit
-		$idCount = $idCount.succ
-		unitID = 'unit' + $idCount
-		@xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
-		    @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
-		end
+        # create and identity for the unit
+        $idCount = $idCount.succ
+        unitID = 'unit' + $idCount
+        @xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
+            @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
+        end
 
-	end
+    end
 
 end

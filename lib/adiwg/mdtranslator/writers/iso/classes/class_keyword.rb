@@ -11,52 +11,52 @@ require 'class_citation'
 
 class MD_Keywords
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hDKeyword)
+    def writeXML(hDKeyword)
 
-		# classes used
-		citationClass = CI_Citation.new(@xml)
-		keywordCode = MD_KeywordTypeCode.new(@xml)
+        # classes used
+        citationClass = CI_Citation.new(@xml)
+        keywordCode = MD_KeywordTypeCode.new(@xml)
 
-		@xml.tag!('gmd:MD_Keywords') do
+        @xml.tag!('gmd:MD_Keywords') do
 
-			# keywords - keyword - required
-			aKeywords = hDKeyword[:keyword]
-			if aKeywords.empty?
-				@xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
-			else
-				aKeywords.each do |keyword|
-					@xml.tag!('gmd:keyword') do
-						@xml.tag!('gco:CharacterString', keyword)
-					end
-				end
-			end
+            # keywords - keyword - required
+            aKeywords = hDKeyword[:keyword]
+            if aKeywords.empty?
+                @xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
+            else
+                aKeywords.each do |keyword|
+                    @xml.tag!('gmd:keyword') do
+                        @xml.tag!('gco:CharacterString', keyword)
+                    end
+                end
+            end
 
-			# keywords - type - MD_KeywordTypeCode
-			s = hDKeyword[:keywordType]
-			if !s.nil?
-				@xml.tag!('gmd:type') do
-					keywordCode.writeXML(s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:type')
-			end
+            # keywords - type - MD_KeywordTypeCode
+            s = hDKeyword[:keywordType]
+            if !s.nil?
+                @xml.tag!('gmd:type') do
+                    keywordCode.writeXML(s)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:type')
+            end
 
-			hKeyCitation = hDKeyword[:keyTheCitation]
-			if !hKeyCitation.empty?
-				@xml.tag!('gmd:thesaurusName') do
-					citationClass.writeXML(hKeyCitation)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:thesaurusName')
-			end
+            hKeyCitation = hDKeyword[:keyTheCitation]
+            if !hKeyCitation.empty?
+                @xml.tag!('gmd:thesaurusName') do
+                    citationClass.writeXML(hKeyCitation)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:thesaurusName')
+            end
 
-		end
+        end
 
-	end
+    end
 
 end
 

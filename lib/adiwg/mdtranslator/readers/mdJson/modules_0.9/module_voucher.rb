@@ -9,30 +9,30 @@ require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:
 
 module Md_Voucher
 
-	def self.unpack(hVoucher)
+    def self.unpack(hVoucher)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intTaxVoucher = intMetadataClass.newTaxonVoucher
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intTaxVoucher = intMetadataClass.newTaxonVoucher
 
-		# taxonomy voucher - specimen
-		if hVoucher.has_key?('specimen')
-			s = hVoucher['specimen']
-			if s != ''
-				intTaxVoucher[:specimen] = s
-			end
-		end
+        # taxonomy voucher - specimen
+        if hVoucher.has_key?('specimen')
+            s = hVoucher['specimen']
+            if s != ''
+                intTaxVoucher[:specimen] = s
+            end
+        end
 
-		# taxonomy - repository - responsible party
-		if hVoucher.has_key?('repository')
-			hRepository = hVoucher['repository']
-			unless hRepository.empty?
-				intTaxVoucher[:repository] = Md_ResponsibleParty.unpack(hRepository)
-			end
-		end
+        # taxonomy - repository - responsible party
+        if hVoucher.has_key?('repository')
+            hRepository = hVoucher['repository']
+            unless hRepository.empty?
+                intTaxVoucher[:repository] = Md_ResponsibleParty.unpack(hRepository)
+            end
+        end
 
-		return intTaxVoucher
+        return intTaxVoucher
 
-	end
+    end
 
 end

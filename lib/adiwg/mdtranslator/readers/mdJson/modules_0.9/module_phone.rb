@@ -8,61 +8,61 @@
 
 module Md_Phone
 
-	def self.unpack(hPhone)
+    def self.unpack(hPhone)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		aPhones = Array.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        aPhones = Array.new
 
-		unless hPhone.empty?
+        unless hPhone.empty?
 
-			# phone - name
-			phoneName = nil
-			if hPhone.has_key?('phoneName')
-				phoneName = hPhone['phoneName']
-			end
+            # phone - name
+            phoneName = nil
+            if hPhone.has_key?('phoneName')
+                phoneName = hPhone['phoneName']
+            end
 
-			# phone - number
-			# return empty phone array if no phone number is provided
-			if hPhone.has_key?('phoneNumber')
-				phoneNum = hPhone['phoneNumber']
-				if phoneNum == ''
-					return aPhones
-				end
-			else
-				return aPhones
-			end
+            # phone - number
+            # return empty phone array if no phone number is provided
+            if hPhone.has_key?('phoneNumber')
+                phoneNum = hPhone['phoneNumber']
+                if phoneNum == ''
+                    return aPhones
+                end
+            else
+                return aPhones
+            end
 
-			# phone - service
-			# create a separate phone for each phone service type
-			# if service is missing, default service to 'voice'
-			if hPhone.has_key?('service')
-				aService = hPhone['service']
-			else
-				aService = ['voice']
-			end
+            # phone - service
+            # create a separate phone for each phone service type
+            # if service is missing, default service to 'voice'
+            if hPhone.has_key?('service')
+                aService = hPhone['service']
+            else
+                aService = ['voice']
+            end
 
-			if aService.empty?
-				aService = ['voice']
-			end
+            if aService.empty?
+                aService = ['voice']
+            end
 
-			# if service is nil, default service to 'voice'
-			aService.each do |phService|
-				intPhone = intMetadataClass.newPhone
+            # if service is nil, default service to 'voice'
+            aService.each do |phService|
+                intPhone = intMetadataClass.newPhone
 
-				# phone - service
-				intPhone[:phoneServiceType] = phService
-				intPhone[:phoneName] = phoneName
-				intPhone[:phoneNumber] = phoneNum
+                # phone - service
+                intPhone[:phoneServiceType] = phService
+                intPhone[:phoneName] = phoneName
+                intPhone[:phoneNumber] = phoneNum
 
-				aPhones << intPhone
+                aPhones << intPhone
 
-			end
+            end
 
-		end
+        end
 
-		return aPhones
+        return aPhones
 
-	end
+    end
 
 end

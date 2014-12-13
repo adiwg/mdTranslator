@@ -9,45 +9,45 @@ require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVe
 
 module Md_TimePeriod
 
-	def self.unpack(hTimePeriod)
+    def self.unpack(hTimePeriod)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
 
-		# time period
-		intTimePer = intMetadataClass.newTimePeriod
+        # time period
+        intTimePer = intMetadataClass.newTimePeriod
 
-		if hTimePeriod.has_key?('id')
-			s = hTimePeriod['id']
-			if s != ''
-				intTimePer[:timeId] = s
-			end
-		end
+        if hTimePeriod.has_key?('id')
+            s = hTimePeriod['id']
+            if s != ''
+                intTimePer[:timeId] = s
+            end
+        end
 
-		if hTimePeriod.has_key?('description')
-			s = hTimePeriod['description']
-			if s != ''
-				intTimePer[:description] = s
-			end
-		end
+        if hTimePeriod.has_key?('description')
+            s = hTimePeriod['description']
+            if s != ''
+                intTimePer[:description] = s
+            end
+        end
 
-		if hTimePeriod.has_key?('beginPosition')
-			s = hTimePeriod['beginPosition']
-			if s != ''
-				intTimePer[:beginTime] = Md_DateTime.unpack(s)
+        if hTimePeriod.has_key?('beginPosition')
+            s = hTimePeriod['beginPosition']
+            if s != ''
+                intTimePer[:beginTime] = Md_DateTime.unpack(s)
 
-			end
-		end
+            end
+        end
 
-		if hTimePeriod.has_key?('endPosition')
-			s = hTimePeriod['endPosition']
-			if s != ''
-				intTimePer[:endTime] = Md_DateTime.unpack(s)
+        if hTimePeriod.has_key?('endPosition')
+            s = hTimePeriod['endPosition']
+            if s != ''
+                intTimePer[:endTime] = Md_DateTime.unpack(s)
 
-			end
-		end
+            end
+        end
 
-		return intTimePer
-	end
+        return intTimePer
+    end
 
 end

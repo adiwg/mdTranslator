@@ -22,56 +22,56 @@ require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVe
 
 module Md_Metadata
 
-	def self.unpack(hMetadata)
+    def self.unpack(hMetadata)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intMetadata = intMetadataClass.newMetadata
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intMetadata = intMetadataClass.newMetadata
 
-		# metadata - metadataInfo
-		# metadataInfo needs access to resourceInfo to check taxonomy
-		if hMetadata.has_key?('metadataInfo')
-			intMetadata[:metadataInfo] = Md_MetadataInfo.unpack(hMetadata)
-		end
+        # metadata - metadataInfo
+        # metadataInfo needs access to resourceInfo to check taxonomy
+        if hMetadata.has_key?('metadataInfo')
+            intMetadata[:metadataInfo] = Md_MetadataInfo.unpack(hMetadata)
+        end
 
-		# metadata - resource identification info
-		if hMetadata.has_key?('resourceInfo')
-			hResourceInfo = hMetadata['resourceInfo']
-			intMetadata[:resourceInfo] = Md_ResourceInfo.unpack(hResourceInfo)
-		end
+        # metadata - resource identification info
+        if hMetadata.has_key?('resourceInfo')
+            hResourceInfo = hMetadata['resourceInfo']
+            intMetadata[:resourceInfo] = Md_ResourceInfo.unpack(hResourceInfo)
+        end
 
-		# metadata - distribution info
-		if hMetadata.has_key?('distributionInfo')
-			aDistributors = hMetadata['distributionInfo']
-			unless aDistributors.empty?
-				aDistributors.each do |hDistributor|
-					intMetadata[:distributorInfo] << Md_DistributionInfo.unpack(hDistributor)
-				end
-			end
-		end
+        # metadata - distribution info
+        if hMetadata.has_key?('distributionInfo')
+            aDistributors = hMetadata['distributionInfo']
+            unless aDistributors.empty?
+                aDistributors.each do |hDistributor|
+                    intMetadata[:distributorInfo] << Md_DistributionInfo.unpack(hDistributor)
+                end
+            end
+        end
 
-		# metadata - associated resources
-		if hMetadata.has_key?('associatedResource')
-			aAssocRes = hMetadata['associatedResource']
-			unless aAssocRes.empty?
-				aAssocRes.each do |hAssocRes|
-					intMetadata[:associatedResources] << Md_AssociatedResource.unpack(hAssocRes)
-				end
-			end
-		end
+        # metadata - associated resources
+        if hMetadata.has_key?('associatedResource')
+            aAssocRes = hMetadata['associatedResource']
+            unless aAssocRes.empty?
+                aAssocRes.each do |hAssocRes|
+                    intMetadata[:associatedResources] << Md_AssociatedResource.unpack(hAssocRes)
+                end
+            end
+        end
 
-		# metadata - additional documents
-		if hMetadata.has_key?('additionalDocumentation')
-			aAddDocs = hMetadata['additionalDocumentation']
-			unless aAddDocs.empty?
-				aAddDocs.each do |hAddDoc|
-					intMetadata[:additionalDocuments] << Md_AdditionalDocumentation.unpack(hAddDoc)
-				end
-			end
-		end
+        # metadata - additional documents
+        if hMetadata.has_key?('additionalDocumentation')
+            aAddDocs = hMetadata['additionalDocumentation']
+            unless aAddDocs.empty?
+                aAddDocs.each do |hAddDoc|
+                    intMetadata[:additionalDocuments] << Md_AdditionalDocumentation.unpack(hAddDoc)
+                end
+            end
+        end
 
-		return intMetadata
+        return intMetadata
 
-	end
+    end
 
 end

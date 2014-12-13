@@ -6,25 +6,25 @@
 
 class MD_Constraints
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(aUseCons)
+    def writeXML(aUseCons)
 
-		@xml.tag!('gmd:MD_Constraints') do
+        @xml.tag!('gmd:MD_Constraints') do
 
-			aUseCons.each do |useCon|
+            aUseCons.each do |useCon|
 
-				# use constraints - required
-				@xml.tag!('gmd:useLimitation') do
-						@xml.tag!('gco:CharacterString',useCon)
-				end
+                # use constraints - required
+                @xml.tag!('gmd:useLimitation') do
+                    @xml.tag!('gco:CharacterString', useCon)
+                end
 
-			end
+            end
 
-		end
+        end
 
-	end
+    end
 
 end

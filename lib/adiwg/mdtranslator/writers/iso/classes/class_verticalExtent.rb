@@ -6,54 +6,54 @@
 
 class EX_VerticalExtent
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hVertEle)
+    def writeXML(hVertEle)
 
-		@xml.tag!('gmd:EX_VerticalExtent') do
+        @xml.tag!('gmd:EX_VerticalExtent') do
 
-			# vertical extent - minimum value - required
-			s = hVertEle[:minValue]
-			if s.nil?
-				@xml.tag!('gmd:minimumValue', {'gco:nilReason' => 'missing'})
-			else
-				@xml.tag!('gmd:minimumValue') do
-					@xml.tag!('gco:Real', s)
-				end
-			end
+            # vertical extent - minimum value - required
+            s = hVertEle[:minValue]
+            if s.nil?
+                @xml.tag!('gmd:minimumValue', {'gco:nilReason' => 'missing'})
+            else
+                @xml.tag!('gmd:minimumValue') do
+                    @xml.tag!('gco:Real', s)
+                end
+            end
 
-			# vertical extent - maximum value - required
-			s = hVertEle[:maxValue]
-			if s.nil?
-				@xml.tag!('gmd:maximumValue', {'gco:nilReason' => 'missing'})
-			else
-				@xml.tag!('gmd:maximumValue') do
-					@xml.tag!('gco:Real', s)
-				end
-			end
+            # vertical extent - maximum value - required
+            s = hVertEle[:maxValue]
+            if s.nil?
+                @xml.tag!('gmd:maximumValue', {'gco:nilReason' => 'missing'})
+            else
+                @xml.tag!('gmd:maximumValue') do
+                    @xml.tag!('gco:Real', s)
+                end
+            end
 
-			# vertical extent - vertical crs - attributes only - required
-			attributes = {}
-			s = hVertEle[:crsURI]
-			unless s.nil?
-				attributes['xlink:href'] = s
-			end
-			s = hVertEle[:crsTitle]
-			unless s.nil?
-				attributes['xlink:title'] = s
-			end
+            # vertical extent - vertical crs - attributes only - required
+            attributes = {}
+            s = hVertEle[:crsURI]
+            unless s.nil?
+                attributes['xlink:href'] = s
+            end
+            s = hVertEle[:crsTitle]
+            unless s.nil?
+                attributes['xlink:title'] = s
+            end
 
-			if attributes.empty?
-				attributes['gco:nilReason'] = 'missing'
-			end
+            if attributes.empty?
+                attributes['gco:nilReason'] = 'missing'
+            end
 
-			@xml.tag!('gmd:verticalCRS',attributes)
+            @xml.tag!('gmd:verticalCRS', attributes)
 
 
-		end
+        end
 
-	end
+    end
 
 end

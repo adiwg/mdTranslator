@@ -16,29 +16,29 @@
 
 class Multiplicity
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(allowNull)
+    def writeXML(allowNull)
 
-		# xml for iso classes Multiplicity and MultiplicityRange
-		@xml.tag!('gco:Multiplicity') do
-			@xml.tag!('gco:range') do
-				@xml.tag!('gco:MultiplicityRange') do
-					@xml.tag!('gco:lower') do
-						if !allowNull
-							range = 1
-						else
-							range = 0
-						end
-						@xml.tag!('gco:Integer',range)
-					end
-					@xml.tag!('gco:upper')
-				end
-			end
-		end
+        # xml for iso classes Multiplicity and MultiplicityRange
+        @xml.tag!('gco:Multiplicity') do
+            @xml.tag!('gco:range') do
+                @xml.tag!('gco:MultiplicityRange') do
+                    @xml.tag!('gco:lower') do
+                        if !allowNull
+                            range = 1
+                        else
+                            range = 0
+                        end
+                        @xml.tag!('gco:Integer', range)
+                    end
+                    @xml.tag!('gco:upper')
+                end
+            end
+        end
 
-	end
+    end
 
 end

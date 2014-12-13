@@ -24,145 +24,145 @@ require ADIWG::Mdtranslator.reader_module('module_polygon', $response[:readerVer
 
 module Md_GeographicElement
 
-	def self.unpack(aGeoElements)
+    def self.unpack(aGeoElements)
 
-		# only one geometry is allowed per geographic element.
-		# ... in GeoJSON each geometry is allowed a bounding box;
-		# ... This code splits bounding boxes to separate elements
+        # only one geometry is allowed per geographic element.
+        # ... in GeoJSON each geometry is allowed a bounding box;
+        # ... This code splits bounding boxes to separate elements
 
-		# instance classes needed in script
-		aIntGeoEle = Array.new
+        # instance classes needed in script
+        aIntGeoEle = Array.new
 
-		aGeoElements.each do |hGeoJsonElement|
+        aGeoElements.each do |hGeoJsonElement|
 
-			# instance classes needed in script
-			intMetadataClass = InternalMetadata.new
-			hGeoElement = intMetadataClass.newGeoElement
+            # instance classes needed in script
+            intMetadataClass = InternalMetadata.new
+            hGeoElement = intMetadataClass.newGeoElement
 
-			# find geographic element type
-			if hGeoJsonElement.has_key?('type')
-				elementType = hGeoJsonElement['type']
-			else
-				# invalid geographic element
-				return nil
-			end
+            # find geographic element type
+            if hGeoJsonElement.has_key?('type')
+                elementType = hGeoJsonElement['type']
+            else
+                # invalid geographic element
+                return nil
+            end
 
-			# set geographic element id
-			if hGeoJsonElement.has_key?('id')
-				s = hGeoJsonElement['id']
-				if s != ''
-					hGeoElement[:elementId] = s
-				end
-			end
+            # set geographic element id
+            if hGeoJsonElement.has_key?('id')
+                s = hGeoJsonElement['id']
+                if s != ''
+                    hGeoElement[:elementId] = s
+                end
+            end
 
-			# set geographic element coordinate reference system - CRS
-			if hGeoJsonElement.has_key?('crs')
-				hGeoCrs = hGeoJsonElement['crs']
-				Md_GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
-			end
+            # set geographic element coordinate reference system - CRS
+            if hGeoJsonElement.has_key?('crs')
+                hGeoCrs = hGeoJsonElement['crs']
+                Md_GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
+            end
 
-			# set geographic element properties
-			if hGeoJsonElement.has_key?('properties')
-				hGeoProps = hGeoJsonElement['properties']
-				Md_GeoProperties.unpack(hGeoProps, hGeoElement)
-			end
+            # set geographic element properties
+            if hGeoJsonElement.has_key?('properties')
+                hGeoProps = hGeoJsonElement['properties']
+                Md_GeoProperties.unpack(hGeoProps, hGeoElement)
+            end
 
-			# process geographic element bounding box
-			# the bounding box must be represented as a separate geographic element for ISO
-			# need to make a deep copy of current state of geographic element for bounding box
-			if hGeoJsonElement.has_key?('bbox')
-				if hGeoJsonElement['bbox'].length == 4
-					aBBox = hGeoJsonElement['bbox']
+            # process geographic element bounding box
+            # the bounding box must be represented as a separate geographic element for ISO
+            # need to make a deep copy of current state of geographic element for bounding box
+            if hGeoJsonElement.has_key?('bbox')
+                if hGeoJsonElement['bbox'].length == 4
+                    aBBox = hGeoJsonElement['bbox']
 
-					boxElement = Marshal.load(Marshal.dump(hGeoElement))
-					boxElement[:elementGeometry] = Md_BoundingBox.unpack(aBBox)
+                    boxElement = Marshal.load(Marshal.dump(hGeoElement))
+                    boxElement[:elementGeometry] = Md_BoundingBox.unpack(aBBox)
 
-					aIntGeoEle << boxElement
-				end
-			end
+                    aIntGeoEle << boxElement
+                end
+            end
 
-			# unpack geographic element
-			case elementType
+            # unpack geographic element
+            case elementType
 
-				# GeoJSON Features
-				when 'Feature'
-					if hGeoJsonElement.has_key?('geometry')
-						hGeometry = hGeoJsonElement['geometry']
+                # GeoJSON Features
+                when 'Feature'
+                    if hGeoJsonElement.has_key?('geometry')
+                        hGeometry = hGeoJsonElement['geometry']
 
-						# geoJSON requires geometry to be 'null' when geometry is bounding box only
-						# JSON null converts in parsing to ruby nil
-						unless hGeometry.nil?
-							unless hGeometry.empty?
-								if hGeometry.has_key?('type')
-									geometryType = hGeometry['type']
-									aCoordinates = hGeometry['coordinates']
-									unless aCoordinates.empty?
-										case geometryType
-											when 'Point', 'MultiPoint'
-												hGeoElement[:elementGeometry] = Md_Point.unpack(aCoordinates, geometryType)
-											when 'LineString', 'MultiLineString'
-												hGeoElement[:elementGeometry] = Md_LineString.unpack(aCoordinates, geometryType)
-											when 'Polygon', 'MultiPolygon'
-												hGeoElement[:elementGeometry] = Md_Polygon.unpack(aCoordinates, geometryType)
-											else
-												# log - the GeoJSON geometry type is not supported
-										end
-										aIntGeoEle << hGeoElement
-									end
-								end
-							end
-						end
+                        # geoJSON requires geometry to be 'null' when geometry is bounding box only
+                        # JSON null converts in parsing to ruby nil
+                        unless hGeometry.nil?
+                            unless hGeometry.empty?
+                                if hGeometry.has_key?('type')
+                                    geometryType = hGeometry['type']
+                                    aCoordinates = hGeometry['coordinates']
+                                    unless aCoordinates.empty?
+                                        case geometryType
+                                            when 'Point', 'MultiPoint'
+                                                hGeoElement[:elementGeometry] = Md_Point.unpack(aCoordinates, geometryType)
+                                            when 'LineString', 'MultiLineString'
+                                                hGeoElement[:elementGeometry] = Md_LineString.unpack(aCoordinates, geometryType)
+                                            when 'Polygon', 'MultiPolygon'
+                                                hGeoElement[:elementGeometry] = Md_Polygon.unpack(aCoordinates, geometryType)
+                                            else
+                                                # log - the GeoJSON geometry type is not supported
+                                        end
+                                        aIntGeoEle << hGeoElement
+                                    end
+                                end
+                            end
+                        end
 
-					end
+                    end
 
-				# GeoJSON Feature Collection
-				when 'FeatureCollection'
-					if hGeoJsonElement.has_key?('features')
-						aFeatures = hGeoJsonElement['features']
-						unless aFeatures.empty?
-							intGeometry = intMetadataClass.newGeometry
-							intGeometry[:geoType] = 'MultiGeometry'
-							intGeometry[:geometry] = Md_GeographicElement.unpack(aFeatures)
-							hGeoElement[:elementGeometry] = intGeometry
-							aIntGeoEle << hGeoElement
-						end
-					end
+                # GeoJSON Feature Collection
+                when 'FeatureCollection'
+                    if hGeoJsonElement.has_key?('features')
+                        aFeatures = hGeoJsonElement['features']
+                        unless aFeatures.empty?
+                            intGeometry = intMetadataClass.newGeometry
+                            intGeometry[:geoType] = 'MultiGeometry'
+                            intGeometry[:geometry] = Md_GeographicElement.unpack(aFeatures)
+                            hGeoElement[:elementGeometry] = intGeometry
+                            aIntGeoEle << hGeoElement
+                        end
+                    end
 
-				# GeoJSON Geometries
-				when 'Point', 'MultiPoint'
-					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = Md_Point.unpack(aCoordinates, elementType)
-					aIntGeoEle << hGeoElement
+                # GeoJSON Geometries
+                when 'Point', 'MultiPoint'
+                    aCoordinates = hGeoJsonElement['coordinates']
+                    hGeoElement[:elementGeometry] = Md_Point.unpack(aCoordinates, elementType)
+                    aIntGeoEle << hGeoElement
 
-				when 'LineString', 'MultiLineString'
-					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = Md_LineString.unpack(aCoordinates, elementType)
-					aIntGeoEle << hGeoElement
+                when 'LineString', 'MultiLineString'
+                    aCoordinates = hGeoJsonElement['coordinates']
+                    hGeoElement[:elementGeometry] = Md_LineString.unpack(aCoordinates, elementType)
+                    aIntGeoEle << hGeoElement
 
-				when 'Polygon', 'MultiPolygon'
-					aCoordinates = hGeoJsonElement['coordinates']
-					hGeoElement[:elementGeometry] = Md_Polygon.unpack(aCoordinates, elementType)
-					aIntGeoEle << hGeoElement
+                when 'Polygon', 'MultiPolygon'
+                    aCoordinates = hGeoJsonElement['coordinates']
+                    hGeoElement[:elementGeometry] = Md_Polygon.unpack(aCoordinates, elementType)
+                    aIntGeoEle << hGeoElement
 
-				# GeoJSON Geometry Collection
-				when 'GeometryCollection'
-					if hGeoJsonElement.has_key?('geometries')
-						aGeometries = hGeoJsonElement['geometries']
-						unless aGeometries.empty?
-							intGeometry = intMetadataClass.newGeometry
-							intGeometry[:geoType] = 'MultiGeometry'
-							intGeometry[:geometry] = Md_GeographicElement.unpack(aGeometries)
-							hGeoElement[:elementGeometry] = intGeometry
-							aIntGeoEle << hGeoElement
-						end
-					end
+                # GeoJSON Geometry Collection
+                when 'GeometryCollection'
+                    if hGeoJsonElement.has_key?('geometries')
+                        aGeometries = hGeoJsonElement['geometries']
+                        unless aGeometries.empty?
+                            intGeometry = intMetadataClass.newGeometry
+                            intGeometry[:geoType] = 'MultiGeometry'
+                            intGeometry[:geometry] = Md_GeographicElement.unpack(aGeometries)
+                            hGeoElement[:elementGeometry] = intGeometry
+                            aIntGeoEle << hGeoElement
+                        end
+                    end
 
-			end
+            end
 
-		end
+        end
 
-		return aIntGeoEle
+        return aIntGeoEle
 
-	end
+    end
 
 end

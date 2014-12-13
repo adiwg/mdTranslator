@@ -11,41 +11,41 @@ require 'class_citation'
 
 class MD_Identifier
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hResID)
+    def writeXML(hResID)
 
-		# the authority for the identifier is a citation block
+        # the authority for the identifier is a citation block
 
-		# classes used in MD_Metadata
-		citationClass = CI_Citation.new(@xml)
+        # classes used in MD_Metadata
+        citationClass = CI_Citation.new(@xml)
 
-		@xml.tag!('gmd:MD_Identifier') do
+        @xml.tag!('gmd:MD_Identifier') do
 
-			# identifier - authority
-			hCitation = hResID[:identifierCitation]
-			if !hCitation.empty?
-				@xml.tag!('gmd:authority') do
-					citationClass.writeXML(hCitation)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:authority')
-			end
+            # identifier - authority
+            hCitation = hResID[:identifierCitation]
+            if !hCitation.empty?
+                @xml.tag!('gmd:authority') do
+                    citationClass.writeXML(hCitation)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:authority')
+            end
 
-			# identity - code - required
-			s = hResID[:identifier]
-			if !s.nil?
-				@xml.tag!('gmd:code') do
-					@xml.tag!('gco:CharacterString', s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:code')
-			end
+            # identity - code - required
+            s = hResID[:identifier]
+            if !s.nil?
+                @xml.tag!('gmd:code') do
+                    @xml.tag!('gco:CharacterString', s)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:code')
+            end
 
-		end
+        end
 
-	end
+    end
 
 end

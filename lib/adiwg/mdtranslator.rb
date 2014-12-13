@@ -11,70 +11,70 @@
 #   Stan Smith 2014-09-26 added processing of minor release numbers
 #   Stan Smith 2014-10-10 added method to return path to readers and writers
 #   Stan Smith 2014-10-11 added methods to return content of readme files
-#   Stan Smith 2014-12-01 changed adiwgJson ot mdJson
+#   Stan Smith 2014-12-01 changed adiwgJson to mdJson
 #   Stan Smith 2014-12-01 added writer iso19110 (feature catalogue)
 #   Stan Smith 2014-12-01 added translator version to $response
 #   Stan Smith 2014-12-02 organized shared class/code/units folders for 19115-2, 19110
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
 
 # add main directories to load_path
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__),'mdtranslator/internal'))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'mdtranslator/internal'))
 
 require 'adiwg/mdtranslator/version'
 
 module ADIWG
-	module Mdtranslator
+    module Mdtranslator
 
-		def self.translate(file, reader, writer='', validate='normal', showAllTags=false)
+        def self.translate(file, reader, writer='', validate='normal', showAllTags=false)
 
-			$showAllTags = showAllTags
+            $showAllTags = showAllTags
 
-			# load and return this hash
-			$response = {
-				readerFormat: nil,
-				readerStructurePass: nil,
-				readerStructureMessages: [],
-				readerRequested: reader,
-				readerFound: nil,
-				readerVersionFound: nil,
-				readerVersionUsed: nil,
-				readerValidationLevel: validate,
-				readerValidationPass: nil,
-				readerValidationMessages: [],
-				readerExecutionPass: nil,
-				readerExecutionMessages: [],
-				writerName: writer,
-				writerVersion: ADIWG::Mdtranslator::VERSION,
-				writerFormat: nil,
-				writerPass: nil,
-				writerMessages: [],
-				writerOutput: nil
-			}
+            # load and return this hash
+            $response = {
+                readerFormat: nil,
+                readerStructurePass: nil,
+                readerStructureMessages: [],
+                readerRequested: reader,
+                readerFound: nil,
+                readerVersionFound: nil,
+                readerVersionUsed: nil,
+                readerValidationLevel: validate,
+                readerValidationPass: nil,
+                readerValidationMessages: [],
+                readerExecutionPass: nil,
+                readerExecutionMessages: [],
+                writerName: writer,
+                writerVersion: ADIWG::Mdtranslator::VERSION,
+                writerFormat: nil,
+                writerPass: nil,
+                writerMessages: [],
+                writerOutput: nil
+            }
 
-			# handle readers
-			if reader
-				require File.join(File.dirname(__FILE__),'mdtranslator/readers/mdReaders')
-				intObj = ADIWG::Mdtranslator::Readers.handleReader(file)
+            # handle readers
+            if reader
+                require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
+                intObj = ADIWG::Mdtranslator::Readers.handleReader(file)
 
-				if intObj
-					$response[:readerExecutionPass] = true
-				else
-					$response[:readerExecutionPass] = false
-					$response[:readerExecutionMessages] << 'Reader failed to complete.'
-					return false
-				end
-			end
+                if intObj
+                    $response[:readerExecutionPass] = true
+                else
+                    $response[:readerExecutionPass] = false
+                    $response[:readerExecutionMessages] << 'Reader failed to complete.'
+                    return false
+                end
+            end
 
-			# handle writers
-			if writer
-				require File.join(File.dirname(__FILE__),'mdtranslator/writers/mdWriters')
-				ADIWG::Mdtranslator::Writers.handleWriter(intObj)
-			else
-				$response[:writerPass] = false
-				$response[:writerMessages] << 'Writer name is missing.'
-			end
+            # handle writers
+            if writer
+                require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
+                ADIWG::Mdtranslator::Writers.handleWriter(intObj)
+            else
+                $response[:writerPass] = false
+                $response[:writerMessages] << 'Writer name is missing.'
+            end
 
-		end
+        end
 
-	end
+    end
 end

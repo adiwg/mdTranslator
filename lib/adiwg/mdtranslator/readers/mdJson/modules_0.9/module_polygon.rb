@@ -12,44 +12,44 @@ require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:reade
 
 module Md_Polygon
 
-	def self.unpack(aCoords, geoType)
-		intMetadataClass = InternalMetadata.new
-		intGeometry = intMetadataClass.newGeometry
-		intGeometry[:geoType] = geoType
+    def self.unpack(aCoords, geoType)
+        intMetadataClass = InternalMetadata.new
+        intGeometry = intMetadataClass.newGeometry
+        intGeometry[:geoType] = geoType
 
-		# polygon - coordinate(s)
-		if geoType == 'Polygon'
-			intGeometry[:geometry] = splitPolygons(aCoords)
-			intGeometry[:dimension] = Md_Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
-		elsif geoType == 'MultiPolygon'
-			aPolySets = Array.new
-			aCoords.each do |aPolygonSet|
-				aPolySets << splitPolygons(aPolygonSet)
-			end
-			intGeometry[:geometry] = aPolySets
-		end
+        # polygon - coordinate(s)
+        if geoType == 'Polygon'
+            intGeometry[:geometry] = splitPolygons(aCoords)
+            intGeometry[:dimension] = Md_Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
+        elsif geoType == 'MultiPolygon'
+            aPolySets = Array.new
+            aCoords.each do |aPolygonSet|
+                aPolySets << splitPolygons(aPolygonSet)
+            end
+            intGeometry[:geometry] = aPolySets
+        end
 
-		return intGeometry
-	end
+        return intGeometry
+    end
 
-	def self.splitPolygons(aPolySet)
-		intMetadataClass = InternalMetadata.new
-		intPolygonSet = intMetadataClass.newPolygonSet
+    def self.splitPolygons(aPolySet)
+        intMetadataClass = InternalMetadata.new
+        intPolygonSet = intMetadataClass.newPolygonSet
 
-		# first polygon in set is a bounding exterior ring
-		# all subsequent polygons are exclusion rings
-		i = 0
-		aPolySet.each do |aPolygon|
-			i += 1
-			if i == 1
-				intPolygonSet[:exteriorRing] = aPolygon
-			else
-				intPolygonSet[:exclusionRings] << aPolygon
-			end
+        # first polygon in set is a bounding exterior ring
+        # all subsequent polygons are exclusion rings
+        i = 0
+        aPolySet.each do |aPolygon|
+            i += 1
+            if i == 1
+                intPolygonSet[:exteriorRing] = aPolygon
+            else
+                intPolygonSet[:exclusionRings] << aPolygon
+            end
 
-		end
+        end
 
-		return intPolygonSet
-	end
+        return intPolygonSet
+    end
 
 end

@@ -17,40 +17,40 @@ require 'adiwg-json_schemas'
 require 'adiwg/mdtranslator/readers/mdJson/validator.rb'
 
 module ADIWG
-	module Mdtranslator
-		module Readers
-			module MdJson
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-				# validate json against the adiwg-json_schemas
-				# only one schema version is supported at this time
-				def self.validate(file)
-					begin
+                # validate json against the adiwg-json_schemas
+                # only one schema version is supported at this time
+                def self.validate(file)
+                    begin
 
-						schema = ADIWG::JsonSchemas::Utils.schema_path
-						aValErrs = Array.new
-						if $response[:readerValidationLevel] == 'strict'
-							aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
-						elsif $response[:readerValidationLevel] == 'normal'
-							aValErrs = JSON::Validator.fully_validate(schema, file, :errors_as_objects => true)
-						end
+                        schema = ADIWG::JsonSchemas::Utils.schema_path
+                        aValErrs = Array.new
+                        if $response[:readerValidationLevel] == 'strict'
+                            aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
+                        elsif $response[:readerValidationLevel] == 'normal'
+                            aValErrs = JSON::Validator.fully_validate(schema, file, :errors_as_objects => true)
+                        end
 
-						if aValErrs.length > 0
-							$response[:readerValidationPass] = false
-							$response[:readerValidationMessages] = aValErrs
-							return
-						end
-					rescue JSON::Schema::ValidationError
-						$response[:readerValidationPass] = false
-						$response[:readerValidationMessages] << $!.message
-						return
-					end
+                        if aValErrs.length > 0
+                            $response[:readerValidationPass] = false
+                            $response[:readerValidationMessages] = aValErrs
+                            return
+                        end
+                    rescue JSON::Schema::ValidationError
+                        $response[:readerValidationPass] = false
+                        $response[:readerValidationMessages] << $!.message
+                        return
+                    end
 
-					$response[:readerValidationPass] = true
-				end
+                    $response[:readerValidationPass] = true
+                end
 
-			end
-		end
-	end
+            end
+        end
+    end
 end
 
 

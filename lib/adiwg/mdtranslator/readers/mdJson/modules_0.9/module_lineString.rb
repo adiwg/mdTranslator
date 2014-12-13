@@ -11,15 +11,15 @@ require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:reade
 
 module Md_LineString
 
-	def self.unpack(aCoords, geoType)
-		intMetadataClass = InternalMetadata.new
-		intLine = intMetadataClass.newGeometry
+    def self.unpack(aCoords, geoType)
+        intMetadataClass = InternalMetadata.new
+        intLine = intMetadataClass.newGeometry
 
-		intLine[:geoType] = geoType
-		intLine[:geometry] = aCoords
-		intLine[:dimension] = Md_Coordinates.getDimension(aCoords)
+        intLine[:geoType] = geoType
+        intLine[:geometry] = aCoords
+        intLine[:dimension] = Md_Coordinates.getDimension(aCoords)
 
-		return intLine
-	end
+        return intLine
+    end
 
 end

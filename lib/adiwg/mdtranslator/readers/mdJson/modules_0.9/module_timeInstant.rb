@@ -9,37 +9,37 @@ require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVe
 
 module Md_TimeInstant
 
-	def self.unpack(hTimeInst)
+    def self.unpack(hTimeInst)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
 
-		# time instant
-		intTimeInst = intMetadataClass.newTimeInstant
+        # time instant
+        intTimeInst = intMetadataClass.newTimeInstant
 
-		if hTimeInst.has_key?('id')
-			s = hTimeInst['id']
-			if s != ''
-				intTimeInst[:timeId] = s
-			end
-		end
+        if hTimeInst.has_key?('id')
+            s = hTimeInst['id']
+            if s != ''
+                intTimeInst[:timeId] = s
+            end
+        end
 
-		if hTimeInst.has_key?('description')
-			s = hTimeInst['description']
-			if s != ''
-				intTimeInst[:description] = s
-			end
-		end
+        if hTimeInst.has_key?('description')
+            s = hTimeInst['description']
+            if s != ''
+                intTimeInst[:description] = s
+            end
+        end
 
-		# time instant will only be inserted if time position provided
-		if hTimeInst.has_key?('timePosition')
-			s = hTimeInst['timePosition']
-			if s != ''
-				intTimeInst[:timePosition] = Md_DateTime.unpack(s)
-			end
-		end
+        # time instant will only be inserted if time position provided
+        if hTimeInst.has_key?('timePosition')
+            s = hTimeInst['timePosition']
+            if s != ''
+                intTimeInst[:timePosition] = Md_DateTime.unpack(s)
+            end
+        end
 
-		return intTimeInst
-	end
+        return intTimeInst
+    end
 
 end

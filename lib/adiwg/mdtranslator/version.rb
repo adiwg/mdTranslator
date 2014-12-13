@@ -24,9 +24,9 @@
 # 0.10.2 2014-12-05
 
 module ADIWG
-	module Mdtranslator
-		# current mdtranslator version
-		VERSION = "0.10.2"
-	end
+    module Mdtranslator
+        # current mdtranslator version
+        VERSION = "0.10.2"
+    end
 end
 

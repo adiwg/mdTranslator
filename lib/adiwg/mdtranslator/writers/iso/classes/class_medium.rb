@@ -10,50 +10,50 @@ require 'code_mediumFormat'
 
 class MD_Medium
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(medium)
+    def writeXML(medium)
 
-		# classes used
-		medFormatCode = MD_MediumFormatCode.new(@xml)
-		medNameCode = MD_MediumNameCode.new(@xml)
+        # classes used
+        medFormatCode = MD_MediumFormatCode.new(@xml)
+        medNameCode = MD_MediumNameCode.new(@xml)
 
-		@xml.tag!('gmd:MD_Medium') do
+        @xml.tag!('gmd:MD_Medium') do
 
-			# medium - name - MD_MediumNameCode
-			s = medium[:mediumName]
-			if !s.nil?
-				@xml.tag!('gmd:name') do
-					medNameCode.writeXML(s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:name')
-			end
+            # medium - name - MD_MediumNameCode
+            s = medium[:mediumName]
+            if !s.nil?
+                @xml.tag!('gmd:name') do
+                    medNameCode.writeXML(s)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:name')
+            end
 
-			# medium - medium format - MD_MediumFormatCode
-			s = medium[:mediumFormat]
-			if !s.nil?
-				@xml.tag!('gmd:mediumFormat') do
-					medFormatCode.writeXML(s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:mediumFormat')
-			end
+            # medium - medium format - MD_MediumFormatCode
+            s = medium[:mediumFormat]
+            if !s.nil?
+                @xml.tag!('gmd:mediumFormat') do
+                    medFormatCode.writeXML(s)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:mediumFormat')
+            end
 
-			# medium - medium note
-			s = medium[:mediumNote]
-			if !s.nil?
-				@xml.tag!('gmd:mediumNote') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:mediumNote')
-			end
+            # medium - medium note
+            s = medium[:mediumNote]
+            if !s.nil?
+                @xml.tag!('gmd:mediumNote') do
+                    @xml.tag!('gco:CharacterString', s)
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:mediumNote')
+            end
 
-		end
+        end
 
-	end
+    end
 
 end

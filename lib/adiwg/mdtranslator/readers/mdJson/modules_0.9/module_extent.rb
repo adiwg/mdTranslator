@@ -15,48 +15,48 @@ require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:r
 
 module Md_Extent
 
-	def self.unpack(hExtent)
+    def self.unpack(hExtent)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intExtent = intMetadataClass.newExtent
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intExtent = intMetadataClass.newExtent
 
-		# extent - description
-		if hExtent.has_key?('description')
-			s = hExtent['description']
-			if s != ''
-				intExtent[:extDesc] = s
-			end
-		end
+        # extent - description
+        if hExtent.has_key?('description')
+            s = hExtent['description']
+            if s != ''
+                intExtent[:extDesc] = s
+            end
+        end
 
-		# extent - geographic elements
-		if hExtent.has_key?('geographicElement')
-			aGeoElements = hExtent['geographicElement']
-			unless aGeoElements.empty?
-				intExtent[:extGeoElements] = Md_GeographicElement.unpack(aGeoElements)
-			end
-		end
+        # extent - geographic elements
+        if hExtent.has_key?('geographicElement')
+            aGeoElements = hExtent['geographicElement']
+            unless aGeoElements.empty?
+                intExtent[:extGeoElements] = Md_GeographicElement.unpack(aGeoElements)
+            end
+        end
 
-		# extent - temporal elements
-		if hExtent.has_key?('temporalElement')
-			hTempElement = hExtent['temporalElement']
-			unless hTempElement.empty?
-				intExtent[:extTempElements] = Md_TemporalElement.unpack(hTempElement)
-			end
-		end
+        # extent - temporal elements
+        if hExtent.has_key?('temporalElement')
+            hTempElement = hExtent['temporalElement']
+            unless hTempElement.empty?
+                intExtent[:extTempElements] = Md_TemporalElement.unpack(hTempElement)
+            end
+        end
 
-		# extent - vertical elements
-		if hExtent.has_key?('verticalElement')
-			aVertElements = hExtent['verticalElement']
-			unless aVertElements.empty?
-				aVertElements.each do |hVertElement|
-					intExtent[:extVertElements] << Md_VerticalElement.unpack(hVertElement)
-				end
-			end
-		end
+        # extent - vertical elements
+        if hExtent.has_key?('verticalElement')
+            aVertElements = hExtent['verticalElement']
+            unless aVertElements.empty?
+                aVertElements.each do |hVertElement|
+                    intExtent[:extVertElements] << Md_VerticalElement.unpack(hVertElement)
+                end
+            end
+        end
 
-		return intExtent
+        return intExtent
 
-	end
+    end
 
 end

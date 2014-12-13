@@ -8,20 +8,20 @@ require 'module_dateTimeFun'
 
 module Md_DateTime
 
-	def self.unpack(sDateTime)
+    def self.unpack(sDateTime)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
 
-		# dateTime
-		intDateTime = intMetadataClass.newDateTime
+        # dateTime
+        intDateTime = intMetadataClass.newDateTime
 
-		aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
-		intDateTime[:dateTime] = aDateTimeReturn[0]
-		intDateTime[:dateResolution] = aDateTimeReturn[1]
+        aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
+        intDateTime[:dateTime] = aDateTimeReturn[0]
+        intDateTime[:dateResolution] = aDateTimeReturn[1]
 
-		return intDateTime
+        return intDateTime
 
-	end
+    end
 
 end

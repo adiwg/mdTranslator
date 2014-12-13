@@ -12,39 +12,39 @@ require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:
 
 module Md_ResourceMaintenance
 
-	def self.unpack(hResource)
+    def self.unpack(hResource)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intResMaint = intMetadataClass.newResourceMaint
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intResMaint = intMetadataClass.newResourceMaint
 
-		# resource maintenance - frequency code
-		if hResource.has_key?('maintenanceFrequency')
-			s = hResource['maintenanceFrequency']
-			if s != ''
-				intResMaint[:maintFreq] = s
-			end
-		end
+        # resource maintenance - frequency code
+        if hResource.has_key?('maintenanceFrequency')
+            s = hResource['maintenanceFrequency']
+            if s != ''
+                intResMaint[:maintFreq] = s
+            end
+        end
 
-		# resource maintenance - maintenance note
-		if hResource.has_key?('maintenanceNote')
-			aNotes = hResource['maintenanceNote']
-			unless aNotes.empty?
-				intResMaint[:maintNotes] = aNotes
-			end
-		end
+        # resource maintenance - maintenance note
+        if hResource.has_key?('maintenanceNote')
+            aNotes = hResource['maintenanceNote']
+            unless aNotes.empty?
+                intResMaint[:maintNotes] = aNotes
+            end
+        end
 
-		# resource maintenance - contact
-		if hResource.has_key?('maintenanceContact')
-			aContact = hResource['maintenanceContact']
-			unless aContact.empty?
-				aContact.each do |hContact|
-					intResMaint[:maintContacts] << Md_ResponsibleParty.unpack(hContact)
-				end
-			end
-		end
+        # resource maintenance - contact
+        if hResource.has_key?('maintenanceContact')
+            aContact = hResource['maintenanceContact']
+            unless aContact.empty?
+                aContact.each do |hContact|
+                    intResMaint[:maintContacts] << Md_ResponsibleParty.unpack(hContact)
+                end
+            end
+        end
 
-		return intResMaint
-	end
+        return intResMaint
+    end
 
 end

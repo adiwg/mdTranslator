@@ -7,71 +7,71 @@
 
 class CI_Telephone
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(aPhones)
+    def writeXML(aPhones)
 
-	    # ISO requires phones to be in proper order (voice, fax)
-		# Need to count phones of each type to be able to include empty tag
-		voiceCount = 0
-		faxCount = 0
-		aPhones.each do |hPhone|
-			if hPhone[:phoneServiceType].nil?
-				hPhone[:phoneServiceType] = 'voice'
-			end
-			if hPhone[:phoneServiceType] == 'voice'
-				voiceCount += 1
-			end
-			if hPhone[:phoneServiceType] == 'fax'
-				faxCount += 1
-			end
-		end
+        # ISO requires phones to be in proper order (voice, fax)
+        # Need to count phones of each type to be able to include empty tag
+        voiceCount = 0
+        faxCount = 0
+        aPhones.each do |hPhone|
+            if hPhone[:phoneServiceType].nil?
+                hPhone[:phoneServiceType] = 'voice'
+            end
+            if hPhone[:phoneServiceType] == 'voice'
+                voiceCount += 1
+            end
+            if hPhone[:phoneServiceType] == 'fax'
+                faxCount += 1
+            end
+        end
 
-		@xml.tag!('gmd:CI_Telephone') do
+        @xml.tag!('gmd:CI_Telephone') do
 
-			# phone - voice phones
-			if voiceCount > 0
-				aPhones.each do |hPhone|
-					if hPhone[:phoneServiceType] == 'voice'
-						pName = hPhone[:phoneName]
-						pNumber = hPhone[:phoneNumber]
-						if pName.nil?
-							s = pNumber
-						else
-							s = pName + ': ' + pNumber
-						end
-						@xml.tag!('gmd:voice') do
-							@xml.tag!('gco:CharacterString',s)
-						end
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:voice')
-			end
+            # phone - voice phones
+            if voiceCount > 0
+                aPhones.each do |hPhone|
+                    if hPhone[:phoneServiceType] == 'voice'
+                        pName = hPhone[:phoneName]
+                        pNumber = hPhone[:phoneNumber]
+                        if pName.nil?
+                            s = pNumber
+                        else
+                            s = pName + ': ' + pNumber
+                        end
+                        @xml.tag!('gmd:voice') do
+                            @xml.tag!('gco:CharacterString', s)
+                        end
+                    end
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:voice')
+            end
 
-			# phone - fax phones
-			if faxCount > 0
-				aPhones.each do |hPhone|
-					if hPhone[:phoneServiceType] == 'fax'
-						pName = hPhone[:phoneName]
-						pNumber = hPhone[:phoneNumber]
-						if pName.nil?
-							s = pNumber
-						else
-							s = pName + ': ' + pNumber
-						end
-						@xml.tag!('gmd:facsimile') do
-							@xml.tag!('gco:CharacterString',s)
-						end
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:facsimile')
-			end
-		end
+            # phone - fax phones
+            if faxCount > 0
+                aPhones.each do |hPhone|
+                    if hPhone[:phoneServiceType] == 'fax'
+                        pName = hPhone[:phoneName]
+                        pNumber = hPhone[:phoneNumber]
+                        if pName.nil?
+                            s = pNumber
+                        else
+                            s = pName + ': ' + pNumber
+                        end
+                        @xml.tag!('gmd:facsimile') do
+                            @xml.tag!('gco:CharacterString', s)
+                        end
+                    end
+                end
+            elsif $showAllTags
+                @xml.tag!('gmd:facsimile')
+            end
+        end
 
-	end
+    end
 
 end

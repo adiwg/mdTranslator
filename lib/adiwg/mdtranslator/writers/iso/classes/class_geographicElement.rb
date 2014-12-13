@@ -11,26 +11,26 @@ require 'class_boundingPolygon'
 
 class GeographicElement
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hGeoElement)
+    def writeXML(hGeoElement)
 
-		# classes used by MD_Metadata
-		geoBBoxClass = EX_GeographicBoundingBox.new(@xml)
-		geoBPolyClass = EX_BoundingPolygon.new(@xml)
+        # classes used by MD_Metadata
+        geoBBoxClass = EX_GeographicBoundingBox.new(@xml)
+        geoBPolyClass = EX_BoundingPolygon.new(@xml)
 
-		geoType = hGeoElement[:elementGeometry][:geoType]
-		case geoType
-			when 'BoundingBox'
-				geoBBoxClass.writeXML(hGeoElement)
-			when 'Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon'
-				geoBPolyClass.writeXML(hGeoElement)
-			when 'MultiGeometry'
-				geoBPolyClass.writeXML(hGeoElement)
-		end
+        geoType = hGeoElement[:elementGeometry][:geoType]
+        case geoType
+            when 'BoundingBox'
+                geoBBoxClass.writeXML(hGeoElement)
+            when 'Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon'
+                geoBPolyClass.writeXML(hGeoElement)
+            when 'MultiGeometry'
+                geoBPolyClass.writeXML(hGeoElement)
+        end
 
-	end
+    end
 
 end

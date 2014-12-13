@@ -8,38 +8,38 @@
 
 module Md_LegalConstraints
 
-	def self.unpack(hLegalCon)
+    def self.unpack(hLegalCon)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		hIntCon = intMetadataClass.newLegalConstraint
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        hIntCon = intMetadataClass.newLegalConstraint
 
-		# legal constraint - access code
-		if hLegalCon.has_key?('accessConstraint')
-			aAccCodes = hLegalCon['accessConstraint']
-			unless aAccCodes.empty?
-				hIntCon[:accessCodes] = aAccCodes
-			end
-		end
+        # legal constraint - access code
+        if hLegalCon.has_key?('accessConstraint')
+            aAccCodes = hLegalCon['accessConstraint']
+            unless aAccCodes.empty?
+                hIntCon[:accessCodes] = aAccCodes
+            end
+        end
 
-		# legal constraint - use code
-		if hLegalCon.has_key?('useConstraint')
-			aUseCodes = hLegalCon['useConstraint']
-			unless aUseCodes.empty?
-				hIntCon[:useCodes] = aUseCodes
-			end
-		end
+        # legal constraint - use code
+        if hLegalCon.has_key?('useConstraint')
+            aUseCodes = hLegalCon['useConstraint']
+            unless aUseCodes.empty?
+                hIntCon[:useCodes] = aUseCodes
+            end
+        end
 
-		# legal constraint - other constraints
-		if hLegalCon.has_key?('otherConstraint')
-			aOtherCons = hLegalCon['otherConstraint']
-			unless aOtherCons.empty?
-				hIntCon[:otherCons] = aOtherCons
-			end
-		end
+        # legal constraint - other constraints
+        if hLegalCon.has_key?('otherConstraint')
+            aOtherCons = hLegalCon['otherConstraint']
+            unless aOtherCons.empty?
+                hIntCon[:otherCons] = aOtherCons
+            end
+        end
 
-		return hIntCon
+        return hIntCon
 
-	end
+    end
 
 end

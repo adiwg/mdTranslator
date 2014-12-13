@@ -12,38 +12,38 @@ require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:re
 
 module Md_ResourceIdentifier
 
-	def self.unpack(hResID)
+    def self.unpack(hResID)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intResID = intMetadataClass.newResourceId
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intResID = intMetadataClass.newResourceId
 
-		# resource identifier - identifier
-		if hResID.has_key?('identifier')
-			s = hResID['identifier']
-			if s != ''
-				intResID[:identifier] = s
-			end
-		end
+        # resource identifier - identifier
+        if hResID.has_key?('identifier')
+            s = hResID['identifier']
+            if s != ''
+                intResID[:identifier] = s
+            end
+        end
 
-		# resource identifier - identifier type
-		if hResID.has_key?('type')
-			s = hResID['type']
-			if s != ''
-				intResID[:identifierType] = s
-			end
-		end
+        # resource identifier - identifier type
+        if hResID.has_key?('type')
+            s = hResID['type']
+            if s != ''
+                intResID[:identifierType] = s
+            end
+        end
 
-		# resource identifier - authority (expressed as a citation)
-		if hResID.has_key?('authority')
-			hCitation = hResID['authority']
-			unless hCitation.empty?
-				intResID[:identifierCitation] =  Md_Citation.unpack(hCitation)
-			end
-		end
+        # resource identifier - authority (expressed as a citation)
+        if hResID.has_key?('authority')
+            hCitation = hResID['authority']
+            unless hCitation.empty?
+                intResID[:identifierCitation] = Md_Citation.unpack(hCitation)
+            end
+        end
 
-		return intResID
+        return intResID
 
-	end
+    end
 
 end

@@ -10,65 +10,65 @@ require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:reade
 
 class LineString
 
-	def initialize(xml)
-		@xml = xml
-	end
+    def initialize(xml)
+        @xml = xml
+    end
 
-	def writeXML(hGeoElement)
+    def writeXML(hGeoElement)
 
-		# gml:LineString attributes
-		attributes = {}
+        # gml:LineString attributes
+        attributes = {}
 
-		# gml:LineString attributes - gml:id - required
-		lineID = hGeoElement[:elementId]
-		if lineID.nil?
-			$idCount = $idCount.succ
-			lineID = 'line' + $idCount
-		end
-		attributes['gml:id'] = lineID
+        # gml:LineString attributes - gml:id - required
+        lineID = hGeoElement[:elementId]
+        if lineID.nil?
+            $idCount = $idCount.succ
+            lineID = 'line' + $idCount
+        end
+        attributes['gml:id'] = lineID
 
-		# gml:LineString attributes - srsDimension
-		s = hGeoElement[:elementGeometry][:dimension]
-		if !s.nil?
-			attributes[:srsDimension] = s
-		end
+        # gml:LineString attributes - srsDimension
+        s = hGeoElement[:elementGeometry][:dimension]
+        if !s.nil?
+            attributes[:srsDimension] = s
+        end
 
-		# gml:LineString attributes - srsName
-		s = hGeoElement[:elementSrs][:srsName]
-		if !s.nil?
-			attributes[:srsName] = s
-		end
+        # gml:LineString attributes - srsName
+        s = hGeoElement[:elementSrs][:srsName]
+        if !s.nil?
+            attributes[:srsName] = s
+        end
 
-		@xml.tag!('gml:LineString',attributes) do
+        @xml.tag!('gml:LineString', attributes) do
 
-			# lineString - description
-			s = hGeoElement[:elementDescription]
-			if !s.nil?
-				@xml.tag!('gml:description',s)
-			elsif $showAllTags
-				@xml.tag!('gml:description')
-			end
+            # lineString - description
+            s = hGeoElement[:elementDescription]
+            if !s.nil?
+                @xml.tag!('gml:description', s)
+            elsif $showAllTags
+                @xml.tag!('gml:description')
+            end
 
-			# lineString - name
-			s = hGeoElement[:elementName]
-			if !s.nil?
-				@xml.tag!('gml:name',s)
-			elsif $showAllTags
-				@xml.tag!('gml:name')
-			end
+            # lineString - name
+            s = hGeoElement[:elementName]
+            if !s.nil?
+                @xml.tag!('gml:name', s)
+            elsif $showAllTags
+                @xml.tag!('gml:name')
+            end
 
-			# lineString - coordinates - required
-			# gml does not support nilReason for coordinates
-			# convert coordinate string from geoJSON to gml
-			s = hGeoElement[:elementGeometry][:geometry]
-			if !s.nil?
-				s = Md_Coordinates.unpack(s)
-				@xml.tag!('gml:coordinates',s)
-			else
-				@xml.tag!('gml:coordinates')
-			end
-		end
+            # lineString - coordinates - required
+            # gml does not support nilReason for coordinates
+            # convert coordinate string from geoJSON to gml
+            s = hGeoElement[:elementGeometry][:geometry]
+            if !s.nil?
+                s = Md_Coordinates.unpack(s)
+                @xml.tag!('gml:coordinates', s)
+            else
+                @xml.tag!('gml:coordinates')
+            end
+        end
 
-	end
+    end
 
 end

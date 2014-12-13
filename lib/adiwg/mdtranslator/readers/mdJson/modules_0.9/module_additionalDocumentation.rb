@@ -8,29 +8,29 @@ require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVe
 
 module Md_AdditionalDocumentation
 
-	def self.unpack(hAddDoc)
+    def self.unpack(hAddDoc)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intAddDoc = intMetadataClass.newAssociatedResource
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intAddDoc = intMetadataClass.newAssociatedResource
 
-		# associated resource - resource type
-		if hAddDoc.has_key?('resourceType')
-			s = hAddDoc['resourceType']
-			if s != ''
-				intAddDoc[:resourceType] = s
-			end
-		end
+        # associated resource - resource type
+        if hAddDoc.has_key?('resourceType')
+            s = hAddDoc['resourceType']
+            if s != ''
+                intAddDoc[:resourceType] = s
+            end
+        end
 
-		# associated resource - resource citation
-		if hAddDoc.has_key?('citation')
-			hCitation = hAddDoc['citation']
-			unless hCitation.empty?
-				intAddDoc[:citation] = Md_Citation.unpack(hCitation)
-			end
-		end
+        # associated resource - resource citation
+        if hAddDoc.has_key?('citation')
+            hCitation = hAddDoc['citation']
+            unless hCitation.empty?
+                intAddDoc[:citation] = Md_Citation.unpack(hCitation)
+            end
+        end
 
-		return intAddDoc
-	end
+        return intAddDoc
+    end
 
 end

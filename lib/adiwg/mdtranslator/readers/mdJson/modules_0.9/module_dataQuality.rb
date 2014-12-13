@@ -9,32 +9,32 @@ require ADIWG::Mdtranslator.reader_module('module_lineage', $response[:readerVer
 
 module Md_DataQuality
 
-	def self.unpack(hDataQual)
+    def self.unpack(hDataQual)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDataQual = intMetadataClass.newDataQuality
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDataQual = intMetadataClass.newDataQuality
 
-		# data quality - scope
-		if hDataQual.has_key?('scope')
-			s = hDataQual['scope']
-			if s != ''
-				intDataQual[:dataScope] = s
-			end
-		end
+        # data quality - scope
+        if hDataQual.has_key?('scope')
+            s = hDataQual['scope']
+            if s != ''
+                intDataQual[:dataScope] = s
+            end
+        end
 
-		# data quality - report
-		# on hold
+        # data quality - report
+        # on hold
 
-		# data quality - lineage
-		if hDataQual.has_key?('lineage')
-			hLineage = hDataQual['lineage']
-			unless hLineage.empty?
-				intDataQual[:dataLineage] = Md_Lineage.unpack(hLineage)
-			end
-		end
+        # data quality - lineage
+        if hDataQual.has_key?('lineage')
+            hLineage = hDataQual['lineage']
+            unless hLineage.empty?
+                intDataQual[:dataLineage] = Md_Lineage.unpack(hLineage)
+            end
+        end
 
-		return intDataQual
-	end
+        return intDataQual
+    end
 
 end

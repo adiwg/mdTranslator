@@ -7,34 +7,34 @@
 
 module Md_MetadataExtension
 
-	def self.addExtensionISObio()
+    def self.addExtensionISObio()
 
-		intMetadataClass = InternalMetadata.new
-		intMetaExt = intMetadataClass.newMetadataExtension
-		intContactRole = intMetadataClass.newRespParty
+        intMetadataClass = InternalMetadata.new
+        intMetaExt = intMetadataClass.newMetadataExtension
+        intContactRole = intMetadataClass.newRespParty
 
-		# extension online information
-		intMetaExt[:onLineResource] = {}
+        # extension online information
+        intMetaExt[:onLineResource] = {}
 
-		# extension entity information
-		intMetaExt[:extName] = 'Taxonomy System'
-		intMetaExt[:extShortName] = 'TaxonSys'
-		intMetaExt[:extDefinition] = 'Documentation of taxonomic sources, procedures, and treatments'
-		intMetaExt[:obligation] = 'optional'
-		intMetaExt[:dataType] = 'class'
-		intMetaExt[:maxOccurrence] = '1'
-		intMetaExt[:parentEntities] << 'MD_Identification'
-		intMetaExt[:rule] = 'New Metadata section as a class to MD_Identification'
-		intMetaExt[:rationales] << 'The set of data elements contained within this class element ' +
-			'represents an attempt to provide better documentation of ' +
-			'taxonomic sources, procedures, and treatments.'
+        # extension entity information
+        intMetaExt[:extName] = 'Taxonomy System'
+        intMetaExt[:extShortName] = 'TaxonSys'
+        intMetaExt[:extDefinition] = 'Documentation of taxonomic sources, procedures, and treatments'
+        intMetaExt[:obligation] = 'optional'
+        intMetaExt[:dataType] = 'class'
+        intMetaExt[:maxOccurrence] = '1'
+        intMetaExt[:parentEntities] << 'MD_Identification'
+        intMetaExt[:rule] = 'New Metadata section as a class to MD_Identification'
+        intMetaExt[:rationales] << 'The set of data elements contained within this class element ' +
+            'represents an attempt to provide better documentation of ' +
+            'taxonomic sources, procedures, and treatments.'
 
-		# source information
-		intContactRole[:contactId] = 'ADIwgBio'
-		intContactRole[:roleName] = 'resourceProvider'
-		intMetaExt[:extSources] << intContactRole
+        # source information
+        intContactRole[:contactId] = 'ADIwgBio'
+        intContactRole[:roleName] = 'resourceProvider'
+        intMetaExt[:extSources] << intContactRole
 
-		return intMetaExt
-	end
+        return intMetaExt
+    end
 
 end

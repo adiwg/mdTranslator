@@ -7,29 +7,29 @@
 
 module Md_ResourceFormat
 
-	def self.unpack(hResFormat)
+    def self.unpack(hResFormat)
 
-	# instance classes needed in script
-	intMetadataClass = InternalMetadata.new
-		rFormat = intMetadataClass.newResourceFormat
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        rFormat = intMetadataClass.newResourceFormat
 
-		# format - name
-		if hResFormat.has_key?('formatName')
-			s = hResFormat['formatName']
-			if s != ''
-				rFormat[:formatName] = s
-			end
-		end
+        # format - name
+        if hResFormat.has_key?('formatName')
+            s = hResFormat['formatName']
+            if s != ''
+                rFormat[:formatName] = s
+            end
+        end
 
-		# format - version
-		if hResFormat.has_key?('version')
-			s = hResFormat['version']
-			if s != ''
-				rFormat[:formatVersion] = s
-			end
-		end
+        # format - version
+        if hResFormat.has_key?('version')
+            s = hResFormat['version']
+            if s != ''
+                rFormat[:formatVersion] = s
+            end
+        end
 
-		return rFormat
-	end
+        return rFormat
+    end
 
 end

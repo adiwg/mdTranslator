@@ -10,55 +10,55 @@ require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVe
 
 module Md_ProcessStep
 
-	def self.unpack(hProcStep)
+    def self.unpack(hProcStep)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDataPStep = intMetadataClass.newDataProcessStep
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDataPStep = intMetadataClass.newDataProcessStep
 
-		# process step - step ID
-		if hProcStep.has_key?('stepId')
-			s = hProcStep['stepId']
-			if s != ''
-				intDataPStep[:stepId] = s
-			end
-		end
+        # process step - step ID
+        if hProcStep.has_key?('stepId')
+            s = hProcStep['stepId']
+            if s != ''
+                intDataPStep[:stepId] = s
+            end
+        end
 
-		# process step - description
-		if hProcStep.has_key?('description')
-			s = hProcStep['description']
-			if s != ''
-				intDataPStep[:stepDescription] = s
-			end
-		end
+        # process step - description
+        if hProcStep.has_key?('description')
+            s = hProcStep['description']
+            if s != ''
+                intDataPStep[:stepDescription] = s
+            end
+        end
 
-		# process step - rationale
-		if hProcStep.has_key?('rationale')
-			s = hProcStep['rationale']
-			if s != ''
-				intDataPStep[:stepRationale] = s
-			end
-		end
+        # process step - rationale
+        if hProcStep.has_key?('rationale')
+            s = hProcStep['rationale']
+            if s != ''
+                intDataPStep[:stepRationale] = s
+            end
+        end
 
-		# process step - dateTime
-		if hProcStep.has_key?('dateTime')
-			s = hProcStep['dateTime']
-			if s != ''
-				intDataPStep[:stepDateTime] = Md_DateTime.unpack(s)
-			end
-		end
+        # process step - dateTime
+        if hProcStep.has_key?('dateTime')
+            s = hProcStep['dateTime']
+            if s != ''
+                intDataPStep[:stepDateTime] = Md_DateTime.unpack(s)
+            end
+        end
 
-		# process step - step processors
-		if hProcStep.has_key?('processor')
-			aProcessors = hProcStep['processor']
-			unless aProcessors.empty?
-				aProcessors.each do |processor|
-					intDataPStep[:stepProcessors] << Md_ResponsibleParty.unpack(processor)
-				end
-			end
-		end
+        # process step - step processors
+        if hProcStep.has_key?('processor')
+            aProcessors = hProcStep['processor']
+            unless aProcessors.empty?
+                aProcessors.each do |processor|
+                    intDataPStep[:stepProcessors] << Md_ResponsibleParty.unpack(processor)
+                end
+            end
+        end
 
-		return intDataPStep
-	end
+        return intDataPStep
+    end
 
 end

@@ -12,38 +12,38 @@ require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVe
 
 module Md_DescriptiveKeyword
 
-	def self.unpack(hDesKeyword)
+    def self.unpack(hDesKeyword)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intKeyword = intMetadataClass.newKeyword
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intKeyword = intMetadataClass.newKeyword
 
-		# descriptive keyword - keyword array
-		if hDesKeyword.has_key?('keyword')
-			aKeywords = hDesKeyword['keyword']
-			aKeywords.each do |keyword|
-				intKeyword[:keyword] << keyword
-			end
-		end
+        # descriptive keyword - keyword array
+        if hDesKeyword.has_key?('keyword')
+            aKeywords = hDesKeyword['keyword']
+            aKeywords.each do |keyword|
+                intKeyword[:keyword] << keyword
+            end
+        end
 
-		# descriptive keyword - keyType
-		if hDesKeyword.has_key?('keywordType')
-			s = hDesKeyword['keywordType']
-			if s != ''
-				intKeyword[:keywordType] = s
-			end
-		end
+        # descriptive keyword - keyType
+        if hDesKeyword.has_key?('keywordType')
+            s = hDesKeyword['keywordType']
+            if s != ''
+                intKeyword[:keywordType] = s
+            end
+        end
 
-		# descriptive keyword - thesaurus
-		if hDesKeyword.has_key?('thesaurus')
-			hCitation = hDesKeyword['thesaurus']
-			unless hCitation.empty?
-				intKeyword[:keyTheCitation] = Md_Citation.unpack(hCitation)
-			end
+        # descriptive keyword - thesaurus
+        if hDesKeyword.has_key?('thesaurus')
+            hCitation = hDesKeyword['thesaurus']
+            unless hCitation.empty?
+                intKeyword[:keyTheCitation] = Md_Citation.unpack(hCitation)
+            end
 
-		end
+        end
 
-		return intKeyword
-	end
+        return intKeyword
+    end
 
 end

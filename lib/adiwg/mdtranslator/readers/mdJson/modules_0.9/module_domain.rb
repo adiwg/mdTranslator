@@ -8,55 +8,55 @@ require ADIWG::Mdtranslator.reader_module('module_domainItem', $response[:reader
 
 module Md_Domain
 
-	def self.unpack(hDomain)
+    def self.unpack(hDomain)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDomain = intMetadataClass.newDictionaryDomain
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDomain = intMetadataClass.newDictionaryDomain
 
-		# data dictionary domain - id
-		if hDomain.has_key?('domainId')
-			s = hDomain['domainId']
-			if s != ''
-				intDomain[:domainId] = s
-			end
-		end
+        # data dictionary domain - id
+        if hDomain.has_key?('domainId')
+            s = hDomain['domainId']
+            if s != ''
+                intDomain[:domainId] = s
+            end
+        end
 
-		# data dictionary domain - name
-		if hDomain.has_key?('commonName')
-			s = hDomain['commonName']
-			if s != ''
-				intDomain[:domainName] = s
-			end
-		end
+        # data dictionary domain - name
+        if hDomain.has_key?('commonName')
+            s = hDomain['commonName']
+            if s != ''
+                intDomain[:domainName] = s
+            end
+        end
 
-		# data dictionary domain - code
-		if hDomain.has_key?('codeName')
-			s = hDomain['codeName']
-			if s != ''
-				intDomain[:domainCode] = s
-			end
-		end
+        # data dictionary domain - code
+        if hDomain.has_key?('codeName')
+            s = hDomain['codeName']
+            if s != ''
+                intDomain[:domainCode] = s
+            end
+        end
 
-		# data dictionary domain - description
-		if hDomain.has_key?('description')
-			s = hDomain['description']
-			if s != ''
-				intDomain[:domainDescription] = s
-			end
-		end
+        # data dictionary domain - description
+        if hDomain.has_key?('description')
+            s = hDomain['description']
+            if s != ''
+                intDomain[:domainDescription] = s
+            end
+        end
 
-		# data dictionary domain - members
-		if hDomain.has_key?('member')
-			aDoItems = hDomain['member']
-			aDoItems.each do |hDoItem|
-				unless hDoItem.empty?
-					intDomain[:domainItems] << Md_DomainItem.unpack(hDoItem)
-				end
-			end
-		end
+        # data dictionary domain - members
+        if hDomain.has_key?('member')
+            aDoItems = hDomain['member']
+            aDoItems.each do |hDoItem|
+                unless hDoItem.empty?
+                    intDomain[:domainItems] << Md_DomainItem.unpack(hDoItem)
+                end
+            end
+        end
 
-		return intDomain
-	end
+        return intDomain
+    end
 
 end

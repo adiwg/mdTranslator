@@ -8,45 +8,45 @@
 
 module Md_BrowseGraphic
 
-	def self.unpack(hBgraphic)
+    def self.unpack(hBgraphic)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intBGraphic = intMetadataClass.newBrowseGraphic
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intBGraphic = intMetadataClass.newBrowseGraphic
 
-		# graphic - file name
-		if hBgraphic.has_key?('fileName')
-			s = hBgraphic['fileName']
-			if s != ''
-				intBGraphic[:bGName] = s
-			end
-		end
+        # graphic - file name
+        if hBgraphic.has_key?('fileName')
+            s = hBgraphic['fileName']
+            if s != ''
+                intBGraphic[:bGName] = s
+            end
+        end
 
-		# graphic - file description
-		if hBgraphic.has_key?('fileDescription')
-			s = hBgraphic['fileDescription']
-			if s != ''
-				intBGraphic[:bGDescription] = s
-			end
-		end
+        # graphic - file description
+        if hBgraphic.has_key?('fileDescription')
+            s = hBgraphic['fileDescription']
+            if s != ''
+                intBGraphic[:bGDescription] = s
+            end
+        end
 
-		# graphic - file  type
-		if hBgraphic.has_key?('fileType')
-			s = hBgraphic['fileType']
-			if s != ''
-				intBGraphic[:bGType] = s
-			end
-		end
+        # graphic - file  type
+        if hBgraphic.has_key?('fileType')
+            s = hBgraphic['fileType']
+            if s != ''
+                intBGraphic[:bGType] = s
+            end
+        end
 
-		# graphic - web link
-		if hBgraphic.has_key?('fileUri')
-			s = hBgraphic['fileUri']
-			if s != ''
-				intBGraphic[:bGURI] = s
-			end
-		end
+        # graphic - web link
+        if hBgraphic.has_key?('fileUri')
+            s = hBgraphic['fileUri']
+            if s != ''
+                intBGraphic[:bGURI] = s
+            end
+        end
 
-		return intBGraphic
-	end
+        return intBGraphic
+    end
 
 end

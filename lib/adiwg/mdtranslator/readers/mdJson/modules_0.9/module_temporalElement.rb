@@ -17,55 +17,55 @@ require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:reader
 
 module Md_TemporalElement
 
-	def self.unpack(hTempElement)
+    def self.unpack(hTempElement)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		aIntTempElements = Array.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        aIntTempElements = Array.new
 
-		# temporal element - date
-		if hTempElement.has_key?('date')
-			aDates = hTempElement['date']
-			unless aDates.empty?
-				aDates.each do |s|
-					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:date] = Md_DateTime.unpack(s)
-					aIntTempElements << intTempEle
-				end
-			end
-		end
+        # temporal element - date
+        if hTempElement.has_key?('date')
+            aDates = hTempElement['date']
+            unless aDates.empty?
+                aDates.each do |s|
+                    intTempEle = intMetadataClass.newTemporalElement
+                    intTempEle[:date] = Md_DateTime.unpack(s)
+                    aIntTempElements << intTempEle
+                end
+            end
+        end
 
-		# temporal element - time instant
-		if hTempElement.has_key?('timeInstant')
-			aTimeInst = hTempElement['timeInstant']
-			unless aTimeInst.empty?
-				aTimeInst.each do |hTimeInst|
-					if hTimeInst.has_key?('timePosition')
-						s = hTimeInst['timePosition']
-						if s != ''
-							intTempEle = intMetadataClass.newTemporalElement
-							intTempEle[:timeInstant] = Md_TimeInstant.unpack(hTimeInst)
-							aIntTempElements << intTempEle
-						end
-					end
-				end
-			end
-		end
+        # temporal element - time instant
+        if hTempElement.has_key?('timeInstant')
+            aTimeInst = hTempElement['timeInstant']
+            unless aTimeInst.empty?
+                aTimeInst.each do |hTimeInst|
+                    if hTimeInst.has_key?('timePosition')
+                        s = hTimeInst['timePosition']
+                        if s != ''
+                            intTempEle = intMetadataClass.newTemporalElement
+                            intTempEle[:timeInstant] = Md_TimeInstant.unpack(hTimeInst)
+                            aIntTempElements << intTempEle
+                        end
+                    end
+                end
+            end
+        end
 
-		# temporal element - time period
-		if hTempElement.has_key?('timePeriod')
-			aTimePeriod = hTempElement['timePeriod']
-			unless aTimePeriod.empty?
-				aTimePeriod.each do |hTimePeriod|
-					intTempEle = intMetadataClass.newTemporalElement
-					intTempEle[:timePeriod] = Md_TimePeriod.unpack(hTimePeriod)
-					aIntTempElements << intTempEle
-				end
-			end
-		end
+        # temporal element - time period
+        if hTempElement.has_key?('timePeriod')
+            aTimePeriod = hTempElement['timePeriod']
+            unless aTimePeriod.empty?
+                aTimePeriod.each do |hTimePeriod|
+                    intTempEle = intMetadataClass.newTemporalElement
+                    intTempEle[:timePeriod] = Md_TimePeriod.unpack(hTimePeriod)
+                    aIntTempElements << intTempEle
+                end
+            end
+        end
 
-		return aIntTempElements
+        return aIntTempElements
 
-	end
+    end
 
 end

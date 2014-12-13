@@ -7,47 +7,47 @@
 
 module Md_VerticalElement
 
-	def self.unpack(hVertElement)
+    def self.unpack(hVertElement)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
 
-		intVertEle = intMetadataClass.newVerticalElement
+        intVertEle = intMetadataClass.newVerticalElement
 
-		# vertical element - minimum value
-		if hVertElement.has_key?('minimumValue')
-			s = hVertElement['minimumValue']
-			if s != ''
-				intVertEle[:minValue] = s
-			end
-		end
+        # vertical element - minimum value
+        if hVertElement.has_key?('minimumValue')
+            s = hVertElement['minimumValue']
+            if s != ''
+                intVertEle[:minValue] = s
+            end
+        end
 
-		# vertical element - maximum value
-		if hVertElement.has_key?('maximumValue')
-			s = hVertElement['maximumValue']
-			if s != ''
-				intVertEle[:maxValue] = s
-			end
-		end
+        # vertical element - maximum value
+        if hVertElement.has_key?('maximumValue')
+            s = hVertElement['maximumValue']
+            if s != ''
+                intVertEle[:maxValue] = s
+            end
+        end
 
-		# vertical element - vertical crs title attribute
-		if hVertElement.has_key?('verticalCRSTitle')
-			s = hVertElement['verticalCRSTitle']
-			if s != ''
-				intVertEle[:crsTitle] = s
-			end
-		end
+        # vertical element - vertical crs title attribute
+        if hVertElement.has_key?('verticalCRSTitle')
+            s = hVertElement['verticalCRSTitle']
+            if s != ''
+                intVertEle[:crsTitle] = s
+            end
+        end
 
-		# vertical element - vertical crs link attribute
-		if hVertElement.has_key?('verticalCRSUri')
-			s = hVertElement['verticalCRSUri']
-			if s != ''
-				intVertEle[:crsURI] = s
-			end
-		end
+        # vertical element - vertical crs link attribute
+        if hVertElement.has_key?('verticalCRSUri')
+            s = hVertElement['verticalCRSUri']
+            if s != ''
+                intVertEle[:crsURI] = s
+            end
+        end
 
-		return intVertEle
+        return intVertEle
 
-	end
+    end
 
 end

@@ -11,40 +11,40 @@ require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:
 
 module Md_ResourceSpecificUsage
 
-	def self.unpack(hUsage)
+    def self.unpack(hUsage)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intUsage = intMetadataClass.newDataUsage
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intUsage = intMetadataClass.newDataUsage
 
-		# resource specific usage - specific usage
-		if hUsage.has_key?('specificUsage')
-			s = hUsage['specificUsage']
-			if s != ''
-				intUsage[:specificUsage] = s
-			end
-		end
+        # resource specific usage - specific usage
+        if hUsage.has_key?('specificUsage')
+            s = hUsage['specificUsage']
+            if s != ''
+                intUsage[:specificUsage] = s
+            end
+        end
 
-		# resource specific usage - user determined limitations
-		if hUsage.has_key?('userDeterminedLimitation')
-			s = hUsage['userDeterminedLimitation']
-			if s != ''
-				intUsage[:userLimits] = s
-			end
-		end
+        # resource specific usage - user determined limitations
+        if hUsage.has_key?('userDeterminedLimitation')
+            s = hUsage['userDeterminedLimitation']
+            if s != ''
+                intUsage[:userLimits] = s
+            end
+        end
 
-		# taxonomy - repository - responsible party
-		if hUsage.has_key?('userContactInfo')
-			aContacts = hUsage['userContactInfo']
-			unless aContacts.empty?
-				aContacts.each do |hContact|
-					intUsage[:userContacts] << Md_ResponsibleParty.unpack(hContact)
-				end
-			end
-		end
+        # taxonomy - repository - responsible party
+        if hUsage.has_key?('userContactInfo')
+            aContacts = hUsage['userContactInfo']
+            unless aContacts.empty?
+                aContacts.each do |hContact|
+                    intUsage[:userContacts] << Md_ResponsibleParty.unpack(hContact)
+                end
+            end
+        end
 
-		return intUsage
+        return intUsage
 
-	end
+    end
 
 end

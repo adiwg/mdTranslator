@@ -10,39 +10,39 @@ require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:reade
 
 module Md_Source
 
-	def self.unpack(hSource)
+    def self.unpack(hSource)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDataSource = intMetadataClass.newDataSource
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDataSource = intMetadataClass.newDataSource
 
-		# source - description
-		if hSource.has_key?('description')
-			s = hSource['description']
-			if s != ''
-				intDataSource[:sourceDescription] = s
-			end
-		end
+        # source - description
+        if hSource.has_key?('description')
+            s = hSource['description']
+            if s != ''
+                intDataSource[:sourceDescription] = s
+            end
+        end
 
-		# source - citation
-		if hSource.has_key?('citation')
-			hCitation = hSource['citation']
-			unless hCitation.empty?
-				intDataSource[:sourceCitation] = Md_Citation.unpack(hCitation)
-			end
-		end
+        # source - citation
+        if hSource.has_key?('citation')
+            hCitation = hSource['citation']
+            unless hCitation.empty?
+                intDataSource[:sourceCitation] = Md_Citation.unpack(hCitation)
+            end
+        end
 
-		# source - data sources
-		if hSource.has_key?('processStep')
-			aSourceSteps = hSource['processStep']
-			unless aSourceSteps.empty?
-				aSourceSteps.each do |hStep|
-					intDataSource[:sourceSteps] << Md_ProcessStep.unpack(hStep)
-				end
-			end
-		end
+        # source - data sources
+        if hSource.has_key?('processStep')
+            aSourceSteps = hSource['processStep']
+            unless aSourceSteps.empty?
+                aSourceSteps.each do |hStep|
+                    intDataSource[:sourceSteps] << Md_ProcessStep.unpack(hStep)
+                end
+            end
+        end
 
-		return intDataSource
-	end
+        return intDataSource
+    end
 
 end

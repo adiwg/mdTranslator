@@ -10,44 +10,44 @@ require ADIWG::Mdtranslator.reader_module('module_entity', $response[:readerVers
 
 module Md_DataDictionary
 
-	def self.unpack(hDictionary)
+    def self.unpack(hDictionary)
 
-		# instance classes needed in script
-		intMetadataClass = InternalMetadata.new
-		intDict = intMetadataClass.newDataDictionary
+        # instance classes needed in script
+        intMetadataClass = InternalMetadata.new
+        intDict = intMetadataClass.newDataDictionary
 
-		unless hDictionary.empty?
+        unless hDictionary.empty?
 
-			# data dictionary - dictionary information
-			if hDictionary.has_key?('dictionaryInfo')
-				hDictInfo = hDictionary['dictionaryInfo']
-				intDict[:dictionaryInfo] = Md_DictionaryInfo.unpack(hDictInfo)
-			end
+            # data dictionary - dictionary information
+            if hDictionary.has_key?('dictionaryInfo')
+                hDictInfo = hDictionary['dictionaryInfo']
+                intDict[:dictionaryInfo] = Md_DictionaryInfo.unpack(hDictInfo)
+            end
 
-			# data dictionary - domains
-			if hDictionary.has_key?('domain')
-				aDomains = hDictionary['domain']
-				aDomains.each do |hDomain|
-					unless hDomain.empty?
-						intDict[:domains] << Md_Domain.unpack(hDomain)
-					end
-				end
-			end
+            # data dictionary - domains
+            if hDictionary.has_key?('domain')
+                aDomains = hDictionary['domain']
+                aDomains.each do |hDomain|
+                    unless hDomain.empty?
+                        intDict[:domains] << Md_Domain.unpack(hDomain)
+                    end
+                end
+            end
 
-			# data dictionary - entity
-			if hDictionary.has_key?('entity')
-				aEntities = hDictionary['entity']
-				aEntities.each do |hEntity|
-					unless hEntity.empty?
-						intDict[:entities] << Md_Entity.unpack(hEntity)
-					end
-				end
-			end
+            # data dictionary - entity
+            if hDictionary.has_key?('entity')
+                aEntities = hDictionary['entity']
+                aEntities.each do |hEntity|
+                    unless hEntity.empty?
+                        intDict[:entities] << Md_Entity.unpack(hEntity)
+                    end
+                end
+            end
 
-		return intDict
+            return intDict
 
-		end
+        end
 
-	end
+    end
 
 end
