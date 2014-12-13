@@ -7,117 +7,50 @@
 #   Stan Smith 2014-09-26 added processing of minor release numbers
 #   Stan Smith 2014-12-01 changed adiwgJson to mdJson in version name check
 #   Stan Smith 2014-12-03 changed class name to MdJsonValidation from AdiwgJsonValidation
+#   Stan Smith 2014-12-11 added namespace
 
 require 'json'
 require 'json-schema'
 require 'adiwg-json_schemas'
-#json-schema patch
-require 'validator.rb'
+# temporary json-schema patch
+# waiting for rubygem json-schema patch
+require 'adiwg/mdtranslator/readers/mdJson/validator.rb'
 
-module MdJsonValidation
+module ADIWG
+	module Mdtranslator
+		module Readers
+			module MdJson
 
-	def self.validate(file)
+				# validate json against the adiwg-json_schemas
+				# only one schema version is supported at this time
+				def self.validate(file)
+					begin
 
-		# set the anticipated format of the input file based on the reader specified
-		$response[:readerFormat] = 'json'
+						schema = ADIWG::JsonSchemas::Utils.schema_path
+						aValErrs = Array.new
+						if $response[:readerValidationLevel] == 'strict'
+							aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
+						elsif $response[:readerValidationLevel] == 'normal'
+							aValErrs = JSON::Validator.fully_validate(schema, file, :errors_as_objects => true)
+						end
 
-		# validate the input file structure
-		# test for valid json syntax by attempting to parse the file
-		begin
-			hashObj = JSON.parse(file)
-			$response[:readerStructurePass] = true
-		rescue JSON::JSONError => err
-			$response[:readerStructurePass] = false
-			$response[:readerStructureMessages] << err
-			return
-		end
-
-		# find name and version of input json file
-		if hashObj.has_key?('version')
-			hVersion = hashObj['version']
-		else
-			$response[:readerStructurePass] = false
-			$response[:readerStructureMessages] << 'input file is missing the version:{} block'
-			return
-		end
-
-		# get the version name
-		if hVersion.has_key?('name')
-			s = hVersion['name']
-			if !s.nil?
-				$response[:readerFound] = s
-				if s != 'mdJson'
-					$response[:readerStructurePass] = false
-					$response[:readerStructureMessages] << "input file version name must be 'mdJson'"
-					$response[:readerStructureMessages] << "found version name '#{s}'"
-					return
-				end
-			end
-		else
-			$response[:readerStructurePass] = false
-			$response[:readerStructureMessages] << "input file version:{} block is missing the 'name' attribute"
-			return
-		end
-
-		# get version number
-		if hVersion.has_key?('version')
-			requestReaderVersion = hVersion['version']
-			$response[:readerVersionFound] = requestReaderVersion
-			# test if reader version is supported
-			# remove minor release number
-			# ...and look for a module folder name ending with the requested version
-			# ...example: 'modules_1.2.0'
-			if !requestReaderVersion.nil?
-				aVersionParts = requestReaderVersion.split('.')
-				if 3 == aVersionParts.length
-					readerVersion = aVersionParts[0] +'.' + aVersionParts[1] + '.0'
-					dir = File.join(File.dirname(__FILE__),'modules_' + readerVersion)
-					if !File.directory?(dir)
-						$response[:readerStructurePass] = false
-						$response[:readerStructureMessages] << 'input file version is not supported'
-						$response[:readerStructureMessages] << "mdJson version requested was '#{requestReaderVersion}'"
+						if aValErrs.length > 0
+							$response[:readerValidationPass] = false
+							$response[:readerValidationMessages] = aValErrs
+							return
+						end
+					rescue JSON::Schema::ValidationError
+						$response[:readerValidationPass] = false
+						$response[:readerValidationMessages] << $!.message
 						return
 					end
-					$response[:readerVersionUsed] = readerVersion
-				else
-					$response[:readerStructurePass] = false
-					$response[:readerStructureMessages] << "input file version must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3"
-					return
+
+					$response[:readerValidationPass] = true
 				end
+
 			end
-		else
-			$response[:readerStructurePass] = false
-			$response[:readerStructureMessages] << "input file version:{} block is missing the 'version' attribute"
-			return
 		end
-
-		# validate json against the adiwg-json_schemas
-		# only one schema version is supported at this time
-		begin
-
-			schema = ADIWG::JsonSchemas::Utils.schema_path
-			aValErrs = Array.new
-			if $response[:readerValidationLevel] == 'strict'
-				aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
-			elsif $response[:readerValidationLevel] == 'normal'
-				aValErrs = JSON::Validator.fully_validate(schema, file, :errors_as_objects => true)
-			end
-
-			if aValErrs.length > 0
-				$response[:readerValidationPass] = false
-				$response[:readerValidationMessages] = aValErrs
-				return
-			end
-
-		rescue JSON::Schema::ValidationError
-			$response[:readerValidationPass] = false
-			$response[:readerValidationMessages] << $!.message
-			return
-		end
-
-		$response[:readerValidationPass] = true
-		return
-
 	end
-
 end
+
+
