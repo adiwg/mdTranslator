@@ -4,50 +4,61 @@
 # History:
 # 	Stan Smith 2013-12-11 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_dateTime')
 
-module Md_TimePeriod
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hTimePeriod)
+                module TimePeriod
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
+                    def self.unpack(hTimePeriod)
 
-        # time period
-        intTimePer = intMetadataClass.newTimePeriod
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
 
-        if hTimePeriod.has_key?('id')
-            s = hTimePeriod['id']
-            if s != ''
-                intTimePer[:timeId] = s
+                        # time period
+                        intTimePer = intMetadataClass.newTimePeriod
+
+                        if hTimePeriod.has_key?('id')
+                            s = hTimePeriod['id']
+                            if s != ''
+                                intTimePer[:timeId] = s
+                            end
+                        end
+
+                        if hTimePeriod.has_key?('description')
+                            s = hTimePeriod['description']
+                            if s != ''
+                                intTimePer[:description] = s
+                            end
+                        end
+
+                        if hTimePeriod.has_key?('beginPosition')
+                            s = hTimePeriod['beginPosition']
+                            if s != ''
+                                intTimePer[:beginTime] = $ReaderNS::DateTime.unpack(s)
+
+                            end
+                        end
+
+                        if hTimePeriod.has_key?('endPosition')
+                            s = hTimePeriod['endPosition']
+                            if s != ''
+                                intTimePer[:endTime] = $ReaderNS::DateTime.unpack(s)
+
+                            end
+                        end
+
+                        return intTimePer
+                    end
+
+                end
+
             end
         end
-
-        if hTimePeriod.has_key?('description')
-            s = hTimePeriod['description']
-            if s != ''
-                intTimePer[:description] = s
-            end
-        end
-
-        if hTimePeriod.has_key?('beginPosition')
-            s = hTimePeriod['beginPosition']
-            if s != ''
-                intTimePer[:beginTime] = Md_DateTime.unpack(s)
-
-            end
-        end
-
-        if hTimePeriod.has_key?('endPosition')
-            s = hTimePeriod['endPosition']
-            if s != ''
-                intTimePer[:endTime] = Md_DateTime.unpack(s)
-
-            end
-        end
-
-        return intTimePer
     end
-
 end

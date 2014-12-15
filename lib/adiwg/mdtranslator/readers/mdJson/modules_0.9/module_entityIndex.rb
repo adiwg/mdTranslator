@@ -3,40 +3,51 @@
 
 # History:
 # 	Stan Smith 2013-12-01 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_EntityIndex
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hIndex)
+                module EntityIndex
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intIndex = intMetadataClass.newEntityIndex
+                    def self.unpack(hIndex)
 
-        # entity index - code name
-        if hIndex.has_key?('codeName')
-            s = hIndex['codeName']
-            if s != ''
-                intIndex[:indexCode] = s
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intIndex = intMetadataClass.newEntityIndex
+
+                        # entity index - code name
+                        if hIndex.has_key?('codeName')
+                            s = hIndex['codeName']
+                            if s != ''
+                                intIndex[:indexCode] = s
+                            end
+                        end
+
+                        # entity index - allow duplicates
+                        if hIndex.has_key?('allowDuplicates')
+                            s = hIndex['allowDuplicates']
+                            if s != ''
+                                intIndex[:duplicate] = s
+                            end
+                        end
+
+                        # entity index - attribute list
+                        if hIndex.has_key?('attributeCodeName')
+                            aKeyAttributes = hIndex['attributeCodeName']
+                            unless aKeyAttributes.empty?
+                                intIndex[:attributeNames] = aKeyAttributes
+                            end
+                        end
+
+                        return intIndex
+                    end
+
+                end
+
             end
         end
-
-        # entity index - allow duplicates
-        if hIndex.has_key?('allowDuplicates')
-            s = hIndex['allowDuplicates']
-            if s != ''
-                intIndex[:duplicate] = s
-            end
-        end
-
-        # entity index - attribute list
-        if hIndex.has_key?('attributeCodeName')
-            aKeyAttributes = hIndex['attributeCodeName']
-            unless aKeyAttributes.empty?
-                intIndex[:attributeNames] = aKeyAttributes
-            end
-        end
-
-        return intIndex
     end
-
 end

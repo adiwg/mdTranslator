@@ -6,20 +6,31 @@
 # 	Stan Smith 2013-11-13 original script
 #   Stan Smith 2014-04-30 reorganized for json schema 0.3.0
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_coordinates')
 
-module Md_LineString
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(aCoords, geoType)
-        intMetadataClass = InternalMetadata.new
-        intLine = intMetadataClass.newGeometry
+                module LineString
 
-        intLine[:geoType] = geoType
-        intLine[:geometry] = aCoords
-        intLine[:dimension] = Md_Coordinates.getDimension(aCoords)
+                    def self.unpack(aCoords, geoType)
+                        intMetadataClass = InternalMetadata.new
+                        intLine = intMetadataClass.newGeometry
 
-        return intLine
+                        intLine[:geoType] = geoType
+                        intLine[:geometry] = aCoords
+                        intLine[:dimension] = $ReaderNS::Coordinates.getDimension(aCoords)
+
+                        return intLine
+                    end
+
+                end
+
+            end
+        end
     end
-
 end

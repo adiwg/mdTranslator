@@ -9,58 +9,69 @@
 #   Stan Smith 2014-08-18 moved resourceIdentifier to citation module schema 0.6.0
 #   Stan Smith 2014-11-06 changed resourceType to initiative type for 0.9.0
 #   Stan Smith 2014-11-06 added resourceType for 0.9.0
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_citation')
 
-module Md_AssociatedResource
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hAssocRes)
+                module AssociatedResource
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intAssocRes = intMetadataClass.newAssociatedResource
+                    def self.unpack(hAssocRes)
 
-        # associated resource - association type
-        if hAssocRes.has_key?('associationType')
-            s = hAssocRes['associationType']
-            if s != ''
-                intAssocRes[:associationType] = s
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intAssocRes = intMetadataClass.newAssociatedResource
+
+                        # associated resource - association type
+                        if hAssocRes.has_key?('associationType')
+                            s = hAssocRes['associationType']
+                            if s != ''
+                                intAssocRes[:associationType] = s
+                            end
+                        end
+
+                        # associated resource - initiative type
+                        if hAssocRes.has_key?('initiativeType')
+                            s = hAssocRes['initiativeType']
+                            if s != ''
+                                intAssocRes[:initiativeType] = s
+                            end
+                        end
+
+                        # associated resource - resource type
+                        if hAssocRes.has_key?('resourceType')
+                            s = hAssocRes['resourceType']
+                            if s != ''
+                                intAssocRes[:resourceType] = s
+                            end
+                        end
+
+                        # associated resource - resource citation
+                        if hAssocRes.has_key?('resourceCitation')
+                            hCitation = hAssocRes['resourceCitation']
+                            unless hCitation.empty?
+                                intAssocRes[:resourceCitation] = $ReaderNS::Citation.unpack(hCitation)
+                            end
+                        end
+
+                        # associated resource - metadata citation
+                        if hAssocRes.has_key?('metadataCitation')
+                            hCitation = hAssocRes['metadataCitation']
+                            unless hCitation.empty?
+                                intAssocRes[:metadataCitation] = $ReaderNS::Citation.unpack(hCitation)
+                            end
+                        end
+
+                        return intAssocRes
+                    end
+
+                end
+
             end
         end
-
-        # associated resource - initiative type
-        if hAssocRes.has_key?('initiativeType')
-            s = hAssocRes['initiativeType']
-            if s != ''
-                intAssocRes[:initiativeType] = s
-            end
-        end
-
-        # associated resource - resource type
-        if hAssocRes.has_key?('resourceType')
-            s = hAssocRes['resourceType']
-            if s != ''
-                intAssocRes[:resourceType] = s
-            end
-        end
-
-        # associated resource - resource citation
-        if hAssocRes.has_key?('resourceCitation')
-            hCitation = hAssocRes['resourceCitation']
-            unless hCitation.empty?
-                intAssocRes[:resourceCitation] = Md_Citation.unpack(hCitation)
-            end
-        end
-
-        # associated resource - metadata citation
-        if hAssocRes.has_key?('metadataCitation')
-            hCitation = hAssocRes['metadataCitation']
-            unless hCitation.empty?
-                intAssocRes[:metadataCitation] = Md_Citation.unpack(hCitation)
-            end
-        end
-
-        return intAssocRes
     end
-
 end

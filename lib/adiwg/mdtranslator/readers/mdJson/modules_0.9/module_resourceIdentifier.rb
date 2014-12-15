@@ -5,45 +5,56 @@
 # 	Stan Smith 2014-05-28 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 added type to identifier schema 0.6.0
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_onlineResource', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_citation')
+require $ReaderNS.readerModule('module_responsibleParty')
+require $ReaderNS.readerModule('module_onlineResource')
 
-module Md_ResourceIdentifier
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hResID)
+                module ResourceIdentifier
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intResID = intMetadataClass.newResourceId
+                    def self.unpack(hResID)
 
-        # resource identifier - identifier
-        if hResID.has_key?('identifier')
-            s = hResID['identifier']
-            if s != ''
-                intResID[:identifier] = s
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intResID = intMetadataClass.newResourceId
+
+                        # resource identifier - identifier
+                        if hResID.has_key?('identifier')
+                            s = hResID['identifier']
+                            if s != ''
+                                intResID[:identifier] = s
+                            end
+                        end
+
+                        # resource identifier - identifier type
+                        if hResID.has_key?('type')
+                            s = hResID['type']
+                            if s != ''
+                                intResID[:identifierType] = s
+                            end
+                        end
+
+                        # resource identifier - authority (expressed as a citation)
+                        if hResID.has_key?('authority')
+                            hCitation = hResID['authority']
+                            unless hCitation.empty?
+                                intResID[:identifierCitation] = $ReaderNS::Citation.unpack(hCitation)
+                            end
+                        end
+
+                        return intResID
+
+                    end
+
+                end
+
             end
         end
-
-        # resource identifier - identifier type
-        if hResID.has_key?('type')
-            s = hResID['type']
-            if s != ''
-                intResID[:identifierType] = s
-            end
-        end
-
-        # resource identifier - authority (expressed as a citation)
-        if hResID.has_key?('authority')
-            hCitation = hResID['authority']
-            unless hCitation.empty?
-                intResID[:identifierCitation] = Md_Citation.unpack(hCitation)
-            end
-        end
-
-        return intResID
-
     end
-
 end

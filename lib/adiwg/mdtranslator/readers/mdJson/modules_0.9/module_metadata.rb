@@ -12,66 +12,77 @@
 #   Stan Smith 2014-05-02 added associated resources
 #   Stan Smith 2014-05-02 added additional documentation
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_metadataInfo', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_resourceInfo', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_distributionInfo', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_associatedResource', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_additionalDocumentation', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_metadataInfo')
+require $ReaderNS.readerModule('module_resourceInfo')
+require $ReaderNS.readerModule('module_distributionInfo')
+require $ReaderNS.readerModule('module_associatedResource')
+require $ReaderNS.readerModule('module_additionalDocumentation')
+require $ReaderNS.readerModule('module_citation')
 
-module Md_Metadata
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hMetadata)
+                module Metadata
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intMetadata = intMetadataClass.newMetadata
+                    def self.unpack(hMetadata)
 
-        # metadata - metadataInfo
-        # metadataInfo needs access to resourceInfo to check taxonomy
-        if hMetadata.has_key?('metadataInfo')
-            intMetadata[:metadataInfo] = Md_MetadataInfo.unpack(hMetadata)
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intMetadata = intMetadataClass.newMetadata
 
-        # metadata - resource identification info
-        if hMetadata.has_key?('resourceInfo')
-            hResourceInfo = hMetadata['resourceInfo']
-            intMetadata[:resourceInfo] = Md_ResourceInfo.unpack(hResourceInfo)
-        end
+                        # metadata - metadataInfo
+                        # metadataInfo needs access to resourceInfo to check taxonomy
+                        if hMetadata.has_key?('metadataInfo')
+                            intMetadata[:metadataInfo] = $ReaderNS::MetadataInfo.unpack(hMetadata)
+                        end
 
-        # metadata - distribution info
-        if hMetadata.has_key?('distributionInfo')
-            aDistributors = hMetadata['distributionInfo']
-            unless aDistributors.empty?
-                aDistributors.each do |hDistributor|
-                    intMetadata[:distributorInfo] << Md_DistributionInfo.unpack(hDistributor)
+                        # metadata - resource identification info
+                        if hMetadata.has_key?('resourceInfo')
+                            hResourceInfo = hMetadata['resourceInfo']
+                            intMetadata[:resourceInfo] = $ReaderNS::ResourceInfo.unpack(hResourceInfo)
+                        end
+
+                        # metadata - distribution info
+                        if hMetadata.has_key?('distributionInfo')
+                            aDistributors = hMetadata['distributionInfo']
+                            unless aDistributors.empty?
+                                aDistributors.each do |hDistributor|
+                                    intMetadata[:distributorInfo] << $ReaderNS::DistributionInfo.unpack(hDistributor)
+                                end
+                            end
+                        end
+
+                        # metadata - associated resources
+                        if hMetadata.has_key?('associatedResource')
+                            aAssocRes = hMetadata['associatedResource']
+                            unless aAssocRes.empty?
+                                aAssocRes.each do |hAssocRes|
+                                    intMetadata[:associatedResources] << $ReaderNS::AssociatedResource.unpack(hAssocRes)
+                                end
+                            end
+                        end
+
+                        # metadata - additional documents
+                        if hMetadata.has_key?('additionalDocumentation')
+                            aAddDocs = hMetadata['additionalDocumentation']
+                            unless aAddDocs.empty?
+                                aAddDocs.each do |hAddDoc|
+                                    intMetadata[:additionalDocuments] << $ReaderNS::AdditionalDocumentation.unpack(hAddDoc)
+                                end
+                            end
+                        end
+
+                        return intMetadata
+
+                    end
+
                 end
+
             end
         end
-
-        # metadata - associated resources
-        if hMetadata.has_key?('associatedResource')
-            aAssocRes = hMetadata['associatedResource']
-            unless aAssocRes.empty?
-                aAssocRes.each do |hAssocRes|
-                    intMetadata[:associatedResources] << Md_AssociatedResource.unpack(hAssocRes)
-                end
-            end
-        end
-
-        # metadata - additional documents
-        if hMetadata.has_key?('additionalDocumentation')
-            aAddDocs = hMetadata['additionalDocumentation']
-            unless aAddDocs.empty?
-                aAddDocs.each do |hAddDoc|
-                    intMetadata[:additionalDocuments] << Md_AdditionalDocumentation.unpack(hAddDoc)
-                end
-            end
-        end
-
-        return intMetadata
-
     end
-
 end

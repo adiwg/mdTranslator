@@ -4,42 +4,53 @@
 # History:
 # 	Stan Smith 2013-12-11 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_dateTime')
 
-module Md_TimeInstant
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hTimeInst)
+                module TimeInstant
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
+                    def self.unpack(hTimeInst)
 
-        # time instant
-        intTimeInst = intMetadataClass.newTimeInstant
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
 
-        if hTimeInst.has_key?('id')
-            s = hTimeInst['id']
-            if s != ''
-                intTimeInst[:timeId] = s
+                        # time instant
+                        intTimeInst = intMetadataClass.newTimeInstant
+
+                        if hTimeInst.has_key?('id')
+                            s = hTimeInst['id']
+                            if s != ''
+                                intTimeInst[:timeId] = s
+                            end
+                        end
+
+                        if hTimeInst.has_key?('description')
+                            s = hTimeInst['description']
+                            if s != ''
+                                intTimeInst[:description] = s
+                            end
+                        end
+
+                        # time instant will only be inserted if time position provided
+                        if hTimeInst.has_key?('timePosition')
+                            s = hTimeInst['timePosition']
+                            if s != ''
+                                intTimeInst[:timePosition] = $ReaderNS::DateTime.unpack(s)
+                            end
+                        end
+
+                        return intTimeInst
+                    end
+
+                end
+
             end
         end
-
-        if hTimeInst.has_key?('description')
-            s = hTimeInst['description']
-            if s != ''
-                intTimeInst[:description] = s
-            end
-        end
-
-        # time instant will only be inserted if time position provided
-        if hTimeInst.has_key?('timePosition')
-            s = hTimeInst['timePosition']
-            if s != ''
-                intTimeInst[:timePosition] = Md_DateTime.unpack(s)
-            end
-        end
-
-        return intTimeInst
     end
-
 end

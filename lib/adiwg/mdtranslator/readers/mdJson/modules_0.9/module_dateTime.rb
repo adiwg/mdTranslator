@@ -3,25 +3,36 @@
 
 # History:
 # 	Stan Smith 2013-12-11 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
 require 'module_dateTimeFun'
 
-module Md_DateTime
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(sDateTime)
+                module DateTime
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
+                    def self.unpack(sDateTime)
 
-        # dateTime
-        intDateTime = intMetadataClass.newDateTime
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
 
-        aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
-        intDateTime[:dateTime] = aDateTimeReturn[0]
-        intDateTime[:dateResolution] = aDateTimeReturn[1]
+                        # dateTime
+                        intDateTime = intMetadataClass.newDateTime
 
-        return intDateTime
+                        aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
+                        intDateTime[:dateTime] = aDateTimeReturn[0]
+                        intDateTime[:dateResolution] = aDateTimeReturn[1]
 
+                        return intDateTime
+
+                    end
+
+                end
+
+            end
+        end
     end
-
 end

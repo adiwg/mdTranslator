@@ -4,50 +4,61 @@
 # History:
 # 	Stan Smith 2013-11-18 original script
 # 	Stan Smith 2013-12-11 modified to handle single vertical element
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_VerticalElement
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hVertElement)
+                module VerticalElement
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
+                    def self.unpack(hVertElement)
 
-        intVertEle = intMetadataClass.newVerticalElement
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
 
-        # vertical element - minimum value
-        if hVertElement.has_key?('minimumValue')
-            s = hVertElement['minimumValue']
-            if s != ''
-                intVertEle[:minValue] = s
+                        intVertEle = intMetadataClass.newVerticalElement
+
+                        # vertical element - minimum value
+                        if hVertElement.has_key?('minimumValue')
+                            s = hVertElement['minimumValue']
+                            if s != ''
+                                intVertEle[:minValue] = s
+                            end
+                        end
+
+                        # vertical element - maximum value
+                        if hVertElement.has_key?('maximumValue')
+                            s = hVertElement['maximumValue']
+                            if s != ''
+                                intVertEle[:maxValue] = s
+                            end
+                        end
+
+                        # vertical element - vertical crs title attribute
+                        if hVertElement.has_key?('verticalCRSTitle')
+                            s = hVertElement['verticalCRSTitle']
+                            if s != ''
+                                intVertEle[:crsTitle] = s
+                            end
+                        end
+
+                        # vertical element - vertical crs link attribute
+                        if hVertElement.has_key?('verticalCRSUri')
+                            s = hVertElement['verticalCRSUri']
+                            if s != ''
+                                intVertEle[:crsURI] = s
+                            end
+                        end
+
+                        return intVertEle
+
+                    end
+
+                end
+
             end
         end
-
-        # vertical element - maximum value
-        if hVertElement.has_key?('maximumValue')
-            s = hVertElement['maximumValue']
-            if s != ''
-                intVertEle[:maxValue] = s
-            end
-        end
-
-        # vertical element - vertical crs title attribute
-        if hVertElement.has_key?('verticalCRSTitle')
-            s = hVertElement['verticalCRSTitle']
-            if s != ''
-                intVertEle[:crsTitle] = s
-            end
-        end
-
-        # vertical element - vertical crs link attribute
-        if hVertElement.has_key?('verticalCRSUri')
-            s = hVertElement['verticalCRSUri']
-            if s != ''
-                intVertEle[:crsURI] = s
-            end
-        end
-
-        return intVertEle
-
     end
-
 end

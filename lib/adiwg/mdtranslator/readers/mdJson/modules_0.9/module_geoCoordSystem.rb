@@ -3,44 +3,55 @@
 
 # History:
 # 	Stan Smith 2014-04-30 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_GeoCoordSystem
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hGeoCrs, intElement)
+                module GeoCoordSystem
 
-        intMetadataClass = InternalMetadata.new
-        intSRS = intMetadataClass.newSRS
+                    def self.unpack(hGeoCrs, intElement)
 
-        # get coordinate reference system
-        # null crs will default to CRS84 in writer
-        if hGeoCrs.has_key?('properties')
-            hCRSProp = hGeoCrs['properties']
+                        intMetadataClass = InternalMetadata.new
+                        intSRS = intMetadataClass.newSRS
 
-            if hCRSProp.has_key?('name')
-                s = hCRSProp['name']
-                if s != ''
-                    intSRS[:srsName] = s
+                        # get coordinate reference system
+                        # null crs will default to CRS84 in writer
+                        if hGeoCrs.has_key?('properties')
+                            hCRSProp = hGeoCrs['properties']
+
+                            if hCRSProp.has_key?('name')
+                                s = hCRSProp['name']
+                                if s != ''
+                                    intSRS[:srsName] = s
+                                end
+                            end
+
+                            if hCRSProp.has_key?('href')
+                                s = hCRSProp['href']
+                                if s != ''
+                                    intSRS[:srsHref] = s
+                                end
+                            end
+
+                            if hCRSProp.has_key?('type')
+                                s = hCRSProp['type']
+                                if s != ''
+                                    intSRS[:srsType] = s
+                                end
+                            end
+
+                            intElement[:elementSrs] = intSRS
+
+                        end
+
+                    end
+
                 end
+
             end
-
-            if hCRSProp.has_key?('href')
-                s = hCRSProp['href']
-                if s != ''
-                    intSRS[:srsHref] = s
-                end
-            end
-
-            if hCRSProp.has_key?('type')
-                s = hCRSProp['type']
-                if s != ''
-                    intSRS[:srsType] = s
-                end
-            end
-
-            intElement[:elementSrs] = intSRS
-
         end
-
     end
-
 end

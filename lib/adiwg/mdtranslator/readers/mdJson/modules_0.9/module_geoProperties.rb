@@ -5,85 +5,96 @@
 # 	Stan Smith 2014-04-29 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 changed assignedId to identifier schema 0.6.0
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_temporalElement')
+require $ReaderNS.readerModule('module_verticalElement')
+require $ReaderNS.readerModule('module_resourceIdentifier')
 
-module Md_GeoProperties
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hGeoProps, intElement)
+                module GeoProperties
 
-        # set element extent - (default true)
-        intElement[:elementIncludeData] = true
-        if hGeoProps.has_key?('includesData')
-            if !hGeoProps['includesData']
-                intElement[:elementIncludeData] = false
-            end
-        end
+                    def self.unpack(hGeoProps, intElement)
 
-        # set element feature name
-        if hGeoProps.has_key?('featureName')
-            s = hGeoProps['featureName']
-            if s != ''
-                intElement[:elementName] = s
-            end
-        end
+                        # set element extent - (default true)
+                        intElement[:elementIncludeData] = true
+                        if hGeoProps.has_key?('includesData')
+                            if !hGeoProps['includesData']
+                                intElement[:elementIncludeData] = false
+                            end
+                        end
 
-        # set element description
-        if hGeoProps.has_key?('description')
-            s = hGeoProps['description']
-            if s != ''
-                intElement[:elementDescription] = s
-            end
-        end
+                        # set element feature name
+                        if hGeoProps.has_key?('featureName')
+                            s = hGeoProps['featureName']
+                            if s != ''
+                                intElement[:elementName] = s
+                            end
+                        end
 
-        # set temporal information
-        if hGeoProps.has_key?('temporalElement')
-            hTempEle = hGeoProps['temporalElement']
-            unless hTempEle.empty?
-                intElement[:temporalElements] = Md_TemporalElement.unpack(hTempEle)
-            end
-        end
+                        # set element description
+                        if hGeoProps.has_key?('description')
+                            s = hGeoProps['description']
+                            if s != ''
+                                intElement[:elementDescription] = s
+                            end
+                        end
 
-        # set vertical information
-        if hGeoProps.has_key?('verticalElement')
-            aVertEle = hGeoProps['verticalElement']
-            unless aVertEle.empty?
-                aVertEle.each do |hVertEle|
-                    intElement[:verticalElements] << Md_VerticalElement.unpack(hVertEle)
+                        # set temporal information
+                        if hGeoProps.has_key?('temporalElement')
+                            hTempEle = hGeoProps['temporalElement']
+                            unless hTempEle.empty?
+                                intElement[:temporalElements] = $ReaderNS::TemporalElement.unpack(hTempEle)
+                            end
+                        end
+
+                        # set vertical information
+                        if hGeoProps.has_key?('verticalElement')
+                            aVertEle = hGeoProps['verticalElement']
+                            unless aVertEle.empty?
+                                aVertEle.each do |hVertEle|
+                                    intElement[:verticalElements] << $ReaderNS::VerticalElement.unpack(hVertEle)
+                                end
+                            end
+                        end
+
+                        # set other assigned IDs
+                        if hGeoProps.has_key?('identifier')
+                            aResIds = hGeoProps['identifier']
+                            unless aResIds.empty?
+                                aResIds.each do |hIdentifier|
+                                    intElement[:elementIdentifiers] << $ReaderNS::ResourceIdentifier.unpack(hIdentifier)
+                                end
+                            end
+                        end
+
+                        # set feature scope
+                        if hGeoProps.has_key?('featureScope')
+                            s = hGeoProps['featureScope']
+                            if s != ''
+                                intElement[:elementScope] = s
+                            end
+                        end
+
+                        # set feature acquisition methodology
+                        if hGeoProps.has_key?('featureAcquisitionMethod')
+                            s = hGeoProps['featureAcquisitionMethod']
+                            if s != ''
+                                intElement[:elementAcquisition] = s
+                            end
+                        end
+
+                        return intElement
+
+                    end
+
                 end
+
             end
         end
-
-        # set other assigned IDs
-        if hGeoProps.has_key?('identifier')
-            aResIds = hGeoProps['identifier']
-            unless aResIds.empty?
-                aResIds.each do |hIdentifier|
-                    intElement[:elementIdentifiers] << Md_ResourceIdentifier.unpack(hIdentifier)
-                end
-            end
-        end
-
-        # set feature scope
-        if hGeoProps.has_key?('featureScope')
-            s = hGeoProps['featureScope']
-            if s != ''
-                intElement[:elementScope] = s
-            end
-        end
-
-        # set feature acquisition methodology
-        if hGeoProps.has_key?('featureAcquisitionMethod')
-            s = hGeoProps['featureAcquisitionMethod']
-            if s != ''
-                intElement[:elementAcquisition] = s
-            end
-        end
-
-        return intElement
-
     end
-
 end

@@ -4,45 +4,56 @@
 # History:
 # 	Stan Smith 2013-11-26 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_processStep', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_citation')
+require $ReaderNS.readerModule('module_processStep')
 
-module Md_Source
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hSource)
+                module Source
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intDataSource = intMetadataClass.newDataSource
+                    def self.unpack(hSource)
 
-        # source - description
-        if hSource.has_key?('description')
-            s = hSource['description']
-            if s != ''
-                intDataSource[:sourceDescription] = s
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intDataSource = intMetadataClass.newDataSource
 
-        # source - citation
-        if hSource.has_key?('citation')
-            hCitation = hSource['citation']
-            unless hCitation.empty?
-                intDataSource[:sourceCitation] = Md_Citation.unpack(hCitation)
-            end
-        end
+                        # source - description
+                        if hSource.has_key?('description')
+                            s = hSource['description']
+                            if s != ''
+                                intDataSource[:sourceDescription] = s
+                            end
+                        end
 
-        # source - data sources
-        if hSource.has_key?('processStep')
-            aSourceSteps = hSource['processStep']
-            unless aSourceSteps.empty?
-                aSourceSteps.each do |hStep|
-                    intDataSource[:sourceSteps] << Md_ProcessStep.unpack(hStep)
+                        # source - citation
+                        if hSource.has_key?('citation')
+                            hCitation = hSource['citation']
+                            unless hCitation.empty?
+                                intDataSource[:sourceCitation] = $ReaderNS::Citation.unpack(hCitation)
+                            end
+                        end
+
+                        # source - data sources
+                        if hSource.has_key?('processStep')
+                            aSourceSteps = hSource['processStep']
+                            unless aSourceSteps.empty?
+                                aSourceSteps.each do |hStep|
+                                    intDataSource[:sourceSteps] << $ReaderNS::ProcessStep.unpack(hStep)
+                                end
+                            end
+                        end
+
+                        return intDataSource
+                    end
+
                 end
+
             end
         end
-
-        return intDataSource
     end
-
 end

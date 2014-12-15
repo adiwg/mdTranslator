@@ -10,62 +10,73 @@
 # 		. each definition will create a new element
 # 	Stan Smith 2013-12-11 modified to handle single temporal element
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_timeInstant', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_timePeriod', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_dateTime')
+require $ReaderNS.readerModule('module_timeInstant')
+require $ReaderNS.readerModule('module_timePeriod')
 
-module Md_TemporalElement
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hTempElement)
+                module TemporalElement
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        aIntTempElements = Array.new
+                    def self.unpack(hTempElement)
 
-        # temporal element - date
-        if hTempElement.has_key?('date')
-            aDates = hTempElement['date']
-            unless aDates.empty?
-                aDates.each do |s|
-                    intTempEle = intMetadataClass.newTemporalElement
-                    intTempEle[:date] = Md_DateTime.unpack(s)
-                    aIntTempElements << intTempEle
-                end
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        aIntTempElements = Array.new
 
-        # temporal element - time instant
-        if hTempElement.has_key?('timeInstant')
-            aTimeInst = hTempElement['timeInstant']
-            unless aTimeInst.empty?
-                aTimeInst.each do |hTimeInst|
-                    if hTimeInst.has_key?('timePosition')
-                        s = hTimeInst['timePosition']
-                        if s != ''
-                            intTempEle = intMetadataClass.newTemporalElement
-                            intTempEle[:timeInstant] = Md_TimeInstant.unpack(hTimeInst)
-                            aIntTempElements << intTempEle
+                        # temporal element - date
+                        if hTempElement.has_key?('date')
+                            aDates = hTempElement['date']
+                            unless aDates.empty?
+                                aDates.each do |s|
+                                    intTempEle = intMetadataClass.newTemporalElement
+                                    intTempEle[:date] = $ReaderNS::DateTime.unpack(s)
+                                    aIntTempElements << intTempEle
+                                end
+                            end
                         end
+
+                        # temporal element - time instant
+                        if hTempElement.has_key?('timeInstant')
+                            aTimeInst = hTempElement['timeInstant']
+                            unless aTimeInst.empty?
+                                aTimeInst.each do |hTimeInst|
+                                    if hTimeInst.has_key?('timePosition')
+                                        s = hTimeInst['timePosition']
+                                        if s != ''
+                                            intTempEle = intMetadataClass.newTemporalElement
+                                            intTempEle[:timeInstant] = $ReaderNS::TimeInstant.unpack(hTimeInst)
+                                            aIntTempElements << intTempEle
+                                        end
+                                    end
+                                end
+                            end
+                        end
+
+                        # temporal element - time period
+                        if hTempElement.has_key?('timePeriod')
+                            aTimePeriod = hTempElement['timePeriod']
+                            unless aTimePeriod.empty?
+                                aTimePeriod.each do |hTimePeriod|
+                                    intTempEle = intMetadataClass.newTemporalElement
+                                    intTempEle[:timePeriod] = $ReaderNS::TimePeriod.unpack(hTimePeriod)
+                                    aIntTempElements << intTempEle
+                                end
+                            end
+                        end
+
+                        return aIntTempElements
+
                     end
+
                 end
+
             end
         end
-
-        # temporal element - time period
-        if hTempElement.has_key?('timePeriod')
-            aTimePeriod = hTempElement['timePeriod']
-            unless aTimePeriod.empty?
-                aTimePeriod.each do |hTimePeriod|
-                    intTempEle = intMetadataClass.newTemporalElement
-                    intTempEle[:timePeriod] = Md_TimePeriod.unpack(hTimePeriod)
-                    aIntTempElements << intTempEle
-                end
-            end
-        end
-
-        return aIntTempElements
-
     end
-
 end

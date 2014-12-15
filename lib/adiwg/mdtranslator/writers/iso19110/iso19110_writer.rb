@@ -13,7 +13,6 @@ require 'date'
 require 'uuidtools'
 require 'class_FCfeatureCatalogue'
 
-
 module ADIWG
     module Mdtranslator
         module Writers

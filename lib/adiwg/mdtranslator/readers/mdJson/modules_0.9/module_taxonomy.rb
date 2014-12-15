@@ -6,78 +6,89 @@
 #   Stan Smith 2014-05-02 fixed assignment problem with taxon general scope
 #   Stan Smith 2014-05-02 fixed assignment problem with taxonomic procedures
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_voucher', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_taxonClass', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_citation')
+require $ReaderNS.readerModule('module_responsibleParty')
+require $ReaderNS.readerModule('module_voucher')
+require $ReaderNS.readerModule('module_taxonClass')
 
-module Md_Taxonomy
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hTaxonomy)
+                module Taxonomy
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intTaxSys = intMetadataClass.newTaxonSystem
+                    def self.unpack(hTaxonomy)
 
-        # taxonomy - taxonomy class system - citation
-        if hTaxonomy.has_key?('classificationSystem')
-            aClassSys = hTaxonomy['classificationSystem']
-            unless aClassSys.empty?
-                aClassSys.each do |hCitation|
-                    intTaxSys[:taxClassSys] << Md_Citation.unpack(hCitation)
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intTaxSys = intMetadataClass.newTaxonSystem
+
+                        # taxonomy - taxonomy class system - citation
+                        if hTaxonomy.has_key?('classificationSystem')
+                            aClassSys = hTaxonomy['classificationSystem']
+                            unless aClassSys.empty?
+                                aClassSys.each do |hCitation|
+                                    intTaxSys[:taxClassSys] << $ReaderNS::Citation.unpack(hCitation)
+                                end
+                            end
+                        end
+
+                        # taxonomy - general scope
+                        if hTaxonomy.has_key?('taxonGeneralScope')
+                            s = hTaxonomy['taxonGeneralScope']
+                            if s != ''
+                                intTaxSys[:taxGeneralScope] = s
+                            end
+                        end
+
+                        # taxonomy - ID reference system
+                        # not supported in JSON schema (defaulted to 'unknown')
+
+                        # taxonomy - observers - responsible party
+                        if hTaxonomy.has_key?('observer')
+                            aObservers = hTaxonomy['observer']
+                            unless aObservers.empty?
+                                aObservers.each do |observer|
+                                    intTaxSys[:taxObservers] << $ReaderNS::ResponsibleParty.unpack(observer)
+                                end
+                            end
+                        end
+
+                        # taxonomy - taxonomic procedures
+                        if hTaxonomy.has_key?('taxonomicProcedure')
+                            s = hTaxonomy['taxonomicProcedure']
+                            if s != ''
+                                intTaxSys[:taxIdProcedures] = s
+                            end
+                        end
+
+                        # taxonomy - voucher
+                        if hTaxonomy.has_key?('voucher')
+                            hVoucher = hTaxonomy['voucher']
+                            unless hVoucher.empty?
+                                intTaxSys[:taxVoucher] = $ReaderNS::Voucher.unpack(hVoucher)
+                            end
+                        end
+
+                        # taxonomy - classification (recursive)
+                        if hTaxonomy.has_key?('taxonClass')
+                            aTaxClass = hTaxonomy['taxonClass']
+                            unless aTaxClass.empty?
+                                aTaxClass.each do |hTaxClass|
+                                    intTaxSys[:taxClasses] << $ReaderNS::TaxonCl.unpack(hTaxClass)
+                                end
+                            end
+                        end
+
+                        return intTaxSys
+                    end
+
                 end
+
             end
         end
-
-        # taxonomy - general scope
-        if hTaxonomy.has_key?('taxonGeneralScope')
-            s = hTaxonomy['taxonGeneralScope']
-            if s != ''
-                intTaxSys[:taxGeneralScope] = s
-            end
-        end
-
-        # taxonomy - ID reference system
-        # not supported in JSON schema (defaulted to 'unknown')
-
-        # taxonomy - observers - responsible party
-        if hTaxonomy.has_key?('observer')
-            aObservers = hTaxonomy['observer']
-            unless aObservers.empty?
-                aObservers.each do |observer|
-                    intTaxSys[:taxObservers] << Md_ResponsibleParty.unpack(observer)
-                end
-            end
-        end
-
-        # taxonomy - taxonomic procedures
-        if hTaxonomy.has_key?('taxonomicProcedure')
-            s = hTaxonomy['taxonomicProcedure']
-            if s != ''
-                intTaxSys[:taxIdProcedures] = s
-            end
-        end
-
-        # taxonomy - voucher
-        if hTaxonomy.has_key?('voucher')
-            hVoucher = hTaxonomy['voucher']
-            unless hVoucher.empty?
-                intTaxSys[:taxVoucher] = Md_Voucher.unpack(hVoucher)
-            end
-        end
-
-        # taxonomy - classification (recursive)
-        if hTaxonomy.has_key?('taxonClass')
-            aTaxClass = hTaxonomy['taxonClass']
-            unless aTaxClass.empty?
-                aTaxClass.each do |hTaxClass|
-                    intTaxSys[:taxClasses] << Md_TaxonCl.unpack(hTaxClass)
-                end
-            end
-        end
-
-        return intTaxSys
     end
-
 end

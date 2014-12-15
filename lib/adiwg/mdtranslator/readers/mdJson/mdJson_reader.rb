@@ -55,6 +55,8 @@ module ADIWG
                     # unpack mdJson file
                     require readerModule('module_mdJson')
                     intObj = $ReaderNS.unpack(@hMdJson)
+                    require 'pp'
+                    pp intObj
                     return intObj
 
                 end
@@ -177,9 +179,6 @@ module ADIWG
                         file.close
                     end
                     return readmeText
-                end
-
-                def self.reader_module(moduleName, version)
                 end
 
             end

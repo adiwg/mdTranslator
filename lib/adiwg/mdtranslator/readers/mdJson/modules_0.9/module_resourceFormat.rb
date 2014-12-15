@@ -4,32 +4,43 @@
 # History:
 # 	Stan Smith 2013-08-26 original script
 # 	Stan Smith 2013-11-27 modified to process single resource format rather than array
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_ResourceFormat
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hResFormat)
+                module ResourceFormat
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        rFormat = intMetadataClass.newResourceFormat
+                    def self.unpack(hResFormat)
 
-        # format - name
-        if hResFormat.has_key?('formatName')
-            s = hResFormat['formatName']
-            if s != ''
-                rFormat[:formatName] = s
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        rFormat = intMetadataClass.newResourceFormat
+
+                        # format - name
+                        if hResFormat.has_key?('formatName')
+                            s = hResFormat['formatName']
+                            if s != ''
+                                rFormat[:formatName] = s
+                            end
+                        end
+
+                        # format - version
+                        if hResFormat.has_key?('version')
+                            s = hResFormat['version']
+                            if s != ''
+                                rFormat[:formatVersion] = s
+                            end
+                        end
+
+                        return rFormat
+                    end
+
+                end
+
             end
         end
-
-        # format - version
-        if hResFormat.has_key?('version')
-            s = hResFormat['version']
-            if s != ''
-                rFormat[:formatVersion] = s
-            end
-        end
-
-        return rFormat
     end
-
 end

@@ -3,46 +3,57 @@
 
 # History:
 # 	Stan Smith 2014-09-03 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_SpatialReferenceSystem
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hSpatialRef)
+                module SpatialReferenceSystem
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intSpatialRef = intMetadataClass.newSpatialReferenceSystem
+                    def self.unpack(hSpatialRef)
 
-        # spatial reference system - by name
-        if hSpatialRef.has_key?('name')
-            aSystemNames = hSpatialRef['name']
-            unless aSystemNames.empty?
-                aSystemNames.each do |sRName|
-                    intSpatialRef[:sRNames] << sRName
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intSpatialRef = intMetadataClass.newSpatialReferenceSystem
+
+                        # spatial reference system - by name
+                        if hSpatialRef.has_key?('name')
+                            aSystemNames = hSpatialRef['name']
+                            unless aSystemNames.empty?
+                                aSystemNames.each do |sRName|
+                                    intSpatialRef[:sRNames] << sRName
+                                end
+                            end
+                        end
+
+                        # spatial reference system - by epsg
+                        if hSpatialRef.has_key?('epsgNumber')
+                            aSystemNames = hSpatialRef['epsgNumber']
+                            unless aSystemNames.empty?
+                                aSystemNames.each do |sREPSG|
+                                    intSpatialRef[:sREPSGs] << sREPSG
+                                end
+                            end
+                        end
+
+                        # spatial reference system - by wkt
+                        if hSpatialRef.has_key?('wkt')
+                            aSystemNames = hSpatialRef['wkt']
+                            unless aSystemNames.empty?
+                                aSystemNames.each do |sRWKT|
+                                    intSpatialRef[:sRWKTs] << sRWKT
+                                end
+                            end
+                        end
+
+                        return intSpatialRef
+                    end
+
                 end
+
             end
         end
-
-        # spatial reference system - by epsg
-        if hSpatialRef.has_key?('epsgNumber')
-            aSystemNames = hSpatialRef['epsgNumber']
-            unless aSystemNames.empty?
-                aSystemNames.each do |sREPSG|
-                    intSpatialRef[:sREPSGs] << sREPSG
-                end
-            end
-        end
-
-        # spatial reference system - by wkt
-        if hSpatialRef.has_key?('wkt')
-            aSystemNames = hSpatialRef['wkt']
-            unless aSystemNames.empty?
-                aSystemNames.each do |sRWKT|
-                    intSpatialRef[:sRWKTs] << sRWKT
-                end
-            end
-        end
-
-        return intSpatialRef
     end
-
 end

@@ -4,37 +4,48 @@
 # History:
 # 	Stan Smith 2013-11-22 original script
 #   Stan Smith 2014-05-15 modified for JSON schema 0.4.0
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_MetadataExtension
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.addExtensionISObio()
+                module MetadataExtension
 
-        intMetadataClass = InternalMetadata.new
-        intMetaExt = intMetadataClass.newMetadataExtension
-        intContactRole = intMetadataClass.newRespParty
+                    def self.addExtensionISObio()
 
-        # extension online information
-        intMetaExt[:onLineResource] = {}
+                        intMetadataClass = InternalMetadata.new
+                        intMetaExt = intMetadataClass.newMetadataExtension
+                        intContactRole = intMetadataClass.newRespParty
 
-        # extension entity information
-        intMetaExt[:extName] = 'Taxonomy System'
-        intMetaExt[:extShortName] = 'TaxonSys'
-        intMetaExt[:extDefinition] = 'Documentation of taxonomic sources, procedures, and treatments'
-        intMetaExt[:obligation] = 'optional'
-        intMetaExt[:dataType] = 'class'
-        intMetaExt[:maxOccurrence] = '1'
-        intMetaExt[:parentEntities] << 'MD_Identification'
-        intMetaExt[:rule] = 'New Metadata section as a class to MD_Identification'
-        intMetaExt[:rationales] << 'The set of data elements contained within this class element ' +
-            'represents an attempt to provide better documentation of ' +
-            'taxonomic sources, procedures, and treatments.'
+                        # extension online information
+                        intMetaExt[:onLineResource] = {}
 
-        # source information
-        intContactRole[:contactId] = 'ADIwgBio'
-        intContactRole[:roleName] = 'resourceProvider'
-        intMetaExt[:extSources] << intContactRole
+                        # extension entity information
+                        intMetaExt[:extName] = 'Taxonomy System'
+                        intMetaExt[:extShortName] = 'TaxonSys'
+                        intMetaExt[:extDefinition] = 'Documentation of taxonomic sources, procedures, and treatments'
+                        intMetaExt[:obligation] = 'optional'
+                        intMetaExt[:dataType] = 'class'
+                        intMetaExt[:maxOccurrence] = '1'
+                        intMetaExt[:parentEntities] << 'MD_Identification'
+                        intMetaExt[:rule] = 'New Metadata section as a class to MD_Identification'
+                        intMetaExt[:rationales] << 'The set of data elements contained within this class element ' +
+                            'represents an attempt to provide better documentation of ' +
+                            'taxonomic sources, procedures, and treatments.'
 
-        return intMetaExt
+                        # source information
+                        intContactRole[:contactId] = 'ADIwgBio'
+                        intContactRole[:roleName] = 'resourceProvider'
+                        intMetaExt[:extSources] << intContactRole
+
+                        return intMetaExt
+                    end
+
+                end
+
+            end
+        end
     end
-
 end

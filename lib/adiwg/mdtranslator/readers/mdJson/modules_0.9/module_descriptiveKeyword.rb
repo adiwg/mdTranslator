@@ -7,43 +7,54 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-21 removed thesaurus link; replaced by onlineResource to citation
 #   Stan Smith 2014-08-21 removed extra level of encapsulation "citation" under "thesaurus"
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_citation')
 
-module Md_DescriptiveKeyword
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hDesKeyword)
+                module DescriptiveKeyword
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intKeyword = intMetadataClass.newKeyword
+                    def self.unpack(hDesKeyword)
 
-        # descriptive keyword - keyword array
-        if hDesKeyword.has_key?('keyword')
-            aKeywords = hDesKeyword['keyword']
-            aKeywords.each do |keyword|
-                intKeyword[:keyword] << keyword
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intKeyword = intMetadataClass.newKeyword
+
+                        # descriptive keyword - keyword array
+                        if hDesKeyword.has_key?('keyword')
+                            aKeywords = hDesKeyword['keyword']
+                            aKeywords.each do |keyword|
+                                intKeyword[:keyword] << keyword
+                            end
+                        end
+
+                        # descriptive keyword - keyType
+                        if hDesKeyword.has_key?('keywordType')
+                            s = hDesKeyword['keywordType']
+                            if s != ''
+                                intKeyword[:keywordType] = s
+                            end
+                        end
+
+                        # descriptive keyword - thesaurus
+                        if hDesKeyword.has_key?('thesaurus')
+                            hCitation = hDesKeyword['thesaurus']
+                            unless hCitation.empty?
+                                intKeyword[:keyTheCitation] = $ReaderNS::Citation.unpack(hCitation)
+                            end
+
+                        end
+
+                        return intKeyword
+                    end
+
+                end
+
             end
         end
-
-        # descriptive keyword - keyType
-        if hDesKeyword.has_key?('keywordType')
-            s = hDesKeyword['keywordType']
-            if s != ''
-                intKeyword[:keywordType] = s
-            end
-        end
-
-        # descriptive keyword - thesaurus
-        if hDesKeyword.has_key?('thesaurus')
-            hCitation = hDesKeyword['thesaurus']
-            unless hCitation.empty?
-                intKeyword[:keyTheCitation] = Md_Citation.unpack(hCitation)
-            end
-
-        end
-
-        return intKeyword
     end
-
 end

@@ -7,44 +7,55 @@
 # 	Stan Smith 2013-12-18 added contact
 #   Stan Smith 2014-04-24 modified for json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_responsibleParty')
 
-module Md_ResourceMaintenance
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hResource)
+                module ResourceMaintenance
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intResMaint = intMetadataClass.newResourceMaint
+                    def self.unpack(hResource)
 
-        # resource maintenance - frequency code
-        if hResource.has_key?('maintenanceFrequency')
-            s = hResource['maintenanceFrequency']
-            if s != ''
-                intResMaint[:maintFreq] = s
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intResMaint = intMetadataClass.newResourceMaint
 
-        # resource maintenance - maintenance note
-        if hResource.has_key?('maintenanceNote')
-            aNotes = hResource['maintenanceNote']
-            unless aNotes.empty?
-                intResMaint[:maintNotes] = aNotes
-            end
-        end
+                        # resource maintenance - frequency code
+                        if hResource.has_key?('maintenanceFrequency')
+                            s = hResource['maintenanceFrequency']
+                            if s != ''
+                                intResMaint[:maintFreq] = s
+                            end
+                        end
 
-        # resource maintenance - contact
-        if hResource.has_key?('maintenanceContact')
-            aContact = hResource['maintenanceContact']
-            unless aContact.empty?
-                aContact.each do |hContact|
-                    intResMaint[:maintContacts] << Md_ResponsibleParty.unpack(hContact)
+                        # resource maintenance - maintenance note
+                        if hResource.has_key?('maintenanceNote')
+                            aNotes = hResource['maintenanceNote']
+                            unless aNotes.empty?
+                                intResMaint[:maintNotes] = aNotes
+                            end
+                        end
+
+                        # resource maintenance - contact
+                        if hResource.has_key?('maintenanceContact')
+                            aContact = hResource['maintenanceContact']
+                            unless aContact.empty?
+                                aContact.each do |hContact|
+                                    intResMaint[:maintContacts] << $ReaderNS::ResponsibleParty.unpack(hContact)
+                                end
+                            end
+                        end
+
+                        return intResMaint
+                    end
+
                 end
+
             end
         end
-
-        return intResMaint
     end
-
 end

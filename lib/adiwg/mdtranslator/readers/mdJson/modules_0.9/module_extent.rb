@@ -8,55 +8,66 @@
 # 	Stan Smith 2013-11-27 modified to process a single extent
 # 	Stan Smith 2013-12-05 modified to for new temporalElement schema
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_geographicElement', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_temporalElement', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_verticalElement', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_geographicElement')
+require $ReaderNS.readerModule('module_temporalElement')
+require $ReaderNS.readerModule('module_verticalElement')
 
-module Md_Extent
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hExtent)
+                module Extent
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intExtent = intMetadataClass.newExtent
+                    def self.unpack(hExtent)
 
-        # extent - description
-        if hExtent.has_key?('description')
-            s = hExtent['description']
-            if s != ''
-                intExtent[:extDesc] = s
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intExtent = intMetadataClass.newExtent
 
-        # extent - geographic elements
-        if hExtent.has_key?('geographicElement')
-            aGeoElements = hExtent['geographicElement']
-            unless aGeoElements.empty?
-                intExtent[:extGeoElements] = Md_GeographicElement.unpack(aGeoElements)
-            end
-        end
+                        # extent - description
+                        if hExtent.has_key?('description')
+                            s = hExtent['description']
+                            if s != ''
+                                intExtent[:extDesc] = s
+                            end
+                        end
 
-        # extent - temporal elements
-        if hExtent.has_key?('temporalElement')
-            hTempElement = hExtent['temporalElement']
-            unless hTempElement.empty?
-                intExtent[:extTempElements] = Md_TemporalElement.unpack(hTempElement)
-            end
-        end
+                        # extent - geographic elements
+                        if hExtent.has_key?('geographicElement')
+                            aGeoElements = hExtent['geographicElement']
+                            unless aGeoElements.empty?
+                                intExtent[:extGeoElements] = $ReaderNS::GeographicElement.unpack(aGeoElements)
+                            end
+                        end
 
-        # extent - vertical elements
-        if hExtent.has_key?('verticalElement')
-            aVertElements = hExtent['verticalElement']
-            unless aVertElements.empty?
-                aVertElements.each do |hVertElement|
-                    intExtent[:extVertElements] << Md_VerticalElement.unpack(hVertElement)
+                        # extent - temporal elements
+                        if hExtent.has_key?('temporalElement')
+                            hTempElement = hExtent['temporalElement']
+                            unless hTempElement.empty?
+                                intExtent[:extTempElements] = $ReaderNS::TemporalElement.unpack(hTempElement)
+                            end
+                        end
+
+                        # extent - vertical elements
+                        if hExtent.has_key?('verticalElement')
+                            aVertElements = hExtent['verticalElement']
+                            unless aVertElements.empty?
+                                aVertElements.each do |hVertElement|
+                                    intExtent[:extVertElements] << $ReaderNS::VerticalElement.unpack(hVertElement)
+                                end
+                            end
+                        end
+
+                        return intExtent
+
+                    end
+
                 end
+
             end
         end
-
-        return intExtent
-
     end
-
 end

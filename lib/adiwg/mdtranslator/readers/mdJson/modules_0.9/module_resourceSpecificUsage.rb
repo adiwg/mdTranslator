@@ -6,45 +6,56 @@
 # 	Stan Smith 2013-11-27 modified to process a single resource usage
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_responsibleParty')
 
-module Md_ResourceSpecificUsage
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hUsage)
+                module ResourceSpecificUsage
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intUsage = intMetadataClass.newDataUsage
+                    def self.unpack(hUsage)
 
-        # resource specific usage - specific usage
-        if hUsage.has_key?('specificUsage')
-            s = hUsage['specificUsage']
-            if s != ''
-                intUsage[:specificUsage] = s
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intUsage = intMetadataClass.newDataUsage
 
-        # resource specific usage - user determined limitations
-        if hUsage.has_key?('userDeterminedLimitation')
-            s = hUsage['userDeterminedLimitation']
-            if s != ''
-                intUsage[:userLimits] = s
-            end
-        end
+                        # resource specific usage - specific usage
+                        if hUsage.has_key?('specificUsage')
+                            s = hUsage['specificUsage']
+                            if s != ''
+                                intUsage[:specificUsage] = s
+                            end
+                        end
 
-        # taxonomy - repository - responsible party
-        if hUsage.has_key?('userContactInfo')
-            aContacts = hUsage['userContactInfo']
-            unless aContacts.empty?
-                aContacts.each do |hContact|
-                    intUsage[:userContacts] << Md_ResponsibleParty.unpack(hContact)
+                        # resource specific usage - user determined limitations
+                        if hUsage.has_key?('userDeterminedLimitation')
+                            s = hUsage['userDeterminedLimitation']
+                            if s != ''
+                                intUsage[:userLimits] = s
+                            end
+                        end
+
+                        # taxonomy - repository - responsible party
+                        if hUsage.has_key?('userContactInfo')
+                            aContacts = hUsage['userContactInfo']
+                            unless aContacts.empty?
+                                aContacts.each do |hContact|
+                                    intUsage[:userContacts] << $ReaderNS::ResponsibleParty.unpack(hContact)
+                                end
+                            end
+                        end
+
+                        return intUsage
+
+                    end
+
                 end
+
             end
         end
-
-        return intUsage
-
     end
-
 end

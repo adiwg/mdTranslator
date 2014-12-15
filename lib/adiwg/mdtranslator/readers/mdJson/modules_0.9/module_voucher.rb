@@ -4,35 +4,46 @@
 # History:
 # 	Stan Smith 2013-11-21 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_responsibleParty')
 
-module Md_Voucher
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hVoucher)
+                module Voucher
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intTaxVoucher = intMetadataClass.newTaxonVoucher
+                    def self.unpack(hVoucher)
 
-        # taxonomy voucher - specimen
-        if hVoucher.has_key?('specimen')
-            s = hVoucher['specimen']
-            if s != ''
-                intTaxVoucher[:specimen] = s
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intTaxVoucher = intMetadataClass.newTaxonVoucher
+
+                        # taxonomy voucher - specimen
+                        if hVoucher.has_key?('specimen')
+                            s = hVoucher['specimen']
+                            if s != ''
+                                intTaxVoucher[:specimen] = s
+                            end
+                        end
+
+                        # taxonomy - repository - responsible party
+                        if hVoucher.has_key?('repository')
+                            hRepository = hVoucher['repository']
+                            unless hRepository.empty?
+                                intTaxVoucher[:repository] = $ReaderNS::ResponsibleParty.unpack(hRepository)
+                            end
+                        end
+
+                        return intTaxVoucher
+
+                    end
+
+                end
+
             end
         end
-
-        # taxonomy - repository - responsible party
-        if hVoucher.has_key?('repository')
-            hRepository = hVoucher['repository']
-            unless hRepository.empty?
-                intTaxVoucher[:repository] = Md_ResponsibleParty.unpack(hRepository)
-            end
-        end
-
-        return intTaxVoucher
-
     end
-
 end

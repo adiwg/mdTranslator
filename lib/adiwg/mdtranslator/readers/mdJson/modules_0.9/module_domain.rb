@@ -3,60 +3,71 @@
 
 # History:
 # 	Stan Smith 2013-12-01 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_domainItem', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_domainItem')
 
-module Md_Domain
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hDomain)
+                module Domain
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intDomain = intMetadataClass.newDictionaryDomain
+                    def self.unpack(hDomain)
 
-        # data dictionary domain - id
-        if hDomain.has_key?('domainId')
-            s = hDomain['domainId']
-            if s != ''
-                intDomain[:domainId] = s
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intDomain = intMetadataClass.newDictionaryDomain
 
-        # data dictionary domain - name
-        if hDomain.has_key?('commonName')
-            s = hDomain['commonName']
-            if s != ''
-                intDomain[:domainName] = s
-            end
-        end
+                        # data dictionary domain - id
+                        if hDomain.has_key?('domainId')
+                            s = hDomain['domainId']
+                            if s != ''
+                                intDomain[:domainId] = s
+                            end
+                        end
 
-        # data dictionary domain - code
-        if hDomain.has_key?('codeName')
-            s = hDomain['codeName']
-            if s != ''
-                intDomain[:domainCode] = s
-            end
-        end
+                        # data dictionary domain - name
+                        if hDomain.has_key?('commonName')
+                            s = hDomain['commonName']
+                            if s != ''
+                                intDomain[:domainName] = s
+                            end
+                        end
 
-        # data dictionary domain - description
-        if hDomain.has_key?('description')
-            s = hDomain['description']
-            if s != ''
-                intDomain[:domainDescription] = s
-            end
-        end
+                        # data dictionary domain - code
+                        if hDomain.has_key?('codeName')
+                            s = hDomain['codeName']
+                            if s != ''
+                                intDomain[:domainCode] = s
+                            end
+                        end
 
-        # data dictionary domain - members
-        if hDomain.has_key?('member')
-            aDoItems = hDomain['member']
-            aDoItems.each do |hDoItem|
-                unless hDoItem.empty?
-                    intDomain[:domainItems] << Md_DomainItem.unpack(hDoItem)
+                        # data dictionary domain - description
+                        if hDomain.has_key?('description')
+                            s = hDomain['description']
+                            if s != ''
+                                intDomain[:domainDescription] = s
+                            end
+                        end
+
+                        # data dictionary domain - members
+                        if hDomain.has_key?('member')
+                            aDoItems = hDomain['member']
+                            aDoItems.each do |hDoItem|
+                                unless hDoItem.empty?
+                                    intDomain[:domainItems] << $ReaderNS::DomainItem.unpack(hDoItem)
+                                end
+                            end
+                        end
+
+                        return intDomain
+                    end
+
                 end
+
             end
         end
-
-        return intDomain
     end
-
 end

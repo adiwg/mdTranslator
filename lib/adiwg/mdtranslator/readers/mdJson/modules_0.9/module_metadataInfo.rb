@@ -7,106 +7,117 @@
 #   Stan Smith 2014-09-19 changed metadata identifier type resource identifier json 0.8.0
 #   Stan Smith 2014-09-19 changed parent metadata identifier type citation json 0.8.0
 #   Stan Smith 2014-11-06 removed metadataScope, moved to resourceType under resourceInfo json 0.9.0
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_responsibleParty', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_dateTime', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_resourceMaintenance', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_metadataExtension', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_resourceIdentifier', $response[:readerVersionUsed])
-require ADIWG::Mdtranslator.reader_module('module_citation', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_responsibleParty')
+require $ReaderNS.readerModule('module_dateTime')
+require $ReaderNS.readerModule('module_resourceMaintenance')
+require $ReaderNS.readerModule('module_metadataExtension')
+require $ReaderNS.readerModule('module_resourceIdentifier')
+require $ReaderNS.readerModule('module_citation')
 
-module Md_MetadataInfo
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hMetadata)
+                module MetadataInfo
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
-        intMetadataInfo = intMetadataClass.newMetadataInfo
-        hMetadataInfo = hMetadata['metadataInfo']
+                    def self.unpack(hMetadata)
 
-        # metadata - metadata identifier
-        if hMetadataInfo.has_key?('metadataIdentifier')
-            hMetadataId = hMetadataInfo['metadataIdentifier']
-            unless hMetadataId.empty?
-                intMetadataInfo[:metadataId] = Md_ResourceIdentifier.unpack(hMetadataId)
-            end
-        end
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intMetadataInfo = intMetadataClass.newMetadataInfo
+                        hMetadataInfo = hMetadata['metadataInfo']
 
-        # metadata - parent metadata identifier
-        if hMetadataInfo.has_key?('parentMetadata')
-            hParent = hMetadataInfo['parentMetadata']
-            unless hParent.empty?
-                intMetadataInfo[:parentMetadata] = Md_Citation.unpack(hParent)
-            end
-        end
+                        # metadata - metadata identifier
+                        if hMetadataInfo.has_key?('metadataIdentifier')
+                            hMetadataId = hMetadataInfo['metadataIdentifier']
+                            unless hMetadataId.empty?
+                                intMetadataInfo[:metadataId] = $ReaderNS::ResourceIdentifier.unpack(hMetadataId)
+                            end
+                        end
 
-        # metadata - metadata contacts, custodians
-        if hMetadataInfo.has_key?('metadataContact')
-            aCust = hMetadataInfo['metadataContact']
-            unless aCust.empty?
-                aCust.each do |rParty|
-                    intMetadataInfo[:metadataCustodians] << Md_ResponsibleParty.unpack(rParty)
+                        # metadata - parent metadata identifier
+                        if hMetadataInfo.has_key?('parentMetadata')
+                            hParent = hMetadataInfo['parentMetadata']
+                            unless hParent.empty?
+                                intMetadataInfo[:parentMetadata] = $ReaderNS::Citation.unpack(hParent)
+                            end
+                        end
+
+                        # metadata - metadata contacts, custodians
+                        if hMetadataInfo.has_key?('metadataContact')
+                            aCust = hMetadataInfo['metadataContact']
+                            unless aCust.empty?
+                                aCust.each do |rParty|
+                                    intMetadataInfo[:metadataCustodians] << $ReaderNS::ResponsibleParty.unpack(rParty)
+                                end
+                            end
+                        end
+
+                        # metadata - creation date
+                        if hMetadataInfo.has_key?('metadataCreationDate')
+                            s = hMetadataInfo['metadataCreationDate']
+                            if s != ''
+                                hDateTime = $ReaderNS::DateTime.unpack(s)
+                                hDateTime[:dateType] = 'publication'
+                                intMetadataInfo[:metadataCreateDate] = hDateTime
+                            end
+                        end
+
+                        # metadata - date of last metadata update
+                        if hMetadataInfo.has_key?('metadataLastUpdate')
+                            s = hMetadataInfo['metadataLastUpdate']
+                            if s != ''
+                                hDateTime = $ReaderNS::DateTime.unpack(s)
+                                hDateTime[:dateType] = 'revision'
+                                intMetadataInfo[:metadataUpdateDate] = hDateTime
+                            end
+                        end
+
+                        # metadata - metadata URI
+                        if hMetadataInfo.has_key?('metadataUri')
+                            s = hMetadataInfo['metadataUri']
+                            if s != ''
+                                intMetadataInfo[:metadataURI] = s
+                            end
+                        end
+
+                        # metadata - status
+                        if hMetadataInfo.has_key?('metadataStatus')
+                            s = hMetadataInfo['metadataStatus']
+                            if s != ''
+                                intMetadataInfo[:metadataStatus] = s
+                            end
+                        end
+
+                        # metadata - metadata maintenance info
+                        if hMetadataInfo.has_key?('metadataMaintenance')
+                            hMetaMaint = hMetadataInfo['metadataMaintenance']
+                            unless hMetaMaint.empty?
+                                intMetadataInfo[:maintInfo] = $ReaderNS::ResourceMaintenance.unpack(hMetaMaint)
+                            end
+                        end
+
+                        # metadata - extension info - if biological extension
+                        if hMetadata.has_key?('resourceInfo')
+                            resourceInfo = hMetadata['resourceInfo']
+                            if resourceInfo.has_key?('taxonomy')
+                                hTaxonomy = resourceInfo['taxonomy']
+                                unless hTaxonomy.empty?
+                                    intMetadataInfo[:extensions] << $ReaderNS::MetadataExtension.addExtensionISObio
+                                end
+                            end
+                        end
+
+                        return intMetadataInfo
+
+                    end
+
                 end
+
             end
         end
-
-        # metadata - creation date
-        if hMetadataInfo.has_key?('metadataCreationDate')
-            s = hMetadataInfo['metadataCreationDate']
-            if s != ''
-                hDateTime = Md_DateTime.unpack(s)
-                hDateTime[:dateType] = 'publication'
-                intMetadataInfo[:metadataCreateDate] = hDateTime
-            end
-        end
-
-        # metadata - date of last metadata update
-        if hMetadataInfo.has_key?('metadataLastUpdate')
-            s = hMetadataInfo['metadataLastUpdate']
-            if s != ''
-                hDateTime = Md_DateTime.unpack(s)
-                hDateTime[:dateType] = 'revision'
-                intMetadataInfo[:metadataUpdateDate] = hDateTime
-            end
-        end
-
-        # metadata - metadata URI
-        if hMetadataInfo.has_key?('metadataUri')
-            s = hMetadataInfo['metadataUri']
-            if s != ''
-                intMetadataInfo[:metadataURI] = s
-            end
-        end
-
-        # metadata - status
-        if hMetadataInfo.has_key?('metadataStatus')
-            s = hMetadataInfo['metadataStatus']
-            if s != ''
-                intMetadataInfo[:metadataStatus] = s
-            end
-        end
-
-        # metadata - metadata maintenance info
-        if hMetadataInfo.has_key?('metadataMaintenance')
-            hMetaMaint = hMetadataInfo['metadataMaintenance']
-            unless hMetaMaint.empty?
-                intMetadataInfo[:maintInfo] = Md_ResourceMaintenance.unpack(hMetaMaint)
-            end
-        end
-
-        # metadata - extension info - if biological extension
-        if hMetadata.has_key?('resourceInfo')
-            resourceInfo = hMetadata['resourceInfo']
-            if resourceInfo.has_key?('taxonomy')
-                hTaxonomy = resourceInfo['taxonomy']
-                unless hTaxonomy.empty?
-                    intMetadataInfo[:extensions] << Md_MetadataExtension.addExtensionISObio
-                end
-            end
-        end
-
-        return intMetadataInfo
-
     end
-
 end

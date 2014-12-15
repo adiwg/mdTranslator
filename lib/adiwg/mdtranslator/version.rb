@@ -22,11 +22,13 @@
 # 0.10.0 2014-12-01 added ISO 19110 writer
 # 0.10.1 2014-12-04 fixed problem with messages not returned in an array
 # 0.10.2 2014-12-05
+# 0.11.0 2014-12-15 refactored code managing the readers and writers
+#               ... added namespaces to readers and writers
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.10.2"
+        VERSION = "0.11.0"
     end
 end
 

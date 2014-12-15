@@ -3,41 +3,52 @@
 
 # History:
 # 	Stan Smith 2013-11-21 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-module Md_TaxonCl
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
 
-    def self.unpack(hTaxClass)
+                module TaxonCl
 
-        # instance classes needed in script
-        intMetadataClass = InternalMetadata.new
+                    def self.unpack(hTaxClass)
 
-        intTaxClass = intMetadataClass.newTaxonClass
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
 
-        # taxonomic classification - common name
-        if hTaxClass.has_key?('common')
-            s = hTaxClass['common']
-            if s != ''
-                intTaxClass[:commonName] = s
+                        intTaxClass = intMetadataClass.newTaxonClass
+
+                        # taxonomic classification - common name
+                        if hTaxClass.has_key?('common')
+                            s = hTaxClass['common']
+                            if s != ''
+                                intTaxClass[:commonName] = s
+                            end
+                        end
+
+                        # taxonomic classification - rank
+                        if hTaxClass.has_key?('taxonRank')
+                            s = hTaxClass['taxonRank']
+                            if s != ''
+                                intTaxClass[:taxRankName] = s
+                            end
+                        end
+
+                        # taxonomic classification - value
+                        if hTaxClass.has_key?('taxonValue')
+                            s = hTaxClass['taxonValue']
+                            if s != ''
+                                intTaxClass[:taxRankValue] = s
+                            end
+                        end
+
+                        return intTaxClass
+                    end
+
+                end
+
             end
         end
-
-        # taxonomic classification - rank
-        if hTaxClass.has_key?('taxonRank')
-            s = hTaxClass['taxonRank']
-            if s != ''
-                intTaxClass[:taxRankName] = s
-            end
-        end
-
-        # taxonomic classification - value
-        if hTaxClass.has_key?('taxonValue')
-            s = hTaxClass['taxonValue']
-            if s != ''
-                intTaxClass[:taxRankValue] = s
-            end
-        end
-
-        return intTaxClass
     end
-
 end
