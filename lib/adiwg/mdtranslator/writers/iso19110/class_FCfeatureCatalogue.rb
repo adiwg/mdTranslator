@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2013-12-01 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
 require 'class_responsibleParty'
 require 'class_featureType'
@@ -15,9 +16,9 @@ class FC_FeatureCatalogue
 
     def writeXML(internalObj)
 
-        # classes used in MD_Metadata
-        rPartyClass = CI_ResponsibleParty.new(@xml)
-        featureClass = FC_FeatureType.new(@xml)
+        # classes used
+        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
+        featureClass = $WriterNS::FC_FeatureType.new(@xml)
 
         intDataDictionary = internalObj[:dataDictionary]
         hDDInfo = intDataDictionary[:dictionaryInfo]
@@ -164,6 +165,7 @@ class FC_FeatureCatalogue
                 @xml.tag!('gfc:featureType', {'gco:nilReason' => 'missing'})
             end
 
+            return @xml
         end
 
     end

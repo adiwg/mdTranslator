@@ -13,18 +13,21 @@ module ADIWG
                     # ISO 19110 standard for feature catalogue used to describe tabular data dictionaries
                     when 'iso19110'
                         require 'adiwg/mdtranslator/writers/iso19110/iso19110_writer'
-                        writerClass = ADIWG::Mdtranslator::Writers::Iso19110::Iso19110Writer.new
+                        writerClass = ADIWG::Mdtranslator::Writers::Iso::Iso19110.new
 
                         # initiate the writer
                         $response[:writerOutput] = writerClass.writeXML(intObj)
+                        return $response
+
 
                     # ISO 19115-2:2009 standard for geospatial metadata
                     when 'iso19115_2'
                         require 'adiwg/mdtranslator/writers/iso19115_2/iso19115_2_writer'
-                        writerClass = ADIWG::Mdtranslator::Writers::Iso191152::Iso191152Writer.new
+                        writerClass = ADIWG::Mdtranslator::Writers::Iso::Iso191152.new
 
                         # initiate the writer
                         $response[:writerOutput] = writerClass.writeXML(intObj)
+                        return $response
 
                     # writer name not provided or not supported
                     else

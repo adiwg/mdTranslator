@@ -11,14 +11,14 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/classes'))
 require 'builder'
 require 'date'
 require 'uuidtools'
-require 'class_FCfeatureCatalogue'
+require 'adiwg/mdtranslator/writers/iso19110/class_FCfeatureCatalogue'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso19110
+            module Iso
 
-                class Iso19110Writer
+                class Iso19110
 
                     def initialize
                         # reset ISO id='' counter
@@ -26,6 +26,9 @@ module ADIWG
                     end
 
                     def writeXML(intObj)
+
+                        # set writer namespace
+                        $WriterNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'

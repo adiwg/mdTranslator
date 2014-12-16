@@ -4,10 +4,16 @@
 # History:
 # 	Stan Smith 2013-06-03 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_identifier'
 
-class EX_GeographicDescription
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
+
+                class EX_GeographicDescription
 
     def initialize(xml)
         @xml = xml
@@ -15,8 +21,8 @@ class EX_GeographicDescription
 
     def writeXML(hElement)
 
-        # classes used in MD_Metadata
-        idClass = MD_Identifier.new(@xml)
+        # classes used
+        idClass = $WriterNS::MD_Identifier.new(@xml)
 
         @xml.tag!('gmd:EX_GeographicDescription') do
             @xml.tag!('gmd:geographicIdentifier') do
@@ -26,4 +32,9 @@ class EX_GeographicDescription
 
     end
 
+                end
+
+            end
+        end
+    end
 end

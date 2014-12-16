@@ -13,14 +13,14 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/classes'))
 require 'builder'
 require 'date'
 require 'uuidtools'
-require 'class_MImetadata'
+require 'adiwg/mdtranslator/writers/iso19115_2/class_MImetadata'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso191152
+            module Iso
 
-                class Iso191152Writer
+                class Iso191152
 
                     def initialize
                         # reset ISO id='' counter
@@ -29,17 +29,20 @@ module ADIWG
 
                     def writeXML(internalObj)
 
+                        # set writer namespace
+                        $WriterNS = ADIWG::Mdtranslator::Writers::Iso
+
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'
 
                         # pre-scan the internal object to create a new extents for each geometry
-                        # ... that has supplemental information (temporal, vertical, identity)
-                        # ... new extents will be added to internalObj as needed
+                        # ... that has supplemental information (temporal, vertical, identity).
+                        # ... the new extents will be added to internalObj
                         prescanGeoElements(internalObj)
 
                         # create new XML document
                         xml = Builder::XmlMarkup.new(indent: 3)
-                        metadataWriter = MI_Metadata.new(xml)
+                        metadataWriter = $WriterNS::MI_Metadata.new(xml)
                         metadata = metadataWriter.writeXML(internalObj)
 
                         # set writer pass to true if no messages

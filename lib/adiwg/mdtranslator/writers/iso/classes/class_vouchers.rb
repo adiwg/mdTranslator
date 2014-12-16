@@ -4,45 +4,56 @@
 # History:
 # 	Stan Smith 2013-11-19 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_responsibleParty'
 
-class MD_Vouchers
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-    def initialize(xml)
-        @xml = xml
-    end
+                class MD_Vouchers
 
-    def writeXML(hVoucher)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-        # classes used in MD_Vouchers
-        rPartyClass = CI_ResponsibleParty.new(@xml)
+                    def writeXML(hVoucher)
 
-        @xml.tag!('gmd:MD_Vouchers') do
+                        # classes used in MD_Vouchers
+                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
 
-            # voucher - specimen - required
-            s = hVoucher[:specimen]
-            if s.nil?
-                @xml.tag!('gmd:specimen', {'gco:nilReason' => 'missing'})
-            else
-                @xml.tag!('gmd:specimen') do
-                    @xml.tag!('gco:CharacterString', s)
+                        @xml.tag!('gmd:MD_Vouchers') do
+
+                            # voucher - specimen - required
+                            s = hVoucher[:specimen]
+                            if s.nil?
+                                @xml.tag!('gmd:specimen', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:specimen') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            end
+
+                            # voucher - repository - required - MD_ResponsibleParty
+                            hContacts = hVoucher[:repository]
+                            if hContacts.empty?
+                                @xml.tag!('gmd:reposit', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:reposit') do
+                                    rPartyClass.writeXML(hContacts)
+                                end
+
+                            end
+
+                        end
+
+                    end
+
                 end
-            end
-
-            # voucher - repository - required - MD_ResponsibleParty
-            hContacts = hVoucher[:repository]
-            if hContacts.empty?
-                @xml.tag!('gmd:reposit', {'gco:nilReason' => 'missing'})
-            else
-                @xml.tag!('gmd:reposit') do
-                    rPartyClass.writeXML(hContacts)
-                end
 
             end
-
         end
-
     end
-
 end

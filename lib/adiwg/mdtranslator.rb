@@ -69,6 +69,7 @@ module ADIWG
             if writer
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
                 ADIWG::Mdtranslator::Writers.handleWriter(intObj)
+                return $response
             else
                 $response[:writerPass] = false
                 $response[:writerMessages] << 'Writer name is missing.'

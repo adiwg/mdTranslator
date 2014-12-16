@@ -3,25 +3,36 @@
 
 # History:
 # 	Stan Smith 2014-12-03 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class BaseUnit
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-    def initialize(xml)
-        @xml = xml
-    end
+                class BaseUnit
 
-    def writeXML(hBase)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-        # create and identity for the unit
-        $idCount = $idCount.succ
-        unitID = 'unit' + $idCount
-        @xml.tag!('gml:BaseUnit', {'gml:id' => unitID}) do
-            @xml.tag!('gml:identifier', {'codeSpace' => hBase[:codeSpace]}, hBase[:identifier])
-            @xml.tag!('gml:name', hBase[:name])
-            @xml.tag!('gml:catalogSymbol', hBase[:catalogSymbol])
-            @xml.tag!('gml:unitsSystem', {'xlink:href' => hBase[:unitsSystem]})
+                    def writeXML(hBase)
+
+                        # create and identity for the unit
+                        $idCount = $idCount.succ
+                        unitID = 'unit' + $idCount
+                        @xml.tag!('gml:BaseUnit', {'gml:id' => unitID}) do
+                            @xml.tag!('gml:identifier', {'codeSpace' => hBase[:codeSpace]}, hBase[:identifier])
+                            @xml.tag!('gml:name', hBase[:name])
+                            @xml.tag!('gml:catalogSymbol', hBase[:catalogSymbol])
+                            @xml.tag!('gml:unitsSystem', {'xlink:href' => hBase[:unitsSystem]})
+                        end
+
+                    end
+
+                end
+
+            end
         end
-
     end
-
 end

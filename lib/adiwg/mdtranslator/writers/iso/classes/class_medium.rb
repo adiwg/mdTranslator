@@ -4,56 +4,67 @@
 # History:
 # 	Stan Smith 2013-09-26 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'code_mediumName'
 require 'code_mediumFormat'
 
-class MD_Medium
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-    def initialize(xml)
-        @xml = xml
-    end
+                class MD_Medium
 
-    def writeXML(medium)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-        # classes used
-        medFormatCode = MD_MediumFormatCode.new(@xml)
-        medNameCode = MD_MediumNameCode.new(@xml)
+                    def writeXML(medium)
 
-        @xml.tag!('gmd:MD_Medium') do
+                        # classes used
+                        medFormatCode = $WriterNS::MD_MediumFormatCode.new(@xml)
+                        medNameCode = $WriterNS::MD_MediumNameCode.new(@xml)
 
-            # medium - name - MD_MediumNameCode
-            s = medium[:mediumName]
-            if !s.nil?
-                @xml.tag!('gmd:name') do
-                    medNameCode.writeXML(s)
+                        @xml.tag!('gmd:MD_Medium') do
+
+                            # medium - name - MD_MediumNameCode
+                            s = medium[:mediumName]
+                            if !s.nil?
+                                @xml.tag!('gmd:name') do
+                                    medNameCode.writeXML(s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:name')
+                            end
+
+                            # medium - medium format - MD_MediumFormatCode
+                            s = medium[:mediumFormat]
+                            if !s.nil?
+                                @xml.tag!('gmd:mediumFormat') do
+                                    medFormatCode.writeXML(s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:mediumFormat')
+                            end
+
+                            # medium - medium note
+                            s = medium[:mediumNote]
+                            if !s.nil?
+                                @xml.tag!('gmd:mediumNote') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:mediumNote')
+                            end
+
+                        end
+
+                    end
+
                 end
-            elsif $showAllTags
-                @xml.tag!('gmd:name')
-            end
 
-            # medium - medium format - MD_MediumFormatCode
-            s = medium[:mediumFormat]
-            if !s.nil?
-                @xml.tag!('gmd:mediumFormat') do
-                    medFormatCode.writeXML(s)
-                end
-            elsif $showAllTags
-                @xml.tag!('gmd:mediumFormat')
             end
-
-            # medium - medium note
-            s = medium[:mediumNote]
-            if !s.nil?
-                @xml.tag!('gmd:mediumNote') do
-                    @xml.tag!('gco:CharacterString', s)
-                end
-            elsif $showAllTags
-                @xml.tag!('gmd:mediumNote')
-            end
-
         end
-
     end
-
 end

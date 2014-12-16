@@ -6,80 +6,91 @@
 #   Stan Smith 2014-05-14 modified for JSON schema version 0.4.0
 #   Stan Smith 2014-05-16 added method to return contact from array
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_telephone'
 require 'class_address'
 require 'class_onlineResource'
 
-class CI_Contact
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-    def initialize(xml)
-        @xml = xml
-    end
+                class CI_Contact
 
-    def writeXML(hContact)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-        # classes used in MD_Metadata
-        pBookClass = CI_Telephone.new(@xml)
-        addClass = CI_Address.new(@xml)
-        resourceClass = CI_OnlineResource.new(@xml)
+                    def writeXML(hContact)
 
-        @xml.tag!('gmd:CI_Contact') do
+                        # classes used
+                        pBookClass = $WriterNS::CI_Telephone.new(@xml)
+                        addClass = $WriterNS::CI_Address.new(@xml)
+                        resourceClass = $WriterNS::CI_OnlineResource.new(@xml)
 
-            # contact - phone list - all services
-            aPhones = hContact[:phones]
-            if !aPhones.empty?
-                @xml.tag!('gmd:phone') do
-                    pBookClass.writeXML(aPhones)
+                        @xml.tag!('gmd:CI_Contact') do
+
+                            # contact - phone list - all services
+                            aPhones = hContact[:phones]
+                            if !aPhones.empty?
+                                @xml.tag!('gmd:phone') do
+                                    pBookClass.writeXML(aPhones)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:phone')
+                            end
+
+                            # contact - address
+                            hAddress = hContact[:address]
+                            if !hAddress.empty?
+                                @xml.tag!('gmd:address') do
+                                    addClass.writeXML(hAddress)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:address')
+                            end
+
+                            # contact - online resource
+                            aResource = hContact[:onlineRes]
+                            if !aResource.empty?
+                                @xml.tag!('gmd:onlineResource') do
+                                    resourceClass.writeXML(aResource[0])
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:onlineResource')
+                            end
+
+                            # contact - contact instructions
+                            s = hContact[:contactInstructions]
+                            if !s.nil?
+                                @xml.tag!('gmd:contactInstructions') do
+                                    @xml.tag!('gco:CharacterString', hContact[:contactInstructions])
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:contactInstructions')
+                            end
+
+                        end
+                    end
+
+                    def getContact(contactID)
+
+                        # find contact in contact array and return the hash
+                        $intContactList.each do |hContact|
+                            if hContact[:contactId] == contactID
+                                return hContact
+                            end
+                        end
+
+                        return {}
+
+                    end
+
                 end
-            elsif $showAllTags
-                @xml.tag!('gmd:phone')
-            end
 
-            # contact - address
-            hAddress = hContact[:address]
-            if !hAddress.empty?
-                @xml.tag!('gmd:address') do
-                    addClass.writeXML(hAddress)
-                end
-            elsif $showAllTags
-                @xml.tag!('gmd:address')
             end
-
-            # contact - online resource
-            aResource = hContact[:onlineRes]
-            if !aResource.empty?
-                @xml.tag!('gmd:onlineResource') do
-                    resourceClass.writeXML(aResource[0])
-                end
-            elsif $showAllTags
-                @xml.tag!('gmd:onlineResource')
-            end
-
-            # contact - contact instructions
-            s = hContact[:contactInstructions]
-            if !s.nil?
-                @xml.tag!('gmd:contactInstructions') do
-                    @xml.tag!('gco:CharacterString', hContact[:contactInstructions])
-                end
-            elsif $showAllTags
-                @xml.tag!('gmd:contactInstructions')
-            end
-
         end
     end
-
-    def getContact(contactID)
-
-        # find contact in contact array and return the hash
-        $intContactList.each do |hContact|
-            if hContact[:contactId] == contactID
-                return hContact
-            end
-        end
-
-        return {}
-
-    end
-
 end
