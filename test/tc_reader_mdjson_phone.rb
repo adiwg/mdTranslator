@@ -3,13 +3,14 @@
 
 # History:
 # Stan Smith 2014-12-09 original script
+# Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules_0.9.0/module_phone'
+require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_phone'
 
-class TestReaderMdJsonAddress < MiniTest::Test
+class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
 
     def test_build_full_phone_object
 
@@ -40,7 +41,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
         }
         intObj << intObjPart
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 
@@ -60,7 +61,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
         }
         intObj << intObjPart
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 
@@ -81,7 +82,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
         }
         intObj << intObjPart
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 
@@ -94,7 +95,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
 
         intObj = []
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 
@@ -110,7 +111,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
 
         intObj = []
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 
@@ -120,7 +121,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
         hIn = JSON.parse(json_string)
         intObj = []
 
-        assert_equal intObj, Md_Phone.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Phone.unpack(hIn)
 
     end
 

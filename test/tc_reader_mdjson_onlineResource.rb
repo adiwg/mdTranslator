@@ -3,13 +3,14 @@
 
 # History:
 # Stan Smith 2014-12-09 original script
+# Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules_0.9.0/module_onlineResource'
+require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_onlineResource'
 
-class TestReaderMdJsonOnlineResource < MiniTest::Test
+class TestReaderMdJsonOnlineResource_v0_9 < MiniTest::Test
 
     def test_build_full_onlineResource_object
 
@@ -30,7 +31,7 @@ class TestReaderMdJsonOnlineResource < MiniTest::Test
             olResFunction: 'function'
         }
 
-        assert_equal intObj, Md_OnlineResource.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
 
     end
 
@@ -40,7 +41,7 @@ class TestReaderMdJsonOnlineResource < MiniTest::Test
         hIn = JSON.parse(json_string)
         intObj = nil
 
-        assert_equal intObj, Md_OnlineResource.unpack(hIn)
+        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
 
     end
 
