@@ -6,46 +6,57 @@
 # 	Stan Smith 2014-05-16 original script
 #   Stan Smith 2014-05-28 revised for json schema 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_citation'
 
-class MD_Identifier
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_Identifier
 
-	def writeXML(hResID)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# the authority for the identifier is a citation block
+                    def writeXML(hResID)
 
-		# classes used in MD_Metadata
-		citationClass = CI_Citation.new(@xml)
+                        # the authority for the identifier is a citation block
 
-		@xml.tag!('gmd:MD_Identifier') do
+                        # classes used in MD_Metadata
+                        citationClass = $WriterNS::CI_Citation.new(@xml)
 
-			# identifier - authority
-			hCitation = hResID[:identifierCitation]
-			if !hCitation.empty?
-				@xml.tag!('gmd:authority') do
-					citationClass.writeXML(hCitation)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:authority')
-			end
+                        @xml.tag!('gmd:MD_Identifier') do
 
-			# identity - code - required
-			s = hResID[:identifier]
-			if !s.nil?
-				@xml.tag!('gmd:code') do
-					@xml.tag!('gco:CharacterString', s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:code')
-			end
+                            # identifier - authority
+                            hCitation = hResID[:identifierCitation]
+                            if !hCitation.empty?
+                                @xml.tag!('gmd:authority') do
+                                    citationClass.writeXML(hCitation)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:authority')
+                            end
 
-		end
+                            # identity - code - required
+                            s = hResID[:identifier]
+                            if !s.nil?
+                                @xml.tag!('gmd:code') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:code')
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

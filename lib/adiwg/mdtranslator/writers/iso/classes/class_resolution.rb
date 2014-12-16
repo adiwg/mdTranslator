@@ -3,44 +3,55 @@
 
 # History:
 # 	Stan Smith 2013-11-19 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class MD_Resolution
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_Resolution
 
-	def writeXML(hResolution)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gmd:MD_Resolution') do
+                    def writeXML(hResolution)
 
-			# resolution - specific equivalent scale
-			# resolution - distance
-			# one or the other is required, but not both
-			scale = hResolution[:equivalentScale]
-			distance = hResolution[:distance]
-			uom = hResolution[:distanceUOM]
-			if !scale.nil?
-				@xml.tag!('gmd:equivalentScale') do
-					@xml.tag!('gmd:MD_RepresentativeFraction') do
-						@xml.tag!('gmd:denominator') do
-							@xml.tag!('gco:Integer',scale)
-						end
-					end
-				end
-			elsif !distance.nil?
-				@xml.tag!('gmd:distance') do
-					attributes = {}
-					attributes['uom'] = uom if uom
-					@xml.tag!('gco:Distance',attributes,distance)
-				end
-			else
-				@xml.tag!('gmd:equivalentScale',{'gco:nilReason'=>'missing'})
-				@xml.tag!('gmd:distance',{'gco:nilReason'=>'missing'})
-			end
+                        @xml.tag!('gmd:MD_Resolution') do
 
-		end
+                            # resolution - specific equivalent scale
+                            # resolution - distance
+                            # one or the other is required, but not both
+                            scale = hResolution[:equivalentScale]
+                            distance = hResolution[:distance]
+                            uom = hResolution[:distanceUOM]
+                            if !scale.nil?
+                                @xml.tag!('gmd:equivalentScale') do
+                                    @xml.tag!('gmd:MD_RepresentativeFraction') do
+                                        @xml.tag!('gmd:denominator') do
+                                            @xml.tag!('gco:Integer', scale)
+                                        end
+                                    end
+                                end
+                            elsif !distance.nil?
+                                @xml.tag!('gmd:distance') do
+                                    attributes = {}
+                                    attributes['uom'] = uom if uom
+                                    @xml.tag!('gco:Distance', attributes, distance)
+                                end
+                            else
+                                @xml.tag!('gmd:equivalentScale', {'gco:nilReason' => 'missing'})
+                                @xml.tag!('gmd:distance', {'gco:nilReason' => 'missing'})
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

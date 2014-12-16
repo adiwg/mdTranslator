@@ -4,60 +4,71 @@
 # History:
 # 	Stan Smith 2013-11-01 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'code_restriction'
 
-class MD_LegalConstraints
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_LegalConstraints
 
-	def writeXML(hLegalCons)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
-		restrictionCode = MD_RestrictionCode.new(@xml)
+                    def writeXML(hLegalCons)
 
-		@xml.tag!('gmd:MD_LegalConstraints') do
+                        # classes used
+                        restrictionCode = $WriterNS::MD_RestrictionCode.new(@xml)
 
-			# legal constraints - access constraints
-			aAccessCodes = hLegalCons[:accessCodes]
-			if !aAccessCodes.empty?
-				aAccessCodes.each do |code|
-					@xml.tag!('gmd:accessConstraints') do
-						restrictionCode.writeXML(code)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:accessConstraints')
-			end
+                        @xml.tag!('gmd:MD_LegalConstraints') do
 
-			# legal constraints - use constraints
-			aUseCodes = hLegalCons[:useCodes]
-			if !aUseCodes.empty?
-				aUseCodes.each do |code|
-					@xml.tag!('gmd:useConstraints') do
-						restrictionCode.writeXML(code)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:useConstraints')
-			end
+                            # legal constraints - access constraints
+                            aAccessCodes = hLegalCons[:accessCodes]
+                            if !aAccessCodes.empty?
+                                aAccessCodes.each do |code|
+                                    @xml.tag!('gmd:accessConstraints') do
+                                        restrictionCode.writeXML(code)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:accessConstraints')
+                            end
 
-			# legal constraints - other constraints
-			aOtherCons = hLegalCons[:otherCons]
-			if !aOtherCons.empty?
-				aOtherCons.each do |con|
-					@xml.tag!('gmd:otherConstraints') do
-						@xml.tag!('gco:CharacterString',con)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:otherConstraints')
-			end
+                            # legal constraints - use constraints
+                            aUseCodes = hLegalCons[:useCodes]
+                            if !aUseCodes.empty?
+                                aUseCodes.each do |code|
+                                    @xml.tag!('gmd:useConstraints') do
+                                        restrictionCode.writeXML(code)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:useConstraints')
+                            end
 
-		end
+                            # legal constraints - other constraints
+                            aOtherCons = hLegalCons[:otherCons]
+                            if !aOtherCons.empty?
+                                aOtherCons.each do |con|
+                                    @xml.tag!('gmd:otherConstraints') do
+                                        @xml.tag!('gco:CharacterString', con)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:otherConstraints')
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

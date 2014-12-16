@@ -4,56 +4,67 @@
 # History:
 # 	Stan Smith 2013-11-19 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_responsibleParty'
 
-class MD_Usage
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_Usage
 
-	def writeXML(hUsage)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used in MD_Usage
-		rPartyClass = CI_ResponsibleParty.new(@xml)
+                    def writeXML(hUsage)
 
-		@xml.tag!('gmd:MD_Usage') do
+                        # classes used in MD_Usage
+                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
 
-			# usage - specific usage - required
-			s = hUsage[:specificUsage]
-			if s.nil?
-				@xml.tag!('gmd:specificUsage',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:specificUsage') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			end
+                        @xml.tag!('gmd:MD_Usage') do
 
-			# usage - user determined limitations
-			s = hUsage[:userLimits]
-			if !s.nil?
-				@xml.tag!('gmd:userDeterminedLimitations') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:userDeterminedLimitations')
-			end
+                            # usage - specific usage - required
+                            s = hUsage[:specificUsage]
+                            if s.nil?
+                                @xml.tag!('gmd:specificUsage', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:specificUsage') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            end
 
-			# usage - user contact info - responsible party
-			aContacts = hUsage[:userContacts]
-			if !aContacts.empty?
-				aContacts.each do |rParty|
-					@xml.tag!('gmd:userContactInfo') do
-						rPartyClass.writeXML(rParty)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:userContactInfo')
-			end
+                            # usage - user determined limitations
+                            s = hUsage[:userLimits]
+                            if !s.nil?
+                                @xml.tag!('gmd:userDeterminedLimitations') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:userDeterminedLimitations')
+                            end
 
-		end
+                            # usage - user contact info - responsible party
+                            aContacts = hUsage[:userContacts]
+                            if !aContacts.empty?
+                                aContacts.each do |rParty|
+                                    @xml.tag!('gmd:userContactInfo') do
+                                        rPartyClass.writeXML(rParty)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:userContactInfo')
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

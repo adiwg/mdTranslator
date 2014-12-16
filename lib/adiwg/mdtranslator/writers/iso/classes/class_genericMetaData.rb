@@ -1,8 +1,8 @@
 # ISO <<Class>> GenericMetaData
 # writer output in XML
 # generic metadata only supports ...
-	# time instant
-	# time period
+# time instant
+# time period
 
 # History:
 # 	Stan Smith 2013-11-04 original script
@@ -10,56 +10,65 @@
 #   ... use replaced by creating new geographic extents for geometries
 #   ... containing supplemental identifier, temporal, and vertical information
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'module_dateTimeFun'
 require 'class_timeInstant'
 require 'class_timePeriod'
 
-class GenericMetaData
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class GenericMetaData
 
-	def writeXML(aTempExt)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
-		timeIClass = TimeInstant.new(@xml)
-		timePClass = TimePeriod.new(@xml)
+                    def writeXML(aTempExt)
 
-		@xml.tag!('gml:GenericMetaData') do
+                        # classes used
+                        timeIClass = $WriterNS::TimeInstant.new(@xml)
+                        timePClass = $WriterNS::TimePeriod.new(@xml)
 
-			aTempExt.each do |hTempExt|
+                        @xml.tag!('gml:GenericMetaData') do
 
-				# metadata - data
-				hTimeD = hTempExt[:date]
-				unless hTimeD.empty?
-					date = hTimeD[:dateTime]
-					dateResolution = hTimeD[:dateResolution]
-					s = AdiwgDateTimeFun.stringDateFromDateTime(date, dateResolution)
-					if s != 'ERROR'
-						@xml.tag!('gco:Date', s)
-					end
-				end
+                            aTempExt.each do |hTempExt|
 
-				# metadata - time instant
-				hTimeI = hTempExt[:timeInstant]
-				unless hTimeI.empty?
-					timeIClass.writeXML(hTimeI)
-				end
+                                # metadata - data
+                                hTimeD = hTempExt[:date]
+                                unless hTimeD.empty?
+                                    date = hTimeD[:dateTime]
+                                    dateResolution = hTimeD[:dateResolution]
+                                    s = AdiwgDateTimeFun.stringDateFromDateTime(date, dateResolution)
+                                    if s != 'ERROR'
+                                        @xml.tag!('gco:Date', s)
+                                    end
+                                end
 
-				# metadata - time period
-				hTimeP = hTempExt[:timePeriod]
-				unless hTimeP.empty?
-					timePClass.writeXML(hTimeP)
-				end
+                                # metadata - time instant
+                                hTimeI = hTempExt[:timeInstant]
+                                unless hTimeI.empty?
+                                    timeIClass.writeXML(hTimeI)
+                                end
 
-			end
+                                # metadata - time period
+                                hTimeP = hTempExt[:timePeriod]
+                                unless hTimeP.empty?
+                                    timePClass.writeXML(hTimeP)
+                                end
 
-		end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end
-
-

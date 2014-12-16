@@ -4,71 +4,82 @@
 # History:
 # 	Stan Smith 2013-11-01 original script
 #   Stan Smith 2014-05-30 hElement attributes changed for version 0.5.0
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class EX_GeographicBoundingBox
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class EX_GeographicBoundingBox
 
-	def writeXML(hElement)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		extentType = hElement[:elementIncludeData]
-		hBBox = hElement[:elementGeometry][:geometry]
+                    def writeXML(hElement)
 
-		@xml.tag!('gmd:EX_GeographicBoundingBox') do
+                        extentType = hElement[:elementIncludeData]
+                        hBBox = hElement[:elementGeometry][:geometry]
 
-			# bounding box - extent type - required
-			if extentType.nil?
-				@xml.tag!('gmd:extentTypeCode',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:extentTypeCode') do
-					@xml.tag!('gco:Boolean',extentType)
-				end
-			end
+                        @xml.tag!('gmd:EX_GeographicBoundingBox') do
 
-			# bounding box - west longitude - required
-			s = hBBox[:westLong]
-			if s.nil?
-				@xml.tag!('gmd:westBoundLongitude',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:westBoundLongitude') do
-					@xml.tag!('gco:Decimal',s)
-				end
-			end
+                            # bounding box - extent type - required
+                            if extentType.nil?
+                                @xml.tag!('gmd:extentTypeCode', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:extentTypeCode') do
+                                    @xml.tag!('gco:Boolean', extentType)
+                                end
+                            end
 
-			# bounding box - east longitude - required
-			s = hBBox[:eastLong]
-			if s.nil?
-				@xml.tag!('gmd:eastBoundLongitude',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:eastBoundLongitude') do
-					@xml.tag!('gco:Decimal',s)
-				end
-			end
+                            # bounding box - west longitude - required
+                            s = hBBox[:westLong]
+                            if s.nil?
+                                @xml.tag!('gmd:westBoundLongitude', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:westBoundLongitude') do
+                                    @xml.tag!('gco:Decimal', s)
+                                end
+                            end
 
-			# bounding box - south latitude - required
-			s = hBBox[:southLat]
-			if s.nil?
-				@xml.tag!('gmd:southBoundLatitude',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:southBoundLatitude') do
-					@xml.tag!('gco:Decimal',s)
-				end
-			end
+                            # bounding box - east longitude - required
+                            s = hBBox[:eastLong]
+                            if s.nil?
+                                @xml.tag!('gmd:eastBoundLongitude', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:eastBoundLongitude') do
+                                    @xml.tag!('gco:Decimal', s)
+                                end
+                            end
 
-			# bounding box - north latitude - required
-			s = hBBox[:northLat]
-			if s.nil?
-				@xml.tag!('gmd:northBoundLatitude',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:northBoundLatitude') do
-					@xml.tag!('gco:Decimal',s)
-				end
-			end
+                            # bounding box - south latitude - required
+                            s = hBBox[:southLat]
+                            if s.nil?
+                                @xml.tag!('gmd:southBoundLatitude', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:southBoundLatitude') do
+                                    @xml.tag!('gco:Decimal', s)
+                                end
+                            end
 
-		end
+                            # bounding box - north latitude - required
+                            s = hBBox[:northLat]
+                            if s.nil?
+                                @xml.tag!('gmd:northBoundLatitude', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:northBoundLatitude') do
+                                    @xml.tag!('gco:Decimal', s)
+                                end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

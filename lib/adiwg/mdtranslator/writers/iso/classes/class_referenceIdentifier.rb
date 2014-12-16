@@ -4,39 +4,50 @@
 
 # History:
 # 	Stan Smith 2014-09-03 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class RS_Identifier
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class RS_Identifier
 
-	def writeXML(refId, refType)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gmd:RS_Identifier') do
+                    def writeXML(refId, refType)
 
-			# identity - code - required
-			# identifiers can be name, epsg number, wkt
-			case refType
-				when 'name'
-					@xml.tag!('gmd:code') do
-						@xml.tag!('gco:CharacterString', refId)
-					end
+                        @xml.tag!('gmd:RS_Identifier') do
 
-				when 'epsg'
-					@xml.tag!('gmd:code') do
-						s = 'urn:ocg:def:crs:EPSG::' + refId.to_s
-						@xml.tag!('gco:CharacterString', s)
-					end
+                            # identity - code - required
+                            # identifiers can be name, epsg number, wkt
+                            case refType
+                                when 'name'
+                                    @xml.tag!('gmd:code') do
+                                        @xml.tag!('gco:CharacterString', refId)
+                                    end
 
-				when 'wkt'
-					@xml.tag!('gmd:code') do
-						s = 'WKT::' + refId
-						@xml.tag!('gco:CharacterString', s)
-					end
-			end
-		end
+                                when 'epsg'
+                                    @xml.tag!('gmd:code') do
+                                        s = 'urn:ocg:def:crs:EPSG::' + refId.to_s
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
 
-	end
+                                when 'wkt'
+                                    @xml.tag!('gmd:code') do
+                                        s = 'WKT::' + refId
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

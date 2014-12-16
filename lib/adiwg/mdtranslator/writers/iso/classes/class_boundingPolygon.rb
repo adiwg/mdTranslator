@@ -9,67 +9,78 @@
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-05-30 added multi-point, multi-linestring, multi-polygon support
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
 require 'class_point'
 require 'class_lineString'
 require 'class_multiGeometry'
 require 'class_polygon'
 
-class EX_BoundingPolygon
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class EX_BoundingPolygon
 
-	def writeXML(hGeoElement)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used by MD_Metadata
-		pointClass = Point.new(@xml)
-		lineClass = LineString.new(@xml)
-		multiGeoClass = MultiGeometry.new(@xml)
-		polygonClass = Polygon.new(@xml)
+                    def writeXML(hGeoElement)
 
-		hGeometry = hGeoElement[:elementGeometry]
-		polyType = hGeometry[:geoType]
+                        # classes used
+                        pointClass = $WriterNS::Point.new(@xml)
+                        lineClass = $WriterNS::LineString.new(@xml)
+                        multiGeoClass = $WriterNS::MultiGeometry.new(@xml)
+                        polygonClass = $WriterNS::Polygon.new(@xml)
 
-		@xml.tag!('gmd:EX_BoundingPolygon') do
+                        hGeometry = hGeoElement[:elementGeometry]
+                        polyType = hGeometry[:geoType]
 
-			# bounding polygon - extent type - required
-			extentType = hGeoElement[:elementIncludeData]
-			if extentType.nil?
-				@xml.tag!('gmd:extentTypeCode',{'gco:nilReason'=>'missing'})
-			elsif extentType == true || extentType == false
-				@xml.tag!('gmd:extentTypeCode') do
-					@xml.tag!('gco:Boolean',extentType)
-				end
-			else
-				@xml.tag!('gmd:extentTypeCode',{'gco:nilReason'=>extentType})
-			end
+                        @xml.tag!('gmd:EX_BoundingPolygon') do
 
-			# bounding polygon - polygon - required
-			if hGeometry[:geometry].empty?
-				@xml.tag!('gmd:polygon', {'gco:nilReason' => 'missing'})
-			else
-				@xml.tag!('gmd:polygon') do
-					case polyType
-						when 'Point'
-							pointClass.writeXML(hGeoElement)
-						when 'LineString'
-							lineClass.writeXML(hGeoElement)
-						when 'Polygon'
-							polygonClass.writeXML(hGeoElement)
-						when 'MultiPoint', 'MultiLineString', 'MultiPolygon', 'MultiGeometry'
-							multiGeoClass.writeXML(hGeoElement)
-						when 'MultiGeometry'
-							multiGeoClass.writeXML(hGeoElement)
-						else
-							# log - the bounding polygon type is not supported
-					end
-				end
-			end
+                            # bounding polygon - extent type - required
+                            extentType = hGeoElement[:elementIncludeData]
+                            if extentType.nil?
+                                @xml.tag!('gmd:extentTypeCode', {'gco:nilReason' => 'missing'})
+                            elsif extentType == true || extentType == false
+                                @xml.tag!('gmd:extentTypeCode') do
+                                    @xml.tag!('gco:Boolean', extentType)
+                                end
+                            else
+                                @xml.tag!('gmd:extentTypeCode', {'gco:nilReason' => extentType})
+                            end
 
-		end
+                            # bounding polygon - polygon - required
+                            if hGeometry[:geometry].empty?
+                                @xml.tag!('gmd:polygon', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:polygon') do
+                                    case polyType
+                                        when 'Point'
+                                            pointClass.writeXML(hGeoElement)
+                                        when 'LineString'
+                                            lineClass.writeXML(hGeoElement)
+                                        when 'Polygon'
+                                            polygonClass.writeXML(hGeoElement)
+                                        when 'MultiPoint', 'MultiLineString', 'MultiPolygon', 'MultiGeometry'
+                                            multiGeoClass.writeXML(hGeoElement)
+                                        when 'MultiGeometry'
+                                            multiGeoClass.writeXML(hGeoElement)
+                                        else
+                                            # log - the bounding polygon type is not supported
+                                    end
+                                end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

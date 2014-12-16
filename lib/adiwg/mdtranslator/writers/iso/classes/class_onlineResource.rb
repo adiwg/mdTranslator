@@ -5,74 +5,85 @@
 # 	Stan Smith 2013-08-14 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-14 added protocol to onlineResource
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'code_onlineFunction'
 
-class CI_OnlineResource
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class CI_OnlineResource
 
-	def writeXML(hOlResource)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
-		olFunctionCode = CI_OnLineFunctionCode.new(@xml)
+                    def writeXML(hOlResource)
 
-		@xml.tag! 'gmd:CI_OnlineResource' do
+                        # classes used
+                        olFunctionCode = $WriterNS::CI_OnLineFunctionCode.new(@xml)
 
-			# online resource - link - required
-			s = hOlResource[:olResURI]
-			if s.nil?
-				@xml.tag!('gmd:linkage',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:linkage') do
-					@xml.tag!('gmd:URL',s)
-				end
-			end
+                        @xml.tag! 'gmd:CI_OnlineResource' do
 
-			# online resource - protocol
-			s = hOlResource[:olResProtocol]
-			if !s.nil?
-				@xml.tag!('gmd:protocol') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:protocol')
-			end
+                            # online resource - link - required
+                            s = hOlResource[:olResURI]
+                            if s.nil?
+                                @xml.tag!('gmd:linkage', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:linkage') do
+                                    @xml.tag!('gmd:URL', s)
+                                end
+                            end
 
-			# online resource - link name
-			s = hOlResource[:olResName]
-			if !s.nil?
-				@xml.tag!('gmd:name') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:name')
-			end
+                            # online resource - protocol
+                            s = hOlResource[:olResProtocol]
+                            if !s.nil?
+                                @xml.tag!('gmd:protocol') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:protocol')
+                            end
 
-			# online resource - link description
-			s = hOlResource[:olResDesc]
-			if !s.nil?
-				@xml.tag!('gmd:description') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:description')
-			end
+                            # online resource - link name
+                            s = hOlResource[:olResName]
+                            if !s.nil?
+                                @xml.tag!('gmd:name') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:name')
+                            end
 
-			# online resource - link function - CI_OnLineFunctionCode
-			s = hOlResource[:olResFunction]
-			if !s.nil?
-				@xml.tag!('gmd:function') do
-					olFunctionCode.writeXML(s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:function')
-			end
+                            # online resource - link description
+                            s = hOlResource[:olResDesc]
+                            if !s.nil?
+                                @xml.tag!('gmd:description') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:description')
+                            end
 
-		end
+                            # online resource - link function - CI_OnLineFunctionCode
+                            s = hOlResource[:olResFunction]
+                            if !s.nil?
+                                @xml.tag!('gmd:function') do
+                                    olFunctionCode.writeXML(s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:function')
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

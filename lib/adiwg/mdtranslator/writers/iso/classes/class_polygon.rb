@@ -5,90 +5,101 @@
 # 	Stan Smith 2013-11-18 original script
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-require ADIWG::Mdtranslator.reader_module('module_coordinates', $response[:readerVersionUsed])
+require $ReaderNS.readerModule('module_coordinates')
 
-class Polygon
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class Polygon
 
-	def writeXML(hGeoElement)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# gml:Polygon attributes
-		attributes = {}
+                    def writeXML(hGeoElement)
 
-		# gml:Polygon attributes - gml:id - required
-		lineID = hGeoElement[:elementId]
-		if lineID.nil?
-			$idCount = $idCount.succ
-			lineID = 'polygon' + $idCount
-		end
-		attributes['gml:id'] = lineID
+                        # gml:Polygon attributes
+                        attributes = {}
 
-		# gml:Polygon attributes - srsDimension
-		s = hGeoElement[:elementGeometry][:dimension]
-		if !s.nil?
-			attributes[:srsDimension] = s
-		end
+                        # gml:Polygon attributes - gml:id - required
+                        lineID = hGeoElement[:elementId]
+                        if lineID.nil?
+                            $idCount = $idCount.succ
+                            lineID = 'polygon' + $idCount
+                        end
+                        attributes['gml:id'] = lineID
 
-		# gml:Polygon attributes - srsName
-		s = hGeoElement[:elementSrs][:srsName]
-		if !s.nil?
-			attributes[:srsName] = s
-		end
+                        # gml:Polygon attributes - srsDimension
+                        s = hGeoElement[:elementGeometry][:dimension]
+                        if !s.nil?
+                            attributes[:srsDimension] = s
+                        end
 
-		@xml.tag!('gml:Polygon',attributes) do
+                        # gml:Polygon attributes - srsName
+                        s = hGeoElement[:elementSrs][:srsName]
+                        if !s.nil?
+                            attributes[:srsName] = s
+                        end
 
-			# polygon - description
-			s = hGeoElement[:elementDescription]
-			if !s.nil?
-				@xml.tag!('gml:description',s)
-			elsif $showAllTags
-				@xml.tag!('gml:description')
-			end
+                        @xml.tag!('gml:Polygon', attributes) do
 
-			# polygon - name
-			s = hGeoElement[:elementName]
-			if !s.nil?
-				@xml.tag!('gml:name',s)
-			elsif $showAllTags
-				@xml.tag!('gml:name')
-			end
+                            # polygon - description
+                            s = hGeoElement[:elementDescription]
+                            if !s.nil?
+                                @xml.tag!('gml:description', s)
+                            elsif $showAllTags
+                                @xml.tag!('gml:description')
+                            end
+
+                            # polygon - name
+                            s = hGeoElement[:elementName]
+                            if !s.nil?
+                                @xml.tag!('gml:name', s)
+                            elsif $showAllTags
+                                @xml.tag!('gml:name')
+                            end
 
 
-			# polygon - exterior ring
-			# convert coordinate string from geoJSON to gml
-			aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
-			if !aCoords.empty?
-				s = Md_Coordinates.unpack(aCoords)
-				@xml.tag!('gml:exterior') do
-					@xml.tag!('gml:LinearRing') do
-						@xml.tag!('gml:coordinates',s)
-					end
-				end
-			else
-				@xml.tag!('gml:exterior')
-			end
+                            # polygon - exterior ring
+                            # convert coordinate string from geoJSON to gml
+                            aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
+                            if !aCoords.empty?
+                                s = $ReaderNS::Coordinates.unpack(aCoords)
+                                @xml.tag!('gml:exterior') do
+                                    @xml.tag!('gml:LinearRing') do
+                                        @xml.tag!('gml:coordinates', s)
+                                    end
+                                end
+                            else
+                                @xml.tag!('gml:exterior')
+                            end
 
-			# polygon - interior ring
-			# convert coordinate string from geoJSON to gml
-			# XSDs do not all gml:interior to be displayed empty
-			aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
-			unless aRings.empty?
-				aRings.each do |aRing|
-					s = Md_Coordinates.unpack(aRing)
-					@xml.tag!('gml:interior') do
-						@xml.tag!('gml:LinearRing') do
-							@xml.tag!('gml:coordinates', s)
-						end
-					end
-				end
-			end
+                            # polygon - interior ring
+                            # convert coordinate string from geoJSON to gml
+                            # XSDs do not all gml:interior to be displayed empty
+                            aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
+                            unless aRings.empty?
+                                aRings.each do |aRing|
+                                    s = $ReaderNS::Coordinates.unpack(aRing)
+                                    @xml.tag!('gml:interior') do
+                                        @xml.tag!('gml:LinearRing') do
+                                            @xml.tag!('gml:coordinates', s)
+                                        end
+                                    end
+                                end
+                            end
 
-		end
+                        end
 
-	end
+                    end
 
+                end
+
+            end
+        end
+    end
 end

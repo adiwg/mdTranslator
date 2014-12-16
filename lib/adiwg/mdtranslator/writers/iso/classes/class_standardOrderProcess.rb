@@ -4,71 +4,83 @@
 # History:
 # 	Stan Smith 2013-09-25 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'module_dateTimeFun'
 
-class MD_StandardOrderProcess
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_StandardOrderProcess
 
-	def writeXML(orderProcess)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
+                    def writeXML(orderProcess)
 
-		@xml.tag!('gmd:MD_StandardOrderProcess') do
+                        # classes used
 
-			# order process - fees
-			s = orderProcess[:fees]
-			if !s.nil?
-				@xml.tag!('gmd:fees') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:fees')
-			end
+                        @xml.tag!('gmd:MD_StandardOrderProcess') do
 
-			# order process - plannedAvailableDateTime
-			hDateTime = orderProcess[:plannedDateTime]
-			if !hDateTime.empty?
-				paDateTime = hDateTime[:dateTime]
-				paDateRes = hDateTime[:dateResolution]
-				if paDateTime.nil?
-					@xml.tag!('gmd:plannedAvailableDateTime')
-				else
-					@xml.tag!('gmd:plannedAvailableDateTime') do
-						dateTimeStr =
-							AdiwgDateTimeFun.stringDateTimeFromDateTime(paDateTime,paDateRes)
-						@xml.tag!('gco:DateTime',dateTimeStr)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:plannedAvailableDateTime')
-			end
+                            # order process - fees
+                            s = orderProcess[:fees]
+                            if !s.nil?
+                                @xml.tag!('gmd:fees') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:fees')
+                            end
 
-			# order process - orderingInstructions
-			s = orderProcess[:orderInstructions]
-			if !s.nil?
-				@xml.tag!('gmd:orderingInstructions') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:orderingInstructions')
-			end
+                            # order process - plannedAvailableDateTime
+                            hDateTime = orderProcess[:plannedDateTime]
+                            if !hDateTime.empty?
+                                paDateTime = hDateTime[:dateTime]
+                                paDateRes = hDateTime[:dateResolution]
+                                if paDateTime.nil?
+                                    @xml.tag!('gmd:plannedAvailableDateTime')
+                                else
+                                    @xml.tag!('gmd:plannedAvailableDateTime') do
+                                        dateTimeStr =
+                                            AdiwgDateTimeFun.stringDateTimeFromDateTime(paDateTime, paDateRes)
+                                        @xml.tag!('gco:DateTime', dateTimeStr)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:plannedAvailableDateTime')
+                            end
 
-			# order process - turnaround
-			s = orderProcess[:turnaround]
-			if !s.nil?
-				@xml.tag!('gmd:turnaround') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:turnaround')
-			end
+                            # order process - orderingInstructions
+                            s = orderProcess[:orderInstructions]
+                            if !s.nil?
+                                @xml.tag!('gmd:orderingInstructions') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:orderingInstructions')
+                            end
 
-		end
+                            # order process - turnaround
+                            s = orderProcess[:turnaround]
+                            if !s.nil?
+                                @xml.tag!('gmd:turnaround') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:turnaround')
+                            end
 
-	end
+                        end
+
+                    end
+
+                end
+
+            end
+        end
+    end
 
 end

@@ -13,32 +13,43 @@
 
 # History:
 # 	Stan Smith 2014-12-02 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class Multiplicity
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class Multiplicity
 
-	def writeXML(allowNull)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# xml for iso classes Multiplicity and MultiplicityRange
-		@xml.tag!('gco:Multiplicity') do
-			@xml.tag!('gco:range') do
-				@xml.tag!('gco:MultiplicityRange') do
-					@xml.tag!('gco:lower') do
-						if !allowNull
-							range = 1
-						else
-							range = 0
-						end
-						@xml.tag!('gco:Integer',range)
-					end
-					@xml.tag!('gco:upper')
-				end
-			end
-		end
+                    def writeXML(allowNull)
 
-	end
+                        # xml for iso classes Multiplicity and MultiplicityRange
+                        @xml.tag!('gco:Multiplicity') do
+                            @xml.tag!('gco:range') do
+                                @xml.tag!('gco:MultiplicityRange') do
+                                    @xml.tag!('gco:lower') do
+                                        if !allowNull
+                                            range = 1
+                                        else
+                                            range = 0
+                                        end
+                                        @xml.tag!('gco:Integer', range)
+                                    end
+                                    @xml.tag!('gco:upper')
+                                end
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

@@ -8,85 +8,96 @@
 #   Stan Smith 2014-05-29 changes for json schema version 0.5.0
 #   Stan Smith 2014-05-29 ... added new class for geographicElement
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_geographicElement'
 require 'class_geographicDescription'
 require 'class_temporalExtent'
 require 'class_verticalExtent'
 
-class EX_Extent
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class EX_Extent
 
-	def writeXML(hExtent)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used by MD_Metadata
-		tempExtClass = EX_TemporalExtent.new(@xml)
-		vertExtClass = EX_VerticalExtent.new(@xml)
-		geoEleClass = GeographicElement.new(@xml)
-		geoEleIdClass = EX_GeographicDescription.new(@xml)
+                    def writeXML(hExtent)
 
-		@xml.tag!('gmd:EX_Extent') do
+                        # classes used
+                        tempExtClass = $WriterNS::EX_TemporalExtent.new(@xml)
+                        vertExtClass = $WriterNS::EX_VerticalExtent.new(@xml)
+                        geoEleClass = $WriterNS::GeographicElement.new(@xml)
+                        geoEleIdClass = $WriterNS::EX_GeographicDescription.new(@xml)
 
-			# extent - description
-			s = hExtent[:extDesc]
-			if !s.nil?
-				@xml.tag!('gmd:description') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:description')
-			end
+                        @xml.tag!('gmd:EX_Extent') do
 
-			# extent - geographic element - for geometry
-			aGeoElements = hExtent[:extGeoElements]
-			if !aGeoElements.empty?
-				aGeoElements.each do |hGeoElement|
-					@xml.tag!('gmd:geographicElement') do
-						geoEleClass.writeXML(hGeoElement)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:geographicElement')
-			end
+                            # extent - description
+                            s = hExtent[:extDesc]
+                            if !s.nil?
+                                @xml.tag!('gmd:description') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:description')
+                            end
 
-			# extent - geographic element - for identifier
-			aGeoElements = hExtent[:extIdElements]
-			if !aGeoElements.empty?
-				aGeoElements.each do |hGeoElement|
-					@xml.tag!('gmd:geographicElement') do
-						geoEleIdClass.writeXML(hGeoElement)
-					end
-				end
-			end
+                            # extent - geographic element - for geometry
+                            aGeoElements = hExtent[:extGeoElements]
+                            if !aGeoElements.empty?
+                                aGeoElements.each do |hGeoElement|
+                                    @xml.tag!('gmd:geographicElement') do
+                                        geoEleClass.writeXML(hGeoElement)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:geographicElement')
+                            end
 
-			# extent - temporal element
-			aTempElements = hExtent[:extTempElements]
-			if !aTempElements.empty?
-				aTempElements.each do |hTempElement|
-					@xml.tag!('gmd:temporalElement') do
-						tempExtClass.writeXML(hTempElement)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:temporalElement')
-			end
+                            # extent - geographic element - for identifier
+                            aGeoElements = hExtent[:extIdElements]
+                            if !aGeoElements.empty?
+                                aGeoElements.each do |hGeoElement|
+                                    @xml.tag!('gmd:geographicElement') do
+                                        geoEleIdClass.writeXML(hGeoElement)
+                                    end
+                                end
+                            end
 
-			# extent - vertical element
-			aVertElements = hExtent[:extVertElements]
-			if !aVertElements.empty?
-				aVertElements.each do |hVertElement|
-					@xml.tag!('gmd:verticalElement') do
-						vertExtClass.writeXML(hVertElement)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:verticalElement')
-			end
-		end
+                            # extent - temporal element
+                            aTempElements = hExtent[:extTempElements]
+                            if !aTempElements.empty?
+                                aTempElements.each do |hTempElement|
+                                    @xml.tag!('gmd:temporalElement') do
+                                        tempExtClass.writeXML(hTempElement)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:temporalElement')
+                            end
 
-	end
+                            # extent - vertical element
+                            aVertElements = hExtent[:extVertElements]
+                            if !aVertElements.empty?
+                                aVertElements.each do |hVertElement|
+                                    @xml.tag!('gmd:verticalElement') do
+                                        vertExtClass.writeXML(hVertElement)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:verticalElement')
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

@@ -4,48 +4,59 @@
 # History:
 # 	Stan Smith 2013-09-26 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_onlineResource'
 require 'class_medium'
 
-class MD_DigitalTransferOptions
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_DigitalTransferOptions
 
-	def writeXML(transOption)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
-		olResClass = CI_OnlineResource.new(@xml)
-		medClass = MD_Medium.new(@xml)
+                    def writeXML(transOption)
 
-		@xml.tag!('gmd:MD_DigitalTransferOptions') do
+                        # classes used
+                        olResClass = $WriterNS::CI_OnlineResource.new(@xml)
+                        medClass = $WriterNS::MD_Medium.new(@xml)
 
-			# digital transfer options - online [] - CI_OnlineResource
-			aOnTranOpts = transOption[:online]
-			if !aOnTranOpts.empty?
-				aOnTranOpts.each do |olTranOpt|
-				    @xml.tag!('gmd:onLine') do
-						olResClass.writeXML(olTranOpt)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:onLine')
-			end
+                        @xml.tag!('gmd:MD_DigitalTransferOptions') do
 
-			# digital transfer options - offline - MD_Medium
-			hOffTranOpt = transOption[:offline]
-			if !hOffTranOpt.empty?
-				@xml.tag!('gmd:offLine') do
-					medClass.writeXML(hOffTranOpt)
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:offLine')
-			end
+                            # digital transfer options - online [] - CI_OnlineResource
+                            aOnTranOpts = transOption[:online]
+                            if !aOnTranOpts.empty?
+                                aOnTranOpts.each do |olTranOpt|
+                                    @xml.tag!('gmd:onLine') do
+                                        olResClass.writeXML(olTranOpt)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:onLine')
+                            end
 
-		end
+                            # digital transfer options - offline - MD_Medium
+                            hOffTranOpt = transOption[:offline]
+                            if !hOffTranOpt.empty?
+                                @xml.tag!('gmd:offLine') do
+                                    medClass.writeXML(hOffTranOpt)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:offLine')
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

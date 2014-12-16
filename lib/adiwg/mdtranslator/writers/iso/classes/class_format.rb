@@ -3,38 +3,49 @@
 
 # History:
 # 	Stan Smith 2013-08-26 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class MD_Format
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_Format
 
-	def writeXML(rFormat)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gmd:MD_Format') do
+                    def writeXML(rFormat)
 
-			# format - name - required
-			s = rFormat[:formatName]
-			if s.nil?
-				@xml.tag!('gmd:name',{'gco:nilReason'=>'missing'})
-			else
-				@xml.tag!('gmd:name') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			end
+                        @xml.tag!('gmd:MD_Format') do
 
-			# format - version - required
-			s = rFormat[:formatVersion]
-			if s.nil?
-				@xml.tag!('gmd:version',{'gco:nilReason'=>'unknown'})
-			else
-				@xml.tag!('gmd:version') do
-					@xml.tag!('gco:CharacterString',s)
-				end
-			end
-		end
+                            # format - name - required
+                            s = rFormat[:formatName]
+                            if s.nil?
+                                @xml.tag!('gmd:name', {'gco:nilReason' => 'missing'})
+                            else
+                                @xml.tag!('gmd:name') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            end
 
-	end
+                            # format - version - required
+                            s = rFormat[:formatVersion]
+                            if s.nil?
+                                @xml.tag!('gmd:version', {'gco:nilReason' => 'unknown'})
+                            else
+                                @xml.tag!('gmd:version') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

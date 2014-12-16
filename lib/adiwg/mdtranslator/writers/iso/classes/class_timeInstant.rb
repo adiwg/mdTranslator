@@ -4,44 +4,53 @@
 # History:
 # 	Stan Smith 2013-11-04 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'module_dateTimeFun'
 
-class TimeInstant
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class TimeInstant
 
-	def writeXML(hTempI)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		timeID = hTempI[:timeId]
-		if timeID.nil?
-			$idCount = $idCount.succ
-			timeID = 'timeInstant' + $idCount
-		end
+                    def writeXML(hTempI)
 
-		@xml.tag!('gml:TimeInstant',{'gml:id'=>timeID}) do
+                        timeID = hTempI[:timeId]
+                        if timeID.nil?
+                            $idCount = $idCount.succ
+                            timeID = 'timeInstant' + $idCount
+                        end
 
-			# time instant - description
-			s = hTempI[:description]
-			if !s.nil?
-				@xml.tag!('gml:description',s)
-			elsif $showAllTags
-				@xml.tag!('gml:description')
-			end
+                        @xml.tag!('gml:TimeInstant', {'gml:id' => timeID}) do
 
-			# time instant - time position
-			hDateTime = hTempI[:timePosition]
-			timeInstant = hDateTime[:dateTime]
-			timeResolution = hDateTime[:dateResolution]
-			dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(timeInstant,timeResolution)
-			@xml.tag!('gml:timePosition',dateStr)
+                            # time instant - description
+                            s = hTempI[:description]
+                            if !s.nil?
+                                @xml.tag!('gml:description', s)
+                            elsif $showAllTags
+                                @xml.tag!('gml:description')
+                            end
 
-		end
+                            # time instant - time position
+                            hDateTime = hTempI[:timePosition]
+                            timeInstant = hDateTime[:dateTime]
+                            timeResolution = hDateTime[:dateResolution]
+                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(timeInstant, timeResolution)
+                            @xml.tag!('gml:timePosition', dateStr)
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end
-
-

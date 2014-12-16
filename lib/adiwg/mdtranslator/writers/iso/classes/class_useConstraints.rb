@@ -3,28 +3,39 @@
 
 # History:
 # 	Stan Smith 2013-10-31 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class MD_Constraints
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_Constraints
 
-	def writeXML(aUseCons)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gmd:MD_Constraints') do
+                    def writeXML(aUseCons)
 
-			aUseCons.each do |useCon|
+                        @xml.tag!('gmd:MD_Constraints') do
 
-				# use constraints - required
-				@xml.tag!('gmd:useLimitation') do
-						@xml.tag!('gco:CharacterString',useCon)
-				end
+                            aUseCons.each do |useCon|
 
-			end
+                                # use constraints - required
+                                @xml.tag!('gmd:useLimitation') do
+                                    @xml.tag!('gco:CharacterString', useCon)
+                                end
 
-		end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

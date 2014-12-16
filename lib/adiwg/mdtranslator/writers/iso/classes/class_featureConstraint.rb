@@ -6,50 +6,61 @@
 
 # History:
 # 	Stan Smith 2014-12-02 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class FC_Constraint
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class FC_Constraint
 
-	def writeXML(conType, hConstraint)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gfc:FC_Constraint') do
-			@xml.tag!('gfc:description') do
+                    def writeXML(conType, hConstraint)
 
-				# find type of constraint (primary key or index)
-				case conType
+                        @xml.tag!('gfc:FC_Constraint') do
+                            @xml.tag!('gfc:description') do
 
-					# primary keys
-					when 'pk'
-						s = 'primary key: '
-						s += hConstraint.to_s
+                                # find type of constraint (primary key or index)
+                                case conType
 
-					# indexes
-					when 'index'
-						if hConstraint[:duplicate]
-							indexType = 'duplicate'
-						else
-							indexType = 'unique'
-						end
-						s = indexType + ' index ' + hConstraint[:indexCode]
-						s += ' on ' + hConstraint[:attributeNames].to_s
+                                    # primary keys
+                                    when 'pk'
+                                        s = 'primary key: '
+                                        s += hConstraint.to_s
 
-					# foreign keys
-					when 'fk'
-						s = 'foreign key '
-						s += hConstraint[:fkLocalAttributes].to_s
-						s += ' references ' + hConstraint[:fkReferencedEntity] + '.'
-						s += hConstraint[:fkReferencedAttributes].to_s
+                                    # indexes
+                                    when 'index'
+                                        if hConstraint[:duplicate]
+                                            indexType = 'duplicate'
+                                        else
+                                            indexType = 'unique'
+                                        end
+                                        s = indexType + ' index ' + hConstraint[:indexCode]
+                                        s += ' on ' + hConstraint[:attributeNames].to_s
 
-				end
+                                    # foreign keys
+                                    when 'fk'
+                                        s = 'foreign key '
+                                        s += hConstraint[:fkLocalAttributes].to_s
+                                        s += ' references ' + hConstraint[:fkReferencedEntity] + '.'
+                                        s += hConstraint[:fkReferencedAttributes].to_s
 
-				@xml.tag!('gco:CharacterString',s)
+                                end
 
-			end
-		end
+                                @xml.tag!('gco:CharacterString', s)
 
-	end
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

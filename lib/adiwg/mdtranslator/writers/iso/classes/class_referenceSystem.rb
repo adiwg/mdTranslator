@@ -4,26 +4,37 @@
 
 # History:
 # 	Stan Smith 2014-09-03 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_referenceIdentifier'
 
-class MD_ReferenceSystem
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_ReferenceSystem
 
-	def writeXML(refSystem, refType)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used by MD_Metadata
-		refIdClass = RS_Identifier.new(@xml)
+                    def writeXML(refSystem, refType)
 
-		@xml.tag!('gmd:MD_ReferenceSystem') do
-			@xml.tag!('gmd:referenceSystemIdentifier') do
-				refIdClass.writeXML(refSystem, refType)
-			end
-		end
+                        # classes used
+                        refIdClass = $WriterNS::RS_Identifier.new(@xml)
 
-	end
+                        @xml.tag!('gmd:MD_ReferenceSystem') do
+                            @xml.tag!('gmd:referenceSystemIdentifier') do
+                                refIdClass.writeXML(refSystem, refType)
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

@@ -5,60 +5,71 @@
 # 	Stan Smith 2013-10-31 original script
 # 	Stan Smith 2013-12-18 added contact
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'code_maintenanceFrequency'
 require 'class_responsibleParty'
 
-class MD_MaintenanceInformation
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class MD_MaintenanceInformation
 
-	def writeXML(hMaintInfo)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used
-		maintFreqCode = MD_MaintenanceFrequencyCode.new(@xml)
-		rPartyClass = CI_ResponsibleParty.new(@xml)
+                    def writeXML(hMaintInfo)
 
-		@xml.tag! 'gmd:MD_MaintenanceInformation' do
+                        # classes used
+                        maintFreqCode = $WriterNS::MD_MaintenanceFrequencyCode.new(@xml)
+                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
 
-			# maintenance information - frequency code - required
-			s = hMaintInfo[:maintFreq]
-			if s.nil?
-				@xml.tag!('gmd:maintenanceAndUpdateFrequency', {'gco:nilReason'=>'unknown'})
-			else
-				@xml.tag!('gmd:maintenanceAndUpdateFrequency') do
-					maintFreqCode.writeXML(s)
-				end
-			end
+                        @xml.tag! 'gmd:MD_MaintenanceInformation' do
 
-			# maintenance information - note
-			aNotes = hMaintInfo[:maintNotes]
-			if !aNotes.empty?
-				aNotes.each do |note|
-					@xml.tag!('gmd:maintenanceNote') do
-						@xml.tag!('gco:CharacterString',note)
-					end
-				end
-			elsif $showAllTags
-				@xml.tag!('gmd:maintenanceNote')
-			end
+                            # maintenance information - frequency code - required
+                            s = hMaintInfo[:maintFreq]
+                            if s.nil?
+                                @xml.tag!('gmd:maintenanceAndUpdateFrequency', {'gco:nilReason' => 'unknown'})
+                            else
+                                @xml.tag!('gmd:maintenanceAndUpdateFrequency') do
+                                    maintFreqCode.writeXML(s)
+                                end
+                            end
 
-			# maintenance information - contact - CI_ResponsibleParty
-			aContacts = hMaintInfo[:maintContacts]
-			if aContacts.empty? && $shoeEmpty
-				@xml.tag!('gmd:contact')
-			else
-				aContacts.each do |hContact|
-					@xml.tag!('gmd:contact') do
-						rPartyClass.writeXML(hContact)
-					end
-				end
-			end
+                            # maintenance information - note
+                            aNotes = hMaintInfo[:maintNotes]
+                            if !aNotes.empty?
+                                aNotes.each do |note|
+                                    @xml.tag!('gmd:maintenanceNote') do
+                                        @xml.tag!('gco:CharacterString', note)
+                                    end
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gmd:maintenanceNote')
+                            end
 
-		end
+                            # maintenance information - contact - CI_ResponsibleParty
+                            aContacts = hMaintInfo[:maintContacts]
+                            if aContacts.empty? && $shoeEmpty
+                                @xml.tag!('gmd:contact')
+                            else
+                                aContacts.each do |hContact|
+                                    @xml.tag!('gmd:contact') do
+                                        rPartyClass.writeXML(hContact)
+                                    end
+                                end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

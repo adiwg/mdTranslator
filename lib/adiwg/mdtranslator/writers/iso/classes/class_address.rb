@@ -3,89 +3,100 @@
 
 # History:
 # 	Stan Smith 2013-08-09 original script
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 
-class CI_Address
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class CI_Address
 
-	def writeXML(hAddress)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		deliveryPoints = hAddress[:deliveryPoints].length
-		eMails = hAddress[:eMailList].length
+                    def writeXML(hAddress)
 
-		if deliveryPoints + eMails > 0
-			@xml.tag!('gmd:CI_Address') do
-				# address - address
-				if deliveryPoints > 0
+                        deliveryPoints = hAddress[:deliveryPoints].length
+                        eMails = hAddress[:eMailList].length
 
-					# address - delivery points (address lines)
-					aDeliveryPoints = hAddress[:deliveryPoints]
-					aDeliveryPoints.each do |myPoint|
-						@xml.tag!('gmd:deliveryPoint') do
-							@xml.tag!('gco:CharacterString',myPoint)
-						end
-					end
+                        if deliveryPoints + eMails > 0
+                            @xml.tag!('gmd:CI_Address') do
+                                # address - address
+                                if deliveryPoints > 0
 
-				elsif $showAllTags
-					@xml.tag!('gmd:deliveryPoint')
-				end
+                                    # address - delivery points (address lines)
+                                    aDeliveryPoints = hAddress[:deliveryPoints]
+                                    aDeliveryPoints.each do |myPoint|
+                                        @xml.tag!('gmd:deliveryPoint') do
+                                            @xml.tag!('gco:CharacterString', myPoint)
+                                        end
+                                    end
 
-				# address - city
-				s = hAddress[:city]
-				if !s.nil?
-					@xml.tag!('gmd:city') do
-						@xml.tag!('gco:CharacterString',s)
-					end
-				elsif $showAllTags
-					@xml.tag!('gmd:city')
-				end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:deliveryPoint')
+                                end
 
-				# address - admin area (state)
-				s = hAddress[:adminArea]
-				if !s.nil?
-					@xml.tag!('gmd:administrativeArea') do
-						@xml.tag!('gco:CharacterString',s)
-					end
-				elsif $showAllTags
-					@xml.tag!('gmd:administrativeArea')
-				end
+                                # address - city
+                                s = hAddress[:city]
+                                if !s.nil?
+                                    @xml.tag!('gmd:city') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:city')
+                                end
 
-				# address - postal code
-				s = hAddress[:postalCode]
-				if !s.nil?
-					@xml.tag!('gmd:postalCode') do
-						@xml.tag!('gco:CharacterString',s)
-					end
-				elsif $showAllTags
-					@xml.tag!('gmd:postalCode')
-				end
+                                # address - admin area (state)
+                                s = hAddress[:adminArea]
+                                if !s.nil?
+                                    @xml.tag!('gmd:administrativeArea') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:administrativeArea')
+                                end
 
-				# address - country
-				s = hAddress[:country]
-				if !s.nil?
-					@xml.tag!('gmd:country') do
-						@xml.tag!('gco:CharacterString',s)
-					end
-				elsif $showAllTags
-					@xml.tag!('gmd:country')
-				end
+                                # address - postal code
+                                s = hAddress[:postalCode]
+                                if !s.nil?
+                                    @xml.tag!('gmd:postalCode') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:postalCode')
+                                end
 
-				# address - email addresses
-				if eMails > 0
-					hAddress[:eMailList].each do |myEmail|
-						@xml.tag!('gmd:electronicMailAddress') do
-							@xml.tag!('gco:CharacterString',myEmail)
-						end
-					end
-				elsif $showAllTags
-					@xml.tag!('gmd:electronicMailAddress')
-				end
+                                # address - country
+                                s = hAddress[:country]
+                                if !s.nil?
+                                    @xml.tag!('gmd:country') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:country')
+                                end
 
-			end
-		end
+                                # address - email addresses
+                                if eMails > 0
+                                    hAddress[:eMailList].each do |myEmail|
+                                        @xml.tag!('gmd:electronicMailAddress') do
+                                            @xml.tag!('gco:CharacterString', myEmail)
+                                        end
+                                    end
+                                elsif $showAllTags
+                                    @xml.tag!('gmd:electronicMailAddress')
+                                end
 
-	end
+                            end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

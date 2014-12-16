@@ -4,65 +4,76 @@
 
 # History:
 # 	Stan Smith 2014-12-02 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class FC_ListedValue
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class FC_ListedValue
 
-	def writeXML(hItem)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		@xml.tag!('gfc:FC_ListedValue') do
+                    def writeXML(hItem)
 
-			# listed value - label - required
-			# use domain  item name
-			s = hItem[:itemName]
-			if !s.nil?
-				@xml.tag!('gfc:label') do
-					@xml.tag!('gco:CharacterString', s)
-				end
-			else
-				@xml.tag!('gfc:label', {'gco:nilReason' => 'missing'})
-			end
+                        @xml.tag!('gfc:FC_ListedValue') do
 
-			# listed value - code
-			# use domain item value
-			s = hItem[:itemValue]
-			if !s.nil?
-				@xml.tag!('gfc:code') do
-					@xml.tag!('gco:CharacterString', s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gfc:code')
-			end
+                            # listed value - label - required
+                            # use domain  item name
+                            s = hItem[:itemName]
+                            if !s.nil?
+                                @xml.tag!('gfc:label') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            else
+                                @xml.tag!('gfc:label', {'gco:nilReason' => 'missing'})
+                            end
 
-			# listed value - code
-			# use domain item value
-			s = hItem[:itemDefinition]
-			if !s.nil?
-				@xml.tag!('gfc:definition') do
-					@xml.tag!('gco:CharacterString', s)
-				end
-			elsif $showAllTags
-				@xml.tag!('gfc:definition')
-			end
+                            # listed value - code
+                            # use domain item value
+                            s = hItem[:itemValue]
+                            if !s.nil?
+                                @xml.tag!('gfc:code') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gfc:code')
+                            end
 
-		end
+                            # listed value - code
+                            # use domain item value
+                            s = hItem[:itemDefinition]
+                            if !s.nil?
+                                @xml.tag!('gfc:definition') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif $showAllTags
+                                @xml.tag!('gfc:definition')
+                            end
 
-	end
+                        end
 
-	def getDomain(domainID)
+                    end
 
-		# find domain in domain array and return the hash
-		$domainList.each do |hDomain|
-			if hDomain[:domainId] == domainID
-				return hDomain
-			end
-		end
+                    def getDomain(domainID)
 
-		return {}
+                        # find domain in domain array and return the hash
+                        $domainList.each do |hDomain|
+                            if hDomain[:domainId] == domainID
+                                return hDomain
+                            end
+                        end
 
-	end
+                        return {}
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

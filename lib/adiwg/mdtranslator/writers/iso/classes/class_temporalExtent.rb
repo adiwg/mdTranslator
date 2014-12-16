@@ -5,54 +5,65 @@
 # 	Stan Smith 2013-11-15 original script
 #   Stan Smith 2014-06-03 add support for date as time instant
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
 require 'class_timeInstant'
 require 'class_timePeriod'
 
-class EX_TemporalExtent
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class EX_TemporalExtent
 
-	def writeXML(hTempEle)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# classes used by MD_Metadata
-		intMetadataClass = InternalMetadata.new
-		timeInstClass = TimeInstant.new(@xml)
-		timePeriodClass = TimePeriod.new(@xml)
+                    def writeXML(hTempEle)
 
-		@xml.tag!('gmd:EX_TemporalExtent') do
+                        # classes used
+                        intMetadataClass = InternalMetadata.new
+                        timeInstClass = $WriterNS::TimeInstant.new(@xml)
+                        timePeriodClass = $WriterNS::TimePeriod.new(@xml)
 
-			# temporal extent - date - not supported by ISO
-			# ... convert date to time instant
-			hDate =  hTempEle[:date]
-			unless hDate.empty?
-				intTimeInst = intMetadataClass.newTimeInstant
-				intTimeInst[:timePosition] = hDate
-				@xml.tag!('gmd:extent') do
-					timeInstClass.writeXML(intTimeInst)
-				end
-			end
+                        @xml.tag!('gmd:EX_TemporalExtent') do
 
-			# temporal extent - time instant
-			hTimeInst = hTempEle[:timeInstant]
-			unless hTimeInst.empty?
-				@xml.tag!('gmd:extent') do
-					timeInstClass.writeXML(hTimeInst)
-				end
-			end
+                            # temporal extent - date - not supported by ISO
+                            # ... convert date to time instant
+                            hDate = hTempEle[:date]
+                            unless hDate.empty?
+                                intTimeInst = intMetadataClass.newTimeInstant
+                                intTimeInst[:timePosition] = hDate
+                                @xml.tag!('gmd:extent') do
+                                    timeInstClass.writeXML(intTimeInst)
+                                end
+                            end
 
-			# temporal extent - time period
-			hTimePeriod = hTempEle[:timePeriod]
-			unless hTimePeriod.empty?
-				@xml.tag!('gmd:extent') do
-					timePeriodClass.writeXML(hTimePeriod)
-				end
-			end
+                            # temporal extent - time instant
+                            hTimeInst = hTempEle[:timeInstant]
+                            unless hTimeInst.empty?
+                                @xml.tag!('gmd:extent') do
+                                    timeInstClass.writeXML(hTimeInst)
+                                end
+                            end
 
-		end
+                            # temporal extent - time period
+                            hTimePeriod = hTempEle[:timePeriod]
+                            unless hTimePeriod.empty?
+                                @xml.tag!('gmd:extent') do
+                                    timePeriodClass.writeXML(hTimePeriod)
+                                end
+                            end
 
-	end
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end

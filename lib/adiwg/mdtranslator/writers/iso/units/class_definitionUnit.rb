@@ -3,22 +3,33 @@
 
 # History:
 # 	Stan Smith 2014-12-03 original script
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 
-class UnitDefinition
+module ADIWG
+    module Mdtranslator
+        module Writers
+            module Iso
 
-	def initialize(xml)
-		@xml = xml
-	end
+                class UnitDefinition
 
-	def writeXML(unit)
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-		# create and identity for the unit
-		$idCount = $idCount.succ
-		unitID = 'unit' + $idCount
-		@xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
-		    @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
-		end
+                    def writeXML(unit)
 
-	end
+                        # create and identity for the unit
+                        $idCount = $idCount.succ
+                        unitID = 'unit' + $idCount
+                        @xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
+                            @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
+                        end
 
+                    end
+
+                end
+
+            end
+        end
+    end
 end
