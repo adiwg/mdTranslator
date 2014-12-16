@@ -151,23 +151,6 @@ module ADIWG
 
                 end
 
-                # return path to readers and writers
-                def path_to_resources
-                    File.join(File.dirname(File.expand_path(__FILE__)), 'mdtranslator')
-                end
-
-                # return writer readme text
-                def get_writer_readme(writer)
-                    readmeText = 'No text found'
-                    path = File.join(path_to_resources, 'writers', writer, 'readme.md')
-                    if File.exist?(path)
-                        file = File.open(path, 'r')
-                        readmeText = file.read
-                        file.close
-                    end
-                    return readmeText
-                end
-
             end
         end
     end

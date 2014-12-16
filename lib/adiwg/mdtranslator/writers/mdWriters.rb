@@ -39,6 +39,23 @@ module ADIWG
 
             end
 
+            # return path to writers
+            def self.path_to_resources
+                File.dirname(File.expand_path(__FILE__))
+            end
+
+            # return writer readme text
+            def self.get_writer_readme(writer)
+                readmeText = 'No readme found'
+                path = File.join(path_to_resources, writer, 'readme.md')
+                if File.exist?(path)
+                    file = File.open(path, 'r')
+                    readmeText = file.read
+                    file.close
+                end
+                return readmeText
+            end
+
         end
     end
 end
