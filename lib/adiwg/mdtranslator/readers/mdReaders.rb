@@ -2,26 +2,33 @@
 
 # History:
 # 	Stan Smith 2014-12-11 original script
+#   Stan Smith 2012-12-16 generalized handleReader to use :readerRequested
 
 module ADIWG
     module Mdtranslator
         module Readers
 
             def self.handleReader(file)
-                case $response[:readerRequested]
-                    # ADIwg mdJson JSON schema
-                    when 'mdJson'
 
-                        require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-                        intObj = ADIWG::Mdtranslator::Readers::MdJson.inspectFile(file)
-                        return intObj
+                # use reader name to load and initiate reader
+                # build directory path name for reader
+                readerDir = File.join(path_to_resources, $response[:readerRequested])
+                if File.directory?(readerDir)
 
-                    # reader name not provided or not supported
-                    else
-                        $response[:readerValidationPass] = false
-                        $response[:readerValidationMessages] << 'Reader name is missing or not supported.'
-                        return false
+                    # if directory path exists, build reader file name and require it
+                    readerFile = File.join(readerDir, $response[:readerRequested] + '_reader')
+                    require readerFile
+
+                    # pass file to requested reader and return internal object
+                    intObj = $ReaderNS.readFile(file)
+                    return intObj
+                else
+                    # directory path was not found
+                    $response[:readerValidationPass] = false
+                    $response[:readerValidationMessages] << 'Reader name is missing or not supported.'
+                    return false
                 end
+
             end
 
             # return path to readers

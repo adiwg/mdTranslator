@@ -20,7 +20,10 @@ module ADIWG
         module Readers
             module MdJson
 
-                def self.inspectFile(file)
+                # set reader namespace
+                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
+
+                def self.readFile(file)
                     # set anticipated format of file in $response
                     $response[:readerFormat] = 'json'
 
@@ -41,9 +44,6 @@ module ADIWG
                     if !$response[:readerStructurePass]
                         return false
                     end
-
-                    # set reader namespace
-                    $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
 
                     # validate file against mdJson schema definition
                     require 'adiwg/mdtranslator/readers/mdJson/mdJson_validator'

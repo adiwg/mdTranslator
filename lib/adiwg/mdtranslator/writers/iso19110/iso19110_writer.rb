@@ -18,6 +18,9 @@ module ADIWG
         module Writers
             module Iso
 
+                # set writer namespace
+                $WriterNS = ADIWG::Mdtranslator::Writers::Iso
+
                 class Iso19110
 
                     def initialize
@@ -26,9 +29,6 @@ module ADIWG
                     end
 
                     def writeXML(intObj)
-
-                        # set writer namespace
-                        $WriterNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'

@@ -24,11 +24,14 @@
 # 0.10.2 2014-12-05
 # 0.11.0 2014-12-15 refactored code managing the readers and writers
 #               ... added namespaces to readers and writers
+# 0.11.1 2014-12-16 fixed problem of rails not access reader and writer readme files
+#               ... changed mdReader and mdWriter to use requested reader and writer
+#               ... names to resolved require and call statements
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.11.0"
+        VERSION = "0.11.1"
     end
 end
 

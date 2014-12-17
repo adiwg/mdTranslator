@@ -2,39 +2,36 @@
 
 # History:
 # 	Stan Smith 2014-12-11 original script
+#   Stan Smith 2012-12-16 generalized handleWriter to use :writerName
 
 module ADIWG
     module Mdtranslator
         module Writers
 
             def self.handleWriter(intObj)
-                case $response[:writerName]
 
-                    # ISO 19110 standard for feature catalogue used to describe tabular data dictionaries
-                    when 'iso19110'
-                        require 'adiwg/mdtranslator/writers/iso19110/iso19110_writer'
-                        writerClass = ADIWG::Mdtranslator::Writers::Iso::Iso19110.new
+                # use writer name to load and initiate writer
+                # build directory path name for reader
+                writerDir = File.join(path_to_resources, $response[:writerName])
+                if File.directory?(writerDir)
 
-                        # initiate the writer
-                        $response[:writerOutput] = writerClass.writeXML(intObj)
-                        return $response
+                    # if directory path exists, build writer file name and require it
+                    writerFile = File.join(writerDir, $response[:writerName] + '_writer')
+                    require writerFile
 
+                    # build initial class name for writer
+                    # ... class name must begin with upper case
+                    writerUpCase = $response[:writerName][0].upcase + $response[:writerName][1..-1]
+                    writerClass = $WriterNS.const_get(writerUpCase).new
 
-                    # ISO 19115-2:2009 standard for geospatial metadata
-                    when 'iso19115_2'
-                        require 'adiwg/mdtranslator/writers/iso19115_2/iso19115_2_writer'
-                        writerClass = ADIWG::Mdtranslator::Writers::Iso::Iso191152.new
-
-                        # initiate the writer
-                        $response[:writerOutput] = writerClass.writeXML(intObj)
-                        return $response
-
-                    # writer name not provided or not supported
-                    else
-                        $response[:writerValidationPass] = false
-                        $response[:readerValidationMessages] << "Writer name '#{$response[:writerName]}' is missing or not supported."
-                        return false
-
+                    # pass internal object to requested writer
+                    $response[:writerOutput] = writerClass.writeXML(intObj)
+                    return $response
+                else
+                    # directory path was not found
+                    $response[:writerValidationPass] = false
+                    $response[:readerValidationMessages] << "Writer name '#{$response[:writerName]}' is missing or not supported."
+                    return false
                 end
 
             end
