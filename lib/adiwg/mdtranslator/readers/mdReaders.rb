@@ -20,6 +20,8 @@ module ADIWG
                     require readerFile
 
                     # pass file to requested reader and return internal object
+                    # $ReaderNS is the reader namespace constant set in
+                    # ... readerRequested_reader.rb and initialized when the file is required
                     intObj = $ReaderNS.readFile(file)
                     return intObj
                 else
