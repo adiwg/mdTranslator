@@ -22,7 +22,7 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
 
     def test_build_full_address_object
 
-        hIn = @@hIn
+        hIn = @@hIn.clone
 
         intObj = {
             deliveryPoints: %w[deliveryPoint1 deliveryPoint2],
@@ -39,7 +39,7 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
 
     def test_email_address_only
 
-        hIn = @@hIn
+        hIn = @@hIn.clone
         hIn.delete('deliveryPoint')
         hIn.delete('city')
         hIn.delete('administrativeArea')
