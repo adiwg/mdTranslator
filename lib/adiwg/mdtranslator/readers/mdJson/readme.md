@@ -3,7 +3,7 @@
 
 ### Supported versions
 
-> 0.9.0
+> 0.9.1, 0.9.4
 
 ### Reader for ADIwg JSON metadata format (mdJson)
 

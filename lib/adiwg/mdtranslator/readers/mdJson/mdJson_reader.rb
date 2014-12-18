@@ -20,7 +20,10 @@ module ADIWG
         module Readers
             module MdJson
 
-                def self.inspectFile(file)
+                # set reader namespace
+                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
+
+                def self.readFile(file)
                     # set anticipated format of file in $response
                     $response[:readerFormat] = 'json'
 
@@ -41,9 +44,6 @@ module ADIWG
                     if !$response[:readerStructurePass]
                         return false
                     end
-
-                    # set reader namespace
-                    $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
 
                     # validate file against mdJson schema definition
                     require 'adiwg/mdtranslator/readers/mdJson/mdJson_validator'
@@ -160,23 +160,6 @@ module ADIWG
                         return nil
                     end
                     return file
-                end
-
-                # return path to readers and writers
-                def self.path_to_resources
-                    File.join(File.dirname(File.expand_path(__FILE__)), 'mdtranslator')
-                end
-
-                # return reader readme text
-                def self.get_reader_readme(reader)
-                    readmeText = 'No text found'
-                    path = File.join(path_to_resources, 'readers', reader, 'readme.md')
-                    if File.exist?(path)
-                        file = File.open(path, 'r')
-                        readmeText = file.read
-                        file.close
-                    end
-                    return readmeText
                 end
 
             end

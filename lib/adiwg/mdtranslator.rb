@@ -22,6 +22,12 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'mdtranslator/internal'))
 
 require 'adiwg/mdtranslator/version'
 
+# additional require statements to support rails
+# ... these modules contain methods called by rails endpoints
+# ... by default rails does not resolve namespaces beyond this point
+require 'adiwg/mdtranslator/readers/mdReaders'
+require 'adiwg/mdtranslator/writers/mdWriters'
+
 module ADIWG
     module Mdtranslator
 

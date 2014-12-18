@@ -20,7 +20,10 @@ module ADIWG
         module Writers
             module Iso
 
-                class Iso191152
+                # set writer namespace
+                $WriterNS = ADIWG::Mdtranslator::Writers::Iso
+
+                class Iso19115_2
 
                     def initialize
                         # reset ISO id='' counter
@@ -29,8 +32,6 @@ module ADIWG
 
                     def writeXML(internalObj)
 
-                        # set writer namespace
-                        $WriterNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'
@@ -149,23 +150,6 @@ module ADIWG
 
                     end
 
-                end
-
-                # return path to readers and writers
-                def path_to_resources
-                    File.join(File.dirname(File.expand_path(__FILE__)), 'mdtranslator')
-                end
-
-                # return writer readme text
-                def get_writer_readme(writer)
-                    readmeText = 'No text found'
-                    path = File.join(path_to_resources, 'writers', writer, 'readme.md')
-                    if File.exist?(path)
-                        file = File.open(path, 'r')
-                        readmeText = file.read
-                        file.close
-                    end
-                    return readmeText
                 end
 
             end
