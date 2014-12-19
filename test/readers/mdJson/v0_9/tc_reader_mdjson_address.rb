@@ -8,10 +8,11 @@
 
 require 'minitest/autorun'
 require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_address'
 
 class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
+
+    require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+    require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_address'
 
     # get json test example
     file = File.open('test/schemas/v0_9/examples/address.json', 'r')
@@ -20,7 +21,10 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
     aIn = JSON.parse(jsonFile)
     @@hIn = aIn[0]
 
-    def test_build_full_address_object
+    # set namespace
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Address
+
+    def test_complete_address_object
 
         hIn = @@hIn.clone
 
@@ -33,7 +37,7 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
             eMailList: %w[example1@example.com example2@example.com]
         }
 
-        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Address.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn)
 
     end
 
@@ -55,16 +59,16 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
             eMailList: %w[example1@example.com example2@example.com]
         }
 
-        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Address.unpack(hIn)
+        assert_equal intObj,@@NameSpace.unpack(hIn)
 
     end
 
-    def test_build_empty_address_object
+    def test_empty_address_object
 
         hIn = JSON.parse('{}')
         intObj = nil
 
-        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::Address.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn)
 
     end
 

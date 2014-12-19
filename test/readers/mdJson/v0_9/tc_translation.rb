@@ -6,15 +6,17 @@
 
 require 'minitest/autorun'
 require 'json'
-require File.join(File.expand_path('..', __FILE__), '..', 'lib', 'adiwg-mdtranslator.rb')
 
 class TestTranslation_v0_9 < MiniTest::Test
+
+    require 'adiwg-mdtranslator'
+
     @@reader = 'mdJson'
     @@writer = 'iso19115_2'
 
     def test_full_success
         # read mdJson full
-        file = File.open(File.join(File.dirname(__FILE__), 'schemas', 'v0_9', 'examples', 'full_example.json'), 'r')
+        file = File.open('test/schemas/v0_9/examples/full_example.json', 'r')
         jsonObj = file.read
         file.close
 
@@ -37,7 +39,7 @@ class TestTranslation_v0_9 < MiniTest::Test
 
     def test_minimum_success
         # read mdJson minimum
-        file = File.open(File.join(File.dirname(__FILE__), 'schemas', 'v0_9', 'examples', 'minimum_example.json'), 'r')
+        file = File.open('test/schemas/v0_9/examples/minimum_example.json', 'r')
         jsonObj = file.read
         file.close
 
@@ -55,7 +57,7 @@ class TestTranslation_v0_9 < MiniTest::Test
 
     def test_19110_success
         # read mdJson full
-        file = File.open(File.join(File.dirname(__FILE__), 'schemas', 'v0_9', 'examples', 'full_example.json'), 'r')
+        file = File.open('test/schemas/v0_9/examples/full_example.json', 'r')
         jsonObj = file.read
         file.close
 
