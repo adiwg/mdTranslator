@@ -5,14 +5,14 @@
 # Stan Smith 2014-12-09 original script
 # Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
 # Stan Smith 2014-12-16 restructure tests to use schema examples
+# Stan Smith 2014-12-19 added test for blank elements
 
 require 'minitest/autorun'
 require 'json'
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_address'
 
 class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
-
-    require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-    require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_address'
 
     # get json test example
     file = File.open('test/schemas/v0_9/examples/address.json', 'r')
@@ -43,6 +43,9 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
 
     def test_email_address_only
 
+        # note: this test also serves to test missing elements
+        # ... except for missing electronicMailAddress
+
         hIn = @@hIn.clone
         hIn.delete('deliveryPoint')
         hIn.delete('city')
@@ -57,6 +60,29 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
             postalCode: nil,
             country: nil,
             eMailList: %w[example1@example.com example2@example.com]
+        }
+
+        assert_equal intObj,@@NameSpace.unpack(hIn)
+
+    end
+
+    def test_empty_address_elements
+
+        hIn = @@hIn.clone
+        hIn['deliveryPoint'] = ['']
+        hIn['city'] = ''
+        hIn['administrativeArea'] = ''
+        hIn['postalCode'] = ''
+        hIn['country'] = ''
+        hIn['electronicMailAddress'] = ['']
+
+        intObj = {
+            deliveryPoints: [],
+            city: nil,
+            adminArea: nil,
+            postalCode: nil,
+            country: nil,
+            eMailList: []
         }
 
         assert_equal intObj,@@NameSpace.unpack(hIn)

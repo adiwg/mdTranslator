@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2013-10-21 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-19 prevented passing blank deliveryPoints and
+#   ... electronicMailAddresses into internal object
 
 module ADIWG
     module Mdtranslator
@@ -23,9 +25,11 @@ module ADIWG
 
                             # address - delivery point
                             if hConAddress.has_key?('deliveryPoint')
-                                dPoint = hConAddress['deliveryPoint']
-                                dPoint.each do |addLine|
-                                    intAdd[:deliveryPoints] << addLine
+                                aDevPoint = hConAddress['deliveryPoint']
+                                aDevPoint.each do |addLine|
+                                    if addLine != ''
+                                        intAdd[:deliveryPoints] << addLine
+                                    end
                                 end
                             end
 
@@ -65,7 +69,9 @@ module ADIWG
                             if hConAddress.has_key?('electronicMailAddress')
                                 eMailList = hConAddress['electronicMailAddress']
                                 eMailList.each do |email|
-                                    intAdd[:eMailList] << email
+                                    if email != ''
+                                        intAdd[:eMailList] << email
+                                    end
                                 end
                             end
 

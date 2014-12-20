@@ -12,6 +12,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-19 modified to return nil for empty hContact
 #   Stan Smith 2014-12-19 added testing and messages for '' and missing contactId
+#   Stan Smith 2014-12-19 added testing to not place nil address into internal object
 
 require $ReaderNS.readerModule('module_address')
 require $ReaderNS.readerModule('module_onlineResource')
@@ -103,7 +104,10 @@ module ADIWG
                             # address
                             if hContact.has_key?('address')
                                 conAddress = hContact['address']
-                                intCont[:address] = $ReaderNS::Address.unpack(conAddress)
+                                hAddress = $ReaderNS::Address.unpack(conAddress)
+                                unless hAddress.nil?
+                                    intCont[:address] = hAddress
+                                end
                             end
 
                         end
