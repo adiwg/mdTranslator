@@ -4,6 +4,9 @@
 # History:
 # 	Stan Smith 2013-08-09 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-22 added return if passed nil address objects
+#   Stan Smith 2014-12-23 refactored to drop physical address elements if no
+#                     ... deliveryPoints are provided
 
 module ADIWG
     module Mdtranslator
@@ -18,12 +21,17 @@ module ADIWG
 
                     def writeXML(hAddress)
 
+                        return if hAddress.nil?
+
                         deliveryPoints = hAddress[:deliveryPoints].length
                         eMails = hAddress[:eMailList].length
 
                         if deliveryPoints + eMails > 0
                             @xml.tag!('gmd:CI_Address') do
-                                # address - address
+
+                                # physical address
+                                # ... if no delivery points are provided ignore rest
+                                # ... of physical address items
                                 if deliveryPoints > 0
 
                                     # address - delivery points (address lines)
@@ -34,47 +42,51 @@ module ADIWG
                                         end
                                     end
 
+                                    # address - city
+                                    s = hAddress[:city]
+                                    if !s.nil?
+                                        @xml.tag!('gmd:city') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    elsif $showAllTags
+                                        @xml.tag!('gmd:city')
+                                    end
+
+                                    # address - admin area (state)
+                                    s = hAddress[:adminArea]
+                                    if !s.nil?
+                                        @xml.tag!('gmd:administrativeArea') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    elsif $showAllTags
+                                        @xml.tag!('gmd:administrativeArea')
+                                    end
+
+                                    # address - postal code
+                                    s = hAddress[:postalCode]
+                                    if !s.nil?
+                                        @xml.tag!('gmd:postalCode') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    elsif $showAllTags
+                                        @xml.tag!('gmd:postalCode')
+                                    end
+
+                                    # address - country
+                                    s = hAddress[:country]
+                                    if !s.nil?
+                                        @xml.tag!('gmd:country') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    elsif $showAllTags
+                                        @xml.tag!('gmd:country')
+                                    end
+
                                 elsif $showAllTags
                                     @xml.tag!('gmd:deliveryPoint')
-                                end
-
-                                # address - city
-                                s = hAddress[:city]
-                                if !s.nil?
-                                    @xml.tag!('gmd:city') do
-                                        @xml.tag!('gco:CharacterString', s)
-                                    end
-                                elsif $showAllTags
                                     @xml.tag!('gmd:city')
-                                end
-
-                                # address - admin area (state)
-                                s = hAddress[:adminArea]
-                                if !s.nil?
-                                    @xml.tag!('gmd:administrativeArea') do
-                                        @xml.tag!('gco:CharacterString', s)
-                                    end
-                                elsif $showAllTags
                                     @xml.tag!('gmd:administrativeArea')
-                                end
-
-                                # address - postal code
-                                s = hAddress[:postalCode]
-                                if !s.nil?
-                                    @xml.tag!('gmd:postalCode') do
-                                        @xml.tag!('gco:CharacterString', s)
-                                    end
-                                elsif $showAllTags
                                     @xml.tag!('gmd:postalCode')
-                                end
-
-                                # address - country
-                                s = hAddress[:country]
-                                if !s.nil?
-                                    @xml.tag!('gmd:country') do
-                                        @xml.tag!('gco:CharacterString', s)
-                                    end
-                                elsif $showAllTags
                                     @xml.tag!('gmd:country')
                                 end
 
@@ -91,10 +103,8 @@ module ADIWG
 
                             end
                         end
-
-                    end
-
-                end
+                    end # writeXML
+                end # CI_Address
 
             end
         end

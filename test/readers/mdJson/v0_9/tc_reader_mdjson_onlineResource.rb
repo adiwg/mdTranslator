@@ -39,9 +39,8 @@ class TestReaderMdJsonOnlineResource_v0_9 < MiniTest::Test
 
         json_string = '{}'
         hIn = JSON.parse(json_string)
-        intObj = nil
 
-        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
+        assert_equal nil, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
 
     end
 

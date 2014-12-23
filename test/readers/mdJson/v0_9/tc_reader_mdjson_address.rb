@@ -92,9 +92,8 @@ class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
     def test_empty_address_object
 
         hIn = JSON.parse('{}')
-        intObj = nil
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn)
 
     end
 
