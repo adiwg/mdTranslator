@@ -6,6 +6,7 @@
 # 	Stan Smith 2013-11-27 modified to process single browse graphic rather than array
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-24 added return if input hash is empty
 
 module ADIWG
     module Mdtranslator
@@ -18,6 +19,10 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
+                        intBGraphic = nil
+
+                        return if hBgraphic.empty?
+
                         intBGraphic = intMetadataClass.newBrowseGraphic
 
                         # graphic - file name
