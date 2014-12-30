@@ -23,6 +23,7 @@
 #   ... test were added to handle a missing metadata > metadataInfo block in the input
 #   Stan Smith 2014-11-06 changed hierarchy level to load values from resourceInfo > resourceType
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
 
 require 'code_characterSet'
 require 'code_scope'
@@ -66,7 +67,7 @@ module ADIWG
                         $intContactList = internalObj[:contacts]
 
                         # document head
-                        @xml.instruct! :xml, encoding: 'UTF-8'
+                        metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                         @xml.comment!('core gmi based instance document ISO 19115-2')
                         @xml.tag!('gmi:MI_Metadata', {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
                                                       'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
@@ -335,7 +336,7 @@ module ADIWG
 
                         end
 
-                        return @xml
+                        return metadata
                     end
 
                 end

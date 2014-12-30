@@ -27,11 +27,13 @@
 # 0.11.1 2014-12-16 fixed problem of rails not access reader and writer readme files
 #               ... changed mdReader and mdWriter to use requested reader and writer
 #               ... names to resolved require and call statements
+# 0.11.2 2014-12-29 fixed problem with handling xml builder object rather than output
+#               ... output string created by builder
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.11.1"
+        VERSION = "0.11.2"
     end
 end
 

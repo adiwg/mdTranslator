@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
 
 require 'class_responsibleParty'
 require 'class_featureType'
@@ -29,7 +30,7 @@ class FC_FeatureCatalogue
         $domainList = intDataDictionary[:domains]
 
         # document head
-        @xml.instruct! :xml, encoding: 'UTF-8'
+        metadata = @xml.instruct! :xml, encoding: 'UTF-8'
         @xml.comment!('core gfc based instance document for ISO 19110')
         @xml.tag!('gfc:FC_FeatureCatalogue', {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
                                               'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
@@ -165,7 +166,7 @@ class FC_FeatureCatalogue
                 @xml.tag!('gfc:featureType', {'gco:nilReason' => 'missing'})
             end
 
-            return @xml
+            return metadata
         end
 
     end
