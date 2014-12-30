@@ -10,6 +10,7 @@
 #   Stan Smith 2014-11-06 changed resourceType to initiative type for 0.9.0
 #   Stan Smith 2014-11-06 added resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-30 added return if empty input
 
 require $ReaderNS.readerModule('module_citation')
 
@@ -21,6 +22,10 @@ module ADIWG
                 module AssociatedResource
 
                     def self.unpack(hAssocRes)
+
+                        # return nil object if input is empty
+                        intAssocRes = nil
+                        return if hAssocRes.empty?
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

@@ -13,6 +13,7 @@
 #   Stan Smith 2014-12-19 modified to return nil for empty hContact
 #   Stan Smith 2014-12-19 added testing and messages for '' and missing contactId
 #   Stan Smith 2014-12-19 added testing to not place nil address into internal object
+#   Stan Smith 2014-12-30 refactored
 
 require $ReaderNS.readerModule('module_address')
 require $ReaderNS.readerModule('module_onlineResource')
@@ -27,94 +28,92 @@ module ADIWG
 
                     def self.unpack(hContact)
 
+                        # return nil object if input is empty
+                        intAddDoc = nil
+                        return if hContact.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intCont = nil
+                        intCont = intMetadataClass.newContact
 
-                        unless hContact.empty?
-                            intCont = intMetadataClass.newContact
-
-                            # contact ID - required
-                            # return nil contact if contactId is '' or missing
-                            if hContact.has_key?('contactId')
-                                s = hContact['contactId']
-                                if s != ''
-                                    intCont[:contactId] = s
-                                else
-                                    $response[:readerExecutionPass] =  false
-                                    $response[:readerExecutionMessages] << 'Contact ID is blank.'
-                                    return nil
-                                end
+                        # contact ID - required
+                        # return nil contact if contactId is '' or missing
+                        if hContact.has_key?('contactId')
+                            s = hContact['contactId']
+                            if s != ''
+                                intCont[:contactId] = s
                             else
                                 $response[:readerExecutionPass] =  false
-                                $response[:readerExecutionMessages] << 'Contact ID is missing.'
+                                $response[:readerExecutionMessages] << 'Contact ID is blank.'
                                 return nil
                             end
+                        else
+                            $response[:readerExecutionPass] =  false
+                            $response[:readerExecutionMessages] << 'Contact ID is missing.'
+                            return nil
+                        end
 
-                            # individual name
-                            if hContact.has_key?('individualName')
-                                s = hContact['individualName']
-                                if s != ''
-                                    intCont[:indName] = s
+                        # individual name
+                        if hContact.has_key?('individualName')
+                            s = hContact['individualName']
+                            if s != ''
+                                intCont[:indName] = s
+                            end
+                        end
+
+                        # organization name
+                        if hContact.has_key?('organizationName')
+                            s = hContact['organizationName']
+                            if s != ''
+                                intCont[:orgName] = s
+                            end
+                        end
+
+                        # position name
+                        if hContact.has_key?('positionName')
+                            s = hContact['positionName']
+                            if s != ''
+                                intCont[:position] = s
+                            end
+                        end
+
+                        # online resources
+                        if hContact.has_key?('onlineResource')
+                            aOlRes = hContact['onlineResource']
+                            aOlRes.each do |hOlRes|
+                                unless hOlRes.empty?
+                                    intCont[:onlineRes] << $ReaderNS::OnlineResource.unpack(hOlRes)
                                 end
                             end
+                        end
 
-                            # organization name
-                            if hContact.has_key?('organizationName')
-                                s = hContact['organizationName']
-                                if s != ''
-                                    intCont[:orgName] = s
-                                end
+                        # contact instructions
+                        if hContact.has_key?('contactInstructions')
+                            s = hContact['contactInstructions']
+                            if s != ''
+                                intCont[:contactInstructions] = s
                             end
+                        end
 
-                            # position name
-                            if hContact.has_key?('positionName')
-                                s = hContact['positionName']
-                                if s != ''
-                                    intCont[:position] = s
-                                end
+                        # phones - all service types
+                        if hContact.has_key?('phoneBook')
+                            aPhones = hContact['phoneBook']
+                            aPhones.each do |hPhone|
+                                intCont[:phones].concat($ReaderNS::Phone.unpack(hPhone))
                             end
+                        end
 
-                            # online resources
-                            if hContact.has_key?('onlineResource')
-                                aOlRes = hContact['onlineResource']
-                                aOlRes.each do |hOlRes|
-                                    unless hOlRes.empty?
-                                        intCont[:onlineRes] << $ReaderNS::OnlineResource.unpack(hOlRes)
-                                    end
-                                end
+                        # address
+                        if hContact.has_key?('address')
+                            conAddress = hContact['address']
+                            hAddress = $ReaderNS::Address.unpack(conAddress)
+                            unless hAddress.nil?
+                                intCont[:address] = hAddress
                             end
-
-                            # contact instructions
-                            if hContact.has_key?('contactInstructions')
-                                s = hContact['contactInstructions']
-                                if s != ''
-                                    intCont[:contactInstructions] = s
-                                end
-                            end
-
-                            # phones - all service types
-                            if hContact.has_key?('phoneBook')
-                                aPhones = hContact['phoneBook']
-                                aPhones.each do |hPhone|
-                                    intCont[:phones].concat($ReaderNS::Phone.unpack(hPhone))
-                                end
-                            end
-
-                            # address
-                            if hContact.has_key?('address')
-                                conAddress = hContact['address']
-                                hAddress = $ReaderNS::Address.unpack(conAddress)
-                                unless hAddress.nil?
-                                    intCont[:address] = hAddress
-                                end
-                            end
-
                         end
 
                         return intCont
                     end
-
 
                     def self.setDefaultContacts()
 
