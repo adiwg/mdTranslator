@@ -30,7 +30,7 @@
 # 	Stan Smith 2013-11-20 modified citation
 # 	Stan Smith 2013-12-16 added phone book
 #   Stan Smith 2014-04-23 added protocol and doi to online resource
-#   Stan Smith 2014-04-24 added jsonVersion to newBase
+#   Stan Smith 2014-04-24 added schema to newBase
 #   Stan Smith 2014-04-24 renamed newDataId to newResourceInfo
 #   Stan Smith 2014-04-24 reorganized newMetadata, newResourceInfo
 #   Stan Smith 2014-04-24 added newMetadataInfo
@@ -58,7 +58,7 @@ class InternalMetadata
 
     def newBase
         intObj = {
-            jsonVersion: {
+            schema: {
                 name: nil,
                 version: nil
             },

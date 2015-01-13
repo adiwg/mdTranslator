@@ -25,8 +25,8 @@ module ADIWG
 
                     # get json schema name and version
                     hVersion = hMdJson['version']
-                    intObj[:jsonVersion][:name] = hVersion['name']
-                    intObj[:jsonVersion][:version] = hVersion['version']
+                    intObj[:schema][:name] = hVersion['name']
+                    intObj[:schema][:version] = hVersion['version']
 
                     # contact array
                     # load the array of contacts from the json input
