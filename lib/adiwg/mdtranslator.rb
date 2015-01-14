@@ -58,7 +58,13 @@ module ADIWG
             }
 
             # handle readers
-            if reader
+            if reader.nil? || reader == ''
+                $response[:readerValidationPass] = false
+                $response[:readerValidationMessages] << 'Reader name is missing.'
+                $response[:readerExecutionPass] = false
+                $response[:readerExecutionMessages] << 'Reader failed to complete.'
+                return $response
+            else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
                 intObj = ADIWG::Mdtranslator::Readers.handleReader(file)
 
@@ -67,19 +73,19 @@ module ADIWG
                 else
                     $response[:readerExecutionPass] = false
                     $response[:readerExecutionMessages] << 'Reader failed to complete.'
-                    return false
+                    return $response
                 end
             end
 
             # handle writers
-            if writer
+            if writer != ''
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
                 ADIWG::Mdtranslator::Writers.handleWriter(intObj)
-                return $response
             else
                 $response[:writerPass] = false
                 $response[:writerMessages] << 'Writer name is missing.'
             end
+            return $response
 
         end
 

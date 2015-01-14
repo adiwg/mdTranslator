@@ -34,7 +34,7 @@ module ADIWG
                 else
                     # directory path was not found
                     $response[:writerValidationPass] = false
-                    $response[:readerValidationMessages] << "Writer name '#{$response[:writerName]}' is missing or not supported."
+                    $response[:readerValidationMessages] << "Writer name '#{$response[:writerName]}' is not supported."
                     return false
                 end
 

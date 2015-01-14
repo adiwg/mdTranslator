@@ -29,11 +29,12 @@
 #               ... names to resolved require and call statements
 # 0.11.2 2014-12-29 fixed problem with handling xml builder object rather than output
 #               ... output string created by builder
+# 0.11.3 2015-01-14 change return type from false to $response when writer name is invalid
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.11.2"
+        VERSION = "0.11.3"
     end
 end
 

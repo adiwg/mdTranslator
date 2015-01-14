@@ -27,7 +27,7 @@ module ADIWG
                 else
                     # directory path was not found
                     $response[:readerValidationPass] = false
-                    $response[:readerValidationMessages] << 'Reader name is missing or not supported.'
+                    $response[:readerValidationMessages] << "Reader name '#{$response[:readerRequested]}' is not supported."
                     return false
                 end
 
