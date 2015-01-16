@@ -7,6 +7,7 @@
 #   Stan Smith 2014-09-21 coded cli to 0.8.0 api
 #   Stan Smith 2014-10-09 added version command to the CLI
 #   Stan Smith 2014-12-29 changed default reader from adiwgJson to mdJson
+#   Stan Smith 2015-01-15 changed translate method to use keyword arguments
 
 require 'thor'
 require 'adiwg-mdtranslator'
@@ -49,8 +50,12 @@ class Mdtranslator < Thor
 		end
 
 		# call mdtranslator
-		mdReturn = ADIWG::Mdtranslator.translate(fileObj, options[:reader], options[:writer],
-												 options[:validate], options[:showAllTags])
+        mdReturn = ADIWG::Mdtranslator.translate(
+            file: fileObj,
+            reader: options[:reader],
+            writer: options[:writer],
+            validate: options[:validate],
+            showAllTags: options[:showAllTags])
 
 		# determine return content and type of return ...
 		if mdReturn[:readerStructurePass] && mdReturn[:readerValidationPass]

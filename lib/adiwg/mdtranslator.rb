@@ -16,6 +16,7 @@
 #   Stan Smith 2014-12-01 added translator version to $response
 #   Stan Smith 2014-12-02 organized shared class/code/units folders for 19115-2, 19110
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-01-15 changed translate() to keyword parameter list
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'mdtranslator/internal'))
@@ -31,7 +32,7 @@ require 'adiwg/mdtranslator/writers/mdWriters'
 module ADIWG
     module Mdtranslator
 
-        def self.translate(file, reader, writer='', validate='normal', showAllTags=false)
+        def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false)
 
             $showAllTags = showAllTags
 
@@ -50,7 +51,7 @@ module ADIWG
                 readerExecutionPass: nil,
                 readerExecutionMessages: [],
                 writerName: writer,
-                writerVersion: ADIWG::Mdtranslator::VERSION,
+                writerVersion: nil,
                 writerFormat: nil,
                 writerPass: nil,
                 writerMessages: [],
@@ -78,7 +79,7 @@ module ADIWG
             end
 
             # handle writers
-            if writer != ''
+            if writer
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
                 ADIWG::Mdtranslator::Writers.handleWriter(intObj)
             else

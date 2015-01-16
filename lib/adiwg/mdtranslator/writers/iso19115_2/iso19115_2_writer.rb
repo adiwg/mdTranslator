@@ -35,6 +35,7 @@ module ADIWG
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'
+                        $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
 
                         # pre-scan the internal object to create a new extents for each geometry
                         # ... that has supplemental information (temporal, vertical, identity).

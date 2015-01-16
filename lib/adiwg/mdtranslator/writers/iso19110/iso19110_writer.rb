@@ -32,6 +32,7 @@ module ADIWG
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'
+                        $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
 
                         # create new XML document
                         xml = Builder::XmlMarkup.new(indent: 3)

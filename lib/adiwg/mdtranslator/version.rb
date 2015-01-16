@@ -30,11 +30,13 @@
 # 0.11.2 2014-12-29 fixed problem with handling xml builder object rather than output
 #               ... output string created by builder
 # 0.11.3 2015-01-14 change return type from false to $response when writer name is invalid
+# 0.12.0 2015-01-16 changed translate entry point method to use keyword parameters
+#               ... must now be ruby version 2.0.0 or higher
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.11.3"
+        VERSION = "0.12.0"
     end
 end
 
