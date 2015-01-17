@@ -45,7 +45,7 @@ class TestReaderMdJsonCitation_v0_9 < MiniTest::Test
             citEdition: 'edition',
             citResourceIds: [],
             citResponsibleParty: [],
-            citResourceForms: ['presentationForm'],
+            citResourceForms: ['presentationForm1','presentationForm2'],
             citOlResources: []
         }
 

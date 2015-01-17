@@ -3,6 +3,7 @@
 # History:
 # Stan Smith 2014-07-02 original script
 # Josh Bradley 2014-09-28 updated to use test/unit
+# Stan Smith 2015-01-16 changed ADIWG::Mdtranslator.translate() to keyword parameters
 
 require 'minitest/autorun'
 require 'json'
@@ -21,7 +22,9 @@ class TestTranslation_v0_9 < MiniTest::Test
         file.close
 
         # call opening module in mdTranslator
-        metadata = ADIWG::Mdtranslator.translate(jsonObj, @@reader, @@writer, 'normal', 'true')
+        metadata = ADIWG::Mdtranslator.translate(
+            file: jsonObj, reader: @@reader, validate: 'normal',
+            writer: @@writer, showAllTags: 'true')
         version = JSON.parse(jsonObj)['version']['version'].split('.')
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
@@ -44,7 +47,9 @@ class TestTranslation_v0_9 < MiniTest::Test
         file.close
 
         # call opening module in mdTranslator
-        metadata = ADIWG::Mdtranslator.translate(jsonObj, @@reader, @@writer, 'normal', 'true')
+        metadata = ADIWG::Mdtranslator.translate(
+            file: jsonObj, reader: @@reader, validate: 'normal',
+            writer: @@writer, showAllTags: 'true')
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
@@ -62,7 +67,9 @@ class TestTranslation_v0_9 < MiniTest::Test
         file.close
 
         # call opening module in mdTranslator
-        metadata = ADIWG::Mdtranslator.translate(jsonObj, @@reader, 'iso19110', 'normal', 'true')
+        metadata = ADIWG::Mdtranslator.translate(
+            file: jsonObj, reader: @@reader, validate: 'normal',
+            writer: 'iso19110', showAllTags: 'true')
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
