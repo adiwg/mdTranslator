@@ -6,6 +6,7 @@
 #   Stan Smith 2014-05-28 modified to support JSON schema 0.5.0
 #   ... removed resource IDs associated with contact
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-01-18 added nil return if hRParty empty
 
 module ADIWG
     module Mdtranslator
@@ -15,6 +16,10 @@ module ADIWG
                 module ResponsibleParty
 
                     def self.unpack(hRParty)
+
+                        # return nil object if input is empty
+                        intResById = nil
+                        return if hRParty.empty?
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

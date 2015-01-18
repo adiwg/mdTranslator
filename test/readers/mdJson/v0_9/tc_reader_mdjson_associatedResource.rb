@@ -91,7 +91,7 @@ class TestReaderMdJsonAssociatedResource_v0_9 < MiniTest::Test
 
     def test_empty_associatedResource_object
 
-        hIn = JSON.parse('{}')
+        hIn = {}
 
         assert_equal nil, @@NameSpace.unpack(hIn)
 

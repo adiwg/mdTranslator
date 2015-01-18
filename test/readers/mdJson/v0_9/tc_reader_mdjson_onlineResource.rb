@@ -12,35 +12,80 @@ require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_onlineResource'
 
 class TestReaderMdJsonOnlineResource_v0_9 < MiniTest::Test
 
-    def test_build_full_onlineResource_object
+    # get json test example
+    file = File.open('test/schemas/v0_9/examples/onlineResource.json', 'r')
+    jsonFile = file.read
+    file.close
+    aIn = JSON.parse(jsonFile)
+    @@hIn = aIn[0]
 
-        json_string = '{ ' +
-            '"uri": "http://thisIsAnExample.com", ' +
-            '"protocol": "protocol", ' +
-            '"name": "Name", ' +
-            '"description": "Description", ' +
-            '"function": "function"' +
-            '}'
-        hIn = JSON.parse(json_string)
+    # set namespace
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::OnlineResource
+
+    def test_complete_onlineResource_object
+
+        hIn = @@hIn.clone
 
         intObj = {
-            olResURI: 'http://thisIsAnExample.com',
+            olResURI: 'http://thisisanexample.com',
             olResProtocol: 'protocol',
-            olResName: 'Name',
-            olResDesc: 'Description',
+            olResName: 'name',
+            olResDesc: 'description',
             olResFunction: 'function'
         }
 
-        assert_equal intObj, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn)
 
     end
 
-    def test_build_empty_onlineResource_object
+    def test_missing_onlineResource_elements
 
-        json_string = '{}'
-        hIn = JSON.parse(json_string)
+        # except for uri
 
-        assert_equal nil, ADIWG::Mdtranslator::Readers::MdJson::OnlineResource.unpack(hIn)
+        hIn = @@hIn.clone
+        hIn.delete('protocol')
+        hIn.delete('name')
+        hIn.delete('description')
+        hIn.delete('function')
+
+        intObj = {
+            olResURI: 'http://thisisanexample.com',
+            olResProtocol: nil,
+            olResName: nil,
+            olResDesc: nil,
+            olResFunction: nil
+        }
+
+        assert_equal intObj, @@NameSpace.unpack(hIn)
+
+    end
+
+    def test_empty_onlineResource_elements
+
+        hIn = @@hIn.clone
+        hIn['uri'] = ''
+        hIn['protocol'] = ''
+        hIn['name'] = ''
+        hIn['description'] = ''
+        hIn['function'] = ''
+
+        intObj = {
+            olResURI: nil,
+            olResProtocol: nil,
+            olResName: nil,
+            olResDesc: nil,
+            olResFunction: nil
+        }
+
+        assert_equal intObj, @@NameSpace.unpack(hIn)
+
+    end
+
+    def test_empty_onlineResource_object
+
+        hIn = {}
+
+        assert_equal nil, @@NameSpace.unpack(hIn)
 
     end
 

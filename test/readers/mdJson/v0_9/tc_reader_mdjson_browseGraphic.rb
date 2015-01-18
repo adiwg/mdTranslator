@@ -36,6 +36,26 @@ class TestReaderMdJsonBrowseGraphic_v0_9 < MiniTest::Test
 
     end
 
+    def test_missing_browseGraphic_elements
+
+        # except for fileName
+
+        hIn = @@hIn.clone
+        hIn.delete('fileDescription')
+        hIn.delete('fileType')
+        hIn.delete('fileUri')
+
+        intObj = {
+            bGName: 'fileName',
+            bGDescription: nil,
+            bGType: nil,
+            bGURI: nil
+        }
+
+        assert_equal intObj,@@NameSpace.unpack(hIn)
+
+    end
+
     def test_empty_browseGraphic_elements
 
         hIn = @@hIn.clone
@@ -57,7 +77,7 @@ class TestReaderMdJsonBrowseGraphic_v0_9 < MiniTest::Test
 
     def test_empty_browseGraphic_object
 
-        hIn = JSON.parse('{}')
+        hIn = {}
 
         assert_equal nil, @@NameSpace.unpack(hIn)
 
