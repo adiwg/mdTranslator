@@ -16,6 +16,10 @@ module ADIWG
 
                     def self.unpack(hDictInfo)
 
+                        # return nil object if input is empty
+                        intDictInfo = nil
+                        return if hDictInfo.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDictInfo = intMetadataClass.newDictionaryInfo

@@ -16,6 +16,10 @@ module ADIWG
 
                     def self.unpack(hDomain)
 
+                        # return nil object if input is empty
+                        intDomain = nil
+                        return if hDomain.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDomain = intMetadataClass.newDictionaryDomain
