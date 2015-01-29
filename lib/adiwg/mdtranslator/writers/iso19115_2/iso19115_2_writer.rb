@@ -30,8 +30,7 @@ module ADIWG
                         $idCount = '_000'
                     end
 
-                    def writeXML(internalObj)
-
+                    def startWriter(internalObj)
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'

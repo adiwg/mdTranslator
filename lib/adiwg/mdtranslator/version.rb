@@ -33,11 +33,12 @@
 # 0.12.0 2015-01-16 changed translate entry point method to use keyword parameters
 #               ... must now be ruby version 2.0.0 or higher
 # 0.12.1 2015-01-21 fixed problem with crash on writer = ''
+# 0.13.0 2015-01-28 added html writer
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.12.1"
+        VERSION = "0.13.0"
     end
 end
 

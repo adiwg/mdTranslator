@@ -29,7 +29,7 @@ module ADIWG
                     writerClass = $WriterNS.const_get(writerUpCase).new
 
                     # pass internal object to requested writer
-                    $response[:writerOutput] = writerClass.writeXML(intObj)
+                    $response[:writerOutput] = writerClass.startWriter(intObj)
                     return $response
                 else
                     # directory path was not found

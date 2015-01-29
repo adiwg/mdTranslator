@@ -28,7 +28,7 @@ module ADIWG
                         $idCount = '_000'
                     end
 
-                    def writeXML(intObj)
+                    def startWriter(intObj)
 
                         # set the format of the output file based on the writer specified
                         $response[:writerFormat] = 'xml'
@@ -36,7 +36,7 @@ module ADIWG
 
                         # create new XML document
                         xml = Builder::XmlMarkup.new(indent: 3)
-                        metadataWriter = FC_FeatureCatalogue.new(xml)
+                        metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml)
                         metadata = metadataWriter.writeXML(intObj)
 
                         # set writer pass to true if no messages
