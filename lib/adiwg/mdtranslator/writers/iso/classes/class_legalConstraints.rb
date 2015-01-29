@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(hLegalCons)
 
                         # classes used
-                        restrictionCode = $WriterNS::MD_RestrictionCode.new(@xml)
+                        restrictionCode = $IsoNS::MD_RestrictionCode.new(@xml)
 
                         @xml.tag!('gmd:MD_LegalConstraints') do
 

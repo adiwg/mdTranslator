@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(aDistributors)
 
                         # classes used
-                        distributorClass = $WriterNS::MD_Distributor.new(@xml)
+                        distributorClass = $IsoNS::MD_Distributor.new(@xml)
 
                         @xml.tag!('gmd:MD_Distribution') do
 

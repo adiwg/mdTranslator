@@ -12,7 +12,7 @@ require 'class_featureType'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 class FC_FeatureCatalogue
 
@@ -21,10 +21,11 @@ module ADIWG
                     end
 
                     def writeXML(internalObj)
+                        $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        featureClass = $WriterNS::FC_FeatureType.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        featureClass = $IsoNS::FC_FeatureType.new(@xml)
 
                         intDataDictionary = internalObj[:dataDictionary]
                         hDDInfo = intDataDictionary[:dictionaryInfo]

@@ -28,9 +28,9 @@ module ADIWG
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        pointClass = $WriterNS::Point.new(@xml)
-                        lineClass = $WriterNS::LineString.new(@xml)
-                        polygonClass = $WriterNS::Polygon.new(@xml)
+                        pointClass = $IsoNS::Point.new(@xml)
+                        lineClass = $IsoNS::LineString.new(@xml)
+                        polygonClass = $IsoNS::Polygon.new(@xml)
 
 
                         # gml:MultiGeometry attributes

@@ -24,8 +24,8 @@ module ADIWG
                     def writeXML(rParty)
 
                         # classes used
-                        ciContactClass = $WriterNS::CI_Contact.new(@xml)
-                        ciRoleCode = $WriterNS::CI_RoleCode.new(@xml)
+                        ciContactClass = $IsoNS::CI_Contact.new(@xml)
+                        ciRoleCode = $IsoNS::CI_RoleCode.new(@xml)
 
                         # search array of responsible party for matches in contact object
                         rpID = rParty[:contactId]

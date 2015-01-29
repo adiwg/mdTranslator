@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(hLineage)
 
                         # classes used
-                        sourceClass = $WriterNS::LI_Source.new(@xml)
-                        pStepClass = $WriterNS::LI_ProcessStep.new(@xml)
+                        sourceClass = $IsoNS::LI_Source.new(@xml)
+                        pStepClass = $IsoNS::LI_ProcessStep.new(@xml)
 
                         @xml.tag!('gmd:LI_Lineage') do
 

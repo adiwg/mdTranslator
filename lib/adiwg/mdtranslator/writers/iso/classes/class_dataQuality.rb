@@ -24,8 +24,8 @@ module ADIWG
                     def writeXML(hDataQ)
 
                         # classes used
-                        scopeCode = $WriterNS::MD_ScopeCode.new(@xml)
-                        lineClass = $WriterNS::LI_Lineage.new(@xml)
+                        scopeCode = $IsoNS::MD_ScopeCode.new(@xml)
+                        lineClass = $IsoNS::LI_Lineage.new(@xml)
 
                         @xml.tag!('gmd:DQ_DataQuality') do
 

@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(refSystem, refType)
 
                         # classes used
-                        refIdClass = $WriterNS::RS_Identifier.new(@xml)
+                        refIdClass = $IsoNS::RS_Identifier.new(@xml)
 
                         @xml.tag!('gmd:MD_ReferenceSystem') do
                             @xml.tag!('gmd:referenceSystemIdentifier') do

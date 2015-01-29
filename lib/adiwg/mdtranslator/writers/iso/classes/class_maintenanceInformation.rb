@@ -24,8 +24,8 @@ module ADIWG
                     def writeXML(hMaintInfo)
 
                         # classes used
-                        maintFreqCode = $WriterNS::MD_MaintenanceFrequencyCode.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
+                        maintFreqCode = $IsoNS::MD_MaintenanceFrequencyCode.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
 
                         @xml.tag! 'gmd:MD_MaintenanceInformation' do
 

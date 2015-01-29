@@ -24,8 +24,8 @@ module ADIWG
                     def writeXML(hDKeyword)
 
                         # classes used
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
-                        keywordCode = $WriterNS::MD_KeywordTypeCode.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        keywordCode = $IsoNS::MD_KeywordTypeCode.new(@xml)
 
                         @xml.tag!('gmd:MD_Keywords') do
 

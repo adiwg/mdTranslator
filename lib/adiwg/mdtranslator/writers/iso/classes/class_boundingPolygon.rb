@@ -30,10 +30,10 @@ module ADIWG
                     def writeXML(hGeoElement)
 
                         # classes used
-                        pointClass = $WriterNS::Point.new(@xml)
-                        lineClass = $WriterNS::LineString.new(@xml)
-                        multiGeoClass = $WriterNS::MultiGeometry.new(@xml)
-                        polygonClass = $WriterNS::Polygon.new(@xml)
+                        pointClass = $IsoNS::Point.new(@xml)
+                        lineClass = $IsoNS::LineString.new(@xml)
+                        multiGeoClass = $IsoNS::MultiGeometry.new(@xml)
+                        polygonClass = $IsoNS::Polygon.new(@xml)
 
                         hGeometry = hGeoElement[:elementGeometry]
                         polyType = hGeometry[:geoType]

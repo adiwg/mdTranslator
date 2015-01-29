@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(transOption)
 
                         # classes used
-                        olResClass = $WriterNS::CI_OnlineResource.new(@xml)
-                        medClass = $WriterNS::MD_Medium.new(@xml)
+                        olResClass = $IsoNS::CI_OnlineResource.new(@xml)
+                        medClass = $IsoNS::MD_Medium.new(@xml)
 
                         @xml.tag!('gmd:MD_DigitalTransferOptions') do
 

@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(hSecurityCons)
 
                         # classes used
-                        classCode = $WriterNS::MD_ClassificationCode.new(@xml)
+                        classCode = $IsoNS::MD_ClassificationCode.new(@xml)
 
                         @xml.tag!('gmd:MD_SecurityConstraints') do
 

@@ -25,10 +25,10 @@ module ADIWG
                     def writeXML(hExtension)
 
                         # classes used
-                        olResClass = $WriterNS::CI_OnlineResource.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        obCode = $WriterNS::MD_ObligationCode.new(@xml)
-                        dataTCode = $WriterNS::MD_DatatypeCode.new(@xml)
+                        olResClass = $IsoNS::CI_OnlineResource.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        obCode = $IsoNS::MD_ObligationCode.new(@xml)
+                        dataTCode = $IsoNS::MD_DatatypeCode.new(@xml)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 

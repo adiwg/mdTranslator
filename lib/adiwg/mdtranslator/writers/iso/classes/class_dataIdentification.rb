@@ -49,26 +49,26 @@ module ADIWG
                     def writeXML(hDataId, aAssocRes)
 
                         # codes used
-                        progressCode = $WriterNS::MD_ProgressCode.new(@xml)
-                        spatialCode = $WriterNS::MD_SpatialRepresentationTypeCode.new(@xml)
-                        topicCode = $WriterNS::MD_TopicCategoryCode.new(@xml)
+                        progressCode = $IsoNS::MD_ProgressCode.new(@xml)
+                        spatialCode = $IsoNS::MD_SpatialRepresentationTypeCode.new(@xml)
+                        topicCode = $IsoNS::MD_TopicCategoryCode.new(@xml)
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        mInfoClass = $WriterNS::MD_MaintenanceInformation.new(@xml)
-                        bGraphicClass = $WriterNS::MD_BrowseGraphic.new(@xml)
-                        rFormatClass = $WriterNS::MD_Format.new(@xml)
-                        keywordClass = $WriterNS::MD_Keywords.new(@xml)
-                        useClass = $WriterNS::MD_Usage.new(@xml)
-                        uConClass = $WriterNS::MD_Constraints.new(@xml)
-                        lConClass = $WriterNS::MD_LegalConstraints.new(@xml)
-                        sConClass = $WriterNS::MD_SecurityConstraints.new(@xml)
-                        aggInfoClass = $WriterNS::MD_AggregateInformation.new(@xml)
-                        taxClass = $WriterNS::MD_TaxonSys.new(@xml)
-                        resolutionClass = $WriterNS::MD_Resolution.new(@xml)
-                        extentClass = $WriterNS::EX_Extent.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        mInfoClass = $IsoNS::MD_MaintenanceInformation.new(@xml)
+                        bGraphicClass = $IsoNS::MD_BrowseGraphic.new(@xml)
+                        rFormatClass = $IsoNS::MD_Format.new(@xml)
+                        keywordClass = $IsoNS::MD_Keywords.new(@xml)
+                        useClass = $IsoNS::MD_Usage.new(@xml)
+                        uConClass = $IsoNS::MD_Constraints.new(@xml)
+                        lConClass = $IsoNS::MD_LegalConstraints.new(@xml)
+                        sConClass = $IsoNS::MD_SecurityConstraints.new(@xml)
+                        aggInfoClass = $IsoNS::MD_AggregateInformation.new(@xml)
+                        taxClass = $IsoNS::MD_TaxonSys.new(@xml)
+                        resolutionClass = $IsoNS::MD_Resolution.new(@xml)
+                        extentClass = $IsoNS::EX_Extent.new(@xml)
 
                         # data identification
                         @xml.tag!('gmd:MD_DataIdentification') do

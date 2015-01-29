@@ -30,8 +30,8 @@ module ADIWG
                     def writeXML(aTempExt)
 
                         # classes used
-                        timeIClass = $WriterNS::TimeInstant.new(@xml)
-                        timePClass = $WriterNS::TimePeriod.new(@xml)
+                        timeIClass = $IsoNS::TimeInstant.new(@xml)
+                        timePClass = $IsoNS::TimePeriod.new(@xml)
 
                         @xml.tag!('gml:GenericMetaData') do
 

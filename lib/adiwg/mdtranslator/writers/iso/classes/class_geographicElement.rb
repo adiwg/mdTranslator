@@ -24,8 +24,8 @@ module ADIWG
                     def writeXML(hGeoElement)
 
                         # classes used
-                        geoBBoxClass = $WriterNS::EX_GeographicBoundingBox.new(@xml)
-                        geoBPolyClass = $WriterNS::EX_BoundingPolygon.new(@xml)
+                        geoBBoxClass = $IsoNS::EX_GeographicBoundingBox.new(@xml)
+                        geoBPolyClass = $IsoNS::EX_BoundingPolygon.new(@xml)
 
                         geoType = hGeoElement[:elementGeometry][:geoType]
                         case geoType

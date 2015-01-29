@@ -22,8 +22,8 @@ module ADIWG
                     def writeXML(hEntity)
 
                         # classes used
-                        fConClass = $WriterNS::FC_Constraint.new(@xml)
-                        fAttClass = $WriterNS::FC_FeatureAttribute.new(@xml)
+                        fConClass = $IsoNS::FC_Constraint.new(@xml)
+                        fAttClass = $IsoNS::FC_FeatureAttribute.new(@xml)
 
                         # create and identity for the entity
                         $idCount = $idCount.succ

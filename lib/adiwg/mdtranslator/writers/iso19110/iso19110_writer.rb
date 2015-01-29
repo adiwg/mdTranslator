@@ -16,38 +16,32 @@ require 'adiwg/mdtranslator/writers/iso19110/class_FCfeatureCatalogue'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 # set writer namespace
-                $WriterNS = ADIWG::Mdtranslator::Writers::Iso
+                $WriterNS = ADIWG::Mdtranslator::Writers::Iso19110
 
-                class Iso19110
+                def self.startWriter(intObj)
 
-                    def initialize
-                        # reset ISO id='' counter
-                        $idCount = '_000'
+                    # reset ISO id='' counter
+                    $idCount = '_000'
+
+                    # set the format of the output file based on the writer specified
+                    $response[:writerFormat] = 'xml'
+                    $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
+
+                    # create new XML document
+                    xml = Builder::XmlMarkup.new(indent: 3)
+                    metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml)
+                    metadata = metadataWriter.writeXML(intObj)
+
+                    # set writer pass to true if no messages
+                    # false or warning will be set by code that places the message
+                    if $response[:writerMessages].length == 0
+                        $response[:writerPass] = true
                     end
 
-                    def startWriter(intObj)
-
-                        # set the format of the output file based on the writer specified
-                        $response[:writerFormat] = 'xml'
-                        $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
-
-                        # create new XML document
-                        xml = Builder::XmlMarkup.new(indent: 3)
-                        metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml)
-                        metadata = metadataWriter.writeXML(intObj)
-
-                        # set writer pass to true if no messages
-                        # false or warning will be set by code that places the message
-                        if $response[:writerMessages].length == 0
-                            $response[:writerPass] = true
-                        end
-
-                        return metadata
-                    end
-
+                    return metadata
                 end
 
             end

@@ -25,10 +25,10 @@ module ADIWG
                     def writeXML(hTaxonSys)
 
                         # classes used
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        tVoucherClass = $WriterNS::MD_Vouchers.new(@xml)
-                        tClassClass = $WriterNS::MD_TaxonCl.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        tVoucherClass = $IsoNS::MD_Vouchers.new(@xml)
+                        tClassClass = $IsoNS::MD_TaxonCl.new(@xml)
 
                         @xml.tag!('gmd:MD_TaxonSys') do
 
