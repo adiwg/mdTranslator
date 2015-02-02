@@ -41,6 +41,9 @@ module ADIWG
 
                         sLiquid = sLiqTop + sHtml + sLiqBottom
 
+                        require 'pp'
+                        pp intObj
+
                         return sLiquid
 
                     end

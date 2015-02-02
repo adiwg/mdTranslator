@@ -42,7 +42,7 @@
         color: #111;
         line-height: 1em;
     }
-    h4,h5,h6{ font-weight: bold; }
+    h5,h6{ font-weight: bold; }
     h1{ font-size: 2.5em; }
     h2{ font-size: 2em; }
     h3{ font-size: 1.5em; }
