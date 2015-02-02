@@ -29,6 +29,8 @@ module ADIWG
                                 end
                                 hOut[key] = aTemp
                             end
+                        elsif value.class == DateTime
+                            hOut[key] = value.to_s
                         end
                     end
                 end

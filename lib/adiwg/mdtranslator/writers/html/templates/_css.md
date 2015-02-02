@@ -53,7 +53,7 @@
     blockquote{
         color: #666666;
         margin: 0;
-        padding-left: 3em;
+        padding-left: 2em;
         border-left: 0.5em #EEE solid;
     }
     hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
