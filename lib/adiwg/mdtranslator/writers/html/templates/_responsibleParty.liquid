@@ -1,0 +1,12 @@
+{% for party in myResParty %}
+    {% assign myId = party.contactId %}
+    {% for contact in contacts %}
+        {% if contact.contactId == myId %}
+            {% assign myContact = contact %}
+        {% endif %}
+    {% endfor %}
+ *Organization name:* {{myContact.orgName }} <br>
+ *Individual Name:* {{myContact.indName}} <br>
+ *Position Title:* {{myContact.position}} <br>
+ *Role name:* {{ party.roleName }} <br>
+{% endfor %}

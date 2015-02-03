@@ -1,0 +1,17 @@
+>> *Title:* {{ myCitation.citTitle }}
+{% if myCitation.citDate %}
+{% assign myDateTime = myCitation.citDate %}
+>> *Date:* <br>
+{% include 'dateTime' with myDateTime %}
+{% endif %}
+{% if myCitation.citEdition %}
+edition
+{% endif %}
+{% if myCitation.citResourceIds %}
+resources
+{% endif %}
+{% if myCitation.citResponsibleParty %}
+{% assign myResParty = myCitation.citResponsibleParty %}
+>> *Responsible Parties:* <br>
+{% include 'responsibleParty' with myResParty %}
+{% endif %}

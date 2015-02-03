@@ -23,7 +23,7 @@ module ADIWG
                         # changing the default naming style '_%s.liquid' to '_%s.md'
                         # path seems to need to be full path
                         tempPath = File.join(File.dirname(__FILE__), 'templates')
-                        Liquid::Template.file_system = Liquid::LocalFileSystem.new(tempPath, '_%s.md')
+                        Liquid::Template.file_system = Liquid::LocalFileSystem.new(tempPath)
 
                         # I put the starting liquid code in a variable since Ruby considers it an
                         # invalid structure.  Also 'parse()' does not accept a string
