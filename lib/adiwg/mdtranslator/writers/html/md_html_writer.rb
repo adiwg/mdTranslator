@@ -36,10 +36,12 @@ module ADIWG
 
                         sLiqTop = Liquid::Template.parse(topTemp).render()
                         sLiqBody = Liquid::Template.parse(bodyTemp).render(intObj)
+                        puts sLiqBody
                         sHtml= Kramdown::Document.new(sLiqBody).to_html
                         sLiqBottom = Liquid::Template.parse(bottomTemp).render()
 
                         sLiquid = sLiqTop + sHtml + sLiqBottom
+                        puts sHtml
 
                         return sLiquid
 

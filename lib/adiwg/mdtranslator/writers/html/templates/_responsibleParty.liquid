@@ -1,12 +1,41 @@
-{% for party in myResParty %}
-    {% assign myId = party.contactId %}
-    {% for contact in contacts %}
-        {% if contact.contactId == myId %}
-            {% assign myContact = contact %}
-        {% endif %}
-    {% endfor %}
- *Organization name:* {{myContact.orgName }} <br>
- *Individual Name:* {{myContact.indName}} <br>
- *Position Title:* {{myContact.position}} <br>
- *Role name:* {{ party.roleName }} <br>
+{% assign myId = myParty.contactId %}
+{% for contact in contacts %}
+{% if contact.contactId == myId %}
+{% assign myContact = contact %}
+{% endif %}
 {% endfor %}
+
+{% if myContact.orgName %}
+> *Organization name:* {{myContact.orgName }} <br>
+{% endif %}
+
+{% if myContact.indName %}
+> *Individual Name:* {{myContact.indName}} <br>
+{% endif %}
+
+{% if myContact.position %}
+> *Position Title:* {{myContact.position}} <br>
+{% endif %}
+
+{% if myContact.roleName %}
+> *Role name:* {{ party.roleName }} <br>
+{% endif %}
+
+phones
+
+{% if myContact.address %}
+{% assign myAddress = myContact.address %}
+{% for addLine in myAddress.deliveryPoints %}
+> *Address Line:* {{addLine}}
+{% endfor %}
+> *City:* {{myAddress.city}}
+> *Administrative Area:* {{myAddress.adminArea}}
+> *Country:* {{myAddress.country}}
+> *Postal Code:* {{myAddress.postalCode}}
+{% endif %}
+
+onlineResources
+
+{% if myContact.contactInstructions %}
+> *Contact Instructions:* {{myContact.contactInstructions}}
+{% endif %}

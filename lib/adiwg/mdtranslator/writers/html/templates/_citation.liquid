@@ -1,17 +1,28 @@
->> *Title:* {{ myCitation.citTitle }}
+> *Title:* {{myCitation.citTitle}}
+
 {% if myCitation.citDate %}
-{% assign myDateTime = myCitation.citDate %}
->> *Date:* <br>
+{% for myDateTime in myCitation.citDate %}
 {% include 'dateTime' with myDateTime %}
+{% endfor %}
 {% endif %}
+
 {% if myCitation.citEdition %}
-edition
+> *Edition:* {{myCitation.citEdition}}
 {% endif %}
+
+{% if myCitation.citResponsibleParty %}
+{% for myParty in myCitation.citResponsibleParty %}
+{% include 'responsibleParty' with myParty %}
+{% endfor %}
+{% endif %}
+
+presentationForm
+
+identifier
+
+onlineResource
+
 {% if myCitation.citResourceIds %}
 resources
 {% endif %}
-{% if myCitation.citResponsibleParty %}
-{% assign myResParty = myCitation.citResponsibleParty %}
->> *Responsible Parties:* <br>
-{% include 'responsibleParty' with myResParty %}
-{% endif %}
+

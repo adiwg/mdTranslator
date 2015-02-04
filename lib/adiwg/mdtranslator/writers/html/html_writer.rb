@@ -49,7 +49,6 @@ module ADIWG
                     html = Builder::XmlMarkup.new(indent: 3)
                     metadataWriter = $WriterNS::MdHtmlWriter.new(html)
                     metadata = metadataWriter.writeHtml(intObjStrings)
-                    puts metadata
 
                     # set writer pass to true if no messages
                     # false or warning will be set by code that places the message
