@@ -16,30 +16,7 @@ module ADIWG
                 # set writer namespace
                 $WriterNS = ADIWG::Mdtranslator::Writers::Html
 
-                def self.stringify_keys(hIn)
-                    hOut = Hash[hIn.map{|(k,v) | [k.to_s,v]}]
-                    hOut.each do |key, value|
-                        if value.class == Hash
-                            hOut[key] = stringify_keys(value)
-                        elsif value.class == Array
-                            if value[0].class == Hash
-                                aTemp = Array.new()
-                                value.each do |item|
-                                    aTemp << stringify_keys(item)
-                                end
-                                hOut[key] = aTemp
-                            end
-                        elsif value.class == DateTime
-                            hOut[key] = value.to_s
-                        end
-                    end
-                end
-
                 def self.startWriter(intObj)
-
-                    # convert the internal object from variable named hash
-                    # to string named hash to be compatible with liquid
-                    intObjStrings = stringify_keys(intObj)
 
                     # set the format of the output file based on the writer specified
                     $response[:writerFormat] = 'html'
@@ -48,7 +25,7 @@ module ADIWG
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)
                     metadataWriter = $WriterNS::MdHtmlWriter.new(html)
-                    metadata = metadataWriter.writeHtml(intObjStrings)
+                    metadata = metadataWriter.writeHtml(intObj)
 
                     # set writer pass to true if no messages
                     # false or warning will be set by code that places the message
