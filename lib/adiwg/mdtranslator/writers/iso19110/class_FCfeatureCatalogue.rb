@@ -27,7 +27,7 @@ module ADIWG
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
                         featureClass = $IsoNS::FC_FeatureType.new(@xml)
 
-                        intDataDictionary = internalObj[:dataDictionary]
+                        intDataDictionary = internalObj[:dataDictionary][0]
                         hDDInfo = intDataDictionary[:dictionaryInfo]
                         aEntities = intDataDictionary[:entities]
                         hCitation = hDDInfo[:dictCitation]
