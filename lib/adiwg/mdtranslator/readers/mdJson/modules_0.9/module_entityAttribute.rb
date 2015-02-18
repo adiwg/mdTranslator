@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-02-17 added support for attribute aliases
 
 module ADIWG
     module Mdtranslator
@@ -31,6 +32,14 @@ module ADIWG
                             s = hAttribute['codeName']
                             if s != ''
                                 intAttribute[:attributeCode] = s
+                            end
+                        end
+
+                        # attribute - alias []
+                        if hAttribute.has_key?('alias')
+                            a = hAttribute['alias']
+                            unless a.empty?
+                                intAttribute[:attributeAlias] = a
                             end
                         end
 

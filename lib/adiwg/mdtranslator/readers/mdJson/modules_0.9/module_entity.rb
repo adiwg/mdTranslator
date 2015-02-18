@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-02-17 add entity aliases
 
 require $ReaderNS.readerModule('module_entityIndex')
 require $ReaderNS.readerModule('module_entityAttribute')
@@ -43,6 +44,14 @@ module ADIWG
                             s = hEntity['codeName']
                             if s != ''
                                 intEntity[:entityCode] = s
+                            end
+                        end
+
+                        # data entity - alias []
+                        if hEntity.has_key?('alias')
+                            a = hEntity['alias']
+                            unless a.empty?
+                                intEntity[:entityAlias] = a
                             end
                         end
 

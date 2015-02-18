@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-12-12 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-02-17 added support for multiple data dictionaries
 
 require $ReaderNS.readerModule('module_contacts')
 require $ReaderNS.readerModule('module_metadata')
@@ -53,8 +54,12 @@ module ADIWG
 
                     # data dictionary
                     if hMdJson.has_key?('dataDictionary')
-                    	hDictionary = hMdJson['dataDictionary']
-                    	intObj[:dataDictionary] = $ReaderNS::DataDictionary.unpack(hDictionary)
+                        aDictionary = hMdJson['dataDictionary']
+                        aDictionary.each do |hDictionary|
+                            unless hDictionary.empty?
+                                intObj[:dataDictionary] << $ReaderNS::DataDictionary.unpack(hDictionary)
+                            end
+                        end
                     end
 
                     # return ADIwg internal container

@@ -1,9 +1,6 @@
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), './templates'))
 
-require 'liquid'
-require 'kramdown'
-
 module ADIWG
     module Mdtranslator
         module Writers
@@ -18,7 +15,7 @@ module ADIWG
 
                         # set template namespace
                         $TempNS = ADIWG::Mdtranslator::Writers::Html
-                        
+
                     end
                 end
 

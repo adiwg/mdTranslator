@@ -46,6 +46,8 @@
 #   Stan Smith 2014-11-06 removed metadataScope from metadataInfo for 0.9.0
 #   Stan Smith 2014-11-06 added newAdditionalDocumentation
 #   Stan Smith 2014-12-01 added data dictionary
+#   Stan Smith 2015-02-17 add entity and attribute alias
+#   Stan Smith 2015-02-17 added support for multiple data dictionaries
 
 class InternalMetadata
 
@@ -64,7 +66,7 @@ class InternalMetadata
             },
             contacts: [],
             metadata: {},
-            dataDictionary: {}
+            dataDictionary: []
         }
     end
 
@@ -550,6 +552,7 @@ class InternalMetadata
             entityId: nil,
             entityName: nil,
             entityCode: nil,
+            entityAlias: [],
             entityDefinition: nil,
             primaryKey: [],
             indexes: [],
@@ -570,6 +573,7 @@ class InternalMetadata
         intObj = {
             attributeName: nil,
             attributeCode: nil,
+            attributeAlias: [],
             attributeDefinition: nil,
             dataType: nil,
             allowNull: true,
