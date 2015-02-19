@@ -4,8 +4,6 @@
 # 	Stan Smith 2015-01-28 original script
 
 require 'builder'
-require 'liquid'
-require 'kramdown'
 require 'adiwg/mdtranslator/writers/html/md_html_writer'
 
 module ADIWG
