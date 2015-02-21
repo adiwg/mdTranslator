@@ -1,6 +1,6 @@
 
 
-require 'html_datetime'
+require 'html_dattime'
 
 module ADIWG
     module Mdtranslator
