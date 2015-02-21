@@ -53,7 +53,9 @@ module ADIWG
 
                             # metadata information section
                             @html.h2('Metadata Information', 'id'=>'metadata-information')
-                            htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
+                            @html.blockquote do
+                                htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
+                            end
                             @html.br
                             @html.hr
 
