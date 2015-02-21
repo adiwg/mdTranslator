@@ -1,6 +1,6 @@
 
 
-require 'html_dattime'
+require 'html_dateTime'
 
 module ADIWG
     module Mdtranslator
@@ -15,7 +15,7 @@ module ADIWG
                     def writeHtml(hCitation)
 
                         # classes used
-                        htmlDatetime = $HtmlNS::MdHtmlDatetime.new(@html)
+                        htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
 
                         # citation title - required
                         @html.em('Title: ')
@@ -26,7 +26,7 @@ module ADIWG
                         aDates = hCitation[:citDate]
                         aDates.each do |hDatetime|
                             @html.em('Date: ')
-                            htmlDatetime.writeHtml(hDatetime)
+                            htmlDateTime.writeHtml(hDatetime)
                         end
 
                         # citation edition
