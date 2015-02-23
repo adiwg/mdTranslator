@@ -1,6 +1,7 @@
 
 
 require 'html_dateTime'
+require 'html_resourceId'
 
 module ADIWG
     module Mdtranslator
@@ -16,6 +17,7 @@ module ADIWG
 
                         # classes used
                         htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
+                        htmlResId = $HtmlNS::MdHtmlResourceId.new(@html)
 
                         # citation title - required
                         @html.em('Title: ')
@@ -38,7 +40,11 @@ module ADIWG
                         end
 
                         # citation resource ids - resource identifier
-
+                        aIds = hCitation[:citResourceIds]
+                        aIds.each do |hId|
+                            htmlResId.writeHtml(hId)
+                        end
+                        @html.br
 
                     end # writeHtml
 
