@@ -18,12 +18,13 @@ module ADIWG
                         htmlOlRes = $HtmlNS::MdHtmlOnlineResource.new(@html)
 
                         # find contact in contact list
-                        conIndex = 0
-                        $aContacts.each do |hContact|
-                            break if hContact[:contactId] == contactId
-                            conIndex =+ 1
+                        hContact = {}
+                        $aContacts.each do |hCont|
+                            if hCont[:contactId] == contactId
+                                hContact = hCont
+                                break
+                            end
                         end
-                        hContact = $aContacts[conIndex]
 
                         # contact - individual name
                         s = hContact[:indName]

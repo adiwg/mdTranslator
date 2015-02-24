@@ -15,7 +15,7 @@ module ADIWG
                         #online resource - URI
                         @html.em('Online resource: ')
                         s = hOlRes[:olResURI]
-                        @html.a(s, :href => s)
+                        @html.a(s, 'href'=>s)
 
                         @html.blockquote do
 

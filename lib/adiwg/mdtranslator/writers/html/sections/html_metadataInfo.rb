@@ -1,6 +1,9 @@
 
 
 require 'html_citation'
+require 'html_responsibleParty'
+require 'html_dateTime'
+require 'html_resourceMaint'
 
 module ADIWG
     module Mdtranslator
@@ -16,6 +19,9 @@ module ADIWG
 
                         # classes used
                         htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
+                        htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
+                        htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
+                        htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
 
                         # metadata identifier
                         @html.h3('Metadata Identifier', 'id'=>'metadata-identifier')
@@ -30,13 +36,65 @@ module ADIWG
                         end
 
                         # parent metadata - citation
-                        @html.h3('Parent Metadata', 'id'=>'metadata-parent-identifier')
-                        @html.blockquote do
-                            htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
+                        hParent = hMetaInfo[:parentMetadata]
+                        if !hParent.empty?
+                            @html.h3('Parent Metadata', 'id'=>'metadata-parent-identifier')
+                            @html.blockquote do
+                                htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
+                            end
                         end
 
-                        # metadata custodians
-                        
+                        # metadata information
+                        @html.h3('Metadata Record Information', 'id'=>'metadata-record-identifier')
+                        @html.blockquote do
+
+                            # metadata URI
+                            s = hMetaInfo[:metadataURI]
+                            if s
+                                @html.em('Metadata URI: ')
+                                @html.a(s, 'href'=>s)
+                                @html.br
+                            end
+
+                            # metadata create date
+                            hDate = hMetaInfo[:metadataCreateDate]
+                            if !hDate.empty?
+                                @html.em('Metadata creation: ')
+                                htmlDateTime.writeHtml(hDate)
+                            end
+
+                            # metadata update date
+                            hDate = hMetaInfo[:metadataUpdateDate]
+                            if !hDate.empty?
+                                @html.em('Metadata update: ')
+                                htmlDateTime.writeHtml(hDate)
+                            end
+
+                            # metadata status
+                            s = hMetaInfo[:metadataStatus]
+                            if s
+                                @html.em('Metadata status: ')
+                                @html.text!(s)
+                                @html.br
+                            end
+
+                            # metadata maintenance
+                            hMaint = hMetaInfo[:maintInfo]
+                            if !hMaint.empty?
+                                @html.em('Metadata maintenance: ')
+                                htmlResMaint.writeHtml(hMaint)
+                            end
+
+                            # metadata custodians
+                            aCustodians = hMetaInfo[:metadataCustodians]
+                            if !aCustodians.empty?
+                                aCustodians.each do |hResParty|
+                                    htmlResParty.writeHtml(hResParty)
+                                end
+                            end
+
+                        end
+
 
                     end # writeHtml
 

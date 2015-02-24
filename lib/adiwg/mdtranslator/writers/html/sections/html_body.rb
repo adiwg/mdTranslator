@@ -59,6 +59,14 @@ module ADIWG
                             @html.br
                             @html.hr
 
+                            # resource information section
+                            @html.h2('Resource Information', 'id'=>'resource-information')
+                            @html.blockquote do
+
+                            end
+                            @html.br
+                            @html.hr
+
                         end # body
                     end # def writeHtml
 
