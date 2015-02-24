@@ -11,7 +11,7 @@
 
 require 'json'
 require 'json-schema'
-require 'adiwg-json_schemas'
+require 'adiwg-mdjson_schemas'
 # temporary json-schema patch
 # waiting for rubygem json-schema patch
 require 'adiwg/mdtranslator/readers/mdJson/validator.rb'
@@ -26,7 +26,7 @@ module ADIWG
                 def self.validate(file)
                     begin
 
-                        schema = ADIWG::JsonSchemas::Utils.schema_path
+                        schema = ADIWG::MdjsonSchemas::Utils.schema_path
                         aValErrs = Array.new
                         if $response[:readerValidationLevel] == 'strict'
                             aValErrs = JSON::Validator.fully_validate(schema, file, :strict => true, :errors_as_objects => true)
