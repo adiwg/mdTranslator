@@ -2,6 +2,8 @@
 
 require 'html_dateTime'
 require 'html_resourceId'
+require 'html_responsibleParty'
+require 'html_onlineResource'
 
 module ADIWG
     module Mdtranslator
@@ -18,20 +20,22 @@ module ADIWG
                         # classes used
                         htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
                         htmlResId = $HtmlNS::MdHtmlResourceId.new(@html)
+                        htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
+                        htmlOlRes = $HtmlNS::MdHtmlOnlineResource.new(@html)
 
-                        # citation title - required
+                        # citation - title - required
                         @html.em('Title: ')
                         @html.text!(hCitation[:citTitle])
                         @html.br
 
-                        # citation data
+                        # citation - date
                         aDates = hCitation[:citDate]
                         aDates.each do |hDatetime|
                             @html.em('Date: ')
                             htmlDateTime.writeHtml(hDatetime)
                         end
 
-                        # citation edition
+                        # citation - edition
                         s = hCitation[:citEdition]
                         if s
                             @html.em('Edition: ')
@@ -39,12 +43,31 @@ module ADIWG
                             @html.br
                         end
 
-                        # citation resource ids - resource identifier
+                        # citation - resource ids - resource identifier
                         aIds = hCitation[:citResourceIds]
                         aIds.each do |hId|
                             htmlResId.writeHtml(hId)
                         end
-                        @html.br
+
+                        # citation - responsible parties
+                        aResPart = hCitation[:citResponsibleParty]
+                        aResPart.each do |hParty|
+                            htmlResParty.writeHtml(hParty)
+                        end
+
+                        # citation - presentation forms
+                        aForms = hCitation[:citResourceForms]
+                        aForms.each do |form|
+                            @html.em('Resource form: ')
+                            @html.text!(form)
+                            @html.br
+                        end
+
+                        # citation - online resources
+                        aOlRes = hCitation[:citOlResources]
+                        aOlRes.each do |hOlRes|
+                            htmlOlRes.writeHtml(hOlRes)
+                        end
 
                     end # writeHtml
 
