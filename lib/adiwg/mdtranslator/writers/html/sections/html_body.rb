@@ -51,18 +51,32 @@ module ADIWG
                             end
                             @html.hr
 
+                            # section index
+                            @html.h2('Page Index')
+                            @html.a('Metadata Information Section','href'=>'#metadata-information')
+                            @html.br
+                            @html.a('Resource Information Section','href'=>'#resource-information')
+                            @html.br
+                            @html.hr
+
                             # metadata information section
                             @html.h2('Metadata Information', 'id'=>'metadata-information')
-                            @html.blockquote do
-                                htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
+                            @html.details do
+                                @html.summary('show ...')
+                                @html.blockquote do
+                                    htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
+                                end
                             end
                             @html.br
                             @html.hr
 
                             # resource information section
                             @html.h2('Resource Information', 'id'=>'resource-information')
-                            @html.blockquote do
+                            @html.details do
+                                @html.summary('show ...')
+                                @html.blockquote do
 
+                                end
                             end
                             @html.br
                             @html.hr

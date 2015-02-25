@@ -22,6 +22,7 @@ module ADIWG
                             # online resource - name
                             s = hOlRes[:olResName]
                             if s
+                                @html.em('Name: ')
                                 @html.text!(s)
                                 @html.br
                             end
@@ -29,6 +30,7 @@ module ADIWG
                             # online resource - description
                             s = hOlRes[:olResDesc]
                             if s
+                                @html.em('Description: ')
                                 @html.text!(s)
                                 @html.br
                             end
