@@ -3,7 +3,7 @@
 
 ### Supported versions
 
-> 0.9.1, 0.9.4
+> 1.0.x
 
 ### Reader for ADIwg JSON metadata format (mdJson)
 
@@ -16,4 +16,4 @@ to many. The mdJson standard is also a convenient format to exchange directly wi
 the JSON structure is easier create and ingest by programming languages.
 
 The mdJson format is fully documented on the interactive
-[mdJson Viewer](http://www.adiwg.org/mdJson-schema-viewer) website.
+[mdTools](http://www.adiwg.org/mdTools) website.
