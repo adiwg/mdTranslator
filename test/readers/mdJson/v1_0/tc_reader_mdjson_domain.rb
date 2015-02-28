@@ -7,7 +7,7 @@
 #set globals used in testing
 #set globals used by mdJson_reader.rb before requiring module
 $response = {
-    readerVersionUsed: '0.9',
+    readerVersionUsed: '1.0',
     readerExecutionPas: true,
     readerExecutionMessages: []
 }
@@ -15,12 +15,12 @@ $response = {
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_domain'
+require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_domain'
 
-class TestReaderMdJsonDomain_v0_9 < MiniTest::Test
+class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
 
     # get json test example
-    file = File.open('test/schemas/v0_9/examples/dataDictionary.json', 'r')
+    file = File.open('test/schemas/v1_0/examples/dataDictionary.json', 'r')
     jsonFile = file.read
     file.close
     aIn = JSON.parse(jsonFile)

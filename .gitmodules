@@ -1,6 +1,3 @@
-[submodule "test/schemas/v0_9"]
-	path = test/schemas/v0_9
-	url = https://github.com/adiwg/adiwg-json-schemas.git
 [submodule "test/schemas/v1_0"]
 	path = test/schemas/v1_0
 	url = https://github.com/adiwg/mdJson-schemas.git
