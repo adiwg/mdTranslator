@@ -38,6 +38,16 @@ module ADIWG
                             # report title
                             @html.h1('mdTranslator Metadata Report', 'id'=>'mdtranslator-metadata-report')
 
+                            # section index
+                            @html.blockquote do
+                                @html.h3('Page Index')
+                                @html.a('Metadata Information Section','href'=>'#metadata-information')
+                                @html.br
+                                @html.a('Resource Information Section','href'=>'#resource-information')
+                                @html.br
+                                @html.hr
+                            end
+
                             # metadata source
                             @html.h2('Metadata Source', 'id'=>'metadata-source')
                             @html.blockquote do
@@ -49,14 +59,6 @@ module ADIWG
                                 @html.text!(intObj[:schema][:version])
                                 @html.br
                             end
-                            @html.hr
-
-                            # section index
-                            @html.h2('Page Index')
-                            @html.a('Metadata Information Section','href'=>'#metadata-information')
-                            @html.br
-                            @html.a('Resource Information Section','href'=>'#resource-information')
-                            @html.br
                             @html.hr
 
                             # metadata information section
