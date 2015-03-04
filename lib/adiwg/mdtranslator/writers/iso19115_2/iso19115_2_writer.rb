@@ -42,9 +42,10 @@ module ADIWG
                     metadataWriter = $WriterNS::MI_Metadata.new(xml)
                     metadata = metadataWriter.writeXML(internalObj)
 
-                    # set writer pass to true if no messages
+                    # set writer pass to true if no writer modules set it to false
                     # false or warning will be set by code that places the message
-                    if $response[:writerMessages].length == 0
+                    # load metadata into $response
+                    if $response[:writerPass].nil?
                         $response[:writerPass] = true
                     end
 

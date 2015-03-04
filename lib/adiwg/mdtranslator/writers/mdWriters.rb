@@ -20,7 +20,7 @@ module ADIWG
 
                     # pass internal object to requested writer
                     $response[:writerOutput] = $WriterNS.startWriter(intObj)
-                    return $response
+
                 else
                     # directory path was not found
                     $response[:writerValidationPass] = false
