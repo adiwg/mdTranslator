@@ -36,11 +36,13 @@ module ADIWG
 
                         if aValErrs.length > 0
                             $response[:readerValidationPass] = false
+                            $response[:readerValidationMessages] << 'mdJson schema validation Failed - see following message(s):\n'
                             $response[:readerValidationMessages] = aValErrs
                             return
                         end
                     rescue JSON::Schema::ValidationError
                         $response[:readerValidationPass] = false
+                        $response[:readerValidationMessages] << 'mdJson schema validation Failed - see following message(s):\n'
                         $response[:readerValidationMessages] << $!.message
                         return
                     end

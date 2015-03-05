@@ -20,9 +20,6 @@ module ADIWG
         module Writers
             module Iso19115_2
 
-                # set writer namespace
-                $WriterNS = ADIWG::Mdtranslator::Writers::Iso19115_2
-
                 def self.startWriter(internalObj)
 
                     # reset ISO id='' counter

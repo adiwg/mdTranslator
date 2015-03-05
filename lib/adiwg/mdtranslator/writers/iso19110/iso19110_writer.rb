@@ -19,9 +19,6 @@ module ADIWG
         module Writers
             module Iso19110
 
-                # set writer namespace
-                $WriterNS = ADIWG::Mdtranslator::Writers::Iso19110
-
                 def self.startWriter(intObj)
 
                     # reset ISO id='' counter
@@ -34,6 +31,7 @@ module ADIWG
                     # test for a valid dataDictionary object in the internal object
                     aDictionaries = intObj[:dataDictionary]
                     if aDictionaries.length == 0
+                        $response[:writerMessages] << 'Writer Failed - see following message(s):\n'
                         $response[:writerMessages] << 'No data dictionary was loaded from the input file'
                         $response[:writerPass] = false
                         return
