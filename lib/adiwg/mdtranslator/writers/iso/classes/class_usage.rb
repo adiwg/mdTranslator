@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(hUsage)
 
                         # classes used in MD_Usage
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
 
                         @xml.tag!('gmd:MD_Usage') do
 

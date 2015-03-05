@@ -22,7 +22,7 @@ module ADIWG
     def writeXML(hElement)
 
         # classes used
-        idClass = $WriterNS::MD_Identifier.new(@xml)
+        idClass = $IsoNS::MD_Identifier.new(@xml)
 
         @xml.tag!('gmd:EX_GeographicDescription') do
             @xml.tag!('gmd:geographicIdentifier') do

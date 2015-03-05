@@ -26,7 +26,7 @@ module ADIWG
                         # the authority for the identifier is a citation block
 
                         # classes used in MD_Metadata
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
 
                         @xml.tag!('gmd:MD_Identifier') do
 

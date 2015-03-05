@@ -31,10 +31,10 @@ module ADIWG
                     def writeXML(hCitation)
 
                         # classes used
-                        presFormClass = $WriterNS::CI_PresentationFormCode.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        dateClass = $WriterNS::CI_Date.new(@xml)
-                        idClass = $WriterNS::MD_Identifier.new(@xml)
+                        presFormClass = $IsoNS::CI_PresentationFormCode.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        dateClass = $IsoNS::CI_Date.new(@xml)
+                        idClass = $IsoNS::MD_Identifier.new(@xml)
 
                         @xml.tag!('gmd:CI_Citation') do
 

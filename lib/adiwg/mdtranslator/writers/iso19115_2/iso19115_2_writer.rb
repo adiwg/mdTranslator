@@ -18,142 +18,137 @@ require 'adiwg/mdtranslator/writers/iso19115_2/class_MImetadata'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 # set writer namespace
-                $WriterNS = ADIWG::Mdtranslator::Writers::Iso
+                $WriterNS = ADIWG::Mdtranslator::Writers::Iso19115_2
 
-                class Iso19115_2
+                def self.startWriter(internalObj)
 
-                    def initialize
-                        # reset ISO id='' counter
-                        $idCount = '_000'
+                    # reset ISO id='' counter
+                    $idCount = '_000'
+
+                    # set the format of the output file based on the writer specified
+                    $response[:writerFormat] = 'xml'
+                    $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
+
+                    # pre-scan the internal object to create a new extents for each geometry
+                    # ... that has supplemental information (temporal, vertical, identity).
+                    # ... the new extents will be added to internalObj
+                    prescanGeoElements(internalObj)
+
+                    # create new XML document
+                    xml = Builder::XmlMarkup.new(indent: 3)
+                    metadataWriter = $WriterNS::MI_Metadata.new(xml)
+                    metadata = metadataWriter.writeXML(internalObj)
+
+                    # set writer pass to true if no writer modules set it to false
+                    # false or warning will be set by code that places the message
+                    # load metadata into $response
+                    if $response[:writerPass].nil?
+                        $response[:writerPass] = true
                     end
 
-                    def writeXML(internalObj)
+                    return metadata
+                end
 
+                def self.prescanGeoElements(internalObj)
+                    # supplemental information for the geographic element is carried in the
+                    # ... internal structure in the temporalElements:, verticalElements:,
+                    # ... and elementIdentifiers: attributes of the extGeoElements:
+                    # ... of the extent.
+                    # since temporal, vertical, and identify information in ISO is a property
+                    # ... of EX_Extent and not of the geographicElement,
+                    # ... this code creates a new extent for each geographicElement
+                    # ... that has supplemental information and
+                    # ... moves the supplemental information from the geometry to the new extent.
+                    # In this implementation, supplemental information is only allowed for
+                    # ... geometry types of Point, LineString, and Polygon
+                    aExtents = internalObj[:metadata][:resourceInfo][:extents]
+                    unless aExtents.empty?
+                        aExtents.each do |hExtent|
+                            aGeoElements = hExtent[:extGeoElements]
+                            unless aGeoElements.empty?
+                                aGeoElements.each do |hGeoElement|
+                                    hGeometry = hGeoElement[:elementGeometry]
+                                    unless hGeometry.empty?
+                                        geoType = hGeometry[:geoType]
+                                        case geoType
+                                            when 'Point', 'LineString', 'Polygon'
+                                                newExtent = extentFromGeoElement(hGeoElement, geoType)
+                                                if !newExtent.nil?
+                                                    aExtents << newExtent
+                                                end
 
-                        # set the format of the output file based on the writer specified
-                        $response[:writerFormat] = 'xml'
-                        $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
-
-                        # pre-scan the internal object to create a new extents for each geometry
-                        # ... that has supplemental information (temporal, vertical, identity).
-                        # ... the new extents will be added to internalObj
-                        prescanGeoElements(internalObj)
-
-                        # create new XML document
-                        xml = Builder::XmlMarkup.new(indent: 3)
-                        metadataWriter = $WriterNS::MI_Metadata.new(xml)
-                        metadata = metadataWriter.writeXML(internalObj)
-
-                        # set writer pass to true if no messages
-                        # false or warning will be set by code that places the message
-                        if $response[:writerMessages].length == 0
-                            $response[:writerPass] = true
-                        end
-
-                        return metadata
-                    end
-
-                    def prescanGeoElements(internalObj)
-                        # supplemental information for the geographic element is carried in the
-                        # ... internal structure in the temporalElements:, verticalElements:,
-                        # ... and elementIdentifiers: attributes of the extGeoElements:
-                        # ... of the extent.
-                        # since temporal, vertical, and identify information in ISO is a property
-                        # ... of EX_Extent and not of the geographicElement,
-                        # ... this code creates a new extent for each geographicElement
-                        # ... that has supplemental information and
-                        # ... moves the supplemental information from the geometry to the new extent.
-                        # In this implementation, supplemental information is only allowed for
-                        # ... geometry types of Point, LineString, and Polygon
-                        aExtents = internalObj[:metadata][:resourceInfo][:extents]
-                        unless aExtents.empty?
-                            aExtents.each do |hExtent|
-                                aGeoElements = hExtent[:extGeoElements]
-                                unless aGeoElements.empty?
-                                    aGeoElements.each do |hGeoElement|
-                                        hGeometry = hGeoElement[:elementGeometry]
-                                        unless hGeometry.empty?
-                                            geoType = hGeometry[:geoType]
-                                            case geoType
-                                                when 'Point', 'LineString', 'Polygon'
-                                                    newExtent = extentFromGeoElement(hGeoElement, geoType)
-                                                    if !newExtent.nil?
-                                                        aExtents << newExtent
-                                                    end
-
-                                                when 'MultiGeometry'
-                                                    aGeoMembers = hGeometry[:geometry]
-                                                    unless aGeoMembers.empty?
-                                                        aGeoMembers.each do |hGeoMemberElement|
-                                                            hGeometry = hGeoMemberElement[:elementGeometry]
-                                                            unless hGeometry.empty?
-                                                                geoType = hGeometry[:geoType]
-                                                                case geoType
-                                                                    when 'Point', 'LineString', 'Polygon'
-                                                                        newExtent = extentFromGeoElement(hGeoMemberElement, geoType)
-                                                                        if !newExtent.nil?
-                                                                            aExtents << newExtent
-                                                                        end
-                                                                end
+                                            when 'MultiGeometry'
+                                                aGeoMembers = hGeometry[:geometry]
+                                                unless aGeoMembers.empty?
+                                                    aGeoMembers.each do |hGeoMemberElement|
+                                                        hGeometry = hGeoMemberElement[:elementGeometry]
+                                                        unless hGeometry.empty?
+                                                            geoType = hGeometry[:geoType]
+                                                            case geoType
+                                                                when 'Point', 'LineString', 'Polygon'
+                                                                    newExtent = extentFromGeoElement(hGeoMemberElement, geoType)
+                                                                    if !newExtent.nil?
+                                                                        aExtents << newExtent
+                                                                    end
                                                             end
                                                         end
                                                     end
-                                            end
+                                                end
                                         end
                                     end
                                 end
                             end
                         end
                     end
+                end
 
-                    def extentFromGeoElement(hGeoElement, geoType)
-                        # build new extent to portray supplemental information
-                        # from elementGeometry
-                        if !hGeoElement[:temporalElements].empty? ||
-                            !hGeoElement[:verticalElements].empty? ||
-                                !hGeoElement[:elementIdentifiers].empty?
+                def self.extentFromGeoElement(hGeoElement, geoType)
+                    # build new extent to portray supplemental information
+                    # from elementGeometry
+                    if !hGeoElement[:temporalElements].empty? ||
+                        !hGeoElement[:verticalElements].empty? ||
+                            !hGeoElement[:elementIdentifiers].empty?
 
-                            # get unique id for geometry
-                            # if geometry id was missing, set it at this time so
-                            # ... it will match the supplemental information extent description
-                            geoID = hGeoElement[:elementId]
-                            if geoID.nil?
-                                $idCount = $idCount.succ
-                                geoID = geoType + $idCount
-                                hGeoElement[:elementId] = geoID
-                            end
-
-                            # build unique id for extent geometry
+                        # get unique id for geometry
+                        # if geometry id was missing, set it at this time so
+                        # ... it will match the supplemental information extent description
+                        geoID = hGeoElement[:elementId]
+                        if geoID.nil?
                             $idCount = $idCount.succ
-                            extGeoID = geoType + $idCount
-
-                            intMetadataClass = InternalMetadata.new
-                            intExtent = intMetadataClass.newExtent
-                            intGeoEle = intMetadataClass.newGeoElement
-
-                            intGeoEle[:elementId] = extGeoID
-                            intGeoEle[:elementGeometry] = hGeoElement[:elementGeometry]
-
-                            intExtent[:extDesc] = 'Supplemental information for ' + geoID
-                            intExtent[:extGeoElements] << intGeoEle
-                            intExtent[:extIdElements] = hGeoElement[:elementIdentifiers]
-                            intExtent[:extTempElements] = hGeoElement[:temporalElements]
-                            intExtent[:extVertElements] = hGeoElement[:verticalElements]
-
-                            return intExtent
-
-                        else
-                            return nil
+                            geoID = geoType + $idCount
+                            hGeoElement[:elementId] = geoID
                         end
 
+                        # build unique id for extent geometry
+                        $idCount = $idCount.succ
+                        extGeoID = geoType + $idCount
+
+                        intMetadataClass = InternalMetadata.new
+                        intExtent = intMetadataClass.newExtent
+                        intGeoEle = intMetadataClass.newGeoElement
+
+                        intGeoEle[:elementId] = extGeoID
+                        intGeoEle[:elementGeometry] = hGeoElement[:elementGeometry]
+
+                        intExtent[:extDesc] = 'Supplemental information for ' + geoID
+                        intExtent[:extGeoElements] << intGeoEle
+                        intExtent[:extIdElements] = hGeoElement[:elementIdentifiers]
+                        intExtent[:extTempElements] = hGeoElement[:temporalElements]
+                        intExtent[:extVertElements] = hGeoElement[:verticalElements]
+
+                        return intExtent
+
+                    else
+                        return nil
                     end
 
                 end
 
             end
+
         end
     end
 end

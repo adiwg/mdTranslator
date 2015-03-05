@@ -14,23 +14,13 @@ module ADIWG
                 # build directory path for writer from writerName
                 writerDir = File.join(path_to_resources, $response[:writerName])
                 if File.directory?(writerDir)
-
                     # if directory path exists, build writer file name and then require it
                     writerFile = File.join(writerDir, $response[:writerName] + '_writer')
                     require writerFile
 
-                    # build class name for writer from writerName
-                    # ... class name must begin with upper case
-                    # ... (1) writer file name must be writerName_writer.rb
-                    # ... (2) writer class name must be capitalized writerName
-                    # ... (3) $WriterNS is the writer namespace constant set in
-                    # ... writerName_writer.rb and initialized when the file is required
-                    writerUpCase = $response[:writerName][0].upcase + $response[:writerName][1..-1]
-                    writerClass = $WriterNS.const_get(writerUpCase).new
-
                     # pass internal object to requested writer
-                    $response[:writerOutput] = writerClass.writeXML(intObj)
-                    return $response
+                    $response[:writerOutput] = $WriterNS.startWriter(intObj)
+
                 else
                     # directory path was not found
                     $response[:writerValidationPass] = false

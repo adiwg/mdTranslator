@@ -24,7 +24,7 @@ module ADIWG
                     def writeXML(hDate)
 
                         # classes used
-                        dateTypeCode = $WriterNS::CI_DateTypeCode.new(@xml)
+                        dateTypeCode = $IsoNS::CI_DateTypeCode.new(@xml)
 
                         citDateTime = hDate[:dateTime]
                         citDateRes = hDate[:dateResolution]

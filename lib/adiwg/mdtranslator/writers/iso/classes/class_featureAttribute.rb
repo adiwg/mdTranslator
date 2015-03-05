@@ -24,9 +24,9 @@ module ADIWG
                     def writeXML(hAttribute)
 
                         # classes used
-                        multiClass = $WriterNS::Multiplicity.new(@xml)
-                        listClass = $WriterNS::FC_ListedValue.new(@xml)
-                        uomClass = $WriterNS::UnitsOfMeasure.new(@xml)
+                        multiClass = $IsoNS::Multiplicity.new(@xml)
+                        listClass = $IsoNS::FC_ListedValue.new(@xml)
+                        uomClass = $IsoNS::UnitsOfMeasure.new(@xml)
 
                         @xml.tag!('gfc:FC_FeatureAttribute') do
 

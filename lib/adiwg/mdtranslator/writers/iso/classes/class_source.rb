@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(hSource)
 
                         # classes used
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
-                        pStepClass = $WriterNS::LI_ProcessStep.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        pStepClass = $IsoNS::LI_ProcessStep.new(@xml)
 
                         @xml.tag!('gmd:LI_Source') do
 

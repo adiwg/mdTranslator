@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
 	spec.version       = ADIWG::Mdtranslator::VERSION
 	spec.authors       = ["Stan Smith", "Josh Bradley"]
 	spec.email         = ["stansmith@usgs.gov", "joshua_bradley@fws.gov"]
-	spec.summary       = %q{The mdtranslator (metadata translator) is a toolkit for translating metadata in one format to another. The toolkit is written and maintained by the Alaska Data Integration Working Group (ADIwg).}
-	spec.description   = %q{The mdtranslator was written by the Alaska Data Integration Working Group (ADIwg) to assist users prepare ISO 19115-2 metadata records.  Input to the mdtranslator is simple JSON using the adiwg-json-schema.  The mdtranslator architecture allows developers to write additional readers for other input formats and/or write additional writers for other output other than ISO 19115-2.}
+	spec.summary       = %q{The mdtranslator (metadata translator) is a tool for translating metadata in one format to another. The tool is written and maintained by the Alaska Data Integration Working Group (ADIwg).}
+	spec.description   = %q{The mdtranslator was written by the Alaska Data Integration Working Group (ADIwg) to assist with creating ISO 19139 metadata records.  Input to the mdtranslator is simple JSON using the mdJson-schema.  The mdtranslator architecture allows developers to write additional readers for other input formats and/or write additional writers for other output other than ISO 19139.}
 	spec.homepage      = "http://www.adiwg.org/mdTranslator"
 	spec.license       = "UNLICENSED"
 
@@ -30,5 +30,5 @@ Gem::Specification.new do |spec|
 	spec.add_runtime_dependency "thor", "~> 0.19"
 	spec.add_runtime_dependency "uuidtools", "~> 2.1"
 	spec.add_runtime_dependency "json-schema", "~> 2.4.0", "< 2.5.0"
-	spec.add_runtime_dependency "adiwg-json_schemas", "~> 0.9.4"
+	spec.add_runtime_dependency "adiwg-mdjson_schemas", "~> 1.0.0rc1"
 end

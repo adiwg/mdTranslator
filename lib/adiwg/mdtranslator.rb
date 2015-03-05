@@ -63,7 +63,7 @@ module ADIWG
                 $response[:readerValidationPass] = false
                 $response[:readerValidationMessages] << 'Reader name is missing.'
                 $response[:readerExecutionPass] = false
-                $response[:readerExecutionMessages] << 'Reader failed to complete.'
+                $response[:readerExecutionMessages] << 'Reader failed to initiate.'
                 return $response
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
@@ -72,8 +72,6 @@ module ADIWG
                 if intObj
                     $response[:readerExecutionPass] = true
                 else
-                    $response[:readerExecutionPass] = false
-                    $response[:readerExecutionMessages] << 'Reader failed to complete.'
                     return $response
                 end
             end

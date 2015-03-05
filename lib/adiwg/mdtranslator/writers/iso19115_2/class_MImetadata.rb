@@ -39,7 +39,7 @@ require 'module_dateTimeFun'
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MI_Metadata
 
@@ -48,17 +48,18 @@ module ADIWG
                     end
 
                     def writeXML(internalObj)
+                        $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        charCode = $WriterNS::MD_CharacterSetCode.new(@xml)
-                        scopeCode = $WriterNS::MD_ScopeCode.new(@xml)
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        mdExtClass = $WriterNS::MD_MetadataExtensionInformation.new(@xml)
-                        dataIdClass = $WriterNS::MD_DataIdentification.new(@xml)
-                        distClass = $WriterNS::MD_Distribution.new(@xml)
-                        dqClass = $WriterNS::DQ_DataQuality.new(@xml)
-                        metaMaintClass = $WriterNS::MD_MaintenanceInformation.new(@xml)
-                        refSysClass = $WriterNS::MD_ReferenceSystem.new(@xml)
+                        charCode = $IsoNS::MD_CharacterSetCode.new(@xml)
+                        scopeCode = $IsoNS::MD_ScopeCode.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        mdExtClass = $IsoNS::MD_MetadataExtensionInformation.new(@xml)
+                        dataIdClass = $IsoNS::MD_DataIdentification.new(@xml)
+                        distClass = $IsoNS::MD_Distribution.new(@xml)
+                        dqClass = $IsoNS::DQ_DataQuality.new(@xml)
+                        metaMaintClass = $IsoNS::MD_MaintenanceInformation.new(@xml)
+                        refSysClass = $IsoNS::MD_ReferenceSystem.new(@xml)
 
                         intMetadata = internalObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]

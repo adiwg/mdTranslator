@@ -31,9 +31,9 @@ module ADIWG
                         # ... citation > identifier section
 
                         # classes used
-                        assocCode = $WriterNS::DS_AssociationTypeCode.new(@xml)
-                        initCode = $WriterNS::DS_InitiativeTypeCode.new(@xml)
-                        citationClass = $WriterNS::CI_Citation.new(@xml)
+                        assocCode = $IsoNS::DS_AssociationTypeCode.new(@xml)
+                        initCode = $IsoNS::DS_InitiativeTypeCode.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml)
 
                         @xml.tag!('gmd:MD_AggregateInformation') do
 

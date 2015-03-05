@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(hVoucher)
 
                         # classes used in MD_Vouchers
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
 
                         @xml.tag!('gmd:MD_Vouchers') do
 

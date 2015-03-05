@@ -25,8 +25,8 @@ module ADIWG
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        timeInstClass = $WriterNS::TimeInstant.new(@xml)
-                        timePeriodClass = $WriterNS::TimePeriod.new(@xml)
+                        timeInstClass = $IsoNS::TimeInstant.new(@xml)
+                        timePeriodClass = $IsoNS::TimePeriod.new(@xml)
 
                         @xml.tag!('gmd:EX_TemporalExtent') do
 

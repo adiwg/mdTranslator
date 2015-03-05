@@ -23,7 +23,7 @@ module ADIWG
                     def writeXML(hProcessStep)
 
                         # classes used
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
 
                         # process step - id
                         attributes = {}

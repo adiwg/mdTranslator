@@ -26,9 +26,9 @@ module ADIWG
                     def writeXML(hContact)
 
                         # classes used
-                        pBookClass = $WriterNS::CI_Telephone.new(@xml)
-                        addClass = $WriterNS::CI_Address.new(@xml)
-                        resourceClass = $WriterNS::CI_OnlineResource.new(@xml)
+                        pBookClass = $IsoNS::CI_Telephone.new(@xml)
+                        addClass = $IsoNS::CI_Address.new(@xml)
+                        resourceClass = $IsoNS::CI_OnlineResource.new(@xml)
 
                         @xml.tag!('gmd:CI_Contact') do
 

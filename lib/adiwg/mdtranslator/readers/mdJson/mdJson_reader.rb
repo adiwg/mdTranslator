@@ -67,8 +67,7 @@ module ADIWG
                         $response[:readerStructurePass] = true
                     rescue JSON::JSONError => err
                         $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << err
-                        return
+                        $response[:readerStructureMessages] << err.to_s.slice(0,200)
                     end
                 end
 
@@ -79,7 +78,6 @@ module ADIWG
                     else
                         $response[:readerStructurePass] = false
                         $response[:readerStructureMessages] << 'The input file is missing the version:{} block.'
-                        return
                     end
 
                     # check the version name
@@ -90,12 +88,10 @@ module ADIWG
                         else
                             $response[:readerStructurePass] = false
                             $response[:readerStructureMessages] << 'The input file version name is missing.'
-                            return
                         end
                     else
                         $response[:readerStructurePass] = false
                         $response[:readerStructureMessages] << "The input file version:{} block is missing the 'name' attribute."
-                        return
                     end
 
                     # check the version name is 'mdJson'
@@ -103,7 +99,6 @@ module ADIWG
                         $response[:readerStructurePass] = false
                         $response[:readerStructureMessages] << "The mdTranslator reader expected the input file version name to be 'mdJson'."
                         $response[:readerStructureMessages] << "Version name found was: '#{s}'."
-                        return
                     end
                 end
 
@@ -118,7 +113,6 @@ module ADIWG
                     else
                         $response[:readerStructurePass] = false
                         $response[:readerStructureMessages] << "The input file version:{} block is missing the 'version' number attribute."
-                        return
                     end
 
                     # test the reader version requested is supported
@@ -133,14 +127,12 @@ module ADIWG
                             $response[:readerStructurePass] = false
                             $response[:readerStructureMessages] << 'The input file version is not supported.'
                             $response[:readerStructureMessages] << "mdJson version requested was '#{s}'"
-                            return
                         end
                         $response[:readerVersionUsed] = readerVersion
                     else
                         $response[:readerStructurePass] = false
                         $response[:readerStructureMessages] << 'The input file version number must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3'
                         $response[:readerStructureMessages] << 'Note the PATCH number is optional.'
-                        return
                     end
                 end
 

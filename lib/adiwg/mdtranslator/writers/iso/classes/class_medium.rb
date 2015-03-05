@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(medium)
 
                         # classes used
-                        medFormatCode = $WriterNS::MD_MediumFormatCode.new(@xml)
-                        medNameCode = $WriterNS::MD_MediumNameCode.new(@xml)
+                        medFormatCode = $IsoNS::MD_MediumFormatCode.new(@xml)
+                        medNameCode = $IsoNS::MD_MediumNameCode.new(@xml)
 
                         @xml.tag!('gmd:MD_Medium') do
 

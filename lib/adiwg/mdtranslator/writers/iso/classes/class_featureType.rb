@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-12-02 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-02-18 added aliases for entities
 
 require 'class_featureConstraint'
 require 'class_featureAttribute'
@@ -22,8 +23,8 @@ module ADIWG
                     def writeXML(hEntity)
 
                         # classes used
-                        fConClass = $WriterNS::FC_Constraint.new(@xml)
-                        fAttClass = $WriterNS::FC_FeatureAttribute.new(@xml)
+                        fConClass = $IsoNS::FC_Constraint.new(@xml)
+                        fAttClass = $IsoNS::FC_FeatureAttribute.new(@xml)
 
                         # create and identity for the entity
                         $idCount = $idCount.succ
@@ -66,6 +67,14 @@ module ADIWG
                             # defaulted to false, value not available in internal object
                             @xml.tag!('gfc:isAbstract') do
                                 @xml.tag!('gco:Boolean', 'false')
+                            end
+
+                            # feature type - aliases
+                            aAliases = hEntity[:entityAlias]
+                            aAliases.each do |myAlias|
+                                @xml.tag!('gfc:aliases') do
+                                    @xml.tag!('gco:LocalName',myAlias)
+                                end
                             end
 
                             # feature type - feature catalogue - required

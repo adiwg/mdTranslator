@@ -25,10 +25,10 @@ module ADIWG
                     def writeXML(distributor)
 
                         # classes used
-                        rPartyClass = $WriterNS::CI_ResponsibleParty.new(@xml)
-                        sOrderProcClass = $WriterNS::MD_StandardOrderProcess.new(@xml)
-                        rFormatClass = $WriterNS::MD_Format.new(@xml)
-                        dTranOptClass = $WriterNS::MD_DigitalTransferOptions.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        sOrderProcClass = $IsoNS::MD_StandardOrderProcess.new(@xml)
+                        rFormatClass = $IsoNS::MD_Format.new(@xml)
+                        dTranOptClass = $IsoNS::MD_DigitalTransferOptions.new(@xml)
 
                         @xml.tag!('gmd:MD_Distributor') do
 

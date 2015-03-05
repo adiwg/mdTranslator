@@ -23,7 +23,7 @@ module ADIWG
                     def writeXML(hOlResource)
 
                         # classes used
-                        olFunctionCode = $WriterNS::CI_OnLineFunctionCode.new(@xml)
+                        olFunctionCode = $IsoNS::CI_OnLineFunctionCode.new(@xml)
 
                         @xml.tag! 'gmd:CI_OnlineResource' do
 

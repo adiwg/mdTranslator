@@ -29,10 +29,10 @@ module ADIWG
                     def writeXML(hExtent)
 
                         # classes used
-                        tempExtClass = $WriterNS::EX_TemporalExtent.new(@xml)
-                        vertExtClass = $WriterNS::EX_VerticalExtent.new(@xml)
-                        geoEleClass = $WriterNS::GeographicElement.new(@xml)
-                        geoEleIdClass = $WriterNS::EX_GeographicDescription.new(@xml)
+                        tempExtClass = $IsoNS::EX_TemporalExtent.new(@xml)
+                        vertExtClass = $IsoNS::EX_VerticalExtent.new(@xml)
+                        geoEleClass = $IsoNS::GeographicElement.new(@xml)
+                        geoEleIdClass = $IsoNS::EX_GeographicDescription.new(@xml)
 
                         @xml.tag!('gmd:EX_Extent') do
 
