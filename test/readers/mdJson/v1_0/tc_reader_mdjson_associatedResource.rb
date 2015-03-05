@@ -14,6 +14,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
+$ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
 require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_associatedResource'
 
 class TestReaderMdJsonAssociatedResource_v1_0 < MiniTest::Test

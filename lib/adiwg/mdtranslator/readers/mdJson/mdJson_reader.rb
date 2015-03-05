@@ -22,7 +22,7 @@ module ADIWG
 
                 def self.readFile(file)
                     # set anticipated format of file in $response
-                    $response[:readerFormat] = 'JSON'
+                    $response[:readerFormat] = 'json'
 
                     # receive json file into ruby hash
                     parseJson(file)
