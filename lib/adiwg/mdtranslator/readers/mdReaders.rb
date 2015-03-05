@@ -19,9 +19,10 @@ module ADIWG
                     # if directory path exists, build reader file name and require it
                     readerFile = File.join(readerDir, $response[:readerRequested] + '_reader')
                     require readerFile
-                    readerClassName = $response[:readerRequested]
+                    readerClassName = $response[:readerRequested].clone
                     readerClassName[0] = readerClassName[0].upcase
                     $ReaderNS = ADIWG::Mdtranslator::Readers.const_get(readerClassName)
+
 
                     # pass file to requested reader and return internal object
                     # $ReaderNS is the reader namespace constant set in
