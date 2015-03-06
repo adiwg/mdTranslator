@@ -1,7 +1,7 @@
 # ISO <<CodeLists>> gmd:MD_ObligationCode
 # enumeration
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 
 # History:
 # 	Stan Smith 2013-10-21 original script

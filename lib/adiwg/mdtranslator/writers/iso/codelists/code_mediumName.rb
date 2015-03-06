@@ -1,6 +1,6 @@
 # ISO <<CodeLists>> gmd:MD_MediumNameCode
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
 # 	Stan Smith 2013-09-24 original script
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
@@ -61,7 +61,7 @@ module ADIWG
                         end
 
                         # write xml
-                        @xml.tag!('gmd:MD_MediumNameCode', {:codeList => 'http://mdtranslator.herokuapp.com/api/codelists?format=xml#MD_MediumNameCode',
+                        @xml.tag!('gmd:MD_MediumNameCode', {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumNameCode',
                                                             :codeListValue => "#{codeName}",
                                                             :codeSpace => "#{codeID}"})
                     end

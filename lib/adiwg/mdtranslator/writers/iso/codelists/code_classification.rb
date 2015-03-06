@@ -1,6 +1,6 @@
 # ISO <<CodeLists>> gmd:MD_ClassificationCode
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
 # 	Stan Smith 2013-10-21 original script
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
@@ -35,7 +35,7 @@ module ADIWG
                         end
 
                         # write xml
-                        @xml.tag!('gmd:MD_ClassificationCode', {:codeList => 'http://mdtranslator.herokuapp.com/api/codelists?format=xml#MD_ClassificationCode',
+                        @xml.tag!('gmd:MD_ClassificationCode', {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ClassificationCode',
                                                                 :codeListValue => "#{codeName}",
                                                                 :codeSpace => "#{codeID}"})
                     end

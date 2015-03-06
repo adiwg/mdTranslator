@@ -1,6 +1,6 @@
 # ISO <<CodeLists>> gmd:CI_PresentationForm
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
 # 	Stan Smith 2013-11-20 original script
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
@@ -52,7 +52,7 @@ module ADIWG
                         end
 
                         # write xml
-                        @xml.tag!('gmd:CI_PresentationFormCode', {:codeList => 'http://mdtranslator.herokuapp.com/api/codelists?format=xml#CI_PresentationFormCode',
+                        @xml.tag!('gmd:CI_PresentationFormCode', {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode',
                                                                   :codeListValue => "#{codeName}",
                                                                   :codeSpace => "#{codeID}"})
                     end
