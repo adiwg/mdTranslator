@@ -27,7 +27,7 @@ module ADIWG
                     # if directory path exists, build writer file name and then require it
                     writerFile = File.join(writerDir, $response[:writerName] + '_writer')
                     require writerFile
-                    writerClassName = $response[:writerName].clone
+                    writerClassName = $response[:writerName].dup
                     writerClassName[0] = writerClassName[0].upcase
                     $WriterNS = ADIWG::Mdtranslator::Writers.const_get(writerClassName)
 
