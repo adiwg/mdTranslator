@@ -1,6 +1,6 @@
 # ISO <<CodeLists>> gmd:MD_CharacterSetCode
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
 # 	Stan Smith 2013-08-09 original script
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
@@ -80,7 +80,7 @@ module ADIWG
                         end
 
                         # write xml
-                        @xml.tag!('gmd:MD_CharacterSetCode', {:codeList => 'http://mdtranslator.herokuapp.com/api/codelists?format=xml#MD_CharacterSetCode',
+                        @xml.tag!('gmd:MD_CharacterSetCode', {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode',
                                                               :codeListValue => "#{codeName}",
                                                               :codeSpace => "#{codeID}"})
                     end

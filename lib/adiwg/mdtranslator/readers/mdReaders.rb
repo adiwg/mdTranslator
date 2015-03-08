@@ -3,6 +3,7 @@
 # History:
 # 	Stan Smith 2014-12-11 original script
 #   Stan Smith 2012-12-16 generalized handleReader to use :readerRequested
+#   Stan Smith 2015-03-04 changed method of setting $WriterNS
 
 module ADIWG
     module Mdtranslator
@@ -18,16 +19,20 @@ module ADIWG
                     # if directory path exists, build reader file name and require it
                     readerFile = File.join(readerDir, $response[:readerRequested] + '_reader')
                     require readerFile
+                    readerClassName = $response[:readerRequested].dup
+                    readerClassName[0] = readerClassName[0].upcase
+                    $ReaderNS = ADIWG::Mdtranslator::Readers.const_get(readerClassName)
+
 
                     # pass file to requested reader and return internal object
                     # $ReaderNS is the reader namespace constant set in
                     # ... readerRequested_reader.rb and initialized when the file is required
-                    intObj = $ReaderNS.readFile(file)
-                    return intObj
+                    return $ReaderNS.readFile(file)
                 else
                     # directory path was not found
                     $response[:readerValidationPass] = false
-                    $response[:readerValidationMessages] << "Reader name '#{$response[:readerRequested]}' is not supported."
+                    $response[:readerValidationMessages] << "Validation Failed - see following message(s):\n"
+                    $response[:readerValidationMessages] << "Reader '#{$response[:readerRequested]}' is not supported."
                     return false
                 end
 

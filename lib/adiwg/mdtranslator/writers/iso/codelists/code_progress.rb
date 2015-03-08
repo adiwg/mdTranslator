@@ -1,6 +1,6 @@
 # ISO <<CodeLists>> gmd:MD_ProgressCode
 
-# from http://mdtranslator.herokuapp.com/api/codelists?format=xml
+# from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
 # 	Stan Smith 2013-08-26 original script
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
@@ -39,7 +39,7 @@ module ADIWG
                         end
 
                         # write xml
-                        @xml.tag!('gmd:MD_ProgressCode', {:codeList => 'http://mdtranslator.herokuapp.com/api/codelists?format=xml#CI_ProgressCode',
+                        @xml.tag!('gmd:MD_ProgressCode', {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_ProgressCode',
                                                           :codeListValue => "#{codeName}",
                                                           :codeSpace => "#{codeID}"})
                     end

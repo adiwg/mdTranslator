@@ -36,11 +36,12 @@
 # 0.13.0 2015-01-28 made data dictionary an array
 #               ... added alias to entity and attribute
 #               ... added local names to iso 19110 writer
+# 1.0.0rc1 2015-02-27 schema 1.0 support
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "0.13.0"
+        VERSION = "1.0.0rc4"
     end
 end
 

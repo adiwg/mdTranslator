@@ -11,9 +11,6 @@ module ADIWG
         module Writers
             module Html
 
-                # set writer namespace
-                $WriterNS = ADIWG::Mdtranslator::Writers::Html
-
                 def self.startWriter(intObj)
 
                     # set the format of the output file based on the writer specified

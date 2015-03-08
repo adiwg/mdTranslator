@@ -10,12 +10,12 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules_0.9/module_address'
+require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_address'
 
-class TestReaderMdJsonAddress_v0_9 < MiniTest::Test
+class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
 
     # get json test example
-    file = File.open('test/schemas/v0_9/examples/address.json', 'r')
+    file = File.open('test/schemas/v1_0/examples/address.json', 'r')
     jsonFile = file.read
     file.close
     aIn = JSON.parse(jsonFile)
