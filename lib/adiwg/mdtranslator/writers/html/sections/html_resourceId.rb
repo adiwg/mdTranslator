@@ -21,9 +21,11 @@ module ADIWG
                         @html.em('Identifier:')
                         @html.text!(hIdentifier[:identifier])
 
-                        @html.em(' Type:')
-                        @html.text!(hIdentifier[:identifierType])
-                        @html.br
+                        s = hIdentifier[:identifierType]
+                        if !s.nil?
+                            @html.em(' Type:')
+                            @html.text!(s)
+                        end
 
                         # identifier citation
                         if !hIdentifier[:identifierCitation].empty?
@@ -31,6 +33,8 @@ module ADIWG
                                 htmlCitation.writeHtml(hIdentifier[:identifierCitation])
                             end
                         end
+
+                        @html.br
 
                     end # writeHtml
 

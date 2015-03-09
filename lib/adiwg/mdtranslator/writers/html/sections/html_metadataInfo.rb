@@ -25,76 +25,84 @@ module ADIWG
 
                         # metadata identifier
                         @html.h3('Metadata Identifier', 'id'=>'metadata-identifier')
-                        @html.blockquote do
-                            @html.em('Identifier:')
-                            @html.text!(hMetaInfo[:metadataId][:identifier])
-                            @html.br
-
-                            @html.em('Identifier type:')
-                            @html.text!(hMetaInfo[:metadataId][:identifierType])
-                            @html.br
-                        end
-
-                        # parent metadata - citation
-                        hParent = hMetaInfo[:parentMetadata]
-                        if !hParent.empty?
-                            @html.h3('Parent Metadata', 'id'=>'metadata-parent-identifier')
+                        @html.details do
+                            @html.summary('show ...')
                             @html.blockquote do
-                                htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
+                                @html.em('Identifier:')
+                                @html.text!(hMetaInfo[:metadataId][:identifier])
+                                @html.br
+
+                                @html.em('Identifier type:')
+                                @html.text!(hMetaInfo[:metadataId][:identifierType])
+                                @html.br
                             end
                         end
 
                         # metadata information
-                        @html.h3('Metadata Record Information', 'id'=>'metadata-record-identifier')
-                        @html.blockquote do
+                        @html.h3('Metadata Record Information', 'id'=>'metadata-record-info')
+                        @html.details do
+                            @html.summary('show ...')
+                            @html.blockquote do
 
-                            # metadata URI
-                            s = hMetaInfo[:metadataURI]
-                            if s
-                                @html.em('Metadata URI: ')
-                                @html.a(s, 'href'=>s)
-                                @html.br
-                            end
+                                # metadata URI
+                                s = hMetaInfo[:metadataURI]
+                                if s
+                                    @html.em('Metadata URI: ')
+                                    @html.a(s, 'href'=>s)
+                                    @html.br
+                                end
 
-                            # metadata create date
-                            hDate = hMetaInfo[:metadataCreateDate]
-                            if !hDate.empty?
-                                @html.em('Metadata creation: ')
-                                htmlDateTime.writeHtml(hDate)
-                            end
+                                # metadata create date
+                                hDate = hMetaInfo[:metadataCreateDate]
+                                if !hDate.empty?
+                                    @html.em('Metadata creation: ')
+                                    htmlDateTime.writeHtml(hDate)
+                                end
 
-                            # metadata update date
-                            hDate = hMetaInfo[:metadataUpdateDate]
-                            if !hDate.empty?
-                                @html.em('Metadata update: ')
-                                htmlDateTime.writeHtml(hDate)
-                            end
+                                # metadata update date
+                                hDate = hMetaInfo[:metadataUpdateDate]
+                                if !hDate.empty?
+                                    @html.em('Metadata update: ')
+                                    htmlDateTime.writeHtml(hDate)
+                                end
 
-                            # metadata status
-                            s = hMetaInfo[:metadataStatus]
-                            if s
-                                @html.em('Metadata status: ')
-                                @html.text!(s)
-                                @html.br
-                            end
+                                # metadata status
+                                s = hMetaInfo[:metadataStatus]
+                                if s
+                                    @html.em('Metadata status: ')
+                                    @html.text!(s)
+                                    @html.br
+                                end
 
-                            # metadata maintenance
-                            hMaint = hMetaInfo[:maintInfo]
-                            if !hMaint.empty?
-                                @html.em('Metadata maintenance: ')
-                                htmlResMaint.writeHtml(hMaint)
-                            end
+                                # metadata maintenance
+                                hMaint = hMetaInfo[:maintInfo]
+                                if !hMaint.empty?
+                                    @html.em('Metadata maintenance: ')
+                                    htmlResMaint.writeHtml(hMaint)
+                                end
 
-                            # metadata custodians
-                            aCustodians = hMetaInfo[:metadataCustodians]
-                            if !aCustodians.empty?
-                                aCustodians.each do |hResParty|
-                                    htmlResParty.writeHtml(hResParty)
+                                # metadata custodians
+                                aCustodians = hMetaInfo[:metadataCustodians]
+                                if !aCustodians.empty?
+                                    aCustodians.each do |hResParty|
+                                        htmlResParty.writeHtml(hResParty)
+                                    end
                                 end
                             end
 
                         end
 
+                        # parent metadata - citation
+                        hParent = hMetaInfo[:parentMetadata]
+                        if !hParent.empty?
+                            @html.h3('Parent Metadata', 'id'=>'metadata-parent-info')
+                            @html.details do
+                                @html.summary('citation ...')
+                                @html.blockquote do
+                                    htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
+                                end
+                            end
+                        end
 
                     end # writeHtml
 

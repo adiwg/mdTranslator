@@ -1,6 +1,7 @@
 
 
 require 'html_metadataInfo'
+require 'html_resourceInfo'
 
 module ADIWG
     module Mdtranslator
@@ -17,6 +18,7 @@ module ADIWG
 
                             # classes used
                             htmlMetaInfo = $HtmlNS::MdHtmlMetadataInfo.new(@html)
+                            htmlResInfo = $HtmlNS::MdHtmlResourceInfo.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
@@ -63,22 +65,16 @@ module ADIWG
 
                             # metadata information section
                             @html.h2('Metadata Information', 'id'=>'metadata-information')
-                            @html.details do
-                                @html.summary('show ...')
-                                @html.blockquote do
-                                    htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
-                                end
+                            @html.blockquote do
+                                htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
                             end
                             @html.br
                             @html.hr
 
                             # resource information section
                             @html.h2('Resource Information', 'id'=>'resource-information')
-                            @html.details do
-                                @html.summary('show ...')
-                                @html.blockquote do
-
-                                end
+                            @html.blockquote do
+                                htmlResInfo.writeHtml(hMetadata[:resourceInfo])
                             end
                             @html.br
                             @html.hr
