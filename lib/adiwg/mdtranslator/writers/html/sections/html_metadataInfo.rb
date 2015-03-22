@@ -24,9 +24,8 @@ module ADIWG
                         htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
 
                         # metadata identifier
-                        @html.h3('Metadata Identifier', 'id'=>'metadata-identifier')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Metadata Identifier', {'id'=>'metadata-identifier', 'class'=>'h3'})
                             @html.blockquote do
                                 @html.em('Identifier:')
                                 @html.text!(hMetaInfo[:metadataId][:identifier])
@@ -39,9 +38,8 @@ module ADIWG
                         end
 
                         # metadata information
-                        @html.h3('Metadata Record Information', 'id'=>'metadata-record-info')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Metadata Record Information', {'id'=>'metadata-record-info', 'class'=>'h3'})
                             @html.blockquote do
 
                                 # metadata URI
@@ -95,9 +93,8 @@ module ADIWG
                         # parent metadata - citation
                         hParent = hMetaInfo[:parentMetadata]
                         if !hParent.empty?
-                            @html.h3('Parent Metadata', 'id'=>'metadata-parent-info')
                             @html.details do
-                                @html.summary('citation ...')
+                                @html.summary('Parent Metadata Citation', {'id'=>'metadata-parent-info', 'class'=>'h3'})
                                 @html.blockquote do
                                     htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
                                 end
