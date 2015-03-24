@@ -1,6 +1,13 @@
+# HTML writer
+# resource information section
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 require 'html_resourceGeneral'
+require 'html_resourceContact'
+require 'html_resourceMaint'
+require 'html_keyword'
 
 module ADIWG
     module Mdtranslator
@@ -16,76 +23,81 @@ module ADIWG
 
                         # classes used
                         htmlResGen = $HtmlNS::MdHtmlResourceGeneral.new(@html)
+                        htmlResCon = $HtmlNS::MdHtmlResourceContact.new(@html)
+                        htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
+                        htmlKeyword = $HtmlNS::MdHtmlKeyword.new(@html)
 
                         # resource information - general
-                        @html.h3('Resource', 'id'=>'resourceInfo-general')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Resource Identification', {'id'=>'resourceInfo-general', 'class'=>'h3'})
                             @html.blockquote do
                                 htmlResGen.writeHtml(resourceInfo)
                             end
                         end
 
-                        # resource information - web helpers
-                        @html.h3('Web page helpers', 'id'=>'resourceInfo-webHelp')
-                        @html.details do
-                            @html.summary('show ...')
-                            @html.blockquote do
-
-                            end
-                        end
-
                         # resource information - contacts
-                        @html.h3('Contacts', 'id'=>'resourceInfo-contacts')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Contacts', {'id'=>'resourceInfo-contacts', 'class'=>'h3'})
                             @html.blockquote do
-
-                            end
-                        end
-
-                        # resource information - constraints
-                        @html.h3('Constraints', 'id'=>'resourceInfo-constraints')
-                        @html.details do
-                            @html.summary('show ...')
-                            @html.blockquote do
-
+                                htmlResCon.writeHtml(resourceInfo)
                             end
                         end
 
                         # resource information - keywords
-                        @html.h3('Keywords', 'id'=>'resourceInfo-keywords')
                         @html.details do
-                            @html.summary('show ...')
-                            @html.blockquote do
-
+                            @html.summary('Keywords', {'id'=>'resourceInfo-keywords', 'class'=>'h3'})
+                            if !resourceInfo[:descriptiveKeywords].empty?
+                                @html.blockquote do
+                                    resourceInfo[:descriptiveKeywords].each do |hKeyList|
+                                        @html.em('List type: ')
+                                        htmlKeyword.writeHtml(hKeyList)
+                                    end
+                                end
                             end
                         end
 
-                        # resource information - spatial info
-                        @html.h3('Spatial Information', 'id'=>'resourceInfo-spatialInfo')
+                        # resource information - spatial reference
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Spatial Reference', {'id'=>'resourceInfo-spatialRef', 'class'=>'h3'})
                             @html.blockquote do
 
                             end
                         end
 
                         # resource information - extents
-                        @html.h3('Spatial, temporal, and vertical extents', 'id'=>'resourceInfo-extents')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Spatial, temporal, and vertical extents', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
                             @html.blockquote do
 
                             end
                         end
 
                         # resource information - data quality
-                        @html.h3('Data Quality', 'id'=>'resourceInfo-dataQuality')
                         @html.details do
-                            @html.summary('show ...')
+                            @html.summary('Data Quality', {'id'=>'resourceInfo-dataQuality', 'class'=>'h3'})
                             @html.blockquote do
 
+                            end
+                        end
+
+                        # resource information - constraints
+                        @html.details do
+                            @html.summary('Constraints', {'id'=>'resourceInfo-constraints', 'class'=>'h3'})
+                            @html.blockquote do
+
+                            end
+                        end
+
+                        # resource information - maintenance information
+                        @html.details do
+                            @html.summary('Maintenance information', {'id'=>'resourceInfo-maintInfo', 'class'=>'h3'})
+                            if !resourceInfo[:resourceMaint].empty?
+                                @html.blockquote do
+                                    resourceInfo[:resourceMaint].each do |hResMaint|
+                                        @html.em('Resource maintenance: ')
+                                        htmlResMaint.writeHtml(hResMaint)
+                                    end
+                                end
                             end
                         end
 

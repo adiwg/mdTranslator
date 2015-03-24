@@ -1,4 +1,8 @@
+# HTML writer
+# resource identifier
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 require 'html_citation'
 

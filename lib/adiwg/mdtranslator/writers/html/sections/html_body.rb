@@ -1,4 +1,8 @@
+# HTML writer
+# html body
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 require 'html_metadataInfo'
 require 'html_resourceInfo'

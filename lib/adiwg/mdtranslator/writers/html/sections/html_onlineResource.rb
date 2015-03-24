@@ -1,4 +1,8 @@
+# HTML writer
+# online resource
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 module ADIWG
     module Mdtranslator

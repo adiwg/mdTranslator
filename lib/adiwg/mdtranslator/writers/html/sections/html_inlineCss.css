@@ -45,13 +45,19 @@
         margin: 1em;
         line-height: 1em;
     }
-    h5,h6,.h5,.h6{ font-weight: bold; }
+
     h1,.h1{ font-size: 2.5em; }
     h2,.h2{ font-size: 2em; }
     h3,.h3{ font-size: 1.5em; }
     h4,.h4{ font-size: 1.2em; }
-    h5,.h5{ font-size: 1em; }
-    h6,.h6{ font-size: 0.9em; }
+    h5,.h5{
+        font-size: 1em;
+        font-weight: bold;
+    }
+    h6,.h6{
+        font-size: 0.9em;
+        font-weight: bold;
+    }
 
     em{
         font-family: Tahoma, Arial, Verdana, sans-serif;
@@ -62,7 +68,7 @@
     blockquote{
         margin: 0;
         padding-left: 2em;
-        border-left: 0.1em #e3e3e3 solid;
+        border-left: 0.15em #e3e3e3 solid;
     }
     hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
     pre, code, kbd, samp { color: #000; font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 0.98em; }

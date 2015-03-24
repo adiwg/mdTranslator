@@ -1,4 +1,8 @@
+# HTML writer
+# citation
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 require 'html_dateTime'
 require 'html_resourceId'

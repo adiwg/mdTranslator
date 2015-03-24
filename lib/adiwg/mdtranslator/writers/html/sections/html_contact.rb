@@ -1,4 +1,8 @@
+# HTML writer
+# contact
 
+# History:
+# 	Stan Smith 2015-03-23 original script
 
 require 'html_onlineResource'
 
@@ -78,28 +82,32 @@ module ADIWG
 
                             @html.br
 
-                        end
+                            # contact - email
+                            a = hContact[:address][:eMailList]
+                            a.each do |eMail|
+                                @html.text!(eMail)
+                                @html.br
+                            end
 
-                        # contact - email
-                        a = hContact[:address][:eMailList]
-                        a.each do |eMail|
-                            @html.text!(eMail)
-                            @html.br
                         end
 
                         # contact - phones
                         aPhones = hContact[:phones]
-                        aPhones.each do |hPhone|
-                            @html.text!(hPhone[:phoneServiceType] + ': ')
-                            @html.text!(hPhone[:phoneNumber] + ' ')
-                            @html.text!(hPhone[:phoneName])
-                            @html.br
+                        if !aPhones.empty?
+                            aPhones.each do |hPhone|
+                                @html.text!(hPhone[:phoneServiceType] + ': ')
+                                @html.text!(hPhone[:phoneNumber] + ' ')
+                                @html.text!(hPhone[:phoneName])
+                                @html.br
+                            end
                         end
 
                         # contact - online resource
-                        a = hContact[:onlineRes]
-                        a.each do |olRes|
-                            htmlOlRes.writeHtml(olRes)
+                        aOline = hContact[:onlineRes]
+                        if !aOline.empty?
+                            aOline.each do |olRes|
+                                htmlOlRes.writeHtml(olRes)
+                            end
                         end
 
                         # contact - special instructions
