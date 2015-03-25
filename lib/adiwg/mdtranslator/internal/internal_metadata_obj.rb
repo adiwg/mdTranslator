@@ -228,17 +228,17 @@ class InternalMetadata
         }
     end
 
-    def newLegalCon
+    def newLegalConstraint
         intObj = {
-            accessCons: [],
-            useCons: [],
+            accessCodes: [],
+            useCodes: [],
             otherCons: []
         }
     end
 
-    def newSecurityCon
+    def newSecurityConstraint
         intObj = {
-            classification: nil,
+            classCode: nil,
             userNote: nil,
             classSystem: nil,
             handlingDesc: nil
@@ -384,23 +384,6 @@ class InternalMetadata
             maxValue: nil,
             crsURI: nil,
             crsTitle: nil
-        }
-    end
-
-    def newLegalConstraint
-        intObj = {
-            accessCodes: [],
-            useCodes: [],
-            otherCons: []
-        }
-    end
-
-    def newSecurityConstraint
-        intObj = {
-            classCode: nil,
-            userNote: nil,
-            classSystem: nil,
-            handlingDesc: nil
         }
     end
 

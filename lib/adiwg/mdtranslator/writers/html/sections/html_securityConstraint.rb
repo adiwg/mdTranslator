@@ -1,5 +1,5 @@
 # HTML writer
-# legal constraint
+# security constraint
 
 # History:
 # 	Stan Smith 2015-03-24 original script
@@ -9,45 +9,40 @@ module ADIWG
         module Writers
             module Html
 
-                class MdHtmlLegalConstraint
+                class MdHtmlSecurityConstraint
                     def initialize(html)
                         @html = html
                     end
 
-                    def writeHtml(hLegalCon)
+                    def writeHtml(hSecCon)
 
-                        # accessCodes: [],
-                        #     useCodes: [],
-                        #     otherCons: []
+                        # security constraint - classification - required
+                        @html.em('Classification: ')
+                        @html.text!(hSecCon[:classCode])
+                        @html.br
 
-                        # legal constraint - access constraints
-                        aAccess = hLegalCon[:accessCodes]
-                        if !aAccess.empty?
-                            aAccess.each do |aCon|
-                                @html.em('Access constraint: ')
-                                @html.text!(aCon)
-                                @html.br
-                            end
+                        # security constraint - class system
+                        s = hSecCon[:classSystem]
+                        if !s.nil?
+                            @html.em('Class system: ')
+                            @html.text!(s)
+                            @html.br
                         end
 
-                        # legal constraint - use constraints
-                        aUse = hLegalCon[:useCodes]
-                        if !aUse.empty?
-                            aUse.each do |useCon|
-                                @html.em('Use constraint: ')
-                                @html.text!(useCon)
-                                @html.br
-                            end
+                        # security constraint - handling instructions
+                        s = hSecCon[:handlingDesc]
+                        if !s.nil?
+                            @html.em('Handling instructions: ')
+                            @html.text!(s)
+                            @html.br
                         end
 
-                        # legal constraint - other constraints
-                        aOther = hLegalCon[:otherCons]
-                        if !aOther.empty?
-                            aOther.each do |otherCon|
-                                @html.em('Other constraint: ')
-                                @html.text!(otherCon)
-                                @html.br
-                            end
+                        # security constraint - user note
+                        s = hSecCon[:userNote]
+                        if !s.nil?
+                            @html.em('User note: ')
+                            @html.text!(s)
+                            @html.br
                         end
 
                     end # writeHtml
