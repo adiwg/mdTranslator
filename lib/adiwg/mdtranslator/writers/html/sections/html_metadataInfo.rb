@@ -43,7 +43,7 @@ module ADIWG
 
                         # metadata information
                         @html.details do
-                            @html.summary('Metadata Record Information', {'id'=>'metadata-record-info', 'class'=>'h3'})
+                            @html.summary('Metadata Record Information', {'id'=>'metadata-recordInfo', 'class'=>'h3'})
                             @html.blockquote do
 
                                 # metadata URI
@@ -101,7 +101,7 @@ module ADIWG
                         hParent = hMetaInfo[:parentMetadata]
                         if !hParent.empty?
                             @html.details do
-                                @html.summary('Parent Metadata Citation', {'id'=>'metadata-parent-info', 'class'=>'h3'})
+                                @html.summary('Parent Metadata Citation', {'id'=>'metadata-parentInfo', 'class'=>'h3'})
                                 @html.blockquote do
                                     htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
                                 end

@@ -10,6 +10,7 @@ require 'html_resourceMaint'
 require 'html_keyword'
 require 'html_legalConstraint'
 require 'html_securityConstraint'
+require 'html_taxonomy'
 
 module ADIWG
     module Mdtranslator
@@ -30,6 +31,7 @@ module ADIWG
                         htmlKeyword = $HtmlNS::MdHtmlKeyword.new(@html)
                         htmlLegalCon = $HtmlNS::MdHtmlLegalConstraint.new(@html)
                         htmlSecCon = $HtmlNS::MdHtmlSecurityConstraint.new(@html)
+                        htmlTaxon = $HtmlNS::MdHtmlTaxonomy.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -56,6 +58,17 @@ module ADIWG
                                         @html.em('List type: ')
                                         htmlKeyword.writeHtml(hKeyList)
                                     end
+                                end
+                            end
+                        end
+
+                        # resource information - taxonomy
+                        @html.details do
+                            @html.summary('Taxonomy', {'id'=>'resourceInfo-taxonomy', 'class'=>'h3'})
+                            hTaxon = resourceInfo[:taxonomy]
+                            if !hTaxon.empty?
+                                @html.blockquote do
+                                    htmlTaxon.writeHtml(hTaxon)
                                 end
                             end
                         end
@@ -141,7 +154,7 @@ module ADIWG
 
                         # resource information - maintenance information
                         @html.details do
-                            @html.summary('Maintenance information', {'id'=>'resourceInfo-maintInfo', 'class'=>'h3'})
+                            @html.summary('Maintenance Information', {'id'=>'resourceInfo-maintInfo', 'class'=>'h3'})
                             if !resourceInfo[:resourceMaint].empty?
                                 @html.blockquote do
                                     resourceInfo[:resourceMaint].each do |hResMaint|

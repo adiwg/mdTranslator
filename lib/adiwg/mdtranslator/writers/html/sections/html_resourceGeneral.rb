@@ -39,6 +39,14 @@ module ADIWG
                         @html.text!(resourceInfo[:resourceType])
                         @html.br
 
+                        # general - topic categories
+                        aTopics = resourceInfo[:topicCategories]
+                        if !aTopics.empty?
+                            @html.em('Topic categories: ')
+                            @html.text!(aTopics.to_s)
+                            @html.br
+                        end
+
                         # general - time period
                         if !resourceInfo[:timePeriod].empty?
                             @html.em('Time period: ')
@@ -122,6 +130,21 @@ module ADIWG
                             end
                         end
 
+                        # general - environment description
+                        s = resourceInfo[:environmentDescription]
+                        if !s.nil?
+                            @html.em('Environment description: ')
+                            @html.text!(s)
+                            @html.br
+                        end
+
+                        # general - supplemental information
+                        s = resourceInfo[:supplementalInfo]
+                        if !s.nil?
+                            @html.em('Supplemental information: ')
+                            @html.text!(s)
+                            @html.br
+                        end
 
                     end # def writeHtml
 

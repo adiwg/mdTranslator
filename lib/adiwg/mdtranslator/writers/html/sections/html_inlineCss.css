@@ -62,7 +62,8 @@
     em{
         font-family: Tahoma, Arial, Verdana, sans-serif;
         color: #666666;
-        font-size: smaller;
+        font-size: small;
+        padding-right: 1em;
     }
 
     blockquote{

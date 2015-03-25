@@ -47,12 +47,43 @@ module ADIWG
                             # section index
                             @html.blockquote do
                                 @html.h3('Page Index')
-                                @html.a('Metadata Information Section','href'=>'#metadata-information')
+                                @html.a('Metadata Information Section','href'=>'#metadataInfo')
+                                @html.blockquote do
+                                    @html.a('Metadata Identifier', 'href'=>'#metadata-identifier')
+                                    @html.br
+                                    @html.a('Metadata Record Information', 'href'=>'#metadata-recordInfo')
+                                    @html.br
+                                    @html.a('Parent Metadata Citation', 'href'=>'#metadata-parentInfo')
+                                end
                                 @html.br
-                                @html.a('Resource Information Section','href'=>'#resource-information')
+                                @html.a('Resource Information Section','href'=>'#resourceInfo')
+                                @html.blockquote do
+                                    @html.a('Resource Identification', 'href'=>'#resourceInfo-general')
+                                    @html.br
+                                    @html.a('Contacts', 'href'=>'#resourceInfo-contacts')
+                                    @html.br
+                                    @html.a('Keywords', 'href'=>'#resourceInfo-keywords')
+                                    @html.br
+                                    @html.a('Taxonomy', 'href'=>'#resourceInfo-taxonomy')
+                                    @html.br
+                                    @html.a('Spatial Reference', 'href'=>'#resourceInfo-spatialRef')
+                                    @html.br
+                                    @html.a('Spatial, Temporal, and Vertical Extents', 'href'=>'#resourceInfo-extents')
+                                    @html.br
+                                    @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
+                                    @html.br
+                                    @html.a('Constraints', 'href'=>'#resourceInfo-constraints')
+                                    @html.br
+                                    @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
+                                end
                                 @html.br
-                                @html.hr
+                                @html.a('Data Distribution Section','href'=>'#dataDistribution')
+                                @html.br
+                                @html.a('Associated Resources Section','href'=>'#associatedResource')
+                                @html.br
+                                @html.a('Additional Documentation Section','href'=>'#additionalDocuments')
                             end
+                            @html.hr
 
                             # metadata source
                             @html.h2('Metadata Source', 'id'=>'metadata-source')
@@ -68,7 +99,7 @@ module ADIWG
                             @html.hr
 
                             # metadata information section
-                            @html.h2('Metadata Information', 'id'=>'metadata-information')
+                            @html.h2('Metadata Information', 'id'=>'metadataInfo')
                             @html.blockquote do
                                 htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
                             end
@@ -76,9 +107,33 @@ module ADIWG
                             @html.hr
 
                             # resource information section
-                            @html.h2('Resource Information', 'id'=>'resource-information')
+                            @html.h2('Resource Information', 'id'=>'resourceInfo')
                             @html.blockquote do
                                 htmlResInfo.writeHtml(hMetadata[:resourceInfo])
+                            end
+                            @html.br
+                            @html.hr
+
+                            # data distribution section
+                            @html.h2('Data Distribution', 'id'=>'dataDistribution')
+                            @html.blockquote do
+
+                            end
+                            @html.br
+                            @html.hr
+
+                            # associated resource section
+                            @html.h2('Associated Resources', 'id'=>'associatedResource')
+                            @html.blockquote do
+
+                            end
+                            @html.br
+                            @html.hr
+
+                            # additional documentation section
+                            @html.h2('Additional Documentation', 'id'=>'additionalDocuments')
+                            @html.blockquote do
+
                             end
                             @html.br
                             @html.hr
