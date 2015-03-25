@@ -2,7 +2,7 @@
 # legal constraint
 
 # History:
-# 	Stan Smith 2015-03-24 original script
+# 	Stan Smith 2015-03-25 original script
 
 module ADIWG
     module Mdtranslator
