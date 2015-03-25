@@ -2,7 +2,7 @@
 # resource identifier
 
 # History:
-# 	Stan Smith 2015-03-23 original script
+# 	Stan Smith 2015-03-24 original script
 
 require 'html_citation'
 

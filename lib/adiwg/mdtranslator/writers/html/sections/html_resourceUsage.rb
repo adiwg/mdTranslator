@@ -2,7 +2,7 @@
 # resource specific usage
 
 # History:
-# 	Stan Smith 2015-03-24 original script
+# 	Stan Smith 2015-03-25 original script
 
 require 'html_responsibleParty'
 
