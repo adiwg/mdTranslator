@@ -55,8 +55,13 @@ module ADIWG
 
                         # citation - responsible parties
                         aResPart = hCitation[:citResponsibleParty]
-                        aResPart.each do |hParty|
-                            htmlResParty.writeHtml(hParty)
+                        if !aResPart.empty?
+                            @html.em('Responsible party: ')
+                            @html.blockquote do
+                                aResPart.each do |hParty|
+                                    htmlResParty.writeHtml(hParty)
+                                end
+                            end
                         end
 
                         # citation - presentation forms

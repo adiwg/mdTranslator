@@ -8,6 +8,7 @@ require 'html_citation'
 require 'html_timePeriod'
 require 'html_browseGraphic'
 require 'html_resourceFormat'
+require 'html_resourceUsage'
 
 module ADIWG
     module Mdtranslator
@@ -26,6 +27,7 @@ module ADIWG
                         htmlTimeP = $HtmlNS::MdHtmlTimePeriod.new(@html)
                         htmlBGraph = $HtmlNS::MdHtmlBrowseGraphic.new(@html)
                         htmlResForm = $HtmlNS::MdHtmlResourceFormat.new(@html)
+                        htmlResUse = $HtmlNS::MdHtmlResourceUsage.new(@html)
 
                         # general - title - taken from citation
                         @html.em('Title: ')
@@ -103,7 +105,23 @@ module ADIWG
                             @html.br
                         end
 
-                        #
+                        # general - resource uses
+                        aUse = resourceInfo[:resourceUses]
+                        if !aUse.empty?
+                            @html.details do
+                                @html.summary('Resource specific usage', {'id'=>'resourceGen-usage', 'class'=>'h4'})
+                                @html.blockquote do
+                                    aUse.each do |hUsage|
+                                        @html.em('Resource usage: ')
+                                        @html.blockquote do
+                                            htmlResUse.writeHtml(hUsage)
+                                        end
+                                    end
+                                end
+                                @html.br
+                            end
+                        end
+
 
                     end # def writeHtml
 

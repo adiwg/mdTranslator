@@ -18,10 +18,13 @@ module ADIWG
 
                         #online resource - URI
                         @html.em('Online resource: ')
-                        s = hOlRes[:olResURI]
-                        @html.a(s, 'href'=>s)
-
                         @html.blockquote do
+
+                            # online resource - URI
+                            s = hOlRes[:olResURI]
+                            @html.em('URI: ')
+                            @html.a(s, 'href'=>s)
+                            @html.br
 
                             # online resource - name
                             s = hOlRes[:olResName]
@@ -52,8 +55,6 @@ module ADIWG
                                 @html.em('Protocol: ')
                                 @html.text!(s2)
                             end
-
-                            @html.br if s1 || s2
 
                         end
 

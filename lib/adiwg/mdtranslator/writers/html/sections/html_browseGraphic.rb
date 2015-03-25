@@ -16,11 +16,15 @@ module ADIWG
 
                     def writeHtml(hBrowseG)
 
-                        if !hBrowseG[:bGName].nil?
-                            @html.text!(hBrowseG[:bGName])
-                        end
-                        @html.br
                         @html.blockquote do
+
+                            # browse graphic - name
+                            if !hBrowseG[:bGName].nil?
+                                @html.em('Name: ')
+                                @html.text!(hBrowseG[:bGName])
+                                @html.br
+                            end
+
                             # browse graphic - description
                             if !hBrowseG[:bGDescription].nil?
                                 @html.em('Description: ')

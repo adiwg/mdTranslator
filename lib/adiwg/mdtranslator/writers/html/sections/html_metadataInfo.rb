@@ -76,6 +76,17 @@ module ADIWG
                                     @html.br
                                 end
 
+                                # metadata custodians - contacts
+                                aCustodians = hMetaInfo[:metadataCustodians]
+                                if !aCustodians.empty?
+                                    @html.em('Metadata contact: ')
+                                    @html.blockquote do
+                                        aCustodians.each do |hResParty|
+                                            htmlResParty.writeHtml(hResParty)
+                                        end
+                                    end
+                                end
+
                                 # metadata maintenance
                                 hMaint = hMetaInfo[:maintInfo]
                                 if !hMaint.empty?
@@ -83,15 +94,7 @@ module ADIWG
                                     htmlResMaint.writeHtml(hMaint)
                                 end
 
-                                # metadata custodians
-                                aCustodians = hMetaInfo[:metadataCustodians]
-                                if !aCustodians.empty?
-                                    aCustodians.each do |hResParty|
-                                        htmlResParty.writeHtml(hResParty)
-                                    end
-                                end
                             end
-
                         end
 
                         # parent metadata - citation

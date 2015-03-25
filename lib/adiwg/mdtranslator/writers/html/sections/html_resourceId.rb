@@ -31,14 +31,14 @@ module ADIWG
                             @html.text!(s)
                         end
 
+                        @html.br
+
                         # identifier citation
                         if !hIdentifier[:identifierCitation].empty?
                             @html.blockquote do
                                 htmlCitation.writeHtml(hIdentifier[:identifierCitation])
                             end
                         end
-
-                        @html.br
 
                     end # writeHtml
 

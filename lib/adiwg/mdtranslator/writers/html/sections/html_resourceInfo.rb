@@ -8,6 +8,8 @@ require 'html_resourceGeneral'
 require 'html_resourceContact'
 require 'html_resourceMaint'
 require 'html_keyword'
+require 'html_legalConstraint'
+require 'html_securityConstraint'
 
 module ADIWG
     module Mdtranslator
@@ -26,6 +28,8 @@ module ADIWG
                         htmlResCon = $HtmlNS::MdHtmlResourceContact.new(@html)
                         htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
                         htmlKeyword = $HtmlNS::MdHtmlKeyword.new(@html)
+                        htmlLegalCon = $HtmlNS::MdHtmlLegalConstraint.new(@html)
+                        htmlSecCon = $HtmlNS::MdHtmlSecurityConstraint.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -84,6 +88,53 @@ module ADIWG
                         @html.details do
                             @html.summary('Constraints', {'id'=>'resourceInfo-constraints', 'class'=>'h3'})
                             @html.blockquote do
+
+                                # constraints - use constraints
+                                aUseCons = resourceInfo[:useConstraints]
+                                if !aUseCons.empty?
+                                    @html.details do
+                                        @html.summary('Usage constraints', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
+                                        @html.blockquote do
+                                            aUseCons.each do |uCon|
+                                                @html.em('Constraint: ')
+                                                @html.text!(uCon)
+                                                @html.br
+                                            end
+                                        end
+                                    end
+                                end
+
+                                # constraint - legal constraint
+                                aLegalCons = resourceInfo[:legalConstraints]
+                                if !aLegalCons.empty?
+                                    @html.details do
+                                        @html.summary('Legal constraints', {'id'=>'resourceGen-legalConstraint', 'class'=>'h4'})
+                                        @html.blockquote do
+                                            aLegalCons.each do |hLegalCon|
+                                                @html.em('Constraint: ')
+                                                @html.blockquote do
+                                                    htmlLegalCon.writeHtml(hLegalCon)
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+
+                                # constraint - security
+                                aSecCons = resourceInfo[:securityConstraints]
+                                if !aSecCons.empty?
+                                    @html.details do
+                                        @html.summary('Security constraints', {'id'=>'resourceGen-securityConstraint', 'class'=>'h4'})
+                                        @html.blockquote do
+                                            aSecCons.each do |hSecCon|
+                                                @html.em('Constraint: ')
+                                                @html.blockquote do
+                                                    htmlSecCon.writeHtml(hSecCon)
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
 
                             end
                         end
