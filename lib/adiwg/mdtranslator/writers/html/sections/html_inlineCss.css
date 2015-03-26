@@ -50,13 +50,13 @@
     h2,.h2{ font-size: 2em; }
     h3,.h3{ font-size: 1.5em; }
     h4,.h4{ font-size: 1.2em; }
-    h5,.h5{
-        font-size: 1em;
-        font-weight: bold;
+    h5,.h5{ font-size: 1em;
+        line-height: .5em;
     }
     h6,.h6{
         font-size: 0.9em;
         font-weight: bold;
+        line-height: .4em;
     }
 
     em{

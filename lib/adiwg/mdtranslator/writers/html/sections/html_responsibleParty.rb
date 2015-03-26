@@ -21,14 +21,11 @@ module ADIWG
                         # classes used
                         htmlContact = $HtmlNS::MdHtmlContact.new(@html)
 
-                        # responsible party - role
-                        @html.em('Role: ')
-                        @html.text!(hResParty[:roleName])
-                        @html.br
-
-                        # responsible party - contact info
-                        @html.blockquote do
-                            htmlContact.writeHtml(hResParty[:contactId])
+                        @html.details do
+                            @html.summary(hResParty[:roleName], {'class'=>'h5'})
+                            @html.blockquote do
+                                htmlContact.writeHtml(hResParty[:contactId])
+                            end
                         end
 
                     end # writeHtml

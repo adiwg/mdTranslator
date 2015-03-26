@@ -6,6 +6,7 @@
 
 require 'html_metadataInfo'
 require 'html_resourceInfo'
+require 'html_dataDictionary'
 
 module ADIWG
     module Mdtranslator
@@ -23,6 +24,7 @@ module ADIWG
                             # classes used
                             htmlMetaInfo = $HtmlNS::MdHtmlMetadataInfo.new(@html)
                             htmlResInfo = $HtmlNS::MdHtmlResourceInfo.new(@html)
+                            htmlDataD = $HtmlNS::MdHtmlDataDictionary.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
@@ -119,7 +121,18 @@ module ADIWG
                             # data dictionary section
                             @html.h2('Data Dictionary', 'id'=>'dataDictionary')
                             @html.blockquote do
+                                aDataDict.each do |hDictionary|
 
+                                    # get dictionary title from the citation
+                                    sTitle = hDictionary[:dictionaryInfo][:dictCitation][:citTitle]
+                                    @html.details do
+                                        @html.summary(sTitle, {'class'=>'h3'})
+                                        @html.blockquote do
+                                            htmlDataD.writeHtml(hDictionary)
+                                        end
+                                    end
+
+                                end
                             end
                             @html.br
                             @html.hr

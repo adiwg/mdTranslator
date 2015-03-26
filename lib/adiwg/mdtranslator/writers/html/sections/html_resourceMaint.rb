@@ -21,10 +21,12 @@ module ADIWG
                         # classes used
                         htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
 
-                        # resource maintenance - maintenance frequency
-                        s = hResMaint[:maintFreq]
-                        @html.text!(s)
                         @html.blockquote do
+
+                            # resource maintenance - maintenance frequency
+                            @html.em('Frequency: ')
+                            @html.text!(hResMaint[:maintFreq])
+                            @html.br
 
                             # resource maintenance - notes
                             aNotes = hResMaint[:maintNotes]

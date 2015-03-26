@@ -12,6 +12,7 @@ require 'html_legalConstraint'
 require 'html_securityConstraint'
 require 'html_taxonomy'
 require 'html_spatialReferenceSystem'
+require 'html_resolution'
 
 module ADIWG
     module Mdtranslator
@@ -34,6 +35,7 @@ module ADIWG
                         htmlSecCon = $HtmlNS::MdHtmlSecurityConstraint.new(@html)
                         htmlTaxon = $HtmlNS::MdHtmlTaxonomy.new(@html)
                         htmlSpatialRef = $HtmlNS::MdHtmlSpatialReferenceSystem.new(@html)
+                        htmlResolution = $HtmlNS::MdHtmlResolution.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -97,7 +99,8 @@ module ADIWG
                                     @html.details do
                                         @html.summary('Spatial Representation Type', {'id'=>'spatialReference-representationType', 'class'=>'h4'})
                                         @html.blockquote do
-
+                                            @html.em('Types: ')
+                                            @html.text!(aSpatialRep.to_s)
                                         end
                                     end
                                 end
@@ -108,7 +111,9 @@ module ADIWG
                                     @html.details do
                                         @html.summary('Spatial Resolution', {'id'=>'spatialReference-resolution', 'class'=>'h4'})
                                         @html.blockquote do
-
+                                            aSpatialRes.each do |hResolution|
+                                                htmlResolution.writeHtml(hResolution)
+                                            end
                                         end
                                     end
                                 end
