@@ -11,6 +11,7 @@ require 'html_keyword'
 require 'html_legalConstraint'
 require 'html_securityConstraint'
 require 'html_taxonomy'
+require 'html_spatialReferenceSystem'
 
 module ADIWG
     module Mdtranslator
@@ -32,6 +33,7 @@ module ADIWG
                         htmlLegalCon = $HtmlNS::MdHtmlLegalConstraint.new(@html)
                         htmlSecCon = $HtmlNS::MdHtmlSecurityConstraint.new(@html)
                         htmlTaxon = $HtmlNS::MdHtmlTaxonomy.new(@html)
+                        htmlSpatialRef = $HtmlNS::MdHtmlSpatialReferenceSystem.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -77,6 +79,39 @@ module ADIWG
                         @html.details do
                             @html.summary('Spatial Reference', {'id'=>'resourceInfo-spatialRef', 'class'=>'h3'})
                             @html.blockquote do
+
+                                # spatial reference - spatial reference system
+                                hSpatialRef = resourceInfo[:spatialReferenceSystem]
+                                if !hSpatialRef.empty?
+                                    @html.details do
+                                        @html.summary('Spatial Reference System', {'id'=>'spatialReference-system', 'class'=>'h4'})
+                                        @html.blockquote do
+                                            htmlSpatialRef.writeHtml(hSpatialRef)
+                                        end
+                                    end
+                                end
+
+                                # spatial reference - spatial representation types
+                                aSpatialRep = resourceInfo[:spatialRepresentationTypes]
+                                if !aSpatialRep.empty?
+                                    @html.details do
+                                        @html.summary('Spatial Representation Type', {'id'=>'spatialReference-representationType', 'class'=>'h4'})
+                                        @html.blockquote do
+
+                                        end
+                                    end
+                                end
+
+                                # spatial reference - spatial resolution
+                                aSpatialRes = resourceInfo[:spatialResolutions]
+                                if !aSpatialRes.empty?
+                                    @html.details do
+                                        @html.summary('Spatial Resolution', {'id'=>'spatialReference-resolution', 'class'=>'h4'})
+                                        @html.blockquote do
+
+                                        end
+                                    end
+                                end
 
                             end
                         end

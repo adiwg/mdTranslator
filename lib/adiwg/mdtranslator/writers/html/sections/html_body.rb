@@ -77,6 +77,8 @@ module ADIWG
                                     @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
                                 end
                                 @html.br
+                                @html.a('Data Dictionary Section','href'=>'#dataDictionary')
+                                @html.br
                                 @html.a('Data Distribution Section','href'=>'#dataDistribution')
                                 @html.br
                                 @html.a('Associated Resources Section','href'=>'#associatedResource')
@@ -110,6 +112,14 @@ module ADIWG
                             @html.h2('Resource Information', 'id'=>'resourceInfo')
                             @html.blockquote do
                                 htmlResInfo.writeHtml(hMetadata[:resourceInfo])
+                            end
+                            @html.br
+                            @html.hr
+
+                            # data dictionary section
+                            @html.h2('Data Dictionary', 'id'=>'dataDictionary')
+                            @html.blockquote do
+
                             end
                             @html.br
                             @html.hr

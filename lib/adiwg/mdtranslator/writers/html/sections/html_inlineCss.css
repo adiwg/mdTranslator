@@ -114,7 +114,7 @@
         a[href]:after { content: " (" attr(href) ")"; }
         abbr[title]:after { content: " (" attr(title) ")"; }
         .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
-        pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+        pre, blockquote { padding-right: 1em; page-break-inside: avoid; }
         tr, img { page-break-inside: avoid; }
         img { max-width: 100% !important; }
         @page :left { margin: 15mm 20mm 15mm 10mm; }
