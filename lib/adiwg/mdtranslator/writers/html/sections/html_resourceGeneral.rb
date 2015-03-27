@@ -84,8 +84,9 @@ module ADIWG
                         s = resourceInfo[:purpose]
                         if !s.nil?
                             @html.em('Purpose: ')
-                            @html.text!(s)
-                            @html.br
+                            @html.blockquote do
+                                @html.text!(s)
+                            end
                         end
 
                         # general - credits
@@ -142,8 +143,9 @@ module ADIWG
                         s = resourceInfo[:supplementalInfo]
                         if !s.nil?
                             @html.em('Supplemental information: ')
-                            @html.text!(s)
-                            @html.br
+                            @html.blockquote do
+                                @html.text!(s)
+                            end
                         end
 
                     end # def writeHtml

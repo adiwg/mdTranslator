@@ -74,7 +74,9 @@ module ADIWG
                                     @html.blockquote do
                                         @html.details do
                                             @html.summary(hDomain[:domainCode], {'class'=>'h5'})
-                                            htmlDomain.writeHtml(hDomain)
+                                            @html.blockquote do
+                                                htmlDomain.writeHtml(hDomain)
+                                            end
                                         end
                                     end
                                 end
@@ -89,7 +91,9 @@ module ADIWG
                                     @html.blockquote do
                                         @html.details do
                                             @html.summary(hEntity[:entityCode], {'class'=>'h5'})
-                                            htmlEntity.writeHtml(hEntity)
+                                            @html.blockquote do
+                                                htmlEntity.writeHtml(hEntity)
+                                            end
                                         end
                                     end
                                 end

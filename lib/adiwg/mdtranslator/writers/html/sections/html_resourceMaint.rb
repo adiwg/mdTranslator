@@ -32,8 +32,9 @@ module ADIWG
                             aNotes = hResMaint[:maintNotes]
                             aNotes.each do |note|
                                 @html.em('Note: ')
-                                @html.text!(note)
-                                @html.br
+                                @html.blockquote do
+                                    @html.text!(note)
+                                end
                             end
 
                             # resource maintenance - contacts

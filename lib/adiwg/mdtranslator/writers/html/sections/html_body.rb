@@ -7,6 +7,7 @@
 require 'html_metadataInfo'
 require 'html_resourceInfo'
 require 'html_dataDictionary'
+require 'html_citation'
 
 module ADIWG
     module Mdtranslator
@@ -25,10 +26,14 @@ module ADIWG
                             htmlMetaInfo = $HtmlNS::MdHtmlMetadataInfo.new(@html)
                             htmlResInfo = $HtmlNS::MdHtmlResourceInfo.new(@html)
                             htmlDataD = $HtmlNS::MdHtmlDataDictionary.new(@html)
+                            htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
                             aDataDict = intObj[:dataDictionary]
+                            aDistribut = intObj[:metadata][:distributorInfo]
+                            aAssRes = intObj[:metadata][:associatedResources]
+                            aAddDocs = intObj[:metadata][:additionalDocuments]
 
                             # set page title with logo
                             # read logo from file
@@ -98,7 +103,6 @@ module ADIWG
 
                                 @html.em('Schema version:')
                                 @html.text!(intObj[:schema][:version])
-                                @html.br
                             end
                             @html.hr
 
@@ -107,7 +111,6 @@ module ADIWG
                             @html.blockquote do
                                 htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
                             end
-                            @html.br
                             @html.hr
 
                             # resource information section
@@ -115,13 +118,12 @@ module ADIWG
                             @html.blockquote do
                                 htmlResInfo.writeHtml(hMetadata[:resourceInfo])
                             end
-                            @html.br
                             @html.hr
 
                             # data dictionary section
                             @html.h2('Data Dictionary', 'id'=>'dataDictionary')
-                            @html.blockquote do
-                                aDataDict.each do |hDictionary|
+                            aDataDict.each do |hDictionary|
+                                @html.blockquote do
 
                                     # get dictionary title from the citation
                                     sTitle = hDictionary[:dictionaryInfo][:dictCitation][:citTitle]
@@ -134,7 +136,6 @@ module ADIWG
 
                                 end
                             end
-                            @html.br
                             @html.hr
 
                             # data distribution section
@@ -142,7 +143,6 @@ module ADIWG
                             @html.blockquote do
 
                             end
-                            @html.br
                             @html.hr
 
                             # associated resource section
@@ -150,21 +150,46 @@ module ADIWG
                             @html.blockquote do
 
                             end
-                            @html.br
                             @html.hr
 
                             # additional documentation section
                             @html.h2('Additional Documentation', 'id'=>'additionalDocuments')
-                            @html.blockquote do
+                            aAddDocs.each do |hAddDoc|
+                                @html.blockquote do
 
+                                    # get document title from the citation
+                                    sTitle = hAddDoc[:citation][:citTitle]
+                                    @html.details do
+                                        @html.summary(sTitle, {'class'=>'h3'})
+                                        @html.blockquote do
+
+                                            # additional documentation - resource type
+                                            s = hAddDoc[:resourceType]
+                                            if !s.nil?
+                                                @html.em('Resource type: ')
+                                                @html.text!(s)
+                                                @html.br
+                                            end
+
+                                            # additional documentation - citation
+                                            hCitation = hAddDoc[:citation]
+                                            if !hCitation.empty?
+                                                @html.em('Citation: ')
+                                                @html.blockquote do
+                                                    htmlCitation.writeHtml(hCitation)
+                                                end
+                                            end
+
+                                        end
+                                    end
+
+                                end
                             end
-                            @html.br
                             @html.hr
 
                         end # body
                     end # def writeHtml
-
-                end
+                end # class
 
             end
         end

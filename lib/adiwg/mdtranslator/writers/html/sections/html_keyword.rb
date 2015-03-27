@@ -32,8 +32,9 @@ module ADIWG
 
                             # descriptive keywords - keywords - required
                             @html.em('Keywords: ')
-                            @html.text!(hKeyList[:keyword].to_s)
-                            @html.br
+                            @html.blockquote do
+                                @html.text!(hKeyList[:keyword].to_s)
+                            end
 
                             # descriptive keywords - citation
                             hCitation = hKeyList[:keyTheCitation]

@@ -23,8 +23,9 @@ module ADIWG
                             # online resource - URI
                             s = hOlRes[:olResURI]
                             @html.em('URI: ')
-                            @html.a(s, 'href'=>s)
-                            @html.br
+                            @html.blockquote do
+                                @html.a(s, 'href'=>s)
+                            end
 
                             # online resource - name
                             s = hOlRes[:olResName]

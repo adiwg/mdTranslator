@@ -40,8 +40,9 @@ module ADIWG
                         s = hTaxon[:taxGeneralScope]
                         if !s.nil?
                             @html.em('General scope: ')
-                            @html.text!(s)
-                            @html.br
+                            @html.blockquote do
+                                @html.text!(s)
+                            end
                         end
 
                         # taxonomy - taxonomic observers - responsible party
@@ -59,8 +60,9 @@ module ADIWG
                         s = hTaxon[:taxIdProcedures]
                         if !s.nil?
                             @html.em('Taxonomic identification procedures: ')
-                            @html.text!(s)
-                            @html.br
+                            @html.blockquote do
+                                @html.text!(s)
+                            end
                         end
 
                         # taxonomy - taxonomic voucher
