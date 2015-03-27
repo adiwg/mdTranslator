@@ -13,6 +13,7 @@ require 'html_securityConstraint'
 require 'html_taxonomy'
 require 'html_spatialReferenceSystem'
 require 'html_resolution'
+require 'html_dataLineage'
 
 module ADIWG
     module Mdtranslator
@@ -36,6 +37,7 @@ module ADIWG
                         htmlTaxon = $HtmlNS::MdHtmlTaxonomy.new(@html)
                         htmlSpatialRef = $HtmlNS::MdHtmlSpatialReferenceSystem.new(@html)
                         htmlResolution = $HtmlNS::MdHtmlResolution.new(@html)
+                        htmlLineage = $HtmlNS::MdHtmlDataLineage.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -125,7 +127,13 @@ module ADIWG
                         @html.details do
                             @html.summary('Spatial, temporal, and vertical extents', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
                             @html.blockquote do
+                                aExtents = resourceInfo[:extents]
+                                aExtents.each do |hExtent|
+                                    @html.details do
+                                        @html.summary('Extent', {'class'=>'h4'})
 
+                                    end
+                                end
                             end
                         end
 
@@ -133,7 +141,29 @@ module ADIWG
                         @html.details do
                             @html.summary('Data Quality', {'id'=>'resourceInfo-dataQuality', 'class'=>'h3'})
                             @html.blockquote do
+                                aDataQual = resourceInfo[:dataQualityInfo]
+                                aDataQual.each do |hDataQual|
+                                    @html.details do
+                                        @html.summary('Quality statement', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
+                                        @html.blockquote do
 
+                                            # data quality - scope
+                                            s = hDataQual[:dataScope]
+                                            if !s.nil?
+                                                @html.em('Scope: ')
+                                                @html.text!(s)
+                                                @html.br
+                                            end
+
+                                            # data quality - lineage
+                                            hLineage = hDataQual[:dataLineage]
+                                            if !hLineage.empty?
+                                                htmlLineage.writeHtml(hLineage)
+                                            end
+
+                                        end
+                                    end
+                                end
                             end
                         end
 
