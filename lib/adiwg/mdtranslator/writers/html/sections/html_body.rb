@@ -8,6 +8,7 @@ require 'html_metadataInfo'
 require 'html_resourceInfo'
 require 'html_dataDictionary'
 require 'html_citation'
+require 'html_responsibleParty'
 
 module ADIWG
     module Mdtranslator
@@ -27,6 +28,7 @@ module ADIWG
                             htmlResInfo = $HtmlNS::MdHtmlResourceInfo.new(@html)
                             htmlDataD = $HtmlNS::MdHtmlDataDictionary.new(@html)
                             htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
+                            htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
@@ -86,7 +88,7 @@ module ADIWG
                                 @html.br
                                 @html.a('Data Dictionary Section','href'=>'#dataDictionary')
                                 @html.br
-                                @html.a('Data Distribution Section','href'=>'#dataDistribution')
+                                @html.a('Resource Distribution Section','href'=>'#resourceDistribution')
                                 @html.br
                                 @html.a('Associated Resources Section','href'=>'#associatedResource')
                                 @html.br
@@ -138,17 +140,97 @@ module ADIWG
                             end
                             @html.hr
 
-                            # data distribution section
-                            @html.h2('Data Distribution', 'id'=>'dataDistribution')
-                            @html.blockquote do
+                            # resource distribution section
+                            @html.h2('Resource Distribution', 'id'=>'resourceDistribution')
+                            aDistribut.each do |hDistributor|
+                                @html.blockquote do
+                                    @html.details do
+                                        @html.summary('Distributor', {'class'=>'h4'})
+                                        @html.blockquote do
 
+                                            # resource distribution - distributor - required
+                                            @html.em('Distributor contact: ')
+                                            hResParty = hDistributor[:distContact]
+                                            htmlResParty.writeHtml(hResParty)
+
+                                            # resource distribution - order process
+                                            #     distOrderProc: [],
+
+                                            # resource distribution - format
+                                            #     distFormat: [],
+
+                                            # resource distribution - transfer options
+                                            #     distTransOption: []
+
+
+                                        end
+                                    end
+                                end
                             end
                             @html.hr
 
                             # associated resource section
                             @html.h2('Associated Resources', 'id'=>'associatedResource')
-                            @html.blockquote do
+                            aAssRes.each do |hAssRes|
+                                @html.blockquote do
 
+                                    # get document title from the citation
+                                    hCitation = hAssRes[:resourceCitation]
+                                    if !hCitation.empty?
+                                        sTitle = hCitation[:citTitle]
+                                    else
+                                        sTitle = 'Resource'
+                                    end
+
+                                    @html.details do
+                                        @html.summary(sTitle, {'class'=>'h4'})
+                                        @html.blockquote do
+
+                                            # associated resource - resource type
+                                            s = hAssRes[:resourceType]
+                                            if !s.nil?
+                                                @html.em('Resource type: ')
+                                                @html.text!(s)
+                                                @html.br
+                                            end
+
+                                            # associated resource - association type
+                                            s = hAssRes[:associationType]
+                                            if !s.nil?
+                                                @html.em('Association type: ')
+                                                @html.text!(s)
+                                                @html.br
+                                            end
+
+                                            # associated resource - initiative type
+                                            s = hAssRes[:initiativeType]
+                                            if !s.nil?
+                                                @html.em('Initiative type: ')
+                                                @html.text!(s)
+                                                @html.br
+                                            end
+
+                                            # associated resource - citation
+                                            if !hCitation.empty?
+                                                @html.em('Resource citation: ')
+                                                @html.blockquote do
+                                                    htmlCitation.writeHtml(hCitation)
+                                                end
+                                            end
+
+                                            # associated resource - metadata citation
+                                            hCitation = hAssRes[:metadataCitation]
+                                            if !hCitation.empty?
+                                                @html.em('Metadata citation: ')
+                                                @html.blockquote do
+                                                    htmlCitation.writeHtml(hCitation)
+                                                end
+                                            end
+
+                                        end
+                                    end
+
+                                end
                             end
                             @html.hr
 
@@ -160,7 +242,7 @@ module ADIWG
                                     # get document title from the citation
                                     sTitle = hAddDoc[:citation][:citTitle]
                                     @html.details do
-                                        @html.summary(sTitle, {'class'=>'h3'})
+                                        @html.summary(sTitle, {'class'=>'h4'})
                                         @html.blockquote do
 
                                             # additional documentation - resource type

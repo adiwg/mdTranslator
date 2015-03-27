@@ -19,9 +19,6 @@ module ADIWG
 
                     def writeHtml(hEntity)
 
-                        #     attributes: [],
-                        #     foreignKeys: []
-
                         # classes used
                         htmlEntIndex = $HtmlNS::MdHtmlEntityIndex.new(@html)
                         htmlEntAttrib = $HtmlNS::MdHtmlEntityAttribute.new(@html)
@@ -104,8 +101,31 @@ module ADIWG
                         end
 
                         # entity - foreign keys
+                        aFKs = hEntity[:foreignKeys]
+                        if !aFKs.empty?
+                            aFKs.each do |hFK|
+                                @html.em('Foreign Key: ')
+                                @html.blockquote do
 
+                                    # foreign key - local attribute list
+                                    @html.em('Local attribute: ')
+                                    @html.text!(hFK[:fkLocalAttributes].to_s)
+                                    @html.br
 
+                                    # foreign key - referenced entity
+                                    @html.em('Referenced entity: ')
+                                    @html.text!(hFK[:fkReferencedEntity])
+                                    @html.br
+
+                                    # foreign key - referenced attribute list
+                                    @html.em('Referenced attribute: ')
+                                    @html.text!(hFK[:fkReferencedAttributes].to_s)
+                                    @html.br
+
+                                end
+
+                            end
+                        end
 
                     end # writeHtml
 
