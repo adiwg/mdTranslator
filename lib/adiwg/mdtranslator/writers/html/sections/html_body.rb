@@ -169,8 +169,10 @@ module ADIWG
                                                 end
                                             end
 
-                                            # resource distribution - format
-                                            #     distFormat: [],
+                                            # resource distribution - resource format
+                                            hDistributor[:distFormat].each do |hFormat|
+                                                htmlFormat.writeHtml(hFormat)
+                                            end
 
                                             # resource distribution - transfer options
                                             #     distTransOption: []

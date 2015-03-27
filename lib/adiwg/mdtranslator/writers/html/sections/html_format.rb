@@ -16,6 +16,20 @@ module ADIWG
 
                     def writeHtml(hFormat)
 
+                        # resource format - format name
+                        s = hFormat[:formatName]
+                        if !s.nil?
+                            @html.em('Resource format: ')
+                            @html.text!(s)
+                            s = hFormat[:formatVersion]
+                            if !s.nil?
+                                @html.em('Version: ')
+                                @html.text!(s)
+                            end
+                            @html.br
+                        end
+
+                        # resource format - format version
 
                     end # writeHtml
 
