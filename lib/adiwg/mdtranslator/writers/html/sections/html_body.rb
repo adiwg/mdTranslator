@@ -9,6 +9,9 @@ require 'html_resourceInfo'
 require 'html_dataDictionary'
 require 'html_citation'
 require 'html_responsibleParty'
+require 'html_orderProcess'
+require 'html_format'
+require 'html_transferOption'
 
 module ADIWG
     module Mdtranslator
@@ -29,11 +32,14 @@ module ADIWG
                             htmlDataD = $HtmlNS::MdHtmlDataDictionary.new(@html)
                             htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
                             htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
+                            htmlOrderProc = $HtmlNS::MdHtmlOrderProcess.new(@html)
+                            htmlFormat = $HtmlNS::MdHtmlFormat.new(@html)
+                            htmltranOpt = $HtmlNS::MdHtmlTransferOption.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
                             aDataDict = intObj[:dataDictionary]
-                            aDistribut = intObj[:metadata][:distributorInfo]
+                            aDistributor = intObj[:metadata][:distributorInfo]
                             aAssRes = intObj[:metadata][:associatedResources]
                             aAddDocs = intObj[:metadata][:additionalDocuments]
 
@@ -142,7 +148,7 @@ module ADIWG
 
                             # resource distribution section
                             @html.h2('Resource Distribution', 'id'=>'resourceDistribution')
-                            aDistribut.each do |hDistributor|
+                            aDistributor.each do |hDistributor|
                                 @html.blockquote do
                                     @html.details do
                                         @html.summary('Distributor', {'class'=>'h4'})
@@ -151,10 +157,17 @@ module ADIWG
                                             # resource distribution - distributor - required
                                             @html.em('Distributor contact: ')
                                             hResParty = hDistributor[:distContact]
-                                            htmlResParty.writeHtml(hResParty)
+                                            @html.blockquote do
+                                                htmlResParty.writeHtml(hResParty)
+                                            end
 
                                             # resource distribution - order process
-                                            #     distOrderProc: [],
+                                            hDistributor[:distOrderProc].each do |hOrder|
+                                                @html.em('Order Process: ')
+                                                @html.blockquote do
+                                                    htmlOrderProc.writeHtml(hOrder)
+                                                end
+                                            end
 
                                             # resource distribution - format
                                             #     distFormat: [],
