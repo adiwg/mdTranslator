@@ -29,8 +29,6 @@ module ADIWG
                             @html.br
                         end
 
-                        # resource format - format version
-
                     end # writeHtml
 
                 end # class

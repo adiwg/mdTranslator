@@ -106,7 +106,10 @@ module ADIWG
                         aOline = hContact[:onlineRes]
                         if !aOline.empty?
                             aOline.each do |olRes|
-                                htmlOlRes.writeHtml(olRes)
+                                @html.em('Online presence: ')
+                                @html.blockquote do
+                                    htmlOlRes.writeHtml(olRes)
+                                end
                             end
                         end
 

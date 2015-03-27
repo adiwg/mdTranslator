@@ -34,7 +34,7 @@ module ADIWG
                             htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
                             htmlOrderProc = $HtmlNS::MdHtmlOrderProcess.new(@html)
                             htmlFormat = $HtmlNS::MdHtmlFormat.new(@html)
-                            htmltranOpt = $HtmlNS::MdHtmlTransferOption.new(@html)
+                            htmlTranOpt = $HtmlNS::MdHtmlTransferOption.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
@@ -175,8 +175,9 @@ module ADIWG
                                             end
 
                                             # resource distribution - transfer options
-                                            #     distTransOption: []
-
+                                            hDistributor[:distTransOption].each do |hTransOption|
+                                                htmlTranOpt.writeHtml(hTransOption)
+                                            end
 
                                         end
                                     end

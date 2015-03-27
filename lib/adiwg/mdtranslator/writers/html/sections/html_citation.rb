@@ -75,7 +75,10 @@ module ADIWG
                         # citation - online resources
                         aOlRes = hCitation[:citOlResources]
                         aOlRes.each do |hOlRes|
-                            htmlOlRes.writeHtml(hOlRes)
+                            @html.em('Online resource: ')
+                            @html.blockquote do
+                                htmlOlRes.writeHtml(hOlRes)
+                            end
                         end
 
                     end # writeHtml
