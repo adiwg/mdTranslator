@@ -41,7 +41,7 @@ module ADIWG
                         aWKT = hSpaceRef[:sRWKTs]
                         if !aWKT.empty?
                             aWKT.each do |sRWKT|
-                                @html.em('Well-Know-Test: ')
+                                @html.em('Well-Know-Text: ')
                                 @html.blockquote do
                                     @html.text!(sRWKT)
                                 end
