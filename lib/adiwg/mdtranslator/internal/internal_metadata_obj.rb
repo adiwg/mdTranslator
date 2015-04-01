@@ -325,7 +325,7 @@ class InternalMetadata
         intObj = {
             srsName: nil,
             srsHref: nil,
-            sysType: nil
+            srsType: nil
         }
     end
 

@@ -52,10 +52,7 @@
     h3,.h3{ font-size: 1.5em; }
     h4,.h4{ font-size: 1.2em; }
     h5,.h5{ font-size: 1em; }
-    h6,.h6{
-        font-size: 0.9em;
-        font-weight: bold;
-    }
+    h6,.h6{ font-size: 0.9em; }
 
     em{
         font-family: Tahoma, Arial, Verdana, sans-serif;
@@ -67,7 +64,7 @@
     blockquote{
         margin: 0;
         padding-left: 2em;
-        border-left: 0.15em #e3e3e3 solid;
+        border-left: 0.1em #e3e3e3 solid;
     }
 
     hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }

@@ -14,6 +14,7 @@ require 'html_taxonomy'
 require 'html_spatialReferenceSystem'
 require 'html_resolution'
 require 'html_dataLineage'
+require 'html_extent'
 
 module ADIWG
     module Mdtranslator
@@ -38,6 +39,7 @@ module ADIWG
                         htmlSpatialRef = $HtmlNS::MdHtmlSpatialReferenceSystem.new(@html)
                         htmlResolution = $HtmlNS::MdHtmlResolution.new(@html)
                         htmlLineage = $HtmlNS::MdHtmlDataLineage.new(@html)
+                        htmlExtent = $HtmlNS::MdHtmlExtent.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -125,13 +127,15 @@ module ADIWG
 
                         # resource information - extents
                         @html.details do
-                            @html.summary('Spatial, temporal, and vertical extents', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
+                            @html.summary('Extents (Geographic, Temporal, & Vertical)', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
                             @html.blockquote do
                                 aExtents = resourceInfo[:extents]
                                 aExtents.each do |hExtent|
                                     @html.details do
                                         @html.summary('Extent', {'class'=>'h4'})
-
+                                        @html.blockquote do
+                                            htmlExtent.writeHtml(hExtent)
+                                        end
                                     end
                                 end
                             end
