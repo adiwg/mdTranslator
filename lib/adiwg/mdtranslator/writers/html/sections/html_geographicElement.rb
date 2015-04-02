@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2015-03-31 original script
 
+require 'adiwg/mdtranslator/internal/module_geoFormat'
+
 module ADIWG
     module Mdtranslator
         module Writers
@@ -17,8 +19,6 @@ module ADIWG
                     def writeHtml(hGeoEle)
 
                         # classes used
-
-                        #     elementGeometry: {}
 
                         # geographic element - element ID
                         s = hGeoEle[:elementId]
@@ -102,12 +102,26 @@ module ADIWG
                             end
                         end
 
-                        # geographic element - element geometry
-                        @html.em('element geometry')
-                        @html.div({'id'=>'div01'}) do
-                            @html.text!('more text')
+                        # geographic element - element geometry - required
+                        @html.em('Element geometry:')
+                        @html.blockquote do
+
+                            # geographic element - in GeoJson
+                            @html.em('GeoJSON format: ')
+                            @html.blockquote do
+                                geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle[:elementGeometry])
+                                @html.div({'id'=>'div01'}) do
+                                    @html.text!(geoJson)
+                                end
+                            end
+
+                            # geographic element - in Well-Know-Text
+                            @html.em('Well-Know_Text format: ')
+                            @html.blockquote do
+
+                            end
+
                         end
-                        @html.br
 
                         # geographic element - element vertical space
                         @html.em('element vertical space - TODO')
