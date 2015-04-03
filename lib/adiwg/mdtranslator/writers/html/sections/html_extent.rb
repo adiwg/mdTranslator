@@ -5,6 +5,7 @@
 # 	Stan Smith 2015-03-31 original script
 
 require 'html_geographicElement'
+require 'html_temporalElement'
 
 module ADIWG
     module Mdtranslator
@@ -20,6 +21,7 @@ module ADIWG
 
                         # classes used
                         htmlGeoEle = $HtmlNS::MdHtmlGeographicElement.new(@html)
+                        htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
 
                         aGeoEle = hExtent[:extGeoElements]
                         aIdEle = hExtent[:extIdElements]
@@ -43,7 +45,7 @@ module ADIWG
                         # extent - geographic elements
                         if !aGeoEle.empty?
                             @html.details do
-                                @html.summary('Geographic elements', {'class'=>'h4'})
+                                @html.summary('Geographic Elements', {'class'=>'h4'})
                                 eleNun = 0
                                 aGeoEle.each do |hGeoEle|
                                     @html.blockquote do
@@ -62,7 +64,7 @@ module ADIWG
                         # extent - vertical elements
                         if !aVertEle.empty?
                             @html.details do
-                                @html.summary('Vertical elements', {'class'=>'h4'})
+                                @html.summary('Vertical Elements', {'class'=>'h4'})
                                 eleNun = 0
                                 aVertEle.each do |hVertEle|
                                     @html.blockquote do
@@ -81,17 +83,10 @@ module ADIWG
                         # extent - temporal elements
                         if !aTempEle.empty?
                             @html.details do
-                                @html.summary('Temporal elements', {'class'=>'h4'})
-                                eleNun = 0
+                                @html.summary('Temporal Elements', {'class'=>'h4'})
                                 aTempEle.each do |hTempEle|
                                     @html.blockquote do
-                                        @html.details do
-                                            @html.summary('Element ' + eleNun.to_s, {'class'=>'h5'})
-                                            eleNun += 1
-                                            @html.blockquote do
-
-                                            end
-                                        end
+                                        htmlTempEle.writeHtml(hTempEle)
                                     end
                                 end
                             end

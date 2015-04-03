@@ -83,7 +83,7 @@ module ADIWG
                                     @html.br
                                     @html.a('Spatial Reference', 'href'=>'#resourceInfo-spatialRef')
                                     @html.br
-                                    @html.a('Spatial, Temporal, and Vertical Extents', 'href'=>'#resourceInfo-extents')
+                                    @html.a('Extents (Geographic, Temporal, & Vertical Space)', 'href'=>'#resourceInfo-extents')
                                     @html.br
                                     @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
                                     @html.br

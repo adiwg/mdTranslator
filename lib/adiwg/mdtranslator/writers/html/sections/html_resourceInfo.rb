@@ -127,7 +127,7 @@ module ADIWG
 
                         # resource information - extents
                         @html.details do
-                            @html.summary('Extents (Geographic, Temporal, & Vertical)', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
+                            @html.summary('Extents (Geographic, Temporal, & Vertical Space)', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
                             @html.blockquote do
                                 aExtents = resourceInfo[:extents]
                                 aExtents.each do |hExtent|
@@ -180,7 +180,7 @@ module ADIWG
                                 aUseCons = resourceInfo[:useConstraints]
                                 if !aUseCons.empty?
                                     @html.details do
-                                        @html.summary('Usage constraints', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
+                                        @html.summary('Usage Constraints', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
                                         @html.blockquote do
                                             aUseCons.each do |uCon|
                                                 @html.em('Constraint: ')
@@ -195,7 +195,7 @@ module ADIWG
                                 aLegalCons = resourceInfo[:legalConstraints]
                                 if !aLegalCons.empty?
                                     @html.details do
-                                        @html.summary('Legal constraints', {'id'=>'resourceGen-legalConstraint', 'class'=>'h4'})
+                                        @html.summary('Legal Constraints', {'id'=>'resourceGen-legalConstraint', 'class'=>'h4'})
                                         @html.blockquote do
                                             aLegalCons.each do |hLegalCon|
                                                 @html.em('Constraint: ')
@@ -211,7 +211,7 @@ module ADIWG
                                 aSecCons = resourceInfo[:securityConstraints]
                                 if !aSecCons.empty?
                                     @html.details do
-                                        @html.summary('Security constraints', {'id'=>'resourceGen-securityConstraint', 'class'=>'h4'})
+                                        @html.summary('Security Constraints', {'id'=>'resourceGen-securityConstraint', 'class'=>'h4'})
                                         @html.blockquote do
                                             aSecCons.each do |hSecCon|
                                                 @html.em('Constraint: ')

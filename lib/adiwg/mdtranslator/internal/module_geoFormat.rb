@@ -88,20 +88,20 @@ module AdiwgGeoFormat
 
     end
 
-
     def self.internal_to_wkt(hGeoEle)
         geoType = hGeoEle[:geoType]
         hGeometry = hGeoEle[:geometry]
+        dimension = hGeoEle[:dimension]
         wktString = ''
 
         if geoType == 'Point'
-            wktString = 'POINT ('
+            wktString = 'POINT ' + wkt_dimension(dimension) + '('
             wktString += point_string(hGeometry)
             wktString += ')'
         end
 
         if geoType == 'LineString'
-            wktString = 'LINESTRING ('
+            wktString = 'LINESTRING ' + wkt_dimension(dimension) + '('
             hGeometry.each do |point|
                 wktString += point_string(point) + ', '
             end
@@ -110,7 +110,7 @@ module AdiwgGeoFormat
         end
 
         if geoType == 'Polygon'
-            wktString = 'POLYGON ('
+            wktString = 'POLYGON ' + wkt_dimension(dimension) + '('
 
             # add exterior ring - required
             wktString += '('
@@ -136,7 +136,7 @@ module AdiwgGeoFormat
         end
 
         if geoType == 'MultiPoint'
-            wktString = 'MULTIPOINT ('
+            wktString = 'MULTIPOINT ' + wkt_dimension(dimension) + '('
             hGeometry.each do |point|
                 wktString += '('
                 wktString += point_string(point) + '), '
@@ -146,7 +146,7 @@ module AdiwgGeoFormat
         end
 
         if geoType == 'MultiLineString'
-            wktString = 'MULTILINESTRING ('
+            wktString = 'MULTILINESTRING ' + wkt_dimension(dimension) + '('
                 hGeometry.each do |line|
                     wktString += '('
                     line.each do |point|
@@ -160,7 +160,7 @@ module AdiwgGeoFormat
         end
 
         if geoType == 'MultiPolygon'
-            wktString = 'MULTIPOLYGON ('
+            wktString = 'MULTIPOLYGON ' + wkt_dimension(dimension) + '('
             hGeometry.each do |polygon|
                 wktString += '('
 
@@ -196,6 +196,13 @@ module AdiwgGeoFormat
                 sTuple += element.to_s + ' '
             end
             return sTuple.chomp(' ')
+        end
+
+        def self.wkt_dimension(dim)
+            sDim = ''
+            sDim += 'Z ' if dim == 3
+            sDim += 'ZM ' if dim == 4
+            return sDim
         end
 
         return wktString

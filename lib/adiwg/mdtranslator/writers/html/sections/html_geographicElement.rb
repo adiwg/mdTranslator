@@ -5,6 +5,7 @@
 # 	Stan Smith 2015-03-31 original script
 
 require 'adiwg/mdtranslator/internal/module_geoFormat'
+require 'html_temporalElement'
 
 module ADIWG
     module Mdtranslator
@@ -19,6 +20,7 @@ module ADIWG
                     def writeHtml(hGeoEle)
 
                         # classes used
+                        htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
 
                         # geographic element - element ID
                         s = hGeoEle[:elementId]
