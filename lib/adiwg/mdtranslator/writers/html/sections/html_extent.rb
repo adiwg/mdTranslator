@@ -35,6 +35,11 @@ module ADIWG
                             end
                         end
 
+                        # extent - map
+                        @html.details do
+                            @html.summary('Map', {'class'=>'h4'})
+                        end
+
                         # extent - geographic elements
                         if !aGeoEle.empty?
                             @html.details do

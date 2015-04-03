@@ -106,21 +106,39 @@ module ADIWG
                         @html.em('Element geometry:')
                         @html.blockquote do
 
-                            # geographic element - in GeoJson
-                            @html.em('GeoJSON format: ')
-                            @html.blockquote do
-                                geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle[:elementGeometry])
-                                @html.div({'id'=>'div01'}) do
-                                    @html.text!(geoJson)
+                            # multi-geometries need to be written using this class recursively
+                            if hGeoEle[:elementGeometry][:geoType] == 'MultiGeometry'
+                                eleNun = 0
+                                hGeoEle[:elementGeometry][:geometry].each do |hGeometry|
+                                    @html.details do
+                                        @html.summary('Sub-element ' + eleNun.to_s, {'class'=>'h5'})
+                                        eleNun += 1
+                                        @html.blockquote do
+                                            writeHtml(hGeometry)
+                                        end
+                                    end
                                 end
-                            end
+                            else
 
-                            # geographic element - in Well-Know-Text
-                            @html.em('Well-Know_Text format: ')
-                            @html.blockquote do
+                                # geographic element - in GeoJson
+                                @html.em('GeoJSON format: ')
+                                @html.blockquote do
+                                    geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle)
+                                    @html.div({'id'=>'geojson-001'}) do
+                                        @html.text!(geoJson)
+                                    end
+                                end
 
-                            end
+                                # geographic element - in Well-Know-Text
+                                @html.em('Well-Know-Text format: ')
+                                @html.blockquote do
+                                    wkt = AdiwgGeoFormat.internal_to_wkt(hGeoEle[:elementGeometry])
+                                    @html.div({'id'=>'wkt-001'}) do
+                                        @html.text!(wkt)
+                                    end
+                                end
 
+                             end
                         end
 
                         # geographic element - element vertical space
@@ -134,7 +152,6 @@ module ADIWG
                         # geographic element - element identifiers
                         @html.em('element identifiers - TODO')
                         @html.br
-
 
                     end # writeHtml
 
