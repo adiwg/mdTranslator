@@ -50,8 +50,9 @@ module ADIWG
                                 s = hMetaInfo[:metadataURI]
                                 if s
                                     @html.em('Metadata URI: ')
-                                    @html.a(s, 'href'=>s)
-                                    @html.br
+                                    @html.blockquote do
+                                        @html.a(s, 'href'=>s)
+                                    end
                                 end
 
                                 # metadata create date

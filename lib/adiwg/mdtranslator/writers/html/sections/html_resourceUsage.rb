@@ -37,8 +37,11 @@ module ADIWG
                         # resource usage - userContacts
                         aUseCon = hUsage[:userContacts]
                         if !aUseCon.empty?
-                            aUseCon.each do |hRepParty|
-                                htmlRParty.writeHtml(hRepParty)
+                            @html.em('Contacts:')
+                            @html.blockquote do
+                                aUseCon.each do |hRepParty|
+                                    htmlRParty.writeHtml(hRepParty)
+                                end
                             end
                         end
 

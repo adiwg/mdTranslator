@@ -41,9 +41,10 @@ module ADIWG
 
                             # browse graphic - URI
                             if !hBrowseG[:bGURI].nil?
-                                @html.em('URI: ')
-                                @html.text!(hBrowseG[:bGURI])
-                                @html.br
+                                @html.em('URI:')
+                                @html.blockquote do
+                                    @html.a(hBrowseG[:bGURI])
+                                end
                             end
                         end
 

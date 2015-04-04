@@ -90,6 +90,8 @@ module ADIWG
                                     @html.a('Constraints', 'href'=>'#resourceInfo-constraints')
                                     @html.br
                                     @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
+                                    @html.br
+                                    @html.a('Other Resource Information', 'href'=>'#resourceInfo-other')
                                 end
                                 @html.br
                                 @html.a('Data Dictionary Section','href'=>'#dataDictionary')

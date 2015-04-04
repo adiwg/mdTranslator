@@ -6,6 +6,7 @@
 
 require 'html_geographicElement'
 require 'html_temporalElement'
+require 'html_verticalElement'
 
 module ADIWG
     module Mdtranslator
@@ -22,6 +23,7 @@ module ADIWG
                         # classes used
                         htmlGeoEle = $HtmlNS::MdHtmlGeographicElement.new(@html)
                         htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
+                        htmlVertEle = $HtmlNS::MdHtmlVerticalElement.new(@html)
 
                         aGeoEle = hExtent[:extGeoElements]
                         aIdEle = hExtent[:extIdElements]
@@ -72,7 +74,7 @@ module ADIWG
                                             @html.summary('Element ' + eleNun.to_s, {'class'=>'h5'})
                                             eleNun += 1
                                             @html.blockquote do
-
+                                                htmlVertEle.writeHtml(hVertEle)
                                             end
                                         end
                                     end

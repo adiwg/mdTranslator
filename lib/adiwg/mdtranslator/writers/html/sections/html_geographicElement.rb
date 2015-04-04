@@ -6,6 +6,8 @@
 
 require 'adiwg/mdtranslator/internal/module_geoFormat'
 require 'html_temporalElement'
+require 'html_verticalElement'
+require 'html_resourceId'
 
 module ADIWG
     module Mdtranslator
@@ -21,6 +23,8 @@ module ADIWG
 
                         # classes used
                         htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
+                        htmlVertEle = $HtmlNS::MdHtmlVerticalElement.new(@html)
+                        htmlResID = $HtmlNS::MdHtmlResourceId.new(@html)
 
                         # geographic element - element ID
                         s = hGeoEle[:elementId]
@@ -89,8 +93,9 @@ module ADIWG
                                 s = hSRS[:srsHref]
                                 if !s.nil?
                                     @html.em('CRS web link: ')
-                                    @html.text!(s)
-                                    @html.br
+                                    @html.blockquote do
+                                        @html.a(s)
+                                    end
                                 end
 
                                 # coordinate reference system - link type
@@ -144,16 +149,56 @@ module ADIWG
                         end
 
                         # geographic element - element vertical space
-                        @html.em('element vertical space - TODO')
-                        @html.br
+                        aVertEle = hGeoEle[:verticalElements]
+                        if !aVertEle.empty?
+                            @html.details do
+                                @html.summary('Vertical Elements ', {'class'=>'h6'})
+                                eleNun = 0
+                                aVertEle.each do |hVertEle|
+                                    @html.blockquote do
+                                        @html.details do
+                                            @html.summary('Element ' + eleNun.to_s, {'class'=>'h6'})
+                                            eleNun += 1
+                                            @html.blockquote do
+                                                htmlVertEle.writeHtml(hVertEle)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
 
                         # geographic element - element temporal space
-                        @html.em('element temporal space - TODO')
-                        @html.br
+                        aTempEle = hGeoEle[:temporalElements]
+                        if !aTempEle.empty?
+                            @html.details do
+                                @html.summary('Temporal Elements ', {'class'=>'h6'})
+                                @html.blockquote do
+                                    aTempEle.each do |hTempEle|
+                                        htmlTempEle.writeHtml(hTempEle)
+                                    end
+                                end
+                            end
+                        end
 
                         # geographic element - element identifiers
-                        @html.em('element identifiers - TODO')
-                        @html.br
+                        aIDs = hGeoEle[:elementIdentifiers]
+                        if !aIDs.empty?
+                            @html.details do
+                                @html.summary('Elements Identifiers', {'class'=>'h6'})
+                                aIDs.each do |hEleID|
+                                    s = hEleID[:identifier]
+                                    @html.blockquote do
+                                        @html.details do
+                                            @html.summary(s, {'class'=>'h6'})
+                                            @html.blockquote do
+                                                htmlResID.writeHtml(hEleID)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
 
                     end # writeHtml
 

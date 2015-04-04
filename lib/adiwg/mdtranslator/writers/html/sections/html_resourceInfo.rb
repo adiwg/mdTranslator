@@ -15,6 +15,7 @@ require 'html_spatialReferenceSystem'
 require 'html_resolution'
 require 'html_dataLineage'
 require 'html_extent'
+require 'html_resourceOther'
 
 module ADIWG
     module Mdtranslator
@@ -40,6 +41,7 @@ module ADIWG
                         htmlResolution = $HtmlNS::MdHtmlResolution.new(@html)
                         htmlLineage = $HtmlNS::MdHtmlDataLineage.new(@html)
                         htmlExtent = $HtmlNS::MdHtmlExtent.new(@html)
+                        htmlOther = $HtmlNS::MdHtmlResourceOther.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -128,11 +130,13 @@ module ADIWG
                         # resource information - extents
                         @html.details do
                             @html.summary('Extents (Geographic, Temporal, & Vertical Space)', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
+                            extNum = 0
                             @html.blockquote do
                                 aExtents = resourceInfo[:extents]
                                 aExtents.each do |hExtent|
                                     @html.details do
-                                        @html.summary('Extent', {'class'=>'h4'})
+                                        @html.summary('Extent ' + extNum.to_s, {'class'=>'h4'})
+                                        extNum += 1
                                         @html.blockquote do
                                             htmlExtent.writeHtml(hExtent)
                                         end
@@ -239,6 +243,13 @@ module ADIWG
                             end
                         end
 
+                        # resource information - resource other
+                        @html.details do
+                            @html.summary('Other Resource Information', {'id'=>'resourceInfo-other', 'class'=>'h3'})
+                            @html.blockquote do
+                                htmlOther.writeHtml(resourceInfo)
+                            end
+                        end
 
                     end # writeHtml
 
