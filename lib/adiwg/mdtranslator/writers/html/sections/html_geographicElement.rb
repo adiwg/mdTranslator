@@ -19,7 +19,7 @@ module ADIWG
                         @html = html
                     end
 
-                    def writeHtml(hGeoEle)
+                    def writeHtml(hGeoEle, geoPre)
 
                         # classes used
                         htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
@@ -115,13 +115,14 @@ module ADIWG
 
                             # multi-geometries need to be written using this class recursively
                             if hGeoEle[:elementGeometry][:geoType] == 'MultiGeometry'
-                                eleNun = 0
+                                geoNum = 0
                                 hGeoEle[:elementGeometry][:geometry].each do |hGeometry|
                                     @html.details do
-                                        @html.summary('Sub-element ' + eleNun.to_s, {'class'=>'h5'})
-                                        eleNun += 1
+                                        eleNum = geoPre + '.' + geoNum.to_s
+                                        @html.summary('Sub-element ' + eleNum, {'class'=>'h5'})
+                                        geoNum += 1
                                         @html.blockquote do
-                                            writeHtml(hGeometry)
+                                            writeHtml(hGeometry, eleNum)
                                         end
                                     end
                                 end

@@ -136,9 +136,9 @@ module ADIWG
                                 aExtents.each do |hExtent|
                                     @html.details do
                                         @html.summary('Extent ' + extNum.to_s, {'class'=>'h4'})
-                                        extNum += 1
                                         @html.blockquote do
-                                            htmlExtent.writeHtml(hExtent)
+                                            htmlExtent.writeHtml(hExtent, extNum)
+                                            extNum += 1
                                         end
                                     end
                                 end

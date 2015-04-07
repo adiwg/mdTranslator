@@ -15,22 +15,22 @@ module ADIWG
 
                 class EX_GeographicDescription
 
-    def initialize(xml)
-        @xml = xml
-    end
+                    def initialize(xml)
+                        @xml = xml
+                    end
 
-    def writeXML(hElement)
+                    def writeXML(hElement)
 
-        # classes used
-        idClass = $IsoNS::MD_Identifier.new(@xml)
+                        # classes used
+                        idClass = $IsoNS::MD_Identifier.new(@xml)
 
-        @xml.tag!('gmd:EX_GeographicDescription') do
-            @xml.tag!('gmd:geographicIdentifier') do
-                idClass.writeXML(hElement)
-            end
-        end
+                        @xml.tag!('gmd:EX_GeographicDescription') do
+                            @xml.tag!('gmd:geographicIdentifier') do
+                                idClass.writeXML(hElement)
+                            end
+                        end
 
-    end
+                    end
 
                 end
 

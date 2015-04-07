@@ -18,7 +18,7 @@ module ADIWG
                         @html = html
                     end
 
-                    def writeHtml(hExtent)
+                    def writeHtml(hExtent, extNum)
 
                         # classes used
                         htmlGeoEle = $HtmlNS::MdHtmlGeographicElement.new(@html)
@@ -26,7 +26,6 @@ module ADIWG
                         htmlVertEle = $HtmlNS::MdHtmlVerticalElement.new(@html)
 
                         aGeoEle = hExtent[:extGeoElements]
-                        aIdEle = hExtent[:extIdElements]
                         aTempEle = hExtent[:extTempElements]
                         aVertEle = hExtent[:extVertElements]
 
@@ -48,14 +47,15 @@ module ADIWG
                         if !aGeoEle.empty?
                             @html.details do
                                 @html.summary('Geographic Elements', {'class'=>'h4'})
-                                eleNun = 0
+                                geoNum = 0
                                 aGeoEle.each do |hGeoEle|
                                     @html.blockquote do
                                         @html.details do
-                                            @html.summary('Element ' + eleNun.to_s, {'class'=>'h5'})
-                                            eleNun += 1
+                                            eleNum = extNum.to_s + '.' + geoNum.to_s
+                                            @html.summary('Element ' + eleNum, {'class'=>'h5'})
                                             @html.blockquote do
-                                                htmlGeoEle.writeHtml(hGeoEle)
+                                                htmlGeoEle.writeHtml(hGeoEle, eleNum)
+                                                geoNum += 1
                                             end
                                         end
                                     end
@@ -67,14 +67,15 @@ module ADIWG
                         if !aVertEle.empty?
                             @html.details do
                                 @html.summary('Vertical Elements', {'class'=>'h4'})
-                                eleNun = 0
+                                vertNum = 0
                                 aVertEle.each do |hVertEle|
                                     @html.blockquote do
                                         @html.details do
-                                            @html.summary('Element ' + eleNun.to_s, {'class'=>'h5'})
-                                            eleNun += 1
+                                            eleNum = extNum.to_s + '.' + vertNum.to_s
+                                            @html.summary('Element ' + eleNum, {'class'=>'h5'})
                                             @html.blockquote do
                                                 htmlVertEle.writeHtml(hVertEle)
+                                                vertNum += 1
                                             end
                                         end
                                     end
