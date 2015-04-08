@@ -152,7 +152,7 @@ module ADIWG
                                 aDataQual = resourceInfo[:dataQualityInfo]
                                 aDataQual.each do |hDataQual|
                                     @html.details do
-                                        @html.summary('Quality statement', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
+                                        @html.summary('Quality statement', {'class'=>'h4'})
                                         @html.section(:class=>'block') do
 
                                             # data quality - scope
@@ -184,7 +184,7 @@ module ADIWG
                                 aUseCons = resourceInfo[:useConstraints]
                                 if !aUseCons.empty?
                                     @html.details do
-                                        @html.summary('Usage Constraints', {'id'=>'resourceGen-useConstraint', 'class'=>'h4'})
+                                        @html.summary('Usage Constraints', {'class'=>'h4'})
                                         @html.section(:class=>'block') do
                                             aUseCons.each do |uCon|
                                                 @html.em('Constraint: ')
@@ -199,7 +199,7 @@ module ADIWG
                                 aLegalCons = resourceInfo[:legalConstraints]
                                 if !aLegalCons.empty?
                                     @html.details do
-                                        @html.summary('Legal Constraints', {'id'=>'resourceGen-legalConstraint', 'class'=>'h4'})
+                                        @html.summary('Legal Constraints', {'class'=>'h4'})
                                         @html.section(:class=>'block') do
                                             aLegalCons.each do |hLegalCon|
                                                 @html.em('Constraint: ')
@@ -215,7 +215,7 @@ module ADIWG
                                 aSecCons = resourceInfo[:securityConstraints]
                                 if !aSecCons.empty?
                                     @html.details do
-                                        @html.summary('Security Constraints', {'id'=>'resourceGen-securityConstraint', 'class'=>'h4'})
+                                        @html.summary('Security Constraints', {'class'=>'h4'})
                                         @html.section(:class=>'block') do
                                             aSecCons.each do |hSecCon|
                                                 @html.em('Constraint: ')
