@@ -1,3 +1,10 @@
+# HTML writer
+
+# History:
+# 	Stan Smith 2015-03-23 original script
+#   Stan Smith 2015-04-07 replaced instruct! with declare! and html to
+#      ... conform with w3 html encoding declarations
+
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), './sections'))
 
@@ -27,8 +34,9 @@ module ADIWG
                         htmlBody = $HtmlNS::MdHtmlBody.new(@html)
 
                         # page
-                        metadata = @html.instruct! :html, encoding: 'UTF-8'
-                        @html.comment!('HTML version of metadata read into mdTranslation internal data store')
+                        metadata = @html.declare! :DOCTYPE, :html
+                        @html.html(:lang=>'en')
+                        @html.comment!('Report from mdTranslator HTML writer v1.0')
 
                         # head
                         htmlHead.writeHtml()

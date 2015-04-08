@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-23 original script
+#   Stan Smith 2015-04-07 added metadata tag to head
 
 module ADIWG
     module Mdtranslator
@@ -16,6 +17,7 @@ module ADIWG
 
                     def writeHtml()
                         @html.head do
+                            @html.meta({'http-equiv'=>'Content-Type','content'=>'text/html; charset=utf-8'})
                             @html.title('ADIWG mdTranslator HTML writer output')
 
                             # add inline css
