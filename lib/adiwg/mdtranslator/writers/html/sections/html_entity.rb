@@ -51,7 +51,7 @@ module ADIWG
                         aAlias = hEntity[:entityAlias]
                         if !aAlias.empty?
                             @html.em('Entity aliases: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(aAlias.to_s)
                             end
                         end
@@ -60,7 +60,7 @@ module ADIWG
                         s = hEntity[:entityDefinition]
                         if !s.nil?
                             @html.em('Definition: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s.to_s)
                             end
                         end
@@ -78,7 +78,7 @@ module ADIWG
                         if !aIndex.empty?
                             aIndex.each do |hIndex|
                                 @html.em('Index: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlEntIndex.writeHtml(hIndex)
                                 end
                             end
@@ -89,10 +89,10 @@ module ADIWG
                         if !aAttributes.empty?
                             @html.em('Attribute List: ')
                             aAttributes.each do |hAttribute|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.details do
                                         @html.summary(hAttribute[:attributeCode], {'class'=>'h5'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
                                             htmlEntAttrib.writeHtml(hAttribute)
                                         end
                                     end
@@ -105,7 +105,7 @@ module ADIWG
                         if !aFKs.empty?
                             aFKs.each do |hFK|
                                 @html.em('Foreign Key: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
 
                                     # foreign key - local attribute list
                                     @html.em('Local attribute: ')

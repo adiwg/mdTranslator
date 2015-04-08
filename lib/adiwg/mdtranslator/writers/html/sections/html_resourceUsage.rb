@@ -38,7 +38,7 @@ module ADIWG
                         aUseCon = hUsage[:userContacts]
                         if !aUseCon.empty?
                             @html.em('Contacts:')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 aUseCon.each do |hRepParty|
                                     htmlRParty.writeHtml(hRepParty)
                                 end

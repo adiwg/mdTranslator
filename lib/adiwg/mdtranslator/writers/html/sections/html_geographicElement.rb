@@ -46,7 +46,7 @@ module ADIWG
                         s = hGeoEle[:elementDescription]
                         if !s.nil?
                             @html.em('Description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -79,7 +79,7 @@ module ADIWG
                         hSRS = hGeoEle[:elementSrs]
                         if !hSRS.empty?
                             @html.em('Coordinate reference system:')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
 
                                 # coordinate reference system - by name
                                 s = hSRS[:srsName]
@@ -93,7 +93,7 @@ module ADIWG
                                 s = hSRS[:srsHref]
                                 if !s.nil?
                                     @html.em('CRS web link: ')
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.a(s)
                                     end
                                 end
@@ -111,7 +111,7 @@ module ADIWG
 
                         # geographic element - element geometry - required
                         @html.em('Element geometry:')
-                        @html.blockquote do
+                        @html.section(:class=>'block') do
 
                             # multi-geometries need to be written using this class recursively
                             if hGeoEle[:elementGeometry][:geoType] == 'MultiGeometry'
@@ -121,7 +121,7 @@ module ADIWG
                                         eleNum = geoPre + '.' + geoNum.to_s
                                         @html.summary('Sub-element ' + eleNum, {'class'=>'h5'})
                                         geoNum += 1
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
                                             writeHtml(hGeometry, eleNum)
                                         end
                                     end
@@ -130,7 +130,7 @@ module ADIWG
 
                                 # geographic element - in GeoJson
                                 @html.em('GeoJSON format: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle)
                                     @html.div({'id'=>'geojson-001'}) do
                                         @html.text!(geoJson)
@@ -139,7 +139,7 @@ module ADIWG
 
                                 # geographic element - in Well-Know-Text
                                 @html.em('Well-Know-Text format: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     wkt = AdiwgGeoFormat.internal_to_wkt(hGeoEle[:elementGeometry])
                                     @html.div({'id'=>'wkt-001'}) do
                                         @html.text!(wkt)
@@ -156,11 +156,11 @@ module ADIWG
                                 @html.summary('Vertical Elements ', {'class'=>'h6'})
                                 eleNun = 0
                                 aVertEle.each do |hVertEle|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             @html.summary('Element ' + eleNun.to_s, {'class'=>'h6'})
                                             eleNun += 1
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlVertEle.writeHtml(hVertEle)
                                             end
                                         end
@@ -174,7 +174,7 @@ module ADIWG
                         if !aTempEle.empty?
                             @html.details do
                                 @html.summary('Temporal Elements ', {'class'=>'h6'})
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     aTempEle.each do |hTempEle|
                                         htmlTempEle.writeHtml(hTempEle)
                                     end
@@ -189,10 +189,10 @@ module ADIWG
                                 @html.summary('Elements Identifiers', {'class'=>'h6'})
                                 aIDs.each do |hEleID|
                                     s = hEleID[:identifier]
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             @html.summary(s, {'class'=>'h6'})
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlResID.writeHtml(hEleID)
                                             end
                                         end

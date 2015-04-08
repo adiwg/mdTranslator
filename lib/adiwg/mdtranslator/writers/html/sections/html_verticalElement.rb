@@ -44,7 +44,7 @@ module ADIWG
                         s = hVertEle[:crsURI]
                         if !s.nil?
                             @html.em('Coordinate Reference System URI: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.a(s)
                             end
                         end

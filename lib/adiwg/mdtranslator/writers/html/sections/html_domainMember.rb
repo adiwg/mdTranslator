@@ -36,7 +36,7 @@ module ADIWG
                         s = hDItem[:itemDefinition]
                         if !s.nil?
                             @html.em('Definition: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

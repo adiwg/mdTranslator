@@ -50,7 +50,7 @@ module ADIWG
                         # general - time period
                         if !resourceInfo[:timePeriod].empty?
                             @html.em('Time period: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlTimeP.writeHtml(resourceInfo[:timePeriod])
                             end
                         end
@@ -66,7 +66,7 @@ module ADIWG
                         # general - citation
                         @html.details do
                             @html.summary('Citation', {'id'=>'resourceGen-citation', 'class'=>'h4'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlCitation.writeHtml(resourceInfo[:citation])
                             end
                         end
@@ -74,7 +74,7 @@ module ADIWG
                         # general - abstract - required
                         @html.details do
                             @html.summary('Abstract', {'id'=>'resourceGen-abstract', 'class'=>'h4'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(resourceInfo[:abstract])
                             end
                             @html.br
@@ -84,7 +84,7 @@ module ADIWG
                         s = resourceInfo[:purpose]
                         if !s.nil?
                             @html.em('Purpose: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

@@ -28,7 +28,7 @@ module ADIWG
                             @html.br
                         end
 
-                        @html.blockquote do
+                        @html.section(:class=>'block') do
 
                             # descriptive keywords - keywords - required
                             @html.em('Keywords: ')
@@ -43,7 +43,7 @@ module ADIWG
                             if !hCitation.empty?
                                 @html.em('Thesaurus citation: ')
                                 @html.br
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlCitation.writeHtml(hCitation)
                                 end
                             end

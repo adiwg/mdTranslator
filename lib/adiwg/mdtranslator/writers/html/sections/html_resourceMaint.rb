@@ -21,7 +21,7 @@ module ADIWG
                         # classes used
                         htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
 
-                        @html.blockquote do
+                        @html.section(:class=>'block') do
 
                             # resource maintenance - maintenance frequency
                             @html.em('Frequency: ')
@@ -32,7 +32,7 @@ module ADIWG
                             aNotes = hResMaint[:maintNotes]
                             aNotes.each do |note|
                                 @html.em('Note: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.text!(note)
                                 end
                             end

@@ -33,7 +33,7 @@ module ADIWG
                         s = hExtent[:extDesc]
                         if !s.nil?
                             @html.em('Extent description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -49,11 +49,11 @@ module ADIWG
                                 @html.summary('Geographic Elements', {'class'=>'h4'})
                                 geoNum = 0
                                 aGeoEle.each do |hGeoEle|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             eleNum = extNum.to_s + '.' + geoNum.to_s
                                             @html.summary('Element ' + eleNum, {'class'=>'h5'})
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlGeoEle.writeHtml(hGeoEle, eleNum)
                                                 geoNum += 1
                                             end
@@ -69,11 +69,11 @@ module ADIWG
                                 @html.summary('Vertical Elements', {'class'=>'h4'})
                                 vertNum = 0
                                 aVertEle.each do |hVertEle|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             eleNum = extNum.to_s + '.' + vertNum.to_s
                                             @html.summary('Element ' + eleNum, {'class'=>'h5'})
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlVertEle.writeHtml(hVertEle)
                                                 vertNum += 1
                                             end
@@ -88,7 +88,7 @@ module ADIWG
                             @html.details do
                                 @html.summary('Temporal Elements', {'class'=>'h4'})
                                 aTempEle.each do |hTempEle|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         htmlTempEle.writeHtml(hTempEle)
                                     end
                                 end

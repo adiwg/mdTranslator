@@ -49,7 +49,7 @@ module ADIWG
                         s = hDomain[:domainDescription]
                         if !s.nil?
                             @html.em('Description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -59,10 +59,10 @@ module ADIWG
                         if !aMembers.empty?
                             @html.em('Domain members: ')
                             aMembers.each do |hDItem|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.details do
                                         @html.summary(hDItem[:itemValue], {'class'=>'h5'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
                                             htmlDomMem.writeHtml(hDItem)
                                         end
                                     end

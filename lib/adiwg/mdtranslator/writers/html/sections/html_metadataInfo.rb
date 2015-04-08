@@ -30,7 +30,7 @@ module ADIWG
                         # metadata identifier
                         @html.details do
                             @html.summary('Metadata Identifier', {'id'=>'metadata-identifier', 'class'=>'h3'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.em('Identifier:')
                                 @html.text!(hMetaInfo[:metadataId][:identifier])
                                 @html.br
@@ -44,13 +44,13 @@ module ADIWG
                         # metadata information
                         @html.details do
                             @html.summary('Metadata Record Information', {'id'=>'metadata-recordInfo', 'class'=>'h3'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
 
                                 # metadata URI
                                 s = hMetaInfo[:metadataURI]
                                 if s
                                     @html.em('Metadata URI: ')
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.a(s, 'href'=>s)
                                     end
                                 end
@@ -81,7 +81,7 @@ module ADIWG
                                 aCustodians = hMetaInfo[:metadataCustodians]
                                 if !aCustodians.empty?
                                     @html.em('Metadata contact: ')
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         aCustodians.each do |hResParty|
                                             htmlResParty.writeHtml(hResParty)
                                         end
@@ -103,7 +103,7 @@ module ADIWG
                         if !hParent.empty?
                             @html.details do
                                 @html.summary('Parent Metadata Citation', {'id'=>'metadata-parentInfo', 'class'=>'h3'})
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlCitation.writeHtml(hMetaInfo[:parentMetadata])
                                 end
                             end

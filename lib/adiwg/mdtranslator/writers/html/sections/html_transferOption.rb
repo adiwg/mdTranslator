@@ -27,7 +27,7 @@ module ADIWG
                         aOlRes = hTransOption[:online]
                         aOlRes.each do |hOlRes|
                             @html.em('Online option: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlOlRes.writeHtml(hOlRes)
                             end
                         end
@@ -36,7 +36,7 @@ module ADIWG
                         hMedium = hTransOption[:offline]
                         if !hMedium.empty?
                             @html.em('Offline option: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlMedium.writeHtml(hMedium)
                             end
                         end

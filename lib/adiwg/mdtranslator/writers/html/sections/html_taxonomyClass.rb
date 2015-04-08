@@ -18,7 +18,7 @@ module ADIWG
 
                         hTaxonCl = aTaxClass[0]
 
-                        @html.blockquote do
+                        @html.section(:class=>'block') do
 
                             # taxonomic class - taxonomic rank
                             s = hTaxonCl[:taxRankName]

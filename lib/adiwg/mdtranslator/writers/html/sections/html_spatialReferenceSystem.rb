@@ -42,7 +42,7 @@ module ADIWG
                         if !aWKT.empty?
                             aWKT.each do |sRWKT|
                                 @html.em('Well-Know-Text: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.text!(sRWKT)
                                 end
                             end

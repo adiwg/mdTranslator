@@ -61,7 +61,7 @@
         margin-right: 1em;
     }
 
-    blockquote{
+    blockquote, section.block{
         margin: 0;
         padding-left: 2em;
         border-left: 0.1em #e3e3e3 solid;
@@ -109,7 +109,7 @@
         a[href]:after { content: " (" attr(href) ")"; }
         abbr[title]:after { content: " (" attr(title) ")"; }
         .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
-        pre, blockquote { padding-right: 1em; page-break-inside: avoid; }
+        pre, blockquote,section.block { padding-right: 1em; page-break-inside: avoid; }
         tr, img { page-break-inside: avoid; }
         img { max-width: 100% !important; }
         @page :left { margin: 15mm 20mm 15mm 10mm; }

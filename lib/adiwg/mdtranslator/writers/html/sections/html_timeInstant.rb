@@ -33,7 +33,7 @@ module ADIWG
                         s = hTimeInstant[:description]
                         if !s.nil?
                             @html.em('Description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

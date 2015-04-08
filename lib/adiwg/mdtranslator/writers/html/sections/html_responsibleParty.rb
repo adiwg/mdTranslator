@@ -23,7 +23,7 @@ module ADIWG
 
                         @html.details do
                             @html.summary(hResParty[:roleName], {'class'=>'h5'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlContact.writeHtml(hResParty[:contactId])
                             end
                         end

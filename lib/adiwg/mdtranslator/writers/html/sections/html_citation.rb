@@ -57,7 +57,7 @@ module ADIWG
                         aResPart = hCitation[:citResponsibleParty]
                         if !aResPart.empty?
                             @html.em('Responsible party: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 aResPart.each do |hParty|
                                     htmlResParty.writeHtml(hParty)
                                 end
@@ -76,7 +76,7 @@ module ADIWG
                         aOlRes = hCitation[:citOlResources]
                         aOlRes.each do |hOlRes|
                             @html.em('Online resource: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlOlRes.writeHtml(hOlRes)
                             end
                         end

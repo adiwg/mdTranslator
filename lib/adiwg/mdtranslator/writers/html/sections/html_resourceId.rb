@@ -35,7 +35,7 @@ module ADIWG
 
                         # identifier citation
                         if !hIdentifier[:identifierCitation].empty?
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlCitation.writeHtml(hIdentifier[:identifierCitation])
                             end
                         end

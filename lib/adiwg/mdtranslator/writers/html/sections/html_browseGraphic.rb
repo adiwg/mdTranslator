@@ -16,7 +16,7 @@ module ADIWG
 
                     def writeHtml(hBrowseG)
 
-                        @html.blockquote do
+                        @html.section(:class=>'block') do
 
                             # browse graphic - name
                             if !hBrowseG[:bGName].nil?
@@ -42,7 +42,7 @@ module ADIWG
                             # browse graphic - URI
                             if !hBrowseG[:bGURI].nil?
                                 @html.em('URI:')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.a(hBrowseG[:bGURI])
                                 end
                             end

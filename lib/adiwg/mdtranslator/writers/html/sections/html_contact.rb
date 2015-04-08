@@ -107,7 +107,7 @@ module ADIWG
                         if !aOline.empty?
                             aOline.each do |olRes|
                                 @html.em('Online presence: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlOlRes.writeHtml(olRes)
                                 end
                             end

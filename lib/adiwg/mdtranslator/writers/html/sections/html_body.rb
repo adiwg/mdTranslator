@@ -60,10 +60,10 @@ module ADIWG
                             @html.h1('mdTranslator Metadata Report', 'id'=>'mdtranslator-metadata-report')
 
                             # section index
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.h3('Page Index')
                                 @html.a('Metadata Information Section','href'=>'#metadataInfo')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.a('Metadata Identifier', 'href'=>'#metadata-identifier')
                                     @html.br
                                     @html.a('Metadata Record Information', 'href'=>'#metadata-recordInfo')
@@ -72,7 +72,7 @@ module ADIWG
                                 end
                                 @html.br
                                 @html.a('Resource Information Section','href'=>'#resourceInfo')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.a('Resource Identification', 'href'=>'#resourceInfo-general')
                                     @html.br
                                     @html.a('Contacts', 'href'=>'#resourceInfo-contacts')
@@ -106,7 +106,7 @@ module ADIWG
 
                             # metadata source
                             @html.h2('Metadata Source', 'id'=>'metadata-source')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.em('Metadata schema:')
                                 @html.text!(intObj[:schema][:name])
                                 @html.br
@@ -118,14 +118,14 @@ module ADIWG
 
                             # metadata information section
                             @html.h2('Metadata Information', 'id'=>'metadataInfo')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
                             end
                             @html.hr
 
                             # resource information section
                             @html.h2('Resource Information', 'id'=>'resourceInfo')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlResInfo.writeHtml(hMetadata[:resourceInfo])
                             end
                             @html.hr
@@ -133,13 +133,13 @@ module ADIWG
                             # data dictionary section
                             @html.h2('Data Dictionary', 'id'=>'dataDictionary')
                             aDataDict.each do |hDictionary|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
 
                                     # get dictionary title from the citation
                                     sTitle = hDictionary[:dictionaryInfo][:dictCitation][:citTitle]
                                     @html.details do
                                         @html.summary(sTitle, {'class'=>'h3'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
                                             htmlDataD.writeHtml(hDictionary)
                                         end
                                     end
@@ -151,22 +151,22 @@ module ADIWG
                             # resource distribution section
                             @html.h2('Resource Distribution', 'id'=>'resourceDistribution')
                             aDistributor.each do |hDistributor|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     @html.details do
                                         @html.summary('Distributor', {'class'=>'h4'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
 
                                             # resource distribution - distributor - required
                                             @html.em('Distributor contact: ')
                                             hResParty = hDistributor[:distContact]
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlResParty.writeHtml(hResParty)
                                             end
 
                                             # resource distribution - order process
                                             hDistributor[:distOrderProc].each do |hOrder|
                                                 @html.em('Order Process: ')
-                                                @html.blockquote do
+                                                @html.section(:class=>'block') do
                                                     htmlOrderProc.writeHtml(hOrder)
                                                 end
                                             end
@@ -190,7 +190,7 @@ module ADIWG
                             # associated resource section
                             @html.h2('Associated Resources', 'id'=>'associatedResource')
                             aAssRes.each do |hAssRes|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
 
                                     # get document title from the citation
                                     hCitation = hAssRes[:resourceCitation]
@@ -202,7 +202,7 @@ module ADIWG
 
                                     @html.details do
                                         @html.summary(sTitle, {'class'=>'h4'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
 
                                             # associated resource - resource type
                                             s = hAssRes[:resourceType]
@@ -231,7 +231,7 @@ module ADIWG
                                             # associated resource - citation
                                             if !hCitation.empty?
                                                 @html.em('Resource citation: ')
-                                                @html.blockquote do
+                                                @html.section(:class=>'block') do
                                                     htmlCitation.writeHtml(hCitation)
                                                 end
                                             end
@@ -240,7 +240,7 @@ module ADIWG
                                             hCitation = hAssRes[:metadataCitation]
                                             if !hCitation.empty?
                                                 @html.em('Metadata citation: ')
-                                                @html.blockquote do
+                                                @html.section(:class=>'block') do
                                                     htmlCitation.writeHtml(hCitation)
                                                 end
                                             end
@@ -255,13 +255,13 @@ module ADIWG
                             # additional documentation section
                             @html.h2('Additional Documentation', 'id'=>'additionalDocuments')
                             aAddDocs.each do |hAddDoc|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
 
                                     # get document title from the citation
                                     sTitle = hAddDoc[:citation][:citTitle]
                                     @html.details do
                                         @html.summary(sTitle, {'class'=>'h4'})
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
 
                                             # additional documentation - resource type
                                             s = hAddDoc[:resourceType]
@@ -275,7 +275,7 @@ module ADIWG
                                             hCitation = hAddDoc[:citation]
                                             if !hCitation.empty?
                                                 @html.em('Citation: ')
-                                                @html.blockquote do
+                                                @html.section(:class=>'block') do
                                                     htmlCitation.writeHtml(hCitation)
                                                 end
                                             end

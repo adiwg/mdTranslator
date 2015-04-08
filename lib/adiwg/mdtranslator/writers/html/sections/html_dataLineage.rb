@@ -35,7 +35,7 @@ module ADIWG
                         aSteps = hLineage[:processSteps]
                         if !aSteps.empty?
                             @html.em('Process steps: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.ol do
                                     aSteps.each do |hStep|
                                         @html.li
@@ -50,7 +50,7 @@ module ADIWG
                         aSource.each do |hSource|
                             @html.details do
                                 @html.summary('Data source', {'class'=>'h5'})
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlDSource.writeHtml(hSource)
                                 end
                             end

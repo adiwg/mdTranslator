@@ -36,7 +36,7 @@ module ADIWG
                         s = hMedium[:mediumNote]
                         if !s.nil?
                             @html.em('Medium note: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

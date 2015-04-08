@@ -35,7 +35,7 @@ module ADIWG
                         s = hStep[:stepDescription]
                         if !s.nil?
                             @html.em('Description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -59,7 +59,7 @@ module ADIWG
                         aProcessor = hStep[:stepProcessors]
                         aProcessor.each do |hResParty|
                             @html.em('Responsible party: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlResParty.writeHtml(hResParty)
                             end
                         end

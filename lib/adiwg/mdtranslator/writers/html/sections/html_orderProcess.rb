@@ -25,7 +25,7 @@ module ADIWG
                         s = hOrder[:orderInstructions]
                         if !s.nil?
                             @html.em('Order instructions: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

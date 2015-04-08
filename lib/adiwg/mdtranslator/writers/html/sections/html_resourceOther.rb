@@ -48,10 +48,10 @@ module ADIWG
                         if !aUse.empty?
                             @html.details do
                                 @html.summary('Resource specific usage', {'id'=>'resourceGen-usage', 'class'=>'h4'})
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     aUse.each do |hUsage|
                                         @html.em('Resource usage: ')
-                                        @html.blockquote do
+                                        @html.section(:class=>'block') do
                                             htmlResUse.writeHtml(hUsage)
                                         end
                                     end
@@ -72,7 +72,7 @@ module ADIWG
                         s = resourceInfo[:supplementalInfo]
                         if !s.nil?
                             @html.em('Supplemental information: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end

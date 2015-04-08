@@ -36,7 +36,7 @@ module ADIWG
                         hTimeInstant = hTempEle[:timeInstant]
                         if !hTimeInstant.empty?
                             @html.em('Time instant: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlTimeI.writeHtml(hTimeInstant)
                             end
                         end
@@ -45,7 +45,7 @@ module ADIWG
                         hTimePeriod = hTempEle[:timePeriod]
                         if !hTimePeriod.empty?
                             @html.em('Time period: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlTimeP.writeHtml(hTimePeriod)
                             end
                         end

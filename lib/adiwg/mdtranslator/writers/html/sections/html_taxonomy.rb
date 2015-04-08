@@ -30,7 +30,7 @@ module ADIWG
                         if !aTaxSys.empty?
                             @html.em('Taxonomic class system: ')
                             aTaxSys.each do |hCitation|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlCitation.writeHtml(hCitation)
                                 end
                             end
@@ -40,7 +40,7 @@ module ADIWG
                         s = hTaxon[:taxGeneralScope]
                         if !s.nil?
                             @html.em('General scope: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -50,7 +50,7 @@ module ADIWG
                         if !aTaxObs.empty?
                             @html.em('Taxonomic observer: ')
                             aTaxObs.each do |hResParty|
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlRParty.writeHtml(hResParty)
                                 end
                             end
@@ -60,7 +60,7 @@ module ADIWG
                         s = hTaxon[:taxIdProcedures]
                         if !s.nil?
                             @html.em('Taxonomic identification procedures: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -85,7 +85,7 @@ module ADIWG
                             hResParty = hTaxVoucher[:repository]
                             if !hResParty.empty?
                             @html.em('Specimen repository: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlRParty.writeHtml(hResParty)
                                 end
                             end

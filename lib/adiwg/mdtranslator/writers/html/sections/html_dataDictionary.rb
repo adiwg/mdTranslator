@@ -31,7 +31,7 @@ module ADIWG
 
                         @html.details do
                             @html.summary('Dictionary Identification', {'class'=>'h4'})
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
 
                                 # dictionary identification - resource type
                                 s = hDictId[:dictResourceType]
@@ -59,7 +59,7 @@ module ADIWG
 
                                 # dictionary identification - citation
                                 @html.em('Citation: ')
-                                @html.blockquote do
+                                @html.section(:class=>'block') do
                                     htmlCitation.writeHtml(hDictId[:dictCitation])
                                 end
 
@@ -71,10 +71,10 @@ module ADIWG
                             @html.summary('Resource Domains', {'class'=>'h4'})
                             if !aDictDom.empty?
                                 aDictDom.each do |hDomain|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             @html.summary(hDomain[:domainCode], {'class'=>'h5'})
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlDomain.writeHtml(hDomain)
                                             end
                                         end
@@ -88,10 +88,10 @@ module ADIWG
                             @html.summary('Resource Entities', {'class'=>'h4'})
                             if !aDictEnt.empty?
                                 aDictEnt.each do |hEntity|
-                                    @html.blockquote do
+                                    @html.section(:class=>'block') do
                                         @html.details do
                                             @html.summary(hEntity[:entityCode], {'class'=>'h5'})
-                                            @html.blockquote do
+                                            @html.section(:class=>'block') do
                                                 htmlEntity.writeHtml(hEntity)
                                             end
                                         end

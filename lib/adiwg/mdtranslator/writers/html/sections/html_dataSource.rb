@@ -27,7 +27,7 @@ module ADIWG
                         s = hSource[:sourceDescription]
                         if !s.nil?
                             @html.em('Description: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.text!(s)
                             end
                         end
@@ -36,7 +36,7 @@ module ADIWG
                         hCitation = hSource[:sourceCitation]
                         if !hCitation.empty?
                             @html.em('Citation: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 htmlCitation.writeHtml(hCitation)
                             end
                         end
@@ -45,7 +45,7 @@ module ADIWG
                         aSteps = hSource[:sourceSteps]
                         if !aSteps.empty?
                             @html.em('Process steps: ')
-                            @html.blockquote do
+                            @html.section(:class=>'block') do
                                 @html.ol do
                                     aSteps.each do |hStep|
                                         @html.li
