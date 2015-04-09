@@ -71,7 +71,7 @@ module ADIWG
                             # address - admin area
                             s = hAddress[:adminArea]
                             if s
-                                @html.text(', ' + s)
+                                @html.text!(', ' + s)
                             end
 
                             # address - postal code

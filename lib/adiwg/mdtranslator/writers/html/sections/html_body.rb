@@ -50,6 +50,8 @@ module ADIWG
                             logo = file.read
                             file.close
 
+                            # add top anchor
+                            @html.a('Top of Page', {'id'=>'top', 'href'=>'#', 'class'=>'button', 'style'=>'position:fixed; bottom:1em; right:1em'})
                             @html.h2('id'=>'mainHeader') do
                                 @html.img('width'=>'150', 'height'=>'39', 'title'=>'', 'alt'=>'', 'src'=>logo)
                                 @html.span('Metadata Report')

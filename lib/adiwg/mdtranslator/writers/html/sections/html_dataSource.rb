@@ -48,8 +48,9 @@ module ADIWG
                             @html.section(:class=>'block') do
                                 @html.ol do
                                     aSteps.each do |hStep|
-                                        @html.li
-                                        htmlPStep.writeHtml(hStep)
+                                        @html.li do
+                                            htmlPStep.writeHtml(hStep)
+                                        end
                                     end
                                 end
                             end

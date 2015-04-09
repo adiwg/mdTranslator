@@ -67,10 +67,12 @@
         border-left: 0.1em #e3e3e3 solid;
     }
 
+    summary:focus {outline: none}
+
     hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
 
     pre, code, kbd, samp { color: #000; font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 0.98em; }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
 
     b, strong { font-weight: bold; }
 
@@ -158,4 +160,37 @@
         bottom: 0.6em;
         font-size: 0.7em;
         font-weight: 500;
+    }
+
+    a.button {
+        border-top: 1px solid #696969;
+        background: #eaeced;
+        background: -webkit-gradient(linear, left top, left bottom, from(#b0b0b0), to(#eaeced));
+        background: -webkit-linear-gradient(top, #b0b0b0, #eaeced);
+        background: -moz-linear-gradient(top, #b0b0b0, #eaeced);
+        background: -ms-linear-gradient(top, #b0b0b0, #eaeced);
+        background: -o-linear-gradient(top, #b0b0b0, #eaeced);
+        padding: 4px 11px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+        box-shadow: rgba(0,0,0,1) 0 1px 0;
+        text-shadow: rgba(0,0,0,.4) 0 1px 0;
+        color: #a0a0a0;
+        font-size: 12px;
+        font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    a.button:hover {
+        border-top-color: #84c2e8;
+        background: #84c2e8;
+        color: #2b2a2b;
+    }
+    a.button:active {
+        border-top-color: #1b435e;
+        background: #1b435e;
+        color: #ffffff
     }
