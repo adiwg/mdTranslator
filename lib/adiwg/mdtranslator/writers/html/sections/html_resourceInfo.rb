@@ -135,7 +135,7 @@ module ADIWG
                                 aExtents = resourceInfo[:extents]
                                 aExtents.each do |hExtent|
                                     @html.details do
-                                        @html.summary('Extent ' + extNum.to_s, {'class'=>'h4'})
+                                        @html.summary('Extent ' + extNum.to_s, {'class'=>'h4 extent'})
                                         @html.section(:class=>'block') do
                                             htmlExtent.writeHtml(hExtent, extNum)
                                             extNum += 1

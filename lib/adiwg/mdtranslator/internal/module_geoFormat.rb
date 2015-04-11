@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-04-01 original script
+#   Stan Smith 2015-04-10 mapped bounding box as geojson feature and wkt polygon
 
 module AdiwgGeoFormat
 
@@ -20,8 +21,10 @@ module AdiwgGeoFormat
 
         # add bounding box
         if geoType == 'BoundingBox'
+            hGeoJson[:type] = 'Feature'
             hGeoJson[:bbox] = [hGeometry[:westLong],hGeometry[:southLat],
                                hGeometry[:eastLong],hGeometry[:northLat]]
+            hGeoJson[:geometry] = 'null'
         end
 
         # add point, multi-point, linestring, multi-linestring
@@ -93,6 +96,16 @@ module AdiwgGeoFormat
         hGeometry = hGeoEle[:geometry]
         dimension = hGeoEle[:dimension]
         wktString = ''
+
+        if geoType == 'BoundingBox'
+            wktString = 'POLYGON ('
+            wktString += '(' + hGeometry[:westLong].to_s + ' ' + hGeometry[:northLat].to_s + '), '
+            wktString += '(' + hGeometry[:eastLong].to_s + ' ' + hGeometry[:northLat].to_s + '), '
+            wktString += '(' + hGeometry[:eastLong].to_s + ' ' + hGeometry[:southLat].to_s + '), '
+            wktString += '(' + hGeometry[:westLong].to_s + ' ' + hGeometry[:southLat].to_s + '), '
+            wktString += '(' + hGeometry[:westLong].to_s + ' ' + hGeometry[:northLat].to_s + ')'
+            wktString += ')'
+        end
 
         if geoType == 'Point'
             wktString = 'POINT ' + wkt_dimension(dimension) + '('

@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-23 original script
+#   Stan Smith 2014-04-10 add open and close buttons
 
 require 'html_metadataInfo'
 require 'html_resourceInfo'
@@ -50,8 +51,14 @@ module ADIWG
                             logo = file.read
                             file.close
 
-                            # add top anchor
-                            @html.a('Top of Page', {'id'=>'top', 'href'=>'#', 'class'=>'button', 'style'=>'position:fixed; bottom:1em; right:1em'})
+                            # add top anchor and button
+                            @html.a(' Top', {'href'=>'#', 'class'=>'btn icon-caret-up', 'style'=>'position:fixed; bottom:6em; right:1em'})
+
+                            # add open and close buttons
+                            @html.span(' Open',{'class'=>'btn icon-caret-down', 'style'=>'position:fixed; bottom:1em; right:1em', 'onclick'=>'openAllDetails();'})
+                            @html.span(' Close',{'class'=>'btn icon-caret-right', 'style'=>'position:fixed; bottom:3.5em; right:1em', 'onclick'=>'closeAllDetails();'})
+
+                            # main header
                             @html.h2('id'=>'mainHeader') do
                                 @html.img('width'=>'150', 'height'=>'39', 'title'=>'', 'alt'=>'', 'src'=>logo)
                                 @html.span('Metadata Report')

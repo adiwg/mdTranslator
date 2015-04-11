@@ -31,6 +31,17 @@ module ADIWG
                                 @html.text!(css)
                             end
 
+                            # add inline javascript
+                            # read javascript from file
+                            path = File.join(File.dirname(__FILE__), 'html_headScript.js')
+                            file = File.open(path, 'r')
+                            js = file.read
+                            file.close
+
+                            @html.script('type'=>'text/javascript') do
+                                @html << js
+                            end
+
                         end
                     end
 

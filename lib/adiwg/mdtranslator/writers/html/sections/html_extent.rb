@@ -41,6 +41,9 @@ module ADIWG
                         # extent - map
                         @html.details do
                             @html.summary('Map', {'class'=>'h4'})
+                            @html.div('class'=>'map') do
+
+                            end
                         end
 
                         # extent - geographic elements
@@ -52,7 +55,7 @@ module ADIWG
                                     @html.section(:class=>'block') do
                                         @html.details do
                                             eleNum = extNum.to_s + '.' + geoNum.to_s
-                                            @html.summary('Element ' + eleNum, {'class'=>'h5'})
+                                            @html.summary('Element ' + eleNum, {'class'=>'h5 element'})
                                             @html.section(:class=>'block') do
                                                 htmlGeoEle.writeHtml(hGeoEle, eleNum)
                                                 geoNum += 1

@@ -132,7 +132,7 @@ module ADIWG
                                 @html.em('GeoJSON format: ')
                                 @html.section(:class=>'block') do
                                     geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle)
-                                    @html.div({'id'=>'geojson-' + geoPre}) do
+                                    @html.div({'id'=>'geojson-' + geoPre, 'class'=>'geojson'}) do
                                         @html.text!(geoJson)
                                     end
                                 end
@@ -141,7 +141,7 @@ module ADIWG
                                 @html.em('Well-Know-Text format: ')
                                 @html.section(:class=>'block') do
                                     wkt = AdiwgGeoFormat.internal_to_wkt(hGeoEle[:elementGeometry])
-                                    @html.div({'id'=>'wkt-' + geoPre}) do
+                                    @html.div({'id'=>'wkt-' + geoPre, 'class'=>'wkt'}) do
                                         @html.text!(wkt)
                                     end
                                 end
