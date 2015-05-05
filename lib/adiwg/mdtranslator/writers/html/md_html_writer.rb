@@ -35,14 +35,15 @@ module ADIWG
 
                         # page
                         metadata = @html.declare! :DOCTYPE, :html
-                        @html.html(:lang=>'en')
-                        @html.comment!('Report from mdTranslator HTML writer v1.0')
+                        @html.html(:lang=>'en') do
+                            @html.comment!('Report from mdTranslator HTML writer v1.0')
 
-                        # head
-                        htmlHead.writeHtml()
+                            # head
+                            htmlHead.writeHtml()
 
-                        # body
-                        htmlBody.writeHtml(intObj)
+                            # body
+                            htmlBody.writeHtml(intObj)
+                        end
 
                         return metadata
 
