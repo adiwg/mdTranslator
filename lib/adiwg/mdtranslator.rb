@@ -55,7 +55,46 @@ module ADIWG
 
             $showAllTags = showAllTags
 
-            # load and return this hash
+            # the reader and writer specified in the translate parameter string should load and
+            #     return this hash ...
+            # ---------------------------
+            # readerFormat: the anticipated format of the input file, parsing by the reader will
+            #     proceed assuming this format, set by reader
+            # readerStructurePass: 'true' if input file structure is determined to be valid.
+            #    Set by the reader.
+            # readerStructureMessages: an array of quoted string messages. If readerStructurePass
+            #    is false, set one or more messages to assist the user in fixing file structure
+            #    problems.  Set by reader.
+            # readerRequested: name of the reader requested by the user, set from  the translate
+            #    parameter list
+            # readerFound: name of the reader used by the reader, set by reader.  Will be same as
+            #    readerRequested if readerRequested name is valid
+            # readerVersionFound: version of the reader requested by the input file, set by reader
+            # readerVersionUsed: version of the reader the reader method decided to use in processing
+            #    the input file.  Set by the reader.  Default 'normal'.
+            # readerValidationLevel: validation level requested to be applied to the input file, set
+            #    from the parameter list
+            # readerValidationPass: true if the input file passes the level of validation requested,
+            #    set by reader
+            # readerValidationMessages: an array of quoted string messages. If readerValidationPass
+            #    is 'false', set one or more messages to assist user fixing file schema validation
+            #    problems.  Set by reader.
+            # readerExecutionPass: 'true' if the reader completes the import of the input file into
+            #    the internal object without errors set by reader
+            # readerExecutionMessages: an array of quoted string messages. If readerExecutionPass is
+            #    'false', set one or more messages to assist user in fixing file data problems.
+            #    Set by reader.
+            # writerName: name of the writer requested by the user, set from the translate parameter
+            #    list.  if nil no write was requested and only validation of the input file will
+            #    be performed.
+            # writerVersion: current version of the writer requested, set by writer
+            # writerFormat: format of the output from the writer, set by writer
+            # writerPass: true if the writer completes the creation of the output file without errors,
+            #    set by writer
+            # writerMessages: an array of quoted string messages.  If writerPass is 'false', set one
+            #    or more messages to assist user in fixing file data problems.  Set by writer.
+            # writerOutput: output file returned from the writer, set by writer
+
             $response = {
                 readerFormat: nil,
                 readerStructurePass: nil,
