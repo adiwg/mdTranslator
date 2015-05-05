@@ -217,3 +217,7 @@
         .icon-caret-right:before {
             content: "\f0da";
         }
+        /*** Maps ***/
+       section.extent-section div.map {
+           height: 350px;
+       }

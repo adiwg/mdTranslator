@@ -296,6 +296,21 @@ module ADIWG
                             end
                             @html.hr
 
+                            #Load leaflet
+                            @html.link( :rel => 'stylesheet', :href => 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css')
+                            @html.script('', :src => 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js')
+
+                            # add inline javascript
+                            # read javascript from file
+                            path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
+                            file = File.open(path, 'r')
+                            js = file.read
+                            file.close
+
+                            @html.script('type'=>'text/javascript') do
+                                @html << js
+                            end
+
                         end # body
                     end # def writeHtml
                 end # class

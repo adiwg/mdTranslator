@@ -40,7 +40,7 @@ module ADIWG
 
                         # extent - map
                         @html.details do
-                            @html.summary('Map', {'class'=>'h4'})
+                            @html.summary('Map', {'class'=>'h4 map-header'})
                             @html.div('class'=>'map') do
 
                             end
