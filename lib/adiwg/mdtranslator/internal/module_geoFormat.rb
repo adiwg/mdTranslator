@@ -24,7 +24,8 @@ module AdiwgGeoFormat
             hGeoJson[:type] = 'Feature'
             hGeoJson[:bbox] = [hGeometry[:westLong],hGeometry[:southLat],
                                hGeometry[:eastLong],hGeometry[:northLat]]
-            hGeoJson[:geometry] = 'null'
+            hGeoJson[:geometry] = nil
+            hGeoJson[:properties] = nil
         end
 
         # add point, multi-point, linestring, multi-linestring
