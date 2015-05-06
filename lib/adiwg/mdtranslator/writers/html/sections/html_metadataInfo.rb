@@ -28,16 +28,22 @@ module ADIWG
                         htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
 
                         # metadata identifier
-                        @html.details do
-                            @html.summary('Metadata Identifier', {'id'=>'metadata-identifier', 'class'=>'h3'})
-                            @html.section(:class=>'block') do
-                                @html.em('Identifier:')
-                                @html.text!(hMetaInfo[:metadataId][:identifier])
-                                @html.br
+                        id = hMetaInfo[:metadataId][:identifier]
+                        if id
+                            @html.details do
+                                @html.summary('Metadata Identifier', {'id'=>'metadata-identifier', 'class'=>'h3'})
+                                @html.section(:class=>'block') do
+                                    @html.em('Identifier:')
+                                    @html.text!(id)
+                                    @html.br
 
-                                @html.em('Identifier type:')
-                                @html.text!(hMetaInfo[:metadataId][:identifierType])
-                                @html.br
+                                    type = hMetaInfo[:metadataId][:identifierType]
+                                    if type
+                                        @html.em('Identifier type:')
+                                        @html.text!(type)
+                                        @html.br
+                                    end
+                                end
                             end
                         end
 

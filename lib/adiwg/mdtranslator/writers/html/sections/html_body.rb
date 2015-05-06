@@ -39,6 +39,7 @@ module ADIWG
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
+                            hMetaInfo = hMetadata[:metadataInfo]
                             aDataDict = intObj[:dataDictionary]
                             aDistributor = intObj[:metadata][:distributorInfo]
                             aAssRes = intObj[:metadata][:associatedResources]
@@ -127,10 +128,13 @@ module ADIWG
 
                             # metadata information section
                             @html.h2('Metadata Information', 'id'=>'metadataInfo')
-                            @html.section(:class=>'block') do
-                                htmlMetaInfo.writeHtml(hMetadata[:metadataInfo])
+                            if !hMetaInfo.empty?
+                                @html.section(:class=>'block') do
+                                  htmlMetaInfo.writeHtml(hMetaInfo)
+                                end
                             end
                             @html.hr
+
 
                             # resource information section
                             @html.h2('Resource Information', 'id'=>'resourceInfo')
