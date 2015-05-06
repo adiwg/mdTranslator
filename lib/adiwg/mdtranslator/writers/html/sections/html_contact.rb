@@ -97,7 +97,7 @@ module ADIWG
                             aPhones.each do |hPhone|
                                 @html.text!(hPhone[:phoneServiceType] + ': ')
                                 @html.text!(hPhone[:phoneNumber] + ' ')
-                                @html.text!(hPhone[:phoneName])
+                                @html.text!(hPhone[:phoneName]) if !hPhone[:phoneName].nil?
                                 @html.br
                             end
                         end

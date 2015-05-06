@@ -38,16 +38,15 @@ module ADIWG
                             end
                         end
 
-                        # extent - map
-                        @html.details do
-                            @html.summary('Map', {'class'=>'h4 map-header'})
-                            @html.div('class'=>'map') do
-
-                            end
-                        end
-
                         # extent - geographic elements
                         if !aGeoEle.empty?
+                            # extent - map
+                            @html.details do
+                                @html.summary('Map', {'class'=>'h4 map-header'})
+                                @html.div('class'=>'map') do
+                                end
+                            end
+
                             @html.details do
                                 @html.summary('Geographic Elements', {'class'=>'h4'})
                                 geoNum = 0
