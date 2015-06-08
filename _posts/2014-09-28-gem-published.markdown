@@ -6,7 +6,7 @@ categories: news gem
 ---
 
 The mdTranslator Ruby gem is [now available](https://rubygems.org/gems/adiwg-mdtranslator) on rubygems.org.
- The sourcecode is available on the [GitHub repo](https://github.com/adiwg/mdTranslator]).
+ The sourcecode is available on the [GitHub repo](https://github.com/adiwg/mdTranslator).
 
 -----------
 
