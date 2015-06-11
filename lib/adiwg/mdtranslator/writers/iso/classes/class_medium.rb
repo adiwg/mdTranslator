@@ -5,9 +5,9 @@
 # 	Stan Smith 2013-09-26 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_mediumName'
-require 'code_mediumFormat'
+require 'class_codelist'
 
 module ADIWG
     module Mdtranslator
@@ -23,8 +23,7 @@ module ADIWG
                     def writeXML(medium)
 
                         # classes used
-                        medFormatCode = $IsoNS::MD_MediumFormatCode.new(@xml)
-                        medNameCode = $IsoNS::MD_MediumNameCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag!('gmd:MD_Medium') do
 
@@ -32,7 +31,7 @@ module ADIWG
                             s = medium[:mediumName]
                             if !s.nil?
                                 @xml.tag!('gmd:name') do
-                                    medNameCode.writeXML(s)
+                                    codelistClass.writeXML('iso_mediumName',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:name')
@@ -42,7 +41,7 @@ module ADIWG
                             s = medium[:mediumFormat]
                             if !s.nil?
                                 @xml.tag!('gmd:mediumFormat') do
-                                    medFormatCode.writeXML(s)
+                                    codelistClass.writeXML('iso_mediumFormat',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:mediumFormat')

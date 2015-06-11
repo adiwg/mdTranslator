@@ -5,9 +5,9 @@
 # 	Stan Smith 2013-11-22 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_obligation'
-require 'code_datatype'
+require 'class_codelist'
 require 'class_onlineResource'
 require 'class_responsibleParty'
 
@@ -27,8 +27,7 @@ module ADIWG
                         # classes used
                         olResClass = $IsoNS::CI_OnlineResource.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        obCode = $IsoNS::MD_ObligationCode.new(@xml)
-                        dataTCode = $IsoNS::MD_DatatypeCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
@@ -80,7 +79,7 @@ module ADIWG
                                     s = hExtension[:obligation]
                                     if !s.nil?
                                         @xml.tag!('gmd:obligation') do
-                                            obCode.writeXML(s)
+                                            codelistClass.writeXML('iso_obligation',s)
                                         end
                                     elsif $showAllTags
                                         @xml.tag!('gmd:obligation')
@@ -92,7 +91,7 @@ module ADIWG
                                         @xml.tag!('gmd:dataType', {'gco:nilReason' => 'missing'})
                                     else
                                         @xml.tag!('gmd:dataType') do
-                                            dataTCode.writeXML(s)
+                                            codelistClass.writeXML('iso_dataType',s)
                                         end
                                     end
 

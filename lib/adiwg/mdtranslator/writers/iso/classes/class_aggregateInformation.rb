@@ -7,9 +7,9 @@
 #   Stan Smith 2014-11-06 take initiativeType from internal initiativeType
 #   ... rather than resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_associationType'
-require 'code_initiativeType'
+require 'class_codelist'
 require 'class_citation'
 
 module ADIWG
@@ -31,8 +31,7 @@ module ADIWG
                         # ... citation > identifier section
 
                         # classes used
-                        assocCode = $IsoNS::DS_AssociationTypeCode.new(@xml)
-                        initCode = $IsoNS::DS_InitiativeTypeCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         citationClass = $IsoNS::CI_Citation.new(@xml)
 
                         @xml.tag!('gmd:MD_AggregateInformation') do
@@ -53,7 +52,7 @@ module ADIWG
                             s = hAssocRes[:associationType]
                             if !s.nil?
                                 @xml.tag!('gmd:associationType') do
-                                    assocCode.writeXML(s)
+                                    codelistClass.writeXML('iso_associationType',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:associationType')
@@ -63,7 +62,7 @@ module ADIWG
                             s = hAssocRes[:initiativeType]
                             if !s.nil?
                                 @xml.tag!('gmd:initiativeType') do
-                                    initCode.writeXML(s)
+                                    codelistClass.writeXML('iso_initiativeType',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:initiativeType')

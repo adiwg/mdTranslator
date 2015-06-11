@@ -16,10 +16,9 @@
 #   Stan Smith 2014-10-29 add resource time period as a extent temporal element
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_progress'
-require 'code_topicCategory'
-require 'code_spatialRepresentationType'
+require 'class_codelist'
 require 'class_citation'
 require 'class_responsibleParty'
 require 'class_maintenanceInformation'
@@ -48,12 +47,8 @@ module ADIWG
 
                     def writeXML(hDataId, aAssocRes)
 
-                        # codes used
-                        progressCode = $IsoNS::MD_ProgressCode.new(@xml)
-                        spatialCode = $IsoNS::MD_SpatialRepresentationTypeCode.new(@xml)
-                        topicCode = $IsoNS::MD_TopicCategoryCode.new(@xml)
-
                         # classes used
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         intMetadataClass = InternalMetadata.new
                         citationClass = $IsoNS::CI_Citation.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
@@ -121,7 +116,7 @@ module ADIWG
                                 @xml.tag!('gmd:status', {'gco:nilReason' => 'missing'})
                             else
                                 @xml.tag!('gmd:status') do
-                                    progressCode.writeXML(s)
+                                    codelistClass.writeXML('iso_progress',s)
                                 end
                             end
 
@@ -263,7 +258,7 @@ module ADIWG
                             if !aSpatialType.empty?
                                 aSpatialType.each do |spType|
                                     @xml.tag!('gmd:spatialRepresentationType') do
-                                        spatialCode.writeXML(spType)
+                                        codelistClass.writeXML('iso_spatialRepresentation',spType)
                                     end
                                 end
                             elsif $showAllTags
@@ -301,7 +296,7 @@ module ADIWG
                             if !aTopics.empty?
                                 aTopics.each do |spType|
                                     @xml.tag!('gmd:topicCategory') do
-                                        topicCode.writeXML(spType)
+                                        codelistClass.writeXML('iso_topicCategory',spType)
                                     end
                                 end
                             elsif $showAllTags

@@ -6,9 +6,10 @@
 # 	Stan Smith 2013-11-21 support for date or datetime
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
+require 'class_codelist'
 require 'module_dateTimeFun'
-require 'code_dateType'
 
 module ADIWG
     module Mdtranslator
@@ -24,7 +25,7 @@ module ADIWG
                     def writeXML(hDate)
 
                         # classes used
-                        dateTypeCode = $IsoNS::CI_DateTypeCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         citDateTime = hDate[:dateTime]
                         citDateRes = hDate[:dateResolution]
@@ -56,7 +57,7 @@ module ADIWG
                                 @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
                             else
                                 @xml.tag!('gmd:dateType') do
-                                    dateTypeCode.writeXML(citDateType)
+                                    codelistClass.writeXML('iso_dateType',citDateType)
                                 end
                             end
                         end

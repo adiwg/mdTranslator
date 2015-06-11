@@ -24,9 +24,9 @@
 #   Stan Smith 2014-11-06 changed hierarchy level to load values from resourceInfo > resourceType
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_characterSet'
-require 'code_scope'
+require 'class_codelist'
 require 'class_responsibleParty'
 require 'class_metadataExtension'
 require 'class_dataIdentification'
@@ -51,8 +51,7 @@ module ADIWG
                         $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        charCode = $IsoNS::MD_CharacterSetCode.new(@xml)
-                        scopeCode = $IsoNS::MD_ScopeCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
                         mdExtClass = $IsoNS::MD_MetadataExtensionInformation.new(@xml)
                         dataIdClass = $IsoNS::MD_DataIdentification.new(@xml)
@@ -70,6 +69,10 @@ module ADIWG
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                         @xml.comment!('core gmi based instance document ISO 19115-2')
+                        @xml.comment!('metadata file constructed using mdTranslator')
+                        @xml.comment!('mdTranslator software is an open-source project sponsored by the Alaska Data Integration working group (ADIwg)')
+                        @xml.comment!('Alaska Data Integration working group is not responsible for the metadata content')
+                        @xml.comment!('mdTranslator and other metadata tools available at https://github.com/adiwg')
                         @xml.tag!('gmi:MI_Metadata', {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
                                                       'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
                                                       'xmlns:gco' => 'http://www.isotc211.org/2005/gco',
@@ -114,7 +117,7 @@ module ADIWG
                             # metadata information - character set - default
                             @xml.tag!('gmd:characterSet') do
                                 # all out put is in utf8
-                                charCode.writeXML('utf8')
+                                codelistClass.writeXML('iso_characterSet','utf8')
                             end
 
                             # metadata information - parent identifier
@@ -146,19 +149,19 @@ module ADIWG
                                 @xml.tag!('gmd:parentIdentifier')
                             end
 
-                            # metadata information - hierarchy level - defaults to 'dataset',
+                            # metadata information - hierarchy level - defaults to 'undefined',
                             # values taken from resourceInfo > resourceType
                             fileHierarchy = false
                             s = hResInfo[:resourceType]
                             if s != ''
                                 fileHierarchy = true
                                 @xml.tag!('gmd:hierarchyLevel') do
-                                    scopeCode.writeXML(s)
+                                    codelistClass.writeXML('iso_scope',s)
                                 end
                             end
                             if !fileHierarchy
                                 @xml.tag!('gmd:hierarchyLevel') do
-                                    scopeCode.writeXML('dataset')
+                                    codelistClass.writeXML('iso_scope','undefined')
                                 end
                             end
 

@@ -6,8 +6,9 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-21 removed keyword thesaurus link; use citation onlineResource
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_keywordType'
+require 'class_codelist'
 require 'class_citation'
 
 module ADIWG
@@ -24,8 +25,8 @@ module ADIWG
                     def writeXML(hDKeyword)
 
                         # classes used
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         citationClass = $IsoNS::CI_Citation.new(@xml)
-                        keywordCode = $IsoNS::MD_KeywordTypeCode.new(@xml)
 
                         @xml.tag!('gmd:MD_Keywords') do
 
@@ -45,7 +46,7 @@ module ADIWG
                             s = hDKeyword[:keywordType]
                             if !s.nil?
                                 @xml.tag!('gmd:type') do
-                                    keywordCode.writeXML(s)
+                                    codelistClass.writeXML('iso_keywordType',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:type')

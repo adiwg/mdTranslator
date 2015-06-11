@@ -5,8 +5,9 @@
 # 	Stan Smith 2013-11-01 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_restriction'
+require 'class_codelist'
 
 module ADIWG
     module Mdtranslator
@@ -22,7 +23,7 @@ module ADIWG
                     def writeXML(hLegalCons)
 
                         # classes used
-                        restrictionCode = $IsoNS::MD_RestrictionCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag!('gmd:MD_LegalConstraints') do
 
@@ -31,7 +32,7 @@ module ADIWG
                             if !aAccessCodes.empty?
                                 aAccessCodes.each do |code|
                                     @xml.tag!('gmd:accessConstraints') do
-                                        restrictionCode.writeXML(code)
+                                        codelistClass.writeXML('iso_restriction',code)
                                     end
                                 end
                             elsif $showAllTags
@@ -43,7 +44,7 @@ module ADIWG
                             if !aUseCodes.empty?
                                 aUseCodes.each do |code|
                                     @xml.tag!('gmd:useConstraints') do
-                                        restrictionCode.writeXML(code)
+                                        codelistClass.writeXML('iso_restriction',code)
                                     end
                                 end
                             elsif $showAllTags

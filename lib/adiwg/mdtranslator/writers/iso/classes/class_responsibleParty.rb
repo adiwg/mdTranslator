@@ -6,8 +6,9 @@
 #   Stan Smith 2014-05-14 modified for JSON schema 0.4.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_role'
+require 'class_codelist'
 require 'class_contact'
 
 module ADIWG
@@ -24,8 +25,8 @@ module ADIWG
                     def writeXML(rParty)
 
                         # classes used
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         ciContactClass = $IsoNS::CI_Contact.new(@xml)
-                        ciRoleCode = $IsoNS::CI_RoleCode.new(@xml)
 
                         # search array of responsible party for matches in contact object
                         rpID = rParty[:contactId]
@@ -83,7 +84,7 @@ module ADIWG
                                         xml.tag!('gmd:role', {'gco:nilReason' => 'missing'})
                                     else
                                         @xml.tag! 'gmd:role' do
-                                            ciRoleCode.writeXML(s)
+                                            codelistClass.writeXML('iso_role',s)
                                         end
                                     end
 

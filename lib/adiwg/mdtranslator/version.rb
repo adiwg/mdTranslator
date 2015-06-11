@@ -38,11 +38,14 @@
 #               ... added local names to iso 19110 writer
 # 1.0.0rc1 2015-02-27 schema 1.0 support
 # 1.1.0 2015-04-13 added html writer
+# 1.2.0 2015-06-11 added mdCodes for source of codelists
+#              --- added comments to XML headers for citation of ADIwg
+#              --- added reader and writer names to CLI help
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "1.1.1"
+        VERSION = "1.2.0"
     end
 end
 

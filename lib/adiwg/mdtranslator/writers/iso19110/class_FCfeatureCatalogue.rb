@@ -38,6 +38,10 @@ module ADIWG
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                         @xml.comment!('core gfc based instance document for ISO 19110')
+                        @xml.comment!('metadata file constructed using mdTranslator')
+                        @xml.comment!('mdTranslator software is an open-source project sponsored by the Alaska Data Integration working group (ADIwg)')
+                        @xml.comment!('Alaska Data Integration working group is not responsible for the metadata content')
+                        @xml.comment!('mdTranslator and other metadata tools available at https://github.com/adiwg')
                         @xml.tag!('gfc:FC_FeatureCatalogue', {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
                                                               'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
                                                               'xmlns:gco' => 'http://www.isotc211.org/2005/gco',

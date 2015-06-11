@@ -80,7 +80,7 @@ module ADIWG
             #    is 'false', set one or more messages to assist user fixing file schema validation
             #    problems.  Set by reader.
             # readerExecutionPass: 'true' if the reader completes the import of the input file into
-            #    the internal object without errors set by reader
+            #    the internal object without errors. set by reader.
             # readerExecutionMessages: an array of quoted string messages. If readerExecutionPass is
             #    'false', set one or more messages to assist user in fixing file data problems.
             #    Set by reader.
@@ -88,7 +88,7 @@ module ADIWG
             #    list.  if nil no write was requested and only validation of the input file will
             #    be performed.
             # writerVersion: current version of the writer requested, set by writer
-            # writerFormat: format of the output from the writer, set by writer
+            # writerFormat: format of the output from the writer. Set by writer.
             # writerPass: true if the writer completes the creation of the output file without errors,
             #    set by writer
             # writerMessages: an array of quoted string messages.  If writerPass is 'false', set one

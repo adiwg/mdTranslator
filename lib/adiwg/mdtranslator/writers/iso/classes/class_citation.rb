@@ -9,10 +9,11 @@
 #   Stan Smith 2014-05-28 modified for json schema 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-18 modify identifier section for schema 0.6.0
-#   Stan Smith 2014-08-18 process isbn and issn from identifier section per 0.6.0
+#   Stan Smith 2014-08-18 process isbn and ISSN from identifier section per 0.6.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_presentationForm'
+require 'class_codelist'
 require 'class_responsibleParty'
 require 'class_date'
 require 'class_identifier'
@@ -31,7 +32,7 @@ module ADIWG
                     def writeXML(hCitation)
 
                         # classes used
-                        presFormClass = $IsoNS::CI_PresentationFormCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
                         dateClass = $IsoNS::CI_Date.new(@xml)
                         idClass = $IsoNS::MD_Identifier.new(@xml)
@@ -105,7 +106,7 @@ module ADIWG
                             if !aPresForms.empty?
                                 aPresForms.each do |presForm|
                                     @xml.tag!('gmd:presentationForm') do
-                                        presFormClass.writeXML(presForm)
+                                        codelistClass.writeXML('iso_presentationForm',presForm)
                                     end
                                 end
                             elsif $showAllTags

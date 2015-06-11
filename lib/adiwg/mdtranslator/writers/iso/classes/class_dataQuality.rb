@@ -6,8 +6,9 @@
 #   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_scope'
+require 'class_codelist'
 require 'class_lineage'
 
 module ADIWG
@@ -24,7 +25,7 @@ module ADIWG
                     def writeXML(hDataQ)
 
                         # classes used
-                        scopeCode = $IsoNS::MD_ScopeCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         lineClass = $IsoNS::LI_Lineage.new(@xml)
 
                         @xml.tag!('gmd:DQ_DataQuality') do
@@ -37,7 +38,7 @@ module ADIWG
                                 @xml.tag!('gmd:scope') do
                                     @xml.tag!('gmd:DQ_Scope') do
                                         @xml.tag!('gmd:level') do
-                                            scopeCode.writeXML(s)
+                                            codelistClass.writeXML('iso_scope',s)
                                         end
                                     end
                                 end

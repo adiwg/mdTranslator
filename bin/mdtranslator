@@ -26,6 +26,14 @@ class Mdtranslator < Thor
 	    'mdtranslator translate' provides command line access to the ADIWG metadata translator
  with options to select the input file reader, select writer output format, show empty tags
  in XML outputs, and choose level of validation for JSON inputs.
+
+ available readers:
+ \x5 'mdJson' - see http://www.adiwg.org/mdTools
+
+ available writers:
+ \x5 'iso19115_2' - ISO Geospatial Metadata Standard
+ \x5 'iso19110' - ISO Feature Class for data description
+ \x5 'html'  - HTML readable view of metadata content
 	LONGDESC
 	# define cli options
 	method_option :reader, :aliases => '-r', :desc => 'Name of reader to read your input', :default => 'mdJson'

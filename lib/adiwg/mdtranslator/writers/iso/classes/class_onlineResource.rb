@@ -6,8 +6,9 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-14 added protocol to onlineResource
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_onlineFunction'
+require 'class_codelist'
 
 module ADIWG
     module Mdtranslator
@@ -23,7 +24,7 @@ module ADIWG
                     def writeXML(hOlResource)
 
                         # classes used
-                        olFunctionCode = $IsoNS::CI_OnLineFunctionCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag! 'gmd:CI_OnlineResource' do
 
@@ -71,7 +72,7 @@ module ADIWG
                             s = hOlResource[:olResFunction]
                             if !s.nil?
                                 @xml.tag!('gmd:function') do
-                                    olFunctionCode.writeXML(s)
+                                    codelistClass.writeXML('iso_onlineFunction',s)
                                 end
                             elsif $showAllTags
                                 @xml.tag!('gmd:function')

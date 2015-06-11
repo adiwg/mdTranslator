@@ -6,8 +6,8 @@
 #   ... for geometry supplemental information
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/codelists'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/classes'))
 
 require 'builder'

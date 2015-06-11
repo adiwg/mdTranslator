@@ -5,8 +5,9 @@
 # 	Stan Smith 2013-11-01 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_classification'
+require 'class_codelist'
 
 module ADIWG
     module Mdtranslator
@@ -22,7 +23,7 @@ module ADIWG
                     def writeXML(hSecurityCons)
 
                         # classes used
-                        classCode = $IsoNS::MD_ClassificationCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag!('gmd:MD_SecurityConstraints') do
 
@@ -32,7 +33,7 @@ module ADIWG
                                 @xml.tag!('gmd:classification', {'gco:nilReason' => 'missing'})
                             else
                                 @xml.tag!('gmd:classification') do
-                                    classCode.writeXML(s)
+                                    codelistClass.writeXML('iso_classification',s)
                                 end
                             end
 

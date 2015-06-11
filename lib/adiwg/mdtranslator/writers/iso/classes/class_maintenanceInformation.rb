@@ -6,8 +6,9 @@
 # 	Stan Smith 2013-12-18 added contact
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
-require 'code_maintenanceFrequency'
+require 'class_codelist'
 require 'class_responsibleParty'
 
 module ADIWG
@@ -24,7 +25,7 @@ module ADIWG
                     def writeXML(hMaintInfo)
 
                         # classes used
-                        maintFreqCode = $IsoNS::MD_MaintenanceFrequencyCode.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
 
                         @xml.tag! 'gmd:MD_MaintenanceInformation' do
@@ -35,7 +36,7 @@ module ADIWG
                                 @xml.tag!('gmd:maintenanceAndUpdateFrequency', {'gco:nilReason' => 'unknown'})
                             else
                                 @xml.tag!('gmd:maintenanceAndUpdateFrequency') do
-                                    maintFreqCode.writeXML(s)
+                                    codelistClass.writeXML('iso_maintenanceFrequency',s)
                                 end
                             end
 
@@ -53,7 +54,7 @@ module ADIWG
 
                             # maintenance information - contact - CI_ResponsibleParty
                             aContacts = hMaintInfo[:maintContacts]
-                            if aContacts.empty? && $shoeEmpty
+                            if aContacts.empty? && $showEmpty
                                 @xml.tag!('gmd:contact')
                             else
                                 aContacts.each do |hContact|

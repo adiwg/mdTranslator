@@ -31,4 +31,6 @@ Gem::Specification.new do |spec|
 	spec.add_runtime_dependency "uuidtools", "~> 2.1"
 	spec.add_runtime_dependency "json-schema", "~> 2.4.0", "< 2.5.0"
 	spec.add_runtime_dependency "adiwg-mdjson_schemas", "~> 1.0.0"
+    spec.add_runtime_dependency "adiwg-mdcodes", "~> 1.0"
+
 end
