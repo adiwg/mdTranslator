@@ -23,21 +23,13 @@ class Mdtranslator < Thor
 	# basic cli description
 	desc 'translate [FILE]', %q{Pass JSON string or filename plus parameters to mdtranslator translate}
 	long_desc <<-LONGDESC
-	    'mdtranslator translate' provides command line access to the ADIWG metadata translator
- with options to select the input file reader, select writer output format, show empty tags
- in XML outputs, and choose level of validation for JSON inputs.
-
- available readers:
- \x5 'mdJson' - see http://www.adiwg.org/mdTools
-
- available writers:
- \x5 'iso19115_2' - ISO Geospatial Metadata Standard
- \x5 'iso19110' - ISO Feature Class for data description
- \x5 'html'  - HTML readable view of metadata content
+	'mdtranslator translate' provides command line access to the ADIWG metadata translator
+with options to select the input file reader, select writer output format, show empty tags
+in XML outputs, and choose level of validation for JSON inputs.
 	LONGDESC
 	# define cli options
-	method_option :reader, :aliases => '-r', :desc => 'Name of reader to read your input', :default => 'mdJson'
-	method_option :writer, :aliases => '-w', :desc => 'Name of writer to create your metadata, or leave blank to validate input only'
+	method_option :reader, :aliases => '-r', :desc => 'Reader to read your input metadata file', :enum => %w{mdJson}, :default => 'mdJson'
+	method_option :writer, :aliases => '-w', :desc => 'Writer to create your output metadata file, leave blank to validate input only', :enum => %w{iso19115_2 iso19110 html}
 	method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed', :enum => %w{none normal strict}, :default => 'normal'
 	method_option :showAllTags, :aliases => '-s', :desc => 'Include tags for unused attributes', :type => :boolean, :default => false
 	method_option :messages, :aliases => '-m', :desc => 'On error return messages as formatted text or json object', :enum => %w{json text}, :default => 'text'
