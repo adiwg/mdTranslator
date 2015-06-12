@@ -37,19 +37,21 @@ module ADIWG
                         intCont = intMetadataClass.newContact
 
                         # contact ID - required
-                        # return nil contact if contactId is '' or missing
+                        # each contact must have a 'contactId' provided by the user
+                        # ... the contactId is used by responsibleParty to reference a contact
+                        # ... return nil contact if contactId is '' or missing
                         if hContact.has_key?('contactId')
                             s = hContact['contactId']
                             if s != ''
                                 intCont[:contactId] = s
                             else
                                 $response[:readerExecutionPass] =  false
-                                $response[:readerExecutionMessages] << 'Contact ID is blank.'
+                                $response[:readerExecutionMessages] << 'contact: {contactId: } is blank.'
                                 return nil
                             end
                         else
                             $response[:readerExecutionPass] =  false
-                            $response[:readerExecutionMessages] << 'Contact ID is missing.'
+                            $response[:readerExecutionMessages] << 'contact: {contactId: } is missing.'
                             return nil
                         end
 

@@ -12,6 +12,7 @@
 #   Stan Smith 2014-12-01 add data dictionary
 #   Stan Smith 2014-12-03 changed class name to MdJsonReader from AdiwgJsonReader
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-12 added method to lookup contact in contact array
 
 require 'json'
 
@@ -51,8 +52,13 @@ module ADIWG
 
                     # load mdJson file into internal object
                     require readerModule('module_mdJson')
-                    intObj = $ReaderNS.unpack(@hMdJson)
-                    return intObj
+                    # instance classes needed in script
+                    intMetadataClass = InternalMetadata.new
+
+                    # create new internal metadata container for the reader
+                    @intObj = intMetadataClass.newBase
+                    $ReaderNS.unpack(@intObj, @hMdJson)
+                    return @intObj
 
                 end
 
@@ -162,6 +168,19 @@ module ADIWG
                         return nil
                     end
                     return file
+                end
+
+                # find the array pointer for a contact
+                def self.findContact(contactId)
+                    pointer = nil
+                    i = 0
+                    @intObj[:contacts].each do |contact|
+                        if contact[:contactId] == contactId
+                            pointer = i
+                        end
+                        i += 1
+                    end
+                    return pointer
                 end
 
             end

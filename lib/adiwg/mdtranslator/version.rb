@@ -41,6 +41,7 @@
 # 1.2.0 2015-06-11 added mdCodes for source of codelists
 #              --- added comments to XML headers for citation of ADIwg
 #              --- added reader and writer names to CLI help
+#              --- added check in responsibleParty for valid contactId
 
 module ADIWG
     module Mdtranslator

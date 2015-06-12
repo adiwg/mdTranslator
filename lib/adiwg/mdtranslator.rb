@@ -33,24 +33,6 @@ require 'adiwg/mdtranslator/writers/mdWriters'
 module ADIWG
     module Mdtranslator
 
-        def self.addFinalMessages
-            if $response[:readerStructurePass].nil?
-                $response[:readerStructureMessages].insert(0, 'Input file structure was not checked \n')
-            end
-
-            if $response[:readerValidationPass].nil?
-                $response[:readerValidationMessages].insert(0, 'Validator was not called \n')
-            end
-
-            if $response[:readerExecutionPass].nil?
-                $response[:readerExecutionMessages].insert(0, 'Reader was not called \n')
-            end
-
-            if $response[:writerPass].nil?
-                $response[:writerMessages].insert(0, 'Writer not called \n')
-            end
-        end
-
         def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false)
 
             $showAllTags = showAllTags
@@ -118,20 +100,18 @@ module ADIWG
 
             # handle readers
             if reader.nil? || reader == ''
-                $response[:readerStructureMessages] << 'Reader name is missing.'
-                $response[:readerValidationMessages] << 'Reader name is missing.'
-                $response[:readerExecutionMessages] << 'Reader name is missing.'
-                $response[:writerMessages] << 'Input file was not read.'
-                addFinalMessages()
+                $response[:readerExecutionPass] = false
+                $response[:readerExecutionMessages] << 'Reader name was not provided'
                 return $response
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
                 intObj = ADIWG::Mdtranslator::Readers.handleReader(file)
 
-                if intObj
+                # if readerExecutionPass is nil no error messages were set during exection
+                # and the execution is assumed to have been successful
+                if $response[:readerExecutionPass].nil?
                     $response[:readerExecutionPass] = true
-                else
-                    addFinalMessages()
+                elsif !$response[:readerExecutionPass]
                     return $response
                 end
             end
@@ -143,7 +123,6 @@ module ADIWG
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
                 ADIWG::Mdtranslator::Writers.handleWriter(intObj)
             end
-            addFinalMessages()
             return $response
 
         end

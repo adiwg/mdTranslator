@@ -5,6 +5,7 @@
 # 	Stan Smith 2014-12-12 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
+#   Stan Smith 2015-06-12 moved instantiation of intObj up to module mdJson_reader.rb
 
 require $ReaderNS.readerModule('module_contacts')
 require $ReaderNS.readerModule('module_metadata')
@@ -16,13 +17,7 @@ module ADIWG
         module Readers
             module MdJson
 
-                def self.unpack(hMdJson)
-
-                    # instance classes needed in script
-                    intMetadataClass = InternalMetadata.new
-
-                    # create new internal metadata container for the reader
-                    intObj = intMetadataClass.newBase
+                def self.unpack(intObj, hMdJson)
 
                     # get json schema name and version
                     hVersion = hMdJson['version']
@@ -31,8 +26,6 @@ module ADIWG
 
                     # contact array
                     # load the array of contacts from the json input
-                    # ... the program uses the 'contactId' provided by the user
-                    # ... to reference a contact
                     if hMdJson.has_key?('contact')
                     	aContacts = hMdJson['contact']
                     	aContacts.each do |hContact|
@@ -45,14 +38,14 @@ module ADIWG
                     # add default contacts
                     intObj[:contacts].concat($ReaderNS::Contact.setDefaultContacts)
 
-                    # metadata
+                    # metadata section
                     # load metadata from the hash object
                     if hMdJson.has_key?('metadata')
                     	hMetadata = hMdJson['metadata']
                     	intObj[:metadata] = $ReaderNS::Metadata.unpack(hMetadata)
                     end
 
-                    # data dictionary
+                    # data dictionary section
                     if hMdJson.has_key?('dataDictionary')
                         aDictionary = hMdJson['dataDictionary']
                         aDictionary.each do |hDictionary|

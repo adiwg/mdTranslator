@@ -7,6 +7,8 @@
 #   ... removed resource IDs associated with contact
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-01-18 added nil return if hRParty empty
+#   Stan Smith 2015-06-12 added check that contactId for responsibleParty
+#   ... matches an actual contact in the contact array
 
 module ADIWG
     module Mdtranslator
@@ -30,6 +32,13 @@ module ADIWG
                             s = hRParty['contactId']
                             if s != ''
                                 intResById[:contactId] = s
+                                if (!$ReaderNS.findContact(s))
+                                    $response[:readerExecutionPass] = false
+                                    $response[:readerExecutionMessages] << "Responsible Party contact ID #{s} does not match with any contact provided\n"
+                                end
+                            else
+                                $response[:readerExecutionPass] = false
+                                $response[:readerExecutionMessages] << 'Responsible Party is missing the contact ID\n'
                             end
                         end
 
@@ -38,6 +47,9 @@ module ADIWG
                             s = hRParty['role']
                             if s != ''
                                 intResById[:roleName] = s
+                            else
+                                $response[:readerExecutionPass] = false
+                                $response[:readerExecutionMessages] << 'Responsible Party is missing the contact role\n'
                             end
                         end
 
