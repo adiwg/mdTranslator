@@ -17,8 +17,10 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-16-12 added support for declaring multiple resource character sets
 
 require 'class_codelist'
+require 'class_enumerationlist'
 require 'class_citation'
 require 'class_responsibleParty'
 require 'class_maintenanceInformation'
@@ -49,6 +51,7 @@ module ADIWG
 
                         # classes used
                         codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml)
                         intMetadataClass = InternalMetadata.new
                         citationClass = $IsoNS::CI_Citation.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
@@ -291,12 +294,26 @@ module ADIWG
                                 end
                             end
 
+                            # data identification - characterSet - default 'utf8'
+                            aCharSets = hDataId[:resourceCharacterSets]
+                            if !aCharSets.empty?
+                                aCharSets.each do |charSet|
+                                    @xml.tag!('gmd:characterSet') do
+                                        codelistClass.writeXML('iso_characterSet',charSet)
+                                    end
+                                end
+                            else
+                                @xml.tag!('gmd:characterSet') do
+                                    codelistClass.writeXML('iso_characterSet','utf8')
+                                end
+                            end
+
                             # data identification - topic category
                             aTopics = hDataId[:topicCategories]
                             if !aTopics.empty?
                                 aTopics.each do |spType|
                                     @xml.tag!('gmd:topicCategory') do
-                                        codelistClass.writeXML('iso_topicCategory',spType)
+                                        enumerationClass.writeXML('iso_topicCategory',spType)
                                     end
                                 end
                             elsif $showAllTags

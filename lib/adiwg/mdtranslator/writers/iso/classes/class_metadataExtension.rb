@@ -8,6 +8,7 @@
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 
 require 'class_codelist'
+require 'class_enumerationList'
 require 'class_onlineResource'
 require 'class_responsibleParty'
 
@@ -25,9 +26,10 @@ module ADIWG
                     def writeXML(hExtension)
 
                         # classes used
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml)
                         olResClass = $IsoNS::CI_OnlineResource.new(@xml)
                         rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
@@ -79,7 +81,7 @@ module ADIWG
                                     s = hExtension[:obligation]
                                     if !s.nil?
                                         @xml.tag!('gmd:obligation') do
-                                            codelistClass.writeXML('iso_obligation',s)
+                                            enumerationClass.writeXML('iso_obligation',s)
                                         end
                                     elsif $showAllTags
                                         @xml.tag!('gmd:obligation')

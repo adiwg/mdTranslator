@@ -55,11 +55,27 @@ module ADIWG
                             end
                         end
 
-                        #general - status
+                        # general - status
                         s = resourceInfo[:status]
                         if !s.nil?
                             @html.em('Status: ')
                             @html.text!(s)
+                            @html.br
+                        end
+
+                        # general - languages
+                        aLangs = resourceInfo[:resourceLanguages]
+                        if !aLangs.empty?
+                            @html.em('Resource Languages: ')
+                            @html.text!(aLangs.to_s)
+                            @html.br
+                        end
+
+                        # general - character sets
+                        aCharSets = resourceInfo[:resourceCharacterSets]
+                        if !aCharSets.empty?
+                            @html.em('Resource character sets: ')
+                            @html.text!(aCharSets.to_s)
                             @html.br
                         end
 

@@ -25,6 +25,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-12 added support for user to specify metadataCharacterSet
 
 require 'class_codelist'
 require 'class_responsibleParty'
@@ -114,10 +115,13 @@ module ADIWG
                                 @xml.tag!('gco:CharacterString', 'eng; USA')
                             end
 
-                            # metadata information - character set - default
+                            # metadata information - character set - default 'utf8'
                             @xml.tag!('gmd:characterSet') do
-                                # all out put is in utf8
-                                codelistClass.writeXML('iso_characterSet','utf8')
+                                s = hMetaInfo[:metadataCharacterSet]
+                                if s.nil?
+                                    s = 'utf8'
+                                end
+                                codelistClass.writeXML('iso_characterSet',s)
                             end
 
                             # metadata information - parent identifier

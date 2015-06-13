@@ -1,4 +1,4 @@
-# ISO <<CodeLists>>
+# ISO <<CodeLists>> Enumerations
 
 # from http://mdtranslator.adiwg.org/api/codelists?format=xml
 # History:
@@ -6,7 +6,7 @@
 #   Stan Smith 2014-10-15 allow non-ISO codesNames to be rendered
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-15 replaced NOAA CT_CodelistCatalogue with mdTranslator CT_CodelistCatalogue
-#   Stan Smith 2015-06-11 refactored to use mdCodes gem for codelist contents
+#   Stan Smith 2015-06-12 refactored to use mdCodes gem for codelist contents
 
 require 'adiwg-mdcodes'
 
@@ -15,7 +15,7 @@ module ADIWG
         module Writers
             module Iso
 
-                class MD_Codelist
+                class MD_EnumerationList
                     def initialize(xml)
                         @xml = xml
                     end
@@ -27,20 +27,16 @@ module ADIWG
 
                         sourceName = mdCodelist['sourceName']
                         codelist = mdCodelist['codelist']
-                        codeId = 'user-provided-code'
 
                         # search the codelist for a matching codeName
+                        # only valid enumeration values can be written in ISO
                         codelist.each do |code|
                             if code['codeName'] == codeName
-                                codeId = code['code']
+                                @xml.tag!('gmd:' + "#{sourceName}", codeName)
                                 break
                             end
                         end
 
-                        # generate the iso code block
-                        @xml.tag!('gmd:' + "#{sourceName}", {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#' + "#{sourceName}",
-                                                       :codeListValue => "#{codeName}",
-                                                       :codeSpace => "#{codeId}"})
                     end
 
                 end

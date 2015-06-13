@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-24 original script
+#   Stan Smith 2016-06-12 added metadata character set
 
 require 'html_citation'
 require 'html_responsibleParty'
@@ -73,6 +74,14 @@ module ADIWG
                                 if !hDate.empty?
                                     @html.em('Metadata update: ')
                                     htmlDateTime.writeHtml(hDate)
+                                end
+
+                                # metadata characterSet
+                                s = hMetaInfo[:metadataCharacterSet]
+                                if s
+                                    @html.em('Metadata character set: ')
+                                    @html.text!(s)
+                                    @html.br
                                 end
 
                                 # metadata status

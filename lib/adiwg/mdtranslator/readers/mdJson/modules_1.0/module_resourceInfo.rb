@@ -16,6 +16,7 @@
 #   Stan Smith 2014-10-29 added support for resource time period
 #   Stan Smith 2014-11-06 added resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-12 added support for resource characterSets
 
 require $ReaderNS.readerModule('module_citation')
 require $ReaderNS.readerModule('module_resourceIdentifier')
@@ -128,6 +129,14 @@ module ADIWG
                                 aLanguage.each do |language|
                                     intResInfo[:resourceLanguages] << language
                                 end
+                            end
+                        end
+
+                        # resource information - characterSet [] - default 'utf8'
+                        if hResourceInfo.has_key?('characterSet')
+                            aCharSet = hResourceInfo['characterSet']
+                            aCharSet.each do |charSet|
+                                intResInfo[:resourceCharacterSets] << charSet
                             end
                         end
 

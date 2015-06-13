@@ -8,6 +8,7 @@
 #   Stan Smith 2014-09-19 changed parent metadata identifier type citation json 0.8.0
 #   Stan Smith 2014-11-06 removed metadataScope, moved to resourceType under resourceInfo json 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-12 added support for metadataCharacterSet
 
 require $ReaderNS.readerModule('module_responsibleParty')
 require $ReaderNS.readerModule('module_dateTime')
@@ -73,6 +74,14 @@ module ADIWG
                                 hDateTime = $ReaderNS::DateTime.unpack(s)
                                 hDateTime[:dateType] = 'revision'
                                 intMetadataInfo[:metadataUpdateDate] = hDateTime
+                            end
+                        end
+
+                        # metadata - characterSet - default 'utf8'
+                        if hMetadataInfo.has_key?('metadataCharacterSet')
+                            s = hMetadataInfo['metadataCharacterSet']
+                            if s != ''
+                                intMetadataInfo[:metadataCharacterSet] = s
                             end
                         end
 
