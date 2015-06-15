@@ -53,7 +53,7 @@ module ADIWG
                                                               'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
                                                               'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                                                               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                                                              'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'}) do
+                                                              'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd'}) do
 
                             # feature catalogue information - name - required
                             # name is pulled from citation title in data dictionary information section
