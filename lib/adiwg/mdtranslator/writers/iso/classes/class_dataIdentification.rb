@@ -20,7 +20,7 @@
 #   Stan Smith 2015-16-12 added support for declaring multiple resource character sets
 
 require 'class_codelist'
-require 'class_enumerationlist'
+require 'class_enumerationList'
 require 'class_citation'
 require 'class_responsibleParty'
 require 'class_maintenanceInformation'
