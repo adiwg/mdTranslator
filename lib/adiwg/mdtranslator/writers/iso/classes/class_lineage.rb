@@ -2,9 +2,10 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-20 original script
+# 	Stan Smith 2013-11-20 original script.
 #   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_processStep'
 require 'class_source'
@@ -16,15 +17,16 @@ module ADIWG
 
                 class LI_Lineage
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hLineage)
 
                         # classes used
-                        sourceClass = $IsoNS::LI_Source.new(@xml)
-                        pStepClass = $IsoNS::LI_ProcessStep.new(@xml)
+                        sourceClass = $IsoNS::LI_Source.new(@xml, @responseObj)
+                        pStepClass = $IsoNS::LI_ProcessStep.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:LI_Lineage') do
 
@@ -34,7 +36,7 @@ module ADIWG
                                 @xml.tag!('gmd:statement') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:statement')
                             end
 
@@ -46,7 +48,7 @@ module ADIWG
                                         pStepClass.writeXML(pStep)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:processStep')
                             end
 
@@ -58,7 +60,7 @@ module ADIWG
                                         sourceClass.writeXML(hSource)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:source')
                             end
 

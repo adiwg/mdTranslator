@@ -2,11 +2,12 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-08-13 original script
+# 	Stan Smith 2013-08-13 original script.
 #   Stan Smith 2014-05-14 modified for JSON schema 0.4.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_contact'
@@ -18,15 +19,16 @@ module ADIWG
 
                 class CI_ResponsibleParty
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(rParty)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        ciContactClass = $IsoNS::CI_Contact.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        ciContactClass = $IsoNS::CI_Contact.new(@xml, @responseObj)
 
                         # search array of responsible party for matches in contact object
                         rpID = rParty[:contactId]
@@ -41,7 +43,7 @@ module ADIWG
                                         @xml.tag!('gmd:individualName') do
                                             @xml.tag!('gco:CharacterString', hContact[:indName])
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:individualName')
                                     end
 
@@ -51,7 +53,7 @@ module ADIWG
                                         @xml.tag!('gmd:organisationName') do
                                             @xml.tag!('gco:CharacterString', hContact[:orgName])
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:organisationName')
                                     end
 
@@ -61,7 +63,7 @@ module ADIWG
                                         @xml.tag!('gmd:positionName') do
                                             @xml.tag!('gco:CharacterString', hContact[:position])
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:positionName')
                                     end
 
@@ -74,7 +76,7 @@ module ADIWG
                                         @xml.tag!('gmd:contactInfo') do
                                             ciContactClass.writeXML(hContact)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:contactInfo')
                                     end
 

@@ -17,7 +17,8 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-16-12 added support for declaring multiple resource character sets
+#   Stan Smith 2015-06-12 added support for declaring multiple resource character sets
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_enumerationList'
@@ -43,30 +44,31 @@ module ADIWG
 
                 class MD_DataIdentification
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hDataId, aAssocRes)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml, @responseObj)
                         intMetadataClass = InternalMetadata.new
-                        citationClass = $IsoNS::CI_Citation.new(@xml)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        mInfoClass = $IsoNS::MD_MaintenanceInformation.new(@xml)
-                        bGraphicClass = $IsoNS::MD_BrowseGraphic.new(@xml)
-                        rFormatClass = $IsoNS::MD_Format.new(@xml)
-                        keywordClass = $IsoNS::MD_Keywords.new(@xml)
-                        useClass = $IsoNS::MD_Usage.new(@xml)
-                        uConClass = $IsoNS::MD_Constraints.new(@xml)
-                        lConClass = $IsoNS::MD_LegalConstraints.new(@xml)
-                        sConClass = $IsoNS::MD_SecurityConstraints.new(@xml)
-                        aggInfoClass = $IsoNS::MD_AggregateInformation.new(@xml)
-                        taxClass = $IsoNS::MD_TaxonSys.new(@xml)
-                        resolutionClass = $IsoNS::MD_Resolution.new(@xml)
-                        extentClass = $IsoNS::EX_Extent.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        mInfoClass = $IsoNS::MD_MaintenanceInformation.new(@xml, @responseObj)
+                        bGraphicClass = $IsoNS::MD_BrowseGraphic.new(@xml, @responseObj)
+                        rFormatClass = $IsoNS::MD_Format.new(@xml, @responseObj)
+                        keywordClass = $IsoNS::MD_Keywords.new(@xml, @responseObj)
+                        useClass = $IsoNS::MD_Usage.new(@xml, @responseObj)
+                        uConClass = $IsoNS::MD_Constraints.new(@xml, @responseObj)
+                        lConClass = $IsoNS::MD_LegalConstraints.new(@xml, @responseObj)
+                        sConClass = $IsoNS::MD_SecurityConstraints.new(@xml, @responseObj)
+                        aggInfoClass = $IsoNS::MD_AggregateInformation.new(@xml, @responseObj)
+                        taxClass = $IsoNS::MD_TaxonSys.new(@xml, @responseObj)
+                        resolutionClass = $IsoNS::MD_Resolution.new(@xml, @responseObj)
+                        extentClass = $IsoNS::EX_Extent.new(@xml, @responseObj)
 
                         # data identification
                         @xml.tag!('gmd:MD_DataIdentification') do
@@ -97,7 +99,7 @@ module ADIWG
                                 @xml.tag!('gmd:purpose') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:purpose')
                             end
 
@@ -109,7 +111,7 @@ module ADIWG
                                         @xml.tag!('gco:CharacterString', credit)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:credit')
                             end
 
@@ -131,7 +133,7 @@ module ADIWG
                                         rPartyClass.writeXML(hPContact)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:pointOfContact')
                             end
 
@@ -143,7 +145,7 @@ module ADIWG
                                         mInfoClass.writeXML(hResMaintInfo)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceMaintenance')
                             end
 
@@ -158,7 +160,7 @@ module ADIWG
                                         bGraphicClass.writeXML(graphic)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:graphicOverview')
                             end
 
@@ -170,7 +172,7 @@ module ADIWG
                                         rFormatClass.writeXML(hResFormat)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceFormat')
                             end
 
@@ -182,7 +184,7 @@ module ADIWG
                                         keywordClass.writeXML(hDKeyword)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:descriptiveKeywords')
                             end
 
@@ -194,7 +196,7 @@ module ADIWG
                                         useClass.writeXML(hResUse)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceSpecificUsage')
                             end
 
@@ -204,7 +206,7 @@ module ADIWG
                                 @xml.tag!('gmd:resourceConstraints') do
                                     uConClass.writeXML(aUseLimits)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_Constraints')
                                 end
@@ -218,7 +220,7 @@ module ADIWG
                                         lConClass.writeXML(hLegalCon)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_LegalConstraints')
                                 end
@@ -242,7 +244,7 @@ module ADIWG
                                         aggInfoClass.writeXML(hAssocRes)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:aggregationInfo')
                             end
 
@@ -252,7 +254,7 @@ module ADIWG
                                 @xml.tag!('gmd:taxonomy') do
                                     taxClass.writeXML(hTaxonomy)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:taxonomy')
                             end
 
@@ -264,7 +266,7 @@ module ADIWG
                                         codelistClass.writeXML('iso_spatialRepresentation',spType)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:spatialRepresentationType')
                             end
 
@@ -276,7 +278,7 @@ module ADIWG
                                         resolutionClass.writeXML(hSpRes)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:spatialResolution')
                             end
 
@@ -316,7 +318,7 @@ module ADIWG
                                         enumerationClass.writeXML('iso_topicCategory',spType)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:topicCategory')
                             end
 
@@ -326,7 +328,7 @@ module ADIWG
                                 @xml.tag!('gmd:environmentDescription') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:environmentDescription')
                             end
 
@@ -355,7 +357,7 @@ module ADIWG
                                         extentClass.writeXML(hExtent)
                                     end
                                 end
-                            elsif $showAllTags && needTag
+                            elsif @responseObj[:writerShowTags] && needTag
                                 @xml.tag!('gmd:extent')
                             end
 
@@ -365,7 +367,7 @@ module ADIWG
                                 @xml.tag!('gmd:supplementalInformation') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:supplementalInformation')
                             end
 

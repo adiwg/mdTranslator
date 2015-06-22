@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-15 replaced NOAA CT_CodelistCatalogue with mdTranslator CT_CodelistCatalogue
 #   Stan Smith 2015-06-11 refactored to use mdCodes gem for codelist contents
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'adiwg-mdcodes'
 
@@ -16,14 +17,16 @@ module ADIWG
             module Iso
 
                 class MD_Codelist
-                    def initialize(xml)
+
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(codeList, codeName)
 
                         # get requested codelist from the adiwg-mdcodes gem
-                        mdCodelist = ADIWG::Mdcodes.getCodelistDetail(codeList)
+                        mdCodelist = ADIWG::Mdcodes.getCodelistDetail(codeList, @responseObj)
 
                         sourceName = mdCodelist['sourceName']
                         codelist = mdCodelist['codelist']

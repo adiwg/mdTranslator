@@ -5,6 +5,7 @@
 # History:
 # 	Stan Smith 2014-12-02 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_multiplicity'
 require 'class_listedValue'
@@ -17,8 +18,9 @@ module ADIWG
 
                 class FC_FeatureAttribute
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hAttribute)
@@ -47,7 +49,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 
@@ -67,7 +69,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -89,7 +91,7 @@ module ADIWG
                                         end
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:valueType')
                             end
 
@@ -109,7 +111,7 @@ module ADIWG
                                     end
 
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:listedValue')
                             end
 

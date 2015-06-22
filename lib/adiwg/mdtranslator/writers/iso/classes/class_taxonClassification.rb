@@ -2,8 +2,9 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-19 original script
+# 	Stan Smith 2013-11-19 original script.
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -12,8 +13,9 @@ module ADIWG
 
                 class MD_TaxonCl
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(aTaxonCl)
@@ -29,7 +31,7 @@ module ADIWG
                                 @xml.tag!('gmd:common') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:common')
                             end
 

@@ -5,6 +5,7 @@
 # History:
 # 	Stan Smith 2014-09-03 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_referenceIdentifier'
 
@@ -15,14 +16,15 @@ module ADIWG
 
                 class MD_ReferenceSystem
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(refSystem, refType)
 
                         # classes used
-                        refIdClass = $IsoNS::RS_Identifier.new(@xml)
+                        refIdClass = $IsoNS::RS_Identifier.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_ReferenceSystem') do
                             @xml.tag!('gmd:referenceSystemIdentifier') do

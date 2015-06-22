@@ -2,9 +2,10 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-19 original script
+# 	Stan Smith 2013-11-19 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_citation'
 require 'class_responsibleParty'
@@ -18,17 +19,18 @@ module ADIWG
 
                 class MD_TaxonSys
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hTaxonSys)
 
                         # classes used
-                        citationClass = $IsoNS::CI_Citation.new(@xml)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        tVoucherClass = $IsoNS::MD_Vouchers.new(@xml)
-                        tClassClass = $IsoNS::MD_TaxonCl.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        tVoucherClass = $IsoNS::MD_Vouchers.new(@xml, @responseObj)
+                        tClassClass = $IsoNS::MD_TaxonCl.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_TaxonSys') do
 
@@ -50,7 +52,7 @@ module ADIWG
                                 @xml.tag!('gmd:taxongen') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:taxongen')
                             end
 
@@ -65,7 +67,7 @@ module ADIWG
                                         rPartyClass.writeXML(rParty)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:obs')
                             end
 
@@ -85,7 +87,7 @@ module ADIWG
                                 @xml.tag!('gmd:voucher') do
                                     tVoucherClass.writeXML(hTaxVoucher)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:voucher')
                             end
 

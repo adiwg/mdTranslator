@@ -5,6 +5,7 @@
 # History:
 # 	Stan Smith 2014-09-03 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -13,8 +14,9 @@ module ADIWG
 
                 class RS_Identifier
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(refId, refType)

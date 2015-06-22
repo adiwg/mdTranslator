@@ -10,6 +10,7 @@
 #   Stan Smith 2014-05-30 added multi-point, multi-linestring, multi-polygon support
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_point'
 require 'class_lineString'
@@ -23,17 +24,18 @@ module ADIWG
 
                 class EX_BoundingPolygon
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hGeoElement)
 
                         # classes used
-                        pointClass = $IsoNS::Point.new(@xml)
-                        lineClass = $IsoNS::LineString.new(@xml)
-                        multiGeoClass = $IsoNS::MultiGeometry.new(@xml)
-                        polygonClass = $IsoNS::Polygon.new(@xml)
+                        pointClass = $IsoNS::Point.new(@xml, @responseObj)
+                        lineClass = $IsoNS::LineString.new(@xml, @responseObj)
+                        multiGeoClass = $IsoNS::MultiGeometry.new(@xml, @responseObj)
+                        polygonClass = $IsoNS::Polygon.new(@xml, @responseObj)
 
                         hGeometry = hGeoElement[:elementGeometry]
                         polyType = hGeometry[:geoType]

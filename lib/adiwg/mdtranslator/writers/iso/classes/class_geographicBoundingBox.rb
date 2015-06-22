@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-01 original script
 #   Stan Smith 2014-05-30 hElement attributes changed for version 0.5.0
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -13,8 +14,9 @@ module ADIWG
 
                 class EX_GeographicBoundingBox
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hElement)

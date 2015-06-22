@@ -7,6 +7,7 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/classes'))
 
@@ -20,36 +21,36 @@ module ADIWG
         module Writers
             module Iso19115_2
 
-                def self.startWriter(internalObj)
+                def self.startWriter(intObj, responseObj)
 
                     # reset ISO id='' counter
                     $idCount = '_000'
 
                     # set the format of the output file based on the writer specified
-                    $response[:writerFormat] = 'xml'
-                    $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerFormat] = 'xml'
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
 
                     # pre-scan the internal object to create a new extents for each geometry
                     # ... that has supplemental information (temporal, vertical, identity).
                     # ... the new extents will be added to internalObj
-                    prescanGeoElements(internalObj)
+                    prescanGeoElements(intObj)
 
                     # create new XML document
                     xml = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = $WriterNS::MI_Metadata.new(xml)
-                    metadata = metadataWriter.writeXML(internalObj)
+                    metadataWriter = $WriterNS::MI_Metadata.new(xml, responseObj)
+                    metadata = metadataWriter.writeXML(intObj)
 
                     # set writer pass to true if no writer modules set it to false
                     # false or warning will be set by code that places the message
                     # load metadata into $response
-                    if $response[:writerPass].nil?
-                        $response[:writerPass] = true
+                    if responseObj[:writerPass].nil?
+                        responseObj[:writerPass] = true
                     end
 
                     return metadata
                 end
 
-                def self.prescanGeoElements(internalObj)
+                def self.prescanGeoElements(intObj)
                     # supplemental information for the geographic element is carried in the
                     # ... internal structure in the temporalElements:, verticalElements:,
                     # ... and elementIdentifiers: attributes of the extGeoElements:
@@ -61,7 +62,7 @@ module ADIWG
                     # ... moves the supplemental information from the geometry to the new extent.
                     # In this implementation, supplemental information is only allowed for
                     # ... geometry types of Point, LineString, and Polygon
-                    aExtents = internalObj[:metadata][:resourceInfo][:extents]
+                    aExtents = intObj[:metadata][:resourceInfo][:extents]
                     unless aExtents.empty?
                         aExtents.each do |hExtent|
                             aGeoElements = hExtent[:extGeoElements]

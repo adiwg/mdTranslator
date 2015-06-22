@@ -3,8 +3,9 @@
 # to define the domain of an attribute
 
 # History:
-# 	Stan Smith 2014-12-02 original script
+# 	Stan Smith 2014-12-02 original script.
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -13,8 +14,9 @@ module ADIWG
 
                 class FC_ListedValue
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hItem)
@@ -39,7 +41,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -50,7 +52,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 

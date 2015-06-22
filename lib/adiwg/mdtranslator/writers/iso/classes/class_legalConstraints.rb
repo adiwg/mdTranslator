@@ -2,10 +2,11 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-01 original script
+# 	Stan Smith 2013-11-01 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 
@@ -16,14 +17,15 @@ module ADIWG
 
                 class MD_LegalConstraints
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hLegalCons)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_LegalConstraints') do
 
@@ -35,7 +37,7 @@ module ADIWG
                                         codelistClass.writeXML('iso_restriction',code)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:accessConstraints')
                             end
 
@@ -47,7 +49,7 @@ module ADIWG
                                         codelistClass.writeXML('iso_restriction',code)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:useConstraints')
                             end
 
@@ -59,7 +61,7 @@ module ADIWG
                                         @xml.tag!('gco:CharacterString', con)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:otherConstraints')
                             end
 

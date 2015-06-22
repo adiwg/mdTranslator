@@ -2,10 +2,11 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-18 original script
+# 	Stan Smith 2013-11-18 original script.
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_coordinates')
 
@@ -16,8 +17,9 @@ module ADIWG
 
                 class Polygon
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hGeoElement)
@@ -51,7 +53,7 @@ module ADIWG
                             s = hGeoElement[:elementDescription]
                             if !s.nil?
                                 @xml.tag!('gml:description', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:description')
                             end
 
@@ -59,7 +61,7 @@ module ADIWG
                             s = hGeoElement[:elementName]
                             if !s.nil?
                                 @xml.tag!('gml:name', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:name')
                             end
 
@@ -68,7 +70,7 @@ module ADIWG
                             # convert coordinate string from geoJSON to gml
                             aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
                             if !aCoords.empty?
-                                s = $ReaderNS::Coordinates.unpack(aCoords)
+                                s = $ReaderNS::Coordinates.unpack(aCoords, @responseObj)
                                 @xml.tag!('gml:exterior') do
                                     @xml.tag!('gml:LinearRing') do
                                         @xml.tag!('gml:coordinates', s)
@@ -84,7 +86,7 @@ module ADIWG
                             aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
                             unless aRings.empty?
                                 aRings.each do |aRing|
-                                    s = $ReaderNS::Coordinates.unpack(aRing)
+                                    s = $ReaderNS::Coordinates.unpack(aRing, @responseObj)
                                     @xml.tag!('gml:interior') do
                                         @xml.tag!('gml:LinearRing') do
                                             @xml.tag!('gml:coordinates', s)

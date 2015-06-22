@@ -5,6 +5,7 @@
 # 	Stan Smith 2014-12-02 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-18 added aliases for entities
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_featureConstraint'
 require 'class_featureAttribute'
@@ -16,8 +17,9 @@ module ADIWG
 
                 class FC_FeatureType
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hEntity)
@@ -48,7 +50,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 
@@ -59,7 +61,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -91,7 +93,7 @@ module ADIWG
                                 @xml.tag!('gfc:constrainedBy') do
                                     fConClass.writeXML('pk', aPKs)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:constrainedBy')
                             end
 
@@ -124,7 +126,7 @@ module ADIWG
                                         fAttClass.writeXML(hAttribute)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:carrierOfCharacteristics')
                             end
 

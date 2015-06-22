@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-09-25 original script
 #   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_responsibleParty'
 require 'class_standardOrderProcess'
@@ -18,17 +19,18 @@ module ADIWG
 
                 class MD_Distributor
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(distributor)
 
                         # classes used
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        sOrderProcClass = $IsoNS::MD_StandardOrderProcess.new(@xml)
-                        rFormatClass = $IsoNS::MD_Format.new(@xml)
-                        dTranOptClass = $IsoNS::MD_DigitalTransferOptions.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        sOrderProcClass = $IsoNS::MD_StandardOrderProcess.new(@xml, @responseObj)
+                        rFormatClass = $IsoNS::MD_Format.new(@xml, @responseObj)
+                        dTranOptClass = $IsoNS::MD_DigitalTransferOptions.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_Distributor') do
 
@@ -50,7 +52,7 @@ module ADIWG
                                         sOrderProcClass.writeXML(distOrder)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributionOrderProcess')
                             end
 
@@ -62,7 +64,7 @@ module ADIWG
                                         rFormatClass.writeXML(dFormat)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributorFormat')
                             end
 
@@ -74,7 +76,7 @@ module ADIWG
                                         dTranOptClass.writeXML(dTransOpt)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributorTransferOptions')
                             end
 

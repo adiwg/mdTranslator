@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_lineage'
@@ -18,15 +19,16 @@ module ADIWG
 
                 class DQ_DataQuality
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hDataQ)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        lineClass = $IsoNS::LI_Lineage.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        lineClass = $IsoNS::LI_Lineage.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:DQ_DataQuality') do
 
@@ -52,7 +54,7 @@ module ADIWG
                                 @xml.tag!('gmd:lineage') do
                                     lineClass.writeXML(hLineage)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:lineage')
                             end
 

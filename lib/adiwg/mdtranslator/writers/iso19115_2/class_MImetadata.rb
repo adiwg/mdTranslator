@@ -1,5 +1,5 @@
 # ISO 19115-2 <<Class>> MI_Metadata
-# writer output in XML
+# writer output in XML.
 
 # History:
 # 	Stan Smith 2013-08-09 original script
@@ -26,6 +26,7 @@
 #   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-12 added support for user to specify metadataCharacterSet
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_responsibleParty'
@@ -44,22 +45,23 @@ module ADIWG
 
                 class MI_Metadata
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(internalObj)
                         $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        mdExtClass = $IsoNS::MD_MetadataExtensionInformation.new(@xml)
-                        dataIdClass = $IsoNS::MD_DataIdentification.new(@xml)
-                        distClass = $IsoNS::MD_Distribution.new(@xml)
-                        dqClass = $IsoNS::DQ_DataQuality.new(@xml)
-                        metaMaintClass = $IsoNS::MD_MaintenanceInformation.new(@xml)
-                        refSysClass = $IsoNS::MD_ReferenceSystem.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        mdExtClass = $IsoNS::MD_MetadataExtensionInformation.new(@xml, @responseObj)
+                        dataIdClass = $IsoNS::MD_DataIdentification.new(@xml, @responseObj)
+                        distClass = $IsoNS::MD_Distribution.new(@xml, @responseObj)
+                        dqClass = $IsoNS::DQ_DataQuality.new(@xml, @responseObj)
+                        metaMaintClass = $IsoNS::MD_MaintenanceInformation.new(@xml, @responseObj)
+                        refSysClass = $IsoNS::MD_ReferenceSystem.new(@xml, @responseObj)
 
                         intMetadata = internalObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -149,7 +151,7 @@ module ADIWG
                                 @xml.tag!('gmd:parentIdentifier') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:parentIdentifier')
                             end
 
@@ -235,7 +237,7 @@ module ADIWG
                                 @xml.tag!('gmd:dataSetURI') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:dataSetURI')
                             end
 
@@ -267,7 +269,7 @@ module ADIWG
                                     end
                                 end
 
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:referenceSystemInfo')
                             end
 
@@ -286,7 +288,7 @@ module ADIWG
                                     end
                                 end
                             end
-                            if !extensions && $showAllTags
+                            if !extensions && @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:metadataExtensionInfo')
                             end
 
@@ -309,7 +311,7 @@ module ADIWG
                                 @xml.tag!('gmd:distributionInfo') do
                                     distClass.writeXML(aDistInfo)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributionInfo')
                             end
 
@@ -321,7 +323,7 @@ module ADIWG
                                         dqClass.writeXML(hDQInfo)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:dataQualityInfo')
                             end
 
@@ -338,7 +340,7 @@ module ADIWG
                                     end
                                 end
                             end
-                            if !maintInfo && $showAllTags
+                            if !maintInfo && @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:metadataMaintenance')
                             end
 

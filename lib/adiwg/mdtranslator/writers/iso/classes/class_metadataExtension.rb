@@ -2,10 +2,11 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-22 original script
+# 	Stan Smith 2013-11-22 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_enumerationList'
@@ -19,17 +20,18 @@ module ADIWG
 
                 class MD_MetadataExtensionInformation
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hExtension)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml)
-                        olResClass = $IsoNS::CI_OnlineResource.new(@xml)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml, @responseObj)
+                        olResClass = $IsoNS::CI_OnlineResource.new(@xml, @responseObj)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
@@ -39,7 +41,7 @@ module ADIWG
                                 @xml.tag!('gmd:extensionOnLineResource') do
                                     olResClass.writeXML(hOLResource)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:extensionOnLineResource')
                             end
 
@@ -63,7 +65,7 @@ module ADIWG
                                         @xml.tag!('gmd:shortName') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:shortName')
                                     end
 
@@ -83,7 +85,7 @@ module ADIWG
                                         @xml.tag!('gmd:obligation') do
                                             enumerationClass.writeXML('iso_obligation',s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:obligation')
                                     end
 
@@ -103,7 +105,7 @@ module ADIWG
                                         @xml.tag!('gmd:maximumOccurrence') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:maximumOccurrence')
                                     end
 

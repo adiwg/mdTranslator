@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-22 added return if passed nil address objects
 #   Stan Smith 2014-12-23 refactored to drop physical address elements if no
 #                     ... deliveryPoints are provided
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -15,8 +16,9 @@ module ADIWG
 
                 class CI_Address
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hAddress)
@@ -48,7 +50,7 @@ module ADIWG
                                         @xml.tag!('gmd:city') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:city')
                                     end
 
@@ -58,7 +60,7 @@ module ADIWG
                                         @xml.tag!('gmd:administrativeArea') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:administrativeArea')
                                     end
 
@@ -68,7 +70,7 @@ module ADIWG
                                         @xml.tag!('gmd:postalCode') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:postalCode')
                                     end
 
@@ -78,11 +80,11 @@ module ADIWG
                                         @xml.tag!('gmd:country') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif $showAllTags
+                                    elsif @responseObj[:writerShowTags]
                                         @xml.tag!('gmd:country')
                                     end
 
-                                elsif $showAllTags
+                                elsif @responseObj[:writerShowTags]
                                     @xml.tag!('gmd:deliveryPoint')
                                     @xml.tag!('gmd:city')
                                     @xml.tag!('gmd:administrativeArea')
@@ -97,7 +99,7 @@ module ADIWG
                                             @xml.tag!('gco:CharacterString', myEmail)
                                         end
                                     end
-                                elsif $showAllTags
+                                elsif @responseObj[:writerShowTags]
                                     @xml.tag!('gmd:electronicMailAddress')
                                 end
 

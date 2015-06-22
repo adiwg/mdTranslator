@@ -7,6 +7,7 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'module_dateTimeFun'
@@ -18,14 +19,15 @@ module ADIWG
 
                 class CI_Date
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hDate)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
 
                         citDateTime = hDate[:dateTime]
                         citDateRes = hDate[:dateResolution]

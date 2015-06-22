@@ -11,6 +11,7 @@
 #   ... containing supplemental identifier, temporal, and vertical information
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'module_dateTimeFun'
 require 'class_timeInstant'
@@ -23,8 +24,9 @@ module ADIWG
 
                 class GenericMetaData
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(aTempExt)

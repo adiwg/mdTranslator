@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-09-25 original script
 #   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_distributor'
 
@@ -15,14 +16,15 @@ module ADIWG
 
                 class MD_Distribution
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(aDistributors)
 
                         # classes used
-                        distributorClass = $IsoNS::MD_Distributor.new(@xml)
+                        distributorClass = $IsoNS::MD_Distributor.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_Distribution') do
 

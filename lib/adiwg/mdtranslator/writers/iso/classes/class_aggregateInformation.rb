@@ -8,6 +8,7 @@
 #   ... rather than resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_citation'
@@ -19,8 +20,9 @@ module ADIWG
 
                 class MD_AggregateInformation
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hAssocRes)
@@ -31,8 +33,8 @@ module ADIWG
                         # ... citation > identifier section
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_AggregateInformation') do
 
@@ -42,7 +44,7 @@ module ADIWG
                                 @xml.tag!('gmd:aggregateDataSetName') do
                                     citationClass.writeXML(hAssocCit)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:aggregateDataSetName')
                             end
 
@@ -54,7 +56,7 @@ module ADIWG
                                 @xml.tag!('gmd:associationType') do
                                     codelistClass.writeXML('iso_associationType',s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:associationType')
                             end
 
@@ -64,7 +66,7 @@ module ADIWG
                                 @xml.tag!('gmd:initiativeType') do
                                     codelistClass.writeXML('iso_initiativeType',s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:initiativeType')
                             end
 

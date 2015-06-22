@@ -2,10 +2,11 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-09-26 original script
+# 	Stan Smith 2013-09-26 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 
@@ -16,14 +17,15 @@ module ADIWG
 
                 class MD_Medium
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(medium)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_Medium') do
 
@@ -33,7 +35,7 @@ module ADIWG
                                 @xml.tag!('gmd:name') do
                                     codelistClass.writeXML('iso_mediumName',s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:name')
                             end
 
@@ -43,7 +45,7 @@ module ADIWG
                                 @xml.tag!('gmd:mediumFormat') do
                                     codelistClass.writeXML('iso_mediumFormat',s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:mediumFormat')
                             end
 
@@ -53,7 +55,7 @@ module ADIWG
                                 @xml.tag!('gmd:mediumNote') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:mediumNote')
                             end
 

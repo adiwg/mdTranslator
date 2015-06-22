@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-09-26 original script
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_onlineResource'
 require 'class_medium'
@@ -16,15 +17,16 @@ module ADIWG
 
                 class MD_DigitalTransferOptions
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(transOption)
 
                         # classes used
-                        olResClass = $IsoNS::CI_OnlineResource.new(@xml)
-                        medClass = $IsoNS::MD_Medium.new(@xml)
+                        olResClass = $IsoNS::CI_OnlineResource.new(@xml, @responseObj)
+                        medClass = $IsoNS::MD_Medium.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_DigitalTransferOptions') do
 
@@ -36,7 +38,7 @@ module ADIWG
                                         olResClass.writeXML(olTranOpt)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:onLine')
                             end
 
@@ -46,7 +48,7 @@ module ADIWG
                                 @xml.tag!('gmd:offLine') do
                                     medClass.writeXML(hOffTranOpt)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:offLine')
                             end
 

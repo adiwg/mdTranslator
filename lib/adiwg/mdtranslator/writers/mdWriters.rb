@@ -4,41 +4,34 @@
 # 	Stan Smith 2014-12-11 original script
 #   Stan Smith 2012-12-16 generalized handleWriter to use :writerName
 #   Stan Smith 2015-03-04 changed method of setting $WriterNS
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
         module Writers
 
-            def self.handleWriter(intObj)
-
-                # this is a temp fix until the directory structure is changed
-                if $response[:writerName] == 'iso'
-                    $response[:writerPass] = false
-                    $response[:writerMessages] << 'Writer not called - see following message(s):\n'
-                    $response[:writerMessages] << "Writer name 'iso' is not supported."
-                    return false
-                end
+            def self.handleWriter(intObj, responseObj)
 
                 # use writer name to load and initiate requested writer
                 # build directory path for writer from writerName
-                writerDir = File.join(path_to_resources, $response[:writerName])
+                writerDir = File.join(path_to_resources, responseObj[:writerName])
                 if File.directory?(writerDir)
 
                     # if directory path exists, build writer file name and then require it
-                    writerFile = File.join(writerDir, $response[:writerName] + '_writer')
+                    writerFile = File.join(writerDir, responseObj[:writerName] + '_writer')
                     require writerFile
-                    writerClassName = $response[:writerName].dup
+                    writerClassName = responseObj[:writerName].dup
                     writerClassName[0] = writerClassName[0].upcase
                     $WriterNS = ADIWG::Mdtranslator::Writers.const_get(writerClassName)
 
                     # pass internal object to requested writer
-                    $response[:writerOutput] = $WriterNS.startWriter(intObj)
+                    responseObj[:writerOutput] = $WriterNS.startWriter(intObj, responseObj)
 
                 else
                     # directory path was not found
-                    $response[:writerPass] = false
-                    $response[:writerMessages] << 'Writer not called - see following message(s):\n'
-                    $response[:writerMessages] << "Writer name '#{$response[:writerName]}' is not supported."
+                    responseObj[:writerPass] = false
+                    responseObj[:writerMessages] << 'Writer not called - see following message(s):\n'
+                    responseObj[:writerMessages] << "Writer name '#{responseObj[:writerName]}' is not supported."
                     return false
                 end
 

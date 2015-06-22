@@ -18,6 +18,8 @@
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-01-15 changed translate() to keyword parameter list
 #   Stan Smith 2015-03-04 moved addFinalMessages into this module from rails app
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   ... created as an instance of class ResponseHash
 
 # add main directories to load_path
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'mdtranslator/internal'))
@@ -139,7 +141,7 @@ module ADIWG
                 responseObj[:writerMessages] << 'Writer name was not provided.'
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
-                ADIWG::Mdtranslator::Writers.handleWriter(intObj)
+                ADIWG::Mdtranslator::Writers.handleWriter(intObj, responseObj)
             end
 
             return responseObj

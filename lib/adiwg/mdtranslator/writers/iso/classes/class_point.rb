@@ -6,6 +6,7 @@
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_coordinates')
 
@@ -16,8 +17,9 @@ module ADIWG
 
                 class Point
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hGeoElement)
@@ -51,7 +53,7 @@ module ADIWG
                             s = hGeoElement[:elementDescription]
                             if !s.nil?
                                 @xml.tag!('gml:description', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:description')
                             end
 
@@ -59,7 +61,7 @@ module ADIWG
                             s = hGeoElement[:elementName]
                             if !s.nil?
                                 @xml.tag!('gml:name', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:name')
                             end
 
@@ -68,7 +70,7 @@ module ADIWG
                             # convert coordinate string from geoJSON to gml
                             s = hGeoElement[:elementGeometry][:geometry]
                             if !s.nil?
-                                s = $ReaderNS::Coordinates.unpack(s)
+                                s = $ReaderNS::Coordinates.unpack(s, @responseObj)
                                 @xml.tag!('gml:coordinates', s)
                             else
                                 @xml.tag!('gml:coordinates')

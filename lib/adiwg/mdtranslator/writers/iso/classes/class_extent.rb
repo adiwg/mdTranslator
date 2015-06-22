@@ -9,6 +9,7 @@
 #   Stan Smith 2014-05-29 ... added new class for geographicElement
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_geographicElement'
 require 'class_geographicDescription'
@@ -22,17 +23,18 @@ module ADIWG
 
                 class EX_Extent
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hExtent)
 
                         # classes used
-                        tempExtClass = $IsoNS::EX_TemporalExtent.new(@xml)
-                        vertExtClass = $IsoNS::EX_VerticalExtent.new(@xml)
-                        geoEleClass = $IsoNS::GeographicElement.new(@xml)
-                        geoEleIdClass = $IsoNS::EX_GeographicDescription.new(@xml)
+                        tempExtClass = $IsoNS::EX_TemporalExtent.new(@xml, @responseObj)
+                        vertExtClass = $IsoNS::EX_VerticalExtent.new(@xml, @responseObj)
+                        geoEleClass = $IsoNS::GeographicElement.new(@xml, @responseObj)
+                        geoEleIdClass = $IsoNS::EX_GeographicDescription.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:EX_Extent') do
 
@@ -42,7 +44,7 @@ module ADIWG
                                 @xml.tag!('gmd:description') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:description')
                             end
 
@@ -54,7 +56,7 @@ module ADIWG
                                         geoEleClass.writeXML(hGeoElement)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:geographicElement')
                             end
 
@@ -76,7 +78,7 @@ module ADIWG
                                         tempExtClass.writeXML(hTempElement)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:temporalElement')
                             end
 
@@ -88,7 +90,7 @@ module ADIWG
                                         vertExtClass.writeXML(hVertElement)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:verticalElement')
                             end
                         end

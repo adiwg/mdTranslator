@@ -7,6 +7,7 @@
 #   Stan Smith 2014-05-28 revised for json schema 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_citation'
 
@@ -17,8 +18,9 @@ module ADIWG
 
                 class MD_Identifier
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hResID)
@@ -26,7 +28,7 @@ module ADIWG
                         # the authority for the identifier is a citation block
 
                         # classes used in MD_Metadata
-                        citationClass = $IsoNS::CI_Citation.new(@xml)
+                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_Identifier') do
 
@@ -36,7 +38,7 @@ module ADIWG
                                 @xml.tag!('gmd:authority') do
                                     citationClass.writeXML(hCitation)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:authority')
                             end
 
@@ -46,7 +48,7 @@ module ADIWG
                                 @xml.tag!('gmd:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:code')
                             end
 

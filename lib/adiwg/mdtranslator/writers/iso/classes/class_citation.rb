@@ -12,6 +12,7 @@
 #   Stan Smith 2014-08-18 process isbn and ISSN from identifier section per 0.6.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 require 'class_responsibleParty'
@@ -25,17 +26,18 @@ module ADIWG
 
                 class CI_Citation
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hCitation)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        dateClass = $IsoNS::CI_Date.new(@xml)
-                        idClass = $IsoNS::MD_Identifier.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        dateClass = $IsoNS::CI_Date.new(@xml, @responseObj)
+                        idClass = $IsoNS::MD_Identifier.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:CI_Citation') do
 
@@ -67,7 +69,7 @@ module ADIWG
                                 @xml.tag!('gmd:edition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:edition')
                             end
 
@@ -85,7 +87,7 @@ module ADIWG
                                         idClass.writeXML(hResID)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:identifier')
                             end
 
@@ -97,7 +99,7 @@ module ADIWG
                                         rPartyClass.writeXML(rParty)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:citedResponsibleParty')
                             end
 
@@ -109,7 +111,7 @@ module ADIWG
                                         codelistClass.writeXML('iso_presentationForm',presForm)
                                     end
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:presentationForm')
                             end
 
@@ -131,7 +133,7 @@ module ADIWG
                                     end
                                 end
                             end
-                            if $showAllTags && needTag
+                            if @responseObj[:writerShowTags] && needTag
                                 @xml.tag!('gmd:ISBN')
                             end
 
@@ -153,7 +155,7 @@ module ADIWG
                                     end
                                 end
                             end
-                            if $showAllTags && needTag
+                            if @responseObj[:writerShowTags] && needTag
                                 @xml.tag!('gmd:ISSN')
                             end
 

@@ -9,11 +9,12 @@
 # ... therefore ...
 # ... lower = 0 => Null
 # ... lower = 1 => NotNull
-# ... upper not provided a value, but is required to be present
+# ... upper not provided a value, but is required to be present.
 
 # History:
-# 	Stan Smith 2014-12-02 original script
+# 	Stan Smith 2014-12-02 original script.
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -22,8 +23,9 @@ module ADIWG
 
                 class Multiplicity
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(allowNull)

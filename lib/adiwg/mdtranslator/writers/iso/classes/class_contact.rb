@@ -7,6 +7,7 @@
 #   Stan Smith 2014-05-16 added method to return contact from array
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_telephone'
 require 'class_address'
@@ -19,16 +20,17 @@ module ADIWG
 
                 class CI_Contact
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hContact)
 
                         # classes used
-                        pBookClass = $IsoNS::CI_Telephone.new(@xml)
-                        addClass = $IsoNS::CI_Address.new(@xml)
-                        resourceClass = $IsoNS::CI_OnlineResource.new(@xml)
+                        pBookClass = $IsoNS::CI_Telephone.new(@xml, @responseObj)
+                        addClass = $IsoNS::CI_Address.new(@xml, @responseObj)
+                        resourceClass = $IsoNS::CI_OnlineResource.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:CI_Contact') do
 
@@ -38,7 +40,7 @@ module ADIWG
                                 @xml.tag!('gmd:phone') do
                                     pBookClass.writeXML(aPhones)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:phone')
                             end
 
@@ -48,7 +50,7 @@ module ADIWG
                                 @xml.tag!('gmd:address') do
                                     addClass.writeXML(hAddress)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:address')
                             end
 
@@ -58,7 +60,7 @@ module ADIWG
                                 @xml.tag!('gmd:onlineResource') do
                                     resourceClass.writeXML(aResource[0])
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:onlineResource')
                             end
 
@@ -68,7 +70,7 @@ module ADIWG
                                 @xml.tag!('gmd:contactInstructions') do
                                     @xml.tag!('gco:CharacterString', hContact[:contactInstructions])
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:contactInstructions')
                             end
 

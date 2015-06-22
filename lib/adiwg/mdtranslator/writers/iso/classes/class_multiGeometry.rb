@@ -2,11 +2,12 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-12 original script
+# 	Stan Smith 2013-11-12 original script.
 # 	Stan Smith 2013-11-13 add line string
 #   Stan Smith 2014-05-30 modified for version 0.5.0
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_point')
 require 'class_point'
@@ -20,17 +21,18 @@ module ADIWG
 
                 class MultiGeometry
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hGeoElement)
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        pointClass = $IsoNS::Point.new(@xml)
-                        lineClass = $IsoNS::LineString.new(@xml)
-                        polygonClass = $IsoNS::Polygon.new(@xml)
+                        pointClass = $IsoNS::Point.new(@xml, @responseObj)
+                        lineClass = $IsoNS::LineString.new(@xml, @responseObj)
+                        polygonClass = $IsoNS::Polygon.new(@xml, @responseObj)
 
 
                         # gml:MultiGeometry attributes
@@ -62,7 +64,7 @@ module ADIWG
                             s = hGeoElement[:elementDescription]
                             if !s.nil?
                                 @xml.tag!('gml:description', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:description')
                             end
 
@@ -70,7 +72,7 @@ module ADIWG
                             s = hGeoElement[:elementName]
                             if !s.nil?
                                 @xml.tag!('gml:name', s)
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gml:name')
                             end
 
@@ -85,7 +87,7 @@ module ADIWG
                                             aPoints.each do |aCoords|
                                                 intPoint = intMetadataClass.newGeoElement
                                                 intPoint[:elementSrs] = hGeoElement[:elementSrs]
-                                                intPoint[:elementGeometry] = $ReaderNS::Point.unpack(aCoords, 'Point')
+                                                intPoint[:elementGeometry] = $ReaderNS::Point.unpack(aCoords, 'Point', @responseObj)
                                                 pointClass.writeXML(intPoint)
                                             end
                                         end
@@ -97,7 +99,7 @@ module ADIWG
                                             aLines.each do |aCoords|
                                                 intLine = intMetadataClass.newGeoElement
                                                 intLine[:elementSrs] = hGeoElement[:elementSrs]
-                                                intLine[:elementGeometry] = $ReaderNS::LineString.unpack(aCoords, 'LineString')
+                                                intLine[:elementGeometry] = $ReaderNS::LineString.unpack(aCoords, 'LineString', @responseObj)
                                                 lineClass.writeXML(intLine)
                                             end
                                         end
@@ -109,7 +111,7 @@ module ADIWG
                                             aPolygons.each do |aCoords|
                                                 intPolygon = intMetadataClass.newGeoElement
                                                 intPolygon[:elementSrs] = hGeoElement[:elementSrs]
-                                                intPolygon[:elementGeometry] = $ReaderNS::LineString.unpack(aCoords, 'Polygon')
+                                                intPolygon[:elementGeometry] = $ReaderNS::LineString.unpack(aCoords, 'Polygon', @responseObj)
                                                 polygonClass.writeXML(intPolygon)
                                             end
                                         end

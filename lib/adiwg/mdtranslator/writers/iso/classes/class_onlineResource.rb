@@ -2,11 +2,12 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2013-08-14 original script
+# 	Stan Smith 2013-08-14 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-08-14 added protocol to onlineResource
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_codelist'
 
@@ -17,14 +18,15 @@ module ADIWG
 
                 class CI_OnlineResource
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeXML(hOlResource)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml)
+                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
 
                         @xml.tag! 'gmd:CI_OnlineResource' do
 
@@ -44,7 +46,7 @@ module ADIWG
                                 @xml.tag!('gmd:protocol') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:protocol')
                             end
 
@@ -54,7 +56,7 @@ module ADIWG
                                 @xml.tag!('gmd:name') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:name')
                             end
 
@@ -64,7 +66,7 @@ module ADIWG
                                 @xml.tag!('gmd:description') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:description')
                             end
 
@@ -74,7 +76,7 @@ module ADIWG
                                 @xml.tag!('gmd:function') do
                                     codelistClass.writeXML('iso_onlineFunction',s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:function')
                             end
 
