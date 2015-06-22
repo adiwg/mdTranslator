@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_responsibleParty'
 require 'class_featureType'
@@ -16,23 +17,24 @@ module ADIWG
 
                 class FC_FeatureCatalogue
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
-                    def writeXML(internalObj)
+                    def writeXML(intObj)
                         $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml)
-                        featureClass = $IsoNS::FC_FeatureType.new(@xml)
+                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        featureClass = $IsoNS::FC_FeatureType.new(@xml, @responseObj)
 
-                        intDataDictionary = internalObj[:dataDictionary][0]
+                        intDataDictionary = intObj[:dataDictionary][0]
                         hDDInfo = intDataDictionary[:dictionaryInfo]
                         aEntities = intDataDictionary[:entities]
                         hCitation = hDDInfo[:dictCitation]
 
-                        $intContactList = internalObj[:contacts]
+                        $intContactList = intObj[:contacts]
                         $domainList = intDataDictionary[:domains]
 
                         # document head
@@ -89,7 +91,7 @@ module ADIWG
                                 @xml.tag!('gmx:fieldOfApplication') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmx:fieldOfApplication')
                             end
 
@@ -141,7 +143,7 @@ module ADIWG
                                 @xml.tag!('gmx:language') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif $showAllTags
+                            elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmx:language')
                             end
 

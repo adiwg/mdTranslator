@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-12-03 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'class_baseUnit'
 require 'class_conventionalUnit'
@@ -17,8 +18,9 @@ module ADIWG
 
                 class UnitsOfMeasure
 
-                    def initialize(xml)
+                    def initialize(xml, responseObj)
                         @xml = xml
+                        @responseObj = responseObj
                     end
 
                     def writeUnits(unit)
@@ -65,7 +67,7 @@ module ADIWG
                                 hBase[:catalogSymbol] = 'deg'
                                 hBase[:unitsSystem] = 'http://www.opengis.net/def/uom/OGC/1.0/degree'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'm', 'meter', 'meters', 'metre'
@@ -73,7 +75,7 @@ module ADIWG
                                 hBase[:name] = 'meter'
                                 hBase[:catalogSymbol] = 'm'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'kg', 'kilogram', 'kilograms'
@@ -81,7 +83,7 @@ module ADIWG
                                 hBase[:name] = 'kilogram'
                                 hBase[:catalogSymbol] = 'kg'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 's', 'second', 'seconds'
@@ -89,7 +91,7 @@ module ADIWG
                                 hBase[:name] = 'second'
                                 hBase[:catalogSymbol] = 'd'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'A', 'ampere', 'amperes'
@@ -97,7 +99,7 @@ module ADIWG
                                 hBase[:name] = 'ampere'
                                 hBase[:catalogSymbol] = 'A'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'K', 'kelvin'
@@ -105,7 +107,7 @@ module ADIWG
                                 hBase[:name] = 'kelvin'
                                 hBase[:catalogSymbol] = 'K'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'mol', 'mole', 'moles'
@@ -113,7 +115,7 @@ module ADIWG
                                 hBase[:name] = 'mole'
                                 hBase[:catalogSymbol] = 'mol'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'cd', 'candela', 'candelas'
@@ -121,7 +123,7 @@ module ADIWG
                                 hBase[:name] = 'candela'
                                 hBase[:catalogSymbol] = 'cd'
 
-                                baseClass = BaseUnit.new(@xml)
+                                baseClass = BaseUnit.new(@xml, @responseObj)
                                 baseClass.writeXML(hBase)
 
                             when 'ft', 'foot', 'feet'
@@ -131,7 +133,7 @@ module ADIWG
                                 hConvent[:preferredUnit] = 'meter'
                                 hConvent[:factor] = 3.280839
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'in', 'inch', 'inches'
@@ -141,7 +143,7 @@ module ADIWG
                                 hConvent[:preferredUnit] = 'meter'
                                 hConvent[:factor] = 0.0254
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'mm', 'millimeter', 'millimeters'
@@ -151,7 +153,7 @@ module ADIWG
                                 hConvent[:preferredUnit] = 'meter'
                                 hConvent[:factor] = 0.001
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'degC', 'centigrade', 'degreesC', 'Celsius'
@@ -164,7 +166,7 @@ module ADIWG
                                 hConvent[:c] = 1
                                 hConvent[:d] = 0
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'degF', 'degreesF', 'Fahrenheit'
@@ -177,7 +179,7 @@ module ADIWG
                                 hConvent[:c] = 9
                                 hConvent[:d] = 0
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'mph', 'miles per hour'
@@ -190,7 +192,7 @@ module ADIWG
                                 hConvent[:c] = 0
                                 hConvent[:d] = 3600.0
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'kph', 'kilometers per hour'
@@ -203,7 +205,7 @@ module ADIWG
                                 hConvent[:c] = 0
                                 hConvent[:d] = 3600
 
-                                convClass = ConventionalUnit.new(@xml)
+                                convClass = ConventionalUnit.new(@xml, @responseObj)
                                 convClass.writeXML(hConvent)
 
                             when 'density'
@@ -217,11 +219,11 @@ module ADIWG
                                 unitTerms << {'uom' => 'm', 'exponent' => '-3'}
                                 hDerived[:derivationUnitTerm] = unitTerms
 
-                                dervClass = DerivedUnit.new(@xml)
+                                dervClass = DerivedUnit.new(@xml, @responseObj)
                                 dervClass.writeXML(hDerived)
 
                             else
-                                defnClass = UnitDefinition.new(@xml)
+                                defnClass = UnitDefinition.new(@xml, @responseObj)
                                 defnClass.writeXML(unit)
 
                         end

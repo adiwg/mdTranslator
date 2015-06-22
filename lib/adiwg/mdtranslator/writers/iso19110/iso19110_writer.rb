@@ -4,6 +4,7 @@
 # 	Stan Smith 2014-12-01 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-03-02 added test and return for missing data dictionary
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/units'))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/codelists'))
@@ -19,34 +20,34 @@ module ADIWG
         module Writers
             module Iso19110
 
-                def self.startWriter(intObj)
+                def self.startWriter(intObj, responseObj)
 
                     # reset ISO id='' counter
                     $idCount = '_000'
 
                     # set the format of the output file based on the writer specified
-                    $response[:writerFormat] = 'xml'
-                    $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerFormat] = 'xml'
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
 
                     # test for a valid dataDictionary object in the internal object
                     aDictionaries = intObj[:dataDictionary]
                     if aDictionaries.length == 0
-                        $response[:writerMessages] << 'Writer Failed - see following message(s):\n'
-                        $response[:writerMessages] << 'No data dictionary was loaded from the input file'
-                        $response[:writerPass] = false
+                        responseObj[:writerMessages] << 'Writer Failed - see following message(s):\n'
+                        responseObj[:writerMessages] << 'No data dictionary was loaded from the input file'
+                        responseObj[:writerPass] = false
                         return
                     end
 
                     # create new XML document
                     xml = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml)
+                    metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml, responseObj)
                     metadata = metadataWriter.writeXML(intObj)
 
                     # set writer pass to true if no writer modules set it to false
                     # false or warning will be set by code that places the message
                     # load metadata into $response
-                    if $response[:writerPass].nil?
-                        $response[:writerPass] = true
+                    if responseObj[:writerPass].nil?
+                        responseObj[:writerPass] = true
                     end
 
                     return metadata
