@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-26 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_processStep')
 require $ReaderNS.readerModule('module_source')
@@ -16,7 +17,7 @@ module ADIWG
 
                 module Lineage
 
-                    def self.unpack(hLineage)
+                    def self.unpack(hLineage, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -35,7 +36,7 @@ module ADIWG
                             aProcSteps = hLineage['processStep']
                             unless aProcSteps.empty?
                                 aProcSteps.each do |hProcStep|
-                                    intDataLine[:processSteps] << $ReaderNS::ProcessStep.unpack(hProcStep)
+                                    intDataLine[:processSteps] << $ReaderNS::ProcessStep.unpack(hProcStep, responseObj)
                                 end
                             end
                         end
@@ -45,7 +46,7 @@ module ADIWG
                             aSources = hLineage['source']
                             unless aSources.empty?
                                 aSources.each do |hSource|
-                                    intDataLine[:dataSources] << $ReaderNS::Source.unpack(hSource)
+                                    intDataLine[:dataSources] << $ReaderNS::Source.unpack(hSource, responseObj)
                                 end
                             end
                         end

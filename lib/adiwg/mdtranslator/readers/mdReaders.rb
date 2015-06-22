@@ -4,36 +4,42 @@
 # 	Stan Smith 2014-12-11 original script
 #   Stan Smith 2012-12-16 generalized handleReader to use :readerRequested
 #   Stan Smith 2015-03-04 changed method of setting $WriterNS
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
         module Readers
 
-            def self.handleReader(file)
+            def self.handleReader(file, responseObj)
 
                 # use reader name to load and initiate reader
                 # build directory path name for reader
-                readerDir = File.join(path_to_resources, $response[:readerRequested])
+                readerDir = File.join(path_to_resources, responseObj[:readerRequested])
                 if File.directory?(readerDir)
 
-                    # if directory path exists, build reader file name and require it
-                    readerFile = File.join(readerDir, $response[:readerRequested] + '_reader')
+                    # if directory path exists,
+                    # construct the reader's expected file name and require it
+                    readerFile = File.join(readerDir, responseObj[:readerRequested] + '_reader')
                     require readerFile
-                    readerClassName = $response[:readerRequested].dup
+
+                    # use the file name to build a constant that will equate to the reader's namespace
+                    readerClassName = responseObj[:readerRequested].dup
                     readerClassName[0] = readerClassName[0].upcase
                     $ReaderNS = ADIWG::Mdtranslator::Readers.const_get(readerClassName)
 
 
-                    # pass file to requested reader and return internal object
-                    # $ReaderNS is the reader namespace constant set in
-                    # ... readerRequested_reader.rb and initialized when the file is required
-                    return $ReaderNS.readFile(file)
+                    # pass file and response object to requested reader
+                    # the reader will return the internal object with the metadata content loaded
+                    return $ReaderNS.readFile(file, responseObj)
+
                 else
-                    # directory path was not found
-                    $response[:readerValidationPass] = false
-                    $response[:readerValidationMessages] << "Validation Failed - see following message(s):\n"
-                    $response[:readerValidationMessages] << "Reader '#{$response[:readerRequested]}' is not supported."
+                    # the directory path was not found meaning there is no reader with that name
+                    # set the appropriate messages and report the failure
+                    responseObj[:readerValidationPass] = false
+                    responseObj[:readerValidationMessages] << "Validation Failed - see following message(s):\n"
+                    responseObj[:readerValidationMessages] << "Reader '#{responseObj[:readerRequested]}' is not supported."
                     return false
+
                 end
 
             end

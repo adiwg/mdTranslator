@@ -14,6 +14,7 @@
 #   Stan Smith 2014-12-19 added testing and messages for '' and missing contactId
 #   Stan Smith 2014-12-19 added testing to not place nil address into internal object
 #   Stan Smith 2014-12-30 refactored
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_address')
 require $ReaderNS.readerModule('module_onlineResource')
@@ -26,7 +27,7 @@ module ADIWG
 
                 module Contact
 
-                    def self.unpack(hContact)
+                    def self.unpack(hContact, responseObj)
 
                         # return nil object if input is empty
                         intAddDoc = nil
@@ -45,13 +46,13 @@ module ADIWG
                             if s != ''
                                 intCont[:contactId] = s
                             else
-                                $response[:readerExecutionPass] =  false
-                                $response[:readerExecutionMessages] << 'contact: {contactId: } is blank.'
+                                responseObj[:readerExecutionPass] =  false
+                                responseObj[:readerExecutionMessages] << 'contact: {contactId: } is blank.'
                                 return nil
                             end
                         else
-                            $response[:readerExecutionPass] =  false
-                            $response[:readerExecutionMessages] << 'contact: {contactId: } is missing.'
+                            responseObj[:readerExecutionPass] =  false
+                            responseObj[:readerExecutionMessages] << 'contact: {contactId: } is missing.'
                             return nil
                         end
 
@@ -84,7 +85,7 @@ module ADIWG
                             aOlRes = hContact['onlineResource']
                             aOlRes.each do |hOlRes|
                                 unless hOlRes.empty?
-                                    intCont[:onlineRes] << $ReaderNS::OnlineResource.unpack(hOlRes)
+                                    intCont[:onlineRes] << $ReaderNS::OnlineResource.unpack(hOlRes, responseObj)
                                 end
                             end
                         end
@@ -101,14 +102,14 @@ module ADIWG
                         if hContact.has_key?('phoneBook')
                             aPhones = hContact['phoneBook']
                             aPhones.each do |hPhone|
-                                intCont[:phones].concat($ReaderNS::Phone.unpack(hPhone))
+                                intCont[:phones].concat($ReaderNS::Phone.unpack(hPhone, responseObj))
                             end
                         end
 
                         # address
                         if hContact.has_key?('address')
                             conAddress = hContact['address']
-                            hAddress = $ReaderNS::Address.unpack(conAddress)
+                            hAddress = $ReaderNS::Address.unpack(conAddress, responseObj)
                             unless hAddress.nil?
                                 intCont[:address] = hAddress
                             end

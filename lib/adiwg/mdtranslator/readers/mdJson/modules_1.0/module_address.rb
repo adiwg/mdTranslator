@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-19 prevented passing blank deliveryPoints and
 #   ... electronicMailAddresses into internal object
 #   Stan Smith 2014-12-30 refactored
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -15,7 +16,7 @@ module ADIWG
 
                 module Address
 
-                    def self.unpack(hConAddress)
+                    def self.unpack(hConAddress, responseObj)
 
                         # return nil object if input is empty
                         intAdd = nil

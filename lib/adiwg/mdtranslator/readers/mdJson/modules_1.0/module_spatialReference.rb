@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-09-03 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -12,7 +13,7 @@ module ADIWG
 
                 module SpatialReferenceSystem
 
-                    def self.unpack(hSpatialRef)
+                    def self.unpack(hSpatialRef, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

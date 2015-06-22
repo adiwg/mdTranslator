@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-11 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
@@ -14,7 +15,7 @@ module ADIWG
 
                 module DateTime
 
-                    def self.unpack(sDateTime)
+                    def self.unpack(sDateTime, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

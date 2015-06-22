@@ -11,6 +11,7 @@
 # 	Stan Smith 2013-12-11 modified to handle single temporal element
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_dateTime')
 require $ReaderNS.readerModule('module_timeInstant')
@@ -23,7 +24,7 @@ module ADIWG
 
                 module TemporalElement
 
-                    def self.unpack(hTempElement)
+                    def self.unpack(hTempElement, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -35,7 +36,7 @@ module ADIWG
                             unless aDates.empty?
                                 aDates.each do |s|
                                     intTempEle = intMetadataClass.newTemporalElement
-                                    intTempEle[:date] = $ReaderNS::DateTime.unpack(s)
+                                    intTempEle[:date] = $ReaderNS::DateTime.unpack(s, responseObj)
                                     aIntTempElements << intTempEle
                                 end
                             end
@@ -50,7 +51,7 @@ module ADIWG
                                         s = hTimeInst['timePosition']
                                         if s != ''
                                             intTempEle = intMetadataClass.newTemporalElement
-                                            intTempEle[:timeInstant] = $ReaderNS::TimeInstant.unpack(hTimeInst)
+                                            intTempEle[:timeInstant] = $ReaderNS::TimeInstant.unpack(hTimeInst, responseObj)
                                             aIntTempElements << intTempEle
                                         end
                                     end
@@ -64,7 +65,7 @@ module ADIWG
                             unless aTimePeriod.empty?
                                 aTimePeriod.each do |hTimePeriod|
                                     intTempEle = intMetadataClass.newTemporalElement
-                                    intTempEle[:timePeriod] = $ReaderNS::TimePeriod.unpack(hTimePeriod)
+                                    intTempEle[:timePeriod] = $ReaderNS::TimePeriod.unpack(hTimePeriod, responseObj)
                                     aIntTempElements << intTempEle
                                 end
                             end

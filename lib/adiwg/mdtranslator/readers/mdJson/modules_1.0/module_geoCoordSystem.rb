@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-04-30 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -12,7 +13,7 @@ module ADIWG
 
                 module GeoCoordSystem
 
-                    def self.unpack(hGeoCrs, intElement)
+                    def self.unpack(hGeoCrs, intElement, responseObj)
 
                         intMetadataClass = InternalMetadata.new
                         intSRS = intMetadataClass.newSRS

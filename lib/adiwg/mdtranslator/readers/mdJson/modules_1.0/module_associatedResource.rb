@@ -11,6 +11,7 @@
 #   Stan Smith 2014-11-06 added resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-30 added return if empty input
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 
@@ -21,7 +22,7 @@ module ADIWG
 
                 module AssociatedResource
 
-                    def self.unpack(hAssocRes)
+                    def self.unpack(hAssocRes, responseObj)
 
                         # return nil object if input is empty
                         intAssocRes = nil
@@ -59,7 +60,7 @@ module ADIWG
                         if hAssocRes.has_key?('resourceCitation')
                             hCitation = hAssocRes['resourceCitation']
                             unless hCitation.empty?
-                                intAssocRes[:resourceCitation] = $ReaderNS::Citation.unpack(hCitation)
+                                intAssocRes[:resourceCitation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 
@@ -67,7 +68,7 @@ module ADIWG
                         if hAssocRes.has_key?('metadataCitation')
                             hCitation = hAssocRes['metadataCitation']
                             unless hCitation.empty?
-                                intAssocRes[:metadataCitation] = $ReaderNS::Citation.unpack(hCitation)
+                                intAssocRes[:metadataCitation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 

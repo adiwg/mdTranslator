@@ -9,6 +9,7 @@
 # 	Stan Smith 2013-12-05 modified to for new temporalElement schema
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_geographicElement')
 require $ReaderNS.readerModule('module_temporalElement')
@@ -21,7 +22,7 @@ module ADIWG
 
                 module Extent
 
-                    def self.unpack(hExtent)
+                    def self.unpack(hExtent, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -39,7 +40,7 @@ module ADIWG
                         if hExtent.has_key?('geographicElement')
                             aGeoElements = hExtent['geographicElement']
                             unless aGeoElements.empty?
-                                intExtent[:extGeoElements] = $ReaderNS::GeographicElement.unpack(aGeoElements)
+                                intExtent[:extGeoElements] = $ReaderNS::GeographicElement.unpack(aGeoElements, responseObj)
                             end
                         end
 
@@ -47,7 +48,7 @@ module ADIWG
                         if hExtent.has_key?('temporalElement')
                             hTempElement = hExtent['temporalElement']
                             unless hTempElement.empty?
-                                intExtent[:extTempElements] = $ReaderNS::TemporalElement.unpack(hTempElement)
+                                intExtent[:extTempElements] = $ReaderNS::TemporalElement.unpack(hTempElement, responseObj)
                             end
                         end
 
@@ -56,7 +57,7 @@ module ADIWG
                             aVertElements = hExtent['verticalElement']
                             unless aVertElements.empty?
                                 aVertElements.each do |hVertElement|
-                                    intExtent[:extVertElements] << $ReaderNS::VerticalElement.unpack(hVertElement)
+                                    intExtent[:extVertElements] << $ReaderNS::VerticalElement.unpack(hVertElement, responseObj)
                                 end
                             end
                         end

@@ -7,6 +7,7 @@
 #   Stan Smith 2014-04-30 reorganized for json schema 0.3.0
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_coordinates')
 
@@ -17,7 +18,7 @@ module ADIWG
 
                 module LineString
 
-                    def self.unpack(aCoords, geoType)
+                    def self.unpack(aCoords, geoType, responseObj)
                         intMetadataClass = InternalMetadata.new
                         intLine = intMetadataClass.newGeometry
 

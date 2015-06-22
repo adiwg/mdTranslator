@@ -7,6 +7,7 @@
 #   Stan Smith 2014-04-28 modified attribute names to match json schema 0.3.0
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_responsibleParty')
 
@@ -17,7 +18,7 @@ module ADIWG
 
                 module ResourceSpecificUsage
 
-                    def self.unpack(hUsage)
+                    def self.unpack(hUsage, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -44,7 +45,7 @@ module ADIWG
                             aContacts = hUsage['userContactInfo']
                             unless aContacts.empty?
                                 aContacts.each do |hContact|
-                                    intUsage[:userContacts] << $ReaderNS::ResponsibleParty.unpack(hContact)
+                                    intUsage[:userContacts] << $ReaderNS::ResponsibleParty.unpack(hContact, responseObj)
                                 end
                             end
                         end

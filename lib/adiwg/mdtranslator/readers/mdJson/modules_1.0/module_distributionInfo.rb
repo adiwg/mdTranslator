@@ -8,6 +8,7 @@
 #   Stan Smith 2014-05-02 changed to support responsible party as hash, not array
 #   Stan Smith 2014-07-08 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_onlineResource')
 require $ReaderNS.readerModule('module_dateTime')
@@ -20,7 +21,7 @@ module ADIWG
 
                 module DistributionInfo
 
-                    def self.unpack(hDistributor)
+                    def self.unpack(hDistributor, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -30,7 +31,7 @@ module ADIWG
                         if hDistributor.has_key?('distributorContact')
                             hContact = hDistributor['distributorContact']
                             unless hContact.empty?
-                                intDistributor[:distContact] = $ReaderNS::ResponsibleParty.unpack(hContact)
+                                intDistributor[:distContact] = $ReaderNS::ResponsibleParty.unpack(hContact, responseObj)
                             end
                         end
 
@@ -52,7 +53,7 @@ module ADIWG
                                     if distOrderProcess.has_key?('plannedAvailabilityDateTime')
                                         s = distOrderProcess['plannedAvailabilityDateTime']
                                         if s != ''
-                                            intDistOrder[:plannedDateTime] = $ReaderNS::DateTime.unpack(s)
+                                            intDistOrder[:plannedDateTime] = $ReaderNS::DateTime.unpack(s, responseObj)
                                         end
                                     end
 
@@ -114,7 +115,7 @@ module ADIWG
                                     if distTransOpt.has_key?('online')
                                         aOnlineOption = distTransOpt['online']
                                         aOnlineOption.each do |hOlOption|
-                                            intTransOpt[:online] << $ReaderNS::OnlineResource.unpack(hOlOption)
+                                            intTransOpt[:online] << $ReaderNS::OnlineResource.unpack(hOlOption, responseObj)
                                         end
                                     end
 

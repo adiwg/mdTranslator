@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2014-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_dictionaryInfo')
 require $ReaderNS.readerModule('module_domain')
@@ -16,7 +17,7 @@ module ADIWG
 
                 module DataDictionary
 
-                    def self.unpack(hDictionary)
+                    def self.unpack(hDictionary, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -27,7 +28,7 @@ module ADIWG
                             # data dictionary - dictionary information
                             if hDictionary.has_key?('dictionaryInfo')
                                 hDictInfo = hDictionary['dictionaryInfo']
-                                intDict[:dictionaryInfo] = $ReaderNS::DictionaryInfo.unpack(hDictInfo)
+                                intDict[:dictionaryInfo] = $ReaderNS::DictionaryInfo.unpack(hDictInfo, responseObj)
                             end
 
                             # data dictionary - domains
@@ -35,7 +36,7 @@ module ADIWG
                                 aDomains = hDictionary['domain']
                                 aDomains.each do |hDomain|
                                     unless hDomain.empty?
-                                        intDict[:domains] << $ReaderNS::Domain.unpack(hDomain)
+                                        intDict[:domains] << $ReaderNS::Domain.unpack(hDomain, responseObj)
                                     end
                                 end
                             end
@@ -45,7 +46,7 @@ module ADIWG
                                 aEntities = hDictionary['entity']
                                 aEntities.each do |hEntity|
                                     unless hEntity.empty?
-                                        intDict[:entities] << $ReaderNS::Entity.unpack(hEntity)
+                                        intDict[:entities] << $ReaderNS::Entity.unpack(hEntity, responseObj)
                                     end
                                 end
                             end

@@ -8,6 +8,7 @@
 #   Stan Smith 2014-05-23 modified to handle MultiPolygon objects
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_coordinates')
 
@@ -18,7 +19,7 @@ module ADIWG
 
                 module Polygon
 
-                    def self.unpack(aCoords, geoType)
+                    def self.unpack(aCoords, geoType, responseObj)
                         intMetadataClass = InternalMetadata.new
                         intGeometry = intMetadataClass.newGeometry
                         intGeometry[:geoType] = geoType

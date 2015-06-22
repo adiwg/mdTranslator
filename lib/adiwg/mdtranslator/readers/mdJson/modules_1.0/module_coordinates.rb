@@ -6,6 +6,7 @@
 # 	Stan Smith 2013-11-13 added getDimension
 #   Stan Smith 2014-05-23 added getLevels
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -15,13 +16,13 @@ module ADIWG
                 module Coordinates
 
                     # repack coordinate array into single string for ISO
-                    def self.unpack(aCoords)
+                    def self.unpack(aCoords, responseObj)
                         s = ''
                         i = 0
                         coordCount = aCoords.length
                         aCoords.each do |coord|
                             if coord.kind_of?(Array)
-                                s = s + unpack(coord)
+                                s = s + unpack(coord, responseObj)
                             else
                                 i += 1
                                 s = s + coord.to_s

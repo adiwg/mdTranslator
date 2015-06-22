@@ -13,6 +13,8 @@
 #   Stan Smith 2014-12-03 changed class name to MdJsonReader from AdiwgJsonReader
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-12 added method to lookup contact in contact array
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+
 
 require 'json'
 
@@ -21,32 +23,36 @@ module ADIWG
         module Readers
             module MdJson
 
-                def self.readFile(file)
+                def self.readFile(file, responseObj)
+
+                    # set reference to responseObj for use in this module
+                    @responseObj = responseObj
+
                     # set anticipated format of file in $response
-                    $response[:readerFormat] = 'json'
+                    @responseObj[:readerFormat] = 'json'
 
                     # receive json file into ruby hash
                     parseJson(file)
-                    if !$response[:readerStructurePass]
+                    if !@responseObj[:readerStructurePass]
                         return false
                     end
 
                     # check mdJson version name
                     checkVersionName
-                    if !$response[:readerStructurePass]
+                    if !@responseObj[:readerStructurePass]
                         return false
                     end
 
                     # check mdJson version number
                     checkVersionNumber
-                    if !$response[:readerStructurePass]
+                    if !@responseObj[:readerStructurePass]
                         return false
                     end
 
                     # validate file against mdJson schema definition
                     require 'adiwg/mdtranslator/readers/mdJson/mdJson_validator'
-                    $ReaderNS.validate(file)
-                    if !$response[:readerValidationPass]
+                    $ReaderNS.validate(file, @responseObj)
+                    if !@responseObj[:readerValidationPass]
                         return false
                     end
 
@@ -57,7 +63,7 @@ module ADIWG
 
                     # create new internal metadata container for the reader
                     @intObj = intMetadataClass.newBase
-                    $ReaderNS.unpack(@intObj, @hMdJson)
+                    $ReaderNS.unpack(@intObj, @hMdJson, @responseObj)
                     return @intObj
 
                 end
@@ -67,11 +73,11 @@ module ADIWG
                     # test for valid json syntax by attempting to parse the file
                     begin
                         @hMdJson = JSON.parse(file)
-                        $response[:readerStructurePass] = true
+                        @responseObj[:readerStructurePass] = true
                     rescue JSON::JSONError => err
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'JSON Parsing Failed - see following message(s):\n'
-                        $response[:readerStructureMessages] << err.to_s.slice(0,300)
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'JSON Parsing Failed - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << err.to_s.slice(0,300)
                     end
                 end
 
@@ -80,9 +86,9 @@ module ADIWG
                     if @hMdJson.has_key?('version')
                         hVersion = @hMdJson['version']
                     else
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        $response[:readerStructureMessages] << 'The input file is missing the version:{} block.'
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << 'The input file is missing the version:{} block.'
                         return
                     end
 
@@ -90,26 +96,26 @@ module ADIWG
                     if hVersion.has_key?('name')
                         s = hVersion['name']
                         if !s.nil?
-                            $response[:readerFound] = s
+                            @responseObj[:readerFound] = s
                         else
-                            $response[:readerStructurePass] = false
-                            $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                            $response[:readerStructureMessages] << 'The input file version: => name: is missing.'
+                            @responseObj[:readerStructurePass] = false
+                            @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                            @responseObj[:readerStructureMessages] << 'The input file version: => name: is missing.'
                             return
                         end
                     else
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        $response[:readerStructureMessages] << "The input file version:{} block is missing the 'name:' attribute."
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << "The input file version:{} block is missing the 'name:' attribute."
                         return
                     end
 
                     # check the version name is 'mdJson'
                     if s != 'mdJson'
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        $response[:readerStructureMessages] << "The mdTranslator reader expected the input file version: name: to be 'mdJson'."
-                        $response[:readerStructureMessages] << "Version name found was: '#{s}'."
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << "The mdTranslator reader expected the input file version: name: to be 'mdJson'."
+                        @responseObj[:readerStructureMessages] << "Version name found was: '#{s}'."
                     end
                 end
 
@@ -119,12 +125,12 @@ module ADIWG
                     if hVersion.has_key?('version')
                         s = hVersion['version']
                         if !s.nil?
-                            $response[:readerVersionFound] = s
+                            @responseObj[:readerVersionFound] = s
                         end
                     else
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        $response[:readerStructureMessages] << "The input file version:{} block is missing the 'version:' number attribute."
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << "The input file version:{} block is missing the 'version:' number attribute."
                         return
                     end
 
@@ -137,24 +143,24 @@ module ADIWG
                         readerVersion = aVersionParts[0] +'.' + aVersionParts[1]
                         dir = File.join(File.dirname(__FILE__), 'modules_' + readerVersion)
                         if !File.directory?(dir)
-                            $response[:readerStructurePass] = false
-                            $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                            $response[:readerStructureMessages] << 'The input file version is not supported.'
-                            $response[:readerStructureMessages] << "mdJson version requested was '#{s}'"
+                            @responseObj[:readerStructurePass] = false
+                            @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                            @responseObj[:readerStructureMessages] << 'The input file version is not supported.'
+                            @responseObj[:readerStructureMessages] << "mdJson version requested was '#{s}'"
                             return
                         end
-                        $response[:readerVersionUsed] = readerVersion
+                        @responseObj[:readerVersionUsed] = readerVersion
                     else
-                        $response[:readerStructurePass] = false
-                        $response[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        $response[:readerStructureMessages] << 'The input file version number must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3'
-                        $response[:readerStructureMessages] << 'Note the PATCH number is optional.'
+                        @responseObj[:readerStructurePass] = false
+                        @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                        @responseObj[:readerStructureMessages] << 'The input file version number must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3'
+                        @responseObj[:readerStructureMessages] << 'Note the PATCH number is optional.'
                     end
                 end
 
                 # require modules for the requested version
                 def self.readerModule(moduleName)
-                    dir = File.join(File.dirname(__FILE__), 'modules_' + $response[:readerVersionUsed])
+                    dir = File.join(File.dirname(__FILE__), 'modules_' + @responseObj[:readerVersionUsed])
                     file = File.join(dir, moduleName)
 
                     # test for the existance of the module in the current mdJson version directory

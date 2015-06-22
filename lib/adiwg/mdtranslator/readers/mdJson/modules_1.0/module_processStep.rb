@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-26 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_responsibleParty')
 require $ReaderNS.readerModule('module_dateTime')
@@ -16,7 +17,7 @@ module ADIWG
 
                 module ProcessStep
 
-                    def self.unpack(hProcStep)
+                    def self.unpack(hProcStep, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -50,7 +51,7 @@ module ADIWG
                         if hProcStep.has_key?('dateTime')
                             s = hProcStep['dateTime']
                             if s != ''
-                                intDataPStep[:stepDateTime] = $ReaderNS::DateTime.unpack(s)
+                                intDataPStep[:stepDateTime] = $ReaderNS::DateTime.unpack(s, responseObj)
                             end
                         end
 
@@ -59,7 +60,7 @@ module ADIWG
                             aProcessors = hProcStep['processor']
                             unless aProcessors.empty?
                                 aProcessors.each do |processor|
-                                    intDataPStep[:stepProcessors] << $ReaderNS::ResponsibleParty.unpack(processor)
+                                    intDataPStep[:stepProcessors] << $ReaderNS::ResponsibleParty.unpack(processor, responseObj)
                                 end
                             end
                         end

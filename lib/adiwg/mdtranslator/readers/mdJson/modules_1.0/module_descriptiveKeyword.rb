@@ -8,6 +8,7 @@
 #   Stan Smith 2014-08-21 removed thesaurus link; replaced by onlineResource to citation
 #   Stan Smith 2014-08-21 removed extra level of encapsulation "citation" under "thesaurus"
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 
@@ -18,7 +19,7 @@ module ADIWG
 
                 module DescriptiveKeyword
 
-                    def self.unpack(hDesKeyword)
+                    def self.unpack(hDesKeyword, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -44,7 +45,7 @@ module ADIWG
                         if hDesKeyword.has_key?('thesaurus')
                             hCitation = hDesKeyword['thesaurus']
                             unless hCitation.empty?
-                                intKeyword[:keyTheCitation] = $ReaderNS::Citation.unpack(hCitation)
+                                intKeyword[:keyTheCitation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
 
                         end

@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_domainItem')
 
@@ -14,7 +15,7 @@ module ADIWG
 
                 module Domain
 
-                    def self.unpack(hDomain)
+                    def self.unpack(hDomain, responseObj)
 
                         # return nil object if input is empty
                         intDomain = nil
@@ -61,7 +62,7 @@ module ADIWG
                             aDoItems = hDomain['member']
                             aDoItems.each do |hDoItem|
                                 unless hDoItem.empty?
-                                    intDomain[:domainItems] << $ReaderNS::DomainItem.unpack(hDoItem)
+                                    intDomain[:domainItems] << $ReaderNS::DomainItem.unpack(hDoItem, responseObj)
                                 end
                             end
                         end

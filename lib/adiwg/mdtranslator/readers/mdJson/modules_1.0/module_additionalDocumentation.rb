@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-30 added return if empty input
 #   ... found & fixed error of method using associatedResource object instead of
 #   ... additionalDocumentation object
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 
@@ -17,7 +18,7 @@ module ADIWG
 
                 module AdditionalDocumentation
 
-                    def self.unpack(hAddDoc)
+                    def self.unpack(hAddDoc, responseObj)
 
                         # return nil object if input is empty
                         intAddDoc = nil
@@ -39,7 +40,7 @@ module ADIWG
                         if hAddDoc.has_key?('citation')
                             hCitation = hAddDoc['citation']
                             unless hCitation.empty?
-                                intAddDoc[:citation] = $ReaderNS::Citation.unpack(hCitation)
+                                intAddDoc[:citation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 

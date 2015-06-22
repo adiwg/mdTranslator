@@ -7,6 +7,7 @@
 #   Stan Smith 2014-05-02 fixed assignment problem with taxonomic procedures
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 require $ReaderNS.readerModule('module_responsibleParty')
@@ -20,7 +21,7 @@ module ADIWG
 
                 module Taxonomy
 
-                    def self.unpack(hTaxonomy)
+                    def self.unpack(hTaxonomy, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -31,7 +32,7 @@ module ADIWG
                             aClassSys = hTaxonomy['classificationSystem']
                             unless aClassSys.empty?
                                 aClassSys.each do |hCitation|
-                                    intTaxSys[:taxClassSys] << $ReaderNS::Citation.unpack(hCitation)
+                                    intTaxSys[:taxClassSys] << $ReaderNS::Citation.unpack(hCitation, responseObj)
                                 end
                             end
                         end
@@ -52,7 +53,7 @@ module ADIWG
                             aObservers = hTaxonomy['observer']
                             unless aObservers.empty?
                                 aObservers.each do |observer|
-                                    intTaxSys[:taxObservers] << $ReaderNS::ResponsibleParty.unpack(observer)
+                                    intTaxSys[:taxObservers] << $ReaderNS::ResponsibleParty.unpack(observer, responseObj)
                                 end
                             end
                         end
@@ -69,7 +70,7 @@ module ADIWG
                         if hTaxonomy.has_key?('voucher')
                             hVoucher = hTaxonomy['voucher']
                             unless hVoucher.empty?
-                                intTaxSys[:taxVoucher] = $ReaderNS::Voucher.unpack(hVoucher)
+                                intTaxSys[:taxVoucher] = $ReaderNS::Voucher.unpack(hVoucher, responseObj)
                             end
                         end
 
@@ -78,7 +79,7 @@ module ADIWG
                             aTaxClass = hTaxonomy['taxonClass']
                             unless aTaxClass.empty?
                                 aTaxClass.each do |hTaxClass|
-                                    intTaxSys[:taxClasses] << $ReaderNS::TaxonCl.unpack(hTaxClass)
+                                    intTaxSys[:taxClasses] << $ReaderNS::TaxonCl.unpack(hTaxClass, responseObj)
                                 end
                             end
                         end

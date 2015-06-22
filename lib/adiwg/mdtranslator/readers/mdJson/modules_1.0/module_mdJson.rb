@@ -6,6 +6,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
 #   Stan Smith 2015-06-12 moved instantiation of intObj up to module mdJson_reader.rb
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_contacts')
 require $ReaderNS.readerModule('module_metadata')
@@ -17,7 +18,7 @@ module ADIWG
         module Readers
             module MdJson
 
-                def self.unpack(intObj, hMdJson)
+                def self.unpack(intObj, hMdJson, responseObj)
 
                     # get json schema name and version
                     hVersion = hMdJson['version']
@@ -30,7 +31,7 @@ module ADIWG
                     	aContacts = hMdJson['contact']
                     	aContacts.each do |hContact|
                     		unless hContact.empty?
-                    			intObj[:contacts] << $ReaderNS::Contact.unpack(hContact)
+                    			intObj[:contacts] << $ReaderNS::Contact.unpack(hContact, responseObj)
                     		end
                     	end
                     end
@@ -42,7 +43,7 @@ module ADIWG
                     # load metadata from the hash object
                     if hMdJson.has_key?('metadata')
                     	hMetadata = hMdJson['metadata']
-                    	intObj[:metadata] = $ReaderNS::Metadata.unpack(hMetadata)
+                    	intObj[:metadata] = $ReaderNS::Metadata.unpack(hMetadata, responseObj)
                     end
 
                     # data dictionary section
@@ -50,7 +51,7 @@ module ADIWG
                         aDictionary = hMdJson['dataDictionary']
                         aDictionary.each do |hDictionary|
                             unless hDictionary.empty?
-                                intObj[:dataDictionary] << $ReaderNS::DataDictionary.unpack(hDictionary)
+                                intObj[:dataDictionary] << $ReaderNS::DataDictionary.unpack(hDictionary, responseObj)
                             end
                         end
                     end

@@ -33,9 +33,7 @@ require 'adiwg/mdtranslator/writers/mdWriters'
 module ADIWG
     module Mdtranslator
 
-        def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false)
-
-            $showAllTags = showAllTags
+        class ResponseHash
 
             # the reader and writer specified in the translate parameter string should load and
             #     return this hash ...
@@ -76,54 +74,75 @@ module ADIWG
             # writerMessages: an array of quoted string messages.  If writerPass is 'false', set one
             #    or more messages to assist user in fixing file data problems.  Set by writer.
             # writerOutput: output file returned from the writer, set by writer
+            # writerShowTags: include tags in XML output for empty elements
 
-            $response = {
-                readerFormat: nil,
-                readerStructurePass: nil,
-                readerStructureMessages: [],
-                readerRequested: reader,
-                readerFound: nil,
-                readerVersionFound: nil,
-                readerVersionUsed: nil,
-                readerValidationLevel: validate,
-                readerValidationPass: nil,
-                readerValidationMessages: [],
-                readerExecutionPass: nil,
-                readerExecutionMessages: [],
-                writerName: writer,
-                writerVersion: nil,
-                writerFormat: nil,
-                writerPass: nil,
-                writerMessages: [],
-                writerOutput: nil
-            }
+            def response
+                {
+                    readerFormat: nil,
+                    readerStructurePass: nil,
+                    readerStructureMessages: [],
+                    readerRequested: nil,
+                    readerFound: nil,
+                    readerVersionFound: nil,
+                    readerVersionUsed: nil,
+                    readerValidationLevel: nil,
+                    readerValidationPass: nil,
+                    readerValidationMessages: [],
+                    readerExecutionPass: nil,
+                    readerExecutionMessages: [],
+                    writerName: nil,
+                    writerVersion: nil,
+                    writerFormat: nil,
+                    writerPass: nil,
+                    writerMessages: [],
+                    writerOutput: nil,
+                    writerShowTags: false
+                }
+            end
+
+        end
+
+        def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false)
+
+            # create a new instance of the response hash for this translation run
+            responseClass = ResponseHash.new
+            responseObj = responseClass.response
+
+            # add the passed in parameters to the response hash
+            responseObj[:readerRequested] = reader
+            responseObj[:readerValidationLevel] = validate
+            responseObj[:writerName] = writer
+            responseObj[:writerShowTags] = showAllTags
 
             # handle readers
             if reader.nil? || reader == ''
-                $response[:readerExecutionPass] = false
-                $response[:readerExecutionMessages] << 'Reader name was not provided'
-                return $response
+                responseObj[:readerExecutionPass] = false
+                responseObj[:readerExecutionMessages] << 'Reader name was not provided'
+                return responseObj
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
-                intObj = ADIWG::Mdtranslator::Readers.handleReader(file)
+                intObj = ADIWG::Mdtranslator::Readers.handleReader(file, responseObj)
 
-                # if readerExecutionPass is nil no error messages were set during exection
-                # and the execution is assumed to have been successful
-                if $response[:readerExecutionPass].nil?
-                    $response[:readerExecutionPass] = true
-                elsif !$response[:readerExecutionPass]
-                    return $response
+                # if readerExecutionPass is nil no error messages were set while
+                # reading  the input file into the internal object.
+                # the read operation is assumed to have been successful and pass is set to true.
+                if responseObj[:readerExecutionPass].nil?
+                    responseObj[:readerExecutionPass] = true
+                elsif !responseObj[:readerExecutionPass]
+                    return responseObj
                 end
+
             end
 
             # handle writers
             if writer.nil? || writer == ''
-                $response[:writerMessages] << 'Writer name was not provided.'
+                responseObj[:writerMessages] << 'Writer name was not provided.'
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
                 ADIWG::Mdtranslator::Writers.handleWriter(intObj)
             end
-            return $response
+
+            return responseObj
 
         end
 

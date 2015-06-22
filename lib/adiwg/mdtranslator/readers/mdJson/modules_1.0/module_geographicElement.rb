@@ -15,6 +15,7 @@
 #   Stan Smith 2014-05-23 added direct support for geometryCollection
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_geoCoordSystem')
 require $ReaderNS.readerModule('module_geoProperties')
@@ -30,7 +31,7 @@ module ADIWG
 
                 module GeographicElement
 
-                    def self.unpack(aGeoElements)
+                    def self.unpack(aGeoElements, responseObj)
 
                         # only one geometry is allowed per geographic element.
                         # ... in GeoJSON each geometry is allowed a bounding box;
@@ -64,13 +65,13 @@ module ADIWG
                             # set geographic element coordinate reference system - CRS
                             if hGeoJsonElement.has_key?('crs')
                                 hGeoCrs = hGeoJsonElement['crs']
-                                $ReaderNS::GeoCoordSystem.unpack(hGeoCrs, hGeoElement)
+                                $ReaderNS::GeoCoordSystem.unpack(hGeoCrs, hGeoElement, responseObj)
                             end
 
                             # set geographic element properties
                             if hGeoJsonElement.has_key?('properties')
                                 hGeoProps = hGeoJsonElement['properties']
-                                $ReaderNS::GeoProperties.unpack(hGeoProps, hGeoElement)
+                                $ReaderNS::GeoProperties.unpack(hGeoProps, hGeoElement, responseObj)
                             end
 
                             # process geographic element bounding box
@@ -81,7 +82,7 @@ module ADIWG
                                     aBBox = hGeoJsonElement['bbox']
 
                                     boxElement = Marshal.load(Marshal.dump(hGeoElement))
-                                    boxElement[:elementGeometry] = $ReaderNS::BoundingBox.unpack(aBBox)
+                                    boxElement[:elementGeometry] = $ReaderNS::BoundingBox.unpack(aBBox, responseObj)
 
                                     aIntGeoEle << boxElement
                                 end
@@ -105,11 +106,11 @@ module ADIWG
                                                     unless aCoordinates.empty?
                                                         case geometryType
                                                             when 'Point', 'MultiPoint'
-                                                                hGeoElement[:elementGeometry] = $ReaderNS::Point.unpack(aCoordinates, geometryType)
+                                                                hGeoElement[:elementGeometry] = $ReaderNS::Point.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'LineString', 'MultiLineString'
-                                                                hGeoElement[:elementGeometry] = $ReaderNS::LineString.unpack(aCoordinates, geometryType)
+                                                                hGeoElement[:elementGeometry] = $ReaderNS::LineString.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'Polygon', 'MultiPolygon'
-                                                                hGeoElement[:elementGeometry] = $ReaderNS::Polygon.unpack(aCoordinates, geometryType)
+                                                                hGeoElement[:elementGeometry] = $ReaderNS::Polygon.unpack(aCoordinates, geometryType, responseObj)
                                                             else
                                                                 # log - the GeoJSON geometry type is not supported
                                                         end
@@ -128,7 +129,7 @@ module ADIWG
                                         unless aFeatures.empty?
                                             intGeometry = intMetadataClass.newGeometry
                                             intGeometry[:geoType] = 'MultiGeometry'
-                                            intGeometry[:geometry] = $ReaderNS::GeographicElement.unpack(aFeatures)
+                                            intGeometry[:geometry] = $ReaderNS::GeographicElement.unpack(aFeatures, responseObj)
                                             hGeoElement[:elementGeometry] = intGeometry
                                             aIntGeoEle << hGeoElement
                                         end
@@ -137,17 +138,17 @@ module ADIWG
                                 # GeoJSON Geometries
                                 when 'Point', 'MultiPoint'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = $ReaderNS::Point.unpack(aCoordinates, elementType)
+                                    hGeoElement[:elementGeometry] = $ReaderNS::Point.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'LineString', 'MultiLineString'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = $ReaderNS::LineString.unpack(aCoordinates, elementType)
+                                    hGeoElement[:elementGeometry] = $ReaderNS::LineString.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'Polygon', 'MultiPolygon'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = $ReaderNS::Polygon.unpack(aCoordinates, elementType)
+                                    hGeoElement[:elementGeometry] = $ReaderNS::Polygon.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 # GeoJSON Geometry Collection
@@ -157,7 +158,7 @@ module ADIWG
                                         unless aGeometries.empty?
                                             intGeometry = intMetadataClass.newGeometry
                                             intGeometry[:geoType] = 'MultiGeometry'
-                                            intGeometry[:geometry] = $ReaderNS::GeographicElement.unpack(aGeometries)
+                                            intGeometry[:geometry] = $ReaderNS::GeographicElement.unpack(aGeometries, responseObj)
                                             hGeoElement[:elementGeometry] = intGeometry
                                             aIntGeoEle << hGeoElement
                                         end

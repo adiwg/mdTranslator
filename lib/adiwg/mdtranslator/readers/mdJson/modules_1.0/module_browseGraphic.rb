@@ -8,6 +8,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-24 added return if input hash is empty
 #   Stan Smith 2014-12-30 refactored
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -16,7 +17,7 @@ module ADIWG
 
                 module BrowseGraphic
 
-                    def self.unpack(hBgraphic)
+                    def self.unpack(hBgraphic, responseObj)
 
                         # return nil object if input is empty
                         intBGraphic = nil

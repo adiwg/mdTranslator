@@ -13,6 +13,7 @@
 #   Stan Smith 2014-05-02 added additional documentation
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_metadataInfo')
 require $ReaderNS.readerModule('module_resourceInfo')
@@ -28,7 +29,7 @@ module ADIWG
 
                 module Metadata
 
-                    def self.unpack(hMetadata)
+                    def self.unpack(hMetadata, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -37,13 +38,13 @@ module ADIWG
                         # metadata - metadataInfo
                         # metadataInfo needs access to resourceInfo to check taxonomy
                         if hMetadata.has_key?('metadataInfo')
-                            intMetadata[:metadataInfo] = $ReaderNS::MetadataInfo.unpack(hMetadata)
+                            intMetadata[:metadataInfo] = $ReaderNS::MetadataInfo.unpack(hMetadata,responseObj)
                         end
 
                         # metadata - resource identification info
                         if hMetadata.has_key?('resourceInfo')
                             hResourceInfo = hMetadata['resourceInfo']
-                            intMetadata[:resourceInfo] = $ReaderNS::ResourceInfo.unpack(hResourceInfo)
+                            intMetadata[:resourceInfo] = $ReaderNS::ResourceInfo.unpack(hResourceInfo, responseObj)
                         end
 
                         # metadata - distribution info
@@ -51,7 +52,7 @@ module ADIWG
                             aDistributors = hMetadata['distributionInfo']
                             unless aDistributors.empty?
                                 aDistributors.each do |hDistributor|
-                                    intMetadata[:distributorInfo] << $ReaderNS::DistributionInfo.unpack(hDistributor)
+                                    intMetadata[:distributorInfo] << $ReaderNS::DistributionInfo.unpack(hDistributor, responseObj)
                                 end
                             end
                         end
@@ -61,7 +62,7 @@ module ADIWG
                             aAssocRes = hMetadata['associatedResource']
                             unless aAssocRes.empty?
                                 aAssocRes.each do |hAssocRes|
-                                    intMetadata[:associatedResources] << $ReaderNS::AssociatedResource.unpack(hAssocRes)
+                                    intMetadata[:associatedResources] << $ReaderNS::AssociatedResource.unpack(hAssocRes, responseObj)
                                 end
                             end
                         end
@@ -71,7 +72,7 @@ module ADIWG
                             aAddDocs = hMetadata['additionalDocumentation']
                             unless aAddDocs.empty?
                                 aAddDocs.each do |hAddDoc|
-                                    intMetadata[:additionalDocuments] << $ReaderNS::AdditionalDocumentation.unpack(hAddDoc)
+                                    intMetadata[:additionalDocuments] << $ReaderNS::AdditionalDocumentation.unpack(hAddDoc, responseObj)
                                 end
                             end
                         end

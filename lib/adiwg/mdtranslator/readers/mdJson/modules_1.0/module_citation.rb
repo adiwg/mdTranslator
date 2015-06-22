@@ -9,6 +9,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-19 refactored to return nil when hCitation is empty
 #   Stan Smith 2014-12-30 refactored
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_dateTime')
 require $ReaderNS.readerModule('module_responsibleParty')
@@ -22,7 +23,7 @@ module ADIWG
 
                 module Citation
 
-                    def self.unpack(hCitation)
+                    def self.unpack(hCitation, responseObj)
 
                         # return nil object if input is empty
                         intCitation = nil
@@ -48,7 +49,7 @@ module ADIWG
                                     if hCitDate.has_key?('date')
                                         s = hCitDate['date']
                                         if s != ''
-                                            intDateTime = $ReaderNS::DateTime.unpack(s)
+                                            intDateTime = $ReaderNS::DateTime.unpack(s, responseObj)
                                             if hCitDate.has_key?('dateType')
                                                 s = hCitDate['dateType']
                                                 if s != ''
@@ -75,7 +76,7 @@ module ADIWG
                             aRParty = hCitation['responsibleParty']
                             unless aRParty.empty?
                                 aRParty.each do |hRParty|
-                                    intCitation[:citResponsibleParty] << $ReaderNS::ResponsibleParty.unpack(hRParty)
+                                    intCitation[:citResponsibleParty] << $ReaderNS::ResponsibleParty.unpack(hRParty, responseObj)
                                 end
                             end
                         end
@@ -95,7 +96,7 @@ module ADIWG
                             aResIds = hCitation['identifier']
                             aResIds.each do |hIdentifier|
                                 unless hIdentifier.empty?
-                                    intCitation[:citResourceIds] << $ReaderNS::ResourceIdentifier.unpack(hIdentifier)
+                                    intCitation[:citResourceIds] << $ReaderNS::ResourceIdentifier.unpack(hIdentifier, responseObj)
                                 end
                             end
                         end
@@ -105,7 +106,7 @@ module ADIWG
                             aOlRes = hCitation['onlineResource']
                             aOlRes.each do |hOlRes|
                                 unless hOlRes.empty?
-                                    intCitation[:citOlResources] << $ReaderNS::OnlineResource.unpack(hOlRes)
+                                    intCitation[:citOlResources] << $ReaderNS::OnlineResource.unpack(hOlRes, responseObj)
                                 end
                             end
                         end

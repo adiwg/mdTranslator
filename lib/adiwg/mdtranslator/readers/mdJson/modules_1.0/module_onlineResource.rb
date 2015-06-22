@@ -8,6 +8,7 @@
 #   Stan Smith 2014-08-21 changed url to uri for json 0.6.0
 #   Stan Smith 2014-12-10 changed to return nil intOlRes if input empty
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -16,7 +17,7 @@ module ADIWG
 
                 module OnlineResource
 
-                    def self.unpack(hOlResource)
+                    def self.unpack(hOlResource, responseObj)
 
                         # return nil object if input is empty
                         intOLRes = nil

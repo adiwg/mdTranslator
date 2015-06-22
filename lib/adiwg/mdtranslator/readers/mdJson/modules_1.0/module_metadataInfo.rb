@@ -9,6 +9,7 @@
 #   Stan Smith 2014-11-06 removed metadataScope, moved to resourceType under resourceInfo json 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-12 added support for metadataCharacterSet
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_responsibleParty')
 require $ReaderNS.readerModule('module_dateTime')
@@ -24,7 +25,7 @@ module ADIWG
 
                 module MetadataInfo
 
-                    def self.unpack(hMetadata)
+                    def self.unpack(hMetadata, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -35,7 +36,7 @@ module ADIWG
                         if hMetadataInfo.has_key?('metadataIdentifier')
                             hMetadataId = hMetadataInfo['metadataIdentifier']
                             unless hMetadataId.empty?
-                                intMetadataInfo[:metadataId] = $ReaderNS::ResourceIdentifier.unpack(hMetadataId)
+                                intMetadataInfo[:metadataId] = $ReaderNS::ResourceIdentifier.unpack(hMetadataId, responseObj)
                             end
                         end
 
@@ -43,7 +44,7 @@ module ADIWG
                         if hMetadataInfo.has_key?('parentMetadata')
                             hParent = hMetadataInfo['parentMetadata']
                             unless hParent.empty?
-                                intMetadataInfo[:parentMetadata] = $ReaderNS::Citation.unpack(hParent)
+                                intMetadataInfo[:parentMetadata] = $ReaderNS::Citation.unpack(hParent, responseObj)
                             end
                         end
 
@@ -52,7 +53,7 @@ module ADIWG
                             aCust = hMetadataInfo['metadataContact']
                             unless aCust.empty?
                                 aCust.each do |rParty|
-                                    intMetadataInfo[:metadataCustodians] << $ReaderNS::ResponsibleParty.unpack(rParty)
+                                    intMetadataInfo[:metadataCustodians] << $ReaderNS::ResponsibleParty.unpack(rParty, responseObj)
                                 end
                             end
                         end
@@ -61,7 +62,7 @@ module ADIWG
                         if hMetadataInfo.has_key?('metadataCreationDate')
                             s = hMetadataInfo['metadataCreationDate']
                             if s != ''
-                                hDateTime = $ReaderNS::DateTime.unpack(s)
+                                hDateTime = $ReaderNS::DateTime.unpack(s, responseObj)
                                 hDateTime[:dateType] = 'publication'
                                 intMetadataInfo[:metadataCreateDate] = hDateTime
                             end
@@ -71,7 +72,7 @@ module ADIWG
                         if hMetadataInfo.has_key?('metadataLastUpdate')
                             s = hMetadataInfo['metadataLastUpdate']
                             if s != ''
-                                hDateTime = $ReaderNS::DateTime.unpack(s)
+                                hDateTime = $ReaderNS::DateTime.unpack(s, responseObj)
                                 hDateTime[:dateType] = 'revision'
                                 intMetadataInfo[:metadataUpdateDate] = hDateTime
                             end
@@ -105,7 +106,7 @@ module ADIWG
                         if hMetadataInfo.has_key?('metadataMaintenance')
                             hMetaMaint = hMetadataInfo['metadataMaintenance']
                             unless hMetaMaint.empty?
-                                intMetadataInfo[:maintInfo] = $ReaderNS::ResourceMaintenance.unpack(hMetaMaint)
+                                intMetadataInfo[:maintInfo] = $ReaderNS::ResourceMaintenance.unpack(hMetaMaint, responseObj)
                             end
                         end
 
@@ -115,7 +116,7 @@ module ADIWG
                             if resourceInfo.has_key?('taxonomy')
                                 hTaxonomy = resourceInfo['taxonomy']
                                 unless hTaxonomy.empty?
-                                    intMetadataInfo[:extensions] << $ReaderNS::MetadataExtension.addExtensionISObio
+                                    intMetadataInfo[:extensions] << $ReaderNS::MetadataExtension.addExtensionISObio(responseObj)
                                 end
                             end
                         end

@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-26 original script
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_lineage')
 
@@ -15,7 +16,7 @@ module ADIWG
 
                 module DataQuality
 
-                    def self.unpack(hDataQual)
+                    def self.unpack(hDataQual, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -36,7 +37,7 @@ module ADIWG
                         if hDataQual.has_key?('lineage')
                             hLineage = hDataQual['lineage']
                             unless hLineage.empty?
-                                intDataQual[:dataLineage] = $ReaderNS::Lineage.unpack(hLineage)
+                                intDataQual[:dataLineage] = $ReaderNS::Lineage.unpack(hLineage, responseObj)
                             end
                         end
 

@@ -9,6 +9,7 @@
 #   Stan Smith 2015-01-18 added nil return if hRParty empty
 #   Stan Smith 2015-06-12 added check that contactId for responsibleParty
 #   ... matches an actual contact in the contact array
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -17,7 +18,7 @@ module ADIWG
 
                 module ResponsibleParty
 
-                    def self.unpack(hRParty)
+                    def self.unpack(hRParty, responseObj)
 
                         # return nil object if input is empty
                         intResById = nil
@@ -33,12 +34,12 @@ module ADIWG
                             if s != ''
                                 intResById[:contactId] = s
                                 if (!$ReaderNS.findContact(s))
-                                    $response[:readerExecutionPass] = false
-                                    $response[:readerExecutionMessages] << "Responsible Party contact ID #{s} does not match with any contact provided\n"
+                                    responseObj[:readerExecutionPass] = false
+                                    responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{s} does not match with any contact provided\n"
                                 end
                             else
-                                $response[:readerExecutionPass] = false
-                                $response[:readerExecutionMessages] << 'Responsible Party is missing the contact ID\n'
+                                responseObj[:readerExecutionPass] = false
+                                responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact ID\n'
                             end
                         end
 
@@ -48,8 +49,8 @@ module ADIWG
                             if s != ''
                                 intResById[:roleName] = s
                             else
-                                $response[:readerExecutionPass] = false
-                                $response[:readerExecutionMessages] << 'Responsible Party is missing the contact role\n'
+                                responseObj[:readerExecutionPass] = false
+                                responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact role\n'
                             end
                         end
 

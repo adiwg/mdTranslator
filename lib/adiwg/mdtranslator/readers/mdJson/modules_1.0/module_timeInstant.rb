@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-12-11 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_dateTime')
 
@@ -15,7 +16,7 @@ module ADIWG
 
                 module TimeInstant
 
-                    def self.unpack(hTimeInst)
+                    def self.unpack(hTimeInst, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -41,7 +42,7 @@ module ADIWG
                         if hTimeInst.has_key?('timePosition')
                             s = hTimeInst['timePosition']
                             if s != ''
-                                intTimeInst[:timePosition] = $ReaderNS::DateTime.unpack(s)
+                                intTimeInst[:timePosition] = $ReaderNS::DateTime.unpack(s, responseObj)
                             end
                         end
 

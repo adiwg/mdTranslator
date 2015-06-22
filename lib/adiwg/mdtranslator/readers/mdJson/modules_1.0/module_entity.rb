@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-17 add entity aliases
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_entityIndex')
 require $ReaderNS.readerModule('module_entityAttribute')
@@ -17,7 +18,7 @@ module ADIWG
 
                 module Entity
 
-                    def self.unpack(hEntity)
+                    def self.unpack(hEntity, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -76,7 +77,7 @@ module ADIWG
                             aIndexes = hEntity['index']
                             aIndexes.each do |hIndex|
                                 unless hIndex.empty?
-                                    intEntity[:indexes] << $ReaderNS::EntityIndex.unpack(hIndex)
+                                    intEntity[:indexes] << $ReaderNS::EntityIndex.unpack(hIndex, responseObj)
                                 end
                             end
                         end
@@ -86,7 +87,7 @@ module ADIWG
                             aAttributes = hEntity['attribute']
                             aAttributes.each do |hAttribute|
                                 unless hAttribute.empty?
-                                    intEntity[:attributes] << $ReaderNS::EntityAttribute.unpack(hAttribute)
+                                    intEntity[:attributes] << $ReaderNS::EntityAttribute.unpack(hAttribute, responseObj)
                                 end
                             end
                         end
@@ -96,7 +97,7 @@ module ADIWG
                             aFKeys = hEntity['foreignKey']
                             aFKeys.each do |hFKey|
                                 unless hFKey.empty?
-                                    intEntity[:foreignKeys] << $ReaderNS::EntityForeignKey.unpack(hFKey)
+                                    intEntity[:foreignKeys] << $ReaderNS::EntityForeignKey.unpack(hFKey, responseObj)
                                 end
                             end
                         end

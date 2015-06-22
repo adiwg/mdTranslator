@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 
@@ -14,7 +15,7 @@ module ADIWG
 
                 module DictionaryInfo
 
-                    def self.unpack(hDictInfo)
+                    def self.unpack(hDictInfo, responseObj)
 
                         # return nil object if input is empty
                         intDictInfo = nil
@@ -28,7 +29,7 @@ module ADIWG
                         if hDictInfo.has_key?('citation')
                             hCitation = hDictInfo['citation']
                             unless hCitation.empty?
-                                intDictInfo[:dictCitation] = $ReaderNS::Citation.unpack(hCitation)
+                                intDictInfo[:dictCitation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 

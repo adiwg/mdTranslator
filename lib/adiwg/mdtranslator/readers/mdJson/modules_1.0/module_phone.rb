@@ -6,6 +6,7 @@
 #   Stan Smith 2014-05-14 combine phone service types
 #   Stan Smith 2014-12-09 return empty phone object if no phone number
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -14,7 +15,7 @@ module ADIWG
 
                 module Phone
 
-                    def self.unpack(hPhone)
+                    def self.unpack(hPhone, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

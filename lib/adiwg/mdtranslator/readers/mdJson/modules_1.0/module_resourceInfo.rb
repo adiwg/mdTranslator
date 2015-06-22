@@ -17,6 +17,7 @@
 #   Stan Smith 2014-11-06 added resourceType for 0.9.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-12 added support for resource characterSets
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 require $ReaderNS.readerModule('module_resourceIdentifier')
@@ -42,7 +43,7 @@ module ADIWG
 
                 module ResourceInfo
 
-                    def self.unpack(hResourceInfo)
+                    def self.unpack(hResourceInfo, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -60,7 +61,7 @@ module ADIWG
                         if hResourceInfo.has_key?('citation')
                             hCitation = hResourceInfo['citation']
                             unless hCitation.empty?
-                                intResInfo[:citation] = $ReaderNS::Citation.unpack(hCitation)
+                                intResInfo[:citation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 
@@ -68,7 +69,7 @@ module ADIWG
                         if hResourceInfo.has_key?('resourceTimePeriod')
                             hResPeriod = hResourceInfo['resourceTimePeriod']
                             unless hResPeriod.empty?
-                                intResInfo[:timePeriod] = $ReaderNS::TimePeriod.unpack(hResPeriod)
+                                intResInfo[:timePeriod] = $ReaderNS::TimePeriod.unpack(hResPeriod, responseObj)
                             end
                         end
 
@@ -77,7 +78,7 @@ module ADIWG
                             aPOC = hResourceInfo['pointOfContact']
                             unless aPOC.empty?
                                 aPOC.each do |rParty|
-                                    intResInfo[:pointsOfContact] << $ReaderNS::ResponsibleParty.unpack(rParty)
+                                    intResInfo[:pointsOfContact] << $ReaderNS::ResponsibleParty.unpack(rParty, responseObj)
                                 end
                             end
                         end
@@ -181,7 +182,7 @@ module ADIWG
                             aResFormat = hResourceInfo['resourceNativeFormat']
                             unless aResFormat.empty?
                                 aResFormat.each do |hResFormat|
-                                    intResInfo[:resourceFormats] << $ReaderNS::ResourceFormat.unpack(hResFormat)
+                                    intResInfo[:resourceFormats] << $ReaderNS::ResourceFormat.unpack(hResFormat, responseObj)
                                 end
                             end
                         end
@@ -191,7 +192,7 @@ module ADIWG
                             aDesKeywords = hResourceInfo['keyword']
                             unless aDesKeywords.empty?
                                 aDesKeywords.each do |hDesKeyword|
-                                    intResInfo[:descriptiveKeywords] << $ReaderNS::DescriptiveKeyword.unpack(hDesKeyword)
+                                    intResInfo[:descriptiveKeywords] << $ReaderNS::DescriptiveKeyword.unpack(hDesKeyword, responseObj)
                                 end
                             end
                         end
@@ -201,7 +202,7 @@ module ADIWG
                             aResMaint = hResourceInfo['resourceMaintenance']
                             unless aResMaint.empty?
                                 aResMaint.each do |hResource|
-                                    intResInfo[:resourceMaint] << $ReaderNS::ResourceMaintenance.unpack(hResource)
+                                    intResInfo[:resourceMaint] << $ReaderNS::ResourceMaintenance.unpack(hResource, responseObj)
                                 end
                             end
                         end
@@ -211,7 +212,7 @@ module ADIWG
                             aResUses = hResourceInfo['resourceSpecificUsage']
                             unless aResUses.empty?
                                 aResUses.each do |hUsage|
-                                    intResInfo[:resourceUses] << $ReaderNS::ResourceSpecificUsage.unpack(hUsage)
+                                    intResInfo[:resourceUses] << $ReaderNS::ResourceSpecificUsage.unpack(hUsage, responseObj)
                                 end
                             end
                         end
@@ -221,7 +222,7 @@ module ADIWG
                             aBrowseGraph = hResourceInfo['graphicOverview']
                             unless aBrowseGraph.empty?
                                 aBrowseGraph.each do |hBGraphic|
-                                    intResInfo[:graphicOverview] << $ReaderNS::BrowseGraphic.unpack(hBGraphic)
+                                    intResInfo[:graphicOverview] << $ReaderNS::BrowseGraphic.unpack(hBGraphic, responseObj)
                                 end
                             end
                         end
@@ -245,7 +246,7 @@ module ADIWG
                                 aLegalCons = hConstraint['legalConstraint']
                                 unless aLegalCons.empty?
                                     aLegalCons.each do |hLegalCon|
-                                        intResInfo[:legalConstraints] << $ReaderNS::LegalConstraints.unpack(hLegalCon)
+                                        intResInfo[:legalConstraints] << $ReaderNS::LegalConstraints.unpack(hLegalCon, responseObj)
                                     end
                                 end
                             end
@@ -255,7 +256,7 @@ module ADIWG
                                 aSecurityCons = hConstraint['securityConstraint']
                                 unless aSecurityCons.empty?
                                     aSecurityCons.each do |hSecurityCon|
-                                        intResInfo[:securityConstraints] << $ReaderNS::SecurityConstraints.unpack(hSecurityCon)
+                                        intResInfo[:securityConstraints] << $ReaderNS::SecurityConstraints.unpack(hSecurityCon, responseObj)
                                     end
                                 end
                             end
@@ -266,7 +267,7 @@ module ADIWG
                         if hResourceInfo.has_key?('taxonomy')
                             hTaxonomy = hResourceInfo['taxonomy']
                             unless hTaxonomy.empty?
-                                intResInfo[:taxonomy] = $ReaderNS::Taxonomy.unpack(hTaxonomy)
+                                intResInfo[:taxonomy] = $ReaderNS::Taxonomy.unpack(hTaxonomy, responseObj)
                             end
                         end
 
@@ -274,7 +275,7 @@ module ADIWG
                         if hResourceInfo.has_key?('spatialReferenceSystem')
                             hSpatialRef = hResourceInfo['spatialReferenceSystem']
                             unless hSpatialRef.empty?
-                                intResInfo[:spatialReferenceSystem] = $ReaderNS::SpatialReferenceSystem.unpack(hSpatialRef)
+                                intResInfo[:spatialReferenceSystem] = $ReaderNS::SpatialReferenceSystem.unpack(hSpatialRef, responseObj)
                             end
                         end
 
@@ -293,7 +294,7 @@ module ADIWG
                             aSpRes = hResourceInfo['spatialResolution']
                             unless aSpRes.empty?
                                 aSpRes.each do |hResolution|
-                                    intResInfo[:spatialResolutions] << $ReaderNS::Resolution.unpack(hResolution)
+                                    intResInfo[:spatialResolutions] << $ReaderNS::Resolution.unpack(hResolution, responseObj)
                                 end
                             end
                         end
@@ -303,7 +304,7 @@ module ADIWG
                             aExtents = hResourceInfo['extent']
                             unless aExtents.empty?
                                 aExtents.each do |hExtent|
-                                    intResInfo[:extents] << $ReaderNS::Extent.unpack(hExtent)
+                                    intResInfo[:extents] << $ReaderNS::Extent.unpack(hExtent, responseObj)
                                 end
                             end
                         end
@@ -313,7 +314,7 @@ module ADIWG
                             aDataQual = hResourceInfo['dataQualityInfo']
                             unless aDataQual.empty?
                                 aDataQual.each do |hDQ|
-                                    intResInfo[:dataQualityInfo] << $ReaderNS::DataQuality.unpack(hDQ)
+                                    intResInfo[:dataQualityInfo] << $ReaderNS::DataQuality.unpack(hDQ, responseObj)
                                 end
                             end
                         end

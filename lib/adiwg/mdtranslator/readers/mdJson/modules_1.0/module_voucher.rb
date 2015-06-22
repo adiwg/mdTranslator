@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-21 original script
 #   Stan Smith 2014-07-07 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_responsibleParty')
 
@@ -15,7 +16,7 @@ module ADIWG
 
                 module Voucher
 
-                    def self.unpack(hVoucher)
+                    def self.unpack(hVoucher, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -33,7 +34,7 @@ module ADIWG
                         if hVoucher.has_key?('repository')
                             hRepository = hVoucher['repository']
                             unless hRepository.empty?
-                                intTaxVoucher[:repository] = $ReaderNS::ResponsibleParty.unpack(hRepository)
+                                intTaxVoucher[:repository] = $ReaderNS::ResponsibleParty.unpack(hRepository, responseObj)
                             end
                         end
 

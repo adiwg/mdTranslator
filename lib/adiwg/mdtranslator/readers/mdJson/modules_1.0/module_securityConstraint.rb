@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-11-15 original script
 # 	Stan Smith 2013-11-27 modified to process a single security constraint
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -13,7 +14,7 @@ module ADIWG
 
                 module SecurityConstraints
 
-                    def self.unpack(hSecurityCon)
+                    def self.unpack(hSecurityCon, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

@@ -5,6 +5,7 @@
 # 	Stan Smith 2013-12-01 original script
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-17 added support for attribute aliases
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 module ADIWG
     module Mdtranslator
@@ -13,7 +14,7 @@ module ADIWG
 
                 module EntityAttribute
 
-                    def self.unpack(hAttribute)
+                    def self.unpack(hAttribute, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new

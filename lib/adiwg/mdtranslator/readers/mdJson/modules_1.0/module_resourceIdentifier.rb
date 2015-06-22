@@ -6,6 +6,7 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 #   Stan Smith 2014-08-18 added type to identifier schema 0.6.0
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 
 require $ReaderNS.readerModule('module_citation')
 require $ReaderNS.readerModule('module_responsibleParty')
@@ -18,7 +19,7 @@ module ADIWG
 
                 module ResourceIdentifier
 
-                    def self.unpack(hResID)
+                    def self.unpack(hResID, responseObj)
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -44,7 +45,7 @@ module ADIWG
                         if hResID.has_key?('authority')
                             hCitation = hResID['authority']
                             unless hCitation.empty?
-                                intResID[:identifierCitation] = $ReaderNS::Citation.unpack(hCitation)
+                                intResID[:identifierCitation] = $ReaderNS::Citation.unpack(hCitation, responseObj)
                             end
                         end
 
