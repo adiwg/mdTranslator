@@ -77,19 +77,6 @@ module ADIWG
                         end
                     end
 
-                    def getContact(contactID)
-
-                        # find contact in contact array and return the hash
-                        $intContactList.each do |hContact|
-                            if hContact[:contactId] == contactID
-                                return hContact
-                            end
-                        end
-
-                        return {}
-
-                    end
-
                 end
 
             end

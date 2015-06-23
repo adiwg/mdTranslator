@@ -56,6 +56,26 @@ module ADIWG
                     return metadata
                 end
 
+                # find contact in contact array and return the contact hash
+                def self.getContact(contactID)
+                    @intObj[:contacts].each do |hContact|
+                        if hContact[:contactId] == contactID
+                            return hContact
+                        end
+                    end
+                    return {}
+                end
+
+                # find domain in domain array and return the domain hash
+                def self.getDomain(domainID)
+                    @intObj[:dataDictionary][0][:domains].each do |hDomain|
+                        if hDomain[:domainId] == domainID
+                            return hDomain
+                        end
+                    end
+                    return {}
+                end
+
             end
         end
     end

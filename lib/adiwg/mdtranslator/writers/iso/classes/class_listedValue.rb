@@ -60,19 +60,6 @@ module ADIWG
 
                     end
 
-                    def getDomain(domainID)
-
-                        # find domain in domain array and return the hash
-                        $domainList.each do |hDomain|
-                            if hDomain[:domainId] == domainID
-                                return hDomain
-                            end
-                        end
-
-                        return {}
-
-                    end
-
                 end
 
             end

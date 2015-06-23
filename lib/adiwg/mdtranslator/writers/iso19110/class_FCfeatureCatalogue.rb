@@ -34,9 +34,6 @@ module ADIWG
                         aEntities = intDataDictionary[:entities]
                         hCitation = hDDInfo[:dictCitation]
 
-                        $intContactList = intObj[:contacts]
-                        $domainList = intObj[:dataDictionary][0][:domains]
-
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                         @xml.comment!('core gfc based instance document for ISO 19110')

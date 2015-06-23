@@ -33,7 +33,7 @@ module ADIWG
                         # search array of responsible party for matches in contact object
                         rpID = rParty[:contactId]
                         unless rpID.nil?
-                            hContact = ciContactClass.getContact(rpID)
+                            hContact = $WriterNS.getContact(rpID)
                             unless hContact.empty?
                                 @xml.tag!('gmd:CI_ResponsibleParty') do
 

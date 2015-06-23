@@ -99,7 +99,7 @@ module ADIWG
                             domainID = hAttribute[:domainId]
                             if !domainID.nil?
                                 # find domain in domain array
-                                hDomain = listClass.getDomain(domainID)
+                                hDomain = $WriterNS.getDomain(domainID)
                                 unless hDomain.empty?
 
                                     # only the domain items are represented in iso
@@ -114,7 +114,6 @@ module ADIWG
                             elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gfc:listedValue')
                             end
-
 
                         end
                     end
