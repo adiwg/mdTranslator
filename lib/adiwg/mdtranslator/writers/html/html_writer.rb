@@ -11,11 +11,11 @@ module ADIWG
         module Writers
             module Html
 
-                def self.startWriter(intObj)
+                def self.startWriter(intObj, responseObj)
 
                     # set the format of the output file based on the writer specified
-                    $response[:writerFormat] = 'html'
-                    $response[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerFormat] = 'html'
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
 
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)
@@ -24,8 +24,8 @@ module ADIWG
 
                     # set writer pass to true if no messages
                     # false or warning will be set by code that places the message
-                    if $response[:writerMessages].length == 0
-                        $response[:writerPass] = true
+                    if responseObj[:writerMessages].length == 0
+                        responseObj[:writerPass] = true
                     end
 
                     return metadata

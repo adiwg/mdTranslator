@@ -24,7 +24,7 @@ module ADIWG
                     writerClassName[0] = writerClassName[0].upcase
                     $WriterNS = ADIWG::Mdtranslator::Writers.const_get(writerClassName)
 
-                    # pass internal object to requested writer
+                    # pass internal object and response object to requested writer
                     responseObj[:writerOutput] = $WriterNS.startWriter(intObj, responseObj)
 
                 else

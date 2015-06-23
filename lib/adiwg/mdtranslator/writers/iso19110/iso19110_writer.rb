@@ -22,6 +22,9 @@ module ADIWG
 
                 def self.startWriter(intObj, responseObj)
 
+                    # make internal object available to writer methods in this namespace
+                    @intObj = intObj
+
                     # reset ISO id='' counter
                     $idCount = '_000'
 

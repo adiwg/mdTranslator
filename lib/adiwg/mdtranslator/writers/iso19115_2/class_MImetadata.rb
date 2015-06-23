@@ -50,7 +50,7 @@ module ADIWG
                         @responseObj = responseObj
                     end
 
-                    def writeXML(internalObj)
+                    def writeXML(intObj)
                         $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
@@ -63,11 +63,12 @@ module ADIWG
                         metaMaintClass = $IsoNS::MD_MaintenanceInformation.new(@xml, @responseObj)
                         refSysClass = $IsoNS::MD_ReferenceSystem.new(@xml, @responseObj)
 
-                        intMetadata = internalObj[:metadata]
+                        intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
                         hResInfo = intMetadata[:resourceInfo]
                         aAssocRes = intMetadata[:associatedResources]
-                        $intContactList = internalObj[:contacts]
+
+                        $intContactList = intObj[:contacts]
 
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'

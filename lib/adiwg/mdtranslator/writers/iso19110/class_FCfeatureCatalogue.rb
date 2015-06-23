@@ -35,7 +35,7 @@ module ADIWG
                         hCitation = hDDInfo[:dictCitation]
 
                         $intContactList = intObj[:contacts]
-                        $domainList = intDataDictionary[:domains]
+                        $domainList = intObj[:dataDictionary][0][:domains]
 
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'
