@@ -11,7 +11,10 @@ require 'adiwg/mdtranslator/writers/iso/classes/class_address'
 
 class TestWriter191152Address < MiniTest::Test
 
-    # set internal structure
+    # empty response object to pass to writer
+    @@responseObj = {}
+
+    # build the internal object structure to pass to writer
     intMetadataClass = InternalMetadata.new
     @@intAdd = intMetadataClass.newAddress
 
@@ -28,10 +31,11 @@ class TestWriter191152Address < MiniTest::Test
     def test_complete_address_object
 
         hIn = @@intAdd.clone
+        @@responseObj[:writerShowTags] = false
 
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         # assign xml results to a string 'xmlExpect'
         xml = Builder::XmlMarkup.new(indent: 3)
@@ -62,15 +66,16 @@ class TestWriter191152Address < MiniTest::Test
             end
         end
 
-        $showAllTags = false
         assert_equal xmlExpect, addClass.writeXML(hIn)
     end
 
     def test_missing_deliveryPoint_address_element
 
+        @@responseObj[:writerShowTags] = false
+
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         hIn = @@intAdd.clone
         hIn[:deliveryPoints] = []
@@ -87,15 +92,16 @@ class TestWriter191152Address < MiniTest::Test
             end
         end
 
-        $showAllTags = false
         assert_equal xmlExpect, addClass.writeXML(hIn)
     end
 
     def test_missing_deliveryPoint_address_element_showEmpty
 
+        @@responseObj[:writerShowTags] = true
+
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         hIn = @@intAdd.clone
         hIn[:deliveryPoints] = []
@@ -118,15 +124,16 @@ class TestWriter191152Address < MiniTest::Test
             end
         end
 
-        $showAllTags = true
         assert_equal xmlExpect, addClass.writeXML(hIn)
     end
 
     def test_missing_electronic_address_element
 
+        @@responseObj[:writerShowTags] = false
+
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         hIn = @@intAdd.clone
         hIn[:eMailList] = []
@@ -155,15 +162,16 @@ class TestWriter191152Address < MiniTest::Test
             end
         end
 
-        $showAllTags = false
         assert_equal xmlExpect, addClass.writeXML(hIn)
     end
 
     def test_missing_electronic_address_element_showEmpty
 
+        @@responseObj[:writerShowTags] = true
+
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         hIn = @@intAdd.clone
         hIn[:eMailList] = []
@@ -193,7 +201,6 @@ class TestWriter191152Address < MiniTest::Test
             xml.tag!('gmd:electronicMailAddress')
         end
 
-        $showAllTags = true
         assert_equal xmlExpect, addClass.writeXML(hIn)
     end
 
@@ -201,7 +208,7 @@ class TestWriter191152Address < MiniTest::Test
 
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         # create and empty address object
         intMetadataClass = InternalMetadata.new
@@ -214,7 +221,7 @@ class TestWriter191152Address < MiniTest::Test
 
         # create instance of writer class
         xmlResult = Builder::XmlMarkup.new(indent: 3)
-        addClass = @@NameSpace::CI_Address.new(xmlResult)
+        addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
         assert_equal nil, addClass.writeXML(nil)
     end

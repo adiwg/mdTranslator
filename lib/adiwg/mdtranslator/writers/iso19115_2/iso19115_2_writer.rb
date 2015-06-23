@@ -23,7 +23,8 @@ module ADIWG
 
                 def self.startWriter(intObj, responseObj)
 
-                    # make response object available to the instance
+                    # make internal and response objects available to the instance
+                    @intObj = intObj
                     @responseObj = responseObj
 
                     # set the format of the output file based on the writer specified
@@ -33,12 +34,12 @@ module ADIWG
                     # pre-scan the internal object to create a new extents for each geometry
                     # ... that has supplemental information (temporal, vertical, identity).
                     # ... the new extents will be added to internalObj
-                    prescanGeoElements(intObj)
+                    prescanGeoElements()
 
                     # create new XML document
                     xml = Builder::XmlMarkup.new(indent: 3)
                     metadataWriter = $WriterNS::MI_Metadata.new(xml, responseObj)
-                    metadata = metadataWriter.writeXML(intObj)
+                    metadata = metadataWriter.writeXML(@intObj)
 
                     # set writer pass to true if no writer modules set it to false
                     # false or warning will be set by code that places the message
@@ -50,7 +51,7 @@ module ADIWG
                     return metadata
                 end
 
-                def self.prescanGeoElements(intObj)
+                def self.prescanGeoElements()
                     # supplemental information for the geographic element is carried in the
                     # ... internal structure in the temporalElements:, verticalElements:,
                     # ... and elementIdentifiers: attributes of the extGeoElements:
@@ -62,7 +63,7 @@ module ADIWG
                     # ... moves the supplemental information from the geometry to the new extent.
                     # In this implementation, supplemental information is only allowed for
                     # ... geometry types of Point, LineString, and Polygon
-                    aExtents = intObj[:metadata][:resourceInfo][:extents]
+                    aExtents = @intObj[:metadata][:resourceInfo][:extents]
                     unless aExtents.empty?
                         aExtents.each do |hExtent|
                             aGeoElements = hExtent[:extGeoElements]
@@ -143,6 +144,16 @@ module ADIWG
                         return nil
                     end
 
+                end
+
+                # find contact in contact array and return the contact hash
+                def self.getContact(contactID)
+                    @intObj[:contacts].each do |hContact|
+                        if hContact[:contactId] == contactID
+                            return hContact
+                        end
+                    end
+                    return {}
                 end
 
             end

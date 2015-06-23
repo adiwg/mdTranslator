@@ -6,6 +6,25 @@
 # Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
 # Stan Smith 2014-12-16 restructure tests to use schema examples
 # Stan Smith 2014-12-19 added test for blank elements
+# Stan Smith 2015-06-22 refactored setup to after removal of globals
+
+# set globals used in testing
+# set globals used by mdJson_reader.rb before requiring modules
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+
+                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
+
+                @responseObj = {
+                    readerVersionUsed: '1.0'
+                }
+
+            end
+        end
+    end
+end
 
 require 'minitest/autorun'
 require 'json'
@@ -14,15 +33,20 @@ require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_address'
 
 class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
 
-    # get json test example
-    file = File.open('test/schemas/v1_0/examples/address.json', 'r')
+    # set constants and variables
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Address
+    @@responseObj = {}
+
+    # get json file for tests from examples folder
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'address.json')
+    file = File.open(file, 'r')
     jsonFile = file.read
     file.close
     aIn = JSON.parse(jsonFile)
-    @@hIn = aIn[0]
 
-    # set namespace
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Address
+    # only the first instance in the example array is used for tests
+    # the first example is fully populated
+    @@hIn = aIn[0]
 
     def test_complete_address_object
 
@@ -37,7 +61,7 @@ class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
             eMailList: %w[example1@example.com example2@example.com]
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -62,7 +86,7 @@ class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
             eMailList: %w[example1@example.com example2@example.com]
         }
 
-        assert_equal intObj,@@NameSpace.unpack(hIn)
+        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -85,7 +109,7 @@ class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
             eMailList: []
         }
 
-        assert_equal intObj,@@NameSpace.unpack(hIn)
+        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -93,7 +117,7 @@ class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
 
         hIn = {}
 
-        assert_equal nil, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 

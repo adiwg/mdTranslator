@@ -3,31 +3,47 @@
 
 # History:
 # Stan Smith 2015-01-20 original script
+# Stan Smith 2015-06-22 refactored setup to after removal of globals
 
-#set globals used in testing
-#set globals used by mdJson_reader.rb before requiring module
-$response = {
-    readerVersionUsed: '1.0',
-    readerExecutionPas: true,
-    readerExecutionMessages: []
-}
+# set globals used by mdJson_reader.rb before requiring modules
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+
+                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
+
+                @responseObj = {
+                    readerVersionUsed: '1.0'
+                }
+
+            end
+        end
+    end
+end
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_domain'
 
 class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
 
-    # get json test example
-    file = File.open('test/schemas/v1_0/examples/dataDictionary.json', 'r')
+    # set constants and variables
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
+    @@responseObj = {}
+
+    # get json file for tests from examples folder
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'dataDictionary.json')
+    file = File.open(file, 'r')
     jsonFile = file.read
     file.close
     aIn = JSON.parse(jsonFile)
-    @@hIn = aIn[0]['domain'][0]
 
-    # set namespace
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
+    # only the first instance in the example array is used for tests
+    # the first example is fully populated
+    @@hIn = aIn[0]['domain'][0]
 
     def test_complete_domain_object
 
@@ -42,7 +58,7 @@ class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
             domainItems: []
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -63,7 +79,7 @@ class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
             domainItems: []
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -84,7 +100,7 @@ class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
             domainItems: []
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -92,7 +108,7 @@ class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
 
         hIn = {}
 
-        assert_equal nil, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 

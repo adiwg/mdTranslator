@@ -3,33 +3,51 @@
 
 # History:
 # Stan Smith 2014-12-19 original script
+# Stan Smith 2015-06-22 refactored setup to after removal of globals
 
-#set globals used in testing
-#set globals used by mdJson_reader.rb before requiring module
-$response = {
-    readerVersionUsed: '1.0',
-    readerExecutionPas: true,
-    readerExecutionMessages: []
-}
+# set globals used by mdJson_reader.rb before requiring modules
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+
+                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
+
+                @responseObj = {
+                    readerVersionUsed: '1.0'
+                }
+
+            end
+        end
+    end
+end
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-$ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
 require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_contacts'
 
 class TestReaderMdJsonContact_v1_0 < MiniTest::Test
 
-    # get json test example
-    file = File.open('test/schemas/v1_0/examples/contact.json', 'r')
+    # set constants and variables
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Contact
+    @@responseObj = {
+        readerVersionUsed: '1.0',
+        readerExecutionPass: true,
+        readerExecutionMessages: []
+    }
+
+    # get json file for tests from examples folder
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'contact.json')
+    file = File.open(file, 'r')
     jsonFile = file.read
     file.close
     aIn = JSON.parse(jsonFile)
-    @@hIn = aIn[0]
 
-    # set namespace
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Contact
+    # only the first instance in the example array is used for tests
+    # the first example is fully populated
+    @@hIn = aIn[0]
 
     def test_complete_contact_object
 
@@ -49,7 +67,7 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
             contactInstructions: 'contactInstructions'
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -75,7 +93,7 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
             contactInstructions: nil
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -101,7 +119,7 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
             contactInstructions: nil
         }
 
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
@@ -109,10 +127,12 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
 
         hIn = @@hIn.clone
         hIn.delete('contactId')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
 
-        intObj = nil
-
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
+        assert_equal false, @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
 
     end
 
@@ -120,18 +140,24 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
 
         hIn = @@hIn.clone
         hIn['contactId'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
 
-        intObj = nil
-
-        assert_equal intObj, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
+        assert_equal false, @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
 
     end
 
     def test_empty_contact_object
 
         hIn = {}
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
 
-        assert_equal nil, @@NameSpace.unpack(hIn)
+        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
+        assert_equal true, @@responseObj[:readerExecutionPass]
+        assert_empty @@responseObj[:readerExecutionMessages]
 
     end
 
