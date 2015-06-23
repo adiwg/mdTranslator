@@ -29,8 +29,8 @@ module ADIWG
                         fAttClass = $IsoNS::FC_FeatureAttribute.new(@xml, @responseObj)
 
                         # create and identity for the entity
-                        $idCount = $idCount.succ
-                        entityID = 'entity' + $idCount
+                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
+                        entityID = 'entity' + @responseObj[:missingIdCount]
                         @xml.tag!('gfc:FC_FeatureType', {'id' => entityID}) do
 
                             # feature type - type name - required

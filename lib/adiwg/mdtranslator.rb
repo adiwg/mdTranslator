@@ -39,7 +39,7 @@ module ADIWG
 
             # the reader and writer specified in the translate parameter string should load and
             #     return this hash ...
-            # ---------------------------
+            # ------------------------------------------------------------------------------------
             # readerFormat: the anticipated format of the input file, parsing by the reader will
             #     proceed assuming this format, set by reader
             # readerStructurePass: 'true' if input file structure is determined to be valid.
@@ -77,6 +77,8 @@ module ADIWG
             #    or more messages to assist user in fixing file data problems.  Set by writer.
             # writerOutput: output file returned from the writer, set by writer
             # writerShowTags: include tags in XML output for empty elements
+            # missingIdCount: counter for creating unique elements IDs for ISO elements that did not
+            #    provide IDs in the input metadata file
 
             def response
                 {
@@ -98,7 +100,8 @@ module ADIWG
                     writerPass: nil,
                     writerMessages: [],
                     writerOutput: nil,
-                    writerShowTags: false
+                    writerShowTags: false,
+                    missingIdCount: '_000'
                 }
             end
 

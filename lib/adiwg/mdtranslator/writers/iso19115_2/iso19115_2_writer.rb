@@ -23,8 +23,8 @@ module ADIWG
 
                 def self.startWriter(intObj, responseObj)
 
-                    # reset ISO id='' counter
-                    $idCount = '_000'
+                    # make response object available to the instance
+                    @responseObj = responseObj
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'xml'
@@ -115,14 +115,14 @@ module ADIWG
                         # ... it will match the supplemental information extent description
                         geoID = hGeoElement[:elementId]
                         if geoID.nil?
-                            $idCount = $idCount.succ
-                            geoID = geoType + $idCount
+                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
+                            geoID = geoType + @responseObj[:missingIdCount]
                             hGeoElement[:elementId] = geoID
                         end
 
                         # build unique id for extent geometry
-                        $idCount = $idCount.succ
-                        extGeoID = geoType + $idCount
+                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
+                        extGeoID = geoType + @responseObj[:missingIdCount]
 
                         intMetadataClass = InternalMetadata.new
                         intExtent = intMetadataClass.newExtent

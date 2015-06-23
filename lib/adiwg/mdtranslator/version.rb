@@ -43,11 +43,15 @@
 #              --- added reader and writer names to CLI help
 #              --- added check in responsibleParty for valid contactId
 #              --- added characterSets to resource and metadata, updated iso19115_2 and html writers
+# 1.3.0 2015-06-22 removed global variables for the response object
+#              --- removed global for show all tags and placed in response object
+#              --- removed global for counter for missing ISO IDs and placed in response object
+#              --- removed globals pointers to contacts and domain arrays and point to @intObj
 
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "1.2.0"
+        VERSION = "1.3.0"
     end
 end
 

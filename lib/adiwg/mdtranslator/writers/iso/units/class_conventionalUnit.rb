@@ -21,8 +21,8 @@ module ADIWG
                     def writeXML(hConv)
 
                         # create and identity for the unit
-                        $idCount = $idCount.succ
-                        unitID = 'unit' + $idCount
+                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
+                        unitID = 'unit' + @responseObj[:missingIdCount]
 
                         @xml.tag!('gml:ConventionalUnit', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => hConv[:codeSpace]}, hConv[:identifier])

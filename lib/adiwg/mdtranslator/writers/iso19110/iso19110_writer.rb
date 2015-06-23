@@ -25,9 +25,6 @@ module ADIWG
                     # make internal object available to writer methods in this namespace
                     @intObj = intObj
 
-                    # reset ISO id='' counter
-                    $idCount = '_000'
-
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'xml'
                     responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
