@@ -2,6 +2,7 @@
 
 # History:
 # 	Stan Smith 2015-01-28 original script
+#   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
 
 require 'builder'
 require 'adiwg/mdtranslator/writers/html/md_html_writer'
@@ -19,8 +20,8 @@ module ADIWG
 
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = $WriterNS::MdHtmlWriter.new(html)
-                    metadata = metadataWriter.writeHtml(intObj)
+                    metadataWriter = $WriterNS::MdHtmlWriter.new(html, intObj)
+                    metadata = metadataWriter.writeHtml()
 
                     # set writer pass to true if no messages
                     # false or warning will be set by code that places the message

@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-23 original script
+#   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
 
 require 'html_onlineResource'
 
@@ -22,13 +23,7 @@ module ADIWG
                         htmlOlRes = $HtmlNS::MdHtmlOnlineResource.new(@html)
 
                         # find contact in contact list
-                        hContact = {}
-                        $aContacts.each do |hCont|
-                            if hCont[:contactId] == contactId
-                                hContact = hCont
-                                break
-                            end
-                        end
+                        hContact = $HtmlNS::MdHtmlWriter.getContact(contactId)
 
                         # contact - individual name
                         s = hContact[:indName]

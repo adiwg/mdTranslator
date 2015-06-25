@@ -4,6 +4,7 @@
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2015-04-07 replaced instruct! with declare! and html to
 #      ... conform with w3 html encoding declarations
+#   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
 
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), './sections'))
@@ -17,17 +18,15 @@ module ADIWG
             module Html
 
                 class MdHtmlWriter
-                    def initialize(html)
+                    def initialize(html,intObj)
                         @html = html
+                        @@intObj = intObj
                     end
 
-                    def writeHtml(intObj)
+                    def writeHtml()
 
                         # set html section namespace
                         $HtmlNS = ADIWG::Mdtranslator::Writers::Html
-
-                        # set contact array in a global
-                        $aContacts = intObj[:contacts]
 
                         # classes used
                         htmlHead = $HtmlNS::MdHtmlHead.new(@html)
@@ -42,12 +41,22 @@ module ADIWG
                             htmlHead.writeHtml()
 
                             # body
-                            htmlBody.writeHtml(intObj)
+                            htmlBody.writeHtml(@@intObj)
                         end
 
                         return metadata
 
                     end
+
+                    def self.getContact(contactId)
+                        @@intObj[:contacts].each do |hCont|
+                            if hCont[:contactId] == contactId
+                                return hCont
+                            end
+                        end
+                        return nil
+                    end
+
                 end
 
             end
