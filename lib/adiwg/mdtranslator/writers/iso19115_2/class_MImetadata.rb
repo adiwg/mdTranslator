@@ -73,10 +73,11 @@ module ADIWG
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                         @xml.comment!('core gmi based instance document ISO 19115-2')
-                        @xml.comment!('metadata file constructed using mdTranslator')
-                        @xml.comment!('mdTranslator software is an open-source project sponsored by the Alaska Data Integration working group (ADIwg)')
-                        @xml.comment!('Alaska Data Integration working group is not responsible for the metadata content')
+                        @xml.comment!('metadata file constructed using ADIwg mdTranslator')
+                        @xml.comment!('mdTranslator software is an open-source project of the Alaska Data Integration working group (ADIwg)')
+                        @xml.comment!('Alaska Data Integration working group is not responsible for the content of this metadata record')
                         @xml.comment!('mdTranslator and other metadata tools available at https://github.com/adiwg')
+                        @xml.comment!('metadata record generated ' + Time.now.to_s)
                         @xml.tag!('gmi:MI_Metadata', {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
                                                       'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
                                                       'xmlns:gco' => 'http://www.isotc211.org/2005/gco',
