@@ -132,7 +132,7 @@ module ADIWG
                                 @html.em('GeoJSON format: ')
                                 @html.section(:class=>'block') do
                                     geoJson = AdiwgGeoFormat.internal_to_geoJson(hGeoEle)
-                                    popData = hGeoEle[:elementName] || hGeoEle[:elementDescription] || hGeoEle[:elementId]
+                                    popData = hGeoEle[:elementName] || hGeoEle[:elementDescription] || hGeoEle[:elementId] || geoPre
                                     @html.div({'id'=>'geojson-' + geoPre, 'class'=>'geojson', 'data-popup' => popData}) do
                                         @html.text!(geoJson)
                                     end
