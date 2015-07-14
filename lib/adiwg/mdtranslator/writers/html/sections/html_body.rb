@@ -52,12 +52,15 @@ module ADIWG
                             logo = file.read
                             file.close
 
+                            # side navigation
+                            @html.div('id'=>'sideNav') do
                             # add top anchor and button
-                            @html.a(' Top', {'href'=>'#', 'class'=>'btn icon-caret-up', 'style'=>'position:fixed; bottom:6em; right:1em'})
+                              @html.a(' Top', {'href'=>'#', 'class'=>'btn icon-caret-up'})
 
-                            # add open and close buttons
-                            @html.span(' Open',{'class'=>'btn icon-caret-down', 'style'=>'position:fixed; bottom:1em; right:1em', 'onclick'=>'openAllDetails();'})
-                            @html.span(' Close',{'class'=>'btn icon-caret-right', 'style'=>'position:fixed; bottom:3.5em; right:1em', 'onclick'=>'closeAllDetails();'})
+                              # add open and close buttons
+                              @html.span(' Open',{'id'=>'openAllDetails', 'class'=>'btn icon-caret-down', 'onclick'=>'openAllDetails();'})
+                              @html.span(' Close',{'class'=>'btn icon-caret-right', 'onclick'=>'closeAllDetails();'})
+                            end
 
                             # main header
                             @html.h2('id'=>'mainHeader') do
