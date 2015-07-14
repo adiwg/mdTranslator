@@ -15,11 +15,13 @@
 # 	Stan Smith 2014-12-02 original script.
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 class Multiplicity
 

@@ -5,16 +5,18 @@
 # 	Stan Smith 2014-12-03 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_baseUnit'
-require 'class_conventionalUnit'
-require 'class_derivedUnit'
-require 'class_definitionUnit'
+require_relative 'class_baseUnit'
+require_relative 'class_conventionalUnit'
+require_relative 'class_derivedUnit'
+require_relative 'class_definitionUnit'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 class UnitsOfMeasure
 

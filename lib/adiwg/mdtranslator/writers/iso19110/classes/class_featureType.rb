@@ -6,14 +6,16 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-02-18 added aliases for entities
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_featureConstraint'
-require 'class_featureAttribute'
+require_relative 'class_featureConstraint'
+require_relative 'class_featureAttribute'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 class FC_FeatureType
 
@@ -25,8 +27,8 @@ module ADIWG
                     def writeXML(hEntity)
 
                         # classes used
-                        fConClass = $IsoNS::FC_Constraint.new(@xml, @responseObj)
-                        fAttClass = $IsoNS::FC_FeatureAttribute.new(@xml, @responseObj)
+                        fConClass = FC_Constraint.new(@xml, @responseObj)
+                        fAttClass = FC_FeatureAttribute.new(@xml, @responseObj)
 
                         # create and identity for the entity
                         @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ

@@ -6,15 +6,17 @@
 # 	Stan Smith 2014-12-02 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_multiplicity'
-require 'class_listedValue'
-require 'class_unitsOfMeasure'
+require_relative 'class_multiplicity'
+require_relative 'class_listedValue'
+require_relative 'class_unitsOfMeasure'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
                 class FC_FeatureAttribute
 
@@ -26,9 +28,9 @@ module ADIWG
                     def writeXML(hAttribute)
 
                         # classes used
-                        multiClass = $IsoNS::Multiplicity.new(@xml, @responseObj)
-                        listClass = $IsoNS::FC_ListedValue.new(@xml, @responseObj)
-                        uomClass = $IsoNS::UnitsOfMeasure.new(@xml, @responseObj)
+                        multiClass = Multiplicity.new(@xml, @responseObj)
+                        listClass = FC_ListedValue.new(@xml, @responseObj)
+                        uomClass = UnitsOfMeasure.new(@xml, @responseObj)
 
                         @xml.tag!('gfc:FC_FeatureAttribute') do
 
@@ -99,7 +101,7 @@ module ADIWG
                             domainID = hAttribute[:domainId]
                             if !domainID.nil?
                                 # find domain in domain array
-                                hDomain = $WriterNS.getDomain(domainID)
+                                hDomain = ADIWG::Mdtranslator::Writers::Iso19110.getDomain(domainID)
                                 unless hDomain.empty?
 
                                     # only the domain items are represented in iso

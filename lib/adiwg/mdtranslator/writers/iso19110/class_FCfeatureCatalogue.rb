@@ -6,9 +6,11 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_responsibleParty'
-require 'class_featureType'
+require_relative 'classes/class_responsibleParty'
+require_relative 'classes/class_featureType'
 
 module ADIWG
     module Mdtranslator
@@ -23,11 +25,10 @@ module ADIWG
                     end
 
                     def writeXML(intObj)
-                        $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        featureClass = $IsoNS::FC_FeatureType.new(@xml, @responseObj)
+                        rPartyClass = CI_ResponsibleParty.new(@xml, @responseObj)
+                        featureClass = FC_FeatureType.new(@xml, @responseObj)
 
                         intDataDictionary = intObj[:dataDictionary][0]
                         hDDInfo = intDataDictionary[:dictionaryInfo]

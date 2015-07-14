@@ -1,37 +1,35 @@
-# ISO <<Class>> DerivedUnit
+# ISO <<Class>> BaseUnit
 # writer output in XML
 
 # History:
 # 	Stan Smith 2014-12-03 original script
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19110
 
-                class DerivedUnit
+                class BaseUnit
 
                     def initialize(xml, responseObj)
                         @xml = xml
                         @responseObj = responseObj
                     end
 
-                    def writeXML(hDerived)
+                    def writeXML(hBase)
 
                         # create and identity for the unit
                         @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
                         unitID = 'unit' + @responseObj[:missingIdCount]
-                        @xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
-                            @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
-                            @xml.tag!('gml:name', hDerived[:name])
-                            @xml.tag!('gml:remarks', hDerived[:remarks])
-                            @xml.tag!('gml:catalogSymbol', hDerived[:catalogSymbol])
-                            aTerms = hDerived[:derivationUnitTerm]
-                            aTerms.each do |term|
-                                @xml.tag!('gml:derivationUnitTerm', term)
-                            end
+                        @xml.tag!('gml:BaseUnit', {'gml:id' => unitID}) do
+                            @xml.tag!('gml:identifier', {'codeSpace' => hBase[:codeSpace]}, hBase[:identifier])
+                            @xml.tag!('gml:name', hBase[:name])
+                            @xml.tag!('gml:catalogSymbol', hBase[:catalogSymbol])
+                            @xml.tag!('gml:unitsSystem', {'xlink:href' => hBase[:unitsSystem]})
                         end
 
                     end

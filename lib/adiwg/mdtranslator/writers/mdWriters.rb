@@ -12,20 +12,22 @@ module ADIWG
 
             def self.handleWriter(intObj, responseObj)
 
-                # use writer name to load and initiate requested writer
-                # build directory path for writer from writerName
-                writerDir = File.join(path_to_resources, responseObj[:writerName])
+                # use writerName from responseObj to build directory path to writer
+                # the writer's high level folder must be under the 'writers' directory
+                writerDir = File.join(path_to_writers, responseObj[:writerName])
                 if File.directory?(writerDir)
 
                     # if directory path exists, build writer file name and then require it
-                    writerFile = File.join(writerDir, responseObj[:writerName] + '_writer')
-                    require writerFile
-                    writerClassName = responseObj[:writerName].dup
-                    writerClassName[0] = writerClassName[0].upcase
-                    $WriterNS = ADIWG::Mdtranslator::Writers.const_get(writerClassName)
+                    writerFile = File.join(responseObj[:writerName] + '_writer')
+                    writerPath = File.join(writerDir, writerFile)
+                    require writerPath
 
-                    # pass internal object and response object to requested writer
-                    responseObj[:writerOutput] = $WriterNS.startWriter(intObj, responseObj)
+                    # build the namespace for the writer
+                    writerNS = responseObj[:writerName].dup
+                    writerNS[0] = writerNS[0].upcase
+
+                    # pass internal object and response object to the writer
+                    responseObj[:writerOutput] = ADIWG::Mdtranslator::Writers.const_get(writerNS).startWriter(intObj, responseObj)
 
                 else
                     # directory path was not found
@@ -38,14 +40,15 @@ module ADIWG
             end
 
             # return path to writers
-            def self.path_to_resources
+            def self.path_to_writers
                 File.dirname(File.expand_path(__FILE__))
             end
 
             # return writer readme text
+            # this is called from the Rails API
             def self.get_writer_readme(writer)
                 readmeText = 'No readme found'
-                path = File.join(path_to_resources, writer, 'readme.md')
+                path = File.join(path_to_writers, writer, 'readme.md')
                 if File.exist?(path)
                     file = File.open(path, 'r')
                     readmeText = file.read

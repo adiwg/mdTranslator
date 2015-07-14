@@ -5,15 +5,13 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-03-02 added test and return for missing data dictionary
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/units'))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/codelists'))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '../iso/classes'))
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
 require 'builder'
 require 'date'
 require 'uuidtools'
-require 'adiwg/mdtranslator/writers/iso19110/class_FCfeatureCatalogue'
+require_relative 'class_FCfeatureCatalogue'
 
 module ADIWG
     module Mdtranslator
@@ -40,7 +38,7 @@ module ADIWG
 
                     # create new XML document
                     xml = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = $WriterNS::FC_FeatureCatalogue.new(xml, responseObj)
+                    metadataWriter = FC_FeatureCatalogue.new(xml, responseObj)
                     metadata = metadataWriter.writeXML(intObj)
 
                     # set writer pass to true if no writer modules set it to false
