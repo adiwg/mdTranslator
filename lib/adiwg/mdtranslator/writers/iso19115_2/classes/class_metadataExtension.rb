@@ -7,16 +7,18 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_enumerationList'
-require 'class_onlineResource'
-require 'class_responsibleParty'
+require_relative 'class_codelist'
+require_relative 'class_enumerationList'
+require_relative 'class_onlineResource'
+require_relative 'class_responsibleParty'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_MetadataExtensionInformation
 
@@ -28,10 +30,10 @@ module ADIWG
                     def writeXML(hExtension)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml, @responseObj)
-                        olResClass = $IsoNS::CI_OnlineResource.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        enumerationClass = MD_EnumerationList.new(@xml, @responseObj)
+                        olResClass = CI_OnlineResource.new(@xml, @responseObj)
+                        rPartyClass = CI_ResponsibleParty.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 

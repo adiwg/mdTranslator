@@ -8,15 +8,17 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_telephone'
-require 'class_address'
-require 'class_onlineResource'
+require_relative 'class_telephone'
+require_relative 'class_address'
+require_relative 'class_onlineResource'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class CI_Contact
 
@@ -28,9 +30,9 @@ module ADIWG
                     def writeXML(hContact)
 
                         # classes used
-                        pBookClass = $IsoNS::CI_Telephone.new(@xml, @responseObj)
-                        addClass = $IsoNS::CI_Address.new(@xml, @responseObj)
-                        resourceClass = $IsoNS::CI_OnlineResource.new(@xml, @responseObj)
+                        pBookClass = CI_Telephone.new(@xml, @responseObj)
+                        addClass = CI_Address.new(@xml, @responseObj)
+                        resourceClass = CI_OnlineResource.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:CI_Contact') do
 

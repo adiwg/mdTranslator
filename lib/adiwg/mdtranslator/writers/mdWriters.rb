@@ -5,6 +5,8 @@
 #   Stan Smith 2012-12-16 generalized handleWriter to use :writerName
 #   Stan Smith 2015-03-04 changed method of setting $WriterNS
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
 module ADIWG
     module Mdtranslator

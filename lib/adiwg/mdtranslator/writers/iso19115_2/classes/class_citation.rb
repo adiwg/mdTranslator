@@ -13,16 +13,18 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_responsibleParty'
-require 'class_date'
-require 'class_identifier'
+require_relative 'class_codelist'
+require_relative 'class_responsibleParty'
+require_relative 'class_date'
+require_relative 'class_identifier'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class CI_Citation
 
@@ -34,10 +36,10 @@ module ADIWG
                     def writeXML(hCitation)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        dateClass = $IsoNS::CI_Date.new(@xml, @responseObj)
-                        idClass = $IsoNS::MD_Identifier.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
+                        rPartyClass =  CI_ResponsibleParty.new(@xml, @responseObj)
+                        dateClass =  CI_Date.new(@xml, @responseObj)
+                        idClass =  MD_Identifier.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:CI_Citation') do
 

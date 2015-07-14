@@ -9,14 +9,16 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_citation'
+require_relative 'class_codelist'
+require_relative 'class_citation'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_AggregateInformation
 
@@ -33,8 +35,8 @@ module ADIWG
                         # ... citation > identifier section
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
+                        citationClass =  CI_Citation.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_AggregateInformation') do
 

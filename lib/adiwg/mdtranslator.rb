@@ -21,16 +21,13 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   ... created as an instance of class ResponseHash
 
-# add main directories to load_path
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'mdtranslator/internal'))
-
+# required by readers and writers
 require 'adiwg/mdtranslator/version'
-
-# additional require statements to support rails
-# ... these modules contain methods called by rails endpoints
-# ... by default rails does not resolve namespaces beyond this point
 require 'adiwg/mdtranslator/readers/mdReaders'
 require 'adiwg/mdtranslator/writers/mdWriters'
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require 'adiwg/mdtranslator/internal/module_dateTimeFun'
+require 'adiwg/mdtranslator/internal/module_geoFormat'
 
 module ADIWG
     module Mdtranslator
@@ -124,8 +121,8 @@ module ADIWG
                 responseObj[:readerExecutionPass] = false
                 responseObj[:readerExecutionMessages] << 'Reader name was not provided'
                 return responseObj
+
             else
-                require File.join(File.dirname(__FILE__), 'mdtranslator/readers/mdReaders')
                 intObj = ADIWG::Mdtranslator::Readers.handleReader(file, responseObj)
 
                 # if readerExecutionPass is nil no error messages were set while

@@ -12,9 +12,9 @@ module ADIWG
 
             def self.handleReader(file, responseObj)
 
-                # use reader name to load and initiate reader
-                # build directory path name for reader
-                readerDir = File.join(path_to_resources, responseObj[:readerRequested])
+                # use readerRequested from responseObj to build directory path to reader
+                # the readers's high level folder must be under the 'writers' directory
+                readerDir = File.join(path_to_readers, responseObj[:readerRequested])
                 if File.directory?(readerDir)
 
                     # if directory path exists,
@@ -44,14 +44,14 @@ module ADIWG
             end
 
             # return path to readers
-            def self.path_to_resources
+            def self.path_to_readers
                 File.dirname(File.expand_path(__FILE__))
             end
 
             # return reader readme text
             def self.get_reader_readme(reader)
                 readmeText = 'No readme found'
-                path = File.join(path_to_resources, reader, 'readme.md')
+                path = File.join(path_to_readers, reader, 'readme.md')
                 if File.exist?(path)
                     file = File.open(path, 'r')
                     readmeText = file.read

@@ -7,14 +7,16 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_geographicBoundingBox'
-require 'class_boundingPolygon'
+require_relative 'class_geographicBoundingBox'
+require_relative 'class_boundingPolygon'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class GeographicElement
 
@@ -26,8 +28,8 @@ module ADIWG
                     def writeXML(hGeoElement)
 
                         # classes used
-                        geoBBoxClass = $IsoNS::EX_GeographicBoundingBox.new(@xml, @responseObj)
-                        geoBPolyClass = $IsoNS::EX_BoundingPolygon.new(@xml, @responseObj)
+                        geoBBoxClass =  EX_GeographicBoundingBox.new(@xml, @responseObj)
+                        geoBPolyClass =  EX_BoundingPolygon.new(@xml, @responseObj)
 
                         geoType = hGeoElement[:elementGeometry][:geoType]
                         case geoType

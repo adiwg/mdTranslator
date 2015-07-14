@@ -10,16 +10,18 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_geographicElement'
-require 'class_geographicDescription'
-require 'class_temporalExtent'
-require 'class_verticalExtent'
+require_relative 'class_geographicElement'
+require_relative 'class_geographicDescription'
+require_relative 'class_temporalExtent'
+require_relative 'class_verticalExtent'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class EX_Extent
 
@@ -31,10 +33,10 @@ module ADIWG
                     def writeXML(hExtent)
 
                         # classes used
-                        tempExtClass = $IsoNS::EX_TemporalExtent.new(@xml, @responseObj)
-                        vertExtClass = $IsoNS::EX_VerticalExtent.new(@xml, @responseObj)
-                        geoEleClass = $IsoNS::GeographicElement.new(@xml, @responseObj)
-                        geoEleIdClass = $IsoNS::EX_GeographicDescription.new(@xml, @responseObj)
+                        tempExtClass =  EX_TemporalExtent.new(@xml, @responseObj)
+                        vertExtClass =  EX_VerticalExtent.new(@xml, @responseObj)
+                        geoEleClass =  GeographicElement.new(@xml, @responseObj)
+                        geoEleIdClass =  EX_GeographicDescription.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:EX_Extent') do
 

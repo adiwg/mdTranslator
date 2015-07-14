@@ -6,16 +6,18 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_citation'
-require 'class_responsibleParty'
-require 'class_vouchers'
-require 'class_taxonClassification'
+require_relative 'class_citation'
+require_relative 'class_responsibleParty'
+require_relative 'class_vouchers'
+require_relative 'class_taxonClassification'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_TaxonSys
 
@@ -27,10 +29,10 @@ module ADIWG
                     def writeXML(hTaxonSys)
 
                         # classes used
-                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        tVoucherClass = $IsoNS::MD_Vouchers.new(@xml, @responseObj)
-                        tClassClass = $IsoNS::MD_TaxonCl.new(@xml, @responseObj)
+                        citationClass =  CI_Citation.new(@xml, @responseObj)
+                        rPartyClass =  CI_ResponsibleParty.new(@xml, @responseObj)
+                        tVoucherClass =  MD_Vouchers.new(@xml, @responseObj)
+                        tClassClass =  MD_TaxonCl.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_TaxonSys') do
 

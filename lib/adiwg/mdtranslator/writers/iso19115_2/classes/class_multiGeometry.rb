@@ -8,16 +8,18 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
 require $ReaderNS.readerModule('module_point')
-require 'class_point'
-require 'class_lineString'
-require 'class_polygon'
+require_relative 'class_point'
+require_relative 'class_lineString'
+require_relative 'class_polygon'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MultiGeometry
 
@@ -30,9 +32,9 @@ module ADIWG
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        pointClass = $IsoNS::Point.new(@xml, @responseObj)
-                        lineClass = $IsoNS::LineString.new(@xml, @responseObj)
-                        polygonClass = $IsoNS::Polygon.new(@xml, @responseObj)
+                        pointClass =  Point.new(@xml, @responseObj)
+                        lineClass =  LineString.new(@xml, @responseObj)
+                        polygonClass =  Polygon.new(@xml, @responseObj)
 
 
                         # gml:MultiGeometry attributes

@@ -19,28 +19,30 @@
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-12 added support for declaring multiple resource character sets
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_enumerationList'
-require 'class_citation'
-require 'class_responsibleParty'
-require 'class_maintenanceInformation'
-require 'class_browseGraphic'
-require 'class_format'
-require 'class_keyword'
-require 'class_usage'
-require 'class_useConstraints'
-require 'class_legalConstraints'
-require 'class_securityConstraints'
-require 'class_aggregateInformation'
-require 'class_taxonSystem'
-require 'class_resolution'
-require 'class_extent'
+require_relative 'class_codelist'
+require_relative 'class_enumerationList'
+require_relative 'class_citation'
+require_relative 'class_responsibleParty'
+require_relative 'class_maintenanceInformation'
+require_relative 'class_browseGraphic'
+require_relative 'class_format'
+require_relative 'class_keyword'
+require_relative 'class_usage'
+require_relative 'class_useConstraints'
+require_relative 'class_legalConstraints'
+require_relative 'class_securityConstraints'
+require_relative 'class_aggregateInformation'
+require_relative 'class_taxonSystem'
+require_relative 'class_resolution'
+require_relative 'class_extent'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_DataIdentification
 
@@ -52,23 +54,23 @@ module ADIWG
                     def writeXML(hDataId, aAssocRes)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        enumerationClass = $IsoNS::MD_EnumerationList.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
+                        enumerationClass =  MD_EnumerationList.new(@xml, @responseObj)
                         intMetadataClass = InternalMetadata.new
-                        citationClass = $IsoNS::CI_Citation.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        mInfoClass = $IsoNS::MD_MaintenanceInformation.new(@xml, @responseObj)
-                        bGraphicClass = $IsoNS::MD_BrowseGraphic.new(@xml, @responseObj)
-                        rFormatClass = $IsoNS::MD_Format.new(@xml, @responseObj)
-                        keywordClass = $IsoNS::MD_Keywords.new(@xml, @responseObj)
-                        useClass = $IsoNS::MD_Usage.new(@xml, @responseObj)
-                        uConClass = $IsoNS::MD_Constraints.new(@xml, @responseObj)
-                        lConClass = $IsoNS::MD_LegalConstraints.new(@xml, @responseObj)
-                        sConClass = $IsoNS::MD_SecurityConstraints.new(@xml, @responseObj)
-                        aggInfoClass = $IsoNS::MD_AggregateInformation.new(@xml, @responseObj)
-                        taxClass = $IsoNS::MD_TaxonSys.new(@xml, @responseObj)
-                        resolutionClass = $IsoNS::MD_Resolution.new(@xml, @responseObj)
-                        extentClass = $IsoNS::EX_Extent.new(@xml, @responseObj)
+                        citationClass =  CI_Citation.new(@xml, @responseObj)
+                        rPartyClass =  CI_ResponsibleParty.new(@xml, @responseObj)
+                        mInfoClass =  MD_MaintenanceInformation.new(@xml, @responseObj)
+                        bGraphicClass =  MD_BrowseGraphic.new(@xml, @responseObj)
+                        rFormatClass =  MD_Format.new(@xml, @responseObj)
+                        keywordClass =  MD_Keywords.new(@xml, @responseObj)
+                        useClass =  MD_Usage.new(@xml, @responseObj)
+                        uConClass =  MD_Constraints.new(@xml, @responseObj)
+                        lConClass =  MD_LegalConstraints.new(@xml, @responseObj)
+                        sConClass =  MD_SecurityConstraints.new(@xml, @responseObj)
+                        aggInfoClass =  MD_AggregateInformation.new(@xml, @responseObj)
+                        taxClass =  MD_TaxonSys.new(@xml, @responseObj)
+                        resolutionClass =  MD_Resolution.new(@xml, @responseObj)
+                        extentClass =  EX_Extent.new(@xml, @responseObj)
 
                         # data identification
                         @xml.tag!('gmd:MD_DataIdentification') do

@@ -11,7 +11,6 @@
 require $ReaderNS.readerModule('module_contacts')
 require $ReaderNS.readerModule('module_metadata')
 require $ReaderNS.readerModule('module_dataDictionary')
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 
 module ADIWG
     module Mdtranslator

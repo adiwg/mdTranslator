@@ -6,16 +6,18 @@
 #   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_responsibleParty'
-require 'class_standardOrderProcess'
-require 'class_format'
-require 'class_digitalTransferOptions'
+require_relative 'class_responsibleParty'
+require_relative 'class_standardOrderProcess'
+require_relative 'class_format'
+require_relative 'class_digitalTransferOptions'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_Distributor
 
@@ -27,10 +29,10 @@ module ADIWG
                     def writeXML(distributor)
 
                         # classes used
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        sOrderProcClass = $IsoNS::MD_StandardOrderProcess.new(@xml, @responseObj)
-                        rFormatClass = $IsoNS::MD_Format.new(@xml, @responseObj)
-                        dTranOptClass = $IsoNS::MD_DigitalTransferOptions.new(@xml, @responseObj)
+                        rPartyClass =  CI_ResponsibleParty.new(@xml, @responseObj)
+                        sOrderProcClass =  MD_StandardOrderProcess.new(@xml, @responseObj)
+                        rFormatClass =  MD_Format.new(@xml, @responseObj)
+                        dTranOptClass =  MD_DigitalTransferOptions.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_Distributor') do
 

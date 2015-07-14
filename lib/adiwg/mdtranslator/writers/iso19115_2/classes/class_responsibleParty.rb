@@ -8,14 +8,16 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_contact'
+require_relative 'class_codelist'
+require_relative 'class_contact'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class CI_ResponsibleParty
 
@@ -27,13 +29,13 @@ module ADIWG
                     def writeXML(rParty)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        ciContactClass = $IsoNS::CI_Contact.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        ciContactClass = CI_Contact.new(@xml, @responseObj)
 
                         # search array of responsible party for matches in contact object
                         rpID = rParty[:contactId]
                         unless rpID.nil?
-                            hContact = $WriterNS.getContact(rpID)
+                            hContact = ADIWG::Mdtranslator::Writers::Iso19115_2.getContact(rpID)
                             unless hContact.empty?
                                 @xml.tag!('gmd:CI_ResponsibleParty') do
 

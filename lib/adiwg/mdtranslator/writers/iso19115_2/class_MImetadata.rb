@@ -27,16 +27,17 @@
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-12 added support for user to specify metadataCharacterSet
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_responsibleParty'
-require 'class_metadataExtension'
-require 'class_dataIdentification'
-require 'class_distribution'
-require 'class_dataQuality'
-require 'class_maintenanceInformation'
-require 'class_referenceSystem'
-require 'module_dateTimeFun'
+require_relative 'classes/class_codelist'
+require_relative 'classes/class_responsibleParty'
+require_relative 'classes/class_metadataExtension'
+require_relative 'classes/class_dataIdentification'
+require_relative 'classes/class_distribution'
+require_relative 'classes/class_dataQuality'
+require_relative 'classes/class_maintenanceInformation'
+require_relative 'classes/class_referenceSystem'
 
 module ADIWG
     module Mdtranslator
@@ -51,24 +52,21 @@ module ADIWG
                     end
 
                     def writeXML(intObj)
-                        $IsoNS = ADIWG::Mdtranslator::Writers::Iso
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
-                        mdExtClass = $IsoNS::MD_MetadataExtensionInformation.new(@xml, @responseObj)
-                        dataIdClass = $IsoNS::MD_DataIdentification.new(@xml, @responseObj)
-                        distClass = $IsoNS::MD_Distribution.new(@xml, @responseObj)
-                        dqClass = $IsoNS::DQ_DataQuality.new(@xml, @responseObj)
-                        metaMaintClass = $IsoNS::MD_MaintenanceInformation.new(@xml, @responseObj)
-                        refSysClass = $IsoNS::MD_ReferenceSystem.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        rPartyClass = CI_ResponsibleParty.new(@xml, @responseObj)
+                        mdExtClass = MD_MetadataExtensionInformation.new(@xml, @responseObj)
+                        dataIdClass = MD_DataIdentification.new(@xml, @responseObj)
+                        distClass = MD_Distribution.new(@xml, @responseObj)
+                        dqClass = DQ_DataQuality.new(@xml, @responseObj)
+                        metaMaintClass = MD_MaintenanceInformation.new(@xml, @responseObj)
+                        refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
                         hResInfo = intMetadata[:resourceInfo]
                         aAssocRes = intMetadata[:associatedResources]
-
-                        $intContactList = intObj[:contacts]
 
                         # document head
                         metadata = @xml.instruct! :xml, encoding: 'UTF-8'

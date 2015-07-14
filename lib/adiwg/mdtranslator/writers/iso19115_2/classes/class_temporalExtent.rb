@@ -7,14 +7,16 @@
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_timeInstant'
-require 'class_timePeriod'
+require_relative 'class_timeInstant'
+require_relative 'class_timePeriod'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class EX_TemporalExtent
 
@@ -27,8 +29,8 @@ module ADIWG
 
                         # classes used
                         intMetadataClass = InternalMetadata.new
-                        timeInstClass = $IsoNS::TimeInstant.new(@xml, @responseObj)
-                        timePeriodClass = $IsoNS::TimePeriod.new(@xml, @responseObj)
+                        timeInstClass = TimeInstant.new(@xml, @responseObj)
+                        timePeriodClass = TimePeriod.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:EX_TemporalExtent') do
 

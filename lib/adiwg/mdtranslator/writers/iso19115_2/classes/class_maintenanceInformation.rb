@@ -8,14 +8,16 @@
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require 'class_codelist'
-require 'class_responsibleParty'
+require_relative 'class_codelist'
+require_relative 'class_responsibleParty'
 
 module ADIWG
     module Mdtranslator
         module Writers
-            module Iso
+            module Iso19115_2
 
                 class MD_MaintenanceInformation
 
@@ -27,8 +29,8 @@ module ADIWG
                     def writeXML(hMaintInfo)
 
                         # classes used
-                        codelistClass = $IsoNS::MD_Codelist.new(@xml, @responseObj)
-                        rPartyClass = $IsoNS::CI_ResponsibleParty.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        rPartyClass = CI_ResponsibleParty.new(@xml, @responseObj)
 
                         @xml.tag! 'gmd:MD_MaintenanceInformation' do
 
