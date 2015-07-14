@@ -134,10 +134,11 @@ module ADIWG
                         return
                     end
 
-                    # test the reader version requested is supported
+                    # test if the requested reader version is supported
                     # remove maintenance release number first
                     # ... then look for a module folder name ending with the requested version
-                    # ... example: 'modules_1.2'
+                    # ... requested (found) version: 1.2.1
+                    # ... search for folder: 'modules_1.2'
                     aVersionParts = s.split('.')
                     if aVersionParts.length >= 2
                         readerVersion = aVersionParts[0] +'.' + aVersionParts[1]

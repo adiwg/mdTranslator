@@ -27,7 +27,6 @@ module ADIWG
                     readerClassName[0] = readerClassName[0].upcase
                     $ReaderNS = ADIWG::Mdtranslator::Readers.const_get(readerClassName)
 
-
                     # pass file and response object to requested reader
                     # the reader will return the internal object with the metadata content loaded
                     return $ReaderNS.readFile(file, responseObj)
