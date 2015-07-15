@@ -19,10 +19,9 @@ module ADIWG
                 writerDir = File.join(path_to_writers, responseObj[:writerName])
                 if File.directory?(writerDir)
 
-                    # if directory path exists, build writer file name and then require it
-                    writerFile = File.join(responseObj[:writerName] + '_writer')
-                    writerPath = File.join(writerDir, writerFile)
-                    require writerPath
+                    # if directory path exists, build writer file name and require it
+                    writerFile = File.join(writerDir, responseObj[:writerName] + '_writer')
+                    require writerFile
 
                     # build the namespace for the writer
                     writerNS = responseObj[:writerName].dup

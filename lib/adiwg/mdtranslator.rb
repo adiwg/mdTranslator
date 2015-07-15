@@ -1,6 +1,4 @@
 # MdTranslator - ADIwg MdTranslator RubyGem entry point
-# ... pass input file to appropriate reader and writer;
-# ... assign module path names for require statements
 
 # History:
 # 	Stan Smith 2014-07-02 original script
@@ -20,6 +18,8 @@
 #   Stan Smith 2015-03-04 moved addFinalMessages into this module from rails app
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   ... created as an instance of class ResponseHash
+#   Stan Smith 2015-07-14 deleted readerFound
+#   Stan Smith 2015-07-14 renamed readerVersionFound to readerVersionRequested
 
 # required by readers and writers
 require 'adiwg/mdtranslator/version'
@@ -46,9 +46,7 @@ module ADIWG
             #    problems.  Set by reader.
             # readerRequested: name of the reader requested by the user, set from  the translate
             #    parameter list
-            # readerFound: name of the reader used by the reader, set by reader.  Will be same as
-            #    readerRequested if readerRequested name is valid
-            # readerVersionFound: version of the reader requested by the input file, set by reader
+            # readerVersionRequested: version of the reader requested by the input file, set by reader
             # readerVersionUsed: version of the reader the reader method decided to use in processing
             #    the input file.  Set by the reader.  Default 'normal'.
             # readerValidationLevel: validation level requested to be applied to the input file, set
@@ -83,8 +81,7 @@ module ADIWG
                     readerStructurePass: nil,
                     readerStructureMessages: [],
                     readerRequested: nil,
-                    readerFound: nil,
-                    readerVersionFound: nil,
+                    readerVersionRequested: nil,
                     readerVersionUsed: nil,
                     readerValidationLevel: nil,
                     readerValidationPass: nil,

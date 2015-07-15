@@ -5,6 +5,7 @@
 #   Stan Smith 2012-12-16 generalized handleReader to use :readerRequested
 #   Stan Smith 2015-03-04 changed method of setting $WriterNS
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to remove global namespace constants
 
 module ADIWG
     module Mdtranslator
@@ -17,19 +18,17 @@ module ADIWG
                 readerDir = File.join(path_to_readers, responseObj[:readerRequested])
                 if File.directory?(readerDir)
 
-                    # if directory path exists,
-                    # construct the reader's expected file name and require it
+                    # if directory path exists, build reader file name and require it
                     readerFile = File.join(readerDir, responseObj[:readerRequested] + '_reader')
                     require readerFile
 
-                    # use the file name to build a constant that will equate to the reader's namespace
-                    readerClassName = responseObj[:readerRequested].dup
-                    readerClassName[0] = readerClassName[0].upcase
-                    $ReaderNS = ADIWG::Mdtranslator::Readers.const_get(readerClassName)
+                    # build the namespace for the reader
+                    readerNS = responseObj[:readerRequested].dup
+                    readerNS[0] = readerNS[0].upcase
 
                     # pass file and response object to requested reader
                     # the reader will return the internal object with the metadata content loaded
-                    return $ReaderNS.readFile(file, responseObj)
+                    return ADIWG::Mdtranslator::Readers.const_get(readerNS).readFile(file, responseObj)
 
                 else
                     # the directory path was not found meaning there is no reader with that name
@@ -38,7 +37,6 @@ module ADIWG
                     responseObj[:readerValidationMessages] << "Validation Failed - see following message(s):\n"
                     responseObj[:readerValidationMessages] << "Reader '#{responseObj[:readerRequested]}' is not supported."
                     return false
-
                 end
 
             end

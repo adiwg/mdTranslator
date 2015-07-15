@@ -10,7 +10,7 @@
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require $ReaderNS.readerModule('module_coordinates')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_coordinates')
 
 module ADIWG
     module Mdtranslator
@@ -72,7 +72,7 @@ module ADIWG
                             # convert coordinate string from geoJSON to gml
                             s = hGeoElement[:elementGeometry][:geometry]
                             if !s.nil?
-                                s = $ReaderNS::Coordinates.unpack(s, @responseObj)
+                                s = ADIWG::Mdtranslator::Readers::MdJson::Coordinates.unpack(s, @responseObj)
                                 @xml.tag!('gml:coordinates', s)
                             else
                                 @xml.tag!('gml:coordinates')

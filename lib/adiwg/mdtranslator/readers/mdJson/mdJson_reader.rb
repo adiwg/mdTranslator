@@ -14,9 +14,11 @@
 #   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-12 added method to lookup contact in contact array
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-
+#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-14 added support for mdJson version numbers
 
 require 'json'
+require_relative 'mdJson_validator'
 
 module ADIWG
     module Mdtranslator
@@ -25,17 +27,17 @@ module ADIWG
 
                 def self.readFile(file, responseObj)
 
-                    # set reference to responseObj for use in this module
+                    # set reference to responseObj for use throughout this module
                     @responseObj = responseObj
-
-                    # set anticipated format of file in $response
-                    @responseObj[:readerFormat] = 'json'
 
                     # receive json file into ruby hash
                     parseJson(file)
                     if !@responseObj[:readerStructurePass]
                         return false
                     end
+
+                    # set format of file in $response
+                    @responseObj[:readerFormat] = 'json'
 
                     # check mdJson version name
                     checkVersionName
@@ -50,8 +52,7 @@ module ADIWG
                     end
 
                     # validate file against mdJson schema definition
-                    require 'adiwg/mdtranslator/readers/mdJson/mdJson_validator'
-                    $ReaderNS.validate(file, @responseObj)
+                    validate(file, @responseObj)
                     if !@responseObj[:readerValidationPass]
                         return false
                     end
@@ -63,7 +64,9 @@ module ADIWG
 
                     # create new internal metadata container for the reader
                     @intObj = intMetadataClass.newBase
-                    $ReaderNS.unpack(@intObj, @hMdJson, @responseObj)
+
+                    #
+                    ADIWG::Mdtranslator::Readers::MdJson.unpack(@intObj, @hMdJson, @responseObj)
                     return @intObj
 
                 end
@@ -125,7 +128,7 @@ module ADIWG
                     if hVersion.has_key?('version')
                         s = hVersion['version']
                         if !s.nil?
-                            @responseObj[:readerVersionFound] = s
+                            @responseObj[:readerVersionRequested] = s
                         end
                     else
                         @responseObj[:readerStructurePass] = false
@@ -134,38 +137,55 @@ module ADIWG
                         return
                     end
 
-                    # test if the requested reader version is supported
-                    # remove maintenance release number first
-                    # ... then look for a module folder name ending with the requested version
-                    # ... requested (found) version: 1.2.1
-                    # ... search for folder: 'modules_1.2'
-                    aVersionParts = s.split('.')
-                    if aVersionParts.length >= 2
-                        readerVersion = aVersionParts[0] +'.' + aVersionParts[1]
-                        dir = File.join(File.dirname(__FILE__), 'modules_' + readerVersion)
-                        if !File.directory?(dir)
-                            @responseObj[:readerStructurePass] = false
-                            @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                            @responseObj[:readerStructureMessages] << 'The input file version is not supported.'
-                            @responseObj[:readerStructureMessages] << "mdJson version requested was '#{s}'"
-                            return
-                        end
-                        @responseObj[:readerVersionUsed] = readerVersion
-                    else
+                    # split the version number into its parts
+                    aReqVersion = s.split('.')
+
+                    reqMajor = 0
+                    if !aReqVersion[0].nil?
+                        reqMajor = aReqVersion[0]
+                    end
+
+                    # test if the requested reader major version is supported
+                    # look for a folder with modules for the major version number
+                    dirName = File.join(File.dirname(__FILE__), 'modules_v' + reqMajor)
+                    if !File.directory?(dirName)
                         @responseObj[:readerStructurePass] = false
                         @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @responseObj[:readerStructureMessages] << 'The input file version number must be in the form MAJOR.MINOR.PATCH, e.g. 1.2.3'
-                        @responseObj[:readerStructureMessages] << 'Note the PATCH number is optional.'
+                        @responseObj[:readerStructureMessages] << 'A reader for the requested version is not supported.'
+                        @responseObj[:readerStructureMessages] << "mdJson version requested was '#{s}'"
+                        return false
                     end
+
+                    # get the full version number for this major version of mdJson
+                    require File.join(dirName, 'module_version')
+                    curVersion = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+                    @responseObj[:readerVersionUsed] = curVersion
+                    aCurVersion = curVersion.split('.')
+                    curMinor = aCurVersion[1]
+
+                    # test that minor version number is not exceeded
+                    reqMinor = 0
+                    if !aReqVersion[1].nil?
+                        reqMinor = aReqVersion[1]
+                        if curMinor < reqMinor
+                            @responseObj[:readerStructurePass] = false
+                            @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
+                            @responseObj[:readerStructureMessages] << 'The requested reader minor version is not supported.'
+                            @responseObj[:readerStructureMessages] << "mdJson version requested was '#{s}'"
+                            return false
+                        end
+                    end
+
                 end
 
                 # require modules for the requested version
                 def self.readerModule(moduleName)
-                    dir = File.join(File.dirname(__FILE__), 'modules_' + @responseObj[:readerVersionUsed])
-                    file = File.join(dir, moduleName)
+                    majVersion = @responseObj[:readerVersionUsed].split('.')[0]
+                    dirName = File.join(File.dirname(__FILE__), 'modules_v' + majVersion.to_s)
+                    fileName = File.join(dirName, moduleName)
 
                     # test for the existance of the module in the current mdJson version directory
-                    if !File.exist?(File.join(dir, moduleName + '.rb'))
+                    if !File.exist?(File.join(dirName, moduleName + '.rb'))
                         # file not found
                         # ... look for module in previous version directory
                         # ... note: no previous version directories exist yet
@@ -174,7 +194,8 @@ module ADIWG
                         # ... file not found
                         return nil
                     end
-                    return file
+
+                    return fileName
                 end
 
                 # find the array pointer for a contact
@@ -187,6 +208,7 @@ module ADIWG
                         end
                         i += 1
                     end
+
                     return pointer
                 end
 
