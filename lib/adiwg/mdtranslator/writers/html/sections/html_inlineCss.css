@@ -72,6 +72,7 @@
 
         pre, code, kbd, samp { color: #000; font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 0.98em; }
         pre { white-space: pre-wrap; word-wrap: break-word; }
+        .pre-line { white-space: pre-line; }
 
         b, strong { font-weight: bold; }
 
@@ -226,7 +227,7 @@
           position: fixed;
           right: 10px;
           bottom: 10px;
-          z-index: 100;
+          z-index: 10000;
         }
         div#sideNav * {
           display: block;

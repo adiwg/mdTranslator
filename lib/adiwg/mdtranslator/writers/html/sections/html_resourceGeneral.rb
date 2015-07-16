@@ -90,10 +90,7 @@ module ADIWG
                         # general - abstract - required
                         @html.details do
                             @html.summary('Abstract', {'id'=>'resourceGen-abstract', 'class'=>'h4'})
-                            @html.section(:class=>'block') do
-                                @html.text!(resourceInfo[:abstract])
-                            end
-                            @html.br
+                            @html.tag!("section",resourceInfo[:abstract], :class=>'block pre-line')
                         end
 
                         # general - purpose
