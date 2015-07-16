@@ -9,8 +9,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
-
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_coordinates')
+#   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
 
 module ADIWG
     module Mdtranslator
@@ -25,7 +24,7 @@ module ADIWG
 
                         intLine[:geoType] = geoType
                         intLine[:geometry] = aCoords
-                        intLine[:dimension] = Coordinates.getDimension(aCoords)
+                        intLine[:dimension] = AdiwgCoordinates.getDimension(aCoords)
 
                         return intLine
                     end

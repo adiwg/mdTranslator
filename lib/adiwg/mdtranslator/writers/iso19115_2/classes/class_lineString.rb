@@ -9,8 +9,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
-
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_coordinates')
+#   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
 
 module ADIWG
     module Mdtranslator
@@ -72,7 +71,7 @@ module ADIWG
                             # convert coordinate string from geoJSON to gml
                             s = hGeoElement[:elementGeometry][:geometry]
                             if !s.nil?
-                                s = ADIWG::Mdtranslator::Readers::MdJson::Coordinates.unpack(s, @responseObj)
+                                s = AdiwgCoordinates.unpack(s, @responseObj)
                                 @xml.tag!('gml:coordinates', s)
                             else
                                 @xml.tag!('gml:coordinates')

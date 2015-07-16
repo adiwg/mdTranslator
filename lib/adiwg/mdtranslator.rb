@@ -20,6 +20,7 @@
 #   ... created as an instance of class ResponseHash
 #   Stan Smith 2015-07-14 deleted readerFound
 #   Stan Smith 2015-07-14 renamed readerVersionFound to readerVersionRequested
+#   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
 
 # required by readers and writers
 require 'adiwg/mdtranslator/version'
@@ -28,6 +29,7 @@ require 'adiwg/mdtranslator/writers/mdWriters'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require 'adiwg/mdtranslator/internal/module_geoFormat'
+require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG
     module Mdtranslator

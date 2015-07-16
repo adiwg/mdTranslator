@@ -46,7 +46,10 @@
 # 1.3.0 2015-06-22 removed global variables for the response object
 #              --- removed global for show all tags and placed in response object
 #              --- removed global for counter for missing ISO IDs and placed in response object
-#              --- removed globals pointers to contacts and domain arrays and point to @intObj
+#              --- removed global pointers to contacts and domain arrays and point to @intObj
+# 1.3.0 2015-07-14 removed global namespaces for readers and writers
+# 1.3.0 2015-07-16 added version number management for readers and writers
+#              --- moved module_coordinates to internal
 
 module ADIWG
     module Mdtranslator

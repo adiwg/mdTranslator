@@ -10,8 +10,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
-
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_coordinates')
+#   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
 
 module ADIWG
     module Mdtranslator
@@ -28,7 +27,7 @@ module ADIWG
                         # polygon - coordinate(s)
                         if geoType == 'Polygon'
                             intGeometry[:geometry] = splitPolygons(aCoords)
-                            intGeometry[:dimension] = Coordinates.getDimension(intGeometry[:geometry][:exteriorRing])
+                            intGeometry[:dimension] = AdiwgCoordinates.getDimension(intGeometry[:geometry][:exteriorRing])
                         elsif geoType == 'MultiPolygon'
                             aPolySets = Array.new
                             aCoords.each do |aPolygonSet|
