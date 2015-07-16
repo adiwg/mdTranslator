@@ -2,10 +2,10 @@
 
 module ADIWG
     module Mdtranslator
-        module Readers
-            module MdJson
+        module Writers
+            module Iso19115_2
 
-                # current version of version 1
+                # current version of iso19115_2 writer
                 VERSION = '1.2.0'
 
             end

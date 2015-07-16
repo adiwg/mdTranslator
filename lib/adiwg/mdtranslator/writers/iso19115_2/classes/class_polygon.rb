@@ -32,8 +32,8 @@ module ADIWG
                         # gml:Polygon attributes - gml:id - required
                         lineID = hGeoElement[:elementId]
                         if lineID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            lineID = 'polygon' + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            lineID = 'polygon' + @responseObj[:writerMissingIdCount]
                         end
                         attributes['gml:id'] = lineID
 

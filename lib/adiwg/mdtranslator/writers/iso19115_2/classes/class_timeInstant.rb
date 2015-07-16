@@ -24,8 +24,8 @@ module ADIWG
 
                         timeID = hTempI[:timeId]
                         if timeID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            timeID = 'timeInstant' + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            timeID = 'timeInstant' + @responseObj[:writerMissingIdCount]
                         end
 
                         @xml.tag!('gml:TimeInstant', {'gml:id' => timeID}) do

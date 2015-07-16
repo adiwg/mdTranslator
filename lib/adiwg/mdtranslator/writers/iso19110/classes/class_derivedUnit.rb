@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(hDerived)
 
                         # create and identity for the unit
-                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                        unitID = 'unit' + @responseObj[:missingIdCount]
+                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
                         @xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
                             @xml.tag!('gml:name', hDerived[:name])

@@ -32,8 +32,8 @@ module ADIWG
                         # gml:LineString attributes - gml:id - required
                         lineID = hGeoElement[:elementId]
                         if lineID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            lineID = 'line' + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            lineID = 'line' + @responseObj[:writerMissingIdCount]
                         end
                         attributes['gml:id'] = lineID
 

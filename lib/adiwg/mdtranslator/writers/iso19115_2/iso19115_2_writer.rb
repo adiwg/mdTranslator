@@ -14,6 +14,7 @@
 require 'builder'
 require 'date'
 require 'uuidtools'
+require_relative 'version'
 require_relative 'class_MImetadata'
 
 module ADIWG
@@ -29,7 +30,7 @@ module ADIWG
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'xml'
-                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19115_2::VERSION
 
                     # pre-scan the internal object to create a new extents for each geometry
                     # ... that has supplemental information (temporal, vertical, identity).
@@ -116,14 +117,14 @@ module ADIWG
                         # ... it will match the supplemental information extent description
                         geoID = hGeoElement[:elementId]
                         if geoID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            geoID = geoType + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            geoID = geoType + @responseObj[:writerMissingIdCount]
                             hGeoElement[:elementId] = geoID
                         end
 
                         # build unique id for extent geometry
-                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                        extGeoID = geoType + @responseObj[:missingIdCount]
+                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                        extGeoID = geoType + @responseObj[:writerMissingIdCount]
 
                         intMetadataClass = InternalMetadata.new
                         intExtent = intMetadataClass.newExtent

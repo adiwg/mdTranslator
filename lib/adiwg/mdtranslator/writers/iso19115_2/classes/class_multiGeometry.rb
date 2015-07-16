@@ -44,8 +44,8 @@ module ADIWG
                         # gml:MultiGeometry attributes - gml:id - required
                         mGeoID = hGeoElement[:elementId]
                         if mGeoID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            mGeoID = 'multiGeo' + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            mGeoID = 'multiGeo' + @responseObj[:writerMissingIdCount]
                         end
                         attributes['gml:id'] = mGeoID
 

@@ -98,9 +98,7 @@ module ADIWG
                     # check the version name
                     if hVersion.has_key?('name')
                         s = hVersion['name']
-                        if !s.nil?
-                            @responseObj[:readerFound] = s
-                        else
+                        if s.nil?
                             @responseObj[:readerStructurePass] = false
                             @responseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
                             @responseObj[:readerStructureMessages] << 'The input file version: => name: is missing.'
@@ -156,8 +154,9 @@ module ADIWG
                         return false
                     end
 
+                    # the requested major version is supported
                     # get the full version number for this major version of mdJson
-                    require File.join(dirName, 'module_version')
+                    require File.join(dirName, 'version')
                     curVersion = ADIWG::Mdtranslator::Readers::MdJson::VERSION
                     @responseObj[:readerVersionUsed] = curVersion
                     aCurVersion = curVersion.split('.')
@@ -178,6 +177,20 @@ module ADIWG
 
                 end
 
+                # find the array pointer for a contact
+                def self.findContact(contactId)
+                    pointer = nil
+                    i = 0
+                    @intObj[:contacts].each do |contact|
+                        if contact[:contactId] == contactId
+                            pointer = i
+                        end
+                        i += 1
+                    end
+
+                    return pointer
+                end
+
                 # require modules for the requested version
                 def self.readerModule(moduleName)
                     majVersion = @responseObj[:readerVersionUsed].split('.')[0]
@@ -196,20 +209,6 @@ module ADIWG
                     end
 
                     return fileName
-                end
-
-                # find the array pointer for a contact
-                def self.findContact(contactId)
-                    pointer = nil
-                    i = 0
-                    @intObj[:contacts].each do |contact|
-                        if contact[:contactId] == contactId
-                            pointer = i
-                        end
-                        i += 1
-                    end
-
-                    return pointer
                 end
 
             end

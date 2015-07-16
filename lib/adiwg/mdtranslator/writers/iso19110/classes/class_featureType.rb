@@ -31,8 +31,8 @@ module ADIWG
                         fAttClass = FC_FeatureAttribute.new(@xml, @responseObj)
 
                         # create and identity for the entity
-                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                        entityID = 'entity' + @responseObj[:missingIdCount]
+                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                        entityID = 'entity' + @responseObj[:writerMissingIdCount]
                         @xml.tag!('gfc:FC_FeatureType', {'id' => entityID}) do
 
                             # feature type - type name - required

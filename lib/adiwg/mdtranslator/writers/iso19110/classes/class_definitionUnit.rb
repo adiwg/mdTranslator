@@ -23,8 +23,8 @@ module ADIWG
                     def writeXML(unit)
 
                         # create and identity for the unit
-                        @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                        unitID = 'unit' + @responseObj[:missingIdCount]
+                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
                         @xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
                         end

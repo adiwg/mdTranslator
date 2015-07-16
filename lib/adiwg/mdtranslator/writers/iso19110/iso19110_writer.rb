@@ -11,6 +11,7 @@
 require 'builder'
 require 'date'
 require 'uuidtools'
+require_relative 'version'
 require_relative 'class_FCfeatureCatalogue'
 
 module ADIWG
@@ -25,7 +26,7 @@ module ADIWG
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'xml'
-                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
 
                     # test for a valid dataDictionary object in the internal object
                     aDictionaries = intObj[:dataDictionary]

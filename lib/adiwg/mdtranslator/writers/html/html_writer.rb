@@ -5,7 +5,8 @@
 #   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
 
 require 'builder'
-require 'adiwg/mdtranslator/writers/html/md_html_writer'
+require_relative 'version'
+require_relative 'md_html_writer'
 
 module ADIWG
     module Mdtranslator
@@ -16,7 +17,7 @@ module ADIWG
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'html'
-                    responseObj[:writerVersion] = ADIWG::Mdtranslator::VERSION
+                    responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Html::VERSION
 
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)

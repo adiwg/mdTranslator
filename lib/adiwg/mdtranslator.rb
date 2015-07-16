@@ -72,8 +72,9 @@ module ADIWG
             #    or more messages to assist user in fixing file data problems.  Set by writer.
             # writerOutput: output file returned from the writer, set by writer
             # writerShowTags: include tags in XML output for empty elements
-            # missingIdCount: counter for creating unique elements IDs for ISO elements that did not
+            # writerMissingIdCount: counter for creating unique elements IDs for ISO elements that did not
             #    provide IDs in the input metadata file
+            # translatorVersion: current version of the mdTranslator
 
             def response
                 {
@@ -95,7 +96,8 @@ module ADIWG
                     writerMessages: [],
                     writerOutput: nil,
                     writerShowTags: false,
-                    missingIdCount: '_000'
+                    writerMissingIdCount: '_000',
+                    translatorVersion: nil
                 }
             end
 
@@ -112,6 +114,9 @@ module ADIWG
             responseObj[:readerValidationLevel] = validate
             responseObj[:writerName] = writer
             responseObj[:writerShowTags] = showAllTags
+
+            # add mdTranlator version to response hash
+            responseObj[:translatorVersion] = ADIWG::Mdtranslator::VERSION
 
             # handle readers
             if reader.nil? || reader == ''

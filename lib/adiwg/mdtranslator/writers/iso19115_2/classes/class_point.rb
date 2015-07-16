@@ -32,8 +32,8 @@ module ADIWG
                         # gml:Point attributes - gml:id - required
                         pointID = hGeoElement[:elementId]
                         if pointID.nil?
-                            @responseObj[:missingIdCount] = @responseObj[:missingIdCount].succ
-                            pointID = 'point' + @responseObj[:missingIdCount]
+                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
+                            pointID = 'point' + @responseObj[:writerMissingIdCount]
                         end
                         attributes['gml:id'] = pointID
 
