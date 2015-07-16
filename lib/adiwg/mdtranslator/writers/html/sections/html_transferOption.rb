@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_onlineResource'
-require 'html_medium'
+require_relative 'html_onlineResource'
+require_relative 'html_medium'
 
 module ADIWG
     module Mdtranslator
@@ -20,8 +21,8 @@ module ADIWG
                     def writeHtml(hTransOption)
 
                         # classes used
-                        htmlOlRes = $HtmlNS::MdHtmlOnlineResource.new(@html)
-                        htmlMedium = $HtmlNS::MdHtmlMedium.new(@html)
+                        htmlOlRes = MdHtmlOnlineResource.new(@html)
+                        htmlMedium = MdHtmlMedium.new(@html)
 
                         # transfer options - online options - online resource
                         aOlRes = hTransOption[:online]

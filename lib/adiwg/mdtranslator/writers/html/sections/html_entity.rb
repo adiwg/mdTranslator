@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2015-03-26 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_entityIndex'
-require 'html_entityAttribute'
+require_relative 'html_entityIndex'
+require_relative 'html_entityAttribute'
 
 module ADIWG
     module Mdtranslator
@@ -20,8 +21,8 @@ module ADIWG
                     def writeHtml(hEntity)
 
                         # classes used
-                        htmlEntIndex = $HtmlNS::MdHtmlEntityIndex.new(@html)
-                        htmlEntAttrib = $HtmlNS::MdHtmlEntityAttribute.new(@html)
+                        htmlEntIndex = MdHtmlEntityIndex.new(@html)
+                        htmlEntAttrib = MdHtmlEntityAttribute.new(@html)
 
                         # entity - user assigned entity id
                         s = hEntity[:entityId]

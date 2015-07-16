@@ -3,8 +3,9 @@
 
 # History:
 # 	Stan Smith 2015-03-25 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_responsibleParty'
+require_relative 'html_responsibleParty'
 
 module ADIWG
     module Mdtranslator
@@ -19,7 +20,7 @@ module ADIWG
                     def writeHtml(hUsage)
 
                         # classes used
-                        htmlRParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
+                        htmlRParty = MdHtmlResponsibleParty.new(@html)
 
                         # resource usage - use - required
                         @html.em('Use: ')

@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_dateTime'
-require 'html_responsibleParty'
+require_relative 'html_dateTime'
+require_relative 'html_responsibleParty'
 
 module ADIWG
     module Mdtranslator
@@ -20,8 +21,8 @@ module ADIWG
                     def writeHtml(hStep)
 
                         # classes used
-                        htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
-                        htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
+                        htmlDateTime = MdHtmlDateTime.new(@html)
+                        htmlResParty = MdHtmlResponsibleParty.new(@html)
 
                         # process step - id
                         s = hStep[:stepId]

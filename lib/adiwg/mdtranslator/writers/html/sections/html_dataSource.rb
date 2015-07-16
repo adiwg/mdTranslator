@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_citation'
-require 'html_processStep'
+require_relative 'html_citation'
+require_relative 'html_processStep'
 
 module ADIWG
     module Mdtranslator
@@ -20,8 +21,8 @@ module ADIWG
                     def writeHtml(hSource)
 
                         # classes used
-                        htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
-                        htmlPStep = $HtmlNS::MdHtmlProcessStep.new(@html)
+                        htmlCitation = MdHtmlCitation.new(@html)
+                        htmlPStep = MdHtmlProcessStep.new(@html)
 
                         # data source - description
                         s = hSource[:sourceDescription]

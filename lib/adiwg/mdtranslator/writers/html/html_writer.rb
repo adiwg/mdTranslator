@@ -3,6 +3,7 @@
 # History:
 # 	Stan Smith 2015-01-28 original script
 #   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require 'builder'
 require_relative 'version'
@@ -21,7 +22,7 @@ module ADIWG
 
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = $WriterNS::MdHtmlWriter.new(html, intObj)
+                    metadataWriter = MdHtmlWriter.new(html, intObj)
                     metadata = metadataWriter.writeHtml()
 
                     # set writer pass to true if no messages

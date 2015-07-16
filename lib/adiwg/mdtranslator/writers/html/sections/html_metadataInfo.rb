@@ -4,11 +4,12 @@
 # History:
 # 	Stan Smith 2015-03-24 original script
 #   Stan Smith 2016-06-12 added metadata character set
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_citation'
-require 'html_responsibleParty'
-require 'html_dateTime'
-require 'html_resourceMaint'
+require_relative 'html_citation'
+require_relative 'html_responsibleParty'
+require_relative 'html_dateTime'
+require_relative 'html_resourceMaint'
 
 module ADIWG
     module Mdtranslator
@@ -23,10 +24,10 @@ module ADIWG
                     def writeHtml(hMetaInfo)
 
                         # classes used
-                        htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
-                        htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
-                        htmlDateTime = $HtmlNS::MdHtmlDateTime.new(@html)
-                        htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
+                        htmlCitation = MdHtmlCitation.new(@html)
+                        htmlResParty = MdHtmlResponsibleParty.new(@html)
+                        htmlDateTime = MdHtmlDateTime.new(@html)
+                        htmlResMaint = MdHtmlResourceMaintenance.new(@html)
 
                         # metadata identifier
                         id = hMetaInfo[:metadataId][:identifier]

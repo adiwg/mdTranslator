@@ -3,10 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-04-03 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_dateTime'
-require 'html_timePeriod'
-require 'html_timeInstant'
+require_relative 'html_dateTime'
+require_relative 'html_timePeriod'
+require_relative 'html_timeInstant'
 
 module ADIWG
     module Mdtranslator
@@ -21,9 +22,9 @@ module ADIWG
                     def writeHtml(hTempEle)
 
                         # classes used
-                        htmlDT = $HtmlNS::MdHtmlDateTime.new(@html)
-                        htmlTimeP = $HtmlNS::MdHtmlTimePeriod.new(@html)
-                        htmlTimeI = $HtmlNS::MdHtmlTimeInstant.new(@html)
+                        htmlDT = MdHtmlDateTime.new(@html)
+                        htmlTimeP = MdHtmlTimePeriod.new(@html)
+                        htmlTimeI = MdHtmlTimeInstant.new(@html)
 
                         # temporal element - date
                         hDatetime = hTempEle[:date]

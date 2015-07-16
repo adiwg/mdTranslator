@@ -3,10 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-04-03 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_browseGraphic'
-require 'html_resourceFormat'
-require 'html_resourceUsage'
+require_relative 'html_browseGraphic'
+require_relative 'html_resourceFormat'
+require_relative 'html_resourceUsage'
 
 module ADIWG
     module Mdtranslator
@@ -21,9 +22,9 @@ module ADIWG
                     def writeHtml(resourceInfo)
 
                         # classes used
-                        htmlBGraph = $HtmlNS::MdHtmlBrowseGraphic.new(@html)
-                        htmlResForm = $HtmlNS::MdHtmlResourceFormat.new(@html)
-                        htmlResUse = $HtmlNS::MdHtmlResourceUsage.new(@html)
+                        htmlBGraph = MdHtmlBrowseGraphic.new(@html)
+                        htmlResForm = MdHtmlResourceFormat.new(@html)
+                        htmlResUse = MdHtmlResourceUsage.new(@html)
 
                         # general - graphic overview
                         resourceInfo[:graphicOverview].each do |hBrowseG|

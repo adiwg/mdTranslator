@@ -5,12 +5,10 @@
 #   Stan Smith 2015-04-07 replaced instruct! with declare! and html to
 #      ... conform with w3 html encoding declarations
 #   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), './sections'))
-
-require 'html_head'
-require 'html_body'
+require_relative 'sections/html_head'
+require_relative 'sections/html_body'
 
 module ADIWG
     module Mdtranslator
@@ -25,12 +23,9 @@ module ADIWG
 
                     def writeHtml()
 
-                        # set html section namespace
-                        $HtmlNS = ADIWG::Mdtranslator::Writers::Html
-
                         # classes used
-                        htmlHead = $HtmlNS::MdHtmlHead.new(@html)
-                        htmlBody = $HtmlNS::MdHtmlBody.new(@html)
+                        htmlHead = MdHtmlHead.new(@html)
+                        htmlBody = MdHtmlBody.new(@html)
 
                         # page
                         metadata = @html.declare! :DOCTYPE, :html

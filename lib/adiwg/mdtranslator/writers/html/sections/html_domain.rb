@@ -3,8 +3,9 @@
 
 # History:
 # 	Stan Smith 2015-03-26 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_domainMember'
+require_relative 'html_domainMember'
 
 module ADIWG
     module Mdtranslator
@@ -19,7 +20,7 @@ module ADIWG
                     def writeHtml(hDomain)
 
                         # classes used
-                        htmlDomMem = $HtmlNS::MdHtmlDomainMember.new(@html)
+                        htmlDomMem = MdHtmlDomainMember.new(@html)
 
                         # domain - user assigned domain id
                         s = hDomain[:domainId]

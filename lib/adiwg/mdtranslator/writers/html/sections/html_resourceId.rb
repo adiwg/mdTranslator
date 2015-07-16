@@ -3,8 +3,9 @@
 
 # History:
 # 	Stan Smith 2015-03-24 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_citation'
+require_relative 'html_citation'
 
 module ADIWG
     module Mdtranslator
@@ -19,7 +20,7 @@ module ADIWG
                     def writeHtml(hIdentifier)
 
                         # classes used
-                        htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
+                        htmlCitation = MdHtmlCitation.new(@html)
 
                         # identifier - required
                         @html.em('Identifier:')

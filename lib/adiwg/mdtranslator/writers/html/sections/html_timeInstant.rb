@@ -3,8 +3,9 @@
 
 # History:
 # 	Stan Smith 2015-04-03 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_dateTime'
+require_relative 'html_dateTime'
 
 module ADIWG
     module Mdtranslator
@@ -19,7 +20,7 @@ module ADIWG
                     def writeHtml(hTimeInstant)
 
                         # classes used
-                        htmlDT = $HtmlNS::MdHtmlDateTime.new(@html)
+                        htmlDT = MdHtmlDateTime.new(@html)
 
                         # time instant - id
                         s = hTimeInstant[:timeId]

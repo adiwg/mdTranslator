@@ -4,15 +4,16 @@
 # History:
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2014-04-10 add open and close buttons
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_metadataInfo'
-require 'html_resourceInfo'
-require 'html_dataDictionary'
-require 'html_citation'
-require 'html_responsibleParty'
-require 'html_orderProcess'
-require 'html_format'
-require 'html_transferOption'
+require_relative 'html_metadataInfo'
+require_relative 'html_resourceInfo'
+require_relative 'html_dataDictionary'
+require_relative 'html_citation'
+require_relative 'html_responsibleParty'
+require_relative 'html_orderProcess'
+require_relative 'html_format'
+require_relative 'html_transferOption'
 
 module ADIWG
     module Mdtranslator
@@ -28,14 +29,14 @@ module ADIWG
                         @html.body do
 
                             # classes used
-                            htmlMetaInfo = $HtmlNS::MdHtmlMetadataInfo.new(@html)
-                            htmlResInfo = $HtmlNS::MdHtmlResourceInfo.new(@html)
-                            htmlDataD = $HtmlNS::MdHtmlDataDictionary.new(@html)
-                            htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
-                            htmlResParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
-                            htmlOrderProc = $HtmlNS::MdHtmlOrderProcess.new(@html)
-                            htmlFormat = $HtmlNS::MdHtmlFormat.new(@html)
-                            htmlTranOpt = $HtmlNS::MdHtmlTransferOption.new(@html)
+                            htmlMetaInfo = MdHtmlMetadataInfo.new(@html)
+                            htmlResInfo = MdHtmlResourceInfo.new(@html)
+                            htmlDataD = MdHtmlDataDictionary.new(@html)
+                            htmlCitation = MdHtmlCitation.new(@html)
+                            htmlResParty = MdHtmlResponsibleParty.new(@html)
+                            htmlOrderProc = MdHtmlOrderProcess.new(@html)
+                            htmlFormat = MdHtmlFormat.new(@html)
+                            htmlTranOpt = MdHtmlTransferOption.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]

@@ -4,8 +4,9 @@
 # History:
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_onlineResource'
+require_relative 'html_onlineResource'
 
 module ADIWG
     module Mdtranslator
@@ -20,10 +21,10 @@ module ADIWG
                     def writeHtml(contactId)
 
                         # classes used
-                        htmlOlRes = $HtmlNS::MdHtmlOnlineResource.new(@html)
+                        htmlOlRes = MdHtmlOnlineResource.new(@html)
 
                         # find contact in contact list
-                        hContact = $HtmlNS::MdHtmlWriter.getContact(contactId)
+                        hContact = MdHtmlWriter.getContact(contactId)
 
                         # contact - individual name
                         s = hContact[:indName]

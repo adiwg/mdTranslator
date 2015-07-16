@@ -3,19 +3,20 @@
 
 # History:
 # 	Stan Smith 2015-03-24 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_resourceGeneral'
-require 'html_resourceContact'
-require 'html_resourceMaint'
-require 'html_keyword'
-require 'html_legalConstraint'
-require 'html_securityConstraint'
-require 'html_taxonomy'
-require 'html_spatialReferenceSystem'
-require 'html_resolution'
-require 'html_dataLineage'
-require 'html_extent'
-require 'html_resourceOther'
+require_relative 'html_resourceGeneral'
+require_relative 'html_resourceContact'
+require_relative 'html_resourceMaint'
+require_relative 'html_keyword'
+require_relative 'html_legalConstraint'
+require_relative 'html_securityConstraint'
+require_relative 'html_taxonomy'
+require_relative 'html_spatialReferenceSystem'
+require_relative 'html_resolution'
+require_relative 'html_dataLineage'
+require_relative 'html_extent'
+require_relative 'html_resourceOther'
 
 module ADIWG
     module Mdtranslator
@@ -30,18 +31,18 @@ module ADIWG
                     def writeHtml(resourceInfo)
 
                         # classes used
-                        htmlResGen = $HtmlNS::MdHtmlResourceGeneral.new(@html)
-                        htmlResCon = $HtmlNS::MdHtmlResourceContact.new(@html)
-                        htmlResMaint = $HtmlNS::MdHtmlResourceMaintenance.new(@html)
-                        htmlKeyword = $HtmlNS::MdHtmlKeyword.new(@html)
-                        htmlLegalCon = $HtmlNS::MdHtmlLegalConstraint.new(@html)
-                        htmlSecCon = $HtmlNS::MdHtmlSecurityConstraint.new(@html)
-                        htmlTaxon = $HtmlNS::MdHtmlTaxonomy.new(@html)
-                        htmlSpatialRef = $HtmlNS::MdHtmlSpatialReferenceSystem.new(@html)
-                        htmlResolution = $HtmlNS::MdHtmlResolution.new(@html)
-                        htmlLineage = $HtmlNS::MdHtmlDataLineage.new(@html)
-                        htmlExtent = $HtmlNS::MdHtmlExtent.new(@html)
-                        htmlOther = $HtmlNS::MdHtmlResourceOther.new(@html)
+                        htmlResGen = MdHtmlResourceGeneral.new(@html)
+                        htmlResCon = MdHtmlResourceContact.new(@html)
+                        htmlResMaint = MdHtmlResourceMaintenance.new(@html)
+                        htmlKeyword = MdHtmlKeyword.new(@html)
+                        htmlLegalCon = MdHtmlLegalConstraint.new(@html)
+                        htmlSecCon = MdHtmlSecurityConstraint.new(@html)
+                        htmlTaxon = MdHtmlTaxonomy.new(@html)
+                        htmlSpatialRef = MdHtmlSpatialReferenceSystem.new(@html)
+                        htmlResolution = MdHtmlResolution.new(@html)
+                        htmlLineage = MdHtmlDataLineage.new(@html)
+                        htmlExtent = MdHtmlExtent.new(@html)
+                        htmlOther = MdHtmlResourceOther.new(@html)
 
                         # resource information - general
                         @html.details do

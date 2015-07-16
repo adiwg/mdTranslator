@@ -3,10 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-03-26 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_citation'
-require 'html_domain'
-require 'html_entity'
+require_relative 'html_citation'
+require_relative 'html_domain'
+require_relative 'html_entity'
 
 module ADIWG
     module Mdtranslator
@@ -21,9 +22,9 @@ module ADIWG
                     def writeHtml(hDictionary)
 
                         # classes used
-                        htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
-                        htmlDomain = $HtmlNS::MdHtmlDictionaryDomain.new(@html)
-                        htmlEntity = $HtmlNS::MdHtmlDictionaryEntity.new(@html)
+                        htmlCitation = MdHtmlCitation.new(@html)
+                        htmlDomain = MdHtmlDictionaryDomain.new(@html)
+                        htmlEntity = MdHtmlDictionaryEntity.new(@html)
 
                         hDictId = hDictionary[:dictionaryInfo]
                         aDictDom = hDictionary[:domains]

@@ -3,10 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-03-31 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_geographicElement'
-require 'html_temporalElement'
-require 'html_verticalElement'
+require_relative 'html_geographicElement'
+require_relative 'html_temporalElement'
+require_relative 'html_verticalElement'
 
 module ADIWG
     module Mdtranslator
@@ -21,9 +22,9 @@ module ADIWG
                     def writeHtml(hExtent, extNum)
 
                         # classes used
-                        htmlGeoEle = $HtmlNS::MdHtmlGeographicElement.new(@html)
-                        htmlTempEle = $HtmlNS::MdHtmlTemporalElement.new(@html)
-                        htmlVertEle = $HtmlNS::MdHtmlVerticalElement.new(@html)
+                        htmlGeoEle = MdHtmlGeographicElement.new(@html)
+                        htmlTempEle = MdHtmlTemporalElement.new(@html)
+                        htmlVertEle = MdHtmlVerticalElement.new(@html)
 
                         aGeoEle = hExtent[:extGeoElements]
                         aTempEle = hExtent[:extTempElements]

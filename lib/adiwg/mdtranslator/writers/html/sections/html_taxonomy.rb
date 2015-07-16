@@ -3,10 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-03-25 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_citation'
-require 'html_responsibleParty'
-require 'html_taxonomyClass'
+require_relative 'html_citation'
+require_relative 'html_responsibleParty'
+require_relative 'html_taxonomyClass'
 
 module ADIWG
     module Mdtranslator
@@ -21,9 +22,9 @@ module ADIWG
                     def writeHtml(hTaxon)
 
                         # classes used
-                        htmlCitation = $HtmlNS::MdHtmlCitation.new(@html)
-                        htmlRParty = $HtmlNS::MdHtmlResponsibleParty.new(@html)
-                        htmlTaxClass = $HtmlNS::MdHtmlTaxonomyClass.new(@html)
+                        htmlCitation = MdHtmlCitation.new(@html)
+                        htmlRParty = MdHtmlResponsibleParty.new(@html)
+                        htmlTaxClass = MdHtmlTaxonomyClass.new(@html)
 
                         # taxonomy - taxonomic class system - citation
                         aTaxSys = hTaxon[:taxClassSys]

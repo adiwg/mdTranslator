@@ -3,9 +3,10 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require 'html_processStep'
-require 'html_dataSource'
+require_relative 'html_processStep'
+require_relative 'html_dataSource'
 
 module ADIWG
     module Mdtranslator
@@ -20,8 +21,8 @@ module ADIWG
                     def writeHtml(hLineage)
 
                         # classes used
-                        htmlPStep = $HtmlNS::MdHtmlProcessStep.new(@html)
-                        htmlDSource = $HtmlNS::MdHtmlDataSource.new(@html)
+                        htmlPStep = MdHtmlProcessStep.new(@html)
+                        htmlDSource = MdHtmlDataSource.new(@html)
 
                         # lineage - statement
                         s = hLineage[:statement]
