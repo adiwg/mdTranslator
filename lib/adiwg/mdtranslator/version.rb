@@ -51,6 +51,7 @@
 # 1.3.0 2015-07-16 added version number management for readers and writers
 #              --- moved module_coordinates to internal
 # 1.3.0 2015-07-17 suppress minor section anchor links when no section data available is in html writer
+#              --- added meta tags to the html writer
 
 module ADIWG
     module Mdtranslator

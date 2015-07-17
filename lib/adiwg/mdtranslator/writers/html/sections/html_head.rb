@@ -17,8 +17,12 @@ module ADIWG
 
                     def writeHtml()
                         @html.head do
-                            @html.meta({'http-equiv'=>'Content-Type','content'=>'text/html; charset=utf-8'})
-                            @html.title('ADIWG mdTranslator HTML writer output')
+                            @html.meta({'http-equiv'=>'Content-Type', 'content'=>'text/html; charset=utf-8'})
+                            @html.title('HTML Metadata report')
+                            @html.meta('name'=>'generator', 'content'=>'constructed using ADIwg mdTranslator tools available at https://github.com/adiwg ')
+                            @html.meta('name'=>'description', 'content'=>'mdTranslator software is an open-source project of the Alaska Data Integration working group (ADIwg).  Alaska Data Integration working group is not responsible for the content of this metadata record')
+                            @html.meta('name'=>'keywords', 'content'=>'metadata, ADIwg, mdTranslator')
+                            @html.comment!('metadata record generated ' + Time.now.to_s)
 
                             # add inline css
                             # read css from file
