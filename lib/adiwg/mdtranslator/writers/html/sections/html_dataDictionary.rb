@@ -68,9 +68,9 @@ module ADIWG
                         end
 
                         # data dictionary - resource domains
-                        @html.details do
-                            @html.summary('Resource Domains', {'class'=>'h4'})
-                            if !aDictDom.empty?
+                        unless aDictDom.empty?
+                            @html.details do
+                                @html.summary('Resource Domains', {'class'=>'h4'})
                                 aDictDom.each do |hDomain|
                                     @html.section(:class=>'block') do
                                         @html.details do
@@ -85,9 +85,9 @@ module ADIWG
                         end
 
                         # data dictionary - resource schema
-                        @html.details do
-                            @html.summary('Resource Entities', {'class'=>'h4'})
-                            if !aDictEnt.empty?
+                        unless aDictEnt.empty?
+                            @html.details do
+                                @html.summary('Resource Entities', {'class'=>'h4'})
                                 aDictEnt.each do |hEntity|
                                     @html.section(:class=>'block') do
                                         @html.details do

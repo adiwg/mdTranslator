@@ -116,7 +116,7 @@ module ADIWG
 
                         # parent metadata - citation
                         hParent = hMetaInfo[:parentMetadata]
-                        if !hParent.empty?
+                        unless hParent.empty?
                             @html.details do
                                 @html.summary('Parent Metadata Citation', {'id'=>'metadata-parentInfo', 'class'=>'h3'})
                                 @html.section(:class=>'block') do

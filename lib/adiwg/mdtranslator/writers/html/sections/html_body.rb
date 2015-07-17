@@ -40,8 +40,9 @@ module ADIWG
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
-                            hMetaInfo = hMetadata[:metadataInfo]
                             aDataDict = intObj[:dataDictionary]
+
+                            hMetaInfo = intObj[:metadata][:metadataInfo]
                             aDistributor = intObj[:metadata][:distributorInfo]
                             aAssRes = intObj[:metadata][:associatedResources]
                             aAddDocs = intObj[:metadata][:additionalDocuments]
@@ -78,36 +79,58 @@ module ADIWG
                                 @html.h3('Page Index')
                                 @html.a('Metadata Information Section','href'=>'#metadataInfo')
                                 @html.section(:class=>'block') do
-                                    @html.a('Metadata Identifier', 'href'=>'#metadata-identifier')
-                                    @html.br
-                                    @html.a('Metadata Record Information', 'href'=>'#metadata-recordInfo')
-                                    @html.br
-                                    @html.a('Parent Metadata Citation', 'href'=>'#metadata-parentInfo')
+                                    if !hMetaInfo.empty?
+                                        unless hMetaInfo[:metadataId].empty?
+                                            @html.a('Metadata Identifier', 'href'=>'#metadata-identifier')
+                                            @html.br
+                                        end
+                                        @html.a('Metadata Record Information', 'href'=>'#metadata-recordInfo')
+                                        unless hMetaInfo[:parentMetadata].empty?
+                                            @html.br
+                                            @html.a('Parent Metadata Citation', 'href'=>'#metadata-parentInfo')
+                                        end
+                                    end
                                 end
-                                @html.br
                                 @html.a('Resource Information Section','href'=>'#resourceInfo')
                                 @html.section(:class=>'block') do
                                     @html.a('Resource Identification', 'href'=>'#resourceInfo-general')
                                     @html.br
                                     @html.a('Contacts', 'href'=>'#resourceInfo-contacts')
-                                    @html.br
-                                    @html.a('Keywords', 'href'=>'#resourceInfo-keywords')
-                                    @html.br
-                                    @html.a('Taxonomy', 'href'=>'#resourceInfo-taxonomy')
-                                    @html.br
-                                    @html.a('Spatial Reference', 'href'=>'#resourceInfo-spatialRef')
-                                    @html.br
-                                    @html.a('Extents (Geographic, Temporal, & Vertical Space)', 'href'=>'#resourceInfo-extents')
-                                    @html.br
-                                    @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
-                                    @html.br
-                                    @html.a('Constraints', 'href'=>'#resourceInfo-constraints')
-                                    @html.br
-                                    @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
+                                    unless hMetadata[:resourceInfo][:descriptiveKeywords].empty?
+                                        @html.br
+                                        @html.a('Keywords', 'href'=>'#resourceInfo-keywords')
+                                    end
+                                    unless hMetadata[:resourceInfo][:taxonomy].empty?
+                                        @html.br
+                                        @html.a('Taxonomy', 'href'=>'#resourceInfo-taxonomy')
+                                    end
+                                    unless hMetadata[:resourceInfo][:spatialReferenceSystem].empty? &&
+                                        hMetadata[:resourceInfo][:spatialRepresentationTypes].empty? &&
+                                        hMetadata[:resourceInfo][:spatialResolutions].empty?
+                                        @html.br
+                                        @html.a('Spatial Reference', 'href'=>'#resourceInfo-spatialRef')
+                                    end
+                                    unless hMetadata[:resourceInfo][:extents].empty?
+                                        @html.br
+                                        @html.a('Extents (Geographic, Temporal, & Vertical Space)', 'href'=>'#resourceInfo-extents')
+                                    end
+                                    unless hMetadata[:resourceInfo][:dataQualityInfo].empty?
+                                        @html.br
+                                        @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
+                                    end
+                                    unless hMetadata[:resourceInfo][:useConstraints].empty? &&
+                                        hMetadata[:resourceInfo][:legalConstraints].empty? &&
+                                        hMetadata[:resourceInfo][:securityConstraints].empty?
+                                        @html.br
+                                        @html.a('Constraints', 'href'=>'#resourceInfo-constraints')
+                                    end
+                                    unless hMetadata[:resourceInfo][:resourceMaint].empty?
+                                        @html.br
+                                        @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
+                                    end
                                     @html.br
                                     @html.a('Other Resource Information', 'href'=>'#resourceInfo-other')
                                 end
-                                @html.br
                                 @html.a('Data Dictionary Section','href'=>'#dataDictionary')
                                 @html.br
                                 @html.a('Resource Distribution Section','href'=>'#resourceDistribution')
@@ -134,7 +157,7 @@ module ADIWG
                             @html.h2('Metadata Information', 'id'=>'metadataInfo')
                             if !hMetaInfo.empty?
                                 @html.section(:class=>'block') do
-                                  htmlMetaInfo.writeHtml(hMetaInfo)
+                                   htmlMetaInfo.writeHtml(hMetaInfo)
                                 end
                             end
                             @html.hr
