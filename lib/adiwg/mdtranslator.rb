@@ -21,6 +21,7 @@
 #   Stan Smith 2015-07-14 deleted readerFound
 #   Stan Smith 2015-07-14 renamed readerVersionFound to readerVersionRequested
 #   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
+#   Stan Smith 2015-07-17 added support for user supplied CSS for html writer
 
 # required by readers and writers
 require 'adiwg/mdtranslator/version'
@@ -34,7 +35,7 @@ require 'adiwg/mdtranslator/internal/module_coordinates'
 module ADIWG
     module Mdtranslator
 
-        class ResponseHash
+        def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false, css: nil, cssLink: nil)
 
             # the reader and writer specified in the translate parameter string should load and
             #     return this hash ...
@@ -78,38 +79,33 @@ module ADIWG
             #    provide IDs in the input metadata file
             # translatorVersion: current version of the mdTranslator
 
-            def response
-                {
-                    readerFormat: nil,
-                    readerStructurePass: nil,
-                    readerStructureMessages: [],
-                    readerRequested: nil,
-                    readerVersionRequested: nil,
-                    readerVersionUsed: nil,
-                    readerValidationLevel: nil,
-                    readerValidationPass: nil,
-                    readerValidationMessages: [],
-                    readerExecutionPass: nil,
-                    readerExecutionMessages: [],
-                    writerName: nil,
-                    writerVersion: nil,
-                    writerFormat: nil,
-                    writerPass: nil,
-                    writerMessages: [],
-                    writerOutput: nil,
-                    writerShowTags: false,
-                    writerMissingIdCount: '_000',
-                    translatorVersion: nil
-                }
-            end
+            responseObj =  {
+                readerFormat: nil,
+                readerStructurePass: nil,
+                readerStructureMessages: [],
+                readerRequested: nil,
+                readerVersionRequested: nil,
+                readerVersionUsed: nil,
+                readerValidationLevel: nil,
+                readerValidationPass: nil,
+                readerValidationMessages: [],
+                readerExecutionPass: nil,
+                readerExecutionMessages: [],
+                writerName: nil,
+                writerVersion: nil,
+                writerFormat: nil,
+                writerPass: nil,
+                writerMessages: [],
+                writerOutput: nil,
+                writerShowTags: false,
+                writerMissingIdCount: '_000',
+                translatorVersion: nil
+            }
 
-        end
-
-        def self.translate(file:, reader:, validate: 'normal', writer: nil, showAllTags: false)
-
-            # create a new instance of the response hash for this translation run
-            responseClass = ResponseHash.new
-            responseObj = responseClass.response
+            paramsObj = {
+                cssLink: cssLink,
+                css: css
+            }
 
             # add the passed in parameters to the response hash
             responseObj[:readerRequested] = reader
@@ -145,7 +141,7 @@ module ADIWG
                 responseObj[:writerMessages] << 'Writer name was not provided.'
             else
                 require File.join(File.dirname(__FILE__), 'mdtranslator/writers/mdWriters')
-                ADIWG::Mdtranslator::Writers.handleWriter(intObj, responseObj)
+                ADIWG::Mdtranslator::Writers.handleWriter(intObj, responseObj, paramsObj)
             end
 
             return responseObj

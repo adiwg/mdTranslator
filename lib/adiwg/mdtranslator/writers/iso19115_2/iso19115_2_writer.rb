@@ -22,7 +22,7 @@ module ADIWG
         module Writers
             module Iso19115_2
 
-                def self.startWriter(intObj, responseObj)
+                def self.startWriter(intObj, responseObj, paramsObj)
 
                     # make internal and response objects available to the instance
                     @intObj = intObj

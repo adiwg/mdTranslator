@@ -5,6 +5,7 @@
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2014-04-10 add open and close buttons
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#   Stan Smith 2015-07-20 moved mdTranslator logo to html_inlineCss.css
 
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
@@ -47,13 +48,7 @@ module ADIWG
                             aAssRes = intObj[:metadata][:associatedResources]
                             aAddDocs = intObj[:metadata][:additionalDocuments]
 
-                            # set page title with logo
-                            # read logo from file
-                            path = File.join(File.dirname(__FILE__), 'logo150.txt')
-                            file = File.open(path, 'r')
-                            logo = file.read
-                            file.close
-
+                            # set page title and logo
                             # side navigation
                             @html.div('id'=>'sideNav') do
                             # add top anchor and button
@@ -66,7 +61,8 @@ module ADIWG
 
                             # main header
                             @html.h2('id'=>'mainHeader') do
-                                @html.img('width'=>'150', 'height'=>'39', 'title'=>'', 'alt'=>'', 'src'=>logo)
+                                # added blank to span tag to force builder to create closing tag
+                                @html.span('','id'=>'logo')
                                 @html.span('Metadata Report')
                                 @html.span('HTML','class'=>'version')
                             end

@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2015-04-07 added metadata tag to head
+#   Stan Smith 2015-07-17 added support for user supplied css
+#   Stan Smith 2015-07-20 moved mdTranslator logo to html_inlineCss.css
 
 module ADIWG
     module Mdtranslator
@@ -11,8 +13,9 @@ module ADIWG
             module Html
 
                 class MdHtmlHead
-                    def initialize(html)
+                    def initialize(html, paramsObj)
                         @html = html
+                        @paramsObj = paramsObj
                     end
 
                     def writeHtml()
@@ -33,6 +36,14 @@ module ADIWG
 
                             @html.style do
                                 @html.text!(css)
+                            end
+
+                            # append user supplied css
+                            if @paramsObj[:cssLink]
+                                @html.link('rel'=>'stylesheet', 'href'=> @paramsObj[:cssLink])
+                            end
+                            if @paramsObj[:css]
+                                @html.style(@paramsObj[:css])
                             end
 
                             # add inline javascript

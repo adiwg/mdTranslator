@@ -16,15 +16,16 @@ module ADIWG
             module Html
 
                 class MdHtmlWriter
-                    def initialize(html,intObj)
+                    def initialize(html,intObj, paramsObj)
                         @html = html
                         @@intObj = intObj
+                        @paramsObj = paramsObj
                     end
 
                     def writeHtml()
 
                         # classes used
-                        htmlHead = MdHtmlHead.new(@html)
+                        htmlHead = MdHtmlHead.new(@html, @paramsObj)
                         htmlBody = MdHtmlBody.new(@html)
 
                         # page

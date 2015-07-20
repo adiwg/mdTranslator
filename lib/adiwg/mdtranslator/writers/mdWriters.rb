@@ -12,7 +12,7 @@ module ADIWG
     module Mdtranslator
         module Writers
 
-            def self.handleWriter(intObj, responseObj)
+            def self.handleWriter(intObj, responseObj, paramsObj)
 
                 # use writerName from responseObj to build directory path to writer
                 # the writer's high level folder must be under the 'writers' directory
@@ -28,7 +28,7 @@ module ADIWG
                     writerNS[0] = writerNS[0].upcase
 
                     # pass internal object and response object to the writer
-                    responseObj[:writerOutput] = ADIWG::Mdtranslator::Writers.const_get(writerNS).startWriter(intObj, responseObj)
+                    responseObj[:writerOutput] = ADIWG::Mdtranslator::Writers.const_get(writerNS).startWriter(intObj, responseObj, paramsObj)
 
                 else
                     # directory path was not found

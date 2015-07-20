@@ -14,7 +14,7 @@ module ADIWG
         module Writers
             module Html
 
-                def self.startWriter(intObj, responseObj)
+                def self.startWriter(intObj, responseObj, paramsObj)
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'html'
@@ -22,7 +22,7 @@ module ADIWG
 
                     # create new HTML document
                     html = Builder::XmlMarkup.new(indent: 3)
-                    metadataWriter = MdHtmlWriter.new(html, intObj)
+                    metadataWriter = MdHtmlWriter.new(html, intObj, paramsObj)
                     metadata = metadataWriter.writeHtml()
 
                     # set writer pass to true if no messages
