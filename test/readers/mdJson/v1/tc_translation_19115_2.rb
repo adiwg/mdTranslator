@@ -10,7 +10,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'
 
-class TestTranslation_v1_0 < MiniTest::Test
+class TestTranslation_v1 < MiniTest::Test
 
     @@reader = 'mdJson'
     @@writer = 'iso19115_2'
@@ -31,13 +31,11 @@ class TestTranslation_v1_0 < MiniTest::Test
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
-        assert_equal(@@reader, metadata[:readerFound])
+        assert_equal(@@reader, metadata[:readerRequested])
 
         # major version
         assert_equal(version[0], metadata[:readerVersionUsed].split('.')[0])
 
-        # minor version
-        assert_equal(version[1], metadata[:readerVersionUsed].split('.')[1])
         assert metadata[:readerValidationPass], "reader validation failed: \n" + metadata[:readerValidationMessages].join(',')
         assert_equal(@@writer, metadata[:writerName])
         assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')
@@ -59,7 +57,7 @@ class TestTranslation_v1_0 < MiniTest::Test
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
-        assert_equal(@@reader, metadata[:readerFound])
+        assert_equal(@@reader, metadata[:readerRequested])
         assert metadata[:readerValidationPass], "reader validation failed: \n" + metadata[:readerValidationMessages].join(',')
         assert_equal(@@writer, metadata[:writerName])
         assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')

@@ -1,20 +1,18 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_dictionaryInfo
+# reader / mdJson / module_domain
 
 # History:
 # Stan Smith 2015-01-20 original script
 # Stan Smith 2015-06-22 refactored setup to after removal of globals
 
-# set globals used by mdJson_reader.rb before requiring modules
+# set reader version used by mdJson_reader.rb to require correct modules
 module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
 
-                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
-
                 @responseObj = {
-                    readerVersionUsed: '1.0'
+                    readerVersionUsed: '1.2.0'
                 }
 
             end
@@ -26,12 +24,12 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_dictionaryInfo'
+require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_domain'
 
-class TestReaderMdJsonDictionaryInfo_v1_0 < MiniTest::Test
+class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::DictionaryInfo
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
     @@responseObj = {}
 
     # get json file for tests from examples folder
@@ -43,67 +41,68 @@ class TestReaderMdJsonDictionaryInfo_v1_0 < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn[0]['dictionaryInfo']
+    @@hIn = aIn[0]['domain'][0]
 
-    def test_complete_dictionaryInfo_object
+    def test_complete_domain_object
+
 
         hIn = @@hIn.clone
-
-        # delete citation
-        # citation is tested in tc_reader_mdjson_citation.rb
-        hIn.delete('citation')
-
+        hIn.delete('member')
         intObj = {
-            dictCitation: {},
-            dictDescription: 'description',
-            dictResourceType: 'resourceType',
-            dictLanguage: 'language'
+            domainId: 'domainId1',
+            domainName: 'commonName1',
+            domainCode: 'codeName1',
+            domainDescription: 'description1',
+            domainItems: []
         }
 
         assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
-    def test_empty_dictionaryInfo_elements
+    def test_empty_domain_elements
 
         hIn = @@hIn.clone
-        hIn['citation'] = {}
+        hIn['domainId'] = ''
+        hIn['commonName'] = ''
+        hIn['codeName'] = ''
         hIn['description'] = ''
-        hIn['resourceType'] = ''
-        hIn['language'] = ''
+        hIn['member'] = []
 
         intObj = {
-            dictCitation: {},
-            dictDescription: nil,
-            dictResourceType: nil,
-            dictLanguage: nil
+            domainId: nil,
+            domainName: nil,
+            domainCode: nil,
+            domainDescription: nil,
+            domainItems: []
         }
 
         assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
-    def test_missing_dictionaryInfo_elements
+    def test_missing_domain_elements
 
-        # except for citation
+        # except for domainId
         hIn = @@hIn.clone
-        hIn['citation'] = {}
+        hIn.delete('commonName')
+        hIn.delete('codeName')
         hIn.delete('description')
-        hIn.delete('resourceType')
-        hIn.delete('language')
+        hIn.delete('member')
 
         intObj = {
-            dictCitation: {},
-            dictDescription: nil,
-            dictResourceType: nil,
-            dictLanguage: nil
+            domainId: 'domainId1',
+            domainName: nil,
+            domainCode: nil,
+            domainDescription: nil,
+            domainItems: []
         }
 
         assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
 
     end
 
-    def test_empty_dictionaryInfo_object
+    def test_empty_domain_object
 
         hIn = {}
 

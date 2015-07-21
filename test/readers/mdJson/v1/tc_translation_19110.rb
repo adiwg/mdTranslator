@@ -6,16 +6,14 @@
 # Stan Smith 2015-01-16 changed ADIWG::Mdtranslator.translate() to keyword parameters
 # Stan Smith 2015-06-22 refactored setup to after removal of globals
 
-# set globals used by mdJson_reader.rb before requiring modules
+# set reader version used by mdJson_reader.rb to require correct modules
 module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
 
-                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
-
                 @responseObj = {
-                    readerVersionUsed: '1.0'
+                    readerVersionUsed: '1.2.0'
                 }
 
             end
@@ -28,7 +26,7 @@ require 'json'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg-mdtranslator'
 
-class TestTranslation_v1_0 < MiniTest::Test
+class TestTranslation_v1 < MiniTest::Test
 
 
     @@reader = 'mdJson'
@@ -49,7 +47,7 @@ class TestTranslation_v1_0 < MiniTest::Test
 
         assert_equal('json', metadata[:readerFormat], 'Check reader name')
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
-        assert_equal(@@reader, metadata[:readerFound])
+        assert_equal(@@reader, metadata[:readerRequested])
         assert metadata[:readerValidationPass], "reader validation failed: \n" + metadata[:readerValidationMessages].join(',')
         assert_equal('iso19110', metadata[:writerName])
         assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')

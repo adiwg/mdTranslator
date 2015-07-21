@@ -7,7 +7,7 @@
 require 'minitest/autorun'
 require 'builder'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/writers/iso/classes/class_address'
+require 'adiwg/mdtranslator/writers/iso19115_2/classes/class_address'
 
 class TestWriter191152Address < MiniTest::Test
 
@@ -26,7 +26,7 @@ class TestWriter191152Address < MiniTest::Test
     @@intAdd[:eMailList] = %w[example1@example.com example2@example.com]
 
     # set namespace
-    @@NameSpace = ADIWG::Mdtranslator::Writers::Iso
+    @@NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
 
     def test_complete_address_object
 

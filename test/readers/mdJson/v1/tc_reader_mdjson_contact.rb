@@ -5,16 +5,14 @@
 # Stan Smith 2014-12-19 original script
 # Stan Smith 2015-06-22 refactored setup to after removal of globals
 
-# set globals used by mdJson_reader.rb before requiring modules
+# set reader version used by mdJson_reader.rb to require correct modules
 module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
 
-                $ReaderNS = ADIWG::Mdtranslator::Readers::MdJson
-
                 @responseObj = {
-                    readerVersionUsed: '1.0'
+                    readerVersionUsed: '1.2.0'
                 }
 
             end
@@ -26,7 +24,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules_1.0/module_contacts'
+require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_contacts'
 
 class TestReaderMdJsonContact_v1_0 < MiniTest::Test
 
