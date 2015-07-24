@@ -48,6 +48,7 @@
 #   Stan Smith 2014-12-01 added data dictionary
 #   Stan Smith 2015-02-17 add entity and attribute alias
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
+#   Stan Smith 2015-07-23 added gridInfo, gridDimension, rasterInfo, rasterBandGroup, rasterBand for 1.3.0
 
 class InternalMetadata
 
@@ -200,9 +201,13 @@ class InternalMetadata
     end
 
     def newResourceId
+        # handles both MD_Identifier and RS_Identifier
         intObj = {
             identifier: nil,
             identifierType: nil,
+            identifierNamespace: nil,
+            identifierVersion: nil,
+            identifierDescription: nil,
             identifierCitation: {}
         }
     end
@@ -574,6 +579,74 @@ class InternalMetadata
             fkLocalAttributes: [],
             fkReferencedEntity: nil,
             fkReferencedAttributes: []
+        }
+    end
+
+    def newGridInfo
+        intObj = {
+            dimensions: nil,
+            dimensionInfo: [],
+            dimensionGeometry: nil,
+            dimensionTransformParams: false
+        }
+    end
+
+    def newDimensionInfo
+        intObj = {
+            dimensionType: nil,
+            dimensionTitle: nil,
+            dimensionDescription: nil,
+            dimensionSize: nil,
+            resolution: nil,
+            resolutionUnits: nil
+        }
+    end
+
+    def newRasterInfo
+        intObj = {
+            rasterDescription: nil,
+            processingLevel: {},
+            illuminationElevationAngle: nil,
+            illuminationAzimuthAngle: nil,
+            imageCondition: nil,
+            imageQuality: {},
+            cloudCoverPercent: nil,
+            compressionQuality: nil,
+            triangulationInfo: false,
+            radiometricCalibrationInfo: false,
+            cameraCalibrationInfo: false,
+            filmDistortionInfo: false,
+            lensDistortionInfo: false,
+            rasterBandGroups: []
+        }
+    end
+
+    def newRasterBandGroup
+        intObj = {
+            bandGroupContents: [],
+            bands: []
+        }
+    end
+
+    def newRasterBand
+        intObj = {
+            bandName: nil,
+            bandType: nil,
+            bandDescription: nil,
+            minValue: nil,
+            maxValue: nil,
+            bandUnits: nil,
+            scaleFactor: nil,
+            offset: nil,
+            meanValue: nil,
+            numberOfValue: nil,
+            bitsPerValue: nil,
+            toneGradation: nil,
+            bandDomain: [],
+            sensorMin: nil,
+            sensorMax: nil,
+            sensorUnits: nil,
+            sensorPeakResponse: nil
         }
     end
 

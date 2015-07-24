@@ -16,31 +16,47 @@ module ADIWG
 
                     def self.unpack(hDoItem, responseObj)
 
+                        # return nil object if input is empty
+                        intItem = nil
+                        return if hDoItem.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intItem = intMetadataClass.newDomainItem
 
-                        # data dictionary domain item - name
+                        # data dictionary domain item - name - required
                         if hDoItem.has_key?('name')
                             s = hDoItem['name']
                             if s != ''
                                 intItem[:itemName] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary domain item name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
-                        # data dictionary domain item - value
+                        # data dictionary domain item - value - required
                         if hDoItem.has_key?('value')
                             s = hDoItem['value']
                             if s != ''
                                 intItem[:itemValue] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary domain item value is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
-                        # data dictionary domain item - definition
+                        # data dictionary domain item - definition - required
                         if hDoItem.has_key?('definition')
                             s = hDoItem['definition']
                             if s != ''
                                 intItem[:itemDefinition] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary domain item definition is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

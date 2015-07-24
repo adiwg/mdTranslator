@@ -45,7 +45,6 @@ class TestReaderMdJsonDomain_v1_0 < MiniTest::Test
 
     def test_complete_domain_object
 
-
         hIn = @@hIn.clone
         hIn.delete('member')
         intObj = {
