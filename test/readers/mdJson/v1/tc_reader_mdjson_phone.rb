@@ -27,7 +27,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_phone'
 
-class TestReaderMdJsonPhone_v1_0 < MiniTest::Test
+class TestReaderMdJsonPhone_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Phone
@@ -47,85 +47,61 @@ class TestReaderMdJsonPhone_v1_0 < MiniTest::Test
     def test_complete_phone_object
 
         hIn = @@hIn.clone
-        intObj = []
-        intObj << {
-            phoneServiceType: 'service11',
-            phoneName: 'phoneName1',
-            phoneNumber: '111-111-1111'
-        }
-        intObj << {
-            phoneServiceType: 'service12',
-            phoneName: 'phoneName1',
-            phoneNumber: '111-111-1111'
-        }
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_missing_phone_service
-
-        hIn = @@hIn.clone
-        hIn.delete('service')
-
-        intObj = []
-        intObj << {
-            phoneServiceType: 'voice',
-            phoneName: 'phoneName1',
-            phoneNumber: '111-111-1111'
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata.length, 2
+        assert_equal metadata[0][:phoneServiceType], 'service11'
+        assert_equal metadata[0][:phoneName],        'phoneName1'
+        assert_equal metadata[0][:phoneNumber],      '111-111-1111'
+        assert_equal metadata[1][:phoneServiceType], 'service12'
+        assert_equal metadata[1][:phoneName],        'phoneName1'
+        assert_equal metadata[1][:phoneNumber],      '111-111-1111'
     end
 
     def test_empty_phone_service
-
+        # empty service should default to 'voice'
         hIn = @@hIn.clone
-        hIn['service'] = ''
+        hIn['service'] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = []
-        intObj << {
-            phoneServiceType: 'voice',
-            phoneName: 'phoneName1',
-            phoneNumber: '111-111-1111'
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_missing_phone_number
-
-        # missing phone number should return empty object
-        hIn = @@hIn.clone
-        hIn.delete('phoneNumber')
-
-        intObj = []
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[0][:phoneServiceType], 'voice'
+        assert_equal metadata[0][:phoneName],        'phoneName1'
+        assert_equal metadata[0][:phoneNumber],      '111-111-1111'
     end
 
     def test_empty_phone_number
-
         # empty phone number should return empty object
         hIn = @@hIn.clone
         hIn['phoneNumber'] = ''
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = []
+        assert_empty metadata
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_missing_phone_number
+        # missing phone number should return empty object
+        hIn = @@hIn.clone
+        hIn.delete('phoneNumber')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
+        assert_empty metadata
+    end
+
+    def test_missing_phone_service
+        hIn = @@hIn.clone
+        hIn.delete('service')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_equal metadata[0][:phoneServiceType], 'voice'
+        assert_equal metadata[0][:phoneName],        'phoneName1'
+        assert_equal metadata[0][:phoneNumber],      '111-111-1111'
     end
 
     def test_empty_phone_object
-
         hIn = {}
-        intObj = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_empty metadata
     end
 
 end

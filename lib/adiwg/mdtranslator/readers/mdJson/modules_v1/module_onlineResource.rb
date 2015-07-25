@@ -34,6 +34,10 @@ module ADIWG
                             s = hOlResource['uri']
                             if s != ''
                                 intOLRes[:olResURI] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Online Resource URI is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

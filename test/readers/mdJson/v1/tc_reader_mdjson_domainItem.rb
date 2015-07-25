@@ -56,32 +56,35 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
 
     def test_empty_domainItem_name
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['name'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_domainItem_value
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['value'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_domainItem_definition
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['definition'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_domainItem_object

@@ -63,42 +63,46 @@ class TestReaderMdJsonEntityAttribute_v1 < MiniTest::Test
 
     def test_empty_entityAttribute_codeName
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['codeName'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityAttribute_definition
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['definition'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityAttribute_dataType
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['dataType'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityAttribute_allowNull
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['allowNull'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityAttribute_elements

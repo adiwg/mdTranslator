@@ -66,32 +66,35 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
 
     def test_empty_entity_id
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['entityId'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entity_codeName
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['codeName'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entity_definition
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['definition'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entity_elements

@@ -58,32 +58,35 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
 
     def test_empty_entityForeignKey_localAttributeCodeName
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['localAttributeCodeName'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityForeignKey_referencedEntityCodeName
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['referencedEntityCodeName'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityForeignKey_referencedAttributeCodeName
         hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
         hIn['referencedAttributeCodeName'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_entityForeignKey_object

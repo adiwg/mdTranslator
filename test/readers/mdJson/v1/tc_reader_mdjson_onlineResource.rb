@@ -27,11 +27,14 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_onlineResource'
 
-class TestReaderMdJsonOnlineResource_v1_0 < MiniTest::Test
+class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::OnlineResource
-    @@responseObj = {}
+    @@responseObj = {
+        readerExecutionMessages: [],
+        readerExecutionPass: true
+    }
 
     # get json file for tests from examples folder
     file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'onlineResource.json')
@@ -45,70 +48,60 @@ class TestReaderMdJsonOnlineResource_v1_0 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_onlineResource_object
-
         hIn = @@hIn.clone
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            olResURI: 'http://thisisanexample.com',
-            olResProtocol: 'protocol',
-            olResName: 'name',
-            olResDesc: 'description',
-            olResFunction: 'function'
-        }
+        assert_equal metadata[:olResURI],      'http://thisisanexample.com'
+        assert_equal metadata[:olResProtocol], 'protocol'
+        assert_equal metadata[:olResName],     'name'
+        assert_equal metadata[:olResDesc],     'description'
+        assert_equal metadata[:olResFunction], 'function'
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_empty_onlineResource_uri
+        hIn = @@hIn.clone
+        hResponse = @@responseObj.clone
+        hIn['uri'] = ''
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+    end
+
+    def test_empty_onlineResource_elements
+        hIn = @@hIn.clone
+        hIn['protocol'] = ''
+        hIn['name'] = ''
+        hIn['description'] = ''
+        hIn['function'] = ''
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata[:olResProtocol]
+        assert_nil metadata[:olResName]
+        assert_nil metadata[:olResDesc]
+        assert_nil metadata[:olResFunction]
     end
 
     def test_missing_onlineResource_elements
-
-        # except for uri
-
         hIn = @@hIn.clone
         hIn.delete('protocol')
         hIn.delete('name')
         hIn.delete('description')
         hIn.delete('function')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            olResURI: 'http://thisisanexample.com',
-            olResProtocol: nil,
-            olResName: nil,
-            olResDesc: nil,
-            olResFunction: nil
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_empty_onlineResource_elements
-
-        hIn = @@hIn.clone
-        hIn['uri'] = ''
-        hIn['protocol'] = ''
-        hIn['name'] = ''
-        hIn['description'] = ''
-        hIn['function'] = ''
-
-        intObj = {
-            olResURI: nil,
-            olResProtocol: nil,
-            olResName: nil,
-            olResDesc: nil,
-            olResFunction: nil
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata[:olResProtocol]
+        assert_nil metadata[:olResName]
+        assert_nil metadata[:olResDesc]
+        assert_nil metadata[:olResFunction]
     end
 
     def test_empty_onlineResource_object
-
         hIn = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata
     end
 
 end
