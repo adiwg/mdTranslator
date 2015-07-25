@@ -6,6 +6,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-24 added error reporting of missing items
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 
@@ -31,6 +32,10 @@ module ADIWG
                             hCitation = hDictInfo['citation']
                             unless hCitation.empty?
                                 intDictInfo[:dictCitation] = Citation.unpack(hCitation, responseObj)
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary citation is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -39,6 +44,10 @@ module ADIWG
                             s = hDictInfo['description']
                             if s != ''
                                 intDictInfo[:dictDescription] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary description is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -47,6 +56,10 @@ module ADIWG
                             s = hDictInfo['resourceType']
                             if s != ''
                                 intDictInfo[:dictResourceType] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary resource type is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

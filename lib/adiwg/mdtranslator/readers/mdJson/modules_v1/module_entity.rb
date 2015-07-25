@@ -7,6 +7,7 @@
 #   Stan Smith 2015-02-17 add entity aliases
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-24 added error reporting of missing items
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_entityIndex')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_entityAttribute')
@@ -21,6 +22,10 @@ module ADIWG
 
                     def self.unpack(hEntity, responseObj)
 
+                        # return nil object if input is empty
+                        intEntity = nil
+                        return if hEntity.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intEntity = intMetadataClass.newEntity
@@ -30,6 +35,10 @@ module ADIWG
                             s = hEntity['entityId']
                             if s != ''
                                 intEntity[:entityId] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary entity ID is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -46,6 +55,10 @@ module ADIWG
                             s = hEntity['codeName']
                             if s != ''
                                 intEntity[:entityCode] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary entity code name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -62,6 +75,10 @@ module ADIWG
                             s = hEntity['definition']
                             if s != ''
                                 intEntity[:entityDefinition] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary entity definition is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

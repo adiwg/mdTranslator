@@ -7,6 +7,7 @@
 #   Stan Smith 2015-02-17 added support for attribute aliases
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-24 added error reporting of missing items
 
 module ADIWG
     module Mdtranslator
@@ -16,6 +17,10 @@ module ADIWG
                 module EntityAttribute
 
                     def self.unpack(hAttribute, responseObj)
+
+                        # return nil object if input is empty
+                        intAttribute = nil
+                        return if hAttribute.empty?
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
@@ -34,6 +39,10 @@ module ADIWG
                             s = hAttribute['codeName']
                             if s != ''
                                 intAttribute[:attributeCode] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary attribute code name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -50,6 +59,10 @@ module ADIWG
                             s = hAttribute['definition']
                             if s != ''
                                 intAttribute[:attributeDefinition] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary attribute definition is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -58,6 +71,10 @@ module ADIWG
                             s = hAttribute['dataType']
                             if s != ''
                                 intAttribute[:dataType] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary attribute data type is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -66,6 +83,10 @@ module ADIWG
                             s = hAttribute['allowNull']
                             if s != ''
                                 intAttribute[:allowNull] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary attribute allow null flag is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

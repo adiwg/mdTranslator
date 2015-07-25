@@ -6,6 +6,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-24 added error reporting of missing items
 
 module ADIWG
     module Mdtranslator
@@ -16,6 +17,10 @@ module ADIWG
 
                     def self.unpack(hFKey, responseObj)
 
+                        # return nil object if input is empty
+                        intFKey = nil
+                        return if hFKey.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intFKey = intMetadataClass.newEntityForeignKey
@@ -25,6 +30,10 @@ module ADIWG
                             aLocalAttributes = hFKey['localAttributeCodeName']
                             unless aLocalAttributes.empty?
                                 intFKey[:fkLocalAttributes] = aLocalAttributes
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary foreign key local attribute code name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -33,6 +42,10 @@ module ADIWG
                             s = hFKey['referencedEntityCodeName']
                             if s != ''
                                 intFKey[:fkReferencedEntity] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary foreign key referenced entity name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 
@@ -41,6 +54,10 @@ module ADIWG
                             aRefAttributes = hFKey['referencedAttributeCodeName']
                             unless aRefAttributes.empty?
                                 intFKey[:fkReferencedAttributes] = aRefAttributes
+                            else
+                                responseObj[:readerExecutionMessages] << 'Data Dictionary foreign key referenced attribute name is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

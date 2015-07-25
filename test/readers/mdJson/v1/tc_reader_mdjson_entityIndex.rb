@@ -1,8 +1,8 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_domainItem
+# reader / mdJson / module_entityIndex
 
 # History:
-# Stan Smith 2015-07-23 original script
+# Stan Smith 2015-07-24 original script
 
 # set reader version used by mdJson_reader.rb to require correct modules
 module ADIWG
@@ -23,12 +23,12 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_domainItem'
+require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_entityIndex'
 
-class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
+class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::DomainItem
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::EntityIndex
     @@responseObj = {
         readerExecutionMessages: [],
         readerExecutionPass: true
@@ -43,30 +43,21 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn[0]['domain'][0]['member'][0]
+    @@hIn = aIn[0]['entity'][0]['index'][0]
 
-    def test_complete_domainItem_object
+    def test_complete_entityIndex_object
         hIn = @@hIn.clone
         metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal metadata[:itemName],       'name11'
-        assert_equal metadata[:itemValue],      'value11'
-        assert_equal metadata[:itemDefinition], 'definition11'
+        assert_equal metadata[:indexCode],         'codeName11'
+        refute metadata[:duplicate]
+        assert_equal metadata[:attributeNames][0], 'attributeCodeName111'
+        assert_equal metadata[:attributeNames][1], 'attributeCodeName112'
     end
 
-    def test_empty_domainItem_name
+    def test_empty_entityIndex_name
         hIn = @@hIn.clone
-        hIn['name'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
-
-        assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
-    end
-
-    def test_empty_domainItem_value
-        hIn = @@hIn.clone
-        hIn['value'] = ''
+        hIn['codeName'] = ''
         metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
         assert_nil metadata
@@ -74,9 +65,9 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
         refute_empty @@responseObj[:readerExecutionMessages]
     end
 
-    def test_empty_domainItem_definition
+    def test_empty_entityIndex_allowDuplicates
         hIn = @@hIn.clone
-        hIn['definition'] = ''
+        hIn['allowDuplicates'] = ''
         metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
         assert_nil metadata
@@ -84,7 +75,17 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
         refute_empty @@responseObj[:readerExecutionMessages]
     end
 
-    def test_empty_domainItem_object
+    def test_empty_entityIndex_attributeCodeName
+        hIn = @@hIn.clone
+        hIn['attributeCodeName'] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_empty_entityIndex_object
         hIn = {}
         metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
