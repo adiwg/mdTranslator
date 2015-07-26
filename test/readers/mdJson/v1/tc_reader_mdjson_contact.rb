@@ -48,29 +48,44 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_contact_object
-
         hIn = @@hIn.clone
-        hIn.delete('phoneBook')
-        hIn.delete('address')
-        hIn.delete('onlineResource')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            contactId: 'contactId',
-            indName: 'individualName',
-            orgName: 'organizationName',
-            position: 'positionName',
-            phones: [],
-            address: {},
-            onlineRes: [],
-            contactInstructions: 'contactInstructions'
-        }
+        assert_equal metadata[:contactId], 'contactId'
+        assert_equal metadata[:indName],   'individualName'
+        assert_equal metadata[:orgName],   'organizationName'
+        assert_equal metadata[:position],  'positionName'
+        refute_empty metadata[:phones]
+        refute_empty metadata[:address]
+        refute_empty metadata[:onlineRes]
+        assert_equal metadata[:contactInstructions], 'contactInstructions'
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_empty_contactId
+        hIn = @@hIn.clone
+        hIn['contactId'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_missing_contactId
+        hIn = @@hIn.clone
+        hIn.delete('contactId')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
     end
 
     def test_empty_contact_elements
-
         hIn = @@hIn.clone
         hIn['individualName'] = ''
         hIn['organizationName'] = ''
@@ -79,24 +94,19 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
         hIn['contactInstructions'] = ''
         hIn['phoneBook'] = []
         hIn['address'] = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            contactId: 'contactId',
-            indName: nil,
-            orgName: nil,
-            position: nil,
-            phones: [],
-            address: {},
-            onlineRes: [],
-            contactInstructions: nil
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:contactId], 'contactId'
+        assert_nil metadata[:indName]
+        assert_nil metadata[:orgName]
+        assert_nil metadata[:position]
+        assert_empty metadata[:phones]
+        assert_empty metadata[:address]
+        assert_empty metadata[:onlineRes]
+        assert_nil metadata[:contactInstructions]
     end
 
     def test_missing_contact_elements
-
         hIn = @@hIn.clone
         hIn.delete('individualName')
         hIn.delete('organizationName')
@@ -105,58 +115,25 @@ class TestReaderMdJsonContact_v1_0 < MiniTest::Test
         hIn.delete('contactInstructions')
         hIn.delete('phoneBook')
         hIn.delete('address')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            contactId: 'contactId',
-            indName: nil,
-            orgName: nil,
-            position: nil,
-            phones: [],
-            address: {},
-            onlineRes: [],
-            contactInstructions: nil
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_missing_contact_id
-
-        hIn = @@hIn.clone
-        hIn.delete('contactId')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-        assert_equal false, @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
-
-    end
-
-    def test_blank_contact_id
-
-        hIn = @@hIn.clone
-        hIn['contactId'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-        assert_equal false, @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
-
+        assert_equal metadata[:contactId], 'contactId'
+        assert_nil metadata[:indName]
+        assert_nil metadata[:orgName]
+        assert_nil metadata[:position]
+        assert_empty metadata[:phones]
+        assert_empty metadata[:address]
+        assert_empty metadata[:onlineRes]
+        assert_nil metadata[:contactInstructions]
     end
 
     def test_empty_contact_object
-
         hIn = {}
         @@responseObj[:readerExecutionPass] = true
         @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-        assert_equal true, @@responseObj[:readerExecutionPass]
-        assert_empty @@responseObj[:readerExecutionMessages]
-
+        assert_nil metadata
     end
 
 end

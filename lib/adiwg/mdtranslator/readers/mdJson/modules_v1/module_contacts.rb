@@ -31,7 +31,7 @@ module ADIWG
                     def self.unpack(hContact, responseObj)
 
                         # return nil object if input is empty
-                        intAddDoc = nil
+                        intCont = nil
                         return if hContact.empty?
 
                         # instance classes needed in script
