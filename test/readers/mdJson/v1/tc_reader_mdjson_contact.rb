@@ -26,7 +26,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_contacts'
 
-class TestReaderMdJsonContact_v1_0 < MiniTest::Test
+class TestReaderMdJsonContact_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Contact

@@ -46,8 +46,8 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     # the first example is fully populated
     # remove responsible party from citation to prevent search for contact
     # in contact array which has not been loaded
-    aIn[0]['dictionaryInfo']['citation']['responsibleParty'] = []
     @@hIn = aIn[0]['dictionaryInfo']
+    @@hIn['citation']['responsibleParty'] = []
 
     def test_complete_dictionaryInfo_object
         hIn = @@hIn.clone

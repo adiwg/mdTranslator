@@ -39,7 +39,15 @@ module ADIWG
                             s = hCitation['title']
                             if s != ''
                                 intCitation[:citTitle] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Citation title is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Citation title is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # citation - date

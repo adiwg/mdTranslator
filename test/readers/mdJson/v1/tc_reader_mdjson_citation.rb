@@ -27,7 +27,7 @@ require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_citation'
 
-class TestReaderMdJsonCitation_v1_0 < MiniTest::Test
+class TestReaderMdJsonCitation_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Citation
@@ -42,59 +42,70 @@ class TestReaderMdJsonCitation_v1_0 < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
+    # remove responsible party from citation to prevent search for contact
+    # in contact array which has not been loaded
     @@hIn = aIn[0]
+    @@hIn['responsibleParty'] = []
+    @@hIn['identifier'][0]['authority']['responsibleParty'] = []
 
     def test_complete_citation_object
-
         hIn = @@hIn.clone
-        hIn.delete('date')
-        hIn.delete('responsibleParty')
-        hIn.delete('identifier')
-        hIn.delete('onlineResource')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            citTitle: 'title',
-            citDate: [],
-            citEdition: 'edition',
-            citResourceIds: [],
-            citResponsibleParty: [],
-            citResourceForms: ['presentationForm1','presentationForm2'],
-            citOlResources: []
-        }
+        assert_equal metadata[:citTitle], 'title'
+        refute_empty metadata[:citDate]
+        assert_equal metadata[:citEdition], 'edition'
+        refute_empty metadata[:citResourceIds]
+        assert_empty metadata[:citResponsibleParty]
+        assert_equal metadata[:citResourceForms].length, 2
+        assert_equal metadata[:citResourceForms][0], 'presentationForm1'
+        assert_equal metadata[:citResourceForms][1], 'presentationForm2'
+        refute_empty metadata[:citOlResources]
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_empty_citation_title
+        hIn = @@hIn.clone
+        hIn['title'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_missing_citation_title
+        hIn = @@hIn.clone
+        hIn.delete('title')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
     end
 
     def test_empty_citation_elements
-
         hIn = @@hIn.clone
-        hIn['title'] = ''
         hIn['date'] = []
         hIn['edition'] = ''
-        hIn['responsibleParty'] = []
         hIn['presentationForm'] = []
         hIn['identifier'] = []
         hIn['onlineResource'] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            citTitle: nil,
-            citDate: [],
-            citEdition: nil,
-            citResourceIds: [],
-            citResponsibleParty: [],
-            citResourceForms: [],
-            citOlResources: []
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:citTitle], 'title'
+        assert_empty metadata[:citDate]
+        assert_nil metadata[:citEdition]
+        assert_empty metadata[:citResourceIds]
+        assert_empty metadata[:citResponsibleParty]
+        assert_empty metadata[:citResourceForms]
+        assert_empty metadata[:citOlResources]
     end
 
     def test_missing_citation_elements
-
-        # note: except for title
-
         hIn = @@hIn.clone
         hIn.delete('date')
         hIn.delete('edition')
@@ -102,27 +113,22 @@ class TestReaderMdJsonCitation_v1_0 < MiniTest::Test
         hIn.delete('presentationForm')
         hIn.delete('identifier')
         hIn.delete('onlineResource')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            citTitle: 'title',
-            citDate: [],
-            citEdition: nil,
-            citResourceIds: [],
-            citResponsibleParty: [],
-            citResourceForms: [],
-            citOlResources: []
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:citTitle], 'title'
+        assert_empty metadata[:citDate]
+        assert_nil metadata[:citEdition]
+        assert_empty metadata[:citResourceIds]
+        assert_empty metadata[:citResponsibleParty]
+        assert_empty metadata[:citResourceForms]
+        assert_empty metadata[:citOlResources]
     end
 
     def test_empty_citation_object
-
         hIn = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata
     end
 
 end
