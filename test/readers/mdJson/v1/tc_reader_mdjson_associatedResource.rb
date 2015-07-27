@@ -30,7 +30,11 @@ class TestReaderMdJsonAssociatedResource_v1_0 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AssociatedResource
-    @@responseObj = {}
+    @@responseObj = {
+        readerVersionUsed: '1.0',
+        readerExecutionPass: true,
+        readerExecutionMessages: []
+    }
 
     # get json file for tests from examples folder
     file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'associatedResource.json')
@@ -41,75 +45,106 @@ class TestReaderMdJsonAssociatedResource_v1_0 < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
+    # remove responsible party from citation to prevent search for contact
+    # in contact array which has not been loaded
     @@hIn = aIn[0]
+    @@hIn['resourceCitation']['responsibleParty'] = []
+    @@hIn['resourceCitation']['identifier']= []
+    @@hIn['metadataCitation']['responsibleParty'] = []
+    @@hIn['metadataCitation']['identifier'] = []
 
     def test_complete_associatedResource_object
-
         hIn = @@hIn.clone
-        hIn.delete('resourceCitation')
-        hIn.delete('metadataCitation')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            associationType: 'associationType',
-            initiativeType: 'initiativeType',
-            resourceType: 'resourceType',
-            resourceCitation: {},
-            metadataCitation: {}
-        }
+        assert_equal metadata[:associationType], 'associationType'
+        assert_equal metadata[:initiativeType],  'initiativeType'
+        assert_equal metadata[:resourceType],    'resourceType'
+        refute_empty metadata[:resourceCitation]
+        refute_empty metadata[:metadataCitation]
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_empty_associatedResource_associationType
+        hIn = @@hIn.clone
+        hIn['associationType'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_missing_associatedResource_associationType
+        hIn = @@hIn.clone
+        hIn.delete('associationType')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_empty_associatedResource_resourceType
+        hIn = @@hIn.clone
+        hIn['resourceType'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_missing_associatedResource_resourceType
+        hIn = @@hIn.clone
+        hIn.delete('resourceType')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
     end
 
     def test_empty_associatedResource_elements
-
         hIn = @@hIn.clone
-        hIn['associationType'] = ''
         hIn['initiativeType'] = ''
-        hIn['resourceType'] = ''
         hIn['resourceCitation'] = {}
         hIn['metadataCitation'] = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            associationType: nil,
-            initiativeType: nil,
-            resourceType: nil,
-            resourceCitation: {},
-            metadataCitation: {}
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:associationType], 'associationType'
+        assert_nil metadata[:initiativeType]
+        assert_equal metadata[:resourceType],    'resourceType'
+        assert_empty metadata[:resourceCitation]
+        assert_empty metadata[:metadataCitation]
     end
 
     def test_missing_associatedResource_citation
-
-        # note: except for associationType
-
         hIn = @@hIn.clone
         hIn.delete('initiativeType')
-        hIn.delete('resourceType')
         hIn.delete('resourceCitation')
         hIn.delete('metadataCitation')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            associationType: 'associationType',
-            initiativeType: nil,
-            resourceType: nil,
-            resourceCitation: {},
-            metadataCitation: {}
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:associationType], 'associationType'
+        assert_nil metadata[:initiativeType]
+        assert_equal metadata[:resourceType],    'resourceType'
+        assert_empty metadata[:resourceCitation]
+        assert_empty metadata[:metadataCitation]
     end
 
     def test_empty_associatedResource_object
-
         hIn = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata
     end
 
 end

@@ -42,7 +42,15 @@ module ADIWG
                             hCitation = hAddDoc['citation']
                             unless hCitation.empty?
                                 intAddDoc[:citation] = Citation.unpack(hCitation, responseObj)
+                            else
+                                responseObj[:readerExecutionMessages] << 'Additional documentation citation is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Additional documentation citation is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         return intAddDoc

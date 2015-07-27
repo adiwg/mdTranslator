@@ -25,11 +25,15 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules_v1/module_browseGraphic'
 
-class TestReaderMdJsonBrowseGraphic_v1_0 < MiniTest::Test
+class TestReaderMdJsonBrowseGraphic_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::BrowseGraphic
-    @@responseObj = {}
+    @@responseObj = {
+        readerVersionUsed: '1.0',
+        readerExecutionPass: true,
+        readerExecutionMessages: []
+    }
 
     # get json file for tests from examples folder
     file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'graphicOverview.json')
@@ -43,65 +47,68 @@ class TestReaderMdJsonBrowseGraphic_v1_0 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_browseGraphic_object
-
         hIn = @@hIn.clone
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            bGName: 'fileName',
-            bGDescription: 'fileDescription',
-            bGType: 'fileType',
-            bGURI: 'http://thisisanexample.com'
-        }
+        assert_equal metadata[:bGName], 'fileName'
+        assert_equal metadata[:bGDescription], 'fileDescription'
+        assert_equal metadata[:bGType], 'fileType'
+        assert_equal metadata[:bGURI], 'http://thisisanexample.com'
+    end
 
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
+    def test_empty_browseGraphic_fileName
+        hIn = @@hIn.clone
+        hIn['fileName'] = ''
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_missing_browseGraphic_fileName
+        hIn = @@hIn.clone
+        hIn.delete('fileName')
+        @@responseObj[:readerExecutionPass] = true
+        @@responseObj[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata
+        refute @@responseObj[:readerExecutionPass]
+        refute_empty @@responseObj[:readerExecutionMessages]
+    end
+
+    def test_empty_browseGraphic_elements
+        hIn = @@hIn.clone
+        hIn['fileDescription'] = ''
+        hIn['fileType'] = ''
+        hIn['fileUri'] = ''
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_nil metadata[:bGDescription]
+        assert_nil metadata[:bGType]
+        assert_nil metadata[:bGURI]
     end
 
     def test_missing_browseGraphic_elements
-
-        # except for fileName
-
         hIn = @@hIn.clone
         hIn.delete('fileDescription')
         hIn.delete('fileType')
         hIn.delete('fileUri')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            bGName: 'fileName',
-            bGDescription: nil,
-            bGType: nil,
-            bGURI: nil
-        }
-
-        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_empty_browseGraphic_elements
-
-        hIn = @@hIn.clone
-        hIn['fileName'] = ''
-        hIn['fileDescription'] = ''
-        hIn['fileType'] = ''
-        hIn['fileUri'] = ''
-
-        intObj = {
-            bGName: nil,
-            bGDescription: nil,
-            bGType: nil,
-            bGURI: nil
-        }
-
-        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata[:bGDescription]
+        assert_nil metadata[:bGType]
+        assert_nil metadata[:bGURI]
     end
 
     def test_empty_browseGraphic_object
-
         hIn = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata
     end
 
 end

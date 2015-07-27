@@ -38,7 +38,15 @@ module ADIWG
                             s = hAssocRes['associationType']
                             if s != ''
                                 intAssocRes[:associationType] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Associated resource association type is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Associated resource association type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # associated resource - initiative type
@@ -54,7 +62,15 @@ module ADIWG
                             s = hAssocRes['resourceType']
                             if s != ''
                                 intAssocRes[:resourceType] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Associated resource resource type is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Associated resource resource type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # associated resource - resource citation

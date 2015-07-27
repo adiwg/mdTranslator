@@ -31,7 +31,11 @@ class TestReaderMdJsonCitation_v1 < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Citation
-    @@responseObj = {}
+    @@responseObj = {
+        readerVersionUsed: '1.0',
+        readerExecutionPass: true,
+        readerExecutionMessages: []
+    }
 
     # get json file for tests from examples folder
     file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'citation.json')

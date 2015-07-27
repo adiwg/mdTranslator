@@ -33,7 +33,15 @@ module ADIWG
                             s = hBgraphic['fileName']
                             if s != ''
                                 intBGraphic[:bGName] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Graphic overview name is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Graphic overview name is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # graphic - file description

@@ -46,76 +46,63 @@ class TestReaderMdJsonAddress_v1_0 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_address_object
-
         hIn = @@hIn.clone
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            deliveryPoints: %w[deliveryPoint1 deliveryPoint2],
-            city: 'city',
-            adminArea: 'administrativeArea',
-            postalCode: 'postalCode',
-            country: 'country',
-            eMailList: %w[example1@example.com example2@example.com]
-        }
-
-        assert_equal intObj, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_equal metadata[:deliveryPoints].length, 2
+        assert_equal metadata[:deliveryPoints][0], 'deliveryPoint1'
+        assert_equal metadata[:deliveryPoints][1], 'deliveryPoint2'
+        assert_equal metadata[:city], 'city'
+        assert_equal metadata[:adminArea], 'administrativeArea'
+        assert_equal metadata[:postalCode], 'postalCode'
+        assert_equal metadata[:country], 'country'
+        assert_equal metadata[:eMailList].length, 2
+        assert_equal metadata[:eMailList][0], 'example1@example.com'
+        assert_equal metadata[:eMailList][1], 'example2@example.com'
     end
 
-    def test_email_address_only
-
-        # note: this test also serves to test missing elements
-        # ... except for missing electronicMailAddress
-
+    def test_empty_address_elements
         hIn = @@hIn.clone
+        hIn['deliveryPoint'] = []
+        hIn['city'] = ''
+        hIn['administrativeArea'] = ''
+        hIn['postalCode'] = ''
+        hIn['country'] = ''
+        hIn['electronicMailAddress'] = []
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+
+        assert_empty metadata[:deliveryPoints]
+        assert_nil metadata[:city]
+        assert_nil metadata[:adminArea]
+        assert_nil metadata[:postalCode]
+        assert_nil metadata[:country]
+        assert_empty metadata[:eMailList]
+    end
+
+    def test_missing_address_elements
+        hIn = @@hIn.clone
+        hIn['nothing'] = '0'
         hIn.delete('deliveryPoint')
         hIn.delete('city')
         hIn.delete('administrativeArea')
         hIn.delete('postalCode')
         hIn.delete('country')
+        hIn.delete('electronicMailAddress')
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        intObj = {
-            deliveryPoints: [],
-            city: nil,
-            adminArea: nil,
-            postalCode: nil,
-            country: nil,
-            eMailList: %w[example1@example.com example2@example.com]
-        }
-
-        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
-
-    end
-
-    def test_empty_address_elements
-
-        hIn = @@hIn.clone
-        hIn['deliveryPoint'] = ['']
-        hIn['city'] = ''
-        hIn['administrativeArea'] = ''
-        hIn['postalCode'] = ''
-        hIn['country'] = ''
-        hIn['electronicMailAddress'] = ['']
-
-        intObj = {
-            deliveryPoints: [],
-            city: nil,
-            adminArea: nil,
-            postalCode: nil,
-            country: nil,
-            eMailList: []
-        }
-
-        assert_equal intObj,@@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_empty metadata[:deliveryPoints]
+        assert_nil metadata[:city]
+        assert_nil metadata[:adminArea]
+        assert_nil metadata[:postalCode]
+        assert_nil metadata[:country]
+        assert_empty metadata[:eMailList]
     end
 
     def test_empty_address_object
-
         hIn = {}
+        metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal nil, @@NameSpace.unpack(hIn, @@responseObj)
-
+        assert_nil metadata
     end
 
 end
