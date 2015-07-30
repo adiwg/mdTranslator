@@ -21,6 +21,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-30 added support for translating locale into language and characterSet
 
 require_relative 'class_codelist'
 require_relative 'class_enumerationList'
@@ -284,29 +285,71 @@ module ADIWG
                                 @xml.tag!('gmd:spatialResolution')
                             end
 
-                            # data identification - language - required - default of english applied
+                            # data identification - language - required
+                            languageTags = 0
                             aLanguages = hDataId[:resourceLanguages]
                             if !aLanguages.empty?
                                 aLanguages.each do |language|
+                                    languageTags += 1
                                     @xml.tag!('gmd:language') do
                                         @xml.tag!('gco:CharacterString', language)
                                     end
                                 end
-                            else
+                            end
+
+                            # data identification - locale - not supported in 19115-2
+                            # encode languageCode and country as a string for gmd:language
+                            aLocale = hDataId[:resourceLocales]
+                            if !aLocale.empty?
+                                aLocale.each do |hLocale|
+                                    if !hLocale[:languageCode].nil?
+                                        s = hLocale[:languageCode]
+                                        if !hLocale[:countryCode].nil?
+                                            s += '; ' + hLocale[:countryCode]
+                                        end
+                                        languageTags += 1
+                                        @xml.tag!('gmd:language') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    end
+                                end
+                            end
+
+                            # language for resource was not specified, use 'eng; USA' as default
+                            if languageTags == 0
                                 @xml.tag!('gmd:language') do
                                     @xml.tag!('gco:CharacterString', 'eng; USA')
                                 end
                             end
 
-                            # data identification - characterSet - default 'utf8'
+                            # data identification - characterSet - not required - default 'utf8'
+                            characterSetTags = 0
                             aCharSets = hDataId[:resourceCharacterSets]
                             if !aCharSets.empty?
                                 aCharSets.each do |charSet|
+                                    characterSetTags += 1
                                     @xml.tag!('gmd:characterSet') do
                                         codelistClass.writeXML('iso_characterSet',charSet)
                                     end
                                 end
-                            else
+                            end
+
+                            # data identification - locale - not supported in 19115-2
+                            # copy characterEncoding to gmd:characterSet
+                            if !aLocale.empty?
+                                aLocale.each do |hLocale|
+                                    s = hLocale[:characterEncoding]
+                                    if !s.nil?
+                                        characterSetTags += 1
+                                        @xml.tag!('gmd:characterSet') do
+                                            codelistClass.writeXML('iso_characterSet', s)
+                                        end
+                                    end
+                                end
+                            end
+
+                            # characterSet encoding for resource was not specified, use 'utf8' as default
+                            if characterSetTags == 0
                                 @xml.tag!('gmd:characterSet') do
                                     codelistClass.writeXML('iso_characterSet','utf8')
                                 end

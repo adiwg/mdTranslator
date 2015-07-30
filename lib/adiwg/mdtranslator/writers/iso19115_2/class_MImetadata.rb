@@ -29,6 +29,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-28 added support for PT_Locale
 
 require_relative 'classes/class_codelist'
 require_relative 'classes/class_responsibleParty'
@@ -38,6 +39,7 @@ require_relative 'classes/class_distribution'
 require_relative 'classes/class_dataQuality'
 require_relative 'classes/class_maintenanceInformation'
 require_relative 'classes/class_referenceSystem'
+require_relative 'classes/class_locale'
 
 module ADIWG
     module Mdtranslator
@@ -62,6 +64,7 @@ module ADIWG
                         dqClass = DQ_DataQuality.new(@xml, @responseObj)
                         metaMaintClass = MD_MaintenanceInformation.new(@xml, @responseObj)
                         refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
+                        localeClass = PT_Locale.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -239,6 +242,16 @@ module ADIWG
                                 end
                             elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:dataSetURI')
+                            end
+
+                            # metadata information - locale
+                            aLocales = hMetaInfo[:metadataLocales]
+                            if !aLocales.empty?
+                                aLocales.each do |hLocale|
+                                    @xml.tag!('gmd:locale') do
+                                        localeClass.writeXML(hLocale)
+                                    end
+                                end
                             end
 
                             # metadata information - reference system

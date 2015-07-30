@@ -85,6 +85,18 @@ module ADIWG
                                     @html.br
                                 end
 
+                                # metadata locale
+                                aLocale = hMetaInfo[:metadataLocales]
+                                aLocale.each do |hLocale|
+                                    @html.em('Metadata language: ')
+                                    @html.text!(hLocale[:languageCode])
+                                    @html.em(' country: ')
+                                    @html.text!(hLocale[:countryCode])
+                                    @html.em(' characterSet encoding: ')
+                                    @html.text!(hLocale[:characterEncoding])
+                                    @html.br
+                                end
+
                                 # metadata status
                                 s = hMetaInfo[:metadataStatus]
                                 if s

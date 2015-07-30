@@ -48,7 +48,8 @@
 #   Stan Smith 2014-12-01 added data dictionary
 #   Stan Smith 2015-02-17 add entity and attribute alias
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
-#   Stan Smith 2015-07-23 added gridInfo, gridDimension, rasterInfo, rasterBandGroup, rasterBand for 1.3.0
+#   Stan Smith 2015-07-23 added gridInfo, gridDimension, rasterInfo, rasterAttributeGroup, rasterAttribute for 1.3.0
+#   Stan Smith 2015-07-28 added locale for 1.3.0
 
 class InternalMetadata
 
@@ -128,7 +129,9 @@ class InternalMetadata
             metadataCustodians: [],
             metadataCreateDate: {},
             metadataUpdateDate: {},
+            metadataLanguage: nil,
             metadataCharacterSet: nil,
+            metadataLocales: [],
             metadataURI: nil,
             metadataStatus: nil,
             maintInfo: {},
@@ -171,6 +174,7 @@ class InternalMetadata
             resourceFormats: [],
             resourceLanguages: [],
             resourceCharacterSets: [],
+            resourceLocales: [],
             descriptiveKeywords: [],
             resourceUses: [],
             useConstraints: [],
@@ -617,36 +621,44 @@ class InternalMetadata
             cameraCalibrationInfo: false,
             filmDistortionInfo: false,
             lensDistortionInfo: false,
-            rasterBandGroups: []
+            rasterAttributeGroups: []
         }
     end
 
-    def newRasterBandGroup
+    def newRasterAttributeGroup
         intObj = {
-            bandGroupContents: [],
-            bands: []
+            rasterAttributeGroupContents: [],
+            rasterAttributes: []
         }
     end
 
-    def newRasterBand
+    def newRasterAttribute
         intObj = {
-            bandName: nil,
-            bandType: nil,
-            bandDescription: nil,
+            attributeName: nil,
+            attributeType: nil,
+            attributeDescription: nil,
             minValue: nil,
             maxValue: nil,
-            bandUnits: nil,
+            units: nil,
             scaleFactor: nil,
             offset: nil,
             meanValue: nil,
             numberOfValue: nil,
             bitsPerValue: nil,
             toneGradation: nil,
-            bandDomain: [],
+            attributeDomains: [],
             sensorMin: nil,
             sensorMax: nil,
             sensorUnits: nil,
             sensorPeakResponse: nil
+        }
+    end
+
+    def newLocale
+        intObj = {
+            languageCode: nil,
+            countryCode: nil,
+            characterEncoding: nil
         }
     end
 

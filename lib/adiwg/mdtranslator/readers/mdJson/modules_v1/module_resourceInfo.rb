@@ -19,6 +19,7 @@
 #   Stan Smith 2015-06-12 added support for resource characterSets
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-29 added support for locale
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceIdentifier')
@@ -36,6 +37,7 @@ require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_extent')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dataQuality')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
 
 module ADIWG
     module Mdtranslator
@@ -139,6 +141,16 @@ module ADIWG
                             aCharSet = hResourceInfo['characterSet']
                             aCharSet.each do |charSet|
                                 intResInfo[:resourceCharacterSets] << charSet
+                            end
+                        end
+
+                        # metadata - locale
+                        if hResourceInfo.has_key?('locale')
+                            aLocale = hResourceInfo['locale']
+                            unless aLocale.empty?
+                                aLocale.each do |hLocale|
+                                    intResInfo[:resourceLocales] << Locale.unpack(hLocale, responseObj)
+                                end
                             end
                         end
 

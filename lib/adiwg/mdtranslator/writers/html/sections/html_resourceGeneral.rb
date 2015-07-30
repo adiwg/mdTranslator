@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2015-03-24 original script
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#   Stan Smith 2015-07-30 added support for locale
 
 require_relative 'html_citation'
 require_relative 'html_timePeriod'
@@ -77,6 +78,18 @@ module ADIWG
                         if !aCharSets.empty?
                             @html.em('Resource character sets: ')
                             @html.text!(aCharSets.to_s)
+                            @html.br
+                        end
+
+                        # resource locale
+                        aLocale = resourceInfo[:resourceLocales]
+                        aLocale.each do |hLocale|
+                            @html.em('Metadata language: ')
+                            @html.text!(hLocale[:languageCode])
+                            @html.em(' country: ')
+                            @html.text!(hLocale[:countryCode])
+                            @html.em(' characterSet encoding: ')
+                            @html.text!(hLocale[:characterEncoding])
                             @html.br
                         end
 

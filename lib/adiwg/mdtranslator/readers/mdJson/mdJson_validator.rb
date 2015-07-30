@@ -39,7 +39,7 @@ module ADIWG
                         if aValErrs.length > 0
                             responseObj[:readerValidationPass] = false
                             responseObj[:readerValidationMessages] << 'mdJson schema validation Failed - see following message(s):\n'
-                            responseObj[:readerValidationMessages] = aValErrs
+                            responseObj[:readerValidationMessages] << aValErrs
                             return
                         end
                     rescue JSON::Schema::ValidationError

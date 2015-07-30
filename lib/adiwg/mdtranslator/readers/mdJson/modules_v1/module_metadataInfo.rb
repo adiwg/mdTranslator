@@ -10,6 +10,8 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-12 added support for metadataCharacterSet
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-28 added support for locale
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dateTime')
@@ -17,7 +19,7 @@ require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceMainte
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_metadataExtension')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceIdentifier')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
 
 module ADIWG
     module Mdtranslator
@@ -84,6 +86,18 @@ module ADIWG
                             s = hMetadataInfo['metadataCharacterSet']
                             if s != ''
                                 intMetadataInfo[:metadataCharacterSet] = s
+                            else
+                                intMetadataInfo[:metadataCharacterSet] = 'utf8'
+                            end
+                        end
+
+                        # metadata - locale
+                        if hMetadataInfo.has_key?('metadataLocale')
+                            aLocale = hMetadataInfo['metadataLocale']
+                            unless aLocale.empty?
+                                aLocale.each do |hLocale|
+                                    intMetadataInfo[:metadataLocales] << Locale.unpack(hLocale, responseObj)
+                                end
                             end
                         end
 

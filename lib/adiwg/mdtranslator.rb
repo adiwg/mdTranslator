@@ -113,7 +113,7 @@ module ADIWG
             responseObj[:writerName] = writer
             responseObj[:writerShowTags] = showAllTags
 
-            # add mdTranlator version to response hash
+            # add mdTranslator version to response hash
             responseObj[:translatorVersion] = ADIWG::Mdtranslator::VERSION
 
             # handle readers
@@ -125,15 +125,19 @@ module ADIWG
             else
                 intObj = ADIWG::Mdtranslator::Readers.handleReader(file, responseObj)
 
+                # if readerValidation failed - exit
+                if !responseObj[:readerValidationPass]
+                    return responseObj
+                end
+
                 # if readerExecutionPass is nil no error messages were set while
-                # reading  the input file into the internal object.
+                # reading the input file into the internal object.
                 # the read operation is assumed to have been successful and pass is set to true.
                 if responseObj[:readerExecutionPass].nil?
                     responseObj[:readerExecutionPass] = true
                 elsif !responseObj[:readerExecutionPass]
                     return responseObj
                 end
-
             end
 
             # handle writers
