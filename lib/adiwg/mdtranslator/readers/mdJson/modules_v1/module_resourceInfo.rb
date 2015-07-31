@@ -20,6 +20,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-07-29 added support for locale
+#   Stan Smith 2015-07-30 added support for grid descriptions
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceIdentifier')
@@ -38,6 +39,7 @@ require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dataQuality')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_gridInfo')
 
 module ADIWG
     module Mdtranslator
@@ -318,6 +320,16 @@ module ADIWG
                             unless aExtents.empty?
                                 aExtents.each do |hExtent|
                                     intResInfo[:extents] << Extent.unpack(hExtent, responseObj)
+                                end
+                            end
+                        end
+
+                        # resource information - grid information
+                        if hResourceInfo.has_key?('gridInfo')
+                            aGrids = hResourceInfo['gridInfo']
+                            unless aGrids.empty?
+                                aGrids.each do |hGrid|
+                                    intResInfo[:gridInfo] << GridInfo.unpack(hGrid, responseObj)
                                 end
                             end
                         end

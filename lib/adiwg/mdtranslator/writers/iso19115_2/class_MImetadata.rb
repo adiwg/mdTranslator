@@ -30,6 +30,7 @@
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #   Stan Smith 2015-07-28 added support for PT_Locale
+#   Stan Smith 2015-07-30 added support for grid information
 
 require_relative 'classes/class_codelist'
 require_relative 'classes/class_responsibleParty'
@@ -40,6 +41,7 @@ require_relative 'classes/class_dataQuality'
 require_relative 'classes/class_maintenanceInformation'
 require_relative 'classes/class_referenceSystem'
 require_relative 'classes/class_locale'
+require_relative 'classes/class_gridInfo'
 
 module ADIWG
     module Mdtranslator
@@ -65,6 +67,7 @@ module ADIWG
                         metaMaintClass = MD_MaintenanceInformation.new(@xml, @responseObj)
                         refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
                         localeClass = PT_Locale.new(@xml, @responseObj)
+                        gridClass = MD_GridInfo.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -251,6 +254,14 @@ module ADIWG
                                     @xml.tag!('gmd:locale') do
                                         localeClass.writeXML(hLocale)
                                     end
+                                end
+                            end
+
+                            # metadata information - grid info
+                            aGrids = hResInfo[:gridInfo]
+                            aGrids.each do |hGrid|
+                                @xml.tag!('gmd:spatialRepresentationInfo') do
+                                    gridClass.writeXML(hGrid)
                                 end
                             end
 

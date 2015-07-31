@@ -17,6 +17,7 @@ require_relative 'html_resolution'
 require_relative 'html_dataLineage'
 require_relative 'html_extent'
 require_relative 'html_resourceOther'
+require_relative 'html_gridInfo'
 
 module ADIWG
     module Mdtranslator
@@ -43,6 +44,7 @@ module ADIWG
                         htmlLineage = MdHtmlDataLineage.new(@html)
                         htmlExtent = MdHtmlExtent.new(@html)
                         htmlOther = MdHtmlResourceOther.new(@html)
+                        htmlGrid = MdHtmlGridInfo.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -149,6 +151,31 @@ module ADIWG
                                         end
                                     end
                                 end
+                            end
+                        end
+
+                        # resource information - grid information
+                        unless resourceInfo[:gridInfo].empty?
+                            @html.details do
+                                @html.summary('Grid Information ', {'id'=>'resourceInfo-gridInfo', 'class'=>'h3'})
+                                @html.section(:class=>'block') do
+                                    aGridInfo = resourceInfo[:gridInfo]
+                                    aGridInfo.each do |hGrid|
+                                        @html.details do
+                                            @html.summary('Grid', {:class=>'h4'})
+                                            @html.section(:class=>'block') do
+                                                htmlGrid.writeHtml(hGrid)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+                        end
+
+                        # resource information - raster information
+                        unless resourceInfo[:rasterInfo].empty?
+                            @html.details do
+                                @html.summary('Raster Information ', {'id'=>'resourceInfo-rasterInfo', 'class'=>'h3'})
                             end
                         end
 

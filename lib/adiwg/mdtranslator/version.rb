@@ -54,6 +54,8 @@
 #              --- added meta tags to the html writer
 #              --- added --css and --cssLink method_options to CLI
 # 1.3.0 2015-07-20 moved mdTranslator logo to css so it can be replaced using user provided css
+# 1.3.0 2015-07-30 added locale to metadata info and resource info
+# 1.3.0 2015-07-31 added grid information to resource info
 
 module ADIWG
     module Mdtranslator

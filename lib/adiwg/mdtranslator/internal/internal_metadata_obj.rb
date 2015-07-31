@@ -187,6 +187,8 @@ class InternalMetadata
             topicCategories: [],
             environmentDescription: nil,
             extents: [],
+            gridInfo: [],
+            rasterInfo: [],
             dataQualityInfo: [],
             supplementalInfo: nil
         }
