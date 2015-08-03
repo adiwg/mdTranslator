@@ -8,6 +8,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-07-31 added support for fields added by ISO 19115-1 (RS_Identifier)
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 
@@ -37,6 +38,30 @@ module ADIWG
                             s = hResID['type']
                             if s != ''
                                 intResID[:identifierType] = s
+                            end
+                        end
+
+                        # resource identifier - namespace
+                        if hResID.has_key?('namespace')
+                            s = hResID['namespace']
+                            if s != ''
+                                intResID[:identifierNamespace] = s
+                            end
+                        end
+
+                        # resource identifier - version
+                        if hResID.has_key?('version')
+                            s = hResID['version']
+                            if s != ''
+                                intResID[:identifierVersion] = s
+                            end
+                        end
+
+                        # resource identifier - description
+                        if hResID.has_key?('description')
+                            s = hResID['description']
+                            if s != ''
+                                intResID[:identifierDescription] = s
                             end
                         end
 

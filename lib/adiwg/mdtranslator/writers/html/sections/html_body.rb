@@ -110,6 +110,10 @@ module ADIWG
                                         @html.br
                                         @html.a('Extents (Geographic, Temporal, & Vertical Space)', 'href'=>'#resourceInfo-extents')
                                     end
+                                    unless hMetadata[:resourceInfo][:gridInfo].empty?
+                                        @html.br
+                                        @html.a('Grid Information', 'href'=>'#resourceInfo-gridInfo')
+                                    end
                                     unless hMetadata[:resourceInfo][:dataQualityInfo].empty?
                                         @html.br
                                         @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')

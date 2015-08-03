@@ -21,9 +21,9 @@
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-07-29 added support for locale
 #   Stan Smith 2015-07-30 added support for grid descriptions
+#   Stan Smith 2015-07-31 added support for raster information
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceIdentifier')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceFormat')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_descriptiveKeyword')
@@ -39,6 +39,7 @@ require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dataQuality')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_rasterInfo')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_gridInfo')
 
 module ADIWG
@@ -320,6 +321,16 @@ module ADIWG
                             unless aExtents.empty?
                                 aExtents.each do |hExtent|
                                     intResInfo[:extents] << Extent.unpack(hExtent, responseObj)
+                                end
+                            end
+                        end
+
+                        # resource information - raster information
+                        if hResourceInfo.has_key?('rasterInfo')
+                            aRaster = hResourceInfo['rasterInfo']
+                            unless aRaster.empty?
+                                aRaster.each do |hRaster|
+                                    intResInfo[:rasterInfo] << RasterInfo.unpack(hRaster, responseObj)
                                 end
                             end
                         end
