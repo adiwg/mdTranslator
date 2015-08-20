@@ -56,6 +56,7 @@
 # 1.3.0 2015-07-20 moved mdTranslator logo to css so it can be replaced using user provided css
 # 1.3.0 2015-07-30 added locale to metadata info and resource info
 # 1.3.0 2015-07-31 added grid information to resource info
+# 1.3.0 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem, classifiedData, and classedDataItem
 
 module ADIWG
     module Mdtranslator

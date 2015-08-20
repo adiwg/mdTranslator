@@ -48,8 +48,10 @@
 #   Stan Smith 2014-12-01 added data dictionary
 #   Stan Smith 2015-02-17 add entity and attribute alias
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
-#   Stan Smith 2015-07-23 added gridInfo, gridDimension, rasterInfo, rasterAttributeGroup, rasterAttribute for 1.3.0
+#   Stan Smith 2015-07-23 added gridInfo, gridDimension for 1.3.0
 #   Stan Smith 2015-07-28 added locale for 1.3.0
+#   Stan Smith 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem,
+#                     ... classifiedData, and classedDataItem for 1.3.0
 
 class InternalMetadata
 
@@ -188,7 +190,7 @@ class InternalMetadata
             environmentDescription: nil,
             extents: [],
             gridInfo: [],
-            rasterInfo: [],
+            coverageInfo: [],
             dataQualityInfo: [],
             supplementalInfo: nil
         }
@@ -608,10 +610,52 @@ class InternalMetadata
         }
     end
 
-    def newRasterInfo
+    def newCoverageInfo
         intObj = {
-            rasterDescription: nil,
+            coverageType: nil,
+            coverageName: nil,
+            coverageDescription: nil,
             processingLevel: {},
+            coverageItems: [],
+            imageInfo: {}
+        }
+    end
+
+    def newCoverageItem
+        intObj = {
+            itemName: nil,
+            itemType: nil,
+            itemDescription: nil,
+            minValue: nil,
+            maxValue: nil,
+            units: nil,
+            scaleFactor: nil,
+            offset: nil,
+            meanValue: nil,
+            standardDeviation: nil,
+            bitsPerValue: nil,
+            classifiedData: {},
+            sensorInfo: {}
+        }
+    end
+
+    def newClassifiedData
+        intObj = {
+            numberOfClasses: nil,
+            classedDataItem: []
+        }
+    end
+
+    def newClassedDataItem
+        intObj = {
+            className: nil,
+            classDescription: nil,
+            classValue: nil
+        }
+    end
+
+    def newImageInfo
+        intObj = {
             illuminationElevationAngle: nil,
             illuminationAzimuthAngle: nil,
             imageCondition: nil,
@@ -622,33 +666,13 @@ class InternalMetadata
             radiometricCalibrationInfo: false,
             cameraCalibrationInfo: false,
             filmDistortionInfo: false,
-            lensDistortionInfo: false,
-            rasterAttributeGroups: []
+            lensDistortionInfo: false
         }
     end
 
-    def newRasterAttributeGroup
+    def newSensorInfo
         intObj = {
-            rasterAttributeGroupContents: [],
-            rasterAttributes: []
-        }
-    end
-
-    def newRasterAttribute
-        intObj = {
-            attributeName: nil,
-            attributeType: nil,
-            attributeDescription: nil,
-            numberOfValue: nil,
-            minValue: nil,
-            maxValue: nil,
-            units: nil,
-            scaleFactor: nil,
-            offset: nil,
-            meanValue: nil,
-            bitsPerValue: nil,
-            toneGradation: nil,
-            attributeDomains: [],
+            toneGradations: nil,
             sensorMin: nil,
             sensorMax: nil,
             sensorUnits: nil,

@@ -42,6 +42,7 @@ require_relative 'classes/class_maintenanceInformation'
 require_relative 'classes/class_referenceSystem'
 require_relative 'classes/class_locale'
 require_relative 'classes/class_gridInfo'
+require_relative 'classes/class_imageDescription'
 
 module ADIWG
     module Mdtranslator
@@ -68,6 +69,7 @@ module ADIWG
                         refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
                         localeClass = PT_Locale.new(@xml, @responseObj)
                         gridClass = MD_GridInfo.new(@xml, @responseObj)
+                        imageClass = MI_ImageDescription.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -327,7 +329,13 @@ module ADIWG
 
                             # metadata information - content info
                             # ... information about data and link to 19110
-                            # ... on hold until 19115-1 release
+                            # metadata information - image description
+                            aRasterInfo = hResInfo[:rasterInfo]
+                            aRasterInfo.each do |hRasterInfo|
+                                @xml.tag!('gmd:contentInfo') do
+                                    imageClass.writeXML(hRasterInfo)
+                                end
+                            end
 
                             # metadata information - distribution info []
                             aDistInfo = intMetadata[:distributorInfo]

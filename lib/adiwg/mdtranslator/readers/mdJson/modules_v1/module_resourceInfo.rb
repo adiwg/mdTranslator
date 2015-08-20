@@ -21,7 +21,7 @@
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-07-29 added support for locale
 #   Stan Smith 2015-07-30 added support for grid descriptions
-#   Stan Smith 2015-07-31 added support for raster information
+#   Stan Smith 2015-08-19 added support for coverage information
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
@@ -39,8 +39,8 @@ require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dataQuality')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_rasterInfo')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_gridInfo')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_coverageInfo')
 
 module ADIWG
     module Mdtranslator
@@ -325,22 +325,22 @@ module ADIWG
                             end
                         end
 
-                        # resource information - raster information
-                        if hResourceInfo.has_key?('rasterInfo')
-                            aRaster = hResourceInfo['rasterInfo']
-                            unless aRaster.empty?
-                                aRaster.each do |hRaster|
-                                    intResInfo[:rasterInfo] << RasterInfo.unpack(hRaster, responseObj)
-                                end
-                            end
-                        end
-
                         # resource information - grid information
                         if hResourceInfo.has_key?('gridInfo')
                             aGrids = hResourceInfo['gridInfo']
                             unless aGrids.empty?
                                 aGrids.each do |hGrid|
                                     intResInfo[:gridInfo] << GridInfo.unpack(hGrid, responseObj)
+                                end
+                            end
+                        end
+
+                        # resource information - coverage information
+                        if hResourceInfo.has_key?('coverageInfo')
+                            aCoverage = hResourceInfo['coverageInfo']
+                            unless aCoverage.empty?
+                                aCoverage.each do |hCoverage|
+                                    intResInfo[:coverageInfo] << CoverageInfo.unpack(hCoverage, responseObj)
                                 end
                             end
                         end
