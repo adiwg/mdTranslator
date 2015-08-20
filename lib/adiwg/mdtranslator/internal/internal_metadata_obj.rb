@@ -634,12 +634,12 @@ class InternalMetadata
             meanValue: nil,
             standardDeviation: nil,
             bitsPerValue: nil,
-            classifiedData: {},
+            classedData: {},
             sensorInfo: {}
         }
     end
 
-    def newClassifiedData
+    def newClassedData
         intObj = {
             numberOfClasses: nil,
             classedDataItem: []

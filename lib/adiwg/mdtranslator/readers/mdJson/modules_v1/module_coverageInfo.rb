@@ -71,10 +71,6 @@ module ADIWG
                             end
                         end
 
-                        require 'pp'
-                        pp hCover
-                        puts '--------------------------'
-
                         return hCover
 
                     end

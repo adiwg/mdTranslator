@@ -172,10 +172,10 @@ module ADIWG
                             end
                         end
 
-                        # resource information - raster information
-                        unless resourceInfo[:rasterInfo].empty?
+                        # resource information - coverage information
+                        unless resourceInfo[:coverageInfo].empty?
                             @html.details do
-                                @html.summary('Raster Information ', {'id'=>'resourceInfo-rasterInfo', 'class'=>'h3'})
+                                @html.summary('Coverage Information ', {'id'=>'resourceInfo-coverageInfo', 'class'=>'h3'})
                             end
                         end
 

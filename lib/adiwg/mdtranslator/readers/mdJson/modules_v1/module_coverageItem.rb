@@ -5,6 +5,7 @@
 # 	Stan Smith 2015-08-19 original script
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_sensorInfo')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_classedData')
 
 module ADIWG
     module Mdtranslator
@@ -108,6 +109,12 @@ module ADIWG
                         end
 
                         # coverage item - classified data
+                        if hCoverItem.has_key?('classedData')
+                            hClassData = hCoverItem['classedData']
+                            if !hClassData.empty?
+                                hCovItem[:classedData] = ClassedData.unpack(hClassData, responseObj)
+                            end
+                        end
 
                         # coverage item - sensor info
                         if hCoverItem.has_key?('sensorInfo')
