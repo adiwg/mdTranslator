@@ -42,7 +42,6 @@ require_relative 'classes/class_maintenanceInformation'
 require_relative 'classes/class_referenceSystem'
 require_relative 'classes/class_locale'
 require_relative 'classes/class_gridInfo'
-require_relative 'classes/class_imageDescription'
 
 module ADIWG
     module Mdtranslator
@@ -69,7 +68,6 @@ module ADIWG
                         refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
                         localeClass = PT_Locale.new(@xml, @responseObj)
                         gridClass = MD_GridInfo.new(@xml, @responseObj)
-                        imageClass = MI_ImageDescription.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -250,11 +248,13 @@ module ADIWG
                             end
 
                             # metadata information - locale
-                            aLocales = hMetaInfo[:metadataLocales]
-                            if !aLocales.empty?
-                                aLocales.each do |hLocale|
-                                    @xml.tag!('gmd:locale') do
-                                        localeClass.writeXML(hLocale)
+                            if hMetaInfo
+                                if hMetaInfo[:metadataLocales]
+                                    aLocales = hMetaInfo[:metadataLocales]
+                                    aLocales.each do |hLocale|
+                                        @xml.tag!('gmd:locale') do
+                                            localeClass.writeXML(hLocale)
+                                        end
                                     end
                                 end
                             end
@@ -330,10 +330,10 @@ module ADIWG
                             # metadata information - content info
                             # ... information about data and link to 19110
                             # metadata information - image description
-                            aRasterInfo = hResInfo[:rasterInfo]
-                            aRasterInfo.each do |hRasterInfo|
+                            aCoverInfo = hResInfo[:coverageInfo]
+                            aCoverInfo.each do |hCoverInfo|
                                 @xml.tag!('gmd:contentInfo') do
-                                    imageClass.writeXML(hRasterInfo)
+                                    # imageClass.writeXML(hRasterInfo)
                                 end
                             end
 

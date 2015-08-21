@@ -54,8 +54,8 @@ module ADIWG
                         end
 
                         # coverage information - coverage items
-                        if hCoverage.has_key?('coverageItems')
-                            aCoverItems = hCoverage['coverageItems']
+                        if hCoverage.has_key?('coverageItem')
+                            aCoverItems = hCoverage['coverageItem']
                             aCoverItems.each do |hCoverItem|
                                 if !hCoverItem.empty?
                                     hCover[:coverageItems] << CoverageItem.unpack(hCoverItem, responseObj)
