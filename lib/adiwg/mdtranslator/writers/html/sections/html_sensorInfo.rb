@@ -25,7 +25,7 @@ module ADIWG
                         end
 
                         # sensor information - sensor min
-                        s = hSensor[:sensorMix]
+                        s = hSensor[:sensorMin]
                         if !s.nil?
                             @html.em('Sensor lower limit: ')
                             @html.text!(s.to_s)
