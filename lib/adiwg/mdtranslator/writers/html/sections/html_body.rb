@@ -10,11 +10,9 @@
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
 require_relative 'html_dataDictionary'
-require_relative 'html_citation'
-require_relative 'html_responsibleParty'
-require_relative 'html_orderProcess'
-require_relative 'html_format'
-require_relative 'html_transferOption'
+require_relative 'html_distributor'
+require_relative 'html_associatedResource'
+require_relative 'html_additionalDocumentation'
 
 module ADIWG
     module Mdtranslator
@@ -33,11 +31,9 @@ module ADIWG
                             htmlMetaInfo = MdHtmlMetadataInfo.new(@html)
                             htmlResInfo = MdHtmlResourceInfo.new(@html)
                             htmlDataD = MdHtmlDataDictionary.new(@html)
-                            htmlCitation = MdHtmlCitation.new(@html)
-                            htmlResParty = MdHtmlResponsibleParty.new(@html)
-                            htmlOrderProc = MdHtmlOrderProcess.new(@html)
-                            htmlFormat = MdHtmlFormat.new(@html)
-                            htmlTranOpt = MdHtmlTransferOption.new(@html)
+                            htmlDist = MdHtmlDistributor.new(@html)
+                            htmlAssRes = MdHtmlAssociatedResource.new(@html)
+                            htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
 
                             # make sections of the internal data store more accessible
                             hMetadata = intObj[:metadata]
@@ -114,6 +110,10 @@ module ADIWG
                                         @html.br
                                         @html.a('Grid Information', 'href'=>'#resourceInfo-gridInfo')
                                     end
+                                    unless hMetadata[:resourceInfo][:coverageInfo].empty?
+                                        @html.br
+                                        @html.a('Coverage Information', 'href'=>'#resourceInfo-coverageInfo')
+                                    end
                                     unless hMetadata[:resourceInfo][:dataQualityInfo].empty?
                                         @html.br
                                         @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
@@ -162,7 +162,6 @@ module ADIWG
                             end
                             @html.hr
 
-
                             # resource information section
                             @html.h2('Resource Information', 'id'=>'resourceInfo')
                             @html.section(:class=>'block') do
@@ -192,37 +191,21 @@ module ADIWG
                             @html.h2('Resource Distribution', 'id'=>'resourceDistribution')
                             aDistributor.each do |hDistributor|
                                 @html.section(:class=>'block') do
+
+                                    # get distributor name from contact orgName
+                                    contId = hDistributor[:distContact][:contactId]
+                                    hCont = ADIWG::Mdtranslator::Writers::Html::MdHtmlWriter.getContact(contId)
+                                    distName = hCont[:orgName]
+                                    if distName.nil?
+                                        distName = 'Other'
+                                    end
                                     @html.details do
-                                        @html.summary('Distributor', {'class'=>'h4'})
+                                        @html.summary(distName, {'class'=>'h3'})
                                         @html.section(:class=>'block') do
-
-                                            # resource distribution - distributor - required
-                                            @html.em('Distributor contact: ')
-                                            hResParty = hDistributor[:distContact]
-                                            @html.section(:class=>'block') do
-                                                htmlResParty.writeHtml(hResParty)
-                                            end
-
-                                            # resource distribution - order process
-                                            hDistributor[:distOrderProc].each do |hOrder|
-                                                @html.em('Order Process: ')
-                                                @html.section(:class=>'block') do
-                                                    htmlOrderProc.writeHtml(hOrder)
-                                                end
-                                            end
-
-                                            # resource distribution - resource format
-                                            hDistributor[:distFormat].each do |hFormat|
-                                                htmlFormat.writeHtml(hFormat)
-                                            end
-
-                                            # resource distribution - transfer options
-                                            hDistributor[:distTransOption].each do |hTransOption|
-                                                htmlTranOpt.writeHtml(hTransOption)
-                                            end
-
+                                            htmlDist.writeHtml(hDistributor)
                                         end
                                     end
+
                                 end
                             end
                             @html.hr
@@ -243,48 +226,7 @@ module ADIWG
                                     @html.details do
                                         @html.summary(sTitle, {'class'=>'h4'})
                                         @html.section(:class=>'block') do
-
-                                            # associated resource - resource type
-                                            s = hAssRes[:resourceType]
-                                            if !s.nil?
-                                                @html.em('Resource type: ')
-                                                @html.text!(s)
-                                                @html.br
-                                            end
-
-                                            # associated resource - association type
-                                            s = hAssRes[:associationType]
-                                            if !s.nil?
-                                                @html.em('Association type: ')
-                                                @html.text!(s)
-                                                @html.br
-                                            end
-
-                                            # associated resource - initiative type
-                                            s = hAssRes[:initiativeType]
-                                            if !s.nil?
-                                                @html.em('Initiative type: ')
-                                                @html.text!(s)
-                                                @html.br
-                                            end
-
-                                            # associated resource - citation
-                                            if !hCitation.empty?
-                                                @html.em('Resource citation: ')
-                                                @html.section(:class=>'block') do
-                                                    htmlCitation.writeHtml(hCitation)
-                                                end
-                                            end
-
-                                            # associated resource - metadata citation
-                                            hCitation = hAssRes[:metadataCitation]
-                                            if !hCitation.empty?
-                                                @html.em('Metadata citation: ')
-                                                @html.section(:class=>'block') do
-                                                    htmlCitation.writeHtml(hCitation)
-                                                end
-                                            end
-
+                                            htmlAssRes.writeHtml(hAssRes)
                                         end
                                     end
 
@@ -302,24 +244,7 @@ module ADIWG
                                     @html.details do
                                         @html.summary(sTitle, {'class'=>'h4'})
                                         @html.section(:class=>'block') do
-
-                                            # additional documentation - resource type
-                                            s = hAddDoc[:resourceType]
-                                            if !s.nil?
-                                                @html.em('Resource type: ')
-                                                @html.text!(s)
-                                                @html.br
-                                            end
-
-                                            # additional documentation - citation
-                                            hCitation = hAddDoc[:citation]
-                                            if !hCitation.empty?
-                                                @html.em('Citation: ')
-                                                @html.section(:class=>'block') do
-                                                    htmlCitation.writeHtml(hCitation)
-                                                end
-                                            end
-
+                                            htmlAddDoc.writeHtml(hAddDoc)
                                         end
                                     end
 

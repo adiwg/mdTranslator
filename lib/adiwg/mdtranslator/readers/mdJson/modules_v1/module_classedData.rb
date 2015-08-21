@@ -28,11 +28,11 @@ module ADIWG
                         end
 
                         # classed data - classed data items
-                        if hClassData.has_key?('classedDataItem')
-                            aClassItems = hClassData['classedDataItem']
+                        if hClassData.has_key?('classedDataItems')
+                            aClassItems = hClassData['classedDataItems']
                             aClassItems.each do |hClassItem|
                                 if !hClassItem.empty?
-                                    hClass[:classedDataItem] << ClassedDataItem.unpack(hClassItem, responseObj)
+                                    hClass[:classedDataItems] << ClassedDataItem.unpack(hClassItem, responseObj)
                                 end
                             end
                         end

@@ -642,7 +642,7 @@ class InternalMetadata
     def newClassedData
         intObj = {
             numberOfClasses: nil,
-            classedDataItem: []
+            classedDataItems: []
         }
     end
 
@@ -661,7 +661,7 @@ class InternalMetadata
             imageCondition: nil,
             imageQuality: {},
             cloudCoverPercent: nil,
-            compressionQuality: nil,
+            compressionQuantity: nil,
             triangulationInfo: false,
             radiometricCalibrationInfo: false,
             cameraCalibrationInfo: false,

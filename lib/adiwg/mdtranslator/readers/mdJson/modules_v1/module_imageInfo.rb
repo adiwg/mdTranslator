@@ -63,7 +63,7 @@ module ADIWG
                         if hImageInfo.has_key?('compressionQuantity')
                             s = hImageInfo['compressionQuantity']
                             if s != ''
-                                hImage[:compressionQuality] = s
+                                hImage[:compressionQuantity] = s
                             end
                         end
 

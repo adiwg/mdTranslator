@@ -18,6 +18,7 @@ require_relative 'html_dataLineage'
 require_relative 'html_extent'
 require_relative 'html_resourceOther'
 require_relative 'html_gridInfo'
+require_relative 'html_coverageInfo'
 
 module ADIWG
     module Mdtranslator
@@ -45,6 +46,7 @@ module ADIWG
                         htmlExtent = MdHtmlExtent.new(@html)
                         htmlOther = MdHtmlResourceOther.new(@html)
                         htmlGrid = MdHtmlGridInfo.new(@html)
+                        htmlCover = MdHtmlCoverageInfo.new(@html)
 
                         # resource information - general
                         @html.details do
@@ -176,6 +178,29 @@ module ADIWG
                         unless resourceInfo[:coverageInfo].empty?
                             @html.details do
                                 @html.summary('Coverage Information ', {'id'=>'resourceInfo-coverageInfo', 'class'=>'h3'})
+                                @html.section(:class=>'block') do
+                                    aCoverage = resourceInfo[:coverageInfo]
+                                    aCoverage.each do |hCover|
+
+                                        # get coverage type
+                                        coverType = hCover[:coverageType]
+                                        if coverType.nil?
+                                            coverType = 'Unknown type'
+                                        end
+                                        # get coverage name
+                                        coverName = hCover[:coverageName]
+                                        if coverName.nil?
+                                            coverName = 'Coverage'
+                                        end
+                                        @html.details do
+                                            @html.summary(coverName + ' (' + coverType + ')', {:class=>'h4'})
+                                            @html.section(:class=>'block') do
+                                                htmlCover.writeHtml(hCover)
+                                            end
+                                        end
+
+                                    end
+                                end
                             end
                         end
 
