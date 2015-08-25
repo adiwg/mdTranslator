@@ -87,8 +87,11 @@ class TestReaderMdJsonDateTime_v1 < MiniTest::Test
         assert_equal 'YMDhms', metadata[:dateResolution]
 
         # year-month-day-hour-minute-second.fraction
+        # note: there is a problem with Ruby strftime.  When printing times with fractions
+        # ... of seconds the fractions are not displayed if %:z is used unless %:z is
+        # ... separated from %L by a space or other character.
         metadata = @@NameSpace.unpack(@@hIn[6], @@responseObj)
-        assert_equal '2013-02-03T04:05:06.780+00:00', metadata[:dateTime].strftime('%Y-%m-%dT%H:%M:%S.%L%:z')
+        assert_equal '2013-02-03T04:05:06.780 +00:00', metadata[:dateTime].strftime('%Y-%m-%dT%H:%M:%S.%L %:z')
         assert_equal 'YMDhmsL', metadata[:dateResolution]
 
         # year-month-day-hour-zulu
@@ -138,18 +141,18 @@ class TestReaderMdJsonDateTime_v1 < MiniTest::Test
 
         # year-month-day-hour-minute-second.fraction-zulu
         metadata = @@NameSpace.unpack(@@hIn[16], @@responseObj)
-        assert_equal '2013-02-03T04:05:06.78+00:00', metadata[:dateTime].to_s
-        assert_equal 'YMDhmsZ', metadata[:dateResolution]
+        assert_equal '2013-02-03T04:05:06.780 +00:00', metadata[:dateTime].strftime('%Y-%m-%dT%H:%M:%S.%L %:z')
+        assert_equal 'YMDhmsLZ', metadata[:dateResolution]
 
         # year-month-day-hour-minute-second.fraction-offset(-)
         metadata = @@NameSpace.unpack(@@hIn[17], @@responseObj)
-        assert_equal '2013-02-03T04:05:06.78-09:00', metadata[:dateTime].to_s
-        assert_equal 'YMDhmsZ', metadata[:dateResolution]
+        assert_equal '2013-02-03T04:05:06.780 -09:00', metadata[:dateTime].strftime('%Y-%m-%dT%H:%M:%S.%L %:z')
+        assert_equal 'YMDhmsLZ', metadata[:dateResolution]
 
         # year-month-day-hour-minute-second.fraction-offset(+)
         metadata = @@NameSpace.unpack(@@hIn[18], @@responseObj)
-        assert_equal '2013-02-03T04:05:06.78+09:10', metadata[:dateTime].to_s
-        assert_equal 'YMDhmsZ', metadata[:dateResolution]
+        assert_equal '2013-02-03T04:05:06.780 +09:10', metadata[:dateTime].strftime('%Y-%m-%dT%H:%M:%S.%L %:z')
+        assert_equal 'YMDhmsLZ', metadata[:dateResolution]
 
     end
 

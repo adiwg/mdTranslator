@@ -19,6 +19,10 @@ module ADIWG
 
                     def self.unpack(hProcStep, responseObj)
 
+                        # return nil object if input is empty
+                        intDataPStep = nil
+                        return if hProcStep.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDataPStep = intMetadataClass.newDataProcessStep
@@ -31,12 +35,20 @@ module ADIWG
                             end
                         end
 
-                        # process step - description
+                        # process step - description - required
                         if hProcStep.has_key?('description')
                             s = hProcStep['description']
                             if s != ''
                                 intDataPStep[:stepDescription] = s
+                            else
+                                responseObj[:readerExecutionMessages] << 'Process step description is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Process step description is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # process step - rationale

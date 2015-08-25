@@ -10,6 +10,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-08-24 added return if input hash is empty
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 
@@ -22,6 +23,10 @@ module ADIWG
 
                     def self.unpack(hDesKeyword, responseObj)
 
+                        # return nil object if input is empty
+                        intKeyword = nil
+                        return if hDesKeyword.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intKeyword = intMetadataClass.newKeyword
@@ -29,9 +34,19 @@ module ADIWG
                         # descriptive keyword - keyword array
                         if hDesKeyword.has_key?('keyword')
                             aKeywords = hDesKeyword['keyword']
-                            aKeywords.each do |keyword|
-                                intKeyword[:keyword] << keyword
+                            if aKeywords.length > 0
+                                aKeywords.each do |keyword|
+                                    intKeyword[:keyword] << keyword
+                                end
+                            else
+                                responseObj[:readerExecutionMessages] << 'Keyword list is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Keyword list is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # descriptive keyword - keyType

@@ -45,7 +45,7 @@ module ADIWG
                             end
                         end
 
-                        # dimension information - units for resolutioni
+                        # dimension information - units for resolution
                         if hDimInfo.has_key?('resolutionUnit')
                             s = hDimInfo['resolutionUnit']
                             if s != ''

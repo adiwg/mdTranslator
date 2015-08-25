@@ -10,10 +10,13 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-08-24 refactored to normalize module; created new modules for
+#   ... distributionOrder, digitalTransferOption, and medium
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dateTime')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_distributionOrder')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceFormat')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_digitalTransferOption')
 
 module ADIWG
     module Mdtranslator
@@ -28,52 +31,29 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intDistributor = intMetadataClass.newDistributor
 
-                        # distributor - distribution contact
+
+                        # distributor - distribution contact - required
                         if hDistributor.has_key?('distributorContact')
                             hContact = hDistributor['distributorContact']
                             unless hContact.empty?
                                 intDistributor[:distContact] = ResponsibleParty.unpack(hContact, responseObj)
+                            else
+                                responseObj[:readerExecutionMessages] << 'Distributor contact is empty'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionMessages] << 'Distributor contact is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # distributor - distribution order process
                         if hDistributor.has_key?('distributionOrderProcess')
                             aDistOrder = hDistributor['distributionOrderProcess']
                             unless aDistOrder.empty?
-                                aDistOrder.each do |distOrderProcess|
-
-                                    intDistOrder = intMetadataClass.newDistOrder
-
-                                    if distOrderProcess.has_key?('fees')
-                                        s = distOrderProcess['fees']
-                                        if s != ''
-                                            intDistOrder[:fees] = s
-                                        end
-                                    end
-
-                                    if distOrderProcess.has_key?('plannedAvailabilityDateTime')
-                                        s = distOrderProcess['plannedAvailabilityDateTime']
-                                        if s != ''
-                                            intDistOrder[:plannedDateTime] = DateTime.unpack(s, responseObj)
-                                        end
-                                    end
-
-                                    if distOrderProcess.has_key?('orderingInstructions')
-                                        s = distOrderProcess['orderingInstructions']
-                                        if s != ''
-                                            intDistOrder[:orderInstructions] = s
-                                        end
-                                    end
-
-                                    if distOrderProcess.has_key?('turnaround')
-                                        s = distOrderProcess['turnaround']
-                                        if s != ''
-                                            intDistOrder[:turnaround] = s
-                                        end
-                                    end
-
-                                    intDistributor[:distOrderProc] << intDistOrder
-
+                                aDistOrder.each do |hDistOrder|
+                                    intDistributor[:distOrderProc] << DistributionOrder.unpack(hDistOrder, responseObj)
                                 end
                             end
                         end
@@ -82,25 +62,8 @@ module ADIWG
                         if hDistributor.has_key?('distributorFormat')
                             aDistFormat = hDistributor['distributorFormat']
                             unless aDistFormat.empty?
-
-                                aDistFormat.each do |distFormat|
-                                    intResFormat = intMetadataClass.newResourceFormat
-
-                                    if distFormat.has_key?('formatName')
-                                        s = distFormat['formatName']
-                                        if s != ''
-                                            intResFormat[:formatName] = s
-                                        end
-                                    end
-
-                                    if distFormat.has_key?('version')
-                                        s = distFormat['version']
-                                        if s != ''
-                                            intResFormat[:formatVersion] = s
-                                        end
-                                    end
-
-                                    intDistributor[:distFormat] << intResFormat
+                                aDistFormat.each do |hResFormat|
+                                    intDistributor[:distFormat] << ResourceFormat.unpack(hResFormat, responseObj)
                                 end
                             end
                         end
@@ -109,45 +72,8 @@ module ADIWG
                         if hDistributor.has_key?('distributorTransferOptions')
                             aDistTransOpt = hDistributor['distributorTransferOptions']
                             unless aDistTransOpt.empty?
-
-                                aDistTransOpt.each do |distTransOpt|
-                                    intTransOpt = intMetadataClass.newDigitalTransOption
-
-                                    if distTransOpt.has_key?('online')
-                                        aOnlineOption = distTransOpt['online']
-                                        aOnlineOption.each do |hOlOption|
-                                            intTransOpt[:online] << OnlineResource.unpack(hOlOption, responseObj)
-                                        end
-                                    end
-
-                                    if distTransOpt.has_key?('offline')
-                                        intOfflineOpt = intMetadataClass.newMedium
-                                        distOfflineOpt = distTransOpt['offline']
-                                        if distOfflineOpt.has_key?('name')
-                                            s = distOfflineOpt['name']
-                                            if s != ''
-                                                intOfflineOpt[:mediumName] = s
-                                            end
-                                        end
-
-                                        if distOfflineOpt.has_key?('mediumFormat')
-                                            s = distOfflineOpt['mediumFormat']
-                                            if s != ''
-                                                intOfflineOpt[:mediumFormat] = s
-                                            end
-                                        end
-
-                                        if distOfflineOpt.has_key?('mediumNote')
-                                            s = distOfflineOpt['mediumNote']
-                                            if s != ''
-                                                intOfflineOpt[:mediumNote] = s
-                                            end
-                                        end
-
-                                        intTransOpt[:offline] = intOfflineOpt
-                                    end
-
-                                    intDistributor[:distTransOption] << intTransOpt
+                                aDistTransOpt.each do |hDigTranOpt|
+                                    intDistributor[:distTransOption] << DigitalTransOption.unpack(hDigTranOpt, responseObj)
                                 end
                             end
                         end

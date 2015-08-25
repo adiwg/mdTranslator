@@ -18,6 +18,10 @@ module ADIWG
 
                     def self.unpack(hLegalCon, responseObj)
 
+                        # return nil object if input is empty
+                        hIntCon = nil
+                        return if hLegalCon.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         hIntCon = intMetadataClass.newLegalConstraint
