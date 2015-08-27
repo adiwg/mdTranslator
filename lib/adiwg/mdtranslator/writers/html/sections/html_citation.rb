@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2015-03-23 original script
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#   Stan Smith 2015-08-26 added alternate title
 
 require_relative 'html_dateTime'
 require_relative 'html_resourceId'
@@ -32,6 +33,14 @@ module ADIWG
                         @html.em('Title: ')
                         @html.text!(hCitation[:citTitle])
                         @html.br
+
+                        # citation - alternate title
+                        s = hCitation[:citAltTitle]
+                        if s
+                            @html.em('Alternate title: ')
+                            @html.text!(s)
+                            @html.br
+                        end
 
                         # citation - date
                         aDates = hCitation[:citDate]
