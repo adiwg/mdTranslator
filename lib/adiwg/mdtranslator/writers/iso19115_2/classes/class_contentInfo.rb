@@ -65,11 +65,22 @@ module ADIWG
                             end
 
                             # content information - coverage items [] - band information
+                            # only write band information if applicable coverage items are present
                             aCoverItems = hContent[:coverageItems]
                             aCoverItems.each do |hCoverItem|
-                                @xml.tag!('gmd:dimension') do
-                                    bandClass.writeXML(hCoverItem)
+
+                                # check for applicable coverage items
+                                if  !hCoverItem[:maxValue].nil? ||
+                                    !hCoverItem[:minValue].nil? ||
+                                    !hCoverItem[:units].nil? ||
+                                    !hCoverItem[:bitsPerValue].nil? ||
+                                    !hCoverItem[:scaleFactor].nil? ||
+                                    !hCoverItem[:offset].nil?
+                                    @xml.tag!('gmd:dimension') do
+                                        bandClass.writeXML(hCoverItem)
+                                    end
                                 end
+
                             end
 
                             # content information - image information
