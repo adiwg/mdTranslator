@@ -199,6 +199,7 @@ class InternalMetadata
     def newCitation
         intObj = {
             citTitle: nil,
+            citAltTitle: nil,
             citDate: [],
             citEdition: nil,
             citResourceIds: [],

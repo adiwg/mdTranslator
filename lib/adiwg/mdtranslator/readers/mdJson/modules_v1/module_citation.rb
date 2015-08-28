@@ -11,6 +11,7 @@
 #   Stan Smith 2014-12-30 refactored
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-08-28 added alternate title
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dateTime')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
@@ -48,6 +49,14 @@ module ADIWG
                             responseObj[:readerExecutionMessages] << 'Citation title is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
+                        end
+
+                        # citation - alternate title
+                        if hCitation.has_key?('alternateTitle')
+                            s = hCitation['alternateTitle']
+                            if s != ''
+                                intCitation[:citAltTitle] = s
+                            end
                         end
 
                         # citation - date

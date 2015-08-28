@@ -15,6 +15,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-08-28 added alternate title
 
 require_relative 'class_codelist'
 require_relative 'class_responsibleParty'
@@ -51,6 +52,16 @@ module ADIWG
                                 @xml.tag!('gmd:title') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
+                            end
+
+                            # citation - alternate title
+                            s = hCitation[:citAltTitle]
+                            if !s.nil?
+                                @xml.tag!('gmd:alternateTitle') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:alternateTitle')
                             end
 
                             # citation - date - required
