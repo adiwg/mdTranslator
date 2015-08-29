@@ -15,7 +15,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
-#   Stan Smith 2015-08-26 added alternate title
+#   Stan Smith 2015-08-28 added alternate title
 
 require_relative 'class_codelist'
 require_relative 'class_responsibleParty'

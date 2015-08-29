@@ -394,7 +394,7 @@ module ADIWG
                                 needTag = false
                             end
 
-                            # add the remaining geographic, temporal, and veritcal extents
+                            # add the remaining geographic, temporal, and vertical extents
                             aExtents = hDataId[:extents]
                             if !aExtents.empty?
                                 aExtents.each do |hExtent|

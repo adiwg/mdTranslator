@@ -19,6 +19,7 @@ module ADIWG
                     end
 
                     def writeXML(hDim)
+
                         # classes used
                         codelistClass = MD_Codelist.new(@xml, @responseObj)
 
@@ -30,6 +31,8 @@ module ADIWG
                                 @xml.tag!('gmd:dimensionName') do
                                     codelistClass.writeXML('iso_dimensionNameType',s)
                                 end
+                            else
+                                @xml.tag!('gmd:dimensionName', {'gco:nilReason'=>'missing'})
                             end
 
                             # dimension information - dimension size - required
@@ -38,15 +41,19 @@ module ADIWG
                                 @xml.tag!('gmd:dimensionSize') do
                                     @xml.tag!('gco:Integer',s)
                                 end
+                            else
+                                @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
                             end
 
-                            # dimension information - dimension resolution
+                            # dimension information - dimension resolution - required
                             res = hDim[:resolution]
                             resUnit = hDim[:resolutionUnits]
                             if !res.nil?
                                 @xml.tag!('gmd:resolution') do
                                     @xml.tag!('gco:Measure', {'uom'=>resUnit}, res)
                                 end
+                            else
+                                @xml.tag!('gmd:resolution', {'gco:nilReason'=>'missing'})
                             end
 
                         end

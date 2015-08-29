@@ -31,7 +31,7 @@
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #   Stan Smith 2015-07-28 added support for PT_Locale
 #   Stan Smith 2015-07-30 added support for grid information
-#   Stan Smith 2015-08-26 added support for content information
+#   Stan Smith 2015-08-27 added support for content information
 
 require_relative 'classes/class_codelist'
 require_relative 'classes/class_responsibleParty'
@@ -70,7 +70,7 @@ module ADIWG
                         refSysClass = MD_ReferenceSystem.new(@xml, @responseObj)
                         localeClass = PT_Locale.new(@xml, @responseObj)
                         gridClass = MD_GridInfo.new(@xml, @responseObj)
-                        contentClass = MD_ContentInformation.new(@xml, @responseObj)
+                        contentClass = ContentInfo.new(@xml, @responseObj)
 
                         intMetadata = intObj[:metadata]
                         hMetaInfo = intMetadata[:metadataInfo]
@@ -331,11 +331,11 @@ module ADIWG
                             end
 
                             # metadata information - content info
-                            # ... information data content or link to 19110
-                            aCoverInfo = hResInfo[:coverageInfo]
-                            aCoverInfo.each do |hCoverInfo|
+                            # ... information about data content and/or link to 19110
+                            aContentInfo = hResInfo[:coverageInfo]
+                            aContentInfo.each do |hContent|
                                 @xml.tag!('gmd:contentInfo') do
-                                    contentClass.writeXML(hCoverInfo)
+                                    contentClass.writeXML(hContent)
                                 end
                             end
 
