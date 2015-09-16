@@ -9,7 +9,7 @@ module ADIWG
             module MdJson
 
                 # current version of mdJson reader version 1
-                VERSION = '1.2.0'
+                VERSION = '1.1.0'
 
             end
         end
