@@ -52,6 +52,7 @@
 #   Stan Smith 2015-07-28 added locale for 1.3.0
 #   Stan Smith 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem,
 #                     ... classifiedData, and classedDataItem for 1.3.0
+#   Stan Smith 2015-09-18 extended distributionInfo sections for 1.3.0
 
 class InternalMetadata
 
@@ -264,9 +265,9 @@ class InternalMetadata
     def newDistributor
         intObj = {
             distContact: {},
-            distOrderProc: [],
-            distFormat: [],
-            distTransOption: []
+            distOrderProcs: [],
+            distFormats: [],
+            distTransOptions: []
         }
     end
 
@@ -281,6 +282,9 @@ class InternalMetadata
 
     def newDigitalTransOption
         intObj = {
+            distFormats: [],
+            transferSize: nil,
+            compressionMethod: nil,
             online: [],
             offline: {}
         }
@@ -289,6 +293,8 @@ class InternalMetadata
     def newMedium
         intObj = {
             mediumName: nil,
+            mediumCapacity: nil,
+            mediumCapacityUnits: nil,
             mediumFormat: nil,
             mediumNote: nil
         }

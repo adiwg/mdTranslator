@@ -53,7 +53,7 @@ module ADIWG
                             aDistOrder = hDistributor['distributionOrderProcess']
                             unless aDistOrder.empty?
                                 aDistOrder.each do |hDistOrder|
-                                    intDistributor[:distOrderProc] << DistributionOrder.unpack(hDistOrder, responseObj)
+                                    intDistributor[:distOrderProcs] << DistributionOrder.unpack(hDistOrder, responseObj)
                                 end
                             end
                         end
@@ -63,7 +63,7 @@ module ADIWG
                             aDistFormat = hDistributor['distributorFormat']
                             unless aDistFormat.empty?
                                 aDistFormat.each do |hResFormat|
-                                    intDistributor[:distFormat] << ResourceFormat.unpack(hResFormat, responseObj)
+                                    intDistributor[:distFormats] << ResourceFormat.unpack(hResFormat, responseObj)
                                 end
                             end
                         end
@@ -73,7 +73,7 @@ module ADIWG
                             aDistTransOpt = hDistributor['distributorTransferOptions']
                             unless aDistTransOpt.empty?
                                 aDistTransOpt.each do |hDigTranOpt|
-                                    intDistributor[:distTransOption] << DigitalTransOption.unpack(hDigTranOpt, responseObj)
+                                    intDistributor[:distTransOptions] << DigitalTransOption.unpack(hDigTranOpt, responseObj)
                                 end
                             end
                         end

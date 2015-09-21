@@ -3,9 +3,11 @@
 
 # History:
 # 	Stan Smith 2015-08-24 original script
+#   Stan Smith 2015-09-18 added distribution formats, transfer size, compression method
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_medium')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceFormat')
 
 module ADIWG
     module Mdtranslator
@@ -24,7 +26,33 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intDigitalTran = intMetadataClass.newDigitalTransOption
 
-                        # distributor - distribution transfer options
+                        # distribution transfer options - distribution format []
+                        if hDigTranOpt.has_key?('distributorFormat')
+                            aDistFormat = hDigTranOpt['distributorFormat']
+                            unless aDistFormat.empty?
+                                aDistFormat.each do |hResFormat|
+                                    intDigitalTran[:distFormats] << ResourceFormat.unpack(hResFormat, responseObj)
+                                end
+                            end
+                        end
+
+                        # distribution transfer options - transfer size
+                        if hDigTranOpt.has_key?('transferSize')
+                            s = hDigTranOpt['transferSize']
+                            if s != ''
+                                intDigitalTran[:transferSize] = s
+                            end
+                        end
+
+                        # distribution transfer options - compression method
+                        if hDigTranOpt.has_key?('compressionMethod')
+                            s = hDigTranOpt['compressionMethod']
+                            if s != ''
+                                intDigitalTran[:compressionMethod] = s
+                            end
+                        end
+
+                        # distribution transfer options - online []
                         if hDigTranOpt.has_key?('online')
                             aOnlineOption = hDigTranOpt['online']
                             aOnlineOption.each do |hOlOption|
@@ -32,6 +60,7 @@ module ADIWG
                             end
                         end
 
+                        # distribution transfer options - offline
                         if hDigTranOpt.has_key?('offline')
                             hOfflOption = hDigTranOpt['offline']
                             if !hOfflOption.empty?
@@ -39,6 +68,10 @@ module ADIWG
 
                             end
                         end
+
+                        require 'pp'
+                        pp  intDigitalTran
+                        puts '-----------------------'
 
                         return intDigitalTran
                     end
