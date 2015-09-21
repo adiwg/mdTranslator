@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-08-24 original script
+#   Stan Smith 2015-09-18 added capacity and capacity units
 
 module ADIWG
     module Mdtranslator
@@ -21,6 +22,7 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intMedium = intMetadataClass.newMedium
 
+                        # medium - type
                         if hMedium.has_key?('name')
                             s = hMedium['name']
                             if s != ''
@@ -28,6 +30,23 @@ module ADIWG
                             end
                         end
 
+                        # medium - capacity
+                        if hMedium.has_key?('mediumCapacity')
+                            s = hMedium['mediumCapacity']
+                            if s != ''
+                                intMedium[:mediumCapacity] = s
+                            end
+                        end
+
+                        # medium - capacity units
+                        if hMedium.has_key?('mediumCapacityUnits')
+                            s = hMedium['mediumCapacityUnits']
+                            if s != ''
+                                intMedium[:mediumCapacityUnits] = s
+                            end
+                        end
+
+                        # medium - format
                         if hMedium.has_key?('mediumFormat')
                             s = hMedium['mediumFormat']
                             if s != ''
@@ -35,6 +54,7 @@ module ADIWG
                             end
                         end
 
+                        # medium - note
                         if hMedium.has_key?('mediumNote')
                             s = hMedium['mediumNote']
                             if s != ''
