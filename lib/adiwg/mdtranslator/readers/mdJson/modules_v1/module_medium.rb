@@ -26,7 +26,7 @@ module ADIWG
                         if hMedium.has_key?('name')
                             s = hMedium['name']
                             if s != ''
-                                intMedium[:mediumName] = s
+                                intMedium[:mediumType] = s
                             end
                         end
 

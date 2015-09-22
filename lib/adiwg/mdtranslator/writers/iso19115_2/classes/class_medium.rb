@@ -9,6 +9,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-09-15 added density, densityUnits elements
 
 require_relative 'class_codelist'
 
@@ -41,11 +42,27 @@ module ADIWG
                                 @xml.tag!('gmd:name')
                             end
 
+                            # medium - density in MB / density units
+                            s = medium[:mediumCapacity]
+                            if !s.nil?
+                                @xml.tag!('gmd:density') do
+                                    @xml.tag!('gco:Real', s.to_s)
+                                end
+                                su = medium[:mediumCapacityUnits].upcase
+                                if !su.nil?
+                                    @xml.tag!('gmd:densityUnits') do
+                                        @xml.tag!('gco:CharacterString', su)
+                                    end
+                                end
+                            elsif @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:density')
+                            end
+
                             # medium - medium format - MD_MediumFormatCode
                             s = medium[:mediumFormat]
                             if !s.nil?
                                 @xml.tag!('gmd:mediumFormat') do
-                                    codelistClass.writeXML('iso_mediumFormat',s)
+                                    codelistClass.writeXML('iso_mediumFormat', s)
                                 end
                             elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:mediumFormat')

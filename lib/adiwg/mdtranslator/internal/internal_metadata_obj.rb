@@ -225,7 +225,8 @@ class InternalMetadata
     def newResourceFormat
         intObj = {
             formatName: nil,
-            formatVersion: nil
+            formatVersion: nil,
+            compressionMethod: nil
         }
     end
 
@@ -284,7 +285,7 @@ class InternalMetadata
         intObj = {
             distFormats: [],
             transferSize: nil,
-            compressionMethod: nil,
+            transferSizeUnits: nil,
             online: [],
             offline: {}
         }
@@ -292,7 +293,7 @@ class InternalMetadata
 
     def newMedium
         intObj = {
-            mediumName: nil,
+            mediumType: nil,
             mediumCapacity: nil,
             mediumCapacityUnits: nil,
             mediumFormat: nil,

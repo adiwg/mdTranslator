@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-09-21 added compression method element
 
 module ADIWG
     module Mdtranslator
@@ -16,7 +17,7 @@ module ADIWG
 
                     def writeHtml(hFormat)
 
-                        # resource format - format name
+                        # resource format - format name, version, compression method
                         s = hFormat[:formatName]
                         if !s.nil?
                             @html.em('Resource format: ')
@@ -24,6 +25,11 @@ module ADIWG
                             s = hFormat[:formatVersion]
                             if !s.nil?
                                 @html.em('Version: ')
+                                @html.text!(s)
+                            end
+                            s = hFormat[:compressionMethod]
+                            if !s.nil?
+                                @html.em('Compression: ')
                                 @html.text!(s)
                             end
                             @html.br

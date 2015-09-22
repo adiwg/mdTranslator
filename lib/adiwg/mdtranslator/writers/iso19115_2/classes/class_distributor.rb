@@ -8,6 +8,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-09-21 added format from distributorTransferOptions
 
 require_relative 'class_responsibleParty'
 require_relative 'class_standardOrderProcess'
@@ -47,7 +48,7 @@ module ADIWG
                             end
 
                             # distributor - distribution order process []
-                            aDistOrderProc = distributor[:distOrderProc]
+                            aDistOrderProc = distributor[:distOrderProcs]
                             if !aDistOrderProc.empty?
                                 aDistOrderProc.each do |distOrder|
                                     @xml.tag!('gmd:distributionOrderProcess') do
@@ -58,30 +59,47 @@ module ADIWG
                                 @xml.tag!('gmd:distributionOrderProcess')
                             end
 
-                            # distributor - distributor format []
-                            aDistFormats = distributor[:distFormat]
+                            # distributor - distributor format [] - deprecated
+                            # ... remove mdJson version 2.x
+                            # ... formats associated with a distributor
+                            aDistFormats = distributor[:distFormats]
                             if !aDistFormats.empty?
-                                aDistFormats.each do |dFormat|
+                                aDistFormats.each do |hFormat|
                                     @xml.tag!('gmd:distributorFormat') do
-                                        rFormatClass.writeXML(dFormat)
+                                        rFormatClass.writeXML(hFormat)
                                     end
                                 end
                             elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributorFormat')
                             end
 
-                            # distributor - distributor transfer options []
-                            aDistTransOpts = distributor[:distTransOption]
+                            # distributor - distributor format [] -
+                            # ... formats associated with a distributor transfer options
+                            aDistTransOpts = distributor[:distTransOptions]
                             if !aDistTransOpts.empty?
-                                aDistTransOpts.each do |dTransOpt|
+                                aDistTransOpts.each do |hTransOpt|
+                                    aDistFormats = hTransOpt[:distFormats]
+                                    if !aDistFormats.empty?
+                                        aDistFormats.each do |hFormat|
+                                            @xml.tag!('gmd:distributorFormat') do
+                                                rFormatClass.writeXML(hFormat)
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+
+                            # distributor - distributor transfer options []
+                            aDistTransOpts = distributor[:distTransOptions]
+                            if !aDistTransOpts.empty?
+                                aDistTransOpts.each do |hTransOpt|
                                     @xml.tag!('gmd:distributorTransferOptions') do
-                                        dTranOptClass.writeXML(dTransOpt)
+                                        dTranOptClass.writeXML(hTransOpt)
                                     end
                                 end
                             elsif @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributorTransferOptions')
                             end
-
 
                         end
 

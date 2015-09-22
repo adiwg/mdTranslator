@@ -7,6 +7,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-09-21 added compression method element
 
 module ADIWG
     module Mdtranslator
@@ -34,6 +35,14 @@ module ADIWG
                             s = hResFormat['version']
                             if s != ''
                                 rFormat[:formatVersion] = s
+                            end
+                        end
+
+                        # format - compression method
+                        if hResFormat.has_key?('compressionMethod')
+                            s = hResFormat['compressionMethod']
+                            if s != ''
+                                rFormat[:compressionMethod] = s
                             end
                         end
 

@@ -3,7 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-08-24 original script
-#   Stan Smith 2015-09-18 added distribution formats, transfer size, compression method
+#   Stan Smith 2015-09-18 added distribution formats, transfer size
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_medium')
@@ -44,11 +44,11 @@ module ADIWG
                             end
                         end
 
-                        # distribution transfer options - compression method
-                        if hDigTranOpt.has_key?('compressionMethod')
-                            s = hDigTranOpt['compressionMethod']
+                        # distribution transfer options - transfer size units
+                        if hDigTranOpt.has_key?('transferSizeUnits')
+                            s = hDigTranOpt['transferSizeUnits']
                             if s != ''
-                                intDigitalTran[:compressionMethod] = s
+                                intDigitalTran[:transferSizeUnits] = s
                             end
                         end
 
@@ -68,10 +68,6 @@ module ADIWG
 
                             end
                         end
-
-                        require 'pp'
-                        pp  intDigitalTran
-                        puts '-----------------------'
 
                         return intDigitalTran
                     end

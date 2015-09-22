@@ -35,7 +35,7 @@ module ADIWG
                         end
 
                         # resource distribution - order process
-                        hDistributor[:distOrderProc].each do |hOrder|
+                        hDistributor[:distOrderProcs].each do |hOrder|
                             @html.em('Order Process: ')
                             @html.section(:class=>'block') do
                                 htmlOrderProc.writeHtml(hOrder)
@@ -43,12 +43,12 @@ module ADIWG
                         end
 
                         # resource distribution - resource format
-                        hDistributor[:distFormat].each do |hFormat|
+                        hDistributor[:distFormats].each do |hFormat|
                             htmlFormat.writeHtml(hFormat)
                         end
 
                         # resource distribution - transfer options
-                        hDistributor[:distTransOption].each do |hTransOption|
+                        hDistributor[:distTransOptions].each do |hTransOption|
                             htmlTranOpt.writeHtml(hTransOption)
                         end
 

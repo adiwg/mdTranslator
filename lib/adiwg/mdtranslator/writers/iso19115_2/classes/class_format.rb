@@ -7,6 +7,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-09-15 added compression method element
 
 module ADIWG
     module Mdtranslator
@@ -43,6 +44,17 @@ module ADIWG
                                     @xml.tag!('gco:CharacterString', s)
                                 end
                             end
+
+                            # format - compression method
+                            s = rFormat[:compressionMethod]
+                            if !s.nil?
+                                @xml.tag!('gmd:fileDecompressionTechnique') do
+                                    @xml.tag!('gco:CharacterString', s)
+                                end
+                            elsif @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:fileDecompressionTechnique')
+                            end
+
                         end
 
                     end

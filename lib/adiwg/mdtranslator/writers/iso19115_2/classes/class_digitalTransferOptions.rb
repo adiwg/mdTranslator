@@ -8,6 +8,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-09-21 added transfer size
 
 require_relative 'class_onlineResource'
 require_relative 'class_medium'
@@ -31,6 +32,29 @@ module ADIWG
                         medClass =  MD_Medium.new(@xml, @responseObj)
 
                         @xml.tag!('gmd:MD_DigitalTransferOptions') do
+
+                            # digital transfer options - transfer size / units
+                            s = transOption[:transferSize]
+                            if !s.nil?
+                                su = transOption[:transferSizeUnits].upcase
+                                if !su.nil?
+                                    case su
+                                        when 'KB'
+                                            s = s * 0.001
+                                        when 'GB'
+                                            s = s * 1000.0
+                                        when 'TB'
+                                            s = s * 1000000.0
+                                        else
+                                            # MB assumed otherwise
+                                    end
+                                end
+                                @xml.tag!('gmd:transferSize') do
+                                    @xml.tag!('gco:Real', s.to_s)
+                                end
+                            elsif @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:transferSize')
+                            end
 
                             # digital transfer options - online [] - CI_OnlineResource
                             aOnTranOpts = transOption[:online]

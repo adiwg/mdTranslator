@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2015-03-27 original script
+#   Stan Smith 2015-09-21 added medium capacity
 
 module ADIWG
     module Mdtranslator
@@ -17,9 +18,25 @@ module ADIWG
                     def writeHtml(hMedium)
 
                         # medium - name
-                        s = hMedium[:mediumName]
+                        s = hMedium[:mediumType]
                         if !s.nil?
-                            @html.em('Medium name: ')
+                            @html.em('Medium type: ')
+                            @html.text!(s)
+                            @html.br
+                        end
+
+                        # medium - capacity
+                        s = hMedium[:mediumCapacity]
+                        if !s.nil?
+                            @html.em('Medium capacity: ')
+                            @html.text!(s.to_s)
+                            @html.br
+                        end
+
+                        # medium - capacity units
+                        s = hMedium[:mediumCapacityUnits]
+                        if !s.nil?
+                            @html.em('Medium capacity units: ')
                             @html.text!(s)
                             @html.br
                         end
