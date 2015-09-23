@@ -49,7 +49,7 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
         hIn = @@hIn.clone
         metadata = @@NameSpace.unpack(hIn, @@responseObj)
 
-        assert_equal metadata[:mediumName],   'name1'
+        assert_equal metadata[:mediumType],   'name1'
         assert_equal metadata[:mediumFormat], 'mediumFormat1'
         assert_equal metadata[:mediumNote],   'mediumNote1'
     end
@@ -62,7 +62,7 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
         hIn['mediumNote'] = ''
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:mediumName]
+        assert_nil metadata[:mediumType]
         assert_nil metadata[:mediumFormat]
         assert_nil metadata[:mediumNote]
     end
@@ -74,7 +74,7 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
         hIn.delete('mediumFormat')
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:mediumName]
+        assert_nil metadata[:mediumType]
         assert_nil metadata[:mediumFormat]
     end
 

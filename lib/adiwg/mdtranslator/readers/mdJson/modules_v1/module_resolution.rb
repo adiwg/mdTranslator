@@ -16,6 +16,10 @@ module ADIWG
 
                     def self.unpack(hResolution, responseObj)
 
+                        # return nil object if input is empty
+                        intResolution = nil
+                        return if hResolution.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intResolution = intMetadataClass.newResolution

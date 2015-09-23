@@ -20,6 +20,10 @@ module ADIWG
 
                     def self.unpack(hLineage, responseObj)
 
+                        # return nil object if input is empty
+                        intDataLine = nil
+                        return if hLineage.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDataLine = intMetadataClass.newLineage

@@ -12,7 +12,7 @@ module ADIWG
             module MdJson
 
                 @responseObj = {
-                    readerVersionUsed: '1.2.0'
+                    readerVersionUsed: '1.1.0'
                 }
 
             end
@@ -64,25 +64,23 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     def test_empty_contactId
         hIn = @@hIn.clone
         hIn['contactId'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = @@responseObj.clone
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_missing_contactId
         hIn = @@hIn.clone
         hIn.delete('contactId')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = @@responseObj.clone
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_contact_elements
@@ -129,9 +127,8 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
 
     def test_empty_contact_object
         hIn = {}
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = @@responseObj.clone
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
     end

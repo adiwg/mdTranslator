@@ -20,6 +20,10 @@ module ADIWG
 
                     def self.unpack(hSource, responseObj)
 
+                        # return nil object if input is empty
+                        intDataSource = nil
+                        return if hSource.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDataSource = intMetadataClass.newDataSource

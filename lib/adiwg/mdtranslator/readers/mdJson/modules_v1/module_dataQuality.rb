@@ -19,6 +19,10 @@ module ADIWG
 
                     def self.unpack(hDataQual, responseObj)
 
+                        # return nil object if input is empty
+                        intDataQual = nil
+                        return if hDataQual.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intDataQual = intMetadataClass.newDataQuality
@@ -28,7 +32,15 @@ module ADIWG
                             s = hDataQual['scope']
                             if s != ''
                                 intDataQual[:dataScope] = s
+                            else
+                                responseObj[:readerExecutionPass] =  false
+                                responseObj[:readerExecutionMessages] << 'dataQuality: {scope: } is blank.'
+                                return nil
                             end
+                        else
+                            responseObj[:readerExecutionPass] =  false
+                            responseObj[:readerExecutionMessages] << 'dataQuality: {scope: } is missing.'
+                            return nil
                         end
 
                         # data quality - report
