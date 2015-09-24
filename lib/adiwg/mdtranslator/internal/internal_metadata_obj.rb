@@ -132,7 +132,6 @@ class InternalMetadata
             metadataCustodians: [],
             metadataCreateDate: {},
             metadataUpdateDate: {},
-            metadataLanguage: nil,
             metadataCharacterSet: nil,
             metadataLocales: [],
             metadataURI: nil,

@@ -30,6 +30,10 @@ module ADIWG
 
                     def self.unpack(hMetadata, responseObj)
 
+                        # return nil object if input is empty
+                        intMetadataInfo = nil
+                        return if hMetadata.empty?
+
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intMetadataInfo = intMetadataClass.newMetadataInfo

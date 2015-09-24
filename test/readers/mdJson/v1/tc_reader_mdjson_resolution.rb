@@ -2,7 +2,7 @@
 # reader / mdJson / module_resolution
 
 # History:
-# Stan Smith 2015-08-24 original script
+# Stan Smith 2015-09-22 original script
 
 # set reader version used by mdJson_reader.rb to require correct modules
 module ADIWG
