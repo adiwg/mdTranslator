@@ -24,7 +24,7 @@ module ADIWG
                             @html.br
                         end
 
-                        # classed data item - descriptioin
+                        # classed data item - description
                         s = hClassItem[:classDescription]
                         if !s.nil?
                             @html.em('Item description: ')

@@ -109,8 +109,8 @@ module ADIWG
                         end
 
                         # coverage item - classified data
-                        if hCoverItem.has_key?('classedData')
-                            hClassData = hCoverItem['classedData']
+                        if hCoverItem.has_key?('classifiedData')
+                            hClassData = hCoverItem['classifiedData']
                             if !hClassData.empty?
                                 hCovItem[:classedData] = ClassedData.unpack(hClassData, responseObj)
                             end

@@ -114,7 +114,7 @@ module ADIWG
                         # coverage item - classed data
                         hClassD= hCovItem[:classedData]
                         if !hClassD.empty?
-                            @html.em('Classed data items: ')
+                            @html.em('Classified data items: ')
                             @html.section(:class=>'block') do
                                 htmlClassD.writeHtml(hClassD)
                             end
