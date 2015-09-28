@@ -36,11 +36,13 @@ module ADIWG
                             # digital transfer options - transfer size / units
                             s = transOption[:transferSize]
                             if !s.nil?
-                                su = transOption[:transferSizeUnits].upcase
+                                su = transOption[:transferSizeUnits]
                                 if !su.nil?
                                     case su
+                                        when 'kB'
+                                            s = s / 1024
                                         when 'KB'
-                                            s = s * 0.001
+                                            s = s / 1000
                                         when 'GB'
                                             s = s * 1000.0
                                         when 'TB'
