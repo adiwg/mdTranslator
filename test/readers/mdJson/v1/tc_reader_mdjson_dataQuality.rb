@@ -53,17 +53,18 @@ class TestReaderMdJsonDataQuality_v1 < MiniTest::Test
     @@hIn['lineage']['source'][0]['processStep'] = []
 
     def test_complete_dataQuality_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:dataScope], 'scope'
         refute_empty metadata[:dataLineage]
     end
 
     def test_empty_dataQuality_scope
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['scope'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -72,9 +73,9 @@ class TestReaderMdJsonDataQuality_v1 < MiniTest::Test
     end
 
     def test_missing_dataQuality_scope
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['scope'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -83,25 +84,25 @@ class TestReaderMdJsonDataQuality_v1 < MiniTest::Test
     end
 
     def test_empty_dataQuality_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['lineage'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:dataLineage]
     end
 
     def test_missing_dataQuality_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('lineage')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:dataLineage]
     end
 
     def test_empty_dataQuality_object
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata

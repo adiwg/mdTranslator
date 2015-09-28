@@ -52,58 +52,63 @@ class TestReaderMdJsonAdditionalDocumentation_v1 < MiniTest::Test
     @@hIn['citation']['identifier']= []
 
     def test_complete_additionalDocumentation_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:resourceType], 'resourceType'
         refute_empty metadata[:citation]
     end
 
     def test_empty_additionalDocumentation_citation
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['citation'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_missing_additionalDocumentation_citation
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('citation')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_additionalDocumentation_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceType'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:resourceType]
         refute_empty metadata[:citation]
     end
 
     def test_missing_additionalDocumentation_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('resourceType')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:resourceType]
         refute_empty metadata[:citation]
     end
 
     def test_empty_additionalDocumentation_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

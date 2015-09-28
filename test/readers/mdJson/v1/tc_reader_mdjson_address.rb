@@ -46,8 +46,9 @@ class TestReaderMdJsonAddress_v1 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_address_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:deliveryPoints].length, 2
         assert_equal metadata[:deliveryPoints][0], 'deliveryPoint1'
@@ -62,14 +63,15 @@ class TestReaderMdJsonAddress_v1 < MiniTest::Test
     end
 
     def test_empty_address_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['deliveryPoint'] = []
         hIn['city'] = ''
         hIn['administrativeArea'] = ''
         hIn['postalCode'] = ''
         hIn['country'] = ''
         hIn['electronicMailAddress'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:deliveryPoints]
         assert_nil metadata[:city]
@@ -80,7 +82,7 @@ class TestReaderMdJsonAddress_v1 < MiniTest::Test
     end
 
     def test_missing_address_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['nothing'] = '0'
         hIn.delete('deliveryPoint')
         hIn.delete('city')
@@ -88,7 +90,8 @@ class TestReaderMdJsonAddress_v1 < MiniTest::Test
         hIn.delete('postalCode')
         hIn.delete('country')
         hIn.delete('electronicMailAddress')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:deliveryPoints]
         assert_nil metadata[:city]
@@ -99,8 +102,8 @@ class TestReaderMdJsonAddress_v1 < MiniTest::Test
     end
 
     def test_empty_address_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

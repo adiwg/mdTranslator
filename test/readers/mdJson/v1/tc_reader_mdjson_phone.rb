@@ -46,8 +46,9 @@ class TestReaderMdJsonPhone_v1 < MiniTest::Test
 
     def test_complete_phone_object
 
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata.length, 2
         assert_equal metadata[0][:phoneServiceType], 'service11'
@@ -60,9 +61,10 @@ class TestReaderMdJsonPhone_v1 < MiniTest::Test
 
     def test_empty_phone_service
         # empty service should default to 'voice'
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['service'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[0][:phoneServiceType], 'voice'
         assert_equal metadata[0][:phoneName],        'phoneName1'
@@ -71,26 +73,29 @@ class TestReaderMdJsonPhone_v1 < MiniTest::Test
 
     def test_empty_phone_number
         # empty phone number should return empty object
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['phoneNumber'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata
     end
 
     def test_missing_phone_number
         # missing phone number should return empty object
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('phoneNumber')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata
     end
 
     def test_missing_phone_service
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('service')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[0][:phoneServiceType], 'voice'
         assert_equal metadata[0][:phoneName],        'phoneName1'
@@ -98,8 +103,8 @@ class TestReaderMdJsonPhone_v1 < MiniTest::Test
     end
 
     def test_empty_phone_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_empty metadata
     end

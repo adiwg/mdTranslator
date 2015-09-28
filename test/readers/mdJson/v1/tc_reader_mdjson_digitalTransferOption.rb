@@ -46,8 +46,9 @@ class TestReaderMdJsonDigitalTransOption_v1 < MiniTest::Test
     @@hIn = aIn[0]['distributorTransferOptions'][0]
 
     def test_complete_digitalTransferOption_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:online].length, 1
         refute_empty metadata[:online]
@@ -55,10 +56,10 @@ class TestReaderMdJsonDigitalTransOption_v1 < MiniTest::Test
     end
 
     def test_empty_digitalTransferOption_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['online'] = []
         hIn['offline'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:online]
@@ -66,26 +67,26 @@ class TestReaderMdJsonDigitalTransOption_v1 < MiniTest::Test
     end
 
     def test_missing_digitalTransferOption_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('online')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:online]
     end
 
     def test_missing_digitalTransferOption_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('offline')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:offline]
     end
 
     def test_empty_digitalTransferOption_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

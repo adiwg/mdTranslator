@@ -49,8 +49,9 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     @@hIn['foreignKey'] = []
 
     def test_complete_entity_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:entityId],       'entityId1'
         assert_equal metadata[:entityName],     'commonName1'
@@ -65,9 +66,9 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_empty_entity_id
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['entityId'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -76,9 +77,9 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_empty_entity_codeName
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['codeName'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -87,9 +88,9 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_empty_entity_definition
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['definition'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -98,11 +99,12 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_empty_entity_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['commonName'] = ''
         hIn['alias'] = []
         hIn['primaryKeyAttributeCodeName'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:entityName]
         assert_empty metadata[:entityAlias]
@@ -110,11 +112,12 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_missing_entity_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('commonName')
         hIn.delete('alias')
         hIn.delete('primaryKeyAttributeCodeName')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:entityName]
         assert_empty metadata[:entityAlias]
@@ -122,8 +125,8 @@ class TestReaderMdJsonEntity_v1 < MiniTest::Test
     end
 
     def test_empty_entity_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

@@ -53,8 +53,9 @@ class TestReaderMdJsonCitation_v1 < MiniTest::Test
     @@hIn['identifier'][0]['authority']['responsibleParty'] = []
 
     def test_complete_citation_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:citTitle], 'title'
         refute_empty metadata[:citDate]
@@ -68,37 +69,40 @@ class TestReaderMdJsonCitation_v1 < MiniTest::Test
     end
 
     def test_empty_citation_title
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['title'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_missing_citation_title
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('title')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_citation_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['date'] = []
         hIn['edition'] = ''
         hIn['presentationForm'] = []
         hIn['identifier'] = []
         hIn['onlineResource'] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:citTitle], 'title'
         assert_empty metadata[:citDate]
@@ -110,14 +114,15 @@ class TestReaderMdJsonCitation_v1 < MiniTest::Test
     end
 
     def test_missing_citation_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('date')
         hIn.delete('edition')
         hIn.delete('responsibleParty')
         hIn.delete('presentationForm')
         hIn.delete('identifier')
         hIn.delete('onlineResource')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:citTitle], 'title'
         assert_empty metadata[:citDate]
@@ -129,8 +134,8 @@ class TestReaderMdJsonCitation_v1 < MiniTest::Test
     end
 
     def test_empty_citation_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

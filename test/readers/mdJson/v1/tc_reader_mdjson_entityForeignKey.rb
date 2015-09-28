@@ -46,8 +46,9 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
     @@hIn = aIn[0]['entity'][0]['foreignKey'][0]
 
     def test_complete_entityForeignKey_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:fkLocalAttributes][0],      'localAttributeCodeName111'
         assert_equal metadata[:fkLocalAttributes][1],      'localAttributeCodeName112'
@@ -57,9 +58,9 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
     end
 
     def test_empty_entityForeignKey_localAttributeCodeName
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['localAttributeCodeName'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -68,9 +69,9 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
     end
 
     def test_empty_entityForeignKey_referencedEntityCodeName
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['referencedEntityCodeName'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -79,9 +80,9 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
     end
 
     def test_empty_entityForeignKey_referencedAttributeCodeName
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['referencedAttributeCodeName'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -90,8 +91,8 @@ class TestReaderMdJsonForeignKey_v1 < MiniTest::Test
     end
 
     def test_empty_entityForeignKey_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

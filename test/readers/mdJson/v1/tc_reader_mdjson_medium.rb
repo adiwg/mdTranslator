@@ -46,8 +46,9 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
     @@hIn = aIn[0]['distributorTransferOptions'][0]['offline']
 
     def test_complete_medium_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:mediumType],   'name1'
         assert_equal metadata[:mediumFormat], 'mediumFormat1'
@@ -55,11 +56,11 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
     end
 
     def test_empty_medium_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['name'] = ''
         hIn['mediumFormat'] = ''
         hIn['mediumNote'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:mediumType]
@@ -68,10 +69,10 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
     end
 
     def test_missing_medium_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('name')
         hIn.delete('mediumFormat')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:mediumType]
@@ -79,17 +80,17 @@ class TestReaderMdJsonMedium_v1 < MiniTest::Test
     end
 
     def test_missing_medium_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('mediumNote')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:mediumNote]
     end
 
     def test_empty_medium_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

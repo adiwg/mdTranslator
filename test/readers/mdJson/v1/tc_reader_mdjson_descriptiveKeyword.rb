@@ -50,8 +50,9 @@ class TestReaderMdJsonDescriptiveKeyword_v1 < MiniTest::Test
     @@hIn['thesaurus']['identifier'][0]['authority']['responsibleParty'] = []
 
     def test_complete_keyword_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:keyword].length, 2
         assert_equal metadata[:keyword][0],  'keyword1'
@@ -61,9 +62,9 @@ class TestReaderMdJsonDescriptiveKeyword_v1 < MiniTest::Test
     end
 
     def test_empty_keyword_list
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['keyword'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -72,9 +73,9 @@ class TestReaderMdJsonDescriptiveKeyword_v1 < MiniTest::Test
     end
 
     def test_missing_keyword_list
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('keyword')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -83,10 +84,10 @@ class TestReaderMdJsonDescriptiveKeyword_v1 < MiniTest::Test
     end
 
     def test_empty_keyword_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['keywordType'] = ''
         hIn['thesaurus'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:keywordType]
@@ -94,18 +95,19 @@ class TestReaderMdJsonDescriptiveKeyword_v1 < MiniTest::Test
     end
 
     def test_missing_keyword_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('keywordType')
         hIn.delete('thesaurus')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:keywordType]
         assert_empty metadata[:keyTheCitation]
     end
 
     def test_empty_keyword_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

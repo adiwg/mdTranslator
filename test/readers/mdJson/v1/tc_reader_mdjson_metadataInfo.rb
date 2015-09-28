@@ -58,8 +58,8 @@ class TestReaderMdJsonMetadataInfo_v1 < MiniTest::Test
     @@hIn = {'metadataInfo' => @@hIn}
 
     def test_complete_metadataInfo_object
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         # metadataIdentifier in resourceId
@@ -83,7 +83,7 @@ class TestReaderMdJsonMetadataInfo_v1 < MiniTest::Test
     end
 
     def test_empty_metadataInfo_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['metadataInfo']['metadataIdentifier'] = {}
         hIn['metadataInfo']['parentMetadata'] = {}
         hIn['metadataInfo']['metadataContact'] = []
@@ -95,7 +95,7 @@ class TestReaderMdJsonMetadataInfo_v1 < MiniTest::Test
         hIn['metadataInfo']['metadataStatus'] = ''
         hIn['metadataInfo']['metadataMaintenance'] = {}
 
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:metadataId]
@@ -112,10 +112,10 @@ class TestReaderMdJsonMetadataInfo_v1 < MiniTest::Test
     end
 
     def test_missing_metadataInfo_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['metadataInfo'] = {}
 
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:metadataId]
@@ -132,9 +132,8 @@ class TestReaderMdJsonMetadataInfo_v1 < MiniTest::Test
     end
 
     def test_empty_metadataInfo_object
-        hIn = {}
-        hResponse = @@responseObj.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

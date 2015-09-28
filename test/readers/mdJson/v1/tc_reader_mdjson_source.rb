@@ -52,8 +52,8 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     @@hIn['processStep'][1]['processor'] = []
 
     def test_complete_source_object
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:sourceDescription], 'description1'
@@ -62,10 +62,10 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     end
 
     def test_empty_source_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['citation'] = {}
         hIn['processStep'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:sourceDescription], 'description1'
@@ -74,9 +74,9 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     end
 
     def test_empty_source_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:sourceDescription]
@@ -85,10 +85,10 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     end
 
     def test_missing_source_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('citation')
         hIn.delete('processStep')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:sourceDescription], 'description1'
@@ -97,9 +97,9 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     end
 
     def test_missing_source_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('description')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:sourceDescription]
@@ -108,7 +108,7 @@ class TestReaderMdJsonSource_v1 < MiniTest::Test
     end
 
     def test_empty_source_object
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata

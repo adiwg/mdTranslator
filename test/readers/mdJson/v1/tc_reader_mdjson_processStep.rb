@@ -49,8 +49,9 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     @@hIn['processor'] = []
 
     def test_complete_processStep_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:stepId],          'stepId1'
         assert_equal metadata[:stepDescription], 'description1'
@@ -60,9 +61,9 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     end
 
     def test_empty_processStep_description
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -71,9 +72,9 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     end
 
     def test_missing_processStep_description
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('description')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -82,11 +83,11 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     end
 
     def test_empty_processStep_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['stepId'] = ''
         hIn['rationale'] = ''
         hIn['dateTime'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:stepId]
@@ -95,11 +96,11 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     end
 
     def test_missing_processStep_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('stepId')
         hIn.delete('rationale')
         hIn.delete('dateTime')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:stepId]
@@ -108,8 +109,8 @@ class TestReaderMdJsonProcessStep_v1 < MiniTest::Test
     end
 
     def test_empty_processStep_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

@@ -50,8 +50,9 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     @@hIn['citation']['responsibleParty'] = []
 
     def test_complete_dictionaryInfo_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:dictCitation]
         assert_equal metadata[:dictDescription],  'description'
@@ -60,9 +61,9 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     end
 
     def test_empty_dictionaryInfo_citation
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['citation'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -71,9 +72,9 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     end
 
     def test_empty_dictionaryInfo_description
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -82,9 +83,9 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     end
 
     def test_empty_dictionaryInfo_resourceType
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceType'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -93,24 +94,26 @@ class TestReaderMdJsonDictionaryInfo_v1 < MiniTest::Test
     end
 
     def test_empty_dictionaryInfo_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['language'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:dictLanguage]
     end
 
     def test_missing_dictionaryInfo_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('language')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:dictLanguage]
     end
 
     def test_empty_dictionaryInfo_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

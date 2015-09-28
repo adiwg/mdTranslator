@@ -46,8 +46,9 @@ class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
     @@hIn = aIn[0]['entity'][0]['index'][0]
 
     def test_complete_entityIndex_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:indexCode],         'codeName11'
         refute metadata[:duplicate]
@@ -56,9 +57,9 @@ class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
     end
 
     def test_empty_entityIndex_name
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['codeName'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -67,9 +68,9 @@ class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
     end
 
     def test_empty_entityIndex_allowDuplicates
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['allowDuplicates'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -78,9 +79,9 @@ class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
     end
 
     def test_empty_entityIndex_attributeCodeName
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['attributeCodeName'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -89,8 +90,8 @@ class TestReaderMdJsonEntityIndex_v1 < MiniTest::Test
     end
 
     def test_empty_entityIndex_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

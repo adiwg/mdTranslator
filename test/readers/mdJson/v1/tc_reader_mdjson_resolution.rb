@@ -48,8 +48,8 @@ class TestReaderMdJsonResolution_v1 < MiniTest::Test
     @@hInD  = aIn[1]
 
     def test_complete_resolutionScaleFactor_object
-        hIn = @@hInSF.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hInSF))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:equivalentScale], 45000
@@ -58,8 +58,8 @@ class TestReaderMdJsonResolution_v1 < MiniTest::Test
     end
 
     def test_complete_resoultionDistance_object
-        hIn = @@hInD.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hInD))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:equivalentScale]
@@ -68,8 +68,8 @@ class TestReaderMdJsonResolution_v1 < MiniTest::Test
     end
 
     def test_empty_resolution_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

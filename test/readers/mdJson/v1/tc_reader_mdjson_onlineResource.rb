@@ -48,8 +48,9 @@ class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_onlineResource_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:olResURI],      'http://thisisanexample.com'
         assert_equal metadata[:olResProtocol], 'protocol'
@@ -59,9 +60,9 @@ class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
     end
 
     def test_empty_onlineResource_uri
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['uri'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -70,12 +71,13 @@ class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
     end
 
     def test_empty_onlineResource_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['protocol'] = ''
         hIn['name'] = ''
         hIn['description'] = ''
         hIn['function'] = ''
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:olResProtocol]
         assert_nil metadata[:olResName]
@@ -84,12 +86,13 @@ class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
     end
 
     def test_missing_onlineResource_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('protocol')
         hIn.delete('name')
         hIn.delete('description')
         hIn.delete('function')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:olResProtocol]
         assert_nil metadata[:olResName]
@@ -98,8 +101,8 @@ class TestReaderMdJsonOnlineResource_v1 < MiniTest::Test
     end
 
     def test_empty_onlineResource_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

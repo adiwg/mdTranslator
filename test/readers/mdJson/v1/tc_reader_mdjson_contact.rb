@@ -48,8 +48,9 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_contact_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:contactId], 'contactId'
         assert_equal metadata[:indName],   'individualName'
@@ -62,9 +63,9 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     end
 
     def test_empty_contactId
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['contactId'] = ''
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -73,9 +74,9 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     end
 
     def test_missing_contactId
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('contactId')
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -84,7 +85,7 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     end
 
     def test_empty_contact_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['individualName'] = ''
         hIn['organizationName'] = ''
         hIn['positionName'] = ''
@@ -92,7 +93,8 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
         hIn['contactInstructions'] = ''
         hIn['phoneBook'] = []
         hIn['address'] = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:contactId], 'contactId'
         assert_nil metadata[:indName]
@@ -105,7 +107,7 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     end
 
     def test_missing_contact_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('individualName')
         hIn.delete('organizationName')
         hIn.delete('positionName')
@@ -113,7 +115,8 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
         hIn.delete('contactInstructions')
         hIn.delete('phoneBook')
         hIn.delete('address')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:contactId], 'contactId'
         assert_nil metadata[:indName]
@@ -126,9 +129,8 @@ class TestReaderMdJsonContact_v1 < MiniTest::Test
     end
 
     def test_empty_contact_object
-        hIn = {}
-        hResponse = @@responseObj.clone
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

@@ -46,8 +46,9 @@ class TestReaderMdJsonLegalConstraint_v1 < MiniTest::Test
     @@hIn = aIn[0]
 
     def test_complete_legalConstraint_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:accessCodes].length, 2
         assert_equal metadata[:accessCodes][0], 'accessConstraint1'
@@ -61,11 +62,11 @@ class TestReaderMdJsonLegalConstraint_v1 < MiniTest::Test
     end
 
     def test_empty_legalConstraint_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['accessConstraint'] = []
         hIn['useConstraint'] = []
         hIn['otherConstraint'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:accessCodes]
@@ -74,10 +75,10 @@ class TestReaderMdJsonLegalConstraint_v1 < MiniTest::Test
     end
 
     def test_missing_legalConstraint_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('accessConstraint')
         hIn.delete('useConstraint')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:accessCodes]
@@ -85,17 +86,17 @@ class TestReaderMdJsonLegalConstraint_v1 < MiniTest::Test
     end
 
     def test_missing_legalConstraint_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('otherConstraint')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:otherCons]
     end
 
     def test_emptylegalConstraint_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

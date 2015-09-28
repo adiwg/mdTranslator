@@ -54,8 +54,9 @@ class TestReaderMdJsonAssociatedResource_v1 < MiniTest::Test
     @@hIn['metadataCitation']['identifier'] = []
 
     def test_complete_associatedResource_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:associationType], 'associationType'
         assert_equal metadata[:initiativeType],  'initiativeType'
@@ -65,59 +66,64 @@ class TestReaderMdJsonAssociatedResource_v1 < MiniTest::Test
     end
 
     def test_empty_associatedResource_associationType
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['associationType'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_missing_associatedResource_associationType
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('associationType')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_associatedResource_resourceType
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceType'] = ''
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_missing_associatedResource_resourceType
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('resourceType')
-        @@responseObj[:readerExecutionPass] = true
-        @@responseObj[:readerExecutionMessages] = []
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hResponse[:readerExecutionPass] = true
+        hResponse[:readerExecutionMessages] = []
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
-        refute @@responseObj[:readerExecutionPass]
-        refute_empty @@responseObj[:readerExecutionMessages]
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
     end
 
     def test_empty_associatedResource_elements
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['initiativeType'] = ''
         hIn['resourceCitation'] = {}
         hIn['metadataCitation'] = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:associationType], 'associationType'
         assert_nil metadata[:initiativeType]
@@ -127,11 +133,12 @@ class TestReaderMdJsonAssociatedResource_v1 < MiniTest::Test
     end
 
     def test_missing_associatedResource_citation
-        hIn = @@hIn.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('initiativeType')
         hIn.delete('resourceCitation')
         hIn.delete('metadataCitation')
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:associationType], 'associationType'
         assert_nil metadata[:initiativeType]
@@ -141,8 +148,8 @@ class TestReaderMdJsonAssociatedResource_v1 < MiniTest::Test
     end
 
     def test_empty_associatedResource_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

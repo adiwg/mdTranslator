@@ -52,8 +52,8 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     @@hIn['source'][0]['processStep'] = []
 
     def test_complete_lineage_object
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:statement], 'statement'
@@ -62,10 +62,10 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     end
 
     def test_empty_lineage_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['processStep'] = []
         hIn['source'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:statement], 'statement'
@@ -74,9 +74,9 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     end
 
     def test_empty_lineage_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['statement'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:statement]
@@ -85,10 +85,10 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     end
 
     def test_missing_lineage_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('processStep')
         hIn.delete('source')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:statement], 'statement'
@@ -97,9 +97,9 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     end
 
     def test_missing_lineage_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('statement')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:statement]
@@ -108,7 +108,7 @@ class TestReaderMdJsonLineage_v1 < MiniTest::Test
     end
 
     def test_empty_lineage_object
-        hResponse = @@responseObj.clone
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata

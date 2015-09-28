@@ -46,8 +46,9 @@ class TestReaderMdJsonDistributionOrder_v1 < MiniTest::Test
     @@hIn = aIn[0]['distributionOrderProcess'][0]
 
     def test_complete_distributionOrder_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:fees],              'fees1'
         assert_equal metadata[:plannedDateTime][:dateTime].to_s, '1111-11-11T00:00:00+00:00'
@@ -56,12 +57,12 @@ class TestReaderMdJsonDistributionOrder_v1 < MiniTest::Test
     end
 
     def test_empty_distributionOrder_elements
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['fees'] = ''
         hIn['plannedAvailabilityDateTime'] = ''
         hIn['orderingInstructions'] = ''
         hIn['turnaround'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:fees]
@@ -71,11 +72,11 @@ class TestReaderMdJsonDistributionOrder_v1 < MiniTest::Test
     end
 
     def test_missing_distributionOrder_elements_a
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('fees')
         hIn.delete('plannedAvailabilityDateTime')
         hIn.delete('orderingInstructions')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:fees]
@@ -84,17 +85,17 @@ class TestReaderMdJsonDistributionOrder_v1 < MiniTest::Test
     end
 
     def test_missing_distributionOrder_elements_b
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('turnaround')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:turnaround]
     end
 
     def test_empty_distributionOrder_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end

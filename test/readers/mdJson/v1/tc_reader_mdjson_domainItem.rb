@@ -46,8 +46,9 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
     @@hIn = aIn[0]['domain'][0]['member'][0]
 
     def test_complete_domainItem_object
-        hIn = @@hIn.clone
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal metadata[:itemName],       'name11'
         assert_equal metadata[:itemValue],      'value11'
@@ -55,9 +56,9 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
     end
 
     def test_empty_domainItem_name
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['name'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -66,9 +67,9 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
     end
 
     def test_empty_domainItem_value
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['value'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -77,9 +78,9 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
     end
 
     def test_empty_domainItem_definition
-        hIn = @@hIn.clone
-        hResponse = @@responseObj.clone
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['definition'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
@@ -88,8 +89,8 @@ class TestReaderMdJsonDomainItem_v1 < MiniTest::Test
     end
 
     def test_empty_domainItem_object
-        hIn = {}
-        metadata = @@NameSpace.unpack(hIn, @@responseObj)
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
     end
