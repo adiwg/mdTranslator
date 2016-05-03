@@ -1,0 +1,383 @@
+{
+    "link": {
+        "rel": "self",
+        "url": "https://www.sciencebase.gov/catalog/item/54c9859ee4b0bbe8f557ec12"
+    },
+    "relatedItems": {
+        "link": {
+            "url": "https://www.sciencebase.gov/catalog/itemLinks?itemId=54c9859ee4b0bbe8f557ec12",
+            "rel": "related"
+        }
+    },
+    "id": "54c9859ee4b0bbe8f557ec12",
+    "title": "Extensive mapping of Bering Sea and Gulf of Alaska coastal change by Landsat time series analysis, 1972–2013",
+    "subTitle": "WALCC Coastal Change Assessment Landsat-derived data products",
+    "summary": "Changes to the coastline and to coastal features, such as spits, barrier islands, estuaries, tidal guts and lagoons were mapped for over 22,000 km of coastline along the Bering Sea and Gulf of Alaska coasts in western Alaska. Changes to rivers and lakes near the coast were also captured. The analysis was based on time-series analysis of Landsat imagery, 1972–2013. An annual time-series of suitable Landsat imagery was compiled and analyzed for changes in near-infrared reflectance to identify areas that transitioned from land to water, or vice-versa, over the study period. The timing of changes was also identified. Thousands of coastal changes over the 42-year study period exceeded the 60-m pixel resolution of the Multispectral Scanner [...]",
+    "body": "Changes to the coastline and to coastal features, such as spits, barrier islands, estuaries, tidal guts and lagoons were mapped for over 22,000 km of coastline along the Bering Sea and Gulf of Alaska coasts in western Alaska. Changes to rivers and lakes near the coast were also captured. The analysis was based on time-series analysis of Landsat imagery, 1972–2013. An annual time-series of suitable Landsat imagery was compiled and analyzed for changes in near-infrared reflectance to identify areas that transitioned from land to water, or vice-versa, over the study period. The timing of changes was also identified. Thousands of coastal changes over the 42-year study period exceeded the 60-m pixel resolution of the Multispectral Scanner (MSS) data, including coastal erosion and aggradation, estuarine and delta channel dynamics, coastal lake drainage and expansion, and migrations of coastal spits. An accuracy assessment determined that change patches &gt;5 ha were well mapped for the 1972–2013 time-series though coastal aggradation is somewhat overmapped in tidal flats. Coastal erosion was mapped for approximately 100 square km and coastal aggradation was mapped for approximately 113 square km, with coastal erosion and aggradation overall close to balanced. Many local hotspots of directional change (substantial and sustained coastal erosion or aggradation) were identified. The maps of coastal change produced in this effort could be used for local and regional analyses of vulnerability and coastal processes, and for identification of vulnerable natural and cultural resources. The results are summarized in these rasters by transition type (land to water transition, or water to land transition), coastal physiography class, and year.&nbsp; \n<br /> \n<br /> Results of the 1972–2013 change analysis are provided on an interactive map below. The online map data can also be accessed via other methods using links provided under the &quot;ArcGIS REST Service&quot; link below. To download the GIS data with the results of the analysis, and the Landsat composites compiled to support the analysis, follow the download links to the right.",
+    "purpose": "Changes to the coastline and to coastal features, such as spits, barrier islands, estuaries, tidal guts and lagoons were mapped for over 22,000 km of coastline along the Bering Sea and Gulf of Alaska coasts in western Alaska. Changes to rivers and lakes near the coast were also captured.",
+    "provenance": {
+        "dataSource": "Input directly",
+        "dateCreated": "2015-01-29T00:58:06Z",
+        "lastUpdated": "2015-06-22T17:08:46Z"
+    },
+    "hasChildren": true,
+    "parentId": "51438283e4b073a963ff6696",
+    "contacts": [{
+        "name": "ABR, Inc.—Environmental Research & Services",
+        "type": "Point of Contact",
+        "contactType": "person",
+        "email": "mmacander@abrinc.com",
+        "jobTitle": "Senior Scientist",
+        "organization": {},
+        "primaryLocation": {
+            "officePhone": "907-455-6777",
+            "streetAddress": {
+                "line1": "2842 Goldstream Rd",
+                "city": "Fairbanks",
+                "state": "AK",
+                "zip": "99709",
+                "country": "US"
+            },
+            "mailAddress": {}
+        }
+    }, {
+        "name": "ABR, Inc.—Environmental Research & Services",
+        "type": "Metadata Contact",
+        "contactType": "person",
+        "email": "mmacander@abrinc.com",
+        "jobTitle": "Senior Scientist",
+        "organization": {},
+        "primaryLocation": {
+            "officePhone": "907-455-6777",
+            "streetAddress": {
+                "line1": "2842 Goldstream Rd",
+                "city": "Fairbanks",
+                "state": "AK",
+                "zip": "99709",
+                "country": "US"
+            },
+            "mailAddress": {}
+        }
+    }, {
+        "name": "Matthew Macander, ABR, Inc.—Environmental Research & Services, Senior Scientist",
+        "type": "Originator",
+        "contactType": "person",
+        "organization": {},
+        "primaryLocation": {
+            "streetAddress": {},
+            "mailAddress": {}
+        }
+    }],
+    "webLinks": [{
+        "uri": "https://westernalaskalcc.org/projects/SitePages/WA2013_24.aspx",
+        "title": "Extensive Mappping of Coastal Change Project Page, WALCC\t",
+        "hidden": false
+    }, {
+        "uri": "http://www.abrinc.com/",
+        "title": "ABR, Inc. web page",
+        "hidden": false
+    }, {
+        "type": "pdf",
+        "typeLabel": "PDF Download",
+        "uri": "https://westernalaskalcc.org/projects/Lists/Project%20Products/Attachments/69/Extensive_Mapping_of_Coastal_Change_WALCC_1972-2013_Final_Report_web.pdf",
+        "title": "FINAL REPORT",
+        "hidden": false
+    }],
+    "browseCategories": ["Project", "Map", "Web Site", "Publication", "Data"],
+    "browseTypes": ["ArcGIS Service Definition", "Downloadable", "Map Service", "ArcGIS REST Map Service"],
+    "systemTypes": ["Folder", "Downloadable", "Mappable"],
+    "tags": [{
+        "type": "Label",
+        "scheme": "ISO 19115 Topic Categories",
+        "name": "imageryBaseMapsEarthCover"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Alaska"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Coast"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Landsat"
+    }, {
+        "type": "Congressional Districts - 113th Session",
+        "scheme": "https://www.sciencebase.gov/vocab/category/Places/CongressionalDistricts/113thSession",
+        "name": "AK-00"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Datasets/Database"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Map"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Report"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Presentation"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Academics & scientific researchers"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Conservation NGOs"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Federal resource managers"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Interested public"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "K-12 students & teachers"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Private land owners"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Regional & county planners"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Policy makers & regulators"
+    }, {
+        "type": "LCC End User Type",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/EnduserType",
+        "name": "Tribes"
+    }, {
+        "type": "LCC Project Category",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/ProjectCategory",
+        "name": "Vulnerability Assessment"
+    }, {
+        "type": "LCC Project Category",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/ProjectCategory",
+        "name": "Decision Support"
+    }, {
+        "type": "LCC Project Category",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/ProjectCategory",
+        "name": "Data Management and Integration"
+    }, {
+        "type": "Community",
+        "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/OrganizationType",
+        "name": "LCC"
+    }, {
+        "type": "Organization",
+        "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/OrganizationName",
+        "name": "Western Alaska Landscape Conservation Cooperative"
+    }],
+    "dates": [{
+        "type": "Publication",
+        "dateString": "2015-01-28",
+        "label": "Publication Date"
+    }, {
+        "type": "Start",
+        "dateString": "1972-01-01",
+        "label": ""
+    }, {
+        "type": "End",
+        "dateString": "2012-12-31",
+        "label": ""
+    }],
+    "spatial": {
+        "boundingBox": {
+            "minX": -171.305496,
+            "maxX": -150.877746,
+            "minY": 53.862561,
+            "maxY": 67.373126
+        }
+    },
+    "facets": [{
+        "filePathUsed": "__disk__51/f3/6c/51f36ce788cc69bd4d706cbdc923be03d2e80bb5",
+        "boundingBox": {
+            "minY": 53.8625609466412,
+            "minX": -171.712481763164,
+            "maxY": 67.3731263300081,
+            "maxX": -150.349627768067
+        },
+        "processingState": "success",
+        "servicePath": "54c9859ee4b0bbe8f557ec12",
+        "processingMessage": "",
+        "name": "Western_Alaska_Coastal_Change_Results.sd",
+        "files": [{
+            "name": "Western_Alaska_Coastal_Change_Results.sd",
+            "title": "",
+            "contentType": "x-gis/x-arcgis-service-def",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__51/f3/6c/51f36ce788cc69bd4d706cbdc923be03d2e80bb5",
+            "processed": false,
+            "processToken": null,
+            "imageWidth": null,
+            "imageHeight": null,
+            "size": 275563812,
+            "dateUploaded": "2015-02-05T00:31:35Z",
+            "originalMetadata": true,
+            "useForPreview": false,
+            "s3Object": null,
+            "url": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__51%2Ff3%2F6c%2F51f36ce788cc69bd4d706cbdc923be03d2e80bb5"
+        }, {
+            "name": "thumbnail.png",
+            "title": null,
+            "contentType": "image/png",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__4a/4e/d2/4a4ed2fd833dd6f6f01a9236a4af9f070367a87e",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": 200,
+            "imageHeight": 133,
+            "size": 7725,
+            "dateUploaded": "2015-02-05T00:32:11Z",
+            "originalMetadata": null,
+            "useForPreview": null,
+            "s3Object": null,
+            "url": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__4a%2F4e%2Fd2%2F4a4ed2fd833dd6f6f01a9236a4af9f070367a87e"
+        }],
+        "serviceId": "54c9859ee4b0bbe8f557ec12",
+        "className": "gov.sciencebase.catalog.item.facet.ServiceDefinitionFacet"
+    }, {
+        "projectProducts": [],
+        "parts": [],
+        "className": "gov.sciencebase.catalog.item.facet.ProjectFacet"
+    }],
+    "files": [{
+        "name": "transition_results_60m_fgdc_metadata.xml",
+        "title": "",
+        "contentType": "application/fgdc+xml",
+        "contentEncoding": null,
+        "pathOnDisk": "__disk__14/12/b5/1412b5a30e75870bbf6ce9780ff0f54fc66f5c4a",
+        "processed": false,
+        "processToken": null,
+        "imageWidth": null,
+        "imageHeight": null,
+        "size": 7837,
+        "dateUploaded": "2015-02-04T22:48:01Z",
+        "originalMetadata": true,
+        "useForPreview": false,
+        "s3Object": null,
+        "url": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__14%2F12%2Fb5%2F1412b5a30e75870bbf6ce9780ff0f54fc66f5c4a"
+    }],
+    "distributionLinks": [{
+        "uri": "https://www.sciencebase.gov/arcgis/rest/services/Catalog/54c9859ee4b0bbe8f557ec12/MapServer",
+        "title": "ArcGIS REST Service",
+        "type": "serviceLink",
+        "typeLabel": "Service Link",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalogMaps/mapping/ows/54c9859ee4b0bbe8f557ec12?mode=download&request=kml&service=wms&layers=childrenBoundingBox,children",
+        "title": "KML Service",
+        "type": "kml",
+        "typeLabel": "KML Download",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalogMaps/mapping/ows/54c9859ee4b0bbe8f557ec12?service=wms&request=getcapabilities&version=1.3.0",
+        "title": "ScienceBase WMS Service",
+        "type": "serviceCapabilitiesUrl",
+        "typeLabel": "OGC Service Capabilities URL",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/items?parentId=54c9859ee4b0bbe8f557ec12&format=json",
+        "title": "ScienceBase Collection JSON",
+        "type": "repo",
+        "typeLabel": "ScienceBase Repository",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/items?parentId=54c9859ee4b0bbe8f557ec12&format=atom",
+        "title": "ScienceBase Collection ATOM",
+        "type": "repo",
+        "typeLabel": "ScienceBase Repository",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/items?parentId=54c9859ee4b0bbe8f557ec12&format=csv",
+        "title": "ScienceBase Collection CSV",
+        "type": "repo",
+        "typeLabel": "ScienceBase Repository",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/oai-pmh?verb=ListRecords&metadataPrefix=fgdc-orig&set=54c9859ee4b0bbe8f557ec12",
+        "title": "ScienceBase OAI PMH Service",
+        "type": "oai-pmh",
+        "typeLabel": "OAI-PMH",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/item/54c9859ee4b0bbe8f557ec12/csw?service=CSW&version=2.0.2&request=GetRecords",
+        "title": "ScienceBase CSW Service",
+        "type": "csw",
+        "typeLabel": "",
+        "rel": "alternate",
+        "name": "",
+        "files": ""
+    }, {
+        "uri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12",
+        "title": "Download Attached Files",
+        "type": "downloadLink",
+        "typeLabel": "Download Link",
+        "rel": "alternate",
+        "name": "Extensivemappin.zip",
+        "files": [{
+            "name": "Western_Alaska_Coastal_Change_Results.sd",
+            "title": "",
+            "contentType": "x-gis/x-arcgis-service-def"
+        }, {
+            "name": "thumbnail.png",
+            "title": null,
+            "contentType": "image/png"
+        }, {
+            "name": "transition_results_60m_fgdc_metadata.xml",
+            "title": "",
+            "contentType": "application/fgdc+xml"
+        }]
+    }],
+    "previewImage": {
+        "from": "mapPreview",
+        "original": {
+            "uri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9",
+            "viewUri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9&width=735&height=445",
+            "viewUrl": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9&width=735&height=445",
+            "width": 735,
+            "height": 445,
+            "size": 419362
+        },
+        "thumbnail": {
+            "uri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9&width=150&height=91",
+            "width": 150,
+            "height": 91
+        },
+        "small": {
+            "uri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9&width=350&height=212",
+            "width": 350,
+            "height": 212
+        },
+        "medium": {
+            "uri": "https://www.sciencebase.gov/catalog/file/get/54c9859ee4b0bbe8f557ec12?f=__disk__db%2F23%2F5a%2Fdb235a470cb706ced4b542ac072de247f12b17f9&width=580&height=351",
+            "width": 580,
+            "height": 351
+        }
+    }
+}
