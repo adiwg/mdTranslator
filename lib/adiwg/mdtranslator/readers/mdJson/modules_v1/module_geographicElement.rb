@@ -21,8 +21,8 @@
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoCoordSystem')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoProperties')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_boundingBox')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_polygon')
 
 module ADIWG
@@ -115,9 +115,9 @@ module ADIWG
                                                     unless aCoordinates.empty?
                                                         case geometryType
                                                             when 'Point', 'MultiPoint'
-                                                                hGeoElement[:elementGeometry] = Point.unpack(aCoordinates, geometryType, responseObj)
+                                                                hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::Point.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'LineString', 'MultiLineString'
-                                                                hGeoElement[:elementGeometry] = LineString.unpack(aCoordinates, geometryType, responseObj)
+                                                                hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'Polygon', 'MultiPolygon'
                                                                 hGeoElement[:elementGeometry] = Polygon.unpack(aCoordinates, geometryType, responseObj)
                                                             else
@@ -147,12 +147,12 @@ module ADIWG
                                 # GeoJSON Geometries
                                 when 'Point', 'MultiPoint'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = Point.unpack(aCoordinates, elementType, responseObj)
+                                    hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::Point.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'LineString', 'MultiLineString'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = LineString.unpack(aCoordinates, elementType, responseObj)
+                                    hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'Polygon', 'MultiPolygon'
