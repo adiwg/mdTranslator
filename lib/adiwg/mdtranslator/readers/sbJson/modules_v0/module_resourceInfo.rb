@@ -74,8 +74,8 @@ module ADIWG
                         if hResourceInfo.key?('contacts')
                             hResourceInfo['contacts'].each do |contact|
                                 aCont = {}
-                                aCont['contactId'] = contact['contactId']
-                                aCont['role'] = contact['type']
+                                aCont[:contactId] = contact['contactId']
+                                aCont[:roleName] = contact['type']
                                 hCitation[:citResponsibleParty] << aCont
                             end
                         end

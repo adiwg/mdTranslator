@@ -55,6 +55,5 @@ class TestTranslation_v0 < MiniTest::Test
     assert_equal(@@writer, metadata[:writerName])
     assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')
     refute_nil metadata[:writerOutput]
-    puts metadata[:writerOutput]
   end
 end
