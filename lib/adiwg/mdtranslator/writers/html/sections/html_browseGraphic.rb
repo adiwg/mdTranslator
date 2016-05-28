@@ -41,9 +41,10 @@ module ADIWG
 
                             # browse graphic - URI
                             if !hBrowseG[:bGURI].nil?
+                                s = hBrowseG[:bGURI]
                                 @html.em('URI:')
                                 @html.section(:class=>'block') do
-                                    @html.a(hBrowseG[:bGURI])
+                                    @html.a(s, 'href'=>s)
                                 end
                             end
                         end
