@@ -531,7 +531,8 @@ class InternalMetadata
             dictCitation: {},
             dictDescription: nil,
             dictResourceType: nil,
-            dictLanguage: nil
+            dictLanguage: nil,
+            includedWithDataset: nil
         }
     end
 
