@@ -5,7 +5,7 @@
 
 > 0.0.x
 
-### Reader for ScienceBase JSON metadata format (sbJSON)
+### Writer for ScienceBase JSON metadata format (sbJSON)
 
 The ScienceBase Item core is based on the Dublin Core Metadata Element Set but also includes other elements that may or may not be associated with other metadata standards that are useful for the core attribution of ScienceBase items. It is used as a means to integrate across multiple metadata standards, conventions, and practices in describing a wide array of scientific data and information assets important to science teams using ScienceBase.
 
