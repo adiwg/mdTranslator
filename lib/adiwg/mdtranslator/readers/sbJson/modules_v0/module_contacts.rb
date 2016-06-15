@@ -119,6 +119,7 @@ module ADIWG
                         intAdd = intMetadataClass.newAddress
                         intAdd[:eMailList] << 'sciencebase@usgs.gov'
                         intCont[:address] = intAdd
+                        intCont[:internal] = true
 
                         aDefContacts << intCont
 
@@ -130,6 +131,7 @@ module ADIWG
                         intOlRes = intMetadataClass.newOnlineResource
                         intOlRes[:olResURI] = 'http://www.doi.org'
                         intCont[:onlineRes] << intOlRes
+                        intCont[:internal] = true
 
                         aDefContacts << intCont
 

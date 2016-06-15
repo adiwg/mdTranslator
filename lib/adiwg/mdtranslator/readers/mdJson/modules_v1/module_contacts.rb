@@ -129,12 +129,14 @@ module ADIWG
                         intCont = intMetadataClass.newContact
                         intCont[:contactId] = 'ADIwgBio'
                         intCont[:orgName] = 'National Biological Information Infrastructure (NBII)'
+                        intCont[:internal] = true
                         aDefContacts << intCont
 
                         # contact to support doi (digital object identifier)
                         intCont = intMetadataClass.newContact
                         intCont[:contactId] = 'ADIwgDOI'
                         intCont[:orgName] = 'International DOI Foundation (IDF)'
+                        intCont[:internal] = true
 
                         intOlRes = intMetadataClass.newOnlineResource
                         intOlRes[:olResURI] = 'http://www.doi.org'

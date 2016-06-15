@@ -92,7 +92,8 @@ class InternalMetadata
             phones: [],
             address: {},
             onlineRes: [],
-            contactInstructions: nil
+            contactInstructions: nil,
+            internal: false
         }
     end
 
