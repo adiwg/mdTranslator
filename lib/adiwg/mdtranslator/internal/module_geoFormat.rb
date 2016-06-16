@@ -7,7 +7,7 @@
 
 module AdiwgGeoFormat
 
-    def self.internal_to_geoJson(hGeoEle)
+    def self.internal_to_geoJson(hGeoEle, geojson=true)
 
         geoType = hGeoEle[:elementGeometry][:geoType]
         hGeometry = hGeoEle[:elementGeometry][:geometry]
@@ -88,7 +88,7 @@ module AdiwgGeoFormat
         end
 
         # return GeoJSON
-        return hGeoJson.to_json
+        return geojson ? hGeoJson.to_json : hGeoJson
 
     end
 

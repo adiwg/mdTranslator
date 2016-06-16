@@ -330,6 +330,7 @@ class InternalMetadata
     def newGeoElement
         intObj = {
             elementId: nil,
+            elementType: nil,
             elementIncludeData: nil,
             elementName: nil,
             elementDescription: nil,

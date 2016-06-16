@@ -30,8 +30,8 @@ file with options to select the input reader format, writer output format, displ
 in XML outputs, and choose level of validation for mdJson input files.
     LONGDESC
     # define cli options
-    method_option :reader, :aliases => '-r', :desc => 'Reader to read your input metadata file', :enum => %w{mdJson}, :required => true
-    method_option :writer, :aliases => '-w', :desc => 'Writer to create your output metadata file, leave blank to validate input only', :enum => %w{iso19115_2 iso19110 html}
+    method_option :reader, :aliases => '-r', :desc => 'Reader to read your input metadata file', :enum => %w{mdJson sbJson}, :required => true
+    method_option :writer, :aliases => '-w', :desc => 'Writer to create your output metadata file, leave blank to validate input only', :enum => %w{iso19115_2 iso19110 html mdJson sbJson}
     method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed', :enum => %w{none normal strict}, :default => 'normal'
     method_option :showAllTags, :aliases => '-s', :desc => 'Include tags for unused attributes', :type => :boolean, :default => false
     method_option :messages, :aliases => '-m', :desc => 'On error return messages as formatted text or json object', :enum => %w{json text}, :default => 'text'
