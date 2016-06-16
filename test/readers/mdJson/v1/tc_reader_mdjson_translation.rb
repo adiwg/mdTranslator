@@ -1,16 +1,22 @@
+# MdTranslator - code to test mdtranslator from Ruby Terminal during development
+
+# History:
+# Stan Smith 2014-07-02 original script
+# Josh Bradley 2014-09-28 updated to use test/unit
+# Stan Smith 2015-01-16 changed ADIWG::Mdtranslator.translate() to keyword parameters
+# Stan Smith 2015-06-22 refactored setup to after removal of globals
+
 require 'minitest/autorun'
 require 'json'
-#require 'adiwg-mdtranslator'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/sbJson/sbJson_reader'
+require 'adiwg-mdtranslator'
 
-class TestTranslation_v0 < MiniTest::Test
-  @@reader = 'sbJson'
-  @@writer = 'iso19115_2'
+class TestTranslation_mdJson_v1 < MiniTest::Test
+  @@reader = 'mdJson'
+  @@writer = 'html'
 
   def test_full_success
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), './', 'test.json')
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'full_example.json')
     file = File.open(file, 'r')
     jsonObj = file.read
     file.close
@@ -19,9 +25,7 @@ class TestTranslation_v0 < MiniTest::Test
     metadata = ADIWG::Mdtranslator.translate(
       file: jsonObj, reader: @@reader, validate: 'normal',
       writer: @@writer, showAllTags: 'true')
-
-    #sbJson doesn't support versioning
-    version = ["0","0","0"]
+    version = JSON.parse(jsonObj)['version']['version'].split('.')
 
     assert_equal('json', metadata[:readerFormat], 'Check reader name')
     assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
@@ -38,7 +42,7 @@ class TestTranslation_v0 < MiniTest::Test
 
   def test_minimum_success
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), './', 'test.json')
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'minimum_example.json')
     file = File.open(file, 'r')
     jsonObj = file.read
     file.close
@@ -55,5 +59,25 @@ class TestTranslation_v0 < MiniTest::Test
     assert_equal(@@writer, metadata[:writerName])
     assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')
     refute_nil metadata[:writerOutput]
+  end
+
+  def test_writers
+    dir = File.join(File.dirname(__FILE__), '../../../..', 'lib/adiwg/mdtranslator/writers')
+    writers = (Dir.glob "#{dir}/*/").map { |a| File.basename(a) }.reject! { |a| a == 'iso19110' }
+
+    # get json file for tests from examples folder
+    file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'full_example.json')
+    file = File.open(file, 'r')
+    jsonObj = file.read
+    file.close
+
+    writers.each do |writer|
+      # call opening module in mdTranslator
+      metadata = ADIWG::Mdtranslator.translate(
+        file: jsonObj, reader: @@reader, validate: 'normal',
+        writer: writer, showAllTags: 'true')
+
+      refute_nil metadata[:writerOutput], "Failed to translate #{@@reader} to #{writer}!"
+    end
   end
 end
