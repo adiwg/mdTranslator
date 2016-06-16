@@ -3,6 +3,7 @@ require_relative 'version'
 require_relative 'sections/sbJson_base'
 require_relative 'sections/sbJson_contact'
 require_relative 'sections/sbJson_identifier'
+require_relative 'sections/sbJson_spatial'
 
 module ADIWG
   module Mdtranslator
@@ -99,6 +100,8 @@ module ADIWG
               json.dateString dt[:dateTime].strftime('%F')
               json.label dt[:dateType].split(/(?=[A-Z])/).join(' ').capitalize
             end
+
+            json.spatial Spatial.build(rInfo[:extents])
           end
           # set writer pass to true if no messages
           # false or warning will be set by code that places the message
