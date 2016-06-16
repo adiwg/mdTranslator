@@ -92,7 +92,8 @@ class InternalMetadata
             phones: [],
             address: {},
             onlineRes: [],
-            contactInstructions: nil
+            contactInstructions: nil,
+            internal: false
         }
     end
 
@@ -330,6 +331,7 @@ class InternalMetadata
     def newGeoElement
         intObj = {
             elementId: nil,
+            elementType: nil,
             elementIncludeData: nil,
             elementName: nil,
             elementDescription: nil,
@@ -530,7 +532,8 @@ class InternalMetadata
             dictCitation: {},
             dictDescription: nil,
             dictResourceType: nil,
-            dictLanguage: nil
+            dictLanguage: nil,
+            includedWithDataset: nil
         }
     end
 

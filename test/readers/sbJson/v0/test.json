@@ -1,0 +1,431 @@
+{
+    "link": {
+        "rel": "self",
+        "url": "http://localhost:8090/catalog/item/52fe74416f8f4291717d3658"
+    },
+    "relatedItems": {
+        "link": {
+            "url": "http://localhost:8090/catalog/itemLinks?itemId=52fe74416f8f4291717d3658",
+            "rel": "related"
+        }
+    },
+    "id": "52fe74416f8f4291717d3658",
+    "identifiers": [{
+        "type": "testType",
+        "scheme": "testScheme",
+        "key": "testKey"
+    }],
+    "title": "TEST Item REST Services",
+    "subTitle": "Test Subtitle",
+    "alternateTitles": [
+        "Test Alternate Titles"
+    ],
+    "summary": "Test Body",
+    "body": "<div> Test Body </div>",
+    "purpose": "Test Purpose",
+    "rights": "Test Rights",
+    "provenance": {
+        "annotation": "Test Provenance - Annotation",
+        "dataSource": "Input directly",
+        "dateCreated": "2014-02-14T19:53:37Z",
+        "lastUpdated": "2014-02-14T22:33:09Z",
+        "lastUpdatedBy": "mrunnels@usgs.gov",
+        "createdBy": "mrunnels@usgs.gov"
+    },
+    "materialRequestInstructions": "Test Material Request Instructions",
+    "hasChildren": false,
+    "parentId": "52a767f26f8f46e6ddb14bd8",
+    "contacts": [{
+        "name": "Robert N Prescott",
+        "oldPartyId": 58818,
+        "type": "Distributor",
+        "sourceId": "asdf",
+        "contactType": "person",
+        "organizationsPerson": "usgs",
+        "ttyPhone": "123-123-1234",
+        "hours": "8-4",
+        "instructions": "test",
+        "email": "rprescott@usgs.gov",
+        "active": true,
+        "jobTitle": "Computer Programmer",
+        "personalTitle": "test",
+        "firstName": "Robert",
+        "middleName": "N",
+        "lastName": "Prescott",
+        "organization": {
+            "displayText": "Fort Collins Science Center"
+        },
+        "primaryLocation": {
+            "shortName": "asdf",
+            "name": "Robert N Prescott/BRD/CONT/USGS/DOI - Primary Location",
+            "description": "asdf",
+            "location": "asdf",
+            "building": "NRRC Bldg C",
+            "buildingCode": "KBA",
+            "roomNumber": "123",
+            "officePhone": "9702269250",
+            "faxPhone": "9702269230",
+            "latitude": 20,
+            "longitude": 20,
+            "streetAddress": {
+                "line1": "2150 Centre Avenue Bldg C",
+                "line2": "sadf",
+                "mailStopCode": "safd",
+                "city": "Fort Collins",
+                "state": "CO",
+                "zip": "80526",
+                "country": "asdf"
+            },
+            "mailAddress": {
+                "line1": "2150 Centre Avenue, Building C",
+                "line2": "asdf",
+                "mailStopCode": "asdf",
+                "city": "Fort Collins",
+                "state": "CO",
+                "zip": "80526-8118",
+                "country": "USA"
+            }
+        }
+    }, {
+        "name": "U.S. Geological Survey",
+        "oldPartyId": 18139,
+        "type": "Data Owner",
+        "contactType": "organization",
+        "active": true,
+        "aliases": [
+            "U.S. GEOLOGICAL SURVEY",
+            "USGS"
+        ],
+        "fbmsCodes": [
+            "GG00000000"
+        ],
+        "logoUrl": "http://my.usgs.gov/static-cache/images/dataOwner/v1/logosMed/USGSLogo.gif",
+        "smallLogoUrl": "http://my.usgs.gov/static-cache/images/dataOwner/v1/logosSmall/USGSLogo.gif",
+        "organization": {},
+        "primaryLocation": {
+            "shortName": "asdf",
+            "name": "Cascades Vol Observatory - COLUMBIA TECH CENTER [WWA]",
+            "description": "asdf",
+            "location": "asdf",
+            "building": "COLUMBIA TECH CENTER",
+            "buildingCode": "WWA",
+            "roomNumber": "asdf",
+            "officePhone": "asdf",
+            "faxPhone": "asdfasdf",
+            "latitude": 12,
+            "longitude": 12,
+            "streetAddress": {
+                "line1": "1300 SE Cardinal Court, Bldg. 10",
+                "city": "Vancouver",
+                "state": "WA",
+                "zip": "98683-9589",
+                "country": "USA"
+            },
+            "mailAddress": {
+                "line1": "1300 SE Cardinal Court, Bldg. 10, Suite 100",
+                "city": "Vancouver",
+                "state": "WA",
+                "zip": "98683",
+                "country": "USA"
+            }
+        }
+    }],
+    "webLinks": [{
+        "type": "webLink",
+        "typeLabel": "Web Link Test",
+        "uri": "http://www.google.com",
+        "title": "Google",
+        "hidden": false
+    }],
+    "browseCategories": [
+        "Data",
+        "Test1"
+    ],
+    "browseTypes": [
+        "GeoTIFF",
+        "Downloadable",
+        "Raster",
+        "Map Service",
+        "Book Citation"
+    ],
+    "tags": [{
+        "type": "Label",
+        "scheme": "ISO 19115 Topic Categories",
+        "name": "imageryBaseMapsEarthCover"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Alaska"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Coast"
+    }, {
+        "type": "Label",
+        "scheme": "None",
+        "name": "Landsat"
+    }, {
+        "type": "Congressional Districts - 113th Session",
+        "scheme": "https://www.sciencebase.gov/vocab/category/Places/CongressionalDistricts/113thSession",
+        "name": "AK-00"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Datasets/Database"
+    }, {
+        "type": "LCC Deliverable",
+        "scheme": "https://www.sciencebase.gov/vocab/category/LCC/Deliverable",
+        "name": "Junk"
+    }, {
+        "type": "Label",
+        "name": "Test"
+    }, {
+        "type": "Label",
+        "scheme": "https://beta.sciencebase.gov/vocab/category/item/browseCategory",
+        "name": "Test1"
+    }, {
+        "type": "Not",
+        "name": "now"
+    }],
+    "dates": [{
+        "type": "Info",
+        "dateString": "2014-02-14",
+        "label": "Info Date Test"
+    }],
+    "facets": [{
+        "files": [{
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif",
+            "contentType": "image/tiff",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__87/20/c7/8720c7b0db66b323d95aece232ed4772814418f8",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": 3848,
+            "imageHeight": 2121,
+            "dateUploaded": "2014-02-14T20:58:44Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": true,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__87%2F20%2Fc7%2F8720c7b0db66b323d95aece232ed4772814418f8",
+            "size": 638813
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.aux.xml",
+            "contentType": "application/xml",
+            "contentEncoding": null,
+            "pathOnDisk": "__grid__52fe84136f8fd5dd40031de6",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": null,
+            "imageHeight": null,
+            "dateUploaded": "2014-02-14T20:58:44Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__grid__52fe84136f8fd5dd40031de6",
+            "size": 261
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.ovr",
+            "contentType": "image/tiff",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__28/8a/90/288a9024c3a88a7e341c715c8091d948ee20105d",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": 1924,
+            "imageHeight": 1061,
+            "dateUploaded": "2014-02-14T20:58:44Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__28%2F8a%2F90%2F288a9024c3a88a7e341c715c8091d948ee20105d",
+            "size": 338723
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.xml",
+            "contentType": "application/fgdc+xml",
+            "contentEncoding": null,
+            "pathOnDisk": "__grid__52fe84136f8fd5dd40031de7",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": null,
+            "imageHeight": null,
+            "dateUploaded": "2014-02-14T20:58:44Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__grid__52fe84136f8fd5dd40031de7",
+            "size": 2767
+        }],
+        "boundingBox": {
+            "maxY": 45.0528658360911,
+            "maxX": -103.82575393490978,
+            "minX": -111.2802631688945,
+            "minY": 40.943974441787155
+        },
+        "rasterType": "GeoTIFF",
+        "name": "sample_raster_color_map.tif/sample_raster_color_map.tif",
+        "nativeCrs": "EPSG:4326",
+        "className": "gov.sciencebase.catalog.item.facet.RasterFacet"
+    }, {
+        "files": [{
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif",
+            "contentType": "image/tiff",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__03/91/74/0391748dfc41aec41b7421b32867bff21872f9da",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": 3848,
+            "imageHeight": 2121,
+            "dateUploaded": "2014-02-14T21:00:58Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": true,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__03%2F91%2F74%2F0391748dfc41aec41b7421b32867bff21872f9da",
+            "size": 638813
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.aux.xml",
+            "contentType": "application/xml",
+            "contentEncoding": null,
+            "pathOnDisk": "__grid__52fe84136f8fd5dd40031de8",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": null,
+            "imageHeight": null,
+            "dateUploaded": "2014-02-14T21:00:58Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__grid__52fe84136f8fd5dd40031de8",
+            "size": 261
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.ovr",
+            "contentType": "image/tiff",
+            "contentEncoding": null,
+            "pathOnDisk": "__disk__33/6c/14/336c1416c925ed0ef41fdcce90ffd7ea5e68df70",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": 1924,
+            "imageHeight": 1061,
+            "dateUploaded": "2014-02-14T21:00:58Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__33%2F6c%2F14%2F336c1416c925ed0ef41fdcce90ffd7ea5e68df70",
+            "size": 338723
+        }, {
+            "name": "sample_raster_color_map.tif/sample_raster_color_map.tif.xml",
+            "contentType": "application/fgdc+xml",
+            "contentEncoding": null,
+            "pathOnDisk": "__grid__52fe84146f8fd5dd40031de9",
+            "processed": null,
+            "processToken": null,
+            "imageWidth": null,
+            "imageHeight": null,
+            "dateUploaded": "2014-02-14T21:00:58Z",
+            "uploadedBy": "mrunnels@usgs.gov",
+            "originalMetadata": null,
+            "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__grid__52fe84146f8fd5dd40031de9",
+            "size": 2767
+        }],
+        "boundingBox": {
+            "maxY": 45.0528658360911,
+            "maxX": -103.82575393490978,
+            "minX": -111.2802631688945,
+            "minY": 40.943974441787155
+        },
+        "rasterType": "GeoTIFF",
+        "name": "sample_raster_color_map.tif/sample_raster_color_map.tif",
+        "nativeCrs": "EPSG:4326",
+        "className": "gov.sciencebase.catalog.item.facet.RasterFacet"
+    }, {
+        "lithologicComments": "Test Extension",
+        "className": "gov.sciencebase.catalog.item.facet.GeologyFacet"
+    }],
+    "files": [{
+        "name": "IRISH_WOLFHOUND.jpg",
+        "contentType": "image/jpeg",
+        "contentEncoding": null,
+        "pathOnDisk": "__disk__8b/81/d5/8b81d5c09a7ce9bf93d23870e98bedf943a3810f",
+        "processed": false,
+        "processToken": null,
+        "imageWidth": 640,
+        "imageHeight": 360,
+        "dateUploaded": "2014-02-14T20:57:31Z",
+        "uploadedBy": "mrunnels@usgs.gov",
+        "originalMetadata": false,
+        "url": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f",
+        "size": 59441
+    }],
+    "permissions": {
+        "read": {
+            "acl": [
+                "USER:mrunnels@usgs.gov"
+            ],
+            "inherited": true,
+            "inheritsFromId": "52a767f26f8f46e6ddb14bd8"
+        },
+        "write": {
+            "acl": [
+                "USER:mrunnels@usgs.gov"
+            ],
+            "inherited": true,
+            "inheritsFromId": "52a767f26f8f46e6ddb14bd8"
+        }
+    },
+    "spatial": {
+        "boundingBox": {
+            "minX": -171.305496,
+            "maxX": -150.877746,
+            "minY": 53.862561,
+            "maxY": 67.373126
+        }
+    },
+    "distributionLinks": [{
+        "uri": "http://localhost:8081/catalogMaps/mapping/ows/52fe74416f8f4291717d3658?mode=download&request=kml&service=wms&layers=sample_raster_color_map.tif_sample_raster_color_map.tif",
+        "title": "KML Service",
+        "type": "kml",
+        "typeLabel": "KML Download",
+        "rel": "alternate"
+    }, {
+        "uri": "http://localhost:8081/catalogMaps/mapping/ows/52fe74416f8f4291717d3658?service=wms&request=getcapabilities&version=1.3.0",
+        "title": "ScienceBase WMS Service",
+        "type": "serviceCapabilitiesUrl",
+        "typeLabel": "OGC Service Capabilities URL",
+        "rel": "alternate"
+    }, {
+        "uri": "http://localhost:8081/catalogMaps/mapping/ows/52fe74416f8f4291717d3658?service=wfs&request=getcapabilities&version=1.0.0",
+        "title": "ScienceBase WFS Service",
+        "type": "serviceCapabilitiesUrl",
+        "typeLabel": "OGC Service Capabilities URL",
+        "rel": "alternate"
+    }, {
+        "uri": "http://localhost:8081/catalogMaps/mapping/ows/52fe74416f8f4291717d3658?service=wcs&request=getcapabilities&version=1.1.0",
+        "title": "ScienceBase WCS Service",
+        "type": "serviceCapabilitiesUrl",
+        "typeLabel": "OGC Service Capabilities URL",
+        "rel": "alternate"
+    }, {
+        "uri": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658",
+        "title": "Download Attached Files",
+        "type": "downloadLink",
+        "typeLabel": "Download Link",
+        "rel": "alternate"
+    }],
+    "previewImage": {
+        "original": {
+            "uri": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f",
+            "viewUri": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f&width=640&height=360",
+            "viewUrl": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f&width=640&height=360",
+            "width": 640,
+            "height": 360,
+            "size": 59441
+        },
+        "thumbnail": {
+            "uri": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f&width=150&height=84",
+            "width": 150,
+            "height": 84
+        },
+        "small": {
+            "uri": "http://localhost:8090/catalog/file/get/52fe74416f8f4291717d3658?f=__disk__8b%2F81%2Fd5%2F8b81d5c09a7ce9bf93d23870e98bedf943a3810f&width=350&height=197",
+            "width": 350,
+            "height": 197
+        }
+    },
+    "locked": false,
+    "facets": [{
+        "projectProducts": [],
+        "parts": [],
+        "className": "gov.sciencebase.catalog.item.facet.ProjectFacet"
+    }]
+}

@@ -11,8 +11,8 @@
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
 require_relative 'class_point'
 require_relative 'class_lineString'
 require_relative 'class_polygon'
@@ -90,7 +90,7 @@ module ADIWG
                                             aPoints.each do |aCoords|
                                                 intPoint = intMetadataClass.newGeoElement
                                                 intPoint[:elementSrs] = hGeoElement[:elementSrs]
-                                                intPoint[:elementGeometry] = ADIWG::Mdtranslator::Readers::MdJson::Point.unpack(aCoords, 'Point', @responseObj)
+                                                intPoint[:elementGeometry] = ADIWG::Mdtranslator::Point.unpack(aCoords, 'Point', @responseObj)
                                                 pointClass.writeXML(intPoint)
                                             end
                                         end
@@ -102,7 +102,7 @@ module ADIWG
                                             aLines.each do |aCoords|
                                                 intLine = intMetadataClass.newGeoElement
                                                 intLine[:elementSrs] = hGeoElement[:elementSrs]
-                                                intLine[:elementGeometry] = ADIWG::Mdtranslator::Readers::MdJson::LineString.unpack(aCoords, 'LineString', @responseObj)
+                                                intLine[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoords, 'LineString', @responseObj)
                                                 lineClass.writeXML(intLine)
                                             end
                                         end
@@ -114,7 +114,7 @@ module ADIWG
                                             aPolygons.each do |aCoords|
                                                 intPolygon = intMetadataClass.newGeoElement
                                                 intPolygon[:elementSrs] = hGeoElement[:elementSrs]
-                                                intPolygon[:elementGeometry] = ADIWG::Mdtranslator::Readers::MdJson::LineString.unpack(aCoords, 'Polygon', @responseObj)
+                                                intPolygon[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoords, 'Polygon', @responseObj)
                                                 polygonClass.writeXML(intPolygon)
                                             end
                                         end

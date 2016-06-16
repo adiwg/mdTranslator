@@ -21,8 +21,8 @@
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoCoordSystem')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoProperties')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_boundingBox')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_point')
+#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_lineString')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_polygon')
 
 module ADIWG
@@ -50,6 +50,8 @@ module ADIWG
                             # find geographic element type
                             if hGeoJsonElement.has_key?('type')
                                 elementType = hGeoJsonElement['type']
+                                #store the original GeoJSON type
+                                hGeoElement[:elementType] = elementType
                             else
                                 # invalid geographic element
                                 return nil
@@ -72,20 +74,26 @@ module ADIWG
                             # set geographic element properties
                             if hGeoJsonElement.has_key?('properties')
                                 hGeoProps = hGeoJsonElement['properties']
-                                GeoProperties.unpack(hGeoProps, hGeoElement, responseObj)
+                                GeoProperties.unpack(hGeoProps, hGeoElement, responseObj) unless hGeoProps.nil?
                             end
 
                             # process geographic element bounding box
+                            # Only process Features with null geometry,
                             # the bounding box must be represented as a separate geographic element for ISO
                             # need to make a deep copy of current state of geographic element for bounding box
                             if hGeoJsonElement.has_key?('bbox')
                                 if hGeoJsonElement['bbox'].length == 4
                                     aBBox = hGeoJsonElement['bbox']
+                                    if  elementType == 'Feature' && hGeoJsonElement['geometry'].nil?
 
-                                    boxElement = Marshal.load(Marshal.dump(hGeoElement))
-                                    boxElement[:elementGeometry] = BoundingBox.unpack(aBBox, responseObj)
+                                        boxElement = Marshal.load(Marshal.dump(hGeoElement))
+                                        boxElement[:elementGeometry] = BoundingBox.unpack(aBBox, responseObj)
+                                        boxElement[:elementType] = 'BBOX'
 
-                                    aIntGeoEle << boxElement
+                                        aIntGeoEle << boxElement
+                                    end
+                                    # add bbox to element hash
+                                    hGeoElement[:bbox] = BoundingBox.unpack(aBBox, responseObj)
                                 end
                             end
 
@@ -107,9 +115,9 @@ module ADIWG
                                                     unless aCoordinates.empty?
                                                         case geometryType
                                                             when 'Point', 'MultiPoint'
-                                                                hGeoElement[:elementGeometry] = Point.unpack(aCoordinates, geometryType, responseObj)
+                                                                hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::Point.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'LineString', 'MultiLineString'
-                                                                hGeoElement[:elementGeometry] = LineString.unpack(aCoordinates, geometryType, responseObj)
+                                                                hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoordinates, geometryType, responseObj)
                                                             when 'Polygon', 'MultiPolygon'
                                                                 hGeoElement[:elementGeometry] = Polygon.unpack(aCoordinates, geometryType, responseObj)
                                                             else
@@ -139,12 +147,12 @@ module ADIWG
                                 # GeoJSON Geometries
                                 when 'Point', 'MultiPoint'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = Point.unpack(aCoordinates, elementType, responseObj)
+                                    hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::Point.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'LineString', 'MultiLineString'
                                     aCoordinates = hGeoJsonElement['coordinates']
-                                    hGeoElement[:elementGeometry] = LineString.unpack(aCoordinates, elementType, responseObj)
+                                    hGeoElement[:elementGeometry] = ADIWG::Mdtranslator::LineString.unpack(aCoordinates, elementType, responseObj)
                                     aIntGeoEle << hGeoElement
 
                                 when 'Polygon', 'MultiPolygon'

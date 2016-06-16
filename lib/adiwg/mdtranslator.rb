@@ -31,6 +31,8 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require 'adiwg/mdtranslator/internal/module_geoFormat'
 require 'adiwg/mdtranslator/internal/module_coordinates'
+require 'adiwg/mdtranslator/internal/module_point'
+require 'adiwg/mdtranslator/internal/module_lineString'
 
 module ADIWG
     module Mdtranslator

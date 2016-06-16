@@ -85,7 +85,7 @@ module ADIWG
                                     # responsible party - role - required
                                     s = rParty[:roleName]
                                     if s.nil?
-                                        xml.tag!('gmd:role', {'gco:nilReason' => 'missing'})
+                                        @xml.tag!('gmd:role', {'gco:nilReason' => 'missing'})
                                     else
                                         @xml.tag! 'gmd:role' do
                                             codelistClass.writeXML('iso_role',s)
