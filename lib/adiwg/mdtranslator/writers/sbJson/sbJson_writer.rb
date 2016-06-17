@@ -4,6 +4,7 @@ require_relative 'sections/sbJson_base'
 require_relative 'sections/sbJson_contact'
 require_relative 'sections/sbJson_identifier'
 require_relative 'sections/sbJson_spatial'
+require_relative 'sections/sbJson_facet'
 
 module ADIWG
   module Mdtranslator
@@ -102,7 +103,9 @@ module ADIWG
             end
 
             json.spatial Spatial.build(rInfo[:extents])
+            json.facets Facet.build(rInfo)
           end
+
           # set writer pass to true if no messages
           # false or warning will be set by code that places the message
           responseObj[:writerPass] = true if responseObj[:writerMessages].empty?
