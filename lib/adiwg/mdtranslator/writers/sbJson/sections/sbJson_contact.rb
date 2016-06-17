@@ -12,7 +12,7 @@ module ADIWG
               else
                 type = intObj[:indName].nil? ? 'organization' : 'person'
                 json.name intObj[:indName] || intObj[:orgName]
-                json.type type
+                json.contactType type
                 json.email intObj[:address][:eMailList][0] unless intObj[:address].empty?
                 json.organization type == 'person' ? intObj[:orgName] : nil
                 json.primaryLocation do

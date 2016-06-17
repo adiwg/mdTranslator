@@ -11,7 +11,8 @@ module ADIWG
               json.scheme intObj[:identifierNamespace] ||
                           unless intObj[:identifierCitation].empty?
                             intObj[:identifierCitation][:citOlResources][0][:olResURI] unless intObj[:identifierCitation][:citOlResources].empty?
-                          end
+                          end ||
+                          'https://www.sciencebase.gov/vocab/category/item/identifier'
               json.key intObj[:identifier]
             end
           end
