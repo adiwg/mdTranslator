@@ -12,7 +12,7 @@ module ADIWG
                     #set output flag for null properties
                     Jbuilder::ignore_nil(!responseObj[:writerShowTags])
                     # set the format of the output file based on the writer specified
-                    responseObj[:writerFormat] = 'mdJson'
+                    responseObj[:writerFormat] = 'json'
                     responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::MdJson::VERSION
 
                     # version

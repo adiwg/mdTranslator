@@ -16,7 +16,7 @@ module ADIWG
           # set output flag for null properties
           Jbuilder.ignore_nil(!responseObj[:writerShowTags])
           # set the format of the output file based on the writer specified
-          responseObj[:writerFormat] = 'sbJson'
+          responseObj[:writerFormat] = 'json'
           responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::SbJson::VERSION
 
           rInfo = _intObj[:metadata][:resourceInfo]
