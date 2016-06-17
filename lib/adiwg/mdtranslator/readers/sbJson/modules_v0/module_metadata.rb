@@ -45,7 +45,7 @@ module ADIWG
                                     doc = {
                                         'resourceType' => hAddDoc['type'],
                                         'citation' => {
-                                            'title' => hAddDoc['title'],
+                                            'title' => hAddDoc['title'] || hAddDoc['typeLabel'],
                                             'onlineResource' => [
                                                 {
                                                     'uri' => hAddDoc['uri'],
