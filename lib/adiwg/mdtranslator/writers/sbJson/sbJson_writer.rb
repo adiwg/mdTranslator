@@ -21,11 +21,16 @@ module ADIWG
           responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::SbJson::VERSION
 
           rInfo = _intObj[:metadata][:resourceInfo]
+          mInfo = _intObj[:metadata][:metadataInfo]
           dInfo = _intObj[:metadata][:distributorInfo]
           cite = rInfo[:citation]
           ids = cite[:citResourceIds]
 
           metadata = Jbuilder.new do |json|
+            parentId = mInfo[:parentMetadata][:citResourceIds].find {
+                |i| i[:identifierType] == 'scienceBase'
+            } unless mInfo[:parentMetadata].nil? || mInfo[:parentMetadata][:citResourceIds].nil?
+            json.parentId parentId[:identifier] || ''
             json.identifiers json_map(ids, Identifier)
             json.title cite[:citTitle]
             json.alternateTitles([cite[:citAltTitle]]) unless cite[:citAltTitle].nil?
