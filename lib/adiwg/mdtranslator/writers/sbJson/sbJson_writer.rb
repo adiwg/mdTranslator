@@ -30,7 +30,8 @@ module ADIWG
             parentId = mInfo[:parentMetadata][:citResourceIds].find {
                 |i| i[:identifierType] == 'scienceBase'
             } unless mInfo[:parentMetadata].nil? || mInfo[:parentMetadata][:citResourceIds].nil?
-            json.parentId parentId[:identifier] || ''
+            json.parentId parentId.nil? ? '' : parentId[:identifier]
+
             json.identifiers json_map(ids, Identifier)
             json.title cite[:citTitle]
             json.alternateTitles([cite[:citAltTitle]]) unless cite[:citAltTitle].nil?
