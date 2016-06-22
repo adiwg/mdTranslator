@@ -52,7 +52,7 @@ module ADIWG
                                     if hCitDate.has_key?('date')
                                         s = hCitDate['date']
                                         if s != ''
-                                            intDateTime = DateTime.unpack(s, responseObj)
+                                            intDateTime = SbDateTime.unpack(s, responseObj)
                                             if hCitDate.has_key?('dateType')
                                                 s = hCitDate['dateType']
                                                 if s != ''

@@ -84,7 +84,7 @@ module ADIWG
                             hResourceInfo['dates'].each do |date|
                                 s = date['dateString']
                                 next unless s != ''
-                                hDateTime = DateTime.unpack(s, responseObj)
+                                hDateTime = SbDateTime.unpack(s, responseObj)
                                 hDateTime[:dateType] = date['type']
                                 hCitation[:citDate] << hDateTime
                             end

@@ -5,7 +5,7 @@ module ADIWG
         module Readers
             module SbJson
 
-                module DateTime
+                module SbDateTime
 
                     def self.unpack(sDateTime, responseObj)
 

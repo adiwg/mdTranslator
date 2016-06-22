@@ -65,7 +65,7 @@ module ADIWG
             if hMetadataInfo.key?('provenance')
               s = hMetadataInfo['provenance']['dateCreated']
               if s != ''
-                hDateTime = DateTime.unpack(s, responseObj)
+                hDateTime = SbDateTime.unpack(s, responseObj)
                 hDateTime[:dateType] = 'creation'
                 intMetadataInfo[:metadataCreateDate] = hDateTime
               end
@@ -75,7 +75,7 @@ module ADIWG
             if hMetadataInfo.key?('provenance')
               s = hMetadataInfo['provenance']['lastUpdated']
               if s != ''
-                hDateTime = DateTime.unpack(s, responseObj)
+                hDateTime = SbDateTime.unpack(s, responseObj)
                 hDateTime[:dateType] = 'lastUpdate'
                 intMetadataInfo[:metadataUpdateDate] = hDateTime
               end
