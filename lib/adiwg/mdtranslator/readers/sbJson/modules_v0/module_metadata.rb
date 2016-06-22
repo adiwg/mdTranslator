@@ -1,4 +1,5 @@
 require 'uri'
+require 'date'
 require ADIWG::Mdtranslator::Readers::SbJson.readerModule('module_metadataInfo')
 require ADIWG::Mdtranslator::Readers::SbJson.readerModule('module_resourceInfo')
 require ADIWG::Mdtranslator::Readers::SbJson.readerModule('module_distributionInfo')
@@ -23,7 +24,7 @@ module ADIWG
                         intMetadata[:resourceInfo] = ResourceInfo.unpack(hMetadata, responseObj, intObj)
 
                         # metadata - distribution info
-                        if hMetadata.key?('webLinks')
+                        if hMetadata.key?('distributionLinks')
                             intMetadata[:distributorInfo] << DistributionInfo.unpack(hMetadata, responseObj, intObj)
                         end
 
@@ -46,6 +47,10 @@ module ADIWG
                                         'resourceType' => hAddDoc['type'],
                                         'citation' => {
                                             'title' => hAddDoc['title'] || hAddDoc['typeLabel'],
+                                            'date' => [{
+                                              'date' => DateTime.now.iso8601,
+                                              'dateType' => 'distribution'
+                                              }],
                                             'onlineResource' => [
                                                 {
                                                     'uri' => hAddDoc['uri'],

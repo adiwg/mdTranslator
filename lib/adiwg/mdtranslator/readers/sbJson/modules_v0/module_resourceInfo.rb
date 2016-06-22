@@ -137,13 +137,13 @@ module ADIWG
                         # resource information - status
                         # project status is sometimes available
                         # otherwise just defaults to "published"
-                        if projectFacet.nil?
+                        if not projectFacet.nil?
 
-                            if hResourceInfo.key?('status')
-                                s = hResourceInfo['status']
+                            if projectFacet.key?('projectStatus')
+                                status = projectFacet['projectStatus']
                             end
-                            intResInfo[:status] = s.nil? ? 'published' : s
                         end
+                        intResInfo[:status] = status.nil? ? 'published' : status
 
                         # resource information - has mappable location
                         intResInfo[:hasMapLocation?] = hResourceInfo.key?('spatial')
