@@ -16,7 +16,7 @@ module ADIWG
                         # with a a role of "distributor", if none just use
                         # the default SB contact
                         aCust = {}
-                        dist = intObj[:contacts].find { |c| c[:sbType] == 'Distributor' }
+                        dist = intObj[:contacts].find { |c| c[:primaryRole] == 'Distributor' }
 
                         unless dist.nil?
                             aCust['contactId'] = dist[:contactId]

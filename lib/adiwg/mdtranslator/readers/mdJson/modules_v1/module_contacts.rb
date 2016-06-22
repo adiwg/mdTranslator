@@ -81,6 +81,14 @@ module ADIWG
                             end
                         end
 
+                        # primary role
+                        if hContact.has_key?('primaryRole')
+                            s = hContact['primaryRole']
+                            if s != ''
+                                intCont[:primaryRole] = s
+                            end
+                        end
+
                         # online resources
                         if hContact.has_key?('onlineResource')
                             aOlRes = hContact['onlineResource']

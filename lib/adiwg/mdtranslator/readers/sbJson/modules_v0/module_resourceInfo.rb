@@ -119,7 +119,7 @@ module ADIWG
                         firstCont = intObj[:contacts][0]
                         aCust = {}
                         aCust['contactId'] = firstCont[:contactId]
-                        aCust['role'] = firstCont[:sbType]
+                        aCust['role'] = firstCont[:primaryRole]
                         intResInfo[:pointsOfContact] << ResponsibleParty.unpack(aCust, responseObj)
 
                         # resource information - abstract

@@ -58,7 +58,7 @@ module ADIWG
             firstCont = intObj[:contacts][0]
             aCust = {}
             aCust['contactId'] = firstCont[:contactId]
-            aCust['role'] = firstCont[:sbType]
+            aCust['role'] = firstCont[:primaryRole]
             intMetadataInfo[:metadataCustodians] << ResponsibleParty.unpack(aCust, responseObj)
 
             # metadata - creation date

@@ -93,7 +93,8 @@ class InternalMetadata
             address: {},
             onlineRes: [],
             contactInstructions: nil,
-            internal: false
+            internal: false,
+            primaryRole: nil
         }
     end
 

@@ -36,11 +36,10 @@ module ADIWG
                             intCont[:position] = s if s != ''
                         end
 
-                        # SB Role, store the role for later lookup, not used
-                        # internally
+                        # SB Role
                         if hContact.key?('type')
                             s = hContact['type']
-                            intCont[:sbType] = s if s != ''
+                            intCont[:primaryRole] = s if s != ''
                         end
 
                         # contact instructions

@@ -32,27 +32,28 @@ module ADIWG
                         # responsible party - contact
                         if hRParty.has_key?('contactId')
                             s = hRParty['contactId']
-                            if s != ''
-                                intResById[:contactId] = s
-                                if (!ADIWG::Mdtranslator::Readers::MdJson.findContact(s))
-                                    responseObj[:readerExecutionPass] = false
-                                    responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{s} does not match with any contact provided\n"
-                                end
-                            else
+                        end
+                        if s && s != ''
+                            intResById[:contactId] = s
+                            contact = ADIWG::Mdtranslator::Readers::MdJson.findContact(s)
+                            if (!contact)
                                 responseObj[:readerExecutionPass] = false
-                                responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact ID\n'
+                                responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{s} does not match with any contact provided\n"
                             end
+                        else
+                            responseObj[:readerExecutionPass] = false
+                            responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact ID\n'
                         end
 
                         # responsible party - role - required
                         if hRParty.has_key?('role')
-                            s = hRParty['role']
-                            if s != ''
-                                intResById[:roleName] = s
-                            else
-                                responseObj[:readerExecutionPass] = false
-                                responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact role\n'
-                            end
+                            rl = hRParty['role'] || contact[:primaryRole]
+                        end
+                        if rl && rl != ''
+                            intResById[:roleName] = rl
+                        else
+                            responseObj[:readerExecutionPass] = false
+                            responseObj[:readerExecutionMessages] << 'Responsible Party is missing the contact role\n'
                         end
 
                         return intResById
