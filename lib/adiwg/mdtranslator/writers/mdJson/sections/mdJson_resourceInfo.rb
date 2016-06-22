@@ -28,7 +28,7 @@ module ADIWG
             Jbuilder.new do |json|
               json.resourceType _info[:resourceType]
               json.citation Citation.build(_info[:citation])
-              json.resourceTimePeriod TimePeriod.build(_info[:timePeriod]) # unless _info[:timePeriod].empty?
+              json.resourceTimePeriod TimePeriod.build(_info[:timePeriod]) unless _info[:timePeriod].empty?
               json.pointOfContact json_map(_info[:pointsOfContact], ResponsibleParty)
               json.abstract _info[:abstract]
               json.shortAbstract _info[:shortAbstract]
@@ -48,7 +48,7 @@ module ADIWG
               json.resourceSpecificUsage json_map(_info[:resourceUses], Usage)
               json.graphicOverview json_map(_info[:graphicOverview], GraphicOverview)
               json.constraint Constraint.build(_info[:useConstraints], _info[:legalConstraints], _info[:securityConstraints])
-              json.taxonomy Taxonomy.build(_info[:taxonomy])
+              json.taxonomy Taxonomy.build(_info[:taxonomy]) unless _info[:taxonomy].empty?
               json.spatialReferenceSystem SpatialReference.build(_info[:spatialReferenceSystem])
               json.spatialResolution (_info[:spatialResolutions]) do |sr|
                 json.equivalentScale sr[:equivalentScale]

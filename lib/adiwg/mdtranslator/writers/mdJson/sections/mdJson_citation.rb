@@ -17,7 +17,7 @@ module ADIWG
               Jbuilder.new do |json|
                 json.title cite[:citTitle]
                 json.alternateTitle cite[:citAltTitle]
-                json.date json_map(cite[:citDate], DateTime)
+                json.date json_map(cite[:citDate], DateTime) unless cite[:citDate].empty?
                 json.edition cite[:citEdition]
                 json.identifier json_map(cite[:citResourceIds], ResourceIdentifier)
                 json.responsibleParty json_map(cite[:citResponsibleParty], ResponsibleParty)
