@@ -49,6 +49,7 @@ class TestTranslation_v1 < MiniTest::Test
         assert metadata[:readerStructurePass], metadata[:readerStructureMessages].join(',')
         assert_equal(@@reader, metadata[:readerRequested])
         assert metadata[:readerValidationPass], "reader validation failed: \n" + metadata[:readerValidationMessages].join(',')
+        assert metadata[:readerExecutionPass], "reader execution failed: \n" + metadata[:readerExecutionMessages].join(',')
         assert_equal('iso19110', metadata[:writerName])
         assert metadata[:writerPass], "writer validation failed: \n" + metadata[:writerMessages].join(',')
         refute_nil metadata[:writerOutput]
