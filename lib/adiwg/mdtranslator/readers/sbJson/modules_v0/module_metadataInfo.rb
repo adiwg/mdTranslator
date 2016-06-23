@@ -49,6 +49,13 @@ module ADIWG
               pParty[:contactId] = 'SB'
               pParty[:roleName] = 'originator'
               hParent[:citResponsibleParty] << pParty
+              intOLRes = intMetadataClass.newOnlineResource
+              intOLRes[:olResURI] = 'https://www.sciencebase.gov/catalog/item/' + hParentId
+              intOLRes[:olResProtocol] = 'http'
+              intOLRes[:olResName] = 'Parent Resource Link'
+              intOLRes[:olResDesc] = 'ScienceBase URL of resource'
+              intOLRes[:olResFunction] = 'information'
+              hParent[:citOlResources] << intOLRes
 
               intMetadataInfo[:parentMetadata] = hParent unless hParent.empty?
             end
