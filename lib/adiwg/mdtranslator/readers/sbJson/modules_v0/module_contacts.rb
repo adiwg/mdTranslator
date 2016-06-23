@@ -24,7 +24,7 @@ module ADIWG
                         if s != ''
                             if hContact['contactType'] == 'person'
                                 intCont[:indName] = s
-                                intCont[:orgName] = hContact['organization']['displayText']
+                                intCont[:orgName] = hContact['organization']['displayText'] unless hContact[:organization].nil?
                             else
                                 intCont[:orgName] = s
                             end
