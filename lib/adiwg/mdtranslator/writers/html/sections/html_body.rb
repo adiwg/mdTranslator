@@ -253,8 +253,9 @@ module ADIWG
                             @html.hr
 
                             #Load leaflet
-                            @html.link( :rel => 'stylesheet', :href => 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css')
-                            @html.script('', :src => 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js')
+                            @html.link( :rel => 'stylesheet', :href => 'http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css')
+                            @html.script('', :src => 'http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js')
+                            @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
 
                             # add inline javascript
                             # read javascript from file
