@@ -1,6 +1,17 @@
 # ADIwg ISO Translator internal data structure
 
 # History:
+# version 2
+#   Stan Smith 2016-10-01 made phone service types an array
+
+# version 1
+#   Stan Smith 2015-07-23 added gridInfo, gridDimension for 1.3.0
+#   Stan Smith 2015-07-28 added locale for 1.3.0
+#   Stan Smith 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem,
+#                     ... classifiedData, and classedDataItem for 1.3.0
+#   Stan Smith 2015-09-18 extended distributionInfo sections for 1.3.0
+
+# version 0
 # 	Stan Smith 2013-08-09 original script
 # 	Stan Smith 2013-08-10 adding methods as needed
 # 	Stan Smith 2013-09-19 added keywords
@@ -48,11 +59,6 @@
 #   Stan Smith 2014-12-01 added data dictionary
 #   Stan Smith 2015-02-17 add entity and attribute alias
 #   Stan Smith 2015-02-17 added support for multiple data dictionaries
-#   Stan Smith 2015-07-23 added gridInfo, gridDimension for 1.3.0
-#   Stan Smith 2015-07-28 added locale for 1.3.0
-#   Stan Smith 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem,
-#                     ... classifiedData, and classedDataItem for 1.3.0
-#   Stan Smith 2015-09-18 extended distributionInfo sections for 1.3.0
 
 class InternalMetadata
 
@@ -100,9 +106,9 @@ class InternalMetadata
 
     def newPhone
         intObj = {
-            phoneServiceType: nil,
             phoneName: nil,
-            phoneNumber: nil
+            phoneNumber: nil,
+            phoneServiceTypes: []
         }
     end
 
