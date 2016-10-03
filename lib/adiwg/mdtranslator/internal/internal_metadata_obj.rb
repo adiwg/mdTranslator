@@ -3,6 +3,7 @@
 # History:
 # version 2
 #   Stan Smith 2016-10-01 made phone service types an array
+#   Stan Smith 2016-10-03 added duration object
 
 # version 1
 #   Stan Smith 2015-07-23 added gridInfo, gridDimension for 1.3.0
@@ -86,6 +87,17 @@ class InternalMetadata
             dateTime: nil,
             dateType: nil,
             dateResolution: nil
+        }
+    end
+
+    def newDuration
+        intObj = {
+            years: nil,
+            months: nil,
+            days: nil,
+            hours: nil,
+            minutes: nil,
+            seconds: nil
         }
     end
 
