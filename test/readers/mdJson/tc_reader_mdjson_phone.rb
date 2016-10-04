@@ -39,10 +39,10 @@ class TestReaderMdJsonPhone < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'phone1', metadata[:phoneName]
+        assert_equal 'phoneName', metadata[:phoneName]
         assert_equal '111-111-1111', metadata[:phoneNumber]
         assert_equal 3, metadata[:phoneServiceTypes].length
-        assert_equal 'service1-1', metadata[:phoneServiceTypes][1]
+        assert_equal 'service1', metadata[:phoneServiceTypes][1]
         assert hResponse[:readerExecutionPass]
 
     end
@@ -82,7 +82,7 @@ class TestReaderMdJsonPhone < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'phone1', metadata[:phoneName]
+        assert_equal 'phoneName', metadata[:phoneName]
         assert_equal '111-111-1111', metadata[:phoneNumber]
         assert_equal 0, metadata[:phoneServiceTypes].length
         assert hResponse[:readerExecutionPass]
@@ -97,7 +97,7 @@ class TestReaderMdJsonPhone < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'phone1', metadata[:phoneName]
+        assert_equal 'phoneName', metadata[:phoneName]
         assert_equal '111-111-1111', metadata[:phoneNumber]
         assert_equal 0, metadata[:phoneServiceTypes].length
         assert hResponse[:readerExecutionPass]

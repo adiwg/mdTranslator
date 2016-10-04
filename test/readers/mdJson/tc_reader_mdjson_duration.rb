@@ -26,7 +26,9 @@ class TestReaderMdJsonDuration < MiniTest::Test
     file.close
     aIn = JSON.parse(jsonFile)
 
-    @@hIn = aIn
+    # only the first instance in the example array is used for tests
+    # the first example is fully populated
+    @@hIn = aIn['duration'][0]
 
     def test_complete_duration_object
 
@@ -73,11 +75,13 @@ class TestReaderMdJsonDuration < MiniTest::Test
 
         # missing elements should return 0
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['nonElement'] = '0'
         hIn.delete('years')
         hIn.delete('months')
         hIn.delete('days')
         hIn.delete('hours')
         hIn.delete('minutes')
+        hIn.delete('seconds')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -86,7 +90,7 @@ class TestReaderMdJsonDuration < MiniTest::Test
         assert_equal 0, metadata[:days]
         assert_equal 0, metadata[:hours]
         assert_equal 0, metadata[:minutes]
-        assert_equal 1, metadata[:seconds]
+        assert_equal 0, metadata[:seconds]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
