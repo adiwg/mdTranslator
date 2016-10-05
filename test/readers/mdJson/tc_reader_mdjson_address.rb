@@ -9,7 +9,7 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_address'
 
-class TestReaderMdJsonAddress_v1 < MiniTest::Test
+class TestReaderMdJsonAddress < MiniTest::Test
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Address

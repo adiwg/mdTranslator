@@ -44,6 +44,7 @@ class TestReaderMdJsonPhone < MiniTest::Test
         assert_equal 3, metadata[:phoneServiceTypes].length
         assert_equal 'service1', metadata[:phoneServiceTypes][1]
         assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 
