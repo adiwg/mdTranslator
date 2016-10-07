@@ -1,26 +1,27 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_entityAttribute
+# reader / mdJson / module_entity
 
 # History:
-# Stan Smith 2015-07-24 original script
+#   Stan Smith 2016-10-07 refactored for mdJson 2.0
+#   Stan Smith 2015-07-24 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_entityAttribute'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_entity'
 
-class TestReaderMdJsonEntityAttribute < MiniTest::Test
+class TestReaderMdJsonEntity < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::EntityAttribute
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Entity
     @@responseObj = {
         readerExecutionMessages: [],
         readerExecutionPass: true
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'entityAttribute.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'entity.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -28,30 +29,46 @@ class TestReaderMdJsonEntityAttribute < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['attribute'][0]
+    @@hIn = aIn['entity'][0]
+    @@hIn['index'] = []
+    @@hIn['attribute'] = []
+    @@hIn['foreignKey'] = []
 
-    def test_complete_entityAttribute_object
+    def test_complete_entity_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'commonName', metadata[:attributeName]
-        assert_equal 'codeName', metadata[:attributeCode]
-        assert_equal 'alias0', metadata[:attributeAlias][0]
-        assert_equal 'alias1', metadata[:attributeAlias][1]
-        assert_equal 'definition', metadata[:attributeDefinition]
-        assert metadata[:allowNull]
-        assert_equal 'units', metadata[:unitOfMeasure]
-        assert_equal 'domainId', metadata[:domainId]
-        assert_equal 'minValue', metadata[:minValue]
-        assert_equal 'maxValue', metadata[:maxValue]
+        assert_equal 'entityId', metadata[:entityId]
+        assert_equal 'commonName', metadata[:entityName]
+        assert_equal 'codeName', metadata[:entityCode]
+        assert_equal 'alias0', metadata[:entityAlias][0]
+        assert_equal 'alias1', metadata[:entityAlias][1]
+        assert_equal 'primaryKeyAttributeCodeName0', metadata[:primaryKey][0]
+        assert_equal 'primaryKeyAttributeCodeName1', metadata[:primaryKey][1]
+        assert_empty metadata[:indexes]
+        assert_empty metadata[:attributes]
+        assert_empty metadata[:foreignKeys]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_entityAttribute_codeName
+    def test_empty_entity_id
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['entityId'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_entity_codeName
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['codeName'] = ''
@@ -64,7 +81,7 @@ class TestReaderMdJsonEntityAttribute < MiniTest::Test
 
     end
 
-    def test_empty_entityAttribute_definition
+    def test_empty_entity_definition
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['definition'] = ''
@@ -77,75 +94,41 @@ class TestReaderMdJsonEntityAttribute < MiniTest::Test
 
     end
 
-    def test_empty_entityAttribute_dataType
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['dataType'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_empty_entityAttribute_allowNull
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['allowNull'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_empty_entityAttribute_elements
+    def test_empty_entity_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['commonName'] = ''
         hIn['alias'] = []
-        hIn['units'] = ''
-        hIn['domainId'] = ''
-        hIn['minValue'] = ''
-        hIn['maxValue'] = ''
+        hIn['primaryKeyAttributeCodeName'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:attributeName]
-        assert_empty metadata[:attributeAlias]
-        assert_nil metadata[:unitOfMeasure]
-        assert_nil metadata[:domainId]
-        assert_nil metadata[:minValue]
-        assert_nil metadata[:maxValue]
+        assert_nil metadata[:entityName]
+        assert_empty metadata[:entityAlias]
+        assert_empty metadata[:primaryKey]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_missing_entityAttribute_elements
+    def test_missing_entity_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('commonName')
         hIn.delete('alias')
-        hIn.delete('units')
-        hIn.delete('domainId')
-        hIn.delete('minValue')
-        hIn.delete('maxValue')
+        hIn.delete('primaryKeyAttributeCodeName')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:attributeName]
-        assert_empty metadata[:attributeAlias]
-        assert_nil metadata[:unitOfMeasure]
-        assert_nil metadata[:domainId]
-        assert_nil metadata[:minValue]
-        assert_nil metadata[:maxValue]
+        assert_nil metadata[:entityName]
+        assert_empty metadata[:entityAlias]
+        assert_empty metadata[:primaryKey]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_entityAttribute_object
+    def test_empty_entity_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

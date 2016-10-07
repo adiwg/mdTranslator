@@ -1,21 +1,22 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-# 	Stan Smith 2013-08-09 original script
-# 	Stan Smith 2013-08-19 split out contacts to module_contacts
-# 	Stan Smith 2013-08-23 split out metadata to module_metadata
-#	Stan Smith 2014-04-23 add json schema version to internal object
-#   Stan Smith 2014-06-05 capture an test json version
-#   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
-#   Stan Smith 2014-07-08 moved json schema version testing to 'adiwg_1_get_version'
-#   Stan Smith 2014-08-18 add json name/version to internal object
-#   Stan Smith 2014-12-01 add data dictionary
-#   Stan Smith 2014-12-03 changed class name to MdJsonReader from AdiwgJsonReader
-#   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-12 added method to lookup contact in contact array
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2016-10-07 refactored 'readerModule' to remove mdJson version checking
 #   Stan Smith 2015-07-14 added support for mdJson version numbers
+#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-06-12 added method to lookup contact in contact array
+#   Stan Smith 2014-12-11 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-03 changed class name to MdJsonReader from AdiwgJsonReader
+#   Stan Smith 2014-12-01 add data dictionary
+#   Stan Smith 2014-08-18 add json name/version to internal object
+#   Stan Smith 2014-07-08 moved json schema version testing to 'adiwg_1_get_version'
+#   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#   Stan Smith 2014-06-05 capture an test json version
+#	Stan Smith 2014-04-23 add json schema version to internal object
+# 	Stan Smith 2013-08-23 split out metadata to module_metadata
+# 	Stan Smith 2013-08-19 split out contacts to module_contacts
+# 	Stan Smith 2013-08-09 original script
 
 require 'json'
 require_relative 'mdJson_validator'
@@ -191,24 +192,17 @@ module ADIWG
                     return pointer
                 end
 
-                # require modules for the requested version
+                # build path to reader modules
                 def self.readerModule(moduleName)
-                    majVersion = @responseObj[:readerVersionUsed].split('.')[0]
-                    dirName = File.join(File.dirname(__FILE__), 'modules_v' + majVersion.to_s)
+                    dirName = File.join(File.dirname(__FILE__), 'modules')
                     fileName = File.join(dirName, moduleName)
 
-                    # test for the existance of the module in the current mdJson version directory
-                    if !File.exist?(File.join(dirName, moduleName + '.rb'))
-                        # file not found
-                        # ... look for module in previous version directory
-                        # ... note: no previous version directories exist yet
-
-                        # no prior version directory found
-                        # ... file not found
+                    # test for the existence of the module in the current mdJson directory
+                    if File.exist?(fileName + '.rb')
+                        return fileName
+                    else
                         return nil
                     end
-
-                    return fileName
                 end
 
             end

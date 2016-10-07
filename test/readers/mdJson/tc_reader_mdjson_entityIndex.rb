@@ -86,11 +86,13 @@ class TestReaderMdJsonEntityIndex < MiniTest::Test
     end
 
     def test_empty_entityIndex_object
-        
+
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 

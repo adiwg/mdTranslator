@@ -92,6 +92,8 @@ class TestReaderMdJsonForeignKey < MiniTest::Test
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
