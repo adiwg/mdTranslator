@@ -29,10 +29,12 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intFKey = intMetadataClass.newEntityForeignKey
 
-                        # entity foreign key - local attribute code name (required)
+                        # entity foreign key - local attribute code name [] (required)
                         # return nil if no local attribute is provided
                         if hFKey.has_key?('localAttributeCodeName')
                             intFKey[:fkLocalAttributes] = hFKey['localAttributeCodeName']
+                        else
+                            intFKey[:fkLocalAttributes] = []
                         end
                         if intFKey[:fkLocalAttributes].empty?
                             responseObj[:readerExecutionMessages] << 'Data Dictionary foreign key local attribute code name is missing'
@@ -51,10 +53,12 @@ module ADIWG
                             return nil
                         end
 
-                        # entity foreign key - referenced attribute code name (required)
+                        # entity foreign key - referenced attribute code name [] (required)
                         # return nil if no referenced attribute is provided
                         if hFKey.has_key?('referencedAttributeCodeName')
                             intFKey[:fkReferencedAttributes] = hFKey['referencedAttributeCodeName']
+                        else
+                            intFKey[:fkReferencedAttributes] = []
                         end
                         if intFKey[:fkReferencedAttributes].empty?
                             responseObj[:readerExecutionMessages] << 'Data Dictionary foreign key referenced attribute name is missing'

@@ -34,12 +34,8 @@ module ADIWG
                         # return nil if no phone number is provided
                         if hPhone.has_key?('phoneNumber')
                             intPhone[:phoneNumber] = hPhone['phoneNumber']
-                            if hPhone['phoneNumber'] == ''
-                                responseObj[:readerExecutionMessages] << 'Phone object did not provide a phone number'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        else
+                        end
+                        if hPhone['phoneNumber'].nil? || hPhone['phoneNumber'] == ''
                             responseObj[:readerExecutionMessages] << 'Phone object did not provide a phone number'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -47,17 +43,18 @@ module ADIWG
 
                         # phone - phoneName
                         if hPhone.has_key?('phoneName')
-                            intPhone[:phoneName] = hPhone['phoneName']
+                            if hPhone['phoneName'] != ''
+                                intPhone[:phoneName] = hPhone['phoneName']
+                            end
                         end
 
                         # phone - service (recommended)
                         if hPhone.has_key?('service')
                             intPhone[:phoneServiceTypes] = hPhone['service']
-                            if hPhone['service'].length == 0
-                                responseObj[:readerExecutionMessages] << 'Phone object did not provide a service'
-                                responseObj[:readerExecutionPass] = true
-                            end
                         else
+                            intPhone[:phoneServiceTypes] = []
+                        end
+                        if intPhone[:phoneServiceTypes].empty?
                             responseObj[:readerExecutionMessages] << 'Phone object did not provide a service'
                             responseObj[:readerExecutionPass] = true
                         end

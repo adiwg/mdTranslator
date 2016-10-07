@@ -21,7 +21,7 @@ class TestReaderMdJsonForeignKey < MiniTest::Test
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'foreignKey.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'entityForeignKey.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -39,7 +39,7 @@ class TestReaderMdJsonForeignKey < MiniTest::Test
 
         assert_equal 'localAttributeCodeName0', metadata[:fkLocalAttributes][0]
         assert_equal 'localAttributeCodeName1', metadata[:fkLocalAttributes][1]
-        assert_equal 'referencedEntityCodeName1', metadata[:fkReferencedEntity]
+        assert_equal 'referencedEntityCodeName', metadata[:fkReferencedEntity]
         assert_equal 'referencedAttributeCodeName0', metadata[:fkReferencedAttributes][0]
         assert_equal 'referencedAttributeCodeName1', metadata[:fkReferencedAttributes][1]
         assert hResponse[:readerExecutionPass]
