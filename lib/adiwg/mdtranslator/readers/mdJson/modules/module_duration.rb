@@ -13,15 +13,16 @@ module ADIWG
 
                     def self.unpack(hDuration, responseObj)
 
-                        # instance classes needed in script
-                        intMetadataClass = InternalMetadata.new
-                        intDuration = intMetadataClass.newDuration
-
+                        # return nil object if input is empty
                         if hDuration.empty?
                             responseObj[:readerExecutionMessages] << 'Duration object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
+
+                        # instance classes needed in script
+                        intMetadataClass = InternalMetadata.new
+                        intDuration = intMetadataClass.newDuration
 
                         # duration - years
                         if hDuration.has_key?('years')

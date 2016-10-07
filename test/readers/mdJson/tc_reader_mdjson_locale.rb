@@ -108,7 +108,7 @@ class TestReaderMdJsonLocale < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'language1', metadata[:languageCode]
-        assert_empty metadata[:countryCode]
+        assert_nil metadata[:countryCode]
         assert_equal 'characterSet1', metadata[:characterEncoding]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

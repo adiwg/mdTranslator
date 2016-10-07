@@ -29,12 +29,8 @@ module ADIWG
                         # return nil if no language code is provided
                         if hLocale.has_key?('language')
                             intLocale[:languageCode] = hLocale['language']
-                            if hLocale['language'] == ''
-                                responseObj[:readerExecutionMessages] << 'Locale object did not provide a language code'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        else
+                        end
+                        if intLocale[:languageCode].nil? || intLocale[:languageCode] == ''
                             responseObj[:readerExecutionMessages] << 'Locale object did not provide a language code'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -42,19 +38,17 @@ module ADIWG
 
                         # locale - country
                         if hLocale.has_key?('country')
-                            intLocale[:countryCode] = hLocale['country']
+                            if hLocale['country'] != ''
+                                intLocale[:countryCode] = hLocale['country']
+                            end
                         end
 
                         # locale - character set (required)
                         # return nil if no character set code is provided
                         if hLocale.has_key?('characterSet')
                             intLocale[:characterEncoding] = hLocale['characterSet']
-                            if hLocale['characterSet'] == ''
-                                responseObj[:readerExecutionMessages] << 'Locale object did not provide a character set code'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        else
+                        end
+                        if intLocale[:characterEncoding].nil? || intLocale[:characterEncoding] == ''
                             responseObj[:readerExecutionMessages] << 'Locale object did not provide a character set code'
                             responseObj[:readerExecutionPass] = false
                             return nil

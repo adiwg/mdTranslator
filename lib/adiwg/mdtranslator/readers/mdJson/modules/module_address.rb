@@ -2,7 +2,14 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-# 	Stan Smith 2016-10-03 original script
+# 	Stan Smith 2016-10-03 refactored for mdJson 2.0
+#   Stan Smith 2015-07-14 refactored to remove global namespace constants
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2014-12-30 refactored
+#   ... electronicMailAddresses into internal object
+#   Stan Smith 2014-12-19 prevented passing blank deliveryPoints and
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+# 	Stan Smith 2013-10-21 original script
 
 module ADIWG
     module Mdtranslator
@@ -26,52 +33,46 @@ module ADIWG
 
                         # address - delivery point
                         if hAddress.has_key?('deliveryPoint')
-                            aDevPoint = hAddress['deliveryPoint']
-                            aDevPoint.each do |addLine|
-                                if addLine != ''
-                                    intAdd[:deliveryPoints] << addLine
+                            hAddress['deliveryPoint'].each do |item|
+                                if item != ''
+                                    intAdd[:deliveryPoints] << item
                                 end
                             end
                         end
 
                         # address - city
                         if hAddress.has_key?('city')
-                            s = hAddress['city']
-                            if s != ''
-                                intAdd[:city] = s
+                            if hAddress['city'] != ''
+                                intAdd[:city] = hAddress['city']
                             end
                         end
 
                         # address - admin area
                         if hAddress.has_key?('administrativeArea')
-                            s = hAddress['administrativeArea']
-                            if s != ''
-                                intAdd[:adminArea] = s
+                            if hAddress['administrativeArea'] != ''
+                                intAdd[:adminArea] = hAddress['administrativeArea']
                             end
                         end
 
                         # address - postal code
                         if hAddress.has_key?('postalCode')
-                            s = hAddress['postalCode']
-                            if s != ''
-                                intAdd[:postalCode] = s
+                            if hAddress['postalCode'] != ''
+                                intAdd[:postalCode] = hAddress['postalCode']
                             end
                         end
 
                         # address - country
                         if hAddress.has_key?('country')
-                            s = hAddress['country']
-                            if s != ''
-                                intAdd[:country] = s
+                            if hAddress['country'] != ''
+                                intAdd[:country] = hAddress['country']
                             end
                         end
 
                         # address - email
                         if hAddress.has_key?('electronicMailAddress')
-                            eMailList = hAddress['electronicMailAddress']
-                            eMailList.each do |email|
-                                if email != ''
-                                    intAdd[:eMailList] << email
+                            hAddress['electronicMailAddress'].each do |item|
+                                if item != ''
+                                    intAdd[:eMailList] << item
                                 end
                             end
                         end

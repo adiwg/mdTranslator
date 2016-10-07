@@ -30,7 +30,7 @@ module ADIWG
                             return nil
                         end
 
-                        # phone - phoneNumber
+                        # phone - phoneNumber (required)
                         # return nil if no phone number is provided
                         if hPhone.has_key?('phoneNumber')
                             intPhone[:phoneNumber] = hPhone['phoneNumber']
@@ -50,7 +50,7 @@ module ADIWG
                             intPhone[:phoneName] = hPhone['phoneName']
                         end
 
-                        # phone - service
+                        # phone - service (recommended)
                         if hPhone.has_key?('service')
                             intPhone[:phoneServiceTypes] = hPhone['service']
                             if hPhone['service'].length == 0
