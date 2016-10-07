@@ -151,7 +151,7 @@ class TestReaderMdJsonEntityAttribute < MiniTest::Test
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
-        
+
     end
 
 end
