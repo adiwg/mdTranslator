@@ -2,6 +2,8 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-08 removed dateType from dateTime object
+#   Stan Smith 2016-10-08 add roleExtent
 #   Stan Smith 2016-10-01 made phone service types an array
 #   Stan Smith 2016-10-03 added duration object
 
@@ -85,7 +87,6 @@ class InternalMetadata
     def newDateTime
         intObj = {
             dateTime: nil,
-            dateType: nil,
             dateResolution: nil
         }
     end
@@ -165,6 +166,15 @@ class InternalMetadata
         intObj = {
             contactId: nil,
             roleName: nil
+        }
+    end
+
+    def newRoleExtent
+        intObj = {
+            scope: nil,
+            description: nil,
+            startDateTime: {},
+            endDateTime: {}
         }
     end
 
