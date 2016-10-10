@@ -56,7 +56,6 @@ module ADIWG
                         end
                         if intPhone[:phoneServiceTypes].empty?
                             responseObj[:readerExecutionMessages] << 'Phone object did not provide a service'
-                            responseObj[:readerExecutionPass] = true
                         end
 
                         return intPhone

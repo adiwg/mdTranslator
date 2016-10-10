@@ -1,6 +1,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#   Stan Smith 2016-10-09 modify 'findContact' to also return contact index and type
 #   Stan Smith 2016-10-07 refactored 'readerModule' to remove mdJson version checking
 #   Stan Smith 2015-07-14 added support for mdJson version numbers
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -60,13 +61,13 @@ module ADIWG
 
                     # load mdJson file into internal object
                     require readerModule('module_mdJson')
+
                     # instance classes needed in script
                     intMetadataClass = InternalMetadata.new
 
                     # create new internal metadata container for the reader
                     @intObj = intMetadataClass.newBase
 
-                    #
                     ADIWG::Mdtranslator::Readers::MdJson.unpack(@intObj, @hMdJson, @responseObj)
                     return @intObj
 
@@ -180,16 +181,22 @@ module ADIWG
 
                 # find the array pointer for a contact
                 def self.findContact(contactId)
-                    pointer = nil
+                    contactIndex = nil
+                    contactType = nil
                     i = 0
                     @intObj[:contacts].each do |contact|
                         if contact[:contactId] == contactId
-                            pointer = i
+                            contactIndex = i
+                            if contact[:isOrganization]
+                                contactType = 'organization'
+                            else
+                                contactType = 'individual'
+                            end
                         end
                         i += 1
                     end
 
-                    return pointer
+                    return contactIndex, contactType
                 end
 
                 # build path to reader modules

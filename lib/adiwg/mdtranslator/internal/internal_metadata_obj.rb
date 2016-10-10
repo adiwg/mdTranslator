@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-09 add roleParty
 #   Stan Smith 2016-10-08 removed dateType from dateTime object
 #   Stan Smith 2016-10-08 add roleExtent
 #   Stan Smith 2016-10-01 made phone service types an array
@@ -105,15 +106,17 @@ class InternalMetadata
     def newContact
         intObj = {
             contactId: nil,
-            indName: nil,
-            orgName: nil,
+            isOrganization: false,
+            name: nil,
             position: nil,
+            memberOfOrgs: [],
+            logos: [],
             phones: [],
             address: {},
             onlineRes: [],
+            hoursOfService: [],
             contactInstructions: nil,
-            internal: false,
-            primaryRole: nil
+            contactType: false
         }
     end
 
@@ -164,8 +167,9 @@ class InternalMetadata
 
     def newRespParty
         intObj = {
-            contactId: nil,
-            roleName: nil
+            roleName: nil,
+            roleExtent: {},
+            roleParty: []
         }
     end
 
@@ -175,6 +179,15 @@ class InternalMetadata
             description: nil,
             startDateTime: {},
             endDateTime: {}
+        }
+    end
+
+    def newRoleParty
+        intObj = {
+            contactId: nil,
+            contactIndex: nil,
+            contactType: nil,
+            organizationMembers: []
         }
     end
 
