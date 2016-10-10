@@ -16,7 +16,6 @@ module ADIWG
         module Readers
             module MdJson
 
-
                 # create new internal metadata container for the reader
                 intMetadataClass = InternalMetadata.new
                 @intObj = intMetadataClass.newBase

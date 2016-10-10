@@ -1,27 +1,47 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_entity
+# reader / mdJson / module_responsibleParty
 
 # History:
-#   Stan Smith 2016-10-07 refactored for mdJson 2.0
+#   Stan Smith 2016-10-09 refactored for mdJson 2.0
 #   Stan Smith 2015-07-24 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_entity'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_responsibleParty'
 
-class TestReaderMdJsonEntity < MiniTest::Test
+# set contacts to be used by this test
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+
+                # create new internal metadata container for the reader
+                intMetadataClass = InternalMetadata.new
+                @intObj = intMetadataClass.newBase
+
+                # first contact
+                @intObj[:contacts] << intMetadataClass.newContact
+                @intObj[:contacts][0][:contactId] = 'individualId0'
+                @intObj[:contacts][0][:isOrganization] = false
+
+            end
+        end
+    end
+end
+
+class TestReaderMdJsonResponsibleParty < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Entity
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ResponsibleParty
     @@responseObj = {
         readerExecutionMessages: [],
         readerExecutionPass: true
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'entity.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'responsibleParty.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -29,33 +49,27 @@ class TestReaderMdJsonEntity < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['entity'][0]
+    @@hIn = aIn['responsibleParty'][0]
 
-    def test_complete_entity_object
+    def test_complete_responsibleParty_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'entityId', metadata[:entityId]
-        assert_equal 'commonName', metadata[:entityName]
-        assert_equal 'codeName', metadata[:entityCode]
-        assert_equal 'alias0', metadata[:entityAlias][0]
-        assert_equal 'alias1', metadata[:entityAlias][1]
-        assert_equal 'primaryKeyAttributeCodeName0', metadata[:primaryKey][0]
-        assert_equal 'primaryKeyAttributeCodeName1', metadata[:primaryKey][1]
-        assert_empty metadata[:indexes]
-        assert_empty metadata[:attributes]
-        assert_empty metadata[:foreignKeys]
+        assert_equal 'role', metadata[:roleName]
+        assert_equal 'description', metadata[:roleExtent][:description]
+        assert_equal 1, metadata[:roleParty].length
+        assert_equal 'individualId0', metadata[:roleParty][0][:contactId]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_entity_id
+    def test_responsibleParty_empty_role
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['entityId'] = ''
+        hIn['role'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -65,10 +79,10 @@ class TestReaderMdJsonEntity < MiniTest::Test
 
     end
 
-    def test_empty_entity_codeName
+    def test_responsibleParty_missing_role
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['codeName'] = ''
+        hIn['role'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -78,10 +92,10 @@ class TestReaderMdJsonEntity < MiniTest::Test
 
     end
 
-    def test_empty_entity_definition
+    def test_responsibleParty_empty_party
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['definition'] = ''
+        hIn['party'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -91,41 +105,21 @@ class TestReaderMdJsonEntity < MiniTest::Test
 
     end
 
-    def test_empty_entity_elements
+    def test_responsibleParty_missing_party
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['commonName'] = ''
-        hIn['alias'] = []
-        hIn['primaryKeyAttributeCodeName'] = []
+        hIn.delete('party')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:entityName]
-        assert_empty metadata[:entityAlias]
-        assert_empty metadata[:primaryKey]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_missing_entity_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('commonName')
-        hIn.delete('alias')
-        hIn.delete('primaryKeyAttributeCodeName')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata[:entityName]
-        assert_empty metadata[:entityAlias]
-        assert_empty metadata[:primaryKey]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_empty_entity_object
+    def test_empty_responsibleParty_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

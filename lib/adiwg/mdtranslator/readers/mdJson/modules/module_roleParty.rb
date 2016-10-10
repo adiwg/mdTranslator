@@ -53,7 +53,7 @@ module ADIWG
                                 hParty['organizationMembers'].each do |contactId|
                                     contact = ADIWG::Mdtranslator::Readers::MdJson.findContact(contactId)
                                     if contact[0].nil?
-                                        responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{contactId} not found"
+                                        responseObj[:readerExecutionMessages] << "Responsible Party organization member #{contactId} not found"
                                     else
                                         newParty = intMetadataClass.newRoleParty
                                         newParty[:contactId] = contactId

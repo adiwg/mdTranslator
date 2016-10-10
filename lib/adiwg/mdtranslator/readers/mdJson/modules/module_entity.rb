@@ -93,7 +93,10 @@ module ADIWG
                         if hEntity.has_key?('index')
                             hEntity['index'].each do |hIndex|
                                 unless hIndex.empty?
-                                    intEntity[:indexes] << EntityIndex.unpack(hIndex, responseObj)
+                                    index = EntityIndex.unpack(hIndex, responseObj)
+                                    unless index.nil?
+                                        intEntity[:indexes] << index
+                                    end
                                 end
                             end
                         end
@@ -102,7 +105,10 @@ module ADIWG
                         if hEntity.has_key?('attribute')
                             hEntity['attribute'].each do |hAttribute|
                                 unless hAttribute.empty?
-                                    intEntity[:attributes] << EntityAttribute.unpack(hAttribute, responseObj)
+                                    attribute = EntityAttribute.unpack(hAttribute, responseObj)
+                                    unless attribute.nil?
+                                        intEntity[:attributes] << attribute
+                                    end
                                 end
                             end
                         end
@@ -111,7 +117,10 @@ module ADIWG
                         if hEntity.has_key?('foreignKey')
                             hEntity['foreignKey'].each do |hFKey|
                                 unless hFKey.empty?
-                                    intEntity[:foreignKeys] << EntityForeignKey.unpack(hFKey, responseObj)
+                                    fKey = EntityForeignKey.unpack(hFKey, responseObj)
+                                    unless fKey.nil?
+                                        intEntity[:foreignKeys] << fKey
+                                    end
                                 end
                             end
                         end
