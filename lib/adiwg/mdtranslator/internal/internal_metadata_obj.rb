@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-11 renamed newDataUsage to newResourceUsage
 #   Stan Smith 2016-10-09 add roleParty
 #   Stan Smith 2016-10-08 removed dateType from dateTime object
 #   Stan Smith 2016-10-08 add roleExtent
@@ -453,10 +454,11 @@ class InternalMetadata
         }
     end
 
-    def newDataUsage
+    def newResourceUsage
         intObj = {
             specificUsage: nil,
-            userLimits: nil,
+            userLimitation: nil,
+            limitationResponses: [],
             userContacts: []
         }
     end
