@@ -40,6 +40,7 @@ class TestReaderMdJsonIdentifier < MiniTest::Test
         assert_equal 'namespace', metadata[:identifierNamespace]
         assert_equal 'version', metadata[:identifierVersion]
         assert_equal 'description', metadata[:identifierDescription]
+        refute_empty metadata[:identifierCitation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

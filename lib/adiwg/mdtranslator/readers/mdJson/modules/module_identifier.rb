@@ -11,7 +11,7 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 # 	Stan Smith 2014-05-28 original script
 
-#require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
 
 module ADIWG
     module Mdtranslator
@@ -64,14 +64,13 @@ module ADIWG
                             end
                         end
 
-                        # TODO add citation
-                        # identifier - authority (expressed as a citation)
-                        # if hIdentifier.has_key?('authority')
-                        #     hCitation = hIdentifier['authority']
-                        #     unless hCitation.empty?
-                        #         intResID[:identifierCitation] = Citation.unpack(hCitation, responseObj)
-                        #     end
-                        # end
+                        # identifier - authority (citation)
+                        if hIdentifier.has_key?('authority')
+                            hCitation = hIdentifier['authority']
+                            unless hCitation.empty?
+                                intIdent[:identifierCitation] = Citation.unpack(hCitation, responseObj)
+                            end
+                        end
 
                         return intIdent
 
