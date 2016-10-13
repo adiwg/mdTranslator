@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-12 added newDate object
 #   Stan Smith 2016-10-11 renamed newDataUsage to newResourceUsage
 #   Stan Smith 2016-10-09 add roleParty
 #   Stan Smith 2016-10-08 removed dateType from dateTime object
@@ -83,6 +84,14 @@ class InternalMetadata
             contacts: [],
             metadata: {},
             dataDictionary: []
+        }
+    end
+
+    def newDate
+        intObj = {
+            date: nil,
+            dateResolution: nil,
+            dateType: nil
         }
     end
 

@@ -30,6 +30,7 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intDateTime = intMetadataClass.newDateTime
 
+                        # dateTime - dateTime (required)
                         # if dateTimeFromString fails, [0] = nil; [1] = 'ERROR'
                         aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
                         if aDateTimeReturn[1] == 'ERROR'
