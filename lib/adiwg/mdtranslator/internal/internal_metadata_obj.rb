@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-12 renamed newBrowseGraphic to newGraphic, added graphicConstraint []
 #   Stan Smith 2016-10-12 added newSeries object
 #   Stan Smith 2016-10-12 added newDate object
 #   Stan Smith 2016-10-11 renamed newDataUsage to newResourceUsage
@@ -354,12 +355,13 @@ class InternalMetadata
         }
     end
 
-    def newBrowseGraphic
+    def newGraphic
         intObj = {
-            bGName: nil,
-            bGDescription: nil,
-            bGType: nil,
-            bGURI: nil
+            graphicName: nil,
+            graphicDescription: nil,
+            graphicType: nil,
+            graphicConstraint: [],
+            graphicURI: []
         }
     end
 
