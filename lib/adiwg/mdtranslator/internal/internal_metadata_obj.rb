@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-13 added attributes to newCitation for mdJson 2.0
 #   Stan Smith 2016-10-13 renamed newResourceId to newIdentifier, dropped identifierType
 #   Stan Smith 2016-10-12 renamed newBrowseGraphic to newGraphic, added graphicConstraint []
 #   Stan Smith 2016-10-12 added newSeries object
@@ -255,13 +256,16 @@ class InternalMetadata
     def newCitation
         intObj = {
             citTitle: nil,
-            citAltTitle: nil,
+            citAltTitle: [],
             citDate: [],
             citEdition: nil,
-            citResourceIds: [],
             citResponsibleParty: [],
-            citResourceForms: [],
-            citOlResources: []
+            citPresentationForms: [],
+            citIdentifiers: [],
+            citSeries: {},
+            citOtherDetails: [],
+            citOlResources: [],
+            citGraphics: []
         }
     end
 
