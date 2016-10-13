@@ -1,28 +1,26 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_graphic
+# reader / mdJson / module_identifier
 
 # History:
-#   Stan Smith 2016-10-11 refactored for mdJson 2.0
-#   Stan Smith 2015-06-22 refactored setup to after removal of globals
-#   Stan Smith 2014-12-24 original script
+#   Stan Smith 2016-10-13 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_graphic'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_identifier'
 
-class TestReaderMdJsonGraphic < MiniTest::Test
+class TestReaderMdJsonIdentifier < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Graphic
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Identifier
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'graphic.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'identifier.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -30,28 +28,27 @@ class TestReaderMdJsonGraphic < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['graphic'][0]
+    @@hIn = aIn['identifier'][0]
 
-    def test_complete_graphic_object
+    def test_complete_identifier_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'fileName', metadata[:graphicName]
-        assert_equal 'fileDescription', metadata[:graphicDescription]
-        assert_equal 'fileType', metadata[:graphicType]
-        assert_empty metadata[:graphicConstraint]
-        assert_equal 1, metadata[:graphicURI].length
+        assert_equal 'identifier', metadata[:identifier]
+        assert_equal 'namespace', metadata[:identifierNamespace]
+        assert_equal 'version', metadata[:identifierVersion]
+        assert_equal 'description', metadata[:identifierDescription]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_graphic_fileName
+    def test_empty_identifier_identifier
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['fileName'] = ''
+        hIn['identifier'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -61,10 +58,10 @@ class TestReaderMdJsonGraphic < MiniTest::Test
 
     end
 
-    def test_missing_graphic_fileName
+    def test_missing_identifier_identifier
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('fileName')
+        hIn.delete('identifier')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -74,45 +71,45 @@ class TestReaderMdJsonGraphic < MiniTest::Test
 
     end
 
-    def test_empty_graphic_elements
+    def test_empty_identifier_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['fileDescription'] = ''
-        hIn['fileType'] = ''
-        hIn['fileConstraint'] = []
-        hIn['fileUri'] = []
+        hIn['namespace'] = ''
+        hIn['version'] = ''
+        hIn['description'] = ''
+        hIn['authority'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:graphicDescription]
-        assert_nil metadata[:graphicType]
-        assert_empty metadata[:graphicConstraint]
-        assert_empty metadata[:graphicURI]
+        assert_nil metadata[:identifierNamespace]
+        assert_nil metadata[:identifierVersion]
+        assert_nil metadata[:identifierDescription]
+        assert_empty metadata[:identifierCitation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_missing_graphic_elements
+    def test_missing_identifier_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('fileDescription')
-        hIn.delete('fileType')
-        hIn.delete('fileConstraint')
-        hIn.delete('fileUri')
+        hIn.delete('namespace')
+        hIn.delete('version')
+        hIn.delete('description')
+        hIn.delete('authority')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:graphicDescription]
-        assert_nil metadata[:graphicType]
-        assert_empty metadata[:graphicConstraint]
-        assert_empty metadata[:graphicURI]
+        assert_nil metadata[:identifierNamespace]
+        assert_nil metadata[:identifierVersion]
+        assert_nil metadata[:identifierDescription]
+        assert_empty metadata[:identifierCitation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_graphic_object
+    def test_empty_identifier_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

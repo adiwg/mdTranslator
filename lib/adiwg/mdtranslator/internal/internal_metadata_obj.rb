@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-13 renamed newResourceId to newIdentifier, dropped identifierType
 #   Stan Smith 2016-10-12 renamed newBrowseGraphic to newGraphic, added graphicConstraint []
 #   Stan Smith 2016-10-12 added newSeries object
 #   Stan Smith 2016-10-12 added newDate object
@@ -264,11 +265,10 @@ class InternalMetadata
         }
     end
 
-    def newResourceId
-        # handles both MD_Identifier and RS_Identifier
+    def newIdentifier
+        # handles both MD_Identifier and RS_Identifier (ISO 19115-2)
         intObj = {
             identifier: nil,
-            identifierType: nil,
             identifierNamespace: nil,
             identifierVersion: nil,
             identifierDescription: nil,
