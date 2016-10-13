@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-12 added newSeries object
 #   Stan Smith 2016-10-12 added newDate object
 #   Stan Smith 2016-10-11 renamed newDataUsage to newResourceUsage
 #   Stan Smith 2016-10-09 add roleParty
@@ -748,6 +749,14 @@ class InternalMetadata
             languageCode: nil,
             countryCode: nil,
             characterEncoding: nil
+        }
+    end
+
+    def newSeries
+        intObj = {
+            seriesName: nil,
+            seriesIssue: nil,
+            issuePage: nil
         }
     end
 
