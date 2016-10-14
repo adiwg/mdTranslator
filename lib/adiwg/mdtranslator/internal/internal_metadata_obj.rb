@@ -108,24 +108,6 @@ class InternalMetadata
         }
     end
 
-    def newDuration
-        intObj = {
-            years: nil,
-            months: nil,
-            days: nil,
-            hours: nil,
-            minutes: nil,
-            seconds: nil
-        }
-    end
-
-    def newTimeInterval
-        intObj = {
-            interval: nil,
-            units: nil
-        }
-    end
-
     def newContact
         intObj = {
             contactId: nil,
@@ -465,8 +447,29 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            beginTime: {},
-            endTime: {}
+            identifier: nil,
+            periodNames: [],
+            startDateTime: {},
+            endDateTime: {},
+            timeInterval: {}
+        }
+    end
+
+    def newDuration
+        intObj = {
+            years: nil,
+            months: nil,
+            days: nil,
+            hours: nil,
+            minutes: nil,
+            seconds: nil
+        }
+    end
+
+    def newTimeInterval
+        intObj = {
+            interval: nil,
+            units: nil
         }
     end
 
