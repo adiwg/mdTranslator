@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-14 added newTimeInterval object
 #   Stan Smith 2016-10-13 added newScopeDescription object
 #   Stan Smith 2016-10-13 added attributes to newCitation for mdJson 2.0
 #   Stan Smith 2016-10-13 renamed newResourceId to newIdentifier, dropped identifierType
@@ -115,6 +116,13 @@ class InternalMetadata
             hours: nil,
             minutes: nil,
             seconds: nil
+        }
+    end
+
+    def newTimeInterval
+        intObj = {
+            interval: nil,
+            units: nil
         }
     end
 
