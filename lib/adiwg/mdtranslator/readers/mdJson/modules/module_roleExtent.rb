@@ -26,13 +26,6 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intRoleEx = intMetadataClass.newRoleExtent
 
-                        # role extent - scope
-                        if hRoleEx.has_key?('scope')
-                            if hRoleEx['scope'] != ''
-                                intRoleEx[:scope] = hRoleEx['scope']
-                            end
-                        end
-
                         # role extent - description
                         if hRoleEx.has_key?('description')
                             if hRoleEx['description'] != ''

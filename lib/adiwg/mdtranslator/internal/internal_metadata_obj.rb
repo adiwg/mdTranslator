@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-13 added newScopeDescription object
 #   Stan Smith 2016-10-13 added attributes to newCitation for mdJson 2.0
 #   Stan Smith 2016-10-13 renamed newResourceId to newIdentifier, dropped identifierType
 #   Stan Smith 2016-10-12 renamed newBrowseGraphic to newGraphic, added graphicConstraint []
@@ -763,6 +764,15 @@ class InternalMetadata
             seriesName: nil,
             seriesIssue: nil,
             issuePage: nil
+        }
+    end
+
+    def newScopeDescription
+        intObj = {
+            datasetDescription: nil,
+            attributeDescription: nil,
+            featureDescription: nil,
+            otherDescription: nil
         }
     end
 

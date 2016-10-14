@@ -36,7 +36,6 @@ class TestReaderMdJsonARoleExtent < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'scope', metadata[:scope]
         assert_equal 'description', metadata[:description]
         assert_kind_of DateTime, metadata[:startDateTime][:dateTime]
         assert_equal 'YMD', metadata[:startDateTime][:dateResolution]
@@ -50,7 +49,6 @@ class TestReaderMdJsonARoleExtent < MiniTest::Test
     def test_empty_roleExtent_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['scope'] = ''
         hIn['description'] = ''
         hIn['startDateTime'] = ''
         hIn['endDateTime'] = ''
@@ -70,7 +68,6 @@ class TestReaderMdJsonARoleExtent < MiniTest::Test
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['nonElement'] = '0'
-        hIn.delete('scope')
         hIn.delete('description')
         hIn.delete('startDateTime')
         hIn.delete('endDateTime')
