@@ -116,13 +116,11 @@ class TestReaderMdJsonConstraint < MiniTest::Test
 
     end
 
-
     def test_empty_constraint_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
-        require 'pp'
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]

@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-15 added constraint object to newLegalConstraint
 #   Stan Smith 2016-10-15 added newConstraint object
 #   Stan Smith 2016-10-15 added newRelease object
 #   Stan Smith 2016-10-14 added newScope object
@@ -301,9 +302,10 @@ class InternalMetadata
 
     def newLegalConstraint
         intObj = {
+            constraint: {},
             accessCodes: [],
             useCodes: [],
-            otherCons: []
+            otherCodes: []
         }
     end
 
