@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_roleParty
+# reader / mdJson / module_party
 
 # History:
 # Stan Smith 2016-10-09 original script
@@ -8,7 +8,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_roleParty'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_party'
 
 # set contacts to be used by this test
 module ADIWG
@@ -40,17 +40,17 @@ module ADIWG
     end
 end
 
-class TestReaderMdJsonARoleParty < MiniTest::Test
+class TestReaderMdJsonParty < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::RoleParty
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Party
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'roleParty.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'party.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close

@@ -58,9 +58,8 @@ class TestReaderMdJsonResponsibleParty < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'role', metadata[:roleName]
-        assert_equal 'description', metadata[:roleExtent][:description]
-        assert_equal 1, metadata[:roleParty].length
-        assert_equal 'individualId0', metadata[:roleParty][0][:contactId]
+        refute_empty metadata[:timePeriod]
+        assert_equal 1, metadata[:party].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

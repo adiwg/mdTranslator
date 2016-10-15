@@ -1,4 +1,4 @@
-# unpack role extent
+# unpack party
 # Reader - ADIwg JSON to internal data structure
 
 # History:
@@ -9,7 +9,7 @@ module ADIWG
         module Readers
             module MdJson
 
-                module RoleParty
+                module Party
 
                     def self.unpack(hParty, responseObj)
 
@@ -22,13 +22,13 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intRoleParty = intMetadataClass.newRoleParty
+                        intParty = intMetadataClass.newParty
 
                         # party - contact ID (required)
                         if hParty.has_key?('contactId')
-                            intRoleParty[:contactId] = hParty['contactId']
+                            intParty[:contactId] = hParty['contactId']
                         end
-                        if intRoleParty[:contactId].nil? || intRoleParty[:contactId] == ''
+                        if intParty[:contactId].nil? || intParty[:contactId] == ''
                             responseObj[:readerExecutionMessages] << 'Role Party contact ID is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -42,30 +42,30 @@ module ADIWG
                             responseObj[:readerExecutionPass] = false
                             return nil
                         else
-                            intRoleParty[:contactIndex] = contact[0]
-                            intRoleParty[:contactType] = contact[1]
+                            intParty[:contactIndex] = contact[0]
+                            intParty[:contactType] = contact[1]
                         end
 
                         # party - organization members []
-                        # organization member contact IDs not found in 'contacts' are reported as warning
-                        if intRoleParty[:contactType] == 'organization'
+                        # organization member contact IDs not found in 'contacts' are reported as warnings
+                        if intParty[:contactType] == 'organization'
                             if hParty.has_key?('organizationMembers')
                                 hParty['organizationMembers'].each do |contactId|
                                     contact = ADIWG::Mdtranslator::Readers::MdJson.findContact(contactId)
                                     if contact[0].nil?
                                         responseObj[:readerExecutionMessages] << "Responsible Party organization member #{contactId} not found"
                                     else
-                                        newParty = intMetadataClass.newRoleParty
+                                        newParty = intMetadataClass.newParty
                                         newParty[:contactId] = contactId
                                         newParty[:contactIndex] = contact[0]
                                         newParty[:contactType] = contact[1]
-                                        intRoleParty[:organizationMembers] << newParty
+                                        intParty[:organizationMembers] << newParty
                                     end
                                 end
                             end
                         end
 
-                        return intRoleParty
+                        return intParty
 
                     end
 

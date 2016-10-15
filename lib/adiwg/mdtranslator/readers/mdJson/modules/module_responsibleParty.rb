@@ -13,8 +13,8 @@
 #   ... removed resource IDs associated with contact
 # 	Stan Smith 2013-08-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_roleExtent')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_roleParty')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_party')
 
 module ADIWG
     module Mdtranslator
@@ -46,12 +46,12 @@ module ADIWG
                             return nil
                         end
 
-                        # responsible party - role extent
-                        if hRParty.has_key?('roleExtent')
-                            unless hRParty['roleExtent'].empty?
-                                roleExtent = RoleExtent.unpack(hRParty['roleExtent'], responseObj)
-                                unless roleExtent.nil?
-                                    intResParty[:roleExtent] = roleExtent
+                        # responsible party - time period
+                        if hRParty.has_key?('timePeriod')
+                            unless hRParty['timePeriod'].empty?
+                                hTimePeriod = TimePeriod.unpack(hRParty['timePeriod'], responseObj)
+                                unless hTimePeriod.nil?
+                                    intResParty[:timePeriod] = hTimePeriod
                                 end
                             end
                         end
@@ -60,14 +60,14 @@ module ADIWG
                         if hRParty.has_key?('party')
                             hRParty['party'].each do |hParty|
                                 unless hParty.empty?
-                                    party = RoleParty.unpack(hParty, responseObj)
+                                    party = Party.unpack(hParty, responseObj)
                                     unless party.nil?
-                                        intResParty[:roleParty] << party
+                                        intResParty[:party] << party
                                     end
                                 end
                             end
                         end
-                        if intResParty[:roleParty].empty?
+                        if intResParty[:party].empty?
                             responseObj[:readerExecutionMessages] << 'Responsible Party object must have at least one party'
                             responseObj[:readerExecutionPass] = false
                             return nil

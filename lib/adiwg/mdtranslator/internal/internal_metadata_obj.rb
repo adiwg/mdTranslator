@@ -10,9 +10,8 @@
 #   Stan Smith 2016-10-12 added newSeries object
 #   Stan Smith 2016-10-12 added newDate object
 #   Stan Smith 2016-10-11 renamed newDataUsage to newResourceUsage
-#   Stan Smith 2016-10-09 add roleParty
+#   Stan Smith 2016-10-09 add newParty
 #   Stan Smith 2016-10-08 removed dateType from dateTime object
-#   Stan Smith 2016-10-08 add roleExtent
 #   Stan Smith 2016-10-01 made phone service types an array
 #   Stan Smith 2016-10-03 added duration object
 
@@ -173,21 +172,12 @@ class InternalMetadata
     def newRespParty
         intObj = {
             roleName: nil,
-            roleExtent: {},
-            roleParty: []
+            timePeriod: {},
+            party: []
         }
     end
 
-    def newRoleExtent
-        intObj = {
-            scope: nil,
-            description: nil,
-            startDateTime: {},
-            endDateTime: {}
-        }
-    end
-
-    def newRoleParty
+    def newParty
         intObj = {
             contactId: nil,
             contactIndex: nil,
