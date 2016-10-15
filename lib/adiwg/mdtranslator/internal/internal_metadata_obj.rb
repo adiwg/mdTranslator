@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-15 added constraint object to newSecurityConstraint
 #   Stan Smith 2016-10-15 added constraint object to newLegalConstraint
 #   Stan Smith 2016-10-15 added newConstraint object
 #   Stan Smith 2016-10-15 added newRelease object
@@ -311,10 +312,11 @@ class InternalMetadata
 
     def newSecurityConstraint
         intObj = {
+            constraint: {},
             classCode: nil,
             userNote: nil,
             classSystem: nil,
-            handlingDesc: nil
+            handling: nil
         }
     end
 
