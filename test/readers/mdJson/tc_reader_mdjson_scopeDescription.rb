@@ -2,7 +2,7 @@
 # reader / mdJson / module_scopeDescription
 
 # History:
-# Stan Smith 2016-11-12 original script
+# Stan Smith 2016-11-14 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -33,78 +33,72 @@ class TestReaderMdJsonScopeDescription < MiniTest::Test
     def test_complete_scopeDescription_dataset_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('attributeDescription')
-        hIn.delete('featureDescription')
-        hIn.delete('otherDescription')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'datasetDescription', metadata[:datasetDescription]
-        assert_nil metadata[:attributeDescription]
-        assert_nil metadata[:featureDescription]
-        assert_nil metadata[:otherDescription]
+        assert_equal 'dataset', metadata[:type]
+        assert_equal 'description', metadata[:description]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_complete_scopeDescription_attribute_object
+    def test_complete_scopeDescription_invalid_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('datasetDescription')
-        hIn.delete('featureDescription')
-        hIn.delete('otherDescription')
+        hIn['type'] = 'invalid'
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:datasetDescription]
-        assert_equal 'attributeDescription', metadata[:attributeDescription]
-        assert_nil metadata[:featureDescription]
-        assert_nil metadata[:otherDescription]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_complete_scopeDescription_feature_object
+    def test_scopeDescription_empty_type
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('datasetDescription')
-        hIn.delete('attributeDescription')
-        hIn.delete('otherDescription')
+        hIn['type'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:datasetDescription]
-        assert_nil metadata[:attributeDescription]
-        assert_equal 'featureDescription', metadata[:featureDescription]
-        assert_nil metadata[:otherDescription]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_complete_scopeDescription_other_object
+    def test_scopeDescription_missing_type
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('datasetDescription')
-        hIn.delete('attributeDescription')
-        hIn.delete('featureDescription')
+        hIn.delete('type')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:datasetDescription]
-        assert_nil metadata[:attributeDescription]
-        assert_nil metadata[:featureDescription]
-        assert_equal 'otherDescription', metadata[:otherDescription]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_complete_scopeDescription_multiple_object
+    def test_scopeDescription_empty_description
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_scopeDescription_missing_description
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('description')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -119,10 +113,13 @@ class TestReaderMdJsonScopeDescription < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
 
+        require 'pp'
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
 
     end
+
+
 
 end

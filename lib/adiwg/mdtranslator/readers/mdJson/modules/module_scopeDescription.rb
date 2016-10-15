@@ -23,42 +23,32 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intScopeDes = intMetadataClass.newScopeDescription
-                        attributeCount = 0
 
-                        # scope description - dataset description
-                        if hScopeDes.has_key?('datasetDescription')
-                            if hScopeDes['datasetDescription'] != ''
-                                intScopeDes[:datasetDescription] = hScopeDes['datasetDescription']
-                                attributeCount += 1
+                        # scope description - type (required)
+                        if hScopeDes.has_key?('type')
+                            if hScopeDes['type'] != ''
+                                type = hScopeDes['type']
+                                if %w{ dataset attribute feature other}.one? { |word| word == type }
+                                    intScopeDes[:type] = hScopeDes['type']
+                                else
+                                    responseObj[:readerExecutionMessages] << 'Scope Description type must be database, attribute, feature, or other'
+                                    responseObj[:readerExecutionPass] = false
+                                    return nil
+                                end
                             end
                         end
-
-                        # scope description - attribute description
-                        if hScopeDes.has_key?('attributeDescription')
-                            if hScopeDes['attributeDescription'] != ''
-                                intScopeDes[:attributeDescription] = hScopeDes['attributeDescription']
-                                attributeCount += 1
-                            end
+                        if intScopeDes[:type].nil? || intScopeDes[:type] == ''
+                            responseObj[:readerExecutionMessages] << 'Scope Description attribute type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
-                        # scope description - feature description
-                        if hScopeDes.has_key?('featureDescription')
-                            if hScopeDes['featureDescription'] != ''
-                                intScopeDes[:featureDescription] = hScopeDes['featureDescription']
-                                attributeCount += 1
-                            end
+                        # scope description - description (required)
+                        if hScopeDes.has_key?('description')
+                            intScopeDes[:description] = hScopeDes['description']
                         end
-
-                        # scope description - other description
-                        if hScopeDes.has_key?('otherDescription')
-                            if hScopeDes['issuePage'] != ''
-                                intScopeDes[:otherDescription] = hScopeDes['otherDescription']
-                                attributeCount += 1
-                            end
-                        end
-
-                        if attributeCount > 1
-                            responseObj[:readerExecutionMessages] << 'Scope Description described multiple object types'
+                        if intScopeDes[:description].nil? || intScopeDes[:description] == ''
+                            responseObj[:readerExecutionMessages] << 'Scope Description attribute description is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

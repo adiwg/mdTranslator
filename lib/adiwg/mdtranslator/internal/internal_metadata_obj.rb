@@ -770,10 +770,8 @@ class InternalMetadata
 
     def newScopeDescription
         intObj = {
-            datasetDescription: nil,
-            attributeDescription: nil,
-            featureDescription: nil,
-            otherDescription: nil
+            type: nil,
+            description: nil
         }
     end
 
