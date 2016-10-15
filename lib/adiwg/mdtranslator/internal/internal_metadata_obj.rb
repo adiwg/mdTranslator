@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-14 added newScope object
 #   Stan Smith 2016-10-14 added newTimeInterval object
 #   Stan Smith 2016-10-13 added newScopeDescription object
 #   Stan Smith 2016-10-13 added attributes to newCitation for mdJson 2.0
@@ -765,6 +766,14 @@ class InternalMetadata
             seriesName: nil,
             seriesIssue: nil,
             issuePage: nil
+        }
+    end
+
+    def newScope
+        intObj = {
+            scopeCode: nil,
+            scopeDescription: [],
+            timePeriod: []
         }
     end
 
