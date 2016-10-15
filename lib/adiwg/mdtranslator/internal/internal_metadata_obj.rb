@@ -2,6 +2,8 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-15 added newConstraint object
+#   Stan Smith 2016-10-15 added newRelease object
 #   Stan Smith 2016-10-14 added newScope object
 #   Stan Smith 2016-10-14 added newTimeInterval object
 #   Stan Smith 2016-10-13 added newScopeDescription object
@@ -283,6 +285,17 @@ class InternalMetadata
             keyword: [],
             keywordType: nil,
             keyTheCitation: {}
+        }
+    end
+
+    def newConstraint
+        intObj = {
+            useLimitation: [],
+            scope: {},
+            graphic: [],
+            reference: [],
+            releasability: {},
+            responsibleParty: []
         }
     end
 
