@@ -303,6 +303,14 @@ class InternalMetadata
         }
     end
 
+    def newRelease
+        intObj = {
+            addressee: [],
+            statement: nil,
+            disseminationConstraint: []
+        }
+    end
+
     def newDistributor
         intObj = {
             distContact: {},
