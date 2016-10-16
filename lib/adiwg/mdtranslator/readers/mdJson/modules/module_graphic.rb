@@ -13,6 +13,7 @@
 # 	Stan Smith 2013-10-17 original script
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_constraints')
 
 module ADIWG
     module Mdtranslator
@@ -59,12 +60,22 @@ module ADIWG
                         end
 
                         # graphic - file  constraint []
-                        # TODO add constraint
+                        if hGraphic.has_key?('fileConstraint')
+                            hGraphic['fileConstraint'].each do |item|
+                                unless item.empty?
+                                    con = Constraints.unpack(item, responseObj)
+                                    unless con.nil?
+                                        intGraphic[:graphicConstraint] << con
+                                    end
+                                end
+                            end
+                        end
 
+                        # graphic - online resource []
                         if hGraphic.has_key?('fileUri')
-                            hGraphic['fileUri'].each do |hURI|
-                                unless hURI.empty?
-                                    uri = OnlineResource.unpack(hURI, responseObj)
+                            hGraphic['fileUri'].each do |item|
+                                unless item.empty?
+                                    uri = OnlineResource.unpack(item, responseObj)
                                     unless uri.nil?
                                         intGraphic[:graphicURI] << uri
                                     end
