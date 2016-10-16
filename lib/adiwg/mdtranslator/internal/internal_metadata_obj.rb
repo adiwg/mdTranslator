@@ -388,9 +388,8 @@ class InternalMetadata
 
     def newSpatialReferenceSystem
         intObj = {
-            sRNames: [],
-            sREPSGs: [],
-            sRWKTs: []
+            systemType: nil,
+            systemIdentifier: {}
         }
     end
 
