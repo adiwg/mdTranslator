@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-15 added newConstraints object
 #   Stan Smith 2016-10-15 added constraint object to newSecurityConstraint
 #   Stan Smith 2016-10-15 added constraint object to newLegalConstraint
 #   Stan Smith 2016-10-15 added newConstraint object
@@ -287,6 +288,14 @@ class InternalMetadata
             keyword: [],
             keywordType: nil,
             keyTheCitation: {}
+        }
+    end
+
+    def newConstraints
+        intObj = {
+            constraints: [],
+            legalConstraints: [],
+            securityConstraints: []
         }
     end
 

@@ -67,8 +67,7 @@ module ADIWG
                             end
                         end
 
-                        if intLegalCon[:constraint][:useLimitation].empty? &&
-                            intLegalCon[:constraint][:releasability].empty? &&
+                        if intLegalCon[:constraint].empty? &&
                             intLegalCon[:useCodes].empty? &&
                             intLegalCon[:accessCodes].empty? &&
                             intLegalCon[:otherCodes].empty?
