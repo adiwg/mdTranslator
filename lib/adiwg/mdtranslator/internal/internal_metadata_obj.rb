@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-15 renamed newDataProcess Step to newProcessStep
 #   Stan Smith 2016-10-15 added newConstraints object
 #   Stan Smith 2016-10-15 added constraint object to newSecurityConstraint
 #   Stan Smith 2016-10-15 added constraint object to newLegalConstraint
@@ -565,13 +566,14 @@ class InternalMetadata
         }
     end
 
-    def newDataProcessStep
+    def newProcessStep
         intObj = {
             stepId: nil,
-            stepDescription: nil,
-            stepRationale: nil,
-            stepDateTime: {},
-            stepProcessors: []
+            description: nil,
+            rationale: nil,
+            timePeriod: {},
+            processors: [],
+            references: []
         }
     end
 
