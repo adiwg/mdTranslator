@@ -119,7 +119,6 @@ class TestReaderMdJsonSource < MiniTest::Test
 
     end
 
-
     def test_empty_source_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
