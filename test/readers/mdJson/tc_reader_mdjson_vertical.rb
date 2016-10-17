@@ -28,7 +28,7 @@ class TestReaderMdJsonVerticalMeasure < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['spatialResolution'][0]['vertical']
+    @@hIn = aIn['spatialResolution'][0]['verticalMeasure']
 
     def test_complete_vertical_object
 
@@ -36,7 +36,7 @@ class TestReaderMdJsonVerticalMeasure < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 9999, metadata[:verticalDistance]
+        assert_equal 9999.9, metadata[:verticalDistance]
         assert_equal 'unitOfMeasure', metadata[:unitOfMeasure]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

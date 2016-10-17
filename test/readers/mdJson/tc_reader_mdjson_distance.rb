@@ -28,7 +28,7 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['spatialResolution'][0]['distance']
+    @@hIn = aIn['spatialResolution'][0]['distanceMeasure']
 
     def test_complete_distance_object
 
@@ -36,7 +36,7 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 99, metadata[:distance]
+        assert_equal 99.9, metadata[:distance]
         assert_equal 'unitOfMeasure', metadata[:unitOfMeasure]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

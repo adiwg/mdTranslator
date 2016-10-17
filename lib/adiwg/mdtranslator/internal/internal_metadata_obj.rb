@@ -404,7 +404,7 @@ class InternalMetadata
             scaleFactor: nil,
             distance: {},
             vertical: {},
-            angular: {},
+            angle: {},
             levelOfDetail: nil
         }
     end

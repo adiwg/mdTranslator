@@ -28,7 +28,7 @@ class TestReaderMdJsonAngularMeasure < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['spatialResolution'][0]['angular']
+    @@hIn = aIn['spatialResolution'][0]['angularMeasure']
 
     def test_complete_angle_object
 
@@ -36,7 +36,7 @@ class TestReaderMdJsonAngularMeasure < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 999, metadata[:angle]
+        assert_equal 999.9, metadata[:angle]
         assert_equal 'unitOfMeasure', metadata[:unitOfMeasure]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
