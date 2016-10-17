@@ -2,7 +2,7 @@
 # reader / mdJson / module_series
 
 # History:
-# Stan Smith 2016-11-12 original script
+# Stan Smith 2016-10-12 original script
 
 require 'minitest/autorun'
 require 'json'

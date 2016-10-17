@@ -2,6 +2,11 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-16 removed newResolution
+#   Stan Smith 2016-10-16 added newAngularMeasure
+#   Stan Smith 2016-10-16 added newVerticalMeasure
+#   Stan Smith 2016-10-16 added newDistanceMeasure
+#   Stan Smith 2016-10-16 added newSpatialResolution
 #   Stan Smith 2016-10-15 renamed newDataProcess Step to newProcessStep
 #   Stan Smith 2016-10-15 added newConstraints object
 #   Stan Smith 2016-10-15 added constraint object to newSecurityConstraint
@@ -393,6 +398,38 @@ class InternalMetadata
         }
     end
 
+    def newSpatialResolution
+        intObj = {
+            type: nil,
+            scaleFactor: nil,
+            distance: {},
+            vertical: {},
+            angular: {},
+            levelOfDetail: nil
+        }
+    end
+
+    def newDistanceMeasure
+        intObj = {
+            distance: nil,
+            unitOfMeasure: nil
+        }
+    end
+
+    def newVerticalMeasure
+        intObj = {
+            verticalDistance: nil,
+            unitOfMeasure: nil
+        }
+    end
+
+    def newAngularMeasure
+        intObj = {
+            angle: nil,
+            unitOfMeasure: nil
+        }
+    end
+
     def newExtent
         intObj = {
             extDesc: nil,
@@ -539,14 +576,6 @@ class InternalMetadata
             commonName: nil,
             taxRankName: nil,
             taxRankValue: nil
-        }
-    end
-
-    def newResolution
-        intObj = {
-            equivalentScale: nil,
-            distance: nil,
-            distanceUOM: nil
         }
     end
 
