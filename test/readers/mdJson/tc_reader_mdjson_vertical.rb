@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_distanceMeasure
+# reader / mdJson / module_verticalMeasure
 
 # History:
 # Stan Smith 2016-10-16 original script
@@ -8,12 +8,12 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_distanceMeasure'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_verticalMeasure'
 
-class TestReaderMdJsonDistanceMeasure < MiniTest::Test
+class TestReaderMdJsonVerticalMeasure < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::DistanceMeasure
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::VerticalMeasure
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
@@ -28,25 +28,25 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['spatialResolution'][0]['distance']
+    @@hIn = aIn['spatialResolution'][0]['vertical']
 
-    def test_complete_distance_object
+    def test_complete_vertical_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 99, metadata[:distance]
+        assert_equal 9999, metadata[:verticalDistance]
         assert_equal 'unitOfMeasure', metadata[:unitOfMeasure]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_distance_distance
+    def test_empty_vertical_distance
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['distance'] = ''
+        hIn['verticalDistance'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -56,10 +56,10 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     end
 
-    def test_missing_distance_distance
+    def test_missing_vertical_distance
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('distance')
+        hIn.delete('verticalDistance')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -69,7 +69,7 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     end
 
-    def test_empty_distance_unitOfMeasure
+    def test_empty_vertical_unitOfMeasure
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['unitOfMeasure'] = ''
@@ -82,7 +82,7 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     end
 
-    def test_missing_distance_unitOfMeasure
+    def test_missing_vertical_unitOfMeasure
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('unitOfMeasure')
@@ -95,7 +95,7 @@ class TestReaderMdJsonDistanceMeasure < MiniTest::Test
 
     end
 
-    def test_empty_distance_object
+    def test_empty_vertical_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
