@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-17 added elements to newDataSource
 #   Stan Smith 2016-10-16 removed newResolution
 #   Stan Smith 2016-10-16 added newAngularMeasure
 #   Stan Smith 2016-10-16 added newVerticalMeasure
@@ -607,8 +608,11 @@ class InternalMetadata
 
     def newDataSource
         intObj = {
-            sourceDescription: nil,
+            description: nil,
             sourceCitation: {},
+            metadataCitation: [],
+            spatialResolution: {},
+            referenceSystem: {},
             sourceSteps: []
         }
     end
