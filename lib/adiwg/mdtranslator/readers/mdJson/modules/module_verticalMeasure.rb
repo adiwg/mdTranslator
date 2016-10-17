@@ -24,22 +24,22 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intVertical = intMetadataClass.newVerticalMeasure
 
-                        # distance measure - distance (required)
+                        # vertical measure - vertical distance (required)
                         if hVertical.has_key?('verticalDistance')
                             intVertical[:verticalDistance] = hVertical['verticalDistance']
                         end
                         if intVertical[:verticalDistance].nil? || intVertical[:verticalDistance] == ''
-                            responseObj[:readerExecutionMessages] << 'Distance Measure attribute distance is missing'
+                            responseObj[:readerExecutionMessages] << 'Vertical Measure attribute verticalDistance is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # distance measure - unit of measure {identifier}
+                        # vertical measure - unit of measure {required}
                         if hVertical.has_key?('unitOfMeasure')
                             intVertical[:unitOfMeasure] = hVertical['unitOfMeasure']
                         end
                         if intVertical[:unitOfMeasure].nil? || intVertical[:unitOfMeasure] == ''
-                            responseObj[:readerExecutionMessages] << 'Distance Measure attribute unitOfMeasure is missing'
+                            responseObj[:readerExecutionMessages] << 'Vertical Measure attribute unitOfMeasure is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

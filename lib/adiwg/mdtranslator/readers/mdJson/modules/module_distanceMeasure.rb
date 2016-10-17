@@ -34,7 +34,7 @@ module ADIWG
                             return nil
                         end
 
-                        # distance measure - unit of measure {identifier}
+                        # distance measure - unit of measure {required}
                         if hDistance.has_key?('unitOfMeasure')
                             intDistance[:unitOfMeasure] = hDistance['unitOfMeasure']
                         end
