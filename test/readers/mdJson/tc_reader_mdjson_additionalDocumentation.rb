@@ -12,7 +12,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_additionalDocumentation'
 
-class TestReaderMdJsonAdditionalDocumentation_v1 < MiniTest::Test
+class TestReaderMdJsonAdditionalDocumentation < MiniTest::Test
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AdditionalDocumentation
