@@ -631,8 +631,7 @@ class InternalMetadata
 
     def newAdditionalDocumentation
         intObj = {
-            resourceType: nil,
-            citation: {}
+            citation: []
         }
     end
 

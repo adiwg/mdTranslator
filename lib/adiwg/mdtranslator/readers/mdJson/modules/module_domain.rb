@@ -69,13 +69,13 @@ module ADIWG
                         end
 
                         # data dictionary domain - items [] (required)
-                        # return nil if no domain item is provided
                         if hDomain.has_key?('domainItem')
-                            hDomain['domainItem'].each do |hDoItem|
-                                intDomain[:domainItems] << DomainItem.unpack(hDoItem, responseObj)
+                            hDomain['domainItem'].each do |item|
+                                hDom = DomainItem.unpack(item, responseObj)
+                                unless hDom.nil?
+                                    intDomain[:domainItems] << hDom
+                                end
                             end
-                        else
-                            intDomain[:domainItems] = []
                         end
                         if intDomain[:domainItems].empty?
                             responseObj[:readerExecutionMessages] << 'Data Dictionary domain has no domain items'
