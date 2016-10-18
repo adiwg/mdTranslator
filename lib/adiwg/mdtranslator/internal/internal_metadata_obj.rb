@@ -2,6 +2,9 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-18 deleted newCoverageInfo, newCoverageItem
+#   Stan Smith 2016-10-18 added newAttributeGroup
+#   Stan Smith 2016-10-18 deleted newClassedData, newClassedDataItem
 #   Stan Smith 2016-10-17 added elements to newLineage
 #   Stan Smith 2016-10-17 added elements to newDataSource
 #   Stan Smith 2016-10-16 removed newResolution
@@ -737,47 +740,32 @@ class InternalMetadata
         }
     end
 
-    def newCoverageInfo
+    def newAttributeGroup
         intObj = {
-            coverageType: nil,
-            coverageName: nil,
-            coverageDescription: nil,
-            processingLevel: {},
-            coverageItems: [],
-            imageInfo: {}
-        }
-    end
-
-    def newCoverageItem
-        intObj = {
-            itemName: nil,
-            itemType: nil,
-            itemDescription: nil,
+            attributeContentType: [],
+            attributeDescription: nil,
+            sequenceIdentifier: nil,
+            sequenceIdentifierType: nil,
+            attributeIdentifier: [],
             minValue: nil,
             maxValue: nil,
             units: nil,
             scaleFactor: nil,
             offset: nil,
             meanValue: nil,
+            numberOfValues: nil,
             standardDeviation: nil,
             bitsPerValue: nil,
-            classedData: {},
-            sensorInfo: {}
-        }
-    end
-
-    def newClassedData
-        intObj = {
-            numberOfClasses: nil,
-            classedDataItems: []
-        }
-    end
-
-    def newClassedDataItem
-        intObj = {
-            className: nil,
-            classDescription: nil,
-            classValue: nil
+            boundMin: nil,
+            boundMax: nil,
+            boundUnits: nil,
+            peakResponse: nil,
+            toneGradations: nil,
+            bandBoundaryDefinition: nil,
+            nominalSpatialResolution: {},
+            transferFunctionType: nil,
+            transmittedPolarization: nil,
+            detectedPolarization: nil
         }
     end
 
