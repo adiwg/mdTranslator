@@ -17,7 +17,6 @@ class TestReaderMdJsonAdditionalDocumentation_v1 < MiniTest::Test
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AdditionalDocumentation
     @@responseObj = {
-        readerVersionUsed: '1.0',
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
@@ -39,6 +38,7 @@ class TestReaderMdJsonAdditionalDocumentation_v1 < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 'resourceType', metadata[:resourceType]
         assert_equal 2, metadata[:citation].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -68,6 +68,34 @@ class TestReaderMdJsonAdditionalDocumentation_v1 < MiniTest::Test
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_additionalDocumentation_elements
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['resourceType'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata[:resourceType]
+        assert_equal 2, metadata[:citation].length
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_additionalDocumentation_elements
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('resourceType')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata[:resourceType]
+        assert_equal 2, metadata[:citation].length
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 

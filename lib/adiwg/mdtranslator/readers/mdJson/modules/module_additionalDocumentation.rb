@@ -33,7 +33,14 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intAddDoc = intMetadataClass.newAdditionalDocumentation
 
-                        # additional documentation - citation
+                        # additional documentation - resource type
+                        if hAddDoc.has_key?('resourceType')
+                            if hAddDoc['resourceType'] != ''
+                                intAddDoc[:resourceType] = hAddDoc['resourceType']
+                            end
+                        end
+
+                        # additional documentation - citation (required)
                         if hAddDoc.has_key?('citation')
                             hAddDoc['citation'].each do |item|
                                 hDoc = Citation.unpack(item, responseObj)
