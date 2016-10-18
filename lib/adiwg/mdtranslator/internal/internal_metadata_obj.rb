@@ -5,9 +5,7 @@
 #   Stan Smith 2016-10-17 added elements to newLineage
 #   Stan Smith 2016-10-17 added elements to newDataSource
 #   Stan Smith 2016-10-16 removed newResolution
-#   Stan Smith 2016-10-16 added newAngularMeasure
-#   Stan Smith 2016-10-16 added newVerticalMeasure
-#   Stan Smith 2016-10-16 added newDistanceMeasure
+#   Stan Smith 2016-10-16 added newMeasure
 #   Stan Smith 2016-10-16 added newSpatialResolution
 #   Stan Smith 2016-10-15 renamed newDataProcess Step to newProcessStep
 #   Stan Smith 2016-10-15 added newConstraints object
@@ -411,23 +409,10 @@ class InternalMetadata
         }
     end
 
-    def newDistanceMeasure
+    def newMeasure
         intObj = {
-            distance: nil,
-            unitOfMeasure: nil
-        }
-    end
-
-    def newVerticalMeasure
-        intObj = {
-            verticalDistance: nil,
-            unitOfMeasure: nil
-        }
-    end
-
-    def newAngularMeasure
-        intObj = {
-            angle: nil,
+            type: nil,
+            value: nil,
             unitOfMeasure: nil
         }
     end
