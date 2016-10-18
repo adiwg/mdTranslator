@@ -8,9 +8,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 # 	Stan Smith 2013-11-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_angularMeasure')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_distanceMeasure')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_verticalMeasure')
+require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_measure')
 
 
 module ADIWG
@@ -37,10 +35,10 @@ module ADIWG
                         if hResolution.has_key?('type')
                             if hResolution['type'] != ''
                                 type = hResolution['type']
-                                if %w{ scaleFactor distance vertical angle levelOfDetail }.one? { |word| word == type }
+                                if %w{ scaleFactor measure levelOfDetail }.one? { |word| word == type }
                                     intResolution[:type] = hResolution['type']
                                 else
-                                    responseObj[:readerExecutionMessages] << 'Spatial Resolution type must be scaleFactor, distance, vertical, angle, or levelOfDetail'
+                                    responseObj[:readerExecutionMessages] << 'Spatial Resolution type must be scaleFactor, measure, or levelOfDetail'
                                     responseObj[:readerExecutionPass] = false
                                     return nil
                                 end
@@ -65,55 +63,19 @@ module ADIWG
                             end
                         end
 
-                        # resolution - distance measure (required if)
-                        if hResolution['type'] == 'distance'
-                            if hResolution.has_key?('distanceMeasure')
-                                hMeasure = hResolution['distanceMeasure']
+                        # resolution - measure (required if)
+                        if hResolution['type'] == 'measure'
+                            if hResolution.has_key?('measure')
+                                hMeasure = hResolution['measure']
                                 unless hMeasure.empty?
-                                    hObject = DistanceMeasure.unpack(hMeasure, responseObj)
+                                    hObject = Measure.unpack(hMeasure, responseObj)
                                     unless hObject.nil?
-                                        intResolution[:distance] = hObject
+                                        intResolution[:measure] = hObject
                                     end
                                 end
                             end
-                            if intResolution[:distance].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution object distanceMeasure is missing or incomplete'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        end
-
-                        # resolution - vertical measure (required if)
-                        if hResolution['type'] == 'vertical'
-                            if hResolution.has_key?('verticalMeasure')
-                                hMeasure = hResolution['verticalMeasure']
-                                unless hMeasure.empty?
-                                    hObject = VerticalMeasure.unpack(hMeasure, responseObj)
-                                    unless hObject.nil?
-                                        intResolution[:vertical] = hObject
-                                    end
-                                end
-                            end
-                            if intResolution[:vertical].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution object verticalMeasure is missing or incomplete'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        end
-
-                        # resolution - angular measure (required if)
-                        if hResolution['type'] == 'angle'
-                            if hResolution.has_key?('angularMeasure')
-                                hMeasure = hResolution['angularMeasure']
-                                unless hMeasure.empty?
-                                    hObject = AngularMeasure.unpack(hMeasure, responseObj)
-                                    unless hObject.nil?
-                                        intResolution[:angle] = hObject
-                                    end
-                                end
-                            end
-                            if intResolution[:angle].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution object angularMeasure is missing or incomplete'
+                            if intResolution[:measure].empty?
+                                responseObj[:readerExecutionMessages] << 'Spatial Resolution object measure is missing or incomplete'
                                 responseObj[:readerExecutionPass] = false
                                 return nil
                             end

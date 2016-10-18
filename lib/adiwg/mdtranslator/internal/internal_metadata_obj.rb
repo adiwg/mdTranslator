@@ -402,9 +402,7 @@ class InternalMetadata
         intObj = {
             type: nil,
             scaleFactor: nil,
-            distance: {},
-            vertical: {},
-            angle: {},
+            measure: {},
             levelOfDetail: nil
         }
     end

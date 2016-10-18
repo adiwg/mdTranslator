@@ -38,68 +38,29 @@ class TestReaderMdJsonSpatialResolution < MiniTest::Test
 
         assert_equal 'scaleFactor', metadata[:type]
         assert_equal 99999, metadata[:scaleFactor]
-        assert_empty metadata[:distance]
-        assert_empty metadata[:vertical]
-        assert_empty metadata[:angle]
+        assert_empty metadata[:measure]
         assert_nil metadata[:levelOfDetail]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_spatialResolution_distance
+    def test_spatialResolution_measure
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = 'distance'
+        hIn['type'] = 'measure'
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'distance', metadata[:type]
+        assert_equal 'measure', metadata[:type]
         assert_nil metadata[:scaleFactor]
-        refute_empty metadata[:distance]
-        assert_empty metadata[:vertical]
-        assert_empty metadata[:angle]
+        refute_empty metadata[:measure]
         assert_nil metadata[:levelOfDetail]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_spatialResolution_vertical
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = 'vertical'
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_equal 'vertical', metadata[:type]
-        assert_nil metadata[:scaleFactor]
-        assert_empty metadata[:distance]
-        refute_empty metadata[:vertical]
-        assert_empty metadata[:angle]
-        assert_nil metadata[:levelOfDetail]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_spatialResolution_angle
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = 'angle'
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_equal 'angle', metadata[:type]
-        assert_nil metadata[:scaleFactor]
-        assert_empty metadata[:distance]
-        assert_empty metadata[:vertical]
-        refute_empty metadata[:angle]
-        assert_nil metadata[:levelOfDetail]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
-
-    end
 
     def test_spatialResolution_levelOfDetail
 
@@ -110,12 +71,23 @@ class TestReaderMdJsonSpatialResolution < MiniTest::Test
 
         assert_equal 'levelOfDetail', metadata[:type]
         assert_nil metadata[:scaleFactor]
-        assert_empty metadata[:distance]
-        assert_empty metadata[:vertical]
-        assert_empty metadata[:angle]
+        assert_empty metadata[:measure]
         assert_equal 'levelOfDetail', metadata[:levelOfDetail]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_spatialResolution_invalid
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['type'] = 'invalid'
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
