@@ -722,10 +722,10 @@ class InternalMetadata
 
     def newGridInfo
         intObj = {
-            dimensions: nil,
-            dimensionInfo: [],
-            dimensionGeometry: nil,
-            dimensionTransformParams: false
+            numberOfDimensions: nil,
+            dimension: [],
+            cellGeometry: nil,
+            transformParamsAvailability: false
         }
     end
 
