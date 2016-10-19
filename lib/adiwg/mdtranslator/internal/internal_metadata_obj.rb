@@ -740,6 +740,16 @@ class InternalMetadata
         }
     end
 
+    def newContentInfo
+        intObj = {
+            coverageName: nil,
+            coverageDescription: nil,
+            processingLevelCode: {},
+            attributeGroup: [],
+            imageDescription: {}
+        }
+    end
+
     def newAttributeGroup
         intObj = {
             attributeContentType: [],
@@ -769,7 +779,7 @@ class InternalMetadata
         }
     end
 
-    def newImageInfo
+    def newImageDescription
         intObj = {
             illuminationElevationAngle: nil,
             illuminationAzimuthAngle: nil,

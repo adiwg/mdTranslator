@@ -17,7 +17,7 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        hImage = intMetadataClass.newImageInfo
+                        hImage = intMetadataClass.newImageDescription
 
                         # coverage information - elevation angle of illumination
                         if hImageInfo.has_key?('illuminationElevationAngle')

@@ -40,7 +40,7 @@ module ADIWG
                             end
                         end
 
-                        # additional documentation - citation (required)
+                        # additional documentation - citation [] (required)
                         if hAddDoc.has_key?('citation')
                             hAddDoc['citation'].each do |item|
                                 hDoc = Citation.unpack(item, responseObj)
