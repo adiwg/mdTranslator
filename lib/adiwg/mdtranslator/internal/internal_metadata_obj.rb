@@ -729,14 +729,13 @@ class InternalMetadata
         }
     end
 
-    def newDimensionInfo
+    def newDimension
         intObj = {
             dimensionType: nil,
             dimensionTitle: nil,
             dimensionDescription: nil,
             dimensionSize: nil,
-            resolution: nil,
-            resolutionUnits: nil
+            resolution: {}
         }
     end
 
