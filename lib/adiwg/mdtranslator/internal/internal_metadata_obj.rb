@@ -773,15 +773,15 @@ class InternalMetadata
         intObj = {
             illuminationElevationAngle: nil,
             illuminationAzimuthAngle: nil,
-            imageCondition: nil,
-            imageQuality: {},
+            imagingCondition: nil,
+            imageQualityCode: {},
             cloudCoverPercent: nil,
             compressionQuantity: nil,
-            triangulationInfo: false,
-            radiometricCalibrationInfo: false,
-            cameraCalibrationInfo: false,
-            filmDistortionInfo: false,
-            lensDistortionInfo: false
+            triangulationIndicator: false,
+            radiometricCalibrationAvailable: false,
+            cameraCalibrationAvailable: false,
+            filmDistortionAvailable: false,
+            lensDistortionAvailable: false
         }
     end
 
