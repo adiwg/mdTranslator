@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-19 added newGeorectifiedInfo
 #   Stan Smith 2016-10-19 added newVectorInfo, newVectorObject
 #   Stan Smith 2016-10-18 deleted newCoverageInfo, newCoverageItem
 #   Stan Smith 2016-10-18 added newAttributeGroup
@@ -730,6 +731,16 @@ class InternalMetadata
         }
     end
 
+    def newDimension
+        intObj = {
+            dimensionType: nil,
+            dimensionTitle: nil,
+            dimensionDescription: nil,
+            dimensionSize: nil,
+            resolution: {}
+        }
+    end
+
     def newVectorInfo
         intObj = {
             topologyLevel: nil,
@@ -744,13 +755,16 @@ class InternalMetadata
         }
     end
 
-    def newDimension
+    def newGeorectifiedInfo
         intObj = {
-            dimensionType: nil,
-            dimensionTitle: nil,
-            dimensionDescription: nil,
-            dimensionSize: nil,
-            resolution: {}
+            gridRepresentation: {},
+            checkPointAvailable: false,
+            checkPointDescription: nil,
+            cornerPoints: [],
+            centerPoint: [],
+            pointInPixel: nil,
+            transformationDimensionDescription: nil,
+            transformationDimensionMapping: nil
         }
     end
 
