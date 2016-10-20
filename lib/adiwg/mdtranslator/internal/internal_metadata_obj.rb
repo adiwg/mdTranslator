@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-19 added newSpatialRepresentation
 #   Stan Smith 2016-10-19 added newGeorectifiedInfo
 #   Stan Smith 2016-10-19 added newVectorInfo, newVectorObject
 #   Stan Smith 2016-10-18 deleted newCoverageInfo, newCoverageItem
@@ -719,6 +720,16 @@ class InternalMetadata
             fkLocalAttributes: [],
             fkReferencedEntity: nil,
             fkReferencedAttributes: []
+        }
+    end
+
+    def newSpatialRepresentation
+        intObj = {
+            type: nil,
+            gridRepresentation: {},
+            vectorRepresentation: {},
+            georectifiedRepresentation: {},
+            georeferencableRepresentation: {}
         }
     end
 

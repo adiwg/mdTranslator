@@ -2,7 +2,7 @@
 # reader / mdJson / module_spatialResolution
 
 # History:
-# Stan Smith 2016-11-14 original script
+# Stan Smith 2016-10-14 original script
 
 require 'minitest/autorun'
 require 'json'

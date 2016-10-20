@@ -50,7 +50,6 @@ module ADIWG
                             return nil
                         end
 
-
                         # spatial resolution - scale factor (required if)
                         if hResolution['type'] == 'scaleFactor'
                             if hResolution.has_key?('scaleFactor')
@@ -63,7 +62,7 @@ module ADIWG
                             end
                         end
 
-                        # resolution - measure (required if)
+                        # spatial resolution - measure (required if)
                         if hResolution['type'] == 'measure'
                             if hResolution.has_key?('measure')
                                 hMeasure = hResolution['measure']
@@ -81,7 +80,7 @@ module ADIWG
                             end
                         end
 
-                        # resolution - level of detail
+                        # spatial resolution - level of detail
                         if hResolution['type'] == 'levelOfDetail'
                             if hResolution.has_key?('levelOfDetail')
                                 intResolution[:levelOfDetail] = hResolution['levelOfDetail']
