@@ -768,6 +768,17 @@ class InternalMetadata
         }
     end
 
+    def newGeoreferencableInfo
+        intObj = {
+            gridRepresentation: {},
+            controlPointAvailability: false,
+            orientationParameterAvailability: false,
+            orientationParameterDescription: nil,
+            georeferencedParameter: nil,
+            parameterCitation: []
+        }
+    end
+
     def newContentInfo
         intObj = {
             coverageName: nil,
