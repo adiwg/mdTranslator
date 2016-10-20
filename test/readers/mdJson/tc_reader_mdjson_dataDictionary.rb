@@ -1,28 +1,26 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_domain
+# reader / mdJson / module_dataDictionary
 
 # History:
-#   Stan Smith 2016-10-07 refactored for mdJson 2.0
-#   Stan Smith 2015-06-22 refactored setup to after removal of globals
-#   Stan Smith 2015-01-20 original script
+#   Stan Smith 2016-10-20 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_domain'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_dataDictionary'
 
-class TestReaderMdJsonDomain < MiniTest::Test
+class TestReaderMdJsonDataDictionary < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::DataDictionary
     @@responseObj = {
         readerExecutionMessages: [],
         readerExecutionPass: true
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'domain.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'dictionary.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -30,28 +28,30 @@ class TestReaderMdJsonDomain < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['domain'][0]
+    @@hIn = aIn['dataDictionary'][0]
 
-    def test_complete_domain_object
+    def test_complete_dictionary_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'domainId', metadata[:domainId]
-        assert_equal 'commonName', metadata[:domainName]
-        assert_equal 'codeName', metadata[:domainCode]
-        assert_equal 'description', metadata[:domainDescription]
-        assert_equal 2, metadata[:domainItems].length
+        refute_empty metadata[:citation]
+        assert_equal 'description', metadata[:description]
+        assert_equal 'resourceType', metadata[:resourceType]
+        assert_equal 'language', metadata[:language]
+        assert metadata[:includedWithDataset]
+        assert_equal 2, metadata[:domains].length
+        assert_equal 2, metadata[:entities].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_domain_id
+    def test_dictionary_empty_citation
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['domainId'] = ''
+        hIn['citation'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -61,10 +61,10 @@ class TestReaderMdJsonDomain < MiniTest::Test
 
     end
 
-    def test_empty_domain_codeName
+    def test_dictionary_missing_citation
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['codeName'] = ''
+        hIn.delete('citation')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -74,7 +74,33 @@ class TestReaderMdJsonDomain < MiniTest::Test
 
     end
 
-    def test_empty_domain_description
+    def test_dictionary_empty_resourceType
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['resourceType'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_dictionary_missing_resourceType
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('resourceType')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_dictionary_empty_description
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
@@ -87,10 +113,10 @@ class TestReaderMdJsonDomain < MiniTest::Test
 
     end
 
-    def test_empty_domain_item
+    def test_dictionary_missing_description
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['domainItem'] = []
+        hIn.delete('description')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -100,33 +126,51 @@ class TestReaderMdJsonDomain < MiniTest::Test
 
     end
 
-    def test_empty_domain_elements
+    def test_dictionary_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['commonName'] = ''
+        hIn['language'] = ''
+        hIn['dictionaryIncludedWithResource'] = ''
+        hIn['domain'] = []
+        hIn['entity'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:domainName]
+        refute_empty metadata[:citation]
+        assert_equal 'description', metadata[:description]
+        assert_equal 'resourceType', metadata[:resourceType]
+        assert_nil metadata[:language]
+        refute metadata[:includedWithDataset]
+        assert_empty metadata[:domains]
+        assert_empty metadata[:entities]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_missing_domain_elements
+    def test_dictionary_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('commonName')
+        hIn.delete('language')
+        hIn.delete('dictionaryIncludedWithResource')
+        hIn.delete('domain')
+        hIn.delete('entity')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:domainName]
+        refute_empty metadata[:citation]
+        assert_equal 'description', metadata[:description]
+        assert_equal 'resourceType', metadata[:resourceType]
+        assert_nil metadata[:language]
+        refute metadata[:includedWithDataset]
+        assert_empty metadata[:domains]
+        assert_empty metadata[:entities]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_domain_object
+    def test_empty_dictionary_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

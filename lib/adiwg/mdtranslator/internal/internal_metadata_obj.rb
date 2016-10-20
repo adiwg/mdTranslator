@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-20 deleted newDictionaryInfo, move element to newDataDictionary
 #   Stan Smith 2016-10-19 added newSpatialRepresentation
 #   Stan Smith 2016-10-19 added newGeorectifiedInfo
 #   Stan Smith 2016-10-19 added newVectorInfo, newVectorObject
@@ -644,19 +645,13 @@ class InternalMetadata
 
     def newDataDictionary
         intObj = {
-            dictionaryInfo: {},
+            citation: {},
+            description: nil,
+            resourceType: nil,
+            language: nil,
+            includedWithDataset: false,
             domains: [],
             entities: []
-        }
-    end
-
-    def newDictionaryInfo
-        intObj = {
-            dictCitation: {},
-            dictDescription: nil,
-            dictResourceType: nil,
-            dictLanguage: nil,
-            includedWithDataset: nil
         }
     end
 
