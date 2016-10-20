@@ -36,16 +36,11 @@ module ADIWG
                             return nil
                         end
 
-                        # vector object - object count (required)
+                        # vector object - object count
                         if hVecObj.has_key?('objectCount')
                             if hVecObj['objectCount'] != ''
                                 intVecObj[:objectCount] = hVecObj['objectCount']
                             end
-                        end
-                        if intVecObj[:objectCount].nil?
-                            responseObj[:readerExecutionMessages] << 'Vector Object attribute objectCount is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
                         end
 
                         return intVecObj
