@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-19 added newVectorInfo, newVectorObject
 #   Stan Smith 2016-10-18 deleted newCoverageInfo, newCoverageItem
 #   Stan Smith 2016-10-18 added newAttributeGroup
 #   Stan Smith 2016-10-18 deleted newClassedData, newClassedDataItem
@@ -726,6 +727,20 @@ class InternalMetadata
             dimension: [],
             cellGeometry: nil,
             transformParamsAvailability: false
+        }
+    end
+
+    def newVectorInfo
+        intObj = {
+            topologyLevel: nil,
+            vectorObject: []
+        }
+    end
+
+    def newVectorObject
+        intObj = {
+            objectType: nil,
+            objectCount: nil
         }
     end
 
