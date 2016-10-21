@@ -282,8 +282,8 @@ class InternalMetadata
 
     def newResourceFormat
         intObj = {
-            formatName: nil,
-            formatVersion: nil,
+            formatSpecification: {},
+            amendmentNumber: nil,
             compressionMethod: nil
         }
     end
