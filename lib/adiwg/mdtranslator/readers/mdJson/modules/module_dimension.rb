@@ -52,9 +52,12 @@ module ADIWG
 
                         # dimension - resolution {measure}
                         if hDimension.has_key?('resolution')
-                            hMeasure = hDimension['resolution']
-                            unless hMeasure.empty?
-                                intDimension[:resolution] = Measure.unpack(hMeasure, responseObj)
+                            hObject = hDimension['resolution']
+                            unless hObject.empty?
+                                hReturn = Measure.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intDimension[:resolution] = hReturn
+                                end
                             end
                         end
 

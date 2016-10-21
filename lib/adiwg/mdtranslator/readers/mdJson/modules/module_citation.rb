@@ -112,9 +112,12 @@ module ADIWG
 
                         # citation - series
                         if hCitation.has_key?('series')
-                            hSeries = hCitation['series']
-                            unless hSeries.empty?
-                                intCitation[:citSeries] = Series.unpack(hSeries, responseObj)
+                            hObject = hCitation['series']
+                            unless hObject.empty?
+                                hReturn = Series.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citSeries] = hReturn
+                                end
                             end
                         end
 

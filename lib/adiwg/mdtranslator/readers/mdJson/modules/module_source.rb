@@ -46,9 +46,12 @@ module ADIWG
 
                         # source - source citation
                         if hSource.has_key?('sourceCitation')
-                            hCitation = hSource['sourceCitation']
-                            unless hCitation.empty?
-                                intSource[:sourceCitation] = Citation.unpack(hCitation, responseObj)
+                            hObject = hSource['sourceCitation']
+                            unless hObject.empty?
+                                hReturn = Citation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSource[:sourceCitation] = hReturn
+                                end
                             end
                         end
 
@@ -65,17 +68,23 @@ module ADIWG
 
                         # source - spatial resolution
                         if hSource.has_key?('spatialResolution')
-                            hResolution = hSource['spatialResolution']
-                            unless hResolution.empty?
-                                intSource[:spatialResolution] = SpatialResolution.unpack(hResolution, responseObj)
+                            hObject = hSource['spatialResolution']
+                            unless hObject.empty?
+                                hReturn = SpatialResolution.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSource[:spatialResolution] = hReturn
+                                end
                             end
                         end
 
                         # source - reference system
                         if hSource.has_key?('referenceSystem')
-                            hReference = hSource['referenceSystem']
-                            unless hReference.empty?
-                                intSource[:referenceSystem] = SpatialReferenceSystem.unpack(hReference, responseObj)
+                            hObject = hSource['referenceSystem']
+                            unless hObject.empty?
+                                hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSource[:referenceSystem] = hReturn
+                                end
                             end
                         end
 

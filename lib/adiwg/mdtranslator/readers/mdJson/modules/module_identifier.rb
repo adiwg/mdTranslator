@@ -66,9 +66,12 @@ module ADIWG
 
                         # identifier - authority (citation)
                         if hIdentifier.has_key?('authority')
-                            hCitation = hIdentifier['authority']
-                            unless hCitation.empty?
-                                intIdent[:identifierCitation] = Citation.unpack(hCitation, responseObj)
+                            hObject = hIdentifier['authority']
+                            unless hObject.empty?
+                                hReturn = Citation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intIdent[:identifierCitation] = hReturn
+                                end
                             end
                         end
 

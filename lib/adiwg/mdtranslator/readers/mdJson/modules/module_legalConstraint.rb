@@ -34,9 +34,12 @@ module ADIWG
 
                         # legal constraint - constraint {constraint}
                         if hLegalCon.has_key?('constraint')
-                            hCon = hLegalCon['constraint']
-                            unless hCon.empty?
-                                intLegalCon[:constraint] = Constraint.unpack(hCon, responseObj)
+                            hObject = hLegalCon['constraint']
+                            unless hObject.empty?
+                                hReturn = Constraint.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intLegalCon[:constraint] = hReturn
+                                end
                             end
                         end
 

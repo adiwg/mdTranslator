@@ -49,11 +49,15 @@ module ADIWG
 
                         # image description - image quality - identifier
                         if hImageInfo.has_key?('imageQualityCode')
-                            hProcess = hImageInfo['imageQualityCode']
-                            if !hProcess.empty?
-                                hImage[:imageQualityCode] = Identifier.unpack(hProcess, responseObj)
+                            hObject = hImageInfo['imageQualityCode']
+                            unless hObject.empty?
+                                hReturn = Identifier.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    hImage[:imageQualityCode] = hReturn
+                                end
                             end
                         end
+
 
                         # image description - cloud cover percentage
                         if hImageInfo.has_key?('cloudCoverPercent')

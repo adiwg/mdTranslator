@@ -29,9 +29,12 @@ module ADIWG
 
                         # georeferencable representation - grid representation (required)
                         if hGeoRef.has_key?('gridRepresentation')
-                            hGrid = hGeoRef['gridRepresentation']
-                            if !hGrid.empty?
-                                intGeoRef[:gridRepresentation] = GridRepresentation.unpack(hGrid, responseObj)
+                            hObject = hGeoRef['gridRepresentation']
+                            unless hObject.empty?
+                                hReturn = GridRepresentation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intGeoRef[:gridRepresentation] = hReturn
+                                end
                             end
                         end
                         if intGeoRef[:gridRepresentation].empty?

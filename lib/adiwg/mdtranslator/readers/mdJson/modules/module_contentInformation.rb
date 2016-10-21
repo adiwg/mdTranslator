@@ -54,9 +54,12 @@ module ADIWG
 
                         # content information - processing level code
                         if hContent.has_key?('processingLevelCode')
-                            hIdentifier = hContent['processingLevelCode']
-                            unless hIdentifier.empty?
-                                intContent[:processingLevelCode] = Identifier.unpack(hIdentifier, responseObj)
+                            hObject = hContent['processingLevelCode']
+                            unless hObject.empty?
+                                hReturn = Identifier.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intContent[:processingLevelCode] = hReturn
+                                end
                             end
                         end
 
@@ -72,9 +75,12 @@ module ADIWG
 
                         # content information - image description
                         if hContent.has_key?('imageDescription')
-                            hImage = hContent['imageDescription']
-                            unless hImage.empty?
-                                intContent[:imageDescription] = ImageDescription.unpack(hImage, responseObj)
+                            hObject = hContent['imageDescription']
+                            unless hObject.empty?
+                                hReturn = ImageDescription.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intContent[:imageDescription] = hReturn
+                                end
                             end
                         end
 

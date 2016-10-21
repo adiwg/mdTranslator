@@ -62,9 +62,10 @@ module ADIWG
                         # resource usage - repository - responsible party []
                         if hUsage.has_key?('userContactInfo')
                             aContacts = hUsage['userContactInfo']
-                            unless aContacts.empty?
-                                aContacts.each do |hContact|
-                                    intUsage[:userContacts] << ResponsibleParty.unpack(hContact, responseObj)
+                            aContacts.each do |item|
+                                hReturn = ResponsibleParty.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intUsage[:userContacts] << hReturn
                                 end
                             end
                         end

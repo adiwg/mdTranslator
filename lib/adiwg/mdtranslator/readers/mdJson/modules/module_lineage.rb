@@ -43,11 +43,15 @@ module ADIWG
 
                         # lineage - resource scope
                         if hLineage.has_key?('resourceScope')
-                            hScope = hLineage['resourceScope']
-                            unless hScope.empty?
-                                intLineage[:resourceScope] = Scope.unpack(hScope, responseObj)
+                            hObject = hLineage['resourceScope']
+                            unless hObject.empty?
+                                hReturn = Scope.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intLineage[:resourceScope] = hReturn
+                                end
                             end
                         end
+
 
                         # lineage - citation []
                         if hLineage.has_key?('lineageCitation')

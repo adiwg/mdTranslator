@@ -51,12 +51,10 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
 
     end
 
-    def test_incomplete_legalConstraint_object
+    def test_empty_legalConstraint
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['constraint']['useLimitation'] = []
-        hIn['constraint']['scope'] = {}
-        hIn['constraint']['scope']['scopeCode'] = 'scopeCode'
+        hIn['constraint'] = {}
         hIn['useConstraint'] = []
         hIn['accessConstraint'] = []
         hIn['otherConstraint'] = []
@@ -69,12 +67,12 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
 
     end
 
-    def test_empty_legalConstraint_elements
+    def test_missing_legalConstraint_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['useConstraint'] = []
-        hIn['accessConstraint'] = []
-        hIn['otherConstraint'] = []
+        hIn.delete('useConstraint')
+        hIn.delete('accessConstraint')
+        hIn.delete('otherConstraint')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -87,7 +85,7 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
 
     end
 
-        def test_empty_legalConstraint_object
+    def test_empty_legalConstraint_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

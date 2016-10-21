@@ -28,9 +28,12 @@ module ADIWG
 
                         # georectified representation - grid representation (required)
                         if hGeoRec.has_key?('gridRepresentation')
-                            hGrid = hGeoRec['gridRepresentation']
-                            if !hGrid.empty?
-                                intGeoRec[:gridRepresentation] = GridRepresentation.unpack(hGrid, responseObj)
+                            hObject = hGeoRec['gridRepresentation']
+                            unless hObject.empty?
+                                hReturn = GridRepresentation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intGeoRec[:gridRepresentation] = hReturn
+                                end
                             end
                         end
                         if intGeoRec[:gridRepresentation].empty?

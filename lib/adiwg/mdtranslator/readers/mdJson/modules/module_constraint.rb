@@ -42,9 +42,12 @@ module ADIWG
 
                         # constraint - scope
                         if hConstraint.has_key?('scope')
-                            hScope = hConstraint['scope']
-                            unless hScope.empty?
-                                intConstraint[:scope] = Scope.unpack(hScope, responseObj)
+                            hObject = hConstraint['scope']
+                            unless hObject.empty?
+                                hReturn = Scope.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intConstraint[:scope] = hReturn
+                                end
                             end
                         end
 
@@ -72,9 +75,12 @@ module ADIWG
 
                         # constraint - releasability
                         if hConstraint.has_key?('releasability')
-                            hRelease = hConstraint['releasability']
-                            unless hRelease.empty?
-                                intConstraint[:releasability] = Releasability.unpack(hRelease, responseObj)
+                            hObject = hConstraint['releasability']
+                            unless hObject.empty?
+                                hReturn = Releasability.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intConstraint[:releasability] = hReturn
+                                end
                             end
                         end
 

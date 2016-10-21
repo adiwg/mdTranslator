@@ -39,9 +39,12 @@ module ADIWG
 
                         # spatial reference system - reference system {identifier}
                         if hSpatialRef.has_key?('referenceSystem')
-                            hSystem = hSpatialRef['referenceSystem']
-                            unless hSystem.empty?
-                                intSpatialRef[:systemIdentifier] = Identifier.unpack(hSystem, responseObj)
+                            hObject = hSpatialRef['referenceSystem']
+                            unless hObject.empty?
+                                hReturn = Identifier.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSpatialRef[:systemIdentifier] = hReturn
+                                end
                             end
                         end
 

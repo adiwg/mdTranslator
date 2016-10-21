@@ -58,9 +58,12 @@ module ADIWG
 
                         # process step - time period
                         if hProcStep.has_key?('timePeriod')
-                            hTimeP = hProcStep['timePeriod']
-                            unless hTimeP.empty?
-                                intProcStep[:timePeriod] = TimePeriod.unpack(hTimeP, responseObj)
+                            hObject = hProcStep['timePeriod']
+                            unless hObject.empty?
+                                hReturn = TimePeriod.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intProcStep[:timePeriod] = hReturn
+                                end
                             end
                         end
 

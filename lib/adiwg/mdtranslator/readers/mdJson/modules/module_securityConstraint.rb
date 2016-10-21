@@ -33,9 +33,12 @@ module ADIWG
 
                         # security constraint - constraint {constraint}
                         if hSecurityCon.has_key?('constraint')
-                            hCon = hSecurityCon['constraint']
-                            unless hCon.empty?
-                                intSecCon[:constraint] = Constraint.unpack(hCon, responseObj)
+                            hObject = hSecurityCon['constraint']
+                            unless hObject.empty?
+                                hReturn = Constraint.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSecCon[:constraint] = hReturn
+                                end
                             end
                         end
 

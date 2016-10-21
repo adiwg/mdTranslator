@@ -66,17 +66,23 @@ module ADIWG
 
                          # associated resource - resource citation
                         if hAssocRes.has_key?('resourceCitation')
-                            hCitation = hAssocRes['resourceCitation']
-                            unless hCitation.empty?
-                                intAssocRes[:resourceCitation] = Citation.unpack(hCitation, responseObj)
+                            hObject = hAssocRes['resourceCitation']
+                            unless hObject.empty?
+                                hReturn = Citation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intAssocRes[:resourceCitation] = hReturn
+                                end
                             end
                         end
 
                         # associated resource - metadata citation
                         if hAssocRes.has_key?('metadataCitation')
-                            hCitation = hAssocRes['metadataCitation']
-                            unless hCitation.empty?
-                                intAssocRes[:metadataCitation] = Citation.unpack(hCitation, responseObj)
+                            hObject = hAssocRes['metadataCitation']
+                            unless hObject.empty?
+                                hReturn = Citation.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intAssocRes[:metadataCitation] = hReturn
+                                end
                             end
                         end
 
