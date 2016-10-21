@@ -346,10 +346,9 @@ class InternalMetadata
 
     def newDistributor
         intObj = {
-            distContact: {},
-            distOrderProcs: [],
-            distFormats: [],
-            distTransOptions: []
+            contact: {},
+            orderProcess: [],
+            transferOptions: []
         }
     end
 
