@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-21 renamed newDigitalTransOption to newTransferOption
 #   Stan Smith 2016-10-20 deleted newDictionaryInfo, move element to newDataDictionary
 #   Stan Smith 2016-10-19 added newSpatialRepresentation
 #   Stan Smith 2016-10-19 added newGeorectifiedInfo
@@ -360,13 +361,14 @@ class InternalMetadata
         }
     end
 
-    def newDigitalTransOption
+    def newTransferOption
         intObj = {
-            distFormats: [],
             transferSize: nil,
-            transferSizeUnits: nil,
-            online: [],
-            offline: {}
+            transferUnits: nil,
+            onlineOptions: [],
+            offlineOptions: [],
+            transferFrequency: {},
+            distributionFormats: []
         }
     end
 
