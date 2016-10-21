@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-21 renamed newDistOrder to newOrderProcess
 #   Stan Smith 2016-10-21 renamed newDigitalTransOption to newTransferOption
 #   Stan Smith 2016-10-20 deleted newDictionaryInfo, move element to newDataDictionary
 #   Stan Smith 2016-10-19 added newSpatialRepresentation
@@ -352,11 +353,11 @@ class InternalMetadata
         }
     end
 
-    def newDistOrder
+    def newOrderProcess
         intObj = {
             fees: nil,
-            plannedDateTime: {},
-            orderInstructions: nil,
+            plannedAvailability: {},
+            orderingInstructions: nil,
             turnaround: nil
         }
     end
