@@ -280,14 +280,6 @@ class InternalMetadata
         }
     end
 
-    def newResourceFormat
-        intObj = {
-            formatSpecification: {},
-            amendmentNumber: nil,
-            compressionMethod: nil
-        }
-    end
-
     def newResourceMaint
         intObj = {
             maintFreq: nil,
@@ -380,11 +372,21 @@ class InternalMetadata
 
     def newMedium
         intObj = {
-            mediumType: nil,
-            mediumCapacity: nil,
-            mediumCapacityUnits: nil,
-            mediumFormat: nil,
-            mediumNote: nil
+            mediumSpecification: {},
+            density: nil,
+            units: nil,
+            numberOfVolumes: nil,
+            mediumFormat: [],
+            note: nil,
+            identifier: {}
+        }
+    end
+
+    def newResourceFormat
+        intObj = {
+            formatSpecification: {},
+            amendmentNumber: nil,
+            compressionMethod: nil
         }
     end
 
