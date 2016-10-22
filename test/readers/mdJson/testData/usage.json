@@ -1,0 +1,36 @@
+{
+   "resourceUsage": [
+      {
+         "specificUsage": "specificUsage",
+         "userDeterminedLimitation": "userDeterminedLimitation",
+         "limitationResponse": [
+            "limitationResponse0",
+            "limitationResponse1"
+         ],
+         "userContactInfo": [
+            {
+               "role": "role0",
+               "timePeriod": {
+                  "startDateTime": "2016-10-14"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "role1",
+               "roleExtent": {
+                  "description": "description1"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId1"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

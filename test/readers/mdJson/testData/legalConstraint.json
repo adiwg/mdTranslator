@@ -1,0 +1,23 @@
+{
+   "legalConstraint": [
+      {
+         "constraint": {
+            "useLimitation": [
+               "useLimitation0"
+            ]
+         },
+         "useConstraint": [
+            "useConstraint0",
+            "useConstraint1"
+         ],
+         "accessConstraint": [
+            "accessConstraint0",
+            "accessConstraint1"
+         ],
+         "otherConstraint": [
+            "otherConstraint0",
+            "otherConstraint1"
+         ]
+      }
+   ]
+}

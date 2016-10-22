@@ -1,0 +1,32 @@
+{
+   "address": [
+      {
+         "deliveryPoint": [
+            "deliveryPoint0",
+            "deliveryPoint1"
+         ],
+         "city": "city",
+         "administrativeArea": "administrativeArea",
+         "postalCode": "postalCode",
+         "country": "country",
+         "electronicMailAddress": [
+            "email0@example.com",
+            "email1@example.com"
+         ]
+      },
+      {
+         "deliveryPoint": [
+            "4230 University Drive",
+            "Suite 210"
+         ],
+         "city": "Anchorage",
+         "administrativeArea": "AK",
+         "postalCode": "99508",
+         "country": "USA",
+         "electronicMailAddress": [
+            "inquires@ak.usgs.gov",
+            "employees@ak.usgs.gov"
+         ]
+      }
+   ]
+}

@@ -1,0 +1,33 @@
+{
+   "source": [
+      {
+         "description": "description",
+         "sourceCitation": {
+            "title": "title"
+         },
+         "sourceMetadata": [
+            {
+               "title": "title"
+            },
+            {
+               "title": "title"
+            }
+         ],
+         "spatialResolution": {
+            "type": "scaleFactor",
+            "scaleFactor": 25000
+         },
+         "referenceSystem": {
+            "referenceSystemType": "referenceSystemType"
+         },
+         "sourceStep": [
+            {
+               "description": "description"
+            },
+            {
+               "description": "description"
+            }
+         ]
+      }
+   ]
+}

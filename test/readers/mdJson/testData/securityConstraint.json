@@ -1,0 +1,15 @@
+{
+   "securityConstraint": [
+      {
+         "constraint": {
+            "useLimitation": [
+               "useLimitation0"
+            ]
+         },
+         "classification": "classification",
+         "classificationSystem": "classificationSystem",
+         "userNote": "userNote",
+         "handlingDescription": "handlingDescription"
+      }
+   ]
+}

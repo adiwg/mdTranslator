@@ -1,0 +1,57 @@
+{
+   "citation": [
+      {
+         "title": "title",
+         "alternateTitle": [
+            "alternateTitle0",
+            "alternateTitle1"
+         ],
+         "date": [
+            {
+               "date": "2016-10-13",
+               "dateType": "dateType"
+            }
+         ],
+         "edition": "edition",
+         "responsibleParty": [
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-14"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            }
+         ],
+         "presentationForm": [
+            "presentationForm0",
+            "presentationForm1"
+         ],
+         "identifier": [
+            {
+               "identifier": "identifier"
+            }
+         ],
+         "series": {
+            "seriesName": "seriesName"
+         },
+         "otherCitationDetails": [
+            "otherCitationDetails0",
+            "otherCitationDetails1"
+         ],
+         "onlineResource": [
+            {
+               "uri": "uri"
+            }
+         ],
+         "graphic": [
+            {
+               "fileName": "fileName"
+            }
+         ]
+      }
+   ]
+}
