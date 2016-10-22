@@ -1,5 +1,5 @@
 # unpack process step
-# Reader - ADIwg JSON V1 to internal data structure
+# Reader - ADIwg JSON to internal data structure
 
 # History:
 #   Stan Smith 2016-10-15 refactored for mdJson 2.0
@@ -90,6 +90,7 @@ module ADIWG
                         end
 
                         return intProcStep
+
                     end
 
                 end
