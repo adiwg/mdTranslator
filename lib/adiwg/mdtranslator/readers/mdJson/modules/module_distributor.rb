@@ -28,7 +28,7 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intDistrib = intMetadataClass.newDistributor
 
-                        # distributor - contact {responsibleParty}
+                        # distributor - contact {responsibleParty} (required)
                         if hDistrib.has_key?('contact')
                             hObject = hDistrib['contact']
                             unless hObject.empty?
@@ -37,6 +37,11 @@ module ADIWG
                                     intDistrib[:contact] = hReturn
                                 end
                             end
+                        end
+                        if intDistrib[:contact].empty?
+                            responseObj[:readerExecutionMessages] << 'Distributor object is missing contact'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # distributor - order process [orderProcess]
@@ -62,6 +67,7 @@ module ADIWG
                         end
 
                         return intDistrib
+
                     end
 
                 end

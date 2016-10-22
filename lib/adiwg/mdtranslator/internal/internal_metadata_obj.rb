@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-21 added newDistribution
 #   Stan Smith 2016-10-21 renamed newDistOrder to newOrderProcess
 #   Stan Smith 2016-10-21 renamed newDigitalTransOption to newTransferOption
 #   Stan Smith 2016-10-20 deleted newDictionaryInfo, move element to newDataDictionary
@@ -341,6 +342,13 @@ class InternalMetadata
             addressee: [],
             statement: nil,
             disseminationConstraint: []
+        }
+    end
+
+    def newDistribution
+        intObj = {
+            description: nil,
+            distributor: []
         }
     end
 

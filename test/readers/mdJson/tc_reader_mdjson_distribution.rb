@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_distributor
+# reader / mdJson / module_distribution
 
 # History:
 #   Stan Smith 2016-10-21 original script
@@ -8,7 +8,7 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_distributor'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_distribution'
 
 # set contacts to be used by this test
 module ADIWG
@@ -30,17 +30,17 @@ module ADIWG
     end
 end
 
-class TestReaderMdJsonDistributor < MiniTest::Test
+class TestReaderMdJsonDistribution < MiniTest::Test
 
     # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Distributor
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Distribution
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'distributor.json')
+    file = File.join(File.dirname(__FILE__), '../../', 'schemas/examples', 'distribution.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -48,81 +48,53 @@ class TestReaderMdJsonDistributor < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['distributor'][0]
+    @@hIn = aIn['resourceDistribution'][0]
 
-    def test_complete_distributor_object
+    def test_complete_distribution_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:contact]
-        assert_equal 2, metadata[:orderProcess].length
-        assert_equal 2, metadata[:transferOptions].length
+        assert_equal 'description', metadata[:description]
+        assert_equal 2, metadata[:distributor].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_distributor_empty_contact
+    def test_distribution_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['contact'] = {}
+        hIn['description'] = ''
+        hIn['distributor'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_distributor_missing_contact
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('contact')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_distributor_empty_elements
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['orderProcess'] = []
-        hIn['transferOptions'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        refute_empty metadata[:contact]
-        assert_empty metadata[:orderProcess]
-        assert_empty metadata[:transferOptions]
+        assert_nil metadata[:description]
+        assert_empty metadata[:distributor]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_distributor_missing_elements
+    def test_distribution_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('orderProcess')
-        hIn.delete('transferOptions')
+        hIn['nonElement'] = ''
+        hIn.delete('description')
+        hIn.delete('distributor')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:contact]
-        assert_empty metadata[:orderProcess]
-        assert_empty metadata[:transferOptions]
+        assert_nil metadata[:description]
+        assert_empty metadata[:distributor]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_distributor_object
+    def test_empty_distribution_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
