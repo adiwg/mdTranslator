@@ -293,9 +293,9 @@ class InternalMetadata
 
     def newKeyword
         intObj = {
-            keyword: [],
+            keywords: [],
             keywordType: nil,
-            keyTheCitation: {}
+            thesaurus: {}
         }
     end
 
