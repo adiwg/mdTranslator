@@ -1,0 +1,90 @@
+{
+   "taxonomy": [
+      {
+         "classificationSystem": [
+            {
+               "title": "title"
+            },
+            {
+               "title": "title"
+            }
+         ],
+         "systemModifications": "systemModifications",
+         "generalTaxonomicScope": "generalTaxonomicScope",
+         "identificationReference": [
+            {
+               "title": "title"
+            },
+            {
+               "title": "title"
+            }
+         ],
+         "observer": [
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-22"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-22"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            }
+         ],
+         "identificationProcedure": "identificationProcedure",
+         "identificationCompleteness": "identificationCompleteness",
+         "voucher": [
+            {
+               "specimen": "specimen",
+               "repository": {
+                  "role": "role",
+                  "timePeriod": {
+                     "startDateTime": "2016-10-14"
+                  },
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            },
+            {
+               "specimen": "specimen",
+               "repository": {
+                  "role": "role",
+                  "timePeriod": {
+                     "startDateTime": "2016-10-14"
+                  },
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            }
+         ],
+         "taxonomicClassification": [
+            {
+               "taxonomicRank": "taxonomicRank0",
+               "latinName": "latinName"
+            },
+            {
+               "taxonomicRank": "taxonomicRank0",
+               "latinName": "latinName"
+            }
+         ]
+      }
+   ]
+}

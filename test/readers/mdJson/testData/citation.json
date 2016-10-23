@@ -10,10 +10,25 @@
             {
                "date": "2016-10-13",
                "dateType": "dateType"
+            },
+            {
+               "date": "2016-10-22",
+               "dateType": "dateType"
             }
          ],
          "edition": "edition",
          "responsibleParty": [
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-14"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
             {
                "role": "role",
                "timePeriod": {
@@ -33,6 +48,9 @@
          "identifier": [
             {
                "identifier": "identifier"
+            },
+            {
+               "identifier": "identifier"
             }
          ],
          "series": {
@@ -45,9 +63,15 @@
          "onlineResource": [
             {
                "uri": "uri"
+            },
+            {
+               "uri": "uri"
             }
          ],
          "graphic": [
+            {
+               "fileName": "fileName"
+            },
             {
                "fileName": "fileName"
             }

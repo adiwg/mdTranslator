@@ -62,19 +62,19 @@ class TestReaderMdJsonCitation < MiniTest::Test
         assert_equal 2, metadata[:citAltTitle].length
         assert_equal 'alternateTitle0', metadata[:citAltTitle][0]
         assert_equal 'alternateTitle1', metadata[:citAltTitle][1]
-        refute_empty metadata[:citDate]
+        assert_equal 2, metadata[:citDate].length
         assert_equal 'edition', metadata[:citEdition]
-        refute_empty metadata[:citResponsibleParty]
-        assert_equal metadata[:citPresentationForms].length, 2
+        assert_equal 2, metadata[:citResponsibleParty].length
+        assert_equal 2, metadata[:citPresentationForms].length
         assert_equal 'presentationForm0', metadata[:citPresentationForms][0]
         assert_equal 'presentationForm1', metadata[:citPresentationForms][1]
-        refute_empty metadata[:citIdentifiers]
+        assert_equal 2, metadata[:citIdentifiers].length
         refute_empty metadata[:citSeries]
-        assert_equal metadata[:citOtherDetails].length, 2
+        assert_equal 2, metadata[:citOtherDetails].length
         assert_equal 'otherCitationDetails0', metadata[:citOtherDetails][0]
         assert_equal 'otherCitationDetails1', metadata[:citOtherDetails][1]
-        refute_empty metadata[:citOlResources]
-        refute_empty metadata[:citGraphics]
+        assert_equal 2, metadata[:citOlResources].length
+        assert_equal 2, metadata[:citGraphics].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

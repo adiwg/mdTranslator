@@ -557,14 +557,17 @@ class InternalMetadata
         }
     end
 
-    def newTaxonSystem
+    def newTaxonomy
         intObj = {
-            taxClassSys: [],
-            taxGeneralScope: nil,
-            taxObservers: [],
-            taxIdProcedures: nil,
-            taxVoucher: {},
-            taxClasses: []
+            taxonSystem: [],
+            systemMods: nil,
+            generalScope: nil,
+            idReferences: [],
+            observers: [],
+            idProcedure: nil,
+            idCompleteness: nil,
+            vouchers: [],
+            taxonClasses: []
         }
     end
 
