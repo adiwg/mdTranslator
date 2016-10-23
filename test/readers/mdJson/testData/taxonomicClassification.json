@@ -1,0 +1,44 @@
+{
+   "taxonomicClassification": [
+      {
+         "taxonomicRank": "taxonomicRank0",
+         "latinName": "latinName",
+         "commonName": ["commonName0", "commonName1"],
+         "taxonomicClassification": [
+            {
+               "taxonomicRank": "taxonomicRank00",
+               "latinName": "latinName",
+               "commonName": ["commonName0", "commonName1"],
+               "taxonomicClassification": [
+                  {
+                     "taxonomicRank": "taxonomicRank000",
+                     "latinName": "latinName",
+                     "commonName": ["commonName0", "commonName1"],
+                     "taxonomicClassification": [
+                        {
+                           "taxonomicRank": "taxonomicRank0000",
+                           "latinName": "latinName",
+                           "commonName": ["commonName0", "commonName1"],
+                           "taxonomicClassification": []
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "taxonomicRank": "taxonomicRank01",
+               "latinName": "latinName",
+               "commonName": ["commonName0", "commonName1"],
+               "taxonomicClassification": [
+                  {
+                     "taxonomicRank": "taxonomicRank010",
+                     "latinName": "latinName",
+                     "commonName": ["commonName0", "commonName1"],
+                     "taxonomicClassification": []
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

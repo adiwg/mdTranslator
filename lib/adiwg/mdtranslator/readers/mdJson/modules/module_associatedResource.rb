@@ -93,6 +93,7 @@ module ADIWG
                         end
 
                         return intAssocRes
+
                     end
 
                 end
