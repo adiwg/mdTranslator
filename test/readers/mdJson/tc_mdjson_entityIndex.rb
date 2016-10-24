@@ -59,32 +59,6 @@ class TestReaderMdJsonEntityIndex < MiniTest::Test
 
     end
 
-    def test_empty_entityIndex_allowDuplicates
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['allowDuplicates'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_empty_entityIndex_attributeCodeName
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['attributeCodeName'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
     def test_empty_entityIndex_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))

@@ -62,7 +62,7 @@ module ADIWG
 
                         # grid representation - transformation parameters available {Boolean} (required)
                         if hGrid.has_key?('transformParamsAvailability')
-                            if hGrid['transformParamsAvailability'] != ''
+                            if hGrid['transformParamsAvailability'] === true
                                 intGrid[:transformParamsAvailability] = hGrid['transformParamsAvailability']
                             end
                         end

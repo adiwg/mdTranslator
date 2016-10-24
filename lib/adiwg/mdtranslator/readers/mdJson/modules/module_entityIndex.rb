@@ -40,16 +40,11 @@ module ADIWG
                             return nil
                         end
 
-
                         # entity index - allow duplicates (required)
-                        # return nil if no unique/duplicate flag is provided
                         if hIndex.has_key?('allowDuplicates')
-                            intIndex[:duplicate] = hIndex['allowDuplicates']
-                        end
-                        if !(intIndex[:duplicate] == true || intIndex[:duplicate] == false)
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary entity index unique/duplicate flag is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                            if intIndex[:duplicate] === true
+                                intIndex[:duplicate] = hIndex['allowDuplicates']
+                            end
                         end
 
                         # entity index - attribute list [] (required)

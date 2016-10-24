@@ -4,11 +4,6 @@
          "phoneName": "phoneName",
          "phoneNumber": "111-111-1111",
          "service": ["service0", "service1", "service2"]
-      },
-      {
-         "phoneName": "Main Office",
-         "phoneNumber": "808-555-1212",
-         "service": ["voice", "sms"]
       }
    ]
 }

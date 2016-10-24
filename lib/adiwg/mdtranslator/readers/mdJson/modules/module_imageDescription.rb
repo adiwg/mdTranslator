@@ -73,37 +73,37 @@ module ADIWG
                             end
                         end
 
-                        # image description - triangulation information available
+                        # image description - triangulation information available {Boolean}
                         if hImageInfo.has_key?('triangulationIndicator')
-                            if hImageInfo['triangulationIndicator'] != ''
+                            if hImageInfo['triangulationIndicator'] === true
                                 hImage[:triangulationIndicator] = hImageInfo['triangulationIndicator']
                             end
                         end
 
-                        # image description - radiometric calibration information available
+                        # image description - radiometric calibration information available {Boolean}
                         if hImageInfo.has_key?('radiometricCalibrationAvailable')
-                            if hImageInfo['radiometricCalibrationAvailable'] != ''
+                            if hImageInfo['radiometricCalibrationAvailable'] === true
                                 hImage[:radiometricCalibrationAvailable] = hImageInfo['radiometricCalibrationAvailable']
                             end
                         end
 
-                        # image description - camera calibration information available
+                        # image description - camera calibration information available {Boolean}
                         if hImageInfo.has_key?('cameraCalibrationAvailable')
-                            if hImageInfo['cameraCalibrationAvailable'] != ''
+                            if hImageInfo['cameraCalibrationAvailable'] === true
                                 hImage[:cameraCalibrationAvailable] = hImageInfo['cameraCalibrationAvailable']
                             end
                         end
 
-                        # image description - film distortion information available
+                        # image description - film distortion information available {Boolean}
                         if hImageInfo.has_key?('filmDistortionAvailable')
-                            if hImageInfo['filmDistortionAvailable'] != ''
+                            if hImageInfo['filmDistortionAvailable'] === true
                                 hImage[:filmDistortionAvailable] = hImageInfo['filmDistortionAvailable']
                             end
                         end
 
-                        # image description - lens distortion information available
+                        # image description - lens distortion information available {Boolean}
                         if hImageInfo.has_key?('lensDistortionAvailable')
-                            if hImageInfo['lensDistortionAvailable'] != ''
+                            if hImageInfo['lensDistortionAvailable'] === true
                                 hImage[:lensDistortionAvailable] = hImageInfo['lensDistortionAvailable']
                             end
                         end

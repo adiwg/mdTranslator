@@ -44,7 +44,7 @@ module ADIWG
 
                         # georectified representation - check point availability (required)
                         if hGeoRec.has_key?('checkPointAvailable')
-                            if hGeoRec['checkPointAvailable'] != ''
+                            if hGeoRec['checkPointAvailable'] === true
                                 intGeoRec[:checkPointAvailable] = hGeoRec['checkPointAvailable']
                             end
                         end

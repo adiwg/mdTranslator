@@ -7,13 +7,6 @@
             "attributeCodeName0",
             "attributeCodeName1"
          ]
-      },
-      {
-         "codeName": "ui_empID",
-         "allowDuplicates": false,
-         "attributeCodeName": [
-            "employeeID"
-         ]
       }
    ]
 }

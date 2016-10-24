@@ -80,7 +80,7 @@ module ADIWG
 
                         # dictionary - dictionary included with resource
                         if hDictionary.has_key?('dictionaryIncludedWithResource')
-                            if hDictionary['dictionaryIncludedWithResource'] != ''
+                            if hDictionary['dictionaryIncludedWithResource'] === true
                                 intDataD[:includedWithDataset] = hDictionary['dictionaryIncludedWithResource']
                             end
                         end

@@ -98,6 +98,7 @@ class InternalMetadata
     # initialize attribute values - nil
     # initialize arrays - []
     # initialize hashes - {}
+    # initialize Boolean - false
 
     def initialize
     end
@@ -134,15 +135,15 @@ class InternalMetadata
             contactId: nil,
             isOrganization: false,
             name: nil,
-            position: nil,
+            positionName: nil,
             memberOfOrgs: [],
             logos: [],
             phones: [],
-            address: {},
-            onlineRes: [],
+            addresses: [],
+            onlineResources: [],
             hoursOfService: [],
             contactInstructions: nil,
-            contactType: false
+            contactType: nil
         }
     end
 

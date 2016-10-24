@@ -63,11 +63,11 @@ module ADIWG
 
                         # citation - date []
                         if hCitation.has_key?('date')
-                            aCitDates = hCitation['date']
-                            aCitDates.each do |item|
-                                hDate = Date.unpack(item, responseObj)
-                                unless hDate.nil?
-                                    intCitation[:citDate] << hDate
+                            aItems = hCitation['date']
+                            aItems.each do |item|
+                                hReturn = Date.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citDate] << hReturn
                                 end
                             end
                         end
@@ -81,11 +81,11 @@ module ADIWG
 
                         # citation - responsible party []
                         if hCitation.has_key?('responsibleParty')
-                            aRParty = hCitation['responsibleParty']
-                            aRParty.each do |item|
-                                hParty = ResponsibleParty.unpack(item, responseObj)
-                                unless hParty.nil?
-                                    intCitation[:citResponsibleParty] << hParty
+                            aItems = hCitation['responsibleParty']
+                            aItems.each do |item|
+                                hReturn = ResponsibleParty.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citResponsibleParty] << hReturn
                                 end
                             end
                         end
@@ -101,11 +101,11 @@ module ADIWG
 
                         # citation - identifier []
                         if hCitation.has_key?('identifier')
-                            aIds = hCitation['identifier']
-                            aIds.each do |item|
-                                hIdentifier = Identifier.unpack(item, responseObj)
-                                unless hIdentifier.nil?
-                                    intCitation[:citIdentifiers] << hIdentifier
+                            aItems = hCitation['identifier']
+                            aItems.each do |item|
+                                hReturn = Identifier.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citIdentifiers] << hReturn
                                 end
                             end
                         end
@@ -132,22 +132,22 @@ module ADIWG
 
                         # citation - online resource []
                         if hCitation.has_key?('onlineResource')
-                            aOlRes = hCitation['onlineResource']
-                            aOlRes.each do |item|
-                                hResource = OnlineResource.unpack(item, responseObj)
-                                unless hResource.nil?
-                                    intCitation[:citOlResources] << hResource
+                            aItems = hCitation['onlineResource']
+                            aItems.each do |item|
+                                hReturn = OnlineResource.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citOlResources] << hReturn
                                 end
                             end
                         end
 
                         # citation - graphic []
                         if hCitation.has_key?('graphic')
-                            aGraphic = hCitation['graphic']
-                            aGraphic.each do |item|
-                                hGraphic = Graphic.unpack(item, responseObj)
-                                unless hGraphic.nil?
-                                    intCitation[:citGraphics] << hGraphic
+                            aItems = hCitation['graphic']
+                            aItems.each do |item|
+                                hReturn = Graphic.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intCitation[:citGraphics] << hReturn
                                 end
                             end
                         end

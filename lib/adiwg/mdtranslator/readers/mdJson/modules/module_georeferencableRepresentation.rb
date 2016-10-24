@@ -45,14 +45,14 @@ module ADIWG
 
                         # georeferencable representation - control point availability (required)
                         if hGeoRef.has_key?('controlPointAvailability')
-                            if hGeoRef['controlPointAvailability'] != ''
+                            if hGeoRef['controlPointAvailability'] === true
                                 intGeoRef[:controlPointAvailability] = hGeoRef['controlPointAvailability']
                             end
                         end
 
                         # georeferencable representation - orientation parameter availability (required)
                         if hGeoRef.has_key?('orientationParameterAvailability')
-                            if hGeoRef['orientationParameterAvailability'] != ''
+                            if hGeoRef['orientationParameterAvailability'] === true
                                 intGeoRef[:orientationParameterAvailability] = hGeoRef['orientationParameterAvailability']
                             end
                         end
