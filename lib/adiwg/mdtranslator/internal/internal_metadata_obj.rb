@@ -509,7 +509,9 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            timePosition: {}
+            identifier: nil,
+            instantNames: [],
+            timeInstant: {}
         }
     end
 

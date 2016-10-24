@@ -1,0 +1,14 @@
+{
+   "timeInstant": [
+      {
+         "id": "id",
+         "description": "description",
+         "identifier": "identifier",
+         "instantName": [
+            "instantName0",
+            "instantName1"
+         ],
+         "dateTime": "2016-10-24T10:25:00"
+      }
+   ]
+}
