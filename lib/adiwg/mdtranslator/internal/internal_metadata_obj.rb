@@ -497,9 +497,8 @@ class InternalMetadata
         }
     end
 
-    def newTemporalElement
+    def newTemporalExtent
         intObj = {
-            date: {},
             timeInstant: {},
             timePeriod: {}
         }
