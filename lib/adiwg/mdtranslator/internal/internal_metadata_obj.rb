@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-23 renamed newResourceMaint to newMaintenance
 #   Stan Smith 2016-10-21 added newDistribution
 #   Stan Smith 2016-10-21 renamed newDistOrder to newOrderProcess
 #   Stan Smith 2016-10-21 renamed newDigitalTransOption to newTransferOption
@@ -284,11 +285,13 @@ class InternalMetadata
         }
     end
 
-    def newResourceMaint
+    def newMaintenance
         intObj = {
-            maintFreq: nil,
-            maintNotes: [],
-            maintContacts: []
+            frequency: nil,
+            dates: [],
+            scopes: [],
+            notes: [],
+            contacts: []
         }
     end
 
