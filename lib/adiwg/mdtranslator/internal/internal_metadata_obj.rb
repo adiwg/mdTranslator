@@ -543,12 +543,12 @@ class InternalMetadata
         }
     end
 
-    def newVerticalElement
+    def newVerticalExtent
         intObj = {
+            description: nil,
             minValue: nil,
             maxValue: nil,
-            crsURI: nil,
-            crsTitle: nil
+            crsId: {}
         }
     end
 
