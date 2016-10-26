@@ -2,6 +2,12 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-25 added newFeatureCollection
+#   Stan Smith 2016-10-25 added newGeoJson
+#   Stan Smith 2016-10-25 added newGeometryCollection
+#   Stan Smith 2016-10-25 added newGeometryFeature
+#   Stan Smith 2016-10-25 added newGeometryObject
+#   Stan Smith 2016-10-25 added newGeometryProperties
 #   Stan Smith 2016-10-23 renamed newResourceMaint to newMaintenance
 #   Stan Smith 2016-10-21 added newDistribution
 #   Stan Smith 2016-10-21 renamed newDistOrder to newOrderProcess
@@ -440,60 +446,61 @@ class InternalMetadata
 
     def newExtent
         intObj = {
-            extDesc: nil,
-            extGeoElements: [],
-            extIdElements: [],
-            extTempElements: [],
-            extVertElements: []
+            description: nil,
+            geographicExtents: [],
+            temporalExtents: [],
+            verticalExtents: []
         }
     end
 
-    def newGeoElement
+    def newGeographicExtent
         intObj = {
-            elementId: nil,
-            elementType: nil,
-            elementIncludeData: nil,
-            elementName: nil,
-            elementDescription: nil,
-            temporalElements: [],
-            verticalElements: [],
-            elementIdentifiers: [],
-            elementScope: nil,
-            elementAcquisition: nil,
-            elementSrs: {},
-            elementGeometry: {}
+            nativeGeoJson: [],
+            geographicElements: []
         }
     end
 
-    def newSRS
+    def newGeometryObject
         intObj = {
-            srsName: nil,
-            srsHref: nil,
-            srsType: nil
+            type: nil,
+            coordinates: []
         }
     end
 
-    def newGeometry
+    def newGeometryCollection
         intObj = {
-            geoType: nil,
-            geometry: {},
-            dimension: nil
+            type: nil,
+            bbox: [],
+            geometryObjects: []
         }
     end
 
-    def newBoundingBox
+    def newGeometryProperties
         intObj = {
-            westLong: nil,
-            eastLong: nil,
-            southLat: nil,
-            northLat: nil
+            featureNames: [],
+            description: nil,
+            includesData: false,
+            identifiers: [],
+            featureScope: nil,
+            featureAcquisitionMethod: nil
         }
     end
 
-    def newPolygonSet
+    def newGeometryFeature
         intObj = {
-            exteriorRing: {},
-            exclusionRings: []
+            type: nil,
+            id: nil,
+            bbox: [],
+            geometryObject: {},
+            properties: {}
+        }
+    end
+
+    def newFeatureCollection
+        intObj = {
+            type: nil,
+            bbox: [],
+            features: []
         }
     end
 

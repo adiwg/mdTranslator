@@ -1,0 +1,18 @@
+{
+   "geometryProperties": [
+      {
+         "featureName": [
+            "featureName0",
+            "featureName1"
+         ],
+         "description": "description",
+         "includesData": true,
+         "identifier": [
+            "identifier0",
+            "identifier1"
+         ],
+         "featureScope": "featureScope",
+         "featureAcquisitionMethod": "featureAcquisitionMethod"
+      }
+   ]
+}
