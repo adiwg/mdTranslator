@@ -20,7 +20,7 @@ class TestReaderMdJsonGeographicExtent < MiniTest::Test
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'geoJson.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'geographicExtent.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -28,7 +28,7 @@ class TestReaderMdJsonGeographicExtent < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['geoJson']
+    @@hIn = aIn['geographicExtent']
 
     def test_complete_geographicExtent
 

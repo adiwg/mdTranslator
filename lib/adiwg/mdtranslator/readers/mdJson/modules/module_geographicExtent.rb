@@ -13,10 +13,10 @@ module ADIWG
 
                 module GeographicExtent
 
-                    def self.unpack(aGeoJson, responseObj)
+                    def self.unpack(hGeoJson, responseObj)
 
                         # return nil object if input is empty
-                        if aGeoJson.empty?
+                        if hGeoJson.empty?
                             responseObj[:readerExecutionMessages] << 'GeoJson object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -27,10 +27,14 @@ module ADIWG
                         intGeoExtent = intMetadataClass.newGeographicExtent
 
                         # save native GeoJson
-                        intGeoExtent[:nativeGeoJson] = aGeoJson
+                        if hGeoJson.has_key?('geoJson')
+                            unless hGeoJson['geoJson'].empty?
+                                intGeoExtent[:nativeGeoJson] = hGeoJson['geoJson']
+                            end
+                        end
 
-                        # ingest the GeoJson
-                        aReturn = GeoJson.unpack(aGeoJson, responseObj)
+                        # ingest the GeoJson into mdTranslator
+                        aReturn = GeoJson.unpack(hGeoJson['geoJson'], responseObj)
                         unless aReturn.nil?
                             intGeoExtent[:geographicElements] = aReturn
                         end
