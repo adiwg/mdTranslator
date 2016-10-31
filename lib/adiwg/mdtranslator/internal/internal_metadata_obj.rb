@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-10-30 added newAllocation, newFunding
 #   Stan Smith 2016-10-25 added newFeatureCollection
 #   Stan Smith 2016-10-25 added newGeoJson
 #   Stan Smith 2016-10-25 added newGeometryCollection
@@ -917,6 +918,13 @@ class InternalMetadata
             recipientId: nil,
             matching: false,
             comment: nil
+        }
+    end
+
+    def newFunding
+        intObj = {
+            allocations: [],
+            timePeriod: {}
         }
     end
 

@@ -4,8 +4,6 @@
 # History:
 #   Stan Smith 2016-10-30 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-
 module ADIWG
     module Mdtranslator
         module Readers
@@ -26,18 +24,24 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intAlloc = intMetadataClass.newAllocation
 
-                        # allocation - amount
+                        # allocation - amount (required)
                         if hAlloc.has_key?('amount')
-                            if hAlloc['amount'] != ''
-                                intAlloc[:amount] = hAlloc['amount']
-                            end
+                            intAlloc[:amount] = hAlloc['amount']
+                        end
+                        if intAlloc[:amount].nil? || intAlloc[:amount] == ''
+                            responseObj[:readerExecutionMessages] << 'Allocation attribute is missing amount'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
-                        # allocation - currency
+                        # allocation - currency (required)
                         if hAlloc.has_key?('currency')
-                            if hAlloc['currency'] != ''
-                                intAlloc[:currency] = hAlloc['currency']
-                            end
+                            intAlloc[:currency] = hAlloc['currency']
+                        end
+                        if intAlloc[:currency].nil? || intAlloc[:currency] == ''
+                            responseObj[:readerExecutionMessages] << 'Allocation attribute is missing currency'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # allocation - source
