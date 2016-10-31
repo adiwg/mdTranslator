@@ -34,7 +34,7 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intEntity = intMetadataClass.newEntity
 
-                        # data entity - id (required)
+                        # entity - id (required)
                         if hEntity.has_key?('entityId')
                             intEntity[:entityId] = hEntity['entityId']
                         end
@@ -44,14 +44,14 @@ module ADIWG
                             return nil
                         end
 
-                        # data entity - name
+                        # entity - name
                         if hEntity.has_key?('commonName')
                             if  hEntity['commonName'] != ''
                                 intEntity[:entityName] =  hEntity['commonName']
                             end
                         end
 
-                        # data entity - code (required)
+                        # entity - code (required)
                         if hEntity.has_key?('codeName')
                             intEntity[:entityCode] = hEntity['codeName']
                         end
@@ -61,7 +61,7 @@ module ADIWG
                             return nil
                         end
 
-                        # data entity - alias []
+                        # entity - alias []
                         if hEntity.has_key?('alias')
                             hEntity['alias'].each do |item|
                                 if item != ''
@@ -70,7 +70,7 @@ module ADIWG
                             end
                         end
 
-                        # data entity - definition (required)
+                        # entity - definition (required)
                         if hEntity.has_key?('definition')
                             intEntity[:entityDefinition] = hEntity['definition']
                         end
@@ -89,7 +89,7 @@ module ADIWG
                             end
                         end
 
-                        # data entity - indexes []
+                        # entity - indexes []
                         if hEntity.has_key?('index')
                             hEntity['index'].each do |hIndex|
                                 unless hIndex.empty?
@@ -101,7 +101,7 @@ module ADIWG
                             end
                         end
 
-                        # data entity - attributes []
+                        # entity - attributes []
                         if hEntity.has_key?('attribute')
                             hEntity['attribute'].each do |hAttribute|
                                 unless hAttribute.empty?
@@ -113,7 +113,7 @@ module ADIWG
                             end
                         end
 
-                        # data entity - foreign keys []
+                        # entity - foreign keys []
                         if hEntity.has_key?('foreignKey')
                             hEntity['foreignKey'].each do |hFKey|
                                 unless hFKey.empty?
