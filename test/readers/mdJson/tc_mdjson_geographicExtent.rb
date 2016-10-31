@@ -28,7 +28,7 @@ class TestReaderMdJsonGeographicExtent < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['geographicExtent']
+    @@hIn = aIn['geographicExtent'][0]
 
     def test_complete_geographicExtent
 
