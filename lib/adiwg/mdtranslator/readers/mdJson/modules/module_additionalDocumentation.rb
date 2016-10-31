@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-11-17 refactored for mdJson 2.0
+#   Stan Smith 2016-10-17 refactored for mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2014-12-30 added return if empty input

@@ -909,4 +909,15 @@ class InternalMetadata
         }
     end
 
+    def newAllocation
+        intObj = {
+            amount: nil,
+            currency: nil,
+            sourceId: nil,
+            recipientId: nil,
+            matching: false,
+            comment: nil
+        }
+    end
+
 end
