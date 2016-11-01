@@ -186,16 +186,18 @@ class InternalMetadata
 
     def newMetadataInfo
         intObj = {
-            metadataId: {},
+            metadataIdentifier: {},
             parentMetadata: {},
-            metadataCustodians: [],
-            metadataCreateDate: {},
-            metadataUpdateDate: {},
-            metadataCharacterSet: nil,
-            metadataLocales: [],
-            metadataURI: nil,
+            defaultMetadataLocale: {},
+            otherMetadataLocales: [],
+            resourceScopes: [],
+            metadataContacts: [],
+            metadataCreationDate: {},
+            otherMetadataDates: [],
+            metadataLinkages: [],
+            metadataMaintenance: {},
+            alternateMetadataReferences: [],
             metadataStatus: nil,
-            maintInfo: {},
             extensions: []
         }
     end
