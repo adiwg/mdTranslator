@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-11-02 added newSchema
 #   Stan Smith 2016-10-30 added newAllocation, newFunding
 #   Stan Smith 2016-10-25 added newFeatureCollection
 #   Stan Smith 2016-10-25 added newGeoJson
@@ -113,13 +114,17 @@ class InternalMetadata
 
     def newBase
         intObj = {
-            schema: {
-                name: nil,
-                version: nil
-            },
+            schema: {},
             contacts: [],
             metadata: {},
             dataDictionary: []
+        }
+    end
+
+    def newSchema
+        intObj = {
+            name: nil,
+            version: nil
         }
     end
 

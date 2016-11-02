@@ -1,5 +1,5 @@
 # unpack address
-# Reader - ADIwg JSON V1 to internal data structure
+# Reader - ADIwg JSON to internal data structure
 
 # History:
 # 	Stan Smith 2016-10-03 refactored for mdJson 2.0
@@ -78,6 +78,7 @@ module ADIWG
                         end
 
                         return intAdd
+
                     end
 
                 end
