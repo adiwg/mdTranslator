@@ -1,5 +1,5 @@
 # unpack resource lineage
-# Reader - ADIwg JSON V1 to internal data structure
+# Reader - ADIwg JSON to internal data structure
 
 # History:
 #   Stan Smith 2016-10-17 refactored for mdJson 2.0
@@ -51,7 +51,6 @@ module ADIWG
                                 end
                             end
                         end
-
 
                         # lineage - citation []
                         if hLineage.has_key?('lineageCitation')

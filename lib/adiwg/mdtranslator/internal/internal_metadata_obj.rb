@@ -178,9 +178,11 @@ class InternalMetadata
         intObj = {
             metadataInfo: {},
             resourceInfo: {},
+            lineageInfo: [],
             distributorInfo: [],
             associatedResources: [],
-            additionalDocuments: []
+            additionalDocuments: [],
+            funding: []
         }
     end
 
