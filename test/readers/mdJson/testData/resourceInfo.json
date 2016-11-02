@@ -1,0 +1,238 @@
+{
+   "resourceInfo": [
+      {
+         "resourceType": "resourceType",
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "shortAbstract": "shortAbstract",
+         "purpose": "purpose",
+         "credits": [
+            "credit0",
+            "credit1"
+         ],
+         "timePeriod": {
+            "startDateTime": "2016-11-01"
+         },
+         "status": [
+            "status0",
+            "status1"
+         ],
+         "topicCategory": [
+            "topicCategory0",
+            "topicCategory1"
+         ],
+         "pointOfContact": [
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-14"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "role",
+               "timePeriod": {
+                  "startDateTime": "2016-10-14"
+               },
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            }
+         ],
+         "spatialReferenceSystem": [
+            {
+               "referenceSystemType": "referenceSystemType0"
+            },
+            {
+               "referenceSystemType": "referenceSystemType1"
+            }
+         ],
+         "spatialRepresentationType": [
+            "spatialRepresentationType0",
+            "spatialRepresentationType1"
+         ],
+         "spatialRepresentation": [
+            {
+               "type": "grid",
+               "gridRepresentation": {
+                  "numberOfDimensions": 9,
+                  "cellGeometry": "cellGeometry",
+                  "transformParamsAvailability": true
+               }
+            },
+            {
+               "type": "grid",
+               "gridRepresentation": {
+                  "numberOfDimensions": 9,
+                  "cellGeometry": "cellGeometry",
+                  "transformParamsAvailability": true
+               }
+            }
+         ],
+         "spatialResolution": [
+            {
+               "type": "scaleFactor",
+               "scaleFactor": 25000
+            },
+            {
+               "type": "scaleFactor",
+               "scaleFactor": 25000
+            }
+         ],
+         "temporalResolution": [
+            {
+               "years": 1
+            },
+            {
+               "seconds": 1
+            }
+         ],
+         "extent": [
+            {
+               "description": "description0"
+            },
+            {
+               "description": "description1"
+            }
+         ],
+         "contentInfo": [
+            {
+               "coverageName": "coverageName0",
+               "coverageDescription": "coverageDescription0"
+            },
+            {
+               "coverageName": "coverageName1",
+               "coverageDescription": "coverageDescription1"
+            }
+         ],
+         "taxonomy": {
+            "classificationSystem": [
+               {
+                  "title": "title"
+               }
+            ],
+            "identificationReference": [
+               {
+                  "title": "title"
+               }
+            ],
+            "identificationProcedure": "identificationProcedure",
+            "taxonomicClassification": [
+               {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName"
+               },
+               {
+                  "taxonomicRank": "taxonomicRank1",
+                  "latinName": "latinName"
+               }
+            ]
+         },
+         "graphicOverview": [
+            {
+               "fileName": "fileName0"
+            },
+            {
+               "fileName": "fileName1"
+            }
+         ],
+         "resourceFormat": [
+            {
+               "formatSpecification": {
+                  "title": "title0"
+               }
+            },
+            {
+               "formatSpecification": {
+                  "title": "title1"
+               }
+            }
+         ],
+         "keyword": [
+            {
+               "keyword": [
+                  "keyword0"
+               ]
+            },
+            {
+               "keyword": [
+                  "keyword1"
+               ]
+            }
+         ],
+         "resourceUsage": [
+            {
+               "specificUsage": "specificUsage",
+               "userDeterminedLimitation": "userDeterminedLimitation",
+               "limitationResponse": [
+                  "limitationResponse0",
+                  "limitationResponse1"
+               ]
+            },
+            {
+               "specificUsage": "specificUsage",
+               "userDeterminedLimitation": "userDeterminedLimitation",
+               "limitationResponse": [
+                  "limitationResponse0",
+                  "limitationResponse1"
+               ]
+            }
+         ],
+         "constraint": [
+            {
+               "constraint": [
+                  {
+                     "useLimitation": [
+                        "useLimitation0"
+                     ]
+                  }
+               ]
+            },
+            {
+               "constraint": [
+                  {
+                     "useLimitation": [
+                        "useLimitation1"
+                     ]
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "LanguageCode",
+            "country": "CountryCode",
+            "characterSet": "MD_CharacterSetCode"
+         },
+         "otherResourceLocale": [
+            {
+               "language": "LanguageCode0",
+               "country": "CountryCode0",
+               "characterSet": "MD_CharacterSetCode0"
+            },
+            {
+               "language": "LanguageCode1",
+               "country": "CountryCode1",
+               "characterSet": "MD_CharacterSetCode1"
+            }
+         ],
+         "resourceMaintenance": [
+            {
+               "frequency": "frequency0"
+            },
+            {
+               "frequency": "frequency1"
+            }
+         ],
+         "environmentDescription": "environmentDescription",
+         "supplementalInfo": "supplementalInfo"
+      }
+   ]
+}

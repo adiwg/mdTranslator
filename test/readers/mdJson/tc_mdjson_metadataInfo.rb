@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_citation
+# reader / mdJson / module_metadataInfo
 
 # History:
 #   Stan Smith 2016-10-31 original script
