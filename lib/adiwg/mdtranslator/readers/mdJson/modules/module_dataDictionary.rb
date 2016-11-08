@@ -32,6 +32,18 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intDataD = intMetadataClass.newDataDictionary
 
+                        # dictionary - resource type (required)
+                        if hDictionary.has_key?('resourceType')
+                            if hDictionary['resourceType'] != ''
+                                intDataD[:resourceType] = hDictionary['resourceType']
+                            end
+                        end
+                        if intDataD[:resourceType].nil?
+                            responseObj[:readerExecutionMessages] << 'Data Dictionary resource type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
+
                         # dictionary - citation {citation} (required)
                         if hDictionary.has_key?('citation')
                             unless  hDictionary['citation'].empty?
@@ -43,18 +55,6 @@ module ADIWG
                         end
                         if intDataD[:citation].empty?
                             responseObj[:readerExecutionMessages] << 'Data Dictionary citation is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
-
-                        # dictionary - resource type (required)
-                        if hDictionary.has_key?('resourceType')
-                            if hDictionary['resourceType'] != ''
-                                intDataD[:resourceType] = hDictionary['resourceType']
-                            end
-                        end
-                        if intDataD[:resourceType].nil?
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary resource type is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

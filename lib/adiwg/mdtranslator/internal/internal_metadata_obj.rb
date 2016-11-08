@@ -117,7 +117,7 @@ class InternalMetadata
             schema: {},
             contacts: [],
             metadata: {},
-            dataDictionary: []
+            dataDictionaries: []
         }
     end
 

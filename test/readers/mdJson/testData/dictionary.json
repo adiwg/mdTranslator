@@ -1,10 +1,10 @@
 {
    "dataDictionary": [
       {
+         "resourceType": "resourceType",
          "citation": {
             "title": "title"
          },
-         "resourceType": "resourceType",
          "description": "description",
          "language": "language",
          "dictionaryIncludedWithResource": true,

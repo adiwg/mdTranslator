@@ -120,6 +120,7 @@ module ADIWG
                         end
 
                         return intMetadata
+
                     end
 
                 end
