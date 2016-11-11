@@ -2,6 +2,7 @@
 # reader / mdJson / module_geographicExtent
 
 # History:
+#   Stan Smith 2016-11-10 added computedBbox
 #   Stan Smith 2016-10-26 original script
 
 require 'minitest/autorun'
@@ -38,6 +39,7 @@ class TestReaderMdJsonGeographicExtent < MiniTest::Test
 
         refute_empty metadata[:nativeGeoJson]
         refute_empty metadata[:geographicElements]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

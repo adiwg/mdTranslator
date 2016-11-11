@@ -2,6 +2,8 @@
 
 # History:
 # version 2
+#   Stan Smith 2016-11-10 added computedBbox to newGeographicExtent, newGeometryCollection
+#   Stan Smith 2016-11-10 added computedBbox to newGeometryFeature, newFeatureCollection
 #   Stan Smith 2016-11-02 added newSchema
 #   Stan Smith 2016-10-30 added newAllocation, newFunding
 #   Stan Smith 2016-10-25 added newFeatureCollection
@@ -461,7 +463,8 @@ class InternalMetadata
     def newGeographicExtent
         intObj = {
             nativeGeoJson: [],
-            geographicElements: []
+            geographicElements: [],
+            computedBbox: []
         }
     end
 
@@ -476,7 +479,8 @@ class InternalMetadata
         intObj = {
             type: nil,
             bbox: [],
-            geometryObjects: []
+            geometryObjects: [],
+            computedBbox: []
         }
     end
 
@@ -497,7 +501,8 @@ class InternalMetadata
             id: nil,
             bbox: [],
             geometryObject: {},
-            properties: {}
+            properties: {},
+            computedBbox: []
         }
     end
 
@@ -505,7 +510,8 @@ class InternalMetadata
         intObj = {
             type: nil,
             bbox: [],
-            features: []
+            features: [],
+            computedBbox: []
         }
     end
 

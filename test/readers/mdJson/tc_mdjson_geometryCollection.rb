@@ -2,6 +2,7 @@
 # reader / mdJson / module_geometryCollection
 
 # History:
+#   Stan Smith 2016-11-11 added computedBbox computation
 #   Stan Smith 2016-10-24 original script
 
 require 'minitest/autorun'
@@ -39,6 +40,7 @@ class TestReaderMdJsonGeometryCollection < MiniTest::Test
         assert_equal 'GeometryCollection', metadata[:type]
         refute_empty metadata[:bbox]
         refute_empty metadata[:geometryObjects]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -80,6 +82,7 @@ class TestReaderMdJsonGeometryCollection < MiniTest::Test
         assert_equal 'GeometryCollection', metadata[:type]
         refute_empty metadata[:bbox]
         assert_empty metadata[:geometryObjects]
+        assert_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -108,6 +111,7 @@ class TestReaderMdJsonGeometryCollection < MiniTest::Test
         assert_equal 'GeometryCollection', metadata[:type]
         assert_empty metadata[:bbox]
         refute_empty metadata[:geometryObjects]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -123,6 +127,7 @@ class TestReaderMdJsonGeometryCollection < MiniTest::Test
         assert_equal 'GeometryCollection', metadata[:type]
         assert_empty metadata[:bbox]
         refute_empty metadata[:geometryObjects]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

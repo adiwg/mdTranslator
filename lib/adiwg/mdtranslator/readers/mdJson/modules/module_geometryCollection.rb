@@ -2,9 +2,11 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#   Stan Smith 2016-11-11 added computedBbox computation
 #   Stan Smith 2016-10-25 original script
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoJson')
+require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG
     module Mdtranslator
@@ -63,6 +65,11 @@ module ADIWG
                             responseObj[:readerExecutionMessages] << 'Geometry Collection is missing geometries'
                             responseObj[:readerExecutionPass] = false
                             return nil
+                        end
+
+                        # compute bbox for geometry collection
+                        unless intGeoCol[:geometryObjects].empty?
+                            intGeoCol[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoCol[:geometryObjects])
                         end
 
                         return intGeoCol

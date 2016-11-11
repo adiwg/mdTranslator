@@ -41,6 +41,7 @@ class TestReaderMdJsonGeometryFeature < MiniTest::Test
         refute_empty metadata[:bbox]
         refute_empty metadata[:geometryObject]
         refute_empty metadata[:properties]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -84,6 +85,7 @@ class TestReaderMdJsonGeometryFeature < MiniTest::Test
         refute_empty metadata[:bbox]
         assert_empty metadata[:geometryObject]
         refute_empty metadata[:properties]
+        assert_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -116,6 +118,7 @@ class TestReaderMdJsonGeometryFeature < MiniTest::Test
         assert_empty metadata[:bbox]
         refute_empty metadata[:geometryObject]
         assert_empty metadata[:properties]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -135,6 +138,7 @@ class TestReaderMdJsonGeometryFeature < MiniTest::Test
         assert_empty metadata[:bbox]
         refute_empty metadata[:geometryObject]
         assert_empty metadata[:properties]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

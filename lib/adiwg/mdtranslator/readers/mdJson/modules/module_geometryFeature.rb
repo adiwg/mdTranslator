@@ -2,11 +2,13 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#   Stan Smith 2016-11-10 added computedBbox computation
 #   Stan Smith 2016-10-25 original script
 
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryObject')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryProperties')
 require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryCollection')
+require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG
     module Mdtranslator
@@ -88,6 +90,11 @@ module ADIWG
                                     intFeature[:properties] = hReturn
                                 end
                             end
+                        end
+
+                        # compute bbox for extent
+                        unless intFeature[:geometryObject].empty?
+                            intFeature[:computedBbox] = AdiwgCoordinates.computeBbox([intFeature[:geometryObject]])
                         end
 
                         return intFeature
