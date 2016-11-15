@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2016-10-19 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_vectorObject')
+require_relative 'module_vectorObject'
 
 module ADIWG
     module Mdtranslator

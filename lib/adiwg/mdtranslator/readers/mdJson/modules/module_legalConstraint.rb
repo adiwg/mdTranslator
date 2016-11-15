@@ -10,7 +10,7 @@
 # 	Stan Smith 2013-11-27 modified to process a single legal constraint
 # 	Stan Smith 2013-11-14 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_constraint')
+require_relative 'module_constraint'
 
 module ADIWG
     module Mdtranslator

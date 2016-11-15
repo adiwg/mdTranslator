@@ -4,7 +4,7 @@
 # History:
 #   Stan Smith 2016-10-24 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
+require_relative 'module_spatialReference'
 
 module ADIWG
     module Mdtranslator

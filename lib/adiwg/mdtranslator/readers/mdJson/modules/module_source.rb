@@ -9,10 +9,10 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 # 	Stan Smith 2013-11-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_processStep')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialResolution')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
+require_relative 'module_citation'
+require_relative 'module_processStep'
+require_relative 'module_spatialResolution'
+require_relative 'module_spatialReference'
 
 module ADIWG
     module Mdtranslator

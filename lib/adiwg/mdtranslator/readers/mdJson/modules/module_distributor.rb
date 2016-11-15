@@ -4,9 +4,9 @@
 # History:
 #   Stan Smith 2016-10-21 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_orderProcess')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_transferOption')
+require_relative 'module_responsibleParty'
+require_relative 'module_orderProcess'
+require_relative 'module_transferOption'
 
 module ADIWG
     module Mdtranslator

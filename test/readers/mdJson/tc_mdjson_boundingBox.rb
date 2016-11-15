@@ -8,7 +8,6 @@ require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/internal/module_coordinates'
-require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_geographicExtent'
 
 class TestReaderMdJsonCoordinates < MiniTest::Test

@@ -4,10 +4,10 @@
 # History:
 #   Stan Smith 2016-10-25 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryObject')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryCollection')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryFeature')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_featureCollection')
+require_relative 'module_geometryObject'
+require_relative 'module_geometryCollection'
+require_relative 'module_geometryFeature'
+require_relative 'module_featureCollection'
 
 module ADIWG
     module Mdtranslator

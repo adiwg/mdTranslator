@@ -5,9 +5,9 @@
 #   Stan Smith 2016-11-10 added computedBbox computation
 #   Stan Smith 2016-10-25 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryObject')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryProperties')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geometryCollection')
+require_relative 'module_geometryObject'
+require_relative 'module_geometryProperties'
+require_relative 'module_geometryCollection'
 require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG

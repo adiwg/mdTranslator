@@ -4,9 +4,9 @@
 # History:
 #   Stan Smith 2016-10-30 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geographicExtent')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_temporalExtent')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_verticalExtent')
+require_relative 'module_geographicExtent'
+require_relative 'module_temporalExtent'
+require_relative 'module_verticalExtent'
 
 module ADIWG
     module Mdtranslator

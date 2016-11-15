@@ -14,12 +14,12 @@
 #   Stan Smith 2014-04-25 modified to support json schema 0.3.0
 # 	Stan Smith 2013-08-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_date')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_identifier')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_series')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_graphic')
+require_relative 'module_date'
+require_relative 'module_responsibleParty'
+require_relative 'module_onlineResource'
+require_relative 'module_identifier'
+require_relative 'module_series'
+require_relative 'module_graphic'
 
 module ADIWG
     module Mdtranslator

@@ -13,7 +13,7 @@
 # 	Stan Smith 2013-11-27 modified to process single keyword collection
 # 	Stan Smith 2013-09-18 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
+require_relative 'module_citation'
 
 module ADIWG
     module Mdtranslator

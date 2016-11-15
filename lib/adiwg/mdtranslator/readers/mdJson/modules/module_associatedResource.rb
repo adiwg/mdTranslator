@@ -15,7 +15,7 @@
 # 	Stan Smith 2014-05-28 added resource identifier section
 # 	Stan Smith 2014-05-02 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
+require_relative 'module_citation'
 
 module ADIWG
     module Mdtranslator

@@ -10,9 +10,9 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 # 	Stan Smith 2013-12-01 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_entityIndex')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_entityAttribute')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_entityForeignKey')
+require_relative 'module_entityIndex'
+require_relative 'module_entityAttribute'
+require_relative 'module_entityForeignKey'
 
 module ADIWG
     module Mdtranslator

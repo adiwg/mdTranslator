@@ -12,8 +12,8 @@
 # 	Stan Smith 2013-11-27 modified to process single browse graphic rather than array
 # 	Stan Smith 2013-10-17 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_constraints')
+require_relative 'module_onlineResource'
+require_relative 'module_constraints'
 
 module ADIWG
     module Mdtranslator

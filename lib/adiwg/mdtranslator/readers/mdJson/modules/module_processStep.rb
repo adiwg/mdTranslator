@@ -8,9 +8,9 @@
 #   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 # 	Stan Smith 2013-11-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
+require_relative 'module_timePeriod'
+require_relative 'module_responsibleParty'
+require_relative 'module_citation'
 
 module ADIWG
     module Mdtranslator

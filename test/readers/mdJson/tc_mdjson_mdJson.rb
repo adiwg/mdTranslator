@@ -7,7 +7,6 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_mdJson'
 
 # set contacts to be used by this test
@@ -48,7 +47,7 @@ class TestReaderMdJsonMdJson < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['mdJson'][0]
+    @@hIn = aIn['mdJson']
 
     def test_complete_mdJson_object
 

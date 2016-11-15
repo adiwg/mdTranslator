@@ -4,14 +4,14 @@
 # History:
 #   Stan Smith 2016-10-31 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_identifier')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_scope')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_date')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_onlineResource')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_maintenance')
+require_relative 'module_identifier'
+require_relative 'module_citation'
+require_relative 'module_locale'
+require_relative 'module_scope'
+require_relative 'module_responsibleParty'
+require_relative 'module_date'
+require_relative 'module_onlineResource'
+require_relative 'module_maintenance'
 
 module ADIWG
     module Mdtranslator

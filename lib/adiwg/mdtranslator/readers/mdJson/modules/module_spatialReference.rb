@@ -8,7 +8,7 @@
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-09-03 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_identifier')
+require_relative 'module_identifier'
 
 module ADIWG
     module Mdtranslator

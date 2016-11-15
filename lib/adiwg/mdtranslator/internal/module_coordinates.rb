@@ -75,7 +75,7 @@ module AdiwgCoordinates
         east = aEastings.max
         west = aEastings.min
 
-        # make all eastings same negative if geometry spans the antimeridian
+        # make all eastings negative if geometry spans the antimeridian
         if (east - west).abs > 180
             aEastings.each_with_index do |element, index|
                 if element > 0

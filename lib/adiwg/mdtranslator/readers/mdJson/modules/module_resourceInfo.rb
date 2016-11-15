@@ -4,23 +4,23 @@
 # History:
 #   Stan Smith 2016-11-01 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_citation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialReference')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialRepresentation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_spatialResolution')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_duration')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_extent')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_contentInformation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_taxonomy')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_graphic')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_format')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_keyword')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_resourceUsage')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_constraints')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_locale')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_maintenance')
+require_relative 'module_citation'
+require_relative 'module_timePeriod'
+require_relative 'module_responsibleParty'
+require_relative 'module_spatialReference'
+require_relative 'module_spatialRepresentation'
+require_relative 'module_spatialResolution'
+require_relative 'module_duration'
+require_relative 'module_extent'
+require_relative 'module_contentInformation'
+require_relative 'module_taxonomy'
+require_relative 'module_graphic'
+require_relative 'module_format'
+require_relative 'module_keyword'
+require_relative 'module_resourceUsage'
+require_relative 'module_constraints'
+require_relative 'module_locale'
+require_relative 'module_maintenance'
 
 module ADIWG
     module Mdtranslator

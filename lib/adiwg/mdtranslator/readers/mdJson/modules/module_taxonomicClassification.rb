@@ -4,7 +4,7 @@
 # History:
 #   Stan Smith 2016-10-22 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_taxonomicClassification')
+require_relative 'module_taxonomicClassification'
 
 module ADIWG
     module Mdtranslator

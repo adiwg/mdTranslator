@@ -36,7 +36,7 @@ module ADIWG
 
                         # party - contact index, contact type (computed)
                         # return nil if contact ID does not exist in contact array
-                        contact = ADIWG::Mdtranslator::Readers::MdJson.findContact(hParty['contactId'])
+                        contact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(hParty['contactId'])
                         if contact[0].nil?
                             responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{hParty['contactId']} not found"
                             responseObj[:readerExecutionPass] = false
@@ -51,7 +51,7 @@ module ADIWG
                         if intParty[:contactType] == 'organization'
                             if hParty.has_key?('organizationMembers')
                                 hParty['organizationMembers'].each do |contactId|
-                                    contact = ADIWG::Mdtranslator::Readers::MdJson.findContact(contactId)
+                                    contact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(contactId)
                                     if contact[0].nil?
                                         responseObj[:readerExecutionMessages] << "Responsible Party organization member #{contactId} not found"
                                     else

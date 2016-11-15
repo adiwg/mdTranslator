@@ -5,7 +5,7 @@
 #   Stan Smith 2016-11-11 added computedBbox computation
 #   Stan Smith 2016-10-25 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_geoJson')
+require_relative 'module_geoJson'
 require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG

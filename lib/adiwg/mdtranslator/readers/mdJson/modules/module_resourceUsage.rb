@@ -11,7 +11,7 @@
 # 	Stan Smith 2013-11-27 modified to process a single resource usage
 # 	Stan Smith 2013-11-25 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_responsibleParty')
+require_relative 'module_responsibleParty'
 
 module ADIWG
     module Mdtranslator

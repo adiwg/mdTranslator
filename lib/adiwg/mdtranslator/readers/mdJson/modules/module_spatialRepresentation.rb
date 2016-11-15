@@ -4,11 +4,10 @@
 # History:
 #   Stan Smith 2016-10-19 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_gridRepresentation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_vectorRepresentation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_georectifiedRepresentation')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_georeferencableRepresentation')
-
+require_relative 'module_gridRepresentation'
+require_relative 'module_vectorRepresentation'
+require_relative 'module_georectifiedRepresentation'
+require_relative 'module_georeferencableRepresentation'
 
 module ADIWG
     module Mdtranslator

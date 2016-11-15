@@ -4,10 +4,11 @@
 # History:
 #   Stan Smith 2016-11-07 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_schema')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_contact')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_metadata')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_dataDictionary')
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_schema'
+require_relative 'module_contact'
+require_relative 'module_metadata'
+require_relative 'module_dataDictionary'
 
 module ADIWG
     module Mdtranslator
@@ -27,7 +28,7 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intMdJson = intMetadataClass.newBase
+                        intObj = intMetadataClass.newBase
 
                         # mdJson - schema {schema} (required)
                         if hMdJson.has_key?('schema')
@@ -35,11 +36,11 @@ module ADIWG
                             unless hObject.empty?
                                 hReturn = Schema.unpack(hObject, responseObj)
                                 unless hReturn.nil?
-                                    intMdJson[:schema] = hReturn
+                                    intObj[:schema] = hReturn
                                 end
                             end
                         end
-                        if intMdJson[:schema].empty?
+                        if intObj[:schema].empty?
                             responseObj[:readerExecutionMessages] << 'mdJson object is missing schema'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -51,11 +52,12 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = Contact.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intMdJson[:contacts] << hReturn
+                                    intObj[:contacts] << hReturn
+                                    @contacts = intObj[:contacts]
                                 end
                             end
                         end
-                        if intMdJson[:contacts].empty?
+                        if intObj[:contacts].empty?
                             responseObj[:readerExecutionMessages] << 'mdJson object is missing contact'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -67,11 +69,11 @@ module ADIWG
                             unless hObject.empty?
                                 hReturn = Metadata.unpack(hObject, responseObj)
                                 unless hReturn.nil?
-                                    intMdJson[:metadata] = hReturn
+                                    intObj[:metadata] = hReturn
                                 end
                             end
                         end
-                        if intMdJson[:metadata].empty?
+                        if intObj[:metadata].empty?
                             responseObj[:readerExecutionMessages] << 'mdJson object is missing metadata'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -83,12 +85,34 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = DataDictionary.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intMdJson[:dataDictionaries] << hReturn
+                                    intObj[:dataDictionaries] << hReturn
                                 end
                             end
                         end
 
-                        return intMdJson
+                        return intObj
+
+                    end
+
+                    # find the array pointer for a contact
+                    def self.findContact(contactId)
+
+                        contactIndex = nil
+                        contactType = nil
+                        i = 0
+                        @contacts.each do |contact|
+                            if contact[:contactId] == contactId
+                                contactIndex = i
+                                if contact[:isOrganization]
+                                    contactType = 'organization'
+                                else
+                                    contactType = 'individual'
+                                end
+                            end
+                            i += 1
+                        end
+
+                        return contactIndex, contactType
 
                     end
 

@@ -13,8 +13,8 @@
 #   ... removed resource IDs associated with contact
 # 	Stan Smith 2013-08-26 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_timePeriod')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_party')
+require_relative 'module_timePeriod'
+require_relative 'module_party'
 
 module ADIWG
     module Mdtranslator

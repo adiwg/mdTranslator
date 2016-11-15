@@ -10,6 +10,8 @@ module ADIWG
     end
 end
 
+# version 2 history
+
 # version 1 history
 # 1.0.0rc1 2015-02-27 schema 1.0 support
 # 1.1.0 2015-04-13 added html writer

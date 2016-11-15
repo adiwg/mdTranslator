@@ -4,9 +4,9 @@
 # History:
 # 	Stan Smith 2016-10-15 original script
 
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_constraint')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_legalConstraint')
-require ADIWG::Mdtranslator::Readers::MdJson.readerModule('module_securityConstraint')
+require_relative 'module_constraint'
+require_relative 'module_legalConstraint'
+require_relative 'module_securityConstraint'
 
 module ADIWG
     module Mdtranslator

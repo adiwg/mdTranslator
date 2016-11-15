@@ -8,7 +8,6 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/mdJson_reader'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_domainItem'
 
 class TestReaderMdJsonDomainItem < MiniTest::Test
