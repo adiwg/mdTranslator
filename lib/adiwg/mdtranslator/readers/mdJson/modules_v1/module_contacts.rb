@@ -118,7 +118,7 @@ module ADIWG
                         # address
                         if hContact.has_key?('address')
                             conAddress = hContact['address']
-                            hAddress = $ReaderNS::Address.unpack(conAddress, responseObj)
+                            hAddress = Address.unpack(conAddress, responseObj)
                             unless hAddress.nil?
                                 intCont[:address] = hAddress
                             end
