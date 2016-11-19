@@ -20,7 +20,7 @@ class TestWriter191152ResponsibleParty < MiniTest::Test
     file = File.new(fname)
     @@iso_2_xml = Document.new(file)
 
-     def test_19115_2_responsibleParty
+    def test_19115_2_responsibleParty
 
         aRefXML = []
         XPath.each(@@iso_2_xml, '//gmd:contact') {|e| aRefXML << e}
@@ -45,6 +45,6 @@ class TestWriter191152ResponsibleParty < MiniTest::Test
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
         }
 
-     end
+    end
 
 end
