@@ -21,7 +21,7 @@ class TestMdTranslator < MiniTest::Test
     def test_mdtranslator_minimal_params
 
         metadata = ADIWG::Mdtranslator.translate(
-        file: @@jsonObj
+            file: @@jsonObj
         )
 
         refute_empty metadata
