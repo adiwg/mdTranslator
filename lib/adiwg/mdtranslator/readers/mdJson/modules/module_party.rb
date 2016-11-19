@@ -36,14 +36,14 @@ module ADIWG
 
                         # party - contact index, contact type (computed)
                         # return nil if contact ID does not exist in contact array
-                        contact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(hParty['contactId'])
-                        if contact[0].nil?
+                        hContact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(hParty['contactId'])
+                        if hContact[0].nil?
                             responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{hParty['contactId']} not found"
                             responseObj[:readerExecutionPass] = false
                             return nil
                         else
-                            intParty[:contactIndex] = contact[0]
-                            intParty[:contactType] = contact[1]
+                            intParty[:contactIndex] = hContact[0]
+                            intParty[:contactType] = hContact[1]
                         end
 
                         # party - organization members []
@@ -51,14 +51,14 @@ module ADIWG
                         if intParty[:contactType] == 'organization'
                             if hParty.has_key?('organizationMembers')
                                 hParty['organizationMembers'].each do |contactId|
-                                    contact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(contactId)
-                                    if contact[0].nil?
+                                    hContact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(contactId)
+                                    if hContact[0].nil?
                                         responseObj[:readerExecutionMessages] << "Responsible Party organization member #{contactId} not found"
                                     else
                                         newParty = intMetadataClass.newParty
                                         newParty[:contactId] = contactId
-                                        newParty[:contactIndex] = contact[0]
-                                        newParty[:contactType] = contact[1]
+                                        newParty[:contactIndex] = hContact[0]
+                                        newParty[:contactType] = hContact[1]
                                         intParty[:organizationMembers] << newParty
                                     end
                                 end
