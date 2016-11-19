@@ -15,7 +15,7 @@ include REXML
 
 class TestWriter191152ResponsibleParty < MiniTest::Test
 
-    # read the ISO 19115-2 reference file
+    # read the ISO 19115-2 XML reference file
     fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_responsibleParty.xml')
     file = File.new(fname)
     @@iso_2_xml = Document.new(file)
