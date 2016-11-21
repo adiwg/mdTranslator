@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmi:MI_Metadata xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
+                 xmlns:gss="http://www.isotc211.org/2005/gss"
+                 xmlns:gst="http://www.isotc211.org/2005/gst"
+                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                 xmlns:gfc="http://www.isotc211.org/2005/gfc"
+                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmi
+                 C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
+
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone tests</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>single service: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:voice>
+                <gco:CharacterString>multiple services: 222-222-2222</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile>
+                <gco:CharacterString>multiple services: 222-222-2222</gco:CharacterString>
+              </gmd:facsimile>
+              <gmd:facsimile>
+                <gco:CharacterString>alternate value facsimile: 333-333-3333</gco:CharacterString>
+              </gmd:facsimile>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - empty service</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>empty service: 555-555-5555</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - empty array</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone/>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions>
+            <gco:CharacterString>test empty phone</gco:CharacterString>
+          </gmd:contactInstructions>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - missing key</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone/>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions>
+            <gco:CharacterString>test missing phone:</gco:CharacterString>
+          </gmd:contactInstructions>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - invalid service</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice/>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - empty phone name</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>777-777-7777</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>phone - missing phone name</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>888-888-8888</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address/>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+
+</gmi:MI_Metadata>
