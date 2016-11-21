@@ -1,11 +1,8 @@
 # MdTranslator - minitest of
 # adiwg / mdtranslator / writers / iso19115_2 / classes / class_responsibleParty
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_phone
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_onlineResource
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_contact
 
 # History:
-#   Stan Smith 2016-11-16 original script
+#   Stan Smith 2016-11-21 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -26,7 +23,7 @@ class TestWriter191152ResponsibleParty < MiniTest::Test
         XPath.each(@@iso_2_xml, '//gmd:contact') {|e| aRefXML << e}
 
         # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', 'mdJson_responsibleParty.json')
+        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_responsibleParty.json')
         file = File.open(fname, 'r')
         mdJson = file.read
         file.close

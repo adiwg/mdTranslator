@@ -87,7 +87,9 @@ module ADIWG
                                     hContact[:addresses].empty? &&
                                     hContact[:onlineResources].empty? &&
                                     hContact[:hoursOfService].empty? &&
-                                    hContact[:contactInstructions].nil?)
+                                    (hContact[:contactInstructions].nil? ||
+                                        hContact[:contactInstructions] == '')
+                                )
                                     @xml.tag!('gmd:contactInfo') do
                                         contactClass.writeXML(hContact)
                                     end
