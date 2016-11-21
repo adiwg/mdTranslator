@@ -23,7 +23,7 @@ class TestWriter191152Phone < MiniTest::Test
         XPath.each(@@iso_2_xml, '//gmd:contact') {|e| aRefXML << e}
 
         # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', 'mdJson_phone.json')
+        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_phone.json')
         file = File.open(fname, 'r')
         mdJson = file.read
         file.close
