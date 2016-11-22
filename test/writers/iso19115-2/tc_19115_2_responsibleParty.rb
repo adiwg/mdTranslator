@@ -17,19 +17,19 @@ class TestWriter191152ResponsibleParty < MiniTest::Test
     file = File.new(fname)
     @@iso_2_xml = Document.new(file)
 
+    # read the mdJson 2.0 file
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_responsibleParty.json')
+    file = File.open(fname, 'r')
+    @@mdJson = file.read
+    file.close
+
     def test_19115_2_responsibleParty
 
         aRefXML = []
         XPath.each(@@iso_2_xml, '//gmd:contact') {|e| aRefXML << e}
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_responsibleParty.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
-
         hResponseObj = ADIWG::Mdtranslator.translate(
-            file: mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]

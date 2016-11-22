@@ -17,19 +17,19 @@ class TestWriter191152Scope < MiniTest::Test
     file = File.new(fname)
     @@iso_2_xml = Document.new(file)
 
+    # read the mdJson 2.0 file
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
+    file = File.open(fname, 'r')
+    @@mdJson = file.read
+    file.close
+
     def test_19115_2_hierarchyLevel
 
         aRefXML = []
         XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
-
         hResponseObj = ADIWG::Mdtranslator.translate(
-            file: mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]
@@ -49,14 +49,8 @@ class TestWriter191152Scope < MiniTest::Test
         aRefXML = []
         XPath.each(@@iso_2_xml, '//gmd:hierarchyLevelName') {|e| aRefXML << e}
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
-
         hResponseObj = ADIWG::Mdtranslator.translate(
-            file: mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]
@@ -76,13 +70,8 @@ class TestWriter191152Scope < MiniTest::Test
         refXML1 = '<gmd:hierarchyLevel/>'
         refXML2 = '<gmd:hierarchyLevelName/>'
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
         # remove element metadataIdentifier
-        hJson = JSON.parse(mdJson)
+        hJson = JSON.parse(@@mdJson)
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'] = []
         jsonIn = hJson.to_json
 
@@ -106,13 +95,8 @@ class TestWriter191152Scope < MiniTest::Test
         refXML1 = '<gmd:hierarchyLevel/>'
         refXML2 = '<gmd:hierarchyLevelName/>'
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
         # remove element metadataIdentifier
-        hJson = JSON.parse(mdJson)
+        hJson = JSON.parse(@@mdJson)
         hJson['mdJson']['metadata']['metadataInfo'].delete('resourceScope')
         jsonIn = hJson.to_json
 
@@ -137,15 +121,9 @@ class TestWriter191152Scope < MiniTest::Test
         XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
         refXML2 = '<gmd:hierarchyLevelName/>'
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
-
         # empty scopeDescription
         # delete timePeriod
-        hJson = JSON.parse(mdJson)
+        hJson = JSON.parse(@@mdJson)
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0]['scopeDescription'] = []
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1]['scopeDescription'] = []
@@ -176,15 +154,9 @@ class TestWriter191152Scope < MiniTest::Test
         XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
         refXML2 = '<gmd:hierarchyLevelName/>'
 
-        # read the mdJson 2.0 file
-        fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
-        file = File.open(fname, 'r')
-        mdJson = file.read
-        file.close
-
         # delete scopeDescription
         # delete timePeriod
-        hJson = JSON.parse(mdJson)
+        hJson = JSON.parse(@@mdJson)
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('scopeDescription')
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
         hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1].delete('scopeDescription')
