@@ -13,42 +13,20 @@
     ],
     "metadata": {
       "metadataInfo": {
-        "resourceScope": [
+        "defaultMetadataLocale": {
+          "language": "eng",
+          "country": "USA",
+          "characterSet": "UTF-8"
+        },
+        "otherMetadataLocale": [
           {
-            "scopeCode": "project",
-            "scopeDescription": [
-              {
-                "type": "dataset",
-                "description": "description"
-              },
-              {
-                "type": "attribute",
-                "description": "description"
-              }
-            ],
-            "timePeriod": [
-              {
-                "startDateTime": "2016-10-14"
-              }
-            ]
+            "language": "spa",
+            "country": "",
+            "characterSet": "UTF-16"
           },
           {
-            "scopeCode": "repository",
-            "scopeDescription": [
-              {
-                "type": "feature",
-                "description": "description"
-              },
-              {
-                "type": "other",
-                "description": "description"
-              }
-            ],
-            "timePeriod": [
-              {
-                "startDateTime": "2016-11-21"
-              }
-            ]
+            "language": "tai",
+            "characterSet": "TIS-620"
           }
         ],
         "metadataContact": [

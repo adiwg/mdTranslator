@@ -2,6 +2,7 @@
 # writer output in XML
 
 # History:
+#   Stan Smith 2016-11-21 refactored for mdTranslator/mdJson 2.0
 # 	Stan Smith 2015-07-28 original script.
 
 require_relative 'class_codelist'
@@ -25,34 +26,37 @@ module ADIWG
 
                         @xml.tag!('gmd:PT_Locale') do
 
-                            # locale - language
+                            # locale - language (required)
                             s = hLocale[:languageCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:languageCode') do
                                     codelistClass.writeXML('iso_language',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:languageCode')
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:languageCode', {'gco:nilReason' => 'missing'})
                             end
 
                             # locale - country
                             s = hLocale[:countryCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:country') do
                                     codelistClass.writeXML('iso_country',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @responseObj[:writerShowTags]
                                 @xml.tag!('gmd:country')
                             end
 
-                            # locale - character encoding
+                            # locale - character encoding (required)
                             s = hLocale[:characterEncoding]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:characterEncoding') do
                                     codelistClass.writeXML('iso_characterSet',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:characterEncoding')
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:characterEncoding', {'gco:nilReason' => 'missing'})
                             end
 
                         end
