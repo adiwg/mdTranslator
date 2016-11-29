@@ -24,11 +24,7 @@
          "peakResponse": 9.9,
          "toneGradations": 999,
          "bandBoundaryDefinition": "bandBoundaryDefinition",
-         "nominalSpatialResolution": {
-            "type": "distance",
-            "value": 9.9,
-            "unitOfMeasure": "unitOfMeasure"
-         },
+         "nominalSpatialResolution": 9.9,
          "transferFunctionType": "transferFunctionType",
          "transmittedPolarization": "transmittedPolarization",
          "detectedPolarization": "detectedPolarization"

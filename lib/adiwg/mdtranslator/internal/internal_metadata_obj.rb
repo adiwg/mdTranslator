@@ -862,7 +862,7 @@ class InternalMetadata
             peakResponse: nil,
             toneGradations: nil,
             bandBoundaryDefinition: nil,
-            nominalSpatialResolution: {},
+            nominalSpatialResolution: nil,
             transferFunctionType: nil,
             transmittedPolarization: nil,
             detectedPolarization: nil

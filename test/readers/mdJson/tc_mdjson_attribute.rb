@@ -54,7 +54,7 @@ class TestReaderMdJsonAttribute < MiniTest::Test
         assert_equal 9.9, metadata[:peakResponse]
         assert_equal 999, metadata[:toneGradations]
         assert_equal 'bandBoundaryDefinition', metadata[:bandBoundaryDefinition]
-        refute_empty metadata[:nominalSpatialResolution]
+        assert_equal 9.9, metadata[:nominalSpatialResolution]
         assert_equal 'transferFunctionType', metadata[:transferFunctionType]
         assert_equal 'transmittedPolarization', metadata[:transmittedPolarization]
         assert_equal 'detectedPolarization', metadata[:detectedPolarization]
@@ -85,7 +85,7 @@ class TestReaderMdJsonAttribute < MiniTest::Test
         hIn['peakResponse'] = ''
         hIn['toneGradations'] = ''
         hIn['bandBoundaryDefinition'] = ''
-        hIn['nominalSpatialResolution'] = {}
+        hIn['nominalSpatialResolution'] = ''
         hIn['transferFunctionType'] = ''
         hIn['transmittedPolarization'] = ''
         hIn['detectedPolarization'] = ''
@@ -111,7 +111,7 @@ class TestReaderMdJsonAttribute < MiniTest::Test
         assert_nil metadata[:peakResponse]
         assert_nil metadata[:toneGradations]
         assert_nil metadata[:bandBoundaryDefinition]
-        assert_empty metadata[:nominalSpatialResolution]
+        assert_nil metadata[:nominalSpatialResolution]
         assert_nil metadata[:transferFunctionType]
         assert_nil metadata[:transmittedPolarization]
         assert_nil metadata[:detectedPolarization]
@@ -169,7 +169,7 @@ class TestReaderMdJsonAttribute < MiniTest::Test
         assert_nil metadata[:peakResponse]
         assert_nil metadata[:toneGradations]
         assert_nil metadata[:bandBoundaryDefinition]
-        assert_empty metadata[:nominalSpatialResolution]
+        assert_nil metadata[:nominalSpatialResolution]
         assert_nil metadata[:transferFunctionType]
         assert_nil metadata[:transmittedPolarization]
         assert_nil metadata[:detectedPolarization]

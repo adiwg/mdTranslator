@@ -5,7 +5,6 @@
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_identifier'
-require_relative 'module_measure'
 
 module ADIWG
     module Mdtranslator
@@ -187,12 +186,8 @@ module ADIWG
 
                         # attribute group - nominal spatial resolution {measure}
                         if hAttribute.has_key?('nominalSpatialResolution')
-                            hMeasure = hAttribute['nominalSpatialResolution']
-                            unless hMeasure.empty?
-                                hObject = Measure.unpack(hMeasure, responseObj)
-                                unless hObject.nil?
-                                    intAttGroup[:nominalSpatialResolution] = hObject
-                                end
+                            if hAttribute['nominalSpatialResolution'] != ''
+                                intAttGroup[:nominalSpatialResolution] = hAttribute['nominalSpatialResolution']
                             end
                         end
 
