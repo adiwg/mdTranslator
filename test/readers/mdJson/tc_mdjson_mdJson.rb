@@ -9,26 +9,6 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_mdJson'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-
-                # create new internal metadata container for the reader
-                intMetadataClass = InternalMetadata.new
-                @intObj = intMetadataClass.newBase
-
-                # first contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][0][:contactId] = 'individualId0'
-                @intObj[:contacts][0][:isOrganization] = false
-
-            end
-        end
-    end
-end
-
 class TestReaderMdJsonMdJson < MiniTest::Test
 
     # set variables for test

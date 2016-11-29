@@ -256,7 +256,7 @@ class InternalMetadata
             spatialResolutions: [],
             temporalResolutions: [],
             extents: [],
-            contentInfo: [],
+            coverageDescriptions: [],
             taxonomy: {},
             graphicOverviews: [],
             resourceFormats: [],
@@ -824,23 +824,29 @@ class InternalMetadata
         }
     end
 
-    def newContentInfo
+    def newCoverageDescription
         intObj = {
             coverageName: nil,
             coverageDescription: nil,
             processingLevelCode: {},
-            attributeGroup: [],
+            attributeGroups: [],
             imageDescription: {}
         }
     end
 
     def newAttributeGroup
         intObj = {
-            attributeContentType: [],
-            attributeDescription: nil,
+            attributeContentTypes: [],
+            attributes: []
+        }
+    end
+
+    def newAttribute
+        intObj = {
             sequenceIdentifier: nil,
             sequenceIdentifierType: nil,
-            attributeIdentifier: [],
+            attributeDescription: nil,
+            attributeIdentifiers: [],
             minValue: nil,
             maxValue: nil,
             units: nil,
@@ -876,16 +882,6 @@ class InternalMetadata
             cameraCalibrationAvailable: false,
             filmDistortionAvailable: false,
             lensDistortionAvailable: false
-        }
-    end
-
-    def newSensorInfo
-        intObj = {
-            toneGradations: nil,
-            sensorMin: nil,
-            sensorMax: nil,
-            sensorUnits: nil,
-            sensorPeakResponse: nil
         }
     end
 

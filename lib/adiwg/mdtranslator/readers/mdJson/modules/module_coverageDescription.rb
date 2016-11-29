@@ -13,7 +13,7 @@ module ADIWG
         module Readers
             module MdJson
 
-                module ContentInformation
+                module CoverageDescription
 
                     def self.unpack(hContent, responseObj)
 
@@ -26,7 +26,7 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intContent = intMetadataClass.newContentInfo
+                        intContent = intMetadataClass.newCoverageDescription
 
                         # content information - coverage name (required)
                         if hContent.has_key?('coverageName')
@@ -68,7 +68,7 @@ module ADIWG
                             hContent['attributeGroup'].each do |item|
                                 hAttGrp = AttributeGroup.unpack(item, responseObj)
                                 unless hAttGrp.nil?
-                                    intContent[:attributeGroup] << hAttGrp
+                                    intContent[:attributeGroups] << hAttGrp
                                 end
                             end
                         end

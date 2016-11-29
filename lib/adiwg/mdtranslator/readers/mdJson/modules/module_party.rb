@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2016-10-09 original script
 
+require_relative 'module_mdJson'
+
 module ADIWG
     module Mdtranslator
         module Readers
@@ -36,7 +38,7 @@ module ADIWG
 
                         # party - contact index, contact type (computed)
                         # return nil if contact ID does not exist in contact array
-                        hContact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(hParty['contactId'])
+                        hContact = MdJson.findContact(hParty['contactId'])
                         if hContact[0].nil?
                             responseObj[:readerExecutionMessages] << "Responsible Party contact ID #{hParty['contactId']} not found"
                             responseObj[:readerExecutionPass] = false
@@ -51,7 +53,7 @@ module ADIWG
                         if intParty[:contactType] == 'organization'
                             if hParty.has_key?('organizationMembers')
                                 hParty['organizationMembers'].each do |contactId|
-                                    hContact = ADIWG::Mdtranslator::Readers::MdJson::MdJson.findContact(contactId)
+                                    hContact = MdJson.findContact(contactId)
                                     if hContact[0].nil?
                                         responseObj[:readerExecutionMessages] << "Responsible Party organization member #{contactId} not found"
                                     else

@@ -14,16 +14,20 @@ module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
+                module MdJson
 
-                # create new internal metadata container for the reader
-                intMetadataClass = InternalMetadata.new
-                @intObj = intMetadataClass.newBase
+                    # create new internal metadata container for the reader
+                    intMetadataClass = InternalMetadata.new
+                    intObj = intMetadataClass.newBase
 
-                # first contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][0][:contactId] = 'individualId0'
-                @intObj[:contacts][0][:isOrganization] = false
+                    # first contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][0][:contactId] = 'individualId0'
+                    intObj[:contacts][0][:isOrganization] = false
 
+                    @contacts = intObj[:contacts]
+
+                end
             end
         end
     end
@@ -71,7 +75,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         assert_equal 2, metadata[:spatialResolutions].length
         assert_equal 2, metadata[:temporalResolutions].length
         assert_equal 2, metadata[:extents].length
-        assert_equal 2, metadata[:contentInfo].length
+        assert_equal 2, metadata[:coverageDescriptions].length
         refute_empty metadata[:taxonomy]
         assert_equal 2, metadata[:graphicOverviews].length
         assert_equal 2, metadata[:resourceFormats].length
@@ -234,7 +238,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn['spatialResolution'] = []
         hIn['temporalResolution'] = []
         hIn['extent'] = []
-        hIn['contentInfo'] = []
+        hIn['coverageDescription'] = []
         hIn['taxonomy'] = {}
         hIn['graphicOverview'] = []
         hIn['resourceFormat'] = []
@@ -264,7 +268,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         assert_empty metadata[:spatialResolutions]
         assert_empty metadata[:temporalResolutions]
         assert_empty metadata[:extents]
-        assert_empty metadata[:contentInfo]
+        assert_empty metadata[:coverageDescriptions]
         assert_empty metadata[:taxonomy]
         assert_empty metadata[:graphicOverviews]
         assert_empty metadata[:resourceFormats]
@@ -297,7 +301,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn.delete('spatialResolution')
         hIn.delete('temporalResolution')
         hIn.delete('extent')
-        hIn.delete('contentInfo')
+        hIn.delete('coverageDescription')
         hIn.delete('taxonomy')
         hIn.delete('graphicOverview')
         hIn.delete('resourceFormat')
@@ -327,7 +331,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         assert_empty metadata[:spatialResolutions]
         assert_empty metadata[:temporalResolutions]
         assert_empty metadata[:extents]
-        assert_empty metadata[:contentInfo]
+        assert_empty metadata[:coverageDescriptions]
         assert_empty metadata[:taxonomy]
         assert_empty metadata[:graphicOverviews]
         assert_empty metadata[:resourceFormats]

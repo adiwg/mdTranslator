@@ -1,41 +1,22 @@
 {
-   "attributeGroup": [
-      {
-         "attributeContentType": [
-            "attributeContentType0",
-            "attributeContentType1"
-         ],
-         "attributeDescription": "attributeDescription",
-         "sequenceIdentifier": "sequenceIdentifier",
-         "sequenceIdentifierType": "sequenceIdentifierType",
-         "attributeIdentifier": [
-            {
-               "identifier": "identifier"
-            }
-         ],
-         "minValue": 9.9,
-         "maxValue": 9.9,
-         "units": "units",
-         "scaleFactor": 999,
-         "offset": 999,
-         "meanValue": 9.9,
-         "numberOfValues": 999,
-         "standardDeviation": 9.9,
-         "bitsPerValue": 999,
-         "boundMin": 9.9,
-         "boundMax": 9.9,
-         "boundUnits": "boundUnits",
-         "peakResponse": 9.9,
-         "toneGradations": 999,
-         "bandBoundaryDefinition": "bandBoundaryDefinition",
-         "nominalSpatialResolution": {
-            "type": "distance",
-            "value": 9.9,
-            "unitOfMeasure": "unitOfMeasure"
-         },
-         "transferFunctionType": "transferFunctionType",
-         "transmittedPolarization": "transmittedPolarization",
-         "detectedPolarization": "detectedPolarization"
-      }
-   ]
+  "attributeGroup": [
+    {
+      "attributeContentType": [
+        "attributeContentType0",
+        "attributeContentType1"
+      ],
+      "attribute": [
+        {
+          "sequenceIdentifier": "sequenceIdentifier0",
+          "attributeDescription": "attributeDescription0",
+          "sequenceIdentifierType": "sequenceIdentifierType0"
+        },
+        {
+          "sequenceIdentifier": "sequenceIdentifier1",
+          "attributeDescription": "attributeDescription1",
+          "sequenceIdentifierType": "sequenceIdentifierType1"
+        }
+      ]
+    }
+  ]
 }

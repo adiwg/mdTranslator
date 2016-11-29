@@ -103,7 +103,7 @@
                "description": "description1"
             }
          ],
-         "contentInfo": [
+         "coverageDescription": [
             {
                "coverageName": "coverageName0",
                "coverageDescription": "coverageDescription0"

@@ -12,7 +12,7 @@ require_relative 'module_spatialRepresentation'
 require_relative 'module_spatialResolution'
 require_relative 'module_duration'
 require_relative 'module_extent'
-require_relative 'module_contentInformation'
+require_relative 'module_coverageDescription'
 require_relative 'module_taxonomy'
 require_relative 'module_graphic'
 require_relative 'module_format'
@@ -212,12 +212,12 @@ module ADIWG
                         end
 
                         # resource information - content information [] {contentInformation}
-                        if hResInfo.has_key?('contentInfo')
-                            aItems = hResInfo['contentInfo']
+                        if hResInfo.has_key?('coverageDescription')
+                            aItems = hResInfo['coverageDescription']
                             aItems.each do |item|
-                                hReturn = ContentInformation.unpack(item, responseObj)
+                                hReturn = CoverageDescription.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intResInfo[:contentInfo] << hReturn
+                                    intResInfo[:coverageDescriptions] << hReturn
                                 end
                             end
                         end

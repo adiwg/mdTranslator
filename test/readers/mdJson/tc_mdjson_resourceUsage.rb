@@ -14,21 +14,25 @@ module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
+                module MdJson
 
-                # create new internal metadata container for the reader
-                intMetadataClass = InternalMetadata.new
-                @intObj = intMetadataClass.newBase
+                    # create new internal metadata container for the reader
+                    intMetadataClass = InternalMetadata.new
+                    intObj = intMetadataClass.newBase
 
-                # first contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][0][:contactId] = 'individualId0'
-                @intObj[:contacts][0][:isOrganization] = false
+                    # first contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][0][:contactId] = 'individualId0'
+                    intObj[:contacts][0][:isOrganization] = false
 
-                # second contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][1][:contactId] = 'individualId1'
-                @intObj[:contacts][1][:isOrganization] = false
+                    # second contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][1][:contactId] = 'individualId1'
+                    intObj[:contacts][1][:isOrganization] = false
 
+                    @contacts = intObj[:contacts]
+
+                end
             end
         end
     end

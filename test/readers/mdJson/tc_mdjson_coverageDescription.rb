@@ -7,19 +7,19 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_contentInformation'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_coverageDescription'
 
-class TestReaderMdJsonContentInformation < MiniTest::Test
+class TestReaderMdJsonCoverageDescription < MiniTest::Test
 
     # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ContentInformation
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::CoverageDescription
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'contentInfo.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'coverageDescription.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -27,7 +27,7 @@ class TestReaderMdJsonContentInformation < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['contentInformation'][0]
+    @@hIn = aIn['coverageDescription'][0]
 
     def test_complete_contentInfo_object
 
@@ -38,7 +38,7 @@ class TestReaderMdJsonContentInformation < MiniTest::Test
         assert_equal 'coverageName', metadata[:coverageName]
         assert_equal 'coverageDescription', metadata[:coverageDescription]
         refute_empty metadata[:processingLevelCode]
-        assert_equal 2, metadata[:attributeGroup].length
+        assert_equal 2, metadata[:attributeGroups].length
         refute_empty metadata[:imageDescription]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -109,7 +109,7 @@ class TestReaderMdJsonContentInformation < MiniTest::Test
         assert_equal 'coverageName', metadata[:coverageName]
         assert_equal 'coverageDescription', metadata[:coverageDescription]
         assert_empty metadata[:processingLevelCode]
-        assert_empty metadata[:attributeGroup]
+        assert_empty metadata[:attributeGroups]
         assert_empty metadata[:imageDescription]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -128,7 +128,7 @@ class TestReaderMdJsonContentInformation < MiniTest::Test
         assert_equal 'coverageName', metadata[:coverageName]
         assert_equal 'coverageDescription', metadata[:coverageDescription]
         assert_empty metadata[:processingLevelCode]
-        assert_empty metadata[:attributeGroup]
+        assert_empty metadata[:attributeGroups]
         assert_empty metadata[:imageDescription]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

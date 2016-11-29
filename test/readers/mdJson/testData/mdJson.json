@@ -1,19 +1,19 @@
 {
   "mdJson": {
-      "schema": {
+    "schema": {
       "name": "name",
       "version": "version"
     },
     "contact": [
       {
-        "contactId": "contactId",
-        "isOrganization": true,
-        "name": "name"
+        "contactId": "individualId0",
+        "isOrganization": false,
+        "name": "name0"
       },
       {
-        "contactId": "contactId",
-        "isOrganization": true,
-        "name": "name"
+        "contactId": "individualId1",
+        "isOrganization": false,
+        "name": "name1"
       }
     ],
     "metadata": {
@@ -40,7 +40,7 @@
             },
             "party": [
               {
-                "contactId": "individualId0"
+                "contactId": "individualId1"
               }
             ]
           }
