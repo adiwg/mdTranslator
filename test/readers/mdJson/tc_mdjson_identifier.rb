@@ -36,10 +36,10 @@ class TestReaderMdJsonIdentifier < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'identifier', metadata[:identifier]
-        assert_equal 'namespace', metadata[:identifierNamespace]
-        assert_equal 'version', metadata[:identifierVersion]
-        assert_equal 'description', metadata[:identifierDescription]
-        refute_empty metadata[:identifierCitation]
+        assert_equal 'namespace', metadata[:namespace]
+        assert_equal 'version', metadata[:version]
+        assert_equal 'description', metadata[:description]
+        refute_empty metadata[:citation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -81,10 +81,10 @@ class TestReaderMdJsonIdentifier < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:identifierNamespace]
-        assert_nil metadata[:identifierVersion]
-        assert_nil metadata[:identifierDescription]
-        assert_empty metadata[:identifierCitation]
+        assert_nil metadata[:namespace]
+        assert_nil metadata[:version]
+        assert_nil metadata[:description]
+        assert_empty metadata[:citation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -100,10 +100,10 @@ class TestReaderMdJsonIdentifier < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:identifierNamespace]
-        assert_nil metadata[:identifierVersion]
-        assert_nil metadata[:identifierDescription]
-        assert_empty metadata[:identifierCitation]
+        assert_nil metadata[:namespace]
+        assert_nil metadata[:version]
+        assert_nil metadata[:description]
+        assert_empty metadata[:citation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

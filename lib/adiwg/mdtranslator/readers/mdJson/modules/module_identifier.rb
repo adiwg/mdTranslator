@@ -46,21 +46,21 @@ module ADIWG
                         # identifier - namespace
                         if hIdentifier.has_key?('namespace')
                             if hIdentifier['namespace'] != ''
-                                intIdent[:identifierNamespace] = hIdentifier['namespace']
+                                intIdent[:namespace] = hIdentifier['namespace']
                             end
                         end
 
                         # identifier - version
                         if hIdentifier.has_key?('version')
                             if hIdentifier['version'] != ''
-                                intIdent[:identifierVersion] = hIdentifier['version']
+                                intIdent[:version] = hIdentifier['version']
                             end
                         end
 
                         # identifier - description
                         if hIdentifier.has_key?('description')
                             if hIdentifier['description'] != ''
-                                intIdent[:identifierDescription] = hIdentifier['description']
+                                intIdent[:description] = hIdentifier['description']
                             end
                         end
 
@@ -70,7 +70,7 @@ module ADIWG
                             unless hObject.empty?
                                 hReturn = Citation.unpack(hObject, responseObj)
                                 unless hReturn.nil?
-                                    intIdent[:identifierCitation] = hReturn
+                                    intIdent[:citation] = hReturn
                                 end
                             end
                         end

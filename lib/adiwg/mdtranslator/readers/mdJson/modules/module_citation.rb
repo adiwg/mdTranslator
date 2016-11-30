@@ -44,9 +44,9 @@ module ADIWG
 
                         # citation - title (required)
                         if hCitation.has_key?('title')
-                            intCitation[:citTitle] = hCitation['title']
+                            intCitation[:title] = hCitation['title']
                         end
-                        if intCitation[:citTitle].nil? || intCitation[:citTitle] == ''
+                        if intCitation[:title].nil? || intCitation[:title] == ''
                             responseObj[:readerExecutionMessages] << 'Citation attribute title is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -56,7 +56,7 @@ module ADIWG
                         if hCitation.has_key?('alternateTitle')
                             hCitation['alternateTitle'].each do |item|
                                 if item != ''
-                                    intCitation[:citAltTitle] << item
+                                    intCitation[:alternateTitles] << item
                                 end
                             end
                         end
@@ -67,7 +67,7 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = Date.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citDate] << hReturn
+                                    intCitation[:dates] << hReturn
                                 end
                             end
                         end
@@ -75,7 +75,7 @@ module ADIWG
                         # citation - edition
                         if hCitation.has_key?('edition')
                             if hCitation['edition'] != ''
-                                intCitation[:citEdition] = hCitation['edition']
+                                intCitation[:edition] = hCitation['edition']
                             end
                         end
 
@@ -85,7 +85,7 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = ResponsibleParty.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citResponsibleParty] << hReturn
+                                    intCitation[:responsibleParties] << hReturn
                                 end
                             end
                         end
@@ -94,7 +94,7 @@ module ADIWG
                         if hCitation.has_key?('presentationForm')
                             hCitation['presentationForm'].each do |item|
                                 if item != ''
-                                    intCitation[:citPresentationForms] << item
+                                    intCitation[:presentationForms] << item
                                 end
                             end
                         end
@@ -105,7 +105,7 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = Identifier.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citIdentifiers] << hReturn
+                                    intCitation[:identifiers] << hReturn
                                 end
                             end
                         end
@@ -116,7 +116,7 @@ module ADIWG
                             unless hObject.empty?
                                 hReturn = Series.unpack(hObject, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citSeries] = hReturn
+                                    intCitation[:series] = hReturn
                                 end
                             end
                         end
@@ -125,7 +125,7 @@ module ADIWG
                         if hCitation.has_key?('otherCitationDetails')
                             hCitation['otherCitationDetails'].each do |item|
                                 if item != ''
-                                    intCitation[:citOtherDetails] << item
+                                    intCitation[:otherDetails] << item
                                 end
                             end
                         end
@@ -136,7 +136,7 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = OnlineResource.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citOlResources] << hReturn
+                                    intCitation[:onlineResources] << hReturn
                                 end
                             end
                         end
@@ -147,7 +147,7 @@ module ADIWG
                             aItems.each do |item|
                                 hReturn = Graphic.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intCitation[:citGraphics] << hReturn
+                                    intCitation[:browseGraphics] << hReturn
                                 end
                             end
                         end

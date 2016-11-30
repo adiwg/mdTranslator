@@ -273,17 +273,17 @@ class InternalMetadata
 
     def newCitation
         intObj = {
-            citTitle: nil,
-            citAltTitle: [],
-            citDate: [],
-            citEdition: nil,
-            citResponsibleParty: [],
-            citPresentationForms: [],
-            citIdentifiers: [],
-            citSeries: {},
-            citOtherDetails: [],
-            citOlResources: [],
-            citGraphics: []
+            title: nil,
+            alternateTitles: [],
+            dates: [],
+            edition: nil,
+            responsibleParties: [],
+            presentationForms: [],
+            identifiers: [],
+            series: {},
+            otherDetails: [],
+            onlineResources: [],
+            browseGraphics: []
         }
     end
 
@@ -291,10 +291,10 @@ class InternalMetadata
         # handles both MD_Identifier and RS_Identifier (ISO 19115-2)
         intObj = {
             identifier: nil,
-            identifierNamespace: nil,
-            identifierVersion: nil,
-            identifierDescription: nil,
-            identifierCitation: {}
+            namespace: nil,
+            version: nil,
+            description: nil,
+            citation: {}
         }
     end
 
