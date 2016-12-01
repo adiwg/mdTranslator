@@ -1,25 +1,25 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_instant
+# reader / mdJson / module_gmlIdentifier
 
 # History:
-# Stan Smith 2016-10-24 original script
+#   Stan Smith 2016-11-30 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_timeInstant'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_gmlIdentifier'
 
-class TestReaderMdJsonTimeInstant < MiniTest::Test
+class TestReaderMdJsonGMLIdentifier < MiniTest::Test
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::TimeInstant
+    # set variables for test
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GMLIdentifier
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'timeInstant.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'gmlIdentifier.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -27,31 +27,25 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['timeInstant'][0]
+    @@hIn = aIn['gmlIdentifier'][0]
 
-    def test_complete_timeInstant_object
+    def test_complete_gmlIdentifier_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'id', metadata[:timeId]
-        assert_equal 'description', metadata[:description]
-        refute_empty metadata[:gmlIdentifier]
-        assert_equal 2, metadata[:instantNames].length
-        assert_equal 'instantName0', metadata[:instantNames][0]
-        assert_equal 'instantName1', metadata[:instantNames][1]
-        assert_kind_of DateTime, metadata[:timeInstant][:dateTime]
-        assert_equal 'YMDhms', metadata[:timeInstant][:dateResolution]
+        assert_equal 'identifier', metadata[:identifier]
+        assert_equal 'namespace', metadata[:namespace]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_timeInstant_empty_dateTime
+    def test_empty_gmlIdentifier_identifier
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['dateTime'] = ''
+        hIn['identifier'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -61,10 +55,10 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
 
     end
 
-    def test_timeInstant_missing_dateTime
+    def test_missing_gmlIdentifier_identifier
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('dateTime')
+        hIn.delete('identifier')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -74,45 +68,33 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
 
     end
 
-    def test_timeInstant_empty_elements
+    def test_empty_gmlIdentifier_namespace
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['id'] = ''
-        hIn['description'] = ''
-        hIn['gmlIdentifier'] = {}
-        hIn['instantName'] = []
+        hIn['namespace'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:timeId]
-        assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
-        assert_empty metadata[:instantNames]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_timeInstant_missing_elements
+    def test_missing_gmlIdentifier_namespace
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('id')
-        hIn.delete('description')
-        hIn.delete('gmlIdentifier')
-        hIn.delete('instantName')
+        hIn.delete('namespace')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:timeId]
-        assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
-        assert_empty metadata[:instantNames]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_timeInstant_object
+    def test_empty_gmlIdentifier_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

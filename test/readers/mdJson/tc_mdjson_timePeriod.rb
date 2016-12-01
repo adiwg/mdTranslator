@@ -2,7 +2,7 @@
 # reader / mdJson / module_timePeriod
 
 # History:
-# Stan Smith 2016-10-08 original script
+#   Stan Smith 2016-10-08 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -37,7 +37,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_equal 'id', metadata[:timeId]
         assert_equal 'description', metadata[:description]
-        assert_equal 'identifier', metadata[:identifier]
+        refute_empty metadata[:gmlIdentifier]
         assert_equal 2, metadata[:periodNames].length
         assert_equal 'periodName0', metadata[:periodNames][0]
         assert_equal 'periodName1', metadata[:periodNames][1]
@@ -84,7 +84,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['id'] = ''
         hIn['description'] = ''
-        hIn['identifier'] = ''
+        hIn['gmlIdentifier'] = {}
         hIn['periodName'] = []
         hIn['timeInterval'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -92,7 +92,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_nil metadata[:identifier]
+        assert_empty metadata[:gmlIdentifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
         assert hResponse[:readerExecutionPass]
@@ -105,7 +105,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('id')
         hIn.delete('description')
-        hIn.delete('identifier')
+        hIn.delete('gmlIdentifier')
         hIn.delete('periodName')
         hIn.delete('timeInterval')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -113,7 +113,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_nil metadata[:identifier]
+        assert_empty metadata[:gmlIdentifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
         assert hResponse[:readerExecutionPass]

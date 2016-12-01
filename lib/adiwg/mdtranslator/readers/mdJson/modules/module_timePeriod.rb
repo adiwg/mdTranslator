@@ -5,6 +5,7 @@
 # 	Stan Smith 2016-10-14 original script
 
 require_relative 'module_dateTime'
+require_relative 'module_gmlIdentifier'
 require_relative 'module_timeInterval'
 
 module ADIWG
@@ -41,10 +42,13 @@ module ADIWG
                             end
                         end
 
-                        # time period - identifier
-                        if hTimePeriod.has_key?('identifier')
-                            if hTimePeriod['identifier'] != ''
-                                intTimePer[:identifier] = hTimePeriod['identifier']
+                        # time period - identifier {gmlIdentifier}
+                        if hTimePeriod.has_key?('gmlIdentifier')
+                            unless hTimePeriod['gmlIdentifier'].empty?
+                                hReturn = GMLIdentifier.unpack(hTimePeriod['gmlIdentifier'], responseObj)
+                                unless hReturn.nil?
+                                    intTimePer[:gmlIdentifier] = hReturn
+                                end
                             end
                         end
 
@@ -60,9 +64,9 @@ module ADIWG
                         # time period - start datetime
                         if hTimePeriod.has_key?('startDateTime')
                             if hTimePeriod['startDateTime'] != ''
-                                hDate = DateTime.unpack(hTimePeriod['startDateTime'], responseObj)
-                                unless hDate.nil?
-                                    intTimePer[:startDateTime] = hDate
+                                hReturn = DateTime.unpack(hTimePeriod['startDateTime'], responseObj)
+                                unless hReturn.nil?
+                                    intTimePer[:startDateTime] = hReturn
                                 end
                             end
                         end
@@ -70,9 +74,9 @@ module ADIWG
                         # time period - end datetime
                         if hTimePeriod.has_key?('endDateTime')
                             if hTimePeriod['endDateTime'] != ''
-                                hDate = DateTime.unpack(hTimePeriod['endDateTime'], responseObj)
-                                unless hDate.nil?
-                                    intTimePer[:endDateTime] = hDate
+                                hReturn = DateTime.unpack(hTimePeriod['endDateTime'], responseObj)
+                                unless hReturn.nil?
+                                    intTimePer[:endDateTime] = hReturn
                                 end
                             end
                         end
@@ -86,9 +90,9 @@ module ADIWG
                         # time period - time interval
                         if hTimePeriod.has_key?('timeInterval')
                             unless hTimePeriod['timeInterval'].empty?
-                                hTimeInt = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj)
-                                unless hTimeInt.nil?
-                                    intTimePer[:timeInterval] = hTimeInt
+                                hReturn = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj)
+                                unless hReturn.nil?
+                                    intTimePer[:timeInterval] = hReturn
                                 end
                             end
                         end

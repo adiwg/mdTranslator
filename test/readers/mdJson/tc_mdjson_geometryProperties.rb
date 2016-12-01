@@ -40,9 +40,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         assert_equal 'featureName1', metadata[:featureNames][1]
         assert_equal 'description', metadata[:description]
         assert metadata[:includesData]
-        assert_equal 2, metadata[:identifiers].length
-        assert_equal 'identifier0', metadata[:identifiers][0]
-        assert_equal 'identifier1', metadata[:identifiers][1]
+        assert_equal 2, metadata[:gmlIdentifiers].length
         assert_equal 'featureScope', metadata[:featureScope]
         assert_equal 'featureAcquisitionMethod', metadata[:featureAcquisitionMethod]
         assert hResponse[:readerExecutionPass]
@@ -56,7 +54,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn['featureName'] = []
         hIn['description'] = ''
         hIn['includesData'] = ''
-        hIn['identifier'] = []
+        hIn['gmlIdentifier'] = []
         hIn['featureScope'] = ''
         hIn['featureAcquisitionMethod'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -65,7 +63,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
         refute metadata[:includesData]
-        assert_empty metadata[:identifiers]
+        assert_empty metadata[:gmlIdentifiers]
         assert_nil metadata[:featureScope]
         assert_nil metadata[:featureAcquisitionMethod]
         assert hResponse[:readerExecutionPass]
@@ -80,7 +78,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn.delete('featureName')
         hIn.delete('description')
         hIn.delete('includesData')
-        hIn.delete('identifier')
+        hIn.delete('gmlIdentifier')
         hIn.delete('featureScope')
         hIn.delete('featureAcquisitionMethod')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -89,7 +87,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
         refute metadata[:includesData]
-        assert_empty metadata[:identifiers]
+        assert_empty metadata[:gmlIdentifiers]
         assert_nil metadata[:featureScope]
         assert_nil metadata[:featureAcquisitionMethod]
         assert hResponse[:readerExecutionPass]

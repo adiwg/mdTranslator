@@ -1,18 +1,24 @@
 {
-   "geometryProperties": [
-      {
-         "featureName": [
-            "featureName0",
-            "featureName1"
-         ],
-         "description": "description",
-         "includesData": true,
-         "identifier": [
-            "identifier0",
-            "identifier1"
-         ],
-         "featureScope": "featureScope",
-         "featureAcquisitionMethod": "featureAcquisitionMethod"
-      }
-   ]
+  "geometryProperties": [
+    {
+      "featureName": [
+        "featureName0",
+        "featureName1"
+      ],
+      "description": "description",
+      "includesData": true,
+      "gmlIdentifier": [
+        {
+          "identifier": "identifier0",
+          "namespace": "namespace0"
+        },
+        {
+          "identifier": "identifier1",
+          "namespace": "namespace1"
+        }
+      ],
+      "featureScope": "featureScope",
+      "featureAcquisitionMethod": "featureAcquisitionMethod"
+    }
+  ]
 }

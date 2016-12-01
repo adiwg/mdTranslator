@@ -4,6 +4,7 @@
 # History:
 # 	Stan Smith 2016-10-24 original script
 
+require_relative 'module_gmlIdentifier'
 require_relative 'module_dateTime'
 
 module ADIWG
@@ -26,28 +27,31 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intInstant = intMetadataClass.newTimeInstant
 
-                        # time period - id
+                        # time instant - id
                         if hInstant.has_key?('id')
                             if hInstant['id'] != ''
                                 intInstant[:timeId] = hInstant['id']
                             end
                         end
 
-                        # time period - description
+                        # time instant - description
                         if hInstant.has_key?('description')
                             if hInstant['description'] != ''
                                 intInstant[:description] = hInstant['description']
                             end
                         end
 
-                        # time period - identifier
-                        if hInstant.has_key?('identifier')
-                            if hInstant['identifier'] != ''
-                                intInstant[:identifier] = hInstant['identifier']
+                        # time instant - identifier {gmlIdentifier}
+                        if hInstant.has_key?('gmlIdentifier')
+                            unless hInstant['gmlIdentifier'].empty?
+                                hReturn = GMLIdentifier.unpack(hInstant['gmlIdentifier'], responseObj)
+                                unless hReturn.nil?
+                                    intInstant[:gmlIdentifier] = hReturn
+                                end
                             end
                         end
 
-                        # time period - instant names []
+                        # time instant - instant names []
                         if hInstant.has_key?('instantName')
                             hInstant['instantName'].each do |item|
                                 if item != ''
@@ -56,7 +60,7 @@ module ADIWG
                             end
                         end
 
-                        # time period - datetime
+                        # time instant - datetime
                         if hInstant.has_key?('dateTime')
                             if hInstant['dateTime'] != ''
                                 hDate = DateTime.unpack(hInstant['dateTime'], responseObj)

@@ -489,7 +489,7 @@ class InternalMetadata
             featureNames: [],
             description: nil,
             includesData: false,
-            identifiers: [],
+            gmlIdentifiers: [],
             featureScope: nil,
             featureAcquisitionMethod: nil
         }
@@ -526,7 +526,7 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            identifier: nil,
+            gmlIdentifier: {},
             instantNames: [],
             timeInstant: {}
         }
@@ -536,7 +536,7 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            identifier: nil,
+            gmlIdentifier: {},
             periodNames: [],
             startDateTime: {},
             endDateTime: {},
@@ -559,6 +559,13 @@ class InternalMetadata
         intObj = {
             interval: nil,
             units: nil
+        }
+    end
+
+    def newGMLIdentifier
+        intObj = {
+            identifier: nil,
+            namespace: nil
         }
     end
 
@@ -607,13 +614,6 @@ class InternalMetadata
             taxonValue: nil,
             commonName: [],
             taxonClass: []
-        }
-    end
-
-    def newDataQuality
-        intObj = {
-            dataScope: nil,
-            dataLineage: {}
         }
     end
 
