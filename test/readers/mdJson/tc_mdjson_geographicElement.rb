@@ -1,25 +1,25 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_extent
+# reader / mdJson / module_geographicElement
 
 # History:
-#   Stan Smith 2016-10-30 original script
+#   Stan Smith 2016-12-02 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_extent'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_geographicElement'
 
-class TestReaderMdJsonExtent < MiniTest::Test
+class TestReaderMdJsonGeographicElement < MiniTest::Test
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Extent
+    # set variables for test
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeographicElement
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'extent.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'geoJson.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -27,29 +27,23 @@ class TestReaderMdJsonExtent < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['extent'][0]
+    @@aIn = aIn['geographicElement']
 
-    def test_complete_extent_object
+    def test_complete_geographicElement
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
+        aIn = Marshal::load(Marshal.dump(@@aIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+        metadata = @@NameSpace.unpack(aIn, hResponse)
 
-       require 'pp'
-        pp metadata
-        puts('------------------')
-        pp hResponse
-
-        assert_equal 'description', metadata[:description]
-        assert_equal 2, metadata[:geographicExtents].length
-        assert_equal 2, metadata[:temporalExtents].length
-        assert_equal 2, metadata[:verticalExtents].length
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElements]
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_extent_object
+    def test_empty_geographicElement_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

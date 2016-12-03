@@ -27,13 +27,13 @@ class TestReaderMdJsonGeoJson < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['geoJson']
+    @@aIn = aIn['geographicElement']
 
     def test_complete_geoJson
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
+        aIn = Marshal::load(Marshal.dump(@@aIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+        metadata = @@NameSpace.unpack(aIn, hResponse)
 
         refute_empty metadata
         assert hResponse[:readerExecutionPass]

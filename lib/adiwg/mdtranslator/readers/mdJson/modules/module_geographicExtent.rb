@@ -2,11 +2,11 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-11-10 added computedBbox computation
-#   Stan Smith 2016-10-25 original script
+#   Stan Smith 2016-12-01 original script
 
-require_relative 'module_geoJson'
-require 'adiwg/mdtranslator/internal/module_coordinates'
+require_relative 'module_identifier'
+require_relative 'module_boundingBox'
+require_relative 'module_geographicElement'
 
 module ADIWG
     module Mdtranslator
@@ -15,38 +15,67 @@ module ADIWG
 
                 module GeographicExtent
 
-                    def self.unpack(hGeoJson, responseObj)
+                    def self.unpack(hGeoExt, responseObj)
 
                         # return nil object if input is empty
-                        if hGeoJson.empty?
-                            responseObj[:readerExecutionMessages] << 'GeoJson object is empty'
+                        if hGeoExt.empty?
+                            responseObj[:readerExecutionMessages] << 'geographicExtent object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intGeoExtent = intMetadataClass.newGeographicExtent
+                        intGeoExt = intMetadataClass.newGeographicExtent
 
-                        # save native GeoJson
-                        if hGeoJson.has_key?('geoJson')
-                            unless hGeoJson['geoJson'].empty?
-                                intGeoExtent[:nativeGeoJson] = hGeoJson['geoJson']
+                        # geographic extent - contains data
+                        if hGeoExt.has_key?('containsData')
+                            if hGeoExt['containsData'] === false
+                                intGeoExt[:containsData] = hGeoExt['containsData']
                             end
                         end
 
-                        # ingest the GeoJson into mdTranslator
-                        aReturn = GeoJson.unpack(hGeoJson['geoJson'], responseObj)
-                        unless aReturn.nil?
-                            intGeoExtent[:geographicElements] = aReturn
+                        # geographic extent - identifier
+                        if hGeoExt.has_key?('identifier')
+                            unless hGeoExt['identifier'].empty?
+                                hReturn = Identifier.unpack(hGeoExt['identifier'], responseObj)
+                                unless hReturn.nil?
+                                    intGeoExt[:identifier] = hReturn
+                                end
+                            end
                         end
 
-                        # compute bbox for extent
-                        unless intGeoExtent[:geographicElements].empty?
-                            intGeoExtent[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoExtent[:geographicElements])
+                        # geographic extent - bounding box
+                        if hGeoExt.has_key?('boundingBox')
+                            unless hGeoExt['boundingBox'].empty?
+                                hReturn = BoundingBox.unpack(hGeoExt['boundingBox'], responseObj)
+                                unless hReturn.nil?
+                                    intGeoExt[:boundingBox] = hReturn
+                                end
+                            end
                         end
 
-                        return intGeoExtent
+                        # geographic extent - geographic elements
+                        if hGeoExt.has_key?('geographicElement')
+                            unless hGeoExt['geographicElement'].empty?
+                                hReturn = GeographicElement.unpack(hGeoExt['geographicElement'], responseObj)
+                                unless hReturn.nil?
+                                    intGeoExt[:geographicElement] = hReturn
+                                end
+                            end
+                        end
+
+                        if intGeoExt[:identifier].empty? &&
+                            intGeoExt[:boundingBox].empty? &&
+                            intGeoExt[:geographicElement].empty?
+                            responseObj[:readerExecutionMessages] <<
+                                'geographicExtent must have at least one identifier, boundingBox, or geographic element'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+
+                        end
+
+                        return intGeoExt
 
                     end
 

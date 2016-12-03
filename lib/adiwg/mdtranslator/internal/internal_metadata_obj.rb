@@ -288,7 +288,7 @@ class InternalMetadata
     end
 
     def newIdentifier
-        # handles both MD_Identifier and RS_Identifier (ISO 19115-2)
+        # handles MD_ & RS_ Identifier (ISO 19115-2)
         intObj = {
             identifier: nil,
             namespace: nil,
@@ -462,9 +462,27 @@ class InternalMetadata
 
     def newGeographicExtent
         intObj = {
+            containsData: true,
+            identifier: {},
+            boundingBox: {},
+            geographicElement: {}
+        }
+    end
+
+    def newGeographicElement
+        intObj = {
             nativeGeoJson: [],
             geographicElements: [],
             computedBbox: []
+        }
+    end
+
+    def newBoundingBox
+        intObj = {
+            westLongitude: nil,
+            eastLongitude: nil,
+            southLatitude: nil,
+            northLatitude: nil
         }
     end
 

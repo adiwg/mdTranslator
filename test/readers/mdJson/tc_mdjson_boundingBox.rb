@@ -1,20 +1,18 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_coordinates
+# reader / mdJson / module_boundingBox
 
 # History:
-#   Stan Smith 2016-11-10 original script
+#   Stan Smith 2016-12-02 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/internal/module_coordinates'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_geographicExtent'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_boundingBox'
 
-class TestReaderMdJsonCoordinates < MiniTest::Test
+class TestReaderMdJsonBoundingBox < MiniTest::Test
 
     # set variables for test
-    @@NameSpace1 = ADIWG::Mdtranslator::Readers::MdJson::GeographicExtent
-    @@NameSpace2 = AdiwgCoordinates
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::BoundingBox
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
@@ -25,126 +23,188 @@ class TestReaderMdJsonCoordinates < MiniTest::Test
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
-    aIn = JSON.parse(jsonFile)
-    @@aIn = aIn['geographicExtent']
+    hIn = JSON.parse(jsonFile)
+    @@hIn = hIn['boundingBox'][0]
 
-    # test all East coordinates
-    # all GeoJSON structures are included in East JSON input
-    def test_bbox_east
+    def test_complete_boundingBox
 
-        hIn = @@aIn[0]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal 100.0, metadata[0]
-        assert_equal 0.0, metadata[1]
-        assert_equal 105.0, metadata[2]
-        assert_equal 3.0, metadata[3]
+        assert_equal -140, metadata[:westLongitude]
+        assert_equal -120, metadata[:eastLongitude]
+        assert_equal 49, metadata[:southLatitude]
+        assert_equal 70, metadata[:northLatitude]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test all West coordinates
-    def test_bbox_west
+    def test_boundingBox_empty_west
 
-        hIn = @@aIn[1]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn['westLongitude'] = ''
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test more East coordinates
-    def test_bbox_more_east
+    def test_boundingBox_empty_east
 
-        hIn = @@aIn[2]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn['eastLongitude'] = ''
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal 148.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -177.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test more West coordinates
-    def test_bbox_more_west
+    def test_boundingBox_empty_south
 
-        hIn = @@aIn[3]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn['southLatitude'] = ''
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal 178.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -150.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test span meridian coordinates
-    def test_bbox_span_meridian
+    def test_boundingBox_empty_north
 
-        hIn = @@aIn[4]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn['northLatitude'] = ''
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal -35.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal 48.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test southern hemisphere coordinates
-    def test_bbox_southern_hemisphere
+    def test_boundingBox_missing_west
 
-        hIn = @@aIn[5]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn.delete('westLongitude')
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal -65.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal -61.0, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    # test span equator coordinates
-    def test_bbox_span_equator
+    def test_boundingBox_missing_east
 
-        hIn = @@aIn[6]
-        hTest = Marshal::load(Marshal.dump(hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        aInternal = @@NameSpace1.unpack(hTest, hResponse)
-        metadata = @@NameSpace2.computeBbox(aInternal[:geographicElements])
+        hIn.delete('eastLongitude')
+        metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal -65.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal 62.45, metadata[3]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_missing_south
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn.delete('southLatitude')
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_missing_north
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn.delete('northLatitude')
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_west_outOfBounds
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn['westLongitude'] = 200
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_east_outOfBounds
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn['eastLongitude'] = 200
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_south_outOfBounds
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn['southLatitude'] = 200
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_boundingBox_north_outOfBounds
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        hIn['northLatitude'] = 200
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_boundingBox_object
+
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack({}, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
