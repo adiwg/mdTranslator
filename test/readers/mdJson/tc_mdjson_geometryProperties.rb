@@ -39,10 +39,9 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         assert_equal 'featureName0', metadata[:featureNames][0]
         assert_equal 'featureName1', metadata[:featureNames][1]
         assert_equal 'description', metadata[:description]
-        assert metadata[:includesData]
         assert_equal 2, metadata[:gmlIdentifiers].length
         assert_equal 'featureScope', metadata[:featureScope]
-        assert_equal 'featureAcquisitionMethod', metadata[:featureAcquisitionMethod]
+        assert_equal 'acquisitionMethod', metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -53,19 +52,17 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['featureName'] = []
         hIn['description'] = ''
-        hIn['includesData'] = ''
         hIn['gmlIdentifier'] = []
         hIn['featureScope'] = ''
-        hIn['featureAcquisitionMethod'] = ''
+        hIn['acquisitionMethod'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
-        refute metadata[:includesData]
         assert_empty metadata[:gmlIdentifiers]
         assert_nil metadata[:featureScope]
-        assert_nil metadata[:featureAcquisitionMethod]
+        assert_nil metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -77,19 +74,17 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn['nonElement'] = ''
         hIn.delete('featureName')
         hIn.delete('description')
-        hIn.delete('includesData')
         hIn.delete('gmlIdentifier')
         hIn.delete('featureScope')
-        hIn.delete('featureAcquisitionMethod')
+        hIn.delete('acquisitionMethod')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
-        refute metadata[:includesData]
         assert_empty metadata[:gmlIdentifiers]
         assert_nil metadata[:featureScope]
-        assert_nil metadata[:featureAcquisitionMethod]
+        assert_nil metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

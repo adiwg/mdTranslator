@@ -42,13 +42,6 @@ module ADIWG
                             end
                         end
 
-                        # geometry properties - includes data {Boolean}
-                        if hGeoProp.has_key?('includesData')
-                            if hGeoProp['includesData'] === true
-                                intGeoProp[:includesData] = hGeoProp['includesData']
-                            end
-                        end
-
                         # geometry properties - identifier []
                         if hGeoProp.has_key?('gmlIdentifier')
                             aItems = hGeoProp['gmlIdentifier']
@@ -67,10 +60,10 @@ module ADIWG
                             end
                         end
 
-                        # geometry properties - feature acquisition method
-                        if hGeoProp.has_key?('featureAcquisitionMethod')
-                            if hGeoProp['featureAcquisitionMethod'] != ''
-                                intGeoProp[:featureAcquisitionMethod] = hGeoProp['featureAcquisitionMethod']
+                        # geometry properties - acquisition method
+                        if hGeoProp.has_key?('acquisitionMethod')
+                            if hGeoProp['acquisitionMethod'] != ''
+                                intGeoProp[:acquisitionMethod] = hGeoProp['acquisitionMethod']
                             end
                         end
 

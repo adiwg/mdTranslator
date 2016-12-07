@@ -465,7 +465,7 @@ class InternalMetadata
             containsData: true,
             identifier: {},
             boundingBox: {},
-            geographicElement: {}
+            geographicElement: []
         }
     end
 
@@ -473,7 +473,7 @@ class InternalMetadata
         intObj = {
             nativeGeoJson: [],
             geographicElements: [],
-            computedBbox: []
+            computedBbox: {}
         }
     end
 
@@ -506,10 +506,9 @@ class InternalMetadata
         intObj = {
             featureNames: [],
             description: nil,
-            includesData: false,
             gmlIdentifiers: [],
             featureScope: nil,
-            featureAcquisitionMethod: nil
+            acquisitionMethod: nil
         }
     end
 

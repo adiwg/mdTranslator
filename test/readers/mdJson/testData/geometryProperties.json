@@ -6,7 +6,6 @@
         "featureName1"
       ],
       "description": "description",
-      "includesData": true,
       "gmlIdentifier": [
         {
           "identifier": "identifier0",
@@ -18,7 +17,7 @@
         }
       ],
       "featureScope": "featureScope",
-      "featureAcquisitionMethod": "featureAcquisitionMethod"
+      "acquisitionMethod": "acquisitionMethod"
     }
   ]
 }
