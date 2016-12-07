@@ -388,8 +388,8 @@ class InternalMetadata
 
     def newTransferOption
         intObj = {
+            unitsOfDistribution: nil,
             transferSize: nil,
-            transferUnits: nil,
             onlineOptions: [],
             offlineOptions: [],
             transferFrequency: {},

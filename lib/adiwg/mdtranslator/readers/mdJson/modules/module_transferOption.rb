@@ -29,17 +29,17 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intTransOpt = intMetadataClass.newTransferOption
 
+                        # transfer option - units of distribution
+                        if hTransOp.has_key?('unitsOfDistribution')
+                            if hTransOp['unitsOfDistribution'] != ''
+                                intTransOpt[:unitsOfDistribution] = hTransOp['unitsOfDistribution']
+                            end
+                        end
+
                         # transfer option - transfer size
                         if hTransOp.has_key?('transferSize')
                             if hTransOp['transferSize'] != ''
                                 intTransOpt[:transferSize] = hTransOp['transferSize']
-                            end
-                        end
-
-                        # transfer option - transfer units
-                        if hTransOp.has_key?('transferUnits')
-                            if hTransOp['transferSize'] != ''
-                                intTransOpt[:transferUnits] = hTransOp['transferUnits']
                             end
                         end
 

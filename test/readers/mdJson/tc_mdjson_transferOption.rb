@@ -35,8 +35,8 @@ class TestReaderMdJsonTransferOption < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 'unitsOfDistribution', metadata[:unitsOfDistribution]
         assert_equal 9.9, metadata[:transferSize]
-        assert_equal 'transferUnits', metadata[:transferUnits]
         assert_equal 2, metadata[:onlineOptions].length
         assert_equal 2, metadata[:offlineOptions].length
         refute_empty metadata[:transferFrequency]
@@ -50,7 +50,7 @@ class TestReaderMdJsonTransferOption < MiniTest::Test
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['transferSize'] = ''
-        hIn['transferUnits'] = ''
+        hIn['unitsOfDistribution'] = ''
         hIn['onlineOption'] = []
         hIn['offlineOption'] = []
         hIn['transferFrequency'] = {}
@@ -58,8 +58,8 @@ class TestReaderMdJsonTransferOption < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:unitsOfDistribution]
         assert_nil metadata[:transferSize]
-        assert_nil metadata[:transferUnits]
         assert_empty metadata[:onlineOptions]
         assert_empty metadata[:offlineOptions]
         assert_empty metadata[:transferFrequency]
@@ -73,8 +73,8 @@ class TestReaderMdJsonTransferOption < MiniTest::Test
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['nonElement'] = ''
+        hIn.delete('unitsOfDistribution')
         hIn.delete('transferSize')
-        hIn.delete('transferUnits')
         hIn.delete('onlineOption')
         hIn.delete('offlineOption')
         hIn.delete('transferFrequency')
@@ -82,8 +82,8 @@ class TestReaderMdJsonTransferOption < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:unitsOfDistribution]
         assert_nil metadata[:transferSize]
-        assert_nil metadata[:transferUnits]
         assert_empty metadata[:onlineOptions]
         assert_empty metadata[:offlineOptions]
         assert_empty metadata[:transferFrequency]
