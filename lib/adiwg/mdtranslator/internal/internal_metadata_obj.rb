@@ -780,7 +780,7 @@ class InternalMetadata
             gridRepresentation: {},
             vectorRepresentation: {},
             georectifiedRepresentation: {},
-            georeferencableRepresentation: {}
+            georeferenceableRepresentation: {}
         }
     end
 
@@ -830,7 +830,7 @@ class InternalMetadata
         }
     end
 
-    def newGeoreferencableInfo
+    def newGeoreferenceableInfo
         intObj = {
             gridRepresentation: {},
             controlPointAvailability: false,

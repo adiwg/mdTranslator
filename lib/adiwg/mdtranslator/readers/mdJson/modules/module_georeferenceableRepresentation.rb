@@ -1,4 +1,4 @@
-# unpack georeferencable representation
+# unpack georeferenceable representation
 # Reader - ADIwg JSON to internal data structure
 
 # History:
@@ -12,22 +12,22 @@ module ADIWG
         module Readers
             module MdJson
 
-                module GeoreferencableRepresentation
+                module GeoreferenceableRepresentation
 
                     def self.unpack(hGeoRef, responseObj)
 
                         # return nil object if input is empty
                         if hGeoRef.empty?
-                            responseObj[:readerExecutionMessages] << 'Georeferencable Representation object is empty'
+                            responseObj[:readerExecutionMessages] << 'Georeferenceable Representation object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intGeoRef = intMetadataClass.newGeoreferencableInfo
+                        intGeoRef = intMetadataClass.newGeoreferenceableInfo
 
-                        # georeferencable representation - grid representation (required)
+                        # georeferenceable representation - grid representation (required)
                         if hGeoRef.has_key?('gridRepresentation')
                             hObject = hGeoRef['gridRepresentation']
                             unless hObject.empty?
@@ -38,45 +38,45 @@ module ADIWG
                             end
                         end
                         if intGeoRef[:gridRepresentation].empty?
-                            responseObj[:readerExecutionMessages] << 'Georeferencable Representation is missing GridRepresentation object'
+                            responseObj[:readerExecutionMessages] << 'Georeferenceable Representation is missing GridRepresentation object'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # georeferencable representation - control point availability (required)
+                        # georeferenceable representation - control point availability (required)
                         if hGeoRef.has_key?('controlPointAvailability')
                             if hGeoRef['controlPointAvailability'] === true
                                 intGeoRef[:controlPointAvailability] = hGeoRef['controlPointAvailability']
                             end
                         end
 
-                        # georeferencable representation - orientation parameter availability (required)
+                        # georeferenceable representation - orientation parameter availability (required)
                         if hGeoRef.has_key?('orientationParameterAvailability')
                             if hGeoRef['orientationParameterAvailability'] === true
                                 intGeoRef[:orientationParameterAvailability] = hGeoRef['orientationParameterAvailability']
                             end
                         end
 
-                        # georeferencable representation - orientation parameter description
+                        # georeferenceable representation - orientation parameter description
                         if hGeoRef.has_key?('orientationParameterDescription')
                             if hGeoRef['orientationParameterDescription'] != ''
                                 intGeoRef[:orientationParameterDescription] = hGeoRef['orientationParameterDescription']
                             end
                         end
 
-                        # georeferencable representation - georeferenced parameter (required)
+                        # georeferenceable representation - georeferenced parameter (required)
                         if hGeoRef.has_key?('georeferencedParameter')
                             if hGeoRef['georeferencedParameter'] != ''
                                 intGeoRef[:georeferencedParameter] = hGeoRef['georeferencedParameter']
                             end
                         end
                         if intGeoRef[:georeferencedParameter].nil?
-                            responseObj[:readerExecutionMessages] << 'Georeferencable Representation is missing georeferencedParameter'
+                            responseObj[:readerExecutionMessages] << 'Georeferenceable Representation is missing georeferencedParameter'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # georeferencable representation - parameter citation [citation]
+                        # georeferenceable representation - parameter citation [citation]
                         if hGeoRef.has_key?('parameterCitation')
                             aCitation = hGeoRef['parameterCitation']
                             aCitation.each do |item|

@@ -39,7 +39,7 @@ class TestReaderMdJsonSpatialRepresentation < MiniTest::Test
         refute_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
-        assert_empty metadata[:georeferencableRepresentation]
+        assert_empty metadata[:georeferenceableRepresentation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -56,7 +56,7 @@ class TestReaderMdJsonSpatialRepresentation < MiniTest::Test
         assert_empty metadata[:gridRepresentation]
         refute_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
-        assert_empty metadata[:georeferencableRepresentation]
+        assert_empty metadata[:georeferenceableRepresentation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -73,24 +73,24 @@ class TestReaderMdJsonSpatialRepresentation < MiniTest::Test
         assert_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         refute_empty metadata[:georectifiedRepresentation]
-        assert_empty metadata[:georeferencableRepresentation]
+        assert_empty metadata[:georeferenceableRepresentation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_spatialRepresentation_georeferencable
+    def test_spatialRepresentation_georeferenceable
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = 'georeferencable'
+        hIn['type'] = 'georeferenceable'
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'georeferencable', metadata[:type]
+        assert_equal 'georeferenceable', metadata[:type]
         assert_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
-        refute_empty metadata[:georeferencableRepresentation]
+        refute_empty metadata[:georeferenceableRepresentation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

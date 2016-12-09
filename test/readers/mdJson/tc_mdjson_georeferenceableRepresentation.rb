@@ -7,19 +7,19 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_georeferencableRepresentation'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_georeferenceableRepresentation'
 
-class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
+class TestReaderMdJsonGeoreferenceableRepresentation < MiniTest::Test
 
     # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeoreferencableRepresentation
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeoreferenceableRepresentation
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'georeferencable.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'georeferenceable.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -27,9 +27,9 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['georeferencableRepresentation'][0]
+    @@hIn = aIn['georeferenceableRepresentation'][0]
 
-    def test_complete_georeferencableRepresentation_object
+    def test_complete_georeferenceableRepresentation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -46,7 +46,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_empty_grid
+    def test_georeferenceableRepresentation_empty_grid
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['gridRepresentation'] = {}
@@ -59,7 +59,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_missing_grid
+    def test_georeferenceableRepresentation_missing_grid
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('gridRepresentation')
@@ -72,7 +72,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_empty_controlPt
+    def test_georeferenceableRepresentation_empty_controlPt
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['controlPointAvailability'] = ''
@@ -85,7 +85,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_missing_controlPt
+    def test_georeferenceableRepresentation_missing_controlPt
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('controlPointAvailability')
@@ -98,7 +98,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_empty_orientParam
+    def test_georeferenceableRepresentation_empty_orientParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['orientationParameterAvailability'] = ''
@@ -111,7 +111,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_missing_orientParam
+    def test_georeferenceableRepresentation_missing_orientParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('orientationParameterAvailability')
@@ -124,7 +124,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_empty_geoParam
+    def test_georeferenceableRepresentation_empty_geoParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['georeferencedParameter'] = ''
@@ -137,7 +137,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_missing_geoParam
+    def test_georeferenceableRepresentation_missing_geoParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('georeferencedParameter')
@@ -150,7 +150,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_empty_elements
+    def test_georeferenceableRepresentation_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['orientationParameterDescription'] = ''
@@ -169,7 +169,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_georeferencableRepresentation_missing_elements
+    def test_georeferenceableRepresentation_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('orientationParameterDescription')
@@ -188,7 +188,7 @@ class TestReaderMdJsonGeoreferencableRepresentation < MiniTest::Test
 
     end
 
-    def test_empty_georeferencableRepresentation_object
+    def test_empty_georeferenceableRepresentation_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

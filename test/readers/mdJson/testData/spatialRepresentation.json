@@ -31,7 +31,7 @@
             ],
             "pointInPixel": "pointInPixel"
          },
-         "georeferencableRepresentation": {
+         "georeferenceableRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
                "cellGeometry": "cellGeometry",
