@@ -4,7 +4,7 @@
 # History:
 #   Stan Smith 2016-10-22 original script
 
-require_relative 'module_citation'
+require_relative 'module_taxonomicSystem'
 require_relative 'module_responsibleParty'
 require_relative 'module_voucher'
 require_relative 'module_taxonomicClassification'
@@ -30,11 +30,11 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intTaxonomy = intMetadataClass.newTaxonomy
 
-                        # taxonomy - classification system [citation] (required)
-                        if hTaxonomy.has_key?('classificationSystem')
-                            aItems = hTaxonomy['classificationSystem']
+                        # taxonomy - classification system [{TaxonomySystem}] (required)
+                        if hTaxonomy.has_key?('taxonomicSystem')
+                            aItems = hTaxonomy['taxonomicSystem']
                             aItems.each do |item|
-                                hReturn = Citation.unpack(item, responseObj)
+                                hReturn = TaxonomicSystem.unpack(item, responseObj)
                                 unless hReturn.nil?
                                     intTaxonomy[:taxonSystem] << hReturn
                                 end
@@ -46,17 +46,10 @@ module ADIWG
                             return nil
                         end
 
-                        # taxonomy - system modifications
-                        if hTaxonomy.has_key?('systemModifications')
-                            if hTaxonomy['systemModifications'] != ''
-                                intTaxonomy[:systemMods] = hTaxonomy['systemModifications']
-                            end
-                        end
-
                         # taxonomy - general taxonomic scope
-                        if hTaxonomy.has_key?('generalTaxonomicScope')
-                            if hTaxonomy['generalTaxonomicScope'] != ''
-                                intTaxonomy[:generalScope] = hTaxonomy['generalTaxonomicScope']
+                        if hTaxonomy.has_key?('generalScope')
+                            if hTaxonomy['generalScope'] != ''
+                                intTaxonomy[:generalScope] = hTaxonomy['generalScope']
                             end
                         end
 

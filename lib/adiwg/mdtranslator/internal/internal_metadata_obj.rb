@@ -607,7 +607,6 @@ class InternalMetadata
     def newTaxonomy
         intObj = {
             taxonSystem: [],
-            systemMods: nil,
             generalScope: nil,
             idReferences: [],
             observers: [],
@@ -615,6 +614,13 @@ class InternalMetadata
             idCompleteness: nil,
             vouchers: [],
             taxonClasses: []
+        }
+    end
+
+    def newTaxonSystem
+        intObj = {
+            citation: {},
+            modifications: nil
         }
     end
 

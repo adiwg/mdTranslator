@@ -1,90 +1,93 @@
 {
-   "taxonomy": [
-      {
-         "classificationSystem": [
+  "taxonomy": [
+    {
+      "taxonomicSystem": [
+        {
+          "citation": {
+            "title": "title"
+          }
+        },
+        {
+          "citation": {
+            "title": "title"
+          }
+        }
+      ],
+      "generalScope": "generalScope",
+      "identificationReference": [
+        {
+          "title": "title"
+        },
+        {
+          "title": "title"
+        }
+      ],
+      "observer": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-22"
+          },
+          "party": [
             {
-               "title": "title"
-            },
-            {
-               "title": "title"
+              "contactId": "individualId0"
             }
-         ],
-         "systemModifications": "systemModifications",
-         "generalTaxonomicScope": "generalTaxonomicScope",
-         "identificationReference": [
+          ]
+        },
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-22"
+          },
+          "party": [
             {
-               "title": "title"
-            },
-            {
-               "title": "title"
+              "contactId": "individualId0"
             }
-         ],
-         "observer": [
-            {
-               "role": "role",
-               "timePeriod": {
-                  "startDateTime": "2016-10-22"
-               },
-               "party": [
-                  {
-                     "contactId": "individualId0"
-                  }
-               ]
+          ]
+        }
+      ],
+      "identificationProcedure": "identificationProcedure",
+      "identificationCompleteness": "identificationCompleteness",
+      "voucher": [
+        {
+          "specimen": "specimen",
+          "repository": {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
             },
-            {
-               "role": "role",
-               "timePeriod": {
-                  "startDateTime": "2016-10-22"
-               },
-               "party": [
-                  {
-                     "contactId": "individualId0"
-                  }
-               ]
-            }
-         ],
-         "identificationProcedure": "identificationProcedure",
-         "identificationCompleteness": "identificationCompleteness",
-         "voucher": [
-            {
-               "specimen": "specimen",
-               "repository": {
-                  "role": "role",
-                  "timePeriod": {
-                     "startDateTime": "2016-10-14"
-                  },
-                  "party": [
-                     {
-                        "contactId": "individualId0"
-                     }
-                  ]
-               }
+            "party": [
+              {
+                "contactId": "individualId0"
+              }
+            ]
+          }
+        },
+        {
+          "specimen": "specimen",
+          "repository": {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
             },
-            {
-               "specimen": "specimen",
-               "repository": {
-                  "role": "role",
-                  "timePeriod": {
-                     "startDateTime": "2016-10-14"
-                  },
-                  "party": [
-                     {
-                        "contactId": "individualId0"
-                     }
-                  ]
-               }
-            }
-         ],
-         "taxonomicClassification": [
-            {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName"
-            },
-            {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName"
-            }
-         ]
-      }
-   ]
+            "party": [
+              {
+                "contactId": "individualId0"
+              }
+            ]
+          }
+        }
+      ],
+      "taxonomicClassification": [
+        {
+          "taxonomicRank": "taxonomicRank0",
+          "latinName": "latinName"
+        },
+        {
+          "taxonomicRank": "taxonomicRank0",
+          "latinName": "latinName"
+        }
+      ]
+    }
+  ]
 }

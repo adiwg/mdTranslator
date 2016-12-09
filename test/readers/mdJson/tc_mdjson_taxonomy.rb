@@ -60,8 +60,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 2, metadata[:taxonSystem].length
-        assert_equal 'systemModifications', metadata[:systemMods]
-        assert_equal 'generalTaxonomicScope', metadata[:generalScope]
+        assert_equal 'generalScope', metadata[:generalScope]
         assert_equal 2, metadata[:idReferences].length
         assert_equal 2, metadata[:observers].length
         assert_equal 'identificationProcedure', metadata[:idProcedure]
@@ -76,7 +75,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
     def test_taxonomy_empty_classSystem
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['classificationSystem'] = []
+        hIn['taxonomicSystem'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -89,7 +88,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
     def test_taxonomy_missing_classSystem
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('classificationSystem')
+        hIn.delete('taxonomicSystem')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -180,8 +179,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
     def test_taxonomy_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['systemModifications'] = ''
-        hIn['generalTaxonomicScope'] = ''
+        hIn['generalScope'] = ''
         hIn['observer'] = []
         hIn['identificationCompleteness'] = ''
         hIn['voucher'] = []
@@ -189,7 +187,6 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:taxonSystem]
-        assert_nil metadata[:systemMods]
         assert_nil metadata[:generalScope]
         refute_empty metadata[:idReferences]
         assert_empty metadata[:observers]
@@ -205,8 +202,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
     def test_taxonomy_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('systemModifications')
-        hIn.delete('generalTaxonomicScope')
+        hIn.delete('generalScope')
         hIn.delete('observer')
         hIn.delete('identificationCompleteness')
         hIn.delete('voucher')
@@ -214,7 +210,6 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:taxonSystem]
-        assert_nil metadata[:systemMods]
         assert_nil metadata[:generalScope]
         refute_empty metadata[:idReferences]
         assert_empty metadata[:observers]
