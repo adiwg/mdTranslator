@@ -316,6 +316,13 @@ class InternalMetadata
         }
     end
 
+    def newKeywordObject
+        intObj = {
+            keyword: nil,
+            keywordId: nil
+        }
+    end
+
     def newConstraints
         intObj = {
             constraints: [],

@@ -26,7 +26,7 @@ module ADIWG
 
                         # return nil object if input is empty
                         if hKeyword.empty?
-                            responseObj[:readerExecutionMessages] << 'Keyword object is empty'
+                            responseObj[:readerExecutionMessages] << 'Keyword is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
@@ -36,15 +36,15 @@ module ADIWG
                         intKeyword = intMetadataClass.newKeyword
 
                         # keyword - keyword [] (required)
-                        if hKeyword.has_key?('keyword')
-                            hKeyword['keyword'].each do |item|
+                        if hKeyword.has_key?('keywords')
+                            hKeyword['keywords'].each do |item|
                                 if item != ''
                                     intKeyword[:keywords] << item
                                 end
                             end
                         end
                         if intKeyword[:keywords].empty?
-                            responseObj[:readerExecutionMessages] << 'Keyword object is missing keyword'
+                            responseObj[:readerExecutionMessages] << 'Keyword is missing keywords'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

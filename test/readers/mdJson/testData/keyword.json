@@ -1,9 +1,13 @@
 {
    "keyword": [
       {
-         "keyword": [
-            "keyword0",
-            "keyword1"
+         "keywords": [
+            {
+               "keyword": "keyword0"
+            },
+            {
+               "keyword": "keyword1"
+            }
          ],
          "keywordType": "keywordType",
          "thesaurus": {

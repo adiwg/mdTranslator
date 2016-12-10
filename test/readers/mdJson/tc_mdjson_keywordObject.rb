@@ -1,25 +1,25 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_keyword
+# reader / mdJson / module_keywordObject
 
 # History:
-# Stan Smith 2016-11-14 original script
+# Stan Smith 2016-12-09 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_keyword'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_keywordObject'
 
 class TestReaderMdJsonKeyword < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Keyword
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::KeywordObject
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
     }
 
     # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'keyword.json')
+    file = File.join(File.dirname(__FILE__), 'testData', 'keywordObject.json')
     file = File.open(file, 'r')
     jsonFile = file.read
     file.close
@@ -27,26 +27,25 @@ class TestReaderMdJsonKeyword < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['keyword'][0]
+    @@hIn = aIn['keywordObject'][0]
 
-    def test_complete_keyword_object
+    def test_complete_keywordObject
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 2, metadata[:keywords].length
-        assert_equal 'keywordType', metadata[:keywordType]
-        refute_empty metadata[:thesaurus]
+        assert_equal 'keyword0', metadata[:keyword]
+        assert_equal 'keywordId0', metadata[:keywordId]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_keyword_empty_keyword
+    def test_keywordObject_empty_keyword
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['keywords'] = []
+        hIn['keyword'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -56,10 +55,10 @@ class TestReaderMdJsonKeyword < MiniTest::Test
 
     end
 
-    def test_keyword_missing_keyword
+    def test_keywordObject_missing_keyword
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('keywords')
+        hIn.delete('keyword')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -69,39 +68,36 @@ class TestReaderMdJsonKeyword < MiniTest::Test
 
     end
 
-    def test_keyword_empty_elements
+    def test_keywordObject_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['keywordType'] = ''
-        hIn['thesaurus'] = {}
+        hIn['keywordId'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:keywords]
-        assert_nil metadata[:keywordType]
-        assert_empty metadata[:thesaurus]
+        assert_equal 'keyword0', metadata[:keyword]
+        assert_nil metadata[:keywordId]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_keyword_missing_elements
+    def test_keywordObject_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('keywordType')
-        hIn.delete('thesaurus')
+        hIn.delete('keywordId')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:keywords]
-        assert_nil metadata[:keywordType]
-        assert_empty metadata[:thesaurus]
+        assert_equal 'keyword0', metadata[:keyword]
+        assert_nil metadata[:keywordId]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_keyword_object
+
+    def test_empty_keywordObject
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)
