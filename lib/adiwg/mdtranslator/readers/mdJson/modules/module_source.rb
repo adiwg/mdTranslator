@@ -11,7 +11,6 @@
 
 require_relative 'module_citation'
 require_relative 'module_processStep'
-require_relative 'module_spatialResolution'
 require_relative 'module_spatialReference'
 
 module ADIWG
@@ -66,14 +65,10 @@ module ADIWG
                             end
                         end
 
-                        # source - spatial resolution
-                        if hSource.has_key?('spatialResolution')
-                            hObject = hSource['spatialResolution']
-                            unless hObject.empty?
-                                hReturn = SpatialResolution.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSource[:spatialResolution] = hReturn
-                                end
+                        # source - scale denominator
+                        if hSource.has_key?('scaleDenominator')
+                            if hSource['scaleDenominator'] != ''
+                                intSource[:scaleDenominator] = hSource['scaleDenominator']
                             end
                         end
 

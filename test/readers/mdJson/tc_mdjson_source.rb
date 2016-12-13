@@ -40,7 +40,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         assert_equal 'description', metadata[:description]
         refute_empty metadata[:sourceCitation]
         assert_equal 2, metadata[:metadataCitation].length
-        refute_empty metadata[:spatialResolution]
+        assert_equal 9, metadata[:scaleDenominator]
         refute_empty metadata[:referenceSystem]
         assert_equal 2, metadata[:sourceSteps].length
         assert hResponse[:readerExecutionPass]
@@ -79,7 +79,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['sourceCitation'] = {}
         hIn['sourceMetadata'] = []
-        hIn['spatialResolution'] = {}
+        hIn['scaleDenominator'] = ''
         hIn['referenceSystem'] = {}
         hIn['sourceStep'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -88,7 +88,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
-        assert_empty metadata[:spatialResolution]
+        assert_nil metadata[:scaleDenominator]
         assert_empty metadata[:referenceSystem]
         assert_empty metadata[:sourceSteps]
         assert hResponse[:readerExecutionPass]
@@ -101,7 +101,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('sourceCitation')
         hIn.delete('sourceMetadata')
-        hIn.delete('spatialResolution')
+        hIn.delete('scaleDenominator')
         hIn.delete('referenceSystem')
         hIn.delete('sourceStep')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -110,7 +110,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
-        assert_empty metadata[:spatialResolution]
+        assert_nil metadata[:scaleDenominator]
         assert_empty metadata[:referenceSystem]
         assert_empty metadata[:sourceSteps]
         assert hResponse[:readerExecutionPass]

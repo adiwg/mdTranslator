@@ -13,10 +13,7 @@
                "title": "title"
             }
          ],
-         "spatialResolution": {
-            "type": "scaleFactor",
-            "scaleFactor": 25000
-         },
+         "scaleDenominator": 9,
          "referenceSystem": {
             "referenceSystemType": "referenceSystemType"
          },
