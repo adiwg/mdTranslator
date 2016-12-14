@@ -1,5 +1,5 @@
 # ISO <<Class>> CI_Contact
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 #   Stan Smith 2016-11-17 refactored for mdTranslator/mdJson 2.0

@@ -1,14 +1,15 @@
 # ISO <<Class>> MD_SecurityConstraints
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-01 original script.
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+# 	Stan Smith 2013-11-01 original script.
 
 require_relative 'class_codelist'
 
@@ -19,63 +20,78 @@ module ADIWG
 
                 class MD_SecurityConstraints
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hSecurityCons)
+                    def writeXML(hConstraint)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_SecurityConstraints') do
 
-                            # security constraints - classification code - required
-                            s = hSecurityCons[:classCode]
-                            if s.nil?
-                                @xml.tag!('gmd:classification', {'gco:nilReason' => 'missing'})
-                            else
+                            # legal constraints - use limitation [] (required)
+                            hUse = hConstraint[:constraint]
+                            unless hUse.empty?
+                                aCons = hUse[:useLimitation]
+                                aCons.each do |useCon|
+                                    @xml.tag!('gmd:useLimitation') do
+                                        @xml.tag!('gco:CharacterString', useCon)
+                                    end
+                                end
+                            end
+                            if hUse.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:useLimitation')
+                            end
+
+                            # security constraints - classification code (required)
+                            s = hConstraint[:classCode]
+                            unless s.nil?
                                 @xml.tag!('gmd:classification') do
                                     codelistClass.writeXML('iso_classification',s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:classification', {'gco:nilReason' => 'missing'})
+                            end
 
                             # security constraints - user note
-                            s = hSecurityCons[:userNote]
-                            if !s.nil?
+                            s = hConstraint[:userNote]
+                            unless s.nil?
                                 @xml.tag!('gmd:userNote') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:userNote')
                             end
 
                             # security constraints - classification system
-                            s = hSecurityCons[:classSystem]
-
-                            if !s.nil?
+                            s = hConstraint[:classSystem]
+                            unless s.nil?
                                 @xml.tag!('gmd:classificationSystem') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:classificationSystem')
                             end
 
                             # security constraints - handling description
-                            s = hSecurityCons[:handlingDesc]
-                            if !s.nil?
+                            s = hConstraint[:handlingDesc]
+                            unless s.nil?
                                 @xml.tag!('gmd:handlingDescription') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:handlingDescription')
                             end
 
                         end
-
                     end
-
                 end
 
             end

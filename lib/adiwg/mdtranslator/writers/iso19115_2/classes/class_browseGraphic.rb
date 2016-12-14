@@ -1,12 +1,13 @@
 # ISO <<Class>> MD_BrowseGraphic
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-10-17 original script
-#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-11-29 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+# 	Stan Smith 2013-10-17 original script
 
 module ADIWG
     module Mdtranslator
@@ -15,50 +16,50 @@ module ADIWG
 
                 class MD_BrowseGraphic
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(graphic)
+                    def writeXML(hGraphic)
 
                         @xml.tag!('gmd:MD_BrowseGraphic') do
 
-                            # browse graphic - file name - required
-                            s = graphic[:bGName]
-                            if !s.nil?
+                            # browse graphic - file name (required)
+                            s = hGraphic[:graphicName]
+                            if s.nil?
+                                @xml.tag!('gmd:fileName', {'gco:nilReason' => 'missing'})
+                            else
                                 @xml.tag!('gmd:fileName') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:fileName')
                             end
 
                             # browse graphic - file description
-                            s = graphic[:bGDescription]
-                            if !s.nil?
+                            s = hGraphic[:graphicDescription]
+                            unless s.nil?
                                 @xml.tag!('gmd:fileDescription') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:fileDescription')
                             end
 
                             # browse graphic - file type
-                            s = graphic[:bGType]
-                            if !s.nil?
+                            s = hGraphic[:graphicType]
+                            unless s.nil?
                                 @xml.tag!('gmd:fileType') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:fileType')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # MD_BrowseGraphic tag
+                    end # writeXML
+                end # MD_BrowseGraphic class
 
             end
         end

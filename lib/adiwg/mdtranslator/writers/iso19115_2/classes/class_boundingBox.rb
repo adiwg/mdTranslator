@@ -1,13 +1,14 @@
 # ISO <<Class>> EX_GeographicBoundingBox
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-01 original script
-#   Stan Smith 2014-05-30 hElement attributes changed for version 0.5.0
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-02 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-05-30 hBBox attributes changed for version 0.5.0
+# 	Stan Smith 2013-11-01 original script
 
 module ADIWG
     module Mdtranslator
@@ -16,29 +17,15 @@ module ADIWG
 
                 class EX_GeographicBoundingBox
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hElement)
+                    def writeXML(hBBox)
 
-                        extentType = hElement[:elementIncludeData]
-                        hBBox = hElement[:elementGeometry][:geometry]
-
-                        @xml.tag!('gmd:EX_GeographicBoundingBox') do
-
-                            # bounding box - extent type - required
-                            if extentType.nil?
-                                @xml.tag!('gmd:extentTypeCode', {'gco:nilReason' => 'missing'})
-                            else
-                                @xml.tag!('gmd:extentTypeCode') do
-                                    @xml.tag!('gco:Boolean', extentType)
-                                end
-                            end
-
-                            # bounding box - west longitude - required
-                            s = hBBox[:westLong]
+                            # bounding box - west longitude (required)
+                            s = hBBox[:westLongitude]
                             if s.nil?
                                 @xml.tag!('gmd:westBoundLongitude', {'gco:nilReason' => 'missing'})
                             else
@@ -47,8 +34,8 @@ module ADIWG
                                 end
                             end
 
-                            # bounding box - east longitude - required
-                            s = hBBox[:eastLong]
+                            # bounding box - east longitude (required)
+                            s = hBBox[:eastLongitude]
                             if s.nil?
                                 @xml.tag!('gmd:eastBoundLongitude', {'gco:nilReason' => 'missing'})
                             else
@@ -57,8 +44,8 @@ module ADIWG
                                 end
                             end
 
-                            # bounding box - south latitude - required
-                            s = hBBox[:southLat]
+                            # bounding box - south latitude (required)
+                            s = hBBox[:southLatitude]
                             if s.nil?
                                 @xml.tag!('gmd:southBoundLatitude', {'gco:nilReason' => 'missing'})
                             else
@@ -67,8 +54,8 @@ module ADIWG
                                 end
                             end
 
-                            # bounding box - north latitude - required
-                            s = hBBox[:northLat]
+                            # bounding box - north latitude (required)
+                            s = hBBox[:northLatitude]
                             if s.nil?
                                 @xml.tag!('gmd:northBoundLatitude', {'gco:nilReason' => 'missing'})
                             else
@@ -77,11 +64,8 @@ module ADIWG
                                 end
                             end
 
-                        end
-
-                    end
-
-                end
+                    end # writeXML
+                end # EX_GeographicBoundingBox class
 
             end
         end

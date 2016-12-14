@@ -1,12 +1,12 @@
 # ISO <<Class>> MD_MetadataExtensionInformation
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 # 	Stan Smith 2013-11-22 original script.
 #   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 
@@ -22,28 +22,29 @@ module ADIWG
 
                 class MD_MetadataExtensionInformation
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hExtension)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
-                        enumerationClass = MD_EnumerationList.new(@xml, @responseObj)
-                        olResClass = CI_OnlineResource.new(@xml, @responseObj)
-                        rPartyClass = CI_ResponsibleParty.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                        enumerationClass = MD_EnumerationList.new(@xml, @hResponseObj)
+                        olResClass = CI_OnlineResource.new(@xml, @hResponseObj)
+                        partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_MetadataExtensionInformation') do
 
-                            # metadata extension - online resource - CI_OnLineResource
+                            # metadata extension - online resource {CI_OnLineResource}
                             hOLResource = hExtension[:onLineResource]
-                            if !hOLResource.empty?
+                            unless hOLResource.empty?
                                 @xml.tag!('gmd:extensionOnLineResource') do
                                     olResClass.writeXML(hOLResource)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if hOLResource.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:extensionOnLineResource')
                             end
 
@@ -52,119 +53,124 @@ module ADIWG
                                 @xml.tag!('gmd:MD_ExtendedElementInformation') do
 
                                     # extended element info - name - required
-                                    s = hExtension[:extName]
+                                    s = hExtension[:name]
                                     if s.nil?
-                                        @xml.tag!('gmd:name', {'gco:nilReason' => 'missing'})
-                                    else
                                         @xml.tag!('gmd:name') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
                                     end
+                                    if s.nil?
+                                        @xml.tag!('gmd:name', {'gco:nilReason' => 'missing'})
+                                    end
 
                                     # extended element info - short name
-                                    s = hExtension[:extShortName]
-                                    if !s.nil?
+                                    s = hExtension[:shortName]
+                                    unless s.nil?
                                         @xml.tag!('gmd:shortName') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif @responseObj[:writerShowTags]
+                                    end
+                                    if s.nil? && @hResponseObj[:writerShowTags]
                                         @xml.tag!('gmd:shortName')
                                     end
 
-                                    # extended element info - definition - required
+                                    # extended element info - definition (required)
                                     s = hExtension[:extDefinition]
-                                    if s.nil?
-                                        @xml.tag!('gmd:definition', {'gco:nilReason' => 'missing'})
-                                    else
+                                    unless s.nil?
                                         @xml.tag!('gmd:definition') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
                                     end
+                                    if s.nil?
+                                        @xml.tag!('gmd:definition', {'gco:nilReason' => 'missing'})
+                                    end
 
                                     # extended element info - obligation
                                     s = hExtension[:obligation]
-                                    if !s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:obligation') do
                                             enumerationClass.writeXML('iso_obligation',s)
                                         end
-                                    elsif @responseObj[:writerShowTags]
+                                    end
+                                    if s.nil? && @hResponseObj[:writerShowTags]
                                         @xml.tag!('gmd:obligation')
                                     end
 
-                                    # extended element info - data type - required
+                                    # extended element info - data type (required)
                                     s = hExtension[:dataType]
-                                    if s.nil?
-                                        @xml.tag!('gmd:dataType', {'gco:nilReason' => 'missing'})
-                                    else
+                                    unless s.nil?
                                         @xml.tag!('gmd:dataType') do
                                             codelistClass.writeXML('iso_dataType',s)
                                         end
                                     end
+                                    if s.nil?
+                                        @xml.tag!('gmd:dataType', {'gco:nilReason' => 'missing'})
+                                    end
 
                                     # extended element info - maximum occurrence
                                     s = hExtension[:maxOccurrence]
-                                    if !s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:maximumOccurrence') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
-                                    elsif @responseObj[:writerShowTags]
+                                    end
+                                    if s.nil? && @hResponseObj[:writerShowTags]
                                         @xml.tag!('gmd:maximumOccurrence')
                                     end
 
-                                    # extended element info - parent entity - required
+                                    # extended element info - parent entity [] (required)
                                     aParents = hExtension[:parentEntities]
+                                    aParents.each do |parent|
+                                        @xml.tag!('gmd:parentEntity') do
+                                            @xml.tag!('gco:CharacterString', parent)
+                                        end
+                                    end
                                     if aParents.empty?
                                         @xml.tag!('gmd:parentEntity', {'gco:nilReason' => 'missing'})
-                                    else
-                                        aParents.each do |parent|
-                                            @xml.tag!('gmd:parentEntity') do
-                                                @xml.tag!('gco:CharacterString', parent)
-                                            end
-                                        end
                                     end
 
                                     # extended element info - rule
                                     s = hExtension[:rule]
-                                    if s.nil?
-                                        @xml.tag!('gmd:rule', {'gco:nilReason' => 'missing'})
-                                    else
+                                    unless s.nil?
                                         @xml.tag!('gmd:rule') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
                                     end
+                                    if s.nil?
+                                        @xml.tag!('gmd:rule', {'gco:nilReason' => 'missing'})
+                                    end
 
-                                    # extended element info - rationale
+                                    # extended element info - rationale []
                                     aRations = hExtension[:rationales]
-                                    if aRations.empty?
+                                    aRations.each do |ration|
+                                        @xml.tag!('gmd:rationale') do
+                                            @xml.tag!('gco:CharacterString', ration)
+                                        end
+                                    end
+                                    if aRations.empty? && @hResponseObj[:writerShowTags]
                                         @xml.tag!('gmd:rationale')
-                                    else
-                                        aRations.each do |ration|
-                                            @xml.tag!('gmd:rationale') do
-                                                @xml.tag!('gco:CharacterString', ration)
-                                            end
-                                        end
                                     end
 
-                                    # extended element info - source - CI_ResponsibleParty
-                                    aSources = hExtension[:extSources]
-                                    if aSources.empty?
-                                        @xml.tag!('gmd:source', {'gco:nilReason' => 'missing'})
-                                    else
-                                        aSources.each do |hSource|
+                                    # extended element info - source [{CI_ResponsibleParty}]
+                                    aParties = hExtension[:sources]
+                                    aParties.each do |hRParty|
+                                        role = hRParty[:roleName]
+                                        aParties = hRParty[:party]
+                                        aParties.each do |hParty|
                                             @xml.tag!('gmd:source') do
-                                                rPartyClass.writeXML(hSource)
+                                                partyClass.writeXML(role, hParty)
                                             end
                                         end
                                     end
+                                    if aParties.empty?
+                                        @xml.tag!('gmd:source', {'gco:nilReason' => 'missing'})
+                                    end
 
-                                end
-                            end
-
-                        end
-
-                    end
-
-                end
+                                end # gmd:MD_ExtendedElementInformation tag
+                            end # gmd:extendedElementInformation
+                        end # gmd:MD_MetadataExtensionInformation
+                    end # writeXML
+                end # MD_MetadataExtensionInformation class
 
             end
         end

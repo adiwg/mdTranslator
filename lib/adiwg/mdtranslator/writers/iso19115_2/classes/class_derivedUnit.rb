@@ -1,5 +1,5 @@
 # ISO <<Class>> DerivedUnit
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 # 	Stan Smith 2015-08-27 copied from 19110 writer
@@ -11,16 +11,16 @@ module ADIWG
 
                 class DerivedUnit
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hDerived)
 
                         # create and identity for the unit
-                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
+                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @hResponseObj[:writerMissingIdCount]
                         @xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
                             @xml.tag!('gml:name', hDerived[:name])

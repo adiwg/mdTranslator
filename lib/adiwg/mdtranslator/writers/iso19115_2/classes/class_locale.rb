@@ -1,5 +1,5 @@
 # ISO <<Class>> PT_Locale
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 #   Stan Smith 2016-11-21 refactored for mdTranslator/mdJson 2.0
@@ -14,15 +14,15 @@ module ADIWG
 
                 class PT_Locale
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hLocale)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:PT_Locale') do
 
@@ -44,7 +44,7 @@ module ADIWG
                                     codelistClass.writeXML('iso_country',s)
                                 end
                             end
-                            if s.nil? && @responseObj[:writerShowTags]
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:country')
                             end
 

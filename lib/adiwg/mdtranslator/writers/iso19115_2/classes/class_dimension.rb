@@ -1,10 +1,12 @@
 # ISO <<Class>> MD_Dimension
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
+#   Stan Smith 2016-11-23 refactored for mdTranslator/mdJson 2.0
 # 	Stan Smith 2015-07-30 original script.
 
 require_relative 'class_codelist'
+require_relative 'class_measure'
 
 module ADIWG
     module Mdtranslator
@@ -13,54 +15,52 @@ module ADIWG
 
                 class MD_Dimension
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hDim)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                        measureClass = Measure.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_Dimension') do
 
-                            # dimension information - dimension type code - required
+                            # dimension information - dimension type code (required)
                             s = hDim[:dimensionType]
-                            if !s.nil?
+                            if s.nil?
+                                @xml.tag!('gmd:dimensionName', {'gco:nilReason'=>'missing'})
+                            else
                                 @xml.tag!('gmd:dimensionName') do
                                     codelistClass.writeXML('iso_dimensionNameType',s)
                                 end
-                            else
-                                @xml.tag!('gmd:dimensionName', {'gco:nilReason'=>'missing'})
                             end
 
-                            # dimension information - dimension size - required
+                            # dimension information - dimension size (required)
                             s = hDim[:dimensionSize]
-                            if !s.nil?
+                            if s.nil?
+                                @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
+                            else
                                 @xml.tag!('gmd:dimensionSize') do
                                     @xml.tag!('gco:Integer',s)
                                 end
-                            else
-                                @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
                             end
 
-                            # dimension information - dimension resolution - required
-                            res = hDim[:resolution]
-                            resUnit = hDim[:resolutionUnits]
-                            if !res.nil?
-                                @xml.tag!('gmd:resolution') do
-                                    @xml.tag!('gco:Measure', {'uom'=>resUnit}, res)
-                                end
-                            else
+                            # dimension information - dimension resolution (required)
+                            hMeasure = hDim[:resolution]
+                            if hMeasure.empty?
                                 @xml.tag!('gmd:resolution', {'gco:nilReason'=>'missing'})
+                            else
+                                @xml.tag!('gmd:resolution') do
+                                    measureClass.writeXML(hMeasure)
+                                end
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # MD_Dimension tag
+                    end # writeXML
+                end # Md_Dimension class
 
             end
         end

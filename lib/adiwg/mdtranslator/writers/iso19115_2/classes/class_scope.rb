@@ -1,57 +1,77 @@
-# ISO <<Class>> CI_Address
-# writer output in XML
+# ISO <<Class>> DQ_Scope
+# 19115-2 writer output in XML
 
 # History:
-#   Stan Smith 2016-11-19 original script
+#   Stan Smith 2016-12-13 original script
 
 require_relative 'class_codelist'
+require_relative 'class_timePeriod'
+require_relative 'class_scopeDescription'
 
 module ADIWG
     module Mdtranslator
         module Writers
             module Iso19115_2
 
-                class Scope
+                class DQ_Scope
 
-                    def initialize(xml, hResponseObj)
+                    def initialize(xml, responseObj)
                         @xml = xml
-                        @hResponseObj = hResponseObj
+                        @responseObj = responseObj
                     end
 
-                    def writeXML(aResScope)
+                    def writeXML(hScope)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
+                        periodClass =  TimePeriod.new(@xml, @responseObj)
+                        descriptionClass =  MD_ScopeDescription.new(@xml, @responseObj)
 
-                        # metadata information - hierarchy level [] {MD_scopeCode}
-                        aResScope.each do |hResScope|
-                            s = hResScope[:scopeCode]
-                            @xml.tag!('gmd:hierarchyLevel') do
-                                codelistClass.writeXML('iso_scope',s)
-                            end
-                        end
-                        if aResScope.empty? && @hResponseObj[:writerShowTags]
-                            @xml.tag!('gmd:hierarchyLevel')
-                        end
+                        @xml.tag!('gmd:DQ_Scope') do
 
-                        # metadata information - hierarchy level Name []
-                        haveName = false
-                        aResScope.each do |hResScope|
-                            aScopeDes = hResScope[:scopeDescription]
-                            aScopeDes.each do |hScopeDes|
-                                s = hScopeDes[:type] + ': ' + hScopeDes[:description]
-                                @xml.tag!('gmd:hierarchyLevelName') do
-                                    @xml.tag!('gco:CharacterString',s)
+                            # scope - level (required)
+                            s = hScope[:scopeCode]
+                            unless s.nil?
+                                @xml.tag!('gmd:level') do
+                                    codelistClass.writeXML('iso_onlineFunction',s)
                                 end
-                                haveName = true
                             end
-                        end
-                        if !haveName && @hResponseObj[:writerShowTags]
-                            @xml.tag!('gmd:hierarchyLevelName')
-                        end
+                            if s.nil?
+                                @xml.tag!('gmd:level', {'gco:nilReason'=>'missing'})
+                            end
 
+                            # scope - extent {[TimePeriod]}
+                            aPeriods = hScope[:timePeriod]
+                            unless aPeriods.empty?
+                                @xml.tag!('gmd:extent') do
+                                    @xml.tag!('gmd:EX_Extent') do
+                                        aPeriods.each do |hPeriod|
+                                            @xml.tag!('gmd:temporalElement') do
+                                                @xml.tag!('gmd:EX_TemporalExtent') do
+                                                    @xml.tag!('gmd:extent') do
+                                                        periodClass.writeXML(hPeriod)
+                                                    end
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            end
+
+                            # scope - level description [{MD_ScopeDescription}]
+                            aDescription = hScope[:scopeDescription]
+                            aDescription.each do |hDescription|
+                                @xml.tag!('gmd:levelDescription') do
+                                    descriptionClass.writeXML(hDescription)
+                                end
+                            end
+                            if aDescription.empty? && @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:levelDescription')
+                            end
+
+                        end # gmd:DQ_Scope tag
                     end # writeXML
-                end # CI_Address class
+                end # DQ_Scope class
 
             end
         end

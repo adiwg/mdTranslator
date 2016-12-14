@@ -1,5 +1,5 @@
 # ISO <<Class>> BaseUnit
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 # 	Stan Smith 2015-08-27 copied from 19110 writer
@@ -11,16 +11,16 @@ module ADIWG
 
                 class BaseUnit
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hBase)
 
                         # create and identity for the unit
-                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
+                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @hResponseObj[:writerMissingIdCount]
                         @xml.tag!('gml:BaseUnit', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => hBase[:codeSpace]}, hBase[:identifier])
                             @xml.tag!('gml:name', hBase[:name])

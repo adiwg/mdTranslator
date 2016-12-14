@@ -1,20 +1,20 @@
 # ISO <<Class>> EX_Extent
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-01 original script
-# 	Stan Smith 2013-11-15 add temporal elements
-# 	Stan Smith 2013-11-15 add vertical elements
-#   Stan Smith 2014-05-29 changes for json schema version 0.5.0
-#   Stan Smith 2014-05-29 ... added new class for geographicElement
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-01 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-05-29 ... added new class for geographicElement
+#   Stan Smith 2014-05-29 changes for json schema version 0.5.0
+# 	Stan Smith 2013-11-15 add vertical elements
+# 	Stan Smith 2013-11-15 add temporal elements
+# 	Stan Smith 2013-11-01 original script
 
 require_relative 'class_geographicElement'
-require_relative 'class_geographicDescription'
 require_relative 'class_temporalExtent'
 require_relative 'class_verticalExtent'
 
@@ -25,81 +25,65 @@ module ADIWG
 
                 class EX_Extent
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hExtent)
 
                         # classes used
-                        tempExtClass =  EX_TemporalExtent.new(@xml, @responseObj)
-                        vertExtClass =  EX_VerticalExtent.new(@xml, @responseObj)
-                        geoEleClass =  GeographicElement.new(@xml, @responseObj)
-                        geoEleIdClass =  EX_GeographicDescription.new(@xml, @responseObj)
+                        tempExtClass =  EX_TemporalExtent.new(@xml, @hResponseObj)
+                        vertExtClass =  EX_VerticalExtent.new(@xml, @hResponseObj)
+                        geoEleClass =  GeographicElement.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:EX_Extent') do
 
                             # extent - description
-                            s = hExtent[:extDesc]
-                            if !s.nil?
+                            s = hExtent[:description]
+                            unless s.nil?
                                 @xml.tag!('gmd:description') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:description')
                             end
 
-                            # extent - geographic element - for geometry
-                            aGeoElements = hExtent[:extGeoElements]
-                            if !aGeoElements.empty?
-                                aGeoElements.each do |hGeoElement|
-                                    @xml.tag!('gmd:geographicElement') do
-                                        geoEleClass.writeXML(hGeoElement)
-                                    end
-                                end
-                            elsif @responseObj[:writerShowTags]
+                            # extent - geographic extent []
+                            aGeoExtents = hExtent[:geographicExtents]
+                            aGeoExtents.each do |hGeoElement|
+                                geoEleClass.writeXML(hGeoElement)
+                            end
+                            if aGeoExtents.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:geographicElement')
                             end
 
-                            # extent - geographic element - for identifier
-                            aGeoElements = hExtent[:extIdElements]
-                            if !aGeoElements.empty?
-                                aGeoElements.each do |hGeoElement|
-                                    @xml.tag!('gmd:geographicElement') do
-                                        geoEleIdClass.writeXML(hGeoElement)
-                                    end
+                            # extent - temporal extent []
+                            aTempElements = hExtent[:extTempElements]
+                            aTempElements.each do |hTempElement|
+                                @xml.tag!('gmd:temporalElement') do
+                                    tempExtClass.writeXML(hTempElement)
                                 end
                             end
-
-                            # extent - temporal element
-                            aTempElements = hExtent[:extTempElements]
-                            if !aTempElements.empty?
-                                aTempElements.each do |hTempElement|
-                                    @xml.tag!('gmd:temporalElement') do
-                                        tempExtClass.writeXML(hTempElement)
-                                    end
-                                end
-                            elsif @responseObj[:writerShowTags]
+                            if aTempElements.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:temporalElement')
                             end
 
-                            # extent - vertical element
+                            # extent - vertical extent []
                             aVertElements = hExtent[:extVertElements]
-                            if !aVertElements.empty?
-                                aVertElements.each do |hVertElement|
-                                    @xml.tag!('gmd:verticalElement') do
-                                        vertExtClass.writeXML(hVertElement)
-                                    end
+                            aVertElements.each do |hVertElement|
+                                @xml.tag!('gmd:verticalElement') do
+                                    vertExtClass.writeXML(hVertElement)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aVertElements.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:verticalElement')
                             end
-                        end
 
-                    end
-
-                end
+                        end # gmd:EX_Extent tag
+                    end # writeXML
+                end # EX_Extent class
 
             end
         end

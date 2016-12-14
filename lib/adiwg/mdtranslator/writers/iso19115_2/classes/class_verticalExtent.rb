@@ -1,12 +1,13 @@
 # ISO <<Class>> EX_VerticalExtent
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-15 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-01 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2013-11-15 original script
 
 module ADIWG
     module Mdtranslator
@@ -15,16 +16,16 @@ module ADIWG
 
                 class EX_VerticalExtent
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hVertEle)
 
                         @xml.tag!('gmd:EX_VerticalExtent') do
 
-                            # vertical extent - minimum value - required
+                            # vertical extent - minimum value (required)
                             s = hVertEle[:minValue]
                             if s.nil?
                                 @xml.tag!('gmd:minimumValue', {'gco:nilReason' => 'missing'})
@@ -34,7 +35,7 @@ module ADIWG
                                 end
                             end
 
-                            # vertical extent - maximum value - required
+                            # vertical extent - maximum value (required)
                             s = hVertEle[:maxValue]
                             if s.nil?
                                 @xml.tag!('gmd:maximumValue', {'gco:nilReason' => 'missing'})
@@ -44,29 +45,41 @@ module ADIWG
                                 end
                             end
 
-                            # vertical extent - vertical crs - attributes only - required
+                            # vertical extent - vertical crs (attributes only) (required)
                             attributes = {}
-                            s = hVertEle[:crsURI]
-                            unless s.nil?
-                                attributes['xlink:href'] = s
+                            title = nil
+                            href = nil
+                            hSpaceRef = hVertEle[:crsURI]
+                            unless hSpaceRef.empty?
+                                hIdentifier = hSpaceRef[:systemIdentifier]
+                                unless hIdentifier.empty?
+                                    title = hIdentifier[:identifier]
+                                    href = hIdentifier[:namespace]
+                                    hCitation = hIdentifier[:citation]
+                                    unless hCitation.empty?
+                                        hOnline = hCitation[:onlineResources][0]
+                                        unless hOnline.empty?
+                                            href = hOnline[:olResURI]
+                                        end
+                                    end
+                                end
                             end
-                            s = hVertEle[:crsTitle]
-                            unless s.nil?
-                                attributes['xlink:title'] = s
+                            unless href.nil?
+                                attributes['xlink:href'] = href
                             end
-
+                            unless title.nil?
+                                attributes['xlink:title'] = title
+                            end
+                            unless attributes.empty?
+                                @xml.tag!('gmd:verticalCRS', attributes)
+                            end
                             if attributes.empty?
                                 attributes['gco:nilReason'] = 'missing'
                             end
 
-                            @xml.tag!('gmd:verticalCRS', attributes)
-
-
-                        end
-
-                    end
-
-                end
+                        end # EX_VerticalExtent tag
+                    end # writeXML
+                end # EX_VerticalExtent class
 
             end
         end

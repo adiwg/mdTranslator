@@ -1,13 +1,14 @@
 # ISO <<Class>> MD_Distribution
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-09-25 original script
-#   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-07 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
+# 	Stan Smith 2013-09-25 original script
 
 require_relative 'class_distributor'
 
@@ -18,15 +19,15 @@ module ADIWG
 
                 class MD_Distribution
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(aDistributors)
 
                         # classes used
-                        distributorClass = MD_Distributor.new(@xml, @responseObj)
+                        distributorClass = MD_Distributor.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_Distribution') do
 
@@ -39,11 +40,9 @@ module ADIWG
                                 end
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gmd:MD_Distribution tag
+                    end # writeXML
+                end # MD_Distribution class
 
             end
         end

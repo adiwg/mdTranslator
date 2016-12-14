@@ -1,5 +1,5 @@
 # ISO <<Class>> Measure
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
 #   Stan Smith 2016-11-22 original script.
@@ -13,7 +13,7 @@ module ADIWG
 
                     def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = hResponseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hResolution)

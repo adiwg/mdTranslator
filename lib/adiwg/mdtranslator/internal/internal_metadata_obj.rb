@@ -682,16 +682,18 @@ class InternalMetadata
     def newMetadataExtension
         intObj = {
             onLineResource: {},
-            extName: nil,
-            extShortName: nil,
-            extDefinition: nil,
+            name: nil,
+            shortName: nil,
+            definition: nil,
             obligation: nil,
             dataType: nil,
             maxOccurrence: nil,
             parentEntities: [],
             rule: nil,
             rationales: [],
-            extSources: []
+            sourceOrganization: nil,
+            sourceURI: nil,
+            sourceRole: nil
         }
     end
 

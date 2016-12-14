@@ -1,16 +1,17 @@
 # ISO <<Class>> MD_AggregateInformation
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2014-05-29 original script
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2016-11-23 refactored for mdTranslator/mdJson 2.0
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #   Stan Smith 2014-11-06 take initiativeType from internal initiativeType
 #   ... rather than resourceType for 0.9.0
-#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+# 	Stan Smith 2014-05-29 original script
 
 require_relative 'class_codelist'
 require_relative 'class_citation'
@@ -22,43 +23,38 @@ module ADIWG
 
                 class MD_AggregateInformation
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hAssocRes)
 
-                        # aggregate information is being supported in the 19115-1 style,
-                        # ... aggregateDataSetIdentifier is being dropped and
-                        # ... resource identifiers are being carried inside the
-                        # ... citation > identifier section
-
                         # classes used
-                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
-                        citationClass =  CI_Citation.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @hResponseObj)
+                        citationClass =  CI_Citation.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_AggregateInformation') do
 
-                            # aggregate information - aggregate data set name - citation
+                            # aggregate information - aggregate data set name {citation}
                             hAssocCit = hAssocRes[:resourceCitation]
                             if !hAssocCit.empty?
                                 @xml.tag!('gmd:aggregateDataSetName') do
                                     citationClass.writeXML(hAssocCit)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:aggregateDataSetName')
                             end
 
                             # aggregate information - aggregate data set identifier (use citation > identifier)
 
-                            # aggregate information - association type
+                            # aggregate information - association type (required)
                             s = hAssocRes[:associationType]
                             if !s.nil?
                                 @xml.tag!('gmd:associationType') do
                                     codelistClass.writeXML('iso_associationType',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:associationType')
                             end
 
@@ -68,15 +64,13 @@ module ADIWG
                                 @xml.tag!('gmd:initiativeType') do
                                     codelistClass.writeXML('iso_initiativeType',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:initiativeType')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # MD_AggregateInformation tag
+                    end # writeXML
+                end # MD_AggregateInformation class
 
             end
         end
