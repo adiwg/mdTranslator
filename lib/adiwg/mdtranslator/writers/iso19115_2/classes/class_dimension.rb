@@ -30,32 +30,33 @@ module ADIWG
 
                             # dimension information - dimension type code (required)
                             s = hDim[:dimensionType]
-                            if s.nil?
-                                @xml.tag!('gmd:dimensionName', {'gco:nilReason'=>'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:dimensionName') do
                                     codelistClass.writeXML('iso_dimensionNameType',s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:dimensionName', {'gco:nilReason'=>'missing'})
+                            end
 
                             # dimension information - dimension size (required)
                             s = hDim[:dimensionSize]
-                            if s.nil?
-                                @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:dimensionSize') do
                                     @xml.tag!('gco:Integer',s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
+                            end
 
                             # dimension information - dimension resolution (required)
                             hMeasure = hDim[:resolution]
-                            if hMeasure.empty?
-                                @xml.tag!('gmd:resolution', {'gco:nilReason'=>'missing'})
-                            else
-                                @xml.tag!('gmd:resolution') do
-                                    measureClass.writeXML(hMeasure)
-                                end
+                            unless hMeasure.empty?
+                                measureClass.writeXML(hMeasure)
+                            end
+                            if hMeasure.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:resolution')
                             end
 
                         end # MD_Dimension tag

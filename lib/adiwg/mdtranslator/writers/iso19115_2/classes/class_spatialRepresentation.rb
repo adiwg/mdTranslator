@@ -38,23 +38,23 @@ module ADIWG
                         # ... and georeferenceable classes
                         if type == 'grid'
                             @xml.tag!('gmd:MD_GridSpatialRepresentation') do
-                                gridClass.writeXML(hRepresentation)
+                                gridClass.writeXML(hRepresentation[:gridRepresentation])
                             end
                         end
 
                         # spatial representation - vector
                         if type == 'vector'
-                            vectorClass.writeXML(hRepresentation)
+                            vectorClass.writeXML(hRepresentation[:vectorRepresentation])
                         end
 
                         # spatial representation - georectified
                         if type == 'georectified'
-                            rectifiedClass.writeXML(hRepresentation)
+                            rectifiedClass.writeXML(hRepresentation[:georectifiedRepresentation])
                         end
 
                         # spatial representation - georeferenceable
                         if type == 'georeferenceable'
-                            referenceClass.writeXML(hRepresentation)
+                            referenceClass.writeXML(hRepresentation[:georeferenceableRepresentation])
                         end
 
                     end # writeXML
