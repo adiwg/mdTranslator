@@ -256,9 +256,9 @@ module ADIWG
                             # metadata information - metadata extension info
                             # add biological profile to all metadata records
                             intBio = intMetadataClass.newMetadataExtension
-                            intBio[:extName] = 'Taxonomy System'
-                            intBio[:extShortName] = 'TaxonSys'
-                            intBio[:extDefinition] = 'Documentation of taxonomic sources, procedures, and treatments'
+                            intBio[:name] = 'Taxonomy System'
+                            intBio[:shortName] = 'TaxonSys'
+                            intBio[:definition] = 'Documentation of taxonomic sources, procedures, and treatments'
                             intBio[:obligation] = 'optional'
                             intBio[:dataType] = 'class'
                             intBio[:maxOccurrence] = '1'

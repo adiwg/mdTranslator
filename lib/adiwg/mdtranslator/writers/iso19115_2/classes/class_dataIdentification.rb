@@ -246,9 +246,7 @@ module ADIWG
                                 end
                             end
                             if (aCons.nil? || aSecurityCons.nil?) && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    @xml.tag!('gmd:MD_SecurityConstraints')
-                                end
+                                @xml.tag!('gmd:resourceConstraints')
                             end
 
                             # data identification - aggregate information []

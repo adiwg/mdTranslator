@@ -52,9 +52,9 @@ module ADIWG
                             @xml.tag!('gmd:extendedElementInformation') do
                                 @xml.tag!('gmd:MD_ExtendedElementInformation') do
 
-                                    # extended element info - name - required
+                                    # extended element info - name (required)
                                     s = hExtension[:name]
-                                    if s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:name') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
@@ -75,7 +75,7 @@ module ADIWG
                                     end
 
                                     # extended element info - definition (required)
-                                    s = hExtension[:extDefinition]
+                                    s = hExtension[:definition]
                                     unless s.nil?
                                         @xml.tag!('gmd:definition') do
                                             @xml.tag!('gco:CharacterString', s)
@@ -159,7 +159,9 @@ module ADIWG
                                             @xml.tag!('gmd:CI_ResponsibleParty') do
                                                 orgName = hExtension[:sourceOrganization]
                                                 unless orgName.nil?
-                                                    @xml.tag!('gmd:organizationName', orgName)
+                                                    @xml.tag!('gmd:organisationName') do
+                                                        @xml.tag!('gco:CharacterString', orgName)
+                                                    end
                                                 end
                                                 uri = hExtension[:sourceURI]
                                                 unless uri.nil?
@@ -167,11 +169,16 @@ module ADIWG
                                                         @xml.tag!('gmd:CI_Contact') do
                                                             @xml.tag!('gmd:onlineResource') do
                                                                 @xml.tag!('gmd:CI_OnlineResource') do
-                                                                    @xml.tag!('gmd:linkage', uri)
+                                                                    @xml.tag!('gmd:linkage') do
+                                                                        @xml.tag!('gmd:URL', uri)
+                                                                    end
                                                                 end
                                                             end
                                                         end
                                                     end
+                                                end
+                                                @xml.tag!('gmd:role') do
+                                                    codelistClass.writeXML('iso_role', role)
                                                 end
                                             end
                                         end

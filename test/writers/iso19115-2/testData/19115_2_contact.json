@@ -8,13 +8,33 @@
       {
         "contactId": "CID001",
         "isOrganization": false,
-        "name": "contact - single array elements",
+        "name": "contact - individual",
         "positionName": "positionName",
-        "memberOfOrganization": [],
-        "logoGraphic": [],
-        "phone": [],
-        "address": [],
-        "onlineResource": [],
+        "memberOfOrganization": ["CID002"],
+        "logoGraphic": [
+          {
+            "fileName": "fileName"
+          }
+        ],
+        "phone": [
+          {
+            "phoneName": "single service",
+            "phoneNumber": "111-111-1111",
+            "service": ["voice"]
+          }
+        ],
+        "address": [
+          {
+            "electronicMailAddress": [
+              "email0@example.com"
+            ]
+          }
+        ],
+        "onlineResource": [
+          {
+            "uri": "http://URI.example.com"
+          }
+        ],
         "hoursOfService": [
           "hoursOfService"
         ],
@@ -23,17 +43,35 @@
       },
       {
         "contactId": "CID002",
-        "isOrganization": false,
-        "name": "contact - multiple array elements",
-        "positionName": "positionName",
-        "memberOfOrganization": [],
-        "logoGraphic": [],
-        "phone": [],
-        "address": [],
-        "onlineResource": [],
+        "isOrganization": true,
+        "name": "contact - organization",
+        "memberOfOrganization": ["CID002"],
+        "logoGraphic": [
+          {
+            "fileName": "fileName"
+          }
+        ],
+        "phone": [
+          {
+            "phoneName": "single service",
+            "phoneNumber": "111-111-1111",
+            "service": ["voice"]
+          }
+        ],
+        "address": [
+          {
+            "electronicMailAddress": [
+              "email0@example.com"
+            ]
+          }
+        ],
+        "onlineResource": [
+          {
+            "uri": "http://URI.example.com"
+          }
+        ],
         "hoursOfService": [
-          "hoursOfService1",
-          "hoursOfService2"
+          "hoursOfService"
         ],
         "contactInstructions": "contactInstructions",
         "contactType": "contactType"
@@ -41,30 +79,73 @@
       {
         "contactId": "CID003",
         "isOrganization": false,
+        "name": "contact - multiple array elements",
+        "memberOfOrganization": [],
+        "logoGraphic": [
+          {
+            "fileName": "fileName0"
+          },
+          {
+            "fileName": "fileName1"
+          }
+        ],
+        "phone": [
+          {
+            "phoneName": "single service 1",
+            "phoneNumber": "111-111-1111",
+            "service": ["voice"]
+          },
+          {
+            "phoneName": "single service 2",
+            "phoneNumber": "111-111-1111",
+            "service": ["voice"]
+          }
+        ],
+        "address": [
+          {
+            "electronicMailAddress": [
+              "email0@example.com"
+            ]
+          },
+          {
+            "electronicMailAddress": [
+              "email1@example.com"
+            ]
+          }
+        ],
+        "onlineResource": [
+          {
+            "uri": "http://URI.example0.com"
+          },
+          {
+            "uri": "http://URI.example1.com"
+          }
+        ],
+        "hoursOfService": [
+          "hoursOfService0",
+          "hoursOfService1"
+        ],
+        "contactInstructions": "contactInstructions",
+        "contactType": "contactType"
+      },
+      {
+        "contactId": "CID004",
+        "isOrganization": false,
         "name": "contact - empty elements",
         "positionName": "",
         "memberOfOrganization": [],
         "logoGraphic": [],
         "phone": [],
         "address": [],
-        "onlineResource": [
-          {
-            "uri": "http://URI.example1.com"
-          }
-        ],
+        "onlineResource": [],
         "hoursOfService": [],
         "contactInstructions": "",
         "contactType": ""
       },
       {
-        "contactId": "CID004",
+        "contactId": "CID005",
         "isOrganization": false,
-        "name": "contact - missing elements",
-        "onlineResource": [
-          {
-            "uri": "http://URI.example1.com"
-          }
-        ]
+        "name": "contact - missing elements"
       }
     ],
     "metadata": {
@@ -99,6 +180,14 @@
             "party": [
               {
                 "contactId": "CID004"
+              }
+            ]
+          },
+          {
+            "role": "custodian",
+            "party": [
+              {
+                "contactId": "CID005"
               }
             ]
           }

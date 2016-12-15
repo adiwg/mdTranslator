@@ -42,9 +42,6 @@ class TestWriter191152Address < MiniTest::Test
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
         }
 
-        File.open('/mnt/hgfs/Projects/writeOut.xml', 'w') { |file| file.write(metadata.to_s) }
-
-
     end
 
 end
