@@ -66,12 +66,14 @@
         "contactId": "CID004",
         "isOrganization": false,
         "name": "address - empty array",
-        "address": []
+        "address": [],
+        "contactInstructions": "contact instructions"
       },
       {
         "contactId": "CID005",
         "isOrganization": false,
-        "name": "address - missing key"
+        "name": "address - missing key",
+        "contactInstructions": "contact instructions"
       }
     ],
     "metadata": {

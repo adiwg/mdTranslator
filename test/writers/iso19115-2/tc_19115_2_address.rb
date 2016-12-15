@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_address
+# writers / iso19115_2 / class_address
 
 # History:
 #   Stan Smith 2016-11-19 original script
@@ -26,7 +26,7 @@ class TestWriter191152Address < MiniTest::Test
     def test_19115_2_address
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:contact') {|e| aRefXML << e}
+        XPath.each(@@iso_2_xml, '//gmd:CI_Contact') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
@@ -36,11 +36,14 @@ class TestWriter191152Address < MiniTest::Test
         iso_2_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:contact') {|e| aCheckXML << e}
+        XPath.each(iso_2_out, '//gmd:CI_Contact') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
         }
+
+        File.open('/mnt/hgfs/Projects/writeOut.xml', 'w') { |file| file.write(metadata.to_s) }
+
 
     end
 

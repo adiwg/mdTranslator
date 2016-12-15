@@ -132,7 +132,7 @@ module ADIWG
                             end
 
                             # data identification - point of contact
-                            aRParties = hCitation[:pointOfContacts]
+                            aRParties = hData[:pointOfContacts]
                             aRParties.each do |hRParty|
                                 role = hRParty[:roleName]
                                 aParties = hRParty[:party]
@@ -153,7 +153,7 @@ module ADIWG
                                     mInfoClass.writeXML(hMaint)
                                 end
                             end
-                            if aMaint.empty && @hResponseObj[:writerShowTags]
+                            if aMaint.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceMaintenance')
                             end
 
@@ -202,26 +202,33 @@ module ADIWG
                             end
 
                             # data identification - resource constraints - use constraints []
-                            aUseCons = hData[:useConstraints][:constraints]
-                            unless aUseCons.nil?
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    uConClass.writeXML(aUseCons)
+                            aCons = hData[:useConstraints]
+                            aUseCons = nil
+                            unless aCons.nil?
+                                aUseCons = aCons[:constraints]
+                                unless aUseCons.nil?
+                                    @xml.tag!('gmd:resourceConstraints') do
+                                        uConClass.writeXML(aUseCons)
+                                    end
                                 end
                             end
-                            if aUseCons.nil? && @hResponseObj[:writerShowTags]
+                            if (aCons.nil? || aUseCons.nil?) && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_Constraints')
                                 end
                             end
 
                             # data identification - resource constraints - legal constraints []
-                            aLegalCons = hData[:useConstraints][:legalConstraints]
-                            unless aLegalCons.nil?
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    lConClass.writeXML(aLegalCons)
+                            aLegalCons = nil
+                            unless aCons.nil?
+                                aLegalCons = aCons[:legalConstraints]
+                                unless aLegalCons.nil?
+                                    @xml.tag!('gmd:resourceConstraints') do
+                                        lConClass.writeXML(aLegalCons)
+                                    end
                                 end
                             end
-                            if aUseCons.nil? && @hResponseObj[:writerShowTags]
+                            if (aCons.nil? || aLegalCons.nil?) && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_LegalConstraints')
                                 end
@@ -229,13 +236,16 @@ module ADIWG
 
                             # data identification - resource constraints - security constraints []
                             # empty tag cannot be shown for security constraints - XSD issue
-                            aSecurityCons = hData[:useConstraints][:securityConstraints]
-                            unless aSecurityCons.nil?
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    sConClass.writeXML(aSecurityCons)
+                            aSecurityCons = nil
+                            unless aCons.nil?
+                                aSecurityCons = aCons[:securityConstraints]
+                                unless aSecurityCons.nil?
+                                    @xml.tag!('gmd:resourceConstraints') do
+                                        sConClass.writeXML(aSecurityCons)
+                                    end
                                 end
                             end
-                            if aSecurityCons.nil? && @hResponseObj[:writerShowTags]
+                            if (aCons.nil? || aSecurityCons.nil?) && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_SecurityConstraints')
                                 end

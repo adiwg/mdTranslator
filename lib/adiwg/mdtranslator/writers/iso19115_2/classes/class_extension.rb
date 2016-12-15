@@ -151,19 +151,33 @@ module ADIWG
                                         @xml.tag!('gmd:rationale')
                                     end
 
-                                    # extended element info - source [{CI_ResponsibleParty}]
-                                    aParties = hExtension[:sources]
-                                    aParties.each do |hRParty|
-                                        role = hRParty[:roleName]
-                                        aParties = hRParty[:party]
-                                        aParties.each do |hParty|
-                                            @xml.tag!('gmd:source') do
-                                                partyClass.writeXML(role, hParty)
+                                    # extended element info - source [] (required)
+                                    # only allowing 1 for now
+                                    role = hExtension[:sourceRole]
+                                    unless role.nil?
+                                        @xml.tag!('gmd:source') do
+                                            @xml.tag!('gmd:CI_ResponsibleParty') do
+                                                orgName = hExtension[:sourceOrganization]
+                                                unless orgName.nil?
+                                                    @xml.tag!('gmd:organizationName', orgName)
+                                                end
+                                                uri = hExtension[:sourceURI]
+                                                unless uri.nil?
+                                                    @xml.tag!('gmd:contactInfo') do
+                                                        @xml.tag!('gmd:CI_Contact') do
+                                                            @xml.tag!('gmd:onlineResource') do
+                                                                @xml.tag!('gmd:CI_OnlineResource') do
+                                                                    @xml.tag!('gmd:linkage', uri)
+                                                                end
+                                                            end
+                                                        end
+                                                    end
+                                                end
                                             end
                                         end
                                     end
-                                    if aParties.empty?
-                                        @xml.tag!('gmd:source', {'gco:nilReason' => 'missing'})
+                                    if role.nil?
+                                        xml.tag!('gmd:source', {'gco:nilReason' => 'missing'})
                                     end
 
                                 end # gmd:MD_ExtendedElementInformation tag

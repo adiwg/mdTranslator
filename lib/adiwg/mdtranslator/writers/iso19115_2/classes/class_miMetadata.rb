@@ -215,8 +215,15 @@ module ADIWG
                             end
 
                             # metadata information - locale []
-                            aLocales = hMetaInfo[:otherResourceLocales]
-                            aLocales.insert(0, hMetaInfo[:defaultResourceLocale])
+                            defaultLocale = hMetaInfo[:defaultResourceLocale]
+                            otherLocales = hMetaInfo[:otherResourceLocales]
+                            aLocales = []
+                            unless defaultLocale.nil?
+                                aLocales << defaultLocale
+                            end
+                            unless otherLocales.nil?
+                                aLocales.insert(0, otherLocales)
+                            end
                             aLocales.each do |hLocale|
                                 @xml.tag!('gmd:locale') do
                                     localeClass.writeXML(hLocale)
@@ -293,7 +300,7 @@ module ADIWG
                             # metadata information - distribution info [0]
                             aDistInfo = hMetadata[:distributorInfo]
                             hDistInfo = aDistInfo[0]
-                            unless hDate.empty
+                            unless hDate.empty?
                                 @xml.tag!('gmd:distributionInfo') do
                                     distClass.writeXML(hDistInfo)
                                 end
@@ -303,7 +310,7 @@ module ADIWG
                             end
 
                             # metadata information - data quality info []
-                            aDQInfo = hResInfo[:dataQualityInfo]
+                            aDQInfo = hMetadata[:lineageInfo]
                             aDQInfo.each do |hDQInfo|
                                 @xml.tag!('gmd:dataQualityInfo') do
                                     dqClass.writeXML(hDQInfo)
