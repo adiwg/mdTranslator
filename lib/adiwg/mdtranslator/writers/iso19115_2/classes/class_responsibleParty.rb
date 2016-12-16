@@ -40,11 +40,11 @@ module ADIWG
                             @xml.tag!('gmd:CI_ResponsibleParty') do
 
                                 # responsible party - (if individual)
-                                if !isOrg
+                                unless isOrg
 
                                     # individual name
                                     s = hContact[:name]
-                                    if !s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:individualName') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
@@ -55,7 +55,7 @@ module ADIWG
 
                                     # position name
                                     s = hContact[:positionName]
-                                    if !s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:positionName') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
@@ -71,7 +71,7 @@ module ADIWG
 
                                     # organization name
                                     s = hContact[:name]
-                                    if !s.nil?
+                                    unless s.nil?
                                         @xml.tag!('gmd:organisationName') do
                                             @xml.tag!('gco:CharacterString', s)
                                         end
@@ -99,12 +99,13 @@ module ADIWG
 
                                 # responsible party - role (required)
                                 s = role
-                                if s.nil?
-                                    @xml.tag!('gmd:role', {'gco:nilReason' => 'missing'})
-                                else
+                                unless s.nil?
                                     @xml.tag! 'gmd:role' do
                                         codelistClass.writeXML('iso_role', s)
                                     end
+                                end
+                                if s.nil?
+                                    @xml.tag!('gmd:role', {'gco:nilReason' => 'missing'})
                                 end
 
                             end# CI_ResponsibleParty tag

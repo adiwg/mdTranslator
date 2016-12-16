@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_responsibleParty
+# writers / iso19115_2 / class_responsibleParty
 
 # History:
 #   Stan Smith 2016-11-21 original script

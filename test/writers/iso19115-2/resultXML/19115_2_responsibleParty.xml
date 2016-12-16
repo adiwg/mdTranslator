@@ -34,6 +34,7 @@
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
+
   <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:organisationName>
@@ -45,6 +46,7 @@
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
+  
   <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
