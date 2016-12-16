@@ -35,12 +35,13 @@ module ADIWG
 
                             # online resource - link - required
                             s = hOlResource[:olResURI]
-                            if s.nil?
-                                @xml.tag!('gmd:linkage', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:linkage') do
                                     @xml.tag!('gmd:URL', s)
                                 end
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:linkage', {'gco:nilReason' => 'missing'})
                             end
 
                             # online resource - protocol
