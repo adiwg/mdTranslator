@@ -38,33 +38,37 @@ module ADIWG
 
                             # aggregate information - aggregate data set name {citation}
                             hAssocCit = hAssocRes[:resourceCitation]
-                            if !hAssocCit.empty?
+                            unless hAssocCit.empty?
                                 @xml.tag!('gmd:aggregateDataSetName') do
                                     citationClass.writeXML(hAssocCit)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if hAssocCit.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:aggregateDataSetName')
                             end
 
                             # aggregate information - aggregate data set identifier (use citation > identifier)
+                            # data set identifier was dropped from 19115-1
 
                             # aggregate information - association type (required)
                             s = hAssocRes[:associationType]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:associationType') do
                                     codelistClass.writeXML('iso_associationType',s)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:associationType')
                             end
 
                             # aggregate information - initiative type
                             s = hAssocRes[:initiativeType]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:initiativeType') do
                                     codelistClass.writeXML('iso_initiativeType',s)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:initiativeType')
                             end
 

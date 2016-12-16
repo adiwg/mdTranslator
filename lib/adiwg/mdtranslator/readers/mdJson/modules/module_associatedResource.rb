@@ -64,7 +64,7 @@ module ADIWG
                             end
                         end
 
-                         # associated resource - resource citation
+                         # associated resource - resource citation (citation)
                         if hAssocRes.has_key?('resourceCitation')
                             hObject = hAssocRes['resourceCitation']
                             unless hObject.empty?
@@ -73,6 +73,11 @@ module ADIWG
                                     intAssocRes[:resourceCitation] = hReturn
                                 end
                             end
+                        end
+                        if intAssocRes[:resourceCitation].empty?
+                            responseObj[:readerExecutionMessages] << 'Associated Resource requires a resource citation'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # associated resource - metadata citation
@@ -86,11 +91,6 @@ module ADIWG
                             end
                         end
 
-                        if intAssocRes[:metadataCitation].empty? && intAssocRes[:resourceCitation].empty?
-                            responseObj[:readerExecutionMessages] << 'Associated Resource requires either a resource or metadata citation'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
 
                         return intAssocRes
 
