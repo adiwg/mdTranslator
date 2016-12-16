@@ -8,7 +8,7 @@
       {
         "contactId": "CID001",
         "isOrganization": false,
-        "name": "onlineResource tests",
+        "name": "onlineResource complete",
         "onlineResource": [
           {
             "uri": "http://URI.example1.com",
