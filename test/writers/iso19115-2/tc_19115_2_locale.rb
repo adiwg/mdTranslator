@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_locale
+# writers / iso19115_2 / class_locale
 
 # History:
 #   Stan Smith 2016-11-22 original script
@@ -53,29 +53,6 @@ class TestWriter191152Locale < MiniTest::Test
         hJson = JSON.parse(@@mdJson)
         hJson['mdJson']['metadata']['metadataInfo']['defaultMetadataLocale'] = {}
         hJson['mdJson']['metadata']['metadataInfo']['otherMetadataLocale'] = []
-        jsonIn = hJson.to_json
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_2_out, '//gmd:locale')
-
-        assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
-
-    end
-
-    def test_19115_2_locale_missing
-
-        refXML = '<gmd:locale/>'
-
-        # empty language
-        # delete otherMetadataLocale
-        hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo'].delete('defaultMetadataLocale')
-        hJson['mdJson']['metadata']['metadataInfo'].delete('otherMetadataLocale')
         jsonIn = hJson.to_json
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true

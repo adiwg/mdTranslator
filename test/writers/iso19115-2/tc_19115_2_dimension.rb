@@ -34,8 +34,6 @@ class TestWriter191152Dimension < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        # TODO remove file write line
-        File.open('/mnt/hgfs/Projects/writeOut.xml', 'w') { |file| file.write(metadata.to_s) }
         iso_2_out = Document.new(metadata)
 
         aCheckXML = []
