@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_scope
+# writers / iso19115_2 / class_scope
 
 # History:
 #   Stan Smith 2016-11-21 original script
@@ -10,15 +10,15 @@ require 'rexml/document'
 require 'adiwg/mdtranslator'
 include REXML
 
-class TestWriter191152Scope < MiniTest::Test
+class TestWriter191152Hierarchy < MiniTest::Test
 
     # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_scope.xml')
+    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_hierarchy.xml')
     file = File.new(fname)
-    @@iso_2_xml = Document.new(file)
+    @@iso_xml = Document.new(file)
 
     # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_scope.json')
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_hierarchy.json')
     file = File.open(fname, 'r')
     @@mdJson = file.read
     file.close
@@ -26,17 +26,17 @@ class TestWriter191152Scope < MiniTest::Test
     def test_19115_2_hierarchyLevel
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
@@ -47,17 +47,17 @@ class TestWriter191152Scope < MiniTest::Test
     def test_19115_2_hierarchyLevelName
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:hierarchyLevelName') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:hierarchyLevelName') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:hierarchyLevelName') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:hierarchyLevelName') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
@@ -65,7 +65,7 @@ class TestWriter191152Scope < MiniTest::Test
 
     end
 
-    def test_19115_2_scope_empty_resourceScope
+    def test_19115_2_hierarchy_empty_resourceScope
 
         refXML1 = '<gmd:hierarchyLevel/>'
         refXML2 = '<gmd:hierarchyLevelName/>'
@@ -80,17 +80,17 @@ class TestWriter191152Scope < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
-        checkXML1 = XPath.first(iso_2_out, '//gmd:hierarchyLevel')
-        checkXML2 = XPath.first(iso_2_out, '//gmd:hierarchyLevelName')
+        checkXML1 = XPath.first(iso_out, '//gmd:hierarchyLevel')
+        checkXML2 = XPath.first(iso_out, '//gmd:hierarchyLevelName')
 
         assert_equal refXML1.to_s.squeeze, checkXML1.to_s.squeeze
         assert_equal refXML2.to_s.squeeze, checkXML2.to_s.squeeze
 
     end
 
-    def test_19115_2_scope_missing_resourceScope
+    def test_19115_2_hierarchy_missing_resourceScope
 
         refXML1 = '<gmd:hierarchyLevel/>'
         refXML2 = '<gmd:hierarchyLevelName/>'
@@ -105,20 +105,20 @@ class TestWriter191152Scope < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
-        checkXML1 = XPath.first(iso_2_out, '//gmd:hierarchyLevel')
-        checkXML2 = XPath.first(iso_2_out, '//gmd:hierarchyLevelName')
+        checkXML1 = XPath.first(iso_out, '//gmd:hierarchyLevel')
+        checkXML2 = XPath.first(iso_out, '//gmd:hierarchyLevelName')
 
         assert_equal refXML1.to_s.squeeze, checkXML1.to_s.squeeze
         assert_equal refXML2.to_s.squeeze, checkXML2.to_s.squeeze
 
     end
 
-    def test_19115_2_scope_empty_scopeDescription
+    def test_19115_2_hierarchy_empty_scopeDescription
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
         refXML2 = '<gmd:hierarchyLevelName/>'
 
         # empty scopeDescription
@@ -135,11 +135,11 @@ class TestWriter191152Scope < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
-        checkXML2 = XPath.first(iso_2_out, '//gmd:hierarchyLevelName')
+        XPath.each(iso_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
+        checkXML2 = XPath.first(iso_out, '//gmd:hierarchyLevelName')
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
@@ -148,10 +148,10 @@ class TestWriter191152Scope < MiniTest::Test
 
     end
 
-    def test_19115_2_scope_missing_scopeDescription
+    def test_19115_2_hierarchy_missing_scopeDescription
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:hierarchyLevel') {|e| aRefXML << e}
         refXML2 = '<gmd:hierarchyLevelName/>'
 
         # delete scopeDescription
@@ -168,11 +168,11 @@ class TestWriter191152Scope < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
-        checkXML2 = XPath.first(iso_2_out, '//gmd:hierarchyLevelName')
+        XPath.each(iso_out, '//gmd:hierarchyLevel') {|e| aCheckXML << e}
+        checkXML2 = XPath.first(iso_out, '//gmd:hierarchyLevelName')
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
