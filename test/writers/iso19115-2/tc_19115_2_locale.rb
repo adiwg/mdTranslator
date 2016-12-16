@@ -15,7 +15,7 @@ class TestWriter191152Locale < MiniTest::Test
     # read the ISO 19115-2 reference file
     fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_locale.xml')
     file = File.new(fname)
-    @@iso_2_xml = Document.new(file)
+    @@iso_xml = Document.new(file)
 
     # read the mdJson 2.0 file
     fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_locale.json')
@@ -26,17 +26,17 @@ class TestWriter191152Locale < MiniTest::Test
     def test_19115_2_locale
 
         aRefXML = []
-        XPath.each(@@iso_2_xml, '//gmd:locale') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:locale') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_2_out, '//gmd:locale') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:locale') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
@@ -59,9 +59,9 @@ class TestWriter191152Locale < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        iso_2_out = Document.new(metadata)
+        iso_out = Document.new(metadata)
 
-        checkXML = XPath.first(iso_2_out, '//gmd:locale')
+        checkXML = XPath.first(iso_out, '//gmd:locale')
 
         assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
 

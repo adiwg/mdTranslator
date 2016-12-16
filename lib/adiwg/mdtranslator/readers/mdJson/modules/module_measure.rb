@@ -28,7 +28,7 @@ module ADIWG
                         if hMeasure.has_key?('type')
                             if hMeasure['type'] != ''
                                 type = hMeasure['type']
-                                if %w{ distance length vertical angle }.one? { |word| word == type }
+                                if %w{ distance length vertical angle measure scale }.one? { |word| word == type }
                                     intMeasure[:type] = hMeasure['type']
                                 else
                                     responseObj[:readerExecutionMessages] << 'Measure type must be distance, length, vertical, or angle'

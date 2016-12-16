@@ -23,26 +23,20 @@ module ADIWG
                         value = hResolution[:value]
                         uom = hResolution[:unitOfMeasure]
 
-                        if  hResolution[:type].nil? ||
-                            hResolution[:value].nil? ||
-                            hResolution[:unitOfMeasure].nil? ||
-                            %w{ distance length angle measure }.none? { |word| word == type }
-                            @xml.tag!('gmd:resolution', {'gco:nilReason' => 'missing'})
-                        else
-                            @xml.tag!('gmd:resolution') do
-                                if type == 'distance'
-                                    @xml.tag!('gco:Distance', {'uom'=>uom}, value)
-                                end
-                                if type == 'length'
-                                    @xml.tag!('gco:Length', {'uom'=>uom}, value)
-                                end
-                                if type == 'angle'
-                                    @xml.tag!('gco:Angle', {'uom'=>uom}, value)
-                                end
-                                if type == 'measure'
-                                    @xml.tag!('gco:Measure', {'uom'=>uom}, value)
-                                end
-                            end
+                        if type == 'measure'
+                            @xml.tag!('gco:Measure', {'uom'=>uom}, value)
+                        end
+                        if type == 'distance'
+                            @xml.tag!('gco:Distance', {'uom'=>uom}, value)
+                        end
+                        if type == 'length'
+                            @xml.tag!('gco:Length', {'uom'=>uom}, value)
+                        end
+                        if type == 'angle'
+                            @xml.tag!('gco:Angle', {'uom'=>uom}, value)
+                        end
+                        if type == 'scale'
+                            @xml.tag!('gco:Scale', {'uom'=>uom}, value)
                         end
 
                     end # write XML

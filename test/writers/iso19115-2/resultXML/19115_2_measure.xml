@@ -15,21 +15,25 @@
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
   <gmd:resolution>
-    <gco:Distance uom="meter">15</gco:Distance>
+    <gco:Distance uom="distance">15.0</gco:Distance>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Angle uom="angle">15.0</gco:Angle>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Length uom="length">15.0</gco:Length>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Measure uom="measure">15.0</gco:Measure>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Scale uom="scale">15.0</gco:Scale>
   </gmd:resolution>
 
   <gmd:resolution gco:nilReason="missing"/>
-
-  <gmd:resolution>
-    <gco:Angle uom="meter">15</gco:Angle>
-  </gmd:resolution>
-
-  <gmd:resolution>
-    <gco:Length uom="meter">15</gco:Length>
-  </gmd:resolution>
-
-  <gmd:resolution>
-    <gco:Measure uom="meter">15</gco:Measure>
-  </gmd:resolution>
 
 </gmi:MI_Metadata>

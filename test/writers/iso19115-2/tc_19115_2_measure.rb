@@ -1,165 +1,147 @@
 # MdTranslator - minitest of
-# adiwg / mdtranslator / writers / iso19115_2 / classes / class_measure
+# writers / iso19115_2 / class_measure
 
 # History:
 #   Stan Smith 2016-11-19 original script
 
 require 'minitest/autorun'
-require 'builder'
+require 'json'
 require 'rexml/document'
-require 'adiwg/mdtranslator/writers/iso19115_2/classes/class_measure'
+require 'adiwg/mdtranslator'
 include REXML
 
 class TestWriter191152Measure < MiniTest::Test
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2::Measure
-
     # read the ISO 19115-2 reference file
     fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_measure.xml')
     file = File.new(fname)
-    iso_2_xml = Document.new(file)
-    iso_2_xml.context[:attribute_quote] = :quote
+    iso_xml = Document.new(file)
     @@aRefXML = []
-    XPath.each(iso_2_xml, '//gmd:resolution') {|e| @@aRefXML << e}
+    XPath.each(iso_xml, '//gmd:resolution') {|e| @@aRefXML << e}
 
-    @@intObj = {
-        type: 'distance',
-        value: 15,
-        unitOfMeasure: 'meter'
-    }
+    # read the mdJson 2.0 file
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_measure.json')
+    file = File.open(fname, 'r')
+    @@mdJson = file.read
+    file.close
 
-    def test_19115_2_measure
+    def test_19115_2_measure_distance
 
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
 
-        metadata = measureClass.writeXML(@@intObj)
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
 
-        refXML = @@aRefXML[0].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
 
-        assert_equal refXML, checkXML
-
-    end
-
-    def test_19115_2_measure_missing_type
-
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
-
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:type] = nil
-        metadata = measureClass.writeXML(hIn)
-
-        refXML = @@aRefXML[1].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
-
-        assert_equal refXML, checkXML
-
-    end
-
-    def test_19115_2_measure_missing_value
-
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
-
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:value] = nil
-        metadata = measureClass.writeXML(hIn)
-
-        refXML = @@aRefXML[1].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
-
-        assert_equal refXML, checkXML
-
-    end
-
-    def test_19115_2_measure_missing_uom
-
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
-
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:unitOfMeasure] = nil
-        metadata = measureClass.writeXML(hIn)
-
-        refXML = @@aRefXML[1].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
-
-        assert_equal refXML, checkXML
+        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
     def test_19115_2_measure_angle
 
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
+        hJson = JSON.parse(@@mdJson)
+        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution['type'] = 'angle'
+        hResolution['unitOfMeasure'] = 'angle'
+        jsonIn = hJson.to_json
 
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:type] = 'angle'
-        metadata = measureClass.writeXML(hIn)
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
 
-        refXML = @@aRefXML[2].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
 
-        assert_equal refXML, checkXML
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
+
+        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
     def test_19115_2_measure_length
 
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
+        hJson = JSON.parse(@@mdJson)
+        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution['type'] = 'length'
+        hResolution['unitOfMeasure'] = 'length'
+        jsonIn = hJson.to_json
 
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:type] = 'length'
-        metadata = measureClass.writeXML(hIn)
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
 
-        refXML = @@aRefXML[3].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
+        metadata = hResponseObj[:writerOutput]
+        File.write('/mnt/hgfs/Projects/writeOut.xml', metadata)
+        iso_out = Document.new(metadata)
 
-        assert_equal refXML, checkXML
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
+
+        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
     def test_19115_2_measure_measure
 
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
+        hJson = JSON.parse(@@mdJson)
+        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution['type'] = 'measure'
+        hResolution['unitOfMeasure'] = 'measure'
+        jsonIn = hJson.to_json
 
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:type] = 'measure'
-        metadata = measureClass.writeXML(hIn)
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
 
-        refXML = @@aRefXML[4].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
 
-        assert_equal refXML, checkXML
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
+
+        assert_equal @@aRefXML[3].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
-    def test_19115_2_measure_invalid_type
+    def test_19115_2_measure_scale
 
-        # create new XML document
-        xml = Builder::XmlMarkup.new(indent: 3)
-        measureClass = @@NameSpace.new(xml, {})
+        hJson = JSON.parse(@@mdJson)
+        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution['type'] = 'scale'
+        hResolution['unitOfMeasure'] = 'scale'
+        jsonIn = hJson.to_json
 
-        hIn = Marshal::load(Marshal.dump(@@intObj))
-        hIn[:type] = 'invalid'
-        metadata = measureClass.writeXML(hIn)
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
 
-        refXML = @@aRefXML[1].to_s.strip.gsub(/>\s+</,"><")
-        checkXML = metadata.to_s.strip.gsub(/>\s+</,"><")
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
 
-        assert_equal refXML, checkXML
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
+
+        assert_equal @@aRefXML[4].to_s.squeeze, checkXML.to_s.squeeze
+
+    end
+
+    def test_19115_2_measure_empty
+
+        hJson = JSON.parse(@@mdJson)
+        hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution'] = {}
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        # File.write('./mnt/hgfs/Projects/writeOut.xml', metadata)
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:resolution')
+
+        assert_equal @@aRefXML[5].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 

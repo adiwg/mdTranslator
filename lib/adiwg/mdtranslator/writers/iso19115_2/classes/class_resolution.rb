@@ -47,7 +47,9 @@ module ADIWG
                             if type == 'measure'
                                 hMeasure = hResolution[:measure]
                                 unless hMeasure.empty?
-                                    measureClass.writeXML(hMeasure)
+                                    @xml.tag!('gmd:distance') do
+                                        measureClass.writeXML(hMeasure)
+                                    end
                                 end
                             end
 
