@@ -27,12 +27,13 @@ module ADIWG
 
                             # browse graphic - file name (required)
                             s = hGraphic[:graphicName]
-                            if s.nil?
-                                @xml.tag!('gmd:fileName', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:fileName') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:fileName', {'gco:nilReason' => 'missing'})
                             end
 
                             # browse graphic - file description

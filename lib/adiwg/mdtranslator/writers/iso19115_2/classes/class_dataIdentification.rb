@@ -160,7 +160,7 @@ module ADIWG
                             # data identification - graphic overview []
                             aGraphics = hData[:graphicOverviews]
                             aGraphics.each do |hGraphic|
-                                @xml.tag!('gmd:graphicOverview', attributes) do
+                                @xml.tag!('gmd:graphicOverview') do
                                     bGraphicClass.writeXML(hGraphic)
                                 end
                             end
