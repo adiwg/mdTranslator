@@ -1,0 +1,156 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+          "identifier": "identifier"
+        },
+        "metadataContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-31"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "class",
+        "citation": {
+          "title": "title",
+          "alternateTitle": [
+            "alternateTitle0",
+            "alternateTitle1"
+          ],
+          "date": [
+            {
+              "date": "2016-10-13",
+              "dateType": "creation"
+            },
+            {
+              "date": "2016-10-22T14:20:20",
+              "dateType": "publication"
+            }
+          ],
+          "edition": "edition",
+          "responsibleParty": [
+            {
+              "role": "custodian",
+              "timePeriod": {
+                "startDateTime": "2016-10-14"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            {
+              "role": "resourceProvider",
+              "timePeriod": {
+                "startDateTime": "2016-10-14T14:21:50"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            }
+          ],
+          "presentationForm": [
+            "documentDigital",
+            "documentHardcopy"
+          ],
+          "identifier": [
+            {
+              "identifier": "identifier0"
+            },
+            {
+              "identifier": "identifier1"
+            },
+            {
+              "identifier": "identifier2",
+              "namespace": "ISBN"
+            },
+            {
+              "identifier": "identifier3",
+              "namespace": "ISSN"
+            }
+          ],
+          "series": {
+            "seriesName": "seriesName"
+          },
+          "otherCitationDetails": [
+            "otherCitationDetails0",
+            "otherCitationDetails1"
+          ],
+          "onlineResource": [
+            {
+              "uri": "uri0"
+            },
+            {
+              "uri": "uri1"
+            }
+          ],
+          "graphic": [
+            {
+              "fileName": "fileName0"
+            },
+            {
+              "fileName": "fileName1"
+            }
+          ]
+        },
+        "abstract": "abstract",
+        "pointOfContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "LanguageCode",
+          "country": "CountryCode",
+          "characterSet": "MD_CharacterSetCode"
+        }
+      }
+    }
+  }
+}

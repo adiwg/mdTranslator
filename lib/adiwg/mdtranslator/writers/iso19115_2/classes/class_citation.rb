@@ -97,11 +97,14 @@ module ADIWG
                             issn = ''
                             aIds = hCitation[:identifiers]
                             aIds.each do |hIdentifier|
-                                if hIdentifier[:namespace].downcase == 'isbn'
-                                    isbn = hIdentifier[:identifier]
-                                elsif hIdentifier[:namespace].downcase == 'issn'
-                                    issn = hIdentifier[:identifier]
-                                else
+                                unless hIdentifier[:namespace].nil?
+                                    if hIdentifier[:namespace].downcase == 'isbn'
+                                        isbn = hIdentifier[:identifier]
+                                    elsif hIdentifier[:namespace].downcase == 'issn'
+                                        issn = hIdentifier[:identifier]
+                                    end
+                                end
+                                if issn == ''  && isbn == ''
                                     @xml.tag!('gmd:identifier') do
                                         idClass.writeXML(hIdentifier)
                                     end
@@ -124,8 +127,8 @@ module ADIWG
                                     end
                                 end
                             end
-                            if aRParties.empty?
-                                @xml.tag!('gmd:citedResponsibleParty', {'gco:nilReason' => 'missing'})
+                            if aRParties.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:citedResponsibleParty')
                             end
 
                             # citation - presentation forms [{CI_PresentationFormCode}]
@@ -165,7 +168,7 @@ module ADIWG
                             # citation - ISBN
                             unless isbn == ''
                                 @xml.tag!('gmd:ISBN') do
-                                    @xml.tag!('gco:CharacterString', s)
+                                    @xml.tag!('gco:CharacterString', isbn)
                                 end
                             end
                             if isbn == '' && @hResponseObj[:writerShowTags]
@@ -175,7 +178,7 @@ module ADIWG
                             # citation - ISSN
                             unless issn == ''
                                 @xml.tag!('gmd:ISSN') do
-                                    @xml.tag!('gco:CharacterString', s)
+                                    @xml.tag!('gco:CharacterString', issn)
                                 end
                             end
                             if issn == '' && @hResponseObj[:writerShowTags]
