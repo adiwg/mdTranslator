@@ -33,8 +33,12 @@ module ADIWG
                         # test for both bounding box
                         # if none, take computedBbox from geographicElement
                         hBbox = hGeoExtent[:boundingBox]
-                        if hBbox.empty
-                            hBbox = hGeoExtent[:geographicElement][:computedBbox]
+                        if hBbox.empty?
+                            hCoords = hGeoExtent[:geographicElement][:computedBbox]
+                            hBbox[:westLongitude] = hCoords[0]
+                            hBbox[:eastLongitude] = hCoords[2]
+                            hBbox[:southLatitude] = hCoords[1]
+                            hBbox[:northLatitude] = hCoords[3]
                         end
                         unless hBbox.empty?
                             @xml.tag!('gmd:geographicElement') do
@@ -42,7 +46,7 @@ module ADIWG
                                     @xml.tag!('gmd:extentTypeCode') do
                                         @xml.tag!('gco:Boolean', extType)
                                     end
-                                    bBoxClass.writeXML(hGeoExtent[:hBbox])
+                                    bBoxClass.writeXML(hBbox)
                                 end
                             end
                         end

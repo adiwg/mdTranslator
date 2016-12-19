@@ -14,7 +14,7 @@
 # 	Stan Smith 2013-11-15 add temporal elements
 # 	Stan Smith 2013-11-01 original script
 
-require_relative 'class_geographicElement'
+require_relative 'class_geographicExtent'
 require_relative 'class_temporalExtent'
 require_relative 'class_verticalExtent'
 
@@ -35,7 +35,7 @@ module ADIWG
                         # classes used
                         tempExtClass =  EX_TemporalExtent.new(@xml, @hResponseObj)
                         vertExtClass =  EX_VerticalExtent.new(@xml, @hResponseObj)
-                        geoEleClass =  GeographicElement.new(@xml, @hResponseObj)
+                        geoExtClass =  GeographicExtent.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:EX_Extent') do
 
@@ -52,15 +52,15 @@ module ADIWG
 
                             # extent - geographic extent []
                             aGeoExtents = hExtent[:geographicExtents]
-                            aGeoExtents.each do |hGeoElement|
-                                geoEleClass.writeXML(hGeoElement)
+                            aGeoExtents.each do |hGeoExtent|
+                                geoExtClass.writeXML(hGeoExtent)
                             end
                             if aGeoExtents.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:geographicElement')
                             end
 
                             # extent - temporal extent []
-                            aTempElements = hExtent[:extTempElements]
+                            aTempElements = hExtent[:temporalExtents]
                             aTempElements.each do |hTempElement|
                                 @xml.tag!('gmd:temporalElement') do
                                     tempExtClass.writeXML(hTempElement)
@@ -71,7 +71,7 @@ module ADIWG
                             end
 
                             # extent - vertical extent []
-                            aVertElements = hExtent[:extVertElements]
+                            aVertElements = hExtent[:verticalExtents]
                             aVertElements.each do |hVertElement|
                                 @xml.tag!('gmd:verticalElement') do
                                     vertExtClass.writeXML(hVertElement)

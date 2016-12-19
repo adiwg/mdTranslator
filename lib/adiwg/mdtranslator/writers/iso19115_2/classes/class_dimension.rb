@@ -50,15 +50,15 @@ module ADIWG
                                 @xml.tag!('gmd:dimensionSize', {'gco:nilReason'=>'missing'})
                             end
 
-                            # dimension information - dimension resolution (required)
+                            # dimension information - dimension resolution
                             hMeasure = hDim[:resolution]
                             unless hMeasure.empty?
                                 @xml.tag!('gmd:resolution') do
                                     measureClass.writeXML(hMeasure)
                                 end
                             end
-                            if hMeasure.empty?
-                                @xml.tag!('gmd:resolution', {'gco:nilReason' => 'missing'})
+                            if hMeasure.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:resolution')
                             end
 
                         end # MD_Dimension tag

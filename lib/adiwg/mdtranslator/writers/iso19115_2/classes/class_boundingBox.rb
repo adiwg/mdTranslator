@@ -24,45 +24,49 @@ module ADIWG
 
                     def writeXML(hBBox)
 
-                            # bounding box - west longitude (required)
-                            s = hBBox[:westLongitude]
-                            if s.nil?
-                                @xml.tag!('gmd:westBoundLongitude', {'gco:nilReason' => 'missing'})
-                            else
-                                @xml.tag!('gmd:westBoundLongitude') do
-                                    @xml.tag!('gco:Decimal', s)
-                                end
+                        # bounding box - west longitude (required)
+                        s = hBBox[:westLongitude]
+                        unless s.nil?
+                            @xml.tag!('gmd:westBoundLongitude') do
+                                @xml.tag!('gco:Decimal', s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:westBoundLongitude', {'gco:nilReason' => 'missing'})
+                        end
 
-                            # bounding box - east longitude (required)
-                            s = hBBox[:eastLongitude]
-                            if s.nil?
-                                @xml.tag!('gmd:eastBoundLongitude', {'gco:nilReason' => 'missing'})
-                            else
-                                @xml.tag!('gmd:eastBoundLongitude') do
-                                    @xml.tag!('gco:Decimal', s)
-                                end
+                        # bounding box - east longitude (required)
+                        s = hBBox[:eastLongitude]
+                        unless s.nil?
+                            @xml.tag!('gmd:eastBoundLongitude') do
+                                @xml.tag!('gco:Decimal', s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:eastBoundLongitude', {'gco:nilReason' => 'missing'})
+                        end
 
-                            # bounding box - south latitude (required)
-                            s = hBBox[:southLatitude]
-                            if s.nil?
-                                @xml.tag!('gmd:southBoundLatitude', {'gco:nilReason' => 'missing'})
-                            else
-                                @xml.tag!('gmd:southBoundLatitude') do
-                                    @xml.tag!('gco:Decimal', s)
-                                end
+                        # bounding box - south latitude (required)
+                        s = hBBox[:southLatitude]
+                        unless s.nil?
+                            @xml.tag!('gmd:southBoundLatitude') do
+                                @xml.tag!('gco:Decimal', s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:southBoundLatitude', {'gco:nilReason' => 'missing'})
+                        end
 
-                            # bounding box - north latitude (required)
-                            s = hBBox[:northLatitude]
-                            if s.nil?
-                                @xml.tag!('gmd:northBoundLatitude', {'gco:nilReason' => 'missing'})
-                            else
-                                @xml.tag!('gmd:northBoundLatitude') do
-                                    @xml.tag!('gco:Decimal', s)
-                                end
+                        # bounding box - north latitude (required)
+                        s = hBBox[:northLatitude]
+                        unless s.nil?
+                            @xml.tag!('gmd:northBoundLatitude') do
+                                @xml.tag!('gco:Decimal', s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:northBoundLatitude', {'gco:nilReason' => 'missing'})
+                        end
 
                     end # writeXML
                 end # EX_GeographicBoundingBox class
