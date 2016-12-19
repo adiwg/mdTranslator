@@ -86,7 +86,7 @@ module ADIWG
                                 @xml.tag!('gmd:pointInPixel', {'gco:nilReason'=>'missing'})
                             else
                                 @xml.tag!('gmd:pointInPixel') do
-                                    codelistClass.writeXML('iso_pixelOrientationCode', s)
+                                    codelistClass.writeXML('gmd', 'iso_pixelOrientationCode', s)
                                 end
                             end
 

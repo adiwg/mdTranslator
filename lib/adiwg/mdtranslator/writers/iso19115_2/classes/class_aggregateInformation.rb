@@ -54,7 +54,7 @@ module ADIWG
                             s = hAssocRes[:associationType]
                             unless s.nil?
                                 @xml.tag!('gmd:associationType') do
-                                    codelistClass.writeXML('iso_associationType',s)
+                                    codelistClass.writeXML('gmd', 'iso_associationType',s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]
@@ -65,7 +65,7 @@ module ADIWG
                             s = hAssocRes[:initiativeType]
                             unless s.nil?
                                 @xml.tag!('gmd:initiativeType') do
-                                    codelistClass.writeXML('iso_initiativeType',s)
+                                    codelistClass.writeXML('gmd', 'iso_initiativeType',s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]

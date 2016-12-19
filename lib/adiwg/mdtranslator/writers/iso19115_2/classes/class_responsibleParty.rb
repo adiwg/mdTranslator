@@ -101,7 +101,7 @@ module ADIWG
                                 s = role
                                 unless s.nil?
                                     @xml.tag! 'gmd:role' do
-                                        codelistClass.writeXML('iso_role', s)
+                                        codelistClass.writeXML('gmd', 'iso_role', s)
                                     end
                                 end
                                 if s.nil?

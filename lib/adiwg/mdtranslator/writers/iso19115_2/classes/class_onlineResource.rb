@@ -81,7 +81,7 @@ module ADIWG
                             s = hOlResource[:olResFunction]
                             unless s.nil?
                                 @xml.tag!('gmd:function') do
-                                    codelistClass.writeXML('iso_onlineFunction',s)
+                                    codelistClass.writeXML('gmd', 'iso_onlineFunction',s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]

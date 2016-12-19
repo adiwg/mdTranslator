@@ -30,7 +30,7 @@ module ADIWG
                             s = hLocale[:languageCode]
                             unless s.nil?
                                 @xml.tag!('gmd:languageCode') do
-                                    codelistClass.writeXML('iso_language', s)
+                                    codelistClass.writeXML('gmd', 'iso_language', s)
                                 end
                             end
                             if s.nil?
@@ -41,7 +41,7 @@ module ADIWG
                             s = hLocale[:countryCode]
                             unless s.nil?
                                 @xml.tag!('gmd:country') do
-                                    codelistClass.writeXML('iso_country', s)
+                                    codelistClass.writeXML('gmd', 'iso_country', s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]
@@ -52,7 +52,7 @@ module ADIWG
                             s = hLocale[:characterEncoding]
                             unless s.nil?
                                 @xml.tag!('gmd:characterEncoding') do
-                                    codelistClass.writeXML('iso_characterSet', s)
+                                    codelistClass.writeXML('gmd', 'iso_characterSet', s)
                                 end
                             end
                             if s.nil?

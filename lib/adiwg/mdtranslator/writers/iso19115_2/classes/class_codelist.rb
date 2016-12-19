@@ -26,7 +26,7 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(codeList, codeName)
+                    def writeXML(codeSpace, codeList, codeName)
 
                         # get requested codelist from the adiwg-mdcodes gem
                         mdCodelist = ADIWG::Mdcodes.getCodelistDetail(codeList, @hResponseObj)
@@ -44,7 +44,7 @@ module ADIWG
                         end
 
                         # generate the iso code block
-                        @xml.tag!('gmd:' + "#{sourceName}", {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#' + "#{sourceName}",
+                        @xml.tag!(codeSpace + ':' + "#{sourceName}", {:codeList => 'http://mdtranslator.adiwg.org/api/codelists?format=xml#' + "#{sourceName}",
                                                        :codeListValue => "#{codeName}",
                                                        :codeSpace => "#{codeId}"})
                     end

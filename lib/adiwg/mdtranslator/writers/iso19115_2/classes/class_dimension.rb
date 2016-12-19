@@ -32,7 +32,7 @@ module ADIWG
                             s = hDim[:dimensionType]
                             unless s.nil?
                                 @xml.tag!('gmd:dimensionName') do
-                                    codelistClass.writeXML('iso_dimensionNameType',s)
+                                    codelistClass.writeXML('gmd', 'iso_dimensionNameType',s)
                                 end
                             end
                             if s.nil?

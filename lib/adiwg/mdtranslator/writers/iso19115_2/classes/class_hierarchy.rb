@@ -27,7 +27,7 @@ module ADIWG
                         aScope.each do |hResScope|
                             s = hResScope[:scopeCode]
                             @xml.tag!('gmd:hierarchyLevel') do
-                                codelistClass.writeXML('iso_scope',s)
+                                codelistClass.writeXML('gmd', 'iso_scope',s)
                             end
                         end
                         if aScope.empty? && @hResponseObj[:writerShowTags]

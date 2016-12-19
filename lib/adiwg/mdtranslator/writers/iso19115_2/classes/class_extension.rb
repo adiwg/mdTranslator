@@ -100,7 +100,7 @@ module ADIWG
                                     s = hExtension[:dataType]
                                     unless s.nil?
                                         @xml.tag!('gmd:dataType') do
-                                            codelistClass.writeXML('iso_dataType',s)
+                                            codelistClass.writeXML('gmd', 'iso_dataType',s)
                                         end
                                     end
                                     if s.nil?
@@ -178,7 +178,7 @@ module ADIWG
                                                     end
                                                 end
                                                 @xml.tag!('gmd:role') do
-                                                    codelistClass.writeXML('iso_role', role)
+                                                    codelistClass.writeXML('gmd', 'iso_role', role)
                                                 end
                                             end
                                         end

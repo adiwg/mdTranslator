@@ -50,7 +50,7 @@ module ADIWG
                             s = hConstraint[:classCode]
                             unless s.nil?
                                 @xml.tag!('gmd:classification') do
-                                    codelistClass.writeXML('iso_classification',s)
+                                    codelistClass.writeXML('gmd', 'iso_classification',s)
                                 end
                             end
                             if s.nil?

@@ -31,7 +31,7 @@ module ADIWG
                                 @xml.tag!('gmd:geometricObjectType', {'gco:nilReason'=>'missing'})
                             else
                                 @xml.tag!('gmd:geometricObjectType') do
-                                    codelistClass.writeXML('iso_geometricObjectType', s)
+                                    codelistClass.writeXML('gmd', 'iso_geometricObjectType', s)
                                 end
                             end
 

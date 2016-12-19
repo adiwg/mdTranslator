@@ -130,7 +130,7 @@ module ADIWG
 
                             # metadata information - metadata character ('utf-8')
                             @xml.tag!('gmd:characterSet') do
-                                codelistClass.writeXML('iso_characterSet', 'utf-8')
+                                codelistClass.writeXML('gmd', 'iso_characterSet', 'UTF-8')
                             end
 
                             # metadata information - parent identifier

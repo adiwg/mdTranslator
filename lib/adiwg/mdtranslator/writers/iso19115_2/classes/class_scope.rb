@@ -33,7 +33,7 @@ module ADIWG
                             s = hScope[:scopeCode]
                             unless s.nil?
                                 @xml.tag!('gmd:level') do
-                                    codelistClass.writeXML('iso_onlineFunction',s)
+                                    codelistClass.writeXML('gmd', 'iso_onlineFunction',s)
                                 end
                             end
                             if s.nil?

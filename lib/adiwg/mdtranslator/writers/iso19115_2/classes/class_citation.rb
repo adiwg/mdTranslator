@@ -132,7 +132,7 @@ module ADIWG
                             aPresForms = hCitation[:presentationForms]
                             aPresForms.each do |presForm|
                                 @xml.tag!('gmd:presentationForm') do
-                                    codelistClass.writeXML('iso_presentationForm', presForm)
+                                    codelistClass.writeXML('gmd', 'iso_presentationForm', presForm)
                                 end
                             end
                             if aPresForms.empty? && @hResponseObj[:writerShowTags]

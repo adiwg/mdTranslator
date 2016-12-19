@@ -60,7 +60,7 @@ module ADIWG
                                 @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
                             else
                                 @xml.tag!('gmd:dateType') do
-                                    codelistClass.writeXML('iso_dateType',dateType)
+                                    codelistClass.writeXML('gmd', 'iso_dateType',dateType)
                                 end
                             end
 

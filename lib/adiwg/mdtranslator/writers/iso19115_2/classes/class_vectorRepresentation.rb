@@ -31,7 +31,7 @@ module ADIWG
                             s = hVector[:topologyLevel]
                             unless s.nil?
                                 @xml.tag!('gmd:topologyLevel') do
-                                    codelistClass.writeXML('iso_TopologyLevelCode', s)
+                                    codelistClass.writeXML('gmd', 'iso_TopologyLevelCode', s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]

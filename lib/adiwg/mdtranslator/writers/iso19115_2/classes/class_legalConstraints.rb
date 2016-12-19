@@ -50,7 +50,7 @@ module ADIWG
                             aAccess = hConstraint[:accessCodes]
                             aAccess.each do |code|
                                 @xml.tag!('gmd:accessConstraints') do
-                                    codelistClass.writeXML('iso_restriction',code)
+                                    codelistClass.writeXML('gmd', 'iso_restriction',code)
                                 end
                             end
                             if aAccess.empty? && @hResponseObj[:writerShowTags]
@@ -61,7 +61,7 @@ module ADIWG
                             aUse = hConstraint[:useCodes]
                             aUse.each do |code|
                                 @xml.tag!('gmd:useConstraints') do
-                                    codelistClass.writeXML('iso_restriction',code)
+                                    codelistClass.writeXML('gmd', 'iso_restriction',code)
                                 end
                             end
                             if aUse.empty? && @hResponseObj[:writerShowTags]

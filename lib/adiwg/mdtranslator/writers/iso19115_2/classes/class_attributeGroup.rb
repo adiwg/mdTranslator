@@ -29,10 +29,10 @@ module ADIWG
 
                         # determine attribute classes to write
                         if !(hAttribute[:bandBoundaryDefinition].nil? &&
-                            hAttribute[:nominalSpatialResolution].empty? &&
+                            hAttribute[:nominalSpatialResolution].nil? &&
                             hAttribute[:transferFunctionType].nil? &&
                             hAttribute[:transmittedPolarization].nil? &&
-                            hAttribute[:detectedPolarization])
+                            hAttribute[:detectedPolarization].nil?)
                             dimClass = 'gmi:MI_Band'
                         elsif !(hAttribute[:maxValue].nil? &&
                             hAttribute[:minValue].nil? &&

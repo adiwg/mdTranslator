@@ -28,7 +28,7 @@ module ADIWG
                         s = hAttribute[:bandBoundaryDefinition]
                         unless s.nil?
                             @xml.tag!('gmi:bandBoundaryDefinition') do
-                                codelistClass.writeXML('iso_bandDefinition',s)
+                                codelistClass.writeXML('gmi', 'iso_bandDefinition',s)
                             end
                         end
 
@@ -45,7 +45,7 @@ module ADIWG
                         s = hAttribute[:transferFunctionType]
                         unless s.nil?
                             @xml.tag!('gmi:transferFunctionType') do
-                                codelistClass.writeXML('iso_transferFunctionTypeCode',s)
+                                codelistClass.writeXML('gmi', 'iso_transferFunctionTypeCode',s)
                             end
                         end
 
@@ -53,8 +53,8 @@ module ADIWG
                         # {MI_PolarizationOrientationCode}
                         s = hAttribute[:transmittedPolarization]
                         unless s.nil?
-                            @xml.tag!('gmi:transmittedPolarization') do
-                                codelistClass.writeXML('iso_polarizationOrientationCode',s)
+                            @xml.tag!('gmi:transmittedPolarisation') do
+                                codelistClass.writeXML('gmi','iso_polarisationOrientationCode',s)
                             end
                         end
 
@@ -62,8 +62,8 @@ module ADIWG
                         # {MI_PolarizationOrientationCode}
                         s = hAttribute[:detectedPolarization]
                         unless s.nil?
-                            @xml.tag!('gmi:detectedPolarization') do
-                                codelistClass.writeXML('iso_polarizationOrientationCode',s)
+                            @xml.tag!('gmi:detectedPolarisation') do
+                                codelistClass.writeXML('gmi', 'iso_polarisationOrientationCode',s)
                             end
                         end
 

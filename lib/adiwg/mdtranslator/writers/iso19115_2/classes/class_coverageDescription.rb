@@ -30,9 +30,9 @@ module ADIWG
 
                         # determine type of MD_CoverageDescription to write
                         if hCoverage[:imageDescription].empty?
-                            contentTag = 'gmi:MD_CoverageDescription'
+                            contentTag = 'gmi:MI_CoverageDescription'
                         else
-                            contentTag = 'gmi:MD_ImageDescription'
+                            contentTag = 'gmi:MI_ImageDescription'
                         end
 
                         @xml.tag!(contentTag) do
@@ -55,23 +55,27 @@ module ADIWG
                             end
 
                             # coverage description - content type {required} {MD_CoverageContentTypeCode}
-                            s = hCoverage[:coverageType]
-                            if !s.nil?
+                            s = hCoverage[:attributeGroups][0][:attributeContentTypes][0]
+                            unless s.nil?
                                 @xml.tag!('gmd:contentType') do
-                                    codelistClass.writeXML('iso_coverageContentType',s)
+                                    codelistClass.writeXML('gmd', 'iso_coverageContentType',s)
                                 end
-                            else
+                            end
+                            if s.nil?
                                 @xml.tag!('gmd:contentType', {'gco:nilReason'=>'missing'})
                             end
 
                             # coverage description - dimension []
-                            aItems = hCoverage[:attributeGroup]
-                            aItems.each do |hItem|
-                                @xml.tag!('gmd:dimension') do
-                                    attGroupClass.writeXML(hItem)
+                            aGroups = hCoverage[:attributeGroups]
+                            aGroups.each do |hGroup|
+                                aAttributes = hGroup[:attributes]
+                                aAttributes.each do |hAttributes|
+                                    @xml.tag!('gmd:dimension') do
+                                        attGroupClass.writeXML(hAttributes)
+                                    end
                                 end
                             end
-                            if aItems.empty? && @hResponseObj[:writerShowTags]
+                            if aGroups.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:dimension')
                             end
 

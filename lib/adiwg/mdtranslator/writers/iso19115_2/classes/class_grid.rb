@@ -52,7 +52,7 @@ module ADIWG
                             @xml.tag!('gmd:cellGeometry', {'gco:nilReason'=>'missing'})
                         else
                             @xml.tag!('gmd:cellGeometry') do
-                                codelistClass.writeXML('iso_cellGeometry', s)
+                                codelistClass.writeXML('gmd', 'iso_cellGeometry', s)
                             end
                         end
 

@@ -70,7 +70,7 @@ module ADIWG
                             aCode = hMedium[:mediumFormat]
                             aCode.each do |code|
                                 @xml.tag!('gmd:mediumFormat') do
-                                    codelistClass.writeXML('iso_mediumFormat', code)
+                                    codelistClass.writeXML('gmd', 'iso_mediumFormat', code)
                                 end
                             end
                             if aCode.empty? && @hResponseObj[:writerShowTags]

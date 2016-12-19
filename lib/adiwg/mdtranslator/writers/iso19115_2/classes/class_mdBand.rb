@@ -22,7 +22,7 @@ module ADIWG
                     def writeXML(hAttribute)
 
                         # classes used
-                        uomClass = UnitDefinition.new(@xml, @hResponseObj)
+                        uomClass = UnitsOfMeasure.new(@xml, @hResponseObj)
 
                         # mdBand - max value
                         s = hAttribute[:maxValue]

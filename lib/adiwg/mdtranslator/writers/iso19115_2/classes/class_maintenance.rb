@@ -41,7 +41,7 @@ module ADIWG
                             s = hMaintenance[:frequency]
                             unless s.nil?
                                 @xml.tag!('gmd:maintenanceAndUpdateFrequency') do
-                                    codelistClass.writeXML('iso_maintenanceFrequency',s)
+                                    codelistClass.writeXML('gmd', 'iso_maintenanceFrequency',s)
                                 end
                             end
                             if s.nil?
@@ -58,7 +58,7 @@ module ADIWG
                                 s = hScope[:scopeCode]
                                 haveScope = true
                                 @xml.tag!('gmd:updateScope') do
-                                    codelistClass.writeXML('iso_scope',s)
+                                    codelistClass.writeXML('gmd', 'iso_scope',s)
                                 end
                             end
                             if !haveScope && @hResponseObj[:writerShowTags]

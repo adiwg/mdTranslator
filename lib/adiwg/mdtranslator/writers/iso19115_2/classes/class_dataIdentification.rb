@@ -124,7 +124,7 @@ module ADIWG
                             aStatus = hData[:status]
                             aStatus.each do |code|
                                 @xml.tag!('gmd:status') do
-                                    codelistClass.writeXML('iso_progress', code)
+                                    codelistClass.writeXML('gmd', 'iso_progress', code)
                                 end
                             end
                             if aStatus.empty? && @hResponseObj[:writerShowTags]
@@ -274,7 +274,7 @@ module ADIWG
                             aSpatialType = hData[:spatialRepresentationTypes]
                             aSpatialType.each do |spType|
                                 @xml.tag!('gmd:spatialRepresentationType') do
-                                    codelistClass.writeXML('iso_spatialRepresentation',spType)
+                                    codelistClass.writeXML('gmd', 'iso_spatialRepresentation',spType)
                                 end
                             end
                             if aSpatialType.empty? && @hResponseObj[:writerShowTags]
@@ -316,7 +316,7 @@ module ADIWG
                                 s = hLocale[:characterEncoding]
                                 unless s.nil?
                                     @xml.tag!('gmd:characterSet') do
-                                        codelistClass.writeXML('iso_characterSet', s)
+                                        codelistClass.writeXML('gmd', 'iso_characterSet', s)
                                         charSets += 1
                                     end
                                 end

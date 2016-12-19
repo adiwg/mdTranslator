@@ -52,7 +52,7 @@ module ADIWG
                         s = hImage[:imageCondition]
                         unless s.nil?
                             @xml.tag!('gmd:imagingCondition') do
-                                codelistClass.writeXML('iso_imageCondition',s)
+                                codelistClass.writeXML('gmd', 'iso_imageCondition',s)
                             end
                         end
                         if s.nil? && @hResponseObj[:writerShowTags]

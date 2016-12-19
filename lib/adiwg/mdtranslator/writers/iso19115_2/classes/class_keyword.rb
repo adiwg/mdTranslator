@@ -54,7 +54,7 @@ module ADIWG
                             s = hKeyword[:keywordType]
                             unless s.nil?
                                 @xml.tag!('gmd:type') do
-                                    codelistClass.writeXML('iso_keywordType',s)
+                                    codelistClass.writeXML('gmd', 'iso_keywordType',s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]
