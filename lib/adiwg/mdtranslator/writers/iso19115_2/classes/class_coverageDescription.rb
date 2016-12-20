@@ -46,19 +46,24 @@ module ADIWG
                             unless hCoverage[:coverageDescription].nil?
                                 attDesc += hCoverage[:coverageDescription]
                             end
-                            if attDesc == ''
-                                @xml.tag!('gmd:attributeDescription', {'gco:nilReason'=>'missing'})
-                            else
+                            unless attDesc == ''
                                 @xml.tag!('gmd:attributeDescription') do
                                     @xml.tag!('gco:RecordType', attDesc)
                                 end
                             end
+                            if attDesc == ''
+                                @xml.tag!('gmd:attributeDescription', {'gco:nilReason'=>'missing'})
+                            end
 
-                            # coverage description - content type {required} {MD_CoverageContentTypeCode}
-                            s = hCoverage[:attributeGroups][0][:attributeContentTypes][0]
-                            unless s.nil?
-                                @xml.tag!('gmd:contentType') do
-                                    codelistClass.writeXML('gmd', 'iso_coverageContentType',s)
+                            # coverage description - content type (required) {MD_CoverageContentTypeCode}
+                            aGroups = hCoverage[:attributeGroups]
+                            s = nil
+                            unless aGroups.empty?
+                                s = aGroups[0][:attributeContentTypes][0]
+                                unless s.nil?
+                                    @xml.tag!('gmd:contentType') do
+                                        codelistClass.writeXML('gmd', 'iso_coverageContentType',s)
+                                    end
                                 end
                             end
                             if s.nil?
@@ -66,7 +71,6 @@ module ADIWG
                             end
 
                             # coverage description - dimension []
-                            aGroups = hCoverage[:attributeGroups]
                             aGroups.each do |hGroup|
                                 aAttributes = hGroup[:attributes]
                                 aAttributes.each do |hAttributes|
@@ -82,7 +86,7 @@ module ADIWG
                             # coverage description - image information
                             hImage = hCoverage[:imageDescription]
                             unless hImage.empty?
-                                imageClass.writeXML(hImage)
+                                imageClass.writeXML(hCoverage)
                             end
 
                         end # MI_CoverageDescription/MI_ImageDescription tag

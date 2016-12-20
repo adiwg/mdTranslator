@@ -20,11 +20,13 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hImage)
+                    def writeXML(hCoverage)
 
                         # classes used
                         codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                         resIdClass = RS_Identifier.new(@xml, @hResponseObj)
+
+                        hImage = hCoverage[:imageDescription]
 
                         # image description - illumination elevation angle
                         s = hImage[:illuminationElevationAngle]
@@ -60,7 +62,7 @@ module ADIWG
                         end
 
                         # image description - image quality code - RS_Identifier
-                        resId = hImage[:imageQuality]
+                        resId = hImage[:imageQualityCode]
                         unless resId.empty?
                             @xml.tag!('gmd:imageQualityCode') do
                                 resIdClass.writeXML(resId)
@@ -82,7 +84,7 @@ module ADIWG
                         end
 
                         # image description - processing level code (from coverageItem)- RS_Identifier
-                        resId = hImage[:processingLevel]
+                        resId = hCoverage[:processingLevelCode]
                         if !resId.empty?
                             @xml.tag!('gmd:processingLevelCode') do
                                 resIdClass.writeXML(resId)

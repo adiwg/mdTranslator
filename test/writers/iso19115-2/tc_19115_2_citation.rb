@@ -2,7 +2,7 @@
 # writers / iso19115_2 / class_citation
 
 # History:
-#   Stan Smith 2016-11-21 original script
+#   Stan Smith 2016-12-19 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -83,7 +83,6 @@ class TestWriter191152Citation < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        File.write('/mnt/hgfs/Projects/writeOut.xml', metadata)
         iso_out = Document.new(metadata)
 
         checkXML = XPath.first(iso_out, '//gmd:citation')
