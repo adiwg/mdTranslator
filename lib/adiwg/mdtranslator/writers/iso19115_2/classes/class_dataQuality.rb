@@ -49,14 +49,8 @@ module ADIWG
                             # date quality - report (moved to ISO 19157)
 
                             # data quality - lineage
-                            hLineage = hLineage[:dataLineage]
-                            unless hLineage.empty?
-                                @xml.tag!('gmd:lineage') do
-                                    lineClass.writeXML(hLineage)
-                                end
-                            end
-                            if hLineage.empty && @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:lineage')
+                            @xml.tag!('gmd:lineage') do
+                                lineClass.writeXML(hLineage)
                             end
 
                         end # gmd:DQ_DataQuality tag
