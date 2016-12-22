@@ -87,7 +87,7 @@ module ADIWG
                                     @xml.tag!('gco:CharacterString', note)
                                 end
                             end
-                            if aNotes.empty && @hResponseObj[:writerShowTags]
+                            if aNotes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:maintenanceNote')
                             end
 

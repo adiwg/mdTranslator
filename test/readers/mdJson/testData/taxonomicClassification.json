@@ -4,22 +4,40 @@
          "taxonomicRank": "taxonomicRank0",
          "latinName": "latinName",
          "commonName": ["commonName0", "commonName1"],
-         "taxonomicClassification": [
+         "subClassification": [
             {
                "taxonomicRank": "taxonomicRank00",
                "latinName": "latinName",
-               "commonName": ["commonName0", "commonName1"],
-               "taxonomicClassification": [
+               "commonName": [
+                  "commonName0",
+                  "commonName1"
+               ],
+               "subClassification": [
                   {
                      "taxonomicRank": "taxonomicRank000",
                      "latinName": "latinName",
-                     "commonName": ["commonName0", "commonName1"],
-                     "taxonomicClassification": [
+                     "commonName": [
+                        "commonName0",
+                        "commonName1"
+                     ],
+                     "subClassification": [
                         {
-                           "taxonomicRank": "taxonomicRank0000",
+                           "taxonomicRank": "taxonomicRank0000.1",
                            "latinName": "latinName",
-                           "commonName": ["commonName0", "commonName1"],
-                           "taxonomicClassification": []
+                           "commonName": [
+                              "commonName0",
+                              "commonName1"
+                           ],
+                           "subClassification": []
+                        },
+                        {
+                           "taxonomicRank": "taxonomicRank0000.2",
+                           "latinName": "latinName",
+                           "commonName": [
+                              "commonName0",
+                              "commonName1"
+                           ],
+                           "subClassification": []
                         }
                      ]
                   }
@@ -28,13 +46,19 @@
             {
                "taxonomicRank": "taxonomicRank01",
                "latinName": "latinName",
-               "commonName": ["commonName0", "commonName1"],
-               "taxonomicClassification": [
+               "commonName": [
+                  "commonName0",
+                  "commonName1"
+               ],
+               "subClassification": [
                   {
                      "taxonomicRank": "taxonomicRank010",
                      "latinName": "latinName",
-                     "commonName": ["commonName0", "commonName1"],
-                     "taxonomicClassification": []
+                     "commonName": [
+                        "commonName0",
+                        "commonName1"
+                     ],
+                     "subClassification": []
                   }
                ]
             }

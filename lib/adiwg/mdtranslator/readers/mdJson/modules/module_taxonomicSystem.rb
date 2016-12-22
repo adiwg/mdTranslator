@@ -18,7 +18,7 @@ module ADIWG
 
                         # return nil object if input is empty
                         if hSystem.empty?
-                            responseObj[:readerExecutionMessages] << 'Taxonomy System object is empty'
+                            responseObj[:readerExecutionMessages] << 'TaxonomicSystem object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
@@ -36,7 +36,7 @@ module ADIWG
                             end
                         end
                         if intSystem[:citation].empty?
-                            responseObj[:readerExecutionMessages] << 'Taxonomy System is missing citation'
+                            responseObj[:readerExecutionMessages] << 'TaxonomicSystem object is missing citation'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

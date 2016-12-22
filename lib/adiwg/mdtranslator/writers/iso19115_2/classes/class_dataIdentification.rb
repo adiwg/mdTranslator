@@ -201,52 +201,48 @@ module ADIWG
                                 @xml.tag!('gmd:resourceSpecificUsage')
                             end
 
-                            # data identification - resource constraints - use constraints []
-                            aCons = hData[:useConstraints]
-                            aUseCons = nil
-                            unless aCons.nil?
-                                aUseCons = aCons[:constraints]
-                                unless aUseCons.nil?
+                            # data identification - resource constraints {}
+                            aCons = hData[:constraints]
+
+                            # data identification - use constraints []
+                            aUseCons = aCons[:constraints]
+                            unless aUseCons.nil?
+                                aUseCons.each do |hCon|
                                     @xml.tag!('gmd:resourceConstraints') do
-                                        uConClass.writeXML(aUseCons)
+                                        uConClass.writeXML(hCon)
                                     end
                                 end
                             end
-                            if (aCons.nil? || aUseCons.nil?) && @hResponseObj[:writerShowTags]
+                            if aUseCons.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_Constraints')
                                 end
                             end
 
-                            # data identification - resource constraints - legal constraints []
-                            aLegalCons = nil
-                            unless aCons.nil?
-                                aLegalCons = aCons[:legalConstraints]
-                                unless aLegalCons.nil?
+                            # data identification - legal constraints []
+                            aLegalCons = aCons[:legalConstraints]
+                            unless aLegalCons.nil?
+                                aLegalCons.each do |hCon|
                                     @xml.tag!('gmd:resourceConstraints') do
-                                        lConClass.writeXML(aLegalCons)
+                                        lConClass.writeXML(hCon)
                                     end
                                 end
                             end
-                            if (aCons.nil? || aLegalCons.nil?) && @hResponseObj[:writerShowTags]
+                            if aLegalCons.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceConstraints') do
                                     @xml.tag!('gmd:MD_LegalConstraints')
                                 end
                             end
 
-                            # data identification - resource constraints - security constraints []
+                            # data identification - security constraints []
                             # empty tag cannot be shown for security constraints - XSD issue
-                            aSecurityCons = nil
-                            unless aCons.nil?
-                                aSecurityCons = aCons[:securityConstraints]
-                                unless aSecurityCons.nil?
+                            aSecurityCons = aCons[:securityConstraints]
+                            unless aSecurityCons.nil?
+                                aSecurityCons.each do |hCon|
                                     @xml.tag!('gmd:resourceConstraints') do
-                                        sConClass.writeXML(aSecurityCons)
+                                        sConClass.writeXML(hCon)
                                     end
                                 end
-                            end
-                            if (aCons.nil? || aSecurityCons.nil?) && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints')
                             end
 
                             # data identification - aggregate information []

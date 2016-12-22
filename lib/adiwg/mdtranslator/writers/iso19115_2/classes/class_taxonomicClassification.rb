@@ -21,12 +21,12 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hTaxon)
+                    def writeXML(aTaxon)
 
                         @xml.tag!('gmd:MD_TaxonCl') do
 
                             # taxon classification - common name []
-                            aCommon = hTaxon[:commonName]
+                            aCommon = aTaxon[:commonNames]
                             aCommon.each do |common|
                                 @xml.tag!('gmd:common') do
                                     @xml.tag!('gco:CharacterString', common)
@@ -37,7 +37,7 @@ module ADIWG
                             end
 
                             # taxon classification - taxon rank name (required)
-                            s = hTaxon[:taxonRank]
+                            s = aTaxon[:taxonRank]
                             if s.nil?
                                 @xml.tag!('gmd:taxonrn', {'gco:nilReason' => 'missing'})
                             else
@@ -47,7 +47,7 @@ module ADIWG
                             end
 
                             # taxon classification - taxon rank value (required)
-                            s = hTaxon[:taxonValue]
+                            s = aTaxon[:taxonValue]
                             if s.nil?
                                 @xml.tag!('gmd:taxonrv', {'gco:nilReason' => 'missing'})
                             else
@@ -57,7 +57,7 @@ module ADIWG
                             end
 
                             # taxon classification - classification [{MD_TaxonCl}]
-                            aClasses = hTaxon[:taxonClass]
+                            aClasses = aTaxon[:subClasses]
                             aClasses.each do |hClass|
                                 taxonClass = MD_TaxonCl.new(@xml, @hResponseObj)
                                 taxonClass.writeXML(hClass)

@@ -66,7 +66,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         assert_equal 'identificationProcedure', metadata[:idProcedure]
         assert_equal 'identificationCompleteness', metadata[:idCompleteness]
         assert_equal 2, metadata[:vouchers].length
-        assert_equal 2, metadata[:taxonClasses].length
+        refute_empty metadata[:taxonClass]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -153,7 +153,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
     def test_taxonomy_empty_taxClass
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['taxonomicClassification'] = []
+        hIn['taxonomicClassification'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -193,7 +193,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         assert_equal 'identificationProcedure', metadata[:idProcedure]
         assert_nil metadata[:idCompleteness]
         assert_empty metadata[:vouchers]
-        refute_empty metadata[:taxonClasses]
+        refute_empty metadata[:taxonClass]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -216,7 +216,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
         assert_equal 'identificationProcedure', metadata[:idProcedure]
         assert_nil metadata[:idCompleteness]
         assert_empty metadata[:vouchers]
-        refute_empty metadata[:taxonClasses]
+        refute_empty metadata[:taxonClass]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

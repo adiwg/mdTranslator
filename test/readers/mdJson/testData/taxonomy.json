@@ -5,7 +5,8 @@
         {
           "citation": {
             "title": "title"
-          }
+          },
+          "modification": "modification"
         },
         {
           "citation": {
@@ -14,12 +15,24 @@
         }
       ],
       "generalScope": "generalScope",
-      "identificationReference": [
+      "identificationReference":[
         {
-          "title": "title"
+          "identifier": "identifier0",
+          "namespace": "namespace0",
+          "version": "version0",
+          "description": "description0",
+          "authority": {
+            "title": "title0"
+          }
         },
         {
-          "title": "title"
+          "identifier": "identifier1",
+          "namespace": "namespace1",
+          "version": "version1",
+          "description": "description1",
+          "authority": {
+            "title": "title1"
+          }
         }
       ],
       "observer": [
@@ -78,16 +91,14 @@
           }
         }
       ],
-      "taxonomicClassification": [
-        {
-          "taxonomicRank": "taxonomicRank0",
-          "latinName": "latinName"
-        },
-        {
-          "taxonomicRank": "taxonomicRank0",
-          "latinName": "latinName"
-        }
-      ]
+      "taxonomicClassification": {
+        "commonName": [
+          "commonName0",
+          "commonName1"
+        ],
+        "taxonomicRank": "taxonomicRank0",
+        "latinName": "latinName0"
+      }
     }
   ]
 }

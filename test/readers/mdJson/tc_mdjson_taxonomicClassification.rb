@@ -37,13 +37,13 @@ class TestReaderMdJsonTaxonomicClassification < MiniTest::Test
 
         assert_equal 'taxonomicRank0', metadata[:taxonRank]
         assert_equal 'latinName', metadata[:taxonValue]
-        assert_equal 2, metadata[:commonName].length
-        assert_equal 'commonName0', metadata[:commonName][0]
-        assert_equal 'commonName1', metadata[:commonName][1]
-        assert_equal 2, metadata[:taxonClass].length
-        assert_equal 'taxonomicRank00', metadata[:taxonClass][0][:taxonRank]
-        assert_equal 'taxonomicRank01', metadata[:taxonClass][1][:taxonRank]
-        assert_equal 'taxonomicRank0000', metadata[:taxonClass][0][:taxonClass][0][:taxonClass][0][:taxonRank]
+        assert_equal 2, metadata[:commonNames].length
+        assert_equal 'commonName0', metadata[:commonNames][0]
+        assert_equal 'commonName1', metadata[:commonNames][1]
+        assert_equal 2, metadata[:subClasses].length
+        assert_equal 'taxonomicRank00', metadata[:subClasses][0][:taxonRank]
+        assert_equal 'taxonomicRank01', metadata[:subClasses][1][:taxonRank]
+        assert_equal 'taxonomicRank0000.1', metadata[:subClasses][0][:subClasses][0][:subClasses][0][:taxonRank]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -105,14 +105,14 @@ class TestReaderMdJsonTaxonomicClassification < MiniTest::Test
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['commonName'] = []
-        hIn['taxonomicClassification'] = []
+        hIn['subClassification'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'taxonomicRank0', metadata[:taxonRank]
         assert_equal 'latinName', metadata[:taxonValue]
-        assert_empty metadata[:commonName]
-        assert_empty metadata[:taxonClass]
+        assert_empty metadata[:commonNames]
+        assert_empty metadata[:subClasses]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -122,14 +122,14 @@ class TestReaderMdJsonTaxonomicClassification < MiniTest::Test
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('commonName')
-        hIn.delete('taxonomicClassification')
+        hIn.delete('subClassification')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'taxonomicRank0', metadata[:taxonRank]
         assert_equal 'latinName', metadata[:taxonValue]
-        assert_empty metadata[:commonName]
-        assert_empty metadata[:taxonClass]
+        assert_empty metadata[:commonNames]
+        assert_empty metadata[:subClasses]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

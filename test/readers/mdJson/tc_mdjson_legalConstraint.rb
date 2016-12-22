@@ -9,6 +9,30 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_legalConstraint'
 
+# set contacts to be used by this test
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+                module MdJson
+
+                    # create new internal metadata container for the reader
+                    intMetadataClass = InternalMetadata.new
+                    intObj = intMetadataClass.newBase
+
+                    # first contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][0][:contactId] = 'individualId0'
+                    intObj[:contacts][0][:isOrganization] = false
+
+                    @contacts = intObj[:contacts]
+
+                end
+            end
+        end
+    end
+end
+
 class TestReaderMdJsonLegalConstraint < MiniTest::Test
 
     # set constants and variables
@@ -42,9 +66,9 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
         assert_equal 2, metadata[:accessCodes].length
         assert_equal 'accessConstraint0', metadata[:accessCodes][0]
         assert_equal 'accessConstraint1', metadata[:accessCodes][1]
-        assert_equal 2, metadata[:otherCodes].length
-        assert_equal 'otherConstraint0', metadata[:otherCodes][0]
-        assert_equal 'otherConstraint1', metadata[:otherCodes][1]
+        assert_equal 2, metadata[:otherCons].length
+        assert_equal 'otherConstraint0', metadata[:otherCons][0]
+        assert_equal 'otherConstraint1', metadata[:otherCons][1]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -53,7 +77,6 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
     def test_empty_legalConstraint
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['constraint'] = {}
         hIn['useConstraint'] = []
         hIn['accessConstraint'] = []
         hIn['otherConstraint'] = []
@@ -75,12 +98,9 @@ class TestReaderMdJsonLegalConstraint < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:constraint]
-        assert_empty metadata[:useCodes]
-        assert_empty metadata[:accessCodes]
-        assert_empty metadata[:otherCodes]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 

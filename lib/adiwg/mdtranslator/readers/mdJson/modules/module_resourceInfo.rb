@@ -31,7 +31,6 @@ module ADIWG
 
                     def self.unpack(hResInfo, responseObj)
 
-
                         # return nil object if input is empty
                         if hResInfo.empty?
                             responseObj[:readerExecutionMessages] << 'ResourceInfo object is empty'
@@ -278,12 +277,12 @@ module ADIWG
                         end
 
                         # resource information - constraint [] {constraint}
-                        if hResInfo.has_key?('constraint')
-                            aItems = hResInfo['constraint']
-                            aItems.each do |item|
-                                hReturn = Constraint.unpack(item, responseObj)
+                        if hResInfo.has_key?('constraints')
+                            hCons = hResInfo['constraints']
+                            unless hCons.empty?
+                                hReturn = Constraints.unpack(hCons, responseObj)
                                 unless hReturn.nil?
-                                    intResInfo[:constraints] << hReturn
+                                    intResInfo[:constraints] = hReturn
                                 end
                             end
                         end

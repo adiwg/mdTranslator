@@ -30,10 +30,16 @@ module ADIWG
                         # classes used
                         idClass =  RS_Identifier.new(@xml, @hResponseObj)
 
-                        @xml.tag!('gmd:MD_ReferenceSystem') do
-                            @xml.tag!('gmd:referenceSystemIdentifier') do
-                                idClass.writeXML(hSystem)
+                        hIdentifier = hSystem[:systemIdentifier]
+                        unless hIdentifier.empty?
+                            @xml.tag!('gmd:MD_ReferenceSystem') do
+                                @xml.tag!('gmd:referenceSystemIdentifier') do
+                                    idClass.writeXML(hIdentifier)
+                                end
                             end
+                        end
+                        if hIdentifier.empty? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmd:MD_ReferenceSystem')
                         end
 
                     end # writeXML

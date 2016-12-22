@@ -11,7 +11,7 @@
 # 	Stan Smith 2013-11-19 original script.
 
 require_relative 'class_taxonomicSystem'
-require_relative 'class_mdIdentifier'
+require_relative 'class_rsIdentifier'
 require_relative 'class_responsibleParty'
 require_relative 'class_vouchers'
 require_relative 'class_taxonomicClassification'
@@ -32,7 +32,7 @@ module ADIWG
 
                         # classes used
                         taxonomicClass =  TaxonomicSystem.new(@xml, @hResponseObj)
-                        identifierClass =  MD_Identifier.new(@xml, @hResponseObj)
+                        identifierClass =  RS_Identifier.new(@xml, @hResponseObj)
                         partyClass =  CI_ResponsibleParty.new(@xml, @hResponseObj)
                         voucherClass =  MD_Vouchers.new(@xml, @hResponseObj)
                         taxonClass =  MD_TaxonCl.new(@xml, @hResponseObj)
@@ -61,14 +61,16 @@ module ADIWG
                                 @xml.tag!('gmd:taxongen')
                             end
 
-                            # taxon system - identification reference (required) [{MD_Identifier}]
-                            aReferences = hSystem[:idReferences]
-                            aReferences.each do |hIdentifier|
-                                @xml.tag!('gmd:idref') do
-                                    identifierClass.writeXML(hIdentifier)
+                            # taxon system - identification reference (required) [{RS_Identifier}]
+                            aIdentifier = hSystem[:idReferences]
+                            aIdentifier.each do |hIdentifier|
+                                unless hIdentifier.empty?
+                                    @xml.tag!('gmd:idref') do
+                                        identifierClass.writeXML(hIdentifier)
+                                    end
                                 end
                             end
-                            if aReferences.empty?
+                            if aIdentifier.empty?
                                 @xml.tag!('gmd:idref', {'gco:nilReason' => 'missing'})
                             end
 
@@ -121,14 +123,15 @@ module ADIWG
                                 @xml.tag!('gmd:voucher')
                             end
 
-                            # taxon system - taxonomy classification (required)
-                            aTaxClasses = hSystem[:taxonClasses]
-                            if aTaxClasses.empty?
-                                @xml.tag!('gmd:taxonCl', {'gco:nilReason' => 'missing'})
-                            else
+                            # taxon system - taxonomy classification [] (required)
+                            hTaxClass = hSystem[:taxonClass]
+                            unless hTaxClass.empty?
                                 @xml.tag!('gmd:taxonCl') do
-                                    taxonClass.writeXML(aTaxClasses)
+                                    taxonClass.writeXML(hTaxClass)
                                 end
+                            end
+                            if hTaxClass.empty?
+                                @xml.tag!('gmd:taxonCl', {'gco:nilReason' => 'missing'})
                             end
 
                         end # gmd:MD_TaxonSys tag

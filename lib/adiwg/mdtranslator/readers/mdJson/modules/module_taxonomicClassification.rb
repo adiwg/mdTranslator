@@ -50,18 +50,18 @@ module ADIWG
                         if hTaxClass.has_key?('commonName')
                             hTaxClass['commonName'].each do |item|
                                 if item != ''
-                                    intTaxClass[:commonName] << item
+                                    intTaxClass[:commonNames] << item
                                 end
                             end
                         end
 
                          # taxonomic classification - taxonomic classification [taxonomicClassification]
-                        if hTaxClass.has_key?('taxonomicClassification')
-                            aItems = hTaxClass['taxonomicClassification']
+                        if hTaxClass.has_key?('subClassification')
+                            aItems = hTaxClass['subClassification']
                             aItems.each do |item|
                                 hReturn = TaxonomicClassification.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intTaxClass[:taxonClass] << hReturn
+                                    intTaxClass[:subClasses] << hReturn
                                 end
                             end
                         end

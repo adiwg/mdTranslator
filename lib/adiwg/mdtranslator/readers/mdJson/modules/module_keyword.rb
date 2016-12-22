@@ -14,6 +14,7 @@
 # 	Stan Smith 2013-09-18 original script
 
 require_relative 'module_citation'
+require_relative 'module_keywordObject'
 
 module ADIWG
     module Mdtranslator
@@ -37,9 +38,12 @@ module ADIWG
 
                         # keyword - keyword [] (required)
                         if hKeyword.has_key?('keywords')
-                            hKeyword['keywords'].each do |item|
-                                if item != ''
-                                    intKeyword[:keywords] << item
+                            hKeyword['keywords'].each do |hItem|
+                                unless hItem.empty?
+                                    hReturn = KeywordObject.unpack(hItem, responseObj)
+                                    unless hReturn.nil?
+                                        intKeyword[:keywords] << hReturn
+                                    end
                                 end
                             end
                         end

@@ -1,0 +1,339 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+          "identifier": "identifier"
+        },
+        "metadataContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-31"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "resourceType",
+        "citation": {
+          "title": "title"
+        },
+        "abstract": "abstract",
+        "shortAbstract": "shortAbstract",
+        "purpose": "purpose",
+        "credits": [
+          "credit0",
+          "credit1"
+        ],
+        "timePeriod": {
+          "startDateTime": "2016-11-01"
+        },
+        "status": [
+          "status0",
+          "status1"
+        ],
+        "topicCategory": [
+          "topicCategory0",
+          "topicCategory1"
+        ],
+        "pointOfContact": [
+          {
+            "role": "role0",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          },
+          {
+            "role": "role1",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "spatialReferenceSystem": [
+          {
+            "referenceSystemType": "referenceSystemType0",
+            "referenceSystem": {
+              "identifier": "identifier"
+            }
+          },
+          {
+            "referenceSystemType": "referenceSystemType1"
+          }
+        ],
+        "spatialRepresentationType": [
+          "spatialRepresentationType0",
+          "spatialRepresentationType1"
+        ],
+        "spatialRepresentation": [
+          {
+            "type": "grid",
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry",
+              "transformParamsAvailability": true
+            }
+          },
+          {
+            "type": "grid",
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry",
+              "transformParamsAvailability": true
+            }
+          }
+        ],
+        "spatialResolution": [
+          {
+            "type": "scaleFactor",
+            "scaleFactor": 25000
+          },
+          {
+            "type": "scaleFactor",
+            "scaleFactor": 25000
+          }
+        ],
+        "temporalResolution": [
+          {
+            "years": 1
+          },
+          {
+            "seconds": 1
+          }
+        ],
+        "extent": [
+          {
+            "description": "description0"
+          },
+          {
+            "description": "description1"
+          }
+        ],
+        "coverageDescription": [
+          {
+            "coverageName": "coverageName0",
+            "coverageDescription": "coverageDescription0"
+          },
+          {
+            "coverageName": "coverageName1",
+            "coverageDescription": "coverageDescription1"
+          }
+        ],
+        "taxonomy": {
+          "taxonomicSystem": [
+            {
+              "citation": {
+                "title": "title"
+              },
+              "modification": "modification"
+            }
+          ],
+          "identificationReference":[
+            {
+              "identifier": "identifier0",
+              "namespace": "namespace0",
+              "version": "version0",
+              "description": "description0",
+              "authority": {
+                "title": "title0"
+              }
+            },
+            {
+              "identifier": "identifier1",
+              "namespace": "namespace1",
+              "version": "version1",
+              "description": "description1",
+              "authority": {
+                "title": "title1"
+              }
+            }
+          ],
+          "identificationProcedure": "identificationProcedure",
+          "taxonomicClassification": {
+            "taxonomicRank": "taxonomicRank",
+            "latinName": "latinName"
+          }
+        },
+        "graphicOverview": [
+          {
+            "fileName": "fileName0"
+          },
+          {
+            "fileName": "fileName1"
+          }
+        ],
+        "resourceFormat": [
+          {
+            "formatSpecification": {
+              "title": "title0"
+            }
+          },
+          {
+            "formatSpecification": {
+              "title": "title1"
+            }
+          }
+        ],
+        "keyword": [
+          {
+            "keywords": [
+              {
+                "keyword": "keyword00",
+                "keywordId": "keywordId00"
+              },
+              {
+                "keyword": "keyword01"
+              }
+            ],
+            "keywordType": "keywordType0",
+            "thesaurus": {
+              "title": "title0"
+            }
+          },
+          {
+            "keywords": [
+              {
+                "keyword": "keyword10",
+                "keywordId": "keywordId10"
+              },
+              {
+                "keyword": "keyword11"
+              }
+            ],
+            "keywordType": "keywordType1",
+            "thesaurus": {
+              "title": "title1"
+            }
+          }
+        ],
+        "resourceUsage": [
+          {
+            "specificUsage": "specificUsage0",
+            "userDeterminedLimitation": "userDeterminedLimitation",
+            "limitationResponse": [
+              "limitationResponse00",
+              "limitationResponse01"
+            ]
+          },
+          {
+            "specificUsage": "specificUsage1",
+            "userDeterminedLimitation": "userDeterminedLimitation",
+            "limitationResponse": [
+              "limitationResponse10",
+              "limitationResponse11"
+            ]
+          }
+        ],
+        "constraints": {
+          "constraint": [
+            {
+              "useLimitation": [
+                "useLimitation0"
+              ]
+            }
+          ],
+          "legalConstraint": [
+            {
+              "useLimitation": [
+                "useLimitation1"
+              ],
+              "accessConstraint": [
+                "accessConstraint10",
+                "accessConstraint11"
+              ]
+            }
+          ],
+          "securityConstraint": [
+            {
+              "useLimitation": [
+                "useLimitation2"
+              ],
+              "classification": "classification2"
+            }
+          ]
+        },
+        "defaultResourceLocale": {
+          "language": "LanguageCode",
+          "country": "CountryCode",
+          "characterSet": "MD_CharacterSetCode"
+        },
+        "otherResourceLocale": [
+          {
+            "language": "LanguageCode0",
+            "country": "CountryCode0",
+            "characterSet": "MD_CharacterSetCode0"
+          },
+          {
+            "language": "LanguageCode1",
+            "country": "CountryCode1",
+            "characterSet": "MD_CharacterSetCode1"
+          }
+        ],
+        "resourceMaintenance": [
+          {
+            "frequency": "frequency0"
+          },
+          {
+            "frequency": "frequency1"
+          }
+        ],
+        "environmentDescription": "environmentDescription",
+        "supplementalInfo": "supplementalInfo"
+      },
+      "associatedResource": [
+        {
+          "resourceType": "resourceType",
+          "associationType": "crossReference",
+          "initiativeType": "campaign",
+          "resourceCitation": {
+            "title": "resource citation"
+          },
+          "metadataCitation": {
+            "title": "metadata citation"
+          }
+        }
+      ]
+    }
+  }
+}

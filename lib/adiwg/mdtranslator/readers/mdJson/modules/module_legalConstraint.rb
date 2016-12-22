@@ -33,14 +33,9 @@ module ADIWG
                         intLegalCon= intMetadataClass.newLegalConstraint
 
                         # legal constraint - constraint {constraint}
-                        if hLegalCon.has_key?('constraint')
-                            hObject = hLegalCon['constraint']
-                            unless hObject.empty?
-                                hReturn = Constraint.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intLegalCon[:constraint] = hReturn
-                                end
-                            end
+                        hReturn = Constraint.unpack(hLegalCon, responseObj)
+                        unless hReturn.nil?
+                            intLegalCon[:constraint] = hReturn
                         end
 
                         # legal constraint - use constraint []
@@ -65,15 +60,14 @@ module ADIWG
                         if hLegalCon.has_key?('otherConstraint')
                             hLegalCon['otherConstraint'].each do |item|
                                 if item != ''
-                                    intLegalCon[:otherCodes] << item
+                                    intLegalCon[:otherCons] << item
                                 end
                             end
                         end
 
-                        if intLegalCon[:constraint].empty? &&
-                            intLegalCon[:useCodes].empty? &&
+                        if  intLegalCon[:useCodes].empty? &&
                             intLegalCon[:accessCodes].empty? &&
-                            intLegalCon[:otherCodes].empty?
+                            intLegalCon[:otherCons].empty?
                             responseObj[:readerExecutionMessages] << 'Legal Constraint was not declared'
                             responseObj[:readerExecutionPass] = false
                             return nil

@@ -9,6 +9,30 @@ require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_securityConstraint'
 
+# set contacts to be used by this test
+module ADIWG
+    module Mdtranslator
+        module Readers
+            module MdJson
+                module MdJson
+
+                    # create new internal metadata container for the reader
+                    intMetadataClass = InternalMetadata.new
+                    intObj = intMetadataClass.newBase
+
+                    # first contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][0][:contactId] = 'individualId0'
+                    intObj[:contacts][0][:isOrganization] = false
+
+                    @contacts = intObj[:contacts]
+
+                end
+            end
+        end
+    end
+end
+
 class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     # set constants and variables
@@ -74,14 +98,13 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['constraint'] = {}
         hIn['classificationSystem'] = ''
         hIn['userNote'] = ''
         hIn['handlingDescription'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_empty metadata[:constraint]
+        refute_empty metadata[:constraint]
         assert_nil metadata[:useCodes]
         assert_nil metadata[:accessCodes]
         assert_nil metadata[:otherCodes]
@@ -93,14 +116,13 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('constraint')
         hIn.delete('classificationSystem')
         hIn.delete('userNote')
         hIn.delete('handlingDescription')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_empty metadata[:constraint]
+        refute_empty metadata[:constraint]
         assert_nil metadata[:useCodes]
         assert_nil metadata[:accessCodes]
         assert_nil metadata[:otherCodes]

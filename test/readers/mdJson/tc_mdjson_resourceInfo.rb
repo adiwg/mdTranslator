@@ -81,7 +81,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         assert_equal 2, metadata[:resourceFormats].length
         assert_equal 2, metadata[:keywords].length
         assert_equal 2, metadata[:resourceUsages].length
-        assert_equal 2, metadata[:constraints].length
+        assert_equal 3, metadata[:constraints].length
         refute_empty metadata[:defaultResourceLocale]
         assert_equal 2, metadata[:otherResourceLocales].length
         assert_equal 2, metadata[:resourceMaintenance].length
@@ -244,7 +244,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn['resourceFormat'] = []
         hIn['keyword'] = []
         hIn['resourceUsage'] = []
-        hIn['constraint'] = []
+        hIn['constraints'] = []
         hIn['otherResourceLocale'] = []
         hIn['resourceMaintenance'] = []
         hIn['environmentDescription'] = ''
@@ -307,7 +307,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn.delete('resourceFormat')
         hIn.delete('keyword')
         hIn.delete('resourceUsage')
-        hIn.delete('constraint')
+        hIn.delete('constraints')
         hIn.delete('otherResourceLocale')
         hIn.delete('resourceMaintenance')
         hIn.delete('environmentDescription')

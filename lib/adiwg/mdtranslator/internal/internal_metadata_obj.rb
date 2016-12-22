@@ -262,7 +262,7 @@ class InternalMetadata
             resourceFormats: [],
             keywords: [],
             resourceUsages: [],
-            constraints: [],
+            constraints: {},
             defaultResourceLocale: {},
             otherResourceLocales: [],
             resourceMaintenance: [],
@@ -347,7 +347,7 @@ class InternalMetadata
             constraint: {},
             accessCodes: [],
             useCodes: [],
-            otherCodes: []
+            otherCons: []
         }
     end
 
@@ -620,7 +620,7 @@ class InternalMetadata
             idProcedure: nil,
             idCompleteness: nil,
             vouchers: [],
-            taxonClasses: []
+            taxonClass: {}
         }
     end
 
@@ -642,8 +642,8 @@ class InternalMetadata
         intObj = {
             taxonRank: nil,
             taxonValue: nil,
-            commonName: [],
-            taxonClass: []
+            commonNames: [],
+            subClasses: []
         }
     end
 

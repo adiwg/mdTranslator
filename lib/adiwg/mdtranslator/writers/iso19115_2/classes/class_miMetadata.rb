@@ -247,7 +247,9 @@ module ADIWG
                             # metadata information - reference system []
                             aSystems = hResInfo[:spatialReferenceSystems]
                             aSystems.each do |hSystem|
-                                systemClass.writeXML(hSystem)
+                                @xml.tag!('gmd:referenceSystemInfo') do
+                                    systemClass.writeXML(hSystem)
+                                end
                             end
                             if aSystems.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:referenceSystemInfo')

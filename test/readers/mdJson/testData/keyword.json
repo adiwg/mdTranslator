@@ -3,7 +3,8 @@
       {
          "keywords": [
             {
-               "keyword": "keyword0"
+               "keyword": "keyword0",
+               "keywordId": "keywordId0"
             },
             {
                "keyword": "keyword1"

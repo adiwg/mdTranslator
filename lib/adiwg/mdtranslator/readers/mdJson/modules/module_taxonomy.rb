@@ -5,6 +5,7 @@
 #   Stan Smith 2016-10-22 original script
 
 require_relative 'module_taxonomicSystem'
+require_relative 'module_identifier'
 require_relative 'module_responsibleParty'
 require_relative 'module_voucher'
 require_relative 'module_taxonomicClassification'
@@ -41,7 +42,7 @@ module ADIWG
                             end
                         end
                         if intTaxonomy[:taxonSystem].empty?
-                            responseObj[:readerExecutionMessages] << 'Taxonomy object is missing classificationSystem'
+                            responseObj[:readerExecutionMessages] << 'Taxonomy object is missing taxonomicSystem object'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
@@ -53,13 +54,15 @@ module ADIWG
                             end
                         end
 
-                        # taxonomy - identification reference [citation] (required)
+                        # taxonomy - identification reference [{identifier}] (required)
                         if hTaxonomy.has_key?('identificationReference')
                             aItems = hTaxonomy['identificationReference']
-                            aItems.each do |item|
-                                hReturn = Citation.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intTaxonomy[:idReferences] << hReturn
+                            aItems.each do |hItem|
+                                unless hItem.empty?
+                                    hReturn = Identifier.unpack(hItem, responseObj)
+                                    unless hReturn.nil?
+                                        intTaxonomy[:idReferences] << hReturn
+                                    end
                                 end
                             end
                         end
@@ -110,17 +113,15 @@ module ADIWG
                             end
                         end
 
-                        # taxonomy - taxonomic classification [taxonomicClassification] (required)
+                        # taxonomy - taxonomic classification {taxonomicClassification} (required)
                         if hTaxonomy.has_key?('taxonomicClassification')
-                            aItems = hTaxonomy['taxonomicClassification']
-                            aItems.each do |item|
-                                hReturn = TaxonomicClassification.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intTaxonomy[:taxonClasses] << hReturn
-                                end
+                        item = hTaxonomy['taxonomicClassification']
+                            hReturn = TaxonomicClassification.unpack(item, responseObj)
+                            unless hReturn.nil?
+                                intTaxonomy[:taxonClass] = hReturn
                             end
                         end
-                        if intTaxonomy[:taxonClasses].empty?
+                        if intTaxonomy[:taxonClass].empty?
                             responseObj[:readerExecutionMessages] << 'Taxonomy object is missing taxonomicClassification'
                             responseObj[:readerExecutionPass] = false
                             return nil

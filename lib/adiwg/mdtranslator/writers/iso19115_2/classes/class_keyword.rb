@@ -37,9 +37,7 @@ module ADIWG
 
                             # keyword - keyword (required)
                             aKeyObjects = hKeyword[:keywords]
-                            if aKeyObjects.empty?
-                                @xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
-                            else
+                            unless aKeyObjects.empty?
                                 aKeyObjects.each do |hKeyObj|
                                     keyword = hKeyObj[:keyword]
                                     unless keyword.nil?
@@ -48,6 +46,9 @@ module ADIWG
                                         end
                                     end
                                 end
+                            end
+                            if aKeyObjects.empty?
+                                @xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
                             end
 
                             # keyword - type {MD_KeywordTypeCode}

@@ -32,14 +32,9 @@ module ADIWG
                         intSecCon= intMetadataClass.newSecurityConstraint
 
                         # security constraint - constraint {constraint}
-                        if hSecurityCon.has_key?('constraint')
-                            hObject = hSecurityCon['constraint']
-                            unless hObject.empty?
-                                hReturn = Constraint.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSecCon[:constraint] = hReturn
-                                end
-                            end
+                        hReturn = Constraint.unpack(hSecurityCon, responseObj)
+                        unless hReturn.nil?
+                            intSecCon[:constraint] = hReturn
                         end
 
                         # security constraint - classification (required)
