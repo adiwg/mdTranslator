@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_dataQuality
+# writers / iso19115_2 / class_date
 
 # History:
 #   Stan Smith 2016-12-22 original script
@@ -10,23 +10,23 @@ require 'rexml/document'
 require 'adiwg/mdtranslator'
 include REXML
 
-class TestWriter191152DataQuality < MiniTest::Test
+class TestWriter191152Date < MiniTest::Test
 
     # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_dataQuality.xml')
+    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_date.xml')
     file = File.new(fname)
     @@iso_xml = Document.new(file)
 
     # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_dataQuality.json')
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_date.json')
     file = File.open(fname, 'r')
     @@mdJson = file.read
     file.close
 
-    def test_19115_2_dataQuality
+    def test_19115_2_date
 
         aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:dataQualityInfo') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:date') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
@@ -36,7 +36,7 @@ class TestWriter191152DataQuality < MiniTest::Test
         iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_out, '//gmd:dataQualityInfo') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:date') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze

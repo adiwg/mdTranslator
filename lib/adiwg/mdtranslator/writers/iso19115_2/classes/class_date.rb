@@ -38,13 +38,10 @@ module ADIWG
                         @xml.tag!('gmd:CI_Date') do
 
                             # date - date (required)
-                            if date.nil?
-                                @xml.tag!('gmd:date', {'gco:nilReason' => 'missing'})
-                            else
+                            unless date.nil?
                                 @xml.tag!('gmd:date') do
-
                                     if dateRes.length > 3
-                                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsZ')
+                                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsLZ')
                                         @xml.tag!('gco:DateTime', dateStr)
                                     else
                                         dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
@@ -52,16 +49,19 @@ module ADIWG
                                     end
 
                                 end
-
+                            end
+                            if date.nil?
+                                @xml.tag!('gmd:date', {'gco:nilReason' => 'missing'})
                             end
 
                             # date - date type (required)
-                            if dateType.nil?
-                                @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
-                            else
+                            unless dateType.nil?
                                 @xml.tag!('gmd:dateType') do
                                     codelistClass.writeXML('gmd', 'iso_dateType',dateType)
                                 end
+                            end
+                            if dateType.nil?
+                                @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
                             end
 
                         end # CI_Date tag
