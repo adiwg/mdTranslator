@@ -47,7 +47,6 @@ module ADIWG
                                         dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
                                         @xml.tag!('gco:Date', dateStr)
                                     end
-
                                 end
                             end
                             if date.nil?

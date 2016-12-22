@@ -302,7 +302,7 @@ module ADIWG
                             # metadata information - distribution info [0]
                             aDistInfo = hMetadata[:distributorInfo]
                             hDistInfo = aDistInfo[0]
-                            unless hDate.empty?
+                            unless hDistInfo.empty?
                                 @xml.tag!('gmd:distributionInfo') do
                                     distClass.writeXML(hDistInfo)
                                 end

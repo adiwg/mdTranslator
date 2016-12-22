@@ -24,20 +24,24 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(aDistributors)
+                    def writeXML(hDistribution)
 
                         # classes used
                         distributorClass = MD_Distributor.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_Distribution') do
 
-                            # distribution - distributor - required
+                            # distribution - distributor (required)
+                            aDistributors = hDistribution[:distributor]
                             unless aDistributors.empty?
                                 aDistributors.each do |hDistributor|
                                     @xml.tag!('gmd:distributor') do
                                         distributorClass.writeXML(hDistributor)
                                     end
                                 end
+                            end
+                            if aDistributors.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:distributor')
                             end
 
                         end # gmd:MD_Distribution tag
