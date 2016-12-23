@@ -44,7 +44,7 @@
       <gmd:date>
         <gmd:CI_Date>
           <gmd:date>
-            <gco:DateTime>2016-10-22T14:20:20+00:00</gco:DateTime>
+            <gco:DateTime>2016-10-22T14:20:20</gco:DateTime>
           </gmd:date>
           <gmd:dateType>
             <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>

@@ -40,12 +40,19 @@ module ADIWG
                             # date - date (required)
                             unless date.nil?
                                 @xml.tag!('gmd:date') do
-                                    if dateRes.length > 3
-                                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsLZ')
-                                        @xml.tag!('gco:DateTime', dateStr)
-                                    else
-                                        dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                                        @xml.tag!('gco:Date', dateStr)
+                                    case dateRes
+                                        when 'Y', 'YM', 'YMD'
+                                            dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
+                                            @xml.tag!('gco:Date', dateStr)
+                                        when 'YMDh', 'YMDhm', 'YMDhms'
+                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhms')
+                                            @xml.tag!('gco:DateTime', dateStr)
+                                        when 'YMDhZ', 'YMDhmZ', 'YMDhmsZ'
+                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsZ')
+                                            @xml.tag!('gco:DateTime', dateStr)
+                                        else
+                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
+                                            @xml.tag!('gco:DateTime', dateStr)
                                     end
                                 end
                             end

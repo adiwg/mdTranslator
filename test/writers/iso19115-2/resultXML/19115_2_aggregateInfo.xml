@@ -31,7 +31,7 @@
           <gmd:date gco:nilReason="missing"/>
           <gmd:edition/>
           <gmd:identifier/>
-          <gmd:citedResponsibleParty gco:nilReason="missing"/>
+          <gmd:citedResponsibleParty/>
           <gmd:presentationForm/>
           <gmd:series/>
           <gmd:otherCitationDetails/>
@@ -59,7 +59,7 @@
           <gmd:date gco:nilReason="missing"/>
           <gmd:edition/>
           <gmd:identifier/>
-          <gmd:citedResponsibleParty gco:nilReason="missing"/>
+          <gmd:citedResponsibleParty/>
           <gmd:presentationForm/>
           <gmd:series/>
           <gmd:otherCitationDetails/>

@@ -34,6 +34,6 @@
     <gco:Scale uom="scale">15.0</gco:Scale>
   </gmd:resolution>
 
-  <gmd:resolution gco:nilReason="missing"/>
+  <gmd:resolution/>
 
 </gmi:MI_Metadata>
