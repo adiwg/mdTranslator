@@ -40,7 +40,7 @@ module ADIWG
                             end
 
                             # order process - plannedAvailableDateTime
-                            hDateTime = hOrder[:plannedDateTime]
+                            hDateTime = hOrder[:plannedAvailability]
                             unless hDateTime.empty?
                                 paDateTime = hDateTime[:dateTime]
                                 paDateRes = hDateTime[:dateResolution]
@@ -55,7 +55,7 @@ module ADIWG
                             end
 
                             # order process - orderingInstructions
-                            s = hOrder[:orderInstructions]
+                            s = hOrder[:orderingInstructions]
                             unless s.nil?
                                 @xml.tag!('gmd:orderingInstructions') do
                                     @xml.tag!('gco:CharacterString', s)

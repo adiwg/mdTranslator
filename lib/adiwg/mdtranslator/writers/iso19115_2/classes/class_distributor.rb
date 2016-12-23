@@ -62,16 +62,18 @@ module ADIWG
                             end
 
                             # distributor - format [{MD_Format}]
+                            format = false
                             aOptions = hDistributor[:transferOptions]
                             aOptions.each do |hOption|
                                 aFormats = hOption[:distributionFormats]
                                 aFormats.each do |hFormat|
+                                    format = true
                                     @xml.tag!('gmd:distributorFormat') do
                                         formatClass.writeXML(hFormat)
                                     end
                                 end
                             end
-                            if aOptions.empty? && @hResponseObj[:writerShowTags]
+                            if !format && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:distributorFormat')
                             end
 

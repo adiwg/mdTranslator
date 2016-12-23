@@ -63,7 +63,7 @@ module ADIWG
                                     olResClass.writeXML(hOlOption)
                                 end
                             end
-                            if aOnTranOpts.empty &&@hResponseObj[:writerShowTags]
+                            if aOnTranOpts.empty? &&@hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:onLine')
                             end
 
