@@ -48,12 +48,12 @@ module ADIWG
                             end
 
                             # time period - identifier {gmlIdentifier}
-                            hGMLid = hPeriod[:identifier]
+                            hGMLid = hPeriod[:gmlIdentifier]
                             unless hGMLid.empty?
                                 gmlClass.writeXML(hGMLid)
                             end
                             if hGMLid.empty? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gml:identifier')
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
                             end
 
                             # time period - names []

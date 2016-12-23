@@ -46,16 +46,16 @@ module ADIWG
                             end
 
                             # time instant - identifier {gmlIdentifier}
-                            hGMLid = hInstant[:identifier]
+                            hGMLid = hInstant[:gmlIdentifier]
                             unless hGMLid.empty?
                                 gmlClass.writeXML(hGMLid)
                             end
                             if hGMLid.empty? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gml:identifier')
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
                             end
 
                             # time instant - names []
-                            aNames = hInstant[:periodNames]
+                            aNames = hInstant[:instantNames]
                             aNames.each do |name|
                                 @xml.tag!('gml:name', name)
                             end
@@ -64,7 +64,7 @@ module ADIWG
                             end
 
                             # time instant - time position
-                            hDateTime = hInstant[:timePosition]
+                            hDateTime = hInstant[:timeInstant]
                             timeInstant = hDateTime[:dateTime]
                             timeResolution = hDateTime[:dateResolution]
                             dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(timeInstant, timeResolution)

@@ -301,10 +301,12 @@ module ADIWG
 
                             # metadata information - distribution info [0]
                             aDistInfo = hMetadata[:distributorInfo]
-                            hDistInfo = aDistInfo[0]
-                            unless hDistInfo.empty?
-                                @xml.tag!('gmd:distributionInfo') do
-                                    distClass.writeXML(hDistInfo)
+                            unless aDistInfo.empty?
+                                hDistInfo = aDistInfo[0]
+                                unless hDistInfo.empty?
+                                    @xml.tag!('gmd:distributionInfo') do
+                                        distClass.writeXML(hDistInfo)
+                                    end
                                 end
                             end
                             if aDistInfo.empty? && @hResponseObj[:writerShowTags]

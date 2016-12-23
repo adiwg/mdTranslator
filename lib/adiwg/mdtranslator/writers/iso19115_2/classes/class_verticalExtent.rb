@@ -49,7 +49,7 @@ module ADIWG
                             attributes = {}
                             title = nil
                             href = nil
-                            hSpaceRef = hVertEle[:crsURI]
+                            hSpaceRef = hVertEle[:crsId]
                             unless hSpaceRef.empty?
                                 hIdentifier = hSpaceRef[:systemIdentifier]
                                 unless hIdentifier.empty?
