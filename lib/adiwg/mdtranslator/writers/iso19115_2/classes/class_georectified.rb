@@ -20,7 +20,7 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hGrid)
+                    def writeXML(hGeoRec)
 
                         # classes used
                         gridClass = Grid.new(@xml, @hResponseObj)
@@ -30,16 +30,17 @@ module ADIWG
                         @xml.tag!('gmd:MD_Georectified') do
 
                             # georectified - add grid info
+                            hGrid = hGeoRec[:gridRepresentation]
                             gridClass.writeXML(hGrid)
 
                             # georectified - checkpoint availability
-                            s = hGrid[:checkPointAvailable]
+                            s = hGeoRec[:checkPointAvailable]
                             @xml.tag!('gmd:checkPointAvailability') do
                                 @xml.tag!('gco:Boolean', s)
                             end
 
                             # georectified - checkpoint description
-                            s = hGrid[:checkPointDescription]
+                            s = hGeoRec[:checkPointDescription]
                             unless s.nil?
                                 @xml.tag!('gmd:checkPointDescription') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -52,7 +53,7 @@ module ADIWG
                             # georectified - corner points (required)
                             # note: 2 - 4 points are required, but XSD only allows 1
                             # ... coordinates are flattened into one multi-dimensional point
-                            aCoords = hGrid[:cornerPoints]
+                            aCoords = hGeoRec[:cornerPoints]
                             unless aCoords.empty?
                                 aCoords = aCoords.flatten
                                 hPoint = {}
@@ -67,7 +68,7 @@ module ADIWG
                             end
 
                             # georectified - center point
-                            aCoords = hGrid[:cornerPoints]
+                            aCoords = hGeoRec[:centerPoint]
                             unless aCoords.empty?
                                 hPoint = {}
                                 hPoint[:type] = 'Point'
@@ -81,17 +82,17 @@ module ADIWG
                             end
 
                             # georectified - point in pixel (required)
-                            s = hGrid[:pointInPixel]
+                            s = hGeoRec[:pointInPixel]
                             if s.nil?
                                 @xml.tag!('gmd:pointInPixel', {'gco:nilReason'=>'missing'})
                             else
                                 @xml.tag!('gmd:pointInPixel') do
-                                    codelistClass.writeXML('gmd', 'iso_pixelOrientationCode', s)
+                                    @xml.tag!('gmd:MD_PixelOrientationCode', s)
                                 end
                             end
 
                             # georectified - transformation dimension description
-                            s = hGrid[:transformationDimensionDescription]
+                            s = hGeoRec[:transformationDimensionDescription]
                             unless s.nil?
                                 @xml.tag!('gmd:transformationDimensionDescription') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -102,7 +103,7 @@ module ADIWG
                             end
 
                             # georectified - transformation dimension mapping
-                            s = hGrid[:transformationDimensionMapping]
+                            s = hGeoRec[:transformationDimensionMapping]
                             unless s.nil?
                                 @xml.tag!('gmd:transformationDimensionMapping') do
                                     @xml.tag!('gco:CharacterString', s)
