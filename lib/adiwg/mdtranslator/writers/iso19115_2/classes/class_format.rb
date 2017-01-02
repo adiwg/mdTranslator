@@ -37,21 +37,23 @@ module ADIWG
                             end
 
                             # format - name (required)
-                            if name.nil?
-                                @xml.tag!('gmd:name', {'gco:nilReason' => 'missing'})
-                            else
+                            unless name.nil?
                                 @xml.tag!('gmd:name') do
                                     @xml.tag!('gco:CharacterString', name)
                                 end
                             end
+                            if name.nil?
+                                @xml.tag!('gmd:name', {'gco:nilReason' => 'missing'})
+                            end
 
                             # format - version (required)
-                            if version.nil?
-                                @xml.tag!('gmd:version', {'gco:nilReason' => 'missing'})
-                            else
+                            unless version.nil?
                                 @xml.tag!('gmd:version') do
                                     @xml.tag!('gco:CharacterString', version)
                                 end
+                            end
+                            if version.nil?
+                                @xml.tag!('gmd:version', {'gco:nilReason' => 'missing'})
                             end
 
                             # format - amendment number
