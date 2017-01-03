@@ -19,7 +19,7 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hGrid)
+                    def writeXML(hGeoRef)
 
                         # classes used
                         gridClass = Grid.new(@xml, @hResponseObj)
@@ -27,23 +27,24 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_Georeferenceable') do
 
-                            # georeferenceable - add grid info
+                            # georeferenceable - add grid info (required)
+                            hGrid = hGeoRef[:gridRepresentation]
                             gridClass.writeXML(hGrid)
 
-                            # georeferenceable - control point availability
-                            s = hGrid[:controlPointAvailability]
+                            # georeferenceable - control point availability (required)
+                            s = hGeoRef[:controlPointAvailability]
                             @xml.tag!('gmd:controlPointAvailability') do
                                 @xml.tag!('gco:Boolean', s)
                             end
 
-                            # georeferenceable - orientation parameter availability
-                            s = hGrid[:orientationParameterAvailability]
+                            # georeferenceable - orientation parameter availability (required)
+                            s = hGeoRef[:orientationParameterAvailability]
                             @xml.tag!('gmd:orientationParameterAvailability') do
                                 @xml.tag!('gco:Boolean', s)
                             end
 
                             # georeferenceable - orientation parameter description
-                            s = hGrid[:orientationParameterDescription]
+                            s = hGeoRef[:orientationParameterDescription]
                             unless s.nil?
                                 @xml.tag!('gmd:orientationParameterDescription') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -53,19 +54,19 @@ module ADIWG
                                 @xml.tag!('gmd:orientationParameterDescription')
                             end
 
-                            # georeferenceable - georeferenced parameter
-                            s = hGrid[:georeferencedParameter]
+                            # georeferenceable - georeferenced parameter (required)
+                            s = hGeoRef[:georeferencedParameter]
                             unless s.nil?
-                                @xml.tag!('gmd:georeferencedParameter') do
+                                @xml.tag!('gmd:georeferencedParameters') do
                                     @xml.tag!('gco:Record', s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:georeferencedParameter')
+                                @xml.tag!('gmd:georeferencedParameters')
                             end
 
                             # georeferenceable - parameter citation [{citation}]
-                            aCitation = hGrid[:parameterCitation]
+                            aCitation = hGeoRef[:parameterCitation]
                             aCitation.each do |hCitation|
                                 @xml.tag!('gmd:parameterCitation') do
                                     citationClass.writeXML(hCitation)

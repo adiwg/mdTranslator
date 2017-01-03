@@ -6,7 +6,6 @@
 
 require_relative 'class_grid'
 require_relative 'class_point'
-require_relative 'class_codelist'
 
 module ADIWG
     module Mdtranslator
@@ -25,7 +24,6 @@ module ADIWG
                         # classes used
                         gridClass = Grid.new(@xml, @hResponseObj)
                         pointClass = Point.new(@xml, @hResponseObj)
-                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_Georectified') do
 
