@@ -1,0 +1,77 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataContact": [
+          {
+            "role": "custodian",
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "project",
+        "citation": {
+          "title": "testing class_dimension"
+        },
+        "abstract": "abstract",
+        "pointOfContact": [
+          {
+            "role": "developer",
+            "timePeriod": {
+              "startDateTime": "2013-01-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "eng",
+          "country": "USA",
+          "characterSet": "UTF-8"
+        },
+        "spatialRepresentation": [
+          {
+            "type": "grid",
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
