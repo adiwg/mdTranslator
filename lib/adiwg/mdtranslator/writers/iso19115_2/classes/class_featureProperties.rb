@@ -39,10 +39,16 @@ module ADIWG
                                 hId = hProperties[:gmlIdentifiers][0]
                                 gmlId.writeXML(hId)
                             end
+                            if hProperties[:gmlIdentifiers].empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
+                            end
 
                             # feature properties - name []
                             hProperties[:featureNames].each do |name|
                                 @xml.tag!('gml:name', name)
+                            end
+                            if hProperties[:featureNames].empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gml:name')
                             end
 
                             # feature properties - featureScope - not supported

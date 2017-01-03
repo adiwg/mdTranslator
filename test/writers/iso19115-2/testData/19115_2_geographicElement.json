@@ -202,9 +202,7 @@
                                  "type": "Point",
                                  "coordinates": [102.0, 0.5]
                               },
-                              "properties": {
-                                 "see": "geometryProperties 2.0"
-                              }
+                              "properties": {}
                            }
                         ]
                      },
@@ -223,9 +221,7 @@
                                        "type": "Point",
                                        "coordinates": [102.0, 0.5]
                                     },
-                                    "properties": {
-                                       "see": "geometryProperties 2.0"
-                                    }
+                                    "properties": {}
                                  },
                                  {
                                     "type": "Feature",
@@ -240,9 +236,7 @@
                                           [105.0, 1.0]
                                        ]
                                     },
-                                    "properties": {
-                                       "see": "geometryProperties 2.0"
-                                    }
+                                    "properties": {}
                                  },
                                  {
                                     "type": "Feature",
@@ -265,9 +259,7 @@
                                           }
                                        ]
                                     },
-                                    "properties": {
-                                       "description": "description"
-                                    }
+                                    "properties": {}
                                  }
                               ]
                            }

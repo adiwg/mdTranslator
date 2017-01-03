@@ -57,6 +57,11 @@ module ADIWG
                             unless hProperties.empty?
                                 geoPropClass.writeXML(hProperties)
                             end
+                            if hProperties.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gml:description')
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
+                                @xml.tag!('gml:name')
+                            end
 
                             # lineString - pos (required)
                             unless hGeoObject[:coordinates].empty?
