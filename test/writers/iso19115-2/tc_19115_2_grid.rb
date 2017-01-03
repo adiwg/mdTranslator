@@ -1,8 +1,8 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_dimension
+# writers / iso19115_2 / class_grid
 
 # History:
-#   Stan Smith 2016-11-23 original script
+#   Stan Smith 2017-01-03 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -10,23 +10,23 @@ require 'rexml/document'
 require 'adiwg/mdtranslator'
 include REXML
 
-class TestWriter191152Dimension < MiniTest::Test
+class TestWriter191152Grid < MiniTest::Test
 
     # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_dimension.xml')
+    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_grid.xml')
     file = File.new(fname)
     @@iso_xml = Document.new(file)
 
     # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_dimension.json')
+    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_grid.json')
     file = File.open(fname, 'r')
     @@mdJson = file.read
     file.close
 
-    def test_19115_2_dimension
+    def test_19115_2_grid
 
         aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:axisDimensionProperties') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:spatialRepresentationInfo') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
@@ -36,7 +36,7 @@ class TestWriter191152Dimension < MiniTest::Test
         iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_out, '//gmd:axisDimensionProperties') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:spatialRepresentationInfo') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze

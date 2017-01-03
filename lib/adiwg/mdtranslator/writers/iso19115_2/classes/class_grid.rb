@@ -27,12 +27,13 @@ module ADIWG
 
                         # grid - number of dimensions (required)
                         s = hGrid[:numberOfDimensions]
-                        if s.nil?
-                            @xml.tag!('gmd:numberOfDimensions', {'gco:nilReason'=>'missing'})
-                        else
+                        unless s.nil?
                             @xml.tag!('gmd:numberOfDimensions') do
                                 @xml.tag!('gco:Integer', s.to_s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:numberOfDimensions', {'gco:nilReason'=>'missing'})
                         end
 
                         # grid - axis dimension properties [{MD_Dimension}]
@@ -48,12 +49,13 @@ module ADIWG
 
                         # grid - cell geometry (required)
                         s = hGrid[:cellGeometry]
-                        if s.nil?
-                            @xml.tag!('gmd:cellGeometry', {'gco:nilReason'=>'missing'})
-                        else
+                        unless s.nil?
                             @xml.tag!('gmd:cellGeometry') do
                                 codelistClass.writeXML('gmd', 'iso_cellGeometry', s)
                             end
+                        end
+                        if s.nil?
+                            @xml.tag!('gmd:cellGeometry', {'gco:nilReason'=>'missing'})
                         end
 
                         # grid - transformation parameters availability (required)
