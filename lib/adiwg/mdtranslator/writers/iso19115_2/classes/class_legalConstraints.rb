@@ -32,17 +32,14 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_LegalConstraints') do
 
-                            # legal constraints - use limitation [] (required)
-                            hUse = hConstraint[:constraint]
-                            unless hUse.empty?
-                                aCons = hUse[:useLimitation]
-                                aCons.each do |useCon|
-                                    @xml.tag!('gmd:useLimitation') do
-                                        @xml.tag!('gco:CharacterString', useCon)
-                                    end
+                            # legal constraints - use limitation []
+                            aUse = hConstraint[:constraint][:useLimitation]
+                            aUse.each do |useCon|
+                                @xml.tag!('gmd:useLimitation') do
+                                    @xml.tag!('gco:CharacterString', useCon)
                                 end
                             end
-                            if hUse.empty? && @hResponseObj[:writerShowTags]
+                            if aUse.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:useLimitation')
                             end
 
