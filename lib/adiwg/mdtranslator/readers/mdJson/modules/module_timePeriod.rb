@@ -5,7 +5,7 @@
 # 	Stan Smith 2016-10-14 original script
 
 require_relative 'module_dateTime'
-require_relative 'module_gmlIdentifier'
+require_relative 'module_identifier'
 require_relative 'module_timeInterval'
 
 module ADIWG
@@ -42,12 +42,12 @@ module ADIWG
                             end
                         end
 
-                        # time period - identifier {gmlIdentifier}
-                        if hTimePeriod.has_key?('gmlIdentifier')
-                            unless hTimePeriod['gmlIdentifier'].empty?
-                                hReturn = GMLIdentifier.unpack(hTimePeriod['gmlIdentifier'], responseObj)
+                        # time period - identifier {Identifier}
+                        if hTimePeriod.has_key?('identifier')
+                            unless hTimePeriod['identifier'].empty?
+                                hReturn = Identifier.unpack(hTimePeriod['identifier'], responseObj)
                                 unless hReturn.nil?
-                                    intTimePer[:gmlIdentifier] = hReturn
+                                    intTimePer[:identifier] = hReturn
                                 end
                             end
                         end

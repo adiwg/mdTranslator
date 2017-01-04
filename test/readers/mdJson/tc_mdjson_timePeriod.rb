@@ -37,7 +37,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_equal 'id', metadata[:timeId]
         assert_equal 'description', metadata[:description]
-        refute_empty metadata[:gmlIdentifier]
+        refute_empty metadata[:identifier]
         assert_equal 2, metadata[:periodNames].length
         assert_equal 'periodName0', metadata[:periodNames][0]
         assert_equal 'periodName1', metadata[:periodNames][1]
@@ -84,7 +84,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['id'] = ''
         hIn['description'] = ''
-        hIn['gmlIdentifier'] = {}
+        hIn['identifier'] = {}
         hIn['periodName'] = []
         hIn['timeInterval'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -92,7 +92,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
+        assert_empty metadata[:identifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
         assert hResponse[:readerExecutionPass]
@@ -105,7 +105,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('id')
         hIn.delete('description')
-        hIn.delete('gmlIdentifier')
+        hIn.delete('identifier')
         hIn.delete('periodName')
         hIn.delete('timeInterval')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -113,7 +113,7 @@ class TestReaderMdJsonTimePeriod < MiniTest::Test
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
+        assert_empty metadata[:identifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
         assert hResponse[:readerExecutionPass]

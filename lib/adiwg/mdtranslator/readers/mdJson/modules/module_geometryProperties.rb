@@ -4,7 +4,7 @@
 # History:
 #   Stan Smith 2016-10-25 original script
 
-require_relative 'module_gmlIdentifier'
+require_relative 'module_identifier'
 
 module ADIWG
     module Mdtranslator
@@ -42,13 +42,13 @@ module ADIWG
                             end
                         end
 
-                        # geometry properties - identifier []
-                        if hGeoProp.has_key?('gmlIdentifier')
-                            aItems = hGeoProp['gmlIdentifier']
+                        # geometry properties - [{Identifier}]
+                        if hGeoProp.has_key?('identifier')
+                            aItems = hGeoProp['identifier']
                             aItems.each do |item|
-                                hReturn = GMLIdentifier.unpack(item, responseObj)
+                                hReturn = Identifier.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intGeoProp[:gmlIdentifiers] << hReturn
+                                    intGeoProp[:identifiers] << hReturn
                                 end
                             end
                         end

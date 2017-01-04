@@ -39,7 +39,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         assert_equal 'featureName0', metadata[:featureNames][0]
         assert_equal 'featureName1', metadata[:featureNames][1]
         assert_equal 'description', metadata[:description]
-        assert_equal 2, metadata[:gmlIdentifiers].length
+        assert_equal 2, metadata[:identifiers].length
         assert_equal 'featureScope', metadata[:featureScope]
         assert_equal 'acquisitionMethod', metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]
@@ -52,7 +52,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['featureName'] = []
         hIn['description'] = ''
-        hIn['gmlIdentifier'] = []
+        hIn['identifier'] = []
         hIn['featureScope'] = ''
         hIn['acquisitionMethod'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -60,7 +60,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
 
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifiers]
+        assert_empty metadata[:identifiers]
         assert_nil metadata[:featureScope]
         assert_nil metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]
@@ -74,7 +74,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
         hIn['nonElement'] = ''
         hIn.delete('featureName')
         hIn.delete('description')
-        hIn.delete('gmlIdentifier')
+        hIn.delete('identifier')
         hIn.delete('featureScope')
         hIn.delete('acquisitionMethod')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -82,7 +82,7 @@ class TestReaderMdJsonGeometryProperties < MiniTest::Test
 
         assert_empty metadata[:featureNames]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifiers]
+        assert_empty metadata[:identifiers]
         assert_nil metadata[:featureScope]
         assert_nil metadata[:acquisitionMethod]
         assert hResponse[:readerExecutionPass]

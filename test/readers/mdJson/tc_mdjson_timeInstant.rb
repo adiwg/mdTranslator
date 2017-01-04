@@ -37,7 +37,7 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
 
         assert_equal 'id', metadata[:timeId]
         assert_equal 'description', metadata[:description]
-        refute_empty metadata[:gmlIdentifier]
+        refute_empty metadata[:identifier]
         assert_equal 2, metadata[:instantNames].length
         assert_equal 'instantName0', metadata[:instantNames][0]
         assert_equal 'instantName1', metadata[:instantNames][1]
@@ -79,14 +79,14 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['id'] = ''
         hIn['description'] = ''
-        hIn['gmlIdentifier'] = {}
+        hIn['identifier'] = {}
         hIn['instantName'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
+        assert_empty metadata[:identifier]
         assert_empty metadata[:instantNames]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -98,14 +98,14 @@ class TestReaderMdJsonTimeInstant < MiniTest::Test
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('id')
         hIn.delete('description')
-        hIn.delete('gmlIdentifier')
+        hIn.delete('identifier')
         hIn.delete('instantName')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata[:timeId]
         assert_nil metadata[:description]
-        assert_empty metadata[:gmlIdentifier]
+        assert_empty metadata[:identifier]
         assert_empty metadata[:instantNames]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

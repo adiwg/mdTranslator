@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2016-10-24 original script
 
-require_relative 'module_gmlIdentifier'
+require_relative 'module_identifier'
 require_relative 'module_dateTime'
 
 module ADIWG
@@ -41,12 +41,12 @@ module ADIWG
                             end
                         end
 
-                        # time instant - identifier {gmlIdentifier}
-                        if hInstant.has_key?('gmlIdentifier')
-                            unless hInstant['gmlIdentifier'].empty?
-                                hReturn = GMLIdentifier.unpack(hInstant['gmlIdentifier'], responseObj)
+                        # time instant - identifier {Identifier}
+                        if hInstant.has_key?('identifier')
+                            unless hInstant['identifier'].empty?
+                                hReturn = Identifier.unpack(hInstant['identifier'], responseObj)
                                 unless hReturn.nil?
-                                    intInstant[:gmlIdentifier] = hReturn
+                                    intInstant[:identifier] = hReturn
                                 end
                             end
                         end

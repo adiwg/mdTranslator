@@ -288,7 +288,9 @@ class InternalMetadata
     end
 
     def newIdentifier
-        # handles MD_ & RS_ Identifier (ISO 19115-2)
+        # handles MD_Identifier (ISO 19115-2 & -1)
+        # handles RS_ Identifier (ISO 19115-2)
+        # handles gmlIdentifier
         intObj = {
             identifier: nil,
             namespace: nil,
@@ -513,7 +515,7 @@ class InternalMetadata
         intObj = {
             featureNames: [],
             description: nil,
-            gmlIdentifiers: [],
+            identifiers: [],
             featureScope: nil,
             acquisitionMethod: nil
         }
@@ -550,7 +552,7 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            gmlIdentifier: {},
+            identifier: {},
             instantNames: [],
             timeInstant: {}
         }
@@ -560,7 +562,7 @@ class InternalMetadata
         intObj = {
             timeId: nil,
             description: nil,
-            gmlIdentifier: {},
+            identifier: {},
             periodNames: [],
             startDateTime: {},
             endDateTime: {},
@@ -583,13 +585,6 @@ class InternalMetadata
         intObj = {
             interval: nil,
             units: nil
-        }
-    end
-
-    def newGMLIdentifier
-        intObj = {
-            identifier: nil,
-            namespace: nil
         }
     end
 
