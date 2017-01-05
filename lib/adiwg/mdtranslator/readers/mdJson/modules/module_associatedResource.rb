@@ -64,7 +64,7 @@ module ADIWG
                             end
                         end
 
-                         # associated resource - resource citation (citation)
+                         # associated resource - resource citation (required) {CI_Citation}
                         if hAssocRes.has_key?('resourceCitation')
                             hObject = hAssocRes['resourceCitation']
                             unless hObject.empty?

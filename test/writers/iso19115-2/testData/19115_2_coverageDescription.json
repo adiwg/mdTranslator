@@ -110,12 +110,7 @@
                   {
                     "sequenceIdentifier": "sequenceIdentifier1",
                     "sequenceIdentifierType": "sequenceIdentifierType1",
-                    "attributeDescription": "attributeDescription1",
-                    "attributeIdentifier": [
-                      {
-                        "identifier": "identifier1"
-                      }
-                    ]
+                    "attributeDescription": "attributeDescription1"
                   }
                 ]
               }
@@ -136,12 +131,7 @@
                   {
                     "sequenceIdentifier": "sequenceIdentifier2",
                     "sequenceIdentifierType": "sequenceIdentifierType2",
-                    "attributeDescription": "attributeDescription2",
-                    "attributeIdentifier": [
-                      {
-                        "identifier": "identifier2"
-                      }
-                    ]
+                    "attributeDescription": "attributeDescription2"
                   }
                 ]
               }

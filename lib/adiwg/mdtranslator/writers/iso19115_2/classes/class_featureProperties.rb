@@ -35,11 +35,11 @@ module ADIWG
                             end
 
                             # feature properties - identifier [0]
-                            unless hProperties[:gmlIdentifiers].empty?
-                                hId = hProperties[:gmlIdentifiers][0]
+                            unless hProperties[:identifiers].empty?
+                                hId = hProperties[:identifiers][0]
                                 gmlId.writeXML(hId)
                             end
-                            if hProperties[:gmlIdentifiers].empty? && @hResponseObj[:writerShowTags]
+                            if hProperties[:identifiers].empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gml:identifier', {'codeSpace'=>''})
                             end
 

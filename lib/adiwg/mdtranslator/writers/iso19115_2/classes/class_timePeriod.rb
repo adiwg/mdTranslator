@@ -48,7 +48,7 @@ module ADIWG
                             end
 
                             # time period - identifier {gmlIdentifier}
-                            hGMLid = hPeriod[:gmlIdentifier]
+                            hGMLid = hPeriod[:identifier]
                             unless hGMLid.empty?
                                 gmlClass.writeXML(hGMLid)
                             end

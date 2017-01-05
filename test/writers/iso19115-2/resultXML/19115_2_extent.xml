@@ -50,6 +50,9 @@
         </gmd:extentTypeCode>
         <gmd:polygon>
           <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+            <gml:description/>
+            <gml:identifier codeSpace=""/>
+            <gml:name/>
             <gml:pos>100.0 1.0</gml:pos>
           </gml:Point>
         </gmd:polygon>
@@ -81,6 +84,9 @@
         </gmd:extentTypeCode>
         <gmd:polygon>
           <gml:Point gml:id="point_002" srsDimension="2" srsName="WGS84">
+            <gml:description/>
+            <gml:identifier codeSpace=""/>
+            <gml:name/>
             <gml:pos>200.0 2.0</gml:pos>
           </gml:Point>
         </gmd:polygon>

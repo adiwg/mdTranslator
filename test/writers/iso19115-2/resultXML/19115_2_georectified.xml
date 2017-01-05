@@ -40,11 +40,17 @@
       </gmd:checkPointDescription>
       <gmd:cornerPoints>
         <gml:Point gml:id="point_001" srsDimension="8" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0</gml:pos>
         </gml:Point>
       </gmd:cornerPoints>
       <gmd:centerPoint>
         <gml:Point gml:id="point_002" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>0.5 0.5</gml:pos>
         </gml:Point>
       </gmd:centerPoint>
@@ -78,6 +84,9 @@
       <gmd:checkPointDescription/>
       <gmd:cornerPoints>
         <gml:Point gml:id="point_003" srsDimension="8" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0</gml:pos>
         </gml:Point>
       </gmd:cornerPoints>
@@ -108,6 +117,9 @@
       <gmd:checkPointDescription/>
       <gmd:cornerPoints>
         <gml:Point gml:id="point_004" srsDimension="8" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0</gml:pos>
         </gml:Point>
       </gmd:cornerPoints>

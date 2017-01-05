@@ -62,11 +62,6 @@ class TestReaderMdJsonDate < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        require 'pp'
-        pp metadata
-        puts('---------------')
-        pp hResponse
-
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]

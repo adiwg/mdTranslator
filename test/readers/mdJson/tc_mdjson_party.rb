@@ -14,26 +14,30 @@ module ADIWG
     module Mdtranslator
         module Readers
             module MdJson
+                module MdJson
 
-                # create new internal metadata container for the reader
-                intMetadataClass = InternalMetadata.new
-                @intObj = intMetadataClass.newBase
+                    # create new internal metadata container for the reader
+                    intMetadataClass = InternalMetadata.new
+                    intObj = intMetadataClass.newBase
 
-                # first contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][0][:contactId] = 'individualId0'
-                @intObj[:contacts][0][:isOrganization] = false
+                    # first contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][0][:contactId] = 'individualId0'
+                    intObj[:contacts][0][:isOrganization] = false
 
-                # second contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][1][:contactId] = 'individualId1'
-                @intObj[:contacts][1][:isOrganization] = false
+                    # second contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][1][:contactId] = 'individualId1'
+                    intObj[:contacts][1][:isOrganization] = false
 
-                # third contact
-                @intObj[:contacts] << intMetadataClass.newContact
-                @intObj[:contacts][2][:contactId] = 'organizationId0'
-                @intObj[:contacts][2][:isOrganization] = true
+                    # third contact
+                    intObj[:contacts] << intMetadataClass.newContact
+                    intObj[:contacts][2][:contactId] = 'organizationId0'
+                    intObj[:contacts][2][:isOrganization] = true
 
+                    @contacts = intObj[:contacts]
+
+                end
             end
         end
     end
@@ -55,16 +59,11 @@ class TestReaderMdJsonParty < MiniTest::Test
     file.close
     aIn = JSON.parse(jsonFile)
 
-    # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn0 = aIn['party'][0]
-    @@hIn1 = aIn['party'][1]
-    @@hIn2 = aIn['party'][2]
-    @@hIn3 = aIn['party'][3]
+    @@aIn = aIn['party']
+    def test_individual_roleParty
 
-    def test_individual_roleParty_object
-
-        hIn = Marshal::load(Marshal.dump(@@hIn0))
+        hIn = Marshal::load(Marshal.dump(@@aIn[0]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -76,12 +75,17 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     end
 
-    def test_organization_roleParty_object
+    def test_organization_roleParty
 
-        hIn = Marshal::load(Marshal.dump(@@hIn1))
+        hIn = Marshal::load(Marshal.dump(@@aIn[1]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+    require 'pp'
+    pp metadata
+    puts('-------------------')
+    pp hResponse
+    puts('===================')
         assert_equal 'organizationId0', metadata[:contactId]
         assert_equal 2, metadata[:contactIndex]
         assert_equal 'organization', metadata[:contactType]
@@ -96,9 +100,9 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     end
 
-    def test_bad_roleParty_ID
+    def test_bad_roleParty_id
 
-        hIn = Marshal::load(Marshal.dump(@@hIn2))
+        hIn = Marshal::load(Marshal.dump(@@aIn[2]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -108,9 +112,9 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     end
 
-    def test_bad_organizationMember_ID
+    def test_bad_organizationMember_id
 
-        hIn = Marshal::load(Marshal.dump(@@hIn3))
+        hIn = Marshal::load(Marshal.dump(@@aIn[3]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -120,7 +124,7 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     end
 
-    def test_empty_roleParty_object
+    def test_empty_roleParty
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

@@ -35,11 +35,6 @@ class TestReaderMdJsonExtent < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-       require 'pp'
-        pp metadata
-        puts('------------------')
-        pp hResponse
-
         assert_equal 'description', metadata[:description]
         assert_equal 2, metadata[:geographicExtents].length
         assert_equal 2, metadata[:temporalExtents].length

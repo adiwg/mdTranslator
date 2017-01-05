@@ -89,7 +89,7 @@
                                     "featureName01"
                                  ],
                                  "description": "description0",
-                                 "gmlIdentifier": [
+                                 "identifier": [
                                     {
                                        "identifier": "identifier00",
                                        "namespace": "namespace00"

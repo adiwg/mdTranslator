@@ -31,7 +31,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
     # the first example is fully populated
     @@hIn = aIn['associatedResource'][0]
 
-    def test_complete_additionalDocumentation_object
+    def test_complete_associatedResource
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -47,7 +47,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_empty_resourceType
+    def test_associatedResource_empty_resourceType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceType'] = ''
@@ -60,7 +60,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_missing_resourceType
+    def test_associatedResource_missing_resourceType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('resourceType')
@@ -73,7 +73,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_empty_associationType
+    def test_associatedResource_empty_associationType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['associationType'] = ''
@@ -86,7 +86,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_missing_associationType
+    def test_associatedResource_missing_associationType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('associationType')
@@ -99,7 +99,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_empty_citations
+    def test_associatedResource_empty_citations
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceCitation'] = {}
@@ -113,7 +113,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_missing_citations
+    def test_associatedResource_missing_citations
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('resourceCitation')
@@ -127,24 +127,20 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_additionalDocumentation_empty_resourceCitation
+    def test_associatedResource_empty_resourceCitation
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceCitation'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
-        assert_equal 'associationType', metadata[:associationType]
-        assert_equal 'initiativeType', metadata[:initiativeType]
-        assert_empty metadata[:resourceCitation]
-        refute_empty metadata[:metadataCitation]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_additionalDocumentation_empty_metadataCitation
+    def test_associatedResource_empty_metadataCitation
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['metadataCitation'] = {}
@@ -161,7 +157,7 @@ class TestReaderMdJsonAssociatedResource < MiniTest::Test
 
     end
 
-    def test_empty_additionalDocumentation_object
+    def test_empty_associatedResource_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

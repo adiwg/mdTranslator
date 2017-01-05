@@ -67,11 +67,21 @@
         </gmd:RS_Identifier>
       </gmd:processingLevelCode>
       <gmd:compressionGenerationQuantity/>
-      <gmd:triangulationIndicator/>
-      <gmd:radiometricCalibrationDataAvailability/>
-      <gmd:cameraCalibrationInformationAvailability/>
-      <gmd:filmDistortionInformationAvailability/>
-      <gmd:lensDistortionInformationAvailability/>
+      <gmd:triangulationIndicator>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:triangulationIndicator>
+      <gmd:radiometricCalibrationDataAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:radiometricCalibrationDataAvailability>
+      <gmd:cameraCalibrationInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:cameraCalibrationInformationAvailability>
+      <gmd:filmDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:filmDistortionInformationAvailability>
+      <gmd:lensDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:lensDistortionInformationAvailability>
     </gmi:MI_ImageDescription>
   </gmd:contentInfo>
 
@@ -113,11 +123,21 @@
       <gmd:cloudCoverPercentage/>
       <gmd:processingLevelCode/>
       <gmd:compressionGenerationQuantity/>
-      <gmd:triangulationIndicator/>
-      <gmd:radiometricCalibrationDataAvailability/>
-      <gmd:cameraCalibrationInformationAvailability/>
-      <gmd:filmDistortionInformationAvailability/>
-      <gmd:lensDistortionInformationAvailability/>
+      <gmd:triangulationIndicator>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:triangulationIndicator>
+      <gmd:radiometricCalibrationDataAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:radiometricCalibrationDataAvailability>
+      <gmd:cameraCalibrationInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:cameraCalibrationInformationAvailability>
+      <gmd:filmDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:filmDistortionInformationAvailability>
+      <gmd:lensDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:lensDistortionInformationAvailability>
     </gmi:MI_ImageDescription>
   </gmd:contentInfo>
 
@@ -169,11 +189,21 @@
       <gmd:cloudCoverPercentage/>
       <gmd:processingLevelCode/>
       <gmd:compressionGenerationQuantity/>
-      <gmd:triangulationIndicator/>
-      <gmd:radiometricCalibrationDataAvailability/>
-      <gmd:cameraCalibrationInformationAvailability/>
-      <gmd:filmDistortionInformationAvailability/>
-      <gmd:lensDistortionInformationAvailability/>
+      <gmd:triangulationIndicator>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:triangulationIndicator>
+      <gmd:radiometricCalibrationDataAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:radiometricCalibrationDataAvailability>
+      <gmd:cameraCalibrationInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:cameraCalibrationInformationAvailability>
+      <gmd:filmDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:filmDistortionInformationAvailability>
+      <gmd:lensDistortionInformationAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </gmd:lensDistortionInformationAvailability>
     </gmi:MI_ImageDescription>
   </gmd:contentInfo>
 

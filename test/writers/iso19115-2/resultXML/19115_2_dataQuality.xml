@@ -77,7 +77,6 @@
               <gmd:sourceStep/>
             </gmd:LI_Source>
           </gmd:source>
-          <gmd:source/>
         </gmd:LI_Lineage>
       </gmd:lineage>
     </gmd:DQ_DataQuality>

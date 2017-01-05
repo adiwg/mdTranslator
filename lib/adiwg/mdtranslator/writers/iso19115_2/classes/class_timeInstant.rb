@@ -46,7 +46,7 @@ module ADIWG
                             end
 
                             # time instant - identifier {gmlIdentifier}
-                            hGMLid = hInstant[:gmlIdentifier]
+                            hGMLid = hInstant[:identifier]
                             unless hGMLid.empty?
                                 gmlClass.writeXML(hGMLid)
                             end

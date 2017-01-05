@@ -67,11 +67,17 @@
       </gmd:extentTypeCode>
       <gmd:polygon>
         <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>100.0 0.0</gml:pos>
         </gml:Point>
       </gmd:polygon>
       <gmd:polygon>
         <gml:LineString gml:id="line_002" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
           <gml:pos>100.0 0.0</gml:pos>
           <gml:pos>101.0 1.0</gml:pos>
         </gml:LineString>
