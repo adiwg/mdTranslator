@@ -62,7 +62,7 @@ module ADIWG
                                     sourceClass.writeXML(hSource)
                                 end
                             end
-                            if aSources && @hResponseObj[:writerShowTags]
+                            if aSources.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:source')
                             end
 
