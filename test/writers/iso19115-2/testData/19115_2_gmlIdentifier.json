@@ -84,7 +84,7 @@
                                  "coordinates": [102.0, 0.5]
                               },
                               "properties": {
-                                 "gmlIdentifier": [
+                                 "identifier": [
                                     {
                                        "identifier": "identifier0",
                                        "namespace": "namespace0"

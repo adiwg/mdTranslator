@@ -328,7 +328,7 @@ module ADIWG
                             hMaintenance = hMetaInfo[:metadataMaintenance]
                             unless hMaintenance.empty?
                                 @xml.tag!('gmd:metadataMaintenance') do
-                                    maintenanceClass.writeXML(hMetaMaint)
+                                    maintenanceClass.writeXML(hMaintenance)
                                 end
                             end
                             if hMaintenance.empty? && @hResponseObj[:writerShowTags]

@@ -65,7 +65,7 @@ module ADIWG
                                 @xml.tag!('gmd:updateScope')
                             end
 
-                            # maintenance information - update scope description
+                            # maintenance information - update scope description []
                             haveDescription = false
                             aScopes.each do |hResScope|
                                 aScopeDes = hResScope[:scopeDescription]
@@ -80,7 +80,7 @@ module ADIWG
                                 @xml.tag!('gmd:updateScopeDescription')
                             end
 
-                            # maintenance information - note
+                            # maintenance information - note []
                             aNotes = hMaintenance[:notes]
                             aNotes.each do |note|
                                 @xml.tag!('gmd:maintenanceNote') do
