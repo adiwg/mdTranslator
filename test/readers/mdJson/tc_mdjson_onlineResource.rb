@@ -49,7 +49,7 @@ class TestReaderMdJsonOnlineResource < MiniTest::Test
     def test_empty_onlineResource_uri
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['uri'] = ''
+        hIn['resourceURI'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

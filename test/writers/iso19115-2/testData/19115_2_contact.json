@@ -32,7 +32,7 @@
         ],
         "onlineResource": [
           {
-            "uri": "http://URI.example.com"
+            "resourceURI": "http://URI.example.com"
           }
         ],
         "hoursOfService": [
@@ -67,7 +67,7 @@
         ],
         "onlineResource": [
           {
-            "uri": "http://URI.example.com"
+            "resourceURI": "http://URI.example.com"
           }
         ],
         "hoursOfService": [
@@ -115,10 +115,10 @@
         ],
         "onlineResource": [
           {
-            "uri": "http://URI.example0.com"
+            "resourceURI": "http://URI.example0.com"
           },
           {
-            "uri": "http://URI.example1.com"
+            "resourceURI": "http://URI.example1.com"
           }
         ],
         "hoursOfService": [

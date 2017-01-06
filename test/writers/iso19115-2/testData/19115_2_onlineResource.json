@@ -11,7 +11,7 @@
         "name": "onlineResource complete",
         "onlineResource": [
           {
-            "uri": "http://URI.example1.com",
+            "resourceURI": "http://URI.example1.com",
             "protocol": "protocol",
             "name": "name",
             "description": "description",
@@ -25,7 +25,7 @@
         "name": "onlineResource - empty elements",
         "onlineResource": [
           {
-            "uri": "http://URI.example2.com",
+            "resourceURI": "http://URI.example2.com",
             "protocol": "",
             "name": "",
             "description": "",
@@ -39,7 +39,7 @@
         "name": "onlineResource - missing elements",
         "onlineResource": [
           {
-            "uri": "http://URI.example3.com"
+            "resourceURI": "http://URI.example3.com"
           }
         ]
       },

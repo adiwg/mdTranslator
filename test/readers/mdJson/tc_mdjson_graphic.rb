@@ -79,7 +79,7 @@ class TestReaderMdJsonGraphic < MiniTest::Test
         hIn['fileDescription'] = ''
         hIn['fileType'] = ''
         hIn['fileConstraint'] = []
-        hIn['fileUri'] = []
+        hIn['fileURI'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -98,7 +98,7 @@ class TestReaderMdJsonGraphic < MiniTest::Test
         hIn.delete('fileDescription')
         hIn.delete('fileType')
         hIn.delete('fileConstraint')
-        hIn.delete('fileUri')
+        hIn.delete('fileURI')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

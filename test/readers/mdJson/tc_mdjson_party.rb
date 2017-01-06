@@ -81,11 +81,6 @@ class TestReaderMdJsonParty < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    require 'pp'
-    pp metadata
-    puts('-------------------')
-    pp hResponse
-    puts('===================')
         assert_equal 'organizationId0', metadata[:contactId]
         assert_equal 2, metadata[:contactIndex]
         assert_equal 'organization', metadata[:contactType]

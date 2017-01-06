@@ -26,9 +26,9 @@
                ]
             }
          ],
-         "fileUri": [
+         "fileURI": [
             {
-               "uri": "uri"
+               "resourceURI": "uri"
             }
          ]
       }

@@ -69,10 +69,10 @@
          ],
          "metadataLinkage": [
             {
-               "uri": "uri"
+               "resourceURI": "uri"
             },
             {
-               "uri": "uri"
+               "resourceURI": "uri"
             }
          ],
          "metadataMaintenance": {

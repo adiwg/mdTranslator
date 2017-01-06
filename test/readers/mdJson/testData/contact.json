@@ -39,10 +39,10 @@
          ],
          "onlineResource": [
             {
-               "uri": "uri"
+               "resourceURI": "uri"
             },
             {
-               "uri": "uri"
+               "resourceURI": "uri"
             }
          ],
          "hoursOfService": [

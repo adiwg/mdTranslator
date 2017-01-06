@@ -97,7 +97,7 @@
             ],
             "fileUri": [
               {
-                "uri": "uri"
+                "resourceURI": "uri"
               }
             ]
           },
