@@ -31,6 +31,9 @@ module ADIWG
                                 codelistClass.writeXML('gmi', 'iso_bandDefinition',s)
                             end
                         end
+                        if s.nil? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmi:bandBoundaryDefinition')
+                        end
 
                         # miBand - nominal spatial resolution {real}
                         s = hAttribute[:nominalSpatialResolution]
@@ -38,6 +41,9 @@ module ADIWG
                             @xml.tag!('gmi:nominalSpatialResolution') do
                                 @xml.tag!('gco:Real',s)
                             end
+                        end
+                        if s.nil? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmi:nominalSpatialResolution')
                         end
 
                         # miBand - transfer function type code
@@ -48,6 +54,9 @@ module ADIWG
                                 codelistClass.writeXML('gmi', 'iso_transferFunctionTypeCode',s)
                             end
                         end
+                        if s.nil? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmi:transferFunctionType')
+                        end
 
                         # miBand - transmitted polarization orientation code
                         # {MI_PolarizationOrientationCode}
@@ -57,6 +66,9 @@ module ADIWG
                                 codelistClass.writeXML('gmi','iso_polarisationOrientationCode',s)
                             end
                         end
+                        if s.nil? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmi:transmittedPolarisation')
+                        end
 
                         # miBand - detected polarization orientation code
                         # {MI_PolarizationOrientationCode}
@@ -65,6 +77,9 @@ module ADIWG
                             @xml.tag!('gmi:detectedPolarisation') do
                                 codelistClass.writeXML('gmi', 'iso_polarisationOrientationCode',s)
                             end
+                        end
+                        if s.nil? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmi:detectedPolarisation')
                         end
 
                     end # writeXML
