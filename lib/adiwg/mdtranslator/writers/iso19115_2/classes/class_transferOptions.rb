@@ -68,13 +68,16 @@ module ADIWG
                             end
 
                             # digital transfer options - offline {MD_Medium}
-                            hOffTranOpt = hOption[:offlineOptions]
-                            unless hOffTranOpt.empty?
-                                @xml.tag!('gmd:offLine') do
-                                    medClass.writeXML(hOffTranOpt)
+                            aOffTranOpt = hOption[:offlineOptions]
+                            unless aOffTranOpt.empty?
+                                hOffTranOpt = aOffTranOpt[0]
+                                unless hOffTranOpt.empty?
+                                    @xml.tag!('gmd:offLine') do
+                                        medClass.writeXML(hOffTranOpt)
+                                    end
                                 end
                             end
-                            if hOffTranOpt.empty? && @hResponseObj[:writerShowTags]
+                            if aOffTranOpt.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:offLine')
                             end
 

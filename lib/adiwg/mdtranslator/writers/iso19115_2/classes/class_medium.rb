@@ -45,8 +45,9 @@ module ADIWG
                             end
 
                             # medium density units
-                            s = hMedium[:units].downcase
+                            s = hMedium[:units]
                             unless s.nil?
+                                s = s.downcase
                                 @xml.tag!('gmd:densityUnits') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
