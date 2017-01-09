@@ -1,0 +1,100 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+          "identifier": "identifier"
+        },
+        "metadataContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-31"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "class",
+        "citation": {
+          "title": "title",
+          "identifier": [
+            {
+              "identifier": "identifier0",
+              "namespace": "namespace",
+              "version": "version",
+              "description": "description",
+              "authority": {
+                "title": "title0"
+              }
+            },
+            {
+              "identifier": "identifier1",
+              "namespace": "",
+              "version": "",
+              "description": "",
+              "authority": {}
+            },
+            {
+              "identifier": "identifier2",
+              "namespace": "ISBN"
+            },
+            {
+              "identifier": "identifier3",
+              "namespace": "ISSN"
+            }
+          ]
+        },
+        "abstract": "abstract",
+        "pointOfContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "LanguageCode",
+          "country": "CountryCode",
+          "characterSet": "MD_CharacterSetCode"
+        }
+      }
+    }
+  }
+}
