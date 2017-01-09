@@ -32,7 +32,7 @@ module ADIWG
 
                         @xml.tag!('gmd:RS_Identifier') do
 
-                            # identifier - authority
+                            # identifier - authority {CI_Citation}
                             hCitation = hIdentifier[:citation]
                             unless hCitation.empty?
                                 @xml.tag!('gmd:authority') do
@@ -45,12 +45,13 @@ module ADIWG
 
                             # identifier - code (required)
                             s = hIdentifier[:identifier]
-                            if s.nil?
-                                @xml.tag!('gmd:code', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:code', {'gco:nilReason' => 'missing'})
                             end
 
                             # identifier - codeSpace
