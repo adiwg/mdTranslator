@@ -30,30 +30,33 @@ module ADIWG
                         measureClass = Measure.new(@xml, @hResponseObj)
                         fractionClass = MD_RepresentativeFraction.new(@xml, @hResponseObj)
 
-                        @xml.tag!('gmd:MD_Resolution') do
+                        type = hResolution[:type]
 
-                            type = hResolution[:type]
-
-                            # spatial resolution - equivalent scale
-                            if type == 'scaleFactor'
-                                unless hResolution[:scaleFactor].nil?
+                        # spatial resolution - equivalent scale
+                        if type == 'scaleFactor'
+                            unless hResolution[:scaleFactor].nil?
+                                @xml.tag!('gmd:MD_Resolution') do
                                     @xml.tag!('gmd:equivalentScale') do
                                         fractionClass.writeXML(hResolution[:scaleFactor])
                                     end
                                 end
                             end
+                        end
 
-                            # spatial resolution - distance
-                            if type == 'measure'
-                                hMeasure = hResolution[:measure]
-                                unless hMeasure.empty?
-                                    @xml.tag!('gmd:distance') do
-                                        measureClass.writeXML(hMeasure)
+                        # spatial resolution - distance (type='distance' only)
+                        if type == 'measure'
+                            hMeasure = hResolution[:measure]
+                            unless hMeasure.empty?
+                                if hMeasure[:type] == 'distance'
+                                    @xml.tag!('gmd:MD_Resolution') do
+                                        @xml.tag!('gmd:distance') do
+                                            measureClass.writeXML(hMeasure)
+                                        end
                                     end
                                 end
                             end
+                        end
 
-                        end # gmd:MD_Resolution tag
                     end # writeXML
                 end # Measure class
 

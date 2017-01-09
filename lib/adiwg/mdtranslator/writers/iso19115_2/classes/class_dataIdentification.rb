@@ -284,7 +284,7 @@ module ADIWG
                                     resolutionClass.writeXML(hSpRes)
                                 end
                             end
-                            if aSpatialType.empty? && @hResponseObj[:writerShowTags]
+                            if aSpatialRes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:spatialResolution')
                             end
 
