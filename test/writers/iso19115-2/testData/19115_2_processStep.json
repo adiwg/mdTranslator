@@ -1,0 +1,137 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+          "identifier": "identifier"
+        },
+        "metadataContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-31"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "resourceType",
+        "citation": {
+          "title": "title"
+        },
+        "abstract": "abstract",
+        "pointOfContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "LanguageCode",
+          "country": "CountryCode",
+          "characterSet": "MD_CharacterSetCode"
+        }
+      },
+      "resourceLineage": [
+        {
+          "statement": "statement0",
+          "resourceScope": {
+            "scopeCode": "scopeCode0"
+          },
+          "lineageCitation": [],
+          "source": [],
+          "processStep": [
+            {
+              "stepId": "stepId0",
+              "description": "description0",
+              "rationale": "rationale0",
+              "timePeriod": {
+                "startDateTime": "2016-10-15"
+              },
+              "processor": [
+                {
+                  "role": "role00",
+                  "roleExtent": {
+                    "description": "description00"
+                  },
+                  "party": [
+                    {
+                      "contactId": "CID001"
+                    }
+                  ]
+                },
+                {
+                  "role": "role01",
+                  "roleExtent": {
+                    "description": "description01"
+                  },
+                  "party": [
+                    {
+                      "contactId": "CID001"
+                    }
+                  ]
+                }
+              ],
+              "reference": [
+                {
+                  "title": "title00"
+                },
+                {
+                  "title": "title01"
+                }
+              ]
+            },
+            {
+              "stepId": "",
+              "description": "description1",
+              "rationale": "",
+              "timePeriod": {},
+              "processor": [],
+              "reference": []
+            },
+            {
+              "description": "description2"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

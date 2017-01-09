@@ -40,21 +40,23 @@ module ADIWG
 
                             # process step - description (required)
                             s = hStep[:description]
-                            if s.nil?
-                                @xml.tag!('gmd:description', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:description') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:description', {'gco:nilReason' => 'missing'})
+                            end
 
                             # process step - rationale
                             s = hStep[:rationale]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:rationale') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:rationale')
                             end
 
@@ -62,7 +64,7 @@ module ADIWG
                             hPeriod = hStep[:timePeriod]
                             unless hPeriod.empty?
                                 hDate = hPeriod[:startDateTime]
-                                if hDate.empty
+                                if hDate.empty?
                                     hDate = hPeriod[:endDateTime]
                                 end
                                 date = hDate[:dateTime]
