@@ -137,7 +137,7 @@ module ADIWG
                             s = nil
                             hParent = hMetaInfo[:parentMetadata]
                             unless hParent.empty?
-                                s = hParent[:citTitle]
+                                s = hParent[:title]
                             end
                             unless s.nil?
                                 @xml.tag!('gmd:parentIdentifier') do
@@ -277,7 +277,7 @@ module ADIWG
                                 extensionClass.writeXML(intBio)
                             end
 
-                            # ###################### Data Identification #####################
+                            # ###################### Begin Data Identification #####################
 
                             # metadata information - identification info - required
                             unless hResInfo.empty?
@@ -289,7 +289,7 @@ module ADIWG
                                 @xml.tag!('gmd:identificationInfo', {'gco:nilReason' => 'missing'})
                             end
 
-                            # ###################### Data Identification #####################
+                            # ###################### End Data Identification #######################
 
                             # metadata information - coverageDescription []
                             aItems = hResInfo[:coverageDescriptions]
@@ -297,6 +297,9 @@ module ADIWG
                                 @xml.tag!('gmd:contentInfo') do
                                     coverageClass.writeXML(hItem)
                                 end
+                            end
+                            if aItems.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:contentInfo')
                             end
 
                             # metadata information - distribution info [0]
