@@ -80,7 +80,7 @@ module ADIWG
                             end
 
                             # security constraints - handling description
-                            s = hConstraint[:handlingDesc]
+                            s = hConstraint[:handling]
                             unless s.nil?
                                 @xml.tag!('gmd:handlingDescription') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -90,9 +90,9 @@ module ADIWG
                                 @xml.tag!('gmd:handlingDescription')
                             end
 
-                        end
-                    end
-                end
+                        end # MD_SecurityConstraints tag
+                    end # writeXML
+                end # MD_SecurityConstraints class
 
             end
         end
