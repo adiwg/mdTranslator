@@ -57,6 +57,9 @@ module ADIWG
                                     end
                                 end
                             end
+                            if aPeriods.empty? && @responseObj[:writerShowTags]
+                                @xml.tag!('gmd:extent')
+                            end
 
                             # scope - level description [{MD_ScopeDescription}]
                             aDescription = hScope[:scopeDescription]

@@ -40,10 +40,24 @@ module ADIWG
                                     tag = 'gmd:other'
                             end
 
+                            # tag values for type = attribute and feature are written as
+                            # class GF_AttributeType which belongs to ISO 19109.
+                            # ISO 19109 is not included in our XSD, so these tag values
+                            # are set to nil.
                             unless tag.nil?
-                                s = hScopeDesc[:description]
-                                unless s.nil?
-                                    @xml.tag!(tag, s)
+                                if type == 'dataset' || type == 'other'
+                                    s = hScopeDesc[:description]
+                                    unless s.nil?
+                                        @xml.tag!(tag) do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    end
+                                    if s.nil?
+                                        @xml.tag!(tag)
+                                    end
+                                end
+                                if type == 'attribute' || type == 'feature'
+                                    @xml.tag!(tag)
                                 end
                             end
 
