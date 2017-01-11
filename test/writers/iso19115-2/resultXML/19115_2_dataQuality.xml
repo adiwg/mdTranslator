@@ -27,6 +27,7 @@
           <gmd:level>
             <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode" codeSpace="userCode"/>
           </gmd:level>
+          <gmd:extent/>
           <gmd:levelDescription/>
         </gmd:DQ_Scope>
       </gmd:scope>

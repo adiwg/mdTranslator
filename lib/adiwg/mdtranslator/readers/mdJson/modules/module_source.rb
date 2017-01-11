@@ -33,14 +33,11 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intSource = intMetadataClass.newDataSource
 
-                        # source - description (required)
+                        # source - description
                         if hSource.has_key?('description')
-                            intSource[:description] = hSource['description']
-                        end
-                        if intSource[:description].nil? || intSource[:description] == ''
-                            responseObj[:readerExecutionMessages] << 'Source attribute description is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                            if hSource['description'] != ''
+                                intSource[:description] = hSource['description']
+                            end
                         end
 
                         # source - source citation
@@ -73,8 +70,8 @@ module ADIWG
                         end
 
                         # source - reference system
-                        if hSource.has_key?('referenceSystem')
-                            hObject = hSource['referenceSystem']
+                        if hSource.has_key?('sourceReferenceSystem')
+                            hObject = hSource['sourceReferenceSystem']
                             unless hObject.empty?
                                 hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
                                 unless hReturn.nil?
