@@ -113,7 +113,7 @@
           "lineageCitation": [],
           "source": [
             {
-              "description": "",
+              "description": "description1",
               "sourceCitation": {},
               "sourceMetadata": [],
               "scaleDenominator": 9,
@@ -129,7 +129,7 @@
           "lineageCitation": [],
           "source": [
             {
-              "nonElement": ""
+              "description": "description2"
             }
           ],
           "processStep": []

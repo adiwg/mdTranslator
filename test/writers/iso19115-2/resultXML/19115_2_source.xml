@@ -102,7 +102,9 @@
       <gmd:processStep/>
       <gmd:source>
         <gmd:LI_Source>
-          <gmd:description/>
+          <gmd:description>
+            <gco:CharacterString>description1</gco:CharacterString>
+          </gmd:description>
           <gmd:scaleDenominator>
             <gmd:MD_RepresentativeFraction>
               <gmd:denominator>
@@ -126,7 +128,9 @@
       <gmd:processStep/>
       <gmd:source>
         <gmd:LI_Source>
-          <gmd:description/>
+          <gmd:description>
+            <gco:CharacterString>description2</gco:CharacterString>
+          </gmd:description>
           <gmd:scaleDenominator/>
           <gmd:sourceReferenceSystem/>
           <gmd:sourceCitation/>

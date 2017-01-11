@@ -33,11 +33,14 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intSource = intMetadataClass.newDataSource
 
-                        # source - description
+                        # source - description (required)
                         if hSource.has_key?('description')
-                            if hSource['description'] != ''
-                                intSource[:description] = hSource['description']
-                            end
+                            intSource[:description] = hSource['description']
+                        end
+                        if intSource[:description].nil? || intSource[:description] == ''
+                            responseObj[:readerExecutionMessages] << 'Source description is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # source - source citation

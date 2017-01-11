@@ -48,10 +48,35 @@ class TestReaderMdJsonSource < MiniTest::Test
 
     end
 
-    def test_source_elements_empty
+    def test_source_description_empty
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_source_description_missing
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('description')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_source_elements_empty
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['sourceCitation'] = {}
         hIn['sourceMetadata'] = []
         hIn['scaleDenominator'] = ''
@@ -60,7 +85,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:description]
+        assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
         assert_nil metadata[:scaleDenominator]
@@ -74,8 +99,6 @@ class TestReaderMdJsonSource < MiniTest::Test
     def test_source_elements_missing
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['nonElement'] = ''
-        hIn.delete('description')
         hIn.delete('sourceCitation')
         hIn.delete('sourceMetadata')
         hIn.delete('scaleDenominator')
@@ -84,7 +107,7 @@ class TestReaderMdJsonSource < MiniTest::Test
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:description]
+        assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
         assert_nil metadata[:scaleDenominator]
