@@ -32,8 +32,8 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_LegalConstraints') do
 
-                            # legal constraints - use limitation []
-                            aUse = hConstraint[:constraint][:useLimitation]
+                            # constraints - use limitation []
+                            aUse = hConstraint[:useLimitation]
                             aUse.each do |useCon|
                                 @xml.tag!('gmd:useLimitation') do
                                     @xml.tag!('gco:CharacterString', useCon)
@@ -43,8 +43,10 @@ module ADIWG
                                 @xml.tag!('gmd:useLimitation')
                             end
 
+                            hLegalCon = hConstraint[:legalConstraint]
+
                             # legal constraints - access constraints
-                            aAccess = hConstraint[:accessCodes]
+                            aAccess = hLegalCon[:accessCodes]
                             aAccess.each do |code|
                                 @xml.tag!('gmd:accessConstraints') do
                                     codelistClass.writeXML('gmd', 'iso_restriction',code)
@@ -55,7 +57,7 @@ module ADIWG
                             end
 
                             # legal constraints - use constraints
-                            aUse = hConstraint[:useCodes]
+                            aUse = hLegalCon[:useCodes]
                             aUse.each do |code|
                                 @xml.tag!('gmd:useConstraints') do
                                     codelistClass.writeXML('gmd', 'iso_restriction',code)
@@ -66,7 +68,7 @@ module ADIWG
                             end
 
                             # legal constraints - other constraints
-                            aOther = hConstraint[:otherCons]
+                            aOther = hLegalCon[:otherCons]
                             aOther.each do |con|
                                 @xml.tag!('gmd:otherConstraints') do
                                     @xml.tag!('gco:CharacterString', con)

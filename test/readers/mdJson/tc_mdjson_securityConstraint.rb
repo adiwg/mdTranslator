@@ -7,6 +7,7 @@
 require 'minitest/autorun'
 require 'json'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_constraint'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_securityConstraint'
 
 # set contacts to be used by this test
@@ -36,7 +37,7 @@ end
 class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::SecurityConstraint
+    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Constraint
     @@responseObj = {
         readerExecutionPass: true,
         readerExecutionMessages: []
@@ -51,19 +52,30 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     # only the first instance in the example array is used for tests
     # the first example is fully populated
-    @@hIn = aIn['securityConstraint'][0]
+    @@hIn = aIn['constraint'][0]
 
-    def test_complete_securityConstraint_object
+    def test_complete_securityConstraint
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:constraint]
-        assert_equal 'classification', metadata[:classCode]
-        assert_equal 'userNote', metadata[:userNote]
-        assert_equal 'classificationSystem', metadata[:classSystem]
-        assert_equal 'handlingDescription', metadata[:handling]
+        assert_equal 'security', metadata[:type]
+        assert_empty metadata[:useLimitation]
+        assert_empty metadata[:scope]
+        assert_empty metadata[:graphic]
+        assert_empty metadata[:reference]
+        assert_empty metadata[:releasability]
+        assert_empty metadata[:responsibleParty]
+        assert_empty metadata[:legalConstraint]
+        refute_empty metadata[:securityConstraint]
+
+        hSecurityCon = metadata[:securityConstraint]
+        assert_equal 'classification', hSecurityCon[:classCode]
+        assert_equal 'classificationSystem', hSecurityCon[:classSystem]
+        assert_equal 'userNote', hSecurityCon[:userNote]
+        assert_equal 'handlingDescription', hSecurityCon[:handling]
+
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -72,7 +84,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_empty_classification
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['classification'] = ''
+        hIn['securityConstraint']['classification'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -85,7 +97,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_missing_classification
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('classification')
+        hIn['securityConstraint'].delete('classification')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -98,16 +110,28 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['classificationSystem'] = ''
-        hIn['userNote'] = ''
-        hIn['handlingDescription'] = ''
+        hIn['securityConstraint']['classificationSystem'] = ''
+        hIn['securityConstraint']['userNote'] = ''
+        hIn['securityConstraint']['handlingDescription'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:constraint]
-        assert_nil metadata[:useCodes]
-        assert_nil metadata[:accessCodes]
-        assert_nil metadata[:otherCodes]
+        assert_equal 'security', metadata[:type]
+        assert_empty metadata[:useLimitation]
+        assert_empty metadata[:scope]
+        assert_empty metadata[:graphic]
+        assert_empty metadata[:reference]
+        assert_empty metadata[:releasability]
+        assert_empty metadata[:responsibleParty]
+        assert_empty metadata[:legalConstraint]
+        refute_empty metadata[:securityConstraint]
+
+        hSecurityCon = metadata[:securityConstraint]
+        assert_equal 'classification', hSecurityCon[:classCode]
+        assert_nil hSecurityCon[:classSystem]
+        assert_nil hSecurityCon[:userNote]
+        assert_nil hSecurityCon[:handling]
+
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -116,22 +140,47 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
     def test_securityConstraint_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('classificationSystem')
-        hIn.delete('userNote')
-        hIn.delete('handlingDescription')
+        hIn['securityConstraint'].delete('classificationSystem')
+        hIn['securityConstraint'].delete('userNote')
+        hIn['securityConstraint'].delete('handlingDescription')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:constraint]
-        assert_nil metadata[:useCodes]
-        assert_nil metadata[:accessCodes]
-        assert_nil metadata[:otherCodes]
+        assert_equal 'security', metadata[:type]
+        assert_empty metadata[:useLimitation]
+        assert_empty metadata[:scope]
+        assert_empty metadata[:graphic]
+        assert_empty metadata[:reference]
+        assert_empty metadata[:releasability]
+        assert_empty metadata[:responsibleParty]
+        assert_empty metadata[:legalConstraint]
+        refute_empty metadata[:securityConstraint]
+
+        hSecurityCon = metadata[:securityConstraint]
+        assert_equal 'classification', hSecurityCon[:classCode]
+        assert_nil hSecurityCon[:classSystem]
+        assert_nil hSecurityCon[:userNote]
+        assert_nil hSecurityCon[:handling]
+
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_empty_securityConstraint_object
+    def test_missing_securityConstraint
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('securityConstraint')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_constraint_object
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

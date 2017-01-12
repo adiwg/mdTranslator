@@ -13,7 +13,7 @@
 # 	Stan Smith 2013-10-17 original script
 
 require_relative 'module_onlineResource'
-require_relative 'module_constraints'
+require_relative 'module_constraint'
 
 module ADIWG
     module Mdtranslator
@@ -61,11 +61,12 @@ module ADIWG
 
                         # graphic - file  constraint []
                         if hGraphic.has_key?('fileConstraint')
-                            hGraphic['fileConstraint'].each do |item|
-                                unless item.empty?
-                                    con = Constraints.unpack(item, responseObj)
-                                    unless con.nil?
-                                        intGraphic[:graphicConstraint] << con
+                            aItems = hGraphic['fileConstraint']
+                            aItems.each do |hItem|
+                                unless hItem.empty?
+                                    hReturn = Constraint.unpack(hItem, responseObj)
+                                    unless hReturn.nil?
+                                        intGraphic[:graphicConstraints] << hReturn
                                     end
                                 end
                             end

@@ -9,8 +9,6 @@
 # 	Stan Smith 2013-11-27 modified to process a single security constraint
 # 	Stan Smith 2013-11-15 original script
 
-require_relative 'module_constraint'
-
 module ADIWG
     module Mdtranslator
         module Readers
@@ -30,12 +28,6 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intSecCon= intMetadataClass.newSecurityConstraint
-
-                        # security constraint - constraint {constraint}
-                        hReturn = Constraint.unpack(hSecurityCon, responseObj)
-                        unless hReturn.nil?
-                            intSecCon[:constraint] = hReturn
-                        end
 
                         # security constraint - classification (required)
                         if hSecurityCon.has_key?('classification')

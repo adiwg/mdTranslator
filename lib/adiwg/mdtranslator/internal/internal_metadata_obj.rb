@@ -262,7 +262,7 @@ class InternalMetadata
             resourceFormats: [],
             keywords: [],
             resourceUsages: [],
-            constraints: {},
+            constraints: [],
             defaultResourceLocale: {},
             otherResourceLocales: [],
             resourceMaintenance: [],
@@ -325,28 +325,22 @@ class InternalMetadata
         }
     end
 
-    def newConstraints
-        intObj = {
-            constraints: [],
-            legalConstraints: [],
-            securityConstraints: []
-        }
-    end
-
     def newConstraint
         intObj = {
+            type: nil,
             useLimitation: [],
             scope: {},
             graphic: [],
             reference: [],
             releasability: {},
-            responsibleParty: []
+            responsibleParty: [],
+            legalConstraint: {},
+            securityConstraint: {}
         }
     end
 
     def newLegalConstraint
         intObj = {
-            constraint: {},
             accessCodes: [],
             useCodes: [],
             otherCons: []
@@ -355,7 +349,6 @@ class InternalMetadata
 
     def newSecurityConstraint
         intObj = {
-            constraint: {},
             classCode: nil,
             userNote: nil,
             classSystem: nil,
@@ -431,7 +424,7 @@ class InternalMetadata
             graphicName: nil,
             graphicDescription: nil,
             graphicType: nil,
-            graphicConstraint: [],
+            graphicConstraints: [],
             graphicURI: []
         }
     end

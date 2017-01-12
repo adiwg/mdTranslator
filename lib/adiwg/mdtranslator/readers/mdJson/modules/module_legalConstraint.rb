@@ -10,8 +10,6 @@
 # 	Stan Smith 2013-11-27 modified to process a single legal constraint
 # 	Stan Smith 2013-11-14 original script
 
-require_relative 'module_constraint'
-
 module ADIWG
     module Mdtranslator
         module Readers
@@ -31,12 +29,6 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intLegalCon= intMetadataClass.newLegalConstraint
-
-                        # legal constraint - constraint {constraint}
-                        hReturn = Constraint.unpack(hLegalCon, responseObj)
-                        unless hReturn.nil?
-                            intLegalCon[:constraint] = hReturn
-                        end
 
                         # legal constraint - use constraint []
                         if hLegalCon.has_key?('useConstraint')

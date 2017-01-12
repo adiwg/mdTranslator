@@ -40,7 +40,7 @@ class TestReaderMdJsonGraphic < MiniTest::Test
         assert_equal 'fileName', metadata[:graphicName]
         assert_equal 'fileDescription', metadata[:graphicDescription]
         assert_equal 'fileType', metadata[:graphicType]
-        assert_equal 2, metadata[:graphicConstraint].length
+        assert_equal 2, metadata[:graphicConstraints].length
         assert_equal 1, metadata[:graphicURI].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -85,7 +85,7 @@ class TestReaderMdJsonGraphic < MiniTest::Test
 
         assert_nil metadata[:graphicDescription]
         assert_nil metadata[:graphicType]
-        assert_empty metadata[:graphicConstraint]
+        assert_empty metadata[:graphicConstraints]
         assert_empty metadata[:graphicURI]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -104,7 +104,7 @@ class TestReaderMdJsonGraphic < MiniTest::Test
 
         assert_nil metadata[:graphicDescription]
         assert_nil metadata[:graphicType]
-        assert_empty metadata[:graphicConstraint]
+        assert_empty metadata[:graphicConstraints]
         assert_empty metadata[:graphicURI]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

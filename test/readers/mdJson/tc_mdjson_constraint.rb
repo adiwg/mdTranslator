@@ -53,20 +53,23 @@ class TestReaderMdJsonConstraint < MiniTest::Test
     # the first example is fully populated
     @@hIn = aIn['constraint'][0]
 
-    def test_complete_constraint_object
+    def test_complete_constraint
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 'use', metadata[:type]
         assert_equal 2, metadata[:useLimitation].length
         assert_equal 'useLimitation0', metadata[:useLimitation][0]
         assert_equal 'useLimitation1', metadata[:useLimitation][1]
         refute_empty metadata[:scope]
-        refute_empty metadata[:graphic]
-        refute_empty metadata[:reference]
+        assert_equal 2, metadata[:graphic].length
+        assert_equal 2, metadata[:reference].length
         refute_empty metadata[:releasability]
-        refute_empty metadata[:responsibleParty]
+        assert_equal 2, metadata[:responsibleParty].length
+        assert_empty metadata[:legalConstraint]
+        assert_empty metadata[:securityConstraint]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -81,15 +84,20 @@ class TestReaderMdJsonConstraint < MiniTest::Test
         hIn['reference'] = []
         hIn['releasability'] = {}
         hIn['responsibleParty'] = []
+        hIn['legalConstraint'] = {}
+        hIn['securityConstraint'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 'use', metadata[:type]
         assert_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
         assert_empty metadata[:releasability]
         assert_empty metadata[:responsibleParty]
+        assert_empty metadata[:legalConstraint]
+        assert_empty metadata[:securityConstraint]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -98,22 +106,26 @@ class TestReaderMdJsonConstraint < MiniTest::Test
     def test_missing_constraint_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['nonElement'] = ''
         hIn.delete('useLimitation')
         hIn.delete('scope')
         hIn.delete('graphic')
         hIn.delete('reference')
         hIn.delete('releasability')
         hIn.delete('responsibleParty')
+        hIn.delete('legalConstraint')
+        hIn.delete('securityConstraint')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 'use', metadata[:type]
         assert_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
         assert_empty metadata[:releasability]
         assert_empty metadata[:responsibleParty]
+        assert_empty metadata[:legalConstraint]
+        assert_empty metadata[:securityConstraint]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

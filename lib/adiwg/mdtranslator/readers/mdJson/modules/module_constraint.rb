@@ -9,6 +9,8 @@ require_relative 'module_graphic'
 require_relative 'module_citation'
 require_relative 'module_releasability'
 require_relative 'module_responsibleParty'
+require_relative 'module_legalConstraint'
+require_relative 'module_securityConstraint'
 
 module ADIWG
     module Mdtranslator
@@ -30,6 +32,25 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intConstraint = intMetadataClass.newConstraint
+
+                        # constraint - type (required)
+                        if hConstraint.has_key?('type')
+                            if hConstraint['type'] != ''
+                                type = hConstraint['type']
+                                if %w{ use legal security }.one? { |word| word == type }
+                                    intConstraint[:type] = hConstraint['type']
+                                else
+                                    responseObj[:readerExecutionMessages] << 'Constraint type must be database, attribute, feature, or other'
+                                    responseObj[:readerExecutionPass] = false
+                                    return nil
+                                end
+                            end
+                        end
+                        if intConstraint[:type].nil? || intConstraint[:type] == ''
+                            responseObj[:readerExecutionMessages] << 'Constraint type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
 
                         # constraint - use limitation []
                         if hConstraint.has_key?('useLimitation')
@@ -92,6 +113,40 @@ module ADIWG
                                 unless hParty.nil?
                                     intConstraint[:responsibleParty] << hParty
                                 end
+                            end
+                        end
+
+                        if type == 'legal'
+                            if hConstraint.has_key?('legalConstraint')
+                                hObject = hConstraint['legalConstraint']
+                                unless hObject.empty?
+                                    hReturn = LegalConstraint.unpack(hObject, responseObj)
+                                    unless hReturn.nil?
+                                        intConstraint[:legalConstraint] = hReturn
+                                    end
+                                end
+                            end
+                            if intConstraint[:legalConstraint].empty?
+                                responseObj[:readerExecutionMessages] << 'Legal Constraint is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
+                            end
+                        end
+
+                        if type == 'security'
+                            if hConstraint.has_key?('securityConstraint')
+                                hObject = hConstraint['securityConstraint']
+                                unless hObject.empty?
+                                    hReturn = SecurityConstraint.unpack(hObject, responseObj)
+                                    unless hReturn.nil?
+                                        intConstraint[:securityConstraint] = hReturn
+                                    end
+                                end
+                            end
+                            if intConstraint[:securityConstraint].empty?
+                                responseObj[:readerExecutionMessages] << 'Security Constraint is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

@@ -53,7 +53,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
     # the first example is fully populated
     @@hIn = aIn['resourceInfo'][0]
 
-    def test_complete_resourceInfo_object
+    def test_complete_resourceInfo
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -81,7 +81,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         assert_equal 2, metadata[:resourceFormats].length
         assert_equal 2, metadata[:keywords].length
         assert_equal 2, metadata[:resourceUsages].length
-        assert_equal 3, metadata[:constraints].length
+        assert_equal 2, metadata[:constraints].length
         refute_empty metadata[:defaultResourceLocale]
         assert_equal 2, metadata[:otherResourceLocales].length
         assert_equal 2, metadata[:resourceMaintenance].length
@@ -244,7 +244,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn['resourceFormat'] = []
         hIn['keyword'] = []
         hIn['resourceUsage'] = []
-        hIn['constraints'] = []
+        hIn['constraint'] = []
         hIn['otherResourceLocale'] = []
         hIn['resourceMaintenance'] = []
         hIn['environmentDescription'] = ''
@@ -307,7 +307,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
         hIn.delete('resourceFormat')
         hIn.delete('keyword')
         hIn.delete('resourceUsage')
-        hIn.delete('constraints')
+        hIn.delete('constraint')
         hIn.delete('otherResourceLocale')
         hIn.delete('resourceMaintenance')
         hIn.delete('environmentDescription')

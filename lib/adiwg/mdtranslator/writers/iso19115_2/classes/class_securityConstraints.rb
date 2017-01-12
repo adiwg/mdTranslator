@@ -32,22 +32,21 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_SecurityConstraints') do
 
-                            # legal constraints - use limitation [] (required)
-                            hUse = hConstraint[:constraint]
-                            unless hUse.empty?
-                                aCons = hUse[:useLimitation]
-                                aCons.each do |useCon|
-                                    @xml.tag!('gmd:useLimitation') do
-                                        @xml.tag!('gco:CharacterString', useCon)
-                                    end
+                            # constraints - use limitation [] (required)
+                            aUse = hConstraint[:useLimitation]
+                            aUse.each do |useCon|
+                                @xml.tag!('gmd:useLimitation') do
+                                    @xml.tag!('gco:CharacterString', useCon)
                                 end
                             end
-                            if hUse.empty? && @hResponseObj[:writerShowTags]
+                            if aUse.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:useLimitation')
                             end
 
+                            hSecurityCon = hConstraint[:securityConstraint]
+
                             # security constraints - classification code (required)
-                            s = hConstraint[:classCode]
+                            s = hSecurityCon[:classCode]
                             unless s.nil?
                                 @xml.tag!('gmd:classification') do
                                     codelistClass.writeXML('gmd', 'iso_classification',s)
@@ -58,7 +57,7 @@ module ADIWG
                             end
 
                             # security constraints - user note
-                            s = hConstraint[:userNote]
+                            s = hSecurityCon[:userNote]
                             unless s.nil?
                                 @xml.tag!('gmd:userNote') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -69,7 +68,7 @@ module ADIWG
                             end
 
                             # security constraints - classification system
-                            s = hConstraint[:classSystem]
+                            s = hSecurityCon[:classSystem]
                             unless s.nil?
                                 @xml.tag!('gmd:classificationSystem') do
                                     @xml.tag!('gco:CharacterString', s)
@@ -80,7 +79,7 @@ module ADIWG
                             end
 
                             # security constraints - handling description
-                            s = hConstraint[:handling]
+                            s = hSecurityCon[:handling]
                             unless s.nil?
                                 @xml.tag!('gmd:handlingDescription') do
                                     @xml.tag!('gco:CharacterString', s)

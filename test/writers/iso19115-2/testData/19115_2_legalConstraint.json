@@ -68,49 +68,67 @@
           "country": "CountryCode",
           "characterSet": "MD_CharacterSetCode"
         },
-        "constraints": {
-          "legalConstraint": [
-            {
-              "useLimitation": [
-                "useLimitation0",
-                "useLimitation1"
-              ],
+        "constraint": [
+          {
+            "type": "use",
+            "useLimitation": [
+              "useLimitation0",
+              "useLimitation1"
+            ]
+          },
+          {
+            "type": "legal",
+            "legalConstraint": {
               "useConstraint": [
-                "useConstraint00",
-                "useConstraint01"
-              ],
-              "accessConstraint": [
-                "accessConstraint00",
-                "accessConstraint01"
-              ],
-              "otherConstraint": [
-                "otherConstraint00",
-                "otherConstraint01"
-              ]
-            },
-            {
-              "useConstraint": [
+                "useConstraint0",
                 "useConstraint1"
               ],
               "accessConstraint": [
+                "accessConstraint0",
                 "accessConstraint1"
               ],
               "otherConstraint": [
+                "otherConstraint0",
                 "otherConstraint1"
               ]
-            },
-            {
-              "otherConstraint": [
-                "otherConstraint2"
-              ]
-            },
-            {
+            }
+          },
+          {
+            "type": "legal",
+            "legalConstraint": {
               "useConstraint": [
-                "useConstraint3"
+                "useConstraint0"
+              ],
+              "accessConstraint": [],
+              "otherConstraint": []
+            }
+          },
+          {
+            "type": "legal",
+            "legalConstraint": {
+              "useConstraint": [
+                "useConstraint0"
               ]
             }
-          ]
-        }
+          },
+          {
+            "type": "legal",
+            "legalConstraint": {
+              "otherConstraint": [
+                "otherConstraint0"
+              ]
+            }
+          },
+          {
+            "type": "security",
+            "securityConstraint": {
+              "classification": "classification",
+              "classificationSystem": "classificationSystem",
+              "userNote": "userNote",
+              "handlingDescription": "handlingDescription"
+            }
+          }
+        ]
       }
     }
   }

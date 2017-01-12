@@ -18,7 +18,7 @@ require_relative 'module_graphic'
 require_relative 'module_format'
 require_relative 'module_keyword'
 require_relative 'module_resourceUsage'
-require_relative 'module_constraints'
+require_relative 'module_constraint'
 require_relative 'module_locale'
 require_relative 'module_maintenance'
 
@@ -277,12 +277,12 @@ module ADIWG
                         end
 
                         # resource information - constraint [] {constraint}
-                        if hResInfo.has_key?('constraints')
-                            hCons = hResInfo['constraints']
-                            unless hCons.empty?
-                                hReturn = Constraints.unpack(hCons, responseObj)
+                        if hResInfo.has_key?('constraint')
+                            aCons = hResInfo['constraint']
+                            aCons.each do |hItem|
+                                hReturn = Constraint.unpack(hItem, responseObj)
                                 unless hReturn.nil?
-                                    intResInfo[:constraints] = hReturn
+                                    intResInfo[:constraints] << hReturn
                                 end
                             end
                         end

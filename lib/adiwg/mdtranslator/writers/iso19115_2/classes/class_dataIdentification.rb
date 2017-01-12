@@ -203,46 +203,22 @@ module ADIWG
 
                             # data identification - resource constraints {}
                             aCons = hData[:constraints]
-
-                            # data identification - use constraints []
-                            aUseCons = aCons[:constraints]
-                            unless aUseCons.nil?
-                                aUseCons.each do |hCon|
-                                    @xml.tag!('gmd:resourceConstraints') do
+                            aCons.each do |hCon|
+                                @xml.tag!('gmd:resourceConstraints') do
+                                    type = hCon[:type]
+                                    if type == 'use'
                                         uConClass.writeXML(hCon)
                                     end
-                                end
-                            end
-                            if aUseCons.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    @xml.tag!('gmd:MD_Constraints')
-                                end
-                            end
-
-                            # data identification - legal constraints []
-                            aLegalCons = aCons[:legalConstraints]
-                            unless aLegalCons.nil?
-                                aLegalCons.each do |hCon|
-                                    @xml.tag!('gmd:resourceConstraints') do
+                                    if type == 'legal'
                                         lConClass.writeXML(hCon)
                                     end
-                                end
-                            end
-                            if aLegalCons.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    @xml.tag!('gmd:MD_LegalConstraints')
-                                end
-                            end
-
-                            # data identification - security constraints []
-                            # empty tag cannot be shown for security constraints - XSD issue
-                            aSecurityCons = aCons[:securityConstraints]
-                            unless aSecurityCons.nil?
-                                aSecurityCons.each do |hCon|
-                                    @xml.tag!('gmd:resourceConstraints') do
+                                    if type == 'security'
                                         sConClass.writeXML(hCon)
                                     end
                                 end
+                            end
+                            if aCons.nil? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:resourceConstraints')
                             end
 
                             # data identification - aggregate information []

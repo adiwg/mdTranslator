@@ -286,34 +286,49 @@
           <gmd:useLimitation>
             <gco:CharacterString>useLimitation0</gco:CharacterString>
           </gmd:useLimitation>
+          <gmd:useLimitation>
+            <gco:CharacterString>useLimitation1</gco:CharacterString>
+          </gmd:useLimitation>
         </gmd:MD_Constraints>
       </gmd:resourceConstraints>
       <gmd:resourceConstraints>
         <gmd:MD_LegalConstraints>
-          <gmd:useLimitation>
-            <gco:CharacterString>useLimitation1</gco:CharacterString>
-          </gmd:useLimitation>
+          <gmd:useLimitation/>
           <gmd:accessConstraints>
-            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="accessConstraint10" codeSpace="userCode"/>
+            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="accessConstraint0" codeSpace="userCode"/>
           </gmd:accessConstraints>
           <gmd:accessConstraints>
-            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="accessConstraint11" codeSpace="userCode"/>
+            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="accessConstraint1" codeSpace="userCode"/>
           </gmd:accessConstraints>
-          <gmd:useConstraints/>
-          <gmd:otherConstraints/>
+          <gmd:useConstraints>
+            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="useConstraint0" codeSpace="userCode"/>
+          </gmd:useConstraints>
+          <gmd:useConstraints>
+            <gmd:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="useConstraint1" codeSpace="userCode"/>
+          </gmd:useConstraints>
+          <gmd:otherConstraints>
+            <gco:CharacterString>otherConstraint0</gco:CharacterString>
+          </gmd:otherConstraints>
+          <gmd:otherConstraints>
+            <gco:CharacterString>otherConstraint1</gco:CharacterString>
+          </gmd:otherConstraints>
         </gmd:MD_LegalConstraints>
       </gmd:resourceConstraints>
       <gmd:resourceConstraints>
         <gmd:MD_SecurityConstraints>
-          <gmd:useLimitation>
-            <gco:CharacterString>useLimitation2</gco:CharacterString>
-          </gmd:useLimitation>
+          <gmd:useLimitation/>
           <gmd:classification>
-            <gmd:MD_ClassificationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ClassificationCode" codeListValue="classification2" codeSpace="userCode"/>
+            <gmd:MD_ClassificationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ClassificationCode" codeListValue="classification" codeSpace="userCode"/>
           </gmd:classification>
-          <gmd:userNote/>
-          <gmd:classificationSystem/>
-          <gmd:handlingDescription/>
+          <gmd:userNote>
+            <gco:CharacterString>userNote</gco:CharacterString>
+          </gmd:userNote>
+          <gmd:classificationSystem>
+            <gco:CharacterString>classificationSystem</gco:CharacterString>
+          </gmd:classificationSystem>
+          <gmd:handlingDescription>
+            <gco:CharacterString>handlingDescription</gco:CharacterString>
+          </gmd:handlingDescription>
         </gmd:MD_SecurityConstraints>
       </gmd:resourceConstraints>
       <gmd:aggregationInfo>
