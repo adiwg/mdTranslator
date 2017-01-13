@@ -20,7 +20,7 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
-<gmd:spatialRepresentationInfo>
+  <gmd:spatialRepresentationInfo>
     <gmd:MD_GridSpatialRepresentation>
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>

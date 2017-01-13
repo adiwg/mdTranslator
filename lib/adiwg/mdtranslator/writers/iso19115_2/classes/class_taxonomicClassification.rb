@@ -38,29 +38,33 @@ module ADIWG
 
                             # taxon classification - taxon rank name (required)
                             s = aTaxon[:taxonRank]
-                            if s.nil?
-                                @xml.tag!('gmd:taxonrn', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:taxonrn') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:taxonrn', {'gco:nilReason' => 'missing'})
+                            end
 
                             # taxon classification - taxon rank value (required)
                             s = aTaxon[:taxonValue]
-                            if s.nil?
-                                @xml.tag!('gmd:taxonrv', {'gco:nilReason' => 'missing'})
-                            else
+                            unless s.nil?
                                 @xml.tag!('gmd:taxonrv') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:taxonrv', {'gco:nilReason' => 'missing'})
                             end
 
                             # taxon classification - classification [{MD_TaxonCl}]
                             aClasses = aTaxon[:subClasses]
                             aClasses.each do |hClass|
-                                taxonClass = MD_TaxonCl.new(@xml, @hResponseObj)
-                                taxonClass.writeXML(hClass)
+                                @xml.tag!('gmd:taxonCl') do
+                                    taxonClass = MD_TaxonCl.new(@xml, @hResponseObj)
+                                    taxonClass.writeXML(hClass)
+                                end
                             end
 
                         end # gmd:MD_TaxonCl tag
