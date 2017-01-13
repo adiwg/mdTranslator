@@ -74,107 +74,83 @@
             "geographicExtent": [],
             "temporalExtent": [
               {
-                "type": "instant",
-                "timeInstant": {
+                "type": "period",
+                "timePeriod": {
                   "id": "id0",
                   "description": "description0",
                   "identifier": {
                     "identifier": "identifier0",
                     "namespace": "namespace0"
                   },
-                  "instantName": [
-                    "instantName00",
-                    "instantName01"
+                  "periodName": [
+                    "periodName00",
+                    "periodName01"
                   ],
-                  "dateTime": "2017"
+                  "startDateTime": "2017",
+                  "endDateTime": "2018",
+                  "timeInterval": {
+                    "interval": 9.9,
+                    "units": "units"
+                  }
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
+                "type": "period",
+                "timePeriod": {
                   "id": "id1",
                   "description": "",
                   "identifier": {},
-                  "instantName": [],
-                  "dateTime": "2017"
+                  "periodName": [],
+                  "startDateTime": "2017",
+                  "endDateTime": "2018",
+                  "timeInterval": {}
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01"
+                "type": "period",
+                "timePeriod": {
+                  "endDateTime": "2017-01-13"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01-13T13",
+                  "endDateTime": "2017-01-13T13Z"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01-13T13:57",
+                  "endDateTime": "2017-01-13T13:57Z"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13Z"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01-13T13:57:12",
+                  "endDateTime": "2017-01-13T13:57:12Z"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01-13T13:57:12.345",
+                  "endDateTime": "2017-01-13T13:57:12.345Z"
                 }
               },
               {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25Z"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12Z"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12.345"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12.345Z"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12.345-09"
-                }
-              },
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2017-01-13T13:25:12.345-09:15"
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2017-01-13T13:57:12.345-09",
+                  "endDateTime": "2017-01-13T13:57:12.345-09:15"
                 }
               }
             ],

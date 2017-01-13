@@ -23,6 +23,33 @@
   <gmd:temporalElement>
     <gmd:EX_TemporalExtent>
       <gmd:extent>
+        <gml:TimeInstant gml:id="id0">
+          <gml:description>description0</gml:description>
+          <gml:identifier codeSpace="namespace0">identifier0</gml:identifier>
+          <gml:name>instantName00</gml:name>
+          <gml:name>instantName01</gml:name>
+          <gml:timePosition>2017-01-01T00:00:00</gml:timePosition>
+        </gml:TimeInstant>
+      </gmd:extent>
+    </gmd:EX_TemporalExtent>
+  </gmd:temporalElement>
+
+  <gmd:temporalElement>
+    <gmd:EX_TemporalExtent>
+      <gmd:extent>
+        <gml:TimeInstant gml:id="id1">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:timePosition>2017-01-01T00:00:00</gml:timePosition>
+        </gml:TimeInstant>
+      </gmd:extent>
+    </gmd:EX_TemporalExtent>
+  </gmd:temporalElement>
+
+  <gmd:temporalElement>
+    <gmd:EX_TemporalExtent>
+      <gmd:extent>
         <gml:TimeInstant gml:id="timeInstant_001">
           <gml:description/>
           <gml:identifier codeSpace=""/>
