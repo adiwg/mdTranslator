@@ -22,6 +22,9 @@
 
   <gmd:offLine>
     <gmd:MD_Medium>
+      <gmd:name>
+        <gmd:MD_MediumNameCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumNameCode" codeListValue="identifier" codeSpace="userCode"/>
+      </gmd:name>
       <gmd:density>
         <gco:Real>9.9</gco:Real>
       </gmd:density>
@@ -45,6 +48,9 @@
 
   <gmd:offLine>
     <gmd:MD_Medium>
+      <gmd:name>
+        <gmd:MD_MediumNameCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumNameCode" codeListValue="identifier" codeSpace="userCode"/>
+      </gmd:name>
       <gmd:density>
         <gco:Real>9.9</gco:Real>
       </gmd:density>
@@ -68,10 +74,11 @@
 
   <gmd:offLine>
     <gmd:MD_Medium>
+      <gmd:name/>
       <gmd:density>
         <gco:Real>9.9</gco:Real>
       </gmd:density>
-      <gmd:density/>
+      <gmd:densityUnits/>
       <gmd:volumes>
         <gco:Integer>9</gco:Integer>
       </gmd:volumes>
@@ -82,8 +89,9 @@
 
   <gmd:offLine>
     <gmd:MD_Medium>
+      <gmd:name/>
       <gmd:density/>
-      <gmd:density/>
+      <gmd:densityUnits/>
       <gmd:volumes>
         <gco:Integer>9</gco:Integer>
       </gmd:volumes>

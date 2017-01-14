@@ -33,6 +33,21 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_Medium') do
 
+                            # medium - name {MD_MediumNameCode}
+                            hIdentifier = hMedium[:identifier]
+                            s = nil
+                            unless hIdentifier.empty?
+                                s = hIdentifier[:identifier]
+                                unless s.nil?
+                                    @xml.tag!('gmd:name') do
+                                        codelistClass.writeXML('gmd', 'iso_mediumName', s)
+                                    end
+                                end
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:name')
+                            end
+
                             # medium - density {MB}
                             s = hMedium[:density]
                             unless s.nil?
@@ -53,7 +68,7 @@ module ADIWG
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:density')
+                                @xml.tag!('gmd:densityUnits')
                             end
 
                             # medium - volumes
