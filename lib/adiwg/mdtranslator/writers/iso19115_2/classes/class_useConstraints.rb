@@ -25,7 +25,7 @@ module ADIWG
 
                         @xml.tag!('gmd:MD_Constraints') do
 
-                            # use constraints - use limitation [] (required)
+                            # use constraints - use limitation []
                             aCons = hConstraint[:useLimitation]
                             aCons.each do |useCon|
                                 @xml.tag!('gmd:useLimitation') do
@@ -33,7 +33,7 @@ module ADIWG
                                 end
                             end
                             if aCons.empty?
-                                @xml.tag!('gmd:useLimitation', {'gco:nilReason'=>'missing'})
+                                @xml.tag!('gmd:useLimitation')
                             end
 
                         end # gmd:MD_Constraints tag
