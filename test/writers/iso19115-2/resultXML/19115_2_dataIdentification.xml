@@ -264,6 +264,7 @@
           <gmd:specificUsage>
             <gco:CharacterString>specificUsage0</gco:CharacterString>
           </gmd:specificUsage>
+          <gmd:usageDateTime/>
           <gmd:userDeterminedLimitations>
             <gco:CharacterString>userDeterminedLimitation</gco:CharacterString>
           </gmd:userDeterminedLimitations>
@@ -275,6 +276,7 @@
           <gmd:specificUsage>
             <gco:CharacterString>specificUsage1</gco:CharacterString>
           </gmd:specificUsage>
+          <gmd:usageDateTime/>
           <gmd:userDeterminedLimitations>
             <gco:CharacterString>userDeterminedLimitation</gco:CharacterString>
           </gmd:userDeterminedLimitations>
