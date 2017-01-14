@@ -11,6 +11,8 @@
 # 	Stan Smith 2013-11-27 modified to process a single resource usage
 # 	Stan Smith 2013-11-25 original script
 
+require_relative 'module_temporalExtent'
+require_relative 'module_citation'
 require_relative 'module_responsibleParty'
 
 module ADIWG
@@ -43,6 +45,17 @@ module ADIWG
                             return nil
                         end
 
+                        # resource usage - temporal extent []
+                        if hUsage.has_key?('temporalExtent')
+                            aItems = hUsage['temporalExtent']
+                            aItems.each do |hItem|
+                                hReturn = TemporalExtent.unpack(hItem, responseObj)
+                                unless hReturn.nil?
+                                    intUsage[:temporalExtents] << hReturn
+                                end
+                            end
+                        end
+
                         # resource usage - user determined limitations
                         if hUsage.has_key?('userDeterminedLimitation')
                             if hUsage['userDeterminedLimitation'] != ''
@@ -55,6 +68,28 @@ module ADIWG
                             hUsage['limitationResponse'].each do |item|
                                 if item != ''
                                     intUsage[:limitationResponses] << item
+                                end
+                            end
+                        end
+
+                        # resource usage - repository - documented issue
+                        if hUsage.has_key?('documentedIssue')
+                            hCitation = hUsage['documentedIssue']
+                            unless hCitation.empty?
+                                hReturn = Citation.unpack(hCitation, responseObj)
+                                unless hReturn.nil?
+                                    intUsage[:identifiedIssue] = hReturn
+                                end
+                            end
+                        end
+
+                        # resource usage - repository - additional documentation []
+                        if hUsage.has_key?('additionalDocumentation')
+                            aItems = hUsage['additionalDocumentation']
+                            aItems.each do |hItem|
+                                hReturn = Citation.unpack(hItem, responseObj)
+                                unless hReturn.nil?
+                                    intUsage[:additionalDocumentation] << hReturn
                                 end
                             end
                         end

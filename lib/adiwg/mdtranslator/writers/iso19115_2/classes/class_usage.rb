@@ -42,7 +42,43 @@ module ADIWG
                                 @xml.tag!('gmd:specificUsage', {'gco:nilReason' => 'missing'})
                             end
 
-                            # usage - dateTime (not supported)
+                            # usage - dateTime [0]
+                            aTimes = hUsage[:temporalExtents]
+                            dateStr = nil
+                            unless aTimes.empty?
+                                hTime = aTimes[0]
+                                unless hTime.empty?
+                                    hInstant = hTime[:timeInstant]
+                                    hPeriod = hTime[:timePeriod]
+                                    unless hInstant.empty?
+                                        hDateTime = hInstant[:timeInstant]
+                                        timeInstant = hDateTime[:dateTime]
+                                        timeResolution = hDateTime[:dateResolution]
+                                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(timeInstant, timeResolution)
+                                        hPeriod = {}
+                                    end
+                                    unless hPeriod.empty?
+                                        hStart = hPeriod[:startDateTime]
+                                        hEnd = hPeriod[:endDateTime]
+                                        if !hStart.empty?
+                                            dateTime = hStart[:dateTime]
+                                            timeResolution = hStart[:dateResolution]
+                                        else
+                                            dateTime = hEnd[:dateTime]
+                                            timeResolution = hEnd[:dateResolution]
+                                        end
+                                        dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(dateTime, timeResolution)
+                                    end
+                                end
+                            end
+                            unless dateStr.nil?
+                                @xml.tag!('gmd:usageDateTime') do
+                                    @xml.tag!('gco:DateTime', dateStr)
+                                end
+                            end
+                            if dateStr.nil? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:usageDateTime')
+                            end
 
                             # usage - user determined limitations
                             s = hUsage[:userLimitation]

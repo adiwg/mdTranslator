@@ -1,0 +1,181 @@
+{
+  "mdJson": {
+    "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+    },
+    "contact": [
+      {
+        "contactId": "CID001",
+        "isOrganization": false,
+        "name": "address - all keys with singe array elements",
+        "address": [
+          {
+            "deliveryPoint": [
+              "address line 1"
+            ],
+            "city": "city",
+            "administrativeArea": "state",
+            "postalCode": "zip",
+            "country": "country",
+            "electronicMailAddress": [
+              "email01@example.com"
+            ]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "metadataInfo": {
+        "metadataIdentifier": {
+          "identifier": "identifier"
+        },
+        "metadataContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-31"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      },
+      "resourceInfo": {
+        "resourceType": "resourceType",
+        "citation": {
+          "title": "title"
+        },
+        "abstract": "abstract",
+        "pointOfContact": [
+          {
+            "role": "role",
+            "timePeriod": {
+              "startDateTime": "2016-10-14"
+            },
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "defaultResourceLocale": {
+          "language": "LanguageCode",
+          "country": "CountryCode",
+          "characterSet": "MD_CharacterSetCode"
+        },
+        "resourceUsage": [
+          {
+            "specificUsage": "specificUsage0",
+            "temporalExtent": [
+              {
+                "type": "instant",
+                "timeInstant": {
+                  "dateTime": "2016-10-24T11:10:15.2-10:00"
+                }
+              },
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-24T11:10:15.2-10:00"
+                }
+              }
+            ],
+            "userDeterminedLimitation": "userDeterminedLimitation0",
+            "limitationResponse": [
+              "limitationResponse0",
+              "limitationResponse1"
+            ],
+            "documentedIssue": {
+              "title": "title0"
+            },
+            "additionalDocumentation": [
+              {
+                "title": "title1"
+              },
+              {
+                "title": "title2"
+              }
+            ],
+            "userContactInfo": [
+              {
+                "role": "role0",
+                "timePeriod": {
+                  "startDateTime": "2016-10-14"
+                },
+                "party": [
+                  {
+                    "contactId": "CID001"
+                  }
+                ]
+              },
+              {
+                "role": "role1",
+                "roleExtent": {
+                  "description": "description1"
+                },
+                "party": [
+                  {
+                    "contactId": "CID001"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "specificUsage": "specificUsage1",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-25"
+                }
+              },
+              {
+                "type": "instant",
+                "timeInstant": {
+                  "dateTime": "2016-10-26"
+                }
+              }
+            ],
+            "userDeterminedLimitation": "",
+            "limitationResponse": [],
+            "documentedIssue": {},
+            "additionalDocumentation": [],
+            "userContactInfo": []
+          },
+          {
+            "specificUsage": "specificUsage2",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "endDateTime": "2016-10-27"
+                }
+              }
+            ]
+          },
+          {
+            "specificUsage": "specificUsage3",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-28",
+                  "endDateTime": "2016-10-29"
+                }
+              }
+            ]
+          },
+          {
+            "specificUsage": "specificUsage4"
+          }
+        ]
+      }
+    }
+  }
+}

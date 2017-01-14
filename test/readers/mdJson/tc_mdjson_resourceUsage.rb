@@ -65,10 +65,13 @@ class TestReaderMdJsonResourceUsage < MiniTest::Test
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'specificUsage', metadata[:specificUsage]
+        assert_equal 2, metadata[:temporalExtents].length
         assert_equal 'userDeterminedLimitation', metadata[:userLimitation]
         assert_equal 2, metadata[:limitationResponses].length
         assert_equal 'limitationResponse0', metadata[:limitationResponses][0]
         assert_equal 'limitationResponse1', metadata[:limitationResponses][1]
+        refute_empty metadata[:identifiedIssue]
+        assert_equal 2, metadata[:additionalDocumentation].length
         assert_equal 2, metadata[:userContacts].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -104,15 +107,21 @@ class TestReaderMdJsonResourceUsage < MiniTest::Test
     def test_resourceUsage_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['temporalExtent'] = []
         hIn['userDeterminedLimitation'] = ''
         hIn['limitationResponse'] = []
+        hIn['documentedIssue'] = {}
+        hIn['additionalDocumentation'] = []
         hIn['userContactInfo'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'specificUsage', metadata[:specificUsage]
+        assert_empty metadata[:temporalExtents]
         assert_nil metadata[:userLimitation]
         assert_empty metadata[:limitationResponses]
+        assert_empty metadata[:identifiedIssue]
+        assert_empty metadata[:additionalDocumentation]
         assert_empty metadata[:userContacts]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
@@ -122,15 +131,21 @@ class TestReaderMdJsonResourceUsage < MiniTest::Test
     def test_resourceUsage_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('temporalExtent')
         hIn.delete('userDeterminedLimitation')
         hIn.delete('limitationResponse')
+        hIn.delete('documentedIssue')
+        hIn.delete('additionalDocumentation')
         hIn.delete('userContactInfo')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'specificUsage', metadata[:specificUsage]
+        assert_empty metadata[:temporalExtents]
         assert_nil metadata[:userLimitation]
         assert_empty metadata[:limitationResponses]
+        assert_empty metadata[:identifiedIssue]
+        assert_empty metadata[:additionalDocumentation]
         assert_empty metadata[:userContacts]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

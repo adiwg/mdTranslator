@@ -593,8 +593,11 @@ class InternalMetadata
     def newResourceUsage
         intObj = {
             specificUsage: nil,
+            temporalExtents: [],
             userLimitation: nil,
             limitationResponses: [],
+            identifiedIssue: {},
+            additionalDocumentation: [],
             userContacts: []
         }
     end
