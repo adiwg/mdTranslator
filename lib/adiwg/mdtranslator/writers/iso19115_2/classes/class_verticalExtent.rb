@@ -74,7 +74,7 @@ module ADIWG
                                 @xml.tag!('gmd:verticalCRS', attributes)
                             end
                             if attributes.empty?
-                                attributes['gco:nilReason'] = 'missing'
+                                @xml.tag!('gmd:verticalCRS', {'gco:nilReason'=>'missing'})
                             end
 
                         end # EX_VerticalExtent tag
