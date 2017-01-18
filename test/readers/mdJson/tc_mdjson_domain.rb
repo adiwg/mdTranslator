@@ -2,33 +2,19 @@
 # reader / mdJson / module_domain
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-07 refactored for mdJson 2.0
-#   Stan Smith 2015-06-22 refactored setup to after removal of globals
+#   Stan Smith 2015-06-22 refactored setup after removal of globals
 #   Stan Smith 2015-01-20 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_domain'
 
-class TestReaderMdJsonDomain < MiniTest::Test
+class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
-    @@responseObj = {
-        readerExecutionMessages: [],
-        readerExecutionPass: true
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'domain.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('domain.json')
     @@hIn = aIn['domain'][0]
 
     def test_complete_domain_object

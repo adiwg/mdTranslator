@@ -2,31 +2,17 @@
 # reader / mdJson / module_lineage
 
 # History:
-# Stan Smith 2015-09-22 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2015-09-22 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_lineage'
 
-class TestReaderMdJsonResourceLineage < MiniTest::Test
+class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ResourceLineage
-    @@responseObj = {
-        readerExecutionMessages: [],
-        readerExecutionPass: true
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'lineage.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('lineage.json')
     @@hIn = aIn['resourceLineage'][0]
 
     def test_complete_lineage_object

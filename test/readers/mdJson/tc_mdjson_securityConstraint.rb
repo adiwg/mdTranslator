@@ -2,60 +2,23 @@
 # reader / mdJson / module_securityConstraint
 
 # History:
-# Stan Smith 2016-11-14 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-11-14 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_constraint'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_securityConstraint'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonSecurityConstraint < MiniTest::Test
+class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Constraint
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'securityConstraint.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('securityConstraint.json')
     @@hIn = aIn['constraint'][0]
 
     def test_complete_securityConstraint
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -83,6 +46,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     def test_securityConstraint_empty_classification
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['securityConstraint']['classification'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -96,6 +60,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     def test_securityConstraint_missing_classification
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['securityConstraint'].delete('classification')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -109,6 +74,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     def test_securityConstraint_empty_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['securityConstraint']['classificationSystem'] = ''
         hIn['securityConstraint']['userNote'] = ''
@@ -139,6 +105,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     def test_securityConstraint_missing_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['securityConstraint'].delete('classificationSystem')
         hIn['securityConstraint'].delete('userNote')
@@ -169,6 +136,7 @@ class TestReaderMdJsonSecurityConstraint < MiniTest::Test
 
     def test_missing_securityConstraint
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('securityConstraint')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))

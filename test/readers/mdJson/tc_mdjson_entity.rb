@@ -2,32 +2,18 @@
 # reader / mdJson / module_entity
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-07 refactored for mdJson 2.0
 #   Stan Smith 2015-07-24 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_entity'
 
-class TestReaderMdJsonEntity < MiniTest::Test
+class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Entity
-    @@responseObj = {
-        readerExecutionMessages: [],
-        readerExecutionPass: true
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'entity.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('entity.json')
     @@hIn = aIn['entity'][0]
 
     def test_complete_entity_object

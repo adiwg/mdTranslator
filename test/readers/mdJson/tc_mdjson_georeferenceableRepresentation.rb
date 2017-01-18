@@ -2,31 +2,17 @@
 # reader / mdJson / module_georeferencableRepresentation
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_georeferenceableRepresentation'
 
-class TestReaderMdJsonGeoreferenceableRepresentation < MiniTest::Test
+class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeoreferenceableRepresentation
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'georeferenceable.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('georeferenceable.json')
     @@hIn = aIn['georeferenceableRepresentation'][0]
 
     def test_complete_georeferenceableRepresentation_object

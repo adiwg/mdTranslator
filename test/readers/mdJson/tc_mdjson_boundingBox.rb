@@ -2,29 +2,18 @@
 # reader / mdJson / module_boundingBox
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-12-02 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_boundingBox'
 
-class TestReaderMdJsonBoundingBox < MiniTest::Test
+class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::BoundingBox
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'boundingBox.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    hIn = JSON.parse(jsonFile)
-    @@hIn = hIn['boundingBox'][0]
+    aIn = TestReaderMdJsonParent.getJson('boundingBox.json')
+    @@hIn = aIn['boundingBox'][0]
 
     def test_complete_boundingBox
 

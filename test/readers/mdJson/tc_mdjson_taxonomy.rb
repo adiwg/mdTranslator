@@ -2,59 +2,22 @@
 # reader / mdJson / module_taxonomy
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-22 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_taxonomy'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonTaxonomy < MiniTest::Test
+class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Taxonomy
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'taxonomy.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('taxonomy.json')
     @@hIn = aIn['taxonomy'][0]
 
     def test_complete_taxonomy_object
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -74,6 +37,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_empty_classSystem
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['taxonomicSystem'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -87,6 +51,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_missing_classSystem
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('taxonomicSystem')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -100,6 +65,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_empty_idReference
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['identificationReference'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -113,6 +79,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_missing_idReference
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('identificationReference')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -126,6 +93,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_empty_idProcedure
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['identificationProcedure'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -139,6 +107,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_missing_idProcedure
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('identificationProcedure')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -152,6 +121,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_empty_taxClass
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['taxonomicClassification'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -165,6 +135,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_missing_taxClass
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('taxonomicClassification')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -178,6 +149,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_empty_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['generalScope'] = ''
         hIn['observer'] = []
@@ -201,6 +173,7 @@ class TestReaderMdJsonTaxonomy < MiniTest::Test
 
     def test_taxonomy_missing_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('generalScope')
         hIn.delete('observer')

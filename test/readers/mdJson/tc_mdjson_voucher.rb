@@ -2,59 +2,22 @@
 # reader / mdJson / module_voucher
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-21 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_voucher'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonVoucher < MiniTest::Test
+class TestReaderMdJsonVoucher < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Voucher
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'voucher.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('voucher.json')
     @@hIn = aIn['voucher'][0]
 
     def test_complete_voucher_object
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -68,6 +31,7 @@ class TestReaderMdJsonVoucher < MiniTest::Test
 
     def test_voucher_empty_specimen
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['specimen'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -81,6 +45,7 @@ class TestReaderMdJsonVoucher < MiniTest::Test
 
     def test_voucher_missing_specimen
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('specimen')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -94,6 +59,7 @@ class TestReaderMdJsonVoucher < MiniTest::Test
 
     def test_voucher_empty_repository
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['repository'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -107,6 +73,7 @@ class TestReaderMdJsonVoucher < MiniTest::Test
 
     def test_voucher_missing_repository
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('repository')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))

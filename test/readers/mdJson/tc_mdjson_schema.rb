@@ -2,31 +2,17 @@
 # reader / mdJson / module_schema
 
 # History:
-# Stan Smith 2016-11-02 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-11-02 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_schema'
 
-class TestReaderMdJsonSchema < MiniTest::Test
+class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Schema
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'schema.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('schema.json')
     @@hIn = aIn['schema'][0]
 
     def test_complete_schema_object

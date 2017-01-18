@@ -2,33 +2,19 @@
 # reader / mdJson / module_associatedResource
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-17 refactored for mdJson 2.0
 #   Stan Smith 2015-06-22 refactored setup to after removal of globals
 #   Stan Smith 2014-12-30 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_associatedResource'
 
-class TestReaderMdJsonAssociatedResource < MiniTest::Test
+class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AssociatedResource
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'associatedResource.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('associatedResource.json')
     @@hIn = aIn['associatedResource'][0]
 
     def test_complete_associatedResource

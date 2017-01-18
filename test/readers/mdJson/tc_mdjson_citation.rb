@@ -2,61 +2,23 @@
 # reader / mdJson / module_citation
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-10-13 refactored for mdJson 2.0
-#   Stan Smith 2015-06-22 refactored setup to after removal of globals
+#   Stan Smith 2015-06-22 refactored after removal of globals
 #   Stan Smith 2014-12-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_citation'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
+class TestReaderMdJsonCitation < TestReaderMdJsonParent
 
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonCitation < MiniTest::Test
-
-    # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Citation
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'citation.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('citation.json')
     @@hIn = aIn['citation'][0]
 
     def test_complete_citation_object
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -85,6 +47,7 @@ class TestReaderMdJsonCitation < MiniTest::Test
 
     def test_empty_citation_title
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['title'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -98,6 +61,7 @@ class TestReaderMdJsonCitation < MiniTest::Test
 
     def test_missing_citation_title
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('title')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -111,6 +75,7 @@ class TestReaderMdJsonCitation < MiniTest::Test
 
     def test_empty_citation_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['alternateTitle'] = []
         hIn['date'] = []
@@ -143,6 +108,7 @@ class TestReaderMdJsonCitation < MiniTest::Test
 
     def test_missing_citation_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('alternateTitle')
         hIn.delete('date')

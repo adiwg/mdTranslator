@@ -2,34 +2,20 @@
 # reader / mdJson / module_phone
 
 # History:
-# Stan Smith 2016-10-01 refactored to mdJson 2.0.0
-# Stan Smith 2015-06-22 refactored setup to after removal of globals
-# Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
-# Stan Smith 2014-12-09 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-10-01 refactored to mdJson 2.0.0
+#   Stan Smith 2015-06-22 refactored setup after removal of globals
+#   Stan Smith 2014-12-15 modified to use namespaces added to mdTranslator
+#   Stan Smith 2014-12-09 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_phone'
 
-class TestReaderMdJsonPhone < MiniTest::Test
+class TestReaderMdJsonPhone < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Phone
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'phone.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('phone.json')
     @@hIn = aIn['phone'][0]
 
     def test_complete_phone_object

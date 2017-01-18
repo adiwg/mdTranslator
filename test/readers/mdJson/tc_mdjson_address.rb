@@ -2,31 +2,16 @@
 # reader / mdJson / module_address
 
 # History:
-# Stan Smith 2016-10-03 original script
+#   Stan Smith 2017-01-15 added parent class to run successfully within rake
+#   Stan Smith 2016-10-03 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_address'
 
-class TestReaderMdJsonAddress < MiniTest::Test
+class TestReaderMdJsonAddress < TestReaderMdJsonParent
 
-    # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Address
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'address.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('address.json')
     @@hIn = aIn['address'][0]
 
     def test_complete_address_object
@@ -76,7 +61,7 @@ class TestReaderMdJsonAddress < MiniTest::Test
     def test_missing_address_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['nonElement'] = '0'
+        hIn['nonElement'] = ''
         hIn.delete('deliveryPoint')
         hIn.delete('city')
         hIn.delete('administrativeArea')

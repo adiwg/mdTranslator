@@ -2,31 +2,17 @@
 # reader / mdJson / module_date
 
 # History:
-# Stan Smith 2016-11-12 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-11-12 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_date'
 
-class TestReaderMdJsonDate < MiniTest::Test
+class TestReaderMdJsonDate < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Date
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'date.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('date.json')
     @@hIn = aIn['date'][0]
 
     def test_complete_date_object

@@ -2,59 +2,22 @@
 # reader / mdJson / module_resourceInfo
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-11-01 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_resourceInfo'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonResourceInfo < MiniTest::Test
+class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ResourceInfo
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'resourceInfo.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('resourceInfo.json')
     @@hIn = aIn['resourceInfo'][0]
 
     def test_complete_resourceInfo
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -94,6 +57,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_type
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['resourceType'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -107,6 +71,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_type
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('resourceType')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -120,6 +85,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_citation
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['citation'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -133,6 +99,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_citation
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('citation')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -146,6 +113,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_abstract
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['abstract'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -159,6 +127,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_abstract
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('abstract')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -172,6 +141,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_contact
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['pointOfContact'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -185,6 +155,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_contact
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('pointOfContact')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -198,6 +169,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_locale
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['defaultResourceLocale'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -211,6 +183,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_locale
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('defaultResourceLocale')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -224,6 +197,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_empty_resourceInfo_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['shortAbstract'] = ''
         hIn['purpose'] = ''
@@ -287,6 +261,7 @@ class TestReaderMdJsonResourceInfo < MiniTest::Test
 
     def test_missing_resourceInfo_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('shortAbstract')
         hIn.delete('purpose')

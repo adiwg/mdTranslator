@@ -2,67 +2,22 @@
 # reader / mdJson / module_party
 
 # History:
-# Stan Smith 2016-10-09 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-10-09 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_party'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    # second contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][1][:contactId] = 'individualId1'
-                    intObj[:contacts][1][:isOrganization] = false
-
-                    # third contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][2][:contactId] = 'organizationId0'
-                    intObj[:contacts][2][:isOrganization] = true
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonParty < MiniTest::Test
+class TestReaderMdJsonParty < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Party
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'party.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('party.json')
     @@aIn = aIn['party']
+
     def test_individual_roleParty
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[0]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -77,6 +32,7 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     def test_organization_roleParty
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[1]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -97,6 +53,7 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     def test_bad_roleParty_id
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[2]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -109,6 +66,7 @@ class TestReaderMdJsonParty < MiniTest::Test
 
     def test_bad_organizationMember_id
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[3]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)

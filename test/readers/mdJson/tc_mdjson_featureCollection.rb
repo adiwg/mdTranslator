@@ -2,32 +2,18 @@
 # reader / mdJson / module_featureCollection
 
 # History:
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
 #   Stan Smith 2016-11-10 added computedBbox computation
 #   Stan Smith 2016-10-25 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_featureCollection'
 
-class TestReaderMdJsonFeatureCollection < MiniTest::Test
+class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::FeatureCollection
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'featureCollection.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
+    aIn = TestReaderMdJsonParent.getJson('featureCollection.json')
     @@hIn = aIn['featureCollection'][0]
 
     def test_complete_featureCollection

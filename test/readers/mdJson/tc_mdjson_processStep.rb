@@ -2,61 +2,22 @@
 # reader / mdJson / module_processStep
 
 # History:
-# Stan Smith 2015-08-24 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2015-08-24 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_processStep'
 
-# set contacts to be used by this test
-module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
-                module MdJson
-
-                    # create new internal metadata container for the reader
-                    intMetadataClass = InternalMetadata.new
-                    intObj = intMetadataClass.newBase
-
-                    # first contact
-                    intObj[:contacts] << intMetadataClass.newContact
-                    intObj[:contacts][0][:contactId] = 'individualId0'
-                    intObj[:contacts][0][:isOrganization] = false
-
-                    @contacts = intObj[:contacts]
-
-                end
-            end
-        end
-    end
-end
-
-class TestReaderMdJsonProcessStep < MiniTest::Test
+class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ProcessStep
-    @@responseObj = {
-        readerExecutionMessages: [],
-        readerExecutionPass: true
-    }
-
-    # get json file for tests from examples folder
-    file = File.join(File.dirname(__FILE__), 'testData', 'processStep.json')
-    file = File.open(file, 'r')
-    jsonFile = file.read
-    file.close
-    aIn = JSON.parse(jsonFile)
-
-    # only the first instance in the example array is used for tests
-    # the first example is fully populated
-    # remove responsible party (processor) to prevent search for contact
-    # in contact array which has not been loaded
+    aIn = TestReaderMdJsonParent.getJson('processStep.json')
     @@hIn = aIn['processStep'][0]
 
     def test_complete_processStep_object
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -74,6 +35,7 @@ class TestReaderMdJsonProcessStep < MiniTest::Test
 
     def test_empty_processStep_description
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['description'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -87,6 +49,7 @@ class TestReaderMdJsonProcessStep < MiniTest::Test
 
     def test_missing_processStep_description
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('description')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -100,6 +63,7 @@ class TestReaderMdJsonProcessStep < MiniTest::Test
 
     def test_empty_processStep_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['stepId'] = ''
         hIn['rationale'] = ''
@@ -121,6 +85,7 @@ class TestReaderMdJsonProcessStep < MiniTest::Test
 
     def test_missing_processStep_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('stepId')
         hIn.delete('rationale')

@@ -2,22 +2,17 @@
 # reader / mdJson / module_dateTime
 
 # History:
-# Stan Smith 2016-10-05 refactored for mdJson 2.0
-# Stan Smith 2015-08-23 original script
+#   Stan Smith 2017-01-16 added parent class to run successfully within rake
+#   Stan Smith 2016-10-05 refactored for mdJson 2.0
+#   Stan Smith 2015-08-23 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_dateTime'
 
-class TestReaderMdJsonDateTime < MiniTest::Test
+class TestReaderMdJsonDateTime < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::DateTime
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
 
     # supported date formats to test
     @@hIn = %w[
