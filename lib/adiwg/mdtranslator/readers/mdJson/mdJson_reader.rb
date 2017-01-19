@@ -34,7 +34,7 @@ module ADIWG
 
                     # parse mdJson file
                     begin
-                        hFile = JSON.parse(file)
+                        hMdJson = JSON.parse(file)
                     rescue JSON::JSONError => err
                         hResponseObj[:readerStructureMessages] << 'Parsing mdJson Failed - see following message(s):\n'
                         hResponseObj[:readerStructureMessages] << err.to_s.slice(0,300)
@@ -42,13 +42,7 @@ module ADIWG
                         return {}
                     end
 
-                    # file must contain a mdJson object
-                    unless hFile.has_key?('mdJson')
-                        hResponseObj[:readerStructureMessages] << 'file is missing mdJson object'
-                        hResponseObj[:readerStructurePass] = false
-                        return {}
-                    end
-                    hMdJson = hFile['mdJson']
+                    # file must contain an mdJson object
                     if hMdJson.empty?
                         hResponseObj[:readerStructureMessages] << 'mdJson object is empty'
                         hResponseObj[:readerStructurePass] = false

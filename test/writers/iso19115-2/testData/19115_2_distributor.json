@@ -1,149 +1,147 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "distributor contact",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        }
-      },
-      "resourceDistribution": [
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "distributor contact",
+      "address": [
         {
-          "description": "description",
-          "distributor": [
-            {
-              "contact": {
-                "role": "role",
-                "timePeriod": {
-                  "startDateTime": "2016-10-21"
-                },
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              },
-              "orderProcess": [
-                {
-                  "fees": "1.00USD"
-                },
-                {
-                  "fees": "2.00USD"
-                }
-              ],
-              "transferOptions": [
-                {
-                  "transferSize": 1.9
-                },
-                {
-                  "transferSize": 2.9
-                }
-              ]
-            },
-            {
-              "contact": {
-                "role": "role",
-                "timePeriod": {
-                  "startDateTime": "2016-10-21"
-                },
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              },
-              "orderProcess": [
-                {
-                  "fees": "3.00USD"
-                }
-              ],
-              "transferOptions": [
-                {
-                  "transferSize": 3.9
-                }
-              ]
-            },
-            {
-              "contact": {
-                "role": "role",
-                "timePeriod": {
-                  "startDateTime": "2016-10-21"
-                },
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              }
-            }
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
           ]
-        },
-        {
-          "description": "description"
         }
       ]
     }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      }
+    },
+    "resourceDistribution": [
+      {
+        "description": "description",
+        "distributor": [
+          {
+            "contact": {
+              "role": "role",
+              "timePeriod": {
+                "startDateTime": "2016-10-21"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [
+              {
+                "fees": "1.00USD"
+              },
+              {
+                "fees": "2.00USD"
+              }
+            ],
+            "transferOptions": [
+              {
+                "transferSize": 1.9
+              },
+              {
+                "transferSize": 2.9
+              }
+            ]
+          },
+          {
+            "contact": {
+              "role": "role",
+              "timePeriod": {
+                "startDateTime": "2016-10-21"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [
+              {
+                "fees": "3.00USD"
+              }
+            ],
+            "transferOptions": [
+              {
+                "transferSize": 3.9
+              }
+            ]
+          },
+          {
+            "contact": {
+              "role": "role",
+              "timePeriod": {
+                "startDateTime": "2016-10-21"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "description"
+      }
+    ]
   }
 }

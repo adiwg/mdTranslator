@@ -1,138 +1,142 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
       },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        },
-        "extent": [
-          {
-            "description": "extent 0",
-            "geographicExtent": [
-              {
-                "containsData": false,
-                "geographicElement": [
-                  {
-                    "type": "Point",
-                    "coordinates": [100.0, 1.0]
-                  }
-                ]
-              },
-              {
-                "geographicElement": [
-                  {
-                    "type": "Point",
-                    "coordinates": [200.0, 2.0]
-                  }
-                ]
-              }
-            ],
-            "temporalExtent": [
-              {
-                "type": "instant",
-                "timeInstant": {
-                  "dateTime": "2016-10-24T11:10:15.2-10:00"
-                }
-              },
-              {
-                "type": "period",
-                "timePeriod": {
-                  "startDateTime": "2016-10-24T11:10:15.2-10:00"
-                }
-              }
-            ],
-            "verticalExtent": [
-              {
-                "description": "vertical extent 0",
-                "minValue": 0.9,
-                "maxValue": 0.9,
-                "crsId": {
-                  "referenceSystemType": "referenceSystemType",
-                  "referenceSystem": {
-                    "identifier": "identifier0"
-                  }
-                }
-              },
-              {
-                "minValue": 1.9,
-                "maxValue": 1.9,
-                "crsId": {
-                  "referenceSystemType": "referenceSystemType",
-                  "referenceSystem": {
-                    "identifier": "identifier"
-                  }
-                }
-              }
-            ]
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
           },
-          {
-            "description": "extent 1"
-          }
-        ]
-      }
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      },
+      "extent": [
+        {
+          "description": "extent 0",
+          "geographicExtent": [
+            {
+              "containsData": false,
+              "geographicElement": [
+                {
+                  "type": "Point",
+                  "coordinates": [
+                    100.0,
+                    1.0
+                  ]
+                }
+              ]
+            },
+            {
+              "geographicElement": [
+                {
+                  "type": "Point",
+                  "coordinates": [
+                    200.0,
+                    2.0
+                  ]
+                }
+              ]
+            }
+          ],
+          "temporalExtent": [
+            {
+              "type": "instant",
+              "timeInstant": {
+                "dateTime": "2016-10-24T11:10:15.2-10:00"
+              }
+            },
+            {
+              "type": "period",
+              "timePeriod": {
+                "startDateTime": "2016-10-24T11:10:15.2-10:00"
+              }
+            }
+          ],
+          "verticalExtent": [
+            {
+              "description": "vertical extent 0",
+              "minValue": 0.9,
+              "maxValue": 0.9,
+              "crsId": {
+                "referenceSystemType": "referenceSystemType",
+                "referenceSystem": {
+                  "identifier": "identifier0"
+                }
+              }
+            },
+            {
+              "minValue": 1.9,
+              "maxValue": 1.9,
+              "crsId": {
+                "referenceSystemType": "referenceSystemType",
+                "referenceSystem": {
+                  "identifier": "identifier"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "description": "extent 1"
+        }
+      ]
     }
   }
 }

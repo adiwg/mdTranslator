@@ -1,153 +1,151 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "distributor contact",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        }
-      },
-      "resourceDistribution": [
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "distributor contact",
+      "address": [
         {
-          "description": "description",
-          "distributor": [
-            {
-              "contact": {
-                "role": "role",
-                "timePeriod": {
-                  "startDateTime": "2016-10-21"
-                },
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              },
-              "orderProcess": [],
-              "transferOptions": [
-                {
-                  "unitsOfDistribution": "unitsOfDistribution",
-                  "transferSize": 9.9,
-                  "onlineOption": [
-                    {
-                      "resourceURI": "uri0"
-                    },
-                    {
-                      "resourceURI": "uri1"
-                    }
-                  ],
-                  "offlineOption": [
-                    {
-                      "identifier": {
-                        "identifier": "identifier0"
-                      }
-                    },
-                    {
-                      "identifier": {
-                        "identifier": "identifier1"
-                      }
-                    }
-                  ],
-                  "transferFrequency": {
-                    "months": 9
-                  },
-                  "distributionFormat": [
-                    {
-                      "formatSpecification": {
-                        "title": "title0"
-                      }
-                    },
-                    {
-                      "formatSpecification": {
-                        "title": "title1"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "unitsOfDistribution": "",
-                  "transferSize": 9,
-                  "onlineOption": [],
-                  "offlineOption": [],
-                  "transferFrequency": {},
-                  "distributionFormat": [
-                    {
-                      "formatSpecification": {
-                        "title": "title2"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "transferSize": 0
-                }
-              ]
-            }
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
           ]
         }
       ]
     }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      }
+    },
+    "resourceDistribution": [
+      {
+        "description": "description",
+        "distributor": [
+          {
+            "contact": {
+              "role": "role",
+              "timePeriod": {
+                "startDateTime": "2016-10-21"
+              },
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [],
+            "transferOptions": [
+              {
+                "unitsOfDistribution": "unitsOfDistribution",
+                "transferSize": 9.9,
+                "onlineOption": [
+                  {
+                    "resourceURI": "uri0"
+                  },
+                  {
+                    "resourceURI": "uri1"
+                  }
+                ],
+                "offlineOption": [
+                  {
+                    "identifier": {
+                      "identifier": "identifier0"
+                    }
+                  },
+                  {
+                    "identifier": {
+                      "identifier": "identifier1"
+                    }
+                  }
+                ],
+                "transferFrequency": {
+                  "months": 9
+                },
+                "distributionFormat": [
+                  {
+                    "formatSpecification": {
+                      "title": "title0"
+                    }
+                  },
+                  {
+                    "formatSpecification": {
+                      "title": "title1"
+                    }
+                  }
+                ]
+              },
+              {
+                "unitsOfDistribution": "",
+                "transferSize": 9,
+                "onlineOption": [],
+                "offlineOption": [],
+                "transferFrequency": {},
+                "distributionFormat": [
+                  {
+                    "formatSpecification": {
+                      "title": "title2"
+                    }
+                  }
+                ]
+              },
+              {
+                "transferSize": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,140 +1,138 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
       },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      }
+    },
+    "resourceLineage": [
+      {
+        "statement": "statement0",
+        "resourceScope": {},
+        "lineageCitation": [],
+        "source": [
           {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
+            "description": "description0",
+            "sourceCitation": {
+              "title": "title0"
             },
-            "party": [
+            "sourceMetadata": [
               {
-                "contactId": "CID001"
+                "title": "title00"
+              },
+              {
+                "title": "title01"
+              }
+            ],
+            "scaleDenominator": 9,
+            "sourceReferenceSystem": {
+              "referenceSystemType": "referenceSystemType0",
+              "referenceSystem": {
+                "identifier": "identifier0"
+              }
+            },
+            "sourceStep": [
+              {
+                "description": "description00"
+              },
+              {
+                "description": "description01"
               }
             ]
           }
         ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        }
+        "processStep": []
       },
-      "resourceLineage": [
-        {
-          "statement": "statement0",
-          "resourceScope": {},
-          "lineageCitation": [],
-          "source": [
-            {
-              "description": "description0",
-              "sourceCitation": {
-                "title": "title0"
-              },
-              "sourceMetadata": [
-                {
-                  "title": "title00"
-                },
-                {
-                  "title": "title01"
-                }
-              ],
-              "scaleDenominator": 9,
-              "sourceReferenceSystem": {
-                "referenceSystemType": "referenceSystemType0",
-                "referenceSystem": {
-                  "identifier": "identifier0"
-                }
-              },
-              "sourceStep": [
-                {
-                  "description": "description00"
-                },
-                {
-                  "description": "description01"
-                }
-              ]
-            }
-          ],
-          "processStep": []
-        },
-        {
-          "statement": "statement1",
-          "resourceScope": {},
-          "lineageCitation": [],
-          "source": [
-            {
-              "description": "description1",
-              "sourceCitation": {},
-              "sourceMetadata": [],
-              "scaleDenominator": 9,
-              "sourceReferenceSystem": {},
-              "sourceStep": []
-            }
-          ],
-          "processStep": []
-        },
-        {
-          "statement": "statement2",
-          "resourceScope": {},
-          "lineageCitation": [],
-          "source": [
-            {
-              "description": "description2"
-            }
-          ],
-          "processStep": []
-        }
-      ]
-    }
+      {
+        "statement": "statement1",
+        "resourceScope": {},
+        "lineageCitation": [],
+        "source": [
+          {
+            "description": "description1",
+            "sourceCitation": {},
+            "sourceMetadata": [],
+            "scaleDenominator": 9,
+            "sourceReferenceSystem": {},
+            "sourceStep": []
+          }
+        ],
+        "processStep": []
+      },
+      {
+        "statement": "statement2",
+        "resourceScope": {},
+        "lineageCitation": [],
+        "source": [
+          {
+            "description": "description2"
+          }
+        ],
+        "processStep": []
+      }
+    ]
   }
 }

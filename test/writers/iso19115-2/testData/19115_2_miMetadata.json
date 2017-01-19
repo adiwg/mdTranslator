@@ -1,249 +1,247 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "parentMetadata": {
+        "title": "title"
+      },
+      "defaultMetadataLocale": {
+        "language": "default",
+        "country": "country",
+        "characterSet": "characterSet"
+      },
+      "otherMetadataLocale": [
+        {
+          "language": "other0",
+          "country": "country",
+          "characterSet": "characterSet"
+        },
+        {
+          "language": "other1",
+          "country": "country",
+          "characterSet": "characterSet"
+        }
+      ],
+      "resourceScope": [
+        {
+          "scopeCode": "scopeCode0"
+        },
+        {
+          "scopeCode": "scopeCode1"
+        }
+      ],
+      "metadataContact": [
+        {
+          "role": "role0",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        },
+        {
+          "role": "role1",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "metadataCreationDate": "2016-09-28",
+      "otherMetadataDates": [
+        {
+          "date": "2016-10-31",
+          "dateType": "dateType"
+        },
+        {
+          "date": "2016-10-31",
+          "dateType": "dateType"
+        }
+      ],
+      "metadataLinkage": [
+        {
+          "resourceURI": "uri"
+        },
+        {
+          "resourceURI": "uri"
+        }
+      ],
+      "metadataMaintenance": {
+        "frequency": "frequency"
+      },
+      "alternateMetadataReference": [
+        {
+          "title": "title"
+        },
+        {
+          "title": "title"
+        }
+      ],
+      "metadataStatus": "metadataStatus"
     },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      },
+      "spatialReferenceSystem": [
+        {
+          "referenceSystemType": "referenceSystemType",
+          "referenceSystem": {
+            "identifier": "identifier"
+          }
+        }
+      ],
+      "spatialRepresentation": [
+        {
+          "type": "grid",
+          "gridRepresentation": {
+            "numberOfDimensions": 9,
+            "cellGeometry": "cellGeometry",
+            "transformParamsAvailability": true
+          }
+        },
+        {
+          "type": "vector",
+          "vectorRepresentation": {
+            "topologyLevel": "topologyLevel",
+            "vectorObject": [
+              {
+                "objectType": "objectType",
+                "objectCount": 9
+              }
             ]
+          }
+        }
+      ],
+      "coverageDescription": [
+        {
+          "coverageName": "coverageName0",
+          "coverageDescription": "coverageDescription0"
+        },
+        {
+          "coverageName": "coverageName1",
+          "coverageDescription": "coverageDescription1"
+        }
+      ]
+    },
+    "resourceLineage": [
+      {
+        "statement": "statement0"
+      },
+      {
+        "statement": "statement1"
+      }
+    ],
+    "resourceDistribution": [
+      {
+        "description": "description0"
+      },
+      {
+        "description": "description1"
+      }
+    ],
+    "associatedResource": [
+      {
+        "resourceType": "resourceType",
+        "associationType": "associationType",
+        "resourceCitation": {
+          "title": "title"
+        }
+      },
+      {
+        "resourceType": "resourceType",
+        "associationType": "associationType",
+        "resourceCitation": {
+          "title": "title"
+        }
+      }
+    ],
+    "additionalDocumentation": [
+      {
+        "resourceType": "resourceType",
+        "citation": [
+          {
+            "title": "title"
+          }
+        ]
+      },
+      {
+        "resourceType": "resourceType",
+        "citation": [
+          {
+            "title": "title"
           }
         ]
       }
     ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "parentMetadata": {
-          "title": "title"
-        },
-        "defaultMetadataLocale": {
-          "language": "default",
-          "country": "country",
-          "characterSet": "characterSet"
-        },
-        "otherMetadataLocale": [
+    "funding": [
+      {
+        "allocation": [
           {
-            "language": "other0",
-            "country": "country",
-            "characterSet": "characterSet"
-          },
-          {
-            "language": "other1",
-            "country": "country",
-            "characterSet": "characterSet"
-          }
-        ],
-        "resourceScope": [
-          {
-            "scopeCode": "scopeCode0"
-          },
-          {
-            "scopeCode": "scopeCode1"
-          }
-        ],
-        "metadataContact": [
-          {
-            "role": "role0",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          },
-          {
-            "role": "role1",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "metadataCreationDate": "2016-09-28",
-        "otherMetadataDates": [
-          {
-            "date": "2016-10-31",
-            "dateType": "dateType"
-          },
-          {
-            "date": "2016-10-31",
-            "dateType": "dateType"
-          }
-        ],
-        "metadataLinkage": [
-          {
-            "resourceURI": "uri"
-          },
-          {
-            "resourceURI": "uri"
-          }
-        ],
-        "metadataMaintenance": {
-          "frequency": "frequency"
-        },
-        "alternateMetadataReference": [
-          {
-            "title": "title"
-          },
-          {
-            "title": "title"
-          }
-        ],
-        "metadataStatus": "metadataStatus"
-      },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        },
-        "spatialReferenceSystem": [
-          {
-            "referenceSystemType": "referenceSystemType",
-            "referenceSystem": {
-              "identifier": "identifier"
-            }
-          }
-        ],
-        "spatialRepresentation": [
-          {
-            "type": "grid",
-            "gridRepresentation": {
-              "numberOfDimensions": 9,
-              "cellGeometry": "cellGeometry",
-              "transformParamsAvailability": true
-            }
-          },
-          {
-            "type": "vector",
-            "vectorRepresentation": {
-              "topologyLevel": "topologyLevel",
-              "vectorObject": [
-                {
-                  "objectType": "objectType",
-                  "objectCount": 9
-                }
-              ]
-            }
-          }
-        ],
-        "coverageDescription": [
-          {
-            "coverageName": "coverageName0",
-            "coverageDescription": "coverageDescription0"
-          },
-          {
-            "coverageName": "coverageName1",
-            "coverageDescription": "coverageDescription1"
+            "amount": 9.9,
+            "currency": "currency"
           }
         ]
       },
-      "resourceLineage": [
-        {
-          "statement": "statement0"
-        },
-        {
-          "statement": "statement1"
+      {
+        "timePeriod": {
+          "endDateTime": "2016-12-31"
         }
-      ],
-      "resourceDistribution": [
-        {
-          "description": "description0"
-        },
-        {
-          "description": "description1"
-        }
-      ],
-      "associatedResource": [
-        {
-          "resourceType": "resourceType",
-          "associationType": "associationType",
-          "resourceCitation": {
-            "title": "title"
-          }
-        },
-        {
-          "resourceType": "resourceType",
-          "associationType": "associationType",
-          "resourceCitation": {
-            "title": "title"
-          }
-        }
-      ],
-      "additionalDocumentation": [
-        {
-          "resourceType": "resourceType",
-          "citation": [
-            {
-              "title": "title"
-            }
-          ]
-        },
-        {
-          "resourceType": "resourceType",
-          "citation": [
-            {
-              "title": "title"
-            }
-          ]
-        }
-      ],
-      "funding": [
-        {
-          "allocation": [
-            {
-              "amount": 9.9,
-              "currency": "currency"
-            }
-          ]
-        },
-        {
-          "timePeriod": {
-            "endDateTime": "2016-12-31"
-          }
-        }
-      ]
-    }
+      }
+    ]
   }
 }

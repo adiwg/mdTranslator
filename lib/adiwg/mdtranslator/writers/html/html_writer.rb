@@ -14,7 +14,10 @@ module ADIWG
         module Writers
             module Html
 
-                def self.startWriter(intObj, responseObj, paramsObj)
+                def self.startWriter(intObj, responseObj)
+
+                    # temp fix - have not reworked html writer yet
+                    return {}
 
                     # set the format of the output file based on the writer specified
                     responseObj[:writerFormat] = 'html'

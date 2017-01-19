@@ -1,92 +1,90 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "contact"
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "resourceScope": [
-          {
-            "scopeCode": "project",
-            "scopeDescription": [
-              {
-                "type": "dataset",
-                "description": "description"
-              },
-              {
-                "type": "attribute",
-                "description": "description"
-              }
-            ],
-            "timePeriod": [
-              {
-                "startDateTime": "2016-10-14"
-              }
-            ]
-          },
-          {
-            "scopeCode": "repository",
-            "scopeDescription": [
-              {
-                "type": "feature",
-                "description": "description"
-              },
-              {
-                "type": "other",
-                "description": "description"
-              }
-            ],
-            "timePeriod": [
-              {
-                "startDateTime": "2016-11-21"
-              }
-            ]
-          }
-        ],
-        "metadataContact": [
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-          "resourceType": "project",
-          "citation": {
-            "title": "testing class_address"
-          },
-          "abstract": "abstract",
-          "pointOfContact": [
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "resourceScope": [
+        {
+          "scopeCode": "project",
+          "scopeDescription": [
             {
-              "role": "developer",
-              "timePeriod": {
-                "startDateTime": "2013-01-14"
-              },
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
+              "type": "dataset",
+              "description": "description"
+            },
+            {
+              "type": "attribute",
+              "description": "description"
             }
           ],
-          "defaultResourceLocale": {
-            "language": "eng",
-            "country": "USA",
-            "characterSet": "UTF-8"
-          }
+          "timePeriod": [
+            {
+              "startDateTime": "2016-10-14"
+            }
+          ]
+        },
+        {
+          "scopeCode": "repository",
+          "scopeDescription": [
+            {
+              "type": "feature",
+              "description": "description"
+            },
+            {
+              "type": "other",
+              "description": "description"
+            }
+          ],
+          "timePeriod": [
+            {
+              "startDateTime": "2016-11-21"
+            }
+          ]
         }
+      ],
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "timePeriod": {
+            "startDateTime": "2013-01-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
     }
   }
 }

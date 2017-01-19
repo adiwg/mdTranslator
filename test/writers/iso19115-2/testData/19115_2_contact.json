@@ -1,223 +1,233 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "contact - individual",
-        "positionName": "positionName",
-        "memberOfOrganization": ["CID002"],
-        "logoGraphic": [
-          {
-            "fileName": "fileName"
-          }
-        ],
-        "phone": [
-          {
-            "phoneName": "single service",
-            "phoneNumber": "111-111-1111",
-            "service": ["voice"]
-          }
-        ],
-        "address": [
-          {
-            "electronicMailAddress": [
-              "email0@example.com"
-            ]
-          }
-        ],
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example.com"
-          }
-        ],
-        "hoursOfService": [
-          "hoursOfService"
-        ],
-        "contactInstructions": "contactInstructions",
-        "contactType": "contactType"
-      },
-      {
-        "contactId": "CID002",
-        "isOrganization": true,
-        "name": "contact - organization",
-        "memberOfOrganization": ["CID002"],
-        "logoGraphic": [
-          {
-            "fileName": "fileName"
-          }
-        ],
-        "phone": [
-          {
-            "phoneName": "single service",
-            "phoneNumber": "111-111-1111",
-            "service": ["voice"]
-          }
-        ],
-        "address": [
-          {
-            "electronicMailAddress": [
-              "email0@example.com"
-            ]
-          }
-        ],
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example.com"
-          }
-        ],
-        "hoursOfService": [
-          "hoursOfService"
-        ],
-        "contactInstructions": "contactInstructions",
-        "contactType": "contactType"
-      },
-      {
-        "contactId": "CID003",
-        "isOrganization": false,
-        "name": "contact - multiple array elements",
-        "memberOfOrganization": [],
-        "logoGraphic": [
-          {
-            "fileName": "fileName0"
-          },
-          {
-            "fileName": "fileName1"
-          }
-        ],
-        "phone": [
-          {
-            "phoneName": "single service 1",
-            "phoneNumber": "111-111-1111",
-            "service": ["voice"]
-          },
-          {
-            "phoneName": "single service 2",
-            "phoneNumber": "111-111-1111",
-            "service": ["voice"]
-          }
-        ],
-        "address": [
-          {
-            "electronicMailAddress": [
-              "email0@example.com"
-            ]
-          },
-          {
-            "electronicMailAddress": [
-              "email1@example.com"
-            ]
-          }
-        ],
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example0.com"
-          },
-          {
-            "resourceURI": "http://URI.example1.com"
-          }
-        ],
-        "hoursOfService": [
-          "hoursOfService0",
-          "hoursOfService1"
-        ],
-        "contactInstructions": "contactInstructions",
-        "contactType": "contactType"
-      },
-      {
-        "contactId": "CID004",
-        "isOrganization": false,
-        "name": "contact - empty elements",
-        "positionName": "",
-        "memberOfOrganization": [],
-        "logoGraphic": [],
-        "phone": [],
-        "address": [],
-        "onlineResource": [],
-        "hoursOfService": [],
-        "contactInstructions": "",
-        "contactType": ""
-      },
-      {
-        "contactId": "CID005",
-        "isOrganization": false,
-        "name": "contact - missing elements"
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataContact": [
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID002"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID003"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID004"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID005"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-          "resourceType": "project",
-          "citation": {
-            "title": "testing class_address"
-          },
-          "abstract": "abstract",
-          "pointOfContact": [
-            {
-              "role": "developer",
-              "timePeriod": {
-                "startDateTime": "2013-01-14"
-              },
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          ],
-          "defaultResourceLocale": {
-            "language": "eng",
-            "country": "USA",
-            "characterSet": "UTF-8"
-          }
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - individual",
+      "positionName": "positionName",
+      "memberOfOrganization": [
+        "CID002"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
         }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "electronicMailAddress": [
+            "email0@example.com"
+          ]
+        }
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example.com"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": true,
+      "name": "contact - organization",
+      "memberOfOrganization": [
+        "CID002"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "electronicMailAddress": [
+            "email0@example.com"
+          ]
+        }
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example.com"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "contact - multiple array elements",
+      "memberOfOrganization": [],
+      "logoGraphic": [
+        {
+          "fileName": "fileName0"
+        },
+        {
+          "fileName": "fileName1"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service 1",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        },
+        {
+          "phoneName": "single service 2",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "electronicMailAddress": [
+            "email0@example.com"
+          ]
+        },
+        {
+          "electronicMailAddress": [
+            "email1@example.com"
+          ]
+        }
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example0.com"
+        },
+        {
+          "resourceURI": "http://URI.example1.com"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService0",
+        "hoursOfService1"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "contact - empty elements",
+      "positionName": "",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "contact - missing elements"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID002"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID003"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID004"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID005"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "timePeriod": {
+            "startDateTime": "2013-01-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
     }
   }
 }

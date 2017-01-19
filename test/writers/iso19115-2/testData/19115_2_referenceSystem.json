@@ -1,96 +1,94 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
       },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      },
+      "spatialReferenceSystem": [
+        {
+          "referenceSystemType": "referenceSystemType0",
+          "referenceSystem": {
+            "identifier": "identifier0"
           }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
         },
-        "spatialReferenceSystem": [
-          {
-            "referenceSystemType": "referenceSystemType0",
-            "referenceSystem": {
-              "identifier": "identifier0"
-            }
-          },
-          {
-            "referenceSystemType": "",
-            "referenceSystem": {
-              "identifier": "identifier1"
-            }
-          },
-          {
-            "referenceSystem": {
-              "identifier": "identifier2"
-            }
-          },
-          {
-            "referenceSystemType": "referenceSystemType3"
+        {
+          "referenceSystemType": "",
+          "referenceSystem": {
+            "identifier": "identifier1"
           }
-        ]
-      }
+        },
+        {
+          "referenceSystem": {
+            "identifier": "identifier2"
+          }
+        },
+        {
+          "referenceSystemType": "referenceSystemType3"
+        }
+      ]
     }
   }
 }

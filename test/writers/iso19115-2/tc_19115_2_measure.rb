@@ -43,7 +43,7 @@ class TestWriter191152Measure < MiniTest::Test
     def test_19115_2_measure_angle
 
         hJson = JSON.parse(@@mdJson)
-        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
         hResolution['type'] = 'angle'
         hResolution['unitOfMeasure'] = 'angle'
         jsonIn = hJson.to_json
@@ -64,7 +64,7 @@ class TestWriter191152Measure < MiniTest::Test
     def test_19115_2_measure_length
 
         hJson = JSON.parse(@@mdJson)
-        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
         hResolution['type'] = 'length'
         hResolution['unitOfMeasure'] = 'length'
         jsonIn = hJson.to_json
@@ -85,7 +85,7 @@ class TestWriter191152Measure < MiniTest::Test
     def test_19115_2_measure_measure
 
         hJson = JSON.parse(@@mdJson)
-        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
         hResolution['type'] = 'measure'
         hResolution['unitOfMeasure'] = 'measure'
         jsonIn = hJson.to_json
@@ -106,7 +106,7 @@ class TestWriter191152Measure < MiniTest::Test
     def test_19115_2_measure_scale
 
         hJson = JSON.parse(@@mdJson)
-        hResolution = hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
+        hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
         hResolution['type'] = 'scale'
         hResolution['unitOfMeasure'] = 'scale'
         jsonIn = hJson.to_json
@@ -127,7 +127,7 @@ class TestWriter191152Measure < MiniTest::Test
     def test_19115_2_measure_empty
 
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution'] = {}
+        hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution'] = {}
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(

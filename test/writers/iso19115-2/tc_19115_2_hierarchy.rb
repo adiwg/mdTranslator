@@ -72,7 +72,7 @@ class TestWriter191152Hierarchy < MiniTest::Test
 
         # remove element metadataIdentifier
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'] = []
+        hJson['metadata']['metadataInfo']['resourceScope'] = []
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -97,7 +97,7 @@ class TestWriter191152Hierarchy < MiniTest::Test
 
         # remove element metadataIdentifier
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo'].delete('resourceScope')
+        hJson['metadata']['metadataInfo'].delete('resourceScope')
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -124,10 +124,10 @@ class TestWriter191152Hierarchy < MiniTest::Test
         # empty scopeDescription
         # delete timePeriod
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0]['scopeDescription'] = []
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1]['scopeDescription'] = []
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1].delete('timePeriod')
+        hJson['metadata']['metadataInfo']['resourceScope'][0]['scopeDescription'] = []
+        hJson['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
+        hJson['metadata']['metadataInfo']['resourceScope'][1]['scopeDescription'] = []
+        hJson['metadata']['metadataInfo']['resourceScope'][1].delete('timePeriod')
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -157,10 +157,10 @@ class TestWriter191152Hierarchy < MiniTest::Test
         # delete scopeDescription
         # delete timePeriod
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('scopeDescription')
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1].delete('scopeDescription')
-        hJson['mdJson']['metadata']['metadataInfo']['resourceScope'][1].delete('timePeriod')
+        hJson['metadata']['metadataInfo']['resourceScope'][0].delete('scopeDescription')
+        hJson['metadata']['metadataInfo']['resourceScope'][0].delete('timePeriod')
+        hJson['metadata']['metadataInfo']['resourceScope'][1].delete('scopeDescription')
+        hJson['metadata']['metadataInfo']['resourceScope'][1].delete('timePeriod')
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(

@@ -51,8 +51,8 @@ class TestWriter191152Locale < MiniTest::Test
         # empty language
         # delete otherMetadataLocale
         hJson = JSON.parse(@@mdJson)
-        hJson['mdJson']['metadata']['metadataInfo']['defaultMetadataLocale'] = {}
-        hJson['mdJson']['metadata']['metadataInfo']['otherMetadataLocale'] = []
+        hJson['metadata']['metadataInfo']['defaultMetadataLocale'] = {}
+        hJson['metadata']['metadataInfo']['otherMetadataLocale'] = []
         jsonIn = hJson.to_json
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true

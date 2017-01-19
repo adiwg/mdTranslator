@@ -1,116 +1,114 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        }
-      },
-      "resourceLineage": [
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
         {
-          "statement": "statement0",
-          "resourceScope": {
-            "scopeCode": "scopeCode0"
-          },
-          "lineageCitation": [
-            {
-              "title": "title00"
-            },
-            {
-              "title": "title01"
-            }
+          "deliveryPoint": [
+            "address line 1"
           ],
-          "source": [
-            {
-              "description": "source00"
-            },
-            {
-              "description": "source01"
-            }
-          ],
-          "processStep": [
-            {
-              "description": "step00"
-            },
-            {
-              "description": "step01"
-            }
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
           ]
-        },
-        {
-          "statement": "statement1",
-          "resourceScope": {},
-          "lineageCitation": [],
-          "source": [],
-          "processStep": []
-        },
-        {
-          "statement": "statement2"
         }
       ]
     }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      }
+    },
+    "resourceLineage": [
+      {
+        "statement": "statement0",
+        "resourceScope": {
+          "scopeCode": "scopeCode0"
+        },
+        "lineageCitation": [
+          {
+            "title": "title00"
+          },
+          {
+            "title": "title01"
+          }
+        ],
+        "source": [
+          {
+            "description": "source00"
+          },
+          {
+            "description": "source01"
+          }
+        ],
+        "processStep": [
+          {
+            "description": "step00"
+          },
+          {
+            "description": "step01"
+          }
+        ]
+      },
+      {
+        "statement": "statement1",
+        "resourceScope": {},
+        "lineageCitation": [],
+        "source": [],
+        "processStep": []
+      },
+      {
+        "statement": "statement2"
+      }
+    ]
   }
 }

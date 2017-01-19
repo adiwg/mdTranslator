@@ -43,7 +43,7 @@ class TestWriter191152Citation < MiniTest::Test
     def test_19115_2_citation_no_dash_1
 
         hJson = JSON.parse(@@mdJson)
-        hCitation = hJson['mdJson']['metadata']['resourceInfo']['citation']
+        hCitation = hJson['metadata']['resourceInfo']['citation']
         hCitation.delete('onlineResource')
         hCitation.delete('graphic')
         jsonIn = hJson.to_json
@@ -64,7 +64,7 @@ class TestWriter191152Citation < MiniTest::Test
     def test_19115_2_citation_empty_elements
 
         hJson = JSON.parse(@@mdJson)
-        hCitation = hJson['mdJson']['metadata']['resourceInfo']['citation']
+        hCitation = hJson['metadata']['resourceInfo']['citation']
         hCitation.delete('alternateTitle')
         hCitation.delete('date')
         hCitation.delete('onlineResource')

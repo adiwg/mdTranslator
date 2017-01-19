@@ -12,8 +12,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
     # set variables for test
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::MdJson
-    aIn = TestReaderMdJsonParent.getJson('mdJson.json')
-    @@hIn = aIn['mdJson']
+    @@hIn = TestReaderMdJsonParent.getJson('mdJson.json')
 
     def test_complete_mdJson_object
 

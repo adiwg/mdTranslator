@@ -33,41 +33,7 @@ class TestMdJsonReader < MiniTest::Test
 
     def test_mdJson_reader_empty_mdJson
 
-        # read in an mdJson 2.x test file with schema object
-        file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
-        file = File.open(file, 'r')
-        jsonMinimal = file.read
-        file.close
-
-        # empty mdJson object
-        hJson = JSON.parse(jsonMinimal)
-        hJson['mdJson'] = {}
-        jsonIn = hJson.to_json
-
-        metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
-
-        refute_empty metadata
-        assert_equal 'mdJson', metadata[:readerRequested]
-        refute metadata[:readerStructurePass]
-        refute_empty metadata[:readerStructureMessages]
-
-    end
-
-    def test_mdJson_reader_missing_mdJson
-
-        # read in an mdJson 2.x test file with schema object
-        file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
-        file = File.open(file, 'r')
-        jsonMinimal = file.read
-        file.close
-
-        # remove mdJson object
-        hJson = JSON.parse(jsonMinimal)
-        hJson['nothing'] = {}
-        hJson.delete('mdJson')
-        jsonIn = hJson.to_json
-
-        metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
+        metadata = ADIWG::Mdtranslator.translate(file: '{}')
 
         refute_empty metadata
         assert_equal 'mdJson', metadata[:readerRequested]
@@ -86,8 +52,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # delete mdJson schema object
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hMdJson.delete('schema')
+        hJson.delete('schema')
         jsonIn = hJson.to_json
 
         metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
@@ -109,8 +74,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # delete mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
+        hSchema = hJson['schema']
         hSchema.delete('name')
         jsonIn = hJson.to_json
 
@@ -133,8 +97,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # empty mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
+        hSchema = hJson['schema']
         hSchema['name'] = ''
         jsonIn = hJson.to_json
 
@@ -157,9 +120,8 @@ class TestMdJsonReader < MiniTest::Test
 
         # empty mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
-        hSchema['name'] = 'xxx'
+        hSchema = hJson['schema']
+        hSchema['name'] = 'badName'
         jsonIn = hJson.to_json
 
         metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
@@ -181,8 +143,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # delete mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
+        hSchema = hJson['schema']
         hSchema.delete('version')
         jsonIn = hJson.to_json
 
@@ -205,8 +166,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # empty mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
+        hSchema = hJson['schema']
         hSchema['version'] = '1.0.3'
         jsonIn = hJson.to_json
 
@@ -229,8 +189,7 @@ class TestMdJsonReader < MiniTest::Test
 
         # empty mdJson schema name
         hJson = JSON.parse(jsonMinimal)
-        hMdJson = hJson['mdJson']
-        hSchema = hMdJson['schema']
+        hSchema = hJson['schema']
         hSchema['version'] = '2.100.0'
         jsonIn = hJson.to_json
 

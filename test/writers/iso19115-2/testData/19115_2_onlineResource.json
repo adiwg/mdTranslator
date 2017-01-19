@@ -1,132 +1,130 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "onlineResource complete",
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example1.com",
-            "protocol": "protocol",
-            "name": "name",
-            "description": "description",
-            "function": "function"
-          }
-        ]
-      },
-      {
-        "contactId": "CID002",
-        "isOrganization": false,
-        "name": "onlineResource - empty elements",
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example2.com",
-            "protocol": "",
-            "name": "",
-            "description": "",
-            "function": ""
-          }
-        ]
-      },
-      {
-        "contactId": "CID003",
-        "isOrganization": false,
-        "name": "onlineResource - missing elements",
-        "onlineResource": [
-          {
-            "resourceURI": "http://URI.example3.com"
-          }
-        ]
-      },
-      {
-        "contactId": "CID004",
-        "isOrganization": false,
-        "name": "onlineResource - empty array",
-        "onlineResource": [],
-        "contactInstructions": "test empty onlineResource"
-      },
-      {
-        "contactId": "CID005",
-        "isOrganization": false,
-        "name": "onlineResource - missing key",
-        "contactInstructions": "test missing onlineResource:"
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataContact": [
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID002"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID003"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID004"
-              }
-            ]
-          },
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID005"
-              }
-            ]
-          }
-        ]
-      },
-      "resourceInfo": {
-          "resourceType": "project",
-          "citation": {
-            "title": "testing class_address"
-          },
-          "abstract": "abstract",
-          "pointOfContact": [
-            {
-              "role": "developer",
-              "timePeriod": {
-                "startDateTime": "2013-01-14"
-              },
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          ],
-          "defaultResourceLocale": {
-            "language": "eng",
-            "country": "USA",
-            "characterSet": "UTF-8"
-          }
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "onlineResource complete",
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example1.com",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
         }
+      ]
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": false,
+      "name": "onlineResource - empty elements",
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example2.com",
+          "protocol": "",
+          "name": "",
+          "description": "",
+          "function": ""
+        }
+      ]
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "onlineResource - missing elements",
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example3.com"
+        }
+      ]
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "onlineResource - empty array",
+      "onlineResource": [],
+      "contactInstructions": "test empty onlineResource"
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "onlineResource - missing key",
+      "contactInstructions": "test missing onlineResource:"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID002"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID003"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID004"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID005"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "timePeriod": {
+            "startDateTime": "2013-01-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
     }
   }
 }

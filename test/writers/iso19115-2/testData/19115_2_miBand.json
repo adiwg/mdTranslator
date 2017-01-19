@@ -1,175 +1,173 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
       },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
-        },
-        "coverageDescription": [
-          {
-            "coverageName": "coverageName0",
-            "coverageDescription": "coverageDescription0",
-            "processingLevelCode": {
-              "identifier": "identifier0"
-            },
-            "attributeGroup": [
-              {
-                "attributeContentType": [
-                  "attributeContentType0"
-                ],
-                "attribute": [
-                  {
-                    "sequenceIdentifier": "sequenceIdentifier0",
-                    "sequenceIdentifierType": "sequenceIdentifierType0",
-                    "attributeDescription": "attributeDescription0",
-                    "attributeIdentifier": [
-                      {
-                        "identifier": "identifier0"
-                      }
-                    ],
-                    "minValue": 9.9,
-                    "maxValue": 9.9,
-                    "units": "units",
-                    "scaleFactor": 999,
-                    "offset": 999,
-                    "meanValue": 9.9,
-                    "numberOfValues": 999,
-                    "standardDeviation": 9.9,
-                    "bitsPerValue": 999,
-                    "boundMin": 9.9,
-                    "boundMax": 9.9,
-                    "boundUnits": "boundUnits",
-                    "peakResponse": 9.9,
-                    "toneGradations": 999,
-                    "bandBoundaryDefinition": "bandBoundaryDefinition",
-                    "nominalSpatialResolution": 9.9,
-                    "transferFunctionType": "transferFunctionType",
-                    "transmittedPolarization": "transmittedPolarization",
-                    "detectedPolarization": "detectedPolarization"
-                  },
-                  {
-                    "sequenceIdentifier": "sequenceIdentifier0",
-                    "sequenceIdentifierType": "sequenceIdentifierType0",
-                    "attributeDescription": "attributeDescription0",
-                    "attributeIdentifier": [
-                      {
-                        "identifier": "identifier0"
-                      }
-                    ],
-                    "minValue": 9.9,
-                    "maxValue": 9.9,
-                    "units": "units",
-                    "scaleFactor": 999,
-                    "offset": 999,
-                    "meanValue": 9.9,
-                    "numberOfValues": 999,
-                    "standardDeviation": 9.9,
-                    "bitsPerValue": 999,
-                    "boundMin": 9.9,
-                    "boundMax": 9.9,
-                    "boundUnits": "boundUnits",
-                    "peakResponse": 9.9,
-                    "toneGradations": 999,
-                    "bandBoundaryDefinition": "",
-                    "nominalSpatialResolution": 9.9,
-                    "transferFunctionType": "",
-                    "transmittedPolarization": "",
-                    "detectedPolarization": ""
-                  },
-                  {
-                    "sequenceIdentifier": "sequenceIdentifier0",
-                    "sequenceIdentifierType": "sequenceIdentifierType0",
-                    "attributeDescription": "attributeDescription0",
-                    "attributeIdentifier": [
-                      {
-                        "identifier": "identifier0"
-                      }
-                    ],
-                    "minValue": 9.9,
-                    "maxValue": 9.9,
-                    "units": "units",
-                    "scaleFactor": 999,
-                    "offset": 999,
-                    "meanValue": 9.9,
-                    "numberOfValues": 999,
-                    "standardDeviation": 9.9,
-                    "bitsPerValue": 999,
-                    "boundMin": 9.9,
-                    "boundMax": 9.9,
-                    "boundUnits": "boundUnits",
-                    "peakResponse": 9.9,
-                    "toneGradations": 999,
-                    "nominalSpatialResolution": 9.9
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      },
+      "coverageDescription": [
+        {
+          "coverageName": "coverageName0",
+          "coverageDescription": "coverageDescription0",
+          "processingLevelCode": {
+            "identifier": "identifier0"
+          },
+          "attributeGroup": [
+            {
+              "attributeContentType": [
+                "attributeContentType0"
+              ],
+              "attribute": [
+                {
+                  "sequenceIdentifier": "sequenceIdentifier0",
+                  "sequenceIdentifierType": "sequenceIdentifierType0",
+                  "attributeDescription": "attributeDescription0",
+                  "attributeIdentifier": [
+                    {
+                      "identifier": "identifier0"
+                    }
+                  ],
+                  "minValue": 9.9,
+                  "maxValue": 9.9,
+                  "units": "units",
+                  "scaleFactor": 999,
+                  "offset": 999,
+                  "meanValue": 9.9,
+                  "numberOfValues": 999,
+                  "standardDeviation": 9.9,
+                  "bitsPerValue": 999,
+                  "boundMin": 9.9,
+                  "boundMax": 9.9,
+                  "boundUnits": "boundUnits",
+                  "peakResponse": 9.9,
+                  "toneGradations": 999,
+                  "bandBoundaryDefinition": "bandBoundaryDefinition",
+                  "nominalSpatialResolution": 9.9,
+                  "transferFunctionType": "transferFunctionType",
+                  "transmittedPolarization": "transmittedPolarization",
+                  "detectedPolarization": "detectedPolarization"
+                },
+                {
+                  "sequenceIdentifier": "sequenceIdentifier0",
+                  "sequenceIdentifierType": "sequenceIdentifierType0",
+                  "attributeDescription": "attributeDescription0",
+                  "attributeIdentifier": [
+                    {
+                      "identifier": "identifier0"
+                    }
+                  ],
+                  "minValue": 9.9,
+                  "maxValue": 9.9,
+                  "units": "units",
+                  "scaleFactor": 999,
+                  "offset": 999,
+                  "meanValue": 9.9,
+                  "numberOfValues": 999,
+                  "standardDeviation": 9.9,
+                  "bitsPerValue": 999,
+                  "boundMin": 9.9,
+                  "boundMax": 9.9,
+                  "boundUnits": "boundUnits",
+                  "peakResponse": 9.9,
+                  "toneGradations": 999,
+                  "bandBoundaryDefinition": "",
+                  "nominalSpatialResolution": 9.9,
+                  "transferFunctionType": "",
+                  "transmittedPolarization": "",
+                  "detectedPolarization": ""
+                },
+                {
+                  "sequenceIdentifier": "sequenceIdentifier0",
+                  "sequenceIdentifierType": "sequenceIdentifierType0",
+                  "attributeDescription": "attributeDescription0",
+                  "attributeIdentifier": [
+                    {
+                      "identifier": "identifier0"
+                    }
+                  ],
+                  "minValue": 9.9,
+                  "maxValue": 9.9,
+                  "units": "units",
+                  "scaleFactor": 999,
+                  "offset": 999,
+                  "meanValue": 9.9,
+                  "numberOfValues": 999,
+                  "standardDeviation": 9.9,
+                  "bitsPerValue": 999,
+                  "boundMin": 9.9,
+                  "boundMax": 9.9,
+                  "boundUnits": "boundUnits",
+                  "peakResponse": 9.9,
+                  "toneGradations": 999,
+                  "nominalSpatialResolution": 9.9
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   }
 }

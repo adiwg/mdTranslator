@@ -1,126 +1,124 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "address - all keys with singe array elements",
-        "address": [
-          {
-            "deliveryPoint": [
-              "address line 1"
-            ],
-            "city": "city",
-            "administrativeArea": "state",
-            "postalCode": "zip",
-            "country": "country",
-            "electronicMailAddress": [
-              "email01@example.com"
-            ]
-          }
-        ]
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "metadataIdentifier": {
-          "identifier": "identifier"
-        },
-        "metadataContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-31"
-            },
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
       },
-      "resourceInfo": {
-        "resourceType": "resourceType",
-        "citation": {
-          "title": "title"
-        },
-        "abstract": "abstract",
-        "pointOfContact": [
-          {
-            "role": "role",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
+      "metadataContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-31"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "timePeriod": {
+            "startDateTime": "2016-10-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      },
+      "spatialRepresentation": [
+        {
+          "type": "georeferenceable",
+          "georeferenceableRepresentation": {
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry",
+              "transformParamsAvailability": true
             },
-            "party": [
+            "controlPointAvailability": true,
+            "orientationParameterAvailability": true,
+            "orientationParameterDescription": "orientationParameterDescription0",
+            "georeferencedParameter": "georeferencedParameter0",
+            "parameterCitation": [
               {
-                "contactId": "CID001"
+                "title": "title0"
+              },
+              {
+                "title": "title1"
               }
             ]
           }
-        ],
-        "defaultResourceLocale": {
-          "language": "LanguageCode",
-          "country": "CountryCode",
-          "characterSet": "MD_CharacterSetCode"
         },
-        "spatialRepresentation": [
-          {
-            "type": "georeferenceable",
-            "georeferenceableRepresentation": {
-              "gridRepresentation": {
-                "numberOfDimensions": 9,
-                "cellGeometry": "cellGeometry",
-                "transformParamsAvailability": true
-              },
-              "controlPointAvailability": true,
-              "orientationParameterAvailability": true,
-              "orientationParameterDescription": "orientationParameterDescription0",
-              "georeferencedParameter": "georeferencedParameter0",
-              "parameterCitation": [
-                {
-                  "title": "title0"
-                },
-                {
-                  "title": "title1"
-                }
-              ]
-            }
-          },
-          {
-            "type": "georeferenceable",
-            "georeferenceableRepresentation": {
-              "gridRepresentation": {
-                "numberOfDimensions": 9,
-                "cellGeometry": "cellGeometry",
-                "transformParamsAvailability": true
-              },
-              "controlPointAvailability": true,
-              "orientationParameterAvailability": true,
-              "orientationParameterDescription": "",
-              "georeferencedParameter": "georeferencedParameter1",
-              "parameterCitation": []
-            }
-          },
-          {
-            "type": "georeferenceable",
-            "georeferenceableRepresentation": {
-              "gridRepresentation": {
-                "numberOfDimensions": 9,
-                "cellGeometry": "cellGeometry",
-                "transformParamsAvailability": true
-              },
-              "controlPointAvailability": true,
-              "orientationParameterAvailability": true,
-              "georeferencedParameter": "georeferencedParameter2"
-            }
+        {
+          "type": "georeferenceable",
+          "georeferenceableRepresentation": {
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry",
+              "transformParamsAvailability": true
+            },
+            "controlPointAvailability": true,
+            "orientationParameterAvailability": true,
+            "orientationParameterDescription": "",
+            "georeferencedParameter": "georeferencedParameter1",
+            "parameterCitation": []
           }
-        ]
-      }
+        },
+        {
+          "type": "georeferenceable",
+          "georeferenceableRepresentation": {
+            "gridRepresentation": {
+              "numberOfDimensions": 9,
+              "cellGeometry": "cellGeometry",
+              "transformParamsAvailability": true
+            },
+            "controlPointAvailability": true,
+            "orientationParameterAvailability": true,
+            "georeferencedParameter": "georeferencedParameter2"
+          }
+        }
+      ]
     }
   }
 }

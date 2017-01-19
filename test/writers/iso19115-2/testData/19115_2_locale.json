@@ -1,70 +1,68 @@
 {
-  "mdJson": {
-    "schema": {
-      "name": "mdJson",
-      "version": "2.0.0"
-    },
-    "contact": [
-      {
-        "contactId": "CID001",
-        "isOrganization": false,
-        "name": "contact"
-      }
-    ],
-    "metadata": {
-      "metadataInfo": {
-        "defaultMetadataLocale": {
-          "language": "eng",
-          "country": "USA",
-          "characterSet": "UTF-8"
-        },
-        "otherMetadataLocale": [
-          {
-            "language": "spa",
-            "country": "",
-            "characterSet": "UTF-16"
-          },
-          {
-            "language": "tai",
-            "characterSet": "TIS-620"
-          }
-        ],
-        "metadataContact": [
-          {
-            "role": "custodian",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "defaultMetadataLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
-      "resourceInfo": {
-          "resourceType": "project",
-          "citation": {
-            "title": "testing class_address"
-          },
-          "abstract": "abstract",
-          "pointOfContact": [
-            {
-              "role": "developer",
-              "timePeriod": {
-                "startDateTime": "2013-01-14"
-              },
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          ],
-          "defaultResourceLocale": {
-            "language": "eng",
-            "country": "USA",
-            "characterSet": "UTF-8"
-          }
+      "otherMetadataLocale": [
+        {
+          "language": "spa",
+          "country": "",
+          "characterSet": "UTF-16"
+        },
+        {
+          "language": "tai",
+          "characterSet": "TIS-620"
         }
+      ],
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "timePeriod": {
+            "startDateTime": "2013-01-14"
+          },
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
     }
   }
 }
