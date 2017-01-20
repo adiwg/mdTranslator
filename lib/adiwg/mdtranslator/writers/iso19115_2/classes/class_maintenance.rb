@@ -95,7 +95,7 @@ module ADIWG
                             aParties = hMaintenance[:contacts]
                             aParties.each do |hRParty|
                                 role = hRParty[:roleName]
-                                aParties = hRParty[:party]
+                                aParties = hRParty[:parties]
                                 aParties.each do |hParty|
                                     @xml.tag!('gmd:contact') do
                                         partyClass.writeXML(role, hParty)

@@ -46,9 +46,19 @@
       "pointOfContact": [
         {
           "role": "developer",
-          "timePeriod": {
-            "startDateTime": "2013-01-14"
-          },
+          "roleExtent": [
+            {
+              "description": "description",
+              "temporalExtent": [
+                {
+                  "type": "period",
+                  "timePeriod": {
+                    "startDateTime": "2016-10-14"
+                  }
+                }
+              ]
+            }
+          ],
           "party": [
             {
               "contactId": "CID001"

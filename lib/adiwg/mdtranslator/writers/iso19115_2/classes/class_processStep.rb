@@ -84,7 +84,7 @@ module ADIWG
                             aParties = hStep[:processors]
                             aParties.each do |hRParty|
                                 role = hRParty[:roleName]
-                                aParties = hRParty[:party]
+                                aParties = hRParty[:parties]
                                 aParties.each do |hParty|
                                     @xml.tag!('gmd:processor') do
                                         partyClass.writeXML(role, hParty)

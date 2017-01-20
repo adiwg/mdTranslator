@@ -211,11 +211,11 @@ class InternalMetadata
         }
     end
 
-    def newRespParty
+    def newResponsibility
         intObj = {
             roleName: nil,
-            timePeriod: {},
-            party: []
+            roleExtents: [],
+            parties: []
         }
     end
 

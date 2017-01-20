@@ -32,9 +32,19 @@
       "metadataContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-31"
-          },
+          "roleExtent": [
+            {
+              "description": "description",
+              "temporalExtent": [
+                {
+                  "type": "period",
+                  "timePeriod": {
+                    "startDateTime": "2016-10-14"
+                  }
+                }
+              ]
+            }
+          ],
           "party": [
             {
               "contactId": "CID001"
@@ -52,9 +62,11 @@
       "pointOfContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-14"
-          },
+          "roleExtent": [
+            {
+              "description": "description"
+            }
+          ],
           "party": [
             {
               "contactId": "CID001"
@@ -103,9 +115,19 @@
           "userContactInfo": [
             {
               "role": "role0",
-              "timePeriod": {
-                "startDateTime": "2016-10-14"
-              },
+              "roleExtent": [
+                {
+                  "description": "description",
+                  "temporalExtent": [
+                    {
+                      "type": "period",
+                      "timePeriod": {
+                        "startDateTime": "2016-10-14"
+                      }
+                    }
+                  ]
+                }
+              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -114,9 +136,11 @@
             },
             {
               "role": "role1",
-              "roleExtent": {
-                "description": "description1"
-              },
+              "roleExtent": [
+                {
+                  "description": "description"
+                }
+              ],
               "party": [
                 {
                   "contactId": "CID001"

@@ -32,9 +32,6 @@
       "metadataContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-31"
-          },
           "party": [
             {
               "contactId": "CID001"
@@ -69,9 +66,6 @@
         "contact": [
           {
             "role": "role00",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
             "party": [
               {
                 "contactId": "CID001"
@@ -80,9 +74,6 @@
           },
           {
             "role": "role01",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
             "party": [
               {
                 "contactId": "CID001"
@@ -101,9 +92,6 @@
       "pointOfContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-14"
-          },
           "party": [
             {
               "contactId": "CID001"
@@ -136,9 +124,6 @@
           "contact": [
             {
               "role": "role1",
-              "timePeriod": {
-                "startDateTime": "2016-10-14"
-              },
               "party": [
                 {
                   "contactId": "CID001"

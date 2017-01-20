@@ -110,9 +110,6 @@
       "pointOfContact": [
         {
           "role": "developer",
-          "timePeriod": {
-            "startDateTime": "2013-01-14"
-          },
           "party": [
             {
               "contactId": "CID001"

@@ -47,7 +47,7 @@ module ADIWG
                                 @xml.tag!('gmd:reposit', {'gco:nilReason' => 'missing'})
                             else
                                 role = hRParty[:roleName]
-                                hParty = hRParty[:party][0]
+                                hParty = hRParty[:parties][0]
                                 @xml.tag!('gmd:reposit') do
                                     partyClass.writeXML(role, hParty)
                                 end

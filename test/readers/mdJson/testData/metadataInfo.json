@@ -35,9 +35,19 @@
          "metadataContact": [
             {
                "role": "role",
-               "timePeriod": {
-                  "startDateTime": "2016-10-31"
-               },
+               "roleExtent": [
+                  {
+                     "description": "description",
+                     "temporalExtent": [
+                        {
+                           "type": "period",
+                           "timePeriod": {
+                              "startDateTime": "2016-10-14"
+                           }
+                        }
+                     ]
+                  }
+               ],
                "party": [
                   {
                      "contactId": "individualId0"
@@ -46,9 +56,19 @@
             },
             {
                "role": "role",
-               "timePeriod": {
-                  "startDateTime": "2016-10-31"
-               },
+               "roleExtent": [
+                  {
+                     "description": "description",
+                     "temporalExtent": [
+                        {
+                           "type": "period",
+                           "timePeriod": {
+                              "startDateTime": "2016-10-14"
+                           }
+                        }
+                     ]
+                  }
+               ],
                "party": [
                   {
                      "contactId": "individualId0"

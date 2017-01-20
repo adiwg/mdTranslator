@@ -24,8 +24,8 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'role', metadata[:roleName]
-        refute_empty metadata[:timePeriod]
-        assert_equal 1, metadata[:party].length
+        refute_empty metadata[:roleExtents]
+        assert_equal 1, metadata[:parties].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

@@ -32,9 +32,6 @@
       "metadataContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-31"
-          },
           "party": [
             {
               "contactId": "CID001"
@@ -65,9 +62,6 @@
         "responsibleParty": [
           {
             "role": "custodian",
-            "timePeriod": {
-              "startDateTime": "2016-10-14"
-            },
             "party": [
               {
                 "contactId": "CID001"
@@ -76,9 +70,6 @@
           },
           {
             "role": "resourceProvider",
-            "timePeriod": {
-              "startDateTime": "2016-10-14T14:21:50"
-            },
             "party": [
               {
                 "contactId": "CID001"
@@ -134,9 +125,6 @@
       "pointOfContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-14"
-          },
           "party": [
             {
               "contactId": "CID001"

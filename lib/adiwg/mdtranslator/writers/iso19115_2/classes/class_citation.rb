@@ -120,7 +120,7 @@ module ADIWG
                             aRParties = hCitation[:responsibleParties]
                             aRParties.each do |hRParty|
                                 role = hRParty[:roleName]
-                                aParties = hRParty[:party]
+                                aParties = hRParty[:parties]
                                 aParties.each do |hParty|
                                     @xml.tag!('gmd:citedResponsibleParty') do
                                         rPartyClass.writeXML(role, hParty)

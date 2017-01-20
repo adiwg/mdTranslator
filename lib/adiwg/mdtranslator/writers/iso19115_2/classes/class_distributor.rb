@@ -40,7 +40,7 @@ module ADIWG
 
                             # distributor - contact (required) {CI_ResponsibleParty}
                             role = 'distributor'
-                            hParty = hDistributor[:contact][:party][0]
+                            hParty = hDistributor[:contact][:parties][0]
                             unless hParty.nil?
                                 @xml.tag!('gmd:distributorContact') do
                                     partyClass.writeXML(role, hParty)

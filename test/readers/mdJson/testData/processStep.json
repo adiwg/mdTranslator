@@ -10,9 +10,11 @@
          "processor": [
             {
                "role": "role",
-               "roleExtent": {
-                  "description": "description"
-               },
+               "roleExtent": [
+                  {
+                     "description": "description"
+                  }
+               ],
                "party": [
                   {
                      "contactId": "individualId0"
@@ -21,9 +23,18 @@
             },
             {
                "role": "role",
-               "roleExtent": {
-                  "description": "description"
-               },
+               "roleExtent": [
+                  {
+                     "temporalExtent": [
+                        {
+                           "type": "period",
+                           "timePeriod": {
+                              "startDateTime": "2016-10-14"
+                           }
+                        }
+                     ]
+                  }
+               ],
                "party": [
                   {
                      "contactId": "individualId0"

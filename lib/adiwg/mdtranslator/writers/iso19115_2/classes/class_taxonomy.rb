@@ -78,7 +78,7 @@ module ADIWG
                             aObservers = hSystem[:observers]
                             aObservers.each do |hObserver|
                                 role = hObserver[:roleName]
-                                aParties = hObserver[:party]
+                                aParties = hObserver[:parties]
                                 aParties.each do |hParty|
                                     @xml.tag!('gmd:obs') do
                                         partyClass.writeXML(role, hParty)

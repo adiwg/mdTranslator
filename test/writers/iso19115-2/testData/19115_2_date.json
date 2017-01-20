@@ -32,9 +32,6 @@
       "metadataContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-31"
-          },
           "party": [
             {
               "contactId": "CID001"
@@ -106,9 +103,6 @@
       "pointOfContact": [
         {
           "role": "role",
-          "timePeriod": {
-            "startDateTime": "2016-10-14"
-          },
           "party": [
             {
               "contactId": "CID001"
