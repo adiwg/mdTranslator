@@ -18,7 +18,7 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hItem)
@@ -43,7 +43,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -54,7 +54,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 

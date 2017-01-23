@@ -6,6 +6,7 @@ Rake::TestTask.new do |t|
 	t.test_files = FileList[
 		'test/readers/mdJson/tc*.rb',
 		'test/writers/iso19115-2/tc*.rb',
+		'test/writers/iso19110/tc*.rb',
 		'test/translator/tc*.rb'
 	]
 	t.verbose = true

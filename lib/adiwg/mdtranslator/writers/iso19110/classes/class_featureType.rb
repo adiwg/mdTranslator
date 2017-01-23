@@ -21,18 +21,18 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hEntity)
 
                         # classes used
-                        fConClass = FC_Constraint.new(@xml, @responseObj)
-                        fAttClass = FC_FeatureAttribute.new(@xml, @responseObj)
+                        fConClass = FC_Constraint.new(@xml, @hResponseObj)
+                        fAttClass = FC_FeatureAttribute.new(@xml, @hResponseObj)
 
                         # create and identity for the entity
-                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                        entityID = 'entity' + @responseObj[:writerMissingIdCount]
+                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                        entityID = 'entity' + @hResponseObj[:writerMissingIdCount]
                         @xml.tag!('gfc:FC_FeatureType', {'id' => entityID}) do
 
                             # feature type - type name - required
@@ -52,7 +52,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 
@@ -63,7 +63,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -95,7 +95,7 @@ module ADIWG
                                 @xml.tag!('gfc:constrainedBy') do
                                     fConClass.writeXML('pk', aPKs)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:constrainedBy')
                             end
 
@@ -128,7 +128,7 @@ module ADIWG
                                         fAttClass.writeXML(hAttribute)
                                     end
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:carrierOfCharacteristics')
                             end
 

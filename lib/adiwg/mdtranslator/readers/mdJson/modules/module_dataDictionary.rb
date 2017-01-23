@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-10-20 refactored for mdJson 2.0
+#   Stan Smith 2017-01-20 refactored for mdJson/mdTranslator 2.0
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
@@ -11,6 +11,8 @@
 require_relative 'module_citation'
 require_relative 'module_domain'
 require_relative 'module_entity'
+require_relative 'module_locale'
+require_relative 'module_responsibleParty'
 
 module ADIWG
     module Mdtranslator
@@ -30,87 +32,119 @@ module ADIWG
 
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
-                        intDataD = intMetadataClass.newDataDictionary
+                        intDictionary = intMetadataClass.newDataDictionary
 
-                        # dictionary - resource type (required)
-                        if hDictionary.has_key?('resourceType')
-                            if hDictionary['resourceType'] != ''
-                                intDataD[:resourceType] = hDictionary['resourceType']
-                            end
-                        end
-                        if intDataD[:resourceType].nil?
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary resource type is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
-
-                        # dictionary - citation {citation} (required)
+                        # dictionary - citation (required by mdJson) {citation}
                         if hDictionary.has_key?('citation')
-                            unless  hDictionary['citation'].empty?
-                                hCitation = Citation.unpack( hDictionary['citation'], responseObj)
-                                unless hCitation.nil?
-                                    intDataD[:citation] = hCitation
+                            hCitation = hDictionary['citation']
+                            unless hCitation.empty?
+                                hReturn = Citation.unpack(hCitation, responseObj)
+                                unless hReturn.nil?
+                                    intDictionary[:citation] = hReturn
                                 end
                             end
                         end
-                        if intDataD[:citation].empty?
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary citation is missing'
+                        if intDictionary[:citation].empty?
+                            responseObj[:readerExecutionMessages] << 'Data Dictionary citation is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # dictionary info - description (required)
-                        if hDictionary.has_key?('description')
-                            if hDictionary['description'] != ''
-                                intDataD[:description] = hDictionary['description']
+                        # dictionary - subject [] (required)
+                        if hDictionary.has_key?('subject')
+                            aSubjects = hDictionary['subject']
+                            aSubjects.each do |item|
+                                if item != ''
+                                    intDictionary[:subjects] << item
+                                end
                             end
                         end
-                        if intDataD[:description].nil?
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary description is missing'
+                        if intDictionary[:subjects].empty?
+                            responseObj[:readerExecutionMessages] << 'Data Dictionary subject is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # dictionary - language
-                        if hDictionary.has_key?('language')
-                            if hDictionary['language'] != ''
-                                intDataD[:language] = hDictionary['language']
+                        # dictionary - recommended use []
+                        if hDictionary.has_key?('recommendedUse')
+                            aUses = hDictionary['recommendedUse']
+                            aUses.each do |item|
+                                if item != ''
+                                    intDictionary[:recommendedUses] << item
+                                end
+                            end
+                        end
+
+                        # dictionary - locale [] {locale}
+                        if hDictionary.has_key?('locale')
+                            aLocales = hDictionary['locale']
+                            aLocales.each do |hItem|
+                                hReturn = Locale.unpack(hItem, responseObj)
+                                unless hReturn.nil?
+                                    intDictionary[:locales] << hReturn
+                                end
+                            end
+                        end
+
+                        # dictionary - responsible party (required) {responsibleParty}
+                        if hDictionary.has_key?('responsibleParty')
+                            hRParty = hDictionary['responsibleParty']
+                            unless hRParty.empty?
+                                hReturn = ResponsibleParty.unpack(hRParty, responseObj)
+                                unless hReturn.nil?
+                                    intDictionary[:responsibleParty] = hReturn
+                                end
+                            end
+                        end
+                        if intDictionary[:responsibleParty].empty?
+                            responseObj[:readerExecutionMessages] << 'Data Dictionary responsible party is empty'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
+
+                        # dictionary - dictionary format
+                        if hDictionary.has_key?('dictionaryFormat')
+                            s = hDictionary['dictionaryFormat']
+                            unless s == ''
+                                intDictionary[:dictionaryFormat] = s
                             end
                         end
 
                         # dictionary - dictionary included with resource
                         if hDictionary.has_key?('dictionaryIncludedWithResource')
                             if hDictionary['dictionaryIncludedWithResource'] === true
-                                intDataD[:includedWithDataset] = hDictionary['dictionaryIncludedWithResource']
+                                intDictionary[:includedWithDataset] = hDictionary['dictionaryIncludedWithResource']
                             end
                         end
 
-                        # dictionary - domains []
+                        # dictionary - domains [] {domain}
                         if hDictionary.has_key?('domain')
                             aDomains = hDictionary['domain']
-                            aDomains.each do |item|
-                                hDomain = Domain.unpack(item, responseObj)
-                                unless hDomain.nil?
-                                    intDataD[:domains] << hDomain
+                            aDomains.each do |hItem|
+                                hReturn = Domain.unpack(hItem, responseObj)
+                                unless hReturn.nil?
+                                    intDictionary[:domains] << hReturn
                                 end
                             end
                         end
 
-                        # dictionary - entity []
+                        # dictionary - entity [] {entity}
                         if hDictionary.has_key?('entity')
                             aEntities = hDictionary['entity']
-                            aEntities.each do |hEntity|
-                                unless hEntity.empty?
-                                    intDataD[:entities] << Entity.unpack(hEntity, responseObj)
+                            aEntities.each do |hItem|
+                                hReturn = Entity.unpack(hItem, responseObj)
+                                unless hReturn.nil?
+                                    intDictionary[:entities] << hReturn
                                 end
                             end
                         end
 
-                        return intDataD
+                        return intDictionary
 
                     end
 
                 end
+
             end
         end
     end

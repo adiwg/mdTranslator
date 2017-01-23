@@ -1,7 +1,7 @@
 # Writer - internal data structure to ISO 19115-2:2009
 
 # History:
-#   Stan Smith 2016-11-14 refactor for mdJson 2.0
+#   Stan Smith 2016-11-14 refactor for mdJson/mdTranslator 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
@@ -22,7 +22,7 @@ module ADIWG
 
                 def self.startWriter(intObj, hResponseObj)
 
-                    # make internal and response objects available to the instance
+                    # make contact available to the instance
                     @contacts = intObj[:contacts]
 
                     # set the format of the output file based on the writer specified
@@ -52,7 +52,6 @@ module ADIWG
                 end
 
             end
-
         end
     end
 end

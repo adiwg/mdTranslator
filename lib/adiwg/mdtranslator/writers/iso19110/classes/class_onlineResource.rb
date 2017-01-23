@@ -22,13 +22,13 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hOlResource)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag! 'gmd:CI_OnlineResource' do
 
@@ -48,7 +48,7 @@ module ADIWG
                                 @xml.tag!('gmd:protocol') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:protocol')
                             end
 
@@ -58,7 +58,7 @@ module ADIWG
                                 @xml.tag!('gmd:name') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:name')
                             end
 
@@ -68,7 +68,7 @@ module ADIWG
                                 @xml.tag!('gmd:description') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:description')
                             end
 
@@ -78,7 +78,7 @@ module ADIWG
                                 @xml.tag!('gmd:function') do
                                     codelistClass.writeXML('iso_onlineFunction',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:function')
                             end
 

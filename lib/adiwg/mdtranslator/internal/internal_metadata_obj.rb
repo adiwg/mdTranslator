@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2017-01-20 refactored newDataDictionary
 #   Stan Smith 2016-11-10 added computedBbox to newGeographicExtent, newGeometryCollection
 #   Stan Smith 2016-11-10 added computedBbox to newGeometryFeature, newFeatureCollection
 #   Stan Smith 2016-11-02 added newSchema
@@ -708,9 +709,11 @@ class InternalMetadata
     def newDataDictionary
         intObj = {
             citation: {},
-            description: nil,
-            resourceType: nil,
-            language: nil,
+            subjects: [],
+            recommendedUses: [],
+            locales: [],
+            responsibleParty: {},
+            dictionaryFormat: nil,
             includedWithDataset: false,
             domains: [],
             entities: []

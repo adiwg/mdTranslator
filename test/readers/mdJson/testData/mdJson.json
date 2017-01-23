@@ -94,18 +94,40 @@
   },
   "dataDictionary": [
     {
-      "resourceType": "resourceType",
       "citation": {
-        "title": "title"
+        "title": "title0"
       },
-      "description": "description"
+      "subject": [
+        "subject"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "individualId0"
+          }
+        ]
+      },
+      "dictionaryFormat": "format",
+      "dictionaryIncludedWithResource": true,
+      "domain": [],
+      "entity": []
     },
     {
-      "resourceType": "resourceType",
       "citation": {
-        "title": "title"
+        "title": "title1"
       },
-      "description": "description"
+      "subject": [
+        "subject"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "individualId0"
+          }
+        ]
+      }
     }
   ]
 }

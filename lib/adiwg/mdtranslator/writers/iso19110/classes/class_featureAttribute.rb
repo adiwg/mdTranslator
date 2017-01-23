@@ -22,15 +22,15 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hAttribute)
 
                         # classes used
-                        multiClass = Multiplicity.new(@xml, @responseObj)
-                        listClass = FC_ListedValue.new(@xml, @responseObj)
-                        uomClass = UnitsOfMeasure.new(@xml, @responseObj)
+                        multiClass = Multiplicity.new(@xml, @hResponseObj)
+                        listClass = FC_ListedValue.new(@xml, @hResponseObj)
+                        uomClass = UnitsOfMeasure.new(@xml, @hResponseObj)
 
                         @xml.tag!('gfc:FC_FeatureAttribute') do
 
@@ -51,7 +51,7 @@ module ADIWG
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 
@@ -71,7 +71,7 @@ module ADIWG
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
@@ -93,7 +93,7 @@ module ADIWG
                                         end
                                     end
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:valueType')
                             end
 
@@ -113,7 +113,7 @@ module ADIWG
                                     end
 
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            elsif @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:listedValue')
                             end
 

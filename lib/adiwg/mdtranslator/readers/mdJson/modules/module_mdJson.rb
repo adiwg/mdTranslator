@@ -79,11 +79,11 @@ module ADIWG
                             return nil
                         end
 
-                        # mdJson - data dictionary {dataDictionary}
+                        # mdJson - data dictionary [] {dataDictionary}
                         if hMdJson.has_key?('dataDictionary')
                             aItems = hMdJson['dataDictionary']
-                            aItems.each do |item|
-                                hReturn = DataDictionary.unpack(item, responseObj)
+                            aItems.each do |hItem|
+                                hReturn = DataDictionary.unpack(hItem, responseObj)
                                 unless hReturn.nil?
                                     intObj[:dataDictionaries] << hReturn
                                 end

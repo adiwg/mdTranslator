@@ -17,14 +17,21 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     def test_complete_dictionary_object
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:citation]
-        assert_equal 'description', metadata[:description]
-        assert_equal 'resourceType', metadata[:resourceType]
-        assert_equal 'language', metadata[:language]
+        assert_equal 2, metadata[:subjects].length
+        assert_equal 'subject0', metadata[:subjects][0]
+        assert_equal 'subject1', metadata[:subjects][1]
+        assert_equal 2, metadata[:recommendedUses].length
+        assert_equal 'use0', metadata[:recommendedUses][0]
+        assert_equal 'use1', metadata[:recommendedUses][1]
+        assert_equal 2, metadata[:locales].length
+        refute_empty metadata[:responsibleParty]
+        assert_equal 'format', metadata[:dictionaryFormat]
         assert metadata[:includedWithDataset]
         assert_equal 2, metadata[:domains].length
         assert_equal 2, metadata[:entities].length
@@ -35,6 +42,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     def test_dictionary_empty_citation
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['citation'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -48,6 +56,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     def test_dictionary_missing_citation
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('citation')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -59,10 +68,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     end
 
-    def test_dictionary_empty_resourceType
+    def test_dictionary_empty_subject
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceType'] = ''
+        hIn['subject'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -72,10 +82,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     end
 
-    def test_dictionary_missing_resourceType
+    def test_dictionary_missing_subject
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('resourceType')
+        hIn.delete('subject')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -85,10 +96,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     end
 
-    def test_dictionary_empty_description
+    def test_dictionary_empty_responsibleParty
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['description'] = ''
+        hIn['responsibleParty'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -98,10 +110,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     end
 
-    def test_dictionary_missing_description
+    def test_dictionary_missing_responsibleParty
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('description')
+        hIn.delete('responsibleParty')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -113,8 +126,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     def test_dictionary_empty_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['language'] = ''
+        hIn['recommendedUse'] = []
+        hIn['locale'] = []
+        hIn['dictionaryFormat'] = ''
         hIn['dictionaryIncludedWithResource'] = ''
         hIn['domain'] = []
         hIn['entity'] = []
@@ -122,9 +138,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:citation]
-        assert_equal 'description', metadata[:description]
-        assert_equal 'resourceType', metadata[:resourceType]
-        assert_nil metadata[:language]
+        refute_empty metadata[:subjects]
+        assert_empty metadata[:recommendedUses]
+        assert_empty metadata[:locales]
+        refute_empty metadata[:responsibleParty]
+        assert_nil metadata[:dictionaryFormat]
         refute metadata[:includedWithDataset]
         assert_empty metadata[:domains]
         assert_empty metadata[:entities]
@@ -135,8 +153,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
     def test_dictionary_missing_elements
 
+        TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('language')
+        hIn.delete('recommendedUse')
+        hIn.delete('locale')
+        hIn.delete('dictionaryFormat')
         hIn.delete('dictionaryIncludedWithResource')
         hIn.delete('domain')
         hIn.delete('entity')
@@ -144,9 +165,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:citation]
-        assert_equal 'description', metadata[:description]
-        assert_equal 'resourceType', metadata[:resourceType]
-        assert_nil metadata[:language]
+        refute_empty metadata[:subjects]
+        assert_empty metadata[:recommendedUses]
+        assert_empty metadata[:locales]
+        refute_empty metadata[:responsibleParty]
+        assert_nil metadata[:dictionaryFormat]
         refute metadata[:includedWithDataset]
         assert_empty metadata[:domains]
         assert_empty metadata[:entities]

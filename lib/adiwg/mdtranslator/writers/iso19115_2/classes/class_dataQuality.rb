@@ -24,14 +24,14 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hLineage)
 
                         # classes used
-                        scopeClass =  DQ_Scope.new(@xml, @responseObj)
-                        lineClass =  LI_Lineage.new(@xml, @responseObj)
+                        scopeClass =  DQ_Scope.new(@xml, @hResponseObj)
+                        lineClass =  LI_Lineage.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:DQ_DataQuality') do
 

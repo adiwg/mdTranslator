@@ -17,15 +17,15 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hScope)
 
                         # classes used
-                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
-                        periodClass =  TimePeriod.new(@xml, @responseObj)
-                        descriptionClass =  MD_ScopeDescription.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @hResponseObj)
+                        periodClass =  TimePeriod.new(@xml, @hResponseObj)
+                        descriptionClass =  MD_ScopeDescription.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:DQ_Scope') do
 
@@ -57,7 +57,7 @@ module ADIWG
                                     end
                                 end
                             end
-                            if aPeriods.empty? && @responseObj[:writerShowTags]
+                            if aPeriods.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:extent')
                             end
 
@@ -68,7 +68,7 @@ module ADIWG
                                     descriptionClass.writeXML(hDescription)
                                 end
                             end
-                            if aDescription.empty? && @responseObj[:writerShowTags]
+                            if aDescription.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:levelDescription')
                             end
 
