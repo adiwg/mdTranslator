@@ -7,7 +7,7 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "distributor contact",
+      "name": "dictionary contact",
       "address": [
         {
           "deliveryPoint": [
@@ -125,26 +125,24 @@
       "domain": [
         {
           "domainId": "domainId0",
-          "commonName": "commonName",
           "codeName": "codeName",
           "description": "description",
           "domainItem": [
             {
-              "name": "name0",
-              "value": "value0",
-              "definition": "definition0"
+              "name": "name",
+              "value": "value",
+              "definition": "definition"
             }
           ]
         },
         {
           "domainId": "domainId1",
-          "commonName": "commonName",
           "codeName": "codeName",
           "description": "description",
           "domainItem": [
             {
-              "name": "name0",
-              "value": "value0",
+              "name": "name",
+              "value": "value",
               "definition": "definition0"
             }
           ]
@@ -153,23 +151,81 @@
       "entity": [
         {
           "entityId": "entityId0",
-          "commonName": "commonName",
           "codeName": "codeName",
-          "definition": "definition",
-          "primaryKeyAttributeCodeName": [
-            "primaryKeyAttributeCodeName0"
-          ]
+          "definition": "definition"
         },
         {
           "entityId": "entityId1",
-          "commonName": "commonName",
           "codeName": "codeName",
-          "definition": "definition",
-          "primaryKeyAttributeCodeName": [
-            "primaryKeyAttributeCodeName0"
-          ]
+          "definition": "definition"
         }
       ]
+    },
+    {
+      "citation": {
+        "title": "title",
+        "edition": "",
+        "date": []
+      },
+      "subject": [
+        "subject2"
+      ],
+      "recommendedUse": [],
+      "locale": [],
+      "responsibleParty": {
+        "role": "role",
+        "roleExtent": [
+          {
+            "description": "description",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-14"
+                }
+              }
+            ]
+          }
+        ],
+        "party": [
+          {
+            "contactId": "CID001"
+          }
+        ]
+      },
+      "dictionaryFormat": "",
+      "dictionaryIncludedWithResource": false,
+      "domain": [],
+      "entity": []
+    },
+    {
+      "citation": {
+        "title": "title"
+      },
+      "subject": [
+        "subject3"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "roleExtent": [
+          {
+            "description": "description",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-14"
+                }
+              }
+            ]
+          }
+        ],
+        "party": [
+          {
+            "contactId": "CID001"
+          }
+        ]
+      }
     }
   ]
 }
