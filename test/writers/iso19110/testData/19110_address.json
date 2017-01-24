@@ -1,0 +1,153 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": false,
+      "name": "address - all keys with multiple array elements",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1",
+            "address line 2"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com",
+            "email02@example.com"
+          ]
+        }
+      ]
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "address - all keys with empty values",
+      "address": [
+        {
+          "deliveryPoint": [],
+          "city": "",
+          "administrativeArea": "",
+          "postalCode": "",
+          "country": "",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "address - empty array",
+      "address": [],
+      "contactInstructions": "contact instructions"
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "address - missing key",
+      "contactInstructions": "contact instructions"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    }
+  },
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title",
+        "edition": "edition",
+        "date": [
+          {
+            "date": "2017-01-22",
+            "dateType": "dateType"
+          }
+        ]
+      },
+      "subject": [
+        "subject0"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "CID001"
+          },
+          {
+            "contactId": "CID002"
+          },
+          {
+            "contactId": "CID003"
+          },
+          {
+            "contactId": "CID004"
+          },
+          {
+            "contactId": "CID005"
+          }
+        ]
+      },
+      "domain": [],
+      "entity": []
+    }
+  ]
+}

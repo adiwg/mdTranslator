@@ -150,7 +150,8 @@ module ADIWG
                             unless hParty.empty?
                                 role = hParty[:roleName]
                                 aParties = hParty[:parties]
-                                aParties.each do |party|
+                                unless aParties.empty?
+                                    party = aParties[0]
                                     @xml.tag!('gfc:producer') do
                                         rPartyClass.writeXML(role, party)
                                     end
