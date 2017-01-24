@@ -1,8 +1,8 @@
 # ISO <<Class>> CI_Contact
-# 19115-2 writer output in XML
+# 19110 writer output in XML
 
 # History:
-#   Stan Smith 2016-11-17 refactored for mdTranslator/mdJson 2.0
+#   Stan Smith 2017-01-23 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)

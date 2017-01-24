@@ -1,0 +1,213 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - individual",
+      "positionName": "positionName",
+      "memberOfOrganization": [
+        "CID003"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName0"
+        },
+        {
+          "fileName": "fileName1"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        },
+        {
+          "phoneName": "multiple services",
+          "phoneNumber": "222-222-2222",
+          "service": [
+            "voice",
+            "fax"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "deliveryPoint": [
+            "deliveryPoint0",
+            "deliveryPoint1"
+          ],
+          "city": "city",
+          "administrativeArea": "administrativeArea",
+          "postalCode": "postalCode",
+          "country": "country",
+          "electronicMailAddress": [
+            "email0@example.com",
+            "email1@example.com"
+          ]
+        },
+        {
+          "electronicMailAddress": [
+            "email2@example.com"
+          ]
+        }
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example.com",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
+        },
+        {
+          "resourceURI": "https://www.amazon.com/Kindle-eBooks",
+          "protocol": "HTTP",
+          "name": "Kindle Books",
+          "description": "Home for Amazon Kindle eBooks",
+          "function": "sales"
+        }
+      ],
+      "hoursOfService": [
+        "hours of service 0",
+        "hours of service 1"],
+      "contactInstructions": "contact instructions",
+      "contactType": "contact type"
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": false,
+      "name": "contact - individual",
+      "positionName": "positionName",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "electronicMailAddress": [
+            "email2@example.com"
+          ]
+        }
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "http://URI.example.com",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
+        }
+      ],
+      "hoursOfService": [
+        "hours of service 2"],
+      "contactInstructions": "contact instructions",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": true,
+      "name": "contact - organization",
+      "positionName": "positionName",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "contact instructions",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "contact - missing elements",
+      "hoursOfService": ["hours of service"]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "project",
+      "citation": {
+        "title": "testing class_address"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "developer",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    }
+  },
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title",
+        "edition": "edition",
+        "date": [
+          {
+            "date": "2017-01-22",
+            "dateType": "dateType"
+          }
+        ]
+      },
+      "subject": [
+        "subject0"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "CID001"
+          },
+          {
+            "contactId": "CID002"
+          },
+          {
+            "contactId": "CID003"
+          },
+          {
+            "contactId": "CID004"
+          }
+        ]
+      },
+      "domain": [],
+      "entity": []
+    }
+  ]
+}
