@@ -6,7 +6,10 @@
             "numberOfDimensions": 9,
             "cellGeometry": "cellGeometry",
             "transformParamsAvailability": true
-         },
+         }
+      },
+      {
+         "type": "vector",
          "vectorRepresentation": {
             "topologyLevel": "topologyLevel",
             "vectorObject": [
@@ -15,7 +18,10 @@
                   "objectCount": 9
                }
             ]
-         },
+         }
+      },
+      {
+         "type": "georectified",
          "georectifiedRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
@@ -30,7 +36,10 @@
                [1.0, 0.0]
             ],
             "pointInPixel": "pointInPixel"
-         },
+         }
+      },
+      {
+         "type": "georeferenceable",
          "georeferenceableRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
