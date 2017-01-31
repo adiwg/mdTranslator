@@ -71,8 +71,15 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
+        assert_equal 2, metadata[:taxonSystem].length
+        assert_equal 'generalScope', metadata[:generalScope]
+        assert_empty metadata[:idReferences]
+        assert_equal 2, metadata[:observers].length
+        assert_equal 'identificationProcedure', metadata[:idProcedure]
+        assert_equal 'identificationCompleteness', metadata[:idCompleteness]
+        assert_equal 2, metadata[:vouchers].length
+        refute_empty metadata[:taxonClass]
+        assert hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
 
     end
@@ -85,8 +92,15 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
+        assert_equal 2, metadata[:taxonSystem].length
+        assert_equal 'generalScope', metadata[:generalScope]
+        assert_empty metadata[:idReferences]
+        assert_equal 2, metadata[:observers].length
+        assert_equal 'identificationProcedure', metadata[:idProcedure]
+        assert_equal 'identificationCompleteness', metadata[:idCompleteness]
+        assert_equal 2, metadata[:vouchers].length
+        refute_empty metadata[:taxonClass]
+        assert hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
 
     end
