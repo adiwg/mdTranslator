@@ -32,13 +32,13 @@ module ADIWG
                             gridClass.writeXML(hGrid)
 
                             # georeferenceable - control point availability (required)
-                            s = hGeoRef[:controlPointAvailability]
+                            s = hGeoRef[:orientationParameterAvailable]
                             @xml.tag!('gmd:controlPointAvailability') do
                                 @xml.tag!('gco:Boolean', s)
                             end
 
                             # georeferenceable - orientation parameter availability (required)
-                            s = hGeoRef[:orientationParameterAvailability]
+                            s = hGeoRef[:orientationParameterAvailable]
                             @xml.tag!('gmd:orientationParameterAvailability') do
                                 @xml.tag!('gco:Boolean', s)
                             end

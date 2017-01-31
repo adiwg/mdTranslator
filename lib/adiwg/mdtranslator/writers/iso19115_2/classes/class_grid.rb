@@ -59,7 +59,7 @@ module ADIWG
                         end
 
                         # grid - transformation parameters availability (required)
-                        s = hGrid[:transformParamsAvailability]
+                        s = hGrid[:transformationParameterAvailable]
                         @xml.tag!('gmd:transformationParameterAvailability') do
                             @xml.tag!('gco:Boolean', s)
                         end

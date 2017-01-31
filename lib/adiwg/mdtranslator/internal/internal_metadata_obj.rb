@@ -798,7 +798,7 @@ class InternalMetadata
             numberOfDimensions: nil,
             dimension: [],
             cellGeometry: nil,
-            transformParamsAvailability: false
+            transformationParameterAvailable: false
         }
     end
 
@@ -842,8 +842,8 @@ class InternalMetadata
     def newGeoreferenceableInfo
         intObj = {
             gridRepresentation: {},
-            controlPointAvailability: false,
-            orientationParameterAvailability: false,
+            controlPointAvailable: false,
+            orientationParameterAvailable: false,
             orientationParameterDescription: nil,
             georeferencedParameter: nil,
             parameterCitation: []

@@ -60,10 +60,10 @@ module ADIWG
                             return nil
                         end
 
-                        # grid representation - transformation parameters available {Boolean} (required)
-                        if hGrid.has_key?('transformParamsAvailability')
-                            if hGrid['transformParamsAvailability'] === true
-                                intGrid[:transformParamsAvailability] = hGrid['transformParamsAvailability']
+                        # grid representation - transformation parameter available {Boolean} (required)
+                        if hGrid.has_key?('transformationParameterAvailable')
+                            if hGrid['transformationParameterAvailable'] === true
+                                intGrid[:transformationParameterAvailable] = hGrid['transformationParameterAvailable']
                             end
                         end
 

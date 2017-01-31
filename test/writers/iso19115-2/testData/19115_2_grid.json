@@ -74,7 +74,7 @@
               }
             ],
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+            "transformationParameterAvailable": true
           }
         },
         {
@@ -83,7 +83,7 @@
             "numberOfDimensions": 9,
             "dimension": [],
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": false
+            "transformationParameterAvailable": false
           }
         },
         {

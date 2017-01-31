@@ -4,10 +4,10 @@
          "gridRepresentation": {
             "numberOfDimensions": 9,
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+            "transformationParameterAvailable": true
          },
-         "controlPointAvailability": true,
-         "orientationParameterAvailability": true,
+         "controlPointAvailable": true,
+         "orientationParameterAvailable": true,
          "orientationParameterDescription": "orientationParameterDescription",
          "georeferencedParameter": "georeferencedParameter",
          "parameterCitation": [

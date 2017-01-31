@@ -68,7 +68,7 @@
             "gridRepresentation": {
               "numberOfDimensions": 9,
               "cellGeometry": "cellGeometry",
-              "transformParamsAvailability": true
+              "transformationParameterAvailable": true
             },
             "checkPointAvailable": true,
             "checkPointDescription": "checkPointDescription",
@@ -90,7 +90,7 @@
             "gridRepresentation": {
               "numberOfDimensions": 9,
               "cellGeometry": "cellGeometry",
-              "transformParamsAvailability": true
+              "transformationParameterAvailable": true
             },
             "checkPointAvailable": true,
             "checkPointDescription": "",
@@ -112,7 +112,7 @@
             "gridRepresentation": {
               "numberOfDimensions": 9,
               "cellGeometry": "cellGeometry",
-              "transformParamsAvailability": true
+              "transformationParameterAvailable": true
             },
             "checkPointAvailable": true,
             "cornerPoints": [

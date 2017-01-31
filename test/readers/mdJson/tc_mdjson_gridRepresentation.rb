@@ -24,7 +24,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
         assert_equal 9, metadata[:numberOfDimensions]
         assert_equal 2, metadata[:dimension].length
         assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformParamsAvailability]
+        assert metadata[:transformationParameterAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -92,7 +92,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
         assert_equal 9, metadata[:numberOfDimensions]
         assert_empty metadata[:dimension]
         assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformParamsAvailability]
+        assert metadata[:transformationParameterAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -108,7 +108,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
         assert_equal 9, metadata[:numberOfDimensions]
         assert_empty metadata[:dimension]
         assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformParamsAvailability]
+        assert metadata[:transformationParameterAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

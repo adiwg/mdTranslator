@@ -22,8 +22,8 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:gridRepresentation]
-        assert metadata[:controlPointAvailability]
-        assert metadata[:orientationParameterAvailability]
+        assert metadata[:controlPointAvailable]
+        assert metadata[:orientationParameterAvailable]
         assert_equal 'orientationParameterDescription', metadata[:orientationParameterDescription]
         assert_equal 'georeferencedParameter', metadata[:georeferencedParameter]
         assert_equal 2, metadata[:parameterCitation].length
@@ -61,11 +61,11 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
     def test_georeferenceableRepresentation_empty_controlPt
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['controlPointAvailability'] = ''
+        hIn['controlPointAvailable'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:controlPointAvailability]
+        refute metadata[:controlPointAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -74,11 +74,11 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
     def test_georeferenceableRepresentation_missing_controlPt
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('controlPointAvailability')
+        hIn.delete('controlPointAvailable')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:controlPointAvailability]
+        refute metadata[:controlPointAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -87,11 +87,11 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
     def test_georeferenceableRepresentation_empty_orientParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['orientationParameterAvailability'] = ''
+        hIn['orientationParameterAvailable'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:orientationParameterAvailability]
+        refute metadata[:orientationParameterAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -100,11 +100,11 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
     def test_georeferenceableRepresentation_missing_orientParam
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('orientationParameterAvailability')
+        hIn.delete('orientationParameterAvailable')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:orientationParameterAvailability]
+        refute metadata[:orientationParameterAvailable]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -145,8 +145,8 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:gridRepresentation]
-        assert metadata[:controlPointAvailability]
-        assert metadata[:orientationParameterAvailability]
+        assert metadata[:controlPointAvailable]
+        assert metadata[:orientationParameterAvailable]
         assert_nil metadata[:orientationParameterDescription]
         assert_equal 'georeferencedParameter', metadata[:georeferencedParameter]
         assert_empty metadata[:parameterCitation]
@@ -164,8 +164,8 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:gridRepresentation]
-        assert metadata[:controlPointAvailability]
-        assert metadata[:orientationParameterAvailability]
+        assert metadata[:controlPointAvailable]
+        assert metadata[:orientationParameterAvailable]
         assert_nil metadata[:orientationParameterDescription]
         assert_equal 'georeferencedParameter', metadata[:georeferencedParameter]
         assert_empty metadata[:parameterCitation]
