@@ -633,6 +633,7 @@ class InternalMetadata
 
     def newTaxonClass
         intObj = {
+            taxonId: nil,
             taxonRank: nil,
             taxonValue: nil,
             commonNames: [],

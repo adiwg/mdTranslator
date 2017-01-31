@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#   Stan Smith 2017-01-31 added taxonomicSystemId
 #   Stan Smith 2016-10-22 original script
 
 require_relative 'module_taxonomicClassification'
@@ -25,6 +26,14 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intTaxClass = intMetadataClass.newTaxonClass
+
+                        # taxonomic classification - system ID
+                        if hTaxClass.has_key?('taxonomicSystemId')
+                            s = hTaxClass['taxonomicSystemId']
+                            unless s == ''
+                                intTaxClass[:taxonId] = s
+                            end
+                        end
 
                         # taxonomic classification - taxon rank (required)
                         if hTaxClass.has_key?('taxonomicRank')

@@ -22,14 +22,17 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'taxonomicRank0', metadata[:taxonRank]
+        assert_nil metadata[:taxonId]
         assert_equal 'latinName', metadata[:taxonValue]
         assert_equal 2, metadata[:commonNames].length
         assert_equal 'commonName0', metadata[:commonNames][0]
         assert_equal 'commonName1', metadata[:commonNames][1]
         assert_equal 2, metadata[:subClasses].length
         assert_equal 'taxonomicRank00', metadata[:subClasses][0][:taxonRank]
+        assert_equal 'taxonomicSystemId00', metadata[:subClasses][0][:taxonId]
         assert_equal 'taxonomicRank01', metadata[:subClasses][1][:taxonRank]
         assert_equal 'taxonomicRank0000.1', metadata[:subClasses][0][:subClasses][0][:subClasses][0][:taxonRank]
+        assert_equal 'taxonomicSystemId0000.1', metadata[:subClasses][0][:subClasses][0][:subClasses][0][:taxonId]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

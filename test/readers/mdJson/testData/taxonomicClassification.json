@@ -6,6 +6,7 @@
          "commonName": ["commonName0", "commonName1"],
          "subClassification": [
             {
+               "taxonomicSystemId": "taxonomicSystemId00",
                "taxonomicRank": "taxonomicRank00",
                "latinName": "latinName",
                "commonName": [
@@ -22,6 +23,7 @@
                      ],
                      "subClassification": [
                         {
+                           "taxonomicSystemId": "taxonomicSystemId0000.1",
                            "taxonomicRank": "taxonomicRank0000.1",
                            "latinName": "latinName",
                            "commonName": [
@@ -31,6 +33,7 @@
                            "subClassification": []
                         },
                         {
+                           "taxonomicSystemId": "taxonomicSystemId0000.2",
                            "taxonomicRank": "taxonomicRank0000.2",
                            "latinName": "latinName",
                            "commonName": [
