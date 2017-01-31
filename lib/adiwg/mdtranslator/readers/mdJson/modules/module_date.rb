@@ -54,6 +54,14 @@ module ADIWG
                             return nil
                         end
 
+                        # date - description
+                        if hDate.has_key?('description')
+                            s = hDate['description']
+                            unless s == ''
+                                intDate[:description] = s
+                            end
+                        end
+
                         return intDate
 
                     end

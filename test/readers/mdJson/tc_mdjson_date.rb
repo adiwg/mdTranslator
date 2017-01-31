@@ -23,6 +23,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
         assert_kind_of Date, metadata[:date]
         assert_equal 'YMD', metadata[:dateResolution]
         assert_equal 'dateType', metadata[:dateType]
+        assert_equal 'description', metadata[:description]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -77,6 +78,38 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_description_element
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['description'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_kind_of Date, metadata[:date]
+        assert_equal 'YMD', metadata[:dateResolution]
+        assert_equal 'dateType', metadata[:dateType]
+        assert_nil metadata[:description]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_description_element
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('description')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_kind_of Date, metadata[:date]
+        assert_equal 'YMD', metadata[:dateResolution]
+        assert_equal 'dateType', metadata[:dateType]
+        assert_nil metadata[:description]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 

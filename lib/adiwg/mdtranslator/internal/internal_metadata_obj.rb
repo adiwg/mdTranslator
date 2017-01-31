@@ -135,7 +135,8 @@ class InternalMetadata
         intObj = {
             date: nil,
             dateResolution: nil,
-            dateType: nil
+            dateType: nil,
+            description: nil
         }
     end
 
