@@ -59,11 +59,9 @@ module ADIWG
                                 @xml.tag!('gmd:characterEncoding', {'gco:nilReason' => 'missing'})
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gmd:PT_Locale
+                    end # writeXML
+                end # gmd:PT_Locale class
 
             end
         end
