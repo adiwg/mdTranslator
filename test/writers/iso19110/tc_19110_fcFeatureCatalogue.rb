@@ -21,7 +21,7 @@ class TestWriter19110FeatureCatalogue < MiniTest::Test
     def test_19110_featureCatalogue
 
         # read the ISO 19110 complete reference file
-        fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_fcFeatureCatalogue.xml')
+        fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_fcFeatureCatalogue0.xml')
         file = File.new(fname)
         iso_xml = Document.new(file)
         refXML = XPath.first(iso_xml, '//gfc:FC_FeatureCatalogue')

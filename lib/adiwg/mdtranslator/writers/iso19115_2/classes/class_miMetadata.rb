@@ -178,17 +178,23 @@ module ADIWG
                             end
 
                             # metadata information - date stamp (required) {default: now()}
-                            mDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
-                            hDate = hMetaInfo[:metadataCreationDate]
-                            unless hDate.empty?
-                                mDateTime = hDate[:date]
-                                mDateRes = hDate[:dateResolution]
+                            sDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
+                            hCreate = {}
+                            aDates = hMetaInfo[:metadataDates]
+                            aDates.each do |hDate|
+                                if hDate[:dateType] == 'creation'
+                                    hCreate = hDate
+                                end
+                            end
+                            unless hCreate.empty?
+                                mDateTime = hCreate[:date]
+                                mDateRes = hCreate[:dateResolution]
                                 unless mDateTime.nil?
-                                    mDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
+                                    sDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
                                 end
                             end
                             @xml.tag!('gmd:dateStamp') do
-                                @xml.tag!('gco:Date', mDate)
+                                @xml.tag!('gco:Date', sDate)
                             end
 
                             # metadata information - metadata standard name (default)

@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#   Stan Smith 2017-01-31 remove metadataCreationDate
 #   Stan Smith 2016-10-31 original script
 
 require_relative 'module_identifier'
@@ -105,27 +106,13 @@ module ADIWG
                             return nil
                         end
 
-                        # metadata information - metadata creation date {date} (default supplied by mdEditor or mdTranslator)
-                        if hMetaInfo.has_key?('metadataCreationDate')
-                            sDate = hMetaInfo['metadataCreationDate']
-                            unless sDate == ''
-                                hObject = {}
-                                hObject['date'] = sDate
-                                hObject['dateType'] = 'creation'
-                                hReturn = Date.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intMetaInfo[:metadataCreationDate] = hReturn
-                                end
-                            end
-                        end
-
-                        # metadata information - other metadata dates [] {date}
-                        if hMetaInfo.has_key?('otherMetadataDates')
-                            aItems = hMetaInfo['otherMetadataDates']
+                        # metadata information - metadata dates [] {date}
+                        if hMetaInfo.has_key?('metadataDate')
+                            aItems = hMetaInfo['metadataDate']
                             aItems.each do |item|
                                 hReturn = Date.unpack(item, responseObj)
                                 unless hReturn.nil?
-                                    intMetaInfo[:otherMetadataDates] << hReturn
+                                    intMetaInfo[:metadataDates] << hReturn
                                 end
                             end
                         end

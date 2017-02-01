@@ -75,15 +75,14 @@
           ]
         }
       ],
-      "metadataCreationDate": "2016-09-28",
-      "otherMetadataDates": [
+      "metadataDate": [
         {
           "date": "2016-10-31",
           "dateType": "dateType"
         },
         {
-          "date": "2016-10-31",
-          "dateType": "dateType"
+          "date": "2017-01-15",
+          "dateType": "creation"
         }
       ],
       "metadataLinkage": [

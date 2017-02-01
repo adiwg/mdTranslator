@@ -28,8 +28,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_equal 2, metadata[:otherMetadataLocales].length
         assert_equal 2, metadata[:resourceScopes].length
         assert_equal 2, metadata[:metadataContacts].length
-        refute_empty metadata[:metadataCreationDate]
-        assert_equal 2, metadata[:otherMetadataDates].length
+        assert_equal 2, metadata[:metadataDates].length
         assert_equal 2, metadata[:metadataLinkages].length
         refute_empty metadata[:metadataMaintenance]
         assert_equal 2, metadata[:alternateMetadataReferences].length
@@ -76,8 +75,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         hIn['defaultMetadataLocale'] = {}
         hIn['otherMetadataLocale'] = []
         hIn['resourceScope'] = []
-        hIn['metadataCreationDate'] = ''
-        hIn['otherMetadataDates'] = []
+        hIn['metadataDate'] = []
         hIn['metadataLinkage'] = []
         hIn['metadataMaintenance'] = {}
         hIn['alternateMetadataReference'] = []
@@ -91,8 +89,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:otherMetadataLocales]
         assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
-        assert_empty metadata[:metadataCreationDate]
-        assert_empty metadata[:otherMetadataDates]
+        assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]
         assert_empty metadata[:metadataMaintenance]
         assert_empty metadata[:alternateMetadataReferences]
@@ -111,8 +108,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         hIn.delete('defaultMetadataLocale')
         hIn.delete('otherMetadataLocale')
         hIn.delete('resourceScope')
-        hIn.delete('metadataCreationDate')
-        hIn.delete('otherMetadataDates')
+        hIn.delete('metadataDate')
         hIn.delete('metadataLinkage')
         hIn.delete('metadataMaintenance')
         hIn.delete('alternateMetadataReference')
@@ -126,8 +122,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:otherMetadataLocales]
         assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
-        assert_empty metadata[:metadataCreationDate]
-        assert_empty metadata[:otherMetadataDates]
+        assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]
         assert_empty metadata[:metadataMaintenance]
         assert_empty metadata[:alternateMetadataReferences]
