@@ -201,7 +201,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['shortAbstract'] = ''
         hIn['purpose'] = ''
-        hIn['credits'] = []
+        hIn['credit'] = []
         hIn['timePeriod'] = {}
         hIn['purpose'] = ''
         hIn['status'] = []
@@ -265,7 +265,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('shortAbstract')
         hIn.delete('purpose')
-        hIn.delete('credits')
+        hIn.delete('credit')
         hIn.delete('timePeriod')
         hIn.delete('purpose')
         hIn.delete('status')

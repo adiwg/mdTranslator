@@ -93,8 +93,8 @@ module ADIWG
                         end
 
                         # resource information - credits []
-                        if hResInfo.has_key?('credits')
-                            hResInfo['credits'].each do |item|
+                        if hResInfo.has_key?('credit')
+                            hResInfo['credit'].each do |item|
                                 if item != ''
                                     intResInfo[:credits] << item
                                 end
