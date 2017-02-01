@@ -63,7 +63,7 @@ class TestReaderMdJsonDistributor < TestReaderMdJsonParent
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['orderProcess'] = []
-        hIn['transferOptions'] = []
+        hIn['transferOption'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -80,7 +80,7 @@ class TestReaderMdJsonDistributor < TestReaderMdJsonParent
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('orderProcess')
-        hIn.delete('transferOptions')
+        hIn.delete('transferOption')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

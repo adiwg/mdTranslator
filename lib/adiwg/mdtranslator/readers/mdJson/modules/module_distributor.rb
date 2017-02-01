@@ -56,8 +56,8 @@ module ADIWG
                         end
 
                         # distributor - transfer options [transferOption]
-                        if hDistrib.has_key?('transferOptions')
-                            aItemss = hDistrib['transferOptions']
+                        if hDistrib.has_key?('transferOption')
+                            aItemss = hDistrib['transferOption']
                             aItemss.each do |item|
                                 hReturn = TransferOption.unpack(item, responseObj)
                                 unless hReturn.nil?

@@ -30,7 +30,7 @@
                "fees": "2.00USD"
             }
          ],
-         "transferOptions": [
+         "transferOption": [
             {
                "transferSize": 9.9
             },
