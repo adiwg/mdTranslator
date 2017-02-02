@@ -76,14 +76,18 @@ module ADIWG
                             return nil
                         end
 
-                        # attribute - required attribute? (required)
+                        # attribute - minimum cardinality (required)
                         if hAttribute.has_key?('allowNull')
-                            intAttribute[:allowNull] = hAttribute['allowNull']
+                            if hAttribute['allowNull'] === true
+                                intAttribute[:allowNull] = hAttribute['allowNull']
+                            end
                         end
-                        if intAttribute[:allowNull].nil? || intAttribute[:allowNull] == ''
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary attribute allow null flag is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+
+                        # attribute - maximum cardinality
+                        if hAttribute.has_key?('allowMany')
+                            if hAttribute['allowMany'] === true
+                                intAttribute[:allowMany] = hAttribute['allowMany']
+                            end
                         end
 
                         # attribute - units of measure

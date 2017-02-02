@@ -27,6 +27,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
         assert_equal 'alias1', metadata[:attributeAlias][1]
         assert_equal 'definition', metadata[:attributeDefinition]
         assert metadata[:allowNull]
+        refute metadata[:allowMany]
         assert_equal 'units', metadata[:unitOfMeasure]
         assert_equal 'domainId', metadata[:domainId]
         assert_equal 'minValue', metadata[:minValue]
@@ -49,10 +50,36 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
     end
 
+    def test_missing_entityAttribute_codeName
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('codeName')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
     def test_empty_entityAttribute_definition
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['definition'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_entityAttribute_definition
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('definition')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -75,16 +102,64 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
     end
 
-    def test_empty_entityAttribute_allowNull
+    def test_missing_entityAttribute_dataType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['allowNull'] = ''
+        hIn.delete('dataType')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
         refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_entityAttribute_cardinality
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['allowNull'] = ''
+        hIn['allowMany'] = ''
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_equal 'commonName', metadata[:attributeName]
+        assert_equal 'codeName', metadata[:attributeCode]
+        assert_equal 'alias0', metadata[:attributeAlias][0]
+        assert_equal 'alias1', metadata[:attributeAlias][1]
+        assert_equal 'definition', metadata[:attributeDefinition]
+        refute metadata[:allowNull]
+        refute metadata[:allowMany]
+        assert_equal 'units', metadata[:unitOfMeasure]
+        assert_equal 'domainId', metadata[:domainId]
+        assert_equal 'minValue', metadata[:minValue]
+        assert_equal 'maxValue', metadata[:maxValue]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_entityAttribute_cardinality
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('allowNull')
+        hIn.delete('allowMany')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_equal 'commonName', metadata[:attributeName]
+        assert_equal 'codeName', metadata[:attributeCode]
+        assert_equal 'alias0', metadata[:attributeAlias][0]
+        assert_equal 'alias1', metadata[:attributeAlias][1]
+        assert_equal 'definition', metadata[:attributeDefinition]
+        refute metadata[:allowNull]
+        refute metadata[:allowMany]
+        assert_equal 'units', metadata[:unitOfMeasure]
+        assert_equal 'domainId', metadata[:domainId]
+        assert_equal 'minValue', metadata[:minValue]
+        assert_equal 'maxValue', metadata[:maxValue]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
 
     end
 
