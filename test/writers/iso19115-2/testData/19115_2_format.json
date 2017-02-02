@@ -75,7 +75,7 @@
                 }
               ]
             },
-            "transferOptions": [
+            "transferOption": [
               {
                 "distributionFormat": [
                   {

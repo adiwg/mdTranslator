@@ -76,7 +76,7 @@
               ]
             },
             "orderProcess": [],
-            "transferOptions": [
+            "transferOption": [
               {
                 "unitsOfDistribution": "unitsOfDistribution0",
                 "transferSize": 9.9,
