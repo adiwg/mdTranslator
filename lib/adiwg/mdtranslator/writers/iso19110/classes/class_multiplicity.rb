@@ -12,11 +12,12 @@
 # ... upper not provided a value, but is required to be present.
 
 # History:
-# 	Stan Smith 2014-12-02 original script.
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2017-02-02 refactored for mdJson/mdTranslator 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2014-12-02 original script.
 
 module ADIWG
     module Mdtranslator
@@ -30,28 +31,34 @@ module ADIWG
                         @hResponseObj = responseObj
                     end
 
-                    def writeXML(allowNull)
+                    def writeXML(hAttribute)
+
+                        minCard = 1
+                        if hAttribute[:allowNull]
+                            minCard = 0
+                        end
+                        maxCard = 1
+                        if hAttribute[:allowMany]
+                            maxCard = 99999
+                        end
 
                         # xml for iso classes Multiplicity and MultiplicityRange
                         @xml.tag!('gco:Multiplicity') do
+
                             @xml.tag!('gco:range') do
                                 @xml.tag!('gco:MultiplicityRange') do
                                     @xml.tag!('gco:lower') do
-                                        if !allowNull
-                                            range = 1
-                                        else
-                                            range = 0
-                                        end
-                                        @xml.tag!('gco:Integer', range)
+                                        @xml.tag!('gco:Integer', minCard)
                                     end
-                                    @xml.tag!('gco:upper')
+                                    @xml.tag!('gco:upper') do
+                                        @xml.tag!('gco:UnlimitedInteger', maxCard)
+                                    end
                                 end
                             end
-                        end
 
-                    end
-
-                end
+                        end # gco:Multiplicity tag
+                    end # writeXML
+                end # Multiplicity class
 
             end
         end
