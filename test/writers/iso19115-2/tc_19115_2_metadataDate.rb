@@ -8,6 +8,7 @@ require 'minitest/autorun'
 require 'json'
 require 'rexml/document'
 require 'adiwg/mdtranslator'
+require 'date'
 include REXML
 
 class TestWriter191152MetadataDate < MiniTest::Test
@@ -53,8 +54,10 @@ class TestWriter191152MetadataDate < MiniTest::Test
         iso_out = Document.new(metadata)
 
         checkXML = XPath.first(iso_out, '//gmd:dateStamp')
+        checkXML = XPath.first(checkXML, '//gco:Date').get_text
+        today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+        assert_equal today, checkXML.to_s.squeeze
 
     end
 
@@ -71,8 +74,10 @@ class TestWriter191152MetadataDate < MiniTest::Test
         iso_out = Document.new(metadata)
 
         checkXML = XPath.first(iso_out, '//gmd:dateStamp')
+        checkXML = XPath.first(checkXML, '//gco:Date').get_text
+        today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+        assert_equal today, checkXML.to_s.squeeze
 
     end
 
@@ -89,8 +94,10 @@ class TestWriter191152MetadataDate < MiniTest::Test
         iso_out = Document.new(metadata)
 
         checkXML = XPath.first(iso_out, '//gmd:dateStamp')
+        checkXML = XPath.first(checkXML, '//gco:Date').get_text
+        today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+        assert_equal today, checkXML.to_s.squeeze
 
     end
 

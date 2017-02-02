@@ -18,8 +18,4 @@
     <gco:Date>2017-01-15</gco:Date>
   </gmd:dateStamp>
 
-  <gmd:dateStamp>
-    <gco:Date>2017-02-01</gco:Date>
-  </gmd:dateStamp>
-
 </gmi:MI_Metadata>
