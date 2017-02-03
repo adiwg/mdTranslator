@@ -40,7 +40,7 @@
         <gco:CharacterString>codeName0</gco:CharacterString>
       </gfc:code>
       <gfc:valueMeasurementUnit>
-        <gml:UnitDefinition gml:id="unit_002">
+        <gml:UnitDefinition gml:id="unit_001">
           <gml:identifier codeSpace="">units0</gml:identifier>
         </gml:UnitDefinition>
       </gfc:valueMeasurementUnit>

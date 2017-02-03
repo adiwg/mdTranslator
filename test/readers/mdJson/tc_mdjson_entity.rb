@@ -37,10 +37,10 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
     end
 
-    def test_empty_entity_id
+    def test_empty_entity_codeName
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['entityId'] = ''
+        hIn['codeName'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -50,10 +50,10 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
     end
 
-    def test_empty_entity_codeName
+    def test_missing_entity_codeName
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['codeName'] = ''
+        hIn.delete('codeName')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -76,15 +76,30 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
     end
 
+    def test_missing_entity_definition
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('definition')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
     def test_empty_entity_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['entityId'] = ''
         hIn['commonName'] = ''
         hIn['alias'] = []
         hIn['primaryKeyAttributeCodeName'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:entityId]
         assert_nil metadata[:entityName]
         assert_empty metadata[:entityAlias]
         assert_empty metadata[:primaryKey]
@@ -96,12 +111,14 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
     def test_missing_entity_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('entityId')
         hIn.delete('commonName')
         hIn.delete('alias')
         hIn.delete('primaryKeyAttributeCodeName')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:entityId]
         assert_nil metadata[:entityName]
         assert_empty metadata[:entityAlias]
         assert_empty metadata[:primaryKey]

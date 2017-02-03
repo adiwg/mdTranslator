@@ -32,10 +32,13 @@ module ADIWG
                         fAttClass = FC_FeatureAttribute.new(@xml, @hResponseObj)
 
                         # create an identity for the entity
-                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
-                        entityID = 'entity' + @hResponseObj[:writerMissingIdCount]
+                        entityId = hEntity[:entityId]
+                        if entityId.nil?
+                            @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                            entityId = 'entity' + @hResponseObj[:writerMissingIdCount]
+                        end
 
-                        @xml.tag!('gfc:FC_FeatureType', {'id' => entityID}) do
+                        @xml.tag!('gfc:FC_FeatureType', {'id' => entityId}) do
 
                             # feature type - type name (required)
                             # used for entity common name
@@ -73,7 +76,7 @@ module ADIWG
                             end
 
                             # feature type - isAbstract (required)
-                            # defaulted to false, value not available in internal object
+                            # always defaulted to false
                             @xml.tag!('gfc:isAbstract') do
                                 @xml.tag!('gco:Boolean', 'false')
                             end

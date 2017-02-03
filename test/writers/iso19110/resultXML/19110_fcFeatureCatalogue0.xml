@@ -110,7 +110,7 @@
     <gco:CharacterString>format</gco:CharacterString>
   </gfc:functionalLanguage>
   <gfc:featureType>
-    <gfc:FC_FeatureType id="entity_001">
+    <gfc:FC_FeatureType id="entityId0">
       <gfc:typeName gco:nilReason="missing"/>
       <gfc:definition>
         <gco:CharacterString>definition</gco:CharacterString>
@@ -127,7 +127,7 @@
     </gfc:FC_FeatureType>
   </gfc:featureType>
   <gfc:featureType>
-    <gfc:FC_FeatureType id="entity_002">
+    <gfc:FC_FeatureType id="entityId1">
       <gfc:typeName gco:nilReason="missing"/>
       <gfc:definition>
         <gco:CharacterString>definition</gco:CharacterString>

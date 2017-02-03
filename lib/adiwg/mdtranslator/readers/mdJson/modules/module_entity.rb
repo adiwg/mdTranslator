@@ -34,14 +34,12 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intEntity = intMetadataClass.newEntity
 
-                        # entity - id (required)
+                        # entity - id
                         if hEntity.has_key?('entityId')
-                            intEntity[:entityId] = hEntity['entityId']
-                        end
-                        if intEntity[:entityId].nil? || intEntity[:entityId] == ''
-                            responseObj[:readerExecutionMessages] << 'Data Dictionary entity ID is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                            s = hEntity['entityId']
+                            unless s == ''
+                                intEntity[:entityId] = s
+                            end
                         end
 
                         # entity - name

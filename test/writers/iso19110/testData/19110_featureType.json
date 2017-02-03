@@ -1,0 +1,182 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "dictionary contact",
+      "address": [
+        {
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country",
+          "electronicMailAddress": [
+            "email01@example.com"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "metadataContact": [
+        {
+          "role": "role",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": "resourceType",
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "pointOfContact": [
+        {
+          "role": "role",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "LanguageCode",
+        "country": "CountryCode",
+        "characterSet": "MD_CharacterSetCode"
+      }
+    }
+  },
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title",
+        "edition": "edition",
+        "date": [
+          {
+            "date": "2017-01-22",
+            "dateType": "dateType"
+          }
+        ]
+      },
+      "subject": [
+        "subject0"
+      ],
+      "recommendedUse": [],
+      "locale": [],
+      "responsibleParty": {
+        "role": "role",
+        "roleExtent": [
+          {
+            "description": "description",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-14"
+                }
+              }
+            ]
+          }
+        ],
+        "party": [
+          {
+            "contactId": "CID001"
+          }
+        ]
+      },
+      "dictionaryFormat": "",
+      "dictionaryIncludedWithResource": true,
+      "domain": [],
+      "entity": [
+        {
+          "entityId": "entityId0",
+          "commonName": "commonName0",
+          "codeName": "codeName0",
+          "alias": [
+            "alias0",
+            "alias1"
+          ],
+          "definition": "definition0",
+          "primaryKeyAttributeCodeName": [
+            "primaryKeyAttributeCodeName0",
+            "primaryKeyAttributeCodeName1"
+          ],
+          "index": [
+            {
+              "codeName": "ui_codeName1",
+              "allowDuplicates": false,
+              "attributeCodeName": ["codeName0", "codeName1"]
+            },
+            {
+              "codeName": "di_codeName2",
+              "allowDuplicates": true,
+              "attributeCodeName": ["codeName2"]
+            }
+          ],
+          "attribute": [
+            {
+              "commonName": "commonName0",
+              "codeName": "codeName0",
+              "definition": "definition0",
+              "dataType": "dataType0",
+              "allowNull": false,
+              "allowMany": false
+            },
+            {
+              "commonName": "commonName1",
+              "codeName": "codeName1",
+              "definition": "definition1",
+              "dataType": "dataType1",
+              "allowNull": true,
+              "allowMany": true
+            }
+          ],
+          "foreignKey": [
+            {
+              "localAttributeCodeName": ["codeName0", "codeName1"],
+              "referencedEntityCodeName": "entityId1",
+              "referencedAttributeCodeName": ["codeName10", "codeName11"]
+            },
+            {
+              "localAttributeCodeName": ["codeName2"],
+              "referencedEntityCodeName": "entityId1",
+              "referencedAttributeCodeName": ["codeName12"]
+            }
+          ]
+        },
+        {
+          "entityId": "",
+          "commonName": "",
+          "codeName": "codeName1",
+          "alias": [],
+          "definition": "definition1",
+          "primaryKeyAttributeCodeName": [],
+          "index": [],
+          "attribute": [],
+          "foreignKey": []
+        },
+        {
+          "codeName": "codeName2",
+          "definition": "definition2"
+        }
+      ]
+    }
+  ]
+}
