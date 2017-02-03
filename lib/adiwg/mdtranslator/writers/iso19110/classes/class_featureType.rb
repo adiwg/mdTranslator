@@ -2,12 +2,13 @@
 # writer output in XML
 
 # History:
-# 	Stan Smith 2014-12-02 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-02-18 added aliases for entities
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2015-02-18 added aliases for entities
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2014-12-02 original script
 
 require_relative 'class_featureConstraint'
 require_relative 'class_featureAttribute'
@@ -30,44 +31,48 @@ module ADIWG
                         fConClass = FC_Constraint.new(@xml, @hResponseObj)
                         fAttClass = FC_FeatureAttribute.new(@xml, @hResponseObj)
 
-                        # create and identity for the entity
+                        # create an identity for the entity
                         @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
                         entityID = 'entity' + @hResponseObj[:writerMissingIdCount]
+
                         @xml.tag!('gfc:FC_FeatureType', {'id' => entityID}) do
 
-                            # feature type - type name - required
-                            # use entity common name
+                            # feature type - type name (required)
+                            # used for entity common name
                             s = hEntity[:entityName]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:typeName') do
                                     @xml.tag!('gco:LocalName', s)
                                 end
-                            else
+                            end
+                            if s.nil?
                                 @xml.tag!('gfc:typeName', {'gco:nilReason' => 'missing'})
                             end
 
                             # feature type - definition
                             s = hEntity[:entityDefinition]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:definition')
                             end
 
                             # feature type - code
-                            # use entity code name
+                            # used for entity code name
                             s = hEntity[:entityCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
-                            # feature type - isAbstract - required
+                            # feature type - isAbstract (required)
                             # defaulted to false, value not available in internal object
                             @xml.tag!('gfc:isAbstract') do
                                 @xml.tag!('gco:Boolean', 'false')
@@ -81,27 +86,28 @@ module ADIWG
                                 end
                             end
 
-                            # feature type - feature catalogue - required
+                            # feature type - feature catalogue (required)
                             # 'role that links this feature type to the feature catalogue that contains it'
-                            # confusing, allow definition of another feature catalogue here
-                            # just set to nilReason = 'inapplicable' (recommended by NOAA)
+                            # confusing, allows definition of another feature catalogue here
+                            # just set to nilReason = 'inapplicable' (as recommended by NOAA)
                             @xml.tag!('gfc:featureCatalogue', {'gco:nilReason' => 'inapplicable'})
 
                             # feature type - constrained by
                             # use to define primary key, foreign keys, and indexes
-                            # pass primary key
+                            # constraint - primary key
                             aPKs = hEntity[:primaryKey]
-                            if !aPKs.empty?
+                            unless aPKs.empty?
                                 @xml.tag!('gfc:constrainedBy') do
                                     fConClass.writeXML('pk', aPKs)
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if aPKs.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:constrainedBy')
                             end
 
-                            # pass indexes
+                            # constraint - indexes
                             aIndexes = hEntity[:indexes]
-                            if !aIndexes.empty?
+                            unless aIndexes.empty?
                                 aIndexes.each do |hIndex|
                                     @xml.tag!('gfc:constrainedBy') do
                                         fConClass.writeXML('index', hIndex)
@@ -109,9 +115,9 @@ module ADIWG
                                 end
                             end
 
-                            # pass foreign keys
+                            # constraint - foreign keys
                             aFKs = hEntity[:foreignKeys]
-                            if !aFKs.empty?
+                            unless aFKs.empty?
                                 aFKs.each do |hFK|
                                     @xml.tag!('gfc:constrainedBy') do
                                         fConClass.writeXML('fk', hFK)
@@ -122,21 +128,20 @@ module ADIWG
                             # feature type - character of characteristics
                             # used to define entity attributes
                             aAttributes = hEntity[:attributes]
-                            if !aAttributes.empty?
+                            unless aAttributes.empty?
                                 aAttributes.each do |hAttribute|
                                     @xml.tag!('gfc:carrierOfCharacteristics') do
                                         fAttClass.writeXML(hAttribute)
                                     end
                                 end
-                            elsif @hResponseObj[:writerShowTags]
+                            end
+                            if aAttributes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:carrierOfCharacteristics')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gfc:FC_FeatureType tag
+                    end # writeXML
+                end # FC_FeatureType class
 
             end
         end

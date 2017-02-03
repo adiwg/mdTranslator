@@ -5,11 +5,12 @@
 # ... all constraints need to be expressed as character strings
 
 # History:
-# 	Stan Smith 2014-12-02 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2014-12-02 original script
 
 module ADIWG
     module Mdtranslator
@@ -58,11 +59,9 @@ module ADIWG
                                 @xml.tag!('gco:CharacterString', s)
 
                             end
-                        end
-
-                    end
-
-                end
+                        end # gfc:FC_Constraint tag
+                    end # writeXML
+                end # FC_Constraint class
 
             end
         end

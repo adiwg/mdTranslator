@@ -42,8 +42,8 @@ module ADIWG
 
                         # entity index - allow duplicates (required)
                         if hIndex.has_key?('allowDuplicates')
-                            if intIndex[:duplicate] === true
-                                intIndex[:duplicate] = hIndex['allowDuplicates']
+                            if hIndex['allowDuplicates'] === true
+                                intIndex[:duplicate] = true
                             end
                         end
 
