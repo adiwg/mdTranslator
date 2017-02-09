@@ -50,9 +50,9 @@ module ADIWG
 
                             # contact - address [0]
                             hAddress = hContact[:addresses][0]
-                            unless hAddress.nil?
+                            aEmail = hContact[:eMailList]
+                            unless hAddress.nil? && aEmail.empty?
                                 @xml.tag!('gmd:address') do
-                                    aEmail = hContact[:eMailList]
                                     addClass.writeXML(hAddress, aEmail)
                                 end
                             end

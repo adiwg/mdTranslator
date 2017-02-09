@@ -14,6 +14,7 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
+  <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
         <gco:CharacterString>contact - individual</gco:CharacterString>
@@ -39,7 +40,7 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>email0@example.com</gco:CharacterString>
+                <gco:CharacterString>emailAddress</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -66,7 +67,9 @@
         <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
+  </gmd:contact>
 
+  <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:organisationName>
         <gco:CharacterString>contact - organization</gco:CharacterString>
@@ -89,7 +92,7 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>email0@example.com</gco:CharacterString>
+                <gco:CharacterString>emailAddress</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -116,7 +119,9 @@
         <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
+  </gmd:contact>
 
+  <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
         <gco:CharacterString>contact - multiple array elements</gco:CharacterString>
@@ -143,7 +148,10 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>email0@example.com</gco:CharacterString>
+                <gco:CharacterString>emailAddress0</gco:CharacterString>
+              </gmd:electronicMailAddress>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>emailAddress1</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -170,7 +178,36 @@
         <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
+  </gmd:contact>
 
+  <gmd:contact>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - email only</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone/>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>emailAddress0</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+
+  <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
         <gco:CharacterString>contact - empty elements</gco:CharacterString>
@@ -181,7 +218,9 @@
         <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
+  </gmd:contact>
 
+  <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
         <gco:CharacterString>contact - missing elements</gco:CharacterString>
@@ -192,5 +231,6 @@
         <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
+  </gmd:contact>
 
 </gmi:MI_Metadata>

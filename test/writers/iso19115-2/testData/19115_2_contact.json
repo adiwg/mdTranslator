@@ -28,10 +28,11 @@
       ],
       "address": [
         {
-          "electronicMailAddress": [
-            "email0@example.com"
-          ]
+          "addressType": ["addressType"]
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress"
       ],
       "onlineResource": [
         {
@@ -67,10 +68,11 @@
       ],
       "address": [
         {
-          "electronicMailAddress": [
-            "email0@example.com"
-          ]
+          "addressType": ["addressType"]
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress"
       ],
       "onlineResource": [
         {
@@ -114,15 +116,15 @@
       ],
       "address": [
         {
-          "electronicMailAddress": [
-            "email0@example.com"
-          ]
+          "addressType": ["addressType0"]
         },
         {
-          "electronicMailAddress": [
-            "email1@example.com"
-          ]
+          "addressType": ["addressType1"]
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress0",
+        "emailAddress1"
       ],
       "onlineResource": [
         {
@@ -142,12 +144,15 @@
     {
       "contactId": "CID004",
       "isOrganization": false,
-      "name": "contact - empty elements",
+      "name": "contact - email only",
       "positionName": "",
       "memberOfOrganization": [],
       "logoGraphic": [],
       "phone": [],
       "address": [],
+      "electronicMailAddress": [
+        "emailAddress0"
+      ],
       "onlineResource": [],
       "hoursOfService": [],
       "contactInstructions": "",
@@ -155,6 +160,21 @@
     },
     {
       "contactId": "CID005",
+      "isOrganization": false,
+      "name": "contact - empty elements",
+      "positionName": "",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "electronicMailAddress": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID006",
       "isOrganization": false,
       "name": "contact - missing elements"
     }
@@ -199,6 +219,14 @@
           "party": [
             {
               "contactId": "CID005"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID006"
             }
           ]
         }
