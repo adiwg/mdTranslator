@@ -31,6 +31,9 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         assert_equal 2, metadata[:logos].length
         assert_equal 2, metadata[:phones].length
         assert_equal 2, metadata[:addresses].length
+        assert_equal 2, metadata[:eMailList].length
+        assert_equal 'electronicMailAddress0', metadata[:eMailList][0]
+        assert_equal 'electronicMailAddress1', metadata[:eMailList][1]
         assert_equal 2, metadata[:onlineResources].length
         assert_equal 2, metadata[:memberOfOrgs].length
         assert_equal 2, metadata[:hoursOfService].length
@@ -103,6 +106,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         hIn['logoGraphic'] = []
         hIn['phone'] = []
         hIn['address'] = []
+        hIn['electronicMailAddress'] = []
         hIn['onlineResource'] = []
         hIn['hoursOfService'] = []
         hIn['contactInstructions'] = ''
@@ -118,6 +122,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         assert_empty metadata[:logos]
         assert_empty metadata[:phones]
         assert_empty metadata[:addresses]
+        assert_empty metadata[:eMailList]
         assert_empty metadata[:onlineResources]
         assert_empty metadata[:memberOfOrgs]
         assert_empty metadata[:hoursOfService]
@@ -136,6 +141,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         hIn.delete('logoGraphic')
         hIn.delete('phone')
         hIn.delete('address')
+        hIn.delete('electronicMailAddress')
         hIn.delete('onlineResource')
         hIn.delete('hoursOfService')
         hIn.delete('contactInstructions')
@@ -151,6 +157,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         assert_empty metadata[:logos]
         assert_empty metadata[:phones]
         assert_empty metadata[:addresses]
+        assert_empty metadata[:eMailList]
         assert_empty metadata[:onlineResources]
         assert_empty metadata[:memberOfOrgs]
         assert_empty metadata[:hoursOfService]

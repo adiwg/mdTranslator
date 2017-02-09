@@ -31,11 +31,15 @@
          ],
          "address": [
             {
-               "electronicMailAddress": ["electronicMailAddress"]
+               "addressType": ["addressType0"]
             },
             {
-               "electronicMailAddress": ["electronicMailAddress"]
+               "addressType": ["addressType1"]
             }
+         ],
+         "electronicMailAddress": [
+            "electronicMailAddress0",
+            "electronicMailAddress1"
          ],
          "onlineResource": [
             {

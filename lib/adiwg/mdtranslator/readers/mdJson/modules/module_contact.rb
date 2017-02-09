@@ -106,6 +106,15 @@ module ADIWG
                             end
                         end
 
+                        # contact - electronic mail addresses []
+                        if hContact.has_key?('electronicMailAddress')
+                            hContact['electronicMailAddress'].each do |item|
+                                if item != ''
+                                    intContact[:eMailList] << item
+                                end
+                            end
+                        end
+
                         # contact - online resource [onlineResource]
                         if hContact.has_key?('onlineResource')
                             aItems = hContact['onlineResource']
