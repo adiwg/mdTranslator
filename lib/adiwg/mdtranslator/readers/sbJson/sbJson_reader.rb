@@ -1,5 +1,4 @@
 require 'json'
-require_relative 'sbJson_validator'
 
 module ADIWG
     module Mdtranslator

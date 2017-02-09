@@ -6,6 +6,8 @@
 
 require 'minitest/autorun'
 require 'json'
+require 'json-schema'
+require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_mdJson'
 
 class TestReaderMdJsonParent < MiniTest::Test

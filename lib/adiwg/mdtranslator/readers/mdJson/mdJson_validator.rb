@@ -14,9 +14,6 @@
 require 'json'
 require 'json-schema'
 require 'adiwg-mdjson_schemas'
-# temporary json-schema patch
-# waiting for rubygem json-schema patch
-require 'adiwg/mdtranslator/readers/mdJson/validator.rb'
 
 module ADIWG
     module Mdtranslator

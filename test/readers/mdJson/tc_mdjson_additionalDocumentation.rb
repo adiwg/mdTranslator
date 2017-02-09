@@ -16,6 +16,27 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('additionalDocumentation.json')
     @@hIn = aIn['additionalDocumentation'][0]
 
+    def test_additionalDocumentation_schema
+
+        # set JSON input segment
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+
+        # empty out all objects so strict will not recurse into the object
+        hIn['citation'] = []
+
+        # set the schema segment
+        schema = 'additionalDocumentation.json'
+
+        # load schemas with 'true' to catch extra parameters
+        ADIWG::MdjsonSchemas::Utils.load_schemas(true)
+
+        # scan with strict => 'true' to ensure all parameters are present
+        aValErrs = JSON::Validator.fully_validate(schema, hIn, :strict => true, :errors_as_objects => true)
+
+        assert_empty aValErrs
+
+    end
+
     def test_complete_additionalDocumentation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
