@@ -65,7 +65,7 @@
                 <gco:CharacterString>country</gco:CharacterString>
               </gmd:country>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>email01@example.com</gco:CharacterString>
+                <gco:CharacterString>emailAddress</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -106,7 +106,7 @@
                 <gco:CharacterString>country</gco:CharacterString>
               </gmd:country>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>email01@example.com</gco:CharacterString>
+                <gco:CharacterString>emailAddress</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -325,7 +325,7 @@
                     <gco:CharacterString>country</gco:CharacterString>
                   </gmd:country>
                   <gmd:electronicMailAddress>
-                    <gco:CharacterString>email01@example.com</gco:CharacterString>
+                    <gco:CharacterString>emailAddress</gco:CharacterString>
                   </gmd:electronicMailAddress>
                 </gmd:CI_Address>
               </gmd:address>

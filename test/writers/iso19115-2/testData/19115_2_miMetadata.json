@@ -10,17 +10,19 @@
       "name": "address - all keys with singe array elements",
       "address": [
         {
+          "addressType": ["addressType"],
+          "description": "description",
           "deliveryPoint": [
             "address line 1"
           ],
           "city": "city",
           "administrativeArea": "state",
           "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
+          "country": "country"
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress"
       ]
     }
   ],
