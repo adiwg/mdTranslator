@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2017-02-09 added newMetadataDistribution
 #   Stan Smith 2017-01-20 refactored newDataDictionary
 #   Stan Smith 2016-11-10 added computedBbox to newGeographicExtent, newGeometryCollection
 #   Stan Smith 2016-11-10 added computedBbox to newGeometryFeature, newFeatureCollection
@@ -174,6 +175,7 @@ class InternalMetadata
 
     def newAddress
         intObj = {
+            addressTypes: [],
             deliveryPoints: [],
             city: nil,
             adminArea: nil,
@@ -959,6 +961,15 @@ class InternalMetadata
         intObj = {
             allocations: [],
             timePeriod: {}
+        }
+    end
+
+    def newMetadataDistribution
+        intObj = {
+            clearingHouse: nil,
+            recordId: nil,
+            pushMethod: nil,
+            metadataFormat: nil
         }
     end
 

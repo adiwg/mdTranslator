@@ -1,0 +1,10 @@
+{
+  "metadataDistribution": [
+    {
+      "clearingHouse": "clearingHouse",
+      "recordId": "recordId",
+      "pushMethod": "add",
+      "metadataFormat": "iso19115_2"
+    }
+  ]
+}
