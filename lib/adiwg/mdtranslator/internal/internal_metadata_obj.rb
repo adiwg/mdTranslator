@@ -194,7 +194,8 @@ class InternalMetadata
             distributorInfo: [],
             associatedResources: [],
             additionalDocuments: [],
-            funding: []
+            funding: [],
+            metadataDistribution: []
         }
     end
 

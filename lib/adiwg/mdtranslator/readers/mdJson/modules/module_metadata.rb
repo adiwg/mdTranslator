@@ -11,6 +11,7 @@ require_relative 'module_distribution'
 require_relative 'module_associatedResource'
 require_relative 'module_additionalDocumentation'
 require_relative 'module_funding'
+require_relative 'module_metadataDistribution'
 
 module ADIWG
     module Mdtranslator
@@ -115,6 +116,17 @@ module ADIWG
                                 hReturn = Funding.unpack(item, responseObj)
                                 unless hReturn.nil?
                                     intMetadata[:funding] << hReturn
+                                end
+                            end
+                        end
+
+                        # metadata - metadata distribution [] {metadataDistribution}
+                        if hMetadata.has_key?('metadataDistribution')
+                            aItems = hMetadata['metadataDistribution']
+                            aItems.each do |item|
+                                hReturn = MetadataDistribution.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intMetadata[:metadataDistribution] << hReturn
                                 end
                             end
                         end

@@ -118,6 +118,20 @@
                   "endDateTime": "2016-12-31"
                }
             }
+         ],
+         "metadataDistribution": [
+            {
+               "clearingHouse": "clearingHouse0",
+               "recordId": "recordId0",
+               "pushMethod": "add",
+               "metadataFormat": "iso19115_2"
+            },
+            {
+               "clearingHouse": "clearingHouse1",
+               "recordId": "recordId1",
+               "pushMethod": "add",
+               "metadataFormat": "sbJson"
+            }
          ]
       }
    ]
