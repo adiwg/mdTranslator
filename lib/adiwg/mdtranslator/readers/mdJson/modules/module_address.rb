@@ -31,6 +31,27 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intAdd = intMetadataClass.newAddress
 
+                        # address - address type [adiwg_addressType] (required)
+                        if hAddress.has_key?('addressType')
+                            hAddress['addressType'].each do |item|
+                                if item != ''
+                                    intAdd[:addressTypes] << item
+                                end
+                            end
+                        end
+                        if intAdd[:addressTypes].empty?
+                            responseObj[:readerExecutionMessages] << 'Address Type is missing'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
+
+                        # address - description
+                        if hAddress.has_key?('description')
+                            if hAddress['description'] != ''
+                                intAdd[:description] = hAddress['description']
+                            end
+                        end
+
                         # address - delivery point
                         if hAddress.has_key?('deliveryPoint')
                             hAddress['deliveryPoint'].each do |item|
@@ -65,15 +86,6 @@ module ADIWG
                         if hAddress.has_key?('country')
                             if hAddress['country'] != ''
                                 intAdd[:country] = hAddress['country']
-                            end
-                        end
-
-                        # address - email
-                        if hAddress.has_key?('electronicMailAddress')
-                            hAddress['electronicMailAddress'].each do |item|
-                                if item != ''
-                                    intAdd[:eMailList] << item
-                                end
                             end
                         end
 

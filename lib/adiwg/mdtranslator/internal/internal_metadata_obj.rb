@@ -158,6 +158,7 @@ class InternalMetadata
             logos: [],
             phones: [],
             addresses: [],
+            eMailList: [],
             onlineResources: [],
             hoursOfService: [],
             contactInstructions: nil,
@@ -176,12 +177,12 @@ class InternalMetadata
     def newAddress
         intObj = {
             addressTypes: [],
+            description: nil,
             deliveryPoints: [],
             city: nil,
             adminArea: nil,
             postalCode: nil,
-            country: nil,
-            eMailList: []
+            country: nil
         }
     end
 

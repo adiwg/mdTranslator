@@ -20,6 +20,10 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_equal 2, metadata[:addressTypes].length
+        assert_equal 'mailing', metadata[:addressTypes][0]
+        assert_equal 'physical', metadata[:addressTypes][1]
+        assert_equal 'description', metadata[:description]
         assert_equal 2, metadata[:deliveryPoints].length
         assert_equal 'deliveryPoint0', metadata[:deliveryPoints][0]
         assert_equal 'deliveryPoint1', metadata[:deliveryPoints][1]
@@ -27,32 +31,55 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
         assert_equal 'administrativeArea', metadata[:adminArea]
         assert_equal 'postalCode', metadata[:postalCode]
         assert_equal 'country', metadata[:country]
-        assert_equal 2, metadata[:eMailList].length
-        assert_equal 'email0@example.com', metadata[:eMailList][0]
-        assert_equal 'email1@example.com', metadata[:eMailList][1]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_empty_address_addressType
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['addressType'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_address_addressType
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('addressType')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
     def test_empty_address_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['description'] = ''
         hIn['deliveryPoint'] = []
         hIn['city'] = ''
         hIn['administrativeArea'] = ''
         hIn['postalCode'] = ''
         hIn['country'] = ''
-        hIn['electronicMailAddress'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:description]
         assert_empty metadata[:deliveryPoints]
         assert_nil metadata[:city]
         assert_nil metadata[:adminArea]
         assert_nil metadata[:postalCode]
         assert_nil metadata[:country]
-        assert_empty metadata[:eMailList]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -61,22 +88,21 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
     def test_missing_address_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['nonElement'] = ''
+        hIn.delete('description')
         hIn.delete('deliveryPoint')
         hIn.delete('city')
         hIn.delete('administrativeArea')
         hIn.delete('postalCode')
         hIn.delete('country')
-        hIn.delete('electronicMailAddress')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
+        assert_nil metadata[:description]
         assert_empty metadata[:deliveryPoints]
         assert_nil metadata[:city]
         assert_nil metadata[:adminArea]
         assert_nil metadata[:postalCode]
         assert_nil metadata[:country]
-        assert_empty metadata[:eMailList]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
