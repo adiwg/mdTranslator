@@ -10,17 +10,19 @@
       "name": "address - all keys with singe array elements",
       "address": [
         {
+          "addressType": ["mailing"],
+          "description": "description",
           "deliveryPoint": [
             "address line 1"
           ],
           "city": "city",
           "administrativeArea": "state",
           "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
+          "country": "country"
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress0"
       ]
     },
     {
@@ -29,6 +31,8 @@
       "name": "address - all keys with multiple array elements",
       "address": [
         {
+          "addressType": ["mailing", "physical"],
+          "description": "description",
           "deliveryPoint": [
             "address line 1",
             "address line 2"
@@ -36,12 +40,12 @@
           "city": "city",
           "administrativeArea": "state",
           "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com",
-            "email02@example.com"
-          ]
+          "country": "country"
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress0",
+        "emailAddress1"
       ]
     },
     {
@@ -50,29 +54,38 @@
       "name": "address - all keys with empty values",
       "address": [
         {
+          "addressType": ["addressType"],
+          "description": "",
           "deliveryPoint": [],
           "city": "",
           "administrativeArea": "",
           "postalCode": "",
-          "country": "",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
+          "country": ""
         }
-      ]
+      ],
+      "electronicMailAddress": []
     },
     {
       "contactId": "CID004",
       "isOrganization": false,
-      "name": "address - empty array",
-      "address": [],
-      "contactInstructions": "contact instructions"
+      "name": "address - minimum elements",
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ]
     },
     {
       "contactId": "CID005",
       "isOrganization": false,
-      "name": "address - missing key",
-      "contactInstructions": "contact instructions"
+      "name": "address - empty array",
+      "address": [],
+      "electronicMailAddress": []
+    },
+    {
+      "contactId": "CID006",
+      "isOrganization": false,
+      "name": "address - missing key"
     }
   ],
   "metadata": {
@@ -115,6 +128,14 @@
           "party": [
             {
               "contactId": "CID005"
+            }
+          ]
+        },
+        {
+          "role": "distributor",
+          "party": [
+            {
+              "contactId": "CID006"
             }
           ]
         }

@@ -52,10 +52,11 @@ module ADIWG
                             hAddress = hContact[:addresses][0]
                             unless hAddress.nil?
                                 @xml.tag!('gmd:address') do
-                                    addClass.writeXML(hAddress)
+                                    aEmail = hContact[:eMailList]
+                                    addClass.writeXML(hAddress, aEmail)
                                 end
                             end
-                            if hAddress.nil? && @hResponseObj[:writerShowTags]
+                            if hAddress.nil? && hContact[:eMailList].empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:address')
                             end
 

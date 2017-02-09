@@ -39,8 +39,21 @@ module ADIWG
                             isOrg = hContact[:isOrganization]
                             @xml.tag!('gmd:CI_ResponsibleParty') do
 
-                                # responsible party - (if individual)
-                                unless isOrg
+                                # responsible party
+                                if isOrg
+
+                                    # organization name
+                                    s = hContact[:name]
+                                    unless s.nil?
+                                        @xml.tag!('gmd:organisationName') do
+                                            @xml.tag!('gco:CharacterString', s)
+                                        end
+                                    end
+                                    if s.nil? && @hResponseObj[:writerShowTags]
+                                        @xml.tag!('gmd:organisationName')
+                                    end
+
+                                else
 
                                     # individual name
                                     s = hContact[:name]
@@ -66,30 +79,14 @@ module ADIWG
 
                                 end
 
-                                # responsible party - (if organization)
-                                if isOrg
-
-                                    # organization name
-                                    s = hContact[:name]
-                                    unless s.nil?
-                                        @xml.tag!('gmd:organisationName') do
-                                            @xml.tag!('gco:CharacterString', s)
-                                        end
-                                    end
-                                    if s.nil? && @hResponseObj[:writerShowTags]
-                                        @xml.tag!('gmd:organisationName')
-                                    end
-
-                                end
-
                                 # responsible party - contact info
-                                if !(hContact[:phones].empty? &&
-                                    hContact[:addresses].empty? &&
-                                    hContact[:onlineResources].empty? &&
-                                    hContact[:hoursOfService].empty? &&
-                                    (hContact[:contactInstructions].nil? ||
-                                        hContact[:contactInstructions] == '')
-                                )
+                                if !hContact[:phones].empty? ||
+                                    !hContact[:addresses].empty? ||
+                                    !hContact[:eMailList].empty? ||
+                                    !hContact[:onlineResources].empty? ||
+                                    !hContact[:hoursOfService].empty? ||
+                                    !hContact[:contactInstructions].nil?
+
                                     @xml.tag!('gmd:contactInfo') do
                                         contactClass.writeXML(hContact)
                                     end

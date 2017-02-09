@@ -24,9 +24,13 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hAddress)
+                    def writeXML(hAddress, aEmail)
 
                         @xml.tag!('gmd:CI_Address') do
+
+                            # address - address type (not used by ISO 19115-2)
+
+                            # address - description (not used by ISO 19115-2)
 
                             # address - delivery points []
                             aDeliveryPoints = hAddress[:deliveryPoints]
@@ -84,12 +88,11 @@ module ADIWG
                             end
 
                             # address - email addresses []
-                            aEmail = hAddress[:eMailList]
-                                aEmail.each do |myEmail|
-                                    @xml.tag!('gmd:electronicMailAddress') do
-                                        @xml.tag!('gco:CharacterString', myEmail)
-                                    end
+                            aEmail.each do |myEmail|
+                                @xml.tag!('gmd:electronicMailAddress') do
+                                    @xml.tag!('gco:CharacterString', myEmail)
                                 end
+                            end
                             if aEmail.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:electronicMailAddress')
                             end

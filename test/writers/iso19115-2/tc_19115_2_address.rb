@@ -26,7 +26,7 @@ class TestWriter191152Address < MiniTest::Test
     def test_19115_2_address
 
         aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:CI_Contact') {|e| aRefXML << e}
+        XPath.each(@@iso_xml, '//gmd:contact') {|e| aRefXML << e}
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
@@ -36,7 +36,7 @@ class TestWriter191152Address < MiniTest::Test
         iso_out = Document.new(metadata)
 
         aCheckXML = []
-        XPath.each(iso_out, '//gmd:CI_Contact') {|e| aCheckXML << e}
+        XPath.each(iso_out, '//gmd:contact') {|e| aCheckXML << e}
 
         aRefXML.length.times{|i|
             assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
