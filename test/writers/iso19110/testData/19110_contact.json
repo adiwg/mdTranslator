@@ -7,7 +7,46 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "contact - individual",
+      "name": "contact - individual single array elements",
+      "positionName": "positionName",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ],
+      "electronicMailAddress": [
+        "emailAddress"
+      ],
+      "onlineResource": [
+        {
+          "resourceURI": "resourceUri",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
+        }
+      ],
+      "hoursOfService": [
+        "hours of service"
+      ],
+      "contactInstructions": "contact instructions",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": false,
+      "name": "contact - individual multi array elements",
       "positionName": "positionName",
       "memberOfOrganization": [
         "CID003"
@@ -39,83 +78,38 @@
       ],
       "address": [
         {
-          "deliveryPoint": [
-            "deliveryPoint0",
-            "deliveryPoint1"
-          ],
-          "city": "city",
-          "administrativeArea": "administrativeArea",
-          "postalCode": "postalCode",
-          "country": "country",
-          "electronicMailAddress": [
-            "email0@example.com",
-            "email1@example.com"
-          ]
+          "addressType": ["addressType0"]
         },
         {
-          "electronicMailAddress": [
-            "email2@example.com"
-          ]
+          "addressType": ["addressType1"]
         }
+      ],
+      "electronicMailAddress": [
+        "emailAddress0",
+        "emailAddress1"
       ],
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example.com",
+          "resourceURI": "resourceUri0",
           "protocol": "protocol",
           "name": "name",
           "description": "description",
           "function": "function"
         },
         {
-          "resourceURI": "https://www.amazon.com/Kindle-eBooks",
-          "protocol": "HTTP",
-          "name": "Kindle Books",
-          "description": "Home for Amazon Kindle eBooks",
-          "function": "sales"
+          "resourceURI": "resourceUri1",
+          "protocol": "protocol",
+          "name": "name",
+          "description": "description",
+          "function": "function"
         }
       ],
       "hoursOfService": [
         "hours of service 0",
-        "hours of service 1"],
+        "hours of service 1"
+      ],
       "contactInstructions": "contact instructions",
       "contactType": "contact type"
-    },
-    {
-      "contactId": "CID002",
-      "isOrganization": false,
-      "name": "contact - individual",
-      "positionName": "positionName",
-      "memberOfOrganization": [],
-      "logoGraphic": [],
-      "phone": [
-        {
-          "phoneName": "single service",
-          "phoneNumber": "111-111-1111",
-          "service": [
-            "voice"
-          ]
-        }
-      ],
-      "address": [
-        {
-          "electronicMailAddress": [
-            "email2@example.com"
-          ]
-        }
-      ],
-      "onlineResource": [
-        {
-          "resourceURI": "http://URI.example.com",
-          "protocol": "protocol",
-          "name": "name",
-          "description": "description",
-          "function": "function"
-        }
-      ],
-      "hoursOfService": [
-        "hours of service 2"],
-      "contactInstructions": "contact instructions",
-      "contactType": ""
     },
     {
       "contactId": "CID003",
@@ -126,6 +120,7 @@
       "logoGraphic": [],
       "phone": [],
       "address": [],
+      "electronicMailAddress": [],
       "onlineResource": [],
       "hoursOfService": [],
       "contactInstructions": "contact instructions",

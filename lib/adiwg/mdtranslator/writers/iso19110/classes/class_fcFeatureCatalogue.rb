@@ -60,7 +60,10 @@ module ADIWG
                                    'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
                                    'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                                    'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                                   'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd'}) do
+                                   'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gfc C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema\gfc\gfc.xsd'}) do
+
+                            # TODO replace schema location with next line
+                            # 'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd'}) do
 
                             # feature catalogue - name, version, version date are
                             # are taken from citation

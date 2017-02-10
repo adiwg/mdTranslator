@@ -31,9 +31,7 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
         ADIWG::MdjsonSchemas::Utils.load_schemas(true)
 
         # scan with strict => 'true' to ensure all parameters are present
-        aValErrs = JSON::Validator.fully_validate(schema, hIn, :strict => true, :errors_as_objects => true)
-
-        assert_empty aValErrs
+        assert JSON::Validator.validate(schema, hIn, :strict => true)
 
     end
 
