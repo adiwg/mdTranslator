@@ -83,13 +83,13 @@ module ADIWG
                                 end
 
                                 # responsible party - contact info
-                                if !(hContact[:phones].empty? &&
-                                    hContact[:addresses].empty? &&
-                                    hContact[:onlineResources].empty? &&
-                                    hContact[:hoursOfService].empty? &&
-                                    (hContact[:contactInstructions].nil? ||
-                                        hContact[:contactInstructions] == '')
-                                )
+                                if !hContact[:phones].empty? ||
+                                    !hContact[:addresses].empty? ||
+                                    !hContact[:eMailList].empty? ||
+                                    !hContact[:onlineResources].empty? ||
+                                    !hContact[:hoursOfService].empty? ||
+                                    !hContact[:contactInstructions].nil?
+
                                     @xml.tag!('gmd:contactInfo') do
                                         contactClass.writeXML(hContact)
                                     end

@@ -24,72 +24,79 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hAddress)
+                    def writeXML(hAddress, aEmail)
 
                         @xml.tag!('gmd:CI_Address') do
 
-                            # address - delivery points []
-                            aDeliveryPoints = hAddress[:deliveryPoints]
-                            aDeliveryPoints.each do |myPoint|
-                                @xml.tag!('gmd:deliveryPoint') do
-                                    @xml.tag!('gco:CharacterString', myPoint)
-                                end
-                            end
-                            if aDeliveryPoints.empty? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:deliveryPoint')
-                            end
+                            unless hAddress.nil?
 
-                            # address - city
-                            s = hAddress[:city]
-                            unless s.nil?
-                                @xml.tag!('gmd:city') do
-                                    @xml.tag!('gco:CharacterString', s)
-                                end
-                            end
-                            if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:city')
-                            end
+                                # address - address type (not used by ISO 19115-2)
 
-                            # address - administrative area
-                            s = hAddress[:adminArea]
-                            unless s.nil?
-                                @xml.tag!('gmd:administrativeArea') do
-                                    @xml.tag!('gco:CharacterString', s)
-                                end
-                            end
-                            if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:administrativeArea')
-                            end
+                                # address - description (not used by ISO 19115-2)
 
-                            # address - postal code
-                            s = hAddress[:postalCode]
-                            unless s.nil?
-                                @xml.tag!('gmd:postalCode') do
-                                    @xml.tag!('gco:CharacterString', s)
+                                # address - delivery points []
+                                aDeliveryPoints = hAddress[:deliveryPoints]
+                                aDeliveryPoints.each do |myPoint|
+                                    @xml.tag!('gmd:deliveryPoint') do
+                                        @xml.tag!('gco:CharacterString', myPoint)
+                                    end
                                 end
-                            end
-                            if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:postalCode')
-                            end
+                                if aDeliveryPoints.empty? && @hResponseObj[:writerShowTags]
+                                    @xml.tag!('gmd:deliveryPoint')
+                                end
 
-                            # address - country
-                            s = hAddress[:country]
-                            unless s.nil?
-                                @xml.tag!('gmd:country') do
-                                    @xml.tag!('gco:CharacterString', s)
+                                # address - city
+                                s = hAddress[:city]
+                                unless s.nil?
+                                    @xml.tag!('gmd:city') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
                                 end
-                            end
-                            if s.nil? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:country')
+                                if s.nil? && @hResponseObj[:writerShowTags]
+                                    @xml.tag!('gmd:city')
+                                end
+
+                                # address - administrative area
+                                s = hAddress[:adminArea]
+                                unless s.nil?
+                                    @xml.tag!('gmd:administrativeArea') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                end
+                                if s.nil? && @hResponseObj[:writerShowTags]
+                                    @xml.tag!('gmd:administrativeArea')
+                                end
+
+                                # address - postal code
+                                s = hAddress[:postalCode]
+                                unless s.nil?
+                                    @xml.tag!('gmd:postalCode') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                end
+                                if s.nil? && @hResponseObj[:writerShowTags]
+                                    @xml.tag!('gmd:postalCode')
+                                end
+
+                                # address - country
+                                s = hAddress[:country]
+                                unless s.nil?
+                                    @xml.tag!('gmd:country') do
+                                        @xml.tag!('gco:CharacterString', s)
+                                    end
+                                end
+                                if s.nil? && @hResponseObj[:writerShowTags]
+                                    @xml.tag!('gmd:country')
+                                end
+
                             end
 
                             # address - email addresses []
-                            aEmail = hAddress[:eMailList]
-                                aEmail.each do |myEmail|
-                                    @xml.tag!('gmd:electronicMailAddress') do
-                                        @xml.tag!('gco:CharacterString', myEmail)
-                                    end
+                            aEmail.each do |myEmail|
+                                @xml.tag!('gmd:electronicMailAddress') do
+                                    @xml.tag!('gco:CharacterString', myEmail)
                                 end
+                            end
                             if aEmail.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:electronicMailAddress')
                             end

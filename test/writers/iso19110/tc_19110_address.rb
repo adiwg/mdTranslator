@@ -32,6 +32,8 @@ class TestWriter19110Address < MiniTest::Test
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -50,6 +52,8 @@ class TestWriter19110Address < MiniTest::Test
     def test_19110_address_2
 
         hJson = JSON.parse(@@mdJson)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
@@ -74,6 +78,8 @@ class TestWriter19110Address < MiniTest::Test
         hJson = JSON.parse(@@mdJson)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         jsonIn = hJson.to_json
@@ -95,6 +101,32 @@ class TestWriter19110Address < MiniTest::Test
 
         hJson = JSON.parse(@@mdJson)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
+
+        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+
+    end
+
+    def test_19110_address_5
+
+        hJson = JSON.parse(@@mdJson)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
@@ -113,9 +145,36 @@ class TestWriter19110Address < MiniTest::Test
 
     end
 
-    def test_19110_address_5
+    def test_19110_address_6
 
         hJson = JSON.parse(@@mdJson)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(6)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        File.write('/mnt/hgfs/Projects/writeOut.xml', metadata)
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
+
+        refute checkXML
+
+    end
+
+    def test_19110_address_7
+
+        hJson = JSON.parse(@@mdJson)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
@@ -131,7 +190,7 @@ class TestWriter19110Address < MiniTest::Test
 
         checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
 
-        assert_equal @@aRefXML[4].to_s.squeeze, checkXML.to_s.squeeze
+        refute checkXML
 
     end
 
