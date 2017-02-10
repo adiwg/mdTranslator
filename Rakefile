@@ -4,10 +4,7 @@ require 'rake/testtask'
 Rake::TestTask.new do |t|
 	t.libs << 'test'
 	t.test_files = FileList[
-		'test/readers/mdJson/tc*.rb',
-		'test/writers/iso19115-2/tc*.rb',
-		'test/writers/iso19110/tc*.rb',
-		'test/translator/tc*.rb'
+		'test/writers/iso19110/tc*.rb'
 	]
 	t.verbose = true
 end
@@ -15,3 +12,9 @@ end
 
 desc 'Run tests'
 task :default => :test
+
+	# 'test/readers/mdJson/tc*.rb',
+	# 'test/writers/iso19115-2/tc*.rb',
+	# 'test/writers/iso19110/tc*.rb',
+	# 'test/translator/tc*.rb'
+

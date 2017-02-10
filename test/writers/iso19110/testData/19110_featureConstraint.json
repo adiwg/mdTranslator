@@ -7,21 +7,7 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "dictionary contact",
-      "address": [
-        {
-          "deliveryPoint": [
-            "address line 1"
-          ],
-          "city": "city",
-          "administrativeArea": "state",
-          "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
-        }
-      ]
+      "name": "dictionary contact"
     }
   ],
   "metadata": {

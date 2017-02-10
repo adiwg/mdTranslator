@@ -13,6 +13,7 @@
       "logoGraphic": [],
       "phone": [],
       "address": [],
+      "electronicMailAddress": [],
       "onlineResource": [
         {
           "resourceURI": "http://URI.example0.com",

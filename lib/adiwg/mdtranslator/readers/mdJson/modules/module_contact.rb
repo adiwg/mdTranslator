@@ -137,7 +137,7 @@ module ADIWG
 
                         # contact - contact instructions
                         if hContact.has_key?('contactInstructions')
-                            if hContact['positionName'] != ''
+                            if hContact['contactInstructions'] != ''
                                 intContact[:contactInstructions] = hContact['contactInstructions']
                             end
                         end
