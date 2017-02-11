@@ -48,6 +48,7 @@ require_relative 'class_coverageDescription'
 require_relative 'class_distribution'
 require_relative 'class_dataQuality'
 require_relative 'class_maintenance'
+require_relative 'class_gcoDateTime'
 
 module ADIWG
     module Mdtranslator
@@ -77,6 +78,7 @@ module ADIWG
                         distClass = MD_Distribution.new(@xml, @hResponseObj)
                         dqClass = DQ_DataQuality.new(@xml, @hResponseObj)
                         maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
+                        dateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
 
                         # create shortcuts to sections of internal object
                         hMetadata = intObj[:metadata]
@@ -178,23 +180,17 @@ module ADIWG
                             end
 
                             # metadata information - date stamp (required) {default: now()}
-                            sDate = AdiwgDateTimeFun.stringDateFromDateTime(DateTime.now, 'YMD')
-                            hCreate = {}
+                            hCreateDate = {}
+                            hCreateDate[:date] = DateTime.now
+                            hCreateDate[:dateResolution] = 'YMD'
                             aDates = hMetaInfo[:metadataDates]
                             aDates.each do |hDate|
                                 if hDate[:dateType] == 'creation'
-                                    hCreate = hDate
-                                end
-                            end
-                            unless hCreate.empty?
-                                mDateTime = hCreate[:date]
-                                mDateRes = hCreate[:dateResolution]
-                                unless mDateTime.nil?
-                                    sDate = AdiwgDateTimeFun.stringDateFromDateTime(mDateTime, mDateRes)
+                                    hCreateDate = hDate
                                 end
                             end
                             @xml.tag!('gmd:dateStamp') do
-                                @xml.tag!('gco:Date', sDate)
+                                dateTimeClass.writeXML(hCreateDate)
                             end
 
                             # metadata information - metadata standard name (default)

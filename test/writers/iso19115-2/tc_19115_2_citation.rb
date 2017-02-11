@@ -40,7 +40,7 @@ class TestWriter191152Citation < MiniTest::Test
 
     end
 
-    def test_19115_2_citation_no_dash_1
+    def test_19115_2_citation_no_dash_1_elements
 
         hJson = JSON.parse(@@mdJson)
         hCitation = hJson['metadata']['resourceInfo']['citation']
@@ -62,6 +62,37 @@ class TestWriter191152Citation < MiniTest::Test
     end
 
     def test_19115_2_citation_empty_elements
+
+        hJson = JSON.parse(@@mdJson)
+        hCitation = hJson['metadata']['resourceInfo']['citation']
+        hCitation['alternateTitle'] = []
+        hCitation['date'] = []
+        hCitation['onlineResource'] = []
+        hCitation['edition'] = ''
+        hCitation['responsibleParty'] = []
+        hCitation['presentationForm'] = []
+        hCitation['identifier'] = []
+        hCitation['series'] = {}
+        hCitation['otherCitationDetails'] = []
+        hCitation['onlineResource'] = []
+        hCitation['graphic'] = []
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        File.write('/mnt/hgfs/Projects/writeOut.xml', metadata)
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:citation')
+
+        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+
+    end
+
+    def test_19115_2_citation_missing_elements
 
         hJson = JSON.parse(@@mdJson)
         hCitation = hJson['metadata']['resourceInfo']['citation']

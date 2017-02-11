@@ -7,21 +7,7 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements",
-      "address": [
-        {
-          "deliveryPoint": [
-            "address line 1"
-          ],
-          "city": "city",
-          "administrativeArea": "state",
-          "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
-        }
-      ]
+      "name": "address - name only"
     }
   ],
   "metadata": {
@@ -47,8 +33,8 @@
             "dateType": "dateType00"
           },
           {
-            "date": "2016-10-12",
-            "dateType": "dateType01"
+            "date": "2017-02-10",
+            "dateType": "nextUpdate"
           }
         ],
         "scope": [

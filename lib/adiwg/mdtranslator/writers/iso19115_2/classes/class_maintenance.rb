@@ -15,6 +15,7 @@
 require_relative 'class_codelist'
 require_relative 'class_responsibleParty'
 require_relative 'class_scopeDescription'
+require_relative 'class_gcoDateTime'
 
 module ADIWG
     module Mdtranslator
@@ -34,6 +35,7 @@ module ADIWG
                         codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                         partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
                         scopeClass = MD_ScopeDescription.new(@xml, @hResponseObj)
+                        dateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
 
                         @xml.tag! 'gmd:MD_MaintenanceInformation' do
 
@@ -48,7 +50,21 @@ module ADIWG
                                 @xml.tag!('gmd:maintenanceAndUpdateFrequency', {'gco:nilReason' => 'unknown'})
                             end
 
-                            # maintenance information - date of next update (not supported)
+                            # maintenance information - date of next update
+                            found = false
+                            aDates = hMaintenance[:dates]
+                            aDates.each do |hDate|
+                                if hDate[:dateType] == 'nextUpdate'
+                                    found = true
+                                    @xml.tag!('gmd:dateOfNextUpdate') do
+                                        dateTimeClass.writeXML(hDate)
+                                    end
+                                end
+                            end
+                            if !found && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:dateOfNextUpdate')
+                            end
+
                             # maintenance information - user defined maintenance frequency (not supported)
 
                             # maintenance information - update scope [{MD_ScopeCode}]
@@ -65,20 +81,7 @@ module ADIWG
                                 @xml.tag!('gmd:updateScope')
                             end
 
-                            # maintenance information - update scope description []
-                            haveDescription = false
-                            aScopes.each do |hResScope|
-                                aScopeDes = hResScope[:scopeDescription]
-                                aScopeDes.each do |hScopeDes|
-                                    haveDescription = true
-                                    @xml.tag!('gmd:updateScopeDescription') do
-                                        scopeClass.writeXML(hScopeDes)
-                                    end
-                                end
-                            end
-                            if !haveDescription && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:updateScopeDescription')
-                            end
+                            # maintenance information - update scope description [] (dropped)
 
                             # maintenance information - note []
                             aNotes = hMaintenance[:notes]

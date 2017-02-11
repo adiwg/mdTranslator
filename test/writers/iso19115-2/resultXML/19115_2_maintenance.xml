@@ -24,49 +24,20 @@
     <gmd:maintenanceAndUpdateFrequency>
       <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency1" codeSpace="userCode"/>
     </gmd:maintenanceAndUpdateFrequency>
+    <gmd:dateOfNextUpdate/>
     <gmd:updateScope>
       <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode1" codeSpace="userCode"/>
     </gmd:updateScope>
-    <gmd:updateScopeDescription/>
     <gmd:maintenanceNote>
       <gco:CharacterString>note1</gco:CharacterString>
     </gmd:maintenanceNote>
     <gmd:contact>
       <gmd:CI_ResponsibleParty>
         <gmd:individualName>
-          <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+          <gco:CharacterString>address - name only</gco:CharacterString>
         </gmd:individualName>
         <gmd:positionName/>
-        <gmd:contactInfo>
-          <gmd:CI_Contact>
-            <gmd:phone/>
-            <gmd:address>
-              <gmd:CI_Address>
-                <gmd:deliveryPoint>
-                  <gco:CharacterString>address line 1</gco:CharacterString>
-                </gmd:deliveryPoint>
-                <gmd:city>
-                  <gco:CharacterString>city</gco:CharacterString>
-                </gmd:city>
-                <gmd:administrativeArea>
-                  <gco:CharacterString>state</gco:CharacterString>
-                </gmd:administrativeArea>
-                <gmd:postalCode>
-                  <gco:CharacterString>zip</gco:CharacterString>
-                </gmd:postalCode>
-                <gmd:country>
-                  <gco:CharacterString>country</gco:CharacterString>
-                </gmd:country>
-                <gmd:electronicMailAddress>
-                  <gco:CharacterString>email01@example.com</gco:CharacterString>
-                </gmd:electronicMailAddress>
-              </gmd:CI_Address>
-            </gmd:address>
-            <gmd:onlineResource/>
-            <gmd:hoursOfService/>
-            <gmd:contactInstructions/>
-          </gmd:CI_Contact>
-        </gmd:contactInfo>
+        <gmd:contactInfo/>
         <gmd:role>
           <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role1" codeSpace="userCode"/>
         </gmd:role>
@@ -78,8 +49,8 @@
     <gmd:maintenanceAndUpdateFrequency>
       <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency2" codeSpace="userCode"/>
     </gmd:maintenanceAndUpdateFrequency>
+    <gmd:dateOfNextUpdate/>
     <gmd:updateScope/>
-    <gmd:updateScopeDescription/>
     <gmd:maintenanceNote/>
     <gmd:contact/>
   </gmd:MD_MaintenanceInformation>
@@ -88,13 +59,15 @@
     <gmd:maintenanceAndUpdateFrequency>
       <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency0" codeSpace="userCode"/>
     </gmd:maintenanceAndUpdateFrequency>
+    <gmd:dateOfNextUpdate>
+      <gco:Date>2017-02-10</gco:Date>
+    </gmd:dateOfNextUpdate>
     <gmd:updateScope>
       <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode00" codeSpace="userCode"/>
     </gmd:updateScope>
     <gmd:updateScope>
       <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode01" codeSpace="userCode"/>
     </gmd:updateScope>
-    <gmd:updateScopeDescription/>
     <gmd:maintenanceNote>
       <gco:CharacterString>note00</gco:CharacterString>
     </gmd:maintenanceNote>
@@ -104,39 +77,10 @@
     <gmd:contact>
       <gmd:CI_ResponsibleParty>
         <gmd:individualName>
-          <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+          <gco:CharacterString>address - name only</gco:CharacterString>
         </gmd:individualName>
         <gmd:positionName/>
-        <gmd:contactInfo>
-          <gmd:CI_Contact>
-            <gmd:phone/>
-            <gmd:address>
-              <gmd:CI_Address>
-                <gmd:deliveryPoint>
-                  <gco:CharacterString>address line 1</gco:CharacterString>
-                </gmd:deliveryPoint>
-                <gmd:city>
-                  <gco:CharacterString>city</gco:CharacterString>
-                </gmd:city>
-                <gmd:administrativeArea>
-                  <gco:CharacterString>state</gco:CharacterString>
-                </gmd:administrativeArea>
-                <gmd:postalCode>
-                  <gco:CharacterString>zip</gco:CharacterString>
-                </gmd:postalCode>
-                <gmd:country>
-                  <gco:CharacterString>country</gco:CharacterString>
-                </gmd:country>
-                <gmd:electronicMailAddress>
-                  <gco:CharacterString>email01@example.com</gco:CharacterString>
-                </gmd:electronicMailAddress>
-              </gmd:CI_Address>
-            </gmd:address>
-            <gmd:onlineResource/>
-            <gmd:hoursOfService/>
-            <gmd:contactInstructions/>
-          </gmd:CI_Contact>
-        </gmd:contactInfo>
+        <gmd:contactInfo/>
         <gmd:role>
           <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role00" codeSpace="userCode"/>
         </gmd:role>
@@ -145,44 +89,16 @@
     <gmd:contact>
       <gmd:CI_ResponsibleParty>
         <gmd:individualName>
-          <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+          <gco:CharacterString>address - name only</gco:CharacterString>
         </gmd:individualName>
         <gmd:positionName/>
-        <gmd:contactInfo>
-          <gmd:CI_Contact>
-            <gmd:phone/>
-            <gmd:address>
-              <gmd:CI_Address>
-                <gmd:deliveryPoint>
-                  <gco:CharacterString>address line 1</gco:CharacterString>
-                </gmd:deliveryPoint>
-                <gmd:city>
-                  <gco:CharacterString>city</gco:CharacterString>
-                </gmd:city>
-                <gmd:administrativeArea>
-                  <gco:CharacterString>state</gco:CharacterString>
-                </gmd:administrativeArea>
-                <gmd:postalCode>
-                  <gco:CharacterString>zip</gco:CharacterString>
-                </gmd:postalCode>
-                <gmd:country>
-                  <gco:CharacterString>country</gco:CharacterString>
-                </gmd:country>
-                <gmd:electronicMailAddress>
-                  <gco:CharacterString>email01@example.com</gco:CharacterString>
-                </gmd:electronicMailAddress>
-              </gmd:CI_Address>
-            </gmd:address>
-            <gmd:onlineResource/>
-            <gmd:hoursOfService/>
-            <gmd:contactInstructions/>
-          </gmd:CI_Contact>
-        </gmd:contactInfo>
+        <gmd:contactInfo/>
         <gmd:role>
           <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role01" codeSpace="userCode"/>
         </gmd:role>
       </gmd:CI_ResponsibleParty>
     </gmd:contact>
   </gmd:MD_MaintenanceInformation>
+
 
 </gmi:MI_Metadata>

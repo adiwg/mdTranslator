@@ -7,21 +7,7 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements",
-      "address": [
-        {
-          "deliveryPoint": [
-            "address line 1"
-          ],
-          "city": "city",
-          "administrativeArea": "state",
-          "postalCode": "zip",
-          "country": "country",
-          "electronicMailAddress": [
-            "email01@example.com"
-          ]
-        }
-      ]
+      "name": "address - all keys with singe array elements"
     }
   ],
   "metadata": {
@@ -51,17 +37,17 @@
         "date": [
           {
             "date": "2016-10-13",
-            "dateType": "creation"
+            "dateType": "dateType0"
           },
           {
             "date": "2016-10-22T14:20:20",
-            "dateType": "publication"
+            "dateType": "dateType1"
           }
         ],
         "edition": "edition",
         "responsibleParty": [
           {
-            "role": "custodian",
+            "role": "role0",
             "party": [
               {
                 "contactId": "CID001"
@@ -69,7 +55,7 @@
             ]
           },
           {
-            "role": "resourceProvider",
+            "role": "role1",
             "party": [
               {
                 "contactId": "CID001"
@@ -78,8 +64,8 @@
           }
         ],
         "presentationForm": [
-          "documentDigital",
-          "documentHardcopy"
+          "presentationForm0",
+          "presentationForm1"
         ],
         "identifier": [
           {
