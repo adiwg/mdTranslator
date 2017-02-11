@@ -7,7 +7,7 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "address - name only"
     }
   ],
   "metadata": {

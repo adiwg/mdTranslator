@@ -57,7 +57,7 @@ class TestWriter191152MetadataDate < MiniTest::Test
         checkXML = XPath.first(checkXML, '//gco:Date').get_text
         today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal today, checkXML.to_s.squeeze
+        assert_equal today.to_s, checkXML.to_s
 
     end
 
@@ -77,7 +77,7 @@ class TestWriter191152MetadataDate < MiniTest::Test
         checkXML = XPath.first(checkXML, '//gco:Date').get_text
         today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal today, checkXML.to_s.squeeze
+        assert_equal today.to_s, checkXML.to_s
 
     end
 
@@ -97,7 +97,7 @@ class TestWriter191152MetadataDate < MiniTest::Test
         checkXML = XPath.first(checkXML, '//gco:Date').get_text
         today = Time.now.strftime("%Y-%m-%d")
 
-        assert_equal today, checkXML.to_s.squeeze
+        assert_equal today.to_s, checkXML.to_s
 
     end
 

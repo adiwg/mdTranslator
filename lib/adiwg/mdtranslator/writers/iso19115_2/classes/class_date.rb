@@ -13,6 +13,7 @@
 # 	Stan Smith 2013-08-26 original script
 
 require_relative 'class_codelist'
+require_relative 'class_gcoDateTime'
 
 module ADIWG
     module Mdtranslator
@@ -30,9 +31,9 @@ module ADIWG
 
                         # classes used
                         codelistClass =  MD_Codelist.new(@xml, @hResponseObj)
+                        gcoDateTimeClass =  GcoDateTime.new(@xml, @hResponseObj)
 
                         date = hDate[:date]
-                        dateRes = hDate[:dateResolution]
                         dateType = hDate[:dateType]
 
                         @xml.tag!('gmd:CI_Date') do
@@ -40,20 +41,7 @@ module ADIWG
                             # date - date (required)
                             unless date.nil?
                                 @xml.tag!('gmd:date') do
-                                    case dateRes
-                                        when 'Y', 'YM', 'YMD'
-                                            dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                                            @xml.tag!('gco:Date', dateStr)
-                                        when 'YMDh', 'YMDhm', 'YMDhms'
-                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhms')
-                                            @xml.tag!('gco:DateTime', dateStr)
-                                        when 'YMDhZ', 'YMDhmZ', 'YMDhmsZ'
-                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsZ')
-                                            @xml.tag!('gco:DateTime', dateStr)
-                                        else
-                                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
-                                            @xml.tag!('gco:DateTime', dateStr)
-                                    end
+                                    gcoDateTimeClass.writeXML(hDate)
                                 end
                             end
                             if date.nil?
