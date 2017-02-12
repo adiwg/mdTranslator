@@ -25,6 +25,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         assert_equal 2, metadata[:contacts].length
         refute_empty metadata[:metadata]
         assert_equal 2, metadata[:dataDictionaries].length
+        assert_equal 2, metadata[:metadataRepositories].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -119,6 +120,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['dataDictionary'] = []
+        hIn['metadataRepository'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -126,6 +128,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         assert_equal 2, metadata[:contacts].length
         refute_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
+        assert_empty metadata[:metadataRepositories]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -136,6 +139,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('dataDictionary')
+        hIn.delete('metadataRepository')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -143,6 +147,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         assert_equal 2, metadata[:contacts].length
         refute_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
+        assert_empty metadata[:metadataRepositories]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

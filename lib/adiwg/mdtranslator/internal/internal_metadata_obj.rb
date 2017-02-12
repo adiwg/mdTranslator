@@ -2,7 +2,7 @@
 
 # History:
 # version 2
-#   Stan Smith 2017-02-09 added newMetadataDistribution
+#   Stan Smith 2017-02-09 added newMetadataRepository
 #   Stan Smith 2017-01-20 refactored newDataDictionary
 #   Stan Smith 2016-11-10 added computedBbox to newGeographicExtent, newGeometryCollection
 #   Stan Smith 2016-11-10 added computedBbox to newGeometryFeature, newFeatureCollection
@@ -121,7 +121,8 @@ class InternalMetadata
             schema: {},
             contacts: [],
             metadata: {},
-            dataDictionaries: []
+            dataDictionaries: [],
+            metadataRepositories: []
         }
     end
 
@@ -194,8 +195,7 @@ class InternalMetadata
             distributorInfo: [],
             associatedResources: [],
             additionalDocuments: [],
-            funding: [],
-            metadataDistribution: []
+            funding: []
         }
     end
 
@@ -966,11 +966,9 @@ class InternalMetadata
         }
     end
 
-    def newMetadataDistribution
+    def newMetadataRepository
         intObj = {
-            clearingHouse: nil,
-            recordId: nil,
-            pushMethod: nil,
+            repository: nil,
             metadataFormat: nil
         }
     end

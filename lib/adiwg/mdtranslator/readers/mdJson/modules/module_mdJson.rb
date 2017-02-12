@@ -9,6 +9,7 @@ require_relative 'module_schema'
 require_relative 'module_contact'
 require_relative 'module_metadata'
 require_relative 'module_dataDictionary'
+require_relative 'module_metadataRepository'
 
 module ADIWG
     module Mdtranslator
@@ -86,6 +87,17 @@ module ADIWG
                                 hReturn = DataDictionary.unpack(hItem, responseObj)
                                 unless hReturn.nil?
                                     intObj[:dataDictionaries] << hReturn
+                                end
+                            end
+                        end
+
+                        # metadata - metadata distribution [] {metadataDistribution}
+                        if hMdJson.has_key?('metadataRepository')
+                            aItems = hMdJson['metadataRepository']
+                            aItems.each do |item|
+                                hReturn = MetadataRepository.unpack(item, responseObj)
+                                unless hReturn.nil?
+                                    intObj[:metadataRepositories] << hReturn
                                 end
                             end
                         end

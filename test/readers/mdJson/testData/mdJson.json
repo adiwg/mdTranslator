@@ -129,5 +129,14 @@
         ]
       }
     }
+  ],
+  "metadataRepository": [
+    {
+      "repository": "repository0",
+      "metadataFormat": "iso19115_2"
+    },
+    {
+      "repository": "repository1"
+    }
   ]
 }

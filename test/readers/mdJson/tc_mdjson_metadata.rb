@@ -29,7 +29,6 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
         assert_equal 2, metadata[:associatedResources].length
         assert_equal 2, metadata[:additionalDocuments].length
         assert_equal 2, metadata[:funding].length
-        assert_equal 2, metadata[:metadataDistribution].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -100,7 +99,6 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
         hIn['associatedResource'] = []
         hIn['additionalDocumentation'] = []
         hIn['funding'] = []
-        hIn['metadataDistribution'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -111,7 +109,6 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
         assert_empty metadata[:associatedResources]
         assert_empty metadata[:additionalDocuments]
         assert_empty metadata[:funding]
-        assert_empty metadata[:metadataDistribution]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -126,7 +123,6 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
         hIn.delete('associatedResource')
         hIn.delete('additionalDocumentation')
         hIn.delete('funding')
-        hIn.delete('metadataDistribution')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -137,7 +133,6 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
         assert_empty metadata[:associatedResources]
         assert_empty metadata[:additionalDocuments]
         assert_empty metadata[:funding]
-        assert_empty metadata[:metadataDistribution]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
