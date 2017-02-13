@@ -20,7 +20,7 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'repository', metadata[:repository]
-        assert_equal 'iso19115_2', metadata[:metadataFormat]
+        assert_equal 'iso19115_2', metadata[:metadataStandard]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -56,12 +56,12 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
     def test_empty_metadataDistribution_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['metadataFormat'] = ''
+        hIn['metadataStandard'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'repository', metadata[:repository]
-        assert_nil metadata[:metadataFormat]
+        assert_nil metadata[:metadataStandard]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -70,12 +70,12 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
     def test_missing_metadataDistribution_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('metadataFormat')
+        hIn.delete('metadataStandard')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'repository', metadata[:repository]
-        assert_nil metadata[:metadataFormat]
+        assert_nil metadata[:metadataStandard]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

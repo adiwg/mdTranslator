@@ -969,7 +969,7 @@ class InternalMetadata
     def newMetadataRepository
         intObj = {
             repository: nil,
-            metadataFormat: nil
+            metadataStandard: nil
         }
     end
 

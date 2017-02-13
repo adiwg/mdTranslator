@@ -2,7 +2,7 @@
   "metadataRepository": [
     {
       "repository": "repository",
-      "metadataFormat": "iso19115_2"
+      "metadataStandard": "iso19115_2"
     }
   ]
 }

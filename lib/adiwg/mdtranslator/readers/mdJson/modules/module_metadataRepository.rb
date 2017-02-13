@@ -34,13 +34,10 @@ module ADIWG
                             return nil
                         end
 
-                        # metadata distribution - metadata format {mdTranslator writer}
-                        if hMdDist.has_key?('metadataFormat')
-                            if hMdDist['metadataFormat'] != ''
-                                type = hMdDist['metadataFormat']
-                                if %w{ iso19115_2 iso19110 html sbJson mdJson }.one? { |word| word == type }
-                                    intMdDist[:metadataFormat] = hMdDist['metadataFormat']
-                                end
+                        # metadata distribution - metadata format
+                        if hMdDist.has_key?('metadataStandard')
+                            if hMdDist['metadataStandard'] != ''
+                                intMdDist[:metadataStandard] = hMdDist['metadataStandard']
                             end
                         end
 
