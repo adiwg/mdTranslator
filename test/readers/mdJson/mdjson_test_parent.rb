@@ -40,16 +40,20 @@ class TestReaderMdJsonParent < MiniTest::Test
 
     # get json file for tests from examples folder
     def self.getJson(fileName)
+
         file = File.join(File.dirname(__FILE__), 'testData', fileName)
         file = File.open(file, 'r')
         jsonFile = file.read
         file.close
         return JSON.parse(jsonFile)
+
     end
 
-    # set contact list from reader test modules
+    # set contact list for test modules
     def self.setContacts
+
         ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(@@contacts)
+
     end
 
     # test schema for reader module
