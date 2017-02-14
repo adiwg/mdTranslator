@@ -44,17 +44,17 @@ module ADIWG
                             return nil
                         end
 
-                        # allocation - source
-                        if hAlloc.has_key?('source')
-                            if hAlloc['source'] != ''
-                                intAlloc[:sourceId] = hAlloc['source']
+                        # allocation - source ID {contactId}
+                        if hAlloc.has_key?('sourceId')
+                            if hAlloc['sourceId'] != ''
+                                intAlloc[:sourceId] = hAlloc['sourceId']
                             end
                         end
 
-                        # allocation - recipient
-                        if hAlloc.has_key?('recipient')
-                            if hAlloc['recipient'] != ''
-                                intAlloc[:recipientId] = hAlloc['recipient']
+                        # allocation - recipient ID {contactId}
+                        if hAlloc.has_key?('recipientId')
+                            if hAlloc['recipientId'] != ''
+                                intAlloc[:recipientId] = hAlloc['recipientId']
                             end
                         end
 

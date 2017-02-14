@@ -16,6 +16,13 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('allocation.json')
     @@hIn = aIn['allocation'][0]
 
+    def test_allocation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'funding.json', fragment: 'allocation')
+        assert_empty errors
+
+    end
+
     def test_complete_allocation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -24,8 +31,8 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
 
         assert_equal 9.9, metadata[:amount]
         assert_equal 'currency', metadata[:currency]
-        assert_equal 'source', metadata[:sourceId]
-        assert_equal 'recipient', metadata[:recipientId]
+        assert_equal 'sourceId', metadata[:sourceId]
+        assert_equal 'recipientId', metadata[:recipientId]
         assert metadata[:matching]
         assert_equal 'comment', metadata[:comment]
         assert hResponse[:readerExecutionPass]
@@ -88,8 +95,8 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
     def test_empty_allocation_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['source'] = ''
-        hIn['recipient'] = ''
+        hIn['sourceId'] = ''
+        hIn['recipientId'] = ''
         hIn['matching'] = ''
         hIn['comment'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -109,8 +116,8 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
     def test_missing_allocation_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('source')
-        hIn.delete('recipient')
+        hIn.delete('sourceId')
+        hIn.delete('recipientId')
         hIn.delete('matching')
         hIn.delete('comment')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
