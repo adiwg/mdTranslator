@@ -52,4 +52,24 @@ class TestReaderMdJsonParent < MiniTest::Test
         ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(@@contacts)
     end
 
+    # test schema for reader module
+    def self.testSchema(mdJson, schema, fragment: nil)
+
+        # load all schemas with 'true' to prohibit additional parameters
+        ADIWG::MdjsonSchemas::Utils.load_schemas(true)
+
+        # load schema segment and make all elements required
+        strictSchema = ADIWG::MdjsonSchemas::Utils.load_strict(schema)
+
+        # build relative path to schema fragment
+        fragmentPath = nil
+        if fragment
+            fragmentPath = '#/definitions/' + fragment
+        end
+
+        # scan
+        return JSON::Validator.fully_validate(strictSchema, mdJson, :fragment=>fragmentPath)
+
+    end
+
 end
