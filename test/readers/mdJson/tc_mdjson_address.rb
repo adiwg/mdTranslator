@@ -14,6 +14,13 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('address.json')
     @@hIn = aIn['address'][0]
 
+    def test_address_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'contact.json', fragment: 'address')
+        assert_empty errors
+
+    end
+
     def test_complete_address_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
