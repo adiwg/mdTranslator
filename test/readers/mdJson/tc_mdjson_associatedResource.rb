@@ -17,6 +17,13 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('associatedResource.json')
     @@hIn = aIn['associatedResource'][0]
 
+    def test_associatedResource_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'associatedResource.json')
+        assert_empty errors
+
+    end
+
     def test_complete_associatedResource
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
