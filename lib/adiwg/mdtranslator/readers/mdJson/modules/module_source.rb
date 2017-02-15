@@ -12,6 +12,7 @@
 require_relative 'module_citation'
 require_relative 'module_processStep'
 require_relative 'module_spatialReference'
+require_relative 'module_scope'
 
 module ADIWG
     module Mdtranslator
@@ -90,6 +91,17 @@ module ADIWG
                                 hStep = ProcessStep.unpack(item, responseObj)
                                 unless hStep.nil?
                                     intSource[:sourceSteps] << hStep
+                                end
+                            end
+                        end
+
+                        # source - scope {scope}
+                        if hSource.has_key?('scope')
+                            hObject = hSource['scope']
+                            unless hObject.empty?
+                                hReturn = Scope.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSource[:scope] = hReturn
                                 end
                             end
                         end

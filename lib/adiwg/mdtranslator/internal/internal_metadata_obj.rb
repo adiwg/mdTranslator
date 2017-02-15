@@ -662,7 +662,8 @@ class InternalMetadata
             rationale: nil,
             timePeriod: {},
             processors: [],
-            references: []
+            references: [],
+            scope: {}
         }
     end
 
@@ -673,7 +674,8 @@ class InternalMetadata
             metadataCitation: [],
             scaleDenominator: nil,
             referenceSystem: {},
-            sourceSteps: []
+            sourceSteps: [],
+            scope: {}
         }
     end
 
