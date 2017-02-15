@@ -1,8 +1,10 @@
 {
    "scopeDescription": [
       {
-         "type": "dataset",
-         "description": "description"
+         "dataset": "dataset",
+         "attributes": "attributes",
+         "features": "features",
+         "other": "other"
       }
    ]
 }

@@ -24,31 +24,39 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intScopeDes = intMetadataClass.newScopeDescription
 
-                        # scope description - type (required)
-                        if hScopeDes.has_key?('type')
-                            if hScopeDes['type'] != ''
-                                type = hScopeDes['type']
-                                if %w{ dataset attribute feature other}.one? { |word| word == type }
-                                    intScopeDes[:type] = hScopeDes['type']
-                                else
-                                    responseObj[:readerExecutionMessages] << 'Scope Description type must be database, attribute, feature, or other'
-                                    responseObj[:readerExecutionPass] = false
-                                    return nil
-                                end
+                        # scope description - dataset
+                        if hScopeDes.has_key?('dataset')
+                            if hScopeDes['dataset'] != ''
+                                intScopeDes[:dataset] = hScopeDes['dataset']
                             end
                         end
-                        if intScopeDes[:type].nil? || intScopeDes[:type] == ''
-                            responseObj[:readerExecutionMessages] << 'Scope Description attribute type is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+
+                        # scope description - attributes
+                        if hScopeDes.has_key?('attributes')
+                            if hScopeDes['attributes'] != ''
+                                intScopeDes[:attributes] = hScopeDes['attributes']
+                            end
                         end
 
-                        # scope description - description (required)
-                        if hScopeDes.has_key?('description')
-                            intScopeDes[:description] = hScopeDes['description']
+                        # scope description - features
+                        if hScopeDes.has_key?('features')
+                            if hScopeDes['features'] != ''
+                                intScopeDes[:features] = hScopeDes['features']
+                            end
                         end
-                        if intScopeDes[:description].nil? || intScopeDes[:description] == ''
-                            responseObj[:readerExecutionMessages] << 'Scope Description attribute description is missing'
+
+                        # scope description - other
+                        if hScopeDes.has_key?('other')
+                            if hScopeDes['other'] != ''
+                                intScopeDes[:other] = hScopeDes['other']
+                            end
+                        end
+
+                        if intScopeDes[:dataset].nil? &&
+                            intScopeDes[:attributes].nil? &&
+                            intScopeDes[:features].nil? &&
+                            intScopeDes[:other].nil?
+                            responseObj[:readerExecutionMessages] << 'Scope Description needs at least one description'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

@@ -15,23 +15,35 @@ class TestReaderMdJsonScopeDescription < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('scopeDescription.json')
     @@hIn = aIn['scopeDescription'][0]
 
+    # def test_scopeDescription_schema
+    #
+    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json', :fragment=>'scopeDescription')
+    #     assert_empty errors
+    #
+    # end
+
     def test_complete_scopeDescription_dataset_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'dataset', metadata[:type]
-        assert_equal 'description', metadata[:description]
+        assert_equal 'dataset', metadata[:dataset]
+        assert_equal 'attributes', metadata[:attributes]
+        assert_equal 'features', metadata[:features]
+        assert_equal 'other', metadata[:other]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
     end
 
-    def test_complete_scopeDescription_invalid_object
+    def test_scopeDescription_empty_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = 'invalid'
+        hIn['dataset'] = ''
+        hIn['attributes'] = ''
+        hIn['features'] = ''
+        hIn['other'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -41,49 +53,14 @@ class TestReaderMdJsonScopeDescription < TestReaderMdJsonParent
 
     end
 
-    def test_scopeDescription_empty_type
+    def test_scopeDescription_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_scopeDescription_missing_type
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('type')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_scopeDescription_empty_description
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['description'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_scopeDescription_missing_description
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('description')
+        hIn['nonElement'] = 'nonElement'
+        hIn.delete('dataset')
+        hIn.delete('attributes')
+        hIn.delete('features')
+        hIn.delete('other')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
