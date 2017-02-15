@@ -33,11 +33,21 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intAddDoc = intMetadataClass.newAdditionalDocumentation
 
-                        # additional documentation - resource type
+                        # additional documentation - resource type [] (required) {resourceType}
                         if hAddDoc.has_key?('resourceType')
-                            if hAddDoc['resourceType'] != ''
-                                intAddDoc[:resourceType] = hAddDoc['resourceType']
+                            hAddDoc['resourceType'].each do |item|
+                                unless item.empty?
+                                    hReturn = ResourceType.unpack(item, responseObj)
+                                    unless hReturn.nil?
+                                        intAddDoc[:resourceType] << hReturn
+                                    end
+                                end
                             end
+                        end
+                        if intAddDoc[:resourceType].empty?
+                            responseObj[:readerExecutionMessages] << 'Additional Documentation is missing resourceType'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # additional documentation - citation [] (required)

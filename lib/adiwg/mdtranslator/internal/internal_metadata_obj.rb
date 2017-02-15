@@ -697,7 +697,7 @@ class InternalMetadata
 
     def newAssociatedResource
         intObj = {
-            resourceType: nil,
+            resourceType: [],
             associationType: nil,
             initiativeType: nil,
             resourceCitation: {},
@@ -707,7 +707,7 @@ class InternalMetadata
 
     def newAdditionalDocumentation
         intObj = {
-            resourceType: nil,
+            resourceType: [],
             citation: []
         }
     end
