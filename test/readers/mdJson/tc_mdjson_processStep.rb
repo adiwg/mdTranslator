@@ -15,6 +15,13 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('processStep.json')
     @@hIn = aIn['processStep'][0]
 
+    # def test_processStep_schema
+    #
+    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'processStep')
+    #     assert_empty errors
+    #
+    # end
+
     def test_complete_processStep_object
 
         TestReaderMdJsonParent.setContacts
@@ -28,6 +35,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
         refute_empty metadata[:timePeriod]
         assert_equal 2, metadata[:processors].length
         assert_equal 2, metadata[:references].length
+        refute_empty metadata[:scope]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -70,6 +78,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
         hIn['timePeriod'] = {}
         hIn['processor'] = []
         hIn['reference'] = []
+        hIn['scope'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -78,6 +87,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
         assert_empty metadata[:timePeriod]
         assert_empty metadata[:processors]
         assert_empty metadata[:references]
+        assert_empty metadata[:scope]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -92,6 +102,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
         hIn.delete('timePeriod')
         hIn.delete('processor')
         hIn.delete('reference')
+        hIn.delete('scope')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -100,6 +111,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
         assert_empty metadata[:timePeriod]
         assert_empty metadata[:processors]
         assert_empty metadata[:references]
+        assert_empty metadata[:scope]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

@@ -49,7 +49,10 @@
             {
                "title": "title"
             }
-         ]
+         ],
+         "scope": {
+            "scopeCode": "scopeCode"
+         }
       }
    ]
 }

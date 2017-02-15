@@ -11,6 +11,7 @@
 require_relative 'module_timePeriod'
 require_relative 'module_responsibleParty'
 require_relative 'module_citation'
+require_relative 'module_scope'
 
 module ADIWG
     module Mdtranslator
@@ -85,6 +86,17 @@ module ADIWG
                                 hReference = Citation.unpack(item, responseObj)
                                 unless hReference.nil?
                                     intProcStep[:references] << hReference
+                                end
+                            end
+                        end
+
+                        # process step - scope {scope}
+                        if hProcStep.has_key?('scope')
+                            hObject = hProcStep['scope']
+                            unless hObject.empty?
+                                hReturn = Scope.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intProcStep[:scope] = hReturn
                                 end
                             end
                         end
