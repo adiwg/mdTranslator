@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2017-02-15 added newResourceType
 #   Stan Smith 2017-02-09 added newMetadataRepository
 #   Stan Smith 2017-01-20 refactored newDataDictionary
 #   Stan Smith 2016-11-10 added computedBbox to newGeographicExtent, newGeometryCollection
@@ -970,6 +971,13 @@ class InternalMetadata
         intObj = {
             repository: nil,
             metadataStandard: nil
+        }
+    end
+
+    def newResourceType
+        intObj = {
+            type: nil,
+            name: nil
         }
     end
 
