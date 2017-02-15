@@ -22,7 +22,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
+        assert_equal 2, metadata[:resourceType].length
         refute_empty metadata[:citation]
         assert_equal 'abstract', metadata[:abstract]
         assert_equal 'shortAbstract', metadata[:shortAbstract]
@@ -59,7 +59,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceType'] = ''
+        hIn['resourceType'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -226,7 +226,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
+        refute_empty metadata[:resourceType]
         refute_empty metadata[:citation]
         assert_equal 'abstract', metadata[:abstract]
         assert_nil metadata[:shortAbstract]
@@ -290,7 +290,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
+        refute_empty metadata[:resourceType]
         refute_empty metadata[:citation]
         assert_equal 'abstract', metadata[:abstract]
         assert_nil metadata[:shortAbstract]

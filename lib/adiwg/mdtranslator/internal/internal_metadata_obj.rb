@@ -246,7 +246,7 @@ class InternalMetadata
 
     def newResourceInfo
         intObj = {
-            resourceType: nil,
+            resourceType: [],
             citation: {},
             abstract: nil,
             shortAbstract: nil,

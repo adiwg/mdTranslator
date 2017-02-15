@@ -1,7 +1,16 @@
 {
   "resourceInfo": [
     {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type0",
+          "name": "name0"
+        },
+        {
+          "type": "type1",
+          "name": "name1"
+        }
+      ],
       "citation": {
         "title": "title"
       },
@@ -182,7 +191,7 @@
       ],
       "keyword": [
         {
-          "keywords": [
+          "keyword": [
             {
               "keyword": "keyword00",
               "keywordId": "keywordId00"
@@ -197,7 +206,7 @@
           }
         },
         {
-          "keywords": [
+          "keyword": [
             {
               "keyword": "keyword10",
               "keywordId": "keywordId10"

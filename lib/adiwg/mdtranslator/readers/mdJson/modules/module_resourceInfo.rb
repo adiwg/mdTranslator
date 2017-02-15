@@ -4,6 +4,7 @@
 # History:
 #   Stan Smith 2016-11-01 original script
 
+require_relative 'module_resourceType'
 require_relative 'module_citation'
 require_relative 'module_timePeriod'
 require_relative 'module_responsibleParty'
@@ -42,11 +43,18 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intResInfo = intMetadataClass.newResourceInfo
 
-                        # resource information - resource type (required)
+                        # resource information - resource type [] (required) {resourceType}
                         if hResInfo.has_key?('resourceType')
-                            intResInfo[:resourceType] = hResInfo['resourceType']
+                            hResInfo['resourceType'].each do |item|
+                                unless item.empty?
+                                    hReturn = ResourceType.unpack(item, responseObj)
+                                    unless hReturn.nil?
+                                        intResInfo[:resourceType] << hReturn
+                                    end
+                                end
+                            end
                         end
-                        if intResInfo[:resourceType].nil? || intResInfo[:resourceType] == ''
+                        if intResInfo[:resourceType].empty?
                             responseObj[:readerExecutionMessages] << 'ResourceInfo is missing resourceType'
                             responseObj[:readerExecutionPass] = false
                             return nil
