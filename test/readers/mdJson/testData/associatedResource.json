@@ -1,7 +1,16 @@
 {
    "associatedResource": [
       {
-         "resourceType": "resourceType",
+         "resourceType": [
+            {
+               "type": "type0",
+               "name": "name0"
+            },
+            {
+               "type": "type1",
+               "name": "name1"
+            }
+         ],
          "associationType": "associationType",
          "initiativeType": "initiativeType",
          "resourceCitation": {

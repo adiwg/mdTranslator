@@ -16,12 +16,12 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('additionalDocumentation.json')
     @@hIn = aIn['additionalDocumentation'][0]
 
-    # def test_additionalDocumentation_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'additionalDocumentation.json')
-    #     assert_empty errors
-    #
-    # end
+    def test_additionalDocumentation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'additionalDocumentation.json')
+        assert_empty errors
+
+    end
 
     def test_complete_additionalDocumentation_object
 

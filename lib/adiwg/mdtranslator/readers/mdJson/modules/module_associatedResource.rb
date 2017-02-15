@@ -37,12 +37,19 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intAssocRes = intMetadataClass.newAssociatedResource
 
-                        # associated resource - resource type (required)
+                        # associated resource - resource type [] (required) {resourceType}
                         if hAssocRes.has_key?('resourceType')
-                            intAssocRes[:resourceType] = hAssocRes['resourceType']
+                            hAssocRes['resourceType'].each do |item|
+                                unless item.empty?
+                                    hReturn = ResourceType.unpack(item, responseObj)
+                                    unless hReturn.nil?
+                                        intAssocRes[:resourceType] << hReturn
+                                    end
+                                end
+                            end
                         end
-                        if intAssocRes[:resourceType].nil? || intAssocRes[:resourceType] == ''
-                            responseObj[:readerExecutionMessages] << 'Associated Resource attribute resourceType is missing'
+                        if intAssocRes[:resourceType].empty?
+                            responseObj[:readerExecutionMessages] << 'Associated Resource is missing resourceType'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
