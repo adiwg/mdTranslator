@@ -15,6 +15,13 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('scope.json')
     @@hIn = aIn['scope'][0]
 
+    # def test_scope_schema
+    #
+    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json')
+    #     assert_empty errors
+    #
+    # end
+
     def test_complete_scope_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -22,8 +29,8 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_equal 1, metadata[:scopeDescription].length
-        assert_equal 1, metadata[:timePeriod].length
+        assert_equal 2, metadata[:scopeDescriptions].length
+        assert_equal 1, metadata[:extents].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -59,13 +66,13 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['scopeDescription'] = []
-        hIn['timePeriod'] = []
+        hIn['scopeExtent'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_empty metadata[:scopeDescription]
-        assert_empty metadata[:timePeriod]
+        assert_empty metadata[:scopeDescriptions]
+        assert_empty metadata[:extents]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -75,13 +82,13 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('scopeDescription')
-        hIn.delete('timePeriod')
+        hIn.delete('scopeExtent')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_empty metadata[:scopeDescription]
-        assert_empty metadata[:timePeriod]
+        assert_empty metadata[:scopeDescriptions]
+        assert_empty metadata[:extents]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

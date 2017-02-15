@@ -937,15 +937,17 @@ class InternalMetadata
     def newScope
         intObj = {
             scopeCode: nil,
-            scopeDescription: [],
-            timePeriod: []
+            scopeDescriptions: [],
+            extents: []
         }
     end
 
     def newScopeDescription
         intObj = {
-            type: nil,
-            description: nil
+            dataset: nil,
+            attributes: nil,
+            features: nil,
+            other: nil
         }
     end
 

@@ -6,6 +6,7 @@
 
 require_relative 'module_scopeDescription'
 require_relative 'module_timePeriod'
+require_relative 'module_extent'
 
 module ADIWG
     module Mdtranslator
@@ -37,24 +38,24 @@ module ADIWG
                             return nil
                         end
 
-                        # scope - scope description []
+                        # scope - scope description [] {MD_ScopeDescription}
                         if hScope.has_key?('scopeDescription')
                             aScopeDes = hScope['scopeDescription']
                             aScopeDes.each do |item|
                                 hScopeDes = ScopeDescription.unpack(item, responseObj)
                                 unless hScopeDes.nil?
-                                    intScope[:scopeDescription] << hScopeDes
+                                    intScope[:scopeDescriptions] << hScopeDes
                                 end
                             end
                         end
 
-                        # scope - time period []
-                        if hScope.has_key?('timePeriod')
-                            aTimePer = hScope['timePeriod']
-                            aTimePer.each do |item|
-                                hTimePer = TimePeriod.unpack(item, responseObj)
-                                unless hTimePer.nil?
-                                    intScope[:timePeriod] << hTimePer
+                        # scope - extent [] {EX_Extent}
+                        if hScope.has_key?('scopeExtent')
+                            aExtents = hScope['scopeExtent']
+                            aExtents.each do |item|
+                                hExtent = Extent.unpack(item, responseObj)
+                                unless hExtent.nil?
+                                    intScope[:extents] << hExtent
                                 end
                             end
                         end

@@ -4,13 +4,23 @@
          "scopeCode": "scopeCode",
          "scopeDescription": [
             {
-               "type": "dataset",
-               "description": "description"
+               "dataset": "dataset"
+            },
+            {
+               "attributes": "attributes"
             }
          ],
-         "timePeriod": [
+         "scopeExtent": [
             {
-               "startDateTime": "2016-10-14"
+               "description": "description",
+               "temporalExtent": [
+                  {
+                     "type": "period",
+                     "timePeriod": {
+                        "startDateTime": "2017-02-15"
+                     }
+                  }
+               ]
             }
          ]
       }
