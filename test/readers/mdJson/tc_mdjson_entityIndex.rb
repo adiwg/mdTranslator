@@ -16,6 +16,13 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('entityIndex.json')
     @@hIn = aIn['index'][0]
 
+    def test_entityIndex_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json', :fragment=>'index')
+        assert_empty errors
+
+    end
+
     def test_complete_entityIndex_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

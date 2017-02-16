@@ -37,8 +37,8 @@ module ADIWG
                         intKeyword = intMetadataClass.newKeyword
 
                         # keyword - keyword [] (required)
-                        if hKeyword.has_key?('keywords')
-                            hKeyword['keywords'].each do |hItem|
+                        if hKeyword.has_key?('keyword')
+                            hKeyword['keyword'].each do |hItem|
                                 unless hItem.empty?
                                     hReturn = KeywordObject.unpack(hItem, responseObj)
                                     unless hReturn.nil?

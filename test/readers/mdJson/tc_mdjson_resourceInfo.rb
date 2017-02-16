@@ -15,6 +15,13 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('resourceInfo.json')
     @@hIn = aIn['resourceInfo'][0]
 
+    def test_resourceInfo_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'resourceInfo.json')
+        assert_empty errors
+
+    end
+
     def test_complete_resourceInfo
 
         TestReaderMdJsonParent.setContacts

@@ -15,6 +15,13 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('taxonomy.json')
     @@hIn = aIn['taxonomy'][0]
 
+    def test_taxonomy_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'taxonomy.json')
+        assert_empty errors
+
+    end
+
     def test_complete_taxonomy_object
 
         TestReaderMdJsonParent.setContacts

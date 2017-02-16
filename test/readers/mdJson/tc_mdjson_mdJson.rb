@@ -14,6 +14,13 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::MdJson
     @@hIn = TestReaderMdJsonParent.getJson('mdJson.json')
 
+    def test_mdJson_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'schema.json')
+        assert_empty errors
+
+    end
+
     def test_complete_mdJson_object
 
         TestReaderMdJsonParent.setContacts

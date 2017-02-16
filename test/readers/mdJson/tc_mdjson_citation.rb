@@ -16,6 +16,13 @@ class TestReaderMdJsonCitation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('citation.json')
     @@hIn = aIn['citation'][0]
 
+    def test_citation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'citation.json')
+        assert_empty errors
+
+    end
+
     def test_complete_citation_object
 
         TestReaderMdJsonParent.setContacts

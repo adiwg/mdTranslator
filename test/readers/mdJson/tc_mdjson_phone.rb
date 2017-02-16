@@ -18,6 +18,13 @@ class TestReaderMdJsonPhone < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('phone.json')
     @@hIn = aIn['phone'][0]
 
+    def test_phone_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'contact.json', :fragment=>'phone')
+        assert_empty errors
+
+    end
+
     def test_complete_phone_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

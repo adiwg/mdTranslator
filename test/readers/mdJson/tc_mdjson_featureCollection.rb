@@ -16,6 +16,13 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('featureCollection.json')
     @@hIn = aIn['featureCollection'][0]
 
+    def test_featureCollection_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geojson.json')
+        assert_empty errors
+
+    end
+
     def test_complete_featureCollection
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

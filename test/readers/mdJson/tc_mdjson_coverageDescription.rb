@@ -15,6 +15,13 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('coverageDescription.json')
     @@hIn = aIn['coverageDescription'][0]
 
+    def test_contentInfo_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'coverageDescription.json')
+        assert_empty errors
+
+    end
+
     def test_complete_contentInfo_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

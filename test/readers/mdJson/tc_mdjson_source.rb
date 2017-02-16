@@ -16,12 +16,12 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('source.json')
     @@hIn = aIn['source'][0]
 
-    # def test_source_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'source.json')
-    #     assert_empty errors
-    #
-    # end
+    def test_source_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'source.json')
+        assert_empty errors
+
+    end
 
     def test_complete_source_object
 

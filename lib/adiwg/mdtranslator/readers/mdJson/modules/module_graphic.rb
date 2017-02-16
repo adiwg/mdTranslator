@@ -73,8 +73,8 @@ module ADIWG
                         end
 
                         # graphic - online resource []
-                        if hGraphic.has_key?('fileURI')
-                            hGraphic['fileURI'].each do |item|
+                        if hGraphic.has_key?('fileUri')
+                            hGraphic['fileUri'].each do |item|
                                 unless item.empty?
                                     uri = OnlineResource.unpack(item, responseObj)
                                     unless uri.nil?

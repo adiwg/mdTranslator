@@ -13,6 +13,13 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('metadataRepository.json')
     @@hIn = aIn['metadataRepository'][0]
 
+    def test_metadataRepository_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadataRepository.json')
+        assert_empty errors
+
+    end
+
     def test_complete_metadataRepository_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

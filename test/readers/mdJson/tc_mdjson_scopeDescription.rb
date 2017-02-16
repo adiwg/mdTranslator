@@ -15,12 +15,12 @@ class TestReaderMdJsonScopeDescription < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('scopeDescription.json')
     @@hIn = aIn['scopeDescription'][0]
 
-    # def test_scopeDescription_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json', :fragment=>'scopeDescription')
-    #     assert_empty errors
-    #
-    # end
+    def test_scopeDescription_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json', :fragment=>'scopeDescription')
+        assert_empty errors
+
+    end
 
     def test_complete_scopeDescription_dataset_object
 

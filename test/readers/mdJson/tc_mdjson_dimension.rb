@@ -15,6 +15,13 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('dimension.json')
     @@hIn = aIn['dimension'][0]
 
+    def test_dimension_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'gridRepresentation.json', :fragment=>'dimension')
+        assert_empty errors
+
+    end
+
     def test_complete_dimension_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

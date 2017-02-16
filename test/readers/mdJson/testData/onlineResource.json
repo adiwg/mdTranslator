@@ -1,18 +1,18 @@
 {
    "onlineResource": [
       {
-         "resourceURI": "http://URI.example.com",
+         "uri": "http://http://ISO.uri/adiwg/0",
          "protocol": "protocol",
          "name": "name",
          "description": "description",
          "function": "function"
       },
       {
-         "resourceURI": "https://www.amazon.com/Kindle-eBooks",
-         "protocol": "HTTP",
-         "name": "Kindle Books",
-         "description": "Home for Amazon Kindle eBooks",
-         "function": "sales"
+         "uri": "http://http://ISO.uri/adiwg/1",
+         "protocol": "protocol",
+         "name": "name",
+         "description": "description",
+         "function": "function"
       }
    ]
 }

@@ -15,6 +15,15 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('verticalExtent.json')
     @@hIn = aIn['verticalExtent'][0]
 
+    def test_vertical_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'verticalExtent.json')
+        require 'pp'
+        pp errors
+        assert_empty errors
+
+    end
+
     def test_complete_vertical_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

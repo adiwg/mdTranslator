@@ -16,6 +16,13 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('responsibleParty.json')
     @@hIn = aIn['responsibleParty'][0]
 
+    def test_responsibleParty_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'responsibility.json')
+        assert_empty errors
+
+    end
+
     def test_complete_responsibleParty_object
 
         TestReaderMdJsonParent.setContacts

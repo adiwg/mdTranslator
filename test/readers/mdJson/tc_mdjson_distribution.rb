@@ -15,6 +15,13 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('distribution.json')
     @@hIn = aIn['resourceDistribution'][0]
 
+    def test_distribution_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'distribution.json')
+        assert_empty errors
+
+    end
+
     def test_complete_distribution_object
 
         TestReaderMdJsonParent.setContacts

@@ -15,13 +15,20 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('onlineResource.json')
     @@hIn = aIn['onlineResource'][0]
 
+    def test_onlineResource_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'onlineResource.json')
+        assert_empty errors
+
+    end
+
     def test_complete_onlineResource_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'http://URI.example.com',metadata[:olResURI]
+        assert_equal 'http://http://ISO.uri/adiwg/0',metadata[:olResURI]
         assert_equal 'protocol', metadata[:olResProtocol]
         assert_equal 'name', metadata[:olResName]
         assert_equal 'description', metadata[:olResDesc]
@@ -35,7 +42,7 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
     def test_empty_onlineResource_uri
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceURI'] = ''
+        hIn['uri'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

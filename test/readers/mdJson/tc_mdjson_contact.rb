@@ -15,6 +15,25 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('contact.json')
     @@hIn = aIn['contact'][0]
 
+    def test_contact_schema
+
+        # test individual contact
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['isOrganization'] = false
+
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'contact.json')
+        assert_empty errors
+
+        # test organization contact
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['isOrganization'] = true
+        hIn.delete('positionName')
+
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'contact.json')
+        assert_empty errors
+
+    end
+
     def test_complete_contact_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -32,8 +51,8 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
         assert_equal 2, metadata[:phones].length
         assert_equal 2, metadata[:addresses].length
         assert_equal 2, metadata[:eMailList].length
-        assert_equal 'electronicMailAddress0', metadata[:eMailList][0]
-        assert_equal 'electronicMailAddress1', metadata[:eMailList][1]
+        assert_equal 'e.mail@address.com0', metadata[:eMailList][0]
+        assert_equal 'e.mail@address.com1', metadata[:eMailList][1]
         assert_equal 2, metadata[:onlineResources].length
         assert_equal 2, metadata[:memberOfOrgs].length
         assert_equal 2, metadata[:hoursOfService].length

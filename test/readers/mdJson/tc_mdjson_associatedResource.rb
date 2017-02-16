@@ -30,7 +30,7 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
+        assert_equal 2, metadata[:resourceType].length
         assert_equal 'associationType', metadata[:associationType]
         assert_equal 'initiativeType', metadata[:initiativeType]
         refute_empty metadata[:resourceCitation]
@@ -43,7 +43,7 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
     def test_associatedResource_empty_resourceType
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceType'] = ''
+        hIn['resourceType'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -140,7 +140,7 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'resourceType', metadata[:resourceType]
+        refute_empty metadata[:resourceType]
         assert_equal 'associationType', metadata[:associationType]
         assert_equal 'initiativeType', metadata[:initiativeType]
         refute_empty metadata[:resourceCitation]

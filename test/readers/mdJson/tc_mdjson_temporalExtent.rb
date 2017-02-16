@@ -15,6 +15,13 @@ class TestReaderMdJsonTemporalExtent < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('temporalExtent.json')
     @@hIn = aIn['temporalExtent'][0]
 
+    def test_temporal_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'temporalExtent.json')
+        assert_empty errors
+
+    end
+
     def test_complete_temporal_instant
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

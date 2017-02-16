@@ -15,6 +15,15 @@ class TestReaderMdJsonExtent < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('extent.json')
     @@hIn = aIn['extent'][0]
 
+    def test_extent_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'extent.json')
+        require 'pp'
+        pp errors
+        assert_empty errors
+
+    end
+
     def test_complete_extent_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

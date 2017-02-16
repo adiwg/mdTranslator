@@ -15,6 +15,13 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('grid.json')
     @@hIn = aIn['gridRepresentation'][0]
 
+    def test_gridRepresentation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'gridRepresentation.json')
+        assert_empty errors
+
+    end
+
     def test_complete_gridRepresentation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

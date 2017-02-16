@@ -15,6 +15,13 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('georectified.json')
     @@hIn = aIn['georectifiedRepresentation'][0]
 
+    def test_georectifiedRepresentation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'georectifiedRepresentation.json')
+        assert_empty errors
+
+    end
+
     def test_complete_georectifiedRepresentation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

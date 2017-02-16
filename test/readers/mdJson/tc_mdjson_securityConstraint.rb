@@ -16,6 +16,14 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('securityConstraint.json')
     @@hIn = aIn['constraint'][0]
 
+    def test_securityConstraint_schema
+
+        hIn = @@hIn['securityConstraint']
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment=>'securityConstraint')
+        assert_empty errors
+
+    end
+
     def test_complete_securityConstraint
 
         TestReaderMdJsonParent.setContacts

@@ -15,6 +15,13 @@ class TestReaderMdJsonVoucher < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('voucher.json')
     @@hIn = aIn['voucher'][0]
 
+    def test_voucher_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'taxonomy.json', :fragment=>'voucher')
+        assert_empty errors
+
+    end
+
     def test_complete_voucher_object
 
         TestReaderMdJsonParent.setContacts

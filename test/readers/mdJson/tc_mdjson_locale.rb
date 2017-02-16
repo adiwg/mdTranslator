@@ -15,6 +15,13 @@ class TestReaderMdJsonLocale < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('locale.json')
     @@hIn = aIn['locale'][0]
 
+    def test_locale_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'locale.json')
+        assert_empty errors
+
+    end
+
     def test_complete_locale_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

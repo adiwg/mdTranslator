@@ -15,6 +15,13 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('usage.json')
     @@hIn = aIn['resourceUsage'][0]
 
+    def test_resourceUsage_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'usage.json')
+        assert_empty errors
+
+    end
+
     def test_complete_resourceUsage_object
 
         TestReaderMdJsonParent.setContacts

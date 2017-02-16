@@ -15,6 +15,13 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('georeferenceable.json')
     @@hIn = aIn['georeferenceableRepresentation'][0]
 
+    def test_georeferenceableRepresentation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'georeferenceableRepresentation.json')
+        assert_empty errors
+
+    end
+
     def test_complete_georeferenceableRepresentation_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

@@ -17,6 +17,13 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('domain.json')
     @@hIn = aIn['domain'][0]
 
+    def test_domain_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'domain.json')
+        assert_empty errors
+
+    end
+
     def test_complete_domain_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

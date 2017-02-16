@@ -16,6 +16,13 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('entityForeignKey.json')
     @@hIn = aIn['foreignKey'][0]
 
+    def test_entityForeignKey_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json', :fragment=>'foreignKey')
+        assert_empty errors
+
+    end
+
     def test_complete_entityForeignKey_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

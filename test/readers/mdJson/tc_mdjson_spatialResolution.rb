@@ -15,6 +15,13 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('spatialResolution.json')
     @@hIn = aIn['spatialResolution'][0]
 
+    def test_spatialResolution_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'spatialResolution.json')
+        assert_empty errors
+
+    end
+
     def test_spatialResolution_scaleFactor
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

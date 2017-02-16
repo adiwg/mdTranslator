@@ -74,10 +74,10 @@
          ],
          "onlineResource": [
             {
-               "resourceURI": "uri"
+               "uri": "http://ISO.uri/adiwg/0"
             },
             {
-               "resourceURI": "uri"
+               "uri": "http://ISO.uri/adiwg/1"
             }
          ],
          "graphic": [

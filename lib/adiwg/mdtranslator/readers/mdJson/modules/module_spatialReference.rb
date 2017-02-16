@@ -38,8 +38,8 @@ module ADIWG
                         end
 
                         # spatial reference system - reference system {identifier}
-                        if hSpatialRef.has_key?('referenceSystem')
-                            hObject = hSpatialRef['referenceSystem']
+                        if hSpatialRef.has_key?('referenceSystemIdentifier')
+                            hObject = hSpatialRef['referenceSystemIdentifier']
                             unless hObject.empty?
                                 hReturn = Identifier.unpack(hObject, responseObj)
                                 unless hReturn.nil?
@@ -49,7 +49,7 @@ module ADIWG
                         end
 
                         if intSpatialRef[:systemType].nil? && intSpatialRef[:systemIdentifier].empty?
-                            responseObj[:readerExecutionMessages] << 'Spatial Reference System must declare reference system type or reference system'
+                            responseObj[:readerExecutionMessages] << 'Spatial Reference System must declare reference system type or reference system identifier'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

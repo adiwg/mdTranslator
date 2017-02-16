@@ -15,12 +15,12 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('processStep.json')
     @@hIn = aIn['processStep'][0]
 
-    # def test_processStep_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'processStep')
-    #     assert_empty errors
-    #
-    # end
+    def test_processStep_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'processStep')
+        assert_empty errors
+
+    end
 
     def test_complete_processStep_object
 

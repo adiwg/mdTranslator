@@ -17,6 +17,13 @@ class TestReaderMdJsonImageDescription < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('image.json')
     @@hIn = aIn['imageDescription'][0]
 
+    def test_imageDescription_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'imageDescription.json')
+        assert_empty errors
+
+    end
+
     def test_complete_imageDescription_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

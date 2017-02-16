@@ -15,6 +15,13 @@ class TestReaderMdJsonOrderProcess < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('orderProcess.json')
     @@hIn = aIn['orderProcess'][0]
 
+    def test_orderProcess_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'orderProcess.json')
+        assert_empty errors
+
+    end
+
     def test_complete_orderProcess_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

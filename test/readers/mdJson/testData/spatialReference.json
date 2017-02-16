@@ -2,7 +2,7 @@
    "spatialReferenceSystem": [
       {
          "referenceSystemType": "referenceSystemType",
-         "referenceSystem": {
+         "referenceSystemIdentifier": {
             "identifier": "identifier"
          }
       }

@@ -15,6 +15,13 @@ class TestReaderMdJsonTaxonomicSystem < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('taxonomicSystem.json')
     @@hIn = aIn['taxonomicSystem'][0]
 
+    def test_taxonomicSystem_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'taxonomy.json', :fragment=>'taxonomicSystem')
+        assert_empty errors
+
+    end
+
     def test_complete_taxonomicSystem_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

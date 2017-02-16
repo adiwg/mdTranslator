@@ -15,6 +15,13 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('keyword.json')
     @@hIn = aIn['keyword'][0]
 
+    def test_keyword_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'keyword.json')
+        assert_empty errors
+
+    end
+
     def test_complete_keyword_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -32,7 +39,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
     def test_keyword_empty_keyword
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['keywords'] = []
+        hIn['keyword'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -45,7 +52,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
     def test_keyword_missing_keyword
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('keywords')
+        hIn.delete('keyword')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

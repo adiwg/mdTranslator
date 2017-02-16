@@ -15,6 +15,13 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('lineage.json')
     @@hIn = aIn['resourceLineage'][0]
 
+    def test_lineage_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json')
+        assert_empty errors
+
+    end
+
     def test_complete_lineage_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -49,8 +56,8 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
     def test_lineage_statement_only
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceScope'] = {}
-        hIn['lineageCitation'] = {}
+        hIn['scope'] = {}
+        hIn['citation'] = {}
         hIn['source'] = []
         hIn['processStep'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -70,8 +77,8 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['statement'] = ''
-        hIn['resourceScope'] = {}
-        hIn['lineageCitation'] = {}
+        hIn['scope'] = {}
+        hIn['citation'] = {}
         hIn['processStep'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -90,8 +97,8 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['statement'] = ''
-        hIn['resourceScope'] = {}
-        hIn['lineageCitation'] = {}
+        hIn['scope'] = {}
+        hIn['citation'] = {}
         hIn['processStep'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -109,8 +116,8 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
     def test_lineage_missing_elements
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('resourceScope')
-        hIn.delete('lineageCitation')
+        hIn.delete('scope')
+        hIn.delete('citation')
         hIn.delete('source')
         hIn.delete('processStep')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))

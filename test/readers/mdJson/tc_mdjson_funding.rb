@@ -15,6 +15,13 @@ class TestReaderMdJsonFunding < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('funding.json')
     @@hIn = aIn['funding'][0]
 
+    def test_funding_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'funding.json')
+        assert_empty errors
+
+    end
+
     def test_complete_funding_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

@@ -34,8 +34,8 @@ module ADIWG
 
                         # resource - web link (required)
                         # return nil if no web link is provided
-                        if hOnlineRes.has_key?('resourceURI')
-                            intOLRes[:olResURI] = hOnlineRes['resourceURI']
+                        if hOnlineRes.has_key?('uri')
+                            intOLRes[:olResURI] = hOnlineRes['uri']
                         end
                         if intOLRes[:olResURI].nil? || intOLRes[:olResURI] == ''
                             responseObj[:readerExecutionMessages] << 'Online Resource URI is missing'

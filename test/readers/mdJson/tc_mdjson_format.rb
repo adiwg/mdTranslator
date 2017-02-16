@@ -15,6 +15,13 @@ class TestReaderMdJsonFormat < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('format.json')
     @@hIn = aIn['format'][0]
 
+    def test_format_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'format.json')
+        assert_empty errors
+
+    end
+
     def test_complete_format_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

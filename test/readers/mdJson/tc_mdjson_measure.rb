@@ -15,6 +15,13 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('measure.json')
     @@hIn = aIn['measure'][0]
 
+    def test_measure_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'measure.json')
+        assert_empty errors
+
+    end
+
     def test_complete_measure_object_distance
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

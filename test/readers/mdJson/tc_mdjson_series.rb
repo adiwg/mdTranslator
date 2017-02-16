@@ -15,6 +15,13 @@ class TestReaderMdJsonSeries < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('series.json')
     @@hIn = aIn['series'][0]
 
+    def test_series_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'citation.json', :fragment=>'series')
+        assert_empty errors
+
+    end
+
     def test_complete_series_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

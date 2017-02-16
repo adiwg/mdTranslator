@@ -15,6 +15,13 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('metadata.json')
     @@hIn = aIn['metadata'][0]
 
+    def test_metadata_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadata.json')
+        assert_empty errors
+
+    end
+
     def test_complete_metadata_object
 
         TestReaderMdJsonParent.setContacts

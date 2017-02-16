@@ -15,6 +15,13 @@ class TestReaderMdJsonDistributor < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('distributor.json')
     @@hIn = aIn['distributor'][0]
 
+    def test_distributor_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'distributor.json')
+        assert_empty errors
+
+    end
+
     def test_complete_distributor_object
 
         TestReaderMdJsonParent.setContacts

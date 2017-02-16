@@ -6,7 +6,7 @@
          "maxValue": 9.9,
          "crsId": {
             "referenceSystemType": "referenceSystemType",
-            "referenceSystem": {
+            "referenceSystemIdentifier": {
                "identifier": "identifier"
             }
          }

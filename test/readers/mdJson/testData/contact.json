@@ -38,15 +38,15 @@
             }
          ],
          "electronicMailAddress": [
-            "electronicMailAddress0",
-            "electronicMailAddress1"
+            "e.mail@address.com0",
+            "e.mail@address.com1"
          ],
          "onlineResource": [
             {
-               "resourceURI": "uri"
+               "uri": "http://ISO.uri/adiwg/0"
             },
             {
-               "resourceURI": "uri"
+               "uri": "http://ISO.uri/adiwg/1"
             }
          ],
          "hoursOfService": [

@@ -15,12 +15,12 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('scope.json')
     @@hIn = aIn['scope'][0]
 
-    # def test_scope_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json')
-    #     assert_empty errors
-    #
-    # end
+    def test_scope_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json')
+        assert_empty errors
+
+    end
 
     def test_complete_scope_object
 

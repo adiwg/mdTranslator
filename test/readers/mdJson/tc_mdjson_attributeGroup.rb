@@ -15,6 +15,13 @@ class TestReaderMdJsonAttributeGroup < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('attributeGroup.json')
     @@hIn = aIn['attributeGroup'][0]
 
+    def test_attributeGroup_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'attributeGroup.json')
+        assert_empty errors
+
+    end
+
     def test_complete_attributeGroup_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

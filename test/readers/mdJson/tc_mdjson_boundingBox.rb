@@ -15,6 +15,13 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('boundingBox.json')
     @@hIn = aIn['boundingBox'][0]
 
+    def test_boundingBox_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json', :fragment=>'boundingBox')
+        assert_empty errors
+
+    end
+
     def test_complete_boundingBox
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

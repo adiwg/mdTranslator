@@ -15,6 +15,13 @@ class TestReaderMdJsonMaintenance < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('maintenance.json')
     @@hIn = aIn['resourceMaintenance'][0]
 
+    def test_maintenance_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'maintInfo.json')
+        assert_empty errors
+
+    end
+
     def test_complete_maintenance_object
 
         TestReaderMdJsonParent.setContacts

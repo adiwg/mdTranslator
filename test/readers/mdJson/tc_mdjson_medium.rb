@@ -15,6 +15,13 @@ class TestReaderMdJsonMedium < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('medium.json')
     @@hIn = aIn['medium'][0]
 
+    def test_medium_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'medium.json')
+        assert_empty errors
+
+    end
+
     def test_complete_medium_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

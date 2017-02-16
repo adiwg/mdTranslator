@@ -2,10 +2,10 @@
    "resourceLineage": [
       {
          "statement": "statement",
-         "resourceScope": {
+         "scope": {
             "scopeCode": "scopeCode"
          },
-         "lineageCitation": [
+         "citation": [
             {
                "title": "title"
             },

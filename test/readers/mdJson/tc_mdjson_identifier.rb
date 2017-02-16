@@ -15,6 +15,13 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('identifier.json')
     @@hIn = aIn['identifier'][0]
 
+    def test_identifier_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'identifier.json')
+        assert_empty errors
+
+    end
+
     def test_complete_identifier_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

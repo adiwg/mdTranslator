@@ -15,6 +15,13 @@ class TestReaderMdJsonVectorObject < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('vectorObject.json')
     @@hIn = aIn['vectorObject'][0]
 
+    def test_vectorObject_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'vectorRepresentation.json', :fragment=>'vectorObject')
+        assert_empty errors
+
+    end
+
     def test_complete_vectorObject_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

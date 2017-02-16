@@ -15,6 +15,13 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('timeInterval.json')
     @@hIn = aIn['timeInterval'][0]
 
+    def test_timeInterval_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'timePeriod.json', :fragment=>'timeInterval')
+        assert_empty errors
+
+    end
+
     def test_complete_timeInterval_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

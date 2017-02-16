@@ -15,6 +15,13 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('transferOption.json')
     @@hIn = aIn['transferOption'][0]
 
+    def test_transferOption_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'transferOption.json')
+        assert_empty errors
+
+    end
+
     def test_complete_transferOption_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

@@ -15,6 +15,13 @@ class TestReaderMdJsonReleasability < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('releasability.json')
     @@hIn = aIn['releasability'][0]
 
+    def test_releasability_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'releasability.json')
+        assert_empty errors
+
+    end
+
     def test_complete_releasability_object
 
         TestReaderMdJsonParent.setContacts

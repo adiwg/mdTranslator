@@ -15,6 +15,13 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('entityAttribute.json')
     @@hIn = aIn['attribute'][0]
 
+    def test_entityAttribute_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json', :fragment=>'attribute')
+        assert_empty errors
+
+    end
+
     def test_complete_entityAttribute_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

@@ -14,6 +14,13 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::SpatialRepresentation
     @@aIn = TestReaderMdJsonParent.getJson('spatialRepresentation.json')
 
+    def test_spatialRepresentation_schema
+
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'spatialRepresentation.json')
+        assert_empty errors
+
+    end
+
     def test_spatialRepresentation_grid
 
         hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][0]))

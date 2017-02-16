@@ -42,8 +42,8 @@ module ADIWG
                         end
 
                         # lineage - resource scope
-                        if hLineage.has_key?('resourceScope')
-                            hObject = hLineage['resourceScope']
+                        if hLineage.has_key?('scope')
+                            hObject = hLineage['scope']
                             unless hObject.empty?
                                 hReturn = Scope.unpack(hObject, responseObj)
                                 unless hReturn.nil?
@@ -53,8 +53,8 @@ module ADIWG
                         end
 
                         # lineage - citation []
-                        if hLineage.has_key?('lineageCitation')
-                            aCitation = hLineage['lineageCitation']
+                        if hLineage.has_key?('citation')
+                            aCitation = hLineage['citation']
                             aCitation.each do |item|
                                 hCitation = Citation.unpack(item, responseObj)
                                 unless hCitation.nil?

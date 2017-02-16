@@ -16,6 +16,14 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('legalConstraint.json')
     @@hIn = aIn['constraint'][0]
 
+    def test_legalConstraint_schema
+
+        hIn = @@hIn['legalConstraint']
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment=>'legalConstraint')
+        assert_empty errors
+
+    end
+
     def test_complete_legalConstraint
 
         TestReaderMdJsonParent.setContacts

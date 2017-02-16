@@ -15,6 +15,13 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('constraint.json')
     @@hIn = aIn['constraint'][0]
 
+    def test_constraint_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'constraint.json')
+        assert_empty errors
+
+    end
+
     def test_complete_constraint
 
         TestReaderMdJsonParent.setContacts

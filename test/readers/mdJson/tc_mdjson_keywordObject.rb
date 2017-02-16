@@ -15,6 +15,13 @@ class TestReaderMdJsonKeywordObject < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('keywordObject.json')
     @@hIn = aIn['keywordObject'][0]
 
+    def test_keywordObject_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'keyword.json', :fragment=>'keywordObject')
+        assert_empty errors
+
+    end
+
     def test_complete_keywordObject
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -81,7 +88,6 @@ class TestReaderMdJsonKeywordObject < TestReaderMdJsonParent
         assert_empty hResponse[:readerExecutionMessages]
 
     end
-
 
     def test_empty_keywordObject
 

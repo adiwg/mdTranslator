@@ -14,12 +14,12 @@ class TestReaderMdJsonResourceType < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('resourceType.json')
     @@hIn = aIn['resourceType'][0]
 
-    # def test_resourceType_schema
-    #
-    #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'keyword.json', :fragment=>'keywordObject')
-    #     assert_empty errors
-    #
-    # end
+    def test_resourceType_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'keyword.json', :fragment=>'keywordObject')
+        assert_empty errors
+
+    end
 
     def test_complete_resourceType
 

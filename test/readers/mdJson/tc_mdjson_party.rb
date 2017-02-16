@@ -15,7 +15,14 @@ class TestReaderMdJsonParty < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('party.json')
     @@aIn = aIn['party']
 
-    def test_individual_roleParty
+    def test_party_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'responsibility.json', :fragment=>'party')
+        assert_empty errors
+
+    end
+
+    def test_individual_party
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[0]))
@@ -30,7 +37,7 @@ class TestReaderMdJsonParty < TestReaderMdJsonParent
 
     end
 
-    def test_organization_roleParty
+    def test_organization_party
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[1]))
@@ -51,7 +58,7 @@ class TestReaderMdJsonParty < TestReaderMdJsonParent
 
     end
 
-    def test_bad_roleParty_id
+    def test_bad_party_id
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@aIn[2]))
@@ -77,7 +84,7 @@ class TestReaderMdJsonParty < TestReaderMdJsonParent
 
     end
 
-    def test_empty_roleParty
+    def test_empty_party
 
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack({}, hResponse)

@@ -15,6 +15,13 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('spatialReference.json')
     @@hIn = aIn['spatialReferenceSystem'][0]
 
+    def test_spatialReference_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'spatialReference.json')
+        assert_empty errors
+
+    end
+
     def test_complete_referenceSystem_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -62,7 +69,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
     def test_referenceSystem_empty_system
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['referenceSystem'] = {}
+        hIn['referenceSystemIdentifier'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -76,7 +83,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
     def test_referenceSystem_missing_system
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('referenceSystem')
+        hIn.delete('referenceSystemIdentifier')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -91,7 +98,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['referenceSystemType'] = ''
-        hIn['referenceSystem'] = {}
+        hIn['referenceSystemIdentifier'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -106,7 +113,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['nonElement'] = ''
         hIn.delete('referenceSystemType')
-        hIn.delete('referenceSystem')
+        hIn.delete('referenceSystemIdentifier')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

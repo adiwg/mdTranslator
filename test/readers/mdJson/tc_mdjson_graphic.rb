@@ -17,6 +17,13 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('graphic.json')
     @@hIn = aIn['graphic'][0]
 
+    def test_graphic_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'graphic.json')
+        assert_empty errors
+
+    end
+
     def test_complete_graphic_object
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -65,7 +72,7 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
         hIn['fileDescription'] = ''
         hIn['fileType'] = ''
         hIn['fileConstraint'] = []
-        hIn['fileURI'] = []
+        hIn['fileUri'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -84,7 +91,7 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
         hIn.delete('fileDescription')
         hIn.delete('fileType')
         hIn.delete('fileConstraint')
-        hIn.delete('fileURI')
+        hIn.delete('fileUri')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
