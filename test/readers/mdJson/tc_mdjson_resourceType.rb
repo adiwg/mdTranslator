@@ -16,7 +16,7 @@ class TestReaderMdJsonResourceType < TestReaderMdJsonParent
 
     def test_resourceType_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'keyword.json', :fragment=>'keywordObject')
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'resourceType.json')
         assert_empty errors
 
     end

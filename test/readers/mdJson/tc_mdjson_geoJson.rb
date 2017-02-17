@@ -15,6 +15,17 @@ class TestReaderMdJsonGeoJson < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('geoJson.json')
     @@aIn = aIn['geographicElement']
 
+    def test_geoJson_schema
+
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+
+        @@aIn.each do |hGeo|
+            errors = JSON::Validator.fully_validate('geojson.json', hGeo)
+            assert_empty errors
+        end
+
+    end
+
     def test_complete_geoJson
 
         aIn = Marshal::load(Marshal.dump(@@aIn))

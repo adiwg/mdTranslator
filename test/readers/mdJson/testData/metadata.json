@@ -27,14 +27,28 @@
                      }
                   ]
                }
+            ],
+            "metadataDate": [
+               {
+                  "date": "2017-02-16",
+                  "dateType": "creation"
+               }
             ]
          },
          "resourceInfo": {
-            "resourceType": "resourceType",
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
             "citation": {
                "title": "title"
             },
             "abstract": "abstract",
+            "status": [
+               "status"
+            ],
             "pointOfContact": [
                {
                   "role": "role",
@@ -72,14 +86,24 @@
          ],
          "associatedResource": [
             {
-               "resourceType": "resourceType",
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
                "associationType": "associationType",
                "resourceCitation": {
                   "title": "title"
                }
             },
             {
-               "resourceType": "resourceType",
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
                "associationType": "associationType",
                "resourceCitation": {
                   "title": "title"
@@ -88,7 +112,12 @@
          ],
          "additionalDocumentation": [
             {
-               "resourceType": "resourceType",
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
                "citation": [
                   {
                      "title": "title"
@@ -96,7 +125,12 @@
                ]
             },
             {
-               "resourceType": "resourceType",
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
                "citation": [
                   {
                      "title": "title"

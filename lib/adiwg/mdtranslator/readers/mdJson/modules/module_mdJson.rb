@@ -64,7 +64,7 @@ module ADIWG
                             return nil
                         end
 
-                        # mdJson - metadata {metadata} (required)
+                        # mdJson - metadata {metadata}
                         if hMdJson.has_key?('metadata')
                             hObject = hMdJson['metadata']
                             unless hObject.empty?
@@ -73,11 +73,6 @@ module ADIWG
                                     intObj[:metadata] = hReturn
                                 end
                             end
-                        end
-                        if intObj[:metadata].empty?
-                            responseObj[:readerExecutionMessages] << 'mdJson object is missing metadata'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
                         end
 
                         # mdJson - data dictionary [] {dataDictionary}
@@ -106,7 +101,7 @@ module ADIWG
 
                     end
 
-                    # find the array pointer for a contact
+                    # find the array pointer and type for a contact
                     def self.findContact(contactId)
 
                         contactIndex = nil

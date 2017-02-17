@@ -18,7 +18,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
 
     def test_legalConstraint_schema
 
-        hIn = @@hIn['legalConstraint']
+        hIn = @@hIn['legal']
         errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment=>'legalConstraint')
         assert_empty errors
 
@@ -61,9 +61,9 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['legalConstraint']['useConstraint'] = []
-        hIn['legalConstraint']['accessConstraint'] = []
-        hIn['legalConstraint']['otherConstraint'] = []
+        hIn['legal']['useConstraint'] = []
+        hIn['legal']['accessConstraint'] = []
+        hIn['legal']['otherConstraint'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -77,7 +77,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['legalConstraint'] = {}
+        hIn['legal'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -91,7 +91,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('legalConstraint')
+        hIn.delete('legal')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

@@ -672,7 +672,7 @@ class InternalMetadata
             description: nil,
             sourceCitation: {},
             metadataCitation: [],
-            scaleDenominator: nil,
+            spatialResolution: {},
             referenceSystem: {},
             sourceSteps: [],
             scope: {}

@@ -30,62 +30,38 @@ module ADIWG
                         intMetadataClass = InternalMetadata.new
                         intResolution = intMetadataClass.newSpatialResolution
 
-                        # spatial resolution - type (required)
-                        if hResolution.has_key?('type')
-                            if hResolution['type'] != ''
-                                type = hResolution['type']
-                                if %w{ scaleFactor measure levelOfDetail }.one? { |word| word == type }
-                                    intResolution[:type] = hResolution['type']
-                                else
-                                    responseObj[:readerExecutionMessages] << 'Spatial Resolution type must be scaleFactor, measure, or levelOfDetail'
+                        # spatial resolution - scale factor (required if)
+                        if hResolution.has_key?('scaleFactor')
+                            if hResolution['scaleFactor'] != ''
+                                intResolution[:scaleFactor] = hResolution['scaleFactor']
+                            else
+                                responseObj[:readerExecutionMessages] << 'Spatial Resolution scale factor is missing'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
+                            end
+                        end
+
+                        # spatial resolution - measure
+                        if hResolution.has_key?('measure')
+                            hMeasure = hResolution['measure']
+                            unless hMeasure.empty?
+                                hObject = Measure.unpack(hMeasure, responseObj)
+                                if hObject.nil?
+                                    responseObj[:readerExecutionMessages] << 'Spatial Resolution measure is missing'
                                     responseObj[:readerExecutionPass] = false
                                     return nil
+                                else
+                                    intResolution[:measure] = hObject
                                 end
-                            end
-                        end
-                        if intResolution[:type].nil? || intResolution[:type] == ''
-                            responseObj[:readerExecutionMessages] << 'Spatial Resolution attribute type is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
-
-                        # spatial resolution - scale factor (required if)
-                        if hResolution['type'] == 'scaleFactor'
-                            if hResolution.has_key?('scaleFactor')
-                                intResolution[:scaleFactor] = hResolution['scaleFactor']
-                            end
-                            if intResolution[:scaleFactor].nil? || intResolution[:scaleFactor] == ''
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution attribute scaleFactor is missing'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
-                        end
-
-                        # spatial resolution - measure (required if)
-                        if hResolution['type'] == 'measure'
-                            if hResolution.has_key?('measure')
-                                hMeasure = hResolution['measure']
-                                unless hMeasure.empty?
-                                    hObject = Measure.unpack(hMeasure, responseObj)
-                                    unless hObject.nil?
-                                        intResolution[:measure] = hObject
-                                    end
-                                end
-                            end
-                            if intResolution[:measure].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution object measure is missing or incomplete'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
                             end
                         end
 
                         # spatial resolution - level of detail
-                        if hResolution['type'] == 'levelOfDetail'
-                            if hResolution.has_key?('levelOfDetail')
+                        if hResolution.has_key?('levelOfDetail')
+                            if hResolution['levelOfDetail'] != ''
                                 intResolution[:levelOfDetail] = hResolution['levelOfDetail']
-                            end
-                            if intResolution[:levelOfDetail].nil? || intResolution[:levelOfDetail] == ''
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution attribute levelOfDetail is missing'
+                            else
+                                responseObj[:readerExecutionMessages] << 'Spatial Resolution level of detail is missing'
                                 responseObj[:readerExecutionPass] = false
                                 return nil
                             end

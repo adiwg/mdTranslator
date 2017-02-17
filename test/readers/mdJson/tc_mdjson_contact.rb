@@ -17,19 +17,17 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
 
     def test_contact_schema
 
-        # test individual contact
+        # test is individual
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['isOrganization'] = false
-
         errors = TestReaderMdJsonParent.testSchema(hIn, 'contact.json')
         assert_empty errors
 
-        # test organization contact
+        # test is organization
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['isOrganization'] = true
         hIn.delete('positionName')
-
-        errors = TestReaderMdJsonParent.testSchema(hIn, 'contact.json')
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'contact.json', :remove=>['positionName'])
         assert_empty errors
 
     end

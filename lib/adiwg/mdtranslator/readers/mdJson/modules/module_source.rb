@@ -13,6 +13,7 @@ require_relative 'module_citation'
 require_relative 'module_processStep'
 require_relative 'module_spatialReference'
 require_relative 'module_scope'
+require_relative 'module_spatialResolution'
 
 module ADIWG
     module Mdtranslator
@@ -56,8 +57,8 @@ module ADIWG
                         end
 
                         # source - source metadata []
-                        if hSource.has_key?('sourceMetadata')
-                            aCitation = hSource['sourceMetadata']
+                        if hSource.has_key?('metadataCitation')
+                            aCitation = hSource['metadataCitation']
                             aCitation.each do |item|
                                 hCitation = Citation.unpack(item, responseObj)
                                 unless hCitation.nil?
@@ -66,16 +67,20 @@ module ADIWG
                             end
                         end
 
-                        # source - scale denominator
-                        if hSource.has_key?('scaleDenominator')
-                            if hSource['scaleDenominator'] != ''
-                                intSource[:scaleDenominator] = hSource['scaleDenominator']
+                        # source - spatial resolution
+                        if hSource.has_key?('spatialResolution')
+                            hObject = hSource['spatialResolution']
+                            unless hObject.empty?
+                                hReturn = SpatialResolution.unpack(hObject, responseObj)
+                                unless hReturn.nil?
+                                    intSource[:spatialResolution] = hReturn
+                                end
                             end
                         end
 
                         # source - reference system
-                        if hSource.has_key?('sourceReferenceSystem')
-                            hObject = hSource['sourceReferenceSystem']
+                        if hSource.has_key?('referenceSystem')
+                            hObject = hSource['referenceSystem']
                             unless hObject.empty?
                                 hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
                                 unless hReturn.nil?
@@ -85,8 +90,8 @@ module ADIWG
                         end
 
                         # source - source steps []
-                        if hSource.has_key?('sourceStep')
-                            aSteps = hSource['sourceStep']
+                        if hSource.has_key?('sourceProcessStep')
+                            aSteps = hSource['sourceProcessStep']
                             aSteps.each do |item|
                                 hStep = ProcessStep.unpack(item, responseObj)
                                 unless hStep.nil?

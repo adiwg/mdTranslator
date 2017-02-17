@@ -64,7 +64,7 @@
                ]
             }
          ],
-         "legalConstraint": {
+         "legal": {
             "useConstraint": [
                "useConstraint0",
                "useConstraint1"
@@ -78,7 +78,7 @@
                "otherConstraint1"
             ]
          },
-         "securityConstraint": {
+         "security": {
             "classification": "classification",
             "classificationSystem": "classificationSystem",
             "userNote": "userNote",

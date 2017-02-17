@@ -94,38 +94,11 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
     end
 
-    def test_mdJson_empty_metadata
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['metadata'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_mdJson_missing_metadata
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('metadata')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
     def test_mdJson_empty_elements
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['metadata'] = {}
         hIn['dataDictionary'] = []
         hIn['metadataRepository'] = []
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -133,7 +106,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
         refute_empty metadata[:schema]
         assert_equal 2, metadata[:contacts].length
-        refute_empty metadata[:metadata]
+        assert_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
         assert_empty metadata[:metadataRepositories]
         assert hResponse[:readerExecutionPass]
@@ -145,6 +118,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('metadata')
         hIn.delete('dataDictionary')
         hIn.delete('metadataRepository')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -152,7 +126,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
         refute_empty metadata[:schema]
         assert_equal 2, metadata[:contacts].length
-        refute_empty metadata[:metadata]
+        assert_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
         assert_empty metadata[:metadataRepositories]
         assert hResponse[:readerExecutionPass]

@@ -16,6 +16,9 @@
       "timeInterval": {
         "interval": 9.9,
         "units": "units"
+      },
+      "duration": {
+        "months": 9
       }
     }
   ]

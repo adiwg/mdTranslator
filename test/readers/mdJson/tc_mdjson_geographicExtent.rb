@@ -16,6 +16,13 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('geographicExtent.json')
     @@hIn = aIn['geographicExtent'][0]
 
+    def test_geographicExtent_schema
+
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json')
+        assert_empty errors
+
+    end
+
     def test_complete_geographicExtent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

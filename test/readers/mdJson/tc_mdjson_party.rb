@@ -14,6 +14,7 @@ class TestReaderMdJsonParty < TestReaderMdJsonParent
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Party
     aIn = TestReaderMdJsonParent.getJson('party.json')
     @@aIn = aIn['party']
+    @@hIn = @@aIn[1]
 
     def test_party_schema
 

@@ -24,14 +24,6 @@
                "characterSet": "characterSet"
             }
          ],
-         "resourceScope": [
-            {
-               "scopeCode": "scopeCode"
-            },
-            {
-               "scopeCode": "scopeCode"
-            }
-         ],
          "metadataContact": [
             {
                "role": "role",
@@ -78,6 +70,10 @@
          ],
          "metadataDate": [
             {
+               "date": "2017-02-16",
+               "dateType": "creation"
+            },
+            {
                "date": "2016-10-31",
                "dateType": "dateType"
             },
@@ -86,7 +82,7 @@
                "dateType": "nextUpdate"
             }
          ],
-         "metadataLinkage": [
+         "metadataOnlineResource": [
             {
                "uri": "http://ISO.uri/adiwg/0"
             },

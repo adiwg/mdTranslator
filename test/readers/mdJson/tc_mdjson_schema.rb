@@ -17,7 +17,7 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
     def test_schema_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'schema.json')
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'schema.json', :fragment=>'schema')
         assert_empty errors
 
     end
@@ -29,7 +29,7 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'name', metadata[:name]
-        assert_equal 'version', metadata[:version]
+        assert_equal '0.0.0', metadata[:version]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

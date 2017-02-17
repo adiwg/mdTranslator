@@ -12,18 +12,34 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::SpatialRepresentation
-    @@aIn = TestReaderMdJsonParent.getJson('spatialRepresentation.json')
+    aIn = TestReaderMdJsonParent.getJson('spatialRepresentation.json')
+    @@hIn = aIn['spatialRepresentation']
 
     def test_spatialRepresentation_schema
 
-        errors = TestReaderMdJsonParent.testSchema(hIn, 'spatialRepresentation.json')
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+
+        # test grid representation
+        errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[0])
         assert_empty errors
+
+        # test vector representation
+        errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[1])
+        assert_empty errors
+
+        # test georectified representation
+        errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[2])
+        assert_empty errors
+
+        # # test grid georeferenceable
+        # errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[3])
+        # assert_empty errors
 
     end
 
     def test_spatialRepresentation_grid
 
-        hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][0]))
+        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -39,7 +55,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
     def test_spatialRepresentation_vector
 
-        hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][1]))
+        hIn = Marshal::load(Marshal.dump(@@hIn[1]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -55,7 +71,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
     def test_spatialRepresentation_georectified
 
-        hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][2]))
+        hIn = Marshal::load(Marshal.dump(@@hIn[2]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -71,7 +87,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
     def test_spatialRepresentation_georeferenceable
 
-        hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][3]))
+        hIn = Marshal::load(Marshal.dump(@@hIn[3]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -87,7 +103,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
     def test_spatialRepresentation_invalid
 
-        hIn = Marshal::load(Marshal.dump(@@aIn['spatialRepresentation'][0]))
+        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
         hIn['type'] = 'invalid'
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)

@@ -2,7 +2,7 @@
    "constraint": [
       {
          "type": "security",
-         "securityConstraint": {
+         "security": {
             "classification": "classification",
             "classificationSystem": "classificationSystem",
             "userNote": "userNote",

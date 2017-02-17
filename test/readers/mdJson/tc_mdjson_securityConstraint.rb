@@ -18,7 +18,7 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
     def test_securityConstraint_schema
 
-        hIn = @@hIn['securityConstraint']
+        hIn = @@hIn['security']
         errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment=>'securityConstraint')
         assert_empty errors
 
@@ -56,7 +56,7 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['securityConstraint']['classification'] = ''
+        hIn['security']['classification'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -70,7 +70,7 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['securityConstraint'].delete('classification')
+        hIn['security'].delete('classification')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -84,9 +84,9 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['securityConstraint']['classificationSystem'] = ''
-        hIn['securityConstraint']['userNote'] = ''
-        hIn['securityConstraint']['handlingDescription'] = ''
+        hIn['security']['classificationSystem'] = ''
+        hIn['security']['userNote'] = ''
+        hIn['security']['handlingDescription'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -115,9 +115,9 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['securityConstraint'].delete('classificationSystem')
-        hIn['securityConstraint'].delete('userNote')
-        hIn['securityConstraint'].delete('handlingDescription')
+        hIn['security'].delete('classificationSystem')
+        hIn['security'].delete('userNote')
+        hIn['security'].delete('handlingDescription')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -146,7 +146,7 @@ class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('securityConstraint')
+        hIn.delete('security')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 

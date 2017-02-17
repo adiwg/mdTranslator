@@ -202,6 +202,34 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
     end
 
+    def test_empty_resourceInfo_status
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['status'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_missing_resourceInfo_status
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn.delete('status')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
     def test_empty_resourceInfo_elements
 
         TestReaderMdJsonParent.setContacts
@@ -211,7 +239,6 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hIn['credit'] = []
         hIn['timePeriod'] = {}
         hIn['purpose'] = ''
-        hIn['status'] = []
         hIn['topicCategory'] = []
         hIn['spatialReferenceSystem'] = []
         hIn['spatialRepresentationType'] = []
@@ -240,7 +267,6 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         assert_nil metadata[:purpose]
         assert_empty metadata[:credits]
         assert_empty metadata[:timePeriod]
-        assert_empty metadata[:status]
         assert_empty metadata[:topicCategories]
         refute_empty metadata[:pointOfContacts]
         assert_empty metadata[:spatialReferenceSystems]
@@ -275,7 +301,6 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         hIn.delete('credit')
         hIn.delete('timePeriod')
         hIn.delete('purpose')
-        hIn.delete('status')
         hIn.delete('topicCategory')
         hIn.delete('spatialReferenceSystem')
         hIn.delete('spatialRepresentationType')
@@ -304,7 +329,6 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         assert_nil metadata[:purpose]
         assert_empty metadata[:credits]
         assert_empty metadata[:timePeriod]
-        assert_empty metadata[:status]
         assert_empty metadata[:topicCategories]
         refute_empty metadata[:pointOfContacts]
         assert_empty metadata[:spatialReferenceSystems]
@@ -327,6 +351,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
         assert_nil metadata[:supplementalInfo]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
+
     end
 
     def test_empty_resourceInfo_object

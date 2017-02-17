@@ -15,6 +15,14 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('geometryFeature.json')
     @@hIn = aIn['geometryFeature'][0]
 
+    def test_geometryFeature_schema
+
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+        errors = JSON::Validator.fully_validate('geojson.json', @@hIn)
+        assert_empty errors
+
+    end
+
     def test_complete_geometryFeature
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

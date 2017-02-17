@@ -8,7 +8,6 @@
 require_relative 'module_identifier'
 require_relative 'module_citation'
 require_relative 'module_locale'
-require_relative 'module_scope'
 require_relative 'module_responsibleParty'
 require_relative 'module_date'
 require_relative 'module_onlineResource'
@@ -79,17 +78,6 @@ module ADIWG
                             end
                         end
 
-                        # metadata information - resource scope [] {scope}
-                        if hMetaInfo.has_key?('resourceScope')
-                            aItems = hMetaInfo['resourceScope']
-                            aItems.each do |item|
-                                hReturn = Scope.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intMetaInfo[:resourceScopes] << hReturn
-                                end
-                            end
-                        end
-
                         # metadata information - metadata contact [] {responsibleParty} (required)
                         if hMetaInfo.has_key?('metadataContact')
                             aItems = hMetaInfo['metadataContact']
@@ -106,7 +94,7 @@ module ADIWG
                             return nil
                         end
 
-                        # metadata information - metadata dates [] {date}
+                        # metadata information - metadata dates [] {date} (require "creation" date)
                         if hMetaInfo.has_key?('metadataDate')
                             aItems = hMetaInfo['metadataDate']
                             aItems.each do |item|
@@ -116,10 +104,21 @@ module ADIWG
                                 end
                             end
                         end
+                        haveCreationDate = false
+                        intMetaInfo[:metadataDates].each do |hItem|
+                            if hItem[:dateType] == 'creation'
+                                haveCreationDate = true
+                            end
+                        end
+                        unless haveCreationDate
+                            responseObj[:readerExecutionMessages] << 'MetadataInfo object is missing creation date'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
 
-                        # metadata information - metadata linkage [] {onlineResource}
-                        if hMetaInfo.has_key?('metadataLinkage')
-                            aItems = hMetaInfo['metadataLinkage']
+                        # metadata information - metadata online resource [] {onlineResource}
+                        if hMetaInfo.has_key?('metadataOnlineResource')
+                            aItems = hMetaInfo['metadataOnlineResource']
                             aItems.each do |item|
                                 hReturn = OnlineResource.unpack(item, responseObj)
                                 unless hReturn.nil?

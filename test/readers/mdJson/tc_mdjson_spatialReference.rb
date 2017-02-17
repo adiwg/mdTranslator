@@ -65,7 +65,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
         assert_empty hResponse[:readerExecutionMessages]
 
     end
-
+    #
     def test_referenceSystem_empty_system
 
         hIn = Marshal::load(Marshal.dump(@@hIn))

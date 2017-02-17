@@ -18,7 +18,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
     def test_source_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'source.json')
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'source')
         assert_empty errors
 
     end
@@ -32,7 +32,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
         assert_equal 'description', metadata[:description]
         refute_empty metadata[:sourceCitation]
         assert_equal 2, metadata[:metadataCitation].length
-        assert_equal 9, metadata[:scaleDenominator]
+        refute_empty metadata[:spatialResolution]
         refute_empty metadata[:referenceSystem]
         assert_equal 2, metadata[:sourceSteps].length
         refute_empty metadata[:scope]
@@ -71,10 +71,10 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['sourceCitation'] = {}
-        hIn['sourceMetadata'] = []
-        hIn['scaleDenominator'] = ''
-        hIn['sourceReferenceSystem'] = {}
-        hIn['sourceStep'] = []
+        hIn['metadataCitation'] = []
+        hIn['spatialResolution'] = {}
+        hIn['referenceSystem'] = {}
+        hIn['sourceProcessStep'] = []
         hIn['scope'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -82,7 +82,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
         assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
-        assert_nil metadata[:scaleDenominator]
+        assert_empty metadata[:spatialResolution]
         assert_empty metadata[:referenceSystem]
         assert_empty metadata[:sourceSteps]
         assert_empty metadata[:scope]
@@ -95,10 +95,10 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('sourceCitation')
-        hIn.delete('sourceMetadata')
-        hIn.delete('scaleDenominator')
-        hIn.delete('sourceReferenceSystem')
-        hIn.delete('sourceStep')
+        hIn.delete('metadataCitation')
+        hIn.delete('spatialResolution')
+        hIn.delete('referenceSystem')
+        hIn.delete('sourceProcessStep')
         hIn.delete('scope')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -106,7 +106,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
         assert_equal 'description', metadata[:description]
         assert_empty metadata[:sourceCitation]
         assert_empty metadata[:metadataCitation]
-        assert_nil metadata[:scaleDenominator]
+        assert_empty metadata[:spatialResolution]
         assert_empty metadata[:referenceSystem]
         assert_empty metadata[:sourceSteps]
         assert_empty metadata[:scope]

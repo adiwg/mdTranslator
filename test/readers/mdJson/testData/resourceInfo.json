@@ -86,7 +86,20 @@
           "gridRepresentation": {
             "numberOfDimensions": 9,
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+            "transformParamsAvailability": true,
+            "dimension": [
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9,
+                "resolution": {
+                  "type": "distance",
+                  "value": 9.9,
+                  "unitOfMeasure": "feet"
+                },
+                "dimensionTitle": "dimensionTitle",
+                "dimensionDescription": "dimensionDescription"
+              }
+            ]
           }
         },
         {
@@ -94,7 +107,20 @@
           "gridRepresentation": {
             "numberOfDimensions": 9,
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+            "transformParamsAvailability": true,
+            "dimension": [
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9,
+                "resolution": {
+                  "type": "distance",
+                  "value": 9.9,
+                  "unitOfMeasure": "feet"
+                },
+                "dimensionTitle": "dimensionTitle",
+                "dimensionDescription": "dimensionDescription"
+              }
+            ]
           }
         }
       ],
@@ -223,7 +249,7 @@
       ],
       "resourceUsage": [
         {
-          "specificUsage": "specificUsage",
+          "specificUsage": "specificUsage0",
           "userDeterminedLimitation": "userDeterminedLimitation",
           "limitationResponse": [
             "limitationResponse0",
@@ -231,7 +257,7 @@
           ]
         },
         {
-          "specificUsage": "specificUsage",
+          "specificUsage": "specificUsage1",
           "userDeterminedLimitation": "userDeterminedLimitation",
           "limitationResponse": [
             "limitationResponse0",
@@ -249,7 +275,7 @@
         },
         {
           "type": "legal",
-          "legalConstraint": {
+          "legal": {
             "useConstraint": [
               "useConstraint0",
               "useConstraint1"

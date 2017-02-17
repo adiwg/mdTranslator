@@ -5,7 +5,7 @@
          "sourceCitation": {
             "title": "title"
          },
-         "sourceMetadata": [
+         "metadataCitation": [
             {
                "title": "title"
             },
@@ -13,14 +13,16 @@
                "title": "title"
             }
          ],
-         "scaleDenominator": 9,
-         "sourceReferenceSystem": {
+         "spatialResolution": {
+            "scaleFactor": 99999
+         },
+         "referenceSystem": {
             "referenceSystemType": "referenceSystemType",
             "referenceSystem": {
                "identifier": "identifier"
             }
          },
-         "sourceStep": [
+         "sourceProcessStep": [
             {
                "description": "description"
             },

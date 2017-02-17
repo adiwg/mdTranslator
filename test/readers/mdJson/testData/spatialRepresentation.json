@@ -4,6 +4,16 @@
          "type": "grid",
          "gridRepresentation": {
             "numberOfDimensions": 9,
+            "dimension": [
+               {
+                  "dimensionType": "dimensionType",
+                  "dimensionSize": 9
+               },
+               {
+                  "dimensionType": "dimensionType",
+                  "dimensionSize": 9
+               }
+            ],
             "cellGeometry": "cellGeometry",
             "transformParamsAvailability": true
          }
@@ -25,6 +35,16 @@
          "georectifiedRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
+               "dimension": [
+                  {
+                     "dimensionType": "dimensionType",
+                     "dimensionSize": 9
+                  },
+                  {
+                     "dimensionType": "dimensionType",
+                     "dimensionSize": 9
+                  }
+               ],
                "cellGeometry": "cellGeometry",
                "transformParamsAvailability": true
             },
@@ -43,6 +63,16 @@
          "georeferenceableRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
+               "dimension": [
+                  {
+                     "dimensionType": "dimensionType",
+                     "dimensionSize": 9
+                  },
+                  {
+                     "dimensionType": "dimensionType",
+                     "dimensionSize": 9
+                  }
+               ],
                "cellGeometry": "cellGeometry",
                "transformParamsAvailability": true
             },

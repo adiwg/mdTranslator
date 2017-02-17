@@ -120,13 +120,18 @@ module ADIWG
                             end
                         end
 
-                        # resource information - status []
+                        # resource information - status [] (required)
                         if hResInfo.has_key?('status')
                             hResInfo['status'].each do |item|
                                 if item != ''
                                     intResInfo[:status] << item
                                 end
                             end
+                        end
+                        if intResInfo[:status].empty?
+                            responseObj[:readerExecutionMessages] << 'ResourceInfo is missing status'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # resource information - topic category []

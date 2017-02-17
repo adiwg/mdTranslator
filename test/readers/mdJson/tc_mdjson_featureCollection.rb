@@ -18,7 +18,8 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
 
     def test_featureCollection_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geojson.json')
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+        errors = JSON::Validator.fully_validate('geojson.json', @@hIn)
         assert_empty errors
 
     end

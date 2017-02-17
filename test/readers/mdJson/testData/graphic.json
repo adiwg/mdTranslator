@@ -14,7 +14,7 @@
             },
             {
                "type": "legal",
-               "legalConstraint": {
+               "legal": {
                   "useConstraint": [
                      "useConstraint0",
                      "useConstraint1"

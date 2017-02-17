@@ -62,10 +62,21 @@
             }
           ]
         }
+      ],
+      "metadataDate": [
+        {
+          "date": "2017-02-16",
+          "dateType": "creation"
+        }
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
@@ -84,6 +95,9 @@
             }
           ]
         }
+      ],
+      "status": [
+        "status"
       ],
       "defaultResourceLocale": {
         "language": "LanguageCode",

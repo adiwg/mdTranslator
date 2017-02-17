@@ -117,8 +117,8 @@ module ADIWG
                         end
 
                         if type == 'legal'
-                            if hConstraint.has_key?('legalConstraint')
-                                hObject = hConstraint['legalConstraint']
+                            if hConstraint.has_key?('legal')
+                                hObject = hConstraint['legal']
                                 unless hObject.empty?
                                     hReturn = LegalConstraint.unpack(hObject, responseObj)
                                     unless hReturn.nil?
@@ -134,8 +134,8 @@ module ADIWG
                         end
 
                         if type == 'security'
-                            if hConstraint.has_key?('securityConstraint')
-                                hObject = hConstraint['securityConstraint']
+                            if hConstraint.has_key?('security')
+                                hObject = hConstraint['security']
                                 unless hObject.empty?
                                     hReturn = SecurityConstraint.unpack(hObject, responseObj)
                                     unless hReturn.nil?

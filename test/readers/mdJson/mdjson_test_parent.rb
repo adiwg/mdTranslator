@@ -57,13 +57,18 @@ class TestReaderMdJsonParent < MiniTest::Test
     end
 
     # test schema for reader module
-    def self.testSchema(mdJson, schema, fragment: nil)
+    def self.testSchema(mdJson, schema, fragment: nil, remove: [])
 
         # load all schemas with 'true' to prohibit additional parameters
-        ADIWG::MdjsonSchemas::Utils.load_schemas(true)
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
-        # load schema segment and make all elements required
+        # load schema segment and make all elements required and prevent additional parameters
         strictSchema = ADIWG::MdjsonSchemas::Utils.load_strict(schema)
+
+        # remove unwanted parameters from the required array
+        unless remove.empty?
+            strictSchema['required'] = strictSchema['required'] - remove
+        end
 
         # build relative path to schema fragment
         fragmentPath = nil

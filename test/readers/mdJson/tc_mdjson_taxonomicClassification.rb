@@ -17,7 +17,9 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
     def test_taxClass_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'taxonomy.json', :fragment=>'taxonomicClassification')
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn = hIn['subClassification'][0]['subClassification'][0]['subClassification'][0]
+        errors = TestReaderMdJsonParent.testSchema(hIn, 'taxonomy.json', :fragment=>'taxonomicClassification')
         assert_empty errors
 
     end
