@@ -15,13 +15,14 @@ class TestReaderMdJsonGeometryProperties < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('geometryProperties.json')
     @@hIn = aIn['geometryProperties'][0]
 
-    # def test_geometryProperties_schema
-    #
-    #     ADIWG::MdjsonSchemas::Utils.load_schemas(false)
-    #     errors = JSON::Validator.fully_validate('geojson.json', @@hIn)
-    #     assert_empty errors
-    #
-    # end
+    def test_geometryProperties_schema
+
+        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+        fragmentPath = '#/definitions/featureProperties'
+        errors = JSON::Validator.fully_validate('geojson.json', @@hIn, :fragment=>fragmentPath)
+        assert_empty errors
+
+    end
 
     def test_complete_geometryProperties
 

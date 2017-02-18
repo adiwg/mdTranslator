@@ -74,10 +74,10 @@
                   }
                ],
                "cellGeometry": "cellGeometry",
-               "transformParamsAvailability": true
+               "transformParamsAvailable": true
             },
-            "controlPointAvailability": true,
-            "orientationParameterAvailability": true,
+            "controlPointAvailable": true,
+            "orientationParameterAvailable": true,
             "georeferencedParameter": "georeferencedParameter"
          }
       }

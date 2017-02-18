@@ -31,9 +31,9 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
         errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[2])
         assert_empty errors
 
-        # # test grid georeferenceable
-        # errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[3])
-        # assert_empty errors
+        # test grid georeferenceable
+        errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[3])
+        assert_empty errors
 
     end
 
