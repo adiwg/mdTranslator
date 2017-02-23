@@ -40,14 +40,14 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com1</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
           <gmd:onlineResource>
             <gmd:CI_OnlineResource>
               <gmd:linkage>
-                <gmd:URL>http://URI.example.com</gmd:URL>
+                <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
               </gmd:linkage>
               <gmd:protocol/>
               <gmd:name/>
@@ -64,7 +64,7 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role001" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -92,14 +92,14 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com2</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
           <gmd:onlineResource>
             <gmd:CI_OnlineResource>
               <gmd:linkage>
-                <gmd:URL>http://URI.example.com</gmd:URL>
+                <gmd:URL>http://ISO.uri/adiwg/2</gmd:URL>
               </gmd:linkage>
               <gmd:protocol/>
               <gmd:name/>
@@ -116,7 +116,7 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role002" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -132,10 +132,10 @@
           <gmd:phone>
             <gmd:CI_Telephone>
               <gmd:voice>
-                <gco:CharacterString>single service 1: 111-111-1111</gco:CharacterString>
+                <gco:CharacterString>single service 30: 111-111-1111</gco:CharacterString>
               </gmd:voice>
               <gmd:voice>
-                <gco:CharacterString>single service 2: 111-111-1111</gco:CharacterString>
+                <gco:CharacterString>single service 31: 111-111-1111</gco:CharacterString>
               </gmd:voice>
               <gmd:facsimile/>
             </gmd:CI_Telephone>
@@ -148,17 +148,17 @@
               <gmd:postalCode/>
               <gmd:country/>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress0</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com30</gco:CharacterString>
               </gmd:electronicMailAddress>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress1</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com31</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
           <gmd:onlineResource>
             <gmd:CI_OnlineResource>
               <gmd:linkage>
-                <gmd:URL>http://URI.example0.com</gmd:URL>
+                <gmd:URL>http://ISO.uri/adiwg/30</gmd:URL>
               </gmd:linkage>
               <gmd:protocol/>
               <gmd:name/>
@@ -175,7 +175,7 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role003" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -192,7 +192,7 @@
           <gmd:address>
             <gmd:CI_Address>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress0</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com4</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -202,7 +202,7 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role004" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -215,7 +215,7 @@
       <gmd:positionName/>
       <gmd:contactInfo/>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role005" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>
@@ -228,7 +228,7 @@
       <gmd:positionName/>
       <gmd:contactInfo/>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role006" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gmd:contact>

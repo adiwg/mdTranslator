@@ -32,11 +32,11 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress"
+        "e.mail@address.com1"
       ],
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example.com"
+          "uri": "http://ISO.uri/adiwg/1"
         }
       ],
       "hoursOfService": [
@@ -72,11 +72,11 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress"
+        "e.mail@address.com2"
       ],
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example.com"
+          "uri": "http://ISO.uri/adiwg/2"
         }
       ],
       "hoursOfService": [
@@ -92,22 +92,22 @@
       "memberOfOrganization": [],
       "logoGraphic": [
         {
-          "fileName": "fileName0"
+          "fileName": "fileName30"
         },
         {
-          "fileName": "fileName1"
+          "fileName": "fileName31"
         }
       ],
       "phone": [
         {
-          "phoneName": "single service 1",
+          "phoneName": "single service 30",
           "phoneNumber": "111-111-1111",
           "service": [
             "voice"
           ]
         },
         {
-          "phoneName": "single service 2",
+          "phoneName": "single service 31",
           "phoneNumber": "111-111-1111",
           "service": [
             "voice"
@@ -116,22 +116,22 @@
       ],
       "address": [
         {
-          "addressType": ["addressType0"]
+          "addressType": ["addressType30"]
         },
         {
-          "addressType": ["addressType1"]
+          "addressType": ["addressType31"]
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0",
-        "emailAddress1"
+        "e.mail@address.com30",
+        "e.mail@address.com31"
       ],
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example0.com"
+          "uri": "http://ISO.uri/adiwg/30"
         },
         {
-          "resourceURI": "http://URI.example1.com"
+          "uri": "http://ISO.uri/adiwg/31"
         }
       ],
       "hoursOfService": [
@@ -151,7 +151,7 @@
       "phone": [],
       "address": [],
       "electronicMailAddress": [
-        "emailAddress0"
+        "e.mail@address.com4"
       ],
       "onlineResource": [],
       "hoursOfService": [],
@@ -183,7 +183,7 @@
     "metadataInfo": {
       "metadataContact": [
         {
-          "role": "custodian",
+          "role": "role001",
           "party": [
             {
               "contactId": "CID001"
@@ -191,7 +191,7 @@
           ]
         },
         {
-          "role": "custodian",
+          "role": "role002",
           "party": [
             {
               "contactId": "CID002"
@@ -199,7 +199,7 @@
           ]
         },
         {
-          "role": "custodian",
+          "role": "role003",
           "party": [
             {
               "contactId": "CID003"
@@ -207,7 +207,7 @@
           ]
         },
         {
-          "role": "custodian",
+          "role": "role004",
           "party": [
             {
               "contactId": "CID004"
@@ -215,7 +215,7 @@
           ]
         },
         {
-          "role": "custodian",
+          "role": "role005",
           "party": [
             {
               "contactId": "CID005"
@@ -223,7 +223,7 @@
           ]
         },
         {
-          "role": "custodian",
+          "role": "role006",
           "party": [
             {
               "contactId": "CID006"
@@ -233,14 +233,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_address"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
