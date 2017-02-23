@@ -28,7 +28,7 @@
                 <gco:CharacterString>country</gco:CharacterString>
               </gmd:country>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress0</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com0</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
@@ -73,10 +73,10 @@
                 <gco:CharacterString>country</gco:CharacterString>
               </gmd:country>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress0</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com1</gco:CharacterString>
               </gmd:electronicMailAddress>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress1</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com2</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>

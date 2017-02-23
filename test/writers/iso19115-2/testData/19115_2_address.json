@@ -22,7 +22,7 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0"
+        "e.mail@address.com0"
       ]
     },
     {
@@ -44,8 +44,8 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0",
-        "emailAddress1"
+        "e.mail@address.com1",
+        "e.mail@address.com2"
       ]
     },
     {
@@ -142,11 +142,17 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "testing class_address"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
           "role": "developer",
