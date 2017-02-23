@@ -40,10 +40,10 @@
         </gmd:CI_Citation>
       </gmd:aggregateDataSetName>
       <gmd:associationType>
-        <gmd:DS_AssociationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_AssociationTypeCode" codeListValue="crossReference" codeSpace="001"/>
+        <gmd:DS_AssociationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_AssociationTypeCode" codeListValue="associationType0" codeSpace="userCode"/>
       </gmd:associationType>
       <gmd:initiativeType>
-        <gmd:DS_InitiativeTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_InitiativeTypeCode" codeListValue="campaign" codeSpace="001"/>
+        <gmd:DS_InitiativeTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_InitiativeTypeCode" codeListValue="initiativeType0" codeSpace="userCode"/>
       </gmd:initiativeType>
     </gmd:MD_AggregateInformation>
   </gmd:aggregationInfo>
@@ -68,7 +68,7 @@
         </gmd:CI_Citation>
       </gmd:aggregateDataSetName>
       <gmd:associationType>
-        <gmd:DS_AssociationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_AssociationTypeCode" codeListValue="largerWorkCitation" codeSpace="002"/>
+        <gmd:DS_AssociationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_AssociationTypeCode" codeListValue="associationType1" codeSpace="userCode"/>
       </gmd:associationType>
       <gmd:initiativeType/>
     </gmd:MD_AggregateInformation>

@@ -33,7 +33,6 @@ class TestWriter191152Address < MiniTest::Test
         )
 
         metadata = hResponseObj[:writerOutput]
-        File.write('/mnt/hgfs/Projects/writeOut.xml', metadata)
         iso_out = Document.new(metadata)
 
         aCheckXML = []
