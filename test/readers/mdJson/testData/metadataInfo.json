@@ -70,12 +70,12 @@
          ],
          "metadataDate": [
             {
-               "date": "2017-02-16",
-               "dateType": "creation"
-            },
-            {
                "date": "2016-10-31",
                "dateType": "dateType"
+            },
+            {
+               "date": "2017-02-16",
+               "dateType": "creation"
             },
             {
                "date": "2016-10-31",

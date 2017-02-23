@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
     spec.add_runtime_dependency "thor", "~> 0.19"
     spec.add_runtime_dependency "uuidtools", "~> 2.1"
     spec.add_runtime_dependency "json-schema", "~> 2.7"
-    spec.add_runtime_dependency "adiwg-mdjson_schemas", ">= 2.0.0.pre.alpha.1"
+    spec.add_runtime_dependency "adiwg-mdjson_schemas", ">= 2.0.0.pre.beta"
     spec.add_runtime_dependency "adiwg-mdcodes", "~> 2.1"
     spec.add_runtime_dependency "jbuilder", "~> 2.5"
     spec.add_runtime_dependency "rgeo", "~> 0.5"

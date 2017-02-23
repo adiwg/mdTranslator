@@ -94,7 +94,7 @@ module ADIWG
                             return nil
                         end
 
-                        # metadata information - metadata dates [] {date} (require "creation" date)
+                        # metadata information - metadata dates [] {date}
                         if hMetaInfo.has_key?('metadataDate')
                             aItems = hMetaInfo['metadataDate']
                             aItems.each do |item|
@@ -103,17 +103,6 @@ module ADIWG
                                     intMetaInfo[:metadataDates] << hReturn
                                 end
                             end
-                        end
-                        haveCreationDate = false
-                        intMetaInfo[:metadataDates].each do |hItem|
-                            if hItem[:dateType] == 'creation'
-                                haveCreationDate = true
-                            end
-                        end
-                        unless haveCreationDate
-                            responseObj[:readerExecutionMessages] << 'MetadataInfo object is missing creation date'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
                         end
 
                         # metadata information - metadata online resource [] {onlineResource}
