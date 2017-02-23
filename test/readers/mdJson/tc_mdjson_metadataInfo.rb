@@ -72,48 +72,6 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
 
     end
 
-    def test_empty_metadataInfo_date
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['metadataDate'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_missing_metadataInfo_creation_date
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['metadataDate'].delete_at(0)
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_missing_metadataInfo_date
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('metadataDate')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
-
     def test_empty_metadataInfo_elements
 
         TestReaderMdJsonParent.setContacts
@@ -122,6 +80,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         hIn['parentMetadata'] = {}
         hIn['defaultMetadataLocale'] = {}
         hIn['otherMetadataLocale'] = []
+        hIn['metadataDate'] = []
         hIn['resourceScope'] = []
         hIn['metadataOnlineResource'] = []
         hIn['metadataMaintenance'] = {}
@@ -136,6 +95,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:otherMetadataLocales]
         assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
+        assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]
         assert_empty metadata[:metadataMaintenance]
         assert_empty metadata[:alternateMetadataReferences]
@@ -153,6 +113,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         hIn.delete('parentMetadata')
         hIn.delete('defaultMetadataLocale')
         hIn.delete('otherMetadataLocale')
+        hIn.delete('metadataDate')
         hIn.delete('resourceScope')
         hIn.delete('metadataOnlineResource')
         hIn.delete('metadataMaintenance')
@@ -167,6 +128,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:otherMetadataLocales]
         assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
+        assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]
         assert_empty metadata[:metadataMaintenance]
         assert_empty metadata[:alternateMetadataReferences]

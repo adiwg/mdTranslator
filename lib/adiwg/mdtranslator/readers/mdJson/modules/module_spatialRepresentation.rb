@@ -28,27 +28,9 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intRepresent = intMetadataClass.newSpatialRepresentation
+                        haveOne = false
 
-                        # spatial representation - type (required)
-                        if hRepresent.has_key?('type')
-                            if hRepresent['type'] != ''
-                                type = hRepresent['type']
-                                if %w{ grid vector georectified georeferenceable }.one? { |word| word == type }
-                                    intRepresent[:type] = hRepresent['type']
-                                else
-                                    responseObj[:readerExecutionMessages] << 'Spatial Representation type must be grid, vector, georectified, or georeferenceable'
-                                    responseObj[:readerExecutionPass] = false
-                                    return nil
-                                end
-                            end
-                        end
-                        if intRepresent[:type].nil? || intRepresent[:type] == ''
-                            responseObj[:readerExecutionMessages] << 'Spatial Resolution attribute type is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
-
-                        # spatial representation - grid representation (required if)
+                        # spatial representation - grid representation (required if not others)
                         if hRepresent['type'] == 'grid'
                             if hRepresent.has_key?('gridRepresentation')
                                 hRep = hRepresent['gridRepresentation']
@@ -56,17 +38,13 @@ module ADIWG
                                     hObject = GridRepresentation.unpack(hRep, responseObj)
                                     unless hObject.nil?
                                         intRepresent[:gridRepresentation] = hObject
+                                        haveOne = true
                                     end
                                 end
                             end
-                            if intRepresent[:gridRepresentation].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Representation is missing gridRepresentation object'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
                         end
 
-                        # spatial representation - vector representation (required if)
+                        # spatial representation - vector representation (required if not others)
                         if hRepresent['type'] == 'vector'
                             if hRepresent.has_key?('vectorRepresentation')
                                 hRep = hRepresent['vectorRepresentation']
@@ -74,17 +52,13 @@ module ADIWG
                                     hObject = VectorRepresentation.unpack(hRep, responseObj)
                                     unless hObject.nil?
                                         intRepresent[:vectorRepresentation] = hObject
+                                        haveOne = true
                                     end
                                 end
                             end
-                            if intRepresent[:vectorRepresentation].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Representation is missing vectorRepresentation object'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
                         end
 
-                        # spatial representation - georectified representation (required if)
+                        # spatial representation - georectified representation (required if not others)
                         if hRepresent['type'] == 'georectified'
                             if hRepresent.has_key?('georectifiedRepresentation')
                                 hRep = hRepresent['georectifiedRepresentation']
@@ -92,17 +66,13 @@ module ADIWG
                                     hObject = GeorectifiedRepresentation.unpack(hRep, responseObj)
                                     unless hObject.nil?
                                         intRepresent[:georectifiedRepresentation] = hObject
+                                        haveOne = true
                                     end
                                 end
                             end
-                            if intRepresent[:georectifiedRepresentation].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Representation is missing georectifiedRepresentation object'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
                         end
 
-                        # spatial representation - georeferenceable representation (required if)
+                        # spatial representation - georeferenceable representation (required if not others)
                         if hRepresent['type'] == 'georeferenceable'
                             if hRepresent.has_key?('georeferenceableRepresentation')
                                 hRep = hRepresent['georeferenceableRepresentation']
@@ -110,14 +80,16 @@ module ADIWG
                                     hObject = GeoreferenceableRepresentation.unpack(hRep, responseObj)
                                     unless hObject.nil?
                                         intRepresent[:georeferenceableRepresentation] = hObject
+                                        haveOne = true
                                     end
                                 end
                             end
-                            if intRepresent[:georeferenceableRepresentation].empty?
-                                responseObj[:readerExecutionMessages] << 'Spatial Representation is missing georectifiedRepresentation object'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
-                            end
+                        end
+
+                        unless haveOne
+                            responseObj[:readerExecutionMessages] << 'Spatial Representation did not have an object of supported type'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         return intRepresent

@@ -29,45 +29,43 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intResolution = intMetadataClass.newSpatialResolution
+                        haveOne = false
 
-                        # spatial resolution - scale factor (required if)
+                        # spatial resolution - scale factor (required if not others)
                         if hResolution.has_key?('scaleFactor')
                             if hResolution['scaleFactor'] != ''
                                 intResolution[:scaleFactor] = hResolution['scaleFactor']
-                            else
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution scale factor is missing'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
+                                haveOne = true
                             end
                         end
 
-                        # spatial resolution - measure
+                        # spatial resolution - measure (required if not others)
                         if hResolution.has_key?('measure')
                             hMeasure = hResolution['measure']
                             unless hMeasure.empty?
                                 hObject = Measure.unpack(hMeasure, responseObj)
-                                if hObject.nil?
-                                    responseObj[:readerExecutionMessages] << 'Spatial Resolution measure is missing'
-                                    responseObj[:readerExecutionPass] = false
-                                    return nil
-                                else
+                                unless hObject.nil?
                                     intResolution[:measure] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
-                        # spatial resolution - level of detail
+                        # spatial resolution - level of detail (required if not others)
                         if hResolution.has_key?('levelOfDetail')
                             if hResolution['levelOfDetail'] != ''
                                 intResolution[:levelOfDetail] = hResolution['levelOfDetail']
-                            else
-                                responseObj[:readerExecutionMessages] << 'Spatial Resolution level of detail is missing'
-                                responseObj[:readerExecutionPass] = false
-                                return nil
+                                haveOne = true
                             end
                         end
 
-                        return intResolution
+                    unless haveOne
+                        responseObj[:readerExecutionMessages] << 'Spatial Resolution did not have an object of supported type'
+                        responseObj[:readerExecutionPass] = false
+                        return nil
+                    end
+
+                    return intResolution
 
                     end
 

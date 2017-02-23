@@ -43,7 +43,6 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'grid', metadata[:type]
         refute_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
@@ -59,7 +58,6 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'vector', metadata[:type]
         assert_empty metadata[:gridRepresentation]
         refute_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
@@ -75,7 +73,6 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'georectified', metadata[:type]
         assert_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         refute_empty metadata[:georectifiedRepresentation]
@@ -91,26 +88,12 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'georeferenceable', metadata[:type]
         assert_empty metadata[:gridRepresentation]
         assert_empty metadata[:vectorRepresentation]
         assert_empty metadata[:georectifiedRepresentation]
         refute_empty metadata[:georeferenceableRepresentation]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_spatialRepresentation_invalid
-
-        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
-        hIn['type'] = 'invalid'
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
 
     end
 

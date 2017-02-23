@@ -26,31 +26,34 @@ module ADIWG
                         # instance classes needed in script
                         intMetadataClass = InternalMetadata.new
                         intTemporal = intMetadataClass.newTemporalExtent
+                        haveOne = false
 
-                        # temporal extent - time instant (required if)
+                        # temporal extent - time instant (required if not others)
                         if hTemporal.has_key?('timeInstant')
                             hTime = hTemporal['timeInstant']
                             unless hTime.empty?
                                 hObject = TimeInstant.unpack(hTime, responseObj)
                                 unless hObject.nil?
                                     intTemporal[:timeInstant] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
-                        # temporal extent - time period (required if)
+                        # temporal extent - time period (required if not others)
                         if hTemporal.has_key?('timePeriod')
                             hTime = hTemporal['timePeriod']
                             unless hTime.empty?
                                 hObject = TimePeriod.unpack(hTime, responseObj)
                                 unless hObject.nil?
                                     intTemporal[:timePeriod] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
-                        if intTemporal[:timeInstant].empty? && intTemporal[:timePeriod].empty?
-                            responseObj[:readerExecutionMessages] << 'Temporal Extent type not supported'
+                        unless haveOne
+                            responseObj[:readerExecutionMessages] << 'Temporal Extent did not have an object of supported type'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
