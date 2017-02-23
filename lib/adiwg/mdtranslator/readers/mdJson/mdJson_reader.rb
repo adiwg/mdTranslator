@@ -105,7 +105,11 @@ module ADIWG
                         return {}
                     end
 
-                    # TODO validate file against mdJson schema definition
+                    # validate file against mdJson schema definition
+                    validate(hMdJson, hResponseObj)
+                    unless hResponseObj[:readerValidationPass]
+                        return {}
+                    end
 
                     # unpack the mdJson into the internal object
                     return MdJson.unpack(hMdJson, hResponseObj)
