@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,15 +46,15 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "graphicOverview": [
         {
-          "fileName": "fileName",
-          "fileDescription": "fileDescription",
-          "fileType": "fileType",
+          "fileName": "fileName0",
+          "fileDescription": "fileDescription0",
+          "fileType": "fileType0",
           "fileConstraint": [
             {
               "type": "use",
@@ -62,7 +65,7 @@
             },
             {
               "type": "legal",
-              "legalConstraint": {
+              "legal": {
                 "useConstraint": [
                   "useConstraint0",
                   "useConstraint1"
@@ -79,7 +82,7 @@
             },
             {
               "type": "security",
-              "securityConstraint": {
+              "security": {
                 "classification": "classification",
                 "classificationSystem": "classificationSystem",
                 "userNote": "userNote",
@@ -89,17 +92,17 @@
           ],
           "fileUri": [
             {
-              "resourceURI": "uri"
+              "uri": "http://ISO.uri/adiwg/0"
             }
           ]
         },
         {
-          "fileName": "fileName",
-          "fileDescription": "fileDescription",
-          "fileType": "fileType"
+          "fileName": "fileName1",
+          "fileDescription": "fileDescription1",
+          "fileType": "fileType1"
         },
         {
-          "fileName": "fileName"
+          "fileName": "fileName2"
         }
       ]
     }

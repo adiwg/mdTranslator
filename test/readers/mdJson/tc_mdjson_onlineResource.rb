@@ -28,7 +28,7 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'http://http://ISO.uri/adiwg/0',metadata[:olResURI]
+        assert_equal 'http://ISO.uri/adiwg/0',metadata[:olResURI]
         assert_equal 'protocol', metadata[:olResProtocol]
         assert_equal 'name', metadata[:olResName]
         assert_equal 'description', metadata[:olResDesc]

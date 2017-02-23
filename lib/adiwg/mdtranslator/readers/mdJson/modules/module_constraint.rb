@@ -40,14 +40,14 @@ module ADIWG
                                 if %w{ use legal security }.one? { |word| word == type }
                                     intConstraint[:type] = hConstraint['type']
                                 else
-                                    responseObj[:readerExecutionMessages] << 'Constraint type must be database, attribute, feature, or other'
+                                    responseObj[:readerExecutionMessages] << 'Constraint type must be use, legal, or security'
                                     responseObj[:readerExecutionPass] = false
                                     return nil
                                 end
                             end
                         end
                         if intConstraint[:type].nil? || intConstraint[:type] == ''
-                            responseObj[:readerExecutionMessages] << 'Constraint type is missing'
+                            responseObj[:readerExecutionMessages] << 'Constraint type declaration is missing'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
@@ -127,7 +127,7 @@ module ADIWG
                                 end
                             end
                             if intConstraint[:legalConstraint].empty?
-                                responseObj[:readerExecutionMessages] << 'Legal Constraint is missing'
+                                responseObj[:readerExecutionMessages] << 'Legal Constraint object is missing or empty'
                                 responseObj[:readerExecutionPass] = false
                                 return nil
                             end
@@ -144,7 +144,7 @@ module ADIWG
                                 end
                             end
                             if intConstraint[:securityConstraint].empty?
-                                responseObj[:readerExecutionMessages] << 'Security Constraint is missing'
+                                responseObj[:readerExecutionMessages] << 'Security Constraint object is missing or empty'
                                 responseObj[:readerExecutionPass] = false
                                 return nil
                             end
