@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,7 +24,29 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "class",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
       "citation": {
         "title": "title",
         "alternateTitle": [
@@ -92,10 +111,10 @@
         ],
         "onlineResource": [
           {
-            "resourceURI": "uri0"
+            "uri": "http://ISO.uri/adiwg/0"
           },
           {
-            "resourceURI": "uri1"
+            "uri": "http://ISO.uri/adiwg/1"
           }
         ],
         "graphic": [
@@ -106,22 +125,6 @@
             "fileName": "fileName1"
           }
         ]
-      },
-      "abstract": "abstract",
-      "pointOfContact": [
-        {
-          "role": "role",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
       }
     }
   }

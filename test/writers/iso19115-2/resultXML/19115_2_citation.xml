@@ -73,7 +73,7 @@
       <gmd:citedResponsibleParty>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
@@ -85,7 +85,7 @@
       <gmd:citedResponsibleParty>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
