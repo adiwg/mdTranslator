@@ -22,15 +22,7 @@
 
   <gmd:dataQualityInfo>
     <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
+      <gmd:scope gco:nilReason="missing"/>
       <gmd:lineage>
         <gmd:LI_Lineage>
           <gmd:statement>
