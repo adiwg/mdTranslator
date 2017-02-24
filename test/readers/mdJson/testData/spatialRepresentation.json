@@ -1,7 +1,6 @@
 {
    "spatialRepresentation": [
       {
-         "type": "grid",
          "gridRepresentation": {
             "numberOfDimensions": 9,
             "dimension": [
@@ -19,7 +18,6 @@
          }
       },
       {
-         "type": "vector",
          "vectorRepresentation": {
             "topologyLevel": "topologyLevel",
             "vectorObject": [
@@ -31,7 +29,6 @@
          }
       },
       {
-         "type": "georectified",
          "georectifiedRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,
@@ -59,7 +56,6 @@
          }
       },
       {
-         "type": "georeferenceable",
          "georeferenceableRepresentation": {
             "gridRepresentation": {
                "numberOfDimensions": 9,

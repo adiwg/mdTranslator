@@ -29,31 +29,29 @@ module ADIWG
                         rectifiedClass = MD_Georectified.new(@xml, @hResponseObj)
                         referenceClass = MD_Georeferenceable.new(@xml, @hResponseObj)
 
-                        type = hRepresentation[:type]
-
                         # spatial representation - grid
-                        # write MD_GridSpatialRepresentation here
+                        # write MD_GridSpatialRepresentation tag here
                         # ... it is not written in the Grid class since the
                         # ... Grid attributes are also written into georectified
                         # ... and georeferenceable classes
-                        if type == 'grid'
+                        unless hRepresentation[:gridRepresentation].empty?
                             @xml.tag!('gmd:MD_GridSpatialRepresentation') do
                                 gridClass.writeXML(hRepresentation[:gridRepresentation])
                             end
                         end
 
                         # spatial representation - vector
-                        if type == 'vector'
+                        unless hRepresentation[:vectorRepresentation].empty?
                             vectorClass.writeXML(hRepresentation[:vectorRepresentation])
                         end
 
                         # spatial representation - georectified
-                        if type == 'georectified'
+                        unless hRepresentation[:georectifiedRepresentation].empty?
                             rectifiedClass.writeXML(hRepresentation[:georectifiedRepresentation])
                         end
 
                         # spatial representation - georeferenceable
-                        if type == 'georeferenceable'
+                        unless hRepresentation[:georeferenceableRepresentation].empty?
                             referenceClass.writeXML(hRepresentation[:georeferenceableRepresentation])
                         end
 

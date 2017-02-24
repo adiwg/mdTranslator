@@ -31,57 +31,49 @@ module ADIWG
                         haveOne = false
 
                         # spatial representation - grid representation (required if not others)
-                        if hRepresent['type'] == 'grid'
-                            if hRepresent.has_key?('gridRepresentation')
-                                hRep = hRepresent['gridRepresentation']
-                                unless hRep.empty?
-                                    hObject = GridRepresentation.unpack(hRep, responseObj)
-                                    unless hObject.nil?
-                                        intRepresent[:gridRepresentation] = hObject
-                                        haveOne = true
-                                    end
+                        if hRepresent.has_key?('gridRepresentation')
+                            hRep = hRepresent['gridRepresentation']
+                            unless hRep.empty?
+                                hObject = GridRepresentation.unpack(hRep, responseObj)
+                                unless hObject.nil?
+                                    intRepresent[:gridRepresentation] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
                         # spatial representation - vector representation (required if not others)
-                        if hRepresent['type'] == 'vector'
-                            if hRepresent.has_key?('vectorRepresentation')
-                                hRep = hRepresent['vectorRepresentation']
-                                unless hRep.empty?
-                                    hObject = VectorRepresentation.unpack(hRep, responseObj)
-                                    unless hObject.nil?
-                                        intRepresent[:vectorRepresentation] = hObject
-                                        haveOne = true
-                                    end
+                        if hRepresent.has_key?('vectorRepresentation')
+                            hRep = hRepresent['vectorRepresentation']
+                            unless hRep.empty?
+                                hObject = VectorRepresentation.unpack(hRep, responseObj)
+                                unless hObject.nil?
+                                    intRepresent[:vectorRepresentation] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
                         # spatial representation - georectified representation (required if not others)
-                        if hRepresent['type'] == 'georectified'
-                            if hRepresent.has_key?('georectifiedRepresentation')
-                                hRep = hRepresent['georectifiedRepresentation']
-                                unless hRep.empty?
-                                    hObject = GeorectifiedRepresentation.unpack(hRep, responseObj)
-                                    unless hObject.nil?
-                                        intRepresent[:georectifiedRepresentation] = hObject
-                                        haveOne = true
-                                    end
+                        if hRepresent.has_key?('georectifiedRepresentation')
+                            hRep = hRepresent['georectifiedRepresentation']
+                            unless hRep.empty?
+                                hObject = GeorectifiedRepresentation.unpack(hRep, responseObj)
+                                unless hObject.nil?
+                                    intRepresent[:georectifiedRepresentation] = hObject
+                                    haveOne = true
                                 end
                             end
                         end
 
                         # spatial representation - georeferenceable representation (required if not others)
-                        if hRepresent['type'] == 'georeferenceable'
-                            if hRepresent.has_key?('georeferenceableRepresentation')
-                                hRep = hRepresent['georeferenceableRepresentation']
-                                unless hRep.empty?
-                                    hObject = GeoreferenceableRepresentation.unpack(hRep, responseObj)
-                                    unless hObject.nil?
-                                        intRepresent[:georeferenceableRepresentation] = hObject
-                                        haveOne = true
-                                    end
+                        if hRepresent.has_key?('georeferenceableRepresentation')
+                            hRep = hRepresent['georeferenceableRepresentation']
+                            unless hRep.empty?
+                                hObject = GeoreferenceableRepresentation.unpack(hRep, responseObj)
+                                unless hObject.nil?
+                                    intRepresent[:georeferenceableRepresentation] = hObject
+                                    haveOne = true
                                 end
                             end
                         end

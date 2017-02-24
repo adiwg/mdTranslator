@@ -794,7 +794,6 @@ class InternalMetadata
 
     def newSpatialRepresentation
         intObj = {
-            type: nil,
             gridRepresentation: {},
             vectorRepresentation: {},
             georectifiedRepresentation: {},
