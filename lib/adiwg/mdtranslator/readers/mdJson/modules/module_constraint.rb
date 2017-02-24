@@ -34,6 +34,7 @@ module ADIWG
                         intConstraint = intMetadataClass.newConstraint
 
                         # constraint - type (required)
+                        type = nil
                         if hConstraint.has_key?('type')
                             if hConstraint['type'] != ''
                                 type = hConstraint['type']
@@ -52,13 +53,18 @@ module ADIWG
                             return nil
                         end
 
-                        # constraint - use limitation []
+                        # constraint - use limitation [] (required if type='use')
                         if hConstraint.has_key?('useLimitation')
                             hConstraint['useLimitation'].each do |item|
                                 if item != ''
                                     intConstraint[:useLimitation] << item
                                 end
                             end
+                        end
+                        if type == 'use' && intConstraint[:useLimitation].empty?
+                            responseObj[:readerExecutionMessages] << 'Use Constraint missing use limitation'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
                         end
 
                         # constraint - scope

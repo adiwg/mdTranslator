@@ -27,7 +27,12 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
@@ -87,16 +92,30 @@
           "type": "grid",
           "gridRepresentation": {
             "numberOfDimensions": 9,
+            "dimension": [
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9
+              },
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9
+              }
+            ],
             "cellGeometry": "cellGeometry",
             "transformParamsAvailability": true
           }
         },
         {
-          "type": "grid",
-          "gridRepresentation": {
-            "numberOfDimensions": 9,
-            "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+          "type": "vector",
+          "vectorRepresentation": {
+            "topologyLevel": "topologyLevel",
+            "vectorObject": [
+              {
+                "objectType": "objectType",
+                "objectCount": 9
+              }
+            ]
           }
         }
       ],
@@ -193,7 +212,7 @@
       ],
       "keyword": [
         {
-          "keywords": [
+          "keyword": [
             {
               "keyword": "keyword00",
               "keywordId": "keywordId00"
@@ -208,7 +227,7 @@
           }
         },
         {
-          "keywords": [
+          "keyword": [
             {
               "keyword": "keyword10",
               "keywordId": "keywordId10"
@@ -251,7 +270,7 @@
         },
         {
           "type": "legal",
-          "legalConstraint": {
+          "legal": {
             "useConstraint": [
               "useConstraint0",
               "useConstraint1"
@@ -268,7 +287,7 @@
         },
         {
           "type": "security",
-          "securityConstraint": {
+          "security": {
             "classification": "classification",
             "classificationSystem": "classificationSystem",
             "userNote": "userNote",
@@ -303,19 +322,6 @@
       ],
       "environmentDescription": "environmentDescription",
       "supplementalInfo": "supplementalInfo"
-    },
-    "associatedResource": [
-      {
-        "resourceType": "resourceType",
-        "associationType": "crossReference",
-        "initiativeType": "campaign",
-        "resourceCitation": {
-          "title": "resource citation"
-        },
-        "metadataCitation": {
-          "title": "metadata citation"
-        }
-      }
-    ]
+    }
   }
 }

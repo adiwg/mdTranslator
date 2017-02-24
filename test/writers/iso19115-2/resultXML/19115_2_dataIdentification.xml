@@ -275,33 +275,7 @@
           </gmd:handlingDescription>
         </gmd:MD_SecurityConstraints>
       </gmd:resourceConstraints>
-      <gmd:aggregationInfo>
-        <gmd:MD_AggregateInformation>
-          <gmd:aggregateDataSetName>
-            <gmd:CI_Citation>
-              <gmd:title>
-                <gco:CharacterString>resource citation</gco:CharacterString>
-              </gmd:title>
-              <gmd:alternateTitle/>
-              <gmd:date gco:nilReason="missing"/>
-              <gmd:edition/>
-              <gmd:identifier/>
-              <gmd:citedResponsibleParty/>
-              <gmd:presentationForm/>
-              <gmd:series/>
-              <gmd:otherCitationDetails/>
-              <gmd:ISBN/>
-              <gmd:ISSN/>
-            </gmd:CI_Citation>
-          </gmd:aggregateDataSetName>
-          <gmd:associationType>
-            <gmd:DS_AssociationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_AssociationTypeCode" codeListValue="crossReference" codeSpace="001"/>
-          </gmd:associationType>
-          <gmd:initiativeType>
-            <gmd:DS_InitiativeTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#DS_InitiativeTypeCode" codeListValue="campaign" codeSpace="001"/>
-          </gmd:initiativeType>
-        </gmd:MD_AggregateInformation>
-      </gmd:aggregationInfo>
+      <gmd:aggregationInfo/>
       <gmd:taxonomy>
         <gmd:MD_TaxonSys>
           <gmd:classSys>
@@ -409,26 +383,8 @@
         <gmd:MD_SpatialRepresentationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_SpatialRepresentationTypeCode" codeListValue="spatialRepresentationType1" codeSpace="userCode"/>
       </gmd:spatialRepresentationType>
       <gmd:spatialResolution>
-        <gmd:MD_Resolution>
-          <gmd:equivalentScale>
-            <gmd:MD_RepresentativeFraction>
-              <gmd:denominator>
-                <gco:Integer>25000</gco:Integer>
-              </gmd:denominator>
-            </gmd:MD_RepresentativeFraction>
-          </gmd:equivalentScale>
-        </gmd:MD_Resolution>
       </gmd:spatialResolution>
       <gmd:spatialResolution>
-        <gmd:MD_Resolution>
-          <gmd:equivalentScale>
-            <gmd:MD_RepresentativeFraction>
-              <gmd:denominator>
-                <gco:Integer>25000</gco:Integer>
-              </gmd:denominator>
-            </gmd:MD_RepresentativeFraction>
-          </gmd:equivalentScale>
-        </gmd:MD_Resolution>
       </gmd:spatialResolution>
       <gmd:language>
         <gco:CharacterString>LanguageCode; CountryCode</gco:CharacterString>
@@ -480,5 +436,5 @@
       </gmd:supplementalInformation>
     </gmd:MD_DataIdentification>
   </gmd:identificationInfo>
-
+  
 </gmi:MI_Metadata>

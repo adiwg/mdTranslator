@@ -13,11 +13,11 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Constraint
     aIn = TestReaderMdJsonParent.getJson('constraint.json')
-    @@hIn = aIn['constraint'][0]
+    @@hIn = aIn['constraint']
 
     def test_constraint_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'constraint.json')
+        errors = TestReaderMdJsonParent.testSchema(@@hIn[0], 'constraint.json')
         assert_empty errors
 
     end
@@ -25,7 +25,7 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
     def test_complete_constraint
 
         TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -48,20 +48,19 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
     def test_empty_constraint_elements
 
         TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['useLimitation'] = []
+        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
         hIn['scope'] = {}
         hIn['graphic'] = []
         hIn['reference'] = []
         hIn['releasability'] = {}
         hIn['responsibleParty'] = []
-        hIn['legalConstraint'] = {}
-        hIn['securityConstraint'] = {}
+        hIn['legal'] = {}
+        hIn['security'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'use', metadata[:type]
-        assert_empty metadata[:useLimitation]
+        refute_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
@@ -77,20 +76,19 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
     def test_missing_constraint_elements
 
         TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('useLimitation')
+        hIn = Marshal::load(Marshal.dump(@@hIn[0]))
         hIn.delete('scope')
         hIn.delete('graphic')
         hIn.delete('reference')
         hIn.delete('releasability')
         hIn.delete('responsibleParty')
-        hIn.delete('legalConstraint')
-        hIn.delete('securityConstraint')
+        hIn.delete('legal')
+        hIn.delete('security')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'use', metadata[:type]
-        assert_empty metadata[:useLimitation]
+        refute_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
@@ -100,6 +98,94 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
         assert_empty metadata[:securityConstraint]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_use_constraint
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[1]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_equal 'use', metadata[:type]
+        refute_empty metadata[:useLimitation]
+        assert_empty metadata[:legalConstraint]
+        assert_empty metadata[:securityConstraint]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_use_constraint_missing_limitation
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[1]))
+        hIn['useLimitation'] = []
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_legal_constraint
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[2]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_equal 'legal', metadata[:type]
+        refute_empty metadata[:legalConstraint]
+        assert_empty metadata[:securityConstraint]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_legal_constraint_missing_legal
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[2]))
+        hIn['legal'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_security_constraint
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[3]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_equal 'security', metadata[:type]
+        refute_empty metadata[:securityConstraint]
+        assert_empty metadata[:legalConstraint]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_security_constraint_missing_legal
+
+        TestReaderMdJsonParent.setContacts
+        hIn = Marshal::load(Marshal.dump(@@hIn[3]))
+        hIn['security'] = {}
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
