@@ -25,7 +25,7 @@
       <gmd:distributorContact>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>distributor contact</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
@@ -83,7 +83,7 @@
       <gmd:distributorContact>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>distributor contact</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
@@ -121,7 +121,7 @@
       <gmd:distributorContact>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>distributor contact</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
