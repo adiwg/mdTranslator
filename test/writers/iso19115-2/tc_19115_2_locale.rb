@@ -44,27 +44,4 @@ class TestWriter191152Locale < MiniTest::Test
 
     end
 
-    def test_19115_2_locale_empty
-
-        refXML = '<gmd:locale/>'
-
-        # empty language
-        # delete otherMetadataLocale
-        hJson = JSON.parse(@@mdJson)
-        hJson['metadata']['metadataInfo']['defaultMetadataLocale'] = {}
-        hJson['metadata']['metadataInfo']['otherMetadataLocale'] = []
-        jsonIn = hJson.to_json
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_out, '//gmd:locale')
-
-        assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
-
-    end
-
 end

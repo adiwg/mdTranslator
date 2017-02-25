@@ -218,14 +218,9 @@ module ADIWG
                             end
 
                             # metadata information - locale []
-                            defaultLocale = hMetaInfo[:defaultMetadataLocale]
-                            otherLocales = hMetaInfo[:otherMetadataLocales]
-                            aLocales = []
-                            unless otherLocales.empty?
-                                aLocales = otherLocales
-                            end
-                            unless defaultLocale.empty?
-                                aLocales.insert(0, defaultLocale)
+                            aLocales = hMetaInfo[:otherMetadataLocales]
+                            unless hMetaInfo[:defaultMetadataLocale].empty?
+                                aLocales.insert(0, hMetaInfo[:defaultMetadataLocale])
                             end
                             aLocales.each do |hLocale|
                                 @xml.tag!('gmd:locale') do
