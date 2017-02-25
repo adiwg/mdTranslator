@@ -52,7 +52,6 @@
       },
       "spatialRepresentation": [
         {
-          "type": "georectified",
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,
@@ -74,7 +73,6 @@
           }
         },
         {
-          "type": "georectified",
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,
@@ -96,7 +94,6 @@
           }
         },
         {
-          "type": "georectified",
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,

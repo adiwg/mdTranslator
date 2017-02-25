@@ -36,7 +36,7 @@ module ADIWG
                             @xml.tag!('gmd:numberOfDimensions', {'gco:nilReason'=>'missing'})
                         end
 
-                        # grid - axis dimension properties [{MD_Dimension}]
+                        # grid - axis dimension properties [{MD_Dimension}] (required)
                         aDims = hGrid[:dimension]
                         aDims.each do |hDimension|
                             @xml.tag!('gmd:axisDimensionProperties') do

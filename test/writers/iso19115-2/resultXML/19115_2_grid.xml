@@ -61,22 +61,28 @@
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
-      <gmd:cellGeometry>
-        <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
-      </gmd:cellGeometry>
-      <gmd:transformationParameterAvailability>
-        <gco:Boolean>false</gco:Boolean>
-      </gmd:transformationParameterAvailability>
-    </gmd:MD_GridSpatialRepresentation>
-  </gmd:spatialRepresentationInfo>
-
-  <gmd:spatialRepresentationInfo>
-    <gmd:MD_GridSpatialRepresentation>
-      <gmd:numberOfDimensions>
-        <gco:Integer>9</gco:Integer>
-      </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="row" codeSpace="001"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>90</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="column" codeSpace="002"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>91</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
       </gmd:cellGeometry>
