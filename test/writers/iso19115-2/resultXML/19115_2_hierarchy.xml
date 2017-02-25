@@ -15,22 +15,19 @@
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
   <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="project" codeSpace="adiwg009"/>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="type0" codeSpace="userCode"/>
   </gmd:hierarchyLevel>
   <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="repository" codeSpace="021"/>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="type1" codeSpace="userCode"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="type2" codeSpace="userCode"/>
   </gmd:hierarchyLevel>
   <gmd:hierarchyLevelName>
-    <gco:CharacterString>dataset: description</gco:CharacterString>
+    <gco:CharacterString>name0</gco:CharacterString>
   </gmd:hierarchyLevelName>
   <gmd:hierarchyLevelName>
-    <gco:CharacterString>attribute: description</gco:CharacterString>
-  </gmd:hierarchyLevelName>
-  <gmd:hierarchyLevelName>
-    <gco:CharacterString>feature: description</gco:CharacterString>
-  </gmd:hierarchyLevelName>
-  <gmd:hierarchyLevelName>
-    <gco:CharacterString>other: description</gco:CharacterString>
+    <gco:CharacterString>name1</gco:CharacterString>
   </gmd:hierarchyLevelName>
 
 </gmi:MI_Metadata>

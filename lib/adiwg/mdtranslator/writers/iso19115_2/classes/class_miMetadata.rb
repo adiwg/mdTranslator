@@ -151,14 +151,15 @@ module ADIWG
                             end
 
                             # metadata information - hierarchy level [] {MD_scopeCode}
-                            # metadata information - hierarchy level Name []
-                            # pass entire ':resourceScopes' array to Scope...
-                            # all hierarchyLevel tags must precede any hierarchyLevelName tags
-                            aResScope = hMetaInfo[:resourceScopes]
-                            unless aResScope.empty?
-                                hierarchyClass.writeXML(aResScope)
+                            # metadata information - hierarchy level Name [] {string}
+                            # hierarchy comes from resourceInfo < resourceType []
+                            # pass entire array to hierarchy
+                            # all hierarchyLevel tags must precede the hierarchyLevelName tags
+                            aResTypes = hResInfo[:resourceTypes]
+                            unless aResTypes.empty?
+                                hierarchyClass.writeXML(aResTypes)
                             end
-                            if aResScope.empty? && @hResponseObj[:writerShowTags]
+                            if aResTypes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:hierarchyLevel')
                                 @xml.tag!('gmd:hierarchyLevelName')
                             end

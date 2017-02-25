@@ -93,7 +93,6 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:parentMetadata]
         assert_empty metadata[:defaultMetadataLocale]
         assert_empty metadata[:otherMetadataLocales]
-        assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
         assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]
@@ -126,7 +125,6 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
         assert_empty metadata[:parentMetadata]
         assert_empty metadata[:defaultMetadataLocale]
         assert_empty metadata[:otherMetadataLocales]
-        assert_empty metadata[:resourceScopes]
         assert_equal 2, metadata[:metadataContacts].length
         assert_empty metadata[:metadataDates]
         assert_empty metadata[:metadataLinkages]

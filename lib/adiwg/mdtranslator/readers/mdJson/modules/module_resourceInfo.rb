@@ -49,12 +49,12 @@ module ADIWG
                                 unless item.empty?
                                     hReturn = ResourceType.unpack(item, responseObj)
                                     unless hReturn.nil?
-                                        intResInfo[:resourceType] << hReturn
+                                        intResInfo[:resourceTypes] << hReturn
                                     end
                                 end
                             end
                         end
-                        if intResInfo[:resourceType].empty?
+                        if intResInfo[:resourceTypes].empty?
                             responseObj[:readerExecutionMessages] << 'ResourceInfo is missing resourceType'
                             responseObj[:readerExecutionPass] = false
                             return nil

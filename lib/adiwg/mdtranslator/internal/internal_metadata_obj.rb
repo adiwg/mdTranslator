@@ -206,7 +206,6 @@ class InternalMetadata
             parentMetadata: {},
             defaultMetadataLocale: {},
             otherMetadataLocales: [],
-            resourceScopes: [],
             metadataContacts: [],
             metadataDates: [],
             metadataLinkages: [],
@@ -246,7 +245,7 @@ class InternalMetadata
 
     def newResourceInfo
         intObj = {
-            resourceType: [],
+            resourceTypes: [],
             citation: {},
             abstract: nil,
             shortAbstract: nil,
@@ -699,7 +698,7 @@ class InternalMetadata
 
     def newAssociatedResource
         intObj = {
-            resourceType: [],
+            resourceTypes: [],
             associationType: nil,
             initiativeType: nil,
             resourceCitation: {},
@@ -709,7 +708,7 @@ class InternalMetadata
 
     def newAdditionalDocumentation
         intObj = {
-            resourceType: [],
+            resourceTypes: [],
             citation: []
         }
     end

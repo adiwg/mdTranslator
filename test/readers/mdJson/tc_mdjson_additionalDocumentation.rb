@@ -29,7 +29,7 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 2, metadata[:resourceType].length
+        assert_equal 2, metadata[:resourceTypes].length
         assert_equal 2, metadata[:citation].length
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]

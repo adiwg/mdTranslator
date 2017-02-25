@@ -18,30 +18,29 @@ module ADIWG
                         @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(aScope)
+                    def writeXML(aTypes)
 
                         # classes used
                         codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
-                        # metadata information - hierarchy level [] {MD_scopeCode}
-                        aScope.each do |hResScope|
-                            s = hResScope[:scopeCode]
+                        # metadata information - hierarchy level [] {MD_ScopeCode} (required)
+                        aTypes.each do |hResType|
+                            s = hResType[:type]
                             @xml.tag!('gmd:hierarchyLevel') do
                                 codelistClass.writeXML('gmd', 'iso_scope',s)
                             end
                         end
-                        if aScope.empty? && @hResponseObj[:writerShowTags]
+                        if aTypes.empty? && @hResponseObj[:writerShowTags]
                             @xml.tag!('gmd:hierarchyLevel')
                         end
 
                         # metadata information - hierarchy level Name []
                         haveName = false
-                        aScope.each do |hResScope|
-                            aScopeDes = hResScope[:scopeDescription]
-                            aScopeDes.each do |hScopeDes|
-                                s = hScopeDes[:type] + ': ' + hScopeDes[:description]
+                        aTypes.each do |hResType|
+                            s = hResType[:name]
+                            unless s.nil?
                                 @xml.tag!('gmd:hierarchyLevelName') do
-                                    @xml.tag!('gco:CharacterString',s)
+                                    @xml.tag!('gco:CharacterString', s)
                                 end
                                 haveName = true
                             end
