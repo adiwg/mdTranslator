@@ -20,85 +20,90 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
-  <gmd:MD_MaintenanceInformation>
-    <gmd:maintenanceAndUpdateFrequency>
-      <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency1" codeSpace="userCode"/>
-    </gmd:maintenanceAndUpdateFrequency>
-    <gmd:dateOfNextUpdate/>
-    <gmd:updateScope>
-      <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode1" codeSpace="userCode"/>
-    </gmd:updateScope>
-    <gmd:maintenanceNote>
-      <gco:CharacterString>note1</gco:CharacterString>
-    </gmd:maintenanceNote>
-    <gmd:contact>
-      <gmd:CI_ResponsibleParty>
-        <gmd:individualName>
-          <gco:CharacterString>address - name only</gco:CharacterString>
-        </gmd:individualName>
-        <gmd:positionName/>
-        <gmd:contactInfo/>
-        <gmd:role>
-          <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role1" codeSpace="userCode"/>
-        </gmd:role>
-      </gmd:CI_ResponsibleParty>
-    </gmd:contact>
-  </gmd:MD_MaintenanceInformation>
+  <gmd:resourceMaintenance>
+    <gmd:MD_MaintenanceInformation>
+      <gmd:maintenanceAndUpdateFrequency>
+        <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency1" codeSpace="userCode"/>
+      </gmd:maintenanceAndUpdateFrequency>
+      <gmd:dateOfNextUpdate/>
+      <gmd:updateScope>
+        <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode1" codeSpace="userCode"/>
+      </gmd:updateScope>
+      <gmd:maintenanceNote>
+        <gco:CharacterString>note1</gco:CharacterString>
+      </gmd:maintenanceNote>
+      <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:positionName/>
+          <gmd:contactInfo/>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role1" codeSpace="userCode"/>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:contact>
+    </gmd:MD_MaintenanceInformation>
+  </gmd:resourceMaintenance>
 
-  <gmd:MD_MaintenanceInformation>
-    <gmd:maintenanceAndUpdateFrequency>
-      <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency2" codeSpace="userCode"/>
-    </gmd:maintenanceAndUpdateFrequency>
-    <gmd:dateOfNextUpdate/>
-    <gmd:updateScope/>
-    <gmd:maintenanceNote/>
-    <gmd:contact/>
-  </gmd:MD_MaintenanceInformation>
+  <gmd:resourceMaintenance>
+    <gmd:MD_MaintenanceInformation>
+      <gmd:maintenanceAndUpdateFrequency>
+        <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency2" codeSpace="userCode"/>
+      </gmd:maintenanceAndUpdateFrequency>
+      <gmd:dateOfNextUpdate/>
+      <gmd:updateScope/>
+      <gmd:maintenanceNote/>
+      <gmd:contact/>
+    </gmd:MD_MaintenanceInformation>
+  </gmd:resourceMaintenance>
 
-  <gmd:MD_MaintenanceInformation>
-    <gmd:maintenanceAndUpdateFrequency>
-      <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency0" codeSpace="userCode"/>
-    </gmd:maintenanceAndUpdateFrequency>
-    <gmd:dateOfNextUpdate>
-      <gco:Date>2017-02-10</gco:Date>
-    </gmd:dateOfNextUpdate>
-    <gmd:updateScope>
-      <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode00" codeSpace="userCode"/>
-    </gmd:updateScope>
-    <gmd:updateScope>
-      <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode01" codeSpace="userCode"/>
-    </gmd:updateScope>
-    <gmd:maintenanceNote>
-      <gco:CharacterString>note00</gco:CharacterString>
-    </gmd:maintenanceNote>
-    <gmd:maintenanceNote>
-      <gco:CharacterString>note01</gco:CharacterString>
-    </gmd:maintenanceNote>
-    <gmd:contact>
-      <gmd:CI_ResponsibleParty>
-        <gmd:individualName>
-          <gco:CharacterString>address - name only</gco:CharacterString>
-        </gmd:individualName>
-        <gmd:positionName/>
-        <gmd:contactInfo/>
-        <gmd:role>
-          <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role00" codeSpace="userCode"/>
-        </gmd:role>
-      </gmd:CI_ResponsibleParty>
-    </gmd:contact>
-    <gmd:contact>
-      <gmd:CI_ResponsibleParty>
-        <gmd:individualName>
-          <gco:CharacterString>address - name only</gco:CharacterString>
-        </gmd:individualName>
-        <gmd:positionName/>
-        <gmd:contactInfo/>
-        <gmd:role>
-          <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role01" codeSpace="userCode"/>
-        </gmd:role>
-      </gmd:CI_ResponsibleParty>
-    </gmd:contact>
-  </gmd:MD_MaintenanceInformation>
-
+  <gmd:metadataMaintenance>
+    <gmd:MD_MaintenanceInformation>
+      <gmd:maintenanceAndUpdateFrequency>
+        <gmd:MD_MaintenanceFrequencyCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MaintenanceFrequencyCode" codeListValue="frequency0" codeSpace="userCode"/>
+      </gmd:maintenanceAndUpdateFrequency>
+      <gmd:dateOfNextUpdate>
+        <gco:Date>2017-02-10</gco:Date>
+      </gmd:dateOfNextUpdate>
+      <gmd:updateScope>
+        <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode00" codeSpace="userCode"/>
+      </gmd:updateScope>
+      <gmd:updateScope>
+        <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode01" codeSpace="userCode"/>
+      </gmd:updateScope>
+      <gmd:maintenanceNote>
+        <gco:CharacterString>note00</gco:CharacterString>
+      </gmd:maintenanceNote>
+      <gmd:maintenanceNote>
+        <gco:CharacterString>note01</gco:CharacterString>
+      </gmd:maintenanceNote>
+      <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:positionName/>
+          <gmd:contactInfo/>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role00" codeSpace="userCode"/>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:contact>
+      <gmd:contact>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:positionName/>
+          <gmd:contactInfo/>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role01" codeSpace="userCode"/>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:contact>
+    </gmd:MD_MaintenanceInformation>
+  </gmd:metadataMaintenance>
 
 </gmi:MI_Metadata>
