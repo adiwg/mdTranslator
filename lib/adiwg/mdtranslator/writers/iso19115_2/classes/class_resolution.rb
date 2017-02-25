@@ -30,21 +30,17 @@ module ADIWG
                         measureClass = Measure.new(@xml, @hResponseObj)
                         fractionClass = MD_RepresentativeFraction.new(@xml, @hResponseObj)
 
-                        type = hResolution[:type]
-
                         # spatial resolution - equivalent scale
-                        if type == 'scaleFactor'
-                            unless hResolution[:scaleFactor].nil?
-                                @xml.tag!('gmd:MD_Resolution') do
-                                    @xml.tag!('gmd:equivalentScale') do
-                                        fractionClass.writeXML(hResolution[:scaleFactor])
-                                    end
+                        unless hResolution[:scaleFactor].nil?
+                            @xml.tag!('gmd:MD_Resolution') do
+                                @xml.tag!('gmd:equivalentScale') do
+                                    fractionClass.writeXML(hResolution[:scaleFactor])
                                 end
                             end
                         end
 
-                        # spatial resolution - distance (type='distance' only)
-                        if type == 'measure'
+                        # spatial resolution - distance (only if type='distance')
+                        unless hResolution[:measure].nil?
                             hMeasure = hResolution[:measure]
                             unless hMeasure.empty?
                                 if hMeasure[:type] == 'distance'
