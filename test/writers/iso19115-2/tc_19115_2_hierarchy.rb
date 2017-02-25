@@ -43,5 +43,5 @@ class TestWriter191152Hierarchy < MiniTest::Test
         }
 
     end
-    
+
 end
