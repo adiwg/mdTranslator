@@ -14,86 +14,86 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource>
-        <gmd:CI_OnlineResource>
-          <gmd:linkage>
-            <gmd:URL>http://URI.example1.com</gmd:URL>
-          </gmd:linkage>
-          <gmd:protocol>
-            <gco:CharacterString>protocol</gco:CharacterString>
-          </gmd:protocol>
-          <gmd:name>
-            <gco:CharacterString>name</gco:CharacterString>
-          </gmd:name>
-          <gmd:description>
-            <gco:CharacterString>description</gco:CharacterString>
-          </gmd:description>
-          <gmd:function>
-            <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="function" codeSpace="userCode"/>
-          </gmd:function>
-        </gmd:CI_OnlineResource>
-      </gmd:onlineResource>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions/>
-    </gmd:CI_Contact>
+  <gmd:CI_Contact>
+    <gmd:phone/>
+    <gmd:address/>
+    <gmd:onlineResource>
+      <gmd:CI_OnlineResource>
+        <gmd:linkage>
+          <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
+        </gmd:linkage>
+        <gmd:protocol>
+          <gco:CharacterString>protocol</gco:CharacterString>
+        </gmd:protocol>
+        <gmd:name>
+          <gco:CharacterString>name</gco:CharacterString>
+        </gmd:name>
+        <gmd:description>
+          <gco:CharacterString>description</gco:CharacterString>
+        </gmd:description>
+        <gmd:function>
+          <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="function" codeSpace="userCode"/>
+        </gmd:function>
+      </gmd:CI_OnlineResource>
+    </gmd:onlineResource>
+    <gmd:hoursOfService/>
+    <gmd:contactInstructions/>
+  </gmd:CI_Contact>
 
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource>
-        <gmd:CI_OnlineResource>
-          <gmd:linkage>
-            <gmd:URL>http://URI.example2.com</gmd:URL>
-          </gmd:linkage>
-          <gmd:protocol/>
-          <gmd:name/>
-          <gmd:description/>
-          <gmd:function/>
-        </gmd:CI_OnlineResource>
-      </gmd:onlineResource>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions/>
-    </gmd:CI_Contact>
+  <gmd:CI_Contact>
+    <gmd:phone/>
+    <gmd:address/>
+    <gmd:onlineResource>
+      <gmd:CI_OnlineResource>
+        <gmd:linkage>
+          <gmd:URL>http://ISO.uri/adiwg/2</gmd:URL>
+        </gmd:linkage>
+        <gmd:protocol/>
+        <gmd:name/>
+        <gmd:description/>
+        <gmd:function/>
+      </gmd:CI_OnlineResource>
+    </gmd:onlineResource>
+    <gmd:hoursOfService/>
+    <gmd:contactInstructions/>
+  </gmd:CI_Contact>
 
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource>
-        <gmd:CI_OnlineResource>
-          <gmd:linkage>
-            <gmd:URL>http://URI.example3.com</gmd:URL>
-          </gmd:linkage>
-          <gmd:protocol/>
-          <gmd:name/>
-          <gmd:description/>
-          <gmd:function/>
-        </gmd:CI_OnlineResource>
-      </gmd:onlineResource>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions/>
-    </gmd:CI_Contact>
+  <gmd:CI_Contact>
+    <gmd:phone/>
+    <gmd:address/>
+    <gmd:onlineResource>
+      <gmd:CI_OnlineResource>
+        <gmd:linkage>
+          <gmd:URL>http://ISO.uri/adiwg/3</gmd:URL>
+        </gmd:linkage>
+        <gmd:protocol/>
+        <gmd:name/>
+        <gmd:description/>
+        <gmd:function/>
+      </gmd:CI_OnlineResource>
+    </gmd:onlineResource>
+    <gmd:hoursOfService/>
+    <gmd:contactInstructions/>
+  </gmd:CI_Contact>
 
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource/>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions>
-        <gco:CharacterString>test empty onlineResource</gco:CharacterString>
-      </gmd:contactInstructions>
-    </gmd:CI_Contact>
+  <gmd:CI_Contact>
+    <gmd:phone/>
+    <gmd:address/>
+    <gmd:onlineResource/>
+    <gmd:hoursOfService/>
+    <gmd:contactInstructions>
+      <gco:CharacterString>test empty onlineResource</gco:CharacterString>
+    </gmd:contactInstructions>
+  </gmd:CI_Contact>
 
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource/>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions>
-        <gco:CharacterString>test missing onlineResource:</gco:CharacterString>
-      </gmd:contactInstructions>
-    </gmd:CI_Contact>
+  <gmd:CI_Contact>
+    <gmd:phone/>
+    <gmd:address/>
+    <gmd:onlineResource/>
+    <gmd:hoursOfService/>
+    <gmd:contactInstructions>
+      <gco:CharacterString>test missing onlineResource:</gco:CharacterString>
+    </gmd:contactInstructions>
+  </gmd:CI_Contact>
 
 </gmi:MI_Metadata>

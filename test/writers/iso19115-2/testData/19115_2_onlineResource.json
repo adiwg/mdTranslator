@@ -10,7 +10,7 @@
       "name": "onlineResource complete",
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example1.com",
+          "uri": "http://ISO.uri/adiwg/1",
           "protocol": "protocol",
           "name": "name",
           "description": "description",
@@ -24,7 +24,7 @@
       "name": "onlineResource - empty elements",
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example2.com",
+          "uri": "http://ISO.uri/adiwg/2",
           "protocol": "",
           "name": "",
           "description": "",
@@ -38,7 +38,7 @@
       "name": "onlineResource - missing elements",
       "onlineResource": [
         {
-          "resourceURI": "http://URI.example3.com"
+          "uri": "http://ISO.uri/adiwg/3"
         }
       ]
     },
@@ -102,14 +102,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_address"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
