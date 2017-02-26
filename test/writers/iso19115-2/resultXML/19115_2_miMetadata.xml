@@ -33,16 +33,15 @@
     <gco:CharacterString>title</gco:CharacterString>
   </gmd:parentIdentifier>
   <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode0" codeSpace="userCode"/>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="type" codeSpace="userCode"/>
   </gmd:hierarchyLevel>
-  <gmd:hierarchyLevel>
-    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scopeCode1" codeSpace="userCode"/>
-  </gmd:hierarchyLevel>
-  <gmd:hierarchyLevelName/>
+  <gmd:hierarchyLevelName>
+    <gco:CharacterString>name</gco:CharacterString>
+  </gmd:hierarchyLevelName>
   <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
-        <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+        <gco:CharacterString>contact - minimal</gco:CharacterString>
       </gmd:individualName>
       <gmd:positionName/>
       <gmd:contactInfo/>
@@ -54,7 +53,7 @@
   <gmd:contact>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
-        <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+        <gco:CharacterString>contact - minimal</gco:CharacterString>
       </gmd:individualName>
       <gmd:positionName/>
       <gmd:contactInfo/>
@@ -73,7 +72,7 @@
     <gco:CharacterString>ISO 19115-2:2009(E)</gco:CharacterString>
   </gmd:metadataStandardVersion>
   <gmd:dataSetURI>
-    <gco:CharacterString>uri</gco:CharacterString>
+    <gco:CharacterString>http://ISO.uri/adiwg/0</gco:CharacterString>
   </gmd:dataSetURI>
   <gmd:locale>
     <gmd:PT_Locale>
@@ -119,7 +118,28 @@
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimensionType" codeSpace="userCode"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimensionType" codeSpace="userCode"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
       </gmd:cellGeometry>
@@ -240,16 +260,18 @@
       </gmd:abstract>
       <gmd:purpose/>
       <gmd:credit/>
-      <gmd:status/>
+      <gmd:status>
+        <gmd:MD_ProgressCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ProgressCode" codeListValue="status" codeSpace="userCode"/>
+      </gmd:status>
       <gmd:pointOfContact>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - all keys with singe array elements</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="007"/>
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:pointOfContact>
@@ -312,10 +334,10 @@
       <gmd:spatialRepresentationType/>
       <gmd:spatialResolution/>
       <gmd:language>
-        <gco:CharacterString>LanguageCode; CountryCode</gco:CharacterString>
+        <gco:CharacterString>eng; USA</gco:CharacterString>
       </gmd:language>
       <gmd:characterSet>
-        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="MD_CharacterSetCode" codeSpace="userCode"/>
+        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-8" codeSpace="106"/>
       </gmd:characterSet>
       <gmd:topicCategory/>
       <gmd:environmentDescription/>
