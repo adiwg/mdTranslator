@@ -5,7 +5,7 @@
 #   Stan Smith 2016-12-13 original script
 
 require_relative 'class_codelist'
-require_relative 'class_timePeriod'
+require_relative 'class_extent'
 require_relative 'class_scopeDescription'
 
 module ADIWG
@@ -24,7 +24,7 @@ module ADIWG
 
                         # classes used
                         codelistClass =  MD_Codelist.new(@xml, @hResponseObj)
-                        periodClass =  TimePeriod.new(@xml, @hResponseObj)
+                        extentClass =  EX_Extent.new(@xml, @hResponseObj)
                         descriptionClass =  MD_ScopeDescription.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:DQ_Scope') do
@@ -40,29 +40,19 @@ module ADIWG
                                 @xml.tag!('gmd:level', {'gco:nilReason'=>'missing'})
                             end
 
-                            # scope - extent {[TimePeriod]}
-                            aPeriods = hScope[:timePeriod]
-                            unless aPeriods.empty?
+                            # scope - extent [] {EX_Extent}
+                            aExtents = hScope[:extents]
+                            aExtents.each do |hExtent|
                                 @xml.tag!('gmd:extent') do
-                                    @xml.tag!('gmd:EX_Extent') do
-                                        aPeriods.each do |hPeriod|
-                                            @xml.tag!('gmd:temporalElement') do
-                                                @xml.tag!('gmd:EX_TemporalExtent') do
-                                                    @xml.tag!('gmd:extent') do
-                                                        periodClass.writeXML(hPeriod)
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
+                                    extentClass.writeXML(hExtent)
                                 end
                             end
-                            if aPeriods.empty? && @hResponseObj[:writerShowTags]
+                            if aExtents.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:extent')
                             end
 
                             # scope - level description [{MD_ScopeDescription}]
-                            aDescription = hScope[:scopeDescription]
+                            aDescription = hScope[:scopeDescriptions]
                             aDescription.each do |hDescription|
                                 @xml.tag!('gmd:levelDescription') do
                                     descriptionClass.writeXML(hDescription)
