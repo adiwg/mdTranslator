@@ -17,20 +17,7 @@
       },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,7 +27,12 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "class",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title",
         "identifier": [
@@ -57,8 +49,7 @@
             "identifier": "identifier1",
             "namespace": "",
             "version": "",
-            "description": "",
-            "authority": {}
+            "description": ""
           },
           {
             "identifier": "identifier2",
@@ -71,6 +62,7 @@
         ]
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
           "role": "role",
