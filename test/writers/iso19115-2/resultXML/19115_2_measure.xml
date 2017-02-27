@@ -19,11 +19,11 @@
   </gmd:resolution>
 
   <gmd:resolution>
-    <gco:Angle uom="angle">15.0</gco:Angle>
+    <gco:Length uom="length">15.0</gco:Length>
   </gmd:resolution>
 
   <gmd:resolution>
-    <gco:Length uom="length">15.0</gco:Length>
+    <gco:Angle uom="angle">15.0</gco:Angle>
   </gmd:resolution>
 
   <gmd:resolution>

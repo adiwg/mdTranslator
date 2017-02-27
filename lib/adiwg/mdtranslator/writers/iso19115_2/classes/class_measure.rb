@@ -23,9 +23,6 @@ module ADIWG
                         value = hResolution[:value]
                         uom = hResolution[:unitOfMeasure]
 
-                        if type == 'measure'
-                            @xml.tag!('gco:Measure', {'uom'=>uom}, value)
-                        end
                         if type == 'distance'
                             @xml.tag!('gco:Distance', {'uom'=>uom}, value)
                         end
@@ -34,6 +31,9 @@ module ADIWG
                         end
                         if type == 'angle'
                             @xml.tag!('gco:Angle', {'uom'=>uom}, value)
+                        end
+                        if type == 'measure'
+                            @xml.tag!('gco:Measure', {'uom'=>uom}, value)
                         end
                         if type == 'scale'
                             @xml.tag!('gco:Scale', {'uom'=>uom}, value)

@@ -40,12 +40,12 @@ class TestWriter191152Measure < MiniTest::Test
 
     end
 
-    def test_19115_2_measure_angle
+    def test_19115_2_measure_length
 
         hJson = JSON.parse(@@mdJson)
         hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-        hResolution['type'] = 'angle'
-        hResolution['unitOfMeasure'] = 'angle'
+        hResolution['type'] = 'length'
+        hResolution['unitOfMeasure'] = 'length'
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -61,12 +61,12 @@ class TestWriter191152Measure < MiniTest::Test
 
     end
 
-    def test_19115_2_measure_length
+    def test_19115_2_measure_angle
 
         hJson = JSON.parse(@@mdJson)
         hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-        hResolution['type'] = 'length'
-        hResolution['unitOfMeasure'] = 'length'
+        hResolution['type'] = 'angle'
+        hResolution['unitOfMeasure'] = 'angle'
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -121,25 +121,6 @@ class TestWriter191152Measure < MiniTest::Test
         checkXML = XPath.first(iso_out, '//gmd:resolution')
 
         assert_equal @@aRefXML[4].to_s.squeeze, checkXML.to_s.squeeze
-
-    end
-
-    def test_19115_2_measure_empty
-
-        hJson = JSON.parse(@@mdJson)
-        hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution'] = {}
-        jsonIn = hJson.to_json
-
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_out, '//gmd:resolution')
-
-        assert_equal @@aRefXML[5].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
