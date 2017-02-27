@@ -64,14 +64,6 @@
           }
         },
         {
-          "type": "measure",
-          "measure": {
-            "type": "vertical",
-            "value": 9.9,
-            "unitOfMeasure": "verticalUOM"
-          }
-        },
-        {
           "type": "levelOfDetail",
           "levelOfDetail": "levelOfDetail"
         }
