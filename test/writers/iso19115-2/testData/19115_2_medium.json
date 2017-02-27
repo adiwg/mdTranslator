@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "distributor contact"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     },
     "resourceDistribution": [
@@ -68,7 +71,7 @@
                 "transferSize": 9.9,
                 "onlineOption": [
                   {
-                    "resourceURI": "uri0"
+                    "uri": "http://ISO.uri/adiwg/0"
                   }
                 ],
                 "offlineOption": [
@@ -87,6 +90,16 @@
                     "identifier": {
                       "identifier": "identifier"
                     }
+                  },
+                  {
+                    "density": 9.9,
+                    "units": "",
+                    "numberOfVolumes": 9,
+                    "mediumFormat": [],
+                    "note": ""
+                  },
+                  {
+                    "numberOfVolumes": 9
                   }
                 ],
                 "transferFrequency": {
@@ -97,46 +110,6 @@
                     "formatSpecification": {
                       "title": "title0"
                     }
-                  }
-                ]
-              },
-              {
-                "offlineOption": [
-                  {
-                    "mediumSpecification": {
-                      "title": "title"
-                    },
-                    "density": 9.9,
-                    "units": "units",
-                    "numberOfVolumes": 9,
-                    "mediumFormat": [
-                      "mediumFormat0",
-                      "mediumFormat1"
-                    ],
-                    "note": "note",
-                    "identifier": {
-                      "identifier": "identifier"
-                    }
-                  }
-                ]
-              },
-              {
-                "offlineOption": [
-                  {
-                    "mediumSpecification": {},
-                    "density": 9.9,
-                    "units": "",
-                    "numberOfVolumes": 9,
-                    "mediumFormat": [],
-                    "note": "",
-                    "identifier": {}
-                  }
-                ]
-              },
-              {
-                "offlineOption": [
-                  {
-                    "numberOfVolumes": 9
                   }
                 ]
               }

@@ -48,32 +48,6 @@
 
   <gmd:offLine>
     <gmd:MD_Medium>
-      <gmd:name>
-        <gmd:MD_MediumNameCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumNameCode" codeListValue="identifier" codeSpace="userCode"/>
-      </gmd:name>
-      <gmd:density>
-        <gco:Real>9.9</gco:Real>
-      </gmd:density>
-      <gmd:densityUnits>
-        <gco:CharacterString>units</gco:CharacterString>
-      </gmd:densityUnits>
-      <gmd:volumes>
-        <gco:Integer>9</gco:Integer>
-      </gmd:volumes>
-      <gmd:mediumFormat>
-        <gmd:MD_MediumFormatCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumFormatCode" codeListValue="mediumFormat0" codeSpace="userCode"/>
-      </gmd:mediumFormat>
-      <gmd:mediumFormat>
-        <gmd:MD_MediumFormatCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_MediumFormatCode" codeListValue="mediumFormat1" codeSpace="userCode"/>
-      </gmd:mediumFormat>
-      <gmd:mediumNote>
-        <gco:CharacterString>note</gco:CharacterString>
-      </gmd:mediumNote>
-    </gmd:MD_Medium>
-  </gmd:offLine>
-
-  <gmd:offLine>
-    <gmd:MD_Medium>
       <gmd:name/>
       <gmd:density>
         <gco:Real>9.9</gco:Real>

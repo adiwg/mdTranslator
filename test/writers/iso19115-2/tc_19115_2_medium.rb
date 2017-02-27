@@ -25,7 +25,7 @@ class TestWriter191152Medium < MiniTest::Test
     @@mdJson = file.read
     file.close
 
-    def test_19115_2_medium
+    def test_19115_2_medium_complete
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
@@ -34,12 +34,48 @@ class TestWriter191152Medium < MiniTest::Test
         metadata = hResponseObj[:writerOutput]
         iso_out = Document.new(metadata)
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:offLine') {|e| aCheckXML << e}
+        checkXML = XPath.first(iso_out, '//gmd:offLine')
 
-        @@aRefXML.length.times{|i|
-            assert_equal @@aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-        }
+        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+
+    end
+
+    def test_19115_2_medium_empty_elements
+
+        hJson = JSON.parse(@@mdJson)
+        hJson['metadata']['resourceDistribution'][0]['distributor'][0]['transferOption'][0]['offlineOption'].delete_at(0)
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:offLine')
+
+        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+
+    end
+
+    def test_19115_2_medium_missing_elements
+
+        hJson = JSON.parse(@@mdJson)
+        hJson['metadata']['resourceDistribution'][0]['distributor'][0]['transferOption'][0]['offlineOption'].delete_at(0)
+        hJson['metadata']['resourceDistribution'][0]['distributor'][0]['transferOption'][0]['offlineOption'].delete_at(0)
+        jsonIn = hJson.to_json
+
+        hResponseObj = ADIWG::Mdtranslator.translate(
+            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+        )
+
+        metadata = hResponseObj[:writerOutput]
+        iso_out = Document.new(metadata)
+
+        checkXML = XPath.first(iso_out, '//gmd:offLine')
+
+        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
 
     end
 
