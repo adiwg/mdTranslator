@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,14 +46,14 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "spatialReferenceSystem": [
         {
           "referenceSystemType": "referenceSystemType0",
-          "referenceSystem": {
+          "referenceSystemIdentifier": {
             "identifier": "identifier0",
             "namespace": "namespace0",
             "version": "version0",
@@ -62,17 +65,16 @@
         },
         {
           "referenceSystemType": "referenceSystemType1",
-          "referenceSystem": {
+          "referenceSystemIdentifier": {
             "identifier": "identifier1",
             "namespace": "",
             "version": "",
-            "description": "",
-            "authority": {}
+            "description": ""
           }
         },
         {
           "referenceSystemType": "referenceSystemType2",
-          "referenceSystem": {
+          "referenceSystemIdentifier": {
             "identifier": "identifier2"
           }
         }
