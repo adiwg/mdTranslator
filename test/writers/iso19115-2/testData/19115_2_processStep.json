@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - name only"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     },
     "resourceLineage": [
@@ -67,19 +70,6 @@
             "processor": [
               {
                 "role": "role00",
-                "roleExtent": [
-                  {
-                    "description": "description00",
-                    "temporalExtent": [
-                      {
-                        "type": "period",
-                        "timePeriod": {
-                          "startDateTime": "2016-10-14"
-                        }
-                      }
-                    ]
-                  }
-                ],
                 "party": [
                   {
                     "contactId": "CID001"
@@ -88,11 +78,6 @@
               },
               {
                 "role": "role01",
-                "roleExtent": [
-                  {
-                    "description": "description01"
-                  }
-                ],
                 "party": [
                   {
                     "contactId": "CID001"
