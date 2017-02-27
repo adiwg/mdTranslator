@@ -7,19 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "contact"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "defaultMetadataLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
       "metadataContact": [
         {
-          "role": "custodian",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -39,14 +34,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_address"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"

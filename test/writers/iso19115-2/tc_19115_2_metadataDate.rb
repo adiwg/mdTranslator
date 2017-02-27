@@ -61,44 +61,4 @@ class TestWriter191152MetadataDate < MiniTest::Test
 
     end
 
-    def test_19115_2_metadataDate_empty
-
-        hJson = JSON.parse(@@mdJson)
-        hJson['metadata']['metadataInfo']['metadataDate'] = []
-        jsonIn = hJson.to_json
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_out, '//gmd:dateStamp')
-        checkXML = XPath.first(checkXML, '//gco:Date').get_text
-        today = Time.now.strftime("%Y-%m-%d")
-
-        assert_equal today.to_s, checkXML.to_s
-
-    end
-
-    def test_19115_2_metadataDate_missing
-
-        hJson = JSON.parse(@@mdJson)
-        hJson['metadata']['metadataInfo'].delete('metadataDate')
-        jsonIn = hJson.to_json
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_out, '//gmd:dateStamp')
-        checkXML = XPath.first(checkXML, '//gco:Date').get_text
-        today = Time.now.strftime("%Y-%m-%d")
-
-        assert_equal today.to_s, checkXML.to_s
-
-    end
-
 end
