@@ -92,13 +92,15 @@
               {
                 "title": "title01"
               }
-            ]
+            ],
+            "scope": {
+              "scopeCode": "scopeCode"
+            }
           },
           {
             "stepId": "",
             "description": "description1",
             "rationale": "",
-            "timePeriod": {},
             "processor": [],
             "reference": []
           },
