@@ -32,9 +32,6 @@ class TestWriter191152ReferenceSystem < MiniTest::Test
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
-        require 'pp'
-        pp hResponseObj
-        puts('=====================')
         metadata = hResponseObj[:writerOutput]
         iso_out = Document.new(metadata)
 

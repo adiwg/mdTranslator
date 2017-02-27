@@ -36,18 +36,7 @@
   </gmd:referenceSystemInfo>
 
   <gmd:referenceSystemInfo>
-    <gmd:MD_ReferenceSystem>
-      <gmd:referenceSystemIdentifier>
-        <gmd:RS_Identifier>
-          <gmd:authority/>
-          <gmd:code>
-            <gco:CharacterString>identifier1</gco:CharacterString>
-          </gmd:code>
-          <gmd:codeSpace/>
-          <gmd:version/>
-        </gmd:RS_Identifier>
-      </gmd:referenceSystemIdentifier>
-    </gmd:MD_ReferenceSystem>
+    <gmd:MD_ReferenceSystem/>
   </gmd:referenceSystemInfo>
 
   <gmd:referenceSystemInfo>
@@ -63,10 +52,6 @@
         </gmd:RS_Identifier>
       </gmd:referenceSystemIdentifier>
     </gmd:MD_ReferenceSystem>
-  </gmd:referenceSystemInfo>
-
-  <gmd:referenceSystemInfo>
-    <gmd:MD_ReferenceSystem/>
   </gmd:referenceSystemInfo>
 
 </gmi:MI_Metadata>

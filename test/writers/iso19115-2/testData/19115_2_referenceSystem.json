@@ -58,22 +58,12 @@
           }
         },
         {
-          "referenceSystemType": "",
-          "referenceSystemIdentifier": {
-            "identifier": "identifier1"
-          }
-        },
-        {
-          "referenceSystemType": "referenceSystemType2",
-          "referenceSystemIdentifier": {}
+          "referenceSystemType": "referenceSystemType1"
         },
         {
           "referenceSystemIdentifier": {
             "identifier": "identifier2"
           }
-        },
-        {
-          "referenceSystemType": "referenceSystemType3"
         }
       ]
     }
