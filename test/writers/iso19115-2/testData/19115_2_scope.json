@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,56 +46,56 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     },
     "resourceLineage": [
       {
         "statement": "statement0",
-        "resourceScope": {
+        "scope": {
           "scopeCode": "scopeCode0",
           "scopeDescription": [
             {
-              "type": "dataset",
-              "description": "dataset description"
-            },
-            {
-              "type": "attribute",
-              "description": "attribute description"
+              "dataset": "dataset0"
             }
           ],
-          "timePeriod": [
+          "scopeExtent": [
             {
-              "startDateTime": "2016-10-14"
-            },
-            {
-              "endDateTime": "2016-10-15"
+              "description": "description",
+              "temporalExtent": [
+                {
+                  "type": "period",
+                  "timePeriod": {
+                    "startDateTime": "2017-02-15"
+                  }
+                }
+              ]
             }
           ]
         },
-        "lineageCitation": [],
+        "citation": [],
         "source": [],
         "processStep": []
       },
       {
         "statement": "statement1",
-        "resourceScope": {
+        "scope": {
           "scopeCode": "scopeCode1",
           "scopeDescription": [],
-          "timePeriod": []
+          "scopeExtent": []
         },
-        "lineageCitation": [],
+        "citation": [],
         "source": [],
         "processStep": []
       },
       {
         "statement": "statement2",
-        "resourceScope": {
+        "scope": {
           "scopeCode": "scopeCode2"
         },
-        "lineageCitation": [],
+        "citation": [],
         "source": [],
         "processStep": []
       }

@@ -52,11 +52,10 @@ module ADIWG
                             end
 
                             # scope - level description [{MD_ScopeDescription}]
+                            # ... write gmd:levelDescription tag from class_scopeDescription
                             aDescription = hScope[:scopeDescriptions]
                             aDescription.each do |hDescription|
-                                @xml.tag!('gmd:levelDescription') do
-                                    descriptionClass.writeXML(hDescription)
-                                end
+                                descriptionClass.writeXML(hDescription)
                             end
                             if aDescription.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:levelDescription')
