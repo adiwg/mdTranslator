@@ -49,13 +49,13 @@ module ADIWG
                             end
 
                             # source - scale denominator
-                            s = hSource[:scaleDenominator]
-                            unless s.nil?
+                            hResolution = hSource[:spatialResolution]
+                            unless hResolution[:scaleFactor].nil?
                                 @xml.tag!('gmd:scaleDenominator') do
-                                    fractionClass.writeXML(s)
+                                    fractionClass.writeXML(hResolution[:scaleFactor])
                                 end
                             end
-                            if s.nil? && @hResponseObj[:writerShowTags]
+                            if hResolution[:scaleFactor].nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:scaleDenominator')
                             end
 

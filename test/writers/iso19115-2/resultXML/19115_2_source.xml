@@ -34,7 +34,7 @@
           <gmd:scaleDenominator>
             <gmd:MD_RepresentativeFraction>
               <gmd:denominator>
-                <gco:Integer>9</gco:Integer>
+                <gco:Integer>99999</gco:Integer>
               </gmd:denominator>
             </gmd:MD_RepresentativeFraction>
           </gmd:scaleDenominator>
@@ -105,13 +105,7 @@
           <gmd:description>
             <gco:CharacterString>description1</gco:CharacterString>
           </gmd:description>
-          <gmd:scaleDenominator>
-            <gmd:MD_RepresentativeFraction>
-              <gmd:denominator>
-                <gco:Integer>9</gco:Integer>
-              </gmd:denominator>
-            </gmd:MD_RepresentativeFraction>
-          </gmd:scaleDenominator>
+          <gmd:scaleDenominator/>
           <gmd:sourceReferenceSystem/>
           <gmd:sourceCitation/>
           <gmd:sourceStep/>

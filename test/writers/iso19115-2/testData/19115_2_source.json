@@ -7,17 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,15 +46,17 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     },
     "resourceLineage": [
       {
         "statement": "statement0",
-        "resourceScope": {},
+        "scope": {
+          "scopeCode": "scopeCode0"
+        },
         "lineageCitation": [],
         "source": [
           {
@@ -67,44 +72,50 @@
                 "title": "title01"
               }
             ],
-            "scaleDenominator": 9,
-            "sourceReferenceSystem": {
+            "spatialResolution": {
+              "scaleFactor": 99999
+            },
+            "referenceSystem": {
               "referenceSystemType": "referenceSystemType0",
-              "referenceSystem": {
+              "referenceSystemIdentifier": {
                 "identifier": "identifier0"
               }
             },
-            "sourceStep": [
+            "sourceProcessStep": [
               {
                 "description": "description00"
               },
               {
                 "description": "description01"
               }
-            ]
+            ],
+            "scope": {
+              "scopeCode": "scopeCode"
+            }
           }
         ],
         "processStep": []
       },
       {
         "statement": "statement1",
-        "resourceScope": {},
+        "scope": {
+          "scopeCode": "scopeCode1"
+        },
         "lineageCitation": [],
         "source": [
           {
             "description": "description1",
-            "sourceCitation": {},
             "sourceMetadata": [],
-            "scaleDenominator": 9,
-            "sourceReferenceSystem": {},
-            "sourceStep": []
+            "sourceProcessStep": []
           }
         ],
         "processStep": []
       },
       {
         "statement": "statement2",
-        "resourceScope": {},
+        "scope": {
+          "scopeCode": "scopeCode2"
+        },
         "lineageCitation": [],
         "source": [
           {

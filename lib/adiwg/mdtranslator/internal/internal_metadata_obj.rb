@@ -443,7 +443,6 @@ class InternalMetadata
 
     def newSpatialResolution
         intObj = {
-            type: nil,
             scaleFactor: nil,
             measure: {},
             levelOfDetail: nil
