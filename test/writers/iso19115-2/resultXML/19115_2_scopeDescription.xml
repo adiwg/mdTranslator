@@ -23,28 +23,40 @@
   <gmd:levelDescription>
     <gmd:MD_ScopeDescription>
       <gmd:dataset>
-        <gco:CharacterString>dataset description</gco:CharacterString>
+        <gco:CharacterString>dataset0</gco:CharacterString>
       </gmd:dataset>
     </gmd:MD_ScopeDescription>
   </gmd:levelDescription>
 
   <gmd:levelDescription>
     <gmd:MD_ScopeDescription>
-      <gmd:attributes/>
-    </gmd:MD_ScopeDescription>
-  </gmd:levelDescription>
-
-  <gmd:levelDescription>
-    <gmd:MD_ScopeDescription>
       <gmd:other>
-        <gco:CharacterString>other description</gco:CharacterString>
+        <gco:CharacterString>other0</gco:CharacterString>
       </gmd:other>
     </gmd:MD_ScopeDescription>
   </gmd:levelDescription>
 
   <gmd:levelDescription>
     <gmd:MD_ScopeDescription>
-      <gmd:features/>
+      <gmd:dataset>
+        <gco:CharacterString>dataset1</gco:CharacterString>
+      </gmd:dataset>
+    </gmd:MD_ScopeDescription>
+  </gmd:levelDescription>
+
+  <gmd:levelDescription>
+    <gmd:MD_ScopeDescription>
+      <gmd:dataset>
+        <gco:CharacterString>dataset2</gco:CharacterString>
+      </gmd:dataset>
+    </gmd:MD_ScopeDescription>
+  </gmd:levelDescription>
+
+  <gmd:levelDescription>
+    <gmd:MD_ScopeDescription>
+      <gmd:other>
+        <gco:CharacterString>other3</gco:CharacterString>
+      </gmd:other>
     </gmd:MD_ScopeDescription>
   </gmd:levelDescription>
 

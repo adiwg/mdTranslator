@@ -18,50 +18,33 @@ module ADIWG
 
                     def writeXML(hScopeDesc)
 
-                        @xml.tag!('gmd:MD_ScopeDescription') do
-
-                            type = hScopeDesc[:type]
-                            tag = nil
-
-                            # scope description - attributes
-                            # scope description - features
-                            # scope description - feature instances (not supported)
-                            # scope description - attribute instances (not supported)
-                            # scope description - dataset
-                            # scope description - other
-                            case type
-                                when 'attribute'
-                                    tag = 'gmd:attributes'
-                                when 'feature'
-                                    tag = 'gmd:features'
-                                when 'dataset'
-                                    tag = 'gmd:dataset'
-                                when 'other'
-                                    tag = 'gmd:other'
-                            end
-
-                            # tag values for type = attribute and feature are written as
-                            # class GF_AttributeType which belongs to ISO 19109.
-                            # ISO 19109 is not included in our XSD, so these tag values
-                            # are set to nil.
-                            unless tag.nil?
-                                if type == 'dataset' || type == 'other'
-                                    s = hScopeDesc[:description]
-                                    unless s.nil?
-                                        @xml.tag!(tag) do
-                                            @xml.tag!('gco:CharacterString', s)
-                                        end
-                                    end
-                                    if s.nil?
-                                        @xml.tag!(tag)
+                        # scope description - dataset
+                        sData = hScopeDesc[:dataset]
+                        unless sData.nil?
+                            @xml.tag!('gmd:levelDescription') do
+                                @xml.tag!('gmd:MD_ScopeDescription') do
+                                    @xml.tag!('gmd:dataset') do
+                                        @xml.tag!('gco:CharacterString', sData)
                                     end
                                 end
-                                if type == 'attribute' || type == 'feature'
-                                    @xml.tag!(tag)
+                            end
+                        end
+
+                        # scope description - other
+                        sOther = hScopeDesc[:other]
+                        unless sOther.nil?
+                            @xml.tag!('gmd:levelDescription') do
+                                @xml.tag!('gmd:MD_ScopeDescription') do
+                                    @xml.tag!('gmd:other') do
+                                        @xml.tag!('gco:CharacterString', sOther)
+                                    end
                                 end
                             end
+                        end
 
-                        end # gmd:MD_ScopeDescription tag
+                        # scope description - feature instances (not supported in ISO 19115-2)
+                        # scope description - attribute instances (not supported  in ISO 19115-2)
+
                     end # writeXML
                 end # MD_ScopeDescription class
 
