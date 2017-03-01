@@ -34,7 +34,7 @@
       <gmd:userContactInfo>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - name only</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
@@ -46,7 +46,7 @@
       <gmd:userContactInfo>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - name only</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
@@ -63,9 +63,7 @@
       <gmd:specificUsage>
         <gco:CharacterString>specificUsage1</gco:CharacterString>
       </gmd:specificUsage>
-      <gmd:usageDateTime>
-        <gco:DateTime>2016-10-25T00:00:00</gco:DateTime>
-      </gmd:usageDateTime>
+      <gmd:usageDateTime/>
       <gmd:userDeterminedLimitations/>
       <gmd:userContactInfo/>
     </gmd:MD_Usage>
@@ -75,32 +73,6 @@
     <gmd:MD_Usage>
       <gmd:specificUsage>
         <gco:CharacterString>specificUsage2</gco:CharacterString>
-      </gmd:specificUsage>
-      <gmd:usageDateTime>
-        <gco:DateTime>2016-10-27T00:00:00</gco:DateTime>
-      </gmd:usageDateTime>
-      <gmd:userDeterminedLimitations/>
-      <gmd:userContactInfo/>
-    </gmd:MD_Usage>
-  </gmd:resourceSpecificUsage>
-
-  <gmd:resourceSpecificUsage>
-    <gmd:MD_Usage>
-      <gmd:specificUsage>
-        <gco:CharacterString>specificUsage3</gco:CharacterString>
-      </gmd:specificUsage>
-      <gmd:usageDateTime>
-        <gco:DateTime>2016-10-28T00:00:00</gco:DateTime>
-      </gmd:usageDateTime>
-      <gmd:userDeterminedLimitations/>
-      <gmd:userContactInfo/>
-    </gmd:MD_Usage>
-  </gmd:resourceSpecificUsage>
-
-  <gmd:resourceSpecificUsage>
-    <gmd:MD_Usage>
-      <gmd:specificUsage>
-        <gco:CharacterString>specificUsage4</gco:CharacterString>
       </gmd:specificUsage>
       <gmd:usageDateTime/>
       <gmd:userDeterminedLimitations/>

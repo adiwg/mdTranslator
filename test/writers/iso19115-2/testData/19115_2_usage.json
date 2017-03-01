@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - name only"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,22 +46,20 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "resourceUsage": [
         {
           "specificUsage": "specificUsage0",
           "temporalExtent": [
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2016-10-24T11:10:15.2-10:00"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2016-10-24T11:10:15.2-10:00"
               }
@@ -101,19 +84,6 @@
           "userContactInfo": [
             {
               "role": "role0",
-              "roleExtent": [
-                {
-                  "description": "description",
-                  "temporalExtent": [
-                    {
-                      "type": "period",
-                      "timePeriod": {
-                        "startDateTime": "2016-10-14"
-                      }
-                    }
-                  ]
-                }
-              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -122,11 +92,6 @@
             },
             {
               "role": "role1",
-              "roleExtent": [
-                {
-                  "description": "description"
-                }
-              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -137,51 +102,14 @@
         },
         {
           "specificUsage": "specificUsage1",
-          "temporalExtent": [
-            {
-              "type": "period",
-              "timePeriod": {
-                "startDateTime": "2016-10-25"
-              }
-            },
-            {
-              "type": "instant",
-              "timeInstant": {
-                "dateTime": "2016-10-26"
-              }
-            }
-          ],
+          "temporalExtent": [],
           "userDeterminedLimitation": "",
           "limitationResponse": [],
-          "documentedIssue": {},
           "additionalDocumentation": [],
           "userContactInfo": []
         },
         {
-          "specificUsage": "specificUsage2",
-          "temporalExtent": [
-            {
-              "type": "period",
-              "timePeriod": {
-                "endDateTime": "2016-10-27"
-              }
-            }
-          ]
-        },
-        {
-          "specificUsage": "specificUsage3",
-          "temporalExtent": [
-            {
-              "type": "period",
-              "timePeriod": {
-                "startDateTime": "2016-10-28",
-                "endDateTime": "2016-10-29"
-              }
-            }
-          ]
-        },
-        {
-          "specificUsage": "specificUsage4"
+          "specificUsage": "specificUsage2"
         }
       ]
     }
