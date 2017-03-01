@@ -33,19 +33,17 @@
 
   <gmd:resourceConstraints>
     <gmd:MD_Constraints>
-      <gmd:useLimitation/>
+      <gmd:useLimitation>
+        <gco:CharacterString>useLimitation0</gco:CharacterString>
+      </gmd:useLimitation>
     </gmd:MD_Constraints>
   </gmd:resourceConstraints>
 
   <gmd:resourceConstraints>
     <gmd:MD_Constraints>
-      <gmd:useLimitation/>
-    </gmd:MD_Constraints>
-  </gmd:resourceConstraints>
-
-  <gmd:resourceConstraints>
-    <gmd:MD_Constraints>
-      <gmd:useLimitation/>
+      <gmd:useLimitation>
+        <gco:CharacterString>useLimitation0</gco:CharacterString>
+      </gmd:useLimitation>
     </gmd:MD_Constraints>
   </gmd:resourceConstraints>
 

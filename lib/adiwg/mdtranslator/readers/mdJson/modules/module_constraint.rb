@@ -61,11 +61,6 @@ module ADIWG
                                 end
                             end
                         end
-                        if type == 'use' && intConstraint[:useLimitation].empty?
-                            responseObj[:readerExecutionMessages] << 'Use Constraint missing use limitation'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
 
                         # constraint - scope
                         if hConstraint.has_key?('scope')

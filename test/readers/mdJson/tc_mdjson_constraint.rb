@@ -49,6 +49,7 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+        hIn['useLimitation'] = []
         hIn['scope'] = {}
         hIn['graphic'] = []
         hIn['reference'] = []
@@ -60,7 +61,7 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'use', metadata[:type]
-        refute_empty metadata[:useLimitation]
+        assert_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
@@ -77,6 +78,7 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
 
         TestReaderMdJsonParent.setContacts
         hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+        hIn.delete('useLimitation')
         hIn.delete('scope')
         hIn.delete('graphic')
         hIn.delete('reference')
@@ -88,7 +90,7 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_equal 'use', metadata[:type]
-        refute_empty metadata[:useLimitation]
+        assert_empty metadata[:useLimitation]
         assert_empty metadata[:scope]
         assert_empty metadata[:graphic]
         assert_empty metadata[:reference]
@@ -114,20 +116,6 @@ class TestReaderMdJsonConstraint < TestReaderMdJsonParent
         assert_empty metadata[:securityConstraint]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_use_constraint_missing_limitation
-
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn[1]))
-        hIn['useLimitation'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
 
     end
 

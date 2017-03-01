@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "constraint": [
         {
@@ -97,19 +82,6 @@
           "responsibleParty": [
             {
               "role": "role0",
-              "roleExtent": [
-                {
-                  "description": "description00",
-                  "temporalExtent": [
-                    {
-                      "type": "period",
-                      "timePeriod": {
-                        "startDateTime": "2016-10-14"
-                      }
-                    }
-                  ]
-                }
-              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -118,11 +90,6 @@
             },
             {
               "role": "role1",
-              "roleExtent": [
-                {
-                  "description": "description01"
-                }
-              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -130,7 +97,7 @@
               ]
             }
           ],
-          "legalConstraint": {
+          "legal": {
             "useConstraint": [
               "useConstraint0",
               "useConstraint1"
@@ -144,7 +111,7 @@
               "otherConstraint1"
             ]
           },
-          "securityConstraint": {
+          "security": {
             "classification": "classification",
             "classificationSystem": "classificationSystem",
             "userNote": "userNote",
@@ -153,21 +120,18 @@
         },
         {
           "type": "use",
-          "useLimitation": [],
-          "scope": {},
+          "useLimitation": [
+            "useLimitation0"
+          ],
           "graphic": [],
           "reference": [],
-          "releasability": {},
-          "responsibleParty": [],
-          "legalConstraint": {},
-          "securityConstraint": {}
+          "responsibleParty": []
         },
         {
           "type": "use",
-          "useLimitation": []
-        },
-        {
-          "type": "use"
+          "useLimitation": [
+            "useLimitation0"
+          ]
         }
       ]
     }
