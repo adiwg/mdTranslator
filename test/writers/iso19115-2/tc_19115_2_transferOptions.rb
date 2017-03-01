@@ -32,6 +32,9 @@ class TestWriter191152TransferOptions < MiniTest::Test
         metadata = hResponseObj[:writerOutput]
         iso_out = Document.new(metadata)
 
+        # format is embedded in transferOption in mdJson 2.0 and in ISO 19115-1
+        # format is written as a separate object in ISO 19115-2 and therefore checked separately here
+
         # check distributor format
         aRefXML = []
         XPath.each(@@iso_xml, '//gmd:distributorFormat') {|e| aRefXML << e}

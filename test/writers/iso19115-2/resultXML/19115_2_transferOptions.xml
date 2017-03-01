@@ -64,7 +64,7 @@
       <gmd:onLine>
         <gmd:CI_OnlineResource>
           <gmd:linkage>
-            <gmd:URL>uri0</gmd:URL>
+            <gmd:URL>http://ISO.uri/adiwg/0</gmd:URL>
           </gmd:linkage>
           <gmd:protocol/>
           <gmd:name/>
@@ -75,7 +75,7 @@
       <gmd:onLine>
         <gmd:CI_OnlineResource>
           <gmd:linkage>
-            <gmd:URL>uri1</gmd:URL>
+            <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
           </gmd:linkage>
           <gmd:protocol/>
           <gmd:name/>

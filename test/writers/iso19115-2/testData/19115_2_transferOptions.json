@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "distributor contact"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     },
     "resourceDistribution": [
@@ -73,11 +58,6 @@
           {
             "contact": {
               "role": "role",
-              "roleExtent": [
-                {
-                  "description": "description"
-                }
-              ],
               "party": [
                 {
                   "contactId": "CID001"
@@ -91,10 +71,10 @@
                 "transferSize": 9.9,
                 "onlineOption": [
                   {
-                    "resourceURI": "uri0"
+                    "uri": "http://ISO.uri/adiwg/0"
                   },
                   {
-                    "resourceURI": "uri1"
+                    "uri": "http://ISO.uri/adiwg/1"
                   }
                 ],
                 "offlineOption": [
@@ -130,7 +110,6 @@
                 "transferSize": 9,
                 "onlineOption": [],
                 "offlineOption": [],
-                "transferFrequency": {},
                 "distributionFormat": [
                   {
                     "formatSpecification": {
