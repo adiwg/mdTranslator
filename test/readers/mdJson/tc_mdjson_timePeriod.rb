@@ -39,6 +39,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
         assert_kind_of DateTime, metadata[:endDateTime][:dateTime]
         assert_equal 'YMD', metadata[:endDateTime][:dateResolution]
         refute_empty metadata[:timeInterval]
+        refute_empty metadata[:duration]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -80,6 +81,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
         hIn['identifier'] = {}
         hIn['periodName'] = []
         hIn['timeInterval'] = {}
+        hIn['duration'] = {}
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -88,6 +90,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
         assert_empty metadata[:identifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
+        assert_empty metadata[:duration]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -101,6 +104,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
         hIn.delete('identifier')
         hIn.delete('periodName')
         hIn.delete('timeInterval')
+        hIn.delete('duration')
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -109,6 +113,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
         assert_empty metadata[:identifier]
         assert_empty metadata[:periodNames]
         assert_empty metadata[:timeInterval]
+        assert_empty metadata[:duration]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

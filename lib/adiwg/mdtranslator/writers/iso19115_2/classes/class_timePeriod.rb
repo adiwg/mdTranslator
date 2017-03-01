@@ -91,6 +91,21 @@ module ADIWG
                                 @xml.tag!('gml:endPosition')
                             end
 
+                            # time period - time interval
+                            hInterval = hPeriod[:timeInterval]
+                            unless hInterval.empty?
+                                units = hInterval[:units]
+                                interval = hInterval[:interval]
+                                @xml.tag!('gml:timeInterval', {'unit'=>units}, interval)
+                            end
+
+                            # time period - duration (do not output if have time interval)
+                            hDuration = hPeriod[:duration]
+                            if hInterval.empty? && !hDuration.empty?
+                                duration = AdiwgDateTimeFun.writeDuration(hDuration)
+                                @xml.tag!('gml:duration', duration)
+                            end
+
                         end # TimePeriod tag
                     end # writeXML
                 end # TimePeriod class

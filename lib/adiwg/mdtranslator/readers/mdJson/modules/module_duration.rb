@@ -90,6 +90,18 @@ module ADIWG
                             intDuration[:seconds] = 0
                         end
 
+                        totalDuration = intDuration[:years] +
+                            intDuration[:months] +
+                            intDuration[:days] +
+                            intDuration[:hours] +
+                            intDuration[:minutes] +
+                            intDuration[:seconds]
+                        unless totalDuration > 0
+                            responseObj[:readerExecutionMessages] << 'Duration is zero'
+                            responseObj[:readerExecutionPass] = false
+                            return nil
+                        end
+
                         return intDuration
                     end
                 end

@@ -45,14 +45,9 @@ class TestReaderMdJsonDuration < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 0, metadata[:years]
-        assert_equal 0, metadata[:months]
-        assert_equal 0, metadata[:days]
-        assert_equal 0, metadata[:hours]
-        assert_equal 0, metadata[:minutes]
-        assert_equal 0, metadata[:seconds]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 
@@ -70,14 +65,9 @@ class TestReaderMdJsonDuration < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 0, metadata[:years]
-        assert_equal 0, metadata[:months]
-        assert_equal 0, metadata[:days]
-        assert_equal 0, metadata[:hours]
-        assert_equal 0, metadata[:minutes]
-        assert_equal 0, metadata[:seconds]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
 
     end
 

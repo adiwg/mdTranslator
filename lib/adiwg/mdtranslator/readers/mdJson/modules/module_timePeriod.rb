@@ -7,6 +7,7 @@
 require_relative 'module_dateTime'
 require_relative 'module_identifier'
 require_relative 'module_timeInterval'
+require_relative 'module_duration'
 
 module ADIWG
     module Mdtranslator
@@ -93,6 +94,16 @@ module ADIWG
                                 hReturn = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj)
                                 unless hReturn.nil?
                                     intTimePer[:timeInterval] = hReturn
+                                end
+                            end
+                        end
+
+                        # time period - time duration
+                        if hTimePeriod.has_key?('duration')
+                            unless hTimePeriod['duration'].empty?
+                                hReturn = Duration.unpack(hTimePeriod['duration'], responseObj)
+                                unless hReturn.nil?
+                                    intTimePer[:duration] = hReturn
                                 end
                             end
                         end

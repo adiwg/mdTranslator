@@ -43,14 +43,17 @@ module ADIWG
                             return nil
                         end
 
-                        # time interval - units (required)
+                        # time interval - units (required) {enum}
                         if hTimeInt.has_key?('units')
-                            if hTimeInt['units'] != ''
-                                intTime[:units] = hTimeInt['units']
+                            units = hTimeInt['units']
+                            unless units.nil?
+                                if %w{year month day hour minute second}.one? {|word| word == units}
+                                    intTime[:units] = hTimeInt['units']
+                                end
                             end
                         end
                         if intTime[:units].nil? || intTime[:units] == ''
-                            responseObj[:readerExecutionMessages] << 'Time Interval attribute units is missing'
+                            responseObj[:readerExecutionMessages] << 'Time Interval attribute units is missing or invalid'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end

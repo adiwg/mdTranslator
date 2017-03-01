@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,17 +46,16 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "extent": [
         {
-          "description": "extent 0",
+          "description": "extent0",
           "geographicExtent": [],
           "temporalExtent": [
             {
-              "type": "period",
               "timePeriod": {
                 "id": "id0",
                 "description": "description0",
@@ -86,65 +70,76 @@
                 "startDateTime": "2017",
                 "endDateTime": "2018",
                 "timeInterval": {
-                  "interval": 9.9,
-                  "units": "units"
+                  "interval": 9,
+                  "units": "month"
+                },
+                "duration": {
+                  "months": 9
                 }
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "id": "id1",
-                "description": "",
-                "identifier": {},
-                "periodName": [],
+                "description": "description1",
+                "identifier": {
+                  "identifier": "identifier1",
+                  "namespace": "namespace1"
+                },
+                "periodName": [
+                  "periodName1"
+                ],
                 "startDateTime": "2017",
                 "endDateTime": "2018",
-                "timeInterval": {}
+                "duration": {
+                  "months": 9
+                }
               }
             },
             {
-              "type": "period",
+              "timePeriod": {
+                "id": "",
+                "description": "",
+                "periodName": [""],
+                "startDateTime": "2017",
+                "endDateTime": "2018"
+              }
+            },
+            {
               "timePeriod": {
                 "startDateTime": "2017-01"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "endDateTime": "2017-01-13"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2017-01-13T13",
                 "endDateTime": "2017-01-13T13Z"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2017-01-13T13:57",
                 "endDateTime": "2017-01-13T13:57Z"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2017-01-13T13:57:12",
                 "endDateTime": "2017-01-13T13:57:12Z"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2017-01-13T13:57:12.345",
                 "endDateTime": "2017-01-13T13:57:12.345Z"
               }
             },
             {
-              "type": "period",
               "timePeriod": {
                 "startDateTime": "2017-01-13T13:57:12.345-09",
                 "endDateTime": "2017-01-13T13:57:12.345-09:15"

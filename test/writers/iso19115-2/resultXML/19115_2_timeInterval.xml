@@ -23,43 +23,13 @@
   <gmd:temporalElement>
     <gmd:EX_TemporalExtent>
       <gmd:extent>
-        <gml:TimePeriod gml:id="id0">
-          <gml:description>description0</gml:description>
-          <gml:identifier codeSpace="namespace0">identifier0</gml:identifier>
-          <gml:name>periodName00</gml:name>
-          <gml:name>periodName01</gml:name>
-          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
-          <gml:endPosition>2018-01-01T00:00:00</gml:endPosition>
-          <gml:timeInterval unit="month">9</gml:timeInterval>
-        </gml:TimePeriod>
-      </gmd:extent>
-    </gmd:EX_TemporalExtent>
-  </gmd:temporalElement>
-
-  <gmd:temporalElement>
-    <gmd:EX_TemporalExtent>
-      <gmd:extent>
-        <gml:TimePeriod gml:id="id1">
-          <gml:description>description1</gml:description>
-          <gml:identifier codeSpace="namespace1">identifier1</gml:identifier>
-          <gml:name>periodName1</gml:name>
-          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
-          <gml:endPosition>2018-01-01T00:00:00</gml:endPosition>
-          <gml:duration>P9M</gml:duration>
-        </gml:TimePeriod>
-      </gmd:extent>
-    </gmd:EX_TemporalExtent>
-  </gmd:temporalElement>
-
-  <gmd:temporalElement>
-    <gmd:EX_TemporalExtent>
-      <gmd:extent>
         <gml:TimePeriod gml:id="timePeriod_001">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
           <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
-          <gml:endPosition>2018-01-01T00:00:00</gml:endPosition>
+          <gml:endPosition/>
+          <gml:timeInterval unit="year">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>
@@ -74,6 +44,7 @@
           <gml:name/>
           <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
           <gml:endPosition/>
+          <gml:timeInterval unit="month">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>
@@ -86,8 +57,9 @@
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
-          <gml:beginPosition/>
-          <gml:endPosition>2017-01-13T00:00:00</gml:endPosition>
+          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
+          <gml:endPosition/>
+          <gml:timeInterval unit="day">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>
@@ -100,8 +72,9 @@
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
-          <gml:beginPosition>2017-01-13T13</gml:beginPosition>
-          <gml:endPosition>2017-01-13T13+00:00</gml:endPosition>
+          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
+          <gml:endPosition/>
+          <gml:timeInterval unit="hour">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>
@@ -114,8 +87,9 @@
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
-          <gml:beginPosition>2017-01-13T13:57</gml:beginPosition>
-          <gml:endPosition>2017-01-13T13:57+00:00</gml:endPosition>
+          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
+          <gml:endPosition/>
+          <gml:timeInterval unit="minute">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>
@@ -128,36 +102,9 @@
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
-          <gml:beginPosition>2017-01-13T13:57:12</gml:beginPosition>
-          <gml:endPosition>2017-01-13T13:57:12+00:00</gml:endPosition>
-        </gml:TimePeriod>
-      </gmd:extent>
-    </gmd:EX_TemporalExtent>
-  </gmd:temporalElement>
-
-  <gmd:temporalElement>
-    <gmd:EX_TemporalExtent>
-      <gmd:extent>
-        <gml:TimePeriod gml:id="timePeriod_007">
-          <gml:description/>
-          <gml:identifier codeSpace=""/>
-          <gml:name/>
-          <gml:beginPosition>2017-01-13T13:57:12.345</gml:beginPosition>
-          <gml:endPosition>2017-01-13T13:57:12.345+00:00</gml:endPosition>
-        </gml:TimePeriod>
-      </gmd:extent>
-    </gmd:EX_TemporalExtent>
-  </gmd:temporalElement>
-
-  <gmd:temporalElement>
-    <gmd:EX_TemporalExtent>
-      <gmd:extent>
-        <gml:TimePeriod gml:id="timePeriod_008">
-          <gml:description/>
-          <gml:identifier codeSpace=""/>
-          <gml:name/>
-          <gml:beginPosition>2017-01-13T13:57:12.345-09:00</gml:beginPosition>
-          <gml:endPosition>2017-01-13T13:57:12.345-09:15</gml:endPosition>
+          <gml:beginPosition>2017-01-01T00:00:00</gml:beginPosition>
+          <gml:endPosition/>
+          <gml:timeInterval unit="second">9.9</gml:timeInterval>
         </gml:TimePeriod>
       </gmd:extent>
     </gmd:EX_TemporalExtent>

@@ -563,7 +563,8 @@ class InternalMetadata
             periodNames: [],
             startDateTime: {},
             endDateTime: {},
-            timeInterval: {}
+            timeInterval: {},
+            duration: {}
         }
     end
 

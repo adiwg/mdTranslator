@@ -95,4 +95,49 @@ module AdiwgDateTimeFun
         return s
     end
 
+    def self.writeDuration(hDuration)
+        # format P[n]Y[n]M[n]DT[n]H[n]M[n]S
+        # example P1DT12H
+        sDuration = 'P'
+
+        unless hDuration[:years] == 0
+            sDuration += hDuration[:years].to_s + 'Y'
+        end
+
+        unless hDuration[:months] == 0
+            sDuration += hDuration[:months].to_s + 'M'
+        end
+
+        unless hDuration[:days] == 0
+            sDuration += hDuration[:days].to_s + 'D'
+        end
+
+        haveTime = false
+
+        unless hDuration[:hours] == 0
+            unless haveTime
+                sDuration += 'T'
+                haveTime = true
+            end
+            sDuration += hDuration[:hours].to_s + 'H'
+        end
+
+        unless hDuration[:minutes] == 0
+            unless haveTime
+                sDuration += 'T'
+                haveTime = true
+            end
+            sDuration += hDuration[:minutes].to_s + 'M'
+        end
+
+        unless hDuration[:seconds] == 0
+            unless haveTime
+                sDuration += 'T'
+            end
+            sDuration += hDuration[:seconds].to_s + 'S'
+        end
+
+        return sDuration
+    end
+
 end
