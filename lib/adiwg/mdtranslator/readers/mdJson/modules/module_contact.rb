@@ -43,24 +43,35 @@ module ADIWG
                         # contact - is organization (required)
                         if hContact.has_key?('isOrganization')
                             if hContact['isOrganization'] === true
-                                intContact[:isOrganization] = hContact['isOrganization']
+                                intContact[:isOrganization] = true
                             end
-                        end
-
-                        # contact - name (required)
-                        if hContact.has_key?('name')
-                            intContact[:name] = hContact['name']
-                        end
-                        if intContact[:name].nil? || intContact[:name] == ''
-                            responseObj[:readerExecutionMessages] << 'Contact is missing name'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
                         end
 
                         # contact - position name
                         if hContact.has_key?('positionName')
                             if hContact['positionName'] != ''
                                 intContact[:positionName] = hContact['positionName']
+                            end
+                        end
+
+                        # contact - name (required if ...)
+                        # ... isOrganization = true
+                        # ... isOrganization = false && positionName = nil
+                        if hContact.has_key?('name')
+                            if hContact['name'] != ''
+                                intContact[:name] = hContact['name']
+                            end
+                        end
+                        if intContact[:name].nil? || intContact[:name] == ''
+                            if intContact[:isOrganization] === true
+                                responseObj[:readerExecutionMessages] << 'Organization contact is missing name'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
+                            end
+                            if intContact[:positionName].nil? || intContact[:positionName] == ''
+                                responseObj[:readerExecutionMessages] << 'Individual contact is missing name and position'
+                                responseObj[:readerExecutionPass] = false
+                                return nil
                             end
                         end
 

@@ -89,7 +89,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
 
     end
 
-    def test_contact_empty_name
+    def test_contact_empty_organization_name
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn['name'] = ''
@@ -102,10 +102,40 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
 
     end
 
-    def test_contact_missing_name
+    def test_contact_missing_organization_name
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hIn.delete('name')
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        assert_nil metadata
+        refute hResponse[:readerExecutionPass]
+        refute_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_contact_empty_individual_name_have_position
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['isOrganization'] = false
+        hIn['name'] = ''
+        hIn['positionName'] = 'positionName'
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(hIn, hResponse)
+
+        refute_nil metadata
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_contact_empty_individual_name_no_position
+
+        hIn = Marshal::load(Marshal.dump(@@hIn))
+        hIn['isOrganization'] = false
+        hIn['name'] = ''
+        hIn['positionName'] = ''
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
