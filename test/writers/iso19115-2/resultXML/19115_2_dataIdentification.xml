@@ -383,8 +383,26 @@
         <gmd:MD_SpatialRepresentationTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_SpatialRepresentationTypeCode" codeListValue="spatialRepresentationType1" codeSpace="userCode"/>
       </gmd:spatialRepresentationType>
       <gmd:spatialResolution>
+        <gmd:MD_Resolution>
+          <gmd:equivalentScale>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>25000</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:equivalentScale>
+        </gmd:MD_Resolution>
       </gmd:spatialResolution>
       <gmd:spatialResolution>
+        <gmd:MD_Resolution>
+          <gmd:equivalentScale>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>25000</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:equivalentScale>
+        </gmd:MD_Resolution>
       </gmd:spatialResolution>
       <gmd:language>
         <gco:CharacterString>LanguageCode; CountryCode</gco:CharacterString>
