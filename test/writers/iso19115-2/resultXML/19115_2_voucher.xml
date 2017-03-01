@@ -28,7 +28,7 @@
       <gmd:reposit>
         <gmd:CI_ResponsibleParty>
           <gmd:individualName>
-            <gco:CharacterString>address - name only</gco:CharacterString>
+            <gco:CharacterString>contact - minimal</gco:CharacterString>
           </gmd:individualName>
           <gmd:positionName/>
           <gmd:contactInfo/>
