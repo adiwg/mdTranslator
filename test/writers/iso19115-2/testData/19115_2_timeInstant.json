@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "extent": [
         {
@@ -71,7 +56,6 @@
           "geographicExtent": [],
           "temporalExtent": [
             {
-              "type": "instant",
               "timeInstant": {
                 "id": "id0",
                 "description": "description0",
@@ -87,89 +71,74 @@
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "id": "id1",
                 "description": "",
-                "identifier": {},
                 "instantName": [],
                 "dateTime": "2017"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13Z"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25Z"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12Z"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12.345"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12.345Z"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12.345-09"
               }
             },
             {
-              "type": "instant",
               "timeInstant": {
                 "dateTime": "2017-01-13T13:25:12.345-09:15"
               }
