@@ -7,30 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -40,19 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -61,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       },
       "extent": [
         {
@@ -77,7 +62,7 @@
               "maxValue": 9.9,
               "crsId": {
                 "referenceSystemType": "referenceSystemType",
-                "referenceSystem": {
+                "referenceSystemIdentifier": {
                   "identifier": "identifier",
                   "namespace": "namespace"
                 }
@@ -87,7 +72,7 @@
               "minValue": 9.9,
               "maxValue": 9.9,
               "crsId": {
-                "referenceSystem": {
+                "referenceSystemIdentifier": {
                   "identifier": "identifier",
                   "namespace": "namespace"
                 }
