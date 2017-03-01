@@ -7,14 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "address - all keys with singe array elements"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
       "metadataContact": [
         {
-          "role": "custodian",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -24,27 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_dimension"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -59,7 +52,6 @@
       },
       "spatialRepresentation": [
         {
-          "type": "vector",
           "vectorRepresentation": {
             "topologyLevel": "topologyLevel",
             "vectorObject": [
@@ -72,13 +64,9 @@
                 "objectCount": 9
               }
             ]
-          },
-          "gridRepresentation": {},
-          "georectifiedRepresentation": {},
-          "georeferenceableRepresentation": {}
+          }
         },
         {
-          "type": "vector",
           "vectorRepresentation": {
             "topologyLevel": "",
             "vectorObject": []
