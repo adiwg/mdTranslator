@@ -22,7 +22,7 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0"
+        "e.mail@address.com0"
       ]
     },
     {
@@ -44,8 +44,8 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0",
-        "emailAddress1"
+        "e.mail@address.com1",
+        "e.mail@address.com2"
       ]
     },
     {
@@ -78,21 +78,12 @@
     {
       "contactId": "CID005",
       "isOrganization": false,
-      "name": "address - email only",
-      "address": [],
-      "electronicMailAddress": [
-        "emailAddress"
-      ]
-    },
-    {
-      "contactId": "CID006",
-      "isOrganization": false,
       "name": "address - empty array",
       "address": [],
       "electronicMailAddress": []
     },
     {
-      "contactId": "CID007",
+      "contactId": "CID006",
       "isOrganization": false,
       "name": "address - missing key"
     }
@@ -101,7 +92,7 @@
     "metadataInfo": {
       "metadataContact": [
         {
-          "role": "custodian",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -111,14 +102,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_address"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -168,9 +165,6 @@
           },
           {
             "contactId": "CID006"
-          },
-          {
-            "contactId": "CID007"
           }
         ]
       },

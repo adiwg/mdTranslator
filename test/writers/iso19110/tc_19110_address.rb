@@ -33,7 +33,6 @@ class TestWriter19110Address < MiniTest::Test
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
         jsonIn = hJson.to_json
 
         hResponseObj = ADIWG::Mdtranslator.translate(
@@ -52,7 +51,6 @@ class TestWriter19110Address < MiniTest::Test
     def test_19110_address_2
 
         hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
@@ -79,7 +77,6 @@ class TestWriter19110Address < MiniTest::Test
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         jsonIn = hJson.to_json
@@ -100,7 +97,6 @@ class TestWriter19110Address < MiniTest::Test
     def test_19110_address_4
 
         hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
@@ -125,7 +121,6 @@ class TestWriter19110Address < MiniTest::Test
 
         hJson = JSON.parse(@@mdJson)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
@@ -148,31 +143,6 @@ class TestWriter19110Address < MiniTest::Test
     def test_19110_address_6
 
         hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(6)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        jsonIn = hJson.to_json
-
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
-
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
-
-        checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-        refute checkXML
-
-    end
-
-    def test_19110_address_7
-
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
         hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
