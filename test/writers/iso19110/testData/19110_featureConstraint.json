@@ -12,12 +12,9 @@
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -27,14 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "resourceType",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
         "title": "title"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -43,9 +46,9 @@
         }
       ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     }
   },
@@ -68,19 +71,6 @@
       "locale": [],
       "responsibleParty": {
         "role": "role",
-        "roleExtent": [
-          {
-            "description": "description",
-            "temporalExtent": [
-              {
-                "type": "period",
-                "timePeriod": {
-                  "startDateTime": "2016-10-14"
-                }
-              }
-            ]
-          }
-        ],
         "party": [
           {
             "contactId": "CID001"
