@@ -41,7 +41,7 @@
           <gmd:address>
             <gmd:CI_Address>
               <gmd:electronicMailAddress>
-                <gco:CharacterString>emailAddress</gco:CharacterString>
+                <gco:CharacterString>e.mail@address.com0</gco:CharacterString>
               </gmd:electronicMailAddress>
             </gmd:CI_Address>
           </gmd:address>
