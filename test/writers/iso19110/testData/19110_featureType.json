@@ -71,19 +71,6 @@
       "locale": [],
       "responsibleParty": {
         "role": "role",
-        "roleExtent": [
-          {
-            "description": "description",
-            "temporalExtent": [
-              {
-                "type": "period",
-                "timePeriod": {
-                  "startDateTime": "2016-10-14"
-                }
-              }
-            ]
-          }
-        ],
         "party": [
           {
             "contactId": "CID001"
