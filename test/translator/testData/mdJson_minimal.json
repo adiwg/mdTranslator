@@ -7,20 +7,14 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "Stan W. Smith"
+      "name": "contact - minimal"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "f23b2bc2-b872-44f6-ba29-cd63d47fc0f9"
-      },
       "metadataContact": [
         {
-          "role": "custodian",
-          "timePeriod": {
-            "startDateTime": "2016-10-31"
-          },
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -30,17 +24,20 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "mdTranslator creation"
+        "title": "title"
       },
-      "abstract": "Write lots of code for the ADIwg mdTranslator",
+      "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "developer",
-          "timePeriod": {
-            "startDateTime": "2013-01-14"
-          },
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"

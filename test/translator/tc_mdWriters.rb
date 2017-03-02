@@ -20,7 +20,7 @@ class TestMdWriters < MiniTest::Test
 
         metadata = ADIWG::Mdtranslator.translate(
             file: @@jsonObj, reader: 'mdJson', writer: 'xxx',
-            validate: 'none', showAllTags: true, cssLink: 'http://example.com/my.css'
+            validate: 'normal', showAllTags: true, cssLink: 'http://example.com/my.css'
         )
 
         refute_empty metadata
