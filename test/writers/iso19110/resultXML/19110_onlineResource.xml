@@ -17,7 +17,7 @@
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
       <gmd:linkage>
-        <gmd:URL>http://URI.example0.com</gmd:URL>
+        <gmd:URL>http://ISO.uri/adiwg/0</gmd:URL>
       </gmd:linkage>
       <gmd:protocol>
         <gco:CharacterString>protocol</gco:CharacterString>
@@ -37,7 +37,7 @@
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
       <gmd:linkage>
-        <gmd:URL>http://URI.example1.com</gmd:URL>
+        <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
       </gmd:linkage>
       <gmd:protocol/>
       <gmd:name/>
@@ -49,7 +49,7 @@
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
       <gmd:linkage>
-        <gmd:URL>http://URI.example2.com</gmd:URL>
+        <gmd:URL>http://ISO.uri/adiwg/2</gmd:URL>
       </gmd:linkage>
       <gmd:protocol/>
       <gmd:name/>
@@ -57,5 +57,5 @@
       <gmd:function/>
     </gmd:CI_OnlineResource>
   </gmd:onlineResource>
-
+  
 </gmi:MI_Metadata>
