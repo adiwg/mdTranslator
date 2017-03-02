@@ -14,136 +14,223 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.isotc211.org/2005/gmi C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
 
-  <gmd:contactInfo>
-    <gmd:CI_Contact>
-      <gmd:phone>
-        <gmd:CI_Telephone>
-          <gmd:voice>
-            <gco:CharacterString>single service: 111-111-1111</gco:CharacterString>
-          </gmd:voice>
-          <gmd:facsimile/>
-        </gmd:CI_Telephone>
-      </gmd:phone>
-      <gmd:address>
-        <gmd:CI_Address>
-          <gmd:deliveryPoint/>
-          <gmd:city/>
-          <gmd:administrativeArea/>
-          <gmd:postalCode/>
-          <gmd:country/>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>emailAddress</gco:CharacterString>
-          </gmd:electronicMailAddress>
-        </gmd:CI_Address>
-      </gmd:address>
-      <gmd:onlineResource>
-        <gmd:CI_OnlineResource>
-          <gmd:linkage>
-            <gmd:URL>resourceUri</gmd:URL>
-          </gmd:linkage>
-          <gmd:protocol>
-            <gco:CharacterString>protocol</gco:CharacterString>
-          </gmd:protocol>
-          <gmd:name>
-            <gco:CharacterString>name</gco:CharacterString>
-          </gmd:name>
-          <gmd:description>
-            <gco:CharacterString>description</gco:CharacterString>
-          </gmd:description>
-          <gmd:function>
-            <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="function" codeSpace="userCode"/>
-          </gmd:function>
-        </gmd:CI_OnlineResource>
-      </gmd:onlineResource>
-      <gmd:hoursOfService>
-        <gco:CharacterString>hours of service</gco:CharacterString>
-      </gmd:hoursOfService>
-      <gmd:contactInstructions>
-        <gco:CharacterString>contact instructions</gco:CharacterString>
-      </gmd:contactInstructions>
-    </gmd:CI_Contact>
-  </gmd:contactInfo>
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - individual</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName>
+        <gco:CharacterString>positionName</gco:CharacterString>
+      </gmd:positionName>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>single service: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint/>
+              <gmd:city/>
+              <gmd:administrativeArea/>
+              <gmd:postalCode/>
+              <gmd:country/>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>e.mail@address.com1</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol/>
+              <gmd:name/>
+              <gmd:description/>
+              <gmd:function/>
+            </gmd:CI_OnlineResource>
+          </gmd:onlineResource>
+          <gmd:hoursOfService>
+            <gco:CharacterString>hoursOfService</gco:CharacterString>
+          </gmd:hoursOfService>
+          <gmd:contactInstructions>
+            <gco:CharacterString>contactInstructions</gco:CharacterString>
+          </gmd:contactInstructions>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
 
-  <gmd:contactInfo>
-    <gmd:CI_Contact>
-      <gmd:phone>
-        <gmd:CI_Telephone>
-          <gmd:voice>
-            <gco:CharacterString>single service: 111-111-1111</gco:CharacterString>
-          </gmd:voice>
-          <gmd:voice>
-            <gco:CharacterString>multiple services: 222-222-2222</gco:CharacterString>
-          </gmd:voice>
-          <gmd:facsimile>
-            <gco:CharacterString>multiple services: 222-222-2222</gco:CharacterString>
-          </gmd:facsimile>
-        </gmd:CI_Telephone>
-      </gmd:phone>
-      <gmd:address>
-        <gmd:CI_Address>
-          <gmd:deliveryPoint/>
-          <gmd:city/>
-          <gmd:administrativeArea/>
-          <gmd:postalCode/>
-          <gmd:country/>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>emailAddress0</gco:CharacterString>
-          </gmd:electronicMailAddress>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>emailAddress1</gco:CharacterString>
-          </gmd:electronicMailAddress>
-        </gmd:CI_Address>
-      </gmd:address>
-      <gmd:onlineResource>
-        <gmd:CI_OnlineResource>
-          <gmd:linkage>
-            <gmd:URL>resourceUri0</gmd:URL>
-          </gmd:linkage>
-          <gmd:protocol>
-            <gco:CharacterString>protocol</gco:CharacterString>
-          </gmd:protocol>
-          <gmd:name>
-            <gco:CharacterString>name</gco:CharacterString>
-          </gmd:name>
-          <gmd:description>
-            <gco:CharacterString>description</gco:CharacterString>
-          </gmd:description>
-          <gmd:function>
-            <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="function" codeSpace="userCode"/>
-          </gmd:function>
-        </gmd:CI_OnlineResource>
-      </gmd:onlineResource>
-      <gmd:hoursOfService>
-        <gco:CharacterString>hours of service 0</gco:CharacterString>
-      </gmd:hoursOfService>
-      <gmd:contactInstructions>
-        <gco:CharacterString>contact instructions</gco:CharacterString>
-      </gmd:contactInstructions>
-    </gmd:CI_Contact>
-  </gmd:contactInfo>
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:organisationName>
+        <gco:CharacterString>contact - organization</gco:CharacterString>
+      </gmd:organisationName>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>single service: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint/>
+              <gmd:city/>
+              <gmd:administrativeArea/>
+              <gmd:postalCode/>
+              <gmd:country/>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>e.mail@address.com2</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://ISO.uri/adiwg/2</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol/>
+              <gmd:name/>
+              <gmd:description/>
+              <gmd:function/>
+            </gmd:CI_OnlineResource>
+          </gmd:onlineResource>
+          <gmd:hoursOfService>
+            <gco:CharacterString>hoursOfService</gco:CharacterString>
+          </gmd:hoursOfService>
+          <gmd:contactInstructions>
+            <gco:CharacterString>contactInstructions</gco:CharacterString>
+          </gmd:contactInstructions>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
 
-  <gmd:contactInfo>
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource/>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions>
-        <gco:CharacterString>contact instructions</gco:CharacterString>
-      </gmd:contactInstructions>
-    </gmd:CI_Contact>
-  </gmd:contactInfo>
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - multiple array elements</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>single service 30: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:voice>
+                <gco:CharacterString>single service 31: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:deliveryPoint/>
+              <gmd:city/>
+              <gmd:administrativeArea/>
+              <gmd:postalCode/>
+              <gmd:country/>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>e.mail@address.com30</gco:CharacterString>
+              </gmd:electronicMailAddress>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>e.mail@address.com31</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource>
+            <gmd:CI_OnlineResource>
+              <gmd:linkage>
+                <gmd:URL>http://ISO.uri/adiwg/30</gmd:URL>
+              </gmd:linkage>
+              <gmd:protocol/>
+              <gmd:name/>
+              <gmd:description/>
+              <gmd:function/>
+            </gmd:CI_OnlineResource>
+          </gmd:onlineResource>
+          <gmd:hoursOfService>
+            <gco:CharacterString>hoursOfService0</gco:CharacterString>
+          </gmd:hoursOfService>
+          <gmd:contactInstructions>
+            <gco:CharacterString>contactInstructions</gco:CharacterString>
+          </gmd:contactInstructions>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
 
-  <gmd:contactInfo>
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address/>
-      <gmd:onlineResource/>
-      <gmd:hoursOfService>
-        <gco:CharacterString>hours of service</gco:CharacterString>
-      </gmd:hoursOfService>
-      <gmd:contactInstructions/>
-    </gmd:CI_Contact>
-  </gmd:contactInfo>
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - email only</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo>
+        <gmd:CI_Contact>
+          <gmd:phone/>
+          <gmd:address>
+            <gmd:CI_Address>
+              <gmd:electronicMailAddress>
+                <gco:CharacterString>e.mail@address.com4</gco:CharacterString>
+              </gmd:electronicMailAddress>
+            </gmd:CI_Address>
+          </gmd:address>
+          <gmd:onlineResource/>
+          <gmd:hoursOfService/>
+          <gmd:contactInstructions/>
+        </gmd:CI_Contact>
+      </gmd:contactInfo>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
+
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - empty elements</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo/>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
+
+  <gfc:producer>
+    <gmd:CI_ResponsibleParty>
+      <gmd:individualName>
+        <gco:CharacterString>contact - missing elements</gco:CharacterString>
+      </gmd:individualName>
+      <gmd:positionName/>
+      <gmd:contactInfo/>
+      <gmd:role>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+      </gmd:role>
+    </gmd:CI_ResponsibleParty>
+  </gfc:producer>
 
 </gmi:MI_Metadata>

@@ -7,10 +7,16 @@
     {
       "contactId": "CID001",
       "isOrganization": false,
-      "name": "contact - individual single array elements",
+      "name": "contact - individual",
       "positionName": "positionName",
-      "memberOfOrganization": [],
-      "logoGraphic": [],
+      "memberOfOrganization": [
+        "CID002"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
+        }
+      ],
       "phone": [
         {
           "phoneName": "single service",
@@ -26,37 +32,29 @@
         }
       ],
       "electronicMailAddress": [
-        "emailAddress"
+        "e.mail@address.com1"
       ],
       "onlineResource": [
         {
-          "resourceURI": "resourceUri",
-          "protocol": "protocol",
-          "name": "name",
-          "description": "description",
-          "function": "function"
+          "uri": "http://ISO.uri/adiwg/1"
         }
       ],
       "hoursOfService": [
-        "hours of service"
+        "hoursOfService"
       ],
-      "contactInstructions": "contact instructions",
-      "contactType": ""
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
     },
     {
       "contactId": "CID002",
-      "isOrganization": false,
-      "name": "contact - individual multi array elements",
-      "positionName": "positionName",
+      "isOrganization": true,
+      "name": "contact - organization",
       "memberOfOrganization": [
-        "CID003"
+        "CID002"
       ],
       "logoGraphic": [
         {
-          "fileName": "fileName0"
-        },
-        {
-          "fileName": "fileName1"
+          "fileName": "fileName"
         }
       ],
       "phone": [
@@ -66,56 +64,105 @@
           "service": [
             "voice"
           ]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com2"
+      ],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/2"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "contact - multiple array elements",
+      "memberOfOrganization": [],
+      "logoGraphic": [
+        {
+          "fileName": "fileName30"
         },
         {
-          "phoneName": "multiple services",
-          "phoneNumber": "222-222-2222",
+          "fileName": "fileName31"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service 30",
+          "phoneNumber": "111-111-1111",
           "service": [
-            "voice",
-            "fax"
+            "voice"
+          ]
+        },
+        {
+          "phoneName": "single service 31",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
           ]
         }
       ],
       "address": [
         {
-          "addressType": ["addressType0"]
+          "addressType": ["addressType30"]
         },
         {
-          "addressType": ["addressType1"]
+          "addressType": ["addressType31"]
         }
       ],
       "electronicMailAddress": [
-        "emailAddress0",
-        "emailAddress1"
+        "e.mail@address.com30",
+        "e.mail@address.com31"
       ],
       "onlineResource": [
         {
-          "resourceURI": "resourceUri0",
-          "protocol": "protocol",
-          "name": "name",
-          "description": "description",
-          "function": "function"
+          "uri": "http://ISO.uri/adiwg/30"
         },
         {
-          "resourceURI": "resourceUri1",
-          "protocol": "protocol",
-          "name": "name",
-          "description": "description",
-          "function": "function"
+          "uri": "http://ISO.uri/adiwg/31"
         }
       ],
       "hoursOfService": [
-        "hours of service 0",
-        "hours of service 1"
+        "hoursOfService0",
+        "hoursOfService1"
       ],
-      "contactInstructions": "contact instructions",
-      "contactType": "contact type"
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
     },
     {
-      "contactId": "CID003",
-      "isOrganization": true,
-      "name": "contact - organization",
-      "positionName": "positionName",
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "contact - email only",
+      "positionName": "",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "electronicMailAddress": [
+        "e.mail@address.com4"
+      ],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "contact - empty elements",
+      "positionName": "",
       "memberOfOrganization": [],
       "logoGraphic": [],
       "phone": [],
@@ -123,21 +170,20 @@
       "electronicMailAddress": [],
       "onlineResource": [],
       "hoursOfService": [],
-      "contactInstructions": "contact instructions",
+      "contactInstructions": "",
       "contactType": ""
     },
     {
-      "contactId": "CID004",
+      "contactId": "CID006",
       "isOrganization": false,
-      "name": "contact - missing elements",
-      "hoursOfService": ["hours of service"]
+      "name": "contact - missing elements"
     }
   ],
   "metadata": {
     "metadataInfo": {
       "metadataContact": [
         {
-          "role": "custodian",
+          "role": "metadataContact",
           "party": [
             {
               "contactId": "CID001"
@@ -147,14 +193,22 @@
       ]
     },
     "resourceInfo": {
-      "resourceType": "project",
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
       "citation": {
-        "title": "testing class_address"
+        "title": "title"
       },
       "abstract": "abstract",
+      "status": [
+        "status"
+      ],
       "pointOfContact": [
         {
-          "role": "developer",
+          "role": "pointOfContact",
           "party": [
             {
               "contactId": "CID001"
@@ -198,6 +252,12 @@
           },
           {
             "contactId": "CID004"
+          },
+          {
+            "contactId": "CID005"
+          },
+          {
+            "contactId": "CID006"
           }
         ]
       },
