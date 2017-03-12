@@ -1,72 +1,143 @@
 {
   "schema": {
-    "name": "name",
-    "version": "0.0.0"
+    "name": "mdJson",
+    "version": "2.0.0"
   },
   "contact": [
     {
-      "contactId": "individualId0",
+      "contactId": "CID001",
       "isOrganization": false,
-      "name": "name0"
+      "name": "address - all keys with singe array elements",
+      "address": [
+        {
+          "addressType": ["mailing"],
+          "description": "description",
+          "deliveryPoint": [
+            "address line 1"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country"
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com0"
+      ]
     },
     {
-      "contactId": "individualId1",
+      "contactId": "CID002",
       "isOrganization": false,
-      "name": "name1"
+      "name": "address - all keys with multiple array elements",
+      "address": [
+        {
+          "addressType": ["mailing", "physical"],
+          "description": "description",
+          "deliveryPoint": [
+            "address line 1",
+            "address line 2"
+          ],
+          "city": "city",
+          "administrativeArea": "state",
+          "postalCode": "zip",
+          "country": "country"
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com1",
+        "e.mail@address.com2"
+      ]
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "address - all keys with empty values",
+      "address": [
+        {
+          "addressType": ["addressType"],
+          "description": "",
+          "deliveryPoint": [],
+          "city": "",
+          "administrativeArea": "",
+          "postalCode": "",
+          "country": ""
+        }
+      ],
+      "electronicMailAddress": []
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "address - minimum elements",
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ]
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "address - empty array",
+      "address": [],
+      "electronicMailAddress": []
+    },
+    {
+      "contactId": "CID006",
+      "isOrganization": false,
+      "name": "address - missing key"
     }
   ],
   "metadata": {
     "metadataInfo": {
-      "metadataIdentifier": {
-        "identifier": "identifier"
-      },
       "metadataContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "custodian",
           "party": [
             {
-              "contactId": "individualId0"
+              "contactId": "CID001"
             }
           ]
         },
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "custodian",
           "party": [
             {
-              "contactId": "individualId1"
+              "contactId": "CID002"
             }
           ]
-        }
-      ],
-      "metadataDate": [
+        },
         {
-          "date": "2017-02-16",
-          "dateType": "creation"
+          "role": "distributor",
+          "party": [
+            {
+              "contactId": "CID003"
+            }
+          ]
+        },
+        {
+          "role": "distributor",
+          "party": [
+            {
+              "contactId": "CID004"
+            }
+          ]
+        },
+        {
+          "role": "distributor",
+          "party": [
+            {
+              "contactId": "CID005"
+            }
+          ]
+        },
+        {
+          "role": "distributor",
+          "party": [
+            {
+              "contactId": "CID006"
+            }
+          ]
         }
       ]
     },
@@ -78,79 +149,25 @@
         }
       ],
       "citation": {
-        "title": "title"
+        "title": "testing class_address"
       },
       "abstract": "abstract",
+      "status": ["status"],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "developer",
           "party": [
             {
-              "contactId": "individualId0"
+              "contactId": "CID001"
             }
           ]
         }
       ],
-      "status": [
-        "status"
-      ],
       "defaultResourceLocale": {
-        "language": "LanguageCode",
-        "country": "CountryCode",
-        "characterSet": "MD_CharacterSetCode"
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
       }
     }
-  },
-  "dataDictionary": [
-    {
-      "citation": {
-        "title": "title0"
-      },
-      "subject": [
-        "subject"
-      ],
-      "responsibleParty": {
-        "role": "role",
-        "party": [
-          {
-            "contactId": "individualId0"
-          }
-        ]
-      },
-      "dictionaryFormat": "format",
-      "dictionaryIncludedWithResource": true,
-      "domain": [],
-      "entity": []
-    },
-    {
-      "citation": {
-        "title": "title1"
-      },
-      "subject": [
-        "subject"
-      ],
-      "responsibleParty": {
-        "role": "role",
-        "party": [
-          {
-            "contactId": "individualId0"
-          }
-        ]
-      }
-    }
-  ],
-  "metadataRepository": [
-    {
-      "repository": "repository0",
-      "metadataFormat": "iso19115_2"
-    },
-    {
-      "repository": "repository1"
-    }
-  ]
+  }
 }

@@ -1,33 +1,41 @@
+# mdJson 2.0 writer - citation
+
+# History:
+#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
 require 'jbuilder'
-require_relative 'mdJson_base'
-require_relative 'mdJson_resourceIdentifier'
-require_relative 'mdJson_onlineResource'
-require_relative 'mdJson_dateTime'
-require_relative 'mdJson_responsibleParty'
+# require_relative 'mdJson_resourceIdentifier'
+# require_relative 'mdJson_onlineResource'
+# require_relative 'mdJson_dateTime'
+# require_relative 'mdJson_responsibleParty'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        module Citation
-          extend MdJson::Base
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          def self.build(cite)
-            unless cite.nil? || cite.empty?
-              Jbuilder.new do |json|
-                json.title cite[:citTitle]
-                json.alternateTitle cite[:citAltTitle]
-                json.date json_map(cite[:citDate], DateTime) unless cite[:citDate].empty?
-                json.edition cite[:citEdition]
-                json.identifier json_map(cite[:citResourceIds], ResourceIdentifier)
-                json.responsibleParty json_map(cite[:citResponsibleParty], ResponsibleParty)
-                json.presentationForm(cite[:citResourceForms]) unless cite[:citResourceForms].empty?
-                json.onlineResource json_map(cite[:citOlResources], OnlineResource)
-              end
-            end
-          end
-        end
+            module Citation
+
+               def self.build(hCitation)
+
+                  unless hCitation.nil? || hCitation.empty?
+                     Jbuilder.new do |json|
+                        json.title hCitation[:title]
+                        # json.alternateTitle hCitation[:citAltTitle]
+                        # json.date json_map(hCitation[:citDate], DateTime) unless hCitation[:citDate].empty?
+                        # json.edition hCitation[:citEdition]
+                        # json.identifier json_map(hCitation[:citResourceIds], ResourceIdentifier)
+                        # json.responsibleParty json_map(hCitation[:citResponsibleParty], ResponsibleParty)
+                        # json.presentationForm(hCitation[:citResourceForms]) unless hCitation[:citResourceForms].empty?
+                        # json.onlineResource json_map(hCitation[:citOlResources], OnlineResource)
+                     end
+                  end
+
+               end # build
+            end # citation
+
+         end
       end
-    end
-  end
+   end
 end

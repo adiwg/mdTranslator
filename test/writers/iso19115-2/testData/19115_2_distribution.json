@@ -50,36 +50,6 @@
         "country": "USA",
         "characterSet": "UTF-8"
       }
-    },
-    "resourceDistribution": [
-      {
-        "description": "description",
-        "distributor": [
-          {
-            "contact": {
-              "role": "role",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          },
-          {
-            "contact": {
-              "role": "role",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          }
-        ]
-      },
-      {
-        "description": "description"
-      }
-    ]
+    }
   }
 }

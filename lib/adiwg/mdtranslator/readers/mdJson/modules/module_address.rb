@@ -2,14 +2,14 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-# 	Stan Smith 2016-10-03 refactored for mdJson 2.0
+#   Stan Smith 2016-10-03 refactored for mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to remove global namespace constants
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #   Stan Smith 2014-12-30 refactored
 #   ... electronicMailAddresses into internal object
 #   Stan Smith 2014-12-19 prevented passing blank deliveryPoints and
 #   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-# 	Stan Smith 2013-10-21 original script
+#   Stan Smith 2013-10-21 original script
 
 module ADIWG
     module Mdtranslator

@@ -1,69 +1,80 @@
+# mdJson 2.0 writer - resourceInfo
+
+# History:
+#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
 require 'jbuilder'
-require_relative 'mdJson_base'
+require_relative 'mdJson_resourceType'
 require_relative 'mdJson_citation'
-require_relative 'mdJson_timePeriod'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
-require_relative 'mdJson_format'
-require_relative 'mdJson_keyword'
-require_relative 'mdJson_resourceMaintenance'
-require_relative 'mdJson_usage'
-require_relative 'mdJson_graphicOverview'
-require_relative 'mdJson_constraint'
-require_relative 'mdJson_taxonomy'
-require_relative 'mdJson_spatialreference'
-require_relative 'mdJson_extent'
-require_relative 'mdJson_gridInfo'
-require_relative 'mdJson_coverageInfo'
-require_relative 'mdJson_dataQuality'
+# require_relative 'mdJson_timePeriod'
+# require_relative 'mdJson_format'
+# require_relative 'mdJson_keyword'
+# require_relative 'mdJson_resourceMaintenance'
+# require_relative 'mdJson_usage'
+# require_relative 'mdJson_graphicOverview'
+# require_relative 'mdJson_constraint'
+# require_relative 'mdJson_taxonomy'
+# require_relative 'mdJson_spatialreference'
+# require_relative 'mdJson_extent'
+# require_relative 'mdJson_gridInfo'
+# require_relative 'mdJson_coverageInfo'
+# require_relative 'mdJson_dataQuality'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        module ResourceInfo
-          extend MdJson::Base
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          def self.build(_info)
-            Jbuilder.new do |json|
-              json.resourceType _info[:resourceType]
-              json.citation Citation.build(_info[:citation])
-              json.resourceTimePeriod TimePeriod.build(_info[:timePeriod]) unless _info[:timePeriod].empty?
-              json.pointOfContact json_map(_info[:pointsOfContact], ResponsibleParty)
-              json.abstract _info[:abstract]
-              json.shortAbstract _info[:shortAbstract]
-              json.status _info[:status]
-              json.hasMapLocation _info[:hasMapLocation?]
-              json.hasDataAvailable _info[:hasDataAvailable?]
-              json.language (_info[:resourceLanguages])
-              json.characterSet (_info[:resourceCharacterSets])
-              json.locale json_map(_info[:resourceLocales], Locale)
-              json.purpose _info[:purpose]
-              json.credit (_info[:credits])
-              json.topicCategory (_info[:topicCategories])
-              json.environmentDescription _info[:environmentDescription]
-              json.resourceNativeFormat json_map(_info[:resourceFormats], Format)
-              json.keyword json_map(_info[:descriptiveKeywords], Keyword)
-              json.resourceMaintenance json_map(_info[:resourceMaint], ResourceMaintenance)
-              json.resourceSpecificUsage json_map(_info[:resourceUses], Usage)
-              json.graphicOverview json_map(_info[:graphicOverview], GraphicOverview)
-              json.constraint Constraint.build(_info[:useConstraints], _info[:legalConstraints], _info[:securityConstraints])
-              json.taxonomy Taxonomy.build(_info[:taxonomy]) unless _info[:taxonomy].empty?
-              json.spatialReferenceSystem SpatialReference.build(_info[:spatialReferenceSystem])
-              json.spatialResolution (_info[:spatialResolutions]) do |sr|
-                json.equivalentScale sr[:equivalentScale]
-                json.distance sr[:distance]
-                json.uom sr[:distanceUOM]
-              end
-              json.extent json_map(_info[:extents], Extent)
-              json.gridInfo json_map(_info[:gridInfo], GridInfo)
-              json.coverageInfo json_map(_info[:coverageInfo], CoverageInfo)
-              json.dataQualityInfo json_map(_info[:dataQualityInfo], DataQuality)
-              json.supplementalInfo _info[:supplementalInfo]
-            end
-          end
-        end
+            module ResourceInfo
+
+               def self.build(hResInfo)
+                  Jbuilder.new do |json|
+                     json.resourceType hResInfo[:resourceTypes].map { |obj| ResourceType.build(obj).attributes! }
+                     json.citation Citation.build(hResInfo[:citation])
+                     json.abstract hResInfo[:abstract]
+                     json.status(hResInfo[:status]) unless hResInfo[:status].empty?
+                     json.pointOfContact hResInfo[:pointOfContacts].map { |obj| ResponsibleParty.build(obj).attributes! }
+                     json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
+
+                     #   json.resourceTimePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
+                     #   json.shortAbstract hResInfo[:shortAbstract]
+                     #   json.status hResInfo[:status]
+                     #   json.hasMapLocation hResInfo[:hasMapLocation?]
+                     #   json.hasDataAvailable hResInfo[:hasDataAvailable?]
+                     #   json.language (hResInfo[:resourceLanguages])
+                     #   json.characterSet (hResInfo[:resourceCharacterSets])
+                     #   json.purpose hResInfo[:purpose]
+                     #   json.credit (hResInfo[:credits])
+                     #   json.topicCategory (hResInfo[:topicCategories])
+                     #   json.environmentDescription hResInfo[:environmentDescription]
+                     #   json.resourceNativeFormat json_map(hResInfo[:resourceFormats], Format)
+                     #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
+                     #   json.resourceMaintenance json_map(hResInfo[:resourceMaint], ResourceMaintenance)
+                     #   json.resourceSpecificUsage json_map(hResInfo[:resourceUses], Usage)
+                     #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
+                     #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
+                     #   json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
+                     #   json.spatialReferenceSystem SpatialReference.build(hResInfo[:spatialReferenceSystem])
+                     #   json.spatialResolution (hResInfo[:spatialResolutions]) do |sr|
+                     #     json.equivalentScale sr[:equivalentScale]
+                     #     json.distance sr[:distance]
+                     #     json.uom sr[:distanceUOM]
+                     #   end
+                     #   json.extent json_map(hResInfo[:extents], Extent)
+                     #   json.gridInfo json_map(hResInfo[:gridInfo], GridInfo)
+                     #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
+                     #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)
+                     #   json.supplementalInfo hResInfo[:supplementalInfo]
+
+                  end
+
+               end # build
+            end # ResourceInfo
+
+         end
       end
-    end
-  end
+   end
 end

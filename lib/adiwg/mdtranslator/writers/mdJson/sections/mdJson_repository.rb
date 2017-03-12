@@ -1,4 +1,4 @@
-# mdJson 2.0 writer - locale
+# mdJson 2.0 writer - metadataRepository
 
 # History:
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
@@ -11,18 +11,17 @@ module ADIWG
       module Writers
          module MdJson
 
-            module Locale
+            module Repository
 
-               def self.build(hLocale)
+               def self.build(hRepository)
 
                   Jbuilder.new do |json|
-                     json.language hLocale[:languageCode]
-                     json.country hLocale[:countryCode]
-                     json.characterSet hLocale[:characterEncoding]
+                     json.repository hRepository[:repository]
+                     json.metadataStandard hRepository[:metadataStandard]
                   end
 
                end # build
-            end # Locale
+            end # Repository
 
          end
       end

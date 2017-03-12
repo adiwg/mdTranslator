@@ -1,36 +1,42 @@
+# mdJson 2.0 writer - metadataInfo
+
+# History:
+#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
 require 'jbuilder'
-require_relative 'mdJson_base'
-require_relative 'mdJson_citation'
-require_relative 'mdJson_resourceIdentifier'
 require_relative 'mdJson_responsibleParty'
-require_relative 'mdJson_locale'
-require_relative 'mdJson_resourceMaintenance'
+# require_relative 'mdJson_citation'
+# require_relative 'mdJson_resourceIdentifier'
+# require_relative 'mdJson_locale'
+# require_relative 'mdJson_resourceMaintenance'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        module MetadataInfo
-          extend MdJson::Base
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          def self.build(_info)
-            Jbuilder.new do |json|
-              unless _info[:metadataId].nil?
-                json.metadataIdentifier ResourceIdentifier.build(_info[:metadataId])
-                json.parentMetadata Citation.build(_info[:parentMetadata])
-                json.metadataContact json_map(_info[:metadataCustodians], ResponsibleParty)
-                json.metadataCharacterSet _info[:metadataCharacterSet]
-                json.metadataLocales json_map(_info[:metadataLocales], Locale)
-                json.metadataCreationDate _info[:metadataCreateDate][:dateTime]
-                json.metadataLastUpdate _info[:metadataUpdateDate][:dateTime]
-                json.metadataUri _info[:metadataURI]
-                json.metadataStatus _info[:metadataStatus]
-                json.metadataMaintenance ResourceMaintenance.build( _info[:maintInfo])
-              end
-            end
-          end
-        end
+            module MetadataInfo
+
+               def self.build(hMetaInfo)
+
+                  Jbuilder.new do |json|
+                     # json.metadataIdentifier ResourceIdentifier.build(hMetaInfo[:metadataId])
+                     # json.parentMetadata Citation.build(hMetaInfo[:parentMetadata])
+                     json.metadataContact hMetaInfo[:metadataContacts].map { |obj| ResponsibleParty.build(obj).attributes! }
+                     # json.metadataCharacterSet hMetaInfo[:metadataCharacterSet]
+                     # json.metadataLocales json_map(hMetaInfo[:metadataLocales], Locale)
+                     # json.metadataCreationDate hMetaInfo[:metadataCreateDate][:dateTime]
+                     # json.metadataLastUpdate hMetaInfo[:metadataUpdateDate][:dateTime]
+                     # json.metadataUri hMetaInfo[:metadataURI]
+                     # json.metadataStatus hMetaInfo[:metadataStatus]
+                     # json.metadataMaintenance ResourceMaintenance.build( hMetaInfo[:maintInfo])
+                  end
+
+               end # build
+            end # MetadataInfo
+
+         end
       end
-    end
-  end
+   end
 end

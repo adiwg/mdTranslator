@@ -1,52 +1,54 @@
+# mdJson 2.0 writer
+
+# History:
+#   Stan Smith 2017-03-10 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
 require 'jbuilder'
 require_relative 'version'
-require_relative 'sections/mdJson_contact'
-require_relative 'sections/mdJson_metadata'
-require_relative 'sections/mdJson_dictionary'
+require_relative 'sections/mdJson_mdJson'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        def self.startWriter(_intObj, responseObj, _paramsObj)
-          @intObj = _intObj
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          # set output flag for null properties
-          Jbuilder.ignore_nil(!responseObj[:writerShowTags])
-          # set the format of the output file based on the writer specified
-          responseObj[:writerFormat] = 'json'
-          responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::MdJson::VERSION
+            def self.startWriter(intObj, responseObj)
 
-          # version
-          metadata = Jbuilder.new do |json|
-            json.version do
-              json.name 'mdJson'
-              json.version responseObj[:writerVersion]
+               @intObj = intObj
+
+               # set output flag for null properties
+               Jbuilder.ignore_nil(!responseObj[:writerShowTags])
+
+               # set the format of the output file based on the writer specified
+               responseObj[:writerFormat] = 'json'
+               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::MdJson::VERSION
+
+               # write the mdJson metadata record
+               metadata = MdJson.build(intObj, responseObj)
+
+               # set writer pass to true if no messages
+               # false or warning will be set by code that places the message
+               responseObj[:writerPass] = true if responseObj[:writerMessages].empty?
+
+               # generated mdJson is not validated against schema
+               # mdJson record may be partial
+               # or mdJson may be conversion from other format destined for mdEditor
+
+               # encode the metadata target as JSON
+               metadata.target!
+
             end
 
-            json.contact _intObj[:contacts].map { |obj| Contact.build(obj).attributes! }
-            json.metadata Metadata.build(_intObj[:metadata])
-            json.dataDictionary _intObj[:dataDictionary].map { |obj| Dictionary.build(obj).attributes! }
-          end
+            # find contact in contact array and return the contact hash
+            def self.getContact(contactID)
+               @intObj[:contacts].each do |hContact|
+                  return hContact if hContact[:contactId] == contactID
+               end
+               {}
+            end
 
-          # set writer pass to true if no messages
-          # false or warning will be set by code that places the message
-          responseObj[:writerPass] = true if responseObj[:writerMessages].empty?
-
-          # j = JSON.parse(metadata.target!)
-          # puts JSON.pretty_generate(j)
-
-          metadata.target!
-        end
-
-        # find contact in contact array and return the contact hash
-        def self.getContact(contactID)
-          @intObj[:contacts].each do |hContact|
-            return hContact if hContact[:contactId] == contactID
-          end
-          {}
-        end
+         end
       end
-    end
-  end
+   end
 end
