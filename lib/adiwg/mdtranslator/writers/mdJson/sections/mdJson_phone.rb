@@ -18,7 +18,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.phoneName hPhone[:phoneName]
                      json.phoneNumber hPhone[:phoneNumber]
-                     json.service hPhone[:phoneServiceTypes]
+                     json.service hPhone[:phoneServiceTypes] unless hPhone[:phoneServiceTypes].empty?
                   end
 
                end # build

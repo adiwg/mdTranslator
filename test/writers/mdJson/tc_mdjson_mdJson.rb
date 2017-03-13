@@ -14,7 +14,7 @@ class TestWriterMdJson < TestWriterMdJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('mdJson.json')
 
-   def test_mdJson_schema
+   def test_schema_mdJson
 
       errors = TestWriterMdJsonParent.testSchema(@@jsonIn, 'schema.json')
       assert_empty errors
