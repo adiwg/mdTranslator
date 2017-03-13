@@ -57,7 +57,7 @@
                "role": "pointOfContact",
                "party": [
                   {
-                     "contactId": "CID002"
+                     "contactId": "CID001"
                   }
                ]
             }
