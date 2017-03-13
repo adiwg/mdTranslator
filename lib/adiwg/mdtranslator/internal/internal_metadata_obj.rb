@@ -143,6 +143,7 @@ class InternalMetadata
         }
     end
 
+    # TODO remove newDateTime if possible
     def newDateTime
         intObj = {
             dateTime: nil,
@@ -291,6 +292,7 @@ class InternalMetadata
             browseGraphics: []
         }
     end
+
 
     def newIdentifier
         # handles MD_Identifier (ISO 19115-2 & -1)

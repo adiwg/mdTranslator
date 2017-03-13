@@ -23,7 +23,7 @@ module ADIWG
                def self.build(hMetaInfo)
 
                   Jbuilder.new do |json|
-                     # json.metadataIdentifier ResourceIdentifier.build(hMetaInfo[:metadataId])
+                     json.metadataIdentifier Identifier.build(hMetaInfo[:metadataIdentifier]) unless hMetaInfo[:metadataIdentifier].empty?
                      # json.parentMetadata Citation.build(hMetaInfo[:parentMetadata])
                      json.metadataContact hMetaInfo[:metadataContacts].map { |obj| ResponsibleParty.build(obj).attributes! }
                      # json.metadataCharacterSet hMetaInfo[:metadataCharacterSet]

@@ -1,8 +1,10 @@
-# mdJson 2.0 writer - phone
+# mdJson 2.0 writer - series
 
 # History:
 #   Stan Smith 2017-03-12 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
+
+# TODO add series tests
 
 require 'jbuilder'
 
@@ -11,18 +13,18 @@ module ADIWG
       module Writers
          module MdJson
 
-            module Phone
+            module Series
 
-               def self.build(hPhone)
+               def self.build(hSeries)
 
                   Jbuilder.new do |json|
-                     json.phoneName hPhone[:phoneName]
-                     json.phoneNumber hPhone[:phoneNumber]
-                     json.service hPhone[:phoneServiceTypes] unless hPhone[:phoneServiceTypes].empty?
+                     json.seriesName hSeries[:seriesName]
+                     json.seriesIssue hSeries[:seriesIssue]
+                     json.issuePage hSeries[:issuePage]
                   end
 
                end # build
-            end # Phone
+            end # Series
 
          end
       end
