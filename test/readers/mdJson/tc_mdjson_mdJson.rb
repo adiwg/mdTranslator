@@ -29,7 +29,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:schema]
-        assert_equal 2, metadata[:contacts].length
+        assert_equal 6, metadata[:contacts].length
         refute_empty metadata[:metadata]
         assert_equal 2, metadata[:dataDictionaries].length
         assert_equal 2, metadata[:metadataRepositories].length
@@ -105,7 +105,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:schema]
-        assert_equal 2, metadata[:contacts].length
+        assert_equal 6, metadata[:contacts].length
         assert_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
         assert_empty metadata[:metadataRepositories]
@@ -125,7 +125,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         refute_empty metadata[:schema]
-        assert_equal 2, metadata[:contacts].length
+        assert_equal 6, metadata[:contacts].length
         assert_empty metadata[:metadata]
         assert_empty metadata[:dataDictionaries]
         assert_empty metadata[:metadataRepositories]

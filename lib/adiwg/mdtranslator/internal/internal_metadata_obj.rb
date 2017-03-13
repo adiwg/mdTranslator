@@ -143,7 +143,6 @@ class InternalMetadata
         }
     end
 
-    # TODO remove newDateTime if possible
     def newDateTime
         intObj = {
             dateTime: nil,

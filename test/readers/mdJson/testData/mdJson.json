@@ -1,173 +1,231 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "address - all keys with singe array elements",
-      "address": [
-        {
-          "addressType": ["mailing"],
-          "description": "description",
-          "deliveryPoint": [
-            "address line 1"
-          ],
-          "city": "city",
-          "administrativeArea": "state",
-          "postalCode": "zip",
-          "country": "country"
-        }
-      ],
-      "electronicMailAddress": [
-        "e.mail@address.com0"
-      ]
-    },
-    {
-      "contactId": "CID002",
-      "isOrganization": false,
-      "name": "address - all keys with multiple array elements",
-      "address": [
-        {
-          "addressType": ["mailing", "physical"],
-          "description": "description",
-          "deliveryPoint": [
-            "address line 1",
-            "address line 2"
-          ],
-          "city": "city",
-          "administrativeArea": "state",
-          "postalCode": "zip",
-          "country": "country"
-        }
-      ],
-      "electronicMailAddress": [
-        "e.mail@address.com1",
-        "e.mail@address.com2"
-      ]
-    },
-    {
-      "contactId": "CID003",
-      "isOrganization": false,
-      "name": "address - all keys with empty values",
-      "address": [
-        {
-          "addressType": ["addressType"],
-          "description": "",
-          "deliveryPoint": [],
-          "city": "",
-          "administrativeArea": "",
-          "postalCode": "",
-          "country": ""
-        }
-      ],
-      "electronicMailAddress": []
-    },
-    {
-      "contactId": "CID004",
-      "isOrganization": false,
-      "name": "address - minimum elements",
-      "address": [
-        {
-          "addressType": ["addressType"]
-        }
-      ]
-    },
-    {
-      "contactId": "CID005",
-      "isOrganization": false,
-      "name": "address - empty array",
-      "address": [],
-      "electronicMailAddress": []
-    },
-    {
-      "contactId": "CID006",
-      "isOrganization": false,
-      "name": "address - missing key"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "custodian",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "address - all keys with singe array elements",
+         "address": [
             {
-              "contactId": "CID001"
+               "addressType": [
+                  "mailing"
+               ],
+               "description": "description",
+               "deliveryPoint": [
+                  "address line 1"
+               ],
+               "city": "city",
+               "administrativeArea": "state",
+               "postalCode": "zip",
+               "country": "country"
             }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
-            {
-              "contactId": "CID002"
-            }
-          ]
-        },
-        {
-          "role": "distributor",
-          "party": [
-            {
-              "contactId": "CID003"
-            }
-          ]
-        },
-        {
-          "role": "distributor",
-          "party": [
-            {
-              "contactId": "CID004"
-            }
-          ]
-        },
-        {
-          "role": "distributor",
-          "party": [
-            {
-              "contactId": "CID005"
-            }
-          ]
-        },
-        {
-          "role": "distributor",
-          "party": [
-            {
-              "contactId": "CID006"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "testing class_address"
+         ],
+         "electronicMailAddress": [
+            "e.mail@address.com0"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "developer",
-          "party": [
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "address - all keys with multiple array elements",
+         "address": [
             {
-              "contactId": "CID001"
+               "addressType": [
+                  "mailing",
+                  "physical"
+               ],
+               "description": "description",
+               "deliveryPoint": [
+                  "address line 1",
+                  "address line 2"
+               ],
+               "city": "city",
+               "administrativeArea": "state",
+               "postalCode": "zip",
+               "country": "country"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
+         ],
+         "electronicMailAddress": [
+            "e.mail@address.com1",
+            "e.mail@address.com2"
+         ]
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "address - all keys with empty values",
+         "address": [
+            {
+               "addressType": [
+                  "addressType"
+               ],
+               "description": "",
+               "deliveryPoint": [],
+               "city": "",
+               "administrativeArea": "",
+               "postalCode": "",
+               "country": ""
+            }
+         ],
+         "electronicMailAddress": []
+      },
+      {
+         "contactId": "CID004",
+         "isOrganization": false,
+         "name": "address - minimum elements",
+         "address": [
+            {
+               "addressType": [
+                  "addressType"
+               ]
+            }
+         ]
+      },
+      {
+         "contactId": "CID005",
+         "isOrganization": false,
+         "name": "address - empty array",
+         "address": [],
+         "electronicMailAddress": []
+      },
+      {
+         "contactId": "CID006",
+         "isOrganization": false,
+         "name": "address - missing key"
       }
-    }
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID002"
+                  }
+               ]
+            },
+            {
+               "role": "distributor",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            },
+            {
+               "role": "distributor",
+               "party": [
+                  {
+                     "contactId": "CID004"
+                  }
+               ]
+            },
+            {
+               "role": "distributor",
+               "party": [
+                  {
+                     "contactId": "CID005"
+                  }
+               ]
+            },
+            {
+               "role": "distributor",
+               "party": [
+                  {
+                     "contactId": "CID006"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "testing class_address"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "developer",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   },
+   "dataDictionary": [
+      {
+         "citation": {
+            "title": "title0"
+         },
+         "subject": [
+            "subject"
+         ],
+         "responsibleParty": {
+            "role": "role",
+            "party": [
+               {
+                  "contactId": "CID001"
+               }
+            ]
+         },
+         "dictionaryFormat": "format",
+         "dictionaryIncludedWithResource": true,
+         "domain": [],
+         "entity": []
+      },
+      {
+         "citation": {
+            "title": "title1"
+         },
+         "subject": [
+            "subject"
+         ],
+         "responsibleParty": {
+            "role": "role",
+            "party": [
+               {
+                  "contactId": "CID001"
+               }
+            ]
+         }
+      }
+   ],
+   "metadataRepository": [
+      {
+         "repository": "repository0",
+         "metadataFormat": "iso19115_2"
+      },
+      {
+         "repository": "repository1"
+      }
+   ]
 }
