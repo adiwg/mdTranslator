@@ -5,9 +5,10 @@
 #   Josh Bradley original script
 
 require 'jbuilder'
-require_relative 'mdJson_onlineResource'
+require_relative 'mdJson_graphicOverview'
 require_relative 'mdJson_phone'
 require_relative 'mdJson_address'
+require_relative 'mdJson_onlineResource'
 
 module ADIWG
    module Mdtranslator
@@ -23,10 +24,15 @@ module ADIWG
                      json.isOrganization hContact[:isOrganization]
                      json.name hContact[:name]
                      json.positionName hContact[:positionName]
-                     # json.onlineResource json_map(hContact[:onlineRes], OnlineResource)
-                     # json.contactInstructions hContact[:contactInstructions]
-                     # json.phoneBook json_map(hContact[:phones], Phone)
-                     # json.address Address.build(hContact[:address])
+                     json.memberOfOrganization hContact[:memberOfOrgs] unless hContact[:memberOfOrgs].empty?
+                     json.logoGraphic hContact[:logos].map { |obj| GraphicOverview.build(obj).attributes! }
+                     json.phone hContact[:phones].map { |obj| Phone.build(obj).attributes! }
+                     json.address hContact[:addresses].map { |obj| Address.build(obj).attributes! }
+                     json.electronicMailAddress hContact[:eMailList] unless hContact[:eMailList].empty?
+                     json.onlineResource hContact[:onlineResources].map { |obj| OnlineResource.build(obj).attributes! }
+                     json.hoursOfService hContact[:hoursOfService] unless hContact[:hoursOfService].empty?
+                     json.contactInstructions hContact[:contactInstructions]
+                     json.contactType hContact[:contactType]
                   end
 
                end # build

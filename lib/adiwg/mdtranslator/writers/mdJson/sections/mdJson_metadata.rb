@@ -4,6 +4,8 @@
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
+# TODO complete
+
 require 'jbuilder'
 require_relative 'mdJson_metadataInfo'
 require_relative 'mdJson_resourceInfo'
