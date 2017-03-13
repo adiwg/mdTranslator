@@ -27,9 +27,16 @@ class TestWriterMdJson < TestWriterMdJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
+      require 'pp'
+      pp metadata
+      puts('-----------------------')
+      puts JSON.pretty_generate(JSON.parse(metadata[:writerOutput]))
+      puts('=======================')
       expect = JSON.parse(@@jsonIn)
       got = JSON.parse(metadata[:writerOutput])
 
+      require 'pp'
+      pp expect.deep_diff(got)
       assert_equal expect, got
 
    end

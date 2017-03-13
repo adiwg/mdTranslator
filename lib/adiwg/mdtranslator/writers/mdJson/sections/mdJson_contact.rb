@@ -20,16 +20,17 @@ module ADIWG
                def self.build(hContact)
 
                   Jbuilder.new do |json|
+                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      json.contactId hContact[:contactId]
                      json.isOrganization hContact[:isOrganization]
                      json.name hContact[:name]
                      json.positionName hContact[:positionName]
                      json.memberOfOrganization hContact[:memberOfOrgs] unless hContact[:memberOfOrgs].empty?
-                     json.logoGraphic hContact[:logos].map { |obj| GraphicOverview.build(obj).attributes! }
-                     json.phone hContact[:phones].map { |obj| Phone.build(obj).attributes! }
-                     json.address hContact[:addresses].map { |obj| Address.build(obj).attributes! }
+                     json.logoGraphic @Namespace.json_map(hContact[:logos], GraphicOverview)
+                     json.phone @Namespace.json_map(hContact[:phones], Phone)
+                     json.address @Namespace.json_map(hContact[:addresses], Address)
                      json.electronicMailAddress hContact[:eMailList] unless hContact[:eMailList].empty?
-                     json.onlineResource hContact[:onlineResources].map { |obj| OnlineResource.build(obj).attributes! }
+                     json.onlineResource @Namespace.json_map(hContact[:onlineResources], OnlineResource)
                      json.hoursOfService hContact[:hoursOfService] unless hContact[:hoursOfService].empty?
                      json.contactInstructions hContact[:contactInstructions]
                      json.contactType hContact[:contactType]

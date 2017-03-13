@@ -48,6 +48,15 @@ module ADIWG
                {}
             end
 
+            # ignore jBuilder object mapping when array is empty
+            def self.json_map(collection = [], _class)
+               if collection.nil? || collection.empty?
+                  return nil
+               else
+                  collection.map { |item| _class.build(item).attributes! }
+               end
+            end
+
          end
       end
    end

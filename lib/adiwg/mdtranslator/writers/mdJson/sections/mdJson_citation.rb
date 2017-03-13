@@ -22,18 +22,19 @@ module ADIWG
                def self.build(hCitation)
 
                   unless hCitation.nil? || hCitation.empty?
+                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      Jbuilder.new do |json|
                         json.title hCitation[:title]
                         json.alternateTitle hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
-                        json.date hCitation[:dates].map { |obj| DateTime.build(obj).attributes! }
+                        json.date @Namespace.json_map(hCitation[:dates], DateTime)
                         json.edition hCitation[:edition]
-                        json.responsibleParty hCitation[:responsibleParties].map { |obj| ResponsibleParty.build(obj).attributes! }
+                        json.responsibleParty @Namespace.json_map(hCitation[:responsibleParties], ResponsibleParty)
                         json.presentationForm hCitation[:presentationForms] unless hCitation[:presentationForms].empty?
-                        json.identifier hCitation[:identifiers].map { |obj| Identifier.build(obj).attributes! }
+                        json.identifier @Namespace.json_map(hCitation[:identifiers], Identifier)
                         json.series Series.build(hCitation[:series]) unless hCitation[:series].empty?
                         json.otherCitationDetails hCitation[:otherDetails] unless hCitation[:otherDetails].empty?
-                        json.onlineResource hCitation[:onlineResources].map { |obj| OnlineResource.build(obj).attributes! }
-                        json.graphic hCitation[:browseGraphics].map { |obj| GraphicOverview.build(obj).attributes! }
+                        json.onlineResource @Namespace.json_map(hCitation[:onlineResources], OnlineResource)
+                        json.graphic @Namespace.json_map(hCitation[:browseGraphics], GraphicOverview)
                      end
                   end
 
