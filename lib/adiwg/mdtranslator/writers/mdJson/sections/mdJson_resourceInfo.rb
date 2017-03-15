@@ -14,6 +14,7 @@ require_relative 'mdJson_locale'
 require_relative 'mdJson_timePeriod'
 require_relative 'mdJson_spatialReference'
 require_relative 'mdJson_spatialRepresentation'
+require_relative 'mdJson_spatialResolution'
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
@@ -50,6 +51,8 @@ module ADIWG
                      json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)
                      json.spatialRepresentationType hResInfo[:spatialRepresentationTypes] unless hResInfo[:spatialRepresentationTypes].empty?
                      json.spatialRepresentation @Namespace.json_map(hResInfo[:spatialRepresentations], SpatialRepresentation)
+                     json.spatialResolution @Namespace.json_map(hResInfo[:spatialResolutions], SpatialResolution)
+
 
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
@@ -65,11 +68,6 @@ module ADIWG
                      #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
                      #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
                      #   json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
-                     #   json.spatialResolution (hResInfo[:spatialResolutions]) do |sr|
-                     #     json.equivalentScale sr[:equivalentScale]
-                     #     json.distance sr[:distance]
-                     #     json.uom sr[:distanceUOM]
-                     #   end
                      #   json.extent json_map(hResInfo[:extents], Extent)
                      #   json.gridInfo json_map(hResInfo[:gridInfo], GridInfo)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
