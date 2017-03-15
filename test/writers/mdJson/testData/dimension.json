@@ -68,6 +68,10 @@
                         },
                         "dimensionTitle": "dimensionTitle",
                         "dimensionDescription": "dimensionDescription"
+                     },
+                     {
+                        "dimensionType": "dimensionType",
+                        "dimensionSize": 9
                      }
                   ],
                   "cellGeometry": "cellGeometry",
