@@ -21,8 +21,9 @@ module ADIWG
 
                def self.build(hCitation)
 
+                  @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                   unless hCitation.nil? || hCitation.empty?
-                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      Jbuilder.new do |json|
                         json.title hCitation[:title]
                         json.alternateTitle hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?

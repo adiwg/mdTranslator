@@ -25,10 +25,6 @@ module ADIWG
                      case dateRes
                         when 'Y', 'YM', 'YMD'
                            dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                        when 'YMDh', 'YMDhm', 'YMDhms'
-                           dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhms')
-                        when 'YMDhZ', 'YMDhmZ', 'YMDhmsZ'
-                           dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, 'YMDhmsZ')
                         else
                            dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
                      end

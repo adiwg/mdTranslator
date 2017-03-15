@@ -1,7 +1,7 @@
-# mdJson 2.0 writer tests - locale
+# mdJson 2.0 writer tests - time period
 
 # History:
-#   Stan Smith 2017-03-13 refactored for mdJson/mdTranslator 2.0
+#   Stan Smith 2017-03-14 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
 require 'minitest/autorun'
@@ -9,21 +9,21 @@ require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterLocale < TestWriterMdJsonParent
+class TestWriterTimePeriod < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('locale.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('timePeriod.json')
 
-   def test_schema_locale
+   def test_schema_timePeriod
 
       hIn = JSON.parse(@@jsonIn)
       hTest = hIn['metadata']['metadataInfo']['defaultMetadataLocale']
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'locale.json')
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'timePeriod.json')
       assert_empty errors
 
    end
 
-   def test_complete_locale
+   def test_complete_timePeriod
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',

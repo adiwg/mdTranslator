@@ -18,10 +18,11 @@ module ADIWG
 
             module Maintenance
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hMaint)
 
                   Jbuilder.new do |json|
-                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      json.frequency hMaint[:frequency]
                      json.date @Namespace.json_map(hMaint[:dates], DateTime)
                      json.scope @Namespace.json_map(hMaint[:scopes], Scope)

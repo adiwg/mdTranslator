@@ -17,10 +17,11 @@ module ADIWG
 
             module Contact
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hContact)
 
                   Jbuilder.new do |json|
-                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      json.contactId hContact[:contactId]
                      json.isOrganization hContact[:isOrganization]
                      json.name hContact[:name]

@@ -1,15 +1,18 @@
-# mdJson 2.0 writer - resourceInfo
+# mdJson 2.0 writer - resource information
 
 # History:
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
+
+# TODO complete
 
 require 'jbuilder'
 require_relative 'mdJson_resourceType'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
-# require_relative 'mdJson_timePeriod'
+require_relative 'mdJson_timePeriod'
+require_relative 'mdJson_spatialReference'
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
@@ -17,7 +20,6 @@ require_relative 'mdJson_locale'
 # require_relative 'mdJson_graphicOverview'
 # require_relative 'mdJson_constraint'
 # require_relative 'mdJson_taxonomy'
-# require_relative 'mdJson_spatialreference'
 # require_relative 'mdJson_extent'
 # require_relative 'mdJson_gridInfo'
 # require_relative 'mdJson_coverageInfo'
@@ -30,25 +32,27 @@ module ADIWG
 
             module ResourceInfo
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hResInfo)
                   Jbuilder.new do |json|
-                     json.resourceType hResInfo[:resourceTypes].map { |obj| ResourceType.build(obj).attributes! }
+                     json.resourceType @Namespace.json_map(hResInfo[:resourceTypes], ResourceType)
                      json.citation Citation.build(hResInfo[:citation])
                      json.abstract hResInfo[:abstract]
-                     json.status(hResInfo[:status]) unless hResInfo[:status].empty?
-                     json.pointOfContact hResInfo[:pointOfContacts].map { |obj| ResponsibleParty.build(obj).attributes! }
-                     json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
+                     json.shortAbstract hResInfo[:shortAbstract]
+                     json.purpose hResInfo[:purpose]
+                     json.credit hResInfo[:credits] unless hResInfo[:credits].empty?
+                     json.timePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
+                     json.status hResInfo[:status] unless hResInfo[:status].empty?
+                     json.topicCategory hResInfo[:topicCategories]
+                     json.pointOfContact @Namespace.json_map(hResInfo[:pointOfContacts], ResponsibleParty)
+                     json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)
 
-                     #   json.resourceTimePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
-                     #   json.shortAbstract hResInfo[:shortAbstract]
-                     #   json.status hResInfo[:status]
+                     #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
                      #   json.hasMapLocation hResInfo[:hasMapLocation?]
                      #   json.hasDataAvailable hResInfo[:hasDataAvailable?]
                      #   json.language (hResInfo[:resourceLanguages])
                      #   json.characterSet (hResInfo[:resourceCharacterSets])
-                     #   json.purpose hResInfo[:purpose]
-                     #   json.credit (hResInfo[:credits])
-                     #   json.topicCategory (hResInfo[:topicCategories])
                      #   json.environmentDescription hResInfo[:environmentDescription]
                      #   json.resourceNativeFormat json_map(hResInfo[:resourceFormats], Format)
                      #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
@@ -57,7 +61,6 @@ module ADIWG
                      #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
                      #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
                      #   json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
-                     #   json.spatialReferenceSystem SpatialReference.build(hResInfo[:spatialReferenceSystem])
                      #   json.spatialResolution (hResInfo[:spatialResolutions]) do |sr|
                      #     json.equivalentScale sr[:equivalentScale]
                      #     json.distance sr[:distance]

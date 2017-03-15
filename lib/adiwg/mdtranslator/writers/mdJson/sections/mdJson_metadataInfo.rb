@@ -21,13 +21,14 @@ module ADIWG
 
             module MetadataInfo
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hMetaInfo)
 
                   Jbuilder.new do |json|
-                     @Namespace = ADIWG::Mdtranslator::Writers::MdJson
                      json.metadataIdentifier Identifier.build(hMetaInfo[:metadataIdentifier]) unless hMetaInfo[:metadataIdentifier].empty?
                      json.parentMetadata Citation.build(hMetaInfo[:parentMetadata])
-                     json.defaultMetadataLocale Locale.build(hMetaInfo[:defaultMetadataLocale])
+                     json.defaultMetadataLocale Locale.build(hMetaInfo[:defaultMetadataLocale]) unless hMetaInfo[:defaultMetadataLocale].empty?
                      json.otherMetadataLocale @Namespace.json_map(hMetaInfo[:otherMetadataLocales], Locale)
                      json.metadataContact @Namespace.json_map(hMetaInfo[:metadataContacts], ResponsibleParty)
                      json.metadataDate @Namespace.json_map(hMetaInfo[:metadataDates], DateTime)
