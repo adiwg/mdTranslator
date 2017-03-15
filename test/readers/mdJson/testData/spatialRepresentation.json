@@ -14,7 +14,7 @@
                }
             ],
             "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true
+            "transformationParameterAvailable": true
          }
       },
       {
@@ -43,7 +43,7 @@
                   }
                ],
                "cellGeometry": "cellGeometry",
-               "transformParamsAvailability": true
+               "transformationParameterAvailable": true
             },
             "checkPointAvailable": true,
             "cornerPoints": [
@@ -70,7 +70,7 @@
                   }
                ],
                "cellGeometry": "cellGeometry",
-               "transformParamsAvailable": true
+               "transformationParameterAvailable": true
             },
             "controlPointAvailable": true,
             "orientationParameterAvailable": true,

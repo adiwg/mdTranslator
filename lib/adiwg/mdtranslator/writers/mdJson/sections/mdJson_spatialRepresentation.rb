@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-14 original script
 
-# TODO complete tests
-
 require 'jbuilder'
 require_relative 'mdJson_gridRepresentation'
 require_relative 'mdJson_vectorRepresentation'
