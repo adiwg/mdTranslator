@@ -1,4 +1,4 @@
-# mdJson 2.0 writer tests - georectified representation
+# mdJson 2.0 writer tests - georeferenceable representation
 
 # History:
 #   Stan Smith 2017-03-15 original script
@@ -8,31 +8,26 @@ require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterGeorectified < TestWriterMdJsonParent
+class TestWriterGeoreferenceable < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('georectified.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('georeferenceable.json')
 
-   def test_schema_georectified
+   def test_schema_georeferenceable
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['metadata']['resourceInfo']['spatialRepresentation'][0]['georectifiedRepresentation']
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'georectifiedRepresentation.json')
+      hTest = hIn['metadata']['resourceInfo']['spatialRepresentation'][0]['georeferenceableRepresentation']
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'georeferenceableRepresentation.json')
       assert_empty errors
 
    end
 
-   def test_complete_georectified
+   def test_complete_georeferenceable
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
-      require 'pp'
-      pp metadata
-      puts('-----------------------')
-      puts JSON.pretty_generate(JSON.parse(metadata[:writerOutput]))
-      puts('=======================')
       expect = JSON.parse(@@jsonIn)
       expect = expect['metadata']['resourceInfo']['spatialRepresentation']
       got = JSON.parse(metadata[:writerOutput])

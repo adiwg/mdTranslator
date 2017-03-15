@@ -19,8 +19,8 @@ module ADIWG
                      json.gridRepresentation Grid.build(hGeoRec[:gridRepresentation]) unless hGeoRec[:gridRepresentation].empty?
                      json.checkPointAvailable hGeoRec[:checkPointAvailable]
                      json.checkPointDescription hGeoRec[:checkPointDescription]
-                     json.cornerPoints hGeoRec[:cornerPoints]
-                     json.centerPoint hGeoRec[:centerPoint]
+                     json.cornerPoints hGeoRec[:cornerPoints] unless hGeoRec[:cornerPoints].empty?
+                     json.centerPoint hGeoRec[:centerPoint] unless hGeoRec[:centerPoint].empty?
                      json.pointInPixel hGeoRec[:pointInPixel]
                      json.transformationDimensionDescription hGeoRec[:transformationDimensionDescription]
                      json.transformationDimensionMapping hGeoRec[:transformationDimensionMapping]

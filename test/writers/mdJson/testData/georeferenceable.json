@@ -55,7 +55,7 @@
          },
          "spatialRepresentation": [
             {
-               "georectifiedRepresentation": {
+               "georeferenceableRepresentation": {
                   "gridRepresentation": {
                      "numberOfDimensions": 9,
                      "dimension": [
@@ -71,22 +71,22 @@
                      "cellGeometry": "cellGeometry",
                      "transformationParameterAvailable": true
                   },
-                  "checkPointAvailable": true,
-                  "checkPointDescription": "checkPointDescription",
-                  "cornerPoints": [
-                     [0.0, 0.0],
-                     [0.0, 1.0],
-                     [1.0, 1.0],
-                     [1.0, 0.0]
-                  ],
-                  "centerPoint": [0.5, 0.5],
-                  "pointInPixel": "pointInPixel",
-                  "transformationDimensionDescription": "transformationDimensionDescription",
-                  "transformationDimensionMapping": "transformationDimensionMapping"
+                  "controlPointAvailable": true,
+                  "orientationParameterAvailable": true,
+                  "orientationParameterDescription": "orientationParameterDescription",
+                  "georeferencedParameter": "georeferencedParameter",
+                  "parameterCitation": [
+                     {
+                        "title": "title"
+                     },
+                     {
+                        "title": "title"
+                     }
+                  ]
                }
             },
             {
-               "georectifiedRepresentation": {
+               "georeferenceableRepresentation": {
                   "gridRepresentation": {
                      "numberOfDimensions": 9,
                      "dimension": [
@@ -102,14 +102,9 @@
                      "cellGeometry": "cellGeometry",
                      "transformationParameterAvailable": true
                   },
-                  "checkPointAvailable": true,
-                  "cornerPoints": [
-                     [0.0, 0.0],
-                     [0.0, 1.0],
-                     [1.0, 1.0],
-                     [1.0, 0.0]
-                  ],
-                  "pointInPixel": "pointInPixel"
+                  "controlPointAvailable": true,
+                  "orientationParameterAvailable": true,
+                  "georeferencedParameter": "georeferencedParameter"
                }
             }
          ]
