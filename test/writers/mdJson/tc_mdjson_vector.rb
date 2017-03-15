@@ -1,28 +1,28 @@
-# mdJson 2.0 writer tests - grid representation
+# mdJson 2.0 writer tests - vector representation
 
 # History:
-#   Stan Smith 2017-03-14 original script
+#   Stan Smith 2017-03-15 original script
 
 require 'minitest/autorun'
 require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterGrid < TestWriterMdJsonParent
+class TestWriterVector < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('grid.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('vector.json')
 
-   def test_schema_grid
+   def test_schema_vector
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'gridRepresentation.json')
+      hTest = hIn['metadata']['resourceInfo']['spatialRepresentation'][0]['vectorRepresentation']
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'vectorRepresentation.json')
       assert_empty errors
 
    end
 
-   def test_complete_grid
+   def test_complete_vector
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
