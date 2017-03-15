@@ -6,10 +6,10 @@
 # TODO complete tests
 
 require 'jbuilder'
-require_relative 'mdJson_grid'
-require_relative 'mdJson_vector'
-require_relative 'mdJson_georectified'
-require_relative 'mdJson_georeferenceable'
+require_relative 'mdJson_gridRepresentation'
+require_relative 'mdJson_vectorRepresentation'
+require_relative 'mdJson_georectifiedRepresentation'
+require_relative 'mdJson_georeferenceableRepresentation'
 
 module ADIWG
    module Mdtranslator

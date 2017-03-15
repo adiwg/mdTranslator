@@ -71,7 +71,7 @@
                      }
                   ],
                   "cellGeometry": "cellGeometry",
-                  "transformParamsAvailability": true
+                  "transformationParameterAvailable": true
                }
             }
          ]

@@ -6,7 +6,7 @@
 # TODO complete tests
 
 require 'jbuilder'
-require_relative 'mdJson_grid'
+require_relative 'mdJson_gridRepresentation'
 require_relative 'mdJson_citation'
 
 module ADIWG
