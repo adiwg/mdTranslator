@@ -13,6 +13,7 @@ require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
 require_relative 'mdJson_timePeriod'
 require_relative 'mdJson_spatialReference'
+require_relative 'mdJson_spatialRepresentation'
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
@@ -47,6 +48,9 @@ module ADIWG
                      json.topicCategory hResInfo[:topicCategories]
                      json.pointOfContact @Namespace.json_map(hResInfo[:pointOfContacts], ResponsibleParty)
                      json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)
+                     json.spatialRepresentationType hResInfo[:spatialRepresentationTypes] unless hResInfo[:spatialRepresentationTypes].empty?
+                     json.spatialRepresentation @Namespace.json_map(hResInfo[:spatialRepresentations], SpatialRepresentation)
+
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
                      #   json.hasMapLocation hResInfo[:hasMapLocation?]

@@ -1,8 +1,7 @@
 # mdJson 2.0 writer tests - contact
 
 # History:
-#   Stan Smith 2017-03-12 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#   Stan Smith 2017-03-12 original script
 
 require 'minitest/autorun'
 require 'json/pure'
