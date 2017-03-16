@@ -15,6 +15,9 @@ require_relative 'mdJson_timePeriod'
 require_relative 'mdJson_spatialReference'
 require_relative 'mdJson_spatialRepresentation'
 require_relative 'mdJson_spatialResolution'
+require_relative 'mdJson_duration'
+require_relative 'mdJson_extent'
+
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
@@ -22,7 +25,6 @@ require_relative 'mdJson_spatialResolution'
 # require_relative 'mdJson_graphicOverview'
 # require_relative 'mdJson_constraint'
 # require_relative 'mdJson_taxonomy'
-# require_relative 'mdJson_extent'
 # require_relative 'mdJson_gridInfo'
 # require_relative 'mdJson_coverageInfo'
 # require_relative 'mdJson_dataQuality'
@@ -46,13 +48,14 @@ module ADIWG
                      json.credit hResInfo[:credits] unless hResInfo[:credits].empty?
                      json.timePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
                      json.status hResInfo[:status] unless hResInfo[:status].empty?
-                     json.topicCategory hResInfo[:topicCategories]
+                     json.topicCategory hResInfo[:topicCategories] unless hResInfo[:topicCategories].empty?
                      json.pointOfContact @Namespace.json_map(hResInfo[:pointOfContacts], ResponsibleParty)
                      json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)
                      json.spatialRepresentationType hResInfo[:spatialRepresentationTypes] unless hResInfo[:spatialRepresentationTypes].empty?
                      json.spatialRepresentation @Namespace.json_map(hResInfo[:spatialRepresentations], SpatialRepresentation)
                      json.spatialResolution @Namespace.json_map(hResInfo[:spatialResolutions], SpatialResolution)
-
+                     json.temporalResolution @Namespace.json_map(hResInfo[:temporalResolutions], Duration)
+                     json.extent @Namespace.json_map(hResInfo[:extents], Extent)
 
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
@@ -68,7 +71,6 @@ module ADIWG
                      #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
                      #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
                      #   json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
-                     #   json.extent json_map(hResInfo[:extents], Extent)
                      #   json.gridInfo json_map(hResInfo[:gridInfo], GridInfo)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
                      #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)

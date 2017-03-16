@@ -51,10 +51,10 @@ module ADIWG
                      json.description hTimePeriod[:description]
                      json.identifier Identifier.build(hTimePeriod[:identifier]) unless hTimePeriod[:identifier].empty?
                      json.periodName hTimePeriod[:periodNames] unless hTimePeriod[:periodNames].empty?
-                     json.startDate startString unless startString == ''
-                     json.endDate endString unless endString == ''
-                     json.timeInterval TimeInterval.build(hTimePeriod[:timeInterval])
-                     json.duration Duration.build(hTimePeriod[:duration])
+                     json.startDateTime startString unless startString == ''
+                     json.endDateTime endString unless endString == ''
+                     json.timeInterval TimeInterval.build(hTimePeriod[:timeInterval]) unless hTimePeriod[:timeInterval].empty?
+                     json.duration Duration.build(hTimePeriod[:duration]) unless hTimePeriod[:duration].empty?
                      # duration
                   end
 

@@ -34,20 +34,7 @@
       ],
       "pointOfContact": [
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2016-10-14"
-                  }
-                }
-              ]
-            }
-          ],
+          "role": "role0",
           "party": [
             {
               "contactId": "individualId0"
@@ -55,12 +42,7 @@
           ]
         },
         {
-          "role": "role",
-          "roleExtent": [
-            {
-              "description": "description"
-            }
-          ],
+          "role": "role1",
           "party": [
             {
               "contactId": "individualId0"
@@ -82,43 +64,29 @@
       ],
       "spatialRepresentation": [
         {
-          "type": "grid",
           "gridRepresentation": {
             "numberOfDimensions": 9,
-            "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true,
             "dimension": [
               {
                 "dimensionType": "dimensionType",
-                "dimensionSize": 9,
-                "resolution": {
-                  "type": "distance",
-                  "value": 9.9,
-                  "unitOfMeasure": "feet"
-                },
-                "dimensionTitle": "dimensionTitle",
-                "dimensionDescription": "dimensionDescription"
+                "dimensionSize": 9
+              },
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9
               }
-            ]
+            ],
+            "cellGeometry": "cellGeometry",
+            "transformationParameterAvailable": true
           }
         },
         {
-          "type": "grid",
-          "gridRepresentation": {
-            "numberOfDimensions": 9,
-            "cellGeometry": "cellGeometry",
-            "transformParamsAvailability": true,
-            "dimension": [
+          "vectorRepresentation": {
+            "topologyLevel": "topologyLevel",
+            "vectorObject": [
               {
-                "dimensionType": "dimensionType",
-                "dimensionSize": 9,
-                "resolution": {
-                  "type": "distance",
-                  "value": 9.9,
-                  "unitOfMeasure": "feet"
-                },
-                "dimensionTitle": "dimensionTitle",
-                "dimensionDescription": "dimensionDescription"
+                "objectType": "objectType",
+                "objectCount": 9
               }
             ]
           }
@@ -126,17 +94,16 @@
       ],
       "spatialResolution": [
         {
-          "type": "scaleFactor",
           "scaleFactor": 25000
         },
         {
-          "type": "scaleFactor",
-          "scaleFactor": 25000
+          "levelOfDetail": "levelOfDetail"
         }
       ],
       "temporalResolution": [
         {
-          "years": 1
+          "years": 1,
+          "months": 8
         },
         {
           "seconds": 1
@@ -320,4 +287,5 @@
       "supplementalInfo": "supplementalInfo"
     }
   ]
+
 }

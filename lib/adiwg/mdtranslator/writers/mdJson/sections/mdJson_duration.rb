@@ -18,12 +18,12 @@ module ADIWG
                def self.build(hDuration)
 
                   Jbuilder.new do |json|
-                     json.years hDuration[:years]
-                     json.months hDuration[:months]
-                     json.days hDuration[:days]
-                     json.hours hDuration[:hours]
-                     json.minutes hDuration[:minutes]
-                     json.seconds hDuration[:seconds]
+                     json.years hDuration[:years] unless hDuration[:years] == 0
+                     json.months hDuration[:months] unless hDuration[:months] == 0
+                     json.days hDuration[:days] unless hDuration[:days] == 0
+                     json.hours hDuration[:hours] unless hDuration[:hours] == 0
+                     json.minutes hDuration[:minutes] unless hDuration[:minutes] == 0
+                     json.seconds hDuration[:seconds] unless hDuration[:seconds] == 0
                   end
 
                end # build

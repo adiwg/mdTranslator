@@ -1,26 +1,38 @@
+# mdJson 2.0 writer - extent
+
+# History:
+#   Stan Smith 2017-03-1 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
+# TODO complete tests
+
 require 'jbuilder'
-require_relative 'mdJson_base'
-require_relative 'mdJson_geographicElement'
+require_relative 'mdJson_geographicExtent'
+require_relative 'mdJson_temporalExtent'
+require_relative 'mdJson_verticalExtent'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        module Extent
-          extend MdJson::Base
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          def self.build(intObj)
-            Jbuilder.new do |json|
-              json.description intObj[:extDesc]
-              json.geographicElement(intObj[:extGeoElements]) do |ge|
-                json.merge! GeographicElement.build(ge)
-              end unless intObj[:extGeoElements].empty?
-              json.temporalElement TemporalElement.build(intObj[:extTempElements])
-              json.verticalElement json_map(intObj[:extVertElements], VerticalElement)
-            end
-          end
-        end
+            module Extent
+
+               def self.build(hExtent)
+
+                  @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
+                  Jbuilder.new do |json|
+                     json.description hExtent[:description]
+                     json.geographicExtent @Namespace.json_map(hExtent[:geographicExtents], GeographicExtent)
+                     json.temporalExtent @Namespace.json_map(hExtent[:temporalExtents], TemporalExtent)
+                     json.verticalExtent @Namespace.json_map(hExtent[:verticalExtents], VerticalExtent)
+                  end
+
+               end # build
+            end # Extent
+
+         end
       end
-    end
-  end
+   end
 end
