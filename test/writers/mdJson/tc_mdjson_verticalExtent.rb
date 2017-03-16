@@ -1,4 +1,4 @@
-# mdJson 2.0 writer tests - temporal extent
+# mdJson 2.0 writer tests - vertical extent
 
 # History:
 #   Stan Smith 2017-03-15 original script
@@ -8,29 +8,22 @@ require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterTemporalExtent < TestWriterMdJsonParent
+class TestWriterVerticalExtent < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('temporalExtent.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('verticalExtent.json')
 
-   def test_schema_temporalExtent
+   def test_schema_verticalExtent
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['metadata']['resourceInfo']['extent'][0]['temporalExtent']
+      hTest = hIn['metadata']['resourceInfo']['extent'][0]['verticalExtent'][0]
 
-      ADIWG::MdjsonSchemas::Utils.load_schemas(false)
-
-      # test timeInstant
-      errors = JSON::Validator.fully_validate('temporalExtent.json', hTest[0])
-      assert_empty errors
-
-      # test timePeriod
-      errors = JSON::Validator.fully_validate('temporalExtent.json', hTest[1])
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'verticalExtent.json')
       assert_empty errors
 
    end
 
-   def test_complete_temporalExtent
+   def test_complete_verticalExtent
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
