@@ -1,4 +1,4 @@
-# mdJson 2.0 writer tests - vertical extent
+# mdJson 2.0 writer tests - geographic extent
 
 # History:
 #   Stan Smith 2017-03-15 original script
@@ -8,21 +8,21 @@ require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterVerticalExtent < TestWriterMdJsonParent
+class TestWriterGeographicExtent < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('verticalExtent.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('geographicExtent.json')
 
-   def test_schema_verticalExtent
+   def test_schema_geographicExtent
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['metadata']['resourceInfo']['extent'][0]['verticalExtent'][0]
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'verticalExtent.json')
+      hTest = hIn['metadata']['resourceInfo']['extent'][0]['geographicExtent'][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'geographicExtent.json')
       assert_empty errors
 
    end
 
-   def test_complete_verticalExtent
+   def test_complete_geographicExtent
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
