@@ -29,8 +29,6 @@ class TestWriterMdJson < TestWriterMdJsonParent
       expect = JSON.parse(@@jsonIn)
       got = JSON.parse(metadata[:writerOutput])
 
-      require 'pp'
-      pp expect.deep_diff(got)
       assert_equal expect, got
 
    end

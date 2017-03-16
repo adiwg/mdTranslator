@@ -120,7 +120,46 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         }
+         },
+         "extent": [
+            {
+               "temporalExtent": [
+                  {
+                     "timePeriod": {
+                        "id": "id",
+                        "description": "description",
+                        "identifier": {
+                           "identifier": "identifier"
+                        },
+                        "periodName": [
+                           "periodName0",
+                           "periodName1"
+                        ],
+                        "startDateTime": "2016-04-15T11",
+                        "endDateTime": "2017-12-31",
+                        "timeInterval": {
+                           "interval": 9.9,
+                           "units": "year"
+                        },
+                        "duration": {
+                           "months": 9,
+                           "days": 7
+                        }
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2016-10-24T11:10:15.200-10:00"
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "endDateTime": "2017-03-16"
+                     }
+                  }
+               ]
+            }
+         ]
       }
    }
 }

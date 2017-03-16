@@ -28,11 +28,6 @@ class TestWriterGeorectified < TestWriterMdJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
-      require 'pp'
-      pp metadata
-      puts('-----------------------')
-      puts JSON.pretty_generate(JSON.parse(metadata[:writerOutput]))
-      puts('=======================')
       expect = JSON.parse(@@jsonIn)
       expect = expect['metadata']['resourceInfo']['spatialRepresentation']
       got = JSON.parse(metadata[:writerOutput])

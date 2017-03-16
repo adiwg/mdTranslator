@@ -1,7 +1,7 @@
 # mdJson 2.0 writer tests - time period
 
 # History:
-#   Stan Smith 2017-03-14 riginal script
+#   Stan Smith 2017-03-16 original script
 
 require 'minitest/autorun'
 require 'json/pure'
@@ -16,7 +16,7 @@ class TestWriterTimePeriod < TestWriterMdJsonParent
    def test_schema_timePeriod
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['metadata']['metadataInfo']['defaultMetadataLocale']
+      hTest = hIn['metadata']['resourceInfo']['extent'][0]['temporalExtent'][0]['timePeriod']
       errors = TestWriterMdJsonParent.testSchema(hTest, 'timePeriod.json')
       assert_empty errors
 
@@ -29,9 +29,9 @@ class TestWriterTimePeriod < TestWriterMdJsonParent
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@jsonIn)
-      expect = expect['metadata']['metadataInfo']['defaultMetadataLocale']
+      expect = expect['metadata']['resourceInfo']['extent'][0]['temporalExtent']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['metadataInfo']['defaultMetadataLocale']
+      got = got['metadata']['resourceInfo']['extent'][0]['temporalExtent']
 
       assert_equal expect, got
 
