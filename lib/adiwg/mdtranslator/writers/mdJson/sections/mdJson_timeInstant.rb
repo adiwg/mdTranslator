@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-15 original script
 
-# TODO complete tests after extent
-
 require 'jbuilder'
 require_relative 'mdJson_identifier'
 
