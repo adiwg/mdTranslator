@@ -1,7 +1,7 @@
 {
   "extent": [
     {
-      "description": "description",
+      "description": "description0",
       "geographicExtent": [
         {
           "containsData": false,
@@ -20,25 +20,31 @@
           ]
         },
         {
+          "containsData": true,
           "geographicElement": [
             {
               "type": "Point",
-              "coordinates": [100.0, 0.0]
+              "coordinates": [200.0, 0.0]
+            },
+            {
+              "type": "LineString",
+              "coordinates": [
+                [200.0, 0.0],
+                [202.0, 2.0]
+              ]
             }
           ]
         }
       ],
       "temporalExtent": [
         {
-          "type": "instant",
           "timeInstant": {
-            "dateTime": "2016-10-24T11:10:15.2-10:00"
+            "dateTime": "2016-10-24T11:10:15.200-10:00"
           }
         },
         {
-          "type": "period",
           "timePeriod": {
-            "startDateTime": "2016-10-24T11:10:15.2-10:00"
+            "startDateTime": "2016-10-24T11:10:15.200-10:00"
           }
         }
       ],
@@ -48,19 +54,19 @@
           "minValue": 9.9,
           "maxValue": 9.9,
           "crsId": {
-            "referenceSystemType": "referenceSystemType",
-            "referenceSystem": {
-              "identifier": "identifier"
+            "referenceSystemType": "referenceSystemType0",
+            "referenceSystemIdentifier": {
+              "identifier": "identifier0"
             }
           }
         },
         {
-          "minValue": 9.9,
-          "maxValue": 9.9,
+          "minValue": 99.99,
+          "maxValue": 99.99,
           "crsId": {
-            "referenceSystemType": "referenceSystemType",
-            "referenceSystem": {
-              "identifier": "identifier"
+            "referenceSystemType": "referenceSystemType1",
+            "referenceSystemIdentifier": {
+              "identifier": "identifier1"
             }
           }
         }

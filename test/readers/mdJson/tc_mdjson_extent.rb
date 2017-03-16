@@ -30,7 +30,7 @@ class TestReaderMdJsonExtent < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'description', metadata[:description]
+        assert_equal 'description0', metadata[:description]
         assert_equal 2, metadata[:geographicExtents].length
         assert_equal 2, metadata[:temporalExtents].length
         assert_equal 2, metadata[:verticalExtents].length

@@ -56,7 +56,7 @@ module ADIWG
                      json.spatialResolution @Namespace.json_map(hResInfo[:spatialResolutions], SpatialResolution)
                      json.temporalResolution @Namespace.json_map(hResInfo[:temporalResolutions], Duration)
                      json.extent @Namespace.json_map(hResInfo[:extents], Extent)
-
+                     #coverateDescriptions []
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
                      #   json.hasMapLocation hResInfo[:hasMapLocation?]
