@@ -4,8 +4,6 @@
 #   Stan Smith 2017-03-12 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO add series tests
-
 require 'jbuilder'
 
 module ADIWG
