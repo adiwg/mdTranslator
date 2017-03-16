@@ -4,8 +4,6 @@
 #   Stan Smith 2017-03-13 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO write tests
-
 require 'jbuilder'
 require_relative 'mdJson_citation'
 

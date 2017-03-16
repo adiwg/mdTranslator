@@ -4,8 +4,6 @@
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO test all date formats
-
 require 'jbuilder'
 
 module ADIWG
