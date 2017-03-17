@@ -29,9 +29,9 @@ class TestWriterCoverageDescription < TestWriterMdJsonParent
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@jsonIn)
-      expect = expect['metadata']['resourceInfo']['coverageDescription'][0]
+      expect = expect['metadata']['resourceInfo']['coverageDescription']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['resourceInfo']['coverageDescription'][0]
+      got = got['metadata']['resourceInfo']['coverageDescription']
 
       assert_equal expect, got
 

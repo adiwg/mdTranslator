@@ -63,27 +63,29 @@
                "attributeGroup": [
                   {
                      "attributeContentType": [
-                        "attributeContentType0"
+                        "attributeContentType0",
+                        "attributeContentType1"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier0",
+                           "attributeDescription": "attributeDescription0",
+                           "sequenceIdentifierType": "sequenceIdentifierType0"
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier1",
+                           "attributeDescription": "attributeDescription1",
+                           "sequenceIdentifierType": "sequenceIdentifierType1"
+                        }
                      ]
                   },
                   {
                      "attributeContentType": [
+                        "attributeContentType0",
                         "attributeContentType1"
                      ]
                   }
-               ],
-               "imageDescription": {
-                  "illuminationElevationAngle": 60.0,
-                  "triangulationIndicator": false,
-                  "radiometricCalibrationAvailable": false,
-                  "cameraCalibrationAvailable": false,
-                  "filmDistortionAvailable": false,
-                  "lensDistortionAvailable": false
-               }
-            },
-            {
-               "coverageName": "coverageName",
-               "coverageDescription": "coverageDescription"
+               ]
             }
          ]
       }
