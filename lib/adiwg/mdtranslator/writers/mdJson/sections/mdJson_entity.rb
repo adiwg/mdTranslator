@@ -1,6 +1,6 @@
 require 'jbuilder'
 require_relative 'mdJson_base'
-require_relative 'mdJson_attribute'
+require_relative 'mdJson_entityAttribute'
 
 module ADIWG
   module Mdtranslator

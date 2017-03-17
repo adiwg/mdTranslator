@@ -17,6 +17,8 @@ require_relative 'mdJson_spatialRepresentation'
 require_relative 'mdJson_spatialResolution'
 require_relative 'mdJson_duration'
 require_relative 'mdJson_extent'
+require_relative 'mdJson_coverageDescription'
+
 
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
@@ -26,7 +28,6 @@ require_relative 'mdJson_extent'
 # require_relative 'mdJson_constraint'
 # require_relative 'mdJson_taxonomy'
 # require_relative 'mdJson_gridInfo'
-# require_relative 'mdJson_coverageInfo'
 # require_relative 'mdJson_dataQuality'
 
 module ADIWG
@@ -56,7 +57,7 @@ module ADIWG
                      json.spatialResolution @Namespace.json_map(hResInfo[:spatialResolutions], SpatialResolution)
                      json.temporalResolution @Namespace.json_map(hResInfo[:temporalResolutions], Duration)
                      json.extent @Namespace.json_map(hResInfo[:extents], Extent)
-                     #coverateDescriptions []
+                     json.coverageDescription @Namespace.json_map(hResInfo[:coverageDescriptions], CoverageDescription)
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
                      #   json.hasMapLocation hResInfo[:hasMapLocation?]

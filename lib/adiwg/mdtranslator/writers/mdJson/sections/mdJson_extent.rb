@@ -1,7 +1,7 @@
 # mdJson 2.0 writer - extent
 
 # History:
-#   Stan Smith 2017-03-1 refactored for mdJson/mdTranslator 2.0
+#   Stan Smith 2017-03-13 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
 require 'jbuilder'
