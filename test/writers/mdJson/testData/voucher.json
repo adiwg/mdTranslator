@@ -58,127 +58,29 @@
                {
                   "citation": {
                      "title": "title"
-                  },
-                  "modifications": "modifications"
-               },
-               {
-                  "citation": {
-                     "title": "title"
                   }
-               }
-            ],
-            "generalScope": "generalScope",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "description0",
-                  "authority": {
-                     "title": "title0"
-                  }
-               },
-               {
-                  "identifier": "identifier1",
-                  "namespace": "namespace1",
-                  "version": "version1",
-                  "description": "description1",
-                  "authority": {
-                     "title": "title1"
-                  }
-               }
-            ],
-            "observer": [
-               {
-                  "role": "role",
-                  "roleExtent": [
-                     {
-                        "description": "description",
-                        "temporalExtent": [
-                           {
-                              "type": "period",
-                              "timePeriod": {
-                                 "startDateTime": "2016-10-14"
-                              }
-                           }
-                        ]
-                     }
-                  ],
-                  "party": [
-                     {
-                        "contactId": "individualId0"
-                     }
-                  ]
-               },
-               {
-                  "role": "role",
-                  "roleExtent": [
-                     {
-                        "description": "description",
-                        "temporalExtent": [
-                           {
-                              "type": "period",
-                              "timePeriod": {
-                                 "startDateTime": "2016-10-14"
-                              }
-                           }
-                        ]
-                     }
-                  ],
-                  "party": [
-                     {
-                        "contactId": "individualId0"
-                     }
-                  ]
                }
             ],
             "identificationProcedure": "identificationProcedure",
-            "identificationCompleteness": "identificationCompleteness",
             "voucher": [
                {
-                  "specimen": "specimen",
+                  "specimen": "specimen0",
                   "repository": {
-                     "role": "role",
-                     "roleExtent": [
-                        {
-                           "description": "description",
-                           "temporalExtent": [
-                              {
-                                 "type": "period",
-                                 "timePeriod": {
-                                    "startDateTime": "2016-10-14"
-                                 }
-                              }
-                           ]
-                        }
-                     ],
+                     "role": "role0",
                      "party": [
                         {
-                           "contactId": "individualId0"
+                           "contactId": "CID001"
                         }
                      ]
                   }
                },
                {
-                  "specimen": "specimen",
+                  "specimen": "specimen1",
                   "repository": {
-                     "role": "role",
-                     "roleExtent": [
-                        {
-                           "description": "description",
-                           "temporalExtent": [
-                              {
-                                 "type": "period",
-                                 "timePeriod": {
-                                    "startDateTime": "2016-10-14"
-                                 }
-                              }
-                           ]
-                        }
-                     ],
+                     "role": "role1",
                      "party": [
                         {
-                           "contactId": "individualId0"
+                           "contactId": "CID001"
                         }
                      ]
                   }
@@ -186,8 +88,7 @@
             ],
             "taxonomicClassification": {
                "commonName": [
-                  "commonName0",
-                  "commonName1"
+                  "commonName0"
                ],
                "taxonomicRank": "taxonomicRank0",
                "latinName": "latinName0"
