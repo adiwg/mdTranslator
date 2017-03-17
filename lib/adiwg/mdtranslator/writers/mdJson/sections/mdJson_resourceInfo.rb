@@ -18,6 +18,7 @@ require_relative 'mdJson_spatialResolution'
 require_relative 'mdJson_duration'
 require_relative 'mdJson_extent'
 require_relative 'mdJson_coverageDescription'
+require_relative 'mdJson_taxonomy'
 
 
 # require_relative 'mdJson_format'
@@ -26,7 +27,6 @@ require_relative 'mdJson_coverageDescription'
 # require_relative 'mdJson_usage'
 # require_relative 'mdJson_graphicOverview'
 # require_relative 'mdJson_constraint'
-# require_relative 'mdJson_taxonomy'
 # require_relative 'mdJson_gridInfo'
 # require_relative 'mdJson_dataQuality'
 
@@ -58,6 +58,7 @@ module ADIWG
                      json.temporalResolution @Namespace.json_map(hResInfo[:temporalResolutions], Duration)
                      json.extent @Namespace.json_map(hResInfo[:extents], Extent)
                      json.coverageDescription @Namespace.json_map(hResInfo[:coverageDescriptions], CoverageDescription)
+                     json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
                      #   json.hasMapLocation hResInfo[:hasMapLocation?]
@@ -71,7 +72,6 @@ module ADIWG
                      #   json.resourceSpecificUsage json_map(hResInfo[:resourceUses], Usage)
                      #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
                      #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
-                     #   json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
                      #   json.gridInfo json_map(hResInfo[:gridInfo], GridInfo)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
                      #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)
