@@ -19,13 +19,13 @@ require_relative 'mdJson_duration'
 require_relative 'mdJson_extent'
 require_relative 'mdJson_coverageDescription'
 require_relative 'mdJson_taxonomy'
+require_relative 'mdJson_graphicOverview'
 
 
 # require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
 # require_relative 'mdJson_usage'
-# require_relative 'mdJson_graphicOverview'
 # require_relative 'mdJson_constraint'
 # require_relative 'mdJson_gridInfo'
 # require_relative 'mdJson_dataQuality'
@@ -59,10 +59,9 @@ module ADIWG
                      json.extent @Namespace.json_map(hResInfo[:extents], Extent)
                      json.coverageDescription @Namespace.json_map(hResInfo[:coverageDescriptions], CoverageDescription)
                      json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
+                     json.graphicOverview @Namespace.json_map(hResInfo[:graphicOverviews], GraphicOverview)
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
-                     #   json.hasMapLocation hResInfo[:hasMapLocation?]
-                     #   json.hasDataAvailable hResInfo[:hasDataAvailable?]
                      #   json.language (hResInfo[:resourceLanguages])
                      #   json.characterSet (hResInfo[:resourceCharacterSets])
                      #   json.environmentDescription hResInfo[:environmentDescription]
@@ -70,9 +69,7 @@ module ADIWG
                      #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
                      #   json.resourceMaintenance json_map(hResInfo[:resourceMaint], ResourceMaintenance)
                      #   json.resourceSpecificUsage json_map(hResInfo[:resourceUses], Usage)
-                     #   json.graphicOverview json_map(hResInfo[:graphicOverview], GraphicOverview)
                      #   json.constraint Constraint.build(hResInfo[:useConstraints], hResInfo[:legalConstraints], hResInfo[:securityConstraints])
-                     #   json.gridInfo json_map(hResInfo[:gridInfo], GridInfo)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
                      #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)
                      #   json.supplementalInfo hResInfo[:supplementalInfo]
