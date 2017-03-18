@@ -1,4 +1,6 @@
-# mdJson 2.0 writer - resource information
+require 'jbuilder'
+require_relative 'mdJson_resourceType'
+require_relative 'mdJson_citation'# mdJson 2.0 writer - resource information
 
 # History:
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
@@ -6,9 +8,6 @@
 
 # TODO complete
 
-require 'jbuilder'
-require_relative 'mdJson_resourceType'
-require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
 require_relative 'mdJson_timePeriod'
@@ -22,10 +21,10 @@ require_relative 'mdJson_taxonomy'
 require_relative 'mdJson_graphicOverview'
 require_relative 'mdJson_format'
 require_relative 'mdJson_keyword'
+require_relative 'mdJson_usage'
 require_relative 'mdJson_constraint'
 
 # require_relative 'mdJson_resourceMaintenance'
-# require_relative 'mdJson_usage'
 # require_relative 'mdJson_gridInfo'
 # require_relative 'mdJson_dataQuality'
 
@@ -61,6 +60,7 @@ module ADIWG
                      json.graphicOverview @Namespace.json_map(hResInfo[:graphicOverviews], GraphicOverview)
                      json.resourceFormat @Namespace.json_map(hResInfo[:resourceFormats], Format)
                      json.keyword @Namespace.json_map(hResInfo[:keywords], Keyword)
+                     json.resourceUsage @Namespace.json_map(hResInfo[:resourceUsages], Usage)
                      json.constraint @Namespace.json_map(hResInfo[:constraints], Constraint)
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
@@ -68,7 +68,6 @@ module ADIWG
                      #   json.characterSet (hResInfo[:resourceCharacterSets])
                      #   json.environmentDescription hResInfo[:environmentDescription]
                      #   json.resourceMaintenance json_map(hResInfo[:resourceMaint], ResourceMaintenance)
-                     #   json.resourceSpecificUsage json_map(hResInfo[:resourceUses], Usage)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
                      #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)
                      #   json.supplementalInfo hResInfo[:supplementalInfo]

@@ -40,14 +40,6 @@ module ADIWG
 
             end
 
-            # find contact in contact array and return the contact hash
-            def self.getContact(contactID)
-               @intObj[:contacts].each do |hContact|
-                  return hContact if hContact[:contactId] == contactID
-               end
-               {}
-            end
-
             # ignore jBuilder object mapping when array is empty
             def self.json_map(collection = [], _class)
                if collection.nil? || collection.empty?
