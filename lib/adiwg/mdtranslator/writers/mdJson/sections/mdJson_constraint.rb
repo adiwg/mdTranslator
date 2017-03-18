@@ -12,6 +12,8 @@ require_relative 'mdJson_graphicOverview'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_releasability'
 require_relative 'mdJson_responsibleParty'
+require_relative 'mdJson_legalConstraint'
+require_relative 'mdJson_securityConstraint'
 
 module ADIWG
    module Mdtranslator
@@ -32,8 +34,8 @@ module ADIWG
                      json.reference @Namespace.json_map(hConstraint[:reference], Citation)
                      json.releasability Releasability.build(hConstraint[:releasability]) unless hConstraint[:releasability].empty?
                      json.responsibleParty @Namespace.json_map(hConstraint[:responsibleParty], ResponsibleParty)
-                     json.legal hConstraint[:legalConstraint] unless hConstraint[:legalConstraint].empty?
-                     json.security hConstraint[:securityConstraint] unless hConstraint[:securityConstraint].empty?
+                     json.legal LegalConstraint.build(hConstraint[:legalConstraint]) unless hConstraint[:legalConstraint].empty?
+                     json.security SecurityConstraint.build(hConstraint[:securityConstraint]) unless hConstraint[:securityConstraint].empty?
 
                   end
 

@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-17 original script
 
-# TODO complete
-
 require 'jbuilder'
 
 module ADIWG
@@ -18,8 +16,8 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.classification hSecurity[:classCode]
-                     json.userNote hSecurity[:userNote]
                      json.classificationSystem hSecurity[:classSystem]
+                     json.userNote hSecurity[:userNote]
                      json.handlingDescription hSecurity[:handling]
                   end
 

@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-17 original script
 
-# TODO complete
-
 require 'jbuilder'
 
 module ADIWG
@@ -17,8 +15,8 @@ module ADIWG
                def self.build(hLegal)
 
                   Jbuilder.new do |json|
+                     json.useConstraint hLegal[:useCodes] unless hLegal[:useCodes].empty?
                      json.accessConstraint hLegal[:accessCodes] unless hLegal[:accessCodes].empty?
-                     json.legalConstraint hLegal[:useCodes] unless hLegal[:useCodes].empty?
                      json.otherConstraint hLegal[:otherCons] unless hLegal[:otherCons].empty?
                   end
 
