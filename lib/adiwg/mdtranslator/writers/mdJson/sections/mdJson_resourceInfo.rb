@@ -20,11 +20,11 @@ require_relative 'mdJson_extent'
 require_relative 'mdJson_coverageDescription'
 require_relative 'mdJson_taxonomy'
 require_relative 'mdJson_graphicOverview'
+require_relative 'mdJson_format'
 
 require_relative 'mdJson_constraint'
 
 
-# require_relative 'mdJson_format'
 # require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
 # require_relative 'mdJson_usage'
@@ -61,6 +61,8 @@ module ADIWG
                      json.coverageDescription @Namespace.json_map(hResInfo[:coverageDescriptions], CoverageDescription)
                      json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
                      json.graphicOverview @Namespace.json_map(hResInfo[:graphicOverviews], GraphicOverview)
+                     json.resourceFormat @Namespace.json_map(hResInfo[:resourceFormats], Format)
+                     #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
 
                      json.constraint @Namespace.json_map(hResInfo[:constraints], Constraint)
 
@@ -68,8 +70,6 @@ module ADIWG
                      #   json.language (hResInfo[:resourceLanguages])
                      #   json.characterSet (hResInfo[:resourceCharacterSets])
                      #   json.environmentDescription hResInfo[:environmentDescription]
-                     #   json.resourceNativeFormat json_map(hResInfo[:resourceFormats], Format)
-                     #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
                      #   json.resourceMaintenance json_map(hResInfo[:resourceMaint], ResourceMaintenance)
                      #   json.resourceSpecificUsage json_map(hResInfo[:resourceUses], Usage)
                      #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
