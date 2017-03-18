@@ -1,13 +1,12 @@
-require 'jbuilder'
-require_relative 'mdJson_resourceType'
-require_relative 'mdJson_citation'# mdJson 2.0 writer - resource information
+# mdJson 2.0 writer - resource information
 
 # History:
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO complete
-
+require 'jbuilder'
+require_relative 'mdJson_resourceType'
+require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
 require_relative 'mdJson_timePeriod'
@@ -23,10 +22,7 @@ require_relative 'mdJson_format'
 require_relative 'mdJson_keyword'
 require_relative 'mdJson_usage'
 require_relative 'mdJson_constraint'
-
-# require_relative 'mdJson_resourceMaintenance'
-# require_relative 'mdJson_gridInfo'
-# require_relative 'mdJson_dataQuality'
+require_relative 'mdJson_maintenance'
 
 module ADIWG
    module Mdtranslator
@@ -62,16 +58,11 @@ module ADIWG
                      json.keyword @Namespace.json_map(hResInfo[:keywords], Keyword)
                      json.resourceUsage @Namespace.json_map(hResInfo[:resourceUsages], Usage)
                      json.constraint @Namespace.json_map(hResInfo[:constraints], Constraint)
-
-                     #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])
-                     #   json.language (hResInfo[:resourceLanguages])
-                     #   json.characterSet (hResInfo[:resourceCharacterSets])
-                     #   json.environmentDescription hResInfo[:environmentDescription]
-                     #   json.resourceMaintenance json_map(hResInfo[:resourceMaint], ResourceMaintenance)
-                     #   json.coverageInfo json_map(hResInfo[:coverageInfo], CoverageInfo)
-                     #   json.dataQualityInfo json_map(hResInfo[:dataQualityInfo], DataQuality)
-                     #   json.supplementalInfo hResInfo[:supplementalInfo]
-
+                     json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale]) unless hResInfo[:defaultResourceLocale].empty?
+                     json.otherResourceLocale @Namespace.json_map(hResInfo[:otherResourceLocales], Locale)
+                     json.resourceMaintenance @Namespace.json_map(hResInfo[:resourceMaintenance], Maintenance)
+                     json.environmentDescription hResInfo[:environmentDescription]
+                     json.supplementalInfo hResInfo[:supplementalInfo]
                   end
 
                end # build
