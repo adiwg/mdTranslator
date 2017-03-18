@@ -21,11 +21,9 @@ require_relative 'mdJson_coverageDescription'
 require_relative 'mdJson_taxonomy'
 require_relative 'mdJson_graphicOverview'
 require_relative 'mdJson_format'
-
+require_relative 'mdJson_keyword'
 require_relative 'mdJson_constraint'
 
-
-# require_relative 'mdJson_keyword'
 # require_relative 'mdJson_resourceMaintenance'
 # require_relative 'mdJson_usage'
 # require_relative 'mdJson_gridInfo'
@@ -62,8 +60,7 @@ module ADIWG
                      json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
                      json.graphicOverview @Namespace.json_map(hResInfo[:graphicOverviews], GraphicOverview)
                      json.resourceFormat @Namespace.json_map(hResInfo[:resourceFormats], Format)
-                     #   json.keyword json_map(hResInfo[:descriptiveKeywords], Keyword)
-
+                     json.keyword @Namespace.json_map(hResInfo[:keywords], Keyword)
                      json.constraint @Namespace.json_map(hResInfo[:constraints], Constraint)
 
                      #   json.defaultResourceLocale Locale.build(hResInfo[:defaultResourceLocale])

@@ -1,4 +1,4 @@
-# mdJson 2.0 writer - resource information
+# mdJson 2.0 writer - format
 
 # History:
 #   Stan Smith 2017-03-18 refactored for mdJson/mdTranslator 2.0
