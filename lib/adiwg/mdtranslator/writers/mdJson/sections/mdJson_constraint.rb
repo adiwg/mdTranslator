@@ -4,8 +4,6 @@
 #   Stan Smith 2017-03-17 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO complete
-
 require 'jbuilder'
 require_relative 'mdJson_scope'
 require_relative 'mdJson_graphicOverview'
@@ -36,7 +34,6 @@ module ADIWG
                      json.responsibleParty @Namespace.json_map(hConstraint[:responsibleParty], ResponsibleParty)
                      json.legal LegalConstraint.build(hConstraint[:legalConstraint]) unless hConstraint[:legalConstraint].empty?
                      json.security SecurityConstraint.build(hConstraint[:securityConstraint]) unless hConstraint[:securityConstraint].empty?
-
                   end
 
                end # build

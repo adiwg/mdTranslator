@@ -130,6 +130,14 @@
             },
             {
                "type": "legal",
+               "reference": [
+                  {
+                     "title": "title0"
+                  },
+                  {
+                     "title": "title1"
+                  }
+               ],
                "legal": {
                   "useConstraint": [
                      "useConstraint0",
@@ -147,6 +155,24 @@
             },
             {
                "type": "security",
+               "responsibleParty": [
+                  {
+                     "role": "role0",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               ],
                "security": {
                   "classification": "classification",
                   "classificationSystem": "classificationSystem",

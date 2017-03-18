@@ -7,7 +7,6 @@
 
 require 'jbuilder'
 require_relative 'mdJson_responsibleParty'
-require_relative 'mdJson_constraint'
 
 module ADIWG
    module Mdtranslator
@@ -23,7 +22,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.addressee @Namespace.json_map(hRelease[:addressee], ResponsibleParty)
                      json.statement hRelease[:statement]
-                     json.disseminationConstraint @Namespace.json_map(hRelease[:disseminationConstraint], Constraint)
+                     json.disseminationConstraint hRelease[:disseminationConstraint] unless hRelease[:disseminationConstraint].empty?
                   end
 
                end # build
