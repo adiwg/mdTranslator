@@ -4,13 +4,14 @@
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO complete
+# TODO Complete tests
 
 require 'jbuilder'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
-# require_relative 'mdJson_domain'
-# require_relative 'mdJson_entity'
+require_relative 'mdJson_locale'
+require_relative 'mdJson_domain'
+require_relative 'mdJson_entity'
 
 module ADIWG
    module Mdtranslator
@@ -19,22 +20,20 @@ module ADIWG
 
             module Dictionary
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hDictionary)
 
                   Jbuilder.new do |json|
-                     json.citation Citation.build(hDictionary[:citation])
-                     json.subject(hDictionary[:subjects]) unless hDictionary[:subjects].empty?
+                     json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
+                     json.subject hDictionary[:subjects] unless hDictionary[:subjects].empty?
+                     json.recommendedUse hDictionary[:recommendedUses] unless hDictionary[:recommendedUses].empty?
+                     json.locale @Namespace.json_map(hDictionary[:locales], Locale)
                      json.responsibleParty ResponsibleParty.build(hDictionary[:responsibleParty])
-                     # json.dictionaryInfo do
-                     #     dict = hDictionary[:dictionaryInfo]
-                     #     json.citation Citation.build(dict[:dictCitation])
-                     #     json.resourceType dict[:dictResourceType]
-                     #     json.description dict[:dictDescription]
-                     #     json.language dict[:dictLanguage]
-                     #     json.includedWithDataset dict[:includedWithDataset]
-                     # end unless hDictionary[:dictionaryInfo].empty?
-                     # json.domain json_map(hDictionary[:domains], Domain)
-                     # json.entity json_map(hDictionary[:entities], Entity)
+                     json.dictionaryFormat hDictionary[:dictionaryFormat]
+                     json.dictionaryIncludedWithResource hDictionary[:includedWithDataset]
+                     json.domain @Namespace.json_map(hDictionary[:domains], Domain)
+                     json.entity @Namespace.json_map(hDictionary[:entities], Entity)
                   end
 
                end # build
