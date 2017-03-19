@@ -4,8 +4,6 @@
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO Complete tests
-
 require 'jbuilder'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
