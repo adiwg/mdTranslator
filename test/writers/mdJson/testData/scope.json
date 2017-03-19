@@ -25,16 +25,6 @@
          ],
          "metadataMaintenance": {
             "frequency": "frequency",
-            "date": [
-               {
-                  "date": "2016-10-12",
-                  "dateType": "dateType"
-               },
-               {
-                  "date": "2016-10-12",
-                  "dateType": "dateType"
-               }
-            ],
             "scope": [
                {
                   "scopeCode": "scopeCode0",
@@ -63,40 +53,6 @@
                },
                {
                   "scopeCode": "scopeCode1"
-               }
-            ],
-            "note": [
-               "note0",
-               "note1"
-            ],
-            "contact": [
-               {
-                  "role": "role",
-                  "party": [
-                     {
-                        "contactId": "CID001"
-                     }
-                  ]
-               },
-               {
-                  "role": "role",
-                  "party": [
-                     {
-                        "contactId": "CID001"
-                     }
-                  ]
-               }
-            ]
-            "scopeExtent": [
-               {
-                  "description": "description",
-                  "temporalExtent": [
-                     {
-                        "timePeriod": {
-                           "startDateTime": "2017-02-15"
-                        }
-                     }
-                  ]
                }
             ]
          }

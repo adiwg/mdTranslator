@@ -4,9 +4,9 @@
 #   Stan Smith 2017-03-12 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
-# TODO complete
-
 require 'jbuilder'
+require_relative 'mdJson_scopeDescription'
+require_relative 'mdJson_extent'
 
 module ADIWG
    module Mdtranslator
@@ -15,12 +15,14 @@ module ADIWG
 
             module Scope
 
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
                def self.build(hScope)
 
                   Jbuilder.new do |json|
                      json.scopeCode hScope[:scopeCode]
-                     #json.scopeDescription hScope[:scopeDescriptions]
-                     #json.scopeExtent hScope[:extents]
+                     json.scopeDescription @Namespace.json_map(hScope[:scopeDescriptions], ScopeDescription)
+                     json.scopeExtent @Namespace.json_map(hScope[:extents], Extent)
                   end
 
                end # build
