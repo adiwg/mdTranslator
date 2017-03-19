@@ -1,10 +1,8 @@
-# mdJson 2.0 writer - maintenanc
+# mdJson 2.0 writer - maintenance
 
 # History:
 #   Stan Smith 2017-03-13 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
-
-# TODO complete
 
 require 'jbuilder'
 require_relative 'mdJson_dateTime'

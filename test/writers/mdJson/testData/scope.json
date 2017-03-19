@@ -1,0 +1,140 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "metadataMaintenance": {
+            "frequency": "frequency",
+            "date": [
+               {
+                  "date": "2016-10-12",
+                  "dateType": "dateType"
+               },
+               {
+                  "date": "2016-10-12",
+                  "dateType": "dateType"
+               }
+            ],
+            "scope": [
+               {
+                  "scopeCode": "scopeCode0",
+                  "scopeDescription": [
+                     {
+                        "dataset": "dataset",
+                        "features": "features",
+                        "other": "other"
+                     },
+                     {
+                        "attributes": "attributes"
+                     }
+                  ],
+                  "scopeExtent": [
+                     {
+                        "description": "description",
+                        "temporalExtent": [
+                           {
+                              "timePeriod": {
+                                 "startDateTime": "2017-02-15"
+                              }
+                           }
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "scopeCode": "scopeCode1"
+               }
+            ],
+            "note": [
+               "note0",
+               "note1"
+            ],
+            "contact": [
+               {
+                  "role": "role",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
+               },
+               {
+                  "role": "role",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
+               }
+            ]
+            "scopeExtent": [
+               {
+                  "description": "description",
+                  "temporalExtent": [
+                     {
+                        "timePeriod": {
+                           "startDateTime": "2017-02-15"
+                        }
+                     }
+                  ]
+               }
+            ]
+         }
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title",
+            "series": {
+               "seriesName": "seriesName",
+               "seriesIssue": "seriesIssue",
+               "issuePage": "issuePage"
+            }
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

@@ -15,7 +15,6 @@
                "description": "description",
                "temporalExtent": [
                   {
-                     "type": "period",
                      "timePeriod": {
                         "startDateTime": "2017-02-15"
                      }
