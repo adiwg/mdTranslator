@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-19 original script
 
-# TODO complete
-
 require 'jbuilder'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_spatialResolution'
