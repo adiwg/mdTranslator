@@ -1,0 +1,111 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   },
+   "dataDictionary": [
+      {
+         "citation": {
+            "title": "title"
+         },
+         "subject": [
+            "subject0",
+            "subject1"
+         ],
+         "responsibleParty": {
+            "role": "role",
+            "party": [
+               {
+                  "contactId": "CID001"
+               }
+            ]
+         },
+         "domain": [
+            {
+               "domainId": "domainId0",
+               "commonName": "commonName0",
+               "codeName": "codeName0",
+               "description": "description0",
+               "domainItem": [
+                  {
+                     "name": "name00",
+                     "value": "value00",
+                     "definition": "definition00"
+                  },
+                  {
+                     "name": "name01",
+                     "value": "value01",
+                     "definition": "definition01"
+                  }
+               ]
+            },
+            {
+               "domainId": "domainId1",
+               "commonName": "commonName1",
+               "codeName": "codeName1",
+               "description": "description1",
+               "domainItem": [
+                  {
+                     "name": "name1",
+                     "value": "value1",
+                     "definition": "definition1"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+
+}
