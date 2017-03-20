@@ -1,4 +1,4 @@
-# mdJson 2.0 writer tests - entity
+# mdJson 2.0 writer tests - entity index
 
 # History:
 #   Stan Smith 2017-03-19 original script
@@ -8,30 +8,30 @@ require 'json/pure'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterEntity < TestWriterMdJsonParent
+class TestWriterEntityIndex < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('entity.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('entityIndex.json')
 
-   def test_schema_entity
+   def test_schema_entityIndex
 
       hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['dataDictionary'][0]['entity'][0]
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'entity.json')
+      hTest = hIn['dataDictionary'][0]['entity'][0]['index'][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'entity.json', :fragment=>'index')
       assert_empty errors
 
    end
 
-   def test_complete_entity
+   def test_complete_entityIndex
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@jsonIn)
-      expect = expect['dataDictionary'][0]['entity']
+      expect = expect['dataDictionary'][0]['entity'][0]['index']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['dataDictionary'][0]['entity']
+      got = got['dataDictionary'][0]['entity'][0]['index']
 
       assert_equal expect, got
 
