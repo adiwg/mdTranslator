@@ -3,8 +3,6 @@
 # History:
 #   Stan Smith 2017-03-19 original script
 
-# TODO Complete tests
-
 require 'jbuilder'
 
 module ADIWG
