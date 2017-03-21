@@ -1,7 +1,8 @@
 # mdJson 2.0 writer - citation
 
 # History:
-#   Stan Smith 2017-03-20 original script
+#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
 
 require 'jbuilder'
 
@@ -10,12 +11,12 @@ module ADIWG
       module Writers
          module MdJson
 
-            module DateTime
+            module Date
 
-               def self.build(hDateTime)
+               def self.build(hDate)
 
-                  date = hDateTime[:dateTime]
-                  dateRes = hDateTime[:dateResolution]
+                  date = hDate[:date]
+                  dateRes = hDate[:dateResolution]
                   dateStr = ''
 
                   unless date.nil?
@@ -27,10 +28,13 @@ module ADIWG
                      end
                   end
 
-                  return dateStr
+                  Jbuilder.new do |json|
+                     json.date(dateStr)
+                     json.dateType hDate[:dateType]
+                  end
 
                end # build
-            end # DateTime
+            end # Date
 
          end
       end

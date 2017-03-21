@@ -5,7 +5,7 @@
 #   Josh Bradley original script
 
 require 'jbuilder'
-require_relative 'mdJson_dateTime'
+require_relative 'mdJson_date'
 require_relative 'mdJson_scope'
 require_relative 'mdJson_responsibleParty'
 
@@ -22,7 +22,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.frequency hMaint[:frequency]
-                     json.date @Namespace.json_map(hMaint[:dates], DateTime)
+                     json.date @Namespace.json_map(hMaint[:dates], Date)
                      json.scope @Namespace.json_map(hMaint[:scopes], Scope)
                      json.note hMaint[:notes] unless hMaint[:notes].empty?
                      json.contact @Namespace.json_map(hMaint[:contacts], ResponsibleParty)

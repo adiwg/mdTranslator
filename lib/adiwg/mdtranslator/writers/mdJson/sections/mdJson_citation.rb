@@ -5,7 +5,7 @@
 #   Josh Bradley original script
 
 require 'jbuilder'
-require_relative 'mdJson_dateTime'
+require_relative 'mdJson_date'
 require_relative 'mdJson_identifier'
 require_relative 'mdJson_onlineResource'
 require_relative 'mdJson_series'
@@ -27,7 +27,7 @@ module ADIWG
                      Jbuilder.new do |json|
                         json.title hCitation[:title]
                         json.alternateTitle hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
-                        json.date @Namespace.json_map(hCitation[:dates], DateTime)
+                        json.date @Namespace.json_map(hCitation[:dates], Date)
                         json.edition hCitation[:edition]
                         json.responsibleParty @Namespace.json_map(hCitation[:responsibleParties], ResponsibleParty)
                         json.presentationForm hCitation[:presentationForms] unless hCitation[:presentationForms].empty?

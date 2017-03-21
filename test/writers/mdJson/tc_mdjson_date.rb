@@ -17,7 +17,7 @@ require_relative 'mdjson_test_parent'
 class TestWriterDateTime < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('dateTime.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('date.json')
 
    def test_complete_dateTime
 

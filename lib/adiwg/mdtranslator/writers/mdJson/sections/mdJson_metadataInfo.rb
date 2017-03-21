@@ -8,6 +8,7 @@ require 'jbuilder'
 require_relative 'mdJson_identifier'
 require_relative 'mdJson_citation'
 require_relative 'mdJson_locale'
+require_relative 'mdJson_date'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_onlineResource'
 require_relative 'mdJson_maintenance'
@@ -29,7 +30,7 @@ module ADIWG
                      json.defaultMetadataLocale Locale.build(hMetaInfo[:defaultMetadataLocale]) unless hMetaInfo[:defaultMetadataLocale].empty?
                      json.otherMetadataLocale @Namespace.json_map(hMetaInfo[:otherMetadataLocales], Locale)
                      json.metadataContact @Namespace.json_map(hMetaInfo[:metadataContacts], ResponsibleParty)
-                     json.metadataDate @Namespace.json_map(hMetaInfo[:metadataDates], DateTime)
+                     json.metadataDate @Namespace.json_map(hMetaInfo[:metadataDates], Date)
                      json.metadataOnlineResource @Namespace.json_map(hMetaInfo[:metadataLinkages], OnlineResource)
                      json.metadataMaintenance Maintenance.build(hMetaInfo[:metadataMaintenance]) unless hMetaInfo[:metadataMaintenance].empty?
                      json.alternateMetadataReference @Namespace.json_map(hMetaInfo[:alternateMetadataReferences], Citation)
