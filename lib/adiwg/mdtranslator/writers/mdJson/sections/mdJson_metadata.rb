@@ -11,7 +11,7 @@ require_relative 'mdJson_metadataInfo'
 require_relative 'mdJson_resourceInfo'
 require_relative 'mdJson_lineageInfo'
 require_relative 'mdJson_distribution'
-# require_relative 'mdJson_associatedResource'
+require_relative 'mdJson_associatedResource'
 # require_relative 'mdJson_additionalDocumentation'
 # require_relative 'mdJson_funding'
 
@@ -31,7 +31,7 @@ module ADIWG
                      json.resourceInfo ResourceInfo.build(hMetadata[:resourceInfo])
                      json.resourceLineage @Namespace.json_map(hMetadata[:lineageInfo], LineageInfo)
                      json.resourceDistribution @Namespace.json_map(hMetadata[:distributorInfo], Distribution)
-                     # json.associatedResource json_map(hMetadata[:associatedResources], AssociatedResource)
+                     json.associatedResource @Namespace.json_map(hMetadata[:associatedResources], AssociatedResource)
                      # json.additionalDocumentation json_map(hMetadata[:additionalDocuments], AdditionalDoc)
                      # json.funding
                   end
