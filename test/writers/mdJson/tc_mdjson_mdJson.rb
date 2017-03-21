@@ -1,7 +1,7 @@
 # mdJson 2.0 writer tests - mdJson
 
 # History:
-#   Stan Smith 2017-03-10 original script
+#   Stan Smith 2017-03-20 original script
 
 require 'minitest/autorun'
 require 'json/pure'
@@ -20,7 +20,7 @@ class TestWriterMdJson < TestWriterMdJsonParent
 
    end
 
-   def test_complete_minimal_mdJson
+   def test_complete_mdJson
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',

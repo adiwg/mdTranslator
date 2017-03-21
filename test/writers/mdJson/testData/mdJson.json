@@ -77,7 +77,8 @@
                   "contactId": "CID001"
                }
             ]
-         }
+         },
+         "dictionaryIncludedWithResource": true
       }
    ],
    "metadataRepository": [
