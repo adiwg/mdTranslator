@@ -53,38 +53,92 @@
             "country": "USA",
             "characterSet": "UTF-8"
          }
-      }
-   },
-   "resourceLineage": [
-      {
-         "statement": "statement",
-         "scope": {
-            "scopeCode": "scopeCode"
+      },
+      "resourceLineage": [
+         {
+            "statement": "statement"
          },
-         "citation": [
-            {
-               "title": "title0"
-            },
-            {
-               "title": "title1"
+         {
+            "statement": "statement"
+         }
+      ],
+      "resourceDistribution": [
+         {
+            "description": "description"
+         },
+         {
+            "description": "description"
+         }
+      ],
+      "associatedResource": [
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "associationType",
+            "resourceCitation": {
+               "title": "title"
             }
-         ],
-         "source": [
-            {
-               "description": "description0"
-            },
-            {
-               "description": "description1"
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "associationType",
+            "resourceCitation": {
+               "title": "title"
             }
-         ],
-         "processStep": [
-            {
-               "description": "description0"
-            },
-            {
-               "description": "description1"
+         }
+      ],
+      "additionalDocumentation": [
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "title"
+               }
+            ]
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "title"
+               }
+            ]
+         }
+      ],
+      "funding": [
+         {
+            "allocation": [
+               {
+                  "amount": 9.9,
+                  "currency": "currency",
+                  "matching": false
+               }
+            ]
+         },
+         {
+            "timePeriod": {
+               "endDateTime": "2016-12-31"
             }
-         ]
-      }
-   ]
+         }
+      ]
+   }
 }
