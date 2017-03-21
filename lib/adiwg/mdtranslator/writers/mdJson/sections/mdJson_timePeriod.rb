@@ -6,6 +6,7 @@
 
 require 'jbuilder'
 require_relative 'mdJson_identifier'
+require_relative 'mdJson_dateTime'
 require_relative 'mdJson_timeInterval'
 require_relative 'mdJson_duration'
 
@@ -18,42 +19,15 @@ module ADIWG
 
                def self.build(hTimePeriod)
 
-                  startDate = hTimePeriod[:startDateTime][:dateTime]
-                  startRes = hTimePeriod[:startDateTime][:dateResolution]
-                  startString = ''
-
-                  unless startDate.nil?
-                     case startRes
-                        when 'Y', 'YM', 'YMD'
-                           startString = AdiwgDateTimeFun.stringDateFromDateTime(startDate, startRes)
-                        else
-                           startString = AdiwgDateTimeFun.stringDateTimeFromDateTime(startDate, startRes)
-                     end
-                  end
-
-                  endDate = hTimePeriod[:endDateTime][:dateTime]
-                  endRes = hTimePeriod[:endDateTime][:dateResolution]
-                  endString = ''
-
-                  unless endDate.nil?
-                     case endRes
-                        when 'Y', 'YM', 'YMD'
-                           endString = AdiwgDateTimeFun.stringDateFromDateTime(endDate, endRes)
-                        else
-                           endString = AdiwgDateTimeFun.stringDateTimeFromDateTime(endDate, endRes)
-                     end
-                  end
-
                   Jbuilder.new do |json|
                      json.id hTimePeriod[:timeId]
                      json.description hTimePeriod[:description]
                      json.identifier Identifier.build(hTimePeriod[:identifier]) unless hTimePeriod[:identifier].empty?
                      json.periodName hTimePeriod[:periodNames] unless hTimePeriod[:periodNames].empty?
-                     json.startDateTime startString unless startString == ''
-                     json.endDateTime endString unless endString == ''
+                     json.startDateTime DateTime.build(hTimePeriod[:startDateTime]) unless hTimePeriod[:startDateTime].empty?
+                     json.endDateTime DateTime.build(hTimePeriod[:endDateTime]) unless hTimePeriod[:endDateTime].empty?
                      json.timeInterval TimeInterval.build(hTimePeriod[:timeInterval]) unless hTimePeriod[:timeInterval].empty?
                      json.duration Duration.build(hTimePeriod[:duration]) unless hTimePeriod[:duration].empty?
-                     # duration
                   end
 
                end # build
