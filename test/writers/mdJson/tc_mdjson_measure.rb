@@ -4,7 +4,7 @@
 #   Stan Smith 2017-03-13 original script
 
 require 'minitest/autorun'
-require 'json/pure'
+require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 

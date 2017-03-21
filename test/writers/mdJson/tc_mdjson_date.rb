@@ -10,7 +10,7 @@
 # and all these are correct, but eliminated from the test input file
 
 require 'minitest/autorun'
-require 'json/pure'
+require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
