@@ -55,6 +55,16 @@
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,
+              "dimension": [
+                {
+                  "dimensionType": "row",
+                  "dimensionSize": 90
+                },
+                {
+                  "dimensionType": "column",
+                  "dimensionSize": 91
+                }
+              ],
               "cellGeometry": "cellGeometry",
               "transformationParameterAvailable": true
             },
@@ -76,6 +86,16 @@
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,
+              "dimension": [
+                {
+                  "dimensionType": "row",
+                  "dimensionSize": 90
+                },
+                {
+                  "dimensionType": "column",
+                  "dimensionSize": 91
+                }
+              ],
               "cellGeometry": "cellGeometry",
               "transformationParameterAvailable": true
             },
@@ -87,7 +107,7 @@
               [1.0, 1.0],
               [1.0, 0.0]
             ],
-            "centerPoint": [],
+            "centerPoint": [0.5, 0.5],
             "pointInPixel": "upperRight",
             "transformationDimensionDescription": "",
             "transformationDimensionMapping": ""
@@ -97,6 +117,16 @@
           "georectifiedRepresentation": {
             "gridRepresentation": {
               "numberOfDimensions": 9,
+              "dimension": [
+                {
+                  "dimensionType": "row",
+                  "dimensionSize": 90
+                },
+                {
+                  "dimensionType": "column",
+                  "dimensionSize": 91
+                }
+              ],
               "cellGeometry": "cellGeometry",
               "transformationParameterAvailable": true
             },

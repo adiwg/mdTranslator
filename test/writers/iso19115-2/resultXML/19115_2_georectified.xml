@@ -25,7 +25,28 @@
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="row" codeSpace="001"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>90</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="column" codeSpace="002"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>91</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
       </gmd:cellGeometry>
@@ -71,7 +92,28 @@
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="row" codeSpace="001"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>90</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="column" codeSpace="002"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>91</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
       </gmd:cellGeometry>
@@ -90,7 +132,14 @@
           <gml:pos>0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0</gml:pos>
         </gml:Point>
       </gmd:cornerPoints>
-      <gmd:centerPoint/>
+      <gmd:centerPoint>
+        <gml:Point gml:id="point_004" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:pos>0.5 0.5</gml:pos>
+        </gml:Point>
+      </gmd:centerPoint>
       <gmd:pointInPixel>
         <gmd:MD_PixelOrientationCode>upperRight</gmd:MD_PixelOrientationCode>
       </gmd:pointInPixel>
@@ -104,7 +153,28 @@
       <gmd:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </gmd:numberOfDimensions>
-      <gmd:axisDimensionProperties/>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="row" codeSpace="001"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>90</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="column" codeSpace="002"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>91</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution/>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="cellGeometry" codeSpace="userCode"/>
       </gmd:cellGeometry>
@@ -116,7 +186,7 @@
       </gmd:checkPointAvailability>
       <gmd:checkPointDescription/>
       <gmd:cornerPoints>
-        <gml:Point gml:id="point_004" srsDimension="8" srsName="WGS84">
+        <gml:Point gml:id="point_005" srsDimension="8" srsName="WGS84">
           <gml:description/>
           <gml:identifier codeSpace=""/>
           <gml:name/>
