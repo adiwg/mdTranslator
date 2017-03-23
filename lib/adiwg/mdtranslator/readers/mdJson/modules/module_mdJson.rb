@@ -123,7 +123,7 @@ module ADIWG
 
                     end
 
-                    # set contacts array from reader test modules
+                    # set contacts array for reader test modules
                     def self.setContacts(contacts)
                         @contacts = contacts
                     end

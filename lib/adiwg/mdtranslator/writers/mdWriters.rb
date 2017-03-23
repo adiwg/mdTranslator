@@ -7,7 +7,7 @@
 #   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
 #   Stan Smith 2015-03-04 changed method of setting $WriterNS
 #   Stan Smith 2012-12-16 generalized handleWriter to use :writerName
-# 	Stan Smith 2014-12-11 original script
+#   Stan Smith 2014-12-11 original script
 
 module ADIWG
     module Mdtranslator
