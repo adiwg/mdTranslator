@@ -8,7 +8,7 @@
 #  Stan Smith 2014-04-10 add open and close buttons
 #  Stan Smith 2015-03-23 original script
 
-# require_relative 'html_metadataInfo'
+require_relative 'html_metadataInfo'
 # require_relative 'html_resourceInfo'
 # require_relative 'html_dataDictionary'
 # require_relative 'html_distributor'
@@ -20,7 +20,7 @@ module ADIWG
       module Writers
          module Html
 
-            class Body
+            class Html_Body
 
                def initialize(html)
                   @html = html
@@ -29,49 +29,44 @@ module ADIWG
                def writeHtml(intObj)
                   @html.body do
 
-                     # TODO refactored to this point
-                     @html.h2('Hi -- You reached the bottom!! Whats next?')
-
-
-                     # # classes used
-                     # htmlMetaInfo = MdHtmlMetadataInfo.new(@html)
+                     # classes used
+                     metaInfoClass = Html_MetadataInfo.new(@html)
                      # htmlResInfo = MdHtmlResourceInfo.new(@html)
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
                      # htmlDist = MdHtmlDistributor.new(@html)
                      # htmlAssRes = MdHtmlAssociatedResource.new(@html)
                      # htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
-                     #
-                     # # make sections of the internal data store more accessible
+
+                     # make sections of the internal data store more accessible
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
-                     #
-                     # hMetaInfo = intObj[:metadata][:metadataInfo]
+                     hMetaInfo = intObj[:metadata][:metadataInfo]
                      # aDistributor = intObj[:metadata][:distributorInfo]
                      # aAssRes = intObj[:metadata][:associatedResources]
                      # aAddDocs = intObj[:metadata][:additionalDocuments]
-                     #
-                     # # set page title and logo
-                     # # side navigation
-                     # @html.div('id' => 'sideNav') do
-                     #    # add top anchor and button
-                     #    @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
-                     #
-                     #    # add open and close buttons
-                     #    @html.span(' Open', {'id' => 'openAllDetails', 'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
-                     #    @html.span(' Close', {'class' => 'btn icon-caret-right', 'onclick' => 'closeAllDetails();'})
-                     # end
-                     #
-                     # # main header
-                     # @html.h2('id' => 'mainHeader') do
-                     #    # added blank to span tag to force builder to create closing tag
-                     #    @html.span('', 'id' => 'logo')
-                     #    @html.span('Metadata Report')
-                     #    @html.span('HTML', 'class' => 'version')
-                     # end
-                     #
-                     # # report title
-                     # @html.h1('mdTranslator Metadata Report', 'id' => 'mdtranslator-metadata-report')
-                     #
+
+                     # set page title and logo
+                     # side navigation
+                     @html.div('id' => 'sideNav') do
+                        # add top anchor and button
+                        @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
+
+                        # add open and close buttons
+                        @html.span(' Open', {'id' => 'openAllDetails', 'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
+                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'onclick' => 'closeAllDetails();'})
+                     end
+
+                     # main header
+                     @html.h2('id' => 'mainHeader') do
+                        # added blank to span tag to force builder to create closing tag
+                        @html.span('', 'id' => 'logo')
+                        @html.span('Metadata Record')
+                        @html.span('HTML5', 'class' => 'version')
+                     end
+
+                     # report title
+                     @html.h1('mdTranslator HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
+
                      # # section index
                      # @html.section(:class => 'block') do
                      #    @html.h3('Page Index')
@@ -146,28 +141,32 @@ module ADIWG
                      #    @html.a('Additional Documentation Section', 'href' => '#additionalDocuments')
                      # end
                      # @html.hr
-                     #
-                     # # metadata source
-                     # @html.h2('Metadata Source', 'id' => 'metadata-source')
-                     # @html.section(:class => 'block') do
-                     #    @html.em('Metadata schema:')
-                     #    @html.text!(intObj[:schema][:name])
-                     #    @html.br
-                     #
-                     #    @html.em('Schema version:')
-                     #    @html.text!(intObj[:schema][:version])
-                     # end
-                     # @html.hr
-                     #
-                     # # metadata information section
-                     # @html.h2('Metadata Information', 'id' => 'metadataInfo')
-                     # if !hMetaInfo.empty?
-                     #    @html.section(:class => 'block') do
-                     #       htmlMetaInfo.writeHtml(hMetaInfo)
-                     #    end
-                     # end
-                     # @html.hr
-                     #
+
+                     # metadata source
+                     @html.h2('Metadata Source', 'id' => 'metadata-source')
+                     @html.section(:class => 'block') do
+                        @html.em('Metadata schema:')
+                        @html.text!(intObj[:schema][:name])
+                        @html.br
+
+                        @html.em('Schema version:')
+                        @html.text!(intObj[:schema][:version])
+                     end
+                     @html.hr
+
+                     # metadata information section
+                     @html.h2('Metadata Information', 'id' => 'metadataInfo')
+                     unless hMetaInfo.empty?
+                        @html.section(:class => 'block') do
+                           metaInfoClass.writeHtml(hMetaInfo)
+                        end
+                     end
+                     @html.hr
+
+                     # TODO refactored to this point
+                     @html.h2('Hi -- You refactored to this point in body!!')
+
+
                      # # resource information section
                      # @html.h2('Resource Information', 'id' => 'resourceInfo')
                      # @html.section(:class => 'block') do
@@ -276,7 +275,7 @@ module ADIWG
 
                   end # body
                end # writeHtml
-            end # Body
+            end # Html_Body
 
          end
       end

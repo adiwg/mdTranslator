@@ -16,22 +16,25 @@ module ADIWG
       module Writers
          module Html
 
-            class Document
+            class Html_Document
                def initialize(html, intObj)
                   @html = html
                   @intObj = intObj
                end
 
-               def writeHtml(cssLink)
+               def writeHtml(responseObj)
 
                   # classes used
-                  htmlHead = Head.new(@html)
-                  htmlBody = Body.new(@html)
+                  htmlHead = Html_Head.new(@html)
+                  htmlBody = Html_Body.new(@html)
+
+                  version = responseObj[:translatorVersion]
+                  cssLink = responseObj[:writerCSSlink]
 
                   # write the html document
                   metadata = @html.declare! :DOCTYPE, :html
                   @html.html(:lang => 'en') do
-                     htmlHead.writeHtml(cssLink)
+                     htmlHead.writeHtml(version, cssLink)
                      htmlBody.writeHtml(@intObj)
                   end
 
@@ -51,7 +54,7 @@ module ADIWG
 
                end
 
-            end # Document
+            end # Html_Document
 
          end
       end

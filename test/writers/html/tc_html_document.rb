@@ -10,7 +10,7 @@ require 'adiwg-mdtranslator'
 class TestHtmlDocument < MiniTest::Test
 
    # get input JSON for test
-   fname = File.join(File.dirname(__FILE__), '../mdJson/testData', 'address.json')
+   fname = File.join(File.dirname(__FILE__), 'testData', 'metadataInfo.json')
    file = File.open(fname, 'r')
    @@mdJson = file.read
    file.close

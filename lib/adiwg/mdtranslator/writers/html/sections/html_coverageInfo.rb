@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2015-08-21 original script
 
-require_relative 'html_resourceId'
+require_relative 'html_identifier'
 require_relative 'html_coverageItem'
 require_relative 'html_imageInfo'
 

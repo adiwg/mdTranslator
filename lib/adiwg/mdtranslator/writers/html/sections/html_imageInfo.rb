@@ -4,14 +4,14 @@
 # History:
 # 	Stan Smith 2015-08-21 original script
 
-require_relative 'html_resourceId'
+require_relative 'html_identifier'
 
 module ADIWG
     module Mdtranslator
         module Writers
             module Html
 
-                class MdHtmlImageInfo
+                class Html_ImageInfo
                     def initialize(html)
                         @html = html
                     end

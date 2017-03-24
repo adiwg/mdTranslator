@@ -24,8 +24,8 @@ module ADIWG
                # create new HTML document
                html = Builder::XmlMarkup.new(indent: 3)
                # metadataWriter = MdHtmlWriter.new(html, intObj, paramsObj)
-               htmlDocument = Document.new(html, intObj)
-               metadata = htmlDocument.writeHtml(responseObj[:writerCSSlink])
+               htmlDocument = Html_Document.new(html, intObj)
+               metadata = htmlDocument.writeHtml(responseObj)
 
                # set writer pass to true if no messages
                # false or warning will be set by code that places the message

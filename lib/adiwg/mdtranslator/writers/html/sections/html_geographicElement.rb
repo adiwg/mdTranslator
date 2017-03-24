@@ -7,7 +7,7 @@
 
 require_relative 'html_temporalElement'
 require_relative 'html_verticalElement'
-require_relative 'html_resourceId'
+require_relative 'html_identifier'
 
 module ADIWG
     module Mdtranslator
