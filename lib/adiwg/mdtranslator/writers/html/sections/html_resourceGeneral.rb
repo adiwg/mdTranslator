@@ -8,7 +8,7 @@
 
 require_relative 'html_citation'
 require_relative 'html_timePeriod'
-require_relative 'html_browseGraphic'
+require_relative 'html_graphic'
 require_relative 'html_resourceFormat'
 require_relative 'html_resourceUsage'
 

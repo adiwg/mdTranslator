@@ -8,6 +8,7 @@
 #  Stan Smith 2014-04-10 add open and close buttons
 #  Stan Smith 2015-03-23 original script
 
+require_relative 'html_contact'
 require_relative 'html_metadataInfo'
 # require_relative 'html_resourceInfo'
 # require_relative 'html_dataDictionary'
@@ -31,6 +32,7 @@ module ADIWG
 
                      # classes used
                      metaInfoClass = Html_MetadataInfo.new(@html)
+                     contactClass = Html_Contact.new(@html)
                      # htmlResInfo = MdHtmlResourceInfo.new(@html)
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
                      # htmlDist = MdHtmlDistributor.new(@html)
@@ -38,9 +40,11 @@ module ADIWG
                      # htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
 
                      # make sections of the internal data store more accessible
+                     hSchema = intObj[:schema]
+                     aContacts = intObj[:contacts]
+                     hMetaInfo = intObj[:metadata][:metadataInfo]
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
-                     hMetaInfo = intObj[:metadata][:metadataInfo]
                      # aDistributor = intObj[:metadata][:distributorInfo]
                      # aAssRes = intObj[:metadata][:associatedResources]
                      # aAddDocs = intObj[:metadata][:additionalDocuments]
@@ -143,14 +147,23 @@ module ADIWG
                      # @html.hr
 
                      # metadata source
-                     @html.h2('Metadata Source', 'id' => 'metadata-source')
+                     @html.h2('Metadata Source', 'id' => 'metadataSource')
                      @html.section(:class => 'block') do
                         @html.em('Metadata schema:')
-                        @html.text!(intObj[:schema][:name])
+                        @html.text!(hSchema[:name])
                         @html.br
 
                         @html.em('Schema version:')
-                        @html.text!(intObj[:schema][:version])
+                        @html.text!(hSchema[:version])
+                     end
+                     @html.hr
+
+                     # contacts [] section
+                     @html.h2('Contacts', 'id' => 'contactsArray')
+                     aContacts.each do |hContact|
+                        @html.section(:class => 'block') do
+                           contactClass.writeHtml(hContact)
+                        end
                      end
                      @html.hr
 

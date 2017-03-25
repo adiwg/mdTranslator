@@ -31,26 +31,23 @@ module ADIWG
                   @html.br
 
                   # identifier - namespace
-                  s = hIdentifier[:namespace]
-                  unless s.nil?
+                  unless hIdentifier[:namespace].nil?
                      @html.em(' Namespace:')
-                     @html.text!(s)
+                     @html.text!(hIdentifier[:namespace])
                      @html.br
                   end
 
                   # identifier - version
-                  s = hIdentifier[:version]
-                  unless s.nil?
+                  unless hIdentifier[:version].nil?
                      @html.em(' Version:')
-                     @html.text!(s)
+                     @html.text!(hIdentifier[:version])
                      @html.br
                   end
 
                   # identifier - description
-                  s = hIdentifier[:description]
-                  unless s.nil?
+                  unless hIdentifier[:description].nil?
                      @html.em(' Description:')
-                     @html.text!(s)
+                     @html.text!(hIdentifier[:description])
                      @html.br
                   end
 

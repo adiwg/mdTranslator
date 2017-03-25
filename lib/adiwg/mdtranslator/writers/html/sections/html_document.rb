@@ -17,9 +17,10 @@ module ADIWG
          module Html
 
             class Html_Document
+
                def initialize(html, intObj)
                   @html = html
-                  @intObj = intObj
+                  @@intObj = intObj
                end
 
                def writeHtml(responseObj)
@@ -35,7 +36,7 @@ module ADIWG
                   metadata = @html.declare! :DOCTYPE, :html
                   @html.html(:lang => 'en') do
                      htmlHead.writeHtml(version, cssLink)
-                     htmlBody.writeHtml(@intObj)
+                     htmlBody.writeHtml(@@intObj)
                   end
 
                   return metadata
@@ -45,7 +46,7 @@ module ADIWG
                # find contact in contact array and return the contact hash
                def self.getContact(contactId)
 
-                  @intObj[:contacts].each do |hCont|
+                  @@intObj[:contacts].each do |hCont|
                      if hCont[:contactId] == contactId
                         return hCont
                      end

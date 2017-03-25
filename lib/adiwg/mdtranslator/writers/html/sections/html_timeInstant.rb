@@ -5,7 +5,7 @@
 # 	Stan Smith 2015-04-03 original script
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require_relative 'html_dateTime'
+require_relative 'html_date'
 
 module ADIWG
     module Mdtranslator

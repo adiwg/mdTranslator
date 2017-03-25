@@ -7,8 +7,194 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "contact - minimal",
-         "positionName": "positionName"
+         "name": "Stan Smith",
+         "positionName": "Associate - retired",
+         "memberOfOrganization": [
+            "CID002",
+            "CID003"
+         ],
+         "logoGraphic": [
+            {
+               "fileName": "fileName0",
+               "fileDescription": "fileDescription0",
+               "fileType": "fileType0",
+               "fileConstraint": [
+                  {
+                     "type": "use",
+                     "useLimitation": [
+                        "useLimitation0",
+                        "useLimitation1"
+                     ]
+                  },
+                  {
+                     "type": "legal",
+                     "legal": {
+                        "useConstraint": [
+                           "useConstraint0",
+                           "useConstraint1"
+                        ],
+                        "accessConstraint": [
+                           "accessConstraint0",
+                           "accessConstraint1"
+                        ],
+                        "otherConstraint": [
+                           "otherConstraint0",
+                           "otherConstraint1"
+                        ]
+                     }
+                  },
+                  {
+                     "type": "security",
+                     "security": {
+                        "classification": "classification",
+                        "classificationSystem": "classificationSystem",
+                        "userNote": "userNote",
+                        "handlingDescription": "handlingDescription"
+                     }
+                  }
+               ],
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/0"
+                  }
+               ]
+            },
+            {
+               "fileName": "fileName1",
+               "fileDescription": "fileDescription1",
+               "fileType": "fileType1"
+            },
+            {
+               "fileName": "fileName2"
+            }
+         ],
+         "phone": [
+            {
+               "phoneName": "mobile",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice",
+                  "sms",
+                  "message"
+               ]
+            },
+            {
+               "phoneName": "office",
+               "phoneNumber": "222-222-2222",
+               "service": [
+                  "voice",
+                  "message"
+               ]
+            }
+         ],
+         "address": [
+            {
+               "addressType": ["mailing", "physical"],
+               "description": "work location",
+               "deliveryPoint": [
+                  "address line 1",
+                  "address line 2"
+               ],
+               "city": "city",
+               "administrativeArea": "state",
+               "postalCode": "zip",
+               "country": "country"
+            },
+            {
+               "addressType": ["mailing"],
+               "description": "telework location",
+               "deliveryPoint": [
+                  "address line 3"
+               ],
+               "city": "city",
+               "administrativeArea": "state",
+               "postalCode": "zip",
+               "country": "country"
+            }
+         ],
+         "electronicMailAddress": [
+            "e.mail@address.com1",
+            "e.mail@address.com2"
+         ],
+         "onlineResource": [
+            {
+               "uri": "http://ISO.uri/adiwg/1",
+               "protocol": "protocol",
+               "name": "name",
+               "description": "description",
+               "function": "function"
+            },
+            {
+               "uri": "http://ISO.uri/adiwg/2"
+            }
+         ],
+         "hoursOfService": [
+            "hoursOfService1",
+            "hoursOfService2"
+         ],
+         "contactInstructions": "contactInstructions",
+         "contactType": "individual"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": true,
+         "name": "US Geological Survey",
+         "memberOfOrganization": [
+            "CID005"
+         ],
+         "logoGraphic": [
+            {
+               "fileName": "fileName"
+            }
+         ],
+         "phone": [
+            {
+               "phoneName": "single service",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice"
+               ]
+            }
+         ],
+         "address": [
+            {
+               "addressType": ["addressType"]
+            }
+         ],
+         "electronicMailAddress": [
+            "e.mail@address.com2"
+         ],
+         "onlineResource": [
+            {
+               "uri": "http://ISO.uri/adiwg/2"
+            }
+         ],
+         "hoursOfService": [
+            "hoursOfService"
+         ],
+         "contactInstructions": "contactInstructions",
+         "contactType": "contactType"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": true,
+         "name": "Arctic Landscape Conservation Cooperative",
+         "contactType": "federal"
+      },
+      {
+         "contactId": "CID004",
+         "isOrganization": false,
+         "name": "Joshua Bradley",
+         "positionName": "Data Manager",
+         "memberOfOrganization": [
+            "CID003"
+         ]
+      },
+      {
+         "contactId": "CID005",
+         "isOrganization": true,
+         "name": "US Department of the Interior",
+         "contactType": "federal"
       }
    ],
    "metadata": {
@@ -30,25 +216,32 @@
                      "dateType": "dateType0"
                   },
                   {
-                     "date": "2016-10-22",
+                     "date": "2016-10-22T16:15:14",
                      "dateType": "dateType1"
                   }
                ],
                "edition": "edition",
                "responsibleParty": [
                   {
-                     "role": "role0",
+                     "role": "principalInvestigator",
                      "party": [
                         {
                            "contactId": "CID001"
+                        },
+                        {
+                           "contactId": "CID004"
                         }
                      ]
                   },
                   {
-                     "role": "role1",
+                     "role": "funder",
                      "party": [
                         {
-                           "contactId": "CID001"
+                           "contactId": "CID003",
+                           "organizationMembers": [
+                              "CID004",
+                              "CID001"
+                           ]
                         }
                      ]
                   }
@@ -66,7 +259,9 @@
                   }
                ],
                "series": {
-                  "seriesName": "seriesName"
+                  "seriesName": "seriesName",
+                  "seriesIssue": "seriesIssue",
+                  "issuePage": "issuePage"
                },
                "otherCitationDetails": [
                   "otherCitationDetails0",

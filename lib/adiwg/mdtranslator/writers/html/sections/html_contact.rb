@@ -2,127 +2,184 @@
 # contact
 
 # History:
+#  Stan Smith 2017-03-23 refactored for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#  Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
 # 	Stan Smith 2015-03-23 original script
-#   Stan Smith 2015-06-23 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require_relative 'html_onlineResource'
+require_relative 'html_graphic'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlContact
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Contact
 
-                    def writeHtml(contactId)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlOlRes = MdHtmlOnlineResource.new(@html)
+               def writeHtml(hContact)
 
-                        # find contact in contact list
-                        hContact = MdHtmlWriter.getContact(contactId)
+                  # classes used
+                  onlineClass = Html_OnlineResource.new(@html)
+                  graphicClass = Html_Graphic.new(@html)
 
-                        # contact - individual name
-                        s = hContact[:indName]
-                        if s
-                            @html.text!(s)
-                            @html.br
+                  @html.details do
+                     @html.summary(hContact[:name], {'id' => 'CID_'+hContact[:contactId], 'class' => 'h3'})
+                     @html.section(:class => 'block') do
+
+                        # contact - contact ID
+                        @html.em('Contact ID: ')
+                        @html.text!(hContact[:contactId])
+                        @html.br
+
+                        # contact - isOrganization
+                        @html.em('is Organization: ')
+                        @html.text!(hContact[:isOrganization].to_s)
+                        @html.br
+
+                        # contact - type
+                        unless hContact[:contactType].nil?
+                           @html.em('Contact Type: ')
+                           @html.text!(hContact[:contactType])
+                           @html.br
                         end
 
-                        # contact - title or position
-                        s = hContact[:position]
-                        if s
-                            @html.text!(s)
-                            @html.br
+                        # contact - position
+                        unless hContact[:positionName].nil?
+                           @html.em('Position Name: ')
+                           @html.text!(hContact[:positionName])
+                           @html.br
                         end
 
-                        # contact - organization name
-                        s = hContact[:orgName]
-                        if s
-                            @html.text!(s)
-                            @html.br
+                        # contact - member of organizations []
+                        hContact[:memberOfOrgs].each do |org|
+                           hMember = Html_Document.getContact(org)
+                           unless hMember.empty?
+                              @html.em('is Member of: ')
+                              @html.a(hMember[:name], 'href' => '#CID_'+hMember[:contactId])
+                              @html.br
+                           end
                         end
 
                         # contact - address
-                        hAddress = hContact[:address]
-                        if !hAddress.empty?
+                        hContact[:addresses].each do |hAddress|
+                           @html.em('Address: ')
+                           @html.section(:class => 'block') do
 
-                            # address - delivery points
-                            a = hAddress[:deliveryPoints]
-                            a.each do |addLine|
-                                @html.text!(addLine)
-                                @html.br
-                            end
+                              # address - delivery points
+                              hAddress[:deliveryPoints].each do |addLine|
+                                 @html.text!(addLine)
+                                 @html.br
+                              end
 
-                            # address - city
-                            s = hAddress[:city]
-                            if s
-                                @html.text!(s)
-                            end
+                              # address - city, adminArea postalCode
+                              unless hAddress[:city].nil?
+                                 @html.text!(hAddress[:city])
+                              end
+                              unless hAddress[:adminArea].nil?
+                                 @html.text!(', ' + hAddress[:adminArea])
+                              end
+                              unless hAddress[:postalCode].nil?
+                                 @html.text!(' ' + hAddress[:postalCode])
+                              end
+                              @html.br
 
-                            # address - admin area
-                            s = hAddress[:adminArea]
-                            if s
-                                @html.text!(', ' + s)
-                            end
+                              # address - country
+                              unless hAddress[:country].nil?
+                                 @html.text!(hAddress[:country])
+                                 @html.br
+                              end
 
-                            # address - postal code
-                            s = hAddress[:postalCode]
-                            if s
-                                @html.text!(' ' + s)
-                            end
+                              # address - type
+                              hAddress[:addressTypes].each do |addType|
+                                 @html.em('Address Type: ')
+                                 @html.text!(addType)
+                                 @html.br
+                              end
 
-                            @html.br
+                              # address - description
+                              if hAddress[:description]
+                                 @html.em('Description: ')
+                                 @html.text!(hAddress[:description])
+                                 @html.br
+                              end
 
-                            # contact - email
-                            a = hContact[:address][:eMailList]
-                            a.each do |eMail|
-                                @html.text!(eMail)
-                                @html.br
-                            end
-
+                           end
                         end
 
                         # contact - phones
-                        aPhones = hContact[:phones]
-                        if !aPhones.empty?
-                            aPhones.each do |hPhone|
-                                @html.text!(hPhone[:phoneServiceType] + ': ')
-                                @html.text!(hPhone[:phoneNumber] + ' ')
-                                @html.text!(hPhone[:phoneName]) if !hPhone[:phoneName].nil?
-                                @html.br
-                            end
+                        hContact[:phones].each do |hPhone|
+                           @html.em('Phone: ')
+                           @html.section(:class => 'block') do
+
+                              # phone - name
+                              unless hPhone[:phoneName].nil?
+                                 @html.em('Phone Name: ')
+                                 @html.text!(hPhone[:phoneName])
+                                 @html.br
+                              end
+
+                              # phone - number
+                              unless hPhone[:phoneNumber].nil?
+                                 @html.em('Phone Number: ')
+                                 @html.text!(hPhone[:phoneNumber])
+                                 @html.br
+                              end
+
+                              # phone - service types
+                              unless hPhone[:phoneServiceTypes].empty?
+                                 @html.em('Service Types: ')
+                                 hPhone[:phoneServiceTypes].each do |phoneType|
+                                    @html.text!(phoneType + ' ')
+                                 end
+                                 @html.br
+                              end
+
+                           end
                         end
 
-                        # contact - online resource
-                        aOline = hContact[:onlineRes]
-                        if !aOline.empty?
-                            aOline.each do |olRes|
-                                @html.em('Online presence: ')
-                                @html.section(:class=>'block') do
-                                    htmlOlRes.writeHtml(olRes)
-                                end
-                            end
+                        # contact - email []
+                        hContact[:eMailList].each do |email|
+                           @html.em('Electronic Mail: ')
+                           @html.text!(email)
+                           @html.br
                         end
 
-                        # contact - special instructions
-                        s = hContact[:contactInstructions]
-                        if s
-                            @html.em('Note: ')
-                            @html.text!(s)
-                            @html.br
+                        # contact - online resource []
+                        hContact[:onlineResources].each do |hOnline|
+                           onlineClass.writeHtml(hOnline)
                         end
 
+                        # contact - logos []
+                        hContact[:logos].each do |hLogo|
+                           graphicClass.writeHtml(hLogo)
+                        end
 
-                    end # writeHtml
+                        # contact - hours of service []
+                        hContact[:hoursOfService].each do |hours|
+                           @html.em('Hours of Service: ')
+                           @html.text!(hours)
+                           @html.br
+                        end
 
-                end # class
+                        # contact - instructions
+                        unless hContact[:contactInstructions].nil?
+                           @html.em('Contact Instructions: ')
+                           @html.text!(hContact[:contactInstructions])
+                           @html.br
+                        end
 
-            end
-        end
-    end
+                     end
+                  end
+
+               end # writeHtml
+            end # Html_Contact
+
+         end
+      end
+   end
 end

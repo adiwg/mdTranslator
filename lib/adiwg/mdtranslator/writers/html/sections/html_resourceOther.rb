@@ -5,7 +5,7 @@
 # 	Stan Smith 2015-04-03 original script
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require_relative 'html_browseGraphic'
+require_relative 'html_graphic'
 require_relative 'html_resourceFormat'
 require_relative 'html_resourceUsage'
 

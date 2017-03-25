@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2015-08-21 original script
 
-require_relative 'html_responsibleParty'
+require_relative 'html_responsibility'
 require_relative 'html_orderProcess'
 require_relative 'html_format'
 require_relative 'html_transferOption'

@@ -6,7 +6,7 @@
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require_relative 'html_citation'
-require_relative 'html_responsibleParty'
+require_relative 'html_responsibility'
 require_relative 'html_taxonomyClass'
 
 module ADIWG
