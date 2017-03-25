@@ -11,6 +11,7 @@ module ADIWG
          module Html
 
             class Html_Date
+
                def initialize(html)
                   @html = html
                end

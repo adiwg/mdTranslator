@@ -8,8 +8,9 @@
 # 	Stan Smith 2015-03-24 original script
 
 require_relative 'html_identifier'
-# require_relative 'html_citation'
-# require_relative 'html_responsibleParty'
+require_relative 'html_citation'
+require_relative 'html_locale'
+require_relative 'html_responsibility'
 # require_relative 'html_dateTime'
 # require_relative 'html_resourceMaint'
 
@@ -28,20 +29,76 @@ module ADIWG
 
                   # classes used
                   identifierClass = Html_Identifier.new(@html)
-                  # citationClass = Html_Citation.new(@html)
-                  # rPartyClass = MdHtmlResponsibleParty.new(@html)
+                  citationClass = Html_Citation.new(@html)
+                  localeClass = Html_Locale.new(@html)
+                  responsibilityClass = Html_Responsibility.new(@html)
                   # dateTimeClass = MdHtmlDateTime.new(@html)
                   # maintClass = MdHtmlResourceMaintenance.new(@html)
 
-                  # metadata identifier {identifier}
+                  # metadataInfo - metadata identifier {identifier}
                   unless hMetaInfo[:metadataIdentifier].empty?
                      @html.details do
-                        @html.summary('Metadata Identifier', {'id' => 'metadata-identifier', 'class' => 'h3'})
+                        @html.summary('Metadata Identifier', {'id' => 'metadataInfo-identifier', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            identifierClass.writeHtml(hMetaInfo[:metadataIdentifier])
                         end
                      end
                   end
+
+                  # metadataInfo - parent metadata {citation}
+                  unless hMetaInfo[:parentMetadata].empty?
+                     @html.details do
+                        @html.summary('Parent Metadata', {'id' => 'metadataInfo-parentInfo', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hMetaInfo[:parentMetadata])
+                        end
+                     end
+                  end
+
+                  # metadataInfo - metadata locales
+                  unless hMetaInfo[:defaultMetadataLocale].empty? && hMetaInfo[:otherMetadataLocales].empty?
+                     @html.details do
+                        @html.summary('Locales', {'id' => 'metadataInfo-localeInfo', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # default metadata locales {locale}
+                           unless hMetaInfo[:defaultMetadataLocale].empty?
+                              @html.em('Default Metadata Locale: ')
+                              @html.section(:class => 'block') do
+                                 localeClass.writeHtml(hMetaInfo[:defaultMetadataLocale])
+                              end
+                           end
+
+                           # other metadata locales [] {locale}
+                           hMetaInfo[:otherMetadataLocales].each do |hLocale|
+                              @html.em('Other Metadata Locale: ')
+                              @html.section(:class => 'block') do
+                                 localeClass.writeHtml(hLocale)
+                              end
+                           end
+
+                        end
+                     end
+                  end
+
+                  # metadataInfo - contacts [] {responsibility}
+                  unless hMetaInfo[:metadataContacts].empty?
+                     @html.details do
+                        @html.summary('Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hMetaInfo[:metadataContacts].each do |hResponsibility|
+                              @html.details do
+                                 @html.summary(hResponsibility[:roleName], 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    responsibilityClass.writeHtml(hResponsibility)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # metadataInfo - dates [] {date}
 
                   # TODO refactored to this point
                   @html.h2('Hi -- You refactored to this point in metadataInfo!!')
@@ -61,57 +118,12 @@ module ADIWG
                   #          end
                   #       end
                   #
-                  #       # metadata create date
-                  #       hDate = hMetaInfo[:metadataCreateDate]
-                  #       if !hDate.empty?
-                  #          @html.em('Metadata creation: ')
-                  #          dateTimeClass.writeHtml(hDate)
-                  #       end
-                  #
-                  #       # metadata update date
-                  #       hDate = hMetaInfo[:metadataUpdateDate]
-                  #       if !hDate.empty?
-                  #          @html.em('Metadata update: ')
-                  #          dateTimeClass.writeHtml(hDate)
-                  #       end
-                  #
-                  #       # metadata characterSet
-                  #       s = hMetaInfo[:metadataCharacterSet]
-                  #       if s
-                  #          @html.em('Metadata character set: ')
-                  #          @html.text!(s)
-                  #          @html.br
-                  #       end
-                  #
-                  #       # metadata locale
-                  #       aLocale = hMetaInfo[:metadataLocales]
-                  #       aLocale.each do |hLocale|
-                  #          @html.em('Metadata language: ')
-                  #          @html.text!(hLocale[:languageCode])
-                  #          @html.em(' country: ')
-                  #          @html.text!(hLocale[:countryCode])
-                  #          @html.em(' characterSet encoding: ')
-                  #          @html.text!(hLocale[:characterEncoding])
-                  #          @html.br
-                  #       end
-                  #
                   #       # metadata status
                   #       s = hMetaInfo[:metadataStatus]
                   #       if s
                   #          @html.em('Metadata status: ')
                   #          @html.text!(s)
                   #          @html.br
-                  #       end
-                  #
-                  #       # metadata custodians - contacts
-                  #       aCustodians = hMetaInfo[:metadataCustodians]
-                  #       if !aCustodians.empty?
-                  #          @html.em('Metadata contact: ')
-                  #          @html.section(:class => 'block') do
-                  #             aCustodians.each do |hResParty|
-                  #                rPartyClass.writeHtml(hResParty)
-                  #             end
-                  #          end
                   #       end
                   #
                   #       # metadata maintenance
@@ -121,17 +133,6 @@ module ADIWG
                   #          maintClass.writeHtml(hMaint)
                   #       end
                   #
-                  #    end
-                  # end
-                  #
-                  # # parent metadata - citation
-                  # hParent = hMetaInfo[:parentMetadata]
-                  # unless hParent.empty?
-                  #    @html.details do
-                  #       @html.summary('Parent Metadata Citation', {'id' => 'metadata-parentInfo', 'class' => 'h3'})
-                  #       @html.section(:class => 'block') do
-                  #          citationClass.writeHtml(hMetaInfo[:parentMetadata])
-                  #       end
                   #    end
                   # end
 

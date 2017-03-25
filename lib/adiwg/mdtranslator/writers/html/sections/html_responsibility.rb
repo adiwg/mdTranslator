@@ -48,9 +48,11 @@ module ADIWG
                               end
                            else
                               hMemberContact = Html_Document.getContact(hContact[:contactId])
-                              @html.em('Position Name: ')
-                              @html.text!(hMemberContact[:positionName])
-                              @html.br
+                              unless hMemberContact[:positionName].nil?
+                                 @html.em('Position Name: ')
+                                 @html.text!(hMemberContact[:positionName])
+                                 @html.br
+                              end
                            end
 
                         end

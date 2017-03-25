@@ -55,7 +55,7 @@ module ADIWG
                   end
 
                   # citation - edition
-                  unless hCitation[:edition].empty?
+                  unless hCitation[:edition].nil?
                      @html.em('Edition: ')
                      @html.text!(hCitation[:edition])
                      @html.br

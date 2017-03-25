@@ -173,7 +173,7 @@
             "hoursOfService"
          ],
          "contactInstructions": "contactInstructions",
-         "contactType": "contactType"
+         "contactType": "federal"
       },
       {
          "contactId": "CID003",
@@ -195,6 +195,15 @@
          "isOrganization": true,
          "name": "US Department of the Interior",
          "contactType": "federal"
+      },
+      {
+         "contactId": "CID006",
+         "isOrganization": false,
+         "name": "Dennis Walworth",
+         "memberOfOrganization": [
+            "CID002"
+         ],
+         "contactType": "individual"
       }
    ],
    "metadata": {
@@ -286,7 +295,10 @@
             }
          },
          "parentMetadata": {
-            "title": "title"
+            "title": "title",
+            "alternateTitle": [
+               "parent metadata"
+            ]
          },
          "defaultMetadataLocale": {
             "language": "language",
@@ -307,18 +319,24 @@
          ],
          "metadataContact": [
             {
-               "role": "role0",
+               "role": "author",
                "party": [
                   {
                      "contactId": "CID001"
+                  },
+                  {
+                     "contactId": "CID004"
+                  },
+                  {
+                     "contactId": "CID006"
                   }
                ]
             },
             {
-               "role": "role1",
+               "role": "custodian",
                "party": [
                   {
-                     "contactId": "CID001"
+                     "contactId": "CID002"
                   }
                ]
             }
