@@ -11,8 +11,9 @@ require_relative 'html_identifier'
 require_relative 'html_citation'
 require_relative 'html_locale'
 require_relative 'html_responsibility'
-# require_relative 'html_dateTime'
-# require_relative 'html_resourceMaint'
+require_relative 'html_date'
+require_relative 'html_onlineResource'
+require_relative 'html_maintenance'
 
 module ADIWG
    module Mdtranslator
@@ -32,8 +33,16 @@ module ADIWG
                   citationClass = Html_Citation.new(@html)
                   localeClass = Html_Locale.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
-                  # dateTimeClass = MdHtmlDateTime.new(@html)
-                  # maintClass = MdHtmlResourceMaintenance.new(@html)
+                  dateClass = Html_Date.new(@html)
+                  onlineClass = Html_OnlineResource.new(@html)
+                  maintClass = Html_Maintenance.new(@html)
+
+                  # metadataInfo - metadata status
+                  unless hMetaInfo[:metadataStatus].nil?
+                     @html.em('Metadata Status: ')
+                     @html.text!(hMetaInfo[:metadataStatus])
+                     @html.br
+                  end
 
                   # metadataInfo - metadata identifier {identifier}
                   unless hMetaInfo[:metadataIdentifier].empty?
@@ -58,7 +67,7 @@ module ADIWG
                   # metadataInfo - metadata locales
                   unless hMetaInfo[:defaultMetadataLocale].empty? && hMetaInfo[:otherMetadataLocales].empty?
                      @html.details do
-                        @html.summary('Locales', {'id' => 'metadataInfo-localeInfo', 'class' => 'h3'})
+                        @html.summary('Metadata Locales', {'id' => 'metadataInfo-localeInfo', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # default metadata locales {locale}
@@ -84,7 +93,7 @@ module ADIWG
                   # metadataInfo - contacts [] {responsibility}
                   unless hMetaInfo[:metadataContacts].empty?
                      @html.details do
-                        @html.summary('Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
+                        @html.summary('Metadata Contacts', {'id' => 'metadataInfo-contacts', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            hMetaInfo[:metadataContacts].each do |hResponsibility|
                               @html.details do
@@ -99,45 +108,59 @@ module ADIWG
                   end
 
                   # metadataInfo - dates [] {date}
+                  unless hMetaInfo[:metadataDates].empty?
+                     @html.details do
+                        @html.summary('Metadata Dates', {'id' => 'metadataInfo-dates', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hMetaInfo[:metadataDates].each do |hDate|
+                              @html.em('Date: ')
+                              dateClass.writeHtml(hDate)
+                              @html.br
+                           end
+                        end
+                     end
+                  end
 
-                  # TODO refactored to this point
-                  @html.h2('Hi -- You refactored to this point in metadataInfo!!')
+                  # metadataInfo - linkages [] {onlineResource}
+                  unless hMetaInfo[:metadataLinkages].empty?
+                     @html.details do
+                        @html.summary('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hMetaInfo[:metadataLinkages].each do |hOnline|
+                              onlineClass.writeHtml(hOnline)
+                           end
+                        end
+                     end
+                  end
 
+                  # metadataInfo - maintenance {maintenance}
+                  unless hMetaInfo[:metadataMaintenance].empty?
+                     @html.details do
+                        @html.summary('Metadata Maintenance', {'id' => 'metadataInfo-maintenance', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           maintClass.writeHtml(hMetaInfo[:metadataMaintenance])
+                        end
+                     end
+                  end
 
-                  # # metadata information
-                  # @html.details do
-                  #    @html.summary('Metadata Record Information', {'id' => 'metadata-recordInfo', 'class' => 'h3'})
-                  #    @html.section(:class => 'block') do
-                  #
-                  #       # metadata URI
-                  #       s = hMetaInfo[:metadataURI]
-                  #       if s
-                  #          @html.em('Metadata URI: ')
-                  #          @html.section(:class => 'block') do
-                  #             @html.a(s, 'href' => s)
-                  #          end
-                  #       end
-                  #
-                  #       # metadata status
-                  #       s = hMetaInfo[:metadataStatus]
-                  #       if s
-                  #          @html.em('Metadata status: ')
-                  #          @html.text!(s)
-                  #          @html.br
-                  #       end
-                  #
-                  #       # metadata maintenance
-                  #       hMaint = hMetaInfo[:maintInfo]
-                  #       if !hMaint.empty?
-                  #          @html.em('Metadata maintenance: ')
-                  #          maintClass.writeHtml(hMaint)
-                  #       end
-                  #
-                  #    end
-                  # end
+                  # metadataInfo - alternate metadata references [] {citation}
+                  unless hMetaInfo[:alternateMetadataReferences].empty?
+                     @html.details do
+                        @html.summary('Alternate Metadata Citations', {'id' => 'metadataInfo-alternate', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hMetaInfo[:alternateMetadataReferences].each do |hCitation|
+                              @html.details do
+                                 @html.summary(hCitation[:title], 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    citationClass.writeHtml(hCitation)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
 
                end # writeHtml
-
             end # Html_MetadataInfo
 
          end

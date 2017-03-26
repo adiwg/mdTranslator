@@ -364,14 +364,54 @@
             }
          ],
          "metadataMaintenance": {
-            "frequency": "frequency"
+            "frequency": "monthly",
+            "date": [
+               {
+                  "date": "2016-10-12",
+                  "dateType": "dateType00"
+               },
+               {
+                  "date": "2017-02-10",
+                  "dateType": "nextUpdate"
+               }
+            ],
+            "scope": [
+               {
+                  "scopeCode": "dataset"
+               },
+               {
+                  "scopeCode": "fieldSeason"
+               }
+            ],
+            "note": [
+               "note00",
+               "note01"
+            ],
+            "contact": [
+               {
+                  "role": "processor",
+                  "party": [
+                     {
+                        "contactId": "CID004"
+                     }
+                  ]
+               },
+               {
+                  "role": "contributor",
+                  "party": [
+                     {
+                        "contactId": "CID006"
+                     }
+                  ]
+               }
+            ]
          },
          "alternateMetadataReference": [
             {
-               "title": "title"
+               "title": "alternate metadata FGDC"
             },
             {
-               "title": "title"
+               "title": "alternate metadata NetCDF"
             }
          ],
          "metadataStatus": "metadataStatus"
