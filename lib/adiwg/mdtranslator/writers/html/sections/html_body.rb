@@ -27,7 +27,7 @@ module ADIWG
                   @html = html
                end
 
-               def writeHtml(intObj)
+               def writeHtml(version,intObj)
                   @html.body do
 
                      # classes used
@@ -70,7 +70,9 @@ module ADIWG
                      end
 
                      # report title
-                     @html.h1('mdTranslator HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
+                     aShortVersion = version.split('.')
+                     shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
+                     @html.h1('mdTranslator ' + shortVersion + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
                      # metadata source
                      @html.h2('Metadata Source', 'id' => 'metadataSource')
@@ -85,31 +87,45 @@ module ADIWG
                      @html.hr
 
                      # contacts [] section
-                     @html.h2('Contacts', 'id' => 'contactsArray')
-                     aContacts.each do |hContact|
-                        @html.section(:class => 'block') do
-                           contactClass.writeHtml(hContact)
+                     unless aContacts.empty?
+                        @html.details do
+                           @html.summary('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aContacts.each do |hContact|
+                                 @html.section(:class => 'block') do
+                                    contactClass.writeHtml(hContact)
+                                 end
+                              end
+                              @html.hr
+                           end
                         end
                      end
-                     @html.hr
 
                      # metadata information section
-                     @html.h2('Metadata Information', 'id' => 'metadataInfo')
                      unless hMetaInfo.empty?
+                        @html.details do
+                        @html.summary('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
                         @html.section(:class => 'block') do
-                           metaInfoClass.writeHtml(hMetaInfo)
+                              @html.section(:class => 'block') do
+                                 metaInfoClass.writeHtml(hMetaInfo)
+                              end
+                           end
+                           @html.hr
                         end
                      end
-                     @html.hr
 
                      # resource information section
-                     @html.h2('Resource Information', 'id' => 'resourceInfo')
                      unless hResourceInfo.empty?
-                        @html.section(:class => 'block') do
-                           # resourceInfo.writeHtml(hResourceInfo)
+                        @html.details do
+                           @html.summary('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              @html.section(:class => 'block') do
+                                 resourceInfo.writeHtml(hResourceInfo)
+                              end
+                           end
+                           @html.hr
                         end
                      end
-                     @html.hr
 
                      # TODO add lineage
                      # TODO add distribution

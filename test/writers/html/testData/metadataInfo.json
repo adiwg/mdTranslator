@@ -414,13 +414,17 @@
                "title": "alternate metadata NetCDF"
             }
          ],
-         "metadataStatus": "metadataStatus"
+         "metadataStatus": "notAccepted"
       },
       "resourceInfo": {
          "resourceType": [
             {
-               "type": "type",
-               "name": "name"
+               "type": "tableDigital",
+               "name": "My Table Name"
+            },
+            {
+               "type": "website",
+               "name": "My Website Name"
             }
          ],
          "citation": {

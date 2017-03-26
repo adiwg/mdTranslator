@@ -1,8 +1,7 @@
 # HTML writer
-# dateTime
+# date
 
 # History:
-#  Stan Smith 2017-03-23
 # 	Stan Smith 2015-03-23 original script
 
 module ADIWG

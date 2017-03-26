@@ -36,7 +36,7 @@ module ADIWG
                   metadata = @html.declare! :DOCTYPE, :html
                   @html.html(:lang => 'en') do
                      htmlHead.writeHtml(version, cssLink)
-                     htmlBody.writeHtml(@@intObj)
+                     htmlBody.writeHtml(version, @@intObj)
                   end
 
                   return metadata
