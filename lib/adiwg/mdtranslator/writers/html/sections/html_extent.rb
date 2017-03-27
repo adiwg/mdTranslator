@@ -6,7 +6,7 @@
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require_relative 'html_geographicElement'
-require_relative 'html_temporalElement'
+require_relative 'html_temporalExtent'
 require_relative 'html_verticalElement'
 
 module ADIWG

@@ -428,11 +428,199 @@
             }
          ],
          "citation": {
-            "title": "title"
+            "title": "Main Resource Citation",
+            "alternateTitle": [
+               "Citation for the resource"
+            ]
          },
-         "abstract": "abstract",
+         "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+         "shortAbstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+         "purpose": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+         "resourceUsage": [
+            {
+               "specificUsage": "My Specific Usage is quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+               "temporalExtent": [
+                  {
+                     "timeInstant": {
+                        "dateTime": "2016-10-24T11:10:15.2-10:00",
+                        "id": "instant_001",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "identifier": {
+                           "identifier": "HighTide",
+                           "namespace": "namespace"
+                        },
+                        "instantName": [
+                           "instantName 00",
+                           "instantName 01"
+                        ]
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "id": "period_001",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "identifier": {
+                           "identifier": "SlackTide",
+                           "namespace": "namespace"
+                        },
+                        "periodName": [
+                           "periodName 00",
+                           "periodName 01"
+                        ],
+                        "startDateTime": "2017",
+                        "endDateTime": "2018",
+                        "timeInterval": {
+                           "interval": 9,
+                           "units": "month"
+                        },
+                        "duration": {
+                           "months": 9
+                        }
+                     }
+                  },
+                  {
+                     "timeInstant": {
+                        "dateTime": "2017-03-25T23:10:15",
+                        "id": "instant_002",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "identifier": {
+                           "identifier": "LowTide",
+                           "namespace": "namespace",
+                           "version": "version",
+                           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,",
+                           "authority": {
+                              "title": "title",
+                              "alternateTitle": [
+                                 "alternateTitle0",
+                                 "alternateTitle1"
+                              ],
+                              "date": [
+                                 {
+                                    "date": "2016-10-13",
+                                    "dateType": "dateType0"
+                                 },
+                                 {
+                                    "date": "2016-10-22T16:15:14",
+                                    "dateType": "dateType1"
+                                 }
+                              ],
+                              "edition": "edition",
+                              "responsibleParty": [
+                                 {
+                                    "role": "principalInvestigator",
+                                    "party": [
+                                       {
+                                          "contactId": "CID001"
+                                       },
+                                       {
+                                          "contactId": "CID004"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "role": "funder",
+                                    "party": [
+                                       {
+                                          "contactId": "CID003",
+                                          "organizationMembers": [
+                                             "CID004",
+                                             "CID001"
+                                          ]
+                                       }
+                                    ]
+                                 }
+                              ],
+                              "presentationForm": [
+                                 "presentationForm0",
+                                 "presentationForm1"
+                              ],
+                              "identifier": [
+                                 {
+                                    "identifier": "identifier0"
+                                 },
+                                 {
+                                    "identifier": "identifier1"
+                                 }
+                              ],
+                              "series": {
+                                 "seriesName": "seriesName",
+                                 "seriesIssue": "seriesIssue",
+                                 "issuePage": "issuePage"
+                              },
+                              "otherCitationDetails": [
+                                 "otherCitationDetails0",
+                                 "otherCitationDetails1"
+                              ],
+                              "onlineResource": [
+                                 {
+                                    "uri": "http://ISO.uri/adiwg/0"
+                                 },
+                                 {
+                                    "uri": "http://ISO.uri/adiwg/1"
+                                 }
+                              ],
+                              "graphic": [
+                                 {
+                                    "fileName": "fileName"
+                                 },
+                                 {
+                                    "fileName": "fileName"
+                                 }
+                              ]
+                           }
+                        },
+                        "instantName": [
+                           "instantName 20",
+                           "instantName 21"
+                        ]
+                     }
+                  }
+               ],
+               "userDeterminedLimitation": "userDeterminedLimitation0",
+               "limitationResponse": [
+                  "limitationResponse0",
+                  "limitationResponse1"
+               ],
+               "documentedIssue": {
+                  "title": "title0"
+               },
+               "additionalDocumentation": [
+                  {
+                     "title": "title1"
+                  },
+                  {
+                     "title": "title2"
+                  }
+               ],
+               "userContactInfo": [
+                  {
+                     "role": "administrator",
+                     "party": [
+                        {
+                           "contactId": "CID006"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "coPrincipalInvestigator",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        },
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "specificUsage": "My specific usage is Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }
+         ],
          "status": [
-            "status0"
+            "incomplete",
+            "suspended"
          ],
          "pointOfContact": [
             {

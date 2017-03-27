@@ -7,7 +7,8 @@
 # 	Stan Smith 2015-03-24 original script
 
 require_relative 'html_resourceType'
-# require_relative 'html_resourceGeneral'
+require_relative 'html_citation'
+require_relative 'html_resourceUsage'
 # require_relative 'html_resourceContact'
 # require_relative 'html_maintenance'
 # require_relative 'html_keyword'
@@ -37,7 +38,8 @@ module ADIWG
 
                   # classes used
                   typeClass = Html_ResourceType.new(@html)
-                  # htmlResGen = MdHtmlResourceGeneral.new(@html)
+                  citationClass = Html_Citation.new(@html)
+                  usageClass = Html_Usage.new(@html)
                   # htmlResCon = MdHtmlResourceContact.new(@html)
                   # htmlResMaint = Html_Maintenance.new(@html)
                   # htmlKeyword = MdHtmlKeyword.new(@html)
@@ -57,16 +59,101 @@ module ADIWG
                      typeClass.writeHtml(hType)
                   end
 
+                  # resource - status []
+                  hResource[:status].each do |status|
+                     @html.em('Status:')
+                     @html.text!(status)
+                     @html.br
+                  end
 
+                  # resource - citation {citation}
+                  unless hResource[:citation].empty?
+                     @html.details do
+                        @html.summary('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hResource[:citation])
+                        end
+                     end
+                  end
 
-                  # # resource information - general
-                  # @html.details do
-                  #    @html.summary('Resource Identification', {'id' => 'hResource-general', 'class' => 'h3'})
-                  #    @html.section(:class => 'block') do
-                  #       htmlResGen.writeHtml(hResource)
-                  #    end
-                  # end
-                  #
+                  # resource - abstract
+                  unless hResource[:abstract].nil? && hResource[:shortAbstract].nil?
+                     @html.details do
+                        @html.summary('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # short abstract
+                           unless hResource[:shortAbstract].nil?
+                              @html.em('Short Abstract:')
+                              @html.br
+                              @html.text!(hResource[:shortAbstract])
+                              @html.br
+                              @html.br
+                           end
+
+                           # full abstract
+                           @html.em('Full Abstract:')
+                           @html.br
+                           @html.text!(hResource[:abstract])
+
+                        end
+                     end
+                  end
+
+                  # resource - purpose
+                  unless hResource[:purpose].nil? && hResource[:resourceUsages].empty?
+                     @html.details do
+                        @html.summary('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # purpose
+                           unless hResource[:purpose].nil?
+                              @html.em('Purpose:')
+                              @html.br
+                              @html.text!(hResource[:purpose])
+                              @html.br
+                           end
+
+                           # usage and limitation
+                           unless hResource[:resourceUsages].empty?
+                              useCount = 0
+                              hResource[:resourceUsages].each do |hUsage|
+                                 useCount += 1
+                                 @html.details do
+                                    @html.summary('Usage and Limitation '+useCount.to_s, {'class' => 'h5'})
+                                    @html.section(:class => 'block') do
+                                       usageClass.writeHtml(hUsage)
+                                    end
+                                 end
+                              end
+                           end
+
+                        end
+                     end
+                  end
+
+                  # TODO add credits []
+                  # TODO add time period {}
+                  # TODO add topic categories []
+                  # TODO add point of contact []
+                  # TODO add spatial reference system []
+                  # TODO add spatial representation types []
+                  # TODO add spatial representation []
+                  # TODO add spatial resolution []
+                  # TODO add temporal resolution []
+                  # TODO add extents []
+                  # TODO add coverage description []
+                  # TODO add taxonomy {}
+                  # TODO add graphic overview []
+                  # TODO add formats []
+                  # TODO add keywords []
+                  # TODO add constraints []
+                  # TODO add default locale {}
+                  # TODO add other locale []
+                  # TODO add maintenance
+                  # TODO add environment
+                  # TODO add supplemental information
+
                   # # resource information - contacts
                   # @html.details do
                   #    @html.summary('Contacts', {'id' => 'hResource-contacts', 'class' => 'h3'})

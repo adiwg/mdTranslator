@@ -5,7 +5,7 @@
 # 	Stan Smith 2015-03-31 original script
 #   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require_relative 'html_temporalElement'
+require_relative 'html_temporalExtent'
 require_relative 'html_verticalElement'
 require_relative 'html_identifier'
 

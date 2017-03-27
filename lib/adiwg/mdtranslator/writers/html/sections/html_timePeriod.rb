@@ -2,59 +2,86 @@
 # time period
 
 # History:
+#  Stan Smith 2017-03-26 refactored for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-23 original script
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require_relative 'html_date'
+require_relative 'html_datetime'
+require_relative 'html_identifier'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlTimePeriod
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_TimePeriod
 
-                    def writeHtml(hTimePeriod)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlDateTime = MdHtmlDateTime.new(@html)
+               def writeHtml(hPeriod)
 
-                        # timePeriod - id
-                        s = hTimePeriod[:timeId]
-                        if !s.nil?
-                            @html.em('ID: ')
-                            @html.text!(s)
-                            @html.br
+                  # classes used
+                  datetimeClass = Html_Datetime.new(@html)
+                  identifierClass = Html_Identifier.new(@html)
+
+                  # time period - id
+                  unless hPeriod[:timeId].nil?
+                     @html.em('Period ID: ')
+                     @html.text!(hPeriod[:timeId])
+                     @html.br
+                  end
+
+                  # time period - start datetime
+                  unless hPeriod[:startDateTime].empty?
+                     @html.em('Start Datetime: ')
+                     @html.text!(datetimeClass.writeHtml(hPeriod[:startDateTime]))
+                     @html.br
+                  end
+
+                  # time period - end datetime
+                  unless hPeriod[:endDateTime].empty?
+                     @html.em('End Datetime: ')
+                     @html.text!(datetimeClass.writeHtml(hPeriod[:endDateTime]))
+                     @html.br
+                  end
+
+                  # time period - description
+                  unless hPeriod[:description].nil?
+                     @html.em('Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hPeriod[:description])
+                     end
+                  end
+
+                  # time period - identifier {identifier}
+                  unless hPeriod[:identifier].empty?
+                     @html.details do
+                        @html.summary('Identifier', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hPeriod[:identifier])
                         end
+                     end
+                  end
 
-                        # timePeriod - description
-                        s = hTimePeriod[:description]
-                        if !s.nil?
-                            @html.em('Description: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # time period - instant name []
+                  hPeriod[:periodNames].each do |iName|
+                     @html.em('Period Name: ')
+                     @html.text!(iName)
+                     @html.br
+                  end
 
-                        # timePeriod - begin time
-                        if !hTimePeriod[:beginTime].empty?
-                            @html.em('Begin dateTime: ')
-                            htmlDateTime.writeHtml(hTimePeriod[:beginTime])
-                        end
+                  # time period - time interval
+                  # TODO time interval
 
-                        # timePeriod - end time
-                        if !hTimePeriod[:endTime].empty?
-                            @html.em('End dateTime: ')
-                            htmlDateTime.writeHtml(hTimePeriod[:endTime])
-                        end
+                  # time period - duration
+                  # TODO duration
 
-                    end # writeHtml
+               end # writeHtml
+            end # Html_TimePeriod
 
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end

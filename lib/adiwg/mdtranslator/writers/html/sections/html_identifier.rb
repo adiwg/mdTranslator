@@ -25,10 +25,12 @@ module ADIWG
                   # classes used
                   citationClass = Html_Citation.new(@html)
 
-                  # identifier - identifier (required)
-                  @html.em('Identifier:')
-                  @html.text!(hIdentifier[:identifier])
-                  @html.br
+                  # identifier - identifier
+                  unless hIdentifier[:identifier].nil?
+                     @html.em('Identifier:')
+                     @html.text!(hIdentifier[:identifier])
+                     @html.br
+                  end
 
                   # identifier - namespace
                   unless hIdentifier[:namespace].nil?
