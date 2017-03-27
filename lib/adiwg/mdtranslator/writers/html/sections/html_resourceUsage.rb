@@ -6,8 +6,8 @@
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-25 original script
 
-require_relative 'html_citation'
 require_relative 'html_temporalExtent'
+require_relative 'html_citation'
 require_relative 'html_responsibility'
 
 module ADIWG
@@ -24,8 +24,9 @@ module ADIWG
                def writeHtml(hUsage)
 
                   # classes used
-                  responsibilityClass = Html_Responsibility.new(@html)
                   temporalClass = Html_TemporalExtent.new(@html)
+                  citationClass = Html_Citation.new(@html)
+                  responsibilityClass = Html_Responsibility.new(@html)
 
                   # resource usage - use
                   @html.em('Usage: ')
@@ -36,7 +37,7 @@ module ADIWG
                   # resource usage - temporal extent
                   unless hUsage[:temporalExtents].empty?
                      @html.details do
-                        @html.summary('Times and Periods of Usage: ', 'class' => 'h5')
+                        @html.summary('Times and Periods of Usage', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            hUsage[:temporalExtents].each do |hTemporal|
                               temporalClass.writeHtml(hTemporal)
@@ -45,14 +46,68 @@ module ADIWG
                      end
                   end
 
-                  # TODO add user determined limitation
-                  # TODO add limitation response []
+                  # resource usage - limitation
+                  unless hUsage[:userLimitation].nil? && hUsage[:limitationResponses].empty?
+                     @html.details do
+                        @html.summary('User Defined Limitations', 'class' => 'h5')
+                        @html.section(:class => 'block') do
 
-                  # TODO add documented issue
+                           # user limitation
+                           unless hUsage[:userLimitation].nil?
+                              @html.em('Description')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hUsage[:userLimitation])
+                              end
+                           end
 
-                  # TODO add additional documentation
+                           # limitation responses []
+                           hUsage[:limitationResponses].each do |response|
+                              @html.em('Response')
+                              @html.section(:class => 'block') do
+                                 @html.text!(response)
+                              end
+                           end
 
-                  # TODO add user contact info
+                        end
+                     end
+                  end
+
+                  # resource usage - documented issue
+                  unless hUsage[:identifiedIssue].empty?
+                     @html.details do
+                        @html.summary('Cited Issue', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hUsage[:identifiedIssue])
+                        end
+                     end
+                  end
+
+                  # resource usage - additional documentation
+                  hUsage[:additionalDocumentation].each do |hCitation|
+                     @html.details do
+                        @html.summary('Additional Documentation', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hCitation)
+                        end
+                     end
+                  end
+
+                  # resource usage - user contacts
+                  unless hUsage[:userContacts].empty?
+                     @html.details do
+                        @html.summary('Usage and Limitation Contacts', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hUsage[:userContacts].each do |hContact|
+                              @html.details do
+                                 @html.summary(hContact[:roleName], 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    responsibilityClass.writeHtml(hContact)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_Usage

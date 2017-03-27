@@ -576,13 +576,23 @@
                      }
                   }
                ],
-               "userDeterminedLimitation": "userDeterminedLimitation0",
+               "userDeterminedLimitation": "My Specific Limitation is quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
                "limitationResponse": [
-                  "limitationResponse0",
-                  "limitationResponse1"
+                  "Exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+                  "Nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. My Specific Usage is quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
                ],
                "documentedIssue": {
-                  "title": "title0"
+                  "title": "My Documented Issue",
+                  "date": [
+                     {
+                        "date": "2016-10-13",
+                        "dateType": "dateType0"
+                     },
+                     {
+                        "date": "2016-10-22T16:15:14",
+                        "dateType": "dateType1"
+                     }
+                  ]
                },
                "additionalDocumentation": [
                   {
