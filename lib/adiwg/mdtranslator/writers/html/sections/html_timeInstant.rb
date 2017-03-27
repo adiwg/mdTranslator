@@ -33,6 +33,13 @@ module ADIWG
                      @html.br
                   end
 
+                  # time instant - instant name []
+                  hInstant[:instantNames].each do |iName|
+                     @html.em('Instant Name: ')
+                     @html.text!(iName)
+                     @html.br
+                  end
+
                   # time instant - dateTime
                   unless hInstant[:timeInstant].empty?
                      @html.em('DateTime: ')
@@ -56,13 +63,6 @@ module ADIWG
                            identifierClass.writeHtml(hInstant[:identifier])
                         end
                      end
-                  end
-
-                  # time instant - instant name []
-                  hInstant[:instantNames].each do |iName|
-                     @html.em('Instant Name: ')
-                     @html.text!(iName)
-                     @html.br
                   end
 
                end # writeHtml

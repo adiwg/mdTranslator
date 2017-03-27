@@ -8,6 +8,7 @@
 
 require_relative 'html_datetime'
 require_relative 'html_identifier'
+require_relative 'html_timeInterval'
 require_relative 'html_duration'
 
 module ADIWG
@@ -26,12 +27,20 @@ module ADIWG
                   # classes used
                   datetimeClass = Html_Datetime.new(@html)
                   identifierClass = Html_Identifier.new(@html)
+                  intervalClass = Html_TimeInterval.new(@html)
                   durationClass = Html_Duration.new(@html)
 
                   # time period - id
                   unless hPeriod[:timeId].nil?
                      @html.em('Period ID: ')
                      @html.text!(hPeriod[:timeId])
+                     @html.br
+                  end
+
+                  # time period - name []
+                  hPeriod[:periodNames].each do |iName|
+                     @html.em('Period Name: ')
+                     @html.text!(iName)
                      @html.br
                   end
 
@@ -67,15 +76,15 @@ module ADIWG
                      end
                   end
 
-                  # time period - instant name []
-                  hPeriod[:periodNames].each do |iName|
-                     @html.em('Period Name: ')
-                     @html.text!(iName)
-                     @html.br
-                  end
-
                   # time period - time interval
-                  # TODO time interval
+                  unless hPeriod[:timeInterval].empty?
+                     @html.details do
+                        @html.summary('Time Interval', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           intervalClass.writeHtml(hPeriod[:timeInterval])
+                        end
+                     end
+                  end
 
                   # time period - duration
                   unless hPeriod[:duration].empty?
