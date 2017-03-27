@@ -8,6 +8,7 @@
 
 require_relative 'html_datetime'
 require_relative 'html_identifier'
+require_relative 'html_duration'
 
 module ADIWG
    module Mdtranslator
@@ -25,6 +26,7 @@ module ADIWG
                   # classes used
                   datetimeClass = Html_Datetime.new(@html)
                   identifierClass = Html_Identifier.new(@html)
+                  durationClass = Html_Duration.new(@html)
 
                   # time period - id
                   unless hPeriod[:timeId].nil?
@@ -76,7 +78,14 @@ module ADIWG
                   # TODO time interval
 
                   # time period - duration
-                  # TODO duration
+                  unless hPeriod[:duration].empty?
+                     @html.details do
+                        @html.summary('Duration', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           durationClass.writeHtml(hPeriod[:duration])
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_TimePeriod
