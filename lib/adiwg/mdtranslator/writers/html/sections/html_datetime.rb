@@ -31,7 +31,7 @@ module ADIWG
                   end
 
                   # datetime - return string
-                  dateStr
+                  dateStr.to_s
 
                end # writeHtml
             end # Html_Datetime

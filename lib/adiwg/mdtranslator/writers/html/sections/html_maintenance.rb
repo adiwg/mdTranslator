@@ -45,11 +45,35 @@ module ADIWG
                      end
 
                      # maintenance - scopes [] {scope}
-                     hMaint[:scopes].each do |hScope|
+                     unless hMaint[:scopes].empty?
                         @html.details do
-                           @html.summary(hScope[:scopeCode], 'class' => 'h5')
+                           @html.summary('Maintenance Scopes', {'class' => 'h5'})
                            @html.section(:class => 'block') do
-                              scopeClass.writeHtml(hScope)
+                              hMaint[:scopes].each do |hScope|
+                                 @html.details do
+                                    @html.summary(hScope[:scopeCode], 'class' => 'h5')
+                                    @html.section(:class => 'block') do
+                                       scopeClass.writeHtml(hScope)
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
+
+                     # maintenance - contacts [] {responsibility}
+                     unless hMaint[:contacts].empty?
+                        @html.details do
+                           @html.summary('Maintenance Contacts', {'class' => 'h5'})
+                           @html.section(:class => 'block') do
+                              hMaint[:contacts].each do |hContact|
+                                 @html.details do
+                                    @html.summary(hContact[:roleName], 'class' => 'h5')
+                                    @html.section(:class => 'block') do
+                                       responsibilityClass.writeHtml(hContact)
+                                    end
+                                 end
+                              end
                            end
                         end
                      end
@@ -59,16 +83,6 @@ module ADIWG
                         @html.em('Note: ')
                         @html.text!(note)
                         @html.br
-                     end
-
-                     # maintenance - contacts [] {responsibility}
-                     hMaint[:contacts].each do |hResponsibility|
-                        @html.details do
-                           @html.summary(hResponsibility[:roleName], 'class' => 'h5')
-                           @html.section(:class => 'block') do
-                              responsibilityClass.writeHtml(hResponsibility)
-                           end
-                        end
                      end
 
                   end

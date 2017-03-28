@@ -44,7 +44,13 @@ module ADIWG
                      startStr = datetimeClass.writeHtml(hTempExtent[:timePeriod][:startDateTime])
                      endStr = datetimeClass.writeHtml(hTempExtent[:timePeriod][:endDateTime])
                      @html.details do
-                        @html.summary('Period ' + startStr + ' to ' + endStr, 'class' => 'h5')
+                        if startStr == ''
+                           @html.summary('Period Ending ' + endStr, 'class' => 'h5')
+                        elsif endStr == ''
+                           @html.summary('Period Beginning ' + startStr, 'class' => 'h5')
+                        else
+                           @html.summary('Period ' + startStr + ' to ' + endStr, 'class' => 'h5')
+                        end
                         @html.section(:class => 'block') do
                            periodClass.writeHtml(hTempExtent[:timePeriod])
                         end

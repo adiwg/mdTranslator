@@ -638,6 +638,17 @@
                "party": [
                   {
                      "contactId": "CID001"
+                  },
+                  {
+                     "contactId": "CID006"
+                  }
+               ]
+            },
+            {
+               "role": "principalInvestigator",
+               "party": [
+                  {
+                     "contactId": "CID004"
                   }
                ]
             }
@@ -646,7 +657,41 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         }
+         },
+         "credit": [
+            "Lim, Sonny B. - Guitar",
+            "Peterson, Jeff - Slack Key Guitar",
+            "Kamakawiwo'ole, Israel - Vocal"
+         ],
+         "timePeriod": {
+            "startDateTime": "2016-11-01"
+         },
+         "temporalResolution": [
+            {
+               "years": 1,
+               "months": 8,
+               "days": 13
+            },
+            {
+               "seconds": 5
+            }
+         ],
+         "spatialReferenceSystem": [
+            {
+               "referenceSystemType": "referenceSystemType0",
+               "referenceSystemIdentifier": {
+                  "identifier": "identifier0"
+               }
+            },
+            {
+               "referenceSystemType": "referenceSystemType1"
+            },
+            {
+               "referenceSystemIdentifier": {
+                  "identifier": "identifier2"
+               }
+            }
+         ]
       }
    }
 }
