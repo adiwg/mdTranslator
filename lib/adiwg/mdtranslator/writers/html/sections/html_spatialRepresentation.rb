@@ -7,6 +7,7 @@
 require_relative 'html_gridRepresentation'
 require_relative 'html_vectorRepresentation'
 require_relative 'html_georectifiedRepresentation'
+require_relative 'html_georeferenceableRepresentation'
 
 module ADIWG
    module Mdtranslator
@@ -25,6 +26,7 @@ module ADIWG
                   gridClass = Html_GridRepresentation.new(@html)
                   vectorClass = Html_VectorRepresentation.new(@html)
                   georectifiedClass = Html_GeorectifiedRepresentation.new(@html)
+                  georeferenceableClass = Html_GeoreferenceableRepresentation.new(@html)
 
                   # spatial Representation - grid {gridRepresentation}
                   unless hRepresentation[:gridRepresentation].empty?
@@ -52,6 +54,16 @@ module ADIWG
                         @html.summary('Georectified Representation ', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            georectifiedClass.writeHtml(hRepresentation[:georectifiedRepresentation])
+                        end
+                     end
+                  end
+
+                  # spatial Representation - georeferenceable {georeferenceableRepresentation}
+                  unless hRepresentation[:georeferenceableRepresentation].empty?
+                     @html.details do
+                        @html.summary('Georeferenceable Representation ', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           georeferenceableClass.writeHtml(hRepresentation[:georeferenceableRepresentation])
                         end
                      end
                   end
