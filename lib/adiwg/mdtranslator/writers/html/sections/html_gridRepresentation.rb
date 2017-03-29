@@ -41,34 +41,16 @@ module ADIWG
 
                   end
 
-                  # # grid information - cell geometry
-                  # s = hGrid[:dimensionGeometry]
-                  # if !s.nil?
-                  #    @html.em('Cell Geometry: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # grid information - transformation parameters available
-                  # @html.em('Transformation parameters available: ')
-                  # s = hGrid[:dimensionTransformParams]
-                  # if s
-                  #    @html.text!('true')
-                  # else
-                  #    @html.text!('false')
-                  # end
-                  # @html.br
-                  #
-                  # # grid information - dimensions
-                  # aDims = hGrid[:dimensionInfo]
-                  # aDims.each do |hDim|
-                  #    @html.details do
-                  #       @html.summary('Dimension', {'class' => 'h4'})
-                  #       @html.section(:class => 'block') do
-                  #          htmlDim.writeHtml(hDim)
-                  #       end
-                  #    end
-                  # end
+                  # grid representation - cell geometry
+                  unless hGrid[:cellGeometry].nil?
+                     @html.em('Cell Geometry: ')
+                     @html.text!(hGrid[:cellGeometry])
+                     @html.br
+                  end
+
+                  # grid representation - transformation parameters available
+                  @html.em('Transformation parameters available: ')
+                  @html.text!(hGrid[:transformationParameterAvailable].to_s)
 
                end # writeHtml
             end # HTML_GridRepresentation

@@ -800,7 +800,7 @@
                         "dimensionSize": 9
                      }
                   ],
-                  "cellGeometry": "cellGeometry",
+                  "cellGeometry": "voxel",
                   "transformParamsAvailability": true
                }
             },

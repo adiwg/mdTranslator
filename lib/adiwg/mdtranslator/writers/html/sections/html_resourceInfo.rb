@@ -211,7 +211,6 @@ module ADIWG
                               sRepClass.writeHtml(hRepresentation)
                            end
 
-
                            # TODO add spatial resolution []
 
                         end
