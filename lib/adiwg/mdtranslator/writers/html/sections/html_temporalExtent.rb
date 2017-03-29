@@ -3,8 +3,8 @@
 
 # History:
 #  Stan Smith 2017-03-25 refactored for mdTranslator 2.0
-# 	Stan Smith 2015-04-03 original script
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+# 	Stan Smith 2015-04-03 original script
 
 require_relative 'html_datetime'
 require_relative 'html_timePeriod'

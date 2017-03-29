@@ -2,70 +2,67 @@
 # dimension information
 
 # History:
+#  Stan Smith 2017-03-28 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-07-31 original script
 
+require_relative 'html_measure'
+
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlDimension
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Dimension
 
-                    def writeHtml(hDim)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # dimension information - dimension type
-                        @html.em('Type of dimension: ')
-                        @html.text!(hDim[:dimensionType])
-                        @html.br
+               def writeHtml(hDimension)
 
-                        # dimension information - dimension type
-                        s = hDim[:dimensionTitle]
-                        if !s.nil?
-                            @html.em('Axis title: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  measureClass = Html_Measure.new(@html)
 
-                        # dimension information - dimension description
-                        s = hDim[:dimensionDescription]
-                        if !s.nil?
-                            @html.em('Axis description: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # dimension - type
+                  unless hDimension[:dimensionType].nil?
+                     @html.em('Type: ')
+                     @html.text!(hDimension[:dimensionType])
+                     @html.br
+                  end
 
-                        # dimension information - dimension size
-                        s = hDim[:dimensionSize]
-                        if !s.nil?
-                            @html.em('Number of elements along Axis: ')
-                            @html.text!(s.to_s)
-                            @html.br
-                        end
+                  # dimension - title
+                  unless hDimension[:dimensionTitle].nil?
+                     @html.em('Title: ')
+                     @html.text!(hDimension[:dimensionTitle])
+                     @html.br
+                  end
 
-                        # dimension information - dimension resolution
-                        s = hDim[:resolution]
-                        if !s.nil?
-                            @html.em('Resolution of the grid: ')
-                            @html.text!(s.to_s)
-                            @html.br
-                        end
+                  # dimension - description
+                  unless hDimension[:dimensionDescription].nil?
+                     @html.em('Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hDimension[:dimensionDescription])
+                     end
+                  end
 
-                        # dimension information - resolution units of measure
-                        s = hDim[:resolutionUnits]
-                        if !s.nil?
-                            @html.em('Resolution units of measure: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # dimension - size
+                  unless hDimension[:dimensionSize].nil?
+                     @html.em('Number of elements along Axis: ')
+                     @html.text!(hDimension[:dimensionSize].to_s)
+                     @html.br
+                  end
 
-                    end # writeHtml
+                  # dimension - resolution {resolution}
+                  unless hDimension[:resolution].empty?
+                     @html.em('Resolution:')
+                     @html.section(:class => 'block') do
+                        measureClass.writeHtml(hDimension[:resolution])
+                     end
+                  end
 
-                end # class
+               end # writeHtml
+            end # Html_Dimension
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

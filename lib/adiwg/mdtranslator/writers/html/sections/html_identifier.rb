@@ -49,8 +49,9 @@ module ADIWG
                   # identifier - description
                   unless hIdentifier[:description].nil?
                      @html.em(' Description:')
-                     @html.text!(hIdentifier[:description])
-                     @html.br
+                     @html.section(:class => 'block') do
+                        @html.text!(hIdentifier[:description])
+                     end
                   end
 
                   # identifier - authority {citation}

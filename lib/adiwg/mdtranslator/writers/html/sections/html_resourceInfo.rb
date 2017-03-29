@@ -13,6 +13,7 @@ require_relative 'html_responsibility'
 require_relative 'html_temporalExtent'
 require_relative 'html_duration'
 require_relative 'html_spatialReference'
+require_relative 'html_spatialRepresentation'
 
 module ADIWG
    module Mdtranslator
@@ -34,7 +35,8 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   temporalClass = Html_TemporalExtent.new(@html)
                   durationClass = Html_Duration.new(@html)
-                  spaceRefClass = Html_SpatialReference.new(@html)
+                  sRefClass = Html_SpatialReference.new(@html)
+                  sRepClass = Html_SpatialRepresentation.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -187,18 +189,29 @@ module ADIWG
                         @html.summary('Spatial Information', {'class' => 'h3'})
                         @html.section(:class => 'block') do
 
+                           # representation type []
+                           hResource[:spatialRepresentationTypes].each do |hRepType|
+                              @html.em('Spatial Representation Type: ')
+                              @html.text!(hRepType)
+                              @html.br
+                           end
+
                            # reference system []
                            hResource[:spatialReferenceSystems].each do |hRefSystem|
                               @html.details do
                                  @html.summary('Spatial Reference System', {'class' => 'h5'})
                                  @html.section(:class => 'block') do
-                                    spaceRefClass.writeHtml(hRefSystem)
+                                    sRefClass.writeHtml(hRefSystem)
                                  end
                               end
                            end
 
-                           # TODO add spatial representation types []
-                           # TODO add spatial representation []
+                           # spatial representation []
+                           hResource[:spatialRepresentations].each do |hRepresentation|
+                              sRepClass.writeHtml(hRepresentation)
+                           end
+
+
                            # TODO add spatial resolution []
 
                         end

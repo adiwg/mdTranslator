@@ -89,7 +89,6 @@
       ],
       "spatialRepresentation": [
         {
-          "type": "grid",
           "gridRepresentation": {
             "numberOfDimensions": 9,
             "dimension": [
@@ -107,7 +106,6 @@
           }
         },
         {
-          "type": "vector",
           "vectorRepresentation": {
             "topologyLevel": "topologyLevel",
             "vectorObject": [

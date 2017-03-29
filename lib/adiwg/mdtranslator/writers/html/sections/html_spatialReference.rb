@@ -31,12 +31,7 @@ module ADIWG
 
                   # spatial reference - identifier {identifier}
                   unless hSpaceRef[:systemIdentifier].empty?
-                     @html.details do
-                        @html.summary('Identifier', 'class' => 'h5')
-                        @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hSpaceRef[:systemIdentifier])
-                        end
-                     end
+                     identifierClass.writeHtml(hSpaceRef[:systemIdentifier])
                   end
 
                end # writeHtml

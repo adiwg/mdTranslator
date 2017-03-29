@@ -680,7 +680,90 @@
             {
                "referenceSystemType": "referenceSystemType0",
                "referenceSystemIdentifier": {
-                  "identifier": "identifier0"
+                  "identifier": "spatial reference system identifier",
+                  "namespace": "namespace",
+                  "version": "version",
+                  "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "authority": {
+                     "title": "title",
+                     "alternateTitle": [
+                        "alternateTitle0",
+                        "alternateTitle1"
+                     ],
+                     "date": [
+                        {
+                           "date": "2016-10-13",
+                           "dateType": "dateType0"
+                        },
+                        {
+                           "date": "2016-10-22T16:15:14",
+                           "dateType": "dateType1"
+                        }
+                     ],
+                     "edition": "edition",
+                     "responsibleParty": [
+                        {
+                           "role": "principalInvestigator",
+                           "party": [
+                              {
+                                 "contactId": "CID001"
+                              },
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        },
+                        {
+                           "role": "funder",
+                           "party": [
+                              {
+                                 "contactId": "CID003",
+                                 "organizationMembers": [
+                                    "CID004",
+                                    "CID001"
+                                 ]
+                              }
+                           ]
+                        }
+                     ],
+                     "presentationForm": [
+                        "presentationForm0",
+                        "presentationForm1"
+                     ],
+                     "identifier": [
+                        {
+                           "identifier": "identifier0"
+                        },
+                        {
+                           "identifier": "identifier1"
+                        }
+                     ],
+                     "series": {
+                        "seriesName": "seriesName",
+                        "seriesIssue": "seriesIssue",
+                        "issuePage": "issuePage"
+                     },
+                     "otherCitationDetails": [
+                        "otherCitationDetails0",
+                        "otherCitationDetails1"
+                     ],
+                     "onlineResource": [
+                        {
+                           "uri": "http://ISO.uri/adiwg/0"
+                        },
+                        {
+                           "uri": "http://ISO.uri/adiwg/1"
+                        }
+                     ],
+                     "graphic": [
+                        {
+                           "fileName": "fileName"
+                        },
+                        {
+                           "fileName": "fileName"
+                        }
+                     ]
+                  }
                }
             },
             {
@@ -689,6 +772,113 @@
             {
                "referenceSystemIdentifier": {
                   "identifier": "identifier2"
+               }
+            }
+         ],
+         "spatialRepresentationType": [
+            "vector",
+            "stereoModel"
+         ],
+         "spatialRepresentation": [
+            {
+               "gridRepresentation": {
+                  "numberOfDimensions": 9,
+                  "dimension": [
+                     {
+                        "dimensionType": "column",
+                        "dimensionSize": 9,
+                        "resolution": {
+                           "type": "distance",
+                           "value": 9.9,
+                           "unitOfMeasure": "feet"
+                        },
+                        "dimensionTitle": "COLUMN TITLE",
+                        "dimensionDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                     },
+                     {
+                        "dimensionType": "row",
+                        "dimensionSize": 9
+                     }
+                  ],
+                  "cellGeometry": "cellGeometry",
+                  "transformParamsAvailability": true
+               }
+            },
+            {
+               "vectorRepresentation": {
+                  "topologyLevel": "topologyLevel",
+                  "vectorObject": [
+                     {
+                        "objectType": "objectType0",
+                        "objectCount": 9
+                     },
+                     {
+                        "objectType": "objectType1",
+                        "objectCount": 9
+                     }
+                  ]
+               }
+            },
+            {
+               "georectifiedRepresentation": {
+                  "gridRepresentation": {
+                     "numberOfDimensions": 9,
+                     "dimension": [
+                        {
+                           "dimensionType": "row",
+                           "dimensionSize": 90
+                        },
+                        {
+                           "dimensionType": "column",
+                           "dimensionSize": 91
+                        }
+                     ],
+                     "cellGeometry": "cellGeometry",
+                     "transformationParameterAvailable": true
+                  },
+                  "checkPointAvailable": true,
+                  "checkPointDescription": "checkPointDescription",
+                  "cornerPoints": [
+                     [0.0, 0.0],
+                     [0.0, 1.0],
+                     [1.0, 1.0],
+                     [1.0, 0.0]
+                  ],
+                  "centerPoint": [0.5, 0.5],
+                  "pointInPixel": "upperRight",
+                  "transformationDimensionDescription": "transformationDimensionDescription",
+                  "transformationDimensionMapping": "transformationDimensionMapping"
+               }
+            },
+            {
+               "georeferenceableRepresentation": {
+                  "gridRepresentation": {
+                     "numberOfDimensions": 9,
+                     "dimension": [
+                        {
+                           "dimensionType": "row",
+                           "dimensionSize": 90
+                        },
+                        {
+                           "dimensionType": "column",
+                           "dimensionSize": 91
+                        }
+                     ],
+                     "cellGeometry": "cellGeometry",
+                     "transformationParameterAvailable": true
+                  },
+                  "controlPointAvailable": true,
+                  "orientationParameterAvailable": true,
+                  "orientationParameterDescription": "orientationParameterDescription0",
+                  "georeferencedParameter": "georeferencedParameter0",
+                  "parameterCitation": [
+                     {
+                        "title": "title0"
+                     },
+                     {
+                        "title": "title1"
+                     }
+                  ]
                }
             }
          ]
