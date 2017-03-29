@@ -11,7 +11,7 @@ module ADIWG
       module Writers
          module Html
 
-            class HTML_VectorRepresentation
+            class Html_VectorRepresentation
 
                def initialize(html)
                   @html = html
@@ -20,7 +20,7 @@ module ADIWG
                def writeHtml(hVector)
 
                   # classes used
-                  objectClass = HTML_VectorObject.new(@html)
+                  objectClass = Html_VectorObject.new(@html)
 
                   # vector representation - topology level
                   @html.em('Topology Level: ')
@@ -38,7 +38,7 @@ module ADIWG
                   end
 
                end # writeHtml
-            end # HTML_VectorRepresentation
+            end # Html_VectorRepresentation
 
          end
       end

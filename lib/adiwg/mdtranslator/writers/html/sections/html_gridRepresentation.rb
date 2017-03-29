@@ -12,7 +12,7 @@ module ADIWG
       module Writers
          module Html
 
-            class HTML_GridRepresentation
+            class Html_GridRepresentation
 
                def initialize(html)
                   @html = html
@@ -53,7 +53,7 @@ module ADIWG
                   @html.text!(hGrid[:transformationParameterAvailable].to_s)
 
                end # writeHtml
-            end # HTML_GridRepresentation
+            end # Html_GridRepresentation
 
          end
       end

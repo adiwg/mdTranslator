@@ -9,7 +9,7 @@ module ADIWG
       module Writers
          module Html
 
-            class HTML_VectorObject
+            class Html_VectorObject
 
                def initialize(html)
                   @html = html
@@ -32,7 +32,7 @@ module ADIWG
                   end
 
                end # writeHtml
-            end # HTML_VectorObject
+            end # Html_VectorObject
 
          end
       end
