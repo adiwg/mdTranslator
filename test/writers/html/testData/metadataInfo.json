@@ -806,14 +806,14 @@
             },
             {
                "vectorRepresentation": {
-                  "topologyLevel": "topologyLevel",
+                  "topologyLevel": "fullTopology3D",
                   "vectorObject": [
                      {
-                        "objectType": "objectType0",
+                        "objectType": "object Type 0",
                         "objectCount": 9
                      },
                      {
-                        "objectType": "objectType1",
+                        "objectType": "object Type 1",
                         "objectCount": 9
                      }
                   ]
