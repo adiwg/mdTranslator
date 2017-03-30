@@ -896,6 +896,66 @@
             {
                "levelOfDetail": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
             }
+         ],
+         "topicCategory": [
+            "imageryBaseMapsEarthCover",
+            "extraTerrestrial"
+         ],
+         "keyword": [
+            {
+               "keyword": [
+                  {
+                     "keyword": "Barrow"
+                  },
+                  {
+                     "keyword": "Prudhoe Bay"
+                  },
+                  {
+                     "keyword": "Kaparuk"
+                  }
+               ],
+               "keywordType": "Place Names",
+               "thesaurus": {
+                  "title": "USGS Geographic Names Information System"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "Brown Bear",
+                     "keywordId": "TSN12365741"
+                  },
+                  {
+                     "keyword": "Polar Bear",
+                     "keywordId": "TSN125415741"
+                  },
+                  {
+                     "keyword": "Black Bear",
+                     "keywordId": "TSN123689426"
+                  },
+                  {
+                     "keyword": "Cinnamon Bear",
+                     "keywordId": "TSN123842165"
+                  },
+                  {
+                     "keyword": "Teddy Bear"
+                  }
+               ],
+               "keywordType": "Taxonomy"
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "butter"
+                  },
+                  {
+                     "keyword": "sugar"
+                  },
+                  {
+                     "keyword": "eggs"
+                  }
+               ]
+            }
          ]
 
       }

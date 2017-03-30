@@ -1,60 +1,62 @@
 # HTML writer
-# descriptive keywords
+# keywords
 
 # History:
+#  Stan Smith 2017-03-29 refactored for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-23 original script
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require_relative 'html_citation'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlKeyword
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Keyword
 
-                    def writeHtml(hKeyList)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlCitation = MdHtmlCitation.new(@html)
+               def writeHtml(hKeyword)
 
-                        # descriptive keywords - type
-                        s = hKeyList[:keywordType]
-                        if !s.nil?
-                            @html.text!(s)
-                            @html.br
+                  # classes used
+                  citationClass = Html_Citation.new(@html)
+
+                  # keywords - type
+                  @html.details do
+                     type = hKeyword[:keywordType]
+                     if type.nil?
+                        type = 'Unclassified'
+                     end
+                     @html.summary(type, {'class' => 'h5'})
+                     @html.section(:class => 'block') do
+
+                        # keywords
+                        @html.ul do
+                           hKeyword[:keywords].each do |hKeyword|
+                              @html.li(hKeyword[:keyword])
+                           end
                         end
 
-                        @html.section(:class=>'block') do
-
-                            # descriptive keywords - keywords - required
-                            @html.em('Keywords: ')
-                            @html.ul do
-                                hKeyList[:keyword].each do |keyword|
-                                    @html.li(keyword)
-                                end
-                            end
-
-                            # descriptive keywords - citation
-                            hCitation = hKeyList[:keyTheCitation]
-                            if !hCitation.empty?
-                                @html.em('Thesaurus citation: ')
-                                @html.br
-                                @html.section(:class=>'block') do
-                                    htmlCitation.writeHtml(hCitation)
-                                end
-                            end
+                        # thesaurus
+                        unless hKeyword[:thesaurus].empty?
+                           @html.details do
+                              @html.summary('Thesaurus', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 citationClass.writeHtml(hKeyword[:thesaurus])
+                              end
+                           end
                         end
 
-                    end # writeHtml
+                     end
+                  end
 
-                end # class
+               end # writeHtml
+            end # Html_Keyword
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

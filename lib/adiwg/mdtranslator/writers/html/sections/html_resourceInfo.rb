@@ -15,6 +15,7 @@ require_relative 'html_duration'
 require_relative 'html_spatialReference'
 require_relative 'html_spatialRepresentation'
 require_relative 'html_resolution'
+require_relative 'html_keyword'
 
 module ADIWG
    module Mdtranslator
@@ -39,6 +40,7 @@ module ADIWG
                   sRefClass = Html_SpatialReference.new(@html)
                   sRepClass = Html_SpatialRepresentation.new(@html)
                   resolutionClass = Html_Resolution.new(@html)
+                  keywordClass = Html_Keyword.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -222,14 +224,36 @@ module ADIWG
                      end
                   end
 
+                  # resource - keywords [] {keyword}
+                  unless hResource[:topicCategories].empty? &&
+                     hResource[:keywords].empty?
+                     @html.details do
+                        @html.summary('Keywords', {'class' => 'h3'})
+                        @html.section(:class => 'block') do
 
-                  # TODO add topic categories []
+                           # resource - topic categories []
+                           hResource[:topicCategories].each do |category|
+                              @html.em('Topic: ')
+                              @html.text!(category)
+                              @html.br
+                           end
+
+                           # resource - keywords []
+                           hResource[:keywords].each do |hKeyword|
+                              keywordClass.writeHtml(hKeyword)
+                           end
+
+                        end
+
+                     end
+                  end
+                  
+                  # TODO add taxonomy {}
+
                   # TODO add extents []
                   # TODO add coverage description []
-                  # TODO add taxonomy {}
                   # TODO add graphic overview []
                   # TODO add formats []
-                  # TODO add keywords []
                   # TODO add constraints []
                   # TODO add default locale {}
                   # TODO add other locale []
