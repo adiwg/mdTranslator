@@ -14,6 +14,7 @@ require_relative 'html_temporalExtent'
 require_relative 'html_duration'
 require_relative 'html_spatialReference'
 require_relative 'html_spatialRepresentation'
+require_relative 'html_resolution'
 
 module ADIWG
    module Mdtranslator
@@ -37,6 +38,7 @@ module ADIWG
                   durationClass = Html_Duration.new(@html)
                   sRefClass = Html_SpatialReference.new(@html)
                   sRepClass = Html_SpatialRepresentation.new(@html)
+                  resolutionClass = Html_Resolution.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -211,7 +213,10 @@ module ADIWG
                               sRepClass.writeHtml(hRepresentation)
                            end
 
-                           # TODO add spatial resolution []
+                           # spatial resolution []
+                           hResource[:spatialResolutions].each do |hResolution|
+                              resolutionClass.writeHtml(hResolution)
+                           end
 
                         end
                      end

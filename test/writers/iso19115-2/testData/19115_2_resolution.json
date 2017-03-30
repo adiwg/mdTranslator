@@ -52,11 +52,9 @@
       },
       "spatialResolution": [
         {
-          "type": "scaleFactor",
           "scaleFactor": 9
         },
         {
-          "type": "measure",
           "measure": {
             "type": "distance",
             "value": 9.9,
@@ -64,7 +62,6 @@
           }
         },
         {
-          "type": "levelOfDetail",
           "levelOfDetail": "levelOfDetail"
         }
       ]
