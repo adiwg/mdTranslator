@@ -9,6 +9,8 @@ require_relative 'html_graphic'
 require_relative 'html_citation'
 require_relative 'html_responsibility'
 require_relative 'html_releasability'
+require_relative 'html_legalConstraint'
+require_relative 'html_securityConstraint'
 
 module ADIWG
    module Mdtranslator
@@ -29,6 +31,7 @@ module ADIWG
                   citationClass = Html_Citation.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
                   releasabilityClass = Html_Releasability.new(@html)
+                  legalClass = Html_LegalConstraint.new(@html)
 
                   # constraint - type
                   unless hConstraint[:type].nil?
@@ -96,10 +99,14 @@ module ADIWG
                   end
 
                   # constraint - legal {legal constraint}
-                  # TODO add legal
+                  if hConstraint[:type] == 'legal' && !hConstraint[:legalConstraint].empty?
+                     legalClass.writeHtml(hConstraint[:legalConstraint])
+                  end
 
                   # constraint - security {security constraint}
-                  # TODO add security
+                  if hConstraint[:type] == 'legal' && !hConstraint[:securityConstraint].empty?
+                     secuirtyClass.writeHtml(hConstraint[:securityConstraint])
+                  end
 
                end # writeHtml
             end # Html_Constraint

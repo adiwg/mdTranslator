@@ -289,7 +289,7 @@ module ADIWG
                         @html.section(:class => 'block') do
                            hResource[:constraints].each do |hConstraint|
                               @html.details do
-                                 @html.summary(hConstraint[:type]+' Constraint', {'class' => 'h5'})
+                                 @html.summary(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
                                  @html.section(:class => 'block') do
                                     constraintClass.writeHtml(hConstraint)
                                  end
