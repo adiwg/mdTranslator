@@ -16,6 +16,7 @@ require_relative 'html_spatialReference'
 require_relative 'html_spatialRepresentation'
 require_relative 'html_resolution'
 require_relative 'html_keyword'
+require_relative 'html_taxonomy'
 
 module ADIWG
    module Mdtranslator
@@ -41,6 +42,7 @@ module ADIWG
                   sRepClass = Html_SpatialRepresentation.new(@html)
                   resolutionClass = Html_Resolution.new(@html)
                   keywordClass = Html_Keyword.new(@html)
+                  taxonomyClass = Html_Taxonomy.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -247,8 +249,17 @@ module ADIWG
 
                      end
                   end
-                  
-                  # TODO add taxonomy {}
+
+                  # resource - taxonomy {taxonomy}
+                  unless hResource[:taxonomy].empty?
+                     @html.details do
+                        @html.summary('Taxonomy', {'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           taxonomyClass.writeHtml(hResource[:taxonomy])
+                        end
+                     end
+                  end
+
 
                   # TODO add extents []
                   # TODO add coverage description []

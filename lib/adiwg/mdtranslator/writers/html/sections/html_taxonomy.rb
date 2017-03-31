@@ -2,108 +2,156 @@
 # taxonomy
 
 # History:
+#  Stan Smith 2015-03-30 refactored for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-25 original script
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
 require_relative 'html_citation'
+require_relative 'html_identifier'
 require_relative 'html_responsibility'
 require_relative 'html_taxonomyClass'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlTaxonomy
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Taxonomy
 
-                    def writeHtml(hTaxon)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlCitation = MdHtmlCitation.new(@html)
-                        htmlRParty = MdHtmlResponsibleParty.new(@html)
-                        htmlTaxClass = MdHtmlTaxonomyClass.new(@html)
+               def writeHtml(hTaxonomy)
 
-                        # taxonomy - taxonomic class system - citation
-                        aTaxSys = hTaxon[:taxClassSys]
-                        if !aTaxSys.empty?
-                            @html.em('Taxonomic class system: ')
-                            aTaxSys.each do |hCitation|
-                                @html.section(:class=>'block') do
-                                    htmlCitation.writeHtml(hCitation)
-                                end
-                            end
+                  # classes used
+                  citationClass = Html_Citation.new(@html)
+                  identifierClass = Html_Identifier.new(@html)
+                  responsibilityClass = Html_Responsibility.new(@html)
+                  taxonomicClass = Html_TaxonomyClass.new(@html)
+
+                  # taxonomy - taxonomic general scope
+                  unless hTaxonomy[:generalScope].nil?
+                     @html.em('General scope: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hTaxonomy[:generalScope])
+                     end
+                  end
+
+                  # taxonomy - identification procedures
+                  unless hTaxonomy[:idProcedure].nil?
+                     @html.em('Identification Procedures: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hTaxonomy[:idProcedure])
+                     end
+                  end
+
+                  # taxonomy - completeness
+                  unless hTaxonomy[:idCompleteness].nil?
+                     @html.em('Identification Completeness Statement: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hTaxonomy[:idCompleteness])
+                     end
+                  end
+
+                  # taxonomy - taxonomic classification system [] {citation}
+                  hTaxonomy[:taxonSystem].each do |hSystem|
+                     @html.details do
+                        @html.summary('Classification System', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+
+                           # classification system citation
+                           @html.details do
+                              @html.summary(hSystem[:citation][:title], {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 citationClass.writeHtml(hSystem[:citation])
+                              end
+                           end
+
+                           # modifications
+                           unless hSystem[:modifications].nil?
+                              @html.em('Modifications to Classification System:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hSystem[:modifications])
+                              end
+                           end
+
                         end
+                     end
+                  end
 
-                        # taxonomy - taxonomic general scope
-                        s = hTaxon[:taxGeneralScope]
-                        if !s.nil?
-                            @html.em('General scope: ')
-                            @html.section(:class=>'block') do
-                                @html.text!(s)
-                            end
+                  # taxonomy - taxonomic class
+                  unless hTaxonomy[:taxonClass].empty?
+                     @html.details do
+                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           taxonomicClass.writeHtml(hTaxonomy[:taxonClass])
                         end
+                     end
+                  end
 
-                        # taxonomy - taxonomic observers - responsible party
-                        aTaxObs = hTaxon[:taxObservers]
-                        if !aTaxObs.empty?
-                            @html.em('Taxonomic observer: ')
-                            aTaxObs.each do |hResParty|
-                                @html.section(:class=>'block') do
-                                    htmlRParty.writeHtml(hResParty)
-                                end
-                            end
+                  # taxonomy - identification references
+                  hTaxonomy[:idReferences].each do |hReference|
+                     @html.details do
+                        @html.summary('Non-Authoritative Reference', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hReference)
                         end
+                     end
+                  end
 
-                        # taxonomy - taxonomic identification procedures
-                        s = hTaxon[:taxIdProcedures]
-                        if !s.nil?
-                            @html.em('Taxonomic identification procedures: ')
-                            @html.section(:class=>'block') do
-                                @html.text!(s)
-                            end
+                  # taxonomy - observers {responsibility}
+                  unless hTaxonomy[:observers].empty?
+                     @html.details do
+                        @html.summary('Observers', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hTaxonomy[:observers].each do |hObserver|
+                              @html.details do
+                                 @html.summary(hObserver[:roleName], 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    responsibilityClass.writeHtml(hObserver)
+                                 end
+                              end
+                           end
                         end
+                     end
+                  end
 
-                        # taxonomy - taxonomic voucher
-                        # note: should be an array according to ISO docs,
-                        # but NOAA 19115_2 XSD does not allow
-                        #     specimen: nil,
-                        #     repository: {}
-                        hTaxVoucher = hTaxon[:taxVoucher]
-                        if !hTaxVoucher.empty?
+                  # taxonomy - voucher []
+                  unless hTaxonomy[:observers].empty?
+                     @html.details do
+                        @html.summary('Specimen Repositories', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hTaxonomy[:vouchers].each do |hVoucher|
 
-                            # taxonomic voucher - specimen
-                            s = hTaxVoucher[:specimen]
-                            if !s.nil?
-                                @html.em('Specimen: ')
-                                @html.text!(s)
-                                @html.br
-                            end
+                              # voucher - specimen
+                              unless hVoucher[:specimen].nil?
+                                 @html.em('Specimen: ')
+                                 @html.text!(hVoucher[:specimen])
+                                 @html.br
+                              end
 
-                            # taxonomic voucher - repository - responsible party
-                            hResParty = hTaxVoucher[:repository]
-                            if !hResParty.empty?
-                            @html.em('Specimen repository: ')
-                                @html.section(:class=>'block') do
-                                    htmlRParty.writeHtml(hResParty)
-                                end
-                            end
+                              # voucher - repository {responsibility}
+                              unless hVoucher[:repository].empty?
+                                 @html.section(:class => 'block') do
+                                    @html.details do
+                                       @html.summary(hVoucher[:repository][:roleName], {'class' => 'h5'})
+                                       @html.section(:class => 'block') do
+                                          responsibilityClass.writeHtml(hVoucher[:repository])
+                                       end
+                                    end
+                                 end
+                              end
+
+                           end
                         end
+                     end
+                  end
 
-                        # taxonomy - taxonomic class - array
-                        aTaxClass = hTaxon[:taxClasses]
-                        if !aTaxClass.empty?
-                            @html.em('Taxonomic class structure: ')
-                            htmlTaxClass.writeHtml(aTaxClass)
-                        end
+               end # writeHtml
+            end # Html_Taxonomy
 
-                    end # writeHtml
-
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end
