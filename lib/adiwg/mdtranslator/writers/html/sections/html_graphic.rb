@@ -6,6 +6,7 @@
 # 	Stan Smith 2015-03-24 original script
 
 require_relative 'html_onlineResource'
+require_relative 'html_constraint'
 
 module ADIWG
    module Mdtranslator
@@ -22,6 +23,7 @@ module ADIWG
 
                   # classes used
                   onlineClass = Html_OnlineResource.new(@html)
+                  constraintClass = Html_Constraint.new(@html)
 
                   # graphic - name
                   unless hGraphic[:graphicName].nil?
@@ -44,12 +46,25 @@ module ADIWG
                      @html.br
                   end
 
-                  # graphic - URI []
+                  # graphic - uri [] {onlineResource}
                   hGraphic[:graphicURI].each do |hOnline|
-                     onlineClass.writeHtml(hOnline)
+                     @html.details do
+                        @html.summary('Online Link ', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           onlineClass.writeHtml(hOnline)
+                        end
+                     end
                   end
 
-                  # TODO add constraint to graphic
+                  # graphic - constraint [] {constraint}
+                  hGraphic[:graphicConstraints].each do |hConstraint|
+                     @html.details do
+                        @html.summary('Constraint', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           constraintClass.writeHtml(hConstraint)
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_Graphic

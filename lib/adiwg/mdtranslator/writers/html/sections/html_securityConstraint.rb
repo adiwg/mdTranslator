@@ -2,54 +2,53 @@
 # security constraint
 
 # History:
+#  Stan Smith 2017-03-31 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-03-25 original script
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlSecurityConstraint
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_SecurityConstraint
 
-                    def writeHtml(hSecCon)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # security constraint - classification - required
-                        @html.em('Classification: ')
-                        @html.text!(hSecCon[:classCode])
-                        @html.br
+               def writeHtml(hSecCon)
 
-                        # security constraint - class system
-                        s = hSecCon[:classSystem]
-                        if !s.nil?
-                            @html.em('Class system: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # security constraint - classification code {classification}
+                  @html.em('Classification: ')
+                  @html.text!(hSecCon[:classCode])
+                  @html.br
 
-                        # security constraint - handling instructions
-                        s = hSecCon[:handlingDesc]
-                        if !s.nil?
-                            @html.em('Handling instructions: ')
-                            @html.text!(s)
-                            @html.br
-                        end
 
-                        # security constraint - user note
-                        s = hSecCon[:userNote]
-                        if !s.nil?
-                            @html.em('User note: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # security constraint - classification system
+                  @html.em('Classification System: ')
+                  @html.text!(hSecCon[:classSystem])
+                  @html.br
 
-                    end # writeHtml
+                  # security constraint - user note
+                  unless hSecCon[:userNote].nil?
+                     @html.em('User Note:')
+                     @html.section(:class => 'block') do
+                        @html.text!(hSecCon[:userNote])
+                     end
+                  end
 
-                end # class
+                  # security constraint - handling instructions
+                  unless hSecCon[:handling].nil?
+                     @html.em('handling Instructions:')
+                     @html.section(:class => 'block') do
+                        @html.text!(hSecCon[:handling])
+                     end
+                  end
 
-            end
-        end
-    end
+               end # writeHtml
+            end # Html_SecurityConstraint
+
+         end
+      end
+   end
 end

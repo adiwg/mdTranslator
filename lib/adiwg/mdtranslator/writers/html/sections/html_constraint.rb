@@ -32,6 +32,7 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   releasabilityClass = Html_Releasability.new(@html)
                   legalClass = Html_LegalConstraint.new(@html)
+                  securityClass = Html_SecurityConstraint.new(@html)
 
                   # constraint - type
                   unless hConstraint[:type].nil?
@@ -104,8 +105,8 @@ module ADIWG
                   end
 
                   # constraint - security {security constraint}
-                  if hConstraint[:type] == 'legal' && !hConstraint[:securityConstraint].empty?
-                     secuirtyClass.writeHtml(hConstraint[:securityConstraint])
+                  if hConstraint[:type] == 'security' && !hConstraint[:securityConstraint].empty?
+                     securityClass.writeHtml(hConstraint[:securityConstraint])
                   end
 
                end # writeHtml

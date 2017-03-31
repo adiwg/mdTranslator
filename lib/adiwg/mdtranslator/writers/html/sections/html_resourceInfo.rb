@@ -110,11 +110,11 @@ module ADIWG
 
                            # usage and limitation
                            unless hResource[:resourceUsages].empty?
-                              useCount = 0
+                              counter = 0
                               hResource[:resourceUsages].each do |hUsage|
-                                 useCount += 1
+                                 counter += 1
                                  @html.details do
-                                    @html.summary('Usage and Limitation '+useCount.to_s, {'class' => 'h5'})
+                                    @html.summary('Usage and Limitation '+counter.to_s, {'class' => 'h5'})
                                     @html.section(:class => 'block') do
                                        usageClass.writeHtml(hUsage)
                                     end
@@ -131,9 +131,11 @@ module ADIWG
                      @html.details do
                         @html.summary('Graphic Overviews', {'class' => 'h3'})
                         @html.section(:class => 'block') do
+                           counter = 0
                            hResource[:graphicOverviews].each do |hGraphic|
+                              counter += 1
                               @html.details do
-                                 @html.summary('Overview', 'class' => 'h5')
+                                 @html.summary('Overview '+counter.to_s, 'class' => 'h5')
                                  @html.section(:class => 'block') do
                                     graphicClass.writeHtml(hGraphic)
                                  end
