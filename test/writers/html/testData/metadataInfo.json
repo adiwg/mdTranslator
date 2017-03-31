@@ -1109,8 +1109,55 @@
                   }
                ]
             }
-         }
-
+         },
+         "graphicOverview": [
+            {
+               "fileName": "fileName 0",
+               "fileDescription": "fileDescription 0",
+               "fileType": "fileType 0",
+               "fileConstraint": [
+                  {
+                     "type": "use",
+                     "useLimitation": [
+                        "useLimitation0",
+                        "useLimitation1"
+                     ]
+                  },
+                  {
+                     "type": "legal",
+                     "legal": {
+                        "useConstraint": [
+                           "useConstraint0",
+                           "useConstraint1"
+                        ],
+                        "accessConstraint": [
+                           "accessConstraint0",
+                           "accessConstraint1"
+                        ],
+                        "otherConstraint": [
+                           "otherConstraint0",
+                           "otherConstraint1"
+                        ]
+                     }
+                  }
+               ],
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/0"
+                  }
+               ]
+            },
+            {
+               "fileName": "fileName 1",
+               "fileDescription": "fileDescription 1",
+               "fileType": "fileType 1",
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/1"
+                  }
+               ]
+            }
+         ]
       }
    }
 }

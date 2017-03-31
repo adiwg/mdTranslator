@@ -17,6 +17,7 @@ require_relative 'html_spatialRepresentation'
 require_relative 'html_resolution'
 require_relative 'html_keyword'
 require_relative 'html_taxonomy'
+require_relative 'html_graphic'
 
 module ADIWG
    module Mdtranslator
@@ -43,6 +44,7 @@ module ADIWG
                   resolutionClass = Html_Resolution.new(@html)
                   keywordClass = Html_Keyword.new(@html)
                   taxonomyClass = Html_Taxonomy.new(@html)
+                  graphicClass = Html_Graphic.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -118,6 +120,23 @@ module ADIWG
                               end
                            end
 
+                        end
+                     end
+                  end
+
+                  # resource - graphic overview []
+                  unless hResource[:graphicOverviews].empty?
+                     @html.details do
+                        @html.summary('Graphic Overviews', {'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:graphicOverviews].each do |hGraphic|
+                              @html.details do
+                                 @html.summary('Overview', 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    graphicClass.writeHtml(hGraphic)
+                                 end
+                              end
+                           end
                         end
                      end
                   end
@@ -263,7 +282,6 @@ module ADIWG
 
                   # TODO add extents []
                   # TODO add coverage description []
-                  # TODO add graphic overview []
                   # TODO add formats []
                   # TODO add constraints []
                   # TODO add default locale {}

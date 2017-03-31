@@ -23,39 +23,33 @@ module ADIWG
                   # classes used
                   onlineClass = Html_OnlineResource.new(@html)
 
-                  # graphic overview
-                  @html.em('Graphic Overview: ')
-                  @html.section(:class => 'block') do
-
-                     # graphic - name
-                     unless hGraphic[:graphicName].nil?
-                        @html.em('Name: ')
-                        @html.text!(hGraphic[:graphicName])
-                        @html.br
-                     end
-
-                     # graphic - description
-                     unless hGraphic[:graphicDescription].nil?
-                        @html.em('Description: ')
-                        @html.text!(hGraphic[:graphicDescription])
-                        @html.br
-                     end
-
-                     # graphic - type
-                     unless hGraphic[:graphicType].nil?
-                        @html.em('Type: ')
-                        @html.text!(hGraphic[:graphicType])
-                        @html.br
-                     end
-
-                     # graphic - URI []
-                     hGraphic[:graphicURI].each do |hOnline|
-                        onlineClass.writeHtml(hOnline)
-                     end
-
-                     # TODO add constraint to graphic
-
+                  # graphic - name
+                  unless hGraphic[:graphicName].nil?
+                     @html.em('Name: ')
+                     @html.text!(hGraphic[:graphicName])
+                     @html.br
                   end
+
+                  # graphic - description
+                  unless hGraphic[:graphicDescription].nil?
+                     @html.em('Description: ')
+                     @html.text!(hGraphic[:graphicDescription])
+                     @html.br
+                  end
+
+                  # graphic - type
+                  unless hGraphic[:graphicType].nil?
+                     @html.em('Type: ')
+                     @html.text!(hGraphic[:graphicType])
+                     @html.br
+                  end
+
+                  # graphic - URI []
+                  hGraphic[:graphicURI].each do |hOnline|
+                     onlineClass.writeHtml(hOnline)
+                  end
+
+                  # TODO add constraint to graphic
 
                end # writeHtml
             end # Html_Graphic

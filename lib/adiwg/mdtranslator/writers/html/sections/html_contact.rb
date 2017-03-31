@@ -67,78 +67,83 @@ module ADIWG
 
                         # contact - address
                         hContact[:addresses].each do |hAddress|
-                           @html.em('Address: ')
-                           @html.section(:class => 'block') do
+                           @html.details do
+                              @html.summary('Address', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
 
-                              # address - delivery points
-                              hAddress[:deliveryPoints].each do |addLine|
-                                 @html.text!(addLine)
+                                 # address - delivery points
+                                 hAddress[:deliveryPoints].each do |addLine|
+                                    @html.text!(addLine)
+                                    @html.br
+                                 end
+
+                                 # address - city, adminArea postalCode
+                                 unless hAddress[:city].nil?
+                                    @html.text!(hAddress[:city])
+                                 end
+                                 unless hAddress[:adminArea].nil?
+                                    @html.text!(', ' + hAddress[:adminArea])
+                                 end
+                                 unless hAddress[:postalCode].nil?
+                                    @html.text!(' ' + hAddress[:postalCode])
+                                 end
                                  @html.br
-                              end
 
-                              # address - city, adminArea postalCode
-                              unless hAddress[:city].nil?
-                                 @html.text!(hAddress[:city])
-                              end
-                              unless hAddress[:adminArea].nil?
-                                 @html.text!(', ' + hAddress[:adminArea])
-                              end
-                              unless hAddress[:postalCode].nil?
-                                 @html.text!(' ' + hAddress[:postalCode])
-                              end
-                              @html.br
+                                 # address - country
+                                 unless hAddress[:country].nil?
+                                    @html.text!(hAddress[:country])
+                                    @html.br
+                                 end
 
-                              # address - country
-                              unless hAddress[:country].nil?
-                                 @html.text!(hAddress[:country])
-                                 @html.br
-                              end
+                                 # address - type
+                                 hAddress[:addressTypes].each do |addType|
+                                    @html.em('Address Type: ')
+                                    @html.text!(addType)
+                                    @html.br
+                                 end
 
-                              # address - type
-                              hAddress[:addressTypes].each do |addType|
-                                 @html.em('Address Type: ')
-                                 @html.text!(addType)
-                                 @html.br
-                              end
+                                 # address - description
+                                 if hAddress[:description]
+                                    @html.em('Description: ')
+                                    @html.text!(hAddress[:description])
+                                    @html.br
+                                 end
 
-                              # address - description
-                              if hAddress[:description]
-                                 @html.em('Description: ')
-                                 @html.text!(hAddress[:description])
-                                 @html.br
                               end
-
                            end
                         end
 
+
                         # contact - phones
                         hContact[:phones].each do |hPhone|
-                           @html.em('Phone: ')
-                           @html.section(:class => 'block') do
+                           @html.details do
+                              @html.summary('Phone', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
 
-                              # phone - name
-                              unless hPhone[:phoneName].nil?
-                                 @html.em('Phone Name: ')
-                                 @html.text!(hPhone[:phoneName])
-                                 @html.br
-                              end
-
-                              # phone - number
-                              unless hPhone[:phoneNumber].nil?
-                                 @html.em('Phone Number: ')
-                                 @html.text!(hPhone[:phoneNumber])
-                                 @html.br
-                              end
-
-                              # phone - service types
-                              unless hPhone[:phoneServiceTypes].empty?
-                                 @html.em('Service Types: ')
-                                 hPhone[:phoneServiceTypes].each do |phoneType|
-                                    @html.text!(phoneType + ' ')
+                                 # phone - name
+                                 unless hPhone[:phoneName].nil?
+                                    @html.em('Phone Name: ')
+                                    @html.text!(hPhone[:phoneName])
+                                    @html.br
                                  end
-                                 @html.br
-                              end
 
+                                 # phone - number
+                                 unless hPhone[:phoneNumber].nil?
+                                    @html.em('Phone Number: ')
+                                    @html.text!(hPhone[:phoneNumber])
+                                    @html.br
+                                 end
+
+                                 # phone - service types
+                                 unless hPhone[:phoneServiceTypes].empty?
+                                    @html.em('Service Types: ')
+                                    hPhone[:phoneServiceTypes].each do |phoneType|
+                                       @html.text!(phoneType + ' ')
+                                    end
+                                    @html.br
+                                 end
+
+                              end
                            end
                         end
 
@@ -151,12 +156,22 @@ module ADIWG
 
                         # contact - online resource []
                         hContact[:onlineResources].each do |hOnline|
-                           onlineClass.writeHtml(hOnline)
+                           @html.details do
+                              @html.summary('Online Resource', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 onlineClass.writeHtml(hOnline)
+                              end
+                           end
                         end
 
                         # contact - logos []
                         hContact[:logos].each do |hLogo|
-                           graphicClass.writeHtml(hLogo)
+                           @html.details do
+                              @html.summary('Logo Graphic', {'class' => 'h5'})
+                              @html.section(:class => 'block') do
+                                 graphicClass.writeHtml(hLogo)
+                              end
+                           end
                         end
 
                         # contact - hours of service []

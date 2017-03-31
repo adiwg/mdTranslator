@@ -18,43 +18,37 @@ module ADIWG
 
                def writeHtml(hOlRes)
 
-                  # online resource
-                  @html.em('Online Resource: ')
-                  @html.section(:class => 'block') do
+                  # online resource - URI
+                  @html.em('URI: ')
+                  @html.a(hOlRes[:olResURI], 'href' => hOlRes[:olResURI])
+                  @html.br
 
-                     # online resource - URI
-                     @html.em('URI: ')
-                     @html.a(hOlRes[:olResURI], 'href' => hOlRes[:olResURI])
+                  # online resource - name
+                  unless hOlRes[:olResName].nil?
+                     @html.em('Name: ')
+                     @html.text!(hOlRes[:olResName])
                      @html.br
+                  end
 
-                     # online resource - name
-                     unless hOlRes[:olResName].nil?
-                        @html.em('Name: ')
-                        @html.text!(hOlRes[:olResName])
-                        @html.br
-                     end
+                  # online resource - description
+                  unless hOlRes[:olResDesc].nil?
+                     @html.em('Description: ')
+                     @html.text!(hOlRes[:olResDesc])
+                     @html.br
+                  end
 
-                     # online resource - description
-                     unless hOlRes[:olResDesc].nil?
-                        @html.em('Description: ')
-                        @html.text!(hOlRes[:olResDesc])
-                        @html.br
-                     end
+                  # online resource - function
+                  unless hOlRes[:olResFunction].nil?
+                     @html.em('Function: ')
+                     @html.text!(hOlRes[:olResFunction])
+                     @html.br
+                  end
 
-                     # online resource - function
-                     unless hOlRes[:olResFunction].nil?
-                        @html.em('Function: ')
-                        @html.text!(hOlRes[:olResFunction])
-                        @html.br
-                     end
-
-                     # online resource - protocol
-                     unless hOlRes[:olResProtocol].nil?
-                        @html.em('Protocol: ')
-                        @html.text!(hOlRes[:olResProtocol])
-                        @html.br
-                     end
-
+                  # online resource - protocol
+                  unless hOlRes[:olResProtocol].nil?
+                     @html.em('Protocol: ')
+                     @html.text!(hOlRes[:olResProtocol])
+                     @html.br
                   end
 
                end # writeHtml

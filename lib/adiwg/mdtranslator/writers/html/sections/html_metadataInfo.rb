@@ -72,17 +72,21 @@ module ADIWG
 
                            # default metadata locales {locale}
                            unless hMetaInfo[:defaultMetadataLocale].empty?
-                              @html.em('Default Metadata Locale: ')
-                              @html.section(:class => 'block') do
-                                 localeClass.writeHtml(hMetaInfo[:defaultMetadataLocale])
+                              @html.details do
+                                 @html.summary('Default Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hMetaInfo[:defaultMetadataLocale])
+                                 end
                               end
                            end
 
                            # other metadata locales [] {locale}
                            hMetaInfo[:otherMetadataLocales].each do |hLocale|
-                              @html.em('Other Metadata Locale: ')
-                              @html.section(:class => 'block') do
-                                 localeClass.writeHtml(hLocale)
+                              @html.details do
+                                 @html.summary('Other Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hLocale)
+                                 end
                               end
                            end
 
@@ -127,7 +131,12 @@ module ADIWG
                         @html.summary('Metadata Online Resource', {'id' => 'metadataInfo-links', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            hMetaInfo[:metadataLinkages].each do |hOnline|
-                              onlineClass.writeHtml(hOnline)
+                              @html.details do
+                                 @html.summary('Online Resource', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    onlineClass.writeHtml(hOnline)
+                                 end
+                              end
                            end
                         end
                      end

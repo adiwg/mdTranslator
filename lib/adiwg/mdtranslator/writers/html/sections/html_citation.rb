@@ -71,15 +71,6 @@ module ADIWG
                      end
                   end
 
-                  # citation - presentation form []
-                  unless hCitation[:presentationForms].empty?
-                     hCitation[:presentationForms].each do |forms|
-                        @html.em('Presentation Form: ')
-                        @html.text!(forms)
-                        @html.br
-                     end
-                  end
-
                   # citation - identifier []
                   hCitation[:identifiers].each do |hIdentifier|
                      @html.details do
@@ -92,43 +83,64 @@ module ADIWG
 
                   # citation - series
                   unless hCitation[:series].empty?
-                     @html.em('Publication Series: ')
-                     @html.section(:class => 'block') do
+                     @html.details do
+                        @html.summary('Publication Series', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
 
-                        hSeries = hCitation[:series]
+                           hSeries = hCitation[:series]
 
-                        # series - name
-                        unless hSeries[:seriesName].nil?
-                           @html.em('Series Name: ')
-                           @html.text!(hSeries[:seriesName])
-                           @html.br
+                           # series - name
+                           unless hSeries[:seriesName].nil?
+                              @html.em('Series Name: ')
+                              @html.text!(hSeries[:seriesName])
+                              @html.br
+                           end
+
+                           # series - issue
+                           unless hSeries[:seriesIssue].nil?
+                              @html.em('Series Issue: ')
+                              @html.text!(hSeries[:seriesIssue])
+                              @html.br
+                           end
+
+                           # series - page
+                           unless hSeries[:issuePage].nil?
+                              @html.em('Issue Page: ')
+                              @html.text!(hSeries[:issuePage])
+                              @html.br
+                           end
+
                         end
-
-                        # series - issue
-                        unless hSeries[:seriesIssue].nil?
-                           @html.em('Series Issue: ')
-                           @html.text!(hSeries[:seriesIssue])
-                           @html.br
-                        end
-
-                        # series - page
-                        unless hSeries[:issuePage].nil?
-                           @html.em('Issue Page: ')
-                           @html.text!(hSeries[:issuePage])
-                           @html.br
-                        end
-
                      end
                   end
 
                   # citation - online resource []
                   hCitation[:onlineResources].each do |hOnline|
-                     onlineClass.writeHtml(hOnline)
+                     @html.details do
+                        @html.summary('Online Resource', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           onlineClass.writeHtml(hOnline)
+                        end
+                     end
                   end
 
                   # citation - browse graphic []
                   hCitation[:browseGraphics].each do |hGraphic|
-                     graphicClass.writeHtml(hGraphic)
+                     @html.details do
+                        @html.summary('Graphic Overview', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           graphicClass.writeHtml(hGraphic)
+                        end
+                     end
+                  end
+
+                  # citation - presentation form []
+                  unless hCitation[:presentationForms].empty?
+                     hCitation[:presentationForms].each do |forms|
+                        @html.em('Presentation Form: ')
+                        @html.text!(forms)
+                        @html.br
+                     end
                   end
 
                   # citation - other details []
