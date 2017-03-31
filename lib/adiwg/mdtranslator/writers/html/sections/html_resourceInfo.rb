@@ -18,6 +18,7 @@ require_relative 'html_resolution'
 require_relative 'html_keyword'
 require_relative 'html_taxonomy'
 require_relative 'html_graphic'
+require_relative 'html_constraint'
 
 module ADIWG
    module Mdtranslator
@@ -45,6 +46,7 @@ module ADIWG
                   keywordClass = Html_Keyword.new(@html)
                   taxonomyClass = Html_Taxonomy.new(@html)
                   graphicClass = Html_Graphic.new(@html)
+                  constraintClass = Html_Constraint.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -280,10 +282,26 @@ module ADIWG
                   end
 
 
+                  # resource - constraints [] {constraint}
+                  unless hResource[:constraints].empty?
+                     @html.details do
+                        @html.summary('Constraints', {'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:constraints].each do |hConstraint|
+                              @html.details do
+                                 @html.summary(hConstraint[:type]+' Constraint', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    constraintClass.writeHtml(hConstraint)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
                   # TODO add extents []
                   # TODO add coverage description []
                   # TODO add formats []
-                  # TODO add constraints []
                   # TODO add default locale {}
                   # TODO add other locale []
                   # TODO add maintenance

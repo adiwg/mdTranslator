@@ -20,6 +20,7 @@ module ADIWG
 
                def writeHtml(hDimension)
 
+                  # classes used
                   measureClass = Html_Measure.new(@html)
 
                   # dimension - type

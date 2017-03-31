@@ -1157,7 +1157,111 @@
                   }
                ]
             }
+         ],
+         "constraint": [
+            {
+               "type": "use",
+               "useLimitation": [
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+               ],
+               "scope": {
+                  "scopeCode": "scopeCode"
+               },
+               "graphic": [
+                  {
+                     "fileName": "fileName0"
+                  },
+                  {
+                     "fileName": "fileName1"
+                  }
+               ],
+               "reference": [
+                  {
+                     "title": "title0"
+                  },
+                  {
+                     "title": "title1"
+                  }
+               ],
+               "releasability": {
+                  "statement": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "addressee": [
+                     {
+                        "role": "client",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     },
+                     {
+                        "role": "stakeholder",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           },
+                           {
+                              "contactId": "CID003"
+                           }
+                        ]
+                     }
+                  ],
+                  "disseminationConstraint": [
+                     "restricted",
+                     "unrestricted"
+                  ]
+               },
+               "responsibleParty": [
+                  {
+                     "role": "coAuthor",
+                     "party": [
+                        {
+                           "contactId": "CID006"
+                        },
+                        {
+                           "contactId": "CID004"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "rightsHolder",
+                     "party": [
+                        {
+                           "contactId": "CID005"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "type": "legal",
+               "legal": {
+                  "useConstraint": [
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."
+                  ],
+                  "accessConstraint": [
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor."
+                  ],
+                  "otherConstraint": [
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure."
+                  ]
+               }
+            },
+            {
+               "type": "security",
+               "security": {
+                  "classification": "secret",
+                  "classificationSystem": "Classification System Name",
+                  "userNote": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "handlingDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+               }
+            }
          ]
+
       }
    }
 }

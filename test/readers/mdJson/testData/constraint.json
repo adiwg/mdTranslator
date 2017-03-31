@@ -31,19 +31,6 @@
          "responsibleParty": [
             {
                "role": "role0",
-               "roleExtent": [
-                  {
-                     "description": "description0",
-                     "temporalExtent": [
-                        {
-                           "type": "period",
-                           "timePeriod": {
-                              "startDateTime": "2016-10-14"
-                           }
-                        }
-                     ]
-                  }
-               ],
                "party": [
                   {
                      "contactId": "individualId0"
@@ -52,11 +39,6 @@
             },
             {
                "role": "role1",
-               "roleExtent": [
-                  {
-                     "description": "description1"
-                  }
-               ],
                "party": [
                   {
                      "contactId": "individualId0"
