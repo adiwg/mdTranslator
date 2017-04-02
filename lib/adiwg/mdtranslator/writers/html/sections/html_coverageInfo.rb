@@ -2,87 +2,80 @@
 # coverage information
 
 # History:
+#  Stan Smith 2017-04-02 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-08-21 original script
 
 require_relative 'html_identifier'
-require_relative 'html_coverageItem'
+require_relative 'html_attributeGroup'
 require_relative 'html_imageInfo'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlCoverageInfo
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_CoverageInfo
 
-                    def writeHtml(hCover)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlResId = MdHtmlResourceId.new(@html)
-                        htmlItem = MdHtmlCoverageItem.new(@html)
-                        htmlImage = MdHtmlImageInfo.new(@html)
+               def writeHtml(hCoverage)
 
-                        # coverage information - type
-                        s = hCover[:coverageType]
-                        if !s.nil?
-                            @html.em('Coverage type: ')
-                            @html.text!(s)
-                            @html.br
+                  # classes used
+                  identifierClass = Html_Identifier.new(@html)
+                  attGroupClass = Html_AttributeGroup.new(@html)
+                  imageClass = Html_ImageInfo.new(@html)
+
+                  # coverage - name
+                  unless hCoverage[:coverageName].nil?
+                     @html.em('Name: ')
+                     @html.text!(hCoverage[:coverageName])
+                     @html.br
+                  end
+
+                  # coverage - description
+                  unless hCoverage[:coverageDescription].nil?
+                     @html.em('Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hCoverage[:coverageDescription])
+                     end
+                  end
+
+                  # coverage - process level code
+                  unless hCoverage[:processingLevelCode].empty?
+                     @html.details do
+                        @html.summary('Identifier', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hCoverage[:processingLevelCode])
                         end
+                     end
+                  end
 
-                        # coverage information - name
-                        s = hCover[:coverageName]
-                        if !s.nil?
-                            @html.em('Coverage name: ')
-                            @html.text!(s)
-                            @html.br
+                  # coverage - attribute group [] {attributeGroup}
+                  hCoverage[:attributeGroups].each do |hAttGroup|
+                     @html.details do
+                        @html.summary('Attribute Group', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           attGroupClass.writeHtml(hAttGroup)
                         end
+                     end
+                  end
 
-                        # coverage information - description
-                        s = hCover[:coverageDescription]
-                        if !s.nil?
-                            @html.em('Coverage description: ')
-                            @html.text!(s)
-                            @html.br
+                  # coverage - image description {imageInfo}
+                  unless hCoverage[:imageDescription].empty?
+                     @html.details do
+                        @html.summary('Image Description', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           imageClass.writeHtml(hCoverage[:imageDescription])
                         end
+                     end
+                  end
 
-                        # coverage information - processing level
-                        hIdentifier = hCover[:processingLevel]
-                        if !hIdentifier.empty?
-                            @html.em('Processing level: ')
-                            @html.section(:class=>'block') do
-                                htmlResId.writeHtml(hIdentifier)
-                            end
-                        end
+               end # writeHtml
+            end # Html_CoverageInfo
 
-                        # coverage information - items
-                        aCoverItems = hCover[:coverageItems]
-                        aCoverItems.each do |hCovItem|
-                            @html.details do
-                                @html.summary(hCovItem[:itemName], {'class'=>'h5'})
-                                @html.section(:class=>'block') do
-                                    htmlItem.writeHtml(hCovItem)
-                                end
-                            end
-                        end
-
-                        # coverage information - image info
-                        hImage = hCover[:imageInfo]
-                        if !hImage.empty?
-                            @html.em('Image information: ')
-                            @html.section(:class=>'block') do
-                                htmlImage.writeHtml(hImage)
-                            end
-                        end
-
-                    end # writeHtml
-
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end

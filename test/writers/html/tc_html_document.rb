@@ -22,7 +22,7 @@ class TestHtmlDocument < MiniTest::Test
          writer: 'html', showAllTags: false)
 
       got = metadata[:writerOutput]
-      File.write('/mnt/hgfs/Projects/writeOut.html', got)
+      File.write('/mnt/hgfs/ShareDrive/writeOut.html', got)
 
       refute_empty got
 

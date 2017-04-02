@@ -19,6 +19,7 @@ require_relative 'html_keyword'
 require_relative 'html_taxonomy'
 require_relative 'html_graphic'
 require_relative 'html_constraint'
+require_relative 'html_coverageInfo'
 
 module ADIWG
    module Mdtranslator
@@ -47,6 +48,7 @@ module ADIWG
                   taxonomyClass = Html_Taxonomy.new(@html)
                   graphicClass = Html_Graphic.new(@html)
                   constraintClass = Html_Constraint.new(@html)
+                  coverageClass = Html_CoverageInfo.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -283,7 +285,6 @@ module ADIWG
                      end
                   end
 
-
                   # resource - constraints [] {constraint}
                   unless hResource[:constraints].empty?
                      @html.details do
@@ -302,7 +303,25 @@ module ADIWG
                   end
 
                   # TODO add extents []
-                  # TODO add coverage description []
+
+                  # resource - coverage description []
+                  unless hResource[:coverageDescriptions].empty?
+                     @html.details do
+                        @html.summary('Coverage Description', {'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:coverageDescriptions].each do |hCoverage|
+                              @html.details do
+                                 @html.summary(hCoverage[:coverageName], {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    coverageClass.writeHtml(hCoverage)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+
                   # TODO add formats []
                   # TODO add default locale {}
                   # TODO add other locale []
