@@ -74,7 +74,7 @@ module ADIWG
                   # citation - identifier []
                   hCitation[:identifiers].each do |hIdentifier|
                      @html.details do
-                        @html.summary('Identifier: '+hIdentifier[:identifier], 'class' => 'h5')
+                        @html.summary('Identifier', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            identifierClass.writeHtml(hIdentifier)
                         end

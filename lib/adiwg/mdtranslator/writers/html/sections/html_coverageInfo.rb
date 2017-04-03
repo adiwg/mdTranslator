@@ -45,7 +45,7 @@ module ADIWG
                   # coverage - process level code
                   unless hCoverage[:processingLevelCode].empty?
                      @html.details do
-                        @html.summary('Identifier', {'class' => 'h5'})
+                        @html.summary('Processing Level Code', {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            identifierClass.writeHtml(hCoverage[:processingLevelCode])
                         end
