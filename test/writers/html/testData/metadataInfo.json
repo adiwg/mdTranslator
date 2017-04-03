@@ -1293,10 +1293,13 @@
                         {
                            "sequenceIdentifier": "sequenceIdentifier 1",
                            "sequenceIdentifierType": "sequenceIdentifierType",
-                           "attributeDescription": "attributeDescription",
+                           "attributeDescription": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                            "attributeIdentifier": [
                               {
-                                 "identifier": "identifier"
+                                 "identifier": "identifier 1"
+                              },
+                              {
+                                 "identifier": "identifier 2"
                               }
                            ],
                            "minValue": 9.9,
@@ -1313,7 +1316,7 @@
                            "boundUnits": "boundUnits",
                            "peakResponse": 9.9,
                            "toneGradations": 999,
-                           "bandBoundaryDefinition": "bandBoundaryDefinition",
+                           "bandBoundaryDefinition": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                            "nominalSpatialResolution": 9.9,
                            "transferFunctionType": "transferFunctionType",
                            "transmittedPolarization": "transmittedPolarization",
