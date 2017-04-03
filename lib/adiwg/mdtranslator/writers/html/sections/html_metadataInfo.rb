@@ -57,7 +57,7 @@ module ADIWG
                   # metadataInfo - parent metadata {citation}
                   unless hMetaInfo[:parentMetadata].empty?
                      @html.details do
-                        @html.summary('Parent Metadata', {'id' => 'metadataInfo-parentInfo', 'class' => 'h3'})
+                        @html.summary('Parent Metadata', {'id' => 'metadataInfo-parent', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            citationClass.writeHtml(hMetaInfo[:parentMetadata])
                         end
@@ -67,7 +67,7 @@ module ADIWG
                   # metadataInfo - metadata locales
                   unless hMetaInfo[:defaultMetadataLocale].empty? && hMetaInfo[:otherMetadataLocales].empty?
                      @html.details do
-                        @html.summary('Metadata Locales', {'id' => 'metadataInfo-localeInfo', 'class' => 'h3'})
+                        @html.summary('Metadata Locales', {'id' => 'metadataInfo-locale', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # default metadata locales {locale}

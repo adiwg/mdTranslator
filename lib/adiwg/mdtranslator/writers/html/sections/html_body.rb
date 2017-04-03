@@ -127,7 +127,8 @@ module ADIWG
                         end
                      end
 
-                     # TODO add lineage
+                     # lineage section
+
                      # TODO add distribution
                      # TODO add associated resource
                      # TODO add additional documentation

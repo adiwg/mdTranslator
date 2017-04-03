@@ -20,6 +20,9 @@ require_relative 'html_taxonomy'
 require_relative 'html_graphic'
 require_relative 'html_constraint'
 require_relative 'html_coverageInfo'
+require_relative 'html_locale'
+require_relative 'html_format'
+require_relative 'html_maintenance'
 
 module ADIWG
    module Mdtranslator
@@ -49,6 +52,9 @@ module ADIWG
                   graphicClass = Html_Graphic.new(@html)
                   constraintClass = Html_Constraint.new(@html)
                   coverageClass = Html_CoverageInfo.new(@html)
+                  localeClass = Html_Locale.new(@html)
+                  formatClass = Html_Format.new(@html)
+                  maintClass = Html_Maintenance.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -131,7 +137,7 @@ module ADIWG
                   # resource - graphic overview []
                   unless hResource[:graphicOverviews].empty?
                      @html.details do
-                        @html.summary('Graphic Overviews', {'class' => 'h3'})
+                        @html.summary('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            counter = 0
                            hResource[:graphicOverviews].each do |hGraphic|
@@ -150,7 +156,7 @@ module ADIWG
                   # resource - point of contact []
                   unless hResource[:pointOfContacts].empty? && hResource[:credits].empty?
                      @html.details do
-                        @html.summary('Resource Contacts', {'class' => 'h3'})
+                        @html.summary('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # contacts
@@ -184,7 +190,7 @@ module ADIWG
                   # resource - temporal information
                   unless hResource[:timePeriod].empty? && hResource[:temporalResolutions].empty?
                      @html.details do
-                        @html.summary('Temporal Information', {'class' => 'h3'})
+                        @html.summary('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # time period
@@ -217,7 +223,7 @@ module ADIWG
                      hResource[:spatialRepresentations].empty?
                      hResource[:spatialResolutions].empty?
                      @html.details do
-                        @html.summary('Spatial Information', {'class' => 'h3'})
+                        @html.summary('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # representation type []
@@ -255,7 +261,7 @@ module ADIWG
                   unless hResource[:topicCategories].empty? &&
                      hResource[:keywords].empty?
                      @html.details do
-                        @html.summary('Keywords', {'class' => 'h3'})
+                        @html.summary('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
                            # resource - topic categories []
@@ -278,7 +284,7 @@ module ADIWG
                   # resource - taxonomy {taxonomy}
                   unless hResource[:taxonomy].empty?
                      @html.details do
-                        @html.summary('Taxonomy', {'class' => 'h3'})
+                        @html.summary('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            taxonomyClass.writeHtml(hResource[:taxonomy])
                         end
@@ -288,7 +294,7 @@ module ADIWG
                   # resource - constraints [] {constraint}
                   unless hResource[:constraints].empty?
                      @html.details do
-                        @html.summary('Constraints', {'class' => 'h3'})
+                        @html.summary('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            hResource[:constraints].each do |hConstraint|
                               @html.details do
@@ -307,7 +313,7 @@ module ADIWG
                   # resource - coverage description []
                   unless hResource[:coverageDescriptions].empty?
                      @html.details do
-                        @html.summary('Coverage Description', {'class' => 'h3'})
+                        @html.summary('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            hResource[:coverageDescriptions].each do |hCoverage|
                               @html.details do
@@ -321,13 +327,90 @@ module ADIWG
                      end
                   end
 
+                  # resource - locale
+                  unless hResource[:defaultResourceLocale].empty? && hResource[:otherResourceLocales].empty?
+                     @html.details do
+                        @html.summary('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
 
-                  # TODO add formats []
-                  # TODO add default locale {}
-                  # TODO add other locale []
-                  # TODO add maintenance
-                  # TODO add environment
-                  # TODO add supplemental information
+                           # default resource locales {locale}
+                           unless hResource[:defaultResourceLocale].empty?
+                              @html.details do
+                                 @html.summary('Default Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hResource[:defaultResourceLocale])
+                                 end
+                              end
+                           end
+
+                           # other resource locales [] {locale}
+                           hResource[:otherResourceLocales].each do |hLocale|
+                              @html.details do
+                                 @html.summary('Other Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hLocale)
+                                 end
+                              end
+                           end
+
+                        end
+                     end
+                  end
+
+                  # resource - formats [] {format}
+                  unless hResource[:resourceFormats].empty?
+                     @html.details do
+                        @html.summary('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:resourceFormats].each do |hFormat|
+                              @html.details do
+                                 @html.summary('Format', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    formatClass.writeHtml(hFormat)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # resource - supplemental
+                  unless hResource[:resourceMaintenance].empty? &&
+                     hResource[:environmentDescription].nil? &&
+                     hResource[:supplementalInfo].nil?
+                     @html.details do
+                        @html.summary('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # supplemental - maintenance [] {maintenance}
+                           hResource[:resourceMaintenance].each do |hMaint|
+                              @html.details do
+                                 @html.summary('Resource Maintenance', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    maintClass.writeHtml(hMaint)
+                                 end
+                              end
+                           end
+
+                           # supplemental - environment description
+                           unless hResource[:environmentDescription].nil?
+                              @html.em('Environment Description:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:environmentDescription])
+                              end
+                           end
+
+                           # supplemental - supplemental information
+                           unless hResource[:supplementalInfo].nil?
+                              @html.em('Supplemental Information:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:supplementalInfo])
+                              end
+                           end
+
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_ResourceInfo
