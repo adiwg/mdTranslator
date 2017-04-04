@@ -11,6 +11,7 @@
 require_relative 'html_contact'
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
+require_relative 'html_lineage'
 # require_relative 'html_dataDictionary'
 # require_relative 'html_distributor'
 # require_relative 'html_associatedResource'
@@ -33,7 +34,8 @@ module ADIWG
                      # classes used
                      metaInfoClass = Html_MetadataInfo.new(@html)
                      contactClass = Html_Contact.new(@html)
-                     resourceInfo = Html_ResourceInfo.new(@html)
+                     resourceClass = Html_ResourceInfo.new(@html)
+                     lineageClass = Html_Lineage.new(@html)
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
                      # htmlDist = MdHtmlDistributor.new(@html)
                      # htmlAssRes = MdHtmlAssociatedResource.new(@html)
@@ -44,6 +46,7 @@ module ADIWG
                      aContacts = intObj[:contacts]
                      hMetaInfo = intObj[:metadata][:metadataInfo]
                      hResourceInfo = intObj[:metadata][:resourceInfo]
+                     aLineage = intObj[:metadata][:lineageInfo]
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
                      # aDistributor = intObj[:metadata][:distributorInfo]
@@ -119,15 +122,29 @@ module ADIWG
                         @html.details do
                            @html.summary('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
                            @html.section(:class => 'block') do
-                              @html.section(:class => 'block') do
-                                 resourceInfo.writeHtml(hResourceInfo)
-                              end
+                              resourceClass.writeHtml(hResourceInfo)
                            end
                            @html.hr
                         end
                      end
 
                      # lineage section
+                     unless aLineage.empty?
+                        @html.details do
+                           @html.summary('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aLineage.each do |hLineage|
+                                 @html.details do
+                                    @html.summary('Lineage', {'id' => 'body-lineage', 'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       lineageClass.writeHtml(hLineage)
+                                    end
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
 
                      # TODO add distribution
                      # TODO add associated resource

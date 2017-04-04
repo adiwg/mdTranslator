@@ -1483,6 +1483,42 @@
       ],
       "environmentDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
       "supplementalInfo": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-    }
+    },
+    "resourceLineage": [
+      {
+        "statement": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "scope": {
+          "scopeCode": "scopeCode"
+        },
+        "citation": [
+          {
+            "title": "Lineage Title 1"
+          },
+          {
+            "title": "Lineage Title 2"
+          }
+        ],
+        "source": [
+          {
+            "description": "description"
+          },
+          {
+            "description": "description"
+          }
+        ],
+        "processStep": [
+          {
+            "description": "description"
+          },
+          {
+            "description": "description"
+          }
+        ]
+      },
+      {
+        "statement": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    ]
+
   }
 }
