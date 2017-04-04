@@ -1500,7 +1500,38 @@
         ],
         "source": [
           {
-            "description": "description"
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "sourceCitation": {
+              "title": "Source Citation Title"
+            },
+            "metadataCitation": [
+              {
+                "title": "title"
+              },
+              {
+                "title": "title"
+              }
+            ],
+            "spatialResolution": {
+              "scaleFactor": 99999
+            },
+            "referenceSystem": {
+              "referenceSystemType": "referenceSystemType",
+              "referenceSystemIdentifier": {
+                "identifier": "identifier"
+              }
+            },
+            "sourceProcessStep": [
+              {
+                "description": "description"
+              },
+              {
+                "description": "description"
+              }
+            ],
+            "scope": {
+              "scopeCode": "scopeCode"
+            }
           },
           {
             "description": "description"
@@ -1508,10 +1539,44 @@
         ],
         "processStep": [
           {
-            "description": "description"
+            "stepId": "stepId",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "rationale": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "timePeriod": {
+              "startDateTime": "2016-10-15"
+            },
+            "processor": [
+              {
+                "role": "processor",
+                "party": [
+                  {
+                    "contactId": "CID006"
+                  }
+                ]
+              },
+              {
+                "role": "reviewer",
+                "party": [
+                  {
+                    "contactId": "CID004"
+                  }
+                ]
+              }
+            ],
+            "reference": [
+              {
+                "title": "Process Step Reference"
+              },
+              {
+                "title": "Another Process Step Reference"
+              }
+            ],
+            "scope": {
+              "scopeCode": "scopeCode"
+            }
           },
           {
-            "description": "description"
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
           }
         ]
       },

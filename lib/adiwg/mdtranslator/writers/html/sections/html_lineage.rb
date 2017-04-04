@@ -73,7 +73,7 @@ module ADIWG
                      @html.details do
                         @html.summary('Process Step', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           sourceClass.writeHtml(hStep)
+                           stepClass.writeHtml(hStep)
                         end
                      end
                   end
