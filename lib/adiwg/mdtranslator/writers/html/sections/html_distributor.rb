@@ -1,12 +1,12 @@
 # HTML writer
-# resource distributor
+# distributor
 
 # History:
+#  Stan Smith 2017-04-04 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-08-21 original script
 
 require_relative 'html_responsibility'
 require_relative 'html_orderProcess'
-require_relative 'html_format'
 require_relative 'html_transferOption'
 
 module ADIWG
@@ -22,38 +22,40 @@ module ADIWG
 
                def writeHtml(hDistributor)
 
-                  @html.text!('Nothing Here')
-
                   # classes used
                   responsibilityClass = Html_Responsibility.new(@html)
                   orderClass = Html_OrderProcess.new(@html)
-                  formatClass = Html_Format.new(@html)
                   transferClass = Html_TransferOption.new(@html)
 
-                  # # resource distribution - distributor - required
-                  # @html.em('Distributor contact: ')
-                  # hResParty = hDistributor[:distContact]
-                  # @html.section(:class => 'block') do
-                  #    responsibilityClass.writeHtml(hResParty)
-                  # end
-                  #
-                  # # resource distribution - order process
-                  # hDistributor[:distOrderProcs].each do |hOrder|
-                  #    @html.em('Order Process: ')
-                  #    @html.section(:class => 'block') do
-                  #       htmlOrderProc.writeHtml(hOrder)
-                  #    end
-                  # end
-                  #
-                  # # resource distribution - resource format
-                  # hDistributor[:distFormats].each do |hFormat|
-                  #    htmlFormat.writeHtml(hFormat)
-                  # end
-                  #
-                  # # resource distribution - transfer options
-                  # hDistributor[:distTransOptions].each do |hTransOption|
-                  #    htmlTranOpt.writeHtml(hTransOption)
-                  # end
+                  # distributor - contact {responsibility}
+                  unless hDistributor[:contact].empty?
+                     @html.details do
+                        @html.summary('Contact', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           responsibilityClass.writeHtml(hDistributor[:contact])
+                        end
+                     end
+                  end
+
+                  # distributor - order process [] {orderProcess}
+                  hDistributor[:orderProcess].each do |hOrder|
+                     @html.details do
+                        @html.summary('Order Process', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           orderClass.writeHtml(hOrder)
+                        end
+                     end
+                  end
+
+                  # distributor - transfer options [] {transferOption}
+                  hDistributor[:transferOptions].each do |hTransfer|
+                     @html.details do
+                        @html.summary('Transfer Option', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           transferClass.writeHtml(hTransfer)
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_Distributor

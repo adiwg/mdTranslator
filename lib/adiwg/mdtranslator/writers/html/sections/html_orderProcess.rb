@@ -24,37 +24,41 @@ module ADIWG
                   # classes used
                   datetimeClass = Html_Datetime.new(@html)
 
-                  # order process - order instructions
-                  s = hOrder[:orderInstructions]
-                  if !s.nil?
-                     @html.em('Order instructions: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(s)
-                     end
-                  end
+                  @html.text!('Nothing Here')
 
-                  # order process - fees
-                  s = hOrder[:fees]
-                  if !s.nil?
-                     @html.em('Fees: ')
-                     @html.text!(s)
-                     @html.br
-                  end
 
-                  # order process - turnaround
-                  s = hOrder[:turnaround]
-                  if !s.nil?
-                     @html.em('Turnaround: ')
-                     @html.text!(s)
-                     @html.br
-                  end
 
-                  # order process - planned dateTime
-                  hDatetime = hOrder[:plannedDateTime]
-                  if !hDatetime.empty?
-                     @html.em('Planned Availability: ')
-                     datetimeClass.writeHtml(hDatetime)
-                  end
+                  # # order process - order instructions
+                  # s = hOrder[:orderInstructions]
+                  # if !s.nil?
+                  #    @html.em('Order instructions: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(s)
+                  #    end
+                  # end
+                  #
+                  # # order process - fees
+                  # s = hOrder[:fees]
+                  # if !s.nil?
+                  #    @html.em('Fees: ')
+                  #    @html.text!(s)
+                  #    @html.br
+                  # end
+                  #
+                  # # order process - turnaround
+                  # s = hOrder[:turnaround]
+                  # if !s.nil?
+                  #    @html.em('Turnaround: ')
+                  #    @html.text!(s)
+                  #    @html.br
+                  # end
+                  #
+                  # # order process - planned dateTime
+                  # hDatetime = hOrder[:plannedDateTime]
+                  # if !hDatetime.empty?
+                  #    @html.em('Planned Availability: ')
+                  #    datetimeClass.writeHtml(hDatetime)
+                  # end
 
                end # writeHtml
             end # Html_OrderProcess
