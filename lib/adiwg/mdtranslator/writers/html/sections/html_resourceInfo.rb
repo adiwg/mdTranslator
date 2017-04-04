@@ -44,8 +44,8 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   temporalClass = Html_TemporalExtent.new(@html)
                   durationClass = Html_Duration.new(@html)
-                  sRefClass = Html_SpatialReference.new(@html)
-                  sRepClass = Html_SpatialRepresentation.new(@html)
+                  referenceClass = Html_SpatialReference.new(@html)
+                  representationClass = Html_SpatialRepresentation.new(@html)
                   resolutionClass = Html_Resolution.new(@html)
                   keywordClass = Html_Keyword.new(@html)
                   taxonomyClass = Html_Taxonomy.new(@html)
@@ -54,14 +54,14 @@ module ADIWG
                   coverageClass = Html_CoverageInfo.new(@html)
                   localeClass = Html_Locale.new(@html)
                   formatClass = Html_Format.new(@html)
-                  maintClass = Html_Maintenance.new(@html)
+                  maintenanceClass = Html_Maintenance.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
                      typeClass.writeHtml(hType)
                   end
 
-                  # resource - status []
+                  # resource - status [] {statusCode}
                   hResource[:status].each do |status|
                      @html.em('Status:')
                      @html.text!(status)
@@ -134,7 +134,7 @@ module ADIWG
                      end
                   end
 
-                  # resource - graphic overview []
+                  # resource - graphic overview [] {graphicOverview}
                   unless hResource[:graphicOverviews].empty?
                      @html.details do
                         @html.summary('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
@@ -153,13 +153,13 @@ module ADIWG
                      end
                   end
 
-                  # resource - point of contact []
+                  # resource - point of contact [] {responsibility}
                   unless hResource[:pointOfContacts].empty? && hResource[:credits].empty?
                      @html.details do
                         @html.summary('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
-                           # contacts
+                           # contacts - responsibility
                            hResource[:pointOfContacts].each do |hContact|
                               @html.details do
                                  @html.summary(hContact[:roleName], 'class' => 'h5')
@@ -169,7 +169,7 @@ module ADIWG
                               end
                            end
 
-                           # contacts
+                           # contacts - credits
                            unless hResource[:credits].empty?
                               @html.details do
                                  @html.summary('Other Credits', 'class' => 'h5')
@@ -193,7 +193,7 @@ module ADIWG
                         @html.summary('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
-                           # time period
+                           # time period {timePeriod}
                            unless hResource[:timePeriod].empty?
                               temporalObj = {}
                               temporalObj[:timeInstant] = {}
@@ -201,7 +201,7 @@ module ADIWG
                               temporalClass.writeHtml(temporalObj)
                            end
 
-                           # temporal resolution []
+                           # temporal resolution [] {resolution}
                            unless hResource[:temporalResolutions].empty?
                               hResource[:temporalResolutions].each do |hResolution|
                                  @html.details do
@@ -226,29 +226,29 @@ module ADIWG
                         @html.summary('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
                         @html.section(:class => 'block') do
 
-                           # representation type []
+                           # representation type [] {spatialRepresentation}
                            hResource[:spatialRepresentationTypes].each do |hRepType|
                               @html.em('Spatial Representation Type: ')
                               @html.text!(hRepType)
                               @html.br
                            end
 
-                           # reference system []
+                           # reference system [] {spatialReference}
                            hResource[:spatialReferenceSystems].each do |hRefSystem|
                               @html.details do
                                  @html.summary('Spatial Reference System', {'class' => 'h5'})
                                  @html.section(:class => 'block') do
-                                    sRefClass.writeHtml(hRefSystem)
+                                    referenceClass.writeHtml(hRefSystem)
                                  end
                               end
                            end
 
-                           # spatial representation []
+                           # spatial representation [] {spatialRepresentation}
                            hResource[:spatialRepresentations].each do |hRepresentation|
-                              sRepClass.writeHtml(hRepresentation)
+                              representationClass.writeHtml(hRepresentation)
                            end
 
-                           # spatial resolution []
+                           # spatial resolution [] {resolution}
                            hResource[:spatialResolutions].each do |hResolution|
                               resolutionClass.writeHtml(hResolution)
                            end
@@ -310,7 +310,7 @@ module ADIWG
 
                   # TODO add extents []
 
-                  # resource - coverage description []
+                  # resource - coverage description [] {coverageInfo}
                   unless hResource[:coverageDescriptions].empty?
                      @html.details do
                         @html.summary('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
@@ -387,7 +387,7 @@ module ADIWG
                               @html.details do
                                  @html.summary('Resource Maintenance', {'class' => 'h5'})
                                  @html.section(:class => 'block') do
-                                    maintClass.writeHtml(hMaint)
+                                    maintenanceClass.writeHtml(hMaint)
                                  end
                               end
                            end

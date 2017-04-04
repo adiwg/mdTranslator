@@ -58,31 +58,34 @@ module ADIWG
                      periodClass.writeHtml(hStep[:timePeriod])
                   end
 
-                  # process step - processors [] {responsibility}
-                  unless hStep[:processors].empty?
-                     hStep[:processors].each do |hResponsibility|
-                        @html.details do
-                           @html.summary(hResponsibility[:roleName], {'class' => 'h5'})
-                           @html.section(:class => 'block') do
-                              responsibilityClass.writeHtml(hResponsibility)
-                           end
-                        end
-                     end
-                  end
-
                   # process step - references [] {citation}
                   unless hStep[:references].empty?
-                     hStep[:references].each do |hCitation|
-                        @html.details do
-                           @html.summary(hCitation[:title], {'class' => 'h5'})
-                           @html.section(:class => 'block') do
-                              citationClass.writeHtml(hCitation)
+                     @html.details do
+                        @html.summary('Step References', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hStep[:references].each do |hCitation|
+                              @html.details do
+                                 @html.summary(hCitation[:title], {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    citationClass.writeHtml(hCitation)
+                                 end
+                              end
                            end
                         end
                      end
                   end
 
-                  # process step - scope
+                  # process step - processors [] {responsibility}
+                  hStep[:processors].each do |hResponsibility|
+                     @html.details do
+                        @html.summary(hResponsibility[:roleName], {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           responsibilityClass.writeHtml(hResponsibility)
+                        end
+                     end
+                  end
+
+                  # process step - scope {scope}
                   unless hStep[:scope].empty?
                      @html.details do
                         @html.summary('Scope', {'class' => 'h5'})
