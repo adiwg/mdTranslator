@@ -10,53 +10,55 @@ require_relative 'html_format'
 require_relative 'html_transferOption'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlDistributor
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Distributor
 
-                    def writeHtml(hDistributor)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlResParty = MdHtmlResponsibleParty.new(@html)
-                        htmlOrderProc = MdHtmlOrderProcess.new(@html)
-                        htmlFormat = MdHtmlFormat.new(@html)
-                        htmlTranOpt = MdHtmlTransferOption.new(@html)
+               def writeHtml(hDistributor)
 
-                        # resource distribution - distributor - required
-                        @html.em('Distributor contact: ')
-                        hResParty = hDistributor[:distContact]
-                        @html.section(:class=>'block') do
-                            htmlResParty.writeHtml(hResParty)
-                        end
+                  @html.text!('Nothing Here')
 
-                        # resource distribution - order process
-                        hDistributor[:distOrderProcs].each do |hOrder|
-                            @html.em('Order Process: ')
-                            @html.section(:class=>'block') do
-                                htmlOrderProc.writeHtml(hOrder)
-                            end
-                        end
+                  # classes used
+                  responsibilityClass = Html_Responsibility.new(@html)
+                  orderClass = Html_OrderProcess.new(@html)
+                  formatClass = Html_Format.new(@html)
+                  transferClass = Html_TransferOption.new(@html)
 
-                        # resource distribution - resource format
-                        hDistributor[:distFormats].each do |hFormat|
-                            htmlFormat.writeHtml(hFormat)
-                        end
+                  # # resource distribution - distributor - required
+                  # @html.em('Distributor contact: ')
+                  # hResParty = hDistributor[:distContact]
+                  # @html.section(:class => 'block') do
+                  #    responsibilityClass.writeHtml(hResParty)
+                  # end
+                  #
+                  # # resource distribution - order process
+                  # hDistributor[:distOrderProcs].each do |hOrder|
+                  #    @html.em('Order Process: ')
+                  #    @html.section(:class => 'block') do
+                  #       htmlOrderProc.writeHtml(hOrder)
+                  #    end
+                  # end
+                  #
+                  # # resource distribution - resource format
+                  # hDistributor[:distFormats].each do |hFormat|
+                  #    htmlFormat.writeHtml(hFormat)
+                  # end
+                  #
+                  # # resource distribution - transfer options
+                  # hDistributor[:distTransOptions].each do |hTransOption|
+                  #    htmlTranOpt.writeHtml(hTransOption)
+                  # end
 
-                        # resource distribution - transfer options
-                        hDistributor[:distTransOptions].each do |hTransOption|
-                            htmlTranOpt.writeHtml(hTransOption)
-                        end
+               end # writeHtml
+            end # Html_Distributor
 
-                    end # writeHtml
-
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end

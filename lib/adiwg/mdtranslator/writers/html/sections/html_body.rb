@@ -12,8 +12,8 @@ require_relative 'html_contact'
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
 require_relative 'html_lineage'
+require_relative 'html_distribution'
 # require_relative 'html_dataDictionary'
-# require_relative 'html_distributor'
 # require_relative 'html_associatedResource'
 # require_relative 'html_additionalDocumentation'
 
@@ -36,20 +36,20 @@ module ADIWG
                      contactClass = Html_Contact.new(@html)
                      resourceClass = Html_ResourceInfo.new(@html)
                      lineageClass = Html_Lineage.new(@html)
+                     distributionClass = Html_Distribution.new(@html)
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
-                     # htmlDist = MdHtmlDistributor.new(@html)
                      # htmlAssRes = MdHtmlAssociatedResource.new(@html)
                      # htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
 
-                     # make sections of the internal data store more accessible
+                     # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
                      aContacts = intObj[:contacts]
                      hMetaInfo = intObj[:metadata][:metadataInfo]
                      hResourceInfo = intObj[:metadata][:resourceInfo]
                      aLineage = intObj[:metadata][:lineageInfo]
+                     aDistribution = intObj[:metadata][:distributorInfo]
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
-                     # aDistributor = intObj[:metadata][:distributorInfo]
                      # aAssRes = intObj[:metadata][:associatedResources]
                      # aAddDocs = intObj[:metadata][:additionalDocuments]
 
@@ -135,7 +135,7 @@ module ADIWG
                            @html.section(:class => 'block') do
                               aLineage.each do |hLineage|
                                  @html.details do
-                                    @html.summary('Lineage', {'id' => 'body-lineage', 'class' => 'h3'})
+                                    @html.summary('Lineage', {'class' => 'h3'})
                                     @html.section(:class => 'block') do
                                        lineageClass.writeHtml(hLineage)
                                     end
@@ -146,7 +146,24 @@ module ADIWG
                         end
                      end
 
-                     # TODO add distribution
+                     # distribution section
+                     unless aDistribution.empty?
+                        @html.details do
+                           @html.summary('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aDistribution.each do |hDistribution|
+                                 @html.details do
+                                    @html.summary('Distribution', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       distributionClass.writeHtml(hDistribution)
+                                    end
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
                      # TODO add associated resource
                      # TODO add additional documentation
                      # TODO add funding

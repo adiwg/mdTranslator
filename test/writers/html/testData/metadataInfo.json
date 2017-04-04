@@ -1583,6 +1583,88 @@
       {
         "statement": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
       }
+    ],
+    "resourceDistribution": [
+      {
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+        "distributor": [
+          {
+            "contact": {
+              "role": "distributor",
+              "party": [
+                {
+                  "contactId": "CID002"
+                }
+              ]
+            },
+            "orderProcess": [
+              {
+                "fees": "0.00USD",
+                "plannedAvailability": "2016-10-21T00:00:00",
+                "orderingInstructions": "orderingInstructions",
+                "turnaround": "turnaround"
+              },
+              {
+                "fees": "2.00USD"
+              }
+            ],
+            "transferOption": [
+              {
+                "unitsOfDistribution": "units of distribution",
+                "transferSize": 9.9,
+                "onlineOption": [
+                  {
+                    "uri": "http://ISO.uri/adiwg/0"
+                  },
+                  {
+                    "uri": "http://ISO.uri/adiwg/1"
+                  }
+                ],
+                "offlineOption": [
+                  {
+                    "mediumSpecification": {
+                      "title": "medium specification title 0"
+                    }
+                  },
+                  {
+                    "mediumSpecification": {
+                      "title": "dium specification title 1"
+                    }
+                  }
+                ],
+                "transferFrequency": {
+                  "months": 9
+                },
+                "distributionFormat": [
+                  {
+                    "formatSpecification": {
+                      "title": "format specification title 0"
+                    }
+                  },
+                  {
+                    "formatSpecification": {
+                      "title": "format specification title 1"
+                    }
+                  }
+                ]
+              },
+              {
+                "transferSize": 10.9
+              }
+            ]
+          },
+          {
+            "contact": {
+              "role": "distributor",
+              "party": [
+                {
+                  "contactId": "CID005"
+                }
+              ]
+            }
+          }
+        ]
+      }
     ]
 
   }
