@@ -17,35 +17,34 @@ module ADIWG
 
                def writeHtml(hKey)
 
-                  @html.text!('Nothing Yet')
+                  # foreign key - attributes []
+                  unless hKey[:fkLocalAttributes].empty?
+                     @html.em('Local Attribute(s):')
+                     @html.section(:class => 'block') do
+                        hKey[:fkLocalAttributes].each do |attribute|
+                           @html.text!(attribute)
+                           @html.br
+                        end
+                     end
+                  end
 
-                  # foreign key
+                  # foreign key - referenced entity
+                  unless hKey[:fkReferencedEntity].nil?
+                     @html.em('Referenced Entity Code: ')
+                     @html.text!(hKey[:fkReferencedEntity])
+                     @html.br
+                  end
 
-                  # aFKs = hEntity[:foreignKeys]
-                  # if !aFKs.empty?
-                  #    aFKs.each do |hFK|
-                  #       @html.em('Foreign Key: ')
-                  #       @html.section(:class => 'block') do
-                  #
-                  #          # foreign key - local attribute list
-                  #          @html.em('Local attribute: ')
-                  #          @html.text!(hFK[:fkLocalAttributes].to_s)
-                  #          @html.br
-                  #
-                  #          # foreign key - referenced entity
-                  #          @html.em('Referenced entity: ')
-                  #          @html.text!(hFK[:fkReferencedEntity])
-                  #          @html.br
-                  #
-                  #          # foreign key - referenced attribute list
-                  #          @html.em('Referenced attribute: ')
-                  #          @html.text!(hFK[:fkReferencedAttributes].to_s)
-                  #          @html.br
-                  #
-                  #       end
-                  #
-                  #    end
-                  # end
+                  # foreign key - referenced attributes []
+                  unless hKey[:fkReferencedAttributes].empty?
+                     @html.em('Referenced Attribute(s):')
+                     @html.section(:class => 'block') do
+                        hKey[:fkReferencedAttributes].each do |attribute|
+                           @html.text!(attribute)
+                           @html.br
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_EntityForeignKey
