@@ -2026,6 +2026,35 @@
           ]
         }
       ]
+    },
+    {
+      "citation": {
+        "title": "My Dictionary Title"
+      },
+      "subject": [
+        "birds",
+        "loons"
+      ],
+      "recommendedUse": [
+        "Reconstruct database"
+      ],
+      "locale": [
+        {
+          "language": "eng",
+          "country": "USA",
+          "characterSet": "UTF-8"
+        }
+      ],
+      "responsibleParty": {
+        "role": "author",
+        "party": [
+          {
+            "contactId": "CID006"
+          }
+        ]
+      },
+      "dictionaryFormat": "MSSQL",
+      "dictionaryIncludedWithResource": false
     }
   ]
 
