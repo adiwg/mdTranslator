@@ -66,7 +66,24 @@ module ADIWG
                   end
 
                   # transfer options - transfer frequency {duration}
+                  unless hOption[:transferFrequency].empty?
+                     @html.details do
+                        @html.summary('Transfer Frequency', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           durationClass.writeHtml(hOption[:transferFrequency])
+                        end
+                     end
+                  end
+
                   # transfer options - distribution formats [] {format}
+                  hOption[:distributionFormats].each do |hFormat|
+                     @html.details do
+                        @html.summary('Distribution Format Option', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           formatClass.writeHtml(hFormat)
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_TransferOption

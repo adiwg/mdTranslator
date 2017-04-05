@@ -1649,8 +1649,10 @@
                 "distributionFormat": [
                   {
                     "formatSpecification": {
-                      "title": "format specification title 0"
-                    }
+                      "title": "CSV"
+                    },
+                    "amendmentNumber": "2.0.8-beta",
+                    "compressionMethod": "7ZipUp"
                   },
                   {
                     "formatSpecification": {

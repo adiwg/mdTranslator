@@ -27,7 +27,7 @@ module ADIWG
                   # resource format - format specification {citation}
                   unless hFormat[:formatSpecification].empty?
                      @html.details do
-                        @html.summary('Specification', {'class' => 'h5'})
+                        @html.summary(hFormat[:formatSpecification][:title], {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            citationClass.writeHtml(hFormat[:formatSpecification])
                         end
