@@ -1678,6 +1678,48 @@
           }
         ]
       }
+    ],
+    "associatedResource": [
+      {
+        "resourceType": [
+          {
+            "type": "modelHardcopy",
+            "name": "Hardcopy of Model"
+          },
+          {
+            "type": "videoDigital",
+            "name": "Video of the Making"
+          }
+        ],
+        "associationType": "partOfSeamlessDatabase",
+        "initiativeType": "investigation",
+        "resourceCitation": {
+          "title": "Resource Citation Title"
+        },
+        "metadataCitation": {
+          "title": "Metadata Citation Title"
+        }
+      },
+      {
+        "resourceType": [
+          {
+            "type": "type0",
+            "name": "name0"
+          },
+          {
+            "type": "type1",
+            "name": "name1"
+          }
+        ],
+        "associationType": "associationType",
+        "initiativeType": "initiativeType",
+        "resourceCitation": {
+          "title": "title"
+        },
+        "metadataCitation": {
+          "title": "title"
+        }
+      }
     ]
 
   }

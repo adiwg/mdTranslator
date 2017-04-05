@@ -13,8 +13,8 @@ require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
 require_relative 'html_lineage'
 require_relative 'html_distribution'
+require_relative 'html_associatedResource'
 # require_relative 'html_dataDictionary'
-# require_relative 'html_associatedResource'
 # require_relative 'html_additionalDocumentation'
 
 module ADIWG
@@ -37,8 +37,9 @@ module ADIWG
                      resourceClass = Html_ResourceInfo.new(@html)
                      lineageClass = Html_Lineage.new(@html)
                      distributionClass = Html_Distribution.new(@html)
+                     associatedClass = Html_AssociatedResource.new(@html)
+
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
-                     # htmlAssRes = MdHtmlAssociatedResource.new(@html)
                      # htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
 
                      # make sections of the internal data store convenient
@@ -48,9 +49,9 @@ module ADIWG
                      hResourceInfo = intObj[:metadata][:resourceInfo]
                      aLineage = intObj[:metadata][:lineageInfo]
                      aDistribution = intObj[:metadata][:distributorInfo]
+                     aAssociated = intObj[:metadata][:associatedResources]
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
-                     # aAssRes = intObj[:metadata][:associatedResources]
                      # aAddDocs = intObj[:metadata][:additionalDocuments]
 
                      # set page title and logo
@@ -164,7 +165,24 @@ module ADIWG
                         end
                      end
 
-                     # TODO add associated resource
+                     # associated resource section
+                     unless aAssociated.empty?
+                        @html.details do
+                           @html.summary('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aAssociated.each do |hAssociated|
+                                 @html.details do
+                                    @html.summary('Resource', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       associatedClass.writeHtml(hAssociated)
+                                    end
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
                      # TODO add additional documentation
                      # TODO add funding
                      # TODO add data dictionary
