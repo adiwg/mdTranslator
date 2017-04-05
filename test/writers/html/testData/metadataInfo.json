@@ -1892,12 +1892,12 @@
           "domainId": "domainId1",
           "commonName": "commonName",
           "codeName": "codeName",
-          "description": "description",
+          "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
           "domainItem": [
             {
               "name": "name0",
               "value": "value0",
-              "definition": "definition0"
+              "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
             }
           ]
         }
@@ -1907,18 +1907,122 @@
           "entityId": "entityId0",
           "commonName": "commonName",
           "codeName": "codeName",
-          "definition": "definition",
+          "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
           "primaryKeyAttributeCodeName": [
-            "primaryKeyAttributeCodeName0"
+            "primaryAttribute0",
+            "primaryAttribute1"
+          ],
+          "index": [
+            {
+              "codeName": "codeName0",
+              "allowDuplicates": false,
+              "attributeCodeName": [
+                "attributeCodeName00",
+                "attributeCodeName01"
+              ]
+            },
+            {
+              "codeName": "codeName1",
+              "allowDuplicates": true,
+              "attributeCodeName": [
+                "attributeCodeName1"
+              ]
+            }
+          ],
+          "attribute": [
+            {
+              "commonName": "Common Name for Attribute",
+              "codeName": "codeName",
+              "alias": [
+                "alias0",
+                "alias1"
+              ],
+              "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+              "dataType": "dataType",
+              "allowNull": true,
+              "allowMany": false,
+              "units": "units",
+              "domainId": "domainId",
+              "minValue": "minValue",
+              "maxValue": "maxValue"
+            },
+            {
+              "commonName": "Employee ID",
+              "codeName": "empId",
+              "alias": [
+                "employeeId",
+                "employeeNumber"
+              ],
+              "definition": "Numeric code to uniquely identify an employee of Acme Oil",
+              "dataType": "numeric",
+              "allowNull": false,
+              "allowMany": true,
+              "units": "meters",
+              "domainId": "dom042",
+              "minValue": "1000000",
+              "maxValue": "5000000"
+            }
+          ],
+          "foreignKey": [
+            {
+              "localAttributeCodeName": [
+                "localAttributeCodeName0",
+                "localAttributeCodeName1"
+              ],
+              "referencedEntityCodeName": "referencedEntityCodeName",
+              "referencedAttributeCodeName": [
+                "referencedAttributeCodeName0",
+                "referencedAttributeCodeName1"
+              ]
+            },
+            {
+              "localAttributeCodeName": ["employeeID"],
+              "referencedEntityCodeName": "EMPLOYEE",
+              "referencedAttributeCodeName": ["employeeID"]
+            }
           ]
         },
         {
           "entityId": "entityId1",
           "commonName": "commonName",
           "codeName": "codeName",
-          "definition": "definition",
+          "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
           "primaryKeyAttributeCodeName": [
-            "primaryKeyAttributeCodeName0"
+            "primaryAttribute"
+          ],
+          "attribute": [
+            {
+              "commonName": "commonName",
+              "codeName": "codeName",
+              "alias": [
+                "alias0",
+                "alias1"
+              ],
+              "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+              "dataType": "dataType",
+              "allowNull": true,
+              "allowMany": false,
+              "units": "units",
+              "domainId": "domainId",
+              "minValue": "minValue",
+              "maxValue": "maxValue"
+            },
+            {
+              "commonName": "Employee ID",
+              "codeName": "empId",
+              "alias": [
+                "employeeId",
+                "employeeNumber"
+              ],
+              "definition": "Numeric code to uniquely identify an employee of Acme Oil",
+              "dataType": "numeric",
+              "allowNull": false,
+              "allowMany": true,
+              "units": "meters",
+              "domainId": "dom042",
+              "minValue": "1000000",
+              "maxValue": "5000000"
+            }
           ]
         }
       ]

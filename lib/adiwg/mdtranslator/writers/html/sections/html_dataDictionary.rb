@@ -42,7 +42,7 @@ module ADIWG
                   # dictionary - domains [] {domain}
                   hDictionary[:domains].each do |hDomain|
                      @html.details do
-                        @html.summary('Domain', {'class' => 'h5'})
+                        @html.summary('Domain: '+hDomain[:domainCode], {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            domainClass.writeHtml(hDomain)
                         end
@@ -52,7 +52,7 @@ module ADIWG
                   # dictionary - entities [] {entity}
                   hDictionary[:entities].each do |hEntity|
                      @html.details do
-                        @html.summary('Entity', {'class' => 'h5'})
+                        @html.summary('Entity: '+hEntity[:entityCode], {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            entityClass.writeHtml(hEntity)
                         end
