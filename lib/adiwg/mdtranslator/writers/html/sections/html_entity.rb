@@ -67,7 +67,7 @@ module ADIWG
 
                   # entity - primary key
                   unless hEntity[:primaryKey].empty?
-                     @html.em('Primary key:')
+                     @html.em('Primary Key Attribute(s):')
                      @html.section(:class => 'block') do
                         hEntity[:primaryKey].each do |attribute|
                            @html.text!(attribute)

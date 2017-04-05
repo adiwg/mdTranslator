@@ -18,31 +18,28 @@ module ADIWG
 
                def writeHtml(hIndex)
 
-                  @html.text!('Nothing Yet')
+                  # entity index - name
+                  unless hIndex[:indexCode].nil?
+                     @html.em('Code: ')
+                     @html.text!(hIndex[:indexCode])
+                     @html.br
+                  end
 
-                  # # entity index - common name
-                  # s = hIndex[:indexCode]
-                  # if !s.nil?
-                  #    @html.em('Common name: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # entity index - duplicate
-                  # b = hIndex[:duplicate]
-                  # if !b.nil?
-                  #    @html.em('Allow duplicates: ')
-                  #    @html.text!(b.to_s)
-                  #    @html.br
-                  # end
-                  #
-                  # # entity index - attribute names
-                  # aIndexKey = hIndex[:attributeNames]
-                  # if !aIndexKey.empty?
-                  #    @html.em('Index key: ')
-                  #    @html.text!(aIndexKey.to_s)
-                  #    @html.br
-                  # end
+                  # entity index - duplicate {Boolean}
+                  @html.em('Allow Duplicates: ')
+                  @html.text!(hIndex[:duplicate].to_s)
+                  @html.br
+
+                  # entity index - attribute names
+                  unless hIndex[:attributeNames].empty?
+                     @html.em('Index Attribute(s):')
+                     @html.section(:class => 'block') do
+                        hIndex[:attributeNames].each do |attribute|
+                           @html.text!(attribute)
+                           @html.br
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_EntityIndex
