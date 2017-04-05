@@ -24,56 +24,44 @@ module ADIWG
                   # classes used
                   itemClass = Html_DomainItem.new(@html)
 
-                  @html.text!('Nothing Yet')
+                  # domain - id
+                  unless hDomain[:domainId].nil?
+                     @html.em('ID: ')
+                     @html.text!(hDomain[:domainId])
+                     @html.br
+                  end
 
-                  # # domain - user assigned domain id
-                  # s = hDomain[:domainId]
-                  # if !s.nil?
-                  #    @html.em('Domain ID: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # domain - domain name
-                  # s = hDomain[:domainName]
-                  # if !s.nil?
-                  #    @html.em('Domain name: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # domain - domain code
-                  # s = hDomain[:domainCode]
-                  # if !s.nil?
-                  #    @html.em('Domain code: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # domain - user assigned domain id
-                  # s = hDomain[:domainDescription]
-                  # if !s.nil?
-                  #    @html.em('Description: ')
-                  #    @html.section(:class => 'block') do
-                  #       @html.text!(s)
-                  #    end
-                  # end
-                  #
-                  # # domain - domain members
-                  # aMembers = hDomain[:domainItems]
-                  # if !aMembers.empty?
-                  #    @html.em('Domain members: ')
-                  #    aMembers.each do |hDItem|
-                  #       @html.section(:class => 'block') do
-                  #          @html.details do
-                  #             @html.summary(hDItem[:itemValue], {'class' => 'h5'})
-                  #             @html.section(:class => 'block') do
-                  #                itemClass.writeHtml(hDItem)
-                  #             end
-                  #          end
-                  #       end
-                  #    end
-                  # end
+                  # domain - name
+                  unless hDomain[:domainName].nil?
+                     @html.em('Name: ')
+                     @html.text!(hDomain[:domainName])
+                     @html.br
+                  end
+
+                  # domain - code
+                  unless hDomain[:domainCode].nil?
+                     @html.em('Code: ')
+                     @html.text!(hDomain[:domainCode])
+                     @html.br
+                  end
+
+                  # domain - description
+                  unless hDomain[:domainDescription].nil?
+                     @html.em('Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hDomain[:domainDescription])
+                     end
+                  end
+
+                  # domain - domain items [] {domainItem}
+                  hDomain[:domainItems].each do |hItem|
+                     @html.details do
+                        @html.summary(hItem[:itemValue], {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           itemClass.writeHtml(hItem)
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_Domain

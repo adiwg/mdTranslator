@@ -18,30 +18,34 @@ module ADIWG
 
                def writeHtml(hItem)
 
-                  # domain member - common name
-                  s = hItem[:itemName]
-                  if !s.nil?
-                     @html.em('Common name: ')
-                     @html.text!(s)
-                     @html.br
-                  end
+                  @html.text!('Nothing Yet')
 
-                  # domain member - value
-                  s = hItem[:itemValue]
-                  if !s.nil?
-                     @html.em('Domain value: ')
-                     @html.text!(s)
-                     @html.br
-                  end
 
-                  # domain member - definition
-                  s = hItem[:itemDefinition]
-                  if !s.nil?
-                     @html.em('Definition: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(s)
-                     end
-                  end
+
+                  # # domain member - common name
+                  # s = hItem[:itemName]
+                  # if !s.nil?
+                  #    @html.em('Common name: ')
+                  #    @html.text!(s)
+                  #    @html.br
+                  # end
+                  #
+                  # # domain member - value
+                  # s = hItem[:itemValue]
+                  # if !s.nil?
+                  #    @html.em('Domain value: ')
+                  #    @html.text!(s)
+                  #    @html.br
+                  # end
+                  #
+                  # # domain member - definition
+                  # s = hItem[:itemDefinition]
+                  # if !s.nil?
+                  #    @html.em('Definition: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(s)
+                  #    end
+                  # end
 
 
                end # writeHtml
