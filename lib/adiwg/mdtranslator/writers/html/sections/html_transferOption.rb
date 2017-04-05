@@ -9,6 +9,7 @@
 
 require_relative 'html_onlineResource'
 require_relative 'html_medium'
+require_relative 'html_duration'
 require_relative 'html_format'
 
 module ADIWG
@@ -22,55 +23,50 @@ module ADIWG
                   @html = html
                end
 
-               def writeHtml(hTransOption)
-
-                  @html.text!('Nothing Here')
-
-
+               def writeHtml(hOption)
 
                   # classes used
                   onlineClass = Html_OnlineResource.new(@html)
                   mediumClass = Html_Medium.new(@html)
+                  durationClass = Html_Duration.new(@html)
                   formatClass = Html_Format.new(@html)
 
-                  # # resource distribution - resource format
-                  # hTransOption[:distFormats].each do |hFormat|
-                  #    htmlFormat.writeHtml(hFormat)
-                  # end
-                  #
-                  # # transfer options - transfer size
-                  # s = hTransOption[:transferSize]
-                  # if !s.nil?
-                  #    @html.em('Transfer size: ')
-                  #    @html.text!(s.to_s)
-                  #    @html.br
-                  # end
-                  #
-                  # # transfer options - transfer size units
-                  # s = hTransOption[:transferSizeUnits]
-                  # if !s.nil?
-                  #    @html.em('Transfer size units: ')
-                  #    @html.text!(s)
-                  #    @html.br
-                  # end
-                  #
-                  # # transfer options - online options - online resource
-                  # aOlRes = hTransOption[:online]
-                  # aOlRes.each do |hOlRes|
-                  #    @html.em('Online option: ')
-                  #    @html.section(:class => 'block') do
-                  #       onlineClass.writeHtml(hOlRes)
-                  #    end
-                  # end
-                  #
-                  # # transfer options - offline option - medium
-                  # hMedium = hTransOption[:offline]
-                  # if !hMedium.empty?
-                  #    @html.em('Offline option: ')
-                  #    @html.section(:class => 'block') do
-                  #       htmlMedium.writeHtml(hMedium)
-                  #    end
-                  # end
+                  # transfer options - units of distribution
+                  unless hOption[:unitsOfDistribution].nil?
+                     @html.em('Units of Distribution: ')
+                     @html.text!(hOption[:unitsOfDistribution].to_s)
+                     @html.br
+                  end
+
+                  # transfer options - transfer size
+                  unless hOption[:transferSize].nil?
+                     @html.em('Size of Unit in MB: ')
+                     @html.text!(hOption[:transferSize].to_s)
+                     @html.br
+                  end
+
+                  # transfer options - online options [] {onlineResource}
+                  hOption[:onlineOptions].each do |hOption|
+                     @html.details do
+                        @html.summary('Online Option', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           onlineClass.writeHtml(hOption)
+                        end
+                     end
+                  end
+
+                  # transfer options - offline options [] {medium}
+                  hOption[:offlineOptions].each do |hOption|
+                     @html.details do
+                        @html.summary('Offline Option', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           mediumClass.writeHtml(hOption)
+                        end
+                     end
+                  end
+
+                  # transfer options - transfer frequency {duration}
+                  # transfer options - distribution formats [] {format}
 
                end # writeHtml
             end # Html_TransferOption

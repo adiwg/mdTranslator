@@ -1623,7 +1623,18 @@
                 "offlineOption": [
                   {
                     "mediumSpecification": {
-                      "title": "medium specification title 0"
+                      "title": "My Medium Specification Title"
+                    },
+                    "density": 9.9,
+                    "units": "units",
+                    "numberOfVolumes": 9,
+                    "mediumFormat": [
+                      "mediumFormat0",
+                      "mediumFormat1"
+                    ],
+                    "note": "note",
+                    "identifier": {
+                      "identifier": "Medium Identifier"
                     }
                   },
                   {
