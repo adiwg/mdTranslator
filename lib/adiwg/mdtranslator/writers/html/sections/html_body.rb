@@ -15,6 +15,8 @@ require_relative 'html_lineage'
 require_relative 'html_distribution'
 require_relative 'html_associatedResource'
 require_relative 'html_additionalDocumentation'
+require_relative 'html_funding'
+
 # require_relative 'html_dataDictionary'
 
 module ADIWG
@@ -39,6 +41,7 @@ module ADIWG
                      distributionClass = Html_Distribution.new(@html)
                      associatedClass = Html_AssociatedResource.new(@html)
                      additionalClass = Html_AdditionalDocumentation.new(@html)
+                     fundingClass = Html_Funding.new(@html)
 
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
 
@@ -51,7 +54,8 @@ module ADIWG
                      aDistribution = intObj[:metadata][:distributorInfo]
                      aAssociated = intObj[:metadata][:associatedResources]
                      aAdditional = intObj[:metadata][:additionalDocuments]
-                     # hMetadata = intObj[:metadata]
+                     aFunding = intObj[:metadata][:funding]
+
                      # aDataDict = intObj[:dataDictionary]
 
                      # set page title and logo
@@ -186,7 +190,7 @@ module ADIWG
                      # additional documentation section
                      unless aAdditional.empty?
                         @html.details do
-                           @html.summary('Additional Documentation', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.summary('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
                            @html.section(:class => 'block') do
                               aAdditional.each do |hAdditional|
                                  @html.details do
@@ -201,7 +205,23 @@ module ADIWG
                         end
                      end
 
-                     # TODO add funding
+                     # funding section
+                     unless aFunding.empty?
+                        @html.details do
+                           @html.summary('Funding', {'id' => 'body-funding', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aFunding.each do |hFunding|
+                                 @html.details do
+                                    @html.summary('Funds', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       fundingClass.writeHtml(hFunding)
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
+
                      # TODO add data dictionary
                      # TODO add metadata repository
 

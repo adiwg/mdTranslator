@@ -6,7 +6,7 @@
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-27 original script
 
-require_relative 'html_timePeriod'
+require_relative 'html_temporalExtent'
 require_relative 'html_responsibility'
 require_relative 'html_citation'
 require_relative 'html_scope'
@@ -25,7 +25,7 @@ module ADIWG
                def writeHtml(hStep)
 
                   # classes used
-                  periodClass = Html_TimePeriod.new(@html)
+                  temporalClass = Html_TemporalExtent.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
                   citationClass = Html_Citation.new(@html)
                   scopeClass = Html_Scope.new(@html)
@@ -55,7 +55,10 @@ module ADIWG
 
                   # process step - time period {timePeriod}
                   unless hStep[:timePeriod].empty?
-                     periodClass.writeHtml(hStep[:timePeriod])
+                     temporalObj = {}
+                     temporalObj[:timeInstant] = {}
+                     temporalObj[:timePeriod] = hStep[:timePeriod]
+                     temporalClass.writeHtml(temporalObj)
                   end
 
                   # process step - references [] {citation}

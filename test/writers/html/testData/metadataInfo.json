@@ -1543,7 +1543,25 @@
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
             "rationale": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
             "timePeriod": {
-              "startDateTime": "2016-10-15"
+              "startDateTime": "2016-10-14T11:10:15.2-10:00",
+              "endDateTime": "2016-12-31",
+              "id": "TimePeriod001",
+              "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "identifier": {
+                "identifier": "TimePeriod Identifier",
+                "namespace": "namespace"
+              },
+              "periodName": [
+                "periodName0",
+                "periodName1"
+              ],
+              "timeInterval": {
+                "interval": 9.9,
+                "units": "year"
+              },
+              "duration": {
+                "months": 9
+              }
             },
             "processor": [
               {
@@ -1741,6 +1759,73 @@
             "title": "A More Better Additional Document"
           }
         ]
+      },
+      {
+        "resourceType": [
+          {
+            "type": "multimediaHardcopy",
+            "name": "Multi-Media Hard-Copy"
+          },
+          {
+            "type": "physicalObject",
+            "name": "Lab Specimen"
+          }
+        ],
+        "citation": [
+          {
+            "title": "A Much Mo Betha Additional Document"
+          }
+        ]
+      }
+    ],
+    "funding": [
+      {
+        "allocation": [
+          {
+            "amount": 9999.99,
+            "currency": "USD",
+            "sourceId": "CID005",
+            "recipientId": "CID006",
+            "matching": true,
+            "comment": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          },
+          {
+            "amount": 999.99,
+            "currency": "CAD"
+          }
+        ],
+        "timePeriod": {
+          "startDateTime": "2016-10-14T11:10:15.2-10:00",
+          "endDateTime": "2016-12-31",
+          "id": "TimePeriod001",
+          "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "identifier": {
+            "identifier": "TimePeriod Identifier",
+            "namespace": "namespace"
+          },
+          "periodName": [
+            "periodName0",
+            "periodName1"
+          ],
+          "timeInterval": {
+            "interval": 9.9,
+            "units": "year"
+          },
+          "duration": {
+            "months": 9
+          }
+        }
+      },
+      {
+        "allocation": [
+          {
+            "amount": 9999.99,
+            "currency": "EUR"
+          }
+        ],
+        "timePeriod": {
+          "startDateTime": "2016-10-14"
+        }
       }
     ]
 
