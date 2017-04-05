@@ -1720,6 +1720,28 @@
           "title": "title"
         }
       }
+    ],
+    "additionalDocumentation": [
+      {
+        "resourceType": [
+          {
+            "type": "webService",
+            "name": "ADIwg API"
+          },
+          {
+            "type": "databaseDigital",
+            "name": "DMV Data"
+          }
+        ],
+        "citation": [
+          {
+            "title": "A Good Additional Document"
+          },
+          {
+            "title": "A More Better Additional Document"
+          }
+        ]
+      }
     ]
 
   }

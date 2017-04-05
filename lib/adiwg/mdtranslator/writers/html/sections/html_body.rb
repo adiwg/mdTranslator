@@ -14,8 +14,8 @@ require_relative 'html_resourceInfo'
 require_relative 'html_lineage'
 require_relative 'html_distribution'
 require_relative 'html_associatedResource'
+require_relative 'html_additionalDocumentation'
 # require_relative 'html_dataDictionary'
-# require_relative 'html_additionalDocumentation'
 
 module ADIWG
    module Mdtranslator
@@ -38,9 +38,9 @@ module ADIWG
                      lineageClass = Html_Lineage.new(@html)
                      distributionClass = Html_Distribution.new(@html)
                      associatedClass = Html_AssociatedResource.new(@html)
+                     additionalClass = Html_AdditionalDocumentation.new(@html)
 
                      # htmlDataD = MdHtmlDataDictionary.new(@html)
-                     # htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -50,9 +50,9 @@ module ADIWG
                      aLineage = intObj[:metadata][:lineageInfo]
                      aDistribution = intObj[:metadata][:distributorInfo]
                      aAssociated = intObj[:metadata][:associatedResources]
+                     aAdditional = intObj[:metadata][:additionalDocuments]
                      # hMetadata = intObj[:metadata]
                      # aDataDict = intObj[:dataDictionary]
-                     # aAddDocs = intObj[:metadata][:additionalDocuments]
 
                      # set page title and logo
                      # side navigation
@@ -183,7 +183,24 @@ module ADIWG
                         end
                      end
 
-                     # TODO add additional documentation
+                     # additional documentation section
+                     unless aAdditional.empty?
+                        @html.details do
+                           @html.summary('Additional Documentation', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aAdditional.each do |hAdditional|
+                                 @html.details do
+                                    @html.summary('Document', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       additionalClass.writeHtml(hAdditional)
+                                    end
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
                      # TODO add funding
                      # TODO add data dictionary
                      # TODO add metadata repository

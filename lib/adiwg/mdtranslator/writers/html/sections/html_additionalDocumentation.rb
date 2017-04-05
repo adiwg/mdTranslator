@@ -2,47 +2,48 @@
 # additional documentation
 
 # History:
+#  Stan Smith 2017-04-04 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-08-21 original script
 
+require_relative 'html_resourceType'
 require_relative 'html_citation'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlAdditionalDocumentation
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_AdditionalDocumentation
 
-                    def writeHtml(hAddDoc)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlCitation = MdHtmlCitation.new(@html)
+               def writeHtml(hAddDoc)
 
-                        # additional documentation - resource type
-                        s = hAddDoc[:resourceType]
-                        if !s.nil?
-                            @html.em('Resource type: ')
-                            @html.text!(s)
-                            @html.br
+                  # classes used
+                  typeClass = Html_ResourceType.new(@html)
+                  citationClass = Html_Citation.new(@html)
+
+                  # additional documentation - resource type [] {resourceType}
+                  hAddDoc[:resourceTypes].each do |hType|
+                     typeClass.writeHtml(hType)
+                  end
+
+                  # additional documentation - citation [] {citation}
+                  hAddDoc[:citation].each do |hCitation|
+                     @html.details do
+                        @html.summary(hCitation[:title], {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hCitation)
                         end
+                     end
+                  end
 
-                        # additional documentation - citation
-                        hCitation = hAddDoc[:citation]
-                        if !hCitation.empty?
-                            @html.em('Citation: ')
-                            @html.section(:class=>'block') do
-                                htmlCitation.writeHtml(hCitation)
-                            end
-                        end
+               end # writeHtml
+            end # Html_AdditionalDocumentation
 
-                    end # writeHtml
-
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end
