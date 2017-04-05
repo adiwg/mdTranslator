@@ -16,8 +16,7 @@ require_relative 'html_distribution'
 require_relative 'html_associatedResource'
 require_relative 'html_additionalDocumentation'
 require_relative 'html_funding'
-
-# require_relative 'html_dataDictionary'
+require_relative 'html_dataDictionary'
 
 module ADIWG
    module Mdtranslator
@@ -42,8 +41,7 @@ module ADIWG
                      associatedClass = Html_AssociatedResource.new(@html)
                      additionalClass = Html_AdditionalDocumentation.new(@html)
                      fundingClass = Html_Funding.new(@html)
-
-                     # htmlDataD = MdHtmlDataDictionary.new(@html)
+                     dictionaryClass = Html_DataDictionary.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -55,8 +53,7 @@ module ADIWG
                      aAssociated = intObj[:metadata][:associatedResources]
                      aAdditional = intObj[:metadata][:additionalDocuments]
                      aFunding = intObj[:metadata][:funding]
-
-                     # aDataDict = intObj[:dataDictionary]
+                     aDictionaries = intObj[:dataDictionaries]
 
                      # set page title and logo
                      # side navigation
@@ -205,6 +202,23 @@ module ADIWG
                         end
                      end
 
+                     # data dictionary section
+                     unless aDictionaries.empty?
+                        @html.details do
+                           @html.summary('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aDictionaries.each do |hDictionary|
+                                 @html.details do
+                                    @html.summary('Dictionary', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       dictionaryClass.writeHtml(hDictionary)
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
+
                      # funding section
                      unless aFunding.empty?
                         @html.details do
@@ -222,7 +236,6 @@ module ADIWG
                         end
                      end
 
-                     # TODO add data dictionary
                      # TODO add metadata repository
 
                   end # body
