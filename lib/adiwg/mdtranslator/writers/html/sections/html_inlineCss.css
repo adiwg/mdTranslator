@@ -140,7 +140,7 @@
             font-weight: 500;
         }
 
-        .btn {
+        .btn, a.btn {
             display: inline-block;
             width: 65px;
             padding: 6px 12px;
@@ -148,8 +148,8 @@
             font-size: 14px;
             font-weight: 500;
             line-height: 1.42857143;
-            text-align: center;
             white-space: nowrap;
+            text-align: left;
             vertical-align: middle;
             -ms-touch-action: manipulation;
             touch-action: manipulation;
@@ -161,12 +161,13 @@
             background-image: none;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: aliceblue;
+            color: black;
             opacity: 0.8;
         }
         .btn:focus {outline: none}
         .btn:hover {
-            background-color: antiquewhite;
+            background-color: #969696;
+            text-decoration: underline;
         }
 
         @font-face {
@@ -218,8 +219,8 @@
         /*** Side Nav ***/
         div#sideNav {
           position: fixed;
-          right: 10px;
-          bottom: 10px;
+          right: 20px;
+          top: 150px;
           z-index: 10000;
         }
         div#sideNav * {

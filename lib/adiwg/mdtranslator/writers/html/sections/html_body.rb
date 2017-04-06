@@ -66,7 +66,7 @@ module ADIWG
                         @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
 
                         # add open and close buttons
-                        @html.span(' Open', {'id' => 'openAllDetails', 'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
+                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
                         @html.span(' Close', {'class' => 'btn icon-caret-right', 'onclick' => 'closeAllDetails();'})
 
                         # add section buttons
