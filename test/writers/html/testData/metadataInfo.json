@@ -384,7 +384,19 @@
         ],
         "scope": [
           {
-            "scopeCode": "dataset"
+            "scopeCode": "dataset",
+            "scopeDescription": [
+              {
+                "dataset": "CUSTOMER",
+                "attributes": "customer_id, invoice"
+              },
+              {
+                "dataset": "dataset",
+                "attributes": "attributes",
+                "features": "features",
+                "other": "other"
+              }
+            ]
           },
           {
             "scopeCode": "fieldSeason"

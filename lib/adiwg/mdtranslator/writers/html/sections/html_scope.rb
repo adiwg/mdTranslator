@@ -4,6 +4,8 @@
 # History:
 #  Stan Smith 2017-03-25 original script
 
+require_relative 'html_scopeDescription'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -17,6 +19,9 @@ module ADIWG
 
                def writeHtml(hScope)
 
+                  # classes used
+                  descriptionClass = Html_ScopeDescription.new(@html)
+
                   # scope - code
                   unless hScope[:scopeCode].nil?
                      @html.em('Scope Code: ')
@@ -24,9 +29,14 @@ module ADIWG
                      @html.br
                   end
 
-                  # scope - description []
+                  # scope - description [] {scopeDescription}
                   hScope[:scopeDescriptions].each do |hDescription|
-                     # TODO scope description
+                     @html.details do
+                        @html.summary('Description', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           descriptionClass.writeHtml(hDescription)
+                        end
+                     end
                   end
 
                   # scope - extents []
