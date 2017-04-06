@@ -37,7 +37,7 @@ module ADIWG
                   end
 
                   # extent - geographic extents
-                  hExtent[:temporalExtents].each do |hGeographic|
+                  hExtent[:geographicExtents].each do |hGeographic|
                      @html.details do
                         @html.summary('Geographic Extent', {'class' => 'h5'})
                         @html.section(:class => 'block') do
