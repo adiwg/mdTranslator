@@ -23,6 +23,7 @@ require_relative 'html_coverageInfo'
 require_relative 'html_locale'
 require_relative 'html_format'
 require_relative 'html_maintenance'
+require_relative 'html_extent'
 
 module ADIWG
    module Mdtranslator
@@ -55,6 +56,7 @@ module ADIWG
                   localeClass = Html_Locale.new(@html)
                   formatClass = Html_Format.new(@html)
                   maintenanceClass = Html_Maintenance.new(@html)
+                  extentClass = Html_Extent.new(@html)
 
                   # resource - type [] {resourceType}
                   hResource[:resourceTypes].each do |hType|
@@ -257,6 +259,23 @@ module ADIWG
                      end
                   end
 
+                  # resource - extent [] {extent}
+                  unless hResource[:extents].empty?
+                     @html.details do
+                        @html.summary('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:extents].each do |hExtent|
+                              @html.details do
+                                 @html.summary('Extent', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    extentClass.writeHtml(hExtent)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
                   # resource - keywords [] {keyword}
                   unless hResource[:topicCategories].empty? &&
                      hResource[:keywords].empty?
@@ -307,8 +326,6 @@ module ADIWG
                         end
                      end
                   end
-
-                  # TODO add extents []
 
                   # resource - coverage description [] {coverageInfo}
                   unless hResource[:coverageDescriptions].empty?

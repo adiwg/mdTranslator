@@ -21,7 +21,7 @@ module ADIWG
                   @html = html
                end
 
-               def writeHtml(hTempExtent)
+               def writeHtml(hExtent)
 
                   # classes used
                   datetimeClass = Html_Datetime.new(@html)
@@ -29,20 +29,20 @@ module ADIWG
                   instantClass = Html_TimeInstant.new(@html)
 
                   # temporal element - time instant {timeInstant}
-                  unless hTempExtent[:timeInstant].empty?
+                  unless hExtent[:timeInstant].empty?
                      @html.details do
-                        dateStr = datetimeClass.writeHtml(hTempExtent[:timeInstant][:timeInstant])
+                        dateStr = datetimeClass.writeHtml(hExtent[:timeInstant][:timeInstant])
                         @html.summary('Time ' +  dateStr + ' ', 'class' => 'h5')
                         @html.section(:class => 'block') do
-                           instantClass.writeHtml(hTempExtent[:timeInstant])
+                           instantClass.writeHtml(hExtent[:timeInstant])
                         end
                      end
                   end
 
                   # temporal element - time period {timePeriod}
-                  unless hTempExtent[:timePeriod].empty?
-                     startStr = datetimeClass.writeHtml(hTempExtent[:timePeriod][:startDateTime])
-                     endStr = datetimeClass.writeHtml(hTempExtent[:timePeriod][:endDateTime])
+                  unless hExtent[:timePeriod].empty?
+                     startStr = datetimeClass.writeHtml(hExtent[:timePeriod][:startDateTime])
+                     endStr = datetimeClass.writeHtml(hExtent[:timePeriod][:endDateTime])
                      @html.details do
                         if startStr == ''
                            @html.summary('Period Ending ' + endStr, 'class' => 'h5')
@@ -52,7 +52,7 @@ module ADIWG
                            @html.summary('Period ' + startStr + ' to ' + endStr, 'class' => 'h5')
                         end
                         @html.section(:class => 'block') do
-                           periodClass.writeHtml(hTempExtent[:timePeriod])
+                           periodClass.writeHtml(hExtent[:timePeriod])
                         end
                      end
                   end

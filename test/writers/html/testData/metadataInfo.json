@@ -1494,7 +1494,81 @@
         }
       ],
       "environmentDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-      "supplementalInfo": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "supplementalInfo": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "extent": [
+        {
+          "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "geographicExtent": [
+            {
+              "containsData": false,
+              "geographicElement": [
+                {
+                  "type": "Point",
+                  "coordinates": [100.0, 0.0]
+                },
+                {
+                  "type": "LineString",
+                  "coordinates": [
+                    [100.0, 0.0],
+                    [101.0, 1.0]
+                  ]
+                }
+              ]
+            },
+            {
+              "containsData": true,
+              "geographicElement": [
+                {
+                  "type": "Point",
+                  "coordinates": [200.0, 0.0]
+                },
+                {
+                  "type": "LineString",
+                  "coordinates": [
+                    [200.0, 0.0],
+                    [202.0, 2.0]
+                  ]
+                }
+              ]
+            }
+          ],
+          "temporalExtent": [
+            {
+              "timeInstant": {
+                "dateTime": "2016-10-24T11:10:15.200-10:00"
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2016-10-24T11:10:15.200-10:00"
+              }
+            }
+          ],
+          "verticalExtent": [
+            {
+              "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+              "minValue": 9.9,
+              "maxValue": 9.9,
+              "crsId": {
+                "referenceSystemType": "referenceSystemType0",
+                "referenceSystemIdentifier": {
+                  "identifier": "identifier0"
+                }
+              }
+            },
+            {
+              "minValue": 99.99,
+              "maxValue": 99.99,
+              "crsId": {
+                "referenceSystemType": "referenceSystemType1",
+                "referenceSystemIdentifier": {
+                  "identifier": "identifier1"
+                }
+              }
+            }
+          ]
+        }
+      ]
     },
     "resourceLineage": [
       {
