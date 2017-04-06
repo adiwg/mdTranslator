@@ -36,16 +36,16 @@ module ADIWG
                      end
                   end
 
-                  # extent - temporal extents
-                  hExtent[:temporalExtents].each do |hTemporal|
+                  # extent - geographic extents
+                  hExtent[:temporalExtents].each do |hGeographic|
                      @html.details do
-                        @html.summary('Temporal Extent', {'class' => 'h5'})
+                        @html.summary('Geographic Extent', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           temporalClass.writeHtml(hTemporal)
+                           geographicClass.writeHtml(hGeographic)
                         end
                      end
                   end
-                  
+
                   # extent - temporal extents
                   hExtent[:temporalExtents].each do |hTemporal|
                      @html.details do
