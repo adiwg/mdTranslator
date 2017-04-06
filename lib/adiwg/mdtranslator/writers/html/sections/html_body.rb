@@ -17,6 +17,7 @@ require_relative 'html_associatedResource'
 require_relative 'html_additionalDocumentation'
 require_relative 'html_funding'
 require_relative 'html_dataDictionary'
+require_relative 'html_metadataRepository'
 
 module ADIWG
    module Mdtranslator
@@ -42,6 +43,7 @@ module ADIWG
                      additionalClass = Html_AdditionalDocumentation.new(@html)
                      fundingClass = Html_Funding.new(@html)
                      dictionaryClass = Html_DataDictionary.new(@html)
+                     repositoryClass = Html_Repository.new(@html)
 
                      # make sections of the internal data store convenient
                      hSchema = intObj[:schema]
@@ -54,6 +56,7 @@ module ADIWG
                      aAdditional = intObj[:metadata][:additionalDocuments]
                      aFunding = intObj[:metadata][:funding]
                      aDictionaries = intObj[:dataDictionaries]
+                     aRepositories = intObj[:metadataRepositories]
 
                      # set page title and logo
                      # side navigation
@@ -236,7 +239,22 @@ module ADIWG
                         end
                      end
 
-                     # TODO add metadata repository
+                     # metadata repository section
+                     unless aRepositories.empty?
+                        @html.details do
+                           @html.summary('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aRepositories.each do |hRepository|
+                                 @html.details do
+                                    @html.summary('Repository', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       repositoryClass.writeHtml(hRepository)
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
 
                   end # body
                end # writeHtml

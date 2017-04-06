@@ -2056,6 +2056,15 @@
       "dictionaryFormat": "MSSQL",
       "dictionaryIncludedWithResource": false
     }
+  ],
+  "metadataRepository": [
+    {
+      "repository": "USGS ScienceBase",
+      "metadataStandard": "FGDC"
+    },
+    {
+      "repository": "data.gov",
+      "metadataStandard": "iso19115_2"
+    }
   ]
-
 }
