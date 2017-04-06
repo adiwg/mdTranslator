@@ -61,12 +61,26 @@ module ADIWG
                      # set page title and logo
                      # side navigation
                      @html.div('id' => 'sideNav') do
+
                         # add top anchor and button
                         @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
 
                         # add open and close buttons
                         @html.span(' Open', {'id' => 'openAllDetails', 'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
                         @html.span(' Close', {'class' => 'btn icon-caret-right', 'onclick' => 'closeAllDetails();'})
+
+                        # add section buttons
+                        @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn'})
+                        @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn'})
+                        @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn'})
+                        @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn'})
+                        @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn'})
+                        @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn'})
+                        @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn'})
+                        @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn'})
+                        @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn'})
+                        @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn'})
+
                      end
 
                      # main header
