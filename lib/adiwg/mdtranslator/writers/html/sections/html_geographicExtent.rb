@@ -33,8 +33,6 @@ module ADIWG
                   @html.text!(hElement[:containsData].to_s)
                   @html.br
 
-                  # geographic extent - identifier {identifier}
-
                   # geographic extent - bounding box {boundingBox}
                   unless hElement[:boundingBox].empty?
                      @html.em('Bounding Box:')
@@ -43,7 +41,25 @@ module ADIWG
                      end
                   end
 
+                  # geographic extent - identifier {identifier}
+                  unless hElement[:identifier].empty?
+                     @html.details do
+                        @html.summary('Identifier', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hElement[:identifier])
+                        end
+                     end
+                  end
+
                   # geographic extent - geographic element [] {geographicElement}
+                  hElement[:geographicElement].each do |hGeographic|
+                     @html.details do
+                        @html.summary('Geographic Element', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           geographicClass.writeHtml(hGeographic)
+                        end
+                     end
+                  end
 
                end # writeHtml
             end # Html_GeographicExtent
