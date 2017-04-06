@@ -391,7 +391,7 @@ module ADIWG
                      end
                   end
 
-                  # resource - supplemental
+                  # resource - supplemental information
                   unless hResource[:resourceMaintenance].empty? &&
                      hResource[:environmentDescription].nil? &&
                      hResource[:supplementalInfo].nil?
