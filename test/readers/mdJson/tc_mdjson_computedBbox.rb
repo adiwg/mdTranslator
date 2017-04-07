@@ -23,7 +23,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal 100.0, metadata[0]
@@ -40,7 +40,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal -179.0, metadata[0]
@@ -57,7 +57,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal 148.0, metadata[0]
@@ -74,7 +74,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal 178.0, metadata[0]
@@ -91,7 +91,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal -35.0, metadata[0]
@@ -108,7 +108,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal -179.0, metadata[0]
@@ -125,7 +125,7 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         hTest = Marshal::load(Marshal.dump(hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         aInternal = @@NameSpace.unpack(hTest, hResponse)
-        metadata = aInternal[:geographicElement][:computedBbox]
+        metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
         assert_equal -179.0, metadata[0]

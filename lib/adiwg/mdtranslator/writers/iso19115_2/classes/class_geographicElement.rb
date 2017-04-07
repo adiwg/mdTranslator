@@ -46,8 +46,8 @@ module ADIWG
                         featureClass =  Feature.new(@xml, @hResponseObj)
                         featureCollectClass =  FeatureCollection.new(@xml, @hResponseObj)
 
-                        aElements = aGeoElement[:geographicElements]
-                        aElements.each do |hElement|
+                        aGeoElement.each do |hGeoElement|
+                            hElement = hGeoElement[:geographicElement]
                             @xml.tag!('gmd:polygon') do
                                 case hElement[:type]
                                     when 'Point'

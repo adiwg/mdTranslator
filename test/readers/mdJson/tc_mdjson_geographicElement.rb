@@ -15,15 +15,131 @@ class TestReaderMdJsonGeographicElement < TestReaderMdJsonParent
     aIn = TestReaderMdJsonParent.getJson('geoJson.json')
     @@aIn = aIn['geographicElement']
 
-    def test_complete_geographicElement
+    def test_geographicElement_Point
 
-        aIn = Marshal::load(Marshal.dump(@@aIn))
+        aIn = Marshal::load(Marshal.dump(@@aIn[0]))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         metadata = @@NameSpace.unpack(aIn, hResponse)
 
         refute_empty metadata[:nativeGeoJson]
-        refute_empty metadata[:geographicElements]
-        refute_empty metadata[:computedBbox]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_LineString
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[1]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_Polygon
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[2]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_Polygon_interiorRing
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[3]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_MultiPoint
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[4]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_MultiLineString
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[5]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_MultiPolygon
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[6]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_GeometryCollection
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[7]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_Feature
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[8]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
+        assert hResponse[:readerExecutionPass]
+        assert_empty hResponse[:readerExecutionMessages]
+
+    end
+
+    def test_geographicElement_FeatureCollection
+
+        aIn = Marshal::load(Marshal.dump(@@aIn[9]))
+        hResponse = Marshal::load(Marshal.dump(@@responseObj))
+        metadata = @@NameSpace.unpack(aIn, hResponse)
+
+        refute_empty metadata[:nativeGeoJson]
+        refute_empty metadata[:geographicElement]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 

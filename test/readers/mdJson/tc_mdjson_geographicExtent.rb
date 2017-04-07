@@ -32,7 +32,9 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
         refute metadata[:containsData]
         refute_empty metadata[:identifier]
         refute_empty metadata[:boundingBox]
-        refute_empty metadata[:geographicElement]
+        assert_equal 2, metadata[:geographicElements].length
+        assert_equal 2, metadata[:nativeGeoJson].length
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -48,7 +50,9 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
         assert metadata[:containsData]
         refute_empty metadata[:identifier]
         refute_empty metadata[:boundingBox]
-        refute_empty metadata[:geographicElement]
+        assert_equal 2, metadata[:geographicElements].length
+        assert_equal 2, metadata[:nativeGeoJson].length
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -64,23 +68,9 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
         assert metadata[:containsData]
         refute_empty metadata[:identifier]
         refute_empty metadata[:boundingBox]
-        refute_empty metadata[:geographicElement]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
-
-    end
-
-    def test_geographicExtent_invalid_containsData
-
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['containsData'] = 'invalid'
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-
-        assert metadata[:containsData]
-        refute_empty metadata[:identifier]
-        refute_empty metadata[:boundingBox]
-        refute_empty metadata[:geographicElement]
+        assert_equal 2, metadata[:geographicElements].length
+        assert_equal 2, metadata[:nativeGeoJson].length
+        refute_empty metadata[:computedBbox]
         assert hResponse[:readerExecutionPass]
         assert_empty hResponse[:readerExecutionMessages]
 
@@ -92,7 +82,7 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
         hIn['identifier'] = {}
         hIn['boundingBox'] = {}
-        hIn['geographicElement'] = {}
+        hIn['geographicElement'] = []
         metadata = @@NameSpace.unpack(hIn, hResponse)
 
         assert_nil metadata

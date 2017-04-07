@@ -472,15 +472,16 @@ class InternalMetadata
             containsData: true,
             identifier: {},
             boundingBox: {},
-            geographicElement: []
+            geographicElements: [],
+            nativeGeoJson: [],
+            computedBbox: {}
         }
     end
 
     def newGeographicElement
         intObj = {
-            nativeGeoJson: [],
-            geographicElements: [],
-            computedBbox: {}
+            nativeGeoJson: {},
+            geographicElement: {}
         }
     end
 

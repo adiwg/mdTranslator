@@ -61,6 +61,13 @@ module ADIWG
                      end
                   end
 
+                  # geographic extent - native GeoJson
+                  hElement[:nativeGeoJson] = aGeoEle
+
+
+                  # geographic extent - computed bounding box
+
+
                end # writeHtml
             end # Html_GeographicExtent
 

@@ -16,47 +16,45 @@ module ADIWG
 
                 module GeoJson
 
-                    def self.unpack(aGeoJson, responseObj)
+                    def self.unpack(hGeoJson, responseObj)
 
                         # return nil object if input is empty
-                        if aGeoJson.empty?
+                        if hGeoJson.empty?
                             responseObj[:readerExecutionMessages] << 'GeoJson object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
                         end
 
-                        # instance classes needed in script
-                        intGeoEle = []
+                        intGeoEle = {}
 
-                        aGeoJson.each do |hGeoJson|
-                            if hGeoJson.has_key?('type')
-                                if hGeoJson['type'] != ''
-                                    type = hGeoJson['type']
-                                    if %w{ Point LineString Polygon MultiPoint MultiLineString MultiPolygon }.one? { |word| word == type }
-                                        hReturn = GeometryObject.unpack(hGeoJson, responseObj)
-                                        unless hReturn.nil?
-                                            intGeoEle << hReturn
-                                        end
-                                    end
-                                    if type == 'GeometryCollection'
-                                        hReturn = GeometryCollection.unpack(hGeoJson, responseObj)
-                                        unless hReturn.nil?
-                                            intGeoEle << hReturn
-                                        end
-                                    end
-                                    if type == 'Feature'
-                                        hReturn = GeometryFeature.unpack(hGeoJson, responseObj)
-                                        unless hReturn.nil?
-                                            intGeoEle << hReturn
-                                        end
-                                    end
-                                    if type == 'FeatureCollection'
-                                        hReturn = FeatureCollection.unpack(hGeoJson, responseObj)
-                                        unless hReturn.nil?
-                                            intGeoEle << hReturn
-                                        end
+                        if hGeoJson.has_key?('type')
+                            if hGeoJson['type'] != ''
+                                type = hGeoJson['type']
+                                if %w{ Point LineString Polygon MultiPoint MultiLineString MultiPolygon }.one? { |word| word == type }
+                                    hReturn = GeometryObject.unpack(hGeoJson, responseObj)
+                                    unless hReturn.nil?
+                                        intGeoEle = hReturn
                                     end
                                 end
+                                if type == 'GeometryCollection'
+                                    hReturn = GeometryCollection.unpack(hGeoJson, responseObj)
+                                    unless hReturn.nil?
+                                        intGeoEle = hReturn
+                                    end
+                                end
+                                if type == 'Feature'
+                                    hReturn = GeometryFeature.unpack(hGeoJson, responseObj)
+                                    unless hReturn.nil?
+                                        intGeoEle = hReturn
+                                    end
+                                end
+                                if type == 'FeatureCollection'
+                                    hReturn = FeatureCollection.unpack(hGeoJson, responseObj)
+                                    unless hReturn.nil?
+                                        intGeoEle = hReturn
+                                    end
+                                end
+
                             end
                         end
 

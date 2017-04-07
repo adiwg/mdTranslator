@@ -55,10 +55,10 @@ module ADIWG
 
                         # feature collection - features (required, but can be empty)
                         if hFeatCol.has_key?('features')
-                            unless hFeatCol['features'].empty?
-                                aReturn = GeoJson.unpack(hFeatCol['features'], responseObj)
-                                unless aReturn.nil?
-                                    intFeatCol[:features] = aReturn
+                            hFeatCol['features'].each do |hFeature|
+                                hReturn = GeoJson.unpack(hFeature, responseObj)
+                                unless hReturn.nil?
+                                    intFeatCol[:features] << hReturn
                                 end
                             end
                         else

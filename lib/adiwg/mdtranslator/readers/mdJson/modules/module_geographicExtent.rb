@@ -57,22 +57,37 @@ module ADIWG
 
                         # geographic extent - geographic elements
                         if hGeoExt.has_key?('geographicElement')
-                            unless hGeoExt['geographicElement'].empty?
-                                hReturn = GeographicElement.unpack(hGeoExt['geographicElement'], responseObj)
+                            hGeoExt['geographicElement'].each do |hElement|
+                                hReturn = GeographicElement.unpack(hElement, responseObj)
                                 unless hReturn.nil?
-                                    intGeoExt[:geographicElement] = hReturn
+                                    intGeoExt[:geographicElements] << hReturn
                                 end
                             end
                         end
 
+                        # save native GeoJson
+                        if hGeoExt.has_key?('geographicElement')
+                            unless hGeoExt['geographicElement'].empty?
+                                intGeoExt[:nativeGeoJson] = hGeoExt['geographicElement']
+                            end
+                        end
+
+                        # compute bbox for extent
+                        unless intGeoExt[:geographicElements].empty?
+                            aGeo = []
+                            intGeoExt[:geographicElements].each do |hGeo|
+                                aGeo << hGeo[:geographicElement]
+                            end
+                            intGeoExt[:computedBbox] = AdiwgCoordinates.computeBbox(aGeo)
+                        end
+
                         if intGeoExt[:identifier].empty? &&
                             intGeoExt[:boundingBox].empty? &&
-                            intGeoExt[:geographicElement].empty?
+                            intGeoExt[:geographicElements].empty?
                             responseObj[:readerExecutionMessages] <<
                                 'geographicExtent must have at least one identifier, boundingBox, or geographic element'
                             responseObj[:readerExecutionPass] = false
                             return nil
-
                         end
 
                         return intGeoExt

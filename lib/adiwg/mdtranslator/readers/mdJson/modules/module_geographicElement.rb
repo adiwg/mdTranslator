@@ -15,10 +15,10 @@ module ADIWG
 
                 module GeographicElement
 
-                    def self.unpack(aGeoEle, responseObj)
+                    def self.unpack(hElement, responseObj)
 
                         # return nil object if input is empty
-                        if aGeoEle.empty?
+                        if hElement.empty?
                             responseObj[:readerExecutionMessages] << 'geographicElement object is empty'
                             responseObj[:readerExecutionPass] = false
                             return nil
@@ -29,17 +29,12 @@ module ADIWG
                         intGeoEle = intMetadataClass.newGeographicElement
 
                         # save native GeoJson
-                        intGeoEle[:nativeGeoJson] = aGeoEle
+                        intGeoEle[:nativeGeoJson] = hElement
 
                         # ingest the GeoJson into mdTranslator
-                        aReturn = GeoJson.unpack(aGeoEle, responseObj)
-                        unless aReturn.nil?
-                            intGeoEle[:geographicElements] = aReturn
-                        end
-
-                        # compute bbox for extent
-                        unless intGeoEle[:geographicElements].empty?
-                            intGeoEle[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoEle[:geographicElements])
+                        hReturn = GeoJson.unpack(hElement, responseObj)
+                        unless hReturn.nil?
+                            intGeoEle[:geographicElement] = hReturn
                         end
 
                         return intGeoEle

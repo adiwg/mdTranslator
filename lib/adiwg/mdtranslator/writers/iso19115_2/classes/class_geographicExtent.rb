@@ -30,15 +30,14 @@ module ADIWG
                         extType = hGeoExtent[:containsData]
 
                         # geographic element - geographic bounding box
-                        # test for both bounding box
-                        # if none, take computedBbox from geographicElement
+                        # test for user provided bounding box
+                        # if empty, take computedBbox
                         hBbox = hGeoExtent[:boundingBox]
                         if hBbox.empty?
-                            hCoords = hGeoExtent[:geographicElement][:computedBbox]
-                            hBbox[:westLongitude] = hCoords[0]
-                            hBbox[:eastLongitude] = hCoords[2]
-                            hBbox[:southLatitude] = hCoords[1]
-                            hBbox[:northLatitude] = hCoords[3]
+                            hBbox[:westLongitude] = hGeoExtent[:computedBbox][0]
+                            hBbox[:eastLongitude] = hGeoExtent[:computedBbox][2]
+                            hBbox[:southLatitude] = hGeoExtent[:computedBbox][1]
+                            hBbox[:northLatitude] = hGeoExtent[:computedBbox][3]
                         end
                         unless hBbox.empty?
                             @xml.tag!('gmd:geographicElement') do
@@ -66,13 +65,13 @@ module ADIWG
                         end
 
                         # geographic element - geographic bounding polygon
-                        unless hGeoExtent[:geographicElement].empty?
+                        unless hGeoExtent[:geographicElements].empty?
                             @xml.tag!('gmd:geographicElement') do
                                 @xml.tag!('gmd:EX_BoundingPolygon') do
                                     @xml.tag!('gmd:extentTypeCode') do
                                         @xml.tag!('gco:Boolean', extType)
                                     end
-                                    geoEleClass.writeXML(hGeoExtent[:geographicElement])
+                                    geoEleClass.writeXML(hGeoExtent[:geographicElements])
                                 end
                             end
                         end

@@ -41,7 +41,7 @@ module ADIWG
                             s = hLocale[:countryCode]
                             unless s.nil?
                                 @xml.tag!('gmd:country') do
-                                    codelistClass.writeXML('gmd', 'iso_country', s)
+                                    codelistClass.writeXML('gmd', 'iso_countries', s)
                                 end
                             end
                             if s.nil? && @hResponseObj[:writerShowTags]

@@ -55,10 +55,10 @@ module ADIWG
 
                         # geometry collection - geometries (required, but can be empty)
                         if hGeoCol.has_key?('geometries')
-                            unless hGeoCol['geometries'].empty?
-                                aReturn = GeoJson.unpack(hGeoCol['geometries'], responseObj)
-                                unless aReturn.nil?
-                                    intGeoCol[:geometryObjects] = aReturn
+                            hGeoCol['geometries'].each do |hGeometry|
+                                hReturn = GeoJson.unpack(hGeometry, responseObj)
+                                unless hReturn.nil?
+                                    intGeoCol[:geometryObjects] << hReturn
                                 end
                             end
                         else
