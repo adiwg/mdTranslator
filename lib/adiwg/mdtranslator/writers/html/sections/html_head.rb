@@ -48,11 +48,27 @@ module ADIWG
                      # read javascript from file
                      path = File.join(File.dirname(__FILE__), 'html_headScript.js')
                      file = File.open(path, 'r')
-                     js = file.read
+                     headJS = file.read
                      file.close
 
                      @html.script('type' => 'text/javascript') do
-                        @html << js
+                        @html << headJS
+                     end
+
+                     # load leaflet
+                     @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.cs')
+                     @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
+                     @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
+
+                     # add inline javascript
+                     # read javascript from file
+                     path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
+                     file = File.open(path, 'r')
+                     bodyJS = file.read
+                     file.close
+
+                     @html.script('type'=>'text/javascript') do
+                        @html << bodyJS
                      end
 
                   end

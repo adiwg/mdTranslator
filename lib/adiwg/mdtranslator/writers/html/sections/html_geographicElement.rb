@@ -17,13 +17,15 @@ module ADIWG
 
                def writeHtml(hElement)
 
-                  @html.text!('Nothing yet')
+                  # geographic element - map
+                  unless hElement[:nativeGeoJson].empty?
+                     @html.text!('Nothing yet')
 
-                  # # classes used
-                  # htmlTempEle = MdHtmlTemporalElement.new(@html)
-                  # htmlVertEle = MdHtmlVerticalElement.new(@html)
-                  # htmlResID = MdHtmlResourceId.new(@html)
-                  #
+                  end
+                  # geographic element - GeoJson
+                  # geographic element - computed bounding box {boundingBox}
+                  # geographic element - elements {?}
+
                   # # geographic element - element ID
                   # s = hElement[:elementId]
                   # if !s.nil?
