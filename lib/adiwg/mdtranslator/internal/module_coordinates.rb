@@ -69,34 +69,50 @@ module AdiwgCoordinates
             unpackGeometry(hGeo, aNorthings, aEastings)
         end
 
-        # find the most east and west
+        # find most north/south points
         north = aNorthings.max
         south = aNorthings.min
-        east = aEastings.max
-        west = aEastings.min
 
-        # make all eastings negative if geometry spans the antimeridian
-        if (east - west).abs > 180
-            aEastings.each_with_index do |element, index|
-                if element > 0
-                    aEastings[index] -= 360
-                end
-            end
-            east = aEastings.max
-            west = aEastings.min
+        # find most east/west spanning the meridian
+        eastM = aEastings.max
+        westM = aEastings.min
 
-            # determine which hemisphere to place bbox
-            if (180 - east.abs) > (180 - west.abs)
-                # in the eastern hemisphere
-                west += 360
+        # find most east/west spanning the anti-meridian
+        positiveEast = []
+        negativeEast = []
+        aEastings.each do |east|
+            negativeEast << east if east < 0.0
+            positiveEast << east if east >= 0.0
+        end
+        eastAM = negativeEast.max
+        westAM = positiveEast.min
+
+        # if eastings are all positive or all negative no meridian was spanned
+        if positiveEast.empty? || negativeEast.empty?
+            east = eastM
+            west = westM
+        else
+            # choose which meridian was spanned based on smaller edge-to-edge distance
+            distanceM = eastM - westM
+            distanceAM = (180 + eastAM) + (180 - westAM)
+            if distanceM <= distanceAM
+                # this spanned to  meridian
+                east = eastM
+                west = westM
             else
-                # in the western hemisphere
-                east += 360
+                # this spanned tne anti-meridian
+                east = eastAM
+                west = westAM
             end
         end
 
-        # return 2D bounding box array
-        return west, south, east, north
+        bBox = {}
+        bBox[:westLongitude] = west
+        bBox[:eastLongitude] = east
+        bBox[:southLatitude] = south
+        bBox[:northLatitude] = north
+
+        return bBox
 
     end
 
