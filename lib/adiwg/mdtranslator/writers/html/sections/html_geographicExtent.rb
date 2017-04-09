@@ -44,16 +44,31 @@ module ADIWG
                   # geographic extent - geographic element [] {geographicElement}
                   unless hExtent[:geographicElements].empty?
                      @html.details do
-                        @html.summary('Geographic Elements', 'class' => 'h5')
+                        @html.summary('Elements', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            hExtent[:geographicElements].each do |hElement|
-                              @html.details do
-                                 @html.summary('Element', 'class' => 'h5')
-                                 @html.section(:class => 'block') do
-                                    geographicClass.writeHtml(hElement)
-                                 end
-                              end
+                              geographicClass.writeHtml(hElement)
                            end
+                        end
+                     end
+                  end
+
+                  # geographic extent - user bounding box
+                  unless hExtent[:boundingBox].empty?
+                     @html.details do
+                        @html.summary('User Provided Bounding Box', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           boundingClass.writeHtml(hExtent[:boundingBox])
+                        end
+                     end
+                  end
+
+                  # computed bounding box - {boundingBox}
+                  unless hExtent[:computedBbox].empty?
+                     @html.details do
+                        @html.summary('Computed Bounding Box', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           boundingClass.writeHtml(hExtent[:computedBbox])
                         end
                      end
                   end
@@ -75,22 +90,6 @@ module ADIWG
                         @html.section(:class => 'block') do
                            @html.text!(hExtent[:nativeGeoJson].to_s)
                         end
-                     end
-                  end
-
-                  # geographic extent - bounding box {boundingBox}
-                  unless hExtent[:boundingBox].empty?
-                     @html.em('User Provided Bounding Box:')
-                     @html.section(:class => 'block') do
-                        boundingClass.writeHtml(hExtent[:boundingBox])
-                     end
-                  end
-
-                  # geographic extent - computed bounding box
-                  unless hExtent[:computedBbox].empty?
-                     @html.em('Computed Bounding Box:')
-                     @html.section(:class => 'block') do
-                        boundingClass.writeHtml(hExtent[:computedBbox])
                      end
                   end
 

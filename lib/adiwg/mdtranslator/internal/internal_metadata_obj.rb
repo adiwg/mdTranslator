@@ -497,7 +497,8 @@ class InternalMetadata
     def newGeometryObject
         intObj = {
             type: nil,
-            coordinates: []
+            coordinates: [],
+            nativeGeoJson: {}
         }
     end
 
@@ -506,7 +507,8 @@ class InternalMetadata
             type: nil,
             bbox: [],
             geometryObjects: [],
-            computedBbox: []
+            computedBbox: [],
+            nativeGeoJson: {}
         }
     end
 
@@ -527,7 +529,8 @@ class InternalMetadata
             bbox: [],
             geometryObject: {},
             properties: {},
-            computedBbox: []
+            computedBbox: [],
+            nativeGeoJson: {}
         }
     end
 
@@ -536,7 +539,8 @@ class InternalMetadata
             type: nil,
             bbox: [],
             features: [],
-            computedBbox: []
+            computedBbox: [],
+            nativeGeoJson: {}
         }
     end
 
