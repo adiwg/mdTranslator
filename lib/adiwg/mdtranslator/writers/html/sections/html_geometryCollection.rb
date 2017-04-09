@@ -59,6 +59,16 @@ module ADIWG
                      end
                   end
 
+                  # geographic element - native GeoJson
+                  unless hCollection[:nativeGeoJson].empty?
+                     @html.details do
+                        @html.summary('GeoJson', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           @html.text!(hCollection[:nativeGeoJson].to_s)
+                        end
+                     end
+                  end
+
                end # writeHtml
             end # Html_GeometryCollection
 

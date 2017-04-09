@@ -26,10 +26,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal 100.0, metadata[0]
-        assert_equal 0.0, metadata[1]
-        assert_equal 105.0, metadata[2]
-        assert_equal 3.0, metadata[3]
+        assert_equal 100.0, metadata[:westLongitude]
+        assert_equal 0.0, metadata[:southLatitude]
+        assert_equal 105.0, metadata[:eastLongitude]
+        assert_equal 3.0, metadata[:northLatitude]
 
     end
 
@@ -43,10 +43,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_equal -179.0, metadata[:westLongitude]
+        assert_equal 61.0, metadata[:southLatitude]
+        assert_equal -48.0, metadata[:eastLongitude]
+        assert_equal 65.0, metadata[:northLatitude]
 
     end
 
@@ -60,10 +60,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal 148.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -177.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_equal 148.0, metadata[:westLongitude]
+        assert_equal 61.0, metadata[:southLatitude]
+        assert_equal -177.0, metadata[:eastLongitude]
+        assert_equal 65.0, metadata[:northLatitude]
 
     end
 
@@ -77,10 +77,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal 178.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal -150.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_equal 178.0, metadata[:westLongitude]
+        assert_equal 61.0, metadata[:southLatitude]
+        assert_equal -150.0, metadata[:eastLongitude]
+        assert_equal 65.0, metadata[:northLatitude]
 
     end
 
@@ -94,10 +94,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal -35.0, metadata[0]
-        assert_equal 61.0, metadata[1]
-        assert_equal 48.0, metadata[2]
-        assert_equal 65.0, metadata[3]
+        assert_equal -35.0, metadata[:westLongitude]
+        assert_equal 61.0, metadata[:southLatitude]
+        assert_equal 48.0, metadata[:eastLongitude]
+        assert_equal 65.0, metadata[:northLatitude]
 
     end
 
@@ -111,10 +111,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal -65.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal -61.0, metadata[3]
+        assert_equal -179.0, metadata[:westLongitude]
+        assert_equal -65.0, metadata[:southLatitude]
+        assert_equal -48.0, metadata[:eastLongitude]
+        assert_equal -61.0, metadata[:northLatitude]
 
     end
 
@@ -128,10 +128,10 @@ class TestReaderMdJsonComputedBox < TestReaderMdJsonParent
         metadata = aInternal[:computedBbox]
 
         assert_equal 4, metadata.length
-        assert_equal -179.0, metadata[0]
-        assert_equal -65.0, metadata[1]
-        assert_equal -48.0, metadata[2]
-        assert_equal 62.45, metadata[3]
+        assert_equal -179.0, metadata[:westLongitude]
+        assert_equal -65.0, metadata[:southLatitude]
+        assert_equal -48.0, metadata[:eastLongitude]
+        assert_equal 62.45, metadata[:northLatitude]
 
     end
 

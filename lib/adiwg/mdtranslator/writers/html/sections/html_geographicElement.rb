@@ -28,15 +28,13 @@ module ADIWG
                   featureClass =Html_Feature.new(@html)
                   featCollectionClass =Html_FeatureCollection.new(@html)
 
-                  geoElement = hElement[:geographicElement]
-
                   # geographic element - geometry objects
-                  case geoElement[:type]
+                  case hElement[:type]
                      when 'Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon'
                         @html.details do
-                           @html.summary(geoElement[:type], 'class' => 'h5')
+                           @html.summary(hElement[:type], 'class' => 'h5')
                            @html.section(:class => 'block') do
-                              geometryClass.writeHtml(geoElement)
+                              geometryClass.writeHtml(hElement)
                            end
                         end
 
@@ -44,42 +42,32 @@ module ADIWG
                         @html.details do
                            @html.summary('Geometry Collection', 'class' => 'h5')
                            @html.section(:class => 'block') do
-                              geoCollectionClass.writeHtml(geoElement)
+                              geoCollectionClass.writeHtml(hElement)
                            end
                         end
 
                      when 'Feature'
                         @html.details do
                            title = 'Feature'
-                           unless geoElement[:id].nil?
-                              title += ': '+geoElement[:id].to_s
+                           unless hElement[:id].nil?
+                              title += ': '+hElement[:id].to_s
                            end
                            @html.summary(title, 'class' => 'h5')
                            @html.section(:class => 'block') do
-                              featureClass.writeHtml(geoElement)
+                              featureClass.writeHtml(hElement)
                            end
                         end
 
                      when 'FeatureCollection'
                         @html.details do
-                           @html.summary(geoElement[:type], 'class' => 'h5')
+                           @html.summary(hElement[:type], 'class' => 'h5')
                            @html.section(:class => 'block') do
-                              featCollectionClass.writeHtml(geoElement)
+                              featCollectionClass.writeHtml(hElement)
                            end
                         end
 
                      else
-                        @html.text!('Bad GeoJSON Type: '+geoElement[:type])
-                  end
-
-                  # geographic element - native GeoJson
-                  unless hElement[:nativeGeoJson].empty?
-                     @html.details do
-                        @html.summary('GeoJson', 'class' => 'h5')
-                        @html.section(:class => 'block') do
-                           @html.text!(hElement[:nativeGeoJson].to_s)
-                        end
-                     end
+                        @html.text!('Bad GeoJSON Type: '+hElement[:type])
                   end
 
                end # writeHtml

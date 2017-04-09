@@ -6,7 +6,7 @@
 
 require_relative 'module_identifier'
 require_relative 'module_boundingBox'
-require_relative 'module_geographicElement'
+require_relative 'module_geoJson'
 
 module ADIWG
     module Mdtranslator
@@ -58,7 +58,7 @@ module ADIWG
                         # geographic extent - geographic elements
                         if hGeoExt.has_key?('geographicElement')
                             hGeoExt['geographicElement'].each do |hElement|
-                                hReturn = GeographicElement.unpack(hElement, responseObj)
+                                hReturn = GeoJson.unpack(hElement, responseObj)
                                 unless hReturn.nil?
                                     intGeoExt[:geographicElements] << hReturn
                                 end
@@ -74,13 +74,10 @@ module ADIWG
 
                         # compute bbox for extent
                         unless intGeoExt[:geographicElements].empty?
-                            aGeo = []
-                            intGeoExt[:geographicElements].each do |hGeo|
-                                aGeo << hGeo[:geographicElement]
-                            end
-                            intGeoExt[:computedBbox] = AdiwgCoordinates.computeBbox(aGeo)
+                            intGeoExt[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoExt[:geographicElements])
                         end
 
+                        # test for completeness
                         if intGeoExt[:identifier].empty? &&
                             intGeoExt[:boundingBox].empty? &&
                             intGeoExt[:geographicElements].empty?
@@ -93,7 +90,6 @@ module ADIWG
                         return intGeoExt
 
                     end
-
                 end
 
             end

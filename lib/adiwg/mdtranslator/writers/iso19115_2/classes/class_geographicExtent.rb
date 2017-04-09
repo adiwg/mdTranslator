@@ -34,10 +34,7 @@ module ADIWG
                         # if empty, take computedBbox
                         hBbox = hGeoExtent[:boundingBox]
                         if hBbox.empty?
-                            hBbox[:westLongitude] = hGeoExtent[:computedBbox][0]
-                            hBbox[:eastLongitude] = hGeoExtent[:computedBbox][2]
-                            hBbox[:southLatitude] = hGeoExtent[:computedBbox][1]
-                            hBbox[:northLatitude] = hGeoExtent[:computedBbox][3]
+                            hBbox = hGeoExtent[:computedBbox]
                         end
                         unless hBbox.empty?
                             @xml.tag!('gmd:geographicElement') do

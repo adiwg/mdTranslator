@@ -1587,6 +1587,70 @@
                      ]
                   },
                   {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-162, 65],
+                                 [-161, 65],
+                                 [-161, 60],
+                                 [-162, 60],
+                                 [-162, 65]
+                              ]
+                           ]
+                        },
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [100, 55],
+                                 [102, 55],
+                                 [102, 50],
+                                 [100, 50],
+                                 [100, 55]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-30, 25],
+                                 [-20, 25],
+                                 [-20, 20],
+                                 [-30, 20],
+                                 [-30, 25]
+                              ]
+                           ]
+                        },
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [10, 40],
+                                 [15, 35],
+                                 [15, 30],
+                                 [10, 30],
+                                 [10, 40]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
                      "containsData": true,
                      "geographicElement": [
                         {
@@ -1605,15 +1669,28 @@
                                  ]
                               }
                            ]
+                        },
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [10, 40],
+                                 [15, 35],
+                                 [15, 30],
+                                 [10, 30],
+                                 [10, 40]
+                              ]
+                           ]
                         }
+
                      ]
                   },
                   {
                      "containsData": true,
                      "geographicElement": [
                         {
-                           "id": "polygon-75",
                            "type": "Feature",
+                           "id": "polygon-75",
                            "bbox": [-10.0, -10.0, 10.0, 10.0],
                            "geometry": {
                               "type": "Polygon",

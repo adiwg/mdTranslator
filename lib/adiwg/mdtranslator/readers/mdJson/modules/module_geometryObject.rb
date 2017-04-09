@@ -55,6 +55,9 @@ module ADIWG
                             return nil
                         end
 
+                        # geometry object - save native GeoJSON
+                        intGeoObject[:nativeGeoJson] = hGeoObject
+
                         return intGeoObject
 
                     end

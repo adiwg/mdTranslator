@@ -47,27 +47,26 @@ module ADIWG
                         featureCollectClass =  FeatureCollection.new(@xml, @hResponseObj)
 
                         aGeoElement.each do |hGeoElement|
-                            hElement = hGeoElement[:geographicElement]
                             @xml.tag!('gmd:polygon') do
-                                case hElement[:type]
+                                case hGeoElement[:type]
                                     when 'Point'
-                                        pointClass.writeXML(hElement, {}, nil)
+                                        pointClass.writeXML(hGeoElement, {}, nil)
                                     when 'LineString'
-                                        lineClass.writeXML(hElement, {}, nil)
+                                        lineClass.writeXML(hGeoElement, {}, nil)
                                     when 'Polygon'
-                                        polyClass.writeXML(hElement, {}, nil)
+                                        polyClass.writeXML(hGeoElement, {}, nil)
                                     when 'MultiPoint'
-                                        multiPointClass.writeXML(hElement, {}, nil)
+                                        multiPointClass.writeXML(hGeoElement, {}, nil)
                                     when 'MultiLineString'
-                                        multiLineClass.writeXML(hElement, {}, nil)
+                                        multiLineClass.writeXML(hGeoElement, {}, nil)
                                     when 'MultiPolygon'
-                                        multiPolyClass.writeXML(hElement, {}, nil)
+                                        multiPolyClass.writeXML(hGeoElement, {}, nil)
                                     when 'GeometryCollection'
-                                        geoCollectClass.writeXML(hElement, {}, nil)
+                                        geoCollectClass.writeXML(hGeoElement, {}, nil)
                                     when 'Feature'
-                                        featureClass.writeXML(hElement)
+                                        featureClass.writeXML(hGeoElement)
                                     when 'FeatureCollection'
-                                        featureCollectClass.writeXML(hElement)
+                                        featureCollectClass.writeXML(hGeoElement)
                                 end
                             end
                         end

@@ -67,10 +67,13 @@ module ADIWG
                             return nil
                         end
 
-                        # compute bbox for geometry collection
+                        # geometry collection - compute bbox for geometry collection
                         unless intGeoCol[:geometryObjects].empty?
                             intGeoCol[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoCol[:geometryObjects])
                         end
+
+                        # geometry collection - save GeoJSON for the collection
+                        intGeoCol[:nativeGeoJson] = hGeoCol
 
                         return intGeoCol
 

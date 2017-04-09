@@ -67,10 +67,13 @@ module ADIWG
                             return nil
                         end
 
-                        # compute bbox for extent
+                        # geometry feature - computed bounding box for extent
                         unless intFeatCol[:features].empty?
                             intFeatCol[:computedBbox] = AdiwgCoordinates.computeBbox(intFeatCol[:features])
                         end
+
+                        # geometry feature - save native GeoJSON for feature
+                        intFeatCol[:nativeGeoJson] = hFeatCol
 
                         return intFeatCol
 

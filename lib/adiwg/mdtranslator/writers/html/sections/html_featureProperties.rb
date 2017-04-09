@@ -58,7 +58,7 @@ module ADIWG
                   unless hProperty[:featureScope].nil?
                      @html.em('Acquisition Method: ')
                      @html.section(:class => 'block') do
-                        @html.text!(hProperty[:featureScope])
+                        @html.text!(hProperty[:acquisitionMethod])
                      end
                   end
 

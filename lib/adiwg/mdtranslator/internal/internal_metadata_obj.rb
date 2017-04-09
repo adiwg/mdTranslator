@@ -478,13 +478,6 @@ class InternalMetadata
         }
     end
 
-    def newGeographicElement
-        intObj = {
-            nativeGeoJson: {},
-            geographicElement: {}
-        }
-    end
-
     def newBoundingBox
         intObj = {
             westLongitude: nil,
