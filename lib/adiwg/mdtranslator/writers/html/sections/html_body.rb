@@ -64,16 +64,16 @@ module ADIWG
 
                         # add section buttons
                         @html.a(' Top', {'href' => '#', 'class' => 'btn'})
-                        @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn'})
-                        @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn'})
-                        @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn'})
-                        @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn'})
-                        @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn'})
-                        @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn'})
-                        @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn'})
-                        @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn'})
-                        @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn'})
-                        @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn'})
+                        @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn', 'id' => 'contactButton'})
+                        @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn', 'id' => 'metadataButton'})
+                        @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn', 'id' => 'resourceButton'})
+                        @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn', 'id' => 'lineageButton'})
+                        @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn', 'id' => 'distributionButton'})
+                        @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn', 'id' => 'associatedButton'})
+                        @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn', 'id' => 'additionalButton'})
+                        @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn', 'id' => 'dictionaryButton'})
+                        @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn', 'id' => 'fundingButton'})
+                        @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn', 'id' => 'repositoryButton'})
 
                         # add open and close buttons
                         @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
