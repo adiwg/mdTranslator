@@ -62,14 +62,8 @@ module ADIWG
                      # side navigation
                      @html.div('id' => 'sideNav') do
 
-                        # add top anchor and button
-                        @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
-
-                        # add open and close buttons
-                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
-                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
-
                         # add section buttons
+                        @html.a(' Top', {'href' => '#', 'class' => 'btn'})
                         @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn'})
                         @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn'})
                         @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn'})
@@ -80,6 +74,10 @@ module ADIWG
                         @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn'})
                         @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn'})
                         @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn'})
+
+                        # add open and close buttons
+                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
+                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
 
                      end
 
