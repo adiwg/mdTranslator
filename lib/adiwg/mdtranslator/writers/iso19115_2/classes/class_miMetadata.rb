@@ -110,9 +110,12 @@ module ADIWG
                                    'xmlns:srv' => 'http://www.isotc211.org/2005/srv',
                                    'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                                    'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                                   'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gmi C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd'}) do
-                            # TODO replace local XSD link with global before publication
-                            #'ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'
+                                   'xsi:schemaLocation' => 'http://www.isotc211.org/2005/gmi ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'}) do
+
+                            # remote schema location - for deployment
+                            # ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd
+                            # local schema location - for development
+                            # C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd
 
                             # metadata information - file identifier (default: UUID)
                             s = hMetaInfo[:metadataIdentifier][:identifier]
