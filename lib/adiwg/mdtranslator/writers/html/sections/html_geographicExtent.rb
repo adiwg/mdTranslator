@@ -35,9 +35,11 @@ module ADIWG
 
                   # geographic extent - map {div}
                   @html.details do
-                     @html.summary('Map', 'class' => 'h5')
+                     @html.summary('Map', 'class' => 'h5 map-summary')
                      @html.section(:class => 'block') do
-                        @html.text!('Nothing Yet')
+                        @html.div('class' => 'map', 'id' => 'map') do
+                           # map drawn by html_bodyScript.js
+                        end
                      end
                   end
 
@@ -59,6 +61,9 @@ module ADIWG
                         @html.summary('User Provided Bounding Box', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            boundingClass.writeHtml(hExtent[:boundingBox])
+                           @html.div(:class =>'userBBox hidden') do
+                              @html.text!(hExtent[:boundingBox].to_json)
+                           end
                         end
                      end
                   end
@@ -69,6 +74,9 @@ module ADIWG
                         @html.summary('Computed Bounding Box', 'class' => 'h5')
                         @html.section(:class => 'block') do
                            boundingClass.writeHtml(hExtent[:computedBbox])
+                           @html.div(:class =>'computedBBox hidden') do
+                              @html.text!(hExtent[:computedBbox].to_json)
+                           end
                         end
                      end
                   end
@@ -88,7 +96,9 @@ module ADIWG
                      @html.details do
                         @html.summary('GeoJson', 'class' => 'h5')
                         @html.section(:class => 'block') do
-                           @html.text!(hExtent[:nativeGeoJson].to_s)
+                           @html.div(:class =>'geojson', :dataPopup => 'fill in popData') do
+                              @html.text!(hExtent[:nativeGeoJson].to_json)
+                           end
                         end
                      end
                   end

@@ -64,7 +64,7 @@ module ADIWG
                      @html.details do
                         @html.summary('GeoJson', 'class' => 'h5')
                         @html.section(:class => 'block') do
-                           @html.text!(hCollection[:nativeGeoJson].to_s)
+                           @html.text!(hCollection[:nativeGeoJson].to_json)
                         end
                      end
                   end

@@ -40,7 +40,7 @@ module ADIWG
                   hExtent[:geographicExtents].each do |hGeographic|
                      @html.details do
                         @html.summary('Geographic Extent', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
+                        @html.section(:class => 'block extent-geographic') do
                            geographicClass.writeHtml(hGeographic)
                         end
                      end

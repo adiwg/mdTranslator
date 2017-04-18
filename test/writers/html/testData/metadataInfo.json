@@ -1497,7 +1497,7 @@
          "supplementalInfo": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
          "extent": [
             {
-               "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "geographicExtent": [
                   {
                      "containsData": false,
@@ -1617,7 +1617,47 @@
                            ]
                         }
                      ]
+                  }
+               ],
+               "temporalExtent": [
+                  {
+                     "timeInstant": {
+                        "dateTime": "2016-10-24T11:10:15.200-10:00"
+                     }
                   },
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2016-10-24T11:10:15.200-10:00"
+                     }
+                  }
+               ],
+               "verticalExtent": [
+                  {
+                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "minValue": 9.9,
+                     "maxValue": 9.9,
+                     "crsId": {
+                        "referenceSystemType": "referenceSystemType0",
+                        "referenceSystemIdentifier": {
+                           "identifier": "identifier0"
+                        }
+                     }
+                  },
+                  {
+                     "minValue": 99.99,
+                     "maxValue": 99.99,
+                     "crsId": {
+                        "referenceSystemType": "referenceSystemType1",
+                        "referenceSystemIdentifier": {
+                           "identifier": "identifier1"
+                        }
+                     }
+                  }
+               ]
+            },
+            {
+               "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "geographicExtent": [
                   {
                      "containsData": false,
                      "identifier": {
@@ -1682,7 +1722,6 @@
                               ]
                            ]
                         }
-
                      ]
                   },
                   {
@@ -1761,7 +1800,10 @@
                                     "coordinates": [102.0, 0.5]
                                  },
                                  "properties": {
-                                    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                                    "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                                    "featureName": [
+                                       "fake name"
+                                    ]
                                  }
                               },
                               {
@@ -1810,43 +1852,9 @@
                         }
                      ]
                   }
-               ],
-               "temporalExtent": [
-                  {
-                     "timeInstant": {
-                        "dateTime": "2016-10-24T11:10:15.200-10:00"
-                     }
-                  },
-                  {
-                     "timePeriod": {
-                        "startDateTime": "2016-10-24T11:10:15.200-10:00"
-                     }
-                  }
-               ],
-               "verticalExtent": [
-                  {
-                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                     "minValue": 9.9,
-                     "maxValue": 9.9,
-                     "crsId": {
-                        "referenceSystemType": "referenceSystemType0",
-                        "referenceSystemIdentifier": {
-                           "identifier": "identifier0"
-                        }
-                     }
-                  },
-                  {
-                     "minValue": 99.99,
-                     "maxValue": 99.99,
-                     "crsId": {
-                        "referenceSystemType": "referenceSystemType1",
-                        "referenceSystemIdentifier": {
-                           "identifier": "identifier1"
-                        }
-                     }
-                  }
                ]
             }
+
          ]
       },
       "resourceLineage": [

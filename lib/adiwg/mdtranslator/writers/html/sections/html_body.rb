@@ -66,8 +66,8 @@ module ADIWG
                         @html.a(' Top', {'href' => '#', 'class' => 'btn icon-caret-up'})
 
                         # add open and close buttons
-                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'onclick' => 'openAllDetails();'})
-                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'onclick' => 'closeAllDetails();'})
+                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
+                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
 
                         # add section buttons
                         @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn'})
@@ -268,6 +268,22 @@ module ADIWG
                               end
                            end
                         end
+                     end
+
+                     # load leaflet
+                     @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
+                     @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
+                     @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
+
+                     # add inline javascript
+                     # read javascript from file
+                     path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
+                     file = File.open(path, 'r')
+                     bodyJS = file.read
+                     file.close
+
+                     @html.script('type'=>'text/javascript') do
+                        @html << bodyJS
                      end
 
                   end # body

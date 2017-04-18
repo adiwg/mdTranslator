@@ -262,7 +262,7 @@ module ADIWG
                   # resource - extent [] {extent}
                   unless hResource[:extents].empty?
                      @html.details do
-                        @html.summary('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
+                        @html.summary('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
                         @html.section(:class => 'block') do
                            hResource[:extents].each do |hExtent|
                               @html.details do
@@ -296,7 +296,6 @@ module ADIWG
                            end
 
                         end
-
                      end
                   end
 
