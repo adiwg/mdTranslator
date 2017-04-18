@@ -5,6 +5,7 @@
 #  Stan Smith 2017-03-25 original script
 
 require_relative 'html_scopeDescription'
+require_relative 'html_extent'
 
 module ADIWG
    module Mdtranslator
@@ -21,6 +22,7 @@ module ADIWG
 
                   # classes used
                   descriptionClass = Html_ScopeDescription.new(@html)
+                  extentClass = Html_Extent.new(@html)
 
                   # scope - code
                   unless hScope[:scopeCode].nil?
@@ -39,9 +41,14 @@ module ADIWG
                      end
                   end
 
-                  # scope - extents []
+                  # scope - extent [] {extent}
                   hScope[:extents].each do |hExtent|
-                     # TODO scope extent
+                     @html.details do
+                        @html.summary('Extent', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           extentClass.writeHtml(hExtent)
+                        end
+                     end
                   end
 
                end # writeHtml
