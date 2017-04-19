@@ -6,11 +6,12 @@
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "2.0.0"
+        VERSION = "2.0.0rc1"
     end
 end
 
 # version 2 history
+# 2.0.0rc1 2017-04-09 release candidate 1
 
 # version 1 history
 # 1.0.0rc1 2015-02-27 schema 1.0 support
