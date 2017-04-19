@@ -91,7 +91,7 @@ module ADIWG
                                 @xml.tag!('gmd:userDeterminedLimitations')
                             end
 
-                            # usage - user contact info (required) [{CI_ResponsibleParty}]
+                            # usage - user contact info (required (optional -1)) [{CI_ResponsibleParty}]
                             aParties = hUsage[:userContacts]
                             aParties.each do |hRParty|
                                 role = hRParty[:roleName]
@@ -102,8 +102,8 @@ module ADIWG
                                     end
                                 end
                             end
-                            if aParties.empty? && @hResponseObj[:writerShowTags]
-                                @xml.tag!('gmd:userContactInfo')
+                            if aParties.empty?
+                                @xml.tag!('gmd:userContactInfo', {'gco:nilReason' => 'missing'})
                             end
 
                         end # gmd:MD_Usage tag
