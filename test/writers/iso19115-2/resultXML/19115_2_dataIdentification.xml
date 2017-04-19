@@ -210,7 +210,7 @@
           <gmd:userDeterminedLimitations>
             <gco:CharacterString>userDeterminedLimitation</gco:CharacterString>
           </gmd:userDeterminedLimitations>
-          <gmd:userContactInfo/>
+          <gmd:userContactInfo gco:nilReason="missing"/>
         </gmd:MD_Usage>
       </gmd:resourceSpecificUsage>
       <gmd:resourceSpecificUsage>
@@ -222,7 +222,7 @@
           <gmd:userDeterminedLimitations>
             <gco:CharacterString>userDeterminedLimitation</gco:CharacterString>
           </gmd:userDeterminedLimitations>
-          <gmd:userContactInfo/>
+          <gmd:userContactInfo gco:nilReason="missing"/>
         </gmd:MD_Usage>
       </gmd:resourceSpecificUsage>
       <gmd:resourceConstraints>

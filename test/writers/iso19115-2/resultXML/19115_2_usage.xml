@@ -65,7 +65,7 @@
       </gmd:specificUsage>
       <gmd:usageDateTime/>
       <gmd:userDeterminedLimitations/>
-      <gmd:userContactInfo/>
+      <gmd:userContactInfo gco:nilReason="missing"/>
     </gmd:MD_Usage>
   </gmd:resourceSpecificUsage>
 
@@ -76,8 +76,7 @@
       </gmd:specificUsage>
       <gmd:usageDateTime/>
       <gmd:userDeterminedLimitations/>
-      <gmd:userContactInfo/>
+      <gmd:userContactInfo gco:nilReason="missing"/>
     </gmd:MD_Usage>
   </gmd:resourceSpecificUsage>
-
 </gmi:MI_Metadata>
