@@ -3,6 +3,8 @@
 
 # mdTranslator
 
+# __NOTE__: This branch (1.x) only supports mdJSON versions in the 1.x series.
+
 mdtranslator was written by the [Alaska Data Integration Working Group](http://www.adiwg.org) (ADIwg) to assist with creating ISO 19139 metadata records.  Input to the mdtranslator is JSON conforming to the [mdJson-schemas](https://github.com/adiwg/mdJson-schemas).  The mdtranslator architecture allows developers to write additional readers for other input formats and/or write additional writers for other output other than ISO 19139, e.g. HTML.
 
 ## Installation
