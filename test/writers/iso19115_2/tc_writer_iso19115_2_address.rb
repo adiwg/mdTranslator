@@ -214,7 +214,7 @@ class TestWriter191152Address < MiniTest::Test
         intMetadataClass = InternalMetadata.new
         emptyAdd = intMetadataClass.newAddress
 
-        assert_equal nil, addClass.writeXML(emptyAdd)
+        assert_nil addClass.writeXML(emptyAdd)
     end
 
     def test_nil_address_object
@@ -223,7 +223,7 @@ class TestWriter191152Address < MiniTest::Test
         xmlResult = Builder::XmlMarkup.new(indent: 3)
         addClass = @@NameSpace::CI_Address.new(xmlResult, @@responseObj)
 
-        assert_equal nil, addClass.writeXML(nil)
+        assert_nil addClass.writeXML(nil)
     end
 
 end
