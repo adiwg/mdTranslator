@@ -1,0 +1,78 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "funding": [
+         {
+            "allocation": [
+               {
+                  "amount": 9.9,
+                  "currency": "currency",
+                  "matching": true
+               },
+               {
+                  "amount": 9.9,
+                  "currency": "currency",
+                  "matching": false
+               }
+            ],
+            "timePeriod": {
+               "startDateTime": "2016-10-14T11:10:15-10:00",
+               "endDateTime": "2017-12-31"
+            }
+         }
+      ]
+   }
+}

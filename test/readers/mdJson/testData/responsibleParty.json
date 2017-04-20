@@ -1,0 +1,24 @@
+{
+   "responsibleParty": [
+      {
+         "role": "role",
+         "roleExtent": [
+            {
+               "description": "description",
+               "temporalExtent": [
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2016-10-14"
+                     }
+                  }
+               ]
+            }
+         ],
+         "party": [
+            {
+               "contactId": "individualId0"
+            }
+         ]
+      }
+   ]
+}

@@ -1,0 +1,38 @@
+{
+   "source": [
+      {
+         "description": "description",
+         "sourceCitation": {
+            "title": "title"
+         },
+         "metadataCitation": [
+            {
+               "title": "title"
+            },
+            {
+               "title": "title"
+            }
+         ],
+         "spatialResolution": {
+            "scaleFactor": 99999
+         },
+         "referenceSystem": {
+            "referenceSystemType": "referenceSystemType",
+            "referenceSystemIdentifier": {
+               "identifier": "identifier"
+            }
+         },
+         "sourceProcessStep": [
+            {
+               "description": "description"
+            },
+            {
+               "description": "description"
+            }
+         ],
+         "scope": {
+            "scopeCode": "scopeCode"
+         }
+      }
+   ]
+}

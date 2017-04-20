@@ -1,33 +1,34 @@
 # ISO <<Class>> MD_DataIdentification
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-08-26 original script
-# 	Stan Smith 2013-09-18 add descriptive keywords
-# 	Stan Smith 2013-11-01 add constraints
-# 	Stan Smith 2013-11-08 add extents
-# 	Stan Smith 2013-11-21 add taxonomy
-# 	Stan Smith 2013-11-22 add metadata extension
-# 	Stan Smith 2013-11-25 add resource usage
-# 	Stan Smith 2013-11-25 add spatial resolution
-#   Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
-#   Stan Smith 2014-05-21 added aggregate information section
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-10-29 add resource time period as a extent temporal element
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-06-12 added support for declaring multiple resource character sets
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-30 added support for translating locale into language and characterSet
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2015-06-12 added support for declaring multiple resource character sets
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-10-29 add resource time period as a extent temporal element
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-05-21 added aggregate information section
+#   Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
+# 	Stan Smith 2013-11-25 add spatial resolution
+# 	Stan Smith 2013-11-25 add resource usage
+# 	Stan Smith 2013-11-22 add metadata extension
+# 	Stan Smith 2013-11-21 add taxonomy
+# 	Stan Smith 2013-11-08 add extents
+# 	Stan Smith 2013-11-01 add constraints
+# 	Stan Smith 2013-09-18 add descriptive keywords
+# 	Stan Smith 2013-08-26 original script
 
 require_relative 'class_codelist'
 require_relative 'class_enumerationList'
 require_relative 'class_citation'
 require_relative 'class_responsibleParty'
-require_relative 'class_maintenanceInformation'
+require_relative 'class_maintenance'
 require_relative 'class_browseGraphic'
 require_relative 'class_format'
 require_relative 'class_keyword'
@@ -36,7 +37,7 @@ require_relative 'class_useConstraints'
 require_relative 'class_legalConstraints'
 require_relative 'class_securityConstraints'
 require_relative 'class_aggregateInformation'
-require_relative 'class_taxonSystem'
+require_relative 'class_taxonomy'
 require_relative 'class_resolution'
 require_relative 'class_extent'
 
@@ -47,380 +48,304 @@ module ADIWG
 
                 class MD_DataIdentification
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hDataId, aAssocRes)
+                    def writeXML(hData, aAssocRes)
 
                         # classes used
-                        codelistClass =  MD_Codelist.new(@xml, @responseObj)
-                        enumerationClass =  MD_EnumerationList.new(@xml, @responseObj)
-                        intMetadataClass = InternalMetadata.new
-                        citationClass =  CI_Citation.new(@xml, @responseObj)
-                        rPartyClass =  CI_ResponsibleParty.new(@xml, @responseObj)
-                        mInfoClass =  MD_MaintenanceInformation.new(@xml, @responseObj)
-                        bGraphicClass =  MD_BrowseGraphic.new(@xml, @responseObj)
-                        rFormatClass =  MD_Format.new(@xml, @responseObj)
-                        keywordClass =  MD_Keywords.new(@xml, @responseObj)
-                        useClass =  MD_Usage.new(@xml, @responseObj)
-                        uConClass =  MD_Constraints.new(@xml, @responseObj)
-                        lConClass =  MD_LegalConstraints.new(@xml, @responseObj)
-                        sConClass =  MD_SecurityConstraints.new(@xml, @responseObj)
-                        aggInfoClass =  MD_AggregateInformation.new(@xml, @responseObj)
-                        taxClass =  MD_TaxonSys.new(@xml, @responseObj)
-                        resolutionClass =  MD_Resolution.new(@xml, @responseObj)
-                        extentClass =  EX_Extent.new(@xml, @responseObj)
+                        codelistClass =  MD_Codelist.new(@xml, @hResponseObj)
+                        enumerationClass =  MD_EnumerationList.new(@xml, @hResponseObj)
+                        citationClass =  CI_Citation.new(@xml, @hResponseObj)
+                        rPartyClass =  CI_ResponsibleParty.new(@xml, @hResponseObj)
+                        mInfoClass =  MD_MaintenanceInformation.new(@xml, @hResponseObj)
+                        bGraphicClass =  MD_BrowseGraphic.new(@xml, @hResponseObj)
+                        rFormatClass =  MD_Format.new(@xml, @hResponseObj)
+                        keywordClass =  MD_Keywords.new(@xml, @hResponseObj)
+                        useClass =  MD_Usage.new(@xml, @hResponseObj)
+                        uConClass =  MD_Constraints.new(@xml, @hResponseObj)
+                        lConClass =  MD_LegalConstraints.new(@xml, @hResponseObj)
+                        sConClass =  MD_SecurityConstraints.new(@xml, @hResponseObj)
+                        aggInfoClass =  MD_AggregateInformation.new(@xml, @hResponseObj)
+                        taxClass =  MD_TaxonSys.new(@xml, @hResponseObj)
+                        resolutionClass =  MD_Resolution.new(@xml, @hResponseObj)
+                        extentClass =  EX_Extent.new(@xml, @hResponseObj)
 
                         # data identification
                         @xml.tag!('gmd:MD_DataIdentification') do
 
-                            # data identification - citation - required
-                            hCitation = hDataId[:citation]
-                            if hCitation.empty?
-                                @xml.tag!('gmd:citation', {'gco:nilReason' => 'missing'})
-                            else
+                            # data identification - citation {CI_Citation} (required)
+                            hCitation = hData[:citation]
+                            unless hCitation.empty?
                                 @xml.tag!('gmd:citation') do
                                     citationClass.writeXML(hCitation)
                                 end
                             end
+                            if hCitation.empty?
+                                @xml.tag!('gmd:citation', {'gco:nilReason' => 'missing'})
+                            end
 
-                            # data identification - abstract - required
-                            s = hDataId[:abstract]
-                            if s.nil?
-                                @xml.tag!('gmd:abstract', {'gco:nilReason' => 'missing'})
-                            else
+                            # data identification - abstract (required)
+                            s = hData[:abstract]
+                            unless s.nil?
                                 @xml.tag!('gmd:abstract') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
                             end
+                            if s.nil?
+                                @xml.tag!('gmd:abstract', {'gco:nilReason' => 'missing'})
+                            end
 
                             # data identification - purpose
-                            s = hDataId[:purpose]
-                            if !s.nil?
+                            s = hData[:purpose]
+                            unless s.nil?
                                 @xml.tag!('gmd:purpose') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:purpose')
                             end
 
-                            # data identification - credit
-                            aCredits = hDataId[:credits]
-                            if !aCredits.empty?
-                                aCredits.each do |credit|
-                                    @xml.tag!('gmd:credit') do
-                                        @xml.tag!('gco:CharacterString', credit)
-                                    end
+                            # data identification - credit []
+                            aCredits = hData[:credits]
+                            aCredits.each do |credit|
+                                @xml.tag!('gmd:credit') do
+                                    @xml.tag!('gco:CharacterString', credit)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aCredits.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:credit')
                             end
 
-                            # data identification - status - required
-                            s = hDataId[:status]
-                            if s.nil?
-                                @xml.tag!('gmd:status', {'gco:nilReason' => 'missing'})
-                            else
+                            # data identification - status []
+                            aStatus = hData[:status]
+                            aStatus.each do |code|
                                 @xml.tag!('gmd:status') do
-                                    codelistClass.writeXML('iso_progress',s)
+                                    codelistClass.writeXML('gmd', 'iso_progress', code)
                                 end
+                            end
+                            if aStatus.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:status')
                             end
 
                             # data identification - point of contact
-                            aPOCs = hDataId[:pointsOfContact]
-                            if !aPOCs.empty?
-                                aPOCs.each do |hPContact|
+                            aRParties = hData[:pointOfContacts]
+                            aRParties.each do |hRParty|
+                                role = hRParty[:roleName]
+                                aParties = hRParty[:parties]
+                                aParties.each do |hParty|
                                     @xml.tag!('gmd:pointOfContact') do
-                                        rPartyClass.writeXML(hPContact)
+                                        rPartyClass.writeXML(role, hParty)
                                     end
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:pointOfContact')
+                            end
+                            if aRParties.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:pointOfContact', {'gco:nilReason' => 'missing'})
                             end
 
-                            # data identification - resource maintenance
-                            aMaintInfo = hDataId[:resourceMaint]
-                            if !aMaintInfo.empty?
-                                aMaintInfo.each do |hResMaintInfo|
-                                    @xml.tag!('gmd:resourceMaintenance') do
-                                        mInfoClass.writeXML(hResMaintInfo)
-                                    end
+                            # data identification - resource maintenance []
+                            aMaint = hData[:resourceMaintenance]
+                            aMaint.each do |hMaint|
+                                @xml.tag!('gmd:resourceMaintenance') do
+                                    mInfoClass.writeXML(hMaint)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aMaint.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceMaintenance')
                             end
 
-                            # data identification - graphic overview
-                            aGOverview = hDataId[:graphicOverview]
-                            if !aGOverview.empty?
-                                aGOverview.each do |graphic|
-                                    gLink = graphic[:bGURI]
-                                    attributes = {}
-                                    attributes['xlink:href'] = gLink if gLink
-                                    @xml.tag!('gmd:graphicOverview', attributes) do
-                                        bGraphicClass.writeXML(graphic)
-                                    end
+                            # data identification - graphic overview []
+                            aGraphics = hData[:graphicOverviews]
+                            aGraphics.each do |hGraphic|
+                                @xml.tag!('gmd:graphicOverview') do
+                                    bGraphicClass.writeXML(hGraphic)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aGraphics.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:graphicOverview')
                             end
 
-                            # data identification - resource format
-                            aResFormats = hDataId[:resourceFormats]
-                            if !aResFormats.empty?
-                                aResFormats.each do |hResFormat|
-                                    @xml.tag!('gmd:resourceFormat') do
-                                        rFormatClass.writeXML(hResFormat)
-                                    end
+                            # data identification - resource format []
+                            aFormats = hData[:resourceFormats]
+                            aFormats.each do |hResFormat|
+                                @xml.tag!('gmd:resourceFormat') do
+                                    rFormatClass.writeXML(hResFormat)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aFormats.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceFormat')
                             end
 
-                            # data identification - descriptive keywords
-                            aDesKeywords = hDataId[:descriptiveKeywords]
-                            if !aDesKeywords.empty?
-                                aDesKeywords.each do |hDKeyword|
-                                    @xml.tag!('gmd:descriptiveKeywords') do
-                                        keywordClass.writeXML(hDKeyword)
-                                    end
+                            # data identification - descriptive keywords []
+                            aKeywords = hData[:keywords]
+                            aKeywords.each do |hKeyword|
+                                @xml.tag!('gmd:descriptiveKeywords') do
+                                    keywordClass.writeXML(hKeyword)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aKeywords.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:descriptiveKeywords')
                             end
 
-                            # data identification - resource specific usage
-                            aResUses = hDataId[:resourceUses]
-                            if !aResUses.empty?
-                                aResUses.each do |hResUse|
-                                    @xml.tag!('gmd:resourceSpecificUsage') do
-                                        useClass.writeXML(hResUse)
-                                    end
+                            # data identification - resource specific usage []
+                            aUses = hData[:resourceUsages]
+                            aUses.each do |hResUse|
+                                @xml.tag!('gmd:resourceSpecificUsage') do
+                                    useClass.writeXML(hResUse)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aUses.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:resourceSpecificUsage')
                             end
 
-                            # data identification - resource constraints - use constraints
-                            aUseLimits = hDataId[:useConstraints]
-                            if !aUseLimits.empty?
+                            # data identification - resource constraints {}
+                            aCons = hData[:constraints]
+                            aCons.each do |hCon|
                                 @xml.tag!('gmd:resourceConstraints') do
-                                    uConClass.writeXML(aUseLimits)
-                                end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    @xml.tag!('gmd:MD_Constraints')
-                                end
-                            end
-
-                            # data identification - resource constraints - legal constraints
-                            aLegalCons = hDataId[:legalConstraints]
-                            if !aLegalCons.empty?
-                                aLegalCons.each do |hLegalCon|
-                                    @xml.tag!('gmd:resourceConstraints') do
-                                        lConClass.writeXML(hLegalCon)
+                                    type = hCon[:type]
+                                    if type == 'use'
+                                        uConClass.writeXML(hCon)
                                     end
-                                end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:resourceConstraints') do
-                                    @xml.tag!('gmd:MD_LegalConstraints')
-                                end
-                            end
-
-                            # data identification - resource constraints - security constraints
-                            # empty tag cannot be shown for security constraints - XSD issue
-                            aSecurityCons = hDataId[:securityConstraints]
-                            unless aSecurityCons.empty?
-                                aSecurityCons.each do |hSecCon|
-                                    @xml.tag!('gmd:resourceConstraints') do
-                                        sConClass.writeXML(hSecCon)
+                                    if type == 'legal'
+                                        lConClass.writeXML(hCon)
+                                    end
+                                    if type == 'security'
+                                        sConClass.writeXML(hCon)
                                     end
                                 end
                             end
+                            if aCons.nil? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gmd:resourceConstraints')
+                            end
 
-                            # data identification - aggregate information
-                            if !aAssocRes.empty?
-                                aAssocRes.each do |hAssocRes|
-                                    @xml.tag!('gmd:aggregationInfo') do
-                                        aggInfoClass.writeXML(hAssocRes)
-                                    end
+                            # data identification - aggregate information []
+                            aAssocRes.each do |hAssocRes|
+                                @xml.tag!('gmd:aggregationInfo') do
+                                    aggInfoClass.writeXML(hAssocRes)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aAssocRes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:aggregationInfo')
                             end
 
                             # data identification - taxonomy
-                            hTaxonomy = hDataId[:taxonomy]
-                            if !hTaxonomy.empty?
+                            hTaxonomy = hData[:taxonomy]
+                            unless hTaxonomy.empty?
                                 @xml.tag!('gmd:taxonomy') do
                                     taxClass.writeXML(hTaxonomy)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if hTaxonomy.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:taxonomy')
                             end
 
-                            # data identification - spatial representation type
-                            aSpatialType = hDataId[:spatialRepresentationTypes]
-                            if !aSpatialType.empty?
-                                aSpatialType.each do |spType|
-                                    @xml.tag!('gmd:spatialRepresentationType') do
-                                        codelistClass.writeXML('iso_spatialRepresentation',spType)
-                                    end
+                            # data identification - spatial representation type []
+                            aSpatialType = hData[:spatialRepresentationTypes]
+                            aSpatialType.each do |spType|
+                                @xml.tag!('gmd:spatialRepresentationType') do
+                                    codelistClass.writeXML('gmd', 'iso_spatialRepresentation',spType)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aSpatialType.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:spatialRepresentationType')
                             end
 
-                            # data identification - spatial resolution
-                            aSpatialRes = hDataId[:spatialResolutions]
-                            if !aSpatialRes.empty?
-                                aSpatialRes.each do |hSpRes|
-                                    @xml.tag!('gmd:spatialResolution') do
-                                        resolutionClass.writeXML(hSpRes)
-                                    end
+                            # data identification - spatial resolution []
+                            aSpatialRes = hData[:spatialResolutions]
+                            aSpatialRes.each do |hSpRes|
+                                @xml.tag!('gmd:spatialResolution') do
+                                    resolutionClass.writeXML(hSpRes)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if aSpatialRes.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:spatialResolution')
                             end
 
-                            # data identification - language - required
-                            languageTags = 0
-                            aLanguages = hDataId[:resourceLanguages]
-                            if !aLanguages.empty?
-                                aLanguages.each do |language|
-                                    languageTags += 1
-                                    @xml.tag!('gmd:language') do
-                                        @xml.tag!('gco:CharacterString', language)
-                                    end
+                            # data identification - language [] (required)
+                            aLocale = hData[:otherResourceLocales]
+                            aLocale.insert(0, hData[:defaultResourceLocale])
+                            aLocale.each do |hLocale|
+                                s = hLocale[:languageCode]
+                                unless hLocale[:countryCode].nil?
+                                    s += '; ' + hLocale[:countryCode]
+                                end
+                                @xml.tag!('gmd:language') do
+                                    @xml.tag!('gco:CharacterString', s)
                                 end
                             end
-
-                            # data identification - locale - not supported in 19115-2
-                            # encode languageCode and country as a string for gmd:language
-                            aLocale = hDataId[:resourceLocales]
-                            if !aLocale.empty?
-                                aLocale.each do |hLocale|
-                                    if !hLocale[:languageCode].nil?
-                                        s = hLocale[:languageCode]
-                                        if !hLocale[:countryCode].nil?
-                                            s += '; ' + hLocale[:countryCode]
-                                        end
-                                        languageTags += 1
-                                        @xml.tag!('gmd:language') do
-                                            @xml.tag!('gco:CharacterString', s)
-                                        end
-                                    end
-                                end
-                            end
-
-                            # language for resource was not specified, use 'eng; USA' as default
-                            if languageTags == 0
+                            if aLocale.empty?
                                 @xml.tag!('gmd:language') do
                                     @xml.tag!('gco:CharacterString', 'eng; USA')
                                 end
                             end
 
-                            # data identification - characterSet - not required - default 'utf8'
-                            characterSetTags = 0
-                            aCharSets = hDataId[:resourceCharacterSets]
-                            if !aCharSets.empty?
-                                aCharSets.each do |charSet|
-                                    characterSetTags += 1
+                            # data identification - characterSet [] (default 'utf8')
+                            charSets = 0
+                            aLocale.each do |hLocale|
+                                s = hLocale[:characterEncoding]
+                                unless s.nil?
                                     @xml.tag!('gmd:characterSet') do
-                                        codelistClass.writeXML('iso_characterSet',charSet)
+                                        codelistClass.writeXML('gmd', 'iso_characterSet', s)
+                                        charSets += 1
                                     end
                                 end
                             end
-
-                            # data identification - locale - not supported in 19115-2
-                            # copy characterEncoding to gmd:characterSet
-                            if !aLocale.empty?
-                                aLocale.each do |hLocale|
-                                    s = hLocale[:characterEncoding]
-                                    if !s.nil?
-                                        characterSetTags += 1
-                                        @xml.tag!('gmd:characterSet') do
-                                            codelistClass.writeXML('iso_characterSet', s)
-                                        end
-                                    end
+                            if charSets == 0
+                                @xml.tag!('gmd:language') do
+                                    @xml.tag!('gco:CharacterString', 'eng; USA')
                                 end
                             end
 
-                            # characterSet encoding for resource was not specified, use 'utf8' as default
-                            if characterSetTags == 0
-                                @xml.tag!('gmd:characterSet') do
-                                    codelistClass.writeXML('iso_characterSet','utf8')
+                            # data identification - topic category []
+                            aTopics = hData[:topicCategories]
+                            aTopics.each do |spType|
+                                @xml.tag!('gmd:topicCategory') do
+                                    enumerationClass.writeXML('iso_topicCategory', spType)
                                 end
                             end
-
-                            # data identification - topic category
-                            aTopics = hDataId[:topicCategories]
-                            if !aTopics.empty?
-                                aTopics.each do |spType|
-                                    @xml.tag!('gmd:topicCategory') do
-                                        enumerationClass.writeXML('iso_topicCategory',spType)
-                                    end
-                                end
-                            elsif @responseObj[:writerShowTags]
+                            if aTopics.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:topicCategory')
                             end
 
                             # data identification - environment description
-                            s = hDataId[:environmentDescription]
-                            if !s.nil?
+                            s = hData[:environmentDescription]
+                            unless s.nil?
                                 @xml.tag!('gmd:environmentDescription') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:environmentDescription')
                             end
 
-                            # data identification - extent
-                            # if resource time period, represent the time period as
-                            # a temporal element in the first extent
-                            needTag = true
-                            hTimePeriod = hDataId[:timePeriod]
-                            if !hTimePeriod.empty?
-                                hTempEle = intMetadataClass.newTemporalElement
-                                hTempEle[:timePeriod] = hTimePeriod
-                                hExt = intMetadataClass.newExtent
-                                hExt[:extDesc] = 'Temporal span of the resource (data or project)'
-                                hExt[:extTempElements] << hTempEle
+                            # data identification - extent []
+                            aExtents = hData[:extents]
+                            aExtents.each do |hExtent|
                                 @xml.tag!('gmd:extent') do
-                                    extentClass.writeXML(hExt)
+                                    extentClass.writeXML(hExtent)
                                 end
-                                needTag = false
                             end
-
-                            # add the remaining geographic, temporal, and vertical extents
-                            aExtents = hDataId[:extents]
-                            if !aExtents.empty?
-                                aExtents.each do |hExtent|
-                                    @xml.tag!('gmd:extent') do
-                                        extentClass.writeXML(hExtent)
-                                    end
-                                end
-                            elsif @responseObj[:writerShowTags] && needTag
+                            if aExtents.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:extent')
                             end
 
                             # data identification - supplemental info
-                            s = hDataId[:supplementalInfo]
-                            if !s.nil?
+                            s = hData[:supplementalInfo]
+                            unless s.nil?
                                 @xml.tag!('gmd:supplementalInformation') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:supplementalInformation')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gmd:MD_DataIdentification tag
+                    end # writeXML
+                end # MD_DataIdentification class
 
             end
         end

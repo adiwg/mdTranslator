@@ -1,0 +1,144 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceLineage": [
+         {
+            "statement": "statement"
+         },
+         {
+            "statement": "statement"
+         }
+      ],
+      "resourceDistribution": [
+         {
+            "description": "description"
+         },
+         {
+            "description": "description"
+         }
+      ],
+      "associatedResource": [
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "associationType",
+            "resourceCitation": {
+               "title": "title"
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "associationType",
+            "resourceCitation": {
+               "title": "title"
+            }
+         }
+      ],
+      "additionalDocumentation": [
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "title"
+               }
+            ]
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "title"
+               }
+            ]
+         }
+      ],
+      "funding": [
+         {
+            "allocation": [
+               {
+                  "amount": 9.9,
+                  "currency": "currency",
+                  "matching": false
+               }
+            ]
+         },
+         {
+            "timePeriod": {
+               "endDateTime": "2016-12-31"
+            }
+         }
+      ]
+   }
+}

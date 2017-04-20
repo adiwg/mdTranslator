@@ -1,7 +1,43 @@
 # adiwg mdTranslator
 
-# version history
+# version 2 history
+# 2016-10-01 start of version 2
 
+module ADIWG
+    module Mdtranslator
+        # current mdtranslator version
+        VERSION = "2.0.0rc1"
+    end
+end
+
+# version 2 history
+# 2.0.0rc1 2017-04-09 release candidate 1
+
+# version 1 history
+# 1.0.0rc1 2015-02-27 schema 1.0 support
+# 1.1.0 2015-04-13 added html writer
+# 1.2.0 2015-06-12 added mdCodes for source of codelists
+#              --- added comments to XML headers for citation of ADIwg
+#              --- added reader and writer names to CLI help
+#              --- added check in responsibleParty for valid contactId
+#              --- added characterSets to resource and metadata, updated iso19115_2 and html writers
+# 1.3.0 2015-06-22 removed global variables for the response object
+#              --- removed global for show all tags and placed in response object
+#              --- removed global for counter for missing ISO IDs and placed in response object
+#              --- removed global pointers to contacts and domain arrays and point to @intObj
+# 1.3.0 2015-07-14 removed global namespaces for readers and writers
+# 1.3.0 2015-07-16 added version number management for readers and writers
+#              --- moved module_coordinates to internal
+# 1.3.0 2015-07-17 suppress minor section anchor links when no section data available is in html writer
+#              --- added meta tags to the html writer
+#              --- added --css and --cssLink method_options to CLI
+# 1.3.0 2015-07-20 moved mdTranslator logo to css so it can be replaced using user provided css
+# 1.3.0 2015-07-30 added locale to metadata info and resource info
+# 1.3.0 2015-07-31 added grid information to resource info
+# 1.3.0 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem, classifiedData, and classedDataItem
+
+
+# # version 0 history
 # 0.8.0 2014-09-26 first version to release
 # 0.8.1 2014-10-06 used uri from first onlineResource of the resource citation
 #              ... as source for datasetURI in iso19115-2 writer
@@ -36,31 +72,3 @@
 # 0.13.0 2015-01-28 made data dictionary an array
 #               ... added alias to entity and attribute
 #               ... added local names to iso 19110 writer
-# 1.0.0rc1 2015-02-27 schema 1.0 support
-# 1.1.0 2015-04-13 added html writer
-# 1.2.0 2015-06-12 added mdCodes for source of codelists
-#              --- added comments to XML headers for citation of ADIwg
-#              --- added reader and writer names to CLI help
-#              --- added check in responsibleParty for valid contactId
-#              --- added characterSets to resource and metadata, updated iso19115_2 and html writers
-# 1.3.0 2015-06-22 removed global variables for the response object
-#              --- removed global for show all tags and placed in response object
-#              --- removed global for counter for missing ISO IDs and placed in response object
-#              --- removed global pointers to contacts and domain arrays and point to @intObj
-# 1.3.0 2015-07-14 removed global namespaces for readers and writers
-# 1.3.0 2015-07-16 added version number management for readers and writers
-#              --- moved module_coordinates to internal
-# 1.3.0 2015-07-17 suppress minor section anchor links when no section data available is in html writer
-#              --- added meta tags to the html writer
-#              --- added --css and --cssLink method_options to CLI
-# 1.3.0 2015-07-20 moved mdTranslator logo to css so it can be replaced using user provided css
-# 1.3.0 2015-07-30 added locale to metadata info and resource info
-# 1.3.0 2015-07-31 added grid information to resource info
-# 1.3.0 2015-08-19 added coverageInfo, imageInfo, sensorInfo, coverageItem, classifiedData, and classedDataItem
-
-module ADIWG
-    module Mdtranslator
-        # current mdtranslator version
-        VERSION = "1.4.0"
-    end
-end

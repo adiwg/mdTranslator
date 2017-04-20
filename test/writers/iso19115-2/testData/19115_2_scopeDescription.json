@@ -1,0 +1,87 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    },
+    "resourceLineage": [
+      {
+        "statement": "statement",
+        "scope": {
+          "scopeCode": "scopeCode",
+          "scopeDescription": [
+            {
+              "dataset": "dataset0",
+              "attributes": "attribute00, attribute01",
+              "features": "feature00, feature01",
+              "other": "other0"
+            },
+            {
+              "dataset": "dataset1",
+              "attributes": "",
+              "features": "",
+              "other": ""
+            },
+            {
+              "dataset": "dataset2"
+            },
+            {
+              "other": "other3"
+            }
+          ],
+          "sourceExtent": []
+        },
+        "citation": [],
+        "source": [],
+        "processStep": []
+      }
+    ]
+  }
+}

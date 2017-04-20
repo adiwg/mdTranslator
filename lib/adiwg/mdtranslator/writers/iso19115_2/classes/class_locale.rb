@@ -1,7 +1,8 @@
 # ISO <<Class>> PT_Locale
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
+#   Stan Smith 2016-11-21 refactored for mdTranslator/mdJson 2.0
 # 	Stan Smith 2015-07-28 original script.
 
 require_relative 'class_codelist'
@@ -13,46 +14,49 @@ module ADIWG
 
                 class PT_Locale
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
                     def writeXML(hLocale)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:PT_Locale') do
 
-                            # locale - language
+                            # locale - language (required)
                             s = hLocale[:languageCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:languageCode') do
-                                    codelistClass.writeXML('iso_language',s)
+                                    codelistClass.writeXML('gmd', 'iso_language', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:languageCode')
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:languageCode', {'gco:nilReason' => 'missing'})
                             end
 
                             # locale - country
                             s = hLocale[:countryCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:country') do
-                                    codelistClass.writeXML('iso_country',s)
+                                    codelistClass.writeXML('gmd', 'iso_countries', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:country')
                             end
 
-                            # locale - character encoding
+                            # locale - character encoding (required)
                             s = hLocale[:characterEncoding]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gmd:characterEncoding') do
-                                    codelistClass.writeXML('iso_characterSet',s)
+                                    codelistClass.writeXML('gmd', 'iso_characterSet', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gmd:characterEncoding')
+                            end
+                            if s.nil?
+                                @xml.tag!('gmd:characterEncoding', {'gco:nilReason' => 'missing'})
                             end
 
                         end

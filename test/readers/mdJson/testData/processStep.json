@@ -1,0 +1,41 @@
+{
+   "processStep": [
+      {
+         "stepId": "stepId",
+         "description": "description",
+         "rationale": "rationale",
+         "timePeriod": {
+            "startDateTime": "2016-10-15"
+         },
+         "processor": [
+            {
+               "role": "role",
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "role",
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            }
+         ],
+         "reference": [
+            {
+               "title": "title"
+            },
+            {
+               "title": "title"
+            }
+         ],
+         "scope": {
+            "scopeCode": "scopeCode"
+         }
+      }
+   ]
+}

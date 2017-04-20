@@ -1,0 +1,87 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "extent": [
+        {
+          "description": "description",
+          "geographicExtent": [
+            {
+              "containsData": false,
+              "boundingBox": {
+                "westLongitude": -140.0,
+                "eastLongitude": -120.0,
+                "southLatitude": 49.0,
+                "northLatitude": 70.0
+              }
+            },
+            {
+              "containsData": false,
+              "geographicElement": [
+                {
+                  "type": "Point",
+                  "coordinates": [100.0, 0.0]
+                },
+                {
+                  "type": "LineString",
+                  "coordinates": [
+                    [100.0, 0.0],
+                    [101.0, 1.0]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,16 +1,17 @@
 # ISO <<Class>> MD_ReferenceSystem
 # writer
-# output for ISO 19115-2 XML
+# 19115-2 output for ISO 19115-2 XML
 
 # History:
-# 	Stan Smith 2014-09-03 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2016-12-07 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-08-28 convert referenceSystem to resourceId and pass to RS_Identifier
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2014-09-03 original script
 
-require_relative 'class_resourceIdentifier'
+require_relative 'class_rsIdentifier'
 
 module ADIWG
     module Mdtranslator
@@ -19,32 +20,30 @@ module ADIWG
 
                 class MD_ReferenceSystem
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(refSystem, refType)
+                    def writeXML(hSystem)
 
                         # classes used
-                        resIdClass =  RS_Identifier.new(@xml, @responseObj)
+                        idClass =  RS_Identifier.new(@xml, @hResponseObj)
 
-                        # convert reference system to RS_Identifier
-                        intMetadataClass = InternalMetadata.new
-                        hResId = intMetadataClass.newResourceId
-
-                        hResId[:identifier] = refSystem
-                        hResId[:identifierType] = refType
-
-                        @xml.tag!('gmd:MD_ReferenceSystem') do
-                            @xml.tag!('gmd:referenceSystemIdentifier') do
-                                resIdClass.writeXML(hResId)
+                        hIdentifier = hSystem[:systemIdentifier]
+                        unless hIdentifier.empty?
+                            @xml.tag!('gmd:MD_ReferenceSystem') do
+                                @xml.tag!('gmd:referenceSystemIdentifier') do
+                                    idClass.writeXML(hIdentifier)
+                                end
                             end
                         end
+                        if hIdentifier.empty? && @hResponseObj[:writerShowTags]
+                            @xml.tag!('gmd:MD_ReferenceSystem')
+                        end
 
-                    end
-
-                end
+                    end # writeXML
+                end # MD_ReferenceSystem class
 
             end
         end

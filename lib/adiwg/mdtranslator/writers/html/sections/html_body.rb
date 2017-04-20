@@ -2,277 +2,293 @@
 # html body
 
 # History:
-# 	Stan Smith 2015-03-23 original script
-#   Stan Smith 2014-04-10 add open and close buttons
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
-#   Stan Smith 2015-07-20 moved mdTranslator logo to html_inlineCss.css
+#  Stan Smith 2017-03-22 refactor for mdTranslator 2.0
+#  Stan Smith 2015-07-20 moved mdTranslator logo to html_inlineCss.css
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#  Stan Smith 2014-04-10 add open and close buttons
+#  Stan Smith 2015-03-23 original script
 
+require_relative 'html_contact'
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
-require_relative 'html_dataDictionary'
-require_relative 'html_distributor'
+require_relative 'html_lineage'
+require_relative 'html_distribution'
 require_relative 'html_associatedResource'
 require_relative 'html_additionalDocumentation'
+require_relative 'html_funding'
+require_relative 'html_dataDictionary'
+require_relative 'html_metadataRepository'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlBody
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Body
 
-                    def writeHtml(intObj)
-                        @html.body do
+               def initialize(html)
+                  @html = html
+               end
 
-                            # classes used
-                            htmlMetaInfo = MdHtmlMetadataInfo.new(@html)
-                            htmlResInfo = MdHtmlResourceInfo.new(@html)
-                            htmlDataD = MdHtmlDataDictionary.new(@html)
-                            htmlDist = MdHtmlDistributor.new(@html)
-                            htmlAssRes = MdHtmlAssociatedResource.new(@html)
-                            htmlAddDoc = MdHtmlAdditionalDocumentation.new(@html)
+               def writeHtml(version,intObj)
+                  @html.body do
 
-                            # make sections of the internal data store more accessible
-                            hMetadata = intObj[:metadata]
-                            aDataDict = intObj[:dataDictionary]
+                     # classes used
+                     metaInfoClass = Html_MetadataInfo.new(@html)
+                     contactClass = Html_Contact.new(@html)
+                     resourceClass = Html_ResourceInfo.new(@html)
+                     lineageClass = Html_Lineage.new(@html)
+                     distributionClass = Html_Distribution.new(@html)
+                     associatedClass = Html_AssociatedResource.new(@html)
+                     additionalClass = Html_AdditionalDocumentation.new(@html)
+                     fundingClass = Html_Funding.new(@html)
+                     dictionaryClass = Html_DataDictionary.new(@html)
+                     repositoryClass = Html_Repository.new(@html)
 
-                            hMetaInfo = intObj[:metadata][:metadataInfo]
-                            aDistributor = intObj[:metadata][:distributorInfo]
-                            aAssRes = intObj[:metadata][:associatedResources]
-                            aAddDocs = intObj[:metadata][:additionalDocuments]
+                     # make sections of the internal data store convenient
+                     hSchema = intObj[:schema]
+                     aContacts = intObj[:contacts]
+                     hMetaInfo = intObj[:metadata][:metadataInfo]
+                     hResourceInfo = intObj[:metadata][:resourceInfo]
+                     aLineage = intObj[:metadata][:lineageInfo]
+                     aDistribution = intObj[:metadata][:distributorInfo]
+                     aAssociated = intObj[:metadata][:associatedResources]
+                     aAdditional = intObj[:metadata][:additionalDocuments]
+                     aFunding = intObj[:metadata][:funding]
+                     aDictionaries = intObj[:dataDictionaries]
+                     aRepositories = intObj[:metadataRepositories]
 
-                            # set page title and logo
-                            # side navigation
-                            @html.div('id'=>'sideNav') do
-                            # add top anchor and button
-                              @html.a(' Top', {'href'=>'#', 'class'=>'btn icon-caret-up'})
+                     # set page title and logo
+                     # side navigation
+                     @html.div('id' => 'sideNav') do
 
-                              # add open and close buttons
-                              @html.span(' Open',{'id'=>'openAllDetails', 'class'=>'btn icon-caret-down', 'onclick'=>'openAllDetails();'})
-                              @html.span(' Close',{'class'=>'btn icon-caret-right', 'onclick'=>'closeAllDetails();'})
-                            end
+                        # add section buttons
+                        @html.a(' Top', {'href' => '#', 'class' => 'btn'})
+                        @html.a(' Contacts', {'href' => '#body-contacts', 'class' => 'btn navBtn', 'id' => 'contactButton'})
+                        @html.a(' Metadata', {'href' => '#body-metadataInfo', 'class' => 'btn navBtn', 'id' => 'metadataButton'})
+                        @html.a(' Resource', {'href' => '#body-resourceInfo', 'class' => 'btn navBtn', 'id' => 'resourceButton'})
+                        @html.a(' Lineage', {'href' => '#body-lineage', 'class' => 'btn navBtn', 'id' => 'lineageButton'})
+                        @html.a(' Distribution', {'href' => '#body-distribution', 'class' => 'btn navBtn', 'id' => 'distributionButton'})
+                        @html.a(' Associated', {'href' => '#body-associatedResource', 'class' => 'btn navBtn', 'id' => 'associatedButton'})
+                        @html.a(' Additional', {'href' => '#body-additionalDocument', 'class' => 'btn navBtn', 'id' => 'additionalButton'})
+                        @html.a(' Dictionary', {'href' => '#body-dataDictionary', 'class' => 'btn navBtn', 'id' => 'dictionaryButton'})
+                        @html.a(' Funding', {'href' => '#body-funding', 'class' => 'btn navBtn', 'id' => 'fundingButton'})
+                        @html.a(' Repository', {'href' => '#body-repository', 'class' => 'btn navBtn', 'id' => 'repositoryButton'})
 
-                            # main header
-                            @html.h2('id'=>'mainHeader') do
-                                # added blank to span tag to force builder to create closing tag
-                                @html.span('','id'=>'logo')
-                                @html.span('Metadata Report')
-                                @html.span('HTML','class'=>'version')
-                            end
+                        # add open and close buttons
+                        @html.span(' Open', {'class' => 'btn icon-caret-down', 'id' => 'openAllButton'})
+                        @html.span(' Close', {'class' => 'btn icon-caret-right', 'id' => 'closeAllButton'})
 
-                            # report title
-                            @html.h1('mdTranslator Metadata Report', 'id'=>'mdtranslator-metadata-report')
+                     end
 
-                            # section index
-                            @html.section(:class=>'block') do
-                                @html.h3('Page Index')
-                                @html.a('Metadata Information Section','href'=>'#metadataInfo')
-                                @html.section(:class=>'block') do
-                                    if !hMetaInfo.empty?
-                                        unless hMetaInfo[:metadataId].empty?
-                                            @html.a('Metadata Identifier', 'href'=>'#metadata-identifier')
-                                            @html.br
-                                        end
-                                        @html.a('Metadata Record Information', 'href'=>'#metadata-recordInfo')
-                                        unless hMetaInfo[:parentMetadata].empty?
-                                            @html.br
-                                            @html.a('Parent Metadata Citation', 'href'=>'#metadata-parentInfo')
-                                        end
+                     # main header
+                     @html.h2('id' => 'mainHeader') do
+                        # added blank to span tag to force builder to create closing tag
+                        @html.span('', 'id' => 'logo')
+                        @html.span('Metadata Record')
+                        @html.span('HTML5', 'class' => 'version')
+                     end
+
+                     # report title
+                     aShortVersion = version.split('.')
+                     shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
+                     @html.h1('mdTranslator ' + shortVersion + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
+
+                     # metadata source
+                     @html.h2('Metadata Source', 'id' => 'metadataSource')
+                     @html.section(:class => 'block') do
+                        @html.em('Metadata schema:')
+                        @html.text!(hSchema[:name])
+                        @html.br
+
+                        @html.em('Schema version:')
+                        @html.text!(hSchema[:version])
+                     end
+                     @html.hr
+
+                     # contacts [] section
+                     unless aContacts.empty?
+                        @html.details do
+                           @html.summary('Contacts', {'id' => 'body-contacts', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aContacts.each do |hContact|
+                                 @html.section(:class => 'block') do
+                                    contactClass.writeHtml(hContact)
+                                 end
+                              end
+                              @html.hr
+                           end
+                        end
+                     end
+
+                     # metadata information section
+                     unless hMetaInfo.empty?
+                        @html.details do
+                        @html.summary('Metadata Information', {'id' => 'body-metadataInfo', 'class' => 'h2'})
+                        @html.section(:class => 'block') do
+                              @html.section(:class => 'block') do
+                                 metaInfoClass.writeHtml(hMetaInfo)
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # resource information section
+                     unless hResourceInfo.empty?
+                        @html.details do
+                           @html.summary('Resource Information', {'id' => 'body-resourceInfo', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              resourceClass.writeHtml(hResourceInfo)
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # lineage section
+                     unless aLineage.empty?
+                        @html.details do
+                           @html.summary('Resource Lineage', {'id' => 'body-lineage', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aLineage.each do |hLineage|
+                                 @html.details do
+                                    @html.summary('Lineage', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       lineageClass.writeHtml(hLineage)
                                     end
-                                end
-                                @html.a('Resource Information Section','href'=>'#resourceInfo')
-                                @html.section(:class=>'block') do
-                                    @html.a('Resource Identification', 'href'=>'#resourceInfo-general')
-                                    @html.br
-                                    @html.a('Contacts', 'href'=>'#resourceInfo-contacts')
-                                    unless hMetadata[:resourceInfo][:descriptiveKeywords].empty?
-                                        @html.br
-                                        @html.a('Keywords', 'href'=>'#resourceInfo-keywords')
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # distribution section
+                     unless aDistribution.empty?
+                        @html.details do
+                           @html.summary('Resource Distribution', {'id' => 'body-distribution', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aDistribution.each do |hDistribution|
+                                 @html.details do
+                                    @html.summary('Distribution', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       distributionClass.writeHtml(hDistribution)
                                     end
-                                    unless hMetadata[:resourceInfo][:taxonomy].empty?
-                                        @html.br
-                                        @html.a('Taxonomy', 'href'=>'#resourceInfo-taxonomy')
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # associated resource section
+                     unless aAssociated.empty?
+                        @html.details do
+                           @html.summary('Associated Resources', {'id' => 'body-associatedResource', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aAssociated.each do |hAssociated|
+                                 @html.details do
+                                    @html.summary('Resource', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       associatedClass.writeHtml(hAssociated)
                                     end
-                                    unless hMetadata[:resourceInfo][:spatialReferenceSystem].empty? &&
-                                        hMetadata[:resourceInfo][:spatialRepresentationTypes].empty? &&
-                                        hMetadata[:resourceInfo][:spatialResolutions].empty?
-                                        @html.br
-                                        @html.a('Spatial Reference', 'href'=>'#resourceInfo-spatialRef')
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # additional documentation section
+                     unless aAdditional.empty?
+                        @html.details do
+                           @html.summary('Additional Documentation', {'id' => 'body-additionalDocument', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aAdditional.each do |hAdditional|
+                                 @html.details do
+                                    @html.summary('Document', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       additionalClass.writeHtml(hAdditional)
                                     end
-                                    unless hMetadata[:resourceInfo][:extents].empty?
-                                        @html.br
-                                        @html.a('Extents (Geographic, Temporal, & Vertical Space)', 'href'=>'#resourceInfo-extents')
+                                 end
+                              end
+                           end
+                           @html.hr
+                        end
+                     end
+
+                     # data dictionary section
+                     unless aDictionaries.empty?
+                        @html.details do
+                           @html.summary('Data Dictionaries', {'id' => 'body-dataDictionary', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aDictionaries.each do |hDictionary|
+                                 @html.details do
+                                    @html.summary('Dictionary', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       dictionaryClass.writeHtml(hDictionary)
                                     end
-                                    unless hMetadata[:resourceInfo][:gridInfo].empty?
-                                        @html.br
-                                        @html.a('Grid Information', 'href'=>'#resourceInfo-gridInfo')
+                                 end
+                              end
+                           end
+                        end
+                     end
+
+                     # funding section
+                     unless aFunding.empty?
+                        @html.details do
+                           @html.summary('Funding', {'id' => 'body-funding', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aFunding.each do |hFunding|
+                                 @html.details do
+                                    @html.summary('Funds', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       fundingClass.writeHtml(hFunding)
                                     end
-                                    unless hMetadata[:resourceInfo][:coverageInfo].empty?
-                                        @html.br
-                                        @html.a('Coverage Information', 'href'=>'#resourceInfo-coverageInfo')
+                                 end
+                              end
+                           end
+                        end
+                     end
+
+                     # metadata repository section
+                     unless aRepositories.empty?
+                        @html.details do
+                           @html.summary('Metadata Repositories', {'id' => 'body-repository', 'class' => 'h2'})
+                           @html.section(:class => 'block') do
+                              aRepositories.each do |hRepository|
+                                 @html.details do
+                                    @html.summary('Repository', {'class' => 'h3'})
+                                    @html.section(:class => 'block') do
+                                       repositoryClass.writeHtml(hRepository)
                                     end
-                                    unless hMetadata[:resourceInfo][:dataQualityInfo].empty?
-                                        @html.br
-                                        @html.a('Data Quality', 'href'=>'#resourceInfo-dataQuality')
-                                    end
-                                    unless hMetadata[:resourceInfo][:useConstraints].empty? &&
-                                        hMetadata[:resourceInfo][:legalConstraints].empty? &&
-                                        hMetadata[:resourceInfo][:securityConstraints].empty?
-                                        @html.br
-                                        @html.a('Constraints', 'href'=>'#resourceInfo-constraints')
-                                    end
-                                    unless hMetadata[:resourceInfo][:resourceMaint].empty?
-                                        @html.br
-                                        @html.a('Maintenance Information', 'href'=>'#resourceInfo-maintInfo')
-                                    end
-                                    @html.br
-                                    @html.a('Other Resource Information', 'href'=>'#resourceInfo-other')
-                                end
-                                @html.a('Data Dictionary Section','href'=>'#dataDictionary')
-                                @html.br
-                                @html.a('Resource Distribution Section','href'=>'#resourceDistribution')
-                                @html.br
-                                @html.a('Associated Resources Section','href'=>'#associatedResource')
-                                @html.br
-                                @html.a('Additional Documentation Section','href'=>'#additionalDocuments')
-                            end
-                            @html.hr
+                                 end
+                              end
+                           end
+                        end
+                     end
 
-                            # metadata source
-                            @html.h2('Metadata Source', 'id'=>'metadata-source')
-                            @html.section(:class=>'block') do
-                                @html.em('Metadata schema:')
-                                @html.text!(intObj[:schema][:name])
-                                @html.br
+                     # load leaflet
+                     @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
+                     @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
+                     @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
 
-                                @html.em('Schema version:')
-                                @html.text!(intObj[:schema][:version])
-                            end
-                            @html.hr
+                     # add inline javascript
+                     # read javascript from file
+                     path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
+                     file = File.open(path, 'r')
+                     bodyJS = file.read
+                     file.close
 
-                            # metadata information section
-                            @html.h2('Metadata Information', 'id'=>'metadataInfo')
-                            if !hMetaInfo.empty?
-                                @html.section(:class=>'block') do
-                                   htmlMetaInfo.writeHtml(hMetaInfo)
-                                end
-                            end
-                            @html.hr
+                     @html.script('type'=>'text/javascript') do
+                        @html << bodyJS
+                     end
 
-                            # resource information section
-                            @html.h2('Resource Information', 'id'=>'resourceInfo')
-                            @html.section(:class=>'block') do
-                                htmlResInfo.writeHtml(hMetadata[:resourceInfo])
-                            end
-                            @html.hr
+                  end # body
+               end # writeHtml
+            end # Html_Body
 
-                            # data dictionary section
-                            @html.h2('Data Dictionary', 'id'=>'dataDictionary')
-                            aDataDict.each do |hDictionary|
-                                @html.section(:class=>'block') do
-
-                                    # get dictionary title from the citation
-                                    sTitle = hDictionary[:dictionaryInfo][:dictCitation][:citTitle]
-                                    @html.details do
-                                        @html.summary(sTitle, {'class'=>'h3'})
-                                        @html.section(:class=>'block') do
-                                            htmlDataD.writeHtml(hDictionary)
-                                        end
-                                    end
-
-                                end
-                            end
-                            @html.hr
-
-                            # resource distribution section
-                            @html.h2('Resource Distribution', 'id'=>'resourceDistribution')
-                            aDistributor.each do |hDistributor|
-                                @html.section(:class=>'block') do
-
-                                    # get distributor name from contact orgName
-                                    contId = hDistributor[:distContact][:contactId]
-                                    hCont = ADIWG::Mdtranslator::Writers::Html::MdHtmlWriter.getContact(contId)
-                                    distName = hCont[:orgName]
-                                    if distName.nil?
-                                        distName = 'Other'
-                                    end
-                                    @html.details do
-                                        @html.summary(distName, {'class'=>'h3'})
-                                        @html.section(:class=>'block') do
-                                            htmlDist.writeHtml(hDistributor)
-                                        end
-                                    end
-
-                                end
-                            end
-                            @html.hr
-
-                            # associated resource section
-                            @html.h2('Associated Resources', 'id'=>'associatedResource')
-                            aAssRes.each do |hAssRes|
-                                @html.section(:class=>'block') do
-
-                                    # get document title from the citation
-                                    hCitation = hAssRes[:resourceCitation]
-                                    if !hCitation.empty?
-                                        sTitle = hCitation[:citTitle]
-                                    else
-                                        sTitle = 'Resource'
-                                    end
-
-                                    @html.details do
-                                        @html.summary(sTitle, {'class'=>'h4'})
-                                        @html.section(:class=>'block') do
-                                            htmlAssRes.writeHtml(hAssRes)
-                                        end
-                                    end
-
-                                end
-                            end
-                            @html.hr
-
-                            # additional documentation section
-                            @html.h2('Additional Documentation', 'id'=>'additionalDocuments')
-                            aAddDocs.each do |hAddDoc|
-                                @html.section(:class=>'block') do
-
-                                    # get document title from the citation
-                                    sTitle = hAddDoc[:citation][:citTitle]
-                                    @html.details do
-                                        @html.summary(sTitle, {'class'=>'h4'})
-                                        @html.section(:class=>'block') do
-                                            htmlAddDoc.writeHtml(hAddDoc)
-                                        end
-                                    end
-
-                                end
-                            end
-                            @html.hr
-
-                            #Load leaflet
-                            @html.link( :rel => 'stylesheet', :href => 'http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css')
-                            @html.script('', :src => 'http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js')
-                            @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
-
-                            # add inline javascript
-                            # read javascript from file
-                            path = File.join(File.dirname(__FILE__), 'html_bodyScript.js')
-                            file = File.open(path, 'r')
-                            js = file.read
-                            file.close
-
-                            @html.script('type'=>'text/javascript') do
-                                @html << js
-                            end
-
-                        end # body
-                    end # def writeHtml
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end

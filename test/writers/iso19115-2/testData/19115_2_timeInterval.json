@@ -1,0 +1,118 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "extent": [
+        {
+          "description": "extent0",
+          "geographicExtent": [],
+          "temporalExtent": [
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "year"
+                }
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "month"
+                }
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "day"
+                }
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "hour"
+                }
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "minute"
+                }
+              }
+            },
+            {
+              "timePeriod": {
+                "startDateTime": "2017",
+                "timeInterval": {
+                  "interval": 9.9,
+                  "units": "second"
+                }
+              }
+            }
+          ],
+          "verticalExtent": []
+        }
+      ]
+    }
+  }
+}

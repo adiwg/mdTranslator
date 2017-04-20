@@ -1,0 +1,100 @@
+{
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title"
+      },
+      "subject": [
+        "subject0",
+        "subject1"
+      ],
+      "recommendedUse": [
+        "use0",
+        "use1"
+      ],
+      "locale": [
+        {
+          "language": "language0",
+          "country": "country0",
+          "characterSet": "characterSet0"
+        },
+        {
+          "language": "language1",
+          "country": "country1",
+          "characterSet": "characterSet1"
+        }
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "roleExtent": [
+          {
+            "description": "description",
+            "temporalExtent": [
+              {
+                "type": "period",
+                "timePeriod": {
+                  "startDateTime": "2016-10-14"
+                }
+              }
+            ]
+          }
+        ],
+        "party": [
+          {
+            "contactId": "individualId0"
+          }
+        ]
+      },
+      "dictionaryFormat": "format",
+      "dictionaryIncludedWithResource": true,
+      "domain": [
+        {
+          "domainId": "domainId0",
+          "commonName": "commonName",
+          "codeName": "codeName",
+          "description": "description",
+          "domainItem": [
+            {
+              "name": "name0",
+              "value": "value0",
+              "definition": "definition0"
+            }
+          ]
+        },
+        {
+          "domainId": "domainId1",
+          "commonName": "commonName",
+          "codeName": "codeName",
+          "description": "description",
+          "domainItem": [
+            {
+              "name": "name0",
+              "value": "value0",
+              "definition": "definition0"
+            }
+          ]
+        }
+      ],
+      "entity": [
+        {
+          "entityId": "entityId0",
+          "commonName": "commonName",
+          "codeName": "codeName",
+          "definition": "definition",
+          "primaryKeyAttributeCodeName": [
+            "primaryKeyAttributeCodeName0"
+          ]
+        },
+        {
+          "entityId": "entityId1",
+          "commonName": "commonName",
+          "codeName": "codeName",
+          "definition": "definition",
+          "primaryKeyAttributeCodeName": [
+            "primaryKeyAttributeCodeName0"
+          ]
+        }
+      ]
+    }
+  ]
+}

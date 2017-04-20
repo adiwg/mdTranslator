@@ -1,0 +1,158 @@
+{
+   "metadata": [
+      {
+         "metadataInfo": {
+            "metadataIdentifier": {
+               "identifier": "identifier"
+            },
+            "metadataContact": [
+               {
+                  "role": "role",
+                  "roleExtent": [
+                     {
+                        "description": "description",
+                        "temporalExtent": [
+                           {
+                              "type": "period",
+                              "timePeriod": {
+                                 "startDateTime": "2016-10-14"
+                              }
+                           }
+                        ]
+                     }
+                  ],
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            ],
+            "metadataDate": [
+               {
+                  "date": "2017-02-16",
+                  "dateType": "creation"
+               }
+            ]
+         },
+         "resourceInfo": {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "citation": {
+               "title": "title"
+            },
+            "abstract": "abstract",
+            "status": [
+               "status"
+            ],
+            "pointOfContact": [
+               {
+                  "role": "role",
+                  "timePeriod": {
+                     "startDateTime": "2016-10-14"
+                  },
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            ],
+            "defaultResourceLocale": {
+               "language": "LanguageCode",
+               "country": "CountryCode",
+               "characterSet": "MD_CharacterSetCode"
+            }
+         },
+         "resourceLineage": [
+            {
+               "statement": "statement"
+            },
+            {
+               "statement": "statement"
+            }
+         ],
+         "resourceDistribution": [
+            {
+               "description": "description"
+            },
+            {
+               "description": "description"
+            }
+         ],
+         "associatedResource": [
+            {
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
+               "associationType": "associationType",
+               "resourceCitation": {
+                  "title": "title"
+               }
+            },
+            {
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
+               "associationType": "associationType",
+               "resourceCitation": {
+                  "title": "title"
+               }
+            }
+         ],
+         "additionalDocumentation": [
+            {
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
+               "citation": [
+                  {
+                     "title": "title"
+                  }
+               ]
+            },
+            {
+               "resourceType": [
+                  {
+                     "type": "type",
+                     "name": "name"
+                  }
+               ],
+               "citation": [
+                  {
+                     "title": "title"
+                  }
+               ]
+            }
+         ],
+         "funding": [
+            {
+               "allocation": [
+                  {
+                     "amount": 9.9,
+                     "currency": "currency"
+                  }
+               ]
+            },
+            {
+               "timePeriod": {
+                  "endDateTime": "2016-12-31"
+               }
+            }
+         ]
+      }
+   ]
+}

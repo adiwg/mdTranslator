@@ -2,62 +2,59 @@
 # online resource
 
 # History:
+#  Stan Smith 2017-03-24 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-03-24 original script
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlOnlineResource
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_OnlineResource
 
-                    def writeHtml(hOlRes)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # online resource - URI
-                        s = hOlRes[:olResURI]
-                        @html.em('URI: ')
-                        @html.section(:class=>'block') do
-                            @html.a(s, 'href'=>s)
-                        end
+               def writeHtml(hOlRes)
 
-                        # online resource - name
-                        s = hOlRes[:olResName]
-                        if s
-                            @html.em('Name: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # online resource - URI
+                  @html.em('URI: ')
+                  @html.a(hOlRes[:olResURI], 'href' => hOlRes[:olResURI])
+                  @html.br
 
-                        # online resource - description
-                        s = hOlRes[:olResDesc]
-                        if s
-                            @html.em('Description: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+                  # online resource - name
+                  unless hOlRes[:olResName].nil?
+                     @html.em('Name: ')
+                     @html.text!(hOlRes[:olResName])
+                     @html.br
+                  end
 
-                        # online resource - function
-                        s1 = hOlRes[:olResFunction]
-                        if s1
-                            @html.em('Function: ')
-                            @html.text!(s1)
-                        end
+                  # online resource - description
+                  unless hOlRes[:olResDesc].nil?
+                     @html.em('Description: ')
+                     @html.text!(hOlRes[:olResDesc])
+                     @html.br
+                  end
 
-                        # online resource - protocol
-                        s2 = hOlRes[:olResProtocol]
-                        if s2
-                            @html.em('Protocol: ')
-                            @html.text!(s2)
-                        end
+                  # online resource - function
+                  unless hOlRes[:olResFunction].nil?
+                     @html.em('Function: ')
+                     @html.text!(hOlRes[:olResFunction])
+                     @html.br
+                  end
 
-                    end # writeHtml
+                  # online resource - protocol
+                  unless hOlRes[:olResProtocol].nil?
+                     @html.em('Protocol: ')
+                     @html.text!(hOlRes[:olResProtocol])
+                     @html.br
+                  end
 
-                end # class
+               end # writeHtml
+            end # Html_OnlineResource
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

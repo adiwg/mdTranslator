@@ -2,45 +2,53 @@
 # resolution
 
 # History:
+#  Stan Smith 2017-03-29 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-03-26 original script
 
+require_relative 'html_measure'
+
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlResolution
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Resolution
 
-                    def writeHtml(hSpaceRef)
+               def initialize(html)
+                  @html = html
+               end
 
-                        s = hSpaceRef[:equivalentScale]
-                        if !s.nil?
-                            @html.em('Equivalent scale: ')
-                            @html.text!(s.to_s)
-                            @html.br
-                        end
+               def writeHtml(hResolution)
 
-                        # resolution - distance
-                        s = hSpaceRef[:distance]
-                        if !s.nil?
-                            @html.em('Distance: ')
-                            @html.text!(s.to_s)
-                            s = hSpaceRef[:distanceUOM]
-                            if !s.nil?
-                                @html.em('Unit of measure: ')
-                                @html.text!(s)
-                            end
-                            @html.br
-                        end
+                  measureClass = Html_Measure.new(@html)
 
-                    end # writeHtml
+                  # resolution - scale factor
+                  unless hResolution[:scaleFactor].nil?
+                     @html.em('Scale Factor: ')
+                     @html.text!(hResolution[:scaleFactor].to_s)
+                     @html.br
+                  end
 
-                end # class
+                  # resolution - measure
+                  unless hResolution[:measure].empty?
+                     @html.em('Spatial Resolution Measure: ')
+                     @html.section(:class => 'block') do
+                        measureClass.writeHtml(hResolution[:measure])
+                     end
+                  end
 
-            end
-        end
-    end
+                  # resolution - level of detail
+                  unless hResolution[:levelOfDetail].nil?
+                     @html.em('Level of Detail: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hResolution[:levelOfDetail])
+                     end
+                  end
+
+               end # writeHtml
+            end # Html_Resolution
+
+         end
+      end
+   end
 end

@@ -17,14 +17,14 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hDerived)
 
                         # create and identity for the unit
-                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
+                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @hResponseObj[:writerMissingIdCount]
                         @xml.tag!('gml:DerivedUnit', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => hDerived[:codeSpace]}, hDerived[:identifier])
                             @xml.tag!('gml:name', hDerived[:name])

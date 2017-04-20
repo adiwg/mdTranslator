@@ -1,15 +1,19 @@
-# ISO <<Class>> Polygon
-# writer output in XML
+# GML Polygon
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-18 original script.
-#   Stan Smith 2014-05-30 modified for version 0.5.0
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2016-12-05 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-05-30 modified for version 0.5.0
+# 	Stan Smith 2013-11-18 original script.
+
+require 'adiwg/mdtranslator/internal/module_coordinates'
+require_relative 'class_featureProperties'
 
 module ADIWG
     module Mdtranslator
@@ -18,89 +22,78 @@ module ADIWG
 
                 class Polygon
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hGeoElement)
+                    def writeXML(hGeoObject, hProperties, objId)
 
-                        # gml:Polygon attributes
+                        # classes used
+                        geoPropClass = FeatureProperties.new(@xml, @hResponseObj)
+
+                        # polygon attributes
                         attributes = {}
 
-                        # gml:Polygon attributes - gml:id - required
-                        lineID = hGeoElement[:elementId]
-                        if lineID.nil?
-                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                            lineID = 'polygon' + @responseObj[:writerMissingIdCount]
+                        # polygon attributes - gml:id (required)
+                        if objId.nil?
+                            @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                            objId = 'polygon' + @hResponseObj[:writerMissingIdCount]
                         end
-                        attributes['gml:id'] = lineID
+                        attributes['gml:id'] = objId
 
-                        # gml:Polygon attributes - srsDimension
-                        s = hGeoElement[:elementGeometry][:dimension]
+                        # polygon attributes - srsDimension
+                        s = AdiwgCoordinates.getDimension(hGeoObject[:coordinates])
                         if !s.nil?
                             attributes[:srsDimension] = s
                         end
 
-                        # gml:Polygon attributes - srsName
-                        s = hGeoElement[:elementSrs][:srsName]
-                        if !s.nil?
-                            attributes[:srsName] = s
-                        end
+                        # polygon attributes - srsName (GeoJSON is WGS84)
+                        attributes[:srsName] = 'WGS84'
 
                         @xml.tag!('gml:Polygon', attributes) do
 
-                            # polygon - description
-                            s = hGeoElement[:elementDescription]
-                            if !s.nil?
-                                @xml.tag!('gml:description', s)
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gml:description')
+                            # polygon - properties for Feature
+                            unless hProperties.empty?
+                                geoPropClass.writeXML(hProperties)
                             end
-
-                            # polygon - name
-                            s = hGeoElement[:elementName]
-                            if !s.nil?
-                                @xml.tag!('gml:name', s)
-                            elsif @responseObj[:writerShowTags]
+                            if hProperties.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gml:description')
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
                                 @xml.tag!('gml:name')
                             end
 
+                            aPolygons = hGeoObject[:coordinates]
+                            aExterior = aPolygons[0]
+                            aInterior = aPolygons.drop(1)
 
-                            # polygon - exterior ring
-                            # convert coordinate string from geoJSON to gml
-                            aCoords = hGeoElement[:elementGeometry][:geometry][:exteriorRing]
-                            if !aCoords.empty?
-                                s = AdiwgCoordinates.unpack(aCoords, @responseObj)
+                            # polygon - exterior ring (required)
+                            unless aExterior.nil?
                                 @xml.tag!('gml:exterior') do
                                     @xml.tag!('gml:LinearRing') do
-                                        @xml.tag!('gml:coordinates', s)
-                                    end
-                                end
-                            else
-                                @xml.tag!('gml:exterior')
-                            end
-
-                            # polygon - interior ring
-                            # convert coordinate string from geoJSON to gml
-                            # XSDs do not all gml:interior to be displayed empty
-                            aRings = hGeoElement[:elementGeometry][:geometry][:exclusionRings]
-                            unless aRings.empty?
-                                aRings.each do |aRing|
-                                    s = AdiwgCoordinates.unpack(aRing, @responseObj)
-                                    @xml.tag!('gml:interior') do
-                                        @xml.tag!('gml:LinearRing') do
-                                            @xml.tag!('gml:coordinates', s)
+                                        aExterior.each do |aCoord|
+                                            s = aCoord[0].to_s + ' ' + aCoord[1].to_s
+                                            @xml.tag!('gml:pos', s)
                                         end
                                     end
                                 end
                             end
 
-                        end
+                            # polygon - interior rings
+                            aInterior.each do |aRing|
+                                @xml.tag!('gml:interior') do
+                                    @xml.tag!('gml:LinearRing') do
+                                        aRing.each do |aCoord|
+                                            s = aCoord[0].to_s + ' ' + aCoord[1].to_s
+                                            @xml.tag!('gml:pos', s)
+                                        end
+                                    end
+                                end
+                            end
 
-                    end
-
-                end
+                        end # gml:Polygon tag
+                    end # writeXML
+                end # Polygon class
 
             end
         end

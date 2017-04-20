@@ -17,14 +17,14 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(unit)
 
                         # create an identity for the unit
-                        @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                        unitID = 'unit' + @responseObj[:writerMissingIdCount]
+                        @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                        unitID = 'unit' + @hResponseObj[:writerMissingIdCount]
                         @xml.tag!('gml:UnitDefinition', {'gml:id' => unitID}) do
                             @xml.tag!('gml:identifier', {'codeSpace' => ''}, unit)
                         end

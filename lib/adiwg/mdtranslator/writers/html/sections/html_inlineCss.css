@@ -67,6 +67,7 @@
         }
 
         summary:focus {outline: none}
+        summary.h2 {color: #666666; font-style: italic;}
 
         hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
 
@@ -139,16 +140,17 @@
             font-weight: 500;
         }
 
-        .btn {
+        .btn, a.btn {
+            font-family: 'Lucida Grande', Tahoma, Arial, Verdana, sans-serif;
             display: inline-block;
-            width: 65px;
+            width: 68px;
             padding: 6px 12px;
             margin-bottom: 0;
             font-size: 14px;
             font-weight: 500;
             line-height: 1.42857143;
-            text-align: center;
             white-space: nowrap;
+            text-align: left;
             vertical-align: middle;
             -ms-touch-action: manipulation;
             touch-action: manipulation;
@@ -160,12 +162,13 @@
             background-image: none;
             border: 1px solid transparent;
             border-radius: 4px;
-            background-color: aliceblue;
+            color: black;
             opacity: 0.8;
         }
         .btn:focus {outline: none}
         .btn:hover {
-            background-color: antiquewhite;
+            background-color: #969696;
+            text-decoration: underline;
         }
 
         @font-face {
@@ -211,14 +214,19 @@
         }
 
         /*** Maps ***/
-        section.extent-section div.map {
+        section.extent-geographic div.map {
             height: 350px;
         }
+        div.hidden {
+            visibility: hidden;
+            height: 0px;
+        }
+
         /*** Side Nav ***/
         div#sideNav {
           position: fixed;
-          right: 10px;
-          bottom: 10px;
+          right: 20px;
+          top: 150px;
           z-index: 10000;
         }
         div#sideNav * {

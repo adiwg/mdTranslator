@@ -2,67 +2,89 @@
 # medium
 
 # History:
+#  Stan Smith 2017-04-04 refactored for mdTranslator 2.0
+#  Stan Smith 2015-09-21 added medium capacity
 # 	Stan Smith 2015-03-27 original script
-#   Stan Smith 2015-09-21 added medium capacity
+
+require_relative 'html_citation'
+require_relative 'html_identifier'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlMedium
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_Medium
 
-                    def writeHtml(hMedium)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # medium - name
-                        s = hMedium[:mediumType]
-                        if !s.nil?
-                            @html.em('Medium type: ')
-                            @html.text!(s)
-                            @html.br
+               def writeHtml(hMedium)
+
+                  # classes used
+                  citationClass = Html_Citation.new(@html)
+                  identifierClass = Html_Identifier.new(@html)
+
+                  # medium - specification {citation}
+                  unless hMedium[:mediumSpecification].empty?
+                     @html.details do
+                        @html.summary('Medium Specification', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hMedium[:mediumSpecification])
                         end
+                     end
+                  end
 
-                        # medium - capacity
-                        s = hMedium[:mediumCapacity]
-                        if !s.nil?
-                            @html.em('Medium capacity: ')
-                            @html.text!(s.to_s)
-                            @html.br
+                  # medium - density
+                  unless hMedium[:density].nil?
+                     @html.em('Density')
+                     @html.text!(hMedium[:density].to_s)
+                     @html.br
+                  end
+
+                  # medium - units
+                  unless hMedium[:units].nil?
+                     @html.em('Units')
+                     @html.text!(hMedium[:units])
+                     @html.br
+                  end
+
+                  # medium - number of volumes
+                  unless hMedium[:numberOfVolumes].nil?
+                     @html.em('Number of Volumes in Distribution Package')
+                     @html.text!(hMedium[:numberOfVolumes].to_s)
+                     @html.br
+                  end
+
+                  # medium - format []
+                  hMedium[:mediumFormat].each do |format|
+                     @html.em('Medium Format: ')
+                     @html.text!(format)
+                     @html.br
+                  end
+
+                  # medium - note
+                  unless hMedium[:note].nil?
+                     @html.em('Note')
+                     @html.text!(hMedium[:note])
+                     @html.br
+                  end
+
+                  # medium - identifier {identifier}
+                  unless hMedium[:identifier].empty?
+                     @html.details do
+                        @html.summary('Identifier for the Medium', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hMedium[:identifier])
                         end
+                     end
+                  end
 
-                        # medium - capacity units
-                        s = hMedium[:mediumCapacityUnits]
-                        if !s.nil?
-                            @html.em('Medium capacity units: ')
-                            @html.text!(s)
-                            @html.br
-                        end
+               end # writeHtml
+            end # Html_Medium
 
-                        # medium - format
-                        s = hMedium[:mediumFormat]
-                        if !s.nil?
-                            @html.em('Medium format: ')
-                            @html.text!(s)
-                            @html.br
-                        end
-
-                        # medium - note
-                        s = hMedium[:mediumNote]
-                        if !s.nil?
-                            @html.em('Medium note: ')
-                            @html.section(:class=>'block') do
-                                @html.text!(s)
-                            end
-                        end
-
-                    end # writeHtml
-
-                end # class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end

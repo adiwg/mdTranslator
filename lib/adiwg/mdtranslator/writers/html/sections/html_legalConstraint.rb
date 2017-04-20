@@ -2,55 +2,48 @@
 # legal constraint
 
 # History:
+#  Stan Smith 2017-03-31 refactored for mdTranslator 2.0
 # 	Stan Smith 2015-03-25 original script
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlLegalConstraint
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_LegalConstraint
 
-                    def writeHtml(hLegalCon)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # legal constraint - access constraints
-                        aAccess = hLegalCon[:accessCodes]
-                        if !aAccess.empty?
-                            aAccess.each do |aCon|
-                                @html.em('Access constraint: ')
-                                @html.text!(aCon)
-                                @html.br
-                            end
-                        end
+               def writeHtml(hLegalCon)
 
-                        # legal constraint - use constraints
-                        aUse = hLegalCon[:useCodes]
-                        if !aUse.empty?
-                            aUse.each do |useCon|
-                                @html.em('Use constraint: ')
-                                @html.text!(useCon)
-                                @html.br
-                            end
-                        end
+                  # legal constraint - access constraints {restrictionCode}
+                  hLegalCon[:accessCodes].each do |constraint|
+                     @html.em('Access Constraint: ')
+                     @html.text!(constraint)
+                     @html.br
+                  end
 
-                        # legal constraint - other constraints
-                        aOther = hLegalCon[:otherCons]
-                        if !aOther.empty?
-                            aOther.each do |otherCon|
-                                @html.em('Other constraint: ')
-                                @html.text!(otherCon)
-                                @html.br
-                            end
-                        end
+                  # legal constraint - use constraints {restrictionCode}
+                  hLegalCon[:useCodes].each do |constraint|
+                     @html.em('Use Constraint: ')
+                     @html.text!(constraint)
+                     @html.br
+                  end
 
-                    end # writeHtml
+                  # legal constraint - other constraints
+                  hLegalCon[:otherCons].each do |constraint|
+                     @html.em('Other Constraint: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(constraint)
+                     end
+                  end
 
-                end # class
+               end # writeHtml
+            end # Html_LegalConstraint
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

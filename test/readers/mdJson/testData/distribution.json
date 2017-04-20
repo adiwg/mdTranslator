@@ -1,0 +1,29 @@
+{
+   "resourceDistribution": [
+      {
+         "description": "description",
+         "distributor": [
+            {
+               "contact": {
+                  "role": "role",
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            },
+            {
+               "contact": {
+                  "role": "role",
+                  "party": [
+                     {
+                        "contactId": "individualId0"
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   ]
+}

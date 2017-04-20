@@ -1,0 +1,27 @@
+{
+   "scope": [
+      {
+         "scopeCode": "scopeCode",
+         "scopeDescription": [
+            {
+               "dataset": "dataset"
+            },
+            {
+               "attributes": "attributes"
+            }
+         ],
+         "scopeExtent": [
+            {
+               "description": "description",
+               "temporalExtent": [
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2017-02-15"
+                     }
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

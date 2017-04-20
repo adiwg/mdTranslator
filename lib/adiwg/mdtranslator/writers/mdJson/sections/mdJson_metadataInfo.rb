@@ -1,36 +1,46 @@
+# mdJson 2.0 writer - metadataInfo
+
+# History:
+#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#   Josh Bradley original script
+
 require 'jbuilder'
-require_relative 'mdJson_base'
+require_relative 'mdJson_identifier'
 require_relative 'mdJson_citation'
-require_relative 'mdJson_resourceIdentifier'
-require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_locale'
-require_relative 'mdJson_resourceMaintenance'
+require_relative 'mdJson_date'
+require_relative 'mdJson_responsibleParty'
+require_relative 'mdJson_onlineResource'
+require_relative 'mdJson_maintenance'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module MdJson
-        module MetadataInfo
-          extend MdJson::Base
+   module Mdtranslator
+      module Writers
+         module MdJson
 
-          def self.build(_info)
-            Jbuilder.new do |json|
-              unless _info[:metadataId].nil?
-                json.metadataIdentifier ResourceIdentifier.build(_info[:metadataId])
-                json.parentMetadata Citation.build(_info[:parentMetadata])
-                json.metadataContact json_map(_info[:metadataCustodians], ResponsibleParty)
-                json.metadataCharacterSet _info[:metadataCharacterSet]
-                json.metadataLocales json_map(_info[:metadataLocales], Locale)
-                json.metadataCreationDate _info[:metadataCreateDate][:dateTime]
-                json.metadataLastUpdate _info[:metadataUpdateDate][:dateTime]
-                json.metadataUri _info[:metadataURI]
-                json.metadataStatus _info[:metadataStatus]
-                json.metadataMaintenance ResourceMaintenance.build( _info[:maintInfo])
-              end
-            end
-          end
-        end
+            module MetadataInfo
+
+               @Namespace = ADIWG::Mdtranslator::Writers::MdJson
+
+               def self.build(hMetaInfo)
+
+                  Jbuilder.new do |json|
+                     json.metadataIdentifier Identifier.build(hMetaInfo[:metadataIdentifier]) unless hMetaInfo[:metadataIdentifier].empty?
+                     json.parentMetadata Citation.build(hMetaInfo[:parentMetadata])
+                     json.defaultMetadataLocale Locale.build(hMetaInfo[:defaultMetadataLocale]) unless hMetaInfo[:defaultMetadataLocale].empty?
+                     json.otherMetadataLocale @Namespace.json_map(hMetaInfo[:otherMetadataLocales], Locale)
+                     json.metadataContact @Namespace.json_map(hMetaInfo[:metadataContacts], ResponsibleParty)
+                     json.metadataDate @Namespace.json_map(hMetaInfo[:metadataDates], Date)
+                     json.metadataOnlineResource @Namespace.json_map(hMetaInfo[:metadataLinkages], OnlineResource)
+                     json.metadataMaintenance Maintenance.build(hMetaInfo[:metadataMaintenance]) unless hMetaInfo[:metadataMaintenance].empty?
+                     json.alternateMetadataReference @Namespace.json_map(hMetaInfo[:alternateMetadataReferences], Citation)
+                     json.metadataStatus hMetaInfo[:metadataStatus]
+                  end
+
+               end # build
+            end # MetadataInfo
+
+         end
       end
-    end
-  end
+   end
 end

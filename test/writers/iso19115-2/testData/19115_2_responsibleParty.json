@@ -1,0 +1,99 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - individual",
+      "positionName": "positionName",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": true,
+      "name": "contact - organization",
+      "positionName": "positionName",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "contact - missing elements"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID002"
+            }
+          ]
+        },
+        {
+          "role": "custodian",
+          "party": [
+            {
+              "contactId": "CID003"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    }
+  }
+}

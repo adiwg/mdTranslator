@@ -1,0 +1,71 @@
+{
+   "resourceUsage": [
+      {
+         "specificUsage": "specificUsage",
+         "temporalExtent": [
+            {
+               "timeInstant": {
+                  "dateTime": "2016-10-24T11:10:15.2-10:00"
+               }
+            },
+            {
+               "timePeriod": {
+                  "startDateTime": "2016-10-24T11:10:15.2-10:00"
+               }
+            }
+         ],
+         "userDeterminedLimitation": "userDeterminedLimitation",
+         "limitationResponse": [
+            "limitationResponse0",
+            "limitationResponse1"
+         ],
+         "documentedIssue": {
+            "title": "title0"
+         },
+         "additionalDocumentation": [
+            {
+               "title": "title1"
+            },
+            {
+               "title": "title2"
+            }
+         ],
+         "userContactInfo": [
+            {
+               "role": "role0",
+               "roleExtent": [
+                  {
+                     "description": "description",
+                     "temporalExtent": [
+                        {
+                           "type": "period",
+                           "timePeriod": {
+                              "startDateTime": "2016-10-14"
+                           }
+                        }
+                     ]
+                  }
+               ],
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "role1",
+               "roleExtent": [
+                  {
+                     "description": "description"
+                  }
+               ],
+               "party": [
+                  {
+                     "contactId": "individualId1"
+                  }
+               ]
+            }
+         ]
+      }
+   ]
+}

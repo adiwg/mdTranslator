@@ -1,0 +1,253 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataIdentifier": {
+        "identifier": "identifier"
+      },
+      "parentMetadata": {
+        "title": "title"
+      },
+      "defaultMetadataLocale": {
+        "language": "default",
+        "country": "country",
+        "characterSet": "characterSet"
+      },
+      "otherMetadataLocale": [
+        {
+          "language": "other0",
+          "country": "country",
+          "characterSet": "characterSet"
+        },
+        {
+          "language": "other1",
+          "country": "country",
+          "characterSet": "characterSet"
+        }
+      ],
+      "metadataContact": [
+        {
+          "role": "role0",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        },
+        {
+          "role": "role1",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "metadataDate": [
+        {
+          "date": "2016-10-31",
+          "dateType": "dateType"
+        },
+        {
+          "date": "2017-01-15",
+          "dateType": "creation"
+        },
+        {
+          "date": "2017-02-10",
+          "dateType": "nextUpdate"
+        }
+      ],
+      "metadataOnlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/0"
+        },
+        {
+          "uri": "http://ISO.uri/adiwg/1"
+        }
+      ],
+      "metadataMaintenance": {
+        "frequency": "frequency"
+      },
+      "alternateMetadataReference": [
+        {
+          "title": "title"
+        },
+        {
+          "title": "title"
+        }
+      ],
+      "metadataStatus": "metadataStatus"
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "spatialReferenceSystem": [
+        {
+          "referenceSystemType": "referenceSystemType",
+          "referenceSystemIdentifier": {
+            "identifier": "identifier"
+          }
+        }
+      ],
+      "spatialRepresentation": [
+        {
+          "gridRepresentation": {
+            "numberOfDimensions": 9,
+            "dimension": [
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9
+              },
+              {
+                "dimensionType": "dimensionType",
+                "dimensionSize": 9
+              }
+            ],
+            "cellGeometry": "cellGeometry",
+            "transformParamsAvailability": true
+          }
+        },
+        {
+          "vectorRepresentation": {
+            "topologyLevel": "topologyLevel",
+            "vectorObject": [
+              {
+                "objectType": "objectType",
+                "objectCount": 9
+              }
+            ]
+          }
+        }
+      ],
+      "coverageDescription": [
+        {
+          "coverageName": "coverageName0",
+          "coverageDescription": "coverageDescription0"
+        },
+        {
+          "coverageName": "coverageName1",
+          "coverageDescription": "coverageDescription1"
+        }
+      ]
+    },
+    "resourceLineage": [
+      {
+        "statement": "statement0"
+      },
+      {
+        "statement": "statement1"
+      }
+    ],
+    "resourceDistribution": [
+      {
+        "description": "description0"
+      },
+      {
+        "description": "description1"
+      }
+    ],
+    "associatedResource": [
+      {
+        "resourceType": [
+          {
+            "type": "type",
+            "name": "name"
+          }
+        ],
+        "associationType": "associationType",
+        "resourceCitation": {
+          "title": "title"
+        }
+      },
+      {
+        "resourceType": [
+          {
+            "type": "type",
+            "name": "name"
+          }
+        ],
+        "associationType": "associationType",
+        "resourceCitation": {
+          "title": "title"
+        }
+      }
+    ],
+    "additionalDocumentation": [
+      {
+        "resourceType": [
+          {
+            "type": "type",
+            "name": "name"
+          }
+        ],
+        "citation": [
+          {
+            "title": "title"
+          }
+        ]
+      },
+      {
+        "resourceType": [
+          {
+            "type": "type",
+            "name": "name"
+          }
+        ],
+        "citation": [
+          {
+            "title": "title"
+          }
+        ]
+      }
+    ],
+    "funding": [
+      {
+        "allocation": [
+          {
+            "amount": 9.9,
+            "currency": "currency"
+          }
+        ]
+      },
+      {
+        "timePeriod": {
+          "endDateTime": "2016-12-31"
+        }
+      }
+    ]
+  }
+}

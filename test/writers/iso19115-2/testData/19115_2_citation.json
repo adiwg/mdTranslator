@@ -1,0 +1,131 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "citation": {
+        "title": "title",
+        "alternateTitle": [
+          "alternateTitle0",
+          "alternateTitle1"
+        ],
+        "date": [
+          {
+            "date": "2016-10-13",
+            "dateType": "dateType0"
+          },
+          {
+            "date": "2016-10-22T14:20:20",
+            "dateType": "dateType1"
+          }
+        ],
+        "edition": "edition",
+        "responsibleParty": [
+          {
+            "role": "role0",
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          },
+          {
+            "role": "role1",
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ],
+        "presentationForm": [
+          "presentationForm0",
+          "presentationForm1"
+        ],
+        "identifier": [
+          {
+            "identifier": "identifier0"
+          },
+          {
+            "identifier": "identifier1"
+          },
+          {
+            "identifier": "identifier2",
+            "namespace": "ISBN"
+          },
+          {
+            "identifier": "identifier3",
+            "namespace": "ISSN"
+          }
+        ],
+        "series": {
+          "seriesName": "seriesName"
+        },
+        "otherCitationDetails": [
+          "otherCitationDetails0",
+          "otherCitationDetails1"
+        ],
+        "onlineResource": [
+          {
+            "uri": "http://ISO.uri/adiwg/0"
+          },
+          {
+            "uri": "http://ISO.uri/adiwg/1"
+          }
+        ],
+        "graphic": [
+          {
+            "fileName": "fileName0"
+          },
+          {
+            "fileName": "fileName1"
+          }
+        ]
+      }
+    }
+  }
+}

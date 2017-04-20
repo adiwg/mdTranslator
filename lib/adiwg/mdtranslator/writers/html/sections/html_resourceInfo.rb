@@ -1,326 +1,437 @@
 # HTML writer
-# resource information section
+# resource information
 
 # History:
+#  Stan Smith 2017-03-25 refactored for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-24 original script
-#   Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 
-require_relative 'html_resourceGeneral'
-require_relative 'html_resourceContact'
-require_relative 'html_resourceMaint'
-require_relative 'html_keyword'
-require_relative 'html_legalConstraint'
-require_relative 'html_securityConstraint'
-require_relative 'html_taxonomy'
-require_relative 'html_spatialReferenceSystem'
+require_relative 'html_resourceType'
+require_relative 'html_citation'
+require_relative 'html_usage'
+require_relative 'html_responsibility'
+require_relative 'html_temporalExtent'
+require_relative 'html_duration'
+require_relative 'html_spatialReference'
+require_relative 'html_spatialRepresentation'
 require_relative 'html_resolution'
-require_relative 'html_dataLineage'
-require_relative 'html_extent'
-require_relative 'html_resourceOther'
-require_relative 'html_gridInfo'
+require_relative 'html_keyword'
+require_relative 'html_taxonomy'
+require_relative 'html_graphic'
+require_relative 'html_constraint'
 require_relative 'html_coverageInfo'
+require_relative 'html_locale'
+require_relative 'html_format'
+require_relative 'html_maintenance'
+require_relative 'html_extent'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlResourceInfo
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_ResourceInfo
 
-                    def writeHtml(resourceInfo)
+               def initialize(html)
+                  @html = html
+               end
 
-                        # classes used
-                        htmlResGen = MdHtmlResourceGeneral.new(@html)
-                        htmlResCon = MdHtmlResourceContact.new(@html)
-                        htmlResMaint = MdHtmlResourceMaintenance.new(@html)
-                        htmlKeyword = MdHtmlKeyword.new(@html)
-                        htmlLegalCon = MdHtmlLegalConstraint.new(@html)
-                        htmlSecCon = MdHtmlSecurityConstraint.new(@html)
-                        htmlTaxon = MdHtmlTaxonomy.new(@html)
-                        htmlSpatialRef = MdHtmlSpatialReferenceSystem.new(@html)
-                        htmlResolution = MdHtmlResolution.new(@html)
-                        htmlLineage = MdHtmlDataLineage.new(@html)
-                        htmlExtent = MdHtmlExtent.new(@html)
-                        htmlOther = MdHtmlResourceOther.new(@html)
-                        htmlGrid = MdHtmlGridInfo.new(@html)
-                        htmlCover = MdHtmlCoverageInfo.new(@html)
+               def writeHtml(hResource)
 
-                        # resource information - general
-                        @html.details do
-                            @html.summary('Resource Identification', {'id'=>'resourceInfo-general', 'class'=>'h3'})
-                            @html.section(:class=>'block') do
-                                htmlResGen.writeHtml(resourceInfo)
-                            end
+                  # classes used
+                  typeClass = Html_ResourceType.new(@html)
+                  citationClass = Html_Citation.new(@html)
+                  usageClass = Html_Usage.new(@html)
+                  responsibilityClass = Html_Responsibility.new(@html)
+                  temporalClass = Html_TemporalExtent.new(@html)
+                  durationClass = Html_Duration.new(@html)
+                  referenceClass = Html_SpatialReference.new(@html)
+                  representationClass = Html_SpatialRepresentation.new(@html)
+                  resolutionClass = Html_Resolution.new(@html)
+                  keywordClass = Html_Keyword.new(@html)
+                  taxonomyClass = Html_Taxonomy.new(@html)
+                  graphicClass = Html_Graphic.new(@html)
+                  constraintClass = Html_Constraint.new(@html)
+                  coverageClass = Html_CoverageInfo.new(@html)
+                  localeClass = Html_Locale.new(@html)
+                  formatClass = Html_Format.new(@html)
+                  maintenanceClass = Html_Maintenance.new(@html)
+                  extentClass = Html_Extent.new(@html)
+
+                  # resource - type [] {resourceType}
+                  hResource[:resourceTypes].each do |hType|
+                     typeClass.writeHtml(hType)
+                  end
+
+                  # resource - status [] {statusCode}
+                  hResource[:status].each do |status|
+                     @html.em('Status:')
+                     @html.text!(status)
+                     @html.br
+                  end
+
+                  # resource - citation {citation}
+                  unless hResource[:citation].empty?
+                     @html.details do
+                        @html.summary('Citation', {'id' => 'resourceInfo-citation', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           citationClass.writeHtml(hResource[:citation])
                         end
+                     end
+                  end
 
-                        # resource information - contacts
-                        @html.details do
-                            @html.summary('Contacts', {'id'=>'resourceInfo-contacts', 'class'=>'h3'})
-                            @html.section(:class=>'block') do
-                                htmlResCon.writeHtml(resourceInfo)
-                            end
+                  # resource - abstract
+                  unless hResource[:abstract].nil? && hResource[:shortAbstract].nil?
+                     @html.details do
+                        @html.summary('Abstract', {'id' => 'resourceInfo-abstract', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # short abstract
+                           unless hResource[:shortAbstract].nil?
+                              @html.em('Short Abstract:')
+                              @html.br
+                              @html.text!(hResource[:shortAbstract])
+                              @html.br
+                              @html.br
+                           end
+
+                           # full abstract
+                           @html.em('Full Abstract:')
+                           @html.br
+                           @html.text!(hResource[:abstract])
+
                         end
+                     end
+                  end
 
-                        # resource information - keywords
-                        unless resourceInfo[:descriptiveKeywords].empty?
-                            @html.details do
-                                @html.summary('Keywords', {'id'=>'resourceInfo-keywords', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-                                    resourceInfo[:descriptiveKeywords].each do |hKeyList|
-                                        @html.em('List type: ')
-                                        htmlKeyword.writeHtml(hKeyList)
+                  # resource - purpose
+                  unless hResource[:purpose].nil? && hResource[:resourceUsages].empty?
+                     @html.details do
+                        @html.summary('Purpose, Usage, and Limitations', {'id' => 'resourceInfo-purpose', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # purpose
+                           unless hResource[:purpose].nil?
+                              @html.em('Purpose:')
+                              @html.br
+                              @html.text!(hResource[:purpose])
+                              @html.br
+                           end
+
+                           # usage and limitation
+                           unless hResource[:resourceUsages].empty?
+                              counter = 0
+                              hResource[:resourceUsages].each do |hUsage|
+                                 counter += 1
+                                 @html.details do
+                                    @html.summary('Usage and Limitation '+counter.to_s, {'class' => 'h5'})
+                                    @html.section(:class => 'block') do
+                                       usageClass.writeHtml(hUsage)
                                     end
-                                end
-                            end
+                                 end
+                              end
+                           end
+
                         end
+                     end
+                  end
 
-                        # resource information - taxonomy
-                        unless resourceInfo[:taxonomy].empty?
-                            @html.details do
-                                @html.summary('Taxonomy', {'id'=>'resourceInfo-taxonomy', 'class'=>'h3'})
-                                hTaxon = resourceInfo[:taxonomy]
-                                @html.section(:class=>'block') do
-                                    htmlTaxon.writeHtml(hTaxon)
-                                end
-                            end
+                  # resource - graphic overview [] {graphicOverview}
+                  unless hResource[:graphicOverviews].empty?
+                     @html.details do
+                        @html.summary('Graphic Overviews', {'id' => 'resourceInfo-overview', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           counter = 0
+                           hResource[:graphicOverviews].each do |hGraphic|
+                              counter += 1
+                              @html.details do
+                                 @html.summary('Overview '+counter.to_s, 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    graphicClass.writeHtml(hGraphic)
+                                 end
+                              end
+                           end
                         end
+                     end
+                  end
 
-                        # resource information - spatial reference
-                        unless resourceInfo[:spatialReferenceSystem].empty? &&
-                            resourceInfo[:spatialRepresentationTypes].empty? &&
-                            resourceInfo[:spatialResolutions].empty?
-                            @html.details do
-                                @html.summary('Spatial Reference', {'id'=>'resourceInfo-spatialRef', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
+                  # resource - point of contact [] {responsibility}
+                  unless hResource[:pointOfContacts].empty? && hResource[:credits].empty?
+                     @html.details do
+                        @html.summary('Resource Contacts', {'id' => 'resourceInfo-contacts', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
 
-                                    # spatial reference - spatial reference system
-                                    hSpatialRef = resourceInfo[:spatialReferenceSystem]
-                                    if !hSpatialRef.empty?
-                                        @html.details do
-                                            @html.summary('Spatial Reference System', {'id'=>'spatialReference-system', 'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                htmlSpatialRef.writeHtml(hSpatialRef)
-                                            end
-                                        end
+                           # contacts - responsibility
+                           hResource[:pointOfContacts].each do |hContact|
+                              @html.details do
+                                 @html.summary(hContact[:roleName], 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    responsibilityClass.writeHtml(hContact)
+                                 end
+                              end
+                           end
+
+                           # contacts - credits
+                           unless hResource[:credits].empty?
+                              @html.details do
+                                 @html.summary('Other Credits', 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    hResource[:credits].each do |credit|
+                                       @html.em('Credit: ')
+                                       @html.text!(credit)
+                                       @html.br
                                     end
+                                 end
+                              end
+                           end
 
-                                    # spatial reference - spatial representation types
-                                    aSpatialRep = resourceInfo[:spatialRepresentationTypes]
-                                    if !aSpatialRep.empty?
-                                        @html.details do
-                                            @html.summary('Spatial Representation Type', {'id'=>'spatialReference-representationType', 'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                @html.em('Types: ')
-                                                @html.text!(aSpatialRep.to_s)
-                                            end
-                                        end
-                                    end
-
-                                    # spatial reference - spatial resolution
-                                    aSpatialRes = resourceInfo[:spatialResolutions]
-                                    if !aSpatialRes.empty?
-                                        @html.details do
-                                            @html.summary('Spatial Resolution', {'id'=>'spatialReference-resolution', 'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                aSpatialRes.each do |hResolution|
-                                                    htmlResolution.writeHtml(hResolution)
-                                                end
-                                            end
-                                        end
-                                    end
-
-                                end
-                            end
                         end
+                     end
+                  end
 
-                        # resource information - extents
-                        unless resourceInfo[:extents].empty?
-                            @html.details do
-                                @html.summary('Extents (Geographic, Temporal, & Vertical Space)', {'id'=>'resourceInfo-extents', 'class'=>'h3'})
-                                extNum = 0
-                                @html.section(:class=>'block') do
-                                    aExtents = resourceInfo[:extents]
-                                    aExtents.each do |hExtent|
-                                        @html.details do
-                                            @html.summary('Extent ' + extNum.to_s, {'class'=>'h4 extent'})
-                                            @html.section(:class=>'block extent-section') do
-                                                htmlExtent.writeHtml(hExtent, extNum)
-                                                extNum += 1
-                                            end
-                                        end
+                  # resource - temporal information
+                  unless hResource[:timePeriod].empty? && hResource[:temporalResolutions].empty?
+                     @html.details do
+                        @html.summary('Temporal Information', {'id' => 'resourceInfo-temporal', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # time period {timePeriod}
+                           unless hResource[:timePeriod].empty?
+                              temporalObj = {}
+                              temporalObj[:timeInstant] = {}
+                              temporalObj[:timePeriod] = hResource[:timePeriod]
+                              temporalClass.writeHtml(temporalObj)
+                           end
+
+                           # temporal resolution [] {resolution}
+                           unless hResource[:temporalResolutions].empty?
+                              hResource[:temporalResolutions].each do |hResolution|
+                                 @html.details do
+                                    @html.summary('Resolution', 'class' => 'h5')
+                                    @html.section(:class => 'block') do
+                                       durationClass.writeHtml(hResolution)
                                     end
-                                end
-                            end
+                                 end
+                              end
+                           end
+
                         end
+                     end
+                  end
 
-                        # resource information - grid information
-                        unless resourceInfo[:gridInfo].empty?
-                            @html.details do
-                                @html.summary('Grid Information ', {'id'=>'resourceInfo-gridInfo', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-                                    aGridInfo = resourceInfo[:gridInfo]
-                                    aGridInfo.each do |hGrid|
-                                        @html.details do
-                                            @html.summary('Grid', {:class=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                htmlGrid.writeHtml(hGrid)
-                                            end
-                                        end
-                                    end
-                                end
-                            end
+                  # resource - spatial information
+                  unless hResource[:spatialReferenceSystems].empty? &&
+                     hResource[:spatialRepresentationTypes].empty?
+                     hResource[:spatialRepresentations].empty?
+                     hResource[:spatialResolutions].empty?
+                     @html.details do
+                        @html.summary('Spatial Information', {'id' => 'resourceInfo-spatial', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # representation type [] {spatialRepresentation}
+                           hResource[:spatialRepresentationTypes].each do |hRepType|
+                              @html.em('Spatial Representation Type: ')
+                              @html.text!(hRepType)
+                              @html.br
+                           end
+
+                           # reference system [] {spatialReference}
+                           hResource[:spatialReferenceSystems].each do |hRefSystem|
+                              @html.details do
+                                 @html.summary('Spatial Reference System', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    referenceClass.writeHtml(hRefSystem)
+                                 end
+                              end
+                           end
+
+                           # spatial representation [] {spatialRepresentation}
+                           hResource[:spatialRepresentations].each do |hRepresentation|
+                              representationClass.writeHtml(hRepresentation)
+                           end
+
+                           # spatial resolution [] {resolution}
+                           hResource[:spatialResolutions].each do |hResolution|
+                              resolutionClass.writeHtml(hResolution)
+                           end
+
                         end
+                     end
+                  end
 
-                        # resource information - coverage information
-                        unless resourceInfo[:coverageInfo].empty?
-                            @html.details do
-                                @html.summary('Coverage Information ', {'id'=>'resourceInfo-coverageInfo', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-                                    aCoverage = resourceInfo[:coverageInfo]
-                                    aCoverage.each do |hCover|
-
-                                        # get coverage type
-                                        coverType = hCover[:coverageType]
-                                        if coverType.nil?
-                                            coverType = 'Unknown type'
-                                        end
-                                        # get coverage name
-                                        coverName = hCover[:coverageName]
-                                        if coverName.nil?
-                                            coverName = 'Coverage'
-                                        end
-                                        @html.details do
-                                            @html.summary(coverName + ' (' + coverType + ')', {:class=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                htmlCover.writeHtml(hCover)
-                                            end
-                                        end
-
-                                    end
-                                end
-                            end
+                  # resource - extent [] {extent}
+                  unless hResource[:extents].empty?
+                     @html.details do
+                        @html.summary('Spatial, Temporal, and Vertical Extents', {'id' => 'resourceInfo-extent', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:extents].each do |hExtent|
+                              @html.details do
+                                 @html.summary('Extent', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    extentClass.writeHtml(hExtent)
+                                 end
+                              end
+                           end
                         end
+                     end
+                  end
 
-                        # resource information - data quality
-                        unless resourceInfo[:dataQualityInfo].empty?
-                            @html.details do
-                                @html.summary('Data Quality', {'id'=>'resourceInfo-dataQuality', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-                                    aDataQual = resourceInfo[:dataQualityInfo]
-                                    aDataQual.each do |hDataQual|
-                                        @html.details do
-                                            @html.summary('Quality statement', {'class'=>'h4'})
-                                            @html.section(:class=>'block') do
+                  # resource - keywords [] {keyword}
+                  unless hResource[:topicCategories].empty? &&
+                     hResource[:keywords].empty?
+                     @html.details do
+                        @html.summary('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
 
-                                                # data quality - scope
-                                                s = hDataQual[:dataScope]
-                                                if !s.nil?
-                                                    @html.em('Scope: ')
-                                                    @html.text!(s)
-                                                    @html.br
-                                                end
+                           # resource - topic categories []
+                           hResource[:topicCategories].each do |category|
+                              @html.em('Topic: ')
+                              @html.text!(category)
+                              @html.br
+                           end
 
-                                                # data quality - lineage
-                                                hLineage = hDataQual[:dataLineage]
-                                                if !hLineage.empty?
-                                                    htmlLineage.writeHtml(hLineage)
-                                                end
+                           # resource - keywords []
+                           hResource[:keywords].each do |hKeyword|
+                              keywordClass.writeHtml(hKeyword)
+                           end
 
-                                            end
-                                        end
-                                    end
-                                end
-                            end
                         end
+                     end
+                  end
 
-                        # resource information - constraints
-                        unless resourceInfo[:useConstraints].empty? &&
-                            resourceInfo[:legalConstraints].empty? &&
-                            resourceInfo[:securityConstraints].empty?
-                            @html.details do
-                                @html.summary('Constraints', {'id'=>'resourceInfo-constraints', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-
-                                    # constraints - use constraints
-                                    aUseCons = resourceInfo[:useConstraints]
-                                    if !aUseCons.empty?
-                                        @html.details do
-                                            @html.summary('Usage Constraints', {'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                aUseCons.each do |uCon|
-                                                    @html.em('Constraint: ')
-                                                    @html.text!(uCon)
-                                                    @html.br
-                                                end
-                                            end
-                                        end
-                                    end
-
-                                    # constraint - legal constraint
-                                    aLegalCons = resourceInfo[:legalConstraints]
-                                    if !aLegalCons.empty?
-                                        @html.details do
-                                            @html.summary('Legal Constraints', {'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                aLegalCons.each do |hLegalCon|
-                                                    @html.em('Constraint: ')
-                                                    @html.section(:class=>'block') do
-                                                        htmlLegalCon.writeHtml(hLegalCon)
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
-
-                                    # constraint - security
-                                    aSecCons = resourceInfo[:securityConstraints]
-                                    if !aSecCons.empty?
-                                        @html.details do
-                                            @html.summary('Security Constraints', {'class'=>'h4'})
-                                            @html.section(:class=>'block') do
-                                                aSecCons.each do |hSecCon|
-                                                    @html.em('Constraint: ')
-                                                    @html.section(:class=>'block') do
-                                                        htmlSecCon.writeHtml(hSecCon)
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
-
-                                end
-                            end
+                  # resource - taxonomy {taxonomy}
+                  unless hResource[:taxonomy].empty?
+                     @html.details do
+                        @html.summary('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           taxonomyClass.writeHtml(hResource[:taxonomy])
                         end
+                     end
+                  end
 
-                        # resource information - maintenance information
-                        unless resourceInfo[:resourceMaint].empty?
-                            @html.details do
-                            @html.summary('Maintenance Information', {'id'=>'resourceInfo-maintInfo', 'class'=>'h3'})
-                                @html.section(:class=>'block') do
-                                    resourceInfo[:resourceMaint].each do |hResMaint|
-                                        @html.em('Resource maintenance: ')
-                                        htmlResMaint.writeHtml(hResMaint)
-                                    end
-                                end
-                            end
+                  # resource - constraints [] {constraint}
+                  unless hResource[:constraints].empty?
+                     @html.details do
+                        @html.summary('Constraints', {'id' => 'resourceInfo-constraint', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:constraints].each do |hConstraint|
+                              @html.details do
+                                 @html.summary(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    constraintClass.writeHtml(hConstraint)
+                                 end
+                              end
+                           end
                         end
+                     end
+                  end
 
-                        # resource information - resource other
-                        @html.details do
-                            @html.summary('Other Resource Information', {'id'=>'resourceInfo-other', 'class'=>'h3'})
-                            @html.section(:class=>'block') do
-                                htmlOther.writeHtml(resourceInfo)
-                            end
+                  # resource - coverage description [] {coverageInfo}
+                  unless hResource[:coverageDescriptions].empty?
+                     @html.details do
+                        @html.summary('Coverage Description', {'id' => 'resourceInfo-Coverage', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:coverageDescriptions].each do |hCoverage|
+                              @html.details do
+                                 @html.summary(hCoverage[:coverageName], {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    coverageClass.writeHtml(hCoverage)
+                                 end
+                              end
+                           end
                         end
+                     end
+                  end
 
-                    end # writeHtml
+                  # resource - locale
+                  unless hResource[:defaultResourceLocale].empty? && hResource[:otherResourceLocales].empty?
+                     @html.details do
+                        @html.summary('Resource Locales', {'id' => 'resourceInfo-locale', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
 
-                end # class
+                           # default resource locales {locale}
+                           unless hResource[:defaultResourceLocale].empty?
+                              @html.details do
+                                 @html.summary('Default Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hResource[:defaultResourceLocale])
+                                 end
+                              end
+                           end
 
-            end
-        end
-    end
+                           # other resource locales [] {locale}
+                           hResource[:otherResourceLocales].each do |hLocale|
+                              @html.details do
+                                 @html.summary('Other Locale', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    localeClass.writeHtml(hLocale)
+                                 end
+                              end
+                           end
+
+                        end
+                     end
+                  end
+
+                  # resource - formats [] {format}
+                  unless hResource[:resourceFormats].empty?
+                     @html.details do
+                        @html.summary('Resource Formats', {'id' => 'resourceInfo-format', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hResource[:resourceFormats].each do |hFormat|
+                              @html.details do
+                                 @html.summary('Format', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    formatClass.writeHtml(hFormat)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # resource - supplemental information
+                  unless hResource[:resourceMaintenance].empty? &&
+                     hResource[:environmentDescription].nil? &&
+                     hResource[:supplementalInfo].nil?
+                     @html.details do
+                        @html.summary('Supplemental Information', {'id' => 'resourceInfo-supplemental', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+
+                           # supplemental - maintenance [] {maintenance}
+                           hResource[:resourceMaintenance].each do |hMaint|
+                              @html.details do
+                                 @html.summary('Resource Maintenance', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    maintenanceClass.writeHtml(hMaint)
+                                 end
+                              end
+                           end
+
+                           # supplemental - environment description
+                           unless hResource[:environmentDescription].nil?
+                              @html.em('Environment Description:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:environmentDescription])
+                              end
+                           end
+
+                           # supplemental - supplemental information
+                           unless hResource[:supplementalInfo].nil?
+                              @html.em('Supplemental Information:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:supplementalInfo])
+                              end
+                           end
+
+                        end
+                     end
+                  end
+
+               end # writeHtml
+            end # Html_ResourceInfo
+
+         end
+      end
+   end
 end

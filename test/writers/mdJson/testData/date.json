@@ -1,0 +1,92 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "role0",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "metadataDate": [
+            {
+               "date": "2016",
+               "dateType": "year"
+            },
+            {
+               "date": "2016-12",
+               "dateType": "month"
+            },
+            {
+               "date": "2016-12-22",
+               "dateType": "day"
+            },
+            {
+               "date": "2016-12-22T14",
+               "dateType": "hour"
+            },
+            {
+               "date": "2016-12-22T14:12",
+               "dateType": "minute"
+            },
+            {
+               "date": "2016-12-22T14:12:34",
+               "dateType": "second"
+            },
+            {
+               "date": "2016-12-22T14:12:34.567",
+               "dateType": "second fraction"
+            },
+            {
+               "date": "2016-12-22T14:12:34.567-09:15",
+               "dateType": "zone offset minute"
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

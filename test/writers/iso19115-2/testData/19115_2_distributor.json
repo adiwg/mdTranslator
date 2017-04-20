@@ -1,0 +1,121 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    },
+    "resourceDistribution": [
+      {
+        "description": "description",
+        "distributor": [
+          {
+            "contact": {
+              "role": "role",
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [
+              {
+                "fees": "1.00USD"
+              },
+              {
+                "fees": "2.00USD"
+              }
+            ],
+            "transferOption": [
+              {
+                "transferSize": 1.9
+              },
+              {
+                "transferSize": 2.9
+              }
+            ]
+          },
+          {
+            "contact": {
+              "role": "role",
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [
+              {
+                "fees": "3.00USD"
+              }
+            ],
+            "transferOption": [
+              {
+                "transferSize": 3.9
+              }
+            ]
+          },
+          {
+            "contact": {
+              "role": "role",
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "description": "description"
+      }
+    ]
+  }
+}

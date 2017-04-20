@@ -1,0 +1,268 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - individual",
+      "positionName": "positionName",
+      "memberOfOrganization": [
+        "CID002"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com1"
+      ],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/1"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID002",
+      "isOrganization": true,
+      "name": "contact - organization",
+      "memberOfOrganization": [
+        "CID002"
+      ],
+      "logoGraphic": [
+        {
+          "fileName": "fileName"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType"]
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com2"
+      ],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/2"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID003",
+      "isOrganization": false,
+      "name": "contact - multiple array elements",
+      "memberOfOrganization": [],
+      "logoGraphic": [
+        {
+          "fileName": "fileName30"
+        },
+        {
+          "fileName": "fileName31"
+        }
+      ],
+      "phone": [
+        {
+          "phoneName": "single service 30",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        },
+        {
+          "phoneName": "single service 31",
+          "phoneNumber": "111-111-1111",
+          "service": [
+            "voice"
+          ]
+        }
+      ],
+      "address": [
+        {
+          "addressType": ["addressType30"]
+        },
+        {
+          "addressType": ["addressType31"]
+        }
+      ],
+      "electronicMailAddress": [
+        "e.mail@address.com30",
+        "e.mail@address.com31"
+      ],
+      "onlineResource": [
+        {
+          "uri": "http://ISO.uri/adiwg/30"
+        },
+        {
+          "uri": "http://ISO.uri/adiwg/31"
+        }
+      ],
+      "hoursOfService": [
+        "hoursOfService0",
+        "hoursOfService1"
+      ],
+      "contactInstructions": "contactInstructions",
+      "contactType": "contactType"
+    },
+    {
+      "contactId": "CID004",
+      "isOrganization": false,
+      "name": "contact - email only",
+      "positionName": "",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "electronicMailAddress": [
+        "e.mail@address.com4"
+      ],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID005",
+      "isOrganization": false,
+      "name": "contact - empty elements",
+      "positionName": "",
+      "memberOfOrganization": [],
+      "logoGraphic": [],
+      "phone": [],
+      "address": [],
+      "electronicMailAddress": [],
+      "onlineResource": [],
+      "hoursOfService": [],
+      "contactInstructions": "",
+      "contactType": ""
+    },
+    {
+      "contactId": "CID006",
+      "isOrganization": false,
+      "name": "contact - missing elements"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": [
+        "status"
+      ],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    }
+  },
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title",
+        "edition": "edition",
+        "date": [
+          {
+            "date": "2017-01-22",
+            "dateType": "dateType"
+          }
+        ]
+      },
+      "subject": [
+        "subject0"
+      ],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "CID001"
+          },
+          {
+            "contactId": "CID002"
+          },
+          {
+            "contactId": "CID003"
+          },
+          {
+            "contactId": "CID004"
+          },
+          {
+            "contactId": "CID005"
+          },
+          {
+            "contactId": "CID006"
+          }
+        ]
+      },
+      "domain": [],
+      "entity": []
+    }
+  ]
+}

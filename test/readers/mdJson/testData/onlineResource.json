@@ -1,0 +1,18 @@
+{
+   "onlineResource": [
+      {
+         "uri": "http://ISO.uri/adiwg/0",
+         "protocol": "protocol",
+         "name": "name",
+         "description": "description",
+         "function": "function"
+      },
+      {
+         "uri": "http://ISO.uri/adiwg/1",
+         "protocol": "protocol",
+         "name": "name",
+         "description": "description",
+         "function": "function"
+      }
+   ]
+}

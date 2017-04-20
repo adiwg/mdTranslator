@@ -1,15 +1,16 @@
 # ISO <<Class>> MD_Keyword
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-09-18 original script
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-08-21 removed keyword thesaurus link; use citation onlineResource
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-12 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-08-21 removed keyword thesaurus link; use citation onlineResource
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+# 	Stan Smith 2013-09-18 original script
 
 require_relative 'class_codelist'
 require_relative 'class_citation'
@@ -21,55 +22,60 @@ module ADIWG
 
                 class MD_Keywords
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hDKeyword)
+                    def writeXML(hKeyword)
 
                         # classes used
-                        codelistClass = MD_Codelist.new(@xml, @responseObj)
-                        citationClass = CI_Citation.new(@xml, @responseObj)
+                        codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                        citationClass = CI_Citation.new(@xml, @hResponseObj)
 
                         @xml.tag!('gmd:MD_Keywords') do
 
-                            # keywords - keyword - required
-                            aKeywords = hDKeyword[:keyword]
-                            if aKeywords.empty?
-                                @xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
-                            else
-                                aKeywords.each do |keyword|
-                                    @xml.tag!('gmd:keyword') do
-                                        @xml.tag!('gco:CharacterString', keyword)
+                            # keyword - keyword (required)
+                            aKeyObjects = hKeyword[:keywords]
+                            unless aKeyObjects.empty?
+                                aKeyObjects.each do |hKeyObj|
+                                    keyword = hKeyObj[:keyword]
+                                    unless keyword.nil?
+                                        @xml.tag!('gmd:keyword') do
+                                            @xml.tag!('gco:CharacterString', keyword)
+                                        end
                                     end
                                 end
                             end
+                            if aKeyObjects.empty?
+                                @xml.tag!('gmd:keyword', {'gco:nilReason' => 'missing'})
+                            end
 
-                            # keywords - type - MD_KeywordTypeCode
-                            s = hDKeyword[:keywordType]
-                            if !s.nil?
+                            # keyword - type {MD_KeywordTypeCode}
+                            s = hKeyword[:keywordType]
+                            unless s.nil?
                                 @xml.tag!('gmd:type') do
-                                    codelistClass.writeXML('iso_keywordType',s)
+                                    codelistClass.writeXML('gmd', 'iso_keywordType',s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:type')
                             end
 
-                            hKeyCitation = hDKeyword[:keyTheCitation]
-                            if !hKeyCitation.empty?
+                            # keyword - thesaurus {MD_KeywordTypeCode}
+                            hCitation = hKeyword[:thesaurus]
+                            unless hCitation.empty?
                                 @xml.tag!('gmd:thesaurusName') do
-                                    citationClass.writeXML(hKeyCitation)
+                                    citationClass.writeXML(hCitation)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if hCitation.empty? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gmd:thesaurusName')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gmd:MD_Keywords tag
+                    end # writeXML
+                end # MD_Keywords class
 
             end
         end

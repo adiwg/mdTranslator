@@ -1,0 +1,12 @@
+{
+   "allocation": [
+      {
+         "amount": 9.9,
+         "currency": "currency",
+         "sourceId": "sourceId",
+         "recipientId": "recipientId",
+         "matching": true,
+         "comment": "comment"
+      }
+   ]
+}

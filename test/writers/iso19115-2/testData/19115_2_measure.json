@@ -1,0 +1,77 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "spatialRepresentation": [
+        {
+          "gridRepresentation": {
+            "numberOfDimensions": 9,
+            "dimension": [
+              {
+                "dimensionType": "column",
+                "dimensionSize": 9,
+                "resolution": {
+                  "type": "distance",
+                  "value": 15.0,
+                  "unitOfMeasure": "distance"
+                },
+                "dimensionTitle": "dimensionTitle",
+                "dimensionDescription": "dimensionDescription"
+              }
+            ],
+            "cellGeometry": "cellGeometry",
+            "transformParamsAvailability": true
+          }
+        }
+      ]
+    }
+  }
+}

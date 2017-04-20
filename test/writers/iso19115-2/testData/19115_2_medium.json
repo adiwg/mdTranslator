@@ -1,0 +1,122 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    },
+    "resourceDistribution": [
+      {
+        "description": "description",
+        "distributor": [
+          {
+            "contact": {
+              "role": "role",
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            },
+            "orderProcess": [],
+            "transferOption": [
+              {
+                "unitsOfDistribution": "unitsOfDistribution0",
+                "transferSize": 9.9,
+                "onlineOption": [
+                  {
+                    "uri": "http://ISO.uri/adiwg/0"
+                  }
+                ],
+                "offlineOption": [
+                  {
+                    "mediumSpecification": {
+                      "title": "title"
+                    },
+                    "density": 9.9,
+                    "units": "units",
+                    "numberOfVolumes": 9,
+                    "mediumFormat": [
+                      "mediumFormat0",
+                      "mediumFormat1"
+                    ],
+                    "note": "note",
+                    "identifier": {
+                      "identifier": "identifier"
+                    }
+                  },
+                  {
+                    "density": 9.9,
+                    "units": "",
+                    "numberOfVolumes": 9,
+                    "mediumFormat": [],
+                    "note": ""
+                  },
+                  {
+                    "numberOfVolumes": 9
+                  }
+                ],
+                "transferFrequency": {
+                  "months": 9
+                },
+                "distributionFormat": [
+                  {
+                    "formatSpecification": {
+                      "title": "title0"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

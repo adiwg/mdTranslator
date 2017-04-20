@@ -1,13 +1,14 @@
 # ISO <<Class>> FC_FeatureAttribute
 # writer output in XML
-# create create attributes for entities
+# create attributes for entities
 
 # History:
-# 	Stan Smith 2014-12-02 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2017-02-02 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2014-12-02 original script
 
 require_relative 'class_multiplicity'
 require_relative 'class_listedValue'
@@ -22,70 +23,72 @@ module ADIWG
 
                     def initialize(xml, responseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = responseObj
                     end
 
                     def writeXML(hAttribute)
 
                         # classes used
-                        multiClass = Multiplicity.new(@xml, @responseObj)
-                        listClass = FC_ListedValue.new(@xml, @responseObj)
-                        uomClass = UnitsOfMeasure.new(@xml, @responseObj)
+                        multiClass = Multiplicity.new(@xml, @hResponseObj)
+                        listClass = FC_ListedValue.new(@xml, @hResponseObj)
+                        uomClass = UnitsOfMeasure.new(@xml, @hResponseObj)
 
                         @xml.tag!('gfc:FC_FeatureAttribute') do
 
-                            # feature attribute - member name - required
-                            # used to define attribute common name
+                            # feature attribute - member name (required)
+                            # used for attribute common name
                             s = hAttribute[:attributeName]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:memberName') do
                                     @xml.tag!('gco:LocalName', s)
                                 end
-                            else
+                            end
+                            if s.nil?
                                 @xml.tag!('gfc:memberName', {'gco:nilReason' => 'missing'})
                             end
 
                             # feature attribute - definition
+                            # not required by ISO, but important enough to indicate if missing
                             s = hAttribute[:attributeDefinition]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:definition') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gfc:definition')
+                            end
+                            if s.nil?
+                                @xml.tag!('gfc:definition', {'gco:nilReason' => 'missing'})
                             end
 
-                            # feature attribute - cardinality - required
-                            b = hAttribute[:allowNull]
-                            if !b.nil?
-                                @xml.tag!('gfc:cardinality') do
-                                    multiClass.writeXML(b)
-                                end
-                            else
-                                @xml.tag!('gfc:cardinality', {'gco:nilReason' => 'missing'})
+                            # feature attribute - cardinality (required)
+                            @xml.tag!('gfc:cardinality') do
+                                multiClass.writeXML(hAttribute)
                             end
 
                             # feature attribute - code
                             s = hAttribute[:attributeCode]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:code') do
                                     @xml.tag!('gco:CharacterString', s)
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:code')
                             end
 
                             # feature attribute - value measurement unit (units of measure)
                             s = hAttribute[:unitOfMeasure]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:valueMeasurementUnit') do
                                     uomClass.writeUnits(s)
                                 end
                             end
+                            if s.nil? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gfc:valueMeasurementUnit')
+                            end
 
                             # feature attribute - value type (datatype)
                             s = hAttribute[:dataType]
-                            if !s.nil?
+                            unless s.nil?
                                 @xml.tag!('gfc:valueType') do
                                     @xml.tag!('gco:TypeName') do
                                         @xml.tag!('gco:aName') do
@@ -93,34 +96,32 @@ module ADIWG
                                         end
                                     end
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if s.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:valueType')
                             end
 
                             # feature attribute - listed value (domain)
                             domainID = hAttribute[:domainId]
-                            if !domainID.nil?
+                            unless domainID.nil?
                                 # find domain in domain array
                                 hDomain = ADIWG::Mdtranslator::Writers::Iso19110.getDomain(domainID)
                                 unless hDomain.empty?
-
-                                    # only the domain items are represented in iso
                                     aItems = hDomain[:domainItems]
                                     aItems.each do |hItem|
                                         @xml.tag!('gfc:listedValue') do
                                             listClass.writeXML(hItem)
                                         end
                                     end
-
                                 end
-                            elsif @responseObj[:writerShowTags]
+                            end
+                            if domainID.nil? && @hResponseObj[:writerShowTags]
                                 @xml.tag!('gfc:listedValue')
                             end
 
-                        end
-                    end
-
-                end
+                        end # gfc:FC_FeatureAttribute tag
+                    end # writeXML
+                end # gfc:FC_FeatureAttribute class
 
             end
         end

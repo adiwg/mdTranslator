@@ -1,62 +1,75 @@
 # HTML writer
-# resource specific usage
+# taxonomic classification
 
 # History:
+#  Stan Smith 2017-03-30 refactored for mdTranslator
 # 	Stan Smith 2015-03-25 original script
 
+require_relative 'html_taxonomyClass'
+
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlTaxonomyClass
-                    def initialize(html)
-                        @html = html
-                    end
+            class Html_TaxonomyClass
 
-                    def writeHtml(aTaxClass)
+               def initialize(html)
+                  @html = html
+               end
 
-                        hTaxonCl = aTaxClass[0]
+               def writeHtml(hTaxon)
 
-                        @html.section(:class=>'block') do
+                  # classes used
+                  subClass = Html_TaxonomyClass.new(@html)
 
-                            # taxonomic class - taxonomic rank
-                            s = hTaxonCl[:taxRankName]
-                            if !s.nil?
-                                @html.em('Taxonomic Rank: ')
-                                @html.text!(s)
-                                @html.br
-                            end
+                  # taxonomic classification - id
+                  unless hTaxon[:taxonId].nil?
+                     @html.em('Taxonomic ID: ')
+                     @html.text!(hTaxon[:taxonId])
+                     @html.br
+                  end
 
-                            # taxonomic class - taxonomic value
-                            s = hTaxonCl[:taxRankValue]
-                            if !s.nil?
-                                @html.em('Taxonomic Value: ')
-                                @html.text!(s)
-                                @html.br
-                            end
+                  # taxonomic classification - rank
+                  unless hTaxon[:taxonRank].nil?
+                     @html.em('Taxonomic Rank: ')
+                     @html.text!(hTaxon[:taxonRank])
+                     @html.br
+                  end
 
-                            # taxonomic class - common name
-                            s = hTaxonCl[:commonName]
-                            if !s.nil?
-                                @html.em('Common name: ')
-                                @html.text!(s)
-                                @html.br
-                            end
+                  # taxonomic classification - value
+                  unless hTaxon[:taxonValue].nil?
+                     @html.em('Taxonomic Value: ')
+                     @html.text!(hTaxon[:taxonValue])
+                     @html.br
+                  end
 
-                            # taxon class - classification - recursive
-                            aTaxClass.slice!(0)
-                            unless aTaxClass.empty?
-                                writeHtml(aTaxClass)
-                            end
-
+                  # taxonomic classification - common names []
+                  unless hTaxon[:commonNames].empty?
+                     @html.em('Common Names:')
+                     @html.ul do
+                        hTaxon[:commonNames].each do |common|
+                           @html.li(common)
                         end
+                     end
+                  end
 
-                    end # writeHtml
+                  # taxonomic classification - sub-classification
+                  unless hTaxon[:subClasses].empty?
+                     hTaxon[:subClasses].each do |hSubClass|
+                        @html.details do
+                           @html.summary('Sub-Classification', {'class' => 'h5'})
+                           @html.section(:class => 'block') do
+                              subClass.writeHtml(hSubClass)
+                           end
+                        end
+                     end
+                  end
 
-                end # class
+               end # writeHtml
+            end # Html_TaxonomyClass
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

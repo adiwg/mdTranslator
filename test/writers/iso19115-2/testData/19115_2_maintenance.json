@@ -1,0 +1,130 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "metadataMaintenance": {
+        "frequency": "frequency0",
+        "date": [
+          {
+            "date": "2016-10-12",
+            "dateType": "dateType00"
+          },
+          {
+            "date": "2017-02-10",
+            "dateType": "nextUpdate"
+          }
+        ],
+        "scope": [
+          {
+            "scopeCode": "scopeCode00"
+          },
+          {
+            "scopeCode": "scopeCode01"
+          }
+        ],
+        "note": [
+          "note00",
+          "note01"
+        ],
+        "contact": [
+          {
+            "role": "role00",
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          },
+          {
+            "role": "role01",
+            "party": [
+              {
+                "contactId": "CID001"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "resourceMaintenance": [
+        {
+          "frequency": "frequency1",
+          "date": [
+            {
+              "date": "2016-10-12",
+              "dateType": "dateType1"
+            }
+          ],
+          "scope": [
+            {
+              "scopeCode": "scopeCode1"
+            }
+          ],
+          "note": [
+            "note1"
+          ],
+          "contact": [
+            {
+              "role": "role1",
+              "party": [
+                {
+                  "contactId": "CID001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "frequency": "frequency2"
+        }
+      ]
+    }
+  }
+}

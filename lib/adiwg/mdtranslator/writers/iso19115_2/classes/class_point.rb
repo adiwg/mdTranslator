@@ -1,15 +1,19 @@
-# ISO <<Class>> Point
-# writer output in XML
+# GML Point
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-11-01 original script
-#   Stan Smith 2014-05-30 modified for version 0.5.0
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2016-12-05 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
+#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#   Stan Smith 2014-05-30 modified for version 0.5.0
+# 	Stan Smith 2013-11-01 original script
+
+require 'adiwg/mdtranslator/internal/module_coordinates'
+require_relative 'class_featureProperties'
 
 module ADIWG
     module Mdtranslator
@@ -18,69 +22,60 @@ module ADIWG
 
                 class Point
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(hGeoElement)
+                    def writeXML(hGeoObject, hProperties, objId)
 
-                        # gml:Point attributes
+                        # classes used
+                        geoPropClass = FeatureProperties.new(@xml, @hResponseObj)
+
+                        # Point attributes
                         attributes = {}
 
-                        # gml:Point attributes - gml:id - required
-                        pointID = hGeoElement[:elementId]
-                        if pointID.nil?
-                            @responseObj[:writerMissingIdCount] = @responseObj[:writerMissingIdCount].succ
-                            pointID = 'point' + @responseObj[:writerMissingIdCount]
+                        # Point attributes - gml:id (required)
+                        if objId.nil?
+                            @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
+                            objId = 'point' + @hResponseObj[:writerMissingIdCount]
                         end
-                        attributes['gml:id'] = pointID
+                        attributes['gml:id'] = objId
 
-                        # gml:Point attributes - srsDimension
-                        s = hGeoElement[:elementGeometry][:dimension]
+                        # Point attributes - srsDimension
+                        s = AdiwgCoordinates.getDimension(hGeoObject[:coordinates])
                         if !s.nil?
                             attributes[:srsDimension] = s
                         end
 
-                        # gml:Point attributes - srsName
-                        s = hGeoElement[:elementSrs][:srsName]
-                        if !s.nil?
-                            attributes[:srsName] = s
-                        end
+                        # Point attributes - srsName (GeoJSON is WGS84)
+                        attributes[:srsName] = 'WGS84'
 
                         @xml.tag!('gml:Point', attributes) do
 
-                            # point - description
-                            s = hGeoElement[:elementDescription]
-                            if !s.nil?
-                                @xml.tag!('gml:description', s)
-                            elsif @responseObj[:writerShowTags]
-                                @xml.tag!('gml:description')
+                            # point - properties for Feature
+                            unless hProperties.empty?
+                                geoPropClass.writeXML(hProperties)
                             end
-
-                            # point - name
-                            s = hGeoElement[:elementName]
-                            if !s.nil?
-                                @xml.tag!('gml:name', s)
-                            elsif @responseObj[:writerShowTags]
+                            if hProperties.empty? && @hResponseObj[:writerShowTags]
+                                @xml.tag!('gml:description')
+                                @xml.tag!('gml:identifier', {'codeSpace'=>''})
                                 @xml.tag!('gml:name')
                             end
 
-                            # point - coordinates - required
-                            # gml does not support nilReason for coordinates
-                            # convert coordinate string from geoJSON to gml
-                            s = hGeoElement[:elementGeometry][:geometry]
-                            if !s.nil?
-                                s = AdiwgCoordinates.unpack(s, @responseObj)
-                                @xml.tag!('gml:coordinates', s)
-                            else
-                                @xml.tag!('gml:coordinates')
+                            # point - pos (required)
+                            s = ''
+                            unless hGeoObject[:coordinates].empty?
+                                hGeoObject[:coordinates].each do |coord|
+                                    s += coord.to_s + ' '
+                                end
+                                s = s.strip
                             end
-                        end
+                            @xml.tag!('gml:pos', s)
 
-                    end
-
-                end
+                        end # gml:Point tag
+                    end # writeXML
+                end # Point class
 
             end
         end

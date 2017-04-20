@@ -1,0 +1,93 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "coverageDescription": [
+            {
+               "coverageName": "coverageName",
+               "coverageDescription": "coverageDescription",
+               "processingLevelCode": {
+                  "identifier": "identifier"
+               },
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "attributeContentType0",
+                        "attributeContentType1"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier0",
+                           "attributeDescription": "attributeDescription0",
+                           "sequenceIdentifierType": "sequenceIdentifierType0"
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier1",
+                           "attributeDescription": "attributeDescription1",
+                           "sequenceIdentifierType": "sequenceIdentifierType1"
+                        }
+                     ]
+                  },
+                  {
+                     "attributeContentType": [
+                        "attributeContentType0",
+                        "attributeContentType1"
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}

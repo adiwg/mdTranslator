@@ -1,12 +1,13 @@
 # ISO <<Class>> MD_Constraints
-# writer output in XML
+# 19115-2 writer output in XML
 
 # History:
-# 	Stan Smith 2013-10-31 original script
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
 #   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+# 	Stan Smith 2013-10-31 original script
 
 module ADIWG
     module Mdtranslator
@@ -15,29 +16,29 @@ module ADIWG
 
                 class MD_Constraints
 
-                    def initialize(xml, responseObj)
+                    def initialize(xml, hResponseObj)
                         @xml = xml
-                        @responseObj = responseObj
+                        @hResponseObj = hResponseObj
                     end
 
-                    def writeXML(aUseCons)
+                    def writeXML(hConstraint)
 
                         @xml.tag!('gmd:MD_Constraints') do
 
-                            aUseCons.each do |useCon|
-
-                                # use constraints - required
+                            # use constraints - use limitation []
+                            aCons = hConstraint[:useLimitation]
+                            aCons.each do |useCon|
                                 @xml.tag!('gmd:useLimitation') do
                                     @xml.tag!('gco:CharacterString', useCon)
                                 end
-
+                            end
+                            if aCons.empty?
+                                @xml.tag!('gmd:useLimitation')
                             end
 
-                        end
-
-                    end
-
-                end
+                        end # gmd:MD_Constraints tag
+                    end # writeXML
+                end # MD_Constraints class
 
             end
         end

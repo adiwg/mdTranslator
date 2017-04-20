@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmi:MI_Metadata
+        xmlns:gmi="http://www.isotc211.org/2005/gmi"
+        xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        xmlns:gco="http://www.isotc211.org/2005/gco"
+        xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:gsr="http://www.isotc211.org/2005/gsr"
+        xmlns:gss="http://www.isotc211.org/2005/gss"
+        xmlns:gst="http://www.isotc211.org/2005/gst"
+        xmlns:gmx="http://www.isotc211.org/2005/gmx"
+        xmlns:gfc="http://www.isotc211.org/2005/gfc"
+        xmlns:srv="http://www.isotc211.org/2005/srv"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.isotc211.org/2005/gmi C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
+
+  <gfc:featureType>
+    <gfc:FC_FeatureType id="entityId0">
+      <gfc:typeName>
+        <gco:LocalName>commonName0</gco:LocalName>
+      </gfc:typeName>
+      <gfc:definition>
+        <gco:CharacterString>definition0</gco:CharacterString>
+      </gfc:definition>
+      <gfc:code>
+        <gco:CharacterString>codeName0</gco:CharacterString>
+      </gfc:code>
+      <gfc:isAbstract>
+        <gco:Boolean>false</gco:Boolean>
+      </gfc:isAbstract>
+      <gfc:aliases>
+        <gco:LocalName>alias0</gco:LocalName>
+      </gfc:aliases>
+      <gfc:aliases>
+        <gco:LocalName>alias1</gco:LocalName>
+      </gfc:aliases>
+      <gfc:featureCatalogue gco:nilReason="inapplicable"/>
+      <gfc:constrainedBy>
+        <gfc:FC_Constraint>
+          <gfc:description>
+            <gco:CharacterString>primary key: ["primaryKeyAttributeCodeName0", "primaryKeyAttributeCodeName1"]</gco:CharacterString>
+          </gfc:description>
+        </gfc:FC_Constraint>
+      </gfc:constrainedBy>
+      <gfc:constrainedBy>
+        <gfc:FC_Constraint>
+          <gfc:description>
+            <gco:CharacterString>unique index ui_codeName1 on ["codeName0", "codeName1"]</gco:CharacterString>
+          </gfc:description>
+        </gfc:FC_Constraint>
+      </gfc:constrainedBy>
+      <gfc:constrainedBy>
+        <gfc:FC_Constraint>
+          <gfc:description>
+            <gco:CharacterString>duplicate index di_codeName2 on ["codeName2"]</gco:CharacterString>
+          </gfc:description>
+        </gfc:FC_Constraint>
+      </gfc:constrainedBy>
+      <gfc:constrainedBy>
+        <gfc:FC_Constraint>
+          <gfc:description>
+            <gco:CharacterString>foreign key ["codeName0", "codeName1"] references entityId1.["codeName10", "codeName11"]</gco:CharacterString>
+          </gfc:description>
+        </gfc:FC_Constraint>
+      </gfc:constrainedBy>
+      <gfc:constrainedBy>
+        <gfc:FC_Constraint>
+          <gfc:description>
+            <gco:CharacterString>foreign key ["codeName2"] references entityId1.["codeName12"]</gco:CharacterString>
+          </gfc:description>
+        </gfc:FC_Constraint>
+      </gfc:constrainedBy>
+      <gfc:carrierOfCharacteristics>
+        <gfc:FC_FeatureAttribute>
+          <gfc:memberName>
+            <gco:LocalName>commonName0</gco:LocalName>
+          </gfc:memberName>
+          <gfc:definition>
+            <gco:CharacterString>definition0</gco:CharacterString>
+          </gfc:definition>
+          <gfc:cardinality>
+            <gco:Multiplicity>
+              <gco:range>
+                <gco:MultiplicityRange>
+                  <gco:lower>
+                    <gco:Integer>1</gco:Integer>
+                  </gco:lower>
+                  <gco:upper>
+                    <gco:UnlimitedInteger>1</gco:UnlimitedInteger>
+                  </gco:upper>
+                </gco:MultiplicityRange>
+              </gco:range>
+            </gco:Multiplicity>
+          </gfc:cardinality>
+          <gfc:code>
+            <gco:CharacterString>codeName0</gco:CharacterString>
+          </gfc:code>
+          <gfc:valueMeasurementUnit/>
+          <gfc:valueType>
+            <gco:TypeName>
+              <gco:aName>
+                <gco:CharacterString>dataType0</gco:CharacterString>
+              </gco:aName>
+            </gco:TypeName>
+          </gfc:valueType>
+          <gfc:listedValue/>
+        </gfc:FC_FeatureAttribute>
+      </gfc:carrierOfCharacteristics>
+      <gfc:carrierOfCharacteristics>
+        <gfc:FC_FeatureAttribute>
+          <gfc:memberName>
+            <gco:LocalName>commonName1</gco:LocalName>
+          </gfc:memberName>
+          <gfc:definition>
+            <gco:CharacterString>definition1</gco:CharacterString>
+          </gfc:definition>
+          <gfc:cardinality>
+            <gco:Multiplicity>
+              <gco:range>
+                <gco:MultiplicityRange>
+                  <gco:lower>
+                    <gco:Integer>0</gco:Integer>
+                  </gco:lower>
+                  <gco:upper>
+                    <gco:UnlimitedInteger>99999</gco:UnlimitedInteger>
+                  </gco:upper>
+                </gco:MultiplicityRange>
+              </gco:range>
+            </gco:Multiplicity>
+          </gfc:cardinality>
+          <gfc:code>
+            <gco:CharacterString>codeName1</gco:CharacterString>
+          </gfc:code>
+          <gfc:valueMeasurementUnit/>
+          <gfc:valueType>
+            <gco:TypeName>
+              <gco:aName>
+                <gco:CharacterString>dataType1</gco:CharacterString>
+              </gco:aName>
+            </gco:TypeName>
+          </gfc:valueType>
+          <gfc:listedValue/>
+        </gfc:FC_FeatureAttribute>
+      </gfc:carrierOfCharacteristics>
+    </gfc:FC_FeatureType>
+  </gfc:featureType>
+
+  <gfc:featureType>
+    <gfc:FC_FeatureType id="entity_001">
+      <gfc:typeName gco:nilReason="missing"/>
+      <gfc:definition>
+        <gco:CharacterString>definition1</gco:CharacterString>
+      </gfc:definition>
+      <gfc:code>
+        <gco:CharacterString>codeName1</gco:CharacterString>
+      </gfc:code>
+      <gfc:isAbstract>
+        <gco:Boolean>false</gco:Boolean>
+      </gfc:isAbstract>
+      <gfc:featureCatalogue gco:nilReason="inapplicable"/>
+      <gfc:constrainedBy/>
+      <gfc:carrierOfCharacteristics/>
+    </gfc:FC_FeatureType>
+  </gfc:featureType>
+
+  <gfc:featureType>
+    <gfc:FC_FeatureType id="entity_002">
+      <gfc:typeName gco:nilReason="missing"/>
+      <gfc:definition>
+        <gco:CharacterString>definition2</gco:CharacterString>
+      </gfc:definition>
+      <gfc:code>
+        <gco:CharacterString>codeName2</gco:CharacterString>
+      </gfc:code>
+      <gfc:isAbstract>
+        <gco:Boolean>false</gco:Boolean>
+      </gfc:isAbstract>
+      <gfc:featureCatalogue gco:nilReason="inapplicable"/>
+      <gfc:constrainedBy/>
+      <gfc:carrierOfCharacteristics/>
+    </gfc:FC_FeatureType>
+  </gfc:featureType>
+
+</gmi:MI_Metadata>

@@ -1,0 +1,135 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "dictionary contact"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      }
+    }
+  },
+  "dataDictionary": [
+    {
+      "citation": {
+        "title": "title",
+        "edition": "edition",
+        "date": [
+          {
+            "date": "2017-01-22",
+            "dateType": "dateType"
+          }
+        ]
+      },
+      "subject": [
+        "subject0"
+      ],
+      "recommendedUse": [],
+      "locale": [],
+      "responsibleParty": {
+        "role": "role",
+        "party": [
+          {
+            "contactId": "CID001"
+          }
+        ]
+      },
+      "dictionaryFormat": "",
+      "dictionaryIncludedWithResource": true,
+      "domain": [],
+      "entity": [
+        {
+          "entityId": "entityId0",
+          "codeName": "codeName",
+          "definition": "definition",
+          "attribute": [
+            {
+              "commonName": "commonName0",
+              "codeName": "codeName0",
+              "definition": "definition0",
+              "dataType": "dataType0",
+              "allowNull": false,
+              "allowMany": false
+            },
+            {
+              "commonName": "commonName1",
+              "codeName": "codeName1",
+              "definition": "definition1",
+              "dataType": "dataType1",
+              "allowNull": true,
+              "allowMany": true
+            }
+          ],
+          "primaryKeyAttributeCodeName": ["codeName0", "codeName1"],
+          "index": [
+            {
+              "codeName": "ui_codeName1",
+              "allowDuplicates": false,
+              "attributeCodeName": ["codeName0", "codeName1"]
+            },
+            {
+              "codeName": "di_codeName2",
+              "allowDuplicates": true,
+              "attributeCodeName": ["codeName2"]
+            }
+          ],
+          "foreignKey": [
+            {
+              "localAttributeCodeName": ["codeName0", "codeName1"],
+              "referencedEntityCodeName": "entityId1",
+              "referencedAttributeCodeName": ["codeName10", "codeName11"]
+            },
+            {
+              "localAttributeCodeName": ["codeName2"],
+              "referencedEntityCodeName": "entityId1",
+              "referencedAttributeCodeName": ["codeName12"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

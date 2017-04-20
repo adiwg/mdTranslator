@@ -1,0 +1,127 @@
+{
+  "schema": {
+    "name": "mdJson",
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "contact - minimal"
+    }
+  ],
+  "metadata": {
+    "metadataInfo": {
+      "metadataContact": [
+        {
+          "role": "metadataContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ]
+    },
+    "resourceInfo": {
+      "resourceType": [
+        {
+          "type": "type",
+          "name": "name"
+        }
+      ],
+      "citation": {
+        "title": "title"
+      },
+      "abstract": "abstract",
+      "status": ["status"],
+      "pointOfContact": [
+        {
+          "role": "pointOfContact",
+          "party": [
+            {
+              "contactId": "CID001"
+            }
+          ]
+        }
+      ],
+      "defaultResourceLocale": {
+        "language": "eng",
+        "country": "USA",
+        "characterSet": "UTF-8"
+      },
+      "coverageDescription": [
+        {
+          "coverageName": "coverageName0",
+          "coverageDescription": "coverageDescription0",
+          "processingLevelCode": {
+            "identifier": "identifier0"
+          },
+          "attributeGroup": [
+            {
+              "attributeContentType": [
+                "attributeContentType0"
+              ],
+              "attribute": [
+                {
+                  "sequenceIdentifier": "sequenceIdentifier0",
+                  "sequenceIdentifierType": "sequenceIdentifierType0",
+                  "attributeDescription": "attributeDescription0",
+                  "attributeIdentifier": [
+                    {
+                      "identifier": "identifier0"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "imageDescription": {
+            "illuminationElevationAngle": 9.9,
+            "illuminationAzimuthAngle": 9.9,
+            "imagingCondition": "imagingCondition",
+            "imageQualityCode": {
+              "identifier": "identifier1"
+            },
+            "cloudCoverPercent": 9.9,
+            "compressionQuantity": 9,
+            "triangulationIndicator": true,
+            "radiometricCalibrationAvailable": true,
+            "cameraCalibrationAvailable": true,
+            "filmDistortionAvailable": true,
+            "lensDistortionAvailable": true
+          }
+        },
+        {
+          "coverageName": "coverageName1",
+          "coverageDescription": "coverageDescription1",
+          "processingLevelCode": {
+            "identifier": "identifier1"
+          },
+          "attributeGroup": [
+            {
+              "attributeContentType": [
+                "attributeContentType1"
+              ],
+              "attribute": [
+                {
+                  "sequenceIdentifier": "sequenceIdentifier1",
+                  "sequenceIdentifierType": "sequenceIdentifierType1",
+                  "attributeDescription": "attributeDescription1",
+                  "attributeIdentifier": [
+                    {
+                      "identifier": "identifier1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "imageDescription": {
+            "nonElement": true
+          }
+        }
+      ]
+    }
+  }
+}
