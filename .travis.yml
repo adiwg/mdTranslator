@@ -1,3 +1,5 @@
+
+sudo: false
 language: ruby
 before_install: 'gem install bundler'
 rvm:
@@ -5,3 +7,6 @@ rvm:
   - 2.2
   - ruby-head
   - jruby-head
+matrix:
+  allow_failures:
+  - rvm: rbuy-head
