@@ -18,6 +18,8 @@ class TestMdTranslator < MiniTest::Test
     @@jsonObj = file.read
     file.close
 
+    @@version = ADIWG::Mdtranslator::VERSION
+
     def test_mdtranslator_minimal_params
 
         metadata = ADIWG::Mdtranslator.translate(
@@ -30,7 +32,7 @@ class TestMdTranslator < MiniTest::Test
         assert_equal 'normal', metadata[:readerValidationLevel]
         refute metadata[:writerShowTags]
         assert_nil metadata[:writerCSSlink]
-        assert_equal '2.0.0', metadata[:translatorVersion]
+        assert_equal @@version, metadata[:translatorVersion]
 
     end
 
@@ -47,7 +49,7 @@ class TestMdTranslator < MiniTest::Test
         assert_equal 'none', metadata[:readerValidationLevel]
         assert metadata[:writerShowTags]
         assert_equal 'http://example.com/my.css', metadata[:writerCSSlink]
-        assert_equal '2.0.0', metadata[:translatorVersion]
+        assert_equal @@version, metadata[:translatorVersion]
 
     end
 
