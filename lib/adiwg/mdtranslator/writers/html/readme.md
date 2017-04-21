@@ -3,12 +3,6 @@
 
 ### Writer for HTML 'human-readable' output of metadata
 
-The HTML version of metadata is intended to be a human readable
-version of the metadata content.  The HTML output does not mimic
-any established metadata standard but remains agnostic in its
-presentation.  The HTML metadata version will present the entire
-content of the metadata provided to the mdTranslator reader.
+The HTML Metadata Record output from the mdTranslator is intended to be a human readable version of the metadata content read in by the translator.  The HTML output does not attempt mimic any established metadata standard but remains agnostic in its presentation.  The HTML metadata output will display the full content of the metadata record ingested by the mdTranslator while translation to established standards may not support all fields.
 
-The HTML writer can be use to allow users to conveniently scan
-metadata prior to downloading a data file or to generate a printed
-version of metadata to accompany a report.
+The HTML output can be conveniently embedded in a users web page to present metadata content to visitors.

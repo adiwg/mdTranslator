@@ -3,7 +3,7 @@
 
 # mdTranslator
 
-mdtranslator was written by the [Alaska Data Integration Working Group](http://www.adiwg.org) (ADIwg) to assist with creating ISO 19139 metadata records.  Input to the mdtranslator is JSON conforming to the [mdJson-schemas](https://github.com/adiwg/mdJson-schemas).  The mdtranslator architecture allows developers to write additional readers for other input formats and/or write additional writers for other output other than ISO 19139, e.g. HTML.
+**mdtranslator** was written by the [Alaska Data Integration Working Group](http://www.adiwg.org) (ADIwg) to assist researchers with authoring both spatial and non-spatial metadata for projects and datasets.  Input to the mdtranslator is a JSON record conforming to the [mdJson-schemas](http://mdTools.adiwg.org).  The user can request the mdTranslator to translate the mdJson input into one or more established metadata standards.  The mdTranslator currently supports translation to ISO 19115-2, ISO 19110, HTML, and mdJson 2x.  The mdTranslator part of an open source architecture toolkit that allows developers to write additional readers and/or writers as may be required.
 
 ## Installation
 
