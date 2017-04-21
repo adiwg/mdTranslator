@@ -18,8 +18,6 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
     def test_vertical_schema
 
         errors = TestReaderMdJsonParent.testSchema(@@hIn, 'verticalExtent.json')
-        require 'pp'
-        pp errors
         assert_empty errors
 
     end
