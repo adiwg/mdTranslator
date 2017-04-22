@@ -6,11 +6,12 @@
 module ADIWG
     module Mdtranslator
         # current mdtranslator version
-        VERSION = "2.0.0rc1"
+        VERSION = "2.0.0rc2"
     end
 end
 
 # version 2 history
+# 2.0.0rc2 2017-04-21 removed inline CSS option from CLI
 # 2.0.0rc1 2017-04-09 release candidate 1
 
 # version 1 history
