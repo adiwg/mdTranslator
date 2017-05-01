@@ -12,9 +12,8 @@
 # 	Stan Smith 2014-07-15 original script
 
 require 'thor'
-require 'adiwg-mdtranslator'
 
-class Mdtranslator < Thor
+class MdtranslatorCLI < Thor
 
    # exit_on_failure added to exit with code 1 if thor cannot complete task
    # such as if required parameters are missing
@@ -27,7 +26,7 @@ class Mdtranslator < Thor
    long_desc <<-LONGDESC
 	'mdtranslator translate' provides command line access to the ADIwg metadata translator, mdTranslator.  The 'translate'
 method converts input metadata to supported established metadata metadata formats.  The CLI accepts an input metadata
-file with options to select the input reader format, writer output format, display empty tags in XML outputs, and choose 
+file with options to select the input reader format, writer output format, display empty tags in XML outputs, and choose
 level of validation for mdJson input files.
    LONGDESC
    # define cli options
@@ -189,7 +188,4 @@ level of validation for mdJson input files.
    def version
       $stdout.write ADIWG::Mdtranslator::VERSION
    end
-
-   Mdtranslator.start(ARGV)
-
 end

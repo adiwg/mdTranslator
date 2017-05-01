@@ -5,6 +5,7 @@
 #   Stan Smith 2017-04-21 original script
 
 require 'minitest/autorun'
+require_relative '../../lib/adiwg/mdtranslator'
 require_relative '../../lib/adiwg/mdtranslator_cli'
 
 # test CLI parameters
@@ -16,7 +17,7 @@ class TestMdtranslatorCLI < MiniTest::Test
         file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
 
         out, err = capture_io do
-            Mdtranslator.start [ 'translate', file, '-r', 'mdJson' ]
+            MdtranslatorCLI.start [ 'translate', file, '-r', 'mdJson' ]
         end
 
         assert_equal 'Success', out
@@ -29,7 +30,7 @@ class TestMdtranslatorCLI < MiniTest::Test
         file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_invalid.json')
 
         out, err = capture_io do
-            Mdtranslator.start [ 'translate', file, '-r', 'mdJson' ]
+            MdtranslatorCLI.start [ 'translate', file, '-r', 'mdJson' ]
         end
 
         out = out.slice(0, 6)
@@ -43,7 +44,7 @@ class TestMdtranslatorCLI < MiniTest::Test
         file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_invalid.json')
 
         out, err = capture_io do
-            Mdtranslator.start [ 'translate', file, '-r', 'mdJson', '-m', 'text' ]
+            MdtranslatorCLI.start [ 'translate', file, '-r', 'mdJson', '-m', 'text' ]
         end
 
         out = out.slice(0,6)
@@ -57,7 +58,7 @@ class TestMdtranslatorCLI < MiniTest::Test
         file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_invalid.json')
 
         out, err = capture_io do
-            Mdtranslator.start [ 'translate', file, '-r', 'mdJson', '-m', 'json' ]
+            MdtranslatorCLI.start [ 'translate', file, '-r', 'mdJson', '-m', 'json' ]
         end
 
         out = out.slice(0,1)
@@ -71,7 +72,7 @@ class TestMdtranslatorCLI < MiniTest::Test
         file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
 
         out, err = capture_io do
-            Mdtranslator.start [ 'translate', file, '-r', 'mdJson', '-o', true ]
+            MdtranslatorCLI.start [ 'translate', file, '-r', 'mdJson', '-o', true ]
         end
 
         assert_equal 'Success', out
@@ -80,4 +81,3 @@ class TestMdtranslatorCLI < MiniTest::Test
     end
 
 end
-
