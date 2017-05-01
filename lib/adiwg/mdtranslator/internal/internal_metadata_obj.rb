@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#   Stan Smith 2017-04-22 removed 'intObj = ' from new object definitions
 #   Stan Smith 2017-02-15 added newResourceType
 #   Stan Smith 2017-02-09 added newMetadataRepository
 #   Stan Smith 2017-01-20 refactored newDataDictionary
@@ -109,16 +110,16 @@
 
 class InternalMetadata
 
-    # initialize attribute values - nil
-    # initialize arrays - []
-    # initialize hashes - {}
     # initialize Boolean - false
+    # initialize scalar - nil
+    # initialize hash - {}
+    # initialize array - []
 
     def initialize
     end
 
     def newBase
-        intObj = {
+        {
             schema: {},
             contacts: [],
             metadata: {},
@@ -128,14 +129,14 @@ class InternalMetadata
     end
 
     def newSchema
-        intObj = {
+        {
             name: nil,
             version: nil
         }
     end
 
     def newDate
-        intObj = {
+        {
             date: nil,
             dateResolution: nil,
             dateType: nil,
@@ -144,14 +145,14 @@ class InternalMetadata
     end
 
     def newDateTime
-        intObj = {
+        {
             dateTime: nil,
             dateResolution: nil
         }
     end
 
     def newContact
-        intObj = {
+        {
             contactId: nil,
             isOrganization: false,
             name: nil,
@@ -169,7 +170,7 @@ class InternalMetadata
     end
 
     def newPhone
-        intObj = {
+        {
             phoneName: nil,
             phoneNumber: nil,
             phoneServiceTypes: []
@@ -177,7 +178,7 @@ class InternalMetadata
     end
 
     def newAddress
-        intObj = {
+        {
             addressTypes: [],
             description: nil,
             deliveryPoints: [],
@@ -189,7 +190,7 @@ class InternalMetadata
     end
 
     def newMetadata
-        intObj = {
+        {
             metadataInfo: {},
             resourceInfo: {},
             lineageInfo: [],
@@ -201,7 +202,7 @@ class InternalMetadata
     end
 
     def newMetadataInfo
-        intObj = {
+        {
             metadataIdentifier: {},
             parentMetadata: {},
             defaultMetadataLocale: {},
@@ -217,7 +218,7 @@ class InternalMetadata
     end
 
     def newResponsibility
-        intObj = {
+        {
             roleName: nil,
             roleExtents: [],
             parties: []
@@ -225,7 +226,7 @@ class InternalMetadata
     end
 
     def newParty
-        intObj = {
+        {
             contactId: nil,
             contactIndex: nil,
             contactType: nil,
@@ -234,7 +235,7 @@ class InternalMetadata
     end
 
     def newOnlineResource
-        intObj = {
+        {
             olResURI: nil,
             olResProtocol: nil,
             olResName: nil,
@@ -244,7 +245,7 @@ class InternalMetadata
     end
 
     def newResourceInfo
-        intObj = {
+        {
             resourceTypes: [],
             citation: {},
             abstract: nil,
@@ -277,7 +278,7 @@ class InternalMetadata
     end
 
     def newCitation
-        intObj = {
+        {
             title: nil,
             alternateTitles: [],
             dates: [],
@@ -297,7 +298,7 @@ class InternalMetadata
         # handles MD_Identifier (ISO 19115-2 & -1)
         # handles RS_ Identifier (ISO 19115-2)
         # handles gmlIdentifier
-        intObj = {
+        {
             identifier: nil,
             namespace: nil,
             version: nil,
@@ -307,7 +308,7 @@ class InternalMetadata
     end
 
     def newMaintenance
-        intObj = {
+        {
             frequency: nil,
             dates: [],
             scopes: [],
@@ -317,7 +318,7 @@ class InternalMetadata
     end
 
     def newKeyword
-        intObj = {
+        {
             keywords: [],
             keywordType: nil,
             thesaurus: {}
@@ -325,14 +326,14 @@ class InternalMetadata
     end
 
     def newKeywordObject
-        intObj = {
+        {
             keyword: nil,
             keywordId: nil
         }
     end
 
     def newConstraint
-        intObj = {
+        {
             type: nil,
             useLimitation: [],
             scope: {},
@@ -346,7 +347,7 @@ class InternalMetadata
     end
 
     def newLegalConstraint
-        intObj = {
+        {
             accessCodes: [],
             useCodes: [],
             otherCons: []
@@ -354,7 +355,7 @@ class InternalMetadata
     end
 
     def newSecurityConstraint
-        intObj = {
+        {
             classCode: nil,
             userNote: nil,
             classSystem: nil,
@@ -363,7 +364,7 @@ class InternalMetadata
     end
 
     def newRelease
-        intObj = {
+        {
             addressee: [],
             statement: nil,
             disseminationConstraint: []
@@ -371,14 +372,14 @@ class InternalMetadata
     end
 
     def newDistribution
-        intObj = {
+        {
             description: nil,
             distributor: []
         }
     end
 
     def newDistributor
-        intObj = {
+        {
             contact: {},
             orderProcess: [],
             transferOptions: []
@@ -386,7 +387,7 @@ class InternalMetadata
     end
 
     def newOrderProcess
-        intObj = {
+        {
             fees: nil,
             plannedAvailability: {},
             orderingInstructions: nil,
@@ -395,7 +396,7 @@ class InternalMetadata
     end
 
     def newTransferOption
-        intObj = {
+        {
             unitsOfDistribution: nil,
             transferSize: nil,
             onlineOptions: [],
@@ -406,7 +407,7 @@ class InternalMetadata
     end
 
     def newMedium
-        intObj = {
+        {
             mediumSpecification: {},
             density: nil,
             units: nil,
@@ -418,7 +419,7 @@ class InternalMetadata
     end
 
     def newResourceFormat
-        intObj = {
+        {
             formatSpecification: {},
             amendmentNumber: nil,
             compressionMethod: nil
@@ -426,7 +427,7 @@ class InternalMetadata
     end
 
     def newGraphic
-        intObj = {
+        {
             graphicName: nil,
             graphicDescription: nil,
             graphicType: nil,
@@ -436,14 +437,14 @@ class InternalMetadata
     end
 
     def newSpatialReferenceSystem
-        intObj = {
+        {
             systemType: nil,
             systemIdentifier: {}
         }
     end
 
     def newSpatialResolution
-        intObj = {
+        {
             scaleFactor: nil,
             measure: {},
             levelOfDetail: nil
@@ -451,7 +452,7 @@ class InternalMetadata
     end
 
     def newMeasure
-        intObj = {
+        {
             type: nil,
             value: nil,
             unitOfMeasure: nil
@@ -459,7 +460,7 @@ class InternalMetadata
     end
 
     def newExtent
-        intObj = {
+        {
             description: nil,
             geographicExtents: [],
             temporalExtents: [],
@@ -468,7 +469,7 @@ class InternalMetadata
     end
 
     def newGeographicExtent
-        intObj = {
+        {
             containsData: true,
             identifier: {},
             boundingBox: {},
@@ -479,7 +480,7 @@ class InternalMetadata
     end
 
     def newBoundingBox
-        intObj = {
+        {
             westLongitude: nil,
             eastLongitude: nil,
             southLatitude: nil,
@@ -488,7 +489,7 @@ class InternalMetadata
     end
 
     def newGeometryObject
-        intObj = {
+        {
             type: nil,
             coordinates: [],
             nativeGeoJson: {}
@@ -496,7 +497,7 @@ class InternalMetadata
     end
 
     def newGeometryCollection
-        intObj = {
+        {
             type: nil,
             bbox: [],
             geometryObjects: [],
@@ -506,7 +507,7 @@ class InternalMetadata
     end
 
     def newGeometryProperties
-        intObj = {
+        {
             featureNames: [],
             description: nil,
             identifiers: [],
@@ -516,7 +517,7 @@ class InternalMetadata
     end
 
     def newGeometryFeature
-        intObj = {
+        {
             type: nil,
             id: nil,
             bbox: [],
@@ -528,7 +529,7 @@ class InternalMetadata
     end
 
     def newFeatureCollection
-        intObj = {
+        {
             type: nil,
             bbox: [],
             features: [],
@@ -538,14 +539,14 @@ class InternalMetadata
     end
 
     def newTemporalExtent
-        intObj = {
+        {
             timeInstant: {},
             timePeriod: {}
         }
     end
 
     def newTimeInstant
-        intObj = {
+        {
             timeId: nil,
             description: nil,
             identifier: {},
@@ -555,7 +556,7 @@ class InternalMetadata
     end
 
     def newTimePeriod
-        intObj = {
+        {
             timeId: nil,
             description: nil,
             identifier: {},
@@ -568,7 +569,7 @@ class InternalMetadata
     end
 
     def newDuration
-        intObj = {
+        {
             years: nil,
             months: nil,
             days: nil,
@@ -579,14 +580,14 @@ class InternalMetadata
     end
 
     def newTimeInterval
-        intObj = {
+        {
             interval: nil,
             units: nil
         }
     end
 
     def newVerticalExtent
-        intObj = {
+        {
             description: nil,
             minValue: nil,
             maxValue: nil,
@@ -595,7 +596,7 @@ class InternalMetadata
     end
 
     def newResourceUsage
-        intObj = {
+        {
             specificUsage: nil,
             temporalExtents: [],
             userLimitation: nil,
@@ -607,7 +608,7 @@ class InternalMetadata
     end
 
     def newTaxonomy
-        intObj = {
+        {
             taxonSystem: [],
             generalScope: nil,
             idReferences: [],
@@ -620,21 +621,21 @@ class InternalMetadata
     end
 
     def newTaxonSystem
-        intObj = {
+        {
             citation: {},
             modifications: nil
         }
     end
 
     def newTaxonVoucher
-        intObj = {
+        {
             specimen: nil,
             repository: {}
         }
     end
 
     def newTaxonClass
-        intObj = {
+        {
             taxonId: nil,
             taxonRank: nil,
             taxonValue: nil,
@@ -644,7 +645,7 @@ class InternalMetadata
     end
 
     def newLineage
-        intObj = {
+        {
             statement: nil,
             resourceScope: {},
             lineageCitation: [],
@@ -654,7 +655,7 @@ class InternalMetadata
     end
 
     def newProcessStep
-        intObj = {
+        {
             stepId: nil,
             description: nil,
             rationale: nil,
@@ -666,7 +667,7 @@ class InternalMetadata
     end
 
     def newDataSource
-        intObj = {
+        {
             description: nil,
             sourceCitation: {},
             metadataCitation: [],
@@ -678,7 +679,7 @@ class InternalMetadata
     end
 
     def newMetadataExtension
-        intObj = {
+        {
             onLineResource: {},
             name: nil,
             shortName: nil,
@@ -696,7 +697,7 @@ class InternalMetadata
     end
 
     def newAssociatedResource
-        intObj = {
+        {
             resourceTypes: [],
             associationType: nil,
             initiativeType: nil,
@@ -706,14 +707,14 @@ class InternalMetadata
     end
 
     def newAdditionalDocumentation
-        intObj = {
+        {
             resourceTypes: [],
             citation: []
         }
     end
 
     def newDataDictionary
-        intObj = {
+        {
             citation: {},
             subjects: [],
             recommendedUses: [],
@@ -727,7 +728,7 @@ class InternalMetadata
     end
 
     def newDictionaryDomain
-        intObj = {
+        {
             domainId: nil,
             domainName: nil,
             domainCode: nil,
@@ -737,7 +738,7 @@ class InternalMetadata
     end
 
     def newDomainItem
-        intObj = {
+        {
             itemName: nil,
             itemValue: nil,
             itemDefinition: nil
@@ -745,7 +746,7 @@ class InternalMetadata
     end
 
     def newEntity
-        intObj = {
+        {
             entityId: nil,
             entityName: nil,
             entityCode: nil,
@@ -759,7 +760,7 @@ class InternalMetadata
     end
 
     def newEntityIndex
-        intObj = {
+        {
             indexCode: nil,
             duplicate: false,
             attributeNames: []
@@ -767,7 +768,7 @@ class InternalMetadata
     end
 
     def newEntityAttribute
-        intObj = {
+        {
             attributeName: nil,
             attributeCode: nil,
             attributeAlias: [],
@@ -783,7 +784,7 @@ class InternalMetadata
     end
 
     def newEntityForeignKey
-        intObj = {
+        {
             fkLocalAttributes: [],
             fkReferencedEntity: nil,
             fkReferencedAttributes: []
@@ -791,7 +792,7 @@ class InternalMetadata
     end
 
     def newSpatialRepresentation
-        intObj = {
+        {
             gridRepresentation: {},
             vectorRepresentation: {},
             georectifiedRepresentation: {},
@@ -800,7 +801,7 @@ class InternalMetadata
     end
 
     def newGridInfo
-        intObj = {
+        {
             numberOfDimensions: nil,
             dimension: [],
             cellGeometry: nil,
@@ -809,7 +810,7 @@ class InternalMetadata
     end
 
     def newDimension
-        intObj = {
+        {
             dimensionType: nil,
             dimensionTitle: nil,
             dimensionDescription: nil,
@@ -819,21 +820,21 @@ class InternalMetadata
     end
 
     def newVectorInfo
-        intObj = {
+        {
             topologyLevel: nil,
             vectorObject: []
         }
     end
 
     def newVectorObject
-        intObj = {
+        {
             objectType: nil,
             objectCount: nil
         }
     end
 
     def newGeorectifiedInfo
-        intObj = {
+        {
             gridRepresentation: {},
             checkPointAvailable: false,
             checkPointDescription: nil,
@@ -846,7 +847,7 @@ class InternalMetadata
     end
 
     def newGeoreferenceableInfo
-        intObj = {
+        {
             gridRepresentation: {},
             controlPointAvailable: false,
             orientationParameterAvailable: false,
@@ -857,7 +858,7 @@ class InternalMetadata
     end
 
     def newCoverageDescription
-        intObj = {
+        {
             coverageName: nil,
             coverageDescription: nil,
             processingLevelCode: {},
@@ -867,14 +868,14 @@ class InternalMetadata
     end
 
     def newAttributeGroup
-        intObj = {
+        {
             attributeContentTypes: [],
             attributes: []
         }
     end
 
     def newAttribute
-        intObj = {
+        {
             sequenceIdentifier: nil,
             sequenceIdentifierType: nil,
             attributeDescription: nil,
@@ -902,7 +903,7 @@ class InternalMetadata
     end
 
     def newImageDescription
-        intObj = {
+        {
             illuminationElevationAngle: nil,
             illuminationAzimuthAngle: nil,
             imagingCondition: nil,
@@ -918,7 +919,7 @@ class InternalMetadata
     end
 
     def newLocale
-        intObj = {
+        {
             languageCode: nil,
             countryCode: nil,
             characterEncoding: nil
@@ -926,7 +927,7 @@ class InternalMetadata
     end
 
     def newSeries
-        intObj = {
+        {
             seriesName: nil,
             seriesIssue: nil,
             issuePage: nil
@@ -934,7 +935,7 @@ class InternalMetadata
     end
 
     def newScope
-        intObj = {
+        {
             scopeCode: nil,
             scopeDescriptions: [],
             extents: []
@@ -942,7 +943,7 @@ class InternalMetadata
     end
 
     def newScopeDescription
-        intObj = {
+        {
             dataset: nil,
             attributes: nil,
             features: nil,
@@ -951,7 +952,7 @@ class InternalMetadata
     end
 
     def newAllocation
-        intObj = {
+        {
             amount: nil,
             currency: nil,
             sourceId: nil,
@@ -962,21 +963,21 @@ class InternalMetadata
     end
 
     def newFunding
-        intObj = {
+        {
             allocations: [],
             timePeriod: {}
         }
     end
 
     def newMetadataRepository
-        intObj = {
+        {
             repository: nil,
             metadataStandard: nil
         }
     end
 
     def newResourceType
-        intObj = {
+        {
             type: nil,
             name: nil
         }
