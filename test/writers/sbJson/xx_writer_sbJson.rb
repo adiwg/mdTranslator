@@ -38,7 +38,7 @@ class Test_Write_sbJSONv0 < MiniTest::Test
     refute_nil metadata[:writerOutput]
   end
 
-  def test_minimum_succes
+  def test_minimum_success
     # get json file for tests from examples folder
     file = File.join(File.dirname(__FILE__), '../../../', 'schemas/v1_0/examples', 'minimum_example.json')
     file = File.open(file, 'r')
