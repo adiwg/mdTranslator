@@ -5,7 +5,6 @@
 #  Josh Bradley original script
 
 require 'jbuilder'
-require 'uuidtools'
 require_relative 'sbJson_id'
 
 module ADIWG
@@ -15,11 +14,23 @@ module ADIWG
 
             def self.build(intObj, responseObj)
 
+               resourceInfo = intObj[:metadata][:resourceInfo]
+               hCitation = resourceInfo[:citation]
+
                Jbuilder.new do |json|
 
                   # id
                   json.id Id.build(intObj)
 
+                  # title
+                  unless hCitation.empty?
+                     json.title hCitation[:title] unless hCitation[:title].nil?
+                  end
+
+                  # alternateTitles (incorporates subTitle)
+                  unless hCitation.empty?
+                     json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
+                  end
                end
 
             end

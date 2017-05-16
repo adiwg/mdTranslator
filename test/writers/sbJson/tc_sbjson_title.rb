@@ -1,35 +1,50 @@
-# sbJson 1 writer tests - id
+# sbJson 1 writer tests - title
 
 # History:
-#  Stan Smith 2017-05-13 original script
+#  Stan Smith 2017-05-15 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'sbjson_test_parent'
 
-class TestWriterId < TestWriterSbJsonParent
+class TestWriterTitle < TestWriterSbJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterSbJsonParent.getJson('id.json')
+   @@jsonIn = TestWriterSbJsonParent.getJson('title.json')
 
-   def test_id_metadata_identifier
+   def test_title
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['id']
+      got = hJsonOut['title']
 
-      assert_equal 'myMetadataIdentifier', got
+      assert_equal 'myCitationTitle', got
 
    end
 
-   def test_id_metadata_citation
+   def test_alternateTitle
+
+      metadata = ADIWG::Mdtranslator.translate(
+         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
+         writer: 'sbJson', showAllTags: false)
+
+      hJsonOut = JSON.parse(metadata[:writerOutput])
+      got = hJsonOut['alternateTitles']
+
+      assert_equal 2, got.length
+      assert_equal 'alternateTitle0', got[0]
+      assert_equal 'alternateTitle1', got[1]
+
+   end
+
+   def test_alternateTitle_missing
 
       hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['metadataInfo'].delete('metadataIdentifier')
+      hJsonIn['metadata']['resourceInfo']['citation'].delete('alternateTitle')
       hIn = hJsonIn.to_json
 
       metadata = ADIWG::Mdtranslator.translate(
@@ -37,28 +52,12 @@ class TestWriterId < TestWriterSbJsonParent
          writer: 'sbJson', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['id']
+      got = hJsonOut['alternateTitles']
 
-      assert_equal 'myCitationIdentifier0', got
-
-   end
-
-   def test_id_default
-
-      hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['metadataInfo'].delete('metadataIdentifier')
-      hJsonIn['metadata']['resourceInfo']['citation'].delete('identifier')
-      hIn = hJsonIn.to_json
-
-      metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'sbJson', showAllTags: false)
-
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['id']
-
-      refute_nil got
+      assert_nil got
 
    end
 
 end
+
+
