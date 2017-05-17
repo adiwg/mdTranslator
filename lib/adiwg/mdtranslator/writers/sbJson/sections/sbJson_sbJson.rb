@@ -7,6 +7,7 @@
 require 'jbuilder'
 require_relative 'sbJson_id'
 require_relative 'sbJson_citation'
+require_relative 'sbJson_identifier'
 
 module ADIWG
    module Mdtranslator
@@ -18,6 +19,8 @@ module ADIWG
                resourceInfo = intObj[:metadata][:resourceInfo]
                hCitation = resourceInfo[:citation]
 
+               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
+
                Jbuilder.new do |json|
 
                   # id
@@ -25,18 +28,24 @@ module ADIWG
 
                   # title / alternateTitles (incorporates subTitle)
                   unless hCitation.empty?
-                     json.title hCitation[:title] unless hCitation[:title].nil?
+                     json.title hCitation[:title]
                      json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   end
 
                   # body / summary
-                  json.body resourceInfo[:abstract] unless resourceInfo[:abstract].nil?
-                  json.summary resourceInfo[:shortAbstract] unless resourceInfo[:shortAbstract].nil?
+                  json.body resourceInfo[:abstract]
+                  json.summary resourceInfo[:shortAbstract]
 
-                  # citation
+                  # citation / identifier
                   unless hCitation.empty?
                      json.citation Citation.build(hCitation)
+                     json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier)
                   end
+
+                  # purpose
+                  json.purpose resourceInfo[:purpose]
+
+                  # rights
 
                end
 

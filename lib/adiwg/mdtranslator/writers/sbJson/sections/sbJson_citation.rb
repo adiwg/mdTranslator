@@ -29,6 +29,7 @@ module ADIWG
                         end
                      end
                   end
+                  indexes.uniq!
                   indexes.each do |index|
                      hContact = ADIWG::Mdtranslator::Writers::SbJson.getContact(index)
                      unless hContact.empty?

@@ -8,7 +8,7 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterCitation < TestWriterMdJsonParent
+class TestWriterMdJsonCitation < TestWriterMdJsonParent
 
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('citation.json')

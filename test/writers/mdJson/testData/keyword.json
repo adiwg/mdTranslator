@@ -82,6 +82,22 @@
                      "keyword": "keyword12"
                   }
                ]
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "environment",
+                     "keywordId": "007"
+                  },
+                  {
+                     "keyword": "inlandWaters",
+                     "keywordId": "012"
+                  }
+               ],
+               "keywordType": "isoTopicCategory",
+               "thesaurus": {
+                  "title": "ISO Topic Categories"
+               }
             }
          ]
       }

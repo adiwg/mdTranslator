@@ -8,7 +8,7 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterResourceInfo < TestWriterMdJsonParent
+class TestWriterMdJsonResourceInfo < TestWriterMdJsonParent
 
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('resourceInfo.json')
@@ -30,6 +30,10 @@ class TestWriterResourceInfo < TestWriterMdJsonParent
 
       expect = JSON.parse(@@jsonIn)
       expect = expect['metadata']['resourceInfo']
+
+      # delete deprecated element from source mdJson so it will match output from writer
+      expect.delete('topicCategory')
+
       got = JSON.parse(metadata[:writerOutput])
       got = got['metadata']['resourceInfo']
 

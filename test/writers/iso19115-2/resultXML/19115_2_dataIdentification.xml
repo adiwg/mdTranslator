@@ -422,10 +422,7 @@
       <gmd:characterSet>
         <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="MD_CharacterSetCode1" codeSpace="userCode"/>
       </gmd:characterSet>
-      <gmd:topicCategory>
-      </gmd:topicCategory>
-      <gmd:topicCategory>
-      </gmd:topicCategory>
+      <gmd:topicCategory/>
       <gmd:environmentDescription>
         <gco:CharacterString>environmentDescription</gco:CharacterString>
       </gmd:environmentDescription>
