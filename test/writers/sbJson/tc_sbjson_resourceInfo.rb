@@ -11,7 +11,7 @@ require_relative 'sbjson_test_parent'
 class TestWriterSbJsonBody < TestWriterSbJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterSbJsonParent.getJson('body.json')
+   @@jsonIn = TestWriterSbJsonParent.getJson('resourceInfo.json')
 
    def test_body
 
@@ -36,6 +36,19 @@ class TestWriterSbJsonBody < TestWriterSbJsonParent
       got = hJsonOut['summary']
 
       assert_equal 'mySummary', got
+
+   end
+
+   def test_purpose
+
+      metadata = ADIWG::Mdtranslator.translate(
+         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
+         writer: 'sbJson', showAllTags: false)
+
+      hJsonOut = JSON.parse(metadata[:writerOutput])
+      got = hJsonOut['purpose']
+
+      assert_equal 'myPurpose', got
 
    end
 
