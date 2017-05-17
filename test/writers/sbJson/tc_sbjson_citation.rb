@@ -8,7 +8,7 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'sbjson_test_parent'
 
-class TestWriterCitation < TestWriterSbJsonParent
+class TestWriterSbJsonCitation < TestWriterSbJsonParent
 
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('citation.json')
@@ -22,7 +22,6 @@ class TestWriterCitation < TestWriterSbJsonParent
       expect = 'Person 001, Person 002, Organization 001, Person 003, Person 004, 2017-05(creation), 2017-05-16(publish), 2017-05-16T16:10:00-09:00(revision), myCitationTitle, http://ISO.uri/adiwg/0, http://ISO.uri/adiwg/1'
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['citation']
-      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut)
 
       assert_equal expect, got
 

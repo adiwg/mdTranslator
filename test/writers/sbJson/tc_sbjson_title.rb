@@ -8,7 +8,7 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'sbjson_test_parent'
 
-class TestWriterTitle < TestWriterSbJsonParent
+class TestWriterSbJsonTitle < TestWriterSbJsonParent
 
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('title.json')
