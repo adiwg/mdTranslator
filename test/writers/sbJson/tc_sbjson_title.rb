@@ -1,4 +1,4 @@
-# sbJson 1 writer tests - title
+# sbJson 1 writer tests - title/alternateTitles
 
 # History:
 #  Stan Smith 2017-05-15 original script

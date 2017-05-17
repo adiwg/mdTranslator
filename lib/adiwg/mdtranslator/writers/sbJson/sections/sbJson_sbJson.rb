@@ -31,6 +31,13 @@ module ADIWG
                   unless hCitation.empty?
                      json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   end
+
+                  # body
+                  json.body resourceInfo[:abstract] unless resourceInfo[:abstract].nil?
+
+                  # summary
+                  json.summary resourceInfo[:shortAbstract] unless resourceInfo[:shortAbstract].nil?
+
                end
 
             end
