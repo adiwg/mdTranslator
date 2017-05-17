@@ -6,6 +6,7 @@
 
 require 'jbuilder'
 require_relative 'sbJson_id'
+require_relative 'sbJson_citation'
 
 module ADIWG
    module Mdtranslator
@@ -22,21 +23,20 @@ module ADIWG
                   # id
                   json.id Id.build(intObj)
 
-                  # title
+                  # title / alternateTitles (incorporates subTitle)
                   unless hCitation.empty?
                      json.title hCitation[:title] unless hCitation[:title].nil?
-                  end
-
-                  # alternateTitles (incorporates subTitle)
-                  unless hCitation.empty?
                      json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   end
 
-                  # body
+                  # body / summary
                   json.body resourceInfo[:abstract] unless resourceInfo[:abstract].nil?
-
-                  # summary
                   json.summary resourceInfo[:shortAbstract] unless resourceInfo[:shortAbstract].nil?
+
+                  # citation
+                  unless hCitation.empty?
+                     json.citation Citation.build(hCitation)
+                  end
 
                end
 

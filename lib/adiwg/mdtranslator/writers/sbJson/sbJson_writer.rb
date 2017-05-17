@@ -14,7 +14,7 @@ module ADIWG
          module SbJson
 
             def self.startWriter(intObj, responseObj)
-               @intObj = intObj
+               @contacts = intObj[:contacts]
 
                # set output flag for null properties
                Jbuilder.ignore_nil(!responseObj[:writerShowTags])
@@ -35,9 +35,9 @@ module ADIWG
             end
 
             # find contact in contact array and return the contact hash
-            def self.getContact(contactID)
-               @intObj[:contacts].each do |hContact|
-                  return hContact if hContact[:contactId] == contactID
+            def self.getContact(contactIndex)
+               if @contacts[contactIndex]
+                  return @contacts[contactIndex]
                end
                {}
             end

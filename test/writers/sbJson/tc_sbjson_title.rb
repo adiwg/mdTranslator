@@ -41,6 +41,23 @@ class TestWriterTitle < TestWriterSbJsonParent
 
    end
 
+   def test_alternateTitle_empty
+
+      hJsonIn = JSON.parse(@@jsonIn)
+      hJsonIn['metadata']['resourceInfo']['citation']['alternateTitle'] = []
+      hIn = hJsonIn.to_json
+
+      metadata = ADIWG::Mdtranslator.translate(
+         file: hIn, reader: 'mdJson', validate: 'normal',
+         writer: 'sbJson', showAllTags: false)
+
+      hJsonOut = JSON.parse(metadata[:writerOutput])
+      got = hJsonOut['alternateTitles']
+
+      assert_nil got
+
+   end
+
    def test_alternateTitle_missing
 
       hJsonIn = JSON.parse(@@jsonIn)

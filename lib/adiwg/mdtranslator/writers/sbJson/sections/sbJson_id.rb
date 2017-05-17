@@ -4,7 +4,6 @@
 #  Stan Smith 2017-05-15 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
 
-require 'jbuilder'
 require 'uuidtools'
 
 module ADIWG
