@@ -88,4 +88,75 @@
     </gmd:MD_Keywords>
   </gmd:descriptiveKeywords>
 
+  <gmd:descriptiveKeywords>
+    <gmd:MD_Keywords>
+      <gmd:keyword>
+        <gco:CharacterString>oceans</gco:CharacterString>
+      </gmd:keyword>
+      <gmd:keyword>
+        <gco:CharacterString>economy</gco:CharacterString>
+      </gmd:keyword>
+      <gmd:type>
+        <gmd:MD_KeywordTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_KeywordTypeCode" codeListValue="isoTopicCategory" codeSpace="adiwg002"/>
+      </gmd:type>
+      <gmd:thesaurusName>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>title</gco:CharacterString>
+          </gmd:title>
+          <gmd:alternateTitle/>
+          <gmd:date gco:nilReason="missing"/>
+          <gmd:edition/>
+          <gmd:identifier/>
+          <gmd:citedResponsibleParty/>
+          <gmd:presentationForm/>
+          <gmd:series/>
+          <gmd:otherCitationDetails/>
+          <gmd:ISBN/>
+          <gmd:ISSN/>
+        </gmd:CI_Citation>
+      </gmd:thesaurusName>
+    </gmd:MD_Keywords>
+  </gmd:descriptiveKeywords>
+
+  <gmd:descriptiveKeywords>
+    <gmd:MD_Keywords>
+      <gmd:keyword>
+        <gco:CharacterString>structure</gco:CharacterString>
+      </gmd:keyword>
+      <gmd:type>
+        <gmd:MD_KeywordTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_KeywordTypeCode" codeListValue="isoTopicCategory" codeSpace="adiwg002"/>
+      </gmd:type>
+      <gmd:thesaurusName>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>title</gco:CharacterString>
+          </gmd:title>
+          <gmd:alternateTitle/>
+          <gmd:date gco:nilReason="missing"/>
+          <gmd:edition/>
+          <gmd:identifier/>
+          <gmd:citedResponsibleParty/>
+          <gmd:presentationForm/>
+          <gmd:series/>
+          <gmd:otherCitationDetails/>
+          <gmd:ISBN/>
+          <gmd:ISSN/>
+        </gmd:CI_Citation>
+      </gmd:thesaurusName>
+    </gmd:MD_Keywords>
+  </gmd:descriptiveKeywords>
+
+  <gmd:topicCategory>
+    <gmd:MD_TopicCategoryCode>oceans</gmd:MD_TopicCategoryCode>
+  </gmd:topicCategory>
+
+  <gmd:topicCategory>
+    <gmd:MD_TopicCategoryCode>economy</gmd:MD_TopicCategoryCode>
+  </gmd:topicCategory>
+
+  <gmd:topicCategory>
+    <gmd:MD_TopicCategoryCode>structure</gmd:MD_TopicCategoryCode>
+  </gmd:topicCategory>
+
 </gmi:MI_Metadata>

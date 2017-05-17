@@ -14,7 +14,7 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterDateTime < TestWriterMdJsonParent
+class TestWriterMdJsonDateTime < TestWriterMdJsonParent
 
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('date.json')

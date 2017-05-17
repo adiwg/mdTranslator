@@ -1,6 +1,7 @@
 # mdJson 2.0 writer - resource information
 
 # History:
+#   Stan Smith 2017-05-16 deprecated topicCategory
 #   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
 #   Josh Bradley original script
 
@@ -43,7 +44,6 @@ module ADIWG
                      json.credit hResInfo[:credits] unless hResInfo[:credits].empty?
                      json.timePeriod TimePeriod.build(hResInfo[:timePeriod]) unless hResInfo[:timePeriod].empty?
                      json.status hResInfo[:status] unless hResInfo[:status].empty?
-                     json.topicCategory hResInfo[:topicCategories] unless hResInfo[:topicCategories].empty?
                      json.pointOfContact @Namespace.json_map(hResInfo[:pointOfContacts], ResponsibleParty)
                      json.spatialReferenceSystem @Namespace.json_map(hResInfo[:spatialReferenceSystems], SpatialReference)
                      json.spatialRepresentationType hResInfo[:spatialRepresentationTypes] unless hResInfo[:spatialRepresentationTypes].empty?

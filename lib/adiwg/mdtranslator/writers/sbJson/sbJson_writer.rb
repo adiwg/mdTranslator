@@ -1,135 +1,57 @@
+# sbJson 1.0 writer
+
+# History:
+#  Stan Smith 2017-05-12 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
+
 require 'jbuilder'
 require_relative 'version'
-require_relative 'sections/sbJson_base'
-require_relative 'sections/sbJson_contact'
-require_relative 'sections/sbJson_identifier'
-require_relative 'sections/sbJson_spatial'
-require_relative 'sections/sbJson_facet'
+require_relative 'sections/sbJson_sbJson'
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module SbJson
-        extend SbJson::Base
-        def self.startWriter(_intObj, responseObj, _paramsObj)
-          @intObj = _intObj
+   module Mdtranslator
+      module Writers
+         module SbJson
 
-          # set output flag for null properties
-          Jbuilder.ignore_nil(!responseObj[:writerShowTags])
-          # set the format of the output file based on the writer specified
-          responseObj[:writerFormat] = 'json'
-          responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::SbJson::VERSION
+            def self.startWriter(intObj, responseObj)
+               @contacts = intObj[:contacts]
 
-          rInfo = _intObj[:metadata][:resourceInfo]
-          mInfo = _intObj[:metadata][:metadataInfo]
-          dInfo = _intObj[:metadata][:distributorInfo]
-          cite = rInfo[:citation]
-          ids = cite[:citResourceIds]
+               # set output flag for null properties
+               Jbuilder.ignore_nil(!responseObj[:writerShowTags])
 
-          metadata = Jbuilder.new do |json|
-            parentId = mInfo[:parentMetadata][:citResourceIds].find {
-                |i| i[:identifierType] == 'scienceBase'
-            } unless mInfo[:parentMetadata].nil? || mInfo[:parentMetadata][:citResourceIds].nil?
-            json.parentId parentId.nil? ? '' : parentId[:identifier]
+               # set the format of the output file based on the writer specified
+               responseObj[:writerFormat] = 'json'
+               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::SbJson::VERSION
 
-            json.identifiers json_map(ids, Identifier)
-            json.title cite[:citTitle]
-            json.alternateTitles([cite[:citAltTitle]]) unless cite[:citAltTitle].nil?
-            json.body rInfo[:abstract]
-            json.citation do
-              names = cite[:citResponsibleParty].map do |rp|
-                cnt = getContact(rp[:contactId])
-                cnt[:indName]
-              end
-              names = names.select! { |s| s }.nil? ? 'Unknown' : names.join(', ')
-              dates = cite[:citDate].map { |dt| dt[:dateTime].strftime('%F') + '(' + dt[:dateType] + ')' }
-              url = cite[:citOlResources].map { |ol| ol[:olResURI] }
-              json.merge! sprintf('%s, %s, %s, %s', names, dates.join(', '), cite[:citTitle], url.join(', '))
-            end
-            json.purpose rInfo[:purpose]
+               # write the sbJson metadata record
+               metadata = SbJson.build(intObj, responseObj)
 
-            legal = []
-            rInfo[:legalConstraints].each do |lc|
-              legal += lc[:accessCodes] += lc[:useCodes] += lc[:otherCons]
-            end
-            json.rights legal.empty? ? nil : legal.join('; ')
-            json.provenance do
-              json.annotation 'Generated using the ADIwg mdTranslator, http://mdtranslator.adiwg.org'
+               # set writer pass to true if no messages
+               # false or warning state will be set by writer code
+               responseObj[:writerPass] = true if responseObj[:writerMessages].empty?
+
+               # encode the metadata target as JSON
+               metadata.target!
             end
 
-            mri = []
-            dInfo.each { |di| di[:distOrderProcs].each { |dop| mri << dop[:orderInstructions] } }
-            json.materialRequestInstructions mri.empty? ? nil : mri.join('; ')
-
-            json.contacts json_map(_intObj[:contacts].select! { |c| !(c[:internal]) }, Contact)
-
-            # grab links from citation, additionalDocumentation, distributionInfo
-            wl = []
-            wl += cite[:citOlResources]
-            dInfo.each { |di| di[:distTransOptions].each { |dto| wl += dto[:online] } }
-            _intObj[:metadata][:additionalDocuments].each { |ad| wl += ad[:citation][:citOlResources] }
-
-            json.webLinks(wl) do |lnk|
-              json.type 'webLink'
-              json.typeLabel 'Web Link'
-              json.uri lnk[:olResURI]
-              json.title lnk[:olResName]
-            end unless wl.empty?
-
-            tags = []
-            rInfo[:topicCategories].each do |tc|
-              tags << { type: 'Label',
-                        scheme: 'ISO 19115 Topic Categories',
-                        name: tc }
-            end
-            rInfo[:descriptiveKeywords].each do |kw|
-              type = kw[:keyTheCitation].fetch(:citTitle, kw[:keywordType]) || 'Theme'
-              scheme = kw[:keyTheCitation].fetch(:citOlResources, [])
-              kw[:keyword].each do |_k|
-                tags << { type: type,
-                          scheme: scheme.empty? ? 'None' : scheme.first[:olResURI],
-                          name: _k }
-              end
-            end
-            json.tags(tags)
-
-            dates = cite[:citDate]
-            tp = rInfo[:timePeriod]
-            unless  tp.empty?
-              dates << { dateType: 'Start', dateTime: tp[:beginTime][:dateTime].to_datetime
-              } unless tp[:beginTime].empty?
-              dates << { dateType: 'End', dateTime: tp[:endTime][:dateTime].to_datetime
-              } unless tp[:endTime].empty?
-
-            end
-            json.dates(dates) do |dt|
-              json.type dt[:dateType]
-              json.dateString dt[:dateTime].strftime('%F')
-              json.label dt[:dateType].split(/(?=[A-Z])/).join(' ').capitalize
+            # find contact in contact array and return the contact hash
+            def self.getContact(contactIndex)
+               if @contacts[contactIndex]
+                  return @contacts[contactIndex]
+               end
+               {}
             end
 
-            json.spatial Spatial.build(rInfo[:extents])
-            json.facets Facet.build(rInfo)
-          end
+            # ignore jBuilder object mapping when array is empty
+            def self.json_map(collection = [], _class)
+               if collection.nil? || collection.empty?
+                  return nil
+               else
+                  collection.map { |item| _class.build(item).attributes! }
+               end
+            end
 
-          # set writer pass to true if no messages
-          # false or warning will be set by code that places the message
-          responseObj[:writerPass] = true if responseObj[:writerMessages].empty?
-
-          # j = JSON.parse(metadata.target!)
-          # puts JSON.pretty_generate(j)
-
-          metadata.target!
-        end
-
-        # find contact in contact array and return the contact hash
-        def self.getContact(contactID)
-          @intObj[:contacts].each do |hContact|
-            return hContact if hContact[:contactId] == contactID
-          end
-          {}
-        end
+         end
       end
-    end
-  end
+   end
 end
