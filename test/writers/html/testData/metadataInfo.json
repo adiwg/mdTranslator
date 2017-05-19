@@ -221,160 +221,161 @@
             "version": "version 1.0",
             "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
             "authority": {
-               "title": "title",
+               "title": "Metadata Identifier Authority Title",
                "alternateTitle": [
                   "alternateTitle0",
                   "alternateTitle1"
-               ],
-               "date": [
-                  {
-                     "date": "2016-10-13",
-                     "dateType": "dateType0"
-                  },
-                  {
-                     "date": "2016-10-22T16:15:14",
-                     "dateType": "dateType1"
-                  }
-               ],
-               "edition": "edition",
-               "responsibleParty": [
-                  {
-                     "role": "principalInvestigator",
-                     "roleExtent": [
-                        {
-                           "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                        },
-                        {
-                           "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                           "geographicExtent": [
-                              {
-                                 "containsData": true,
-                                 "geographicElement": [
-                                    {
-                                       "type": "Feature",
-                                       "id": "polygon-75",
-                                       "bbox": [-10.0, -10.0, 10.0, 10.0],
-                                       "geometry": {
-                                          "type": "Polygon",
-                                          "coordinates": [
-                                             [
-                                                [-161.74223, 67.663378],
-                                                [-161.440345, 67.630173],
-                                                [-161.294611, 67.656257],
-                                                [-161.228063, 67.625736],
-                                                [-161.247712, 67.585909],
-                                                [-161.334662, 67.591324],
-                                                [-161.566245, 67.491263],
-                                                [-161.812338, 67.455299],
-                                                [-161.825019, 67.40123],
-                                                [-162.128301, 67.414364],
-                                                [-162.167825, 67.363047],
-                                                [-162.383403, 67.293329],
-                                                [-162.633432, 67.272237],
-                                                [-162.645587, 67.356665],
-                                                [-162.369023, 67.455264],
-                                                [-162.287324, 67.551235],
-                                                [-162.171139, 67.559356],
-                                                [-161.99344, 67.646806],
-                                                [-161.857964, 67.620329],
-                                                [-161.769431, 67.629407],
-                                                [-161.74223, 67.663378]
-                                             ]
-                                          ]
-                                       },
-                                       "properties": {
-                                          "description": "Agashashok River site",
-                                          "featureName": [
-                                             "Agashashok River",
-                                             "Camp Mosquito"
-                                          ],
-                                          "identifier": [
-                                             {
-                                                "identifier": "AGAR"
-                                             },
-                                             {
-                                                "identifier": "Kup25"
-                                             }
-                                          ],
-                                          "featureScope": "collectionSite",
-                                          "acquisitionMethod": "butterfly net",
-                                          "customField": "not in schema",
-                                          "customArray": [
-                                             "string 1",
-                                             "string 2"
-                                          ]
-                                       }
-                                    }
-                                 ]
-                              }
-                           ]
-                        }
-                     ],
-                     "party": [
-                        {
-                           "contactId": "CID001"
-                        },
-                        {
-                           "contactId": "CID004"
-                        }
-                     ]
-                  },
-                  {
-                     "role": "funder",
-                     "party": [
-                        {
-                           "contactId": "CID003",
-                           "organizationMembers": [
-                              "CID004",
-                              "CID001"
-                           ]
-                        }
-                     ]
-                  }
-               ],
-               "presentationForm": [
-                  "presentationForm0",
-                  "presentationForm1"
-               ],
-               "identifier": [
-                  {
-                     "identifier": "identifier0"
-                  },
-                  {
-                     "identifier": "identifier1"
-                  }
-               ],
-               "series": {
-                  "seriesName": "seriesName",
-                  "seriesIssue": "seriesIssue",
-                  "issuePage": "issuePage"
-               },
-               "otherCitationDetails": [
-                  "otherCitationDetails0",
-                  "otherCitationDetails1"
-               ],
-               "onlineResource": [
-                  {
-                     "uri": "http://ISO.uri/adiwg/0"
-                  },
-                  {
-                     "uri": "http://ISO.uri/adiwg/1"
-                  }
-               ],
-               "graphic": [
-                  {
-                     "fileName": "fileName"
-                  },
-                  {
-                     "fileName": "fileName"
-                  }
                ]
             }
          },
          "parentMetadata": {
-            "title": "title",
+            "title": "Metadata Authority Title",
             "alternateTitle": [
-               "parent metadata"
+               "alternateTitle0",
+               "alternateTitle1"
+            ],
+            "date": [
+               {
+                  "date": "2016-10-13",
+                  "dateType": "dateType0"
+               },
+               {
+                  "date": "2016-10-22T16:15:14",
+                  "dateType": "dateType1"
+               }
+            ],
+            "edition": "edition",
+            "responsibleParty": [
+               {
+                  "role": "principalInvestigator",
+                  "roleExtent": [
+                     {
+                        "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                     },
+                     {
+                        "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "geographicExtent": [
+                           {
+                              "containsData": true,
+                              "geographicElement": [
+                                 {
+                                    "type": "Feature",
+                                    "id": "polygon-75",
+                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                    "geometry": {
+                                       "type": "Polygon",
+                                       "coordinates": [
+                                          [
+                                             [-161.74223, 67.663378],
+                                             [-161.440345, 67.630173],
+                                             [-161.294611, 67.656257],
+                                             [-161.228063, 67.625736],
+                                             [-161.247712, 67.585909],
+                                             [-161.334662, 67.591324],
+                                             [-161.566245, 67.491263],
+                                             [-161.812338, 67.455299],
+                                             [-161.825019, 67.40123],
+                                             [-162.128301, 67.414364],
+                                             [-162.167825, 67.363047],
+                                             [-162.383403, 67.293329],
+                                             [-162.633432, 67.272237],
+                                             [-162.645587, 67.356665],
+                                             [-162.369023, 67.455264],
+                                             [-162.287324, 67.551235],
+                                             [-162.171139, 67.559356],
+                                             [-161.99344, 67.646806],
+                                             [-161.857964, 67.620329],
+                                             [-161.769431, 67.629407],
+                                             [-161.74223, 67.663378]
+                                          ]
+                                       ]
+                                    },
+                                    "properties": {
+                                       "description": "Agashashok River site",
+                                       "featureName": [
+                                          "Agashashok River",
+                                          "Camp Mosquito"
+                                       ],
+                                       "identifier": [
+                                          {
+                                             "identifier": "AGAR"
+                                          },
+                                          {
+                                             "identifier": "Kup25"
+                                          }
+                                       ],
+                                       "featureScope": "collectionSite",
+                                       "acquisitionMethod": "butterfly net",
+                                       "customField": "not in schema",
+                                       "customArray": [
+                                          "string 1",
+                                          "string 2"
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ],
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     },
+                     {
+                        "contactId": "CID004"
+                     }
+                  ]
+               },
+               {
+                  "role": "funder",
+                  "party": [
+                     {
+                        "contactId": "CID003",
+                        "organizationMembers": [
+                           "CID004",
+                           "CID001"
+                        ]
+                     }
+                  ]
+               }
+            ],
+            "presentationForm": [
+               "presentationForm0",
+               "presentationForm1"
+            ],
+            "identifier": [
+               {
+                  "identifier": "identifier0"
+               },
+               {
+                  "identifier": "identifier1"
+               }
+            ],
+            "series": {
+               "seriesName": "seriesName",
+               "seriesIssue": "seriesIssue",
+               "issuePage": "issuePage"
+            },
+            "otherCitationDetails": [
+               "otherCitationDetails0",
+               "otherCitationDetails1"
+            ],
+            "onlineResource": [
+               {
+                  "uri": "http://ISO.uri/adiwg/0"
+               },
+               {
+                  "uri": "http://ISO.uri/adiwg/1"
+               }
+            ],
+            "graphic": [
+               {
+                  "fileName": "fileName"
+               },
+               {
+                  "fileName": "fileName"
+               }
             ]
          },
          "defaultMetadataLocale": {
@@ -592,9 +593,153 @@
             }
          ],
          "citation": {
-            "title": "Main Resource Citation",
+            "title": "Main Resource Title - Citation",
             "alternateTitle": [
-               "Citation for the resource"
+               "How I spent my summer",
+               "Research under the midnight-sun"
+            ],
+            "date": [
+               {
+                  "date": "2017-06-13",
+                  "dateType": "date type"
+               },
+               {
+                  "date": "2017-06-22T16:15:14",
+                  "dateType": "dateTime type"
+               }
+            ],
+            "edition": "edition",
+            "responsibleParty": [
+               {
+                  "role": "principalInvestigator",
+                  "roleExtent": [
+                     {
+                        "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                     },
+                     {
+                        "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "geographicExtent": [
+                           {
+                              "containsData": true,
+                              "geographicElement": [
+                                 {
+                                    "type": "Feature",
+                                    "id": "polygon-75",
+                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                    "geometry": {
+                                       "type": "Polygon",
+                                       "coordinates": [
+                                          [
+                                             [-161.74223, 67.663378],
+                                             [-161.440345, 67.630173],
+                                             [-161.294611, 67.656257],
+                                             [-161.228063, 67.625736],
+                                             [-161.247712, 67.585909],
+                                             [-161.334662, 67.591324],
+                                             [-161.566245, 67.491263],
+                                             [-161.812338, 67.455299],
+                                             [-161.825019, 67.40123],
+                                             [-162.128301, 67.414364],
+                                             [-162.167825, 67.363047],
+                                             [-162.383403, 67.293329],
+                                             [-162.633432, 67.272237],
+                                             [-162.645587, 67.356665],
+                                             [-162.369023, 67.455264],
+                                             [-162.287324, 67.551235],
+                                             [-162.171139, 67.559356],
+                                             [-161.99344, 67.646806],
+                                             [-161.857964, 67.620329],
+                                             [-161.769431, 67.629407],
+                                             [-161.74223, 67.663378]
+                                          ]
+                                       ]
+                                    },
+                                    "properties": {
+                                       "description": "Agashashok River site",
+                                       "featureName": [
+                                          "Agashashok River",
+                                          "Camp Mosquito"
+                                       ],
+                                       "identifier": [
+                                          {
+                                             "identifier": "AGAR"
+                                          },
+                                          {
+                                             "identifier": "Kup25"
+                                          }
+                                       ],
+                                       "featureScope": "collectionSite",
+                                       "acquisitionMethod": "butterfly net",
+                                       "customField": "not in schema",
+                                       "customArray": [
+                                          "string 1",
+                                          "string 2"
+                                       ]
+                                    }
+                                 }
+                              ]
+                           }
+                        ]
+                     }
+                  ],
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     },
+                     {
+                        "contactId": "CID004"
+                     }
+                  ]
+               },
+               {
+                  "role": "funder",
+                  "party": [
+                     {
+                        "contactId": "CID003",
+                        "organizationMembers": [
+                           "CID004",
+                           "CID001"
+                        ]
+                     }
+                  ]
+               }
+            ],
+            "presentationForm": [
+               "presentationForm0",
+               "presentationForm1"
+            ],
+            "identifier": [
+               {
+                  "identifier": "identifier0"
+               },
+               {
+                  "identifier": "identifier1"
+               }
+            ],
+            "series": {
+               "seriesName": "seriesName",
+               "seriesIssue": "seriesIssue",
+               "issuePage": "issuePage"
+            },
+            "otherCitationDetails": [
+               "otherCitationDetails0",
+               "otherCitationDetails1"
+            ],
+            "onlineResource": [
+               {
+                  "uri": "http://ISO.uri/adiwg/0"
+               },
+               {
+                  "uri": "http://ISO.uri/adiwg/1"
+               }
+            ],
+            "graphic": [
+               {
+                  "fileName": "fileName"
+               },
+               {
+                  "fileName": "fileName"
+               }
             ]
          },
          "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -1088,10 +1233,6 @@
                "levelOfDetail": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
             }
          ],
-         "topicCategory": [
-            "imageryBaseMapsEarthCover",
-            "farming"
-         ],
          "keyword": [
             {
                "keyword": [
@@ -1146,6 +1287,23 @@
                      "keyword": "eggs"
                   }
                ]
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "inlandWaters",
+                     "keywordId": "012"
+                  },
+                  {
+                     "keyword": "location",
+                     "keywordId": "013"
+                  },
+                  {
+                     "keyword": "climatologyMeteorologyAtmosphere",
+                     "keywordId": "004"
+                  }
+               ],
+               "keywordType": "isoTopicCategory"
             }
          ],
          "taxonomy": {
