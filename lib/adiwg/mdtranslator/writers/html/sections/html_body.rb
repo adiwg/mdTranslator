@@ -94,6 +94,12 @@ module ADIWG
                      shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
                      @html.h1('mdTranslator ' + shortVersion + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
+                     # report date
+                     @html.section(:class => 'block') do
+                        @html.em('Report Generated:')
+                        @html.text!(Time.new.inspect)
+                     end
+
                      # metadata source
                      @html.h2('Metadata Source', 'id' => 'metadataSource')
                      @html.section(:class => 'block') do

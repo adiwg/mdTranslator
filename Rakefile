@@ -9,6 +9,7 @@ Rake::TestTask.new do |t|
 		'test/writers/iso19110/tc*.rb',
 		'test/writers/mdJson/tc*.rb',
 		'test/writers/sbJson/tc*.rb',
+		'test/writers/html/tc*.rb',
 		'test/translator/tc*.rb'
 	]
 	t.verbose = true

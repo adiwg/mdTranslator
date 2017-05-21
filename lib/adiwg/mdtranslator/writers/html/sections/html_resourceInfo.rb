@@ -2,6 +2,7 @@
 # resource information
 
 # History:
+#  Stan Smith 2017-05-19 removed iso topicCategory (now presented as keywords)
 #  Stan Smith 2017-03-25 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-24 original script
@@ -282,19 +283,9 @@ module ADIWG
                      @html.details do
                         @html.summary('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
                         @html.section(:class => 'block') do
-
-                           # resource - topic categories []
-                           hResource[:topicCategories].each do |category|
-                              @html.em('Topic: ')
-                              @html.text!(category)
-                              @html.br
-                           end
-
-                           # resource - keywords []
                            hResource[:keywords].each do |hKeyword|
                               keywordClass.writeHtml(hKeyword)
                            end
-
                         end
                      end
                   end
