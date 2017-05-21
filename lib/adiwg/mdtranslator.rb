@@ -165,7 +165,7 @@ module ADIWG
             #handle writers
             if writer.nil? || writer == ''
                 hResponseObj[:writerMessages] << "Parameter 'writer:' was not provided"
-                hResponseObj[:writerPass] = false
+                hResponseObj[:writerMessages] << 'Will validate input only'
                 return hResponseObj
             end
 
