@@ -8,6 +8,7 @@ require 'jbuilder'
 require_relative 'sbJson_id'
 require_relative 'sbJson_citation'
 require_relative 'sbJson_identifier'
+require_relative 'sbJson_rights'
 
 module ADIWG
    module Mdtranslator
@@ -46,6 +47,9 @@ module ADIWG
                   json.purpose resourceInfo[:purpose]
 
                   # rights
+                  unless resourceInfo[:constraints].empty?
+                     json.rights Rights.build(resourceInfo[:constraints])
+                  end
 
                end
 
