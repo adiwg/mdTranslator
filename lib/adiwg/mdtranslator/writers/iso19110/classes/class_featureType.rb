@@ -36,6 +36,8 @@ module ADIWG
                         if entityId.nil?
                             @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
                             entityId = 'entity' + @hResponseObj[:writerMissingIdCount]
+                        else
+                            entityId.gsub!(/[^0-9a-zA-Z]/,'')
                         end
 
                         @xml.tag!('gfc:FC_FeatureType', {'id' => entityId}) do

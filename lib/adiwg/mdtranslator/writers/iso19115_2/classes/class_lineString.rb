@@ -39,6 +39,8 @@ module ADIWG
                         if lineId.nil?
                             @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
                             lineId = 'line' + @hResponseObj[:writerMissingIdCount]
+                        else
+                            lineId.gsub!(/[^0-9a-zA-Z]/,'')
                         end
                         attributes['gml:id'] = lineId
 
