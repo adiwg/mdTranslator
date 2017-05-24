@@ -49,17 +49,8 @@ module ADIWG
 
                   # dates
                   hCitation[:dates].each do |hDate|
-                     date = hDate[:date]
-                     dateRes = hDate[:dateResolution]
-                     unless date.nil?
-                        case dateRes
-                           when 'Y', 'YM', 'YMD'
-                              dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                           else
-                              dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
-                        end
-                        citation += dateStr.to_s + '(' + hDate[:dateType] + '), '
-                     end
+                     dateStr = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                     citation += dateStr + '(' + hDate[:dateType] + '), '
                   end
 
                   # title

@@ -9,6 +9,7 @@ require_relative 'sbJson_id'
 require_relative 'sbJson_citation'
 require_relative 'sbJson_identifier'
 require_relative 'sbJson_rights'
+require_relative 'sbJson_provenance'
 
 module ADIWG
    module Mdtranslator
@@ -17,6 +18,7 @@ module ADIWG
 
             def self.build(intObj, responseObj)
 
+               metadataInfo = intObj[:metadata][:metadataInfo]
                resourceInfo = intObj[:metadata][:resourceInfo]
                hCitation = resourceInfo[:citation]
 
@@ -50,6 +52,9 @@ module ADIWG
                   unless resourceInfo[:constraints].empty?
                      json.rights Rights.build(resourceInfo[:constraints])
                   end
+
+                  # provenance
+                  json.provenance Provenance.build(metadataInfo)
 
                end
 

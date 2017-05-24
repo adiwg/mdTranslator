@@ -140,4 +140,23 @@ module AdiwgDateTimeFun
         return sDuration
     end
 
+   def self.stringFromDateObject(obj)
+
+      date = obj[:date]
+      if date.nil?
+         date = obj[:dateTime]
+      end
+      dateRes = obj[:dateResolution]
+      unless date.nil?
+         case dateRes
+            when 'Y', 'YM', 'YMD'
+               dateStr = stringDateFromDateTime(date, dateRes)
+            else
+               dateStr = stringDateTimeFromDateTime(date, dateRes)
+         end
+      end
+
+      return dateStr
+   end
+
 end

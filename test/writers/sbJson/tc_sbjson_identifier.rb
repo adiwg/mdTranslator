@@ -19,7 +19,17 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
-      expect = [{'key'=>'myIdentifier0', 'scheme'=>'mySchema0', 'type'=>'myDescription0'}, {'key'=>'myIdentifier1', 'scheme'=>'mySchema1', 'type'=>'myDescription1'}]
+      expect = [
+         {
+            'key' => 'myIdentifier0',
+            'scheme' => 'mySchema0',
+            'type' => 'myDescription0'
+         },
+         { 'key' => 'myIdentifier1',
+           'scheme' => 'mySchema1',
+           'type' => 'myDescription1'
+         }
+      ]
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['identifiers']
 
