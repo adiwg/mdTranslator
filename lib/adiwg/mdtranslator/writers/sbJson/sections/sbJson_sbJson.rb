@@ -11,6 +11,7 @@ require_relative 'sbJson_identifier'
 require_relative 'sbJson_rights'
 require_relative 'sbJson_provenance'
 require_relative 'sbJson_materialRequest'
+require_relative 'sbJson_parentId'
 
 module ADIWG
    module Mdtranslator
@@ -28,41 +29,19 @@ module ADIWG
 
                Jbuilder.new do |json|
 
-                  # id
                   json.id Id.build(intObj)
-
-                  # title / alternateTitles (incorporates subTitle)
-                  unless hCitation.empty?
-                     json.title hCitation[:title]
-                     json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
-                  end
-
-                  # body / summary
+                  json.title hCitation[:title] unless hCitation.empty?
+                  json.alternateTitles hCitation[:alternateTitles] unless hCitation.empty?
                   json.body resourceInfo[:abstract]
                   json.summary resourceInfo[:shortAbstract]
-
-                  # citation / identifier
-                  unless hCitation.empty?
-                     json.citation Citation.build(hCitation)
-                     json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier)
-                  end
-
-                  # purpose
+                  json.citation Citation.build(hCitation) unless hCitation.empty?
+                  json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier) unless hCitation.empty?
                   json.purpose resourceInfo[:purpose]
-
-                  # rights
-                  unless resourceInfo[:constraints].empty?
-                     json.rights Rights.build(resourceInfo[:constraints])
-                  end
-
-                  # provenance
+                  json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
                   json.provenance Provenance.build(metadataInfo)
-
-                  # material request instructions
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
+                  json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
 
-                  # parent id
-                  
                end
 
             end

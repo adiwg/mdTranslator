@@ -1,0 +1,74 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "myName",
+         "positionName": "myPositionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "originator",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "parentMetadata": {
+            "title": "myParentMetadata",
+            "identifier": [
+               {
+                  "identifier": "notThisId"
+               },
+               {
+                  "identifier": "1866dd77-d40c-4a0d-8589-cf6d0dec3ee4",
+                  "namespace": "gov.sciencebase.catalog"
+               },
+               {
+                  "identifier": "notThisIdEither",
+                  "namespace": "notThisNamespace"
+               }
+            ]
+         }
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}
