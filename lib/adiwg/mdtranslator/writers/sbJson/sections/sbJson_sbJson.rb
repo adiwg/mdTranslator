@@ -10,6 +10,7 @@ require_relative 'sbJson_citation'
 require_relative 'sbJson_identifier'
 require_relative 'sbJson_rights'
 require_relative 'sbJson_provenance'
+require_relative 'sbJson_materialRequest'
 
 module ADIWG
    module Mdtranslator
@@ -20,6 +21,7 @@ module ADIWG
 
                metadataInfo = intObj[:metadata][:metadataInfo]
                resourceInfo = intObj[:metadata][:resourceInfo]
+               distributorInfo = intObj[:metadata][:distributorInfo]
                hCitation = resourceInfo[:citation]
 
                @Namespace = ADIWG::Mdtranslator::Writers::SbJson
@@ -56,9 +58,11 @@ module ADIWG
                   # provenance
                   json.provenance Provenance.build(metadataInfo)
 
-                  # material requisition instructions
-                  json.materialRequisitionInstructions
+                  # material request instructions
+                  json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
 
+                  # parent id
+                  
                end
 
             end

@@ -1,0 +1,133 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "myName",
+         "positionName": "myPositionName"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": true,
+         "name": "myOrganization"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": true,
+         "name": "myOtherOrganization"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "originator",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceDistribution": [
+         {
+            "description": "myDistributionDescription",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  "orderProcess": [
+                     {
+                        "orderingInstructions": "myInstructions0"
+                     },
+                     {
+                        "orderingInstructions": "myInstructions1"
+                     }
+                  ],
+                  "transferOption": []
+               },
+               {
+                  "contact": {
+                     "role": "role2",
+                     "party": [
+                        {
+                           "contactId": "CID002"
+                        },
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  },
+                  "orderProcess": [
+                     {
+                        "orderingInstructions": "myInstructions2"
+                     },
+                     {
+                        "orderingInstructions": "myInstructions3"
+                     }
+                  ],
+                  "transferOption": []
+               }
+            ]
+         },
+         {
+            "description": "myDistributionDescription",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "role3",
+                     "party": [
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  },
+                  "orderProcess": [],
+                  "transferOption": []
+               }
+            ]
+         }
+      ]
+   }
+}
