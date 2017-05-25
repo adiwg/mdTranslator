@@ -76,6 +76,14 @@
                         ]
                      }
                   ]
+               },
+               {
+                  "role": "principalInvestigator",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
                }
             ],
             "date": [

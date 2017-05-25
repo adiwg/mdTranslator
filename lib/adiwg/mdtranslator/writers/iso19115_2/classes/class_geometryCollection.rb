@@ -42,6 +42,8 @@ module ADIWG
                         if objId.nil?
                             @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
                             objId = 'geometryCollection' + @hResponseObj[:writerMissingIdCount]
+                        else
+                            objId.gsub!(/[^0-9a-zA-Z]/,'')
                         end
                         attributes['gml:id'] = objId
 

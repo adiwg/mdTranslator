@@ -15,21 +15,8 @@ module ADIWG
 
                def self.build(hDate)
 
-                  date = hDate[:date]
-                  dateRes = hDate[:dateResolution]
-                  dateStr = ''
-
-                  unless date.nil?
-                     case dateRes
-                        when 'Y', 'YM', 'YMD'
-                           dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                        else
-                           dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
-                     end
-                  end
-
                   Jbuilder.new do |json|
-                     json.date(dateStr)
+                     json.date(AdiwgDateTimeFun.stringFromDateObject(hDate))
                      json.dateType hDate[:dateType]
                   end
 

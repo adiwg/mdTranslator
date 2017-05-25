@@ -65,10 +65,10 @@
             <gco:Boolean>true</gco:Boolean>
           </gmd:extentTypeCode>
           <gmd:westBoundLongitude>
-            <gco:Decimal>200.0</gco:Decimal>
+            <gco:Decimal>-160.0</gco:Decimal>
           </gmd:westBoundLongitude>
           <gmd:eastBoundLongitude>
-            <gco:Decimal>200.0</gco:Decimal>
+            <gco:Decimal>-160.0</gco:Decimal>
           </gmd:eastBoundLongitude>
           <gmd:southBoundLatitude>
             <gco:Decimal>2.0</gco:Decimal>

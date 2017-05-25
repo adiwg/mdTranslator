@@ -2156,6 +2156,240 @@
                      ]
                   }
                ]
+            },
+            {
+               "description": "Extent 3: Other world coordinates.",
+               "geographicExtent": [
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-265, 65],
+                                 [-260, 65],
+                                 [-260, 63],
+                                 [-265, 63],
+                                 [-265, 65]
+                              ]
+                           ]
+                        },
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [200, 55],
+                                 [202, 55],
+                                 [202, 50],
+                                 [200, 50],
+                                 [200, 55]
+                              ]
+                           ]
+                        },
+                        {
+                           "type": "MultiPoint",
+                           "coordinates": [
+                              [-150, 61],
+                              [150, 61]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "MultiPoint",
+                           "coordinates": [
+                              [-150, 61],
+                              [-122, 47],
+                              [-112, 33],
+                              [-105, 39],
+                              [-97, 32],
+                              [-82, 41],
+                              [-81, 39],
+                              [-76, 38],
+                              [-66, 18],
+                              [-118, 34],
+                              [11, 43],
+                              [8, 46],
+                              [98, 8],
+                              [178, -19],
+                              [-157, 21],
+                              [-147, 65],
+                              [-145, 60],
+                              [-148, 70],
+                              [-132, 56]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "MultiPoint",
+                           "coordinates": [
+                              [-150, 61],
+                              [-122, 47],
+                              [-112, 33],
+                              [-105, 39],
+                              [-97, 32],
+                              [-82, 41],
+                              [-81, 39],
+                              [-76, 38],
+                              [-66, 18],
+                              [-118, 34],
+                              [11, 43],
+                              [8, 46],
+                              [98, 8],
+                              [-147, 65],
+                              [-145, 60],
+                              [-148, 70],
+                              [-132, 56]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-100, 30],
+                                 [-95, 40],
+                                 [-100, 50],
+                                 [0, 45],
+                                 [100, 50],
+                                 [95, 40],
+                                 [100, 30],
+                                 [0, 35],
+                                 [-100, 30]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-100, 30],
+                                 [-95, 40],
+                                 [-100, 50],
+                                 [0, 45],
+                                 [200, 50],
+                                 [195, 40],
+                                 [200, 30],
+                                 [0, 35],
+                                 [-100, 30]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [40, 30],
+                                 [45, 40],
+                                 [40, 50],
+                                 [180, 45],
+                                 [250, 50],
+                                 [245, 40],
+                                 [250, 30],
+                                 [180, 35],
+                                 [40, 30]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-250, 30],
+                                 [-245, 40],
+                                 [-250, 50],
+                                 [-180, 45],
+                                 [-50, 50],
+                                 [-55, 40],
+                                 [-50, 30],
+                                 [-180, 35],
+                                 [-250, 30]
+                              ]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": false,
+                     "identifier": {
+                        "identifier": "identifier"
+                     },
+                     "geographicElement": [
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [-200, 40],
+                                 [-200, 55],
+                                 [-170, 55],
+                                 [-170, 40],
+                                 [-200, 40]
+                              ]
+                           ]
+                        },
+                        {
+                           "type": "Polygon",
+                           "coordinates": [
+                              [
+                                 [220, -40],
+                                 [220, -55],
+                                 [150, -55],
+                                 [150, -40],
+                                 [220, -40]
+                              ]
+                           ]
+                        }
+                     ]
+                  }
+               ]
             }
          ]
       },

@@ -197,7 +197,7 @@
                            "features": [
                               {
                                  "type": "Feature",
-                                 "id": "featureId02",
+                                 "id": "=f(e a+t@u^r*eI!d.0}2|",
                                  "bbox": [-10.0, -10.0, 10.0, 10.0],
                                  "geometry": {
                                     "type": "Point",
@@ -207,7 +207,7 @@
                               },
                               {
                                  "type": "Feature",
-                                 "id": "featureId03",
+                                 "id": "_f$e#a,t.u/r<e>I:d;0'3~",
                                  "bbox": [-10.0, -10.0, 10.0, 10.0],
                                  "geometry": {
                                     "type": "LineString",
@@ -222,7 +222,7 @@
                               },
                               {
                                  "type": "Feature",
-                                 "id": "featureId04",
+                                 "id": "{f]e[a`t%u!r?e//I__d@#0**4+",
                                  "bbox": [-10.0, -10.0, 10.0, 10.0],
                                  "geometry": {
                                     "type": "GeometryCollection",

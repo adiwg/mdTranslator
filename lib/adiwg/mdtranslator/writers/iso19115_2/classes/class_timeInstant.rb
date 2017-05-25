@@ -33,6 +33,8 @@ module ADIWG
                         if timeID.nil?
                             @hResponseObj[:writerMissingIdCount] = @hResponseObj[:writerMissingIdCount].succ
                             timeID = 'timeInstant' + @hResponseObj[:writerMissingIdCount]
+                        else
+                            timeID.gsub!(/[^0-9a-zA-Z]/,'')
                         end
 
                         @xml.tag!('gml:TimeInstant', {'gml:id' => timeID}) do

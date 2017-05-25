@@ -18,40 +18,39 @@ module ADIWG
                def self.build(hCitation)
 
                   citation = ''
+                  role = ''
 
                   # names
-                  indexes = []
+                  aIndexes = []
                   hCitation[:responsibleParties].each do |hResponsibility|
+                     role = hResponsibility[:roleName]
                      hResponsibility[:parties].each do |hParty|
-                        indexes << hParty[:contactIndex]
+                        party = {}
+                        party[:role] = role
+                        party[:index] = hParty[:contactIndex]
+                        aIndexes << party
                         hParty[:organizationMembers].each do |hMember|
-                           indexes << hMember[:contactIndex]
+                           party = {}
+                           party[:role] = role
+                           party[:index] = hMember[:contactIndex]
+                           aIndexes << party
                         end
                      end
                   end
-                  indexes.uniq!
-                  indexes.each do |index|
-                     hContact = ADIWG::Mdtranslator::Writers::SbJson.getContact(index)
+                  aIndexes.uniq!
+                  aIndexes.each do |hIndex|
+                     hContact = ADIWG::Mdtranslator::Writers::SbJson.getContact(hIndex[:index])
                      unless hContact.empty?
                         unless hContact[:name].nil?
-                           citation += hContact[:name] + ', '
+                           citation += hContact[:name] + '(' + hIndex[:role] + '), '
                         end
                      end
                   end
 
                   # dates
                   hCitation[:dates].each do |hDate|
-                     date = hDate[:date]
-                     dateRes = hDate[:dateResolution]
-                     unless date.nil?
-                        case dateRes
-                           when 'Y', 'YM', 'YMD'
-                              dateStr = AdiwgDateTimeFun.stringDateFromDateTime(date, dateRes)
-                           else
-                              dateStr = AdiwgDateTimeFun.stringDateTimeFromDateTime(date, dateRes)
-                        end
-                        citation += dateStr.to_s + '(' + hDate[:dateType] + '), '
-                     end
+                     dateStr = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                     citation += dateStr + '(' + hDate[:dateType] + '), '
                   end
 
                   # title

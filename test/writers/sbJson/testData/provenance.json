@@ -1,0 +1,98 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "myName",
+         "positionName": "myPositionName"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": true,
+         "name": "myOrganization"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "myOtherName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "originator",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID002"
+                  }
+               ]
+            },
+            {
+               "role": "author",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ],
+         "metadataDate": [
+            {
+               "date": "2016-10-31",
+               "dateType": "dateType"
+            },
+            {
+               "date": "2017-02-16T15:12:47",
+               "dateType": "creation"
+            },
+            {
+               "date": "2017-05-22",
+               "dateType": "lastUpdate"
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}
