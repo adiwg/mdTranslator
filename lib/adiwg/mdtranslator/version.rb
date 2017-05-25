@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.0.0rc6 2017-05-24 move geometries to real world if in -1 or +1 world
+#                 --- removed special characters from ids for gml:id= in iso writers
 # 2.0.0rc5 2017-05-20 Fixed bug with no writer provided
 # 2.0.0rc4 2017-05-19 bump mdJson schema version to 2.1.2
 # 2.0.0rc3 2017-05-16 removed topicCategory from schema and manage as keyword
@@ -11,7 +13,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.0.0rc5"
+      VERSION = "2.0.0rc6"
    end
 end
 

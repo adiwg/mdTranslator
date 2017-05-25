@@ -56,6 +56,9 @@ module ADIWG
                   # provenance
                   json.provenance Provenance.build(metadataInfo)
 
+                  # material requisition instructions
+                  json.materialRequisitionInstructions
+
                end
 
             end
