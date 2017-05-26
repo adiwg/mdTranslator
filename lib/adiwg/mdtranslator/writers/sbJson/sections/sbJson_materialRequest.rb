@@ -27,7 +27,7 @@ module ADIWG
                            aParties.each do |hParty|
                               contactIndex = hParty[:contactIndex]
                               unless contactIndex.nil?
-                                 hContact = ADIWG::Mdtranslator::Writers::SbJson.getContact(contactIndex)
+                                 hContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_index(contactIndex)
                                  unless hContact.empty?
                                     name = hContact[:name]
                                     if instructions.nil?

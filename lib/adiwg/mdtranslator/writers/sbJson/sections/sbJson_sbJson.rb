@@ -13,6 +13,7 @@ require_relative 'sbJson_provenance'
 require_relative 'sbJson_materialRequest'
 require_relative 'sbJson_parentId'
 require_relative 'sbJson_contact'
+require_relative 'sbJson_contactList'
 
 module ADIWG
    module Mdtranslator
@@ -32,9 +33,7 @@ module ADIWG
 
                   json.id Id.build(intObj)
                   json.title hCitation[:title] unless hCitation.empty?
-                  unless hCitation.empty?
-                     json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
-                  end
+                  json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   json.body resourceInfo[:abstract]
                   json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
@@ -44,7 +43,8 @@ module ADIWG
                   json.provenance Provenance.build(metadataInfo)
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
-                  json.contacts Contacts.build(intObj)
+                  aContactList = ContactList.build(intObj)
+                  json.contacts @Namespace.json_map(aContactList, Contact) unless aContactList.empty?
 
                end
 

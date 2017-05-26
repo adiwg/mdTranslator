@@ -1,0 +1,205 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001",
+         "positionName": "person001PositionName",
+         "memberOfOrganization": [
+            "CID005"
+         ],
+         "logoGraphic": [
+            {
+               "fileName": "fileName",
+               "fileDescription": "fileDescription",
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/0"
+                  },
+                  {
+                     "uri": "http://ISO.uri/adiwg/1"
+                  }
+               ]
+            }
+         ],
+         "phone": [
+            {
+               "phoneName": "phoneName1",
+               "phoneNumber": "111-111-1111",
+               "service": ["voice", "fax", "sms"]
+            },
+            {
+               "phoneName": "phoneName2",
+               "phoneNumber": "222-222-2222",
+               "service": ["tty"]
+            }
+         ],
+         "address": [
+            {
+               "addressType": ["mailing","physical"],
+               "description": "myAddressDescription",
+               "deliveryPoint": [
+                  "deliveryPoint 00",
+                  "deliveryPoint 01"
+               ],
+               "city": "myCity",
+               "administrativeArea": "myState",
+               "postalCode": "myPostalCode",
+               "country": "myCountry"
+            }
+         ],
+         "electronicMailAddress": [
+            "e.mail@address.com0",
+            "e.mail@address.com1"
+         ],
+         "onlineResource": [],
+         "hoursOfService": [
+            "myHoursOfService 00",
+            "myHoursOfService 01"
+         ],
+         "contactInstructions": "my Contact Instructions",
+         "contactType": "mContactType"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "Person 002",
+         "address": [
+            {
+               "addressType": ["mailing","other"],
+               "description": "yourAddressDescription",
+               "deliveryPoint": [
+                  "deliveryPoint 02"
+               ],
+               "city": "yourCity",
+               "administrativeArea": "yourState",
+               "postalCode": "yourPostalCode",
+               "country": "yourCountry"
+            }
+         ]
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "Person 003"
+      },
+      {
+         "contactId": "CID004",
+         "isOrganization": false,
+         "name": "Person 004"
+      },
+      {
+         "contactId": "CID005",
+         "isOrganization": true,
+         "name": "Organization 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle",
+            "responsibleParty": [
+               {
+                  "role": "principalInvestigator",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     },
+                     {
+                        "contactId": "CID004"
+                     }
+                  ]
+               },
+               {
+                  "role": "funder",
+                  "party": [
+                     {
+                        "contactId": "CID005",
+                        "organizationMembers": [
+                           "CID003",
+                           "CID004",
+                           "CID001"
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "role": "principalInvestigator",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               }
+            ],
+            "date": [
+               {
+                  "date": "2017-05",
+                  "dateType": "creation"
+               },
+               {
+                  "date": "2017-05-16",
+                  "dateType": "publish"
+               },
+               {
+                  "date": "2017-05-16T16:10:00-09:00",
+                  "dateType": "revision"
+               }
+            ],
+            "onlineResource": [
+               {
+                  "uri": "http://ISO.uri/adiwg/0",
+                  "protocol": "protocol",
+                  "name": "name",
+                  "description": "description",
+                  "function": "function"
+               },
+               {
+                  "uri": "http://ISO.uri/adiwg/1"
+               }
+            ]
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

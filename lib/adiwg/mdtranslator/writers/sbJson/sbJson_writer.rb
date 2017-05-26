@@ -35,9 +35,19 @@ module ADIWG
             end
 
             # find contact in contact array and return the contact hash
-            def self.getContact(contactIndex)
+            def self.get_contact_by_index(contactIndex)
                if @contacts[contactIndex]
                   return @contacts[contactIndex]
+               end
+               {}
+            end
+
+            # find contact in contact array and return the contact hash
+            def self.get_contact_by_id(contactId)
+               @contacts.each do |hContact|
+                  if hContact[:contactId] == contactId
+                     return hContact
+                  end
                end
                {}
             end

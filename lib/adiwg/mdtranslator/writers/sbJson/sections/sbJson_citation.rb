@@ -39,7 +39,7 @@ module ADIWG
                   end
                   aIndexes.uniq!
                   aIndexes.each do |hIndex|
-                     hContact = ADIWG::Mdtranslator::Writers::SbJson.getContact(hIndex[:index])
+                     hContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_index(hIndex[:index])
                      unless hContact.empty?
                         unless hContact[:name].nil?
                            citation += hContact[:name] + '(' + hIndex[:role] + '), '
