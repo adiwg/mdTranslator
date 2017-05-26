@@ -12,6 +12,7 @@ require_relative 'sbJson_rights'
 require_relative 'sbJson_provenance'
 require_relative 'sbJson_materialRequest'
 require_relative 'sbJson_parentId'
+require_relative 'sbJson_contact'
 
 module ADIWG
    module Mdtranslator
@@ -31,7 +32,9 @@ module ADIWG
 
                   json.id Id.build(intObj)
                   json.title hCitation[:title] unless hCitation.empty?
-                  json.alternateTitles hCitation[:alternateTitles] unless hCitation.empty?
+                  unless hCitation.empty?
+                     json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
+                  end
                   json.body resourceInfo[:abstract]
                   json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
@@ -41,6 +44,7 @@ module ADIWG
                   json.provenance Provenance.build(metadataInfo)
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
+                  json.contacts Contacts.build(intObj)
 
                end
 
