@@ -45,7 +45,7 @@ module ADIWG
                         aContactList << { :role => role, :index => hParty[:contactIndex] }
                      end
                   end
-                  aContactList.uniq!
+                  aContactList = aContactList.uniq
 
                end # build
 
