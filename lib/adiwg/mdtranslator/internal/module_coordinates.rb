@@ -13,6 +13,8 @@
 
 module AdiwgCoordinates
 
+   @spanWorld = 0
+
    # repack coordinate array into single string for ISO
    def self.stringifyCoords(aCoords, responseObj)
 
@@ -62,6 +64,9 @@ module AdiwgCoordinates
 
    # compute bounding box
    def self.computeBbox(aGeo)
+
+      # reset spanned world to 0 before computing bounding box
+      @spanWorld = 0
 
       # find all the eastings (x) and northings (y) in the GeoJSON object
       aNorthings = []
@@ -155,7 +160,8 @@ module AdiwgCoordinates
 
    end
 
-   # move geometry to real world if necessary
+   # move geometry to real world if possible
+   # move geometry to a single spanned meridian
    def self.checkGeometry(aCoords, aNorthings, aEastings)
 
       aGeoNorthings = []
@@ -165,11 +171,27 @@ module AdiwgCoordinates
 
       minEast = aGeoEastings.min
       maxEast = aGeoEastings.max
+
       if maxEast < -180
          aGeoEastings.collect! { |x| x + 360 }
       end
       if minEast > 180
          aGeoEastings.collect! { |x| x - 360 }
+      end
+
+      minEast = aGeoEastings.min
+      maxEast = aGeoEastings.max
+
+      if @spanWorld == 0
+         @spanWorld = -1 if maxEast < 0 && minEast < -180
+         @spanWorld = 1 if minEast > 0 && maxEast > 180
+      end
+
+      if @spanWorld == -1 && maxEast > 180
+         aGeoEastings.collect! { |x| x - 360 }
+      end
+      if @spanWorld == 1 && minEast < -180
+         aGeoEastings.collect! { |x| x + 360 }
       end
 
       aEastings.concat(aGeoEastings)
