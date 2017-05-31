@@ -48,7 +48,7 @@ module ADIWG
                   json.contacts @Namespace.json_map(aContactList, Contact) unless aContactList.empty?
                   json.webLinks WebLink.build(intObj[:metadata])
                   json.browseCategories BrowseCategory.build(resourceInfo[:resourceTypes])
-                  json.tags 
+                  json.tags
 
                end
 

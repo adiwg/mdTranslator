@@ -62,7 +62,8 @@ module ADIWG
                         json.name hContact[:name]
                         json.contactType type
                         json.personalTitle hContact[:positionName] if type == 'person'
-                        json.type Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                        sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                        json.type sbRole = sbRole.nil? ? role : sbRole
                         json.email hContact[:eMailList][0] unless hContact[:eMailList].empty?
                         json.hours Hours.build(hContact[:hoursOfService]) unless hContact[:hoursOfService].empty?
                         json.instructions hContact[:contactInstructions]
