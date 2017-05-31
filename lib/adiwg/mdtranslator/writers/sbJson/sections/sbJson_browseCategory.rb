@@ -1,4 +1,4 @@
-# sbJson 1.0 writer
+# sbJson 1.0 writer browse categories
 
 # History:
 #  Stan Smith 2017-05-31 original script

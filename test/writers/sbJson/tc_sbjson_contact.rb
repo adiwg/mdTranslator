@@ -79,7 +79,6 @@ class TestWriterSbJsonContact < TestWriterSbJsonParent
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['contacts']
-      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut.to_json)
 
       assert_equal expect, got
 
