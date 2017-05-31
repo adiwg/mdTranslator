@@ -10,58 +10,55 @@ module ADIWG
 
             module Codelists
 
-               def self.role_iso_to_sbJson(role)
+               @iso_sb_role = [
+                  {iso: 'resourceProvider', sb: 'Resource Provider'},
+                  {iso: 'custodian', sb: 'Custodian'},
+                  {iso: 'rightsHolder', sb: 'Data Owner'},
+                  {iso: 'use', sb: 'User'},
+                  {iso: 'distributor', sb: 'Distributor'},
+                  {iso: 'originator', sb: 'Originator'},
+                  {iso: 'pointOfContact', sb: 'Point of Contact'},
+                  {iso: 'principalInvestigator', sb: 'Principal Investigator'},
+                  {iso: 'processor', sb: 'Processor'},
+                  {iso: 'author', sb: 'Author'},
+                  {iso: 'coAuthor', sb: 'Author'},
+                  {iso: 'collaborator', sb: 'Cooperator/Partner'},
+                  {iso: 'contributor', sb: 'Cooperator/Partner'},
+                  {iso: 'editor', sb: 'Editor'},
+                  {iso: 'coPrincipalInvestigator', sb: 'Co-Investigator'}
+               ]
 
-                  case role
-                     when 'resourceProvider'
-                        sbRole = 'Resource Provider'
+               @iso_sb_onlineFunction = [
+                  {iso: 'information', sb: 'webLink'},
+                  {iso: 'completeMetadata', sb: 'originalMetadata'},
+                  {iso: 'browseGraphic', sb: 'browseImage'},
+                  {iso: 'webApplication', sb: 'webapp'}
+               ]
 
-                     when 'custodian'
-                        sbRole = 'Custodian'
+               def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
-                     when 'owner', 'rightsHolder'
-                        sbRole = 'Data Owner'
+                  codeList = instance_variable_get("@#{codelist}")
 
-                     when 'use'
-                        sbRole = 'User'
-
-                     when 'distributor'
-                        sbRole = 'Distributor'
-
-                     when 'originator'
-                        sbRole = 'Originator'
-
-                     when 'pointOfContact'
-                        sbRole = 'Point of Contact'
-
-                     when 'principalInvestigator'
-                        sbRole = 'Principal Investigator'
-
-                     when 'processor'
-                        sbRole = 'Processor'
-
-                     when 'author', 'coAuthor'
-                        sbRole = 'Author'
-
-                     when 'collaborator', 'contributor'
-                        sbRole = 'Cooperator/Partner'
-
-                     when 'editor'
-                        sbRole = 'Editor'
-
-                     when 'coPrincipalInvestigator'
-                        'Co-Investigator'
-
-                     when 'publisher', 'sponsor', 'mediator', 'funder', 'stakeholder', 'administrator',
-                        'client', 'logistics'
-                        sbRole = role
-
-                     else
-                        sbRole = role
-
+                  unless isoCode.nil?
+                     codeList.each do |obj|
+                        if obj[:iso] == isoCode
+                           return obj[:sb]
+                        end
+                     end
+                     return isoCode
                   end
 
-                  return sbRole
+                  unless sbCode.nil?
+                     codeList.each do |obj|
+                        if obj[:sb] == sbCode
+                           return obj[:iso]
+                        end
+                     end
+                     return sbCode
+                  end
+
+                  # both isoCode and sbCode nil
+                  return nil
 
                end
 

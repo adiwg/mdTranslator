@@ -15,12 +15,32 @@ module ADIWG
 
             module Contact
 
+               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
+
+               def self.get_contact_list(intObj)
+
+                  # gather all responsibility objects in intObj
+                  aResponsibility = @Namespace.nested_objs_by_element(intObj, 'roleName')
+
+                  # make a list of unique role/party contacts
+                  aContactList = []
+                  aResponsibility.each do |hResponsibility|
+                     role = hResponsibility[:roleName]
+                     hResponsibility[:parties].each do |hParty|
+                        aContactList << { :role => role, :index => hParty[:contactIndex] }
+                     end
+                  end
+
+                  aContactList = aContactList.uniq
+
+               end
+
                def self.build(hParty)
 
                   Jbuilder.new do |json|
 
                      role = hParty[:role]
-                     hContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_index(hParty[:index])
+                     hContact = @Namespace.get_contact_by_index(hParty[:index])
 
                      unless hContact.empty?
 
@@ -28,7 +48,7 @@ module ADIWG
 
                         orgName = nil
                         unless hContact[:memberOfOrgs].empty?
-                           orgContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_id(hContact[:memberOfOrgs][0])
+                           orgContact = @Namespace.get_contact_by_id(hContact[:memberOfOrgs][0])
                            orgName = orgContact[:name]
                         end
                         logoUrl = nil
@@ -42,7 +62,7 @@ module ADIWG
                         json.name hContact[:name]
                         json.contactType type
                         json.personalTitle hContact[:positionName] if type == 'person'
-                        json.type Codelists.role_iso_to_sbJson(role)
+                        json.type Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
                         json.email hContact[:eMailList][0] unless hContact[:eMailList].empty?
                         json.hours Hours.build(hContact[:hoursOfService]) unless hContact[:hoursOfService].empty?
                         json.instructions hContact[:contactInstructions]
