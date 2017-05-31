@@ -13,7 +13,8 @@ require_relative 'sbJson_provenance'
 require_relative 'sbJson_materialRequest'
 require_relative 'sbJson_parentId'
 require_relative 'sbJson_contact'
-require_relative 'sbJson_webLinks'
+require_relative 'sbJson_webLink'
+require_relative 'sbJson_browseCategory'
 
 module ADIWG
    module Mdtranslator
@@ -46,6 +47,8 @@ module ADIWG
                   aContactList = Contact.get_contact_list(intObj)
                   json.contacts @Namespace.json_map(aContactList, Contact) unless aContactList.empty?
                   json.webLinks WebLink.build(intObj[:metadata])
+                  json.browseCategories BrowseCategory.build(resourceInfo[:resourceTypes])
+                  json.tags 
 
                end
 
