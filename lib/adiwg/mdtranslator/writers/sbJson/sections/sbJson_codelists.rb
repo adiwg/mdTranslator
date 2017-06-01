@@ -93,7 +93,26 @@ module ADIWG
                   {iso: 'presentation', sb: nil}
                ]
 
-               def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
+               @iso_sb_date = [
+                  {iso: 'creation', sb: 'Creation'},
+                  {iso: 'publication', sb: 'Publication'},
+                  {iso: 'revision', sb: 'Revision'},
+                  {iso: 'expiry', sb: nil},
+                  {iso: 'lastUpdate', sb: 'lastUpdate'},
+                  {iso: 'lastRevision', sb: 'lastRevision'},
+                  {iso: 'nextUpdate', sb: 'nextUpdate'},
+                  {iso: 'unavailable', sb: 'unavailable'},
+                  {iso: 'inForce', sb: 'inForce'},
+                  {iso: 'adopted', sb: 'adopted'},
+                  {iso: 'deprecated', sb: 'deprecated'},
+                  {iso: 'suspended', sb: 'suspended'},
+                  {iso: 'validityBegins', sb: 'validityBegins'},
+                  {iso: 'validityExpires', sb: 'validityExpires'},
+                  {iso: 'released', sb: 'Release'},
+                  {iso: 'distribution', sb: 'date identifiers when an instance of the resource was distributed'}
+               ]
+
+                  def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
                   codeList = instance_variable_get("@#{codelist}")
 

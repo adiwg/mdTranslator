@@ -16,6 +16,7 @@ require_relative 'sbJson_contact'
 require_relative 'sbJson_webLink'
 require_relative 'sbJson_browseCategory'
 require_relative 'sbJson_tag'
+require_relative 'sbJson_date'
 
 module ADIWG
    module Mdtranslator
@@ -50,6 +51,7 @@ module ADIWG
                   json.webLinks WebLink.build(intObj[:metadata])
                   json.browseCategories BrowseCategory.build(resourceInfo[:resourceTypes])
                   json.tags Tag.build(resourceInfo)
+                  json.dates Date.build(hCitation) unless hCitation.empty?
 
                end
 

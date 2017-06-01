@@ -1,7 +1,9 @@
-# sbJson 1.0 writer
+# sbJson 1.0 writer citation
 
 # History:
 #  Stan Smith 2017-05-16 original script
+
+require_relative 'sbJson_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -50,7 +52,12 @@ module ADIWG
                   # dates
                   hCitation[:dates].each do |hDate|
                      dateStr = AdiwgDateTimeFun.stringFromDateObject(hDate)
-                     citation += dateStr + '(' + hDate[:dateType] + '), '
+                     dateType = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
+                     if dateType.nil?
+                        citation += dateStr + ', '
+                     else
+                        citation += dateStr + '(' + dateType + '), '
+                     end
                   end
 
                   # title
