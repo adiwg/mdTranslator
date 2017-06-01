@@ -35,7 +35,7 @@ class TestWriterSbJsonDate < TestWriterSbJsonParent
             'dateString' => '2017-05-16T16:10:00-09:00'
          }
       ]
-      
+
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['dates']
 
