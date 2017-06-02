@@ -16,7 +16,6 @@ module ADIWG
 
                   aDates = []
 
-                  # dates
                   hCitation[:dates].each do |hDate|
                      sbDate = {}
                      sbDate[:type] = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])

@@ -172,6 +172,7 @@ module AdiwgCoordinates
       minEast = aGeoEastings.min
       maxEast = aGeoEastings.max
 
+      # if all coordinates in -1 or +1 world, move back to real world
       if maxEast < -180
          aGeoEastings.collect! { |x| x + 360 }
       end
@@ -182,11 +183,13 @@ module AdiwgCoordinates
       minEast = aGeoEastings.min
       maxEast = aGeoEastings.max
 
+      # if geoObject spans a meridian, find out which one and make it default
       if @spanWorld == 0
          @spanWorld = -1 if maxEast < 0 && minEast < -180
          @spanWorld = 1 if minEast > 0 && maxEast > 180
       end
 
+      # bring -1 and +1 world objects back into default meridian world
       if @spanWorld == -1 && maxEast > 180
          aGeoEastings.collect! { |x| x - 360 }
       end
