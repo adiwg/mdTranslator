@@ -14,8 +14,6 @@ module ADIWG
 
                def self.build(aFunding)
 
-                  aBudgets = []
-
                   hBudget = {}
                   hBudget[:className] = 'gov.sciencebase.catalog.item.facet.BudgetFacet'
                   hBudget[:annualBudgets] = []
@@ -38,7 +36,7 @@ module ADIWG
                      hBudget[:annualBudgets] << budget
                   end
 
-                  aBudgets << hBudget
+                  hBudget
 
                end
 

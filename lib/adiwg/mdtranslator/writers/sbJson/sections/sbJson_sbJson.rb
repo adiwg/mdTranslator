@@ -18,7 +18,7 @@ require_relative 'sbJson_browseCategory'
 require_relative 'sbJson_tag'
 require_relative 'sbJson_date'
 require_relative 'sbJson_spatial'
-require_relative 'sbJson_budget'
+require_relative 'sbJson_facet'
 
 module ADIWG
    module Mdtranslator
@@ -55,7 +55,7 @@ module ADIWG
                   json.tags Tag.build(resourceInfo)
                   json.dates Date.build(hCitation) unless hCitation.empty?
                   json.spatial Spatial.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
-                  json.facets Budget.build(intObj[:metadata][:funding]) unless intObj[:metadata][:funding].empty?
+                  json.facets Facet.build(intObj[:metadata])
 
                end
 
