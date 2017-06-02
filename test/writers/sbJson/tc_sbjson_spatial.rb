@@ -19,13 +19,19 @@ class TestWriterSbJsonSpatial < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
-      expect = [
-
-      ]
+      expect = {
+         'boundingBox' => {
+            'maxY' =>67.663378,
+            'minY' =>0.0,
+            'maxX' =>-10.0,
+            'minX' =>90.0
+         }
+      }
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['spatial']
-
+      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut)
+      
       assert_equal expect, got
 
    end
