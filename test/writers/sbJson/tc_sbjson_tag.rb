@@ -13,7 +13,7 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('tag.json')
 
-   def test_browseCategories
+   def test_tags
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',

@@ -13,7 +13,7 @@ class TestWriterSbJsonSpatial < TestWriterSbJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('spatial.json')
 
-   def test_citation
+   def test_boundingBox
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
@@ -30,8 +30,7 @@ class TestWriterSbJsonSpatial < TestWriterSbJsonParent
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['spatial']
-      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut)
-      
+
       assert_equal expect, got
 
    end

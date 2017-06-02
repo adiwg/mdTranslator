@@ -13,7 +13,7 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('identifier.json')
 
-   def test_citation
+   def test_identifier
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
