@@ -24,6 +24,8 @@ module ADIWG
                   # project facet
                   aFacets << Project.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
 
+                  # citation facet
+
                   aFacets
 
                end

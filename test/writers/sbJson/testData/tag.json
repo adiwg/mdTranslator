@@ -53,7 +53,10 @@
          },
          "abstract": "myBody",
          "status": [
-            "status"
+            "completed",
+            "onGoing",
+            "underDevelopment",
+            "accepted"
          ],
          "pointOfContact": [
             {

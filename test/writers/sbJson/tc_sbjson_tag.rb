@@ -78,6 +78,18 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
             'type' => 'ISO 19115 Topic Categories',
             'name' => 'structure',
             'scheme' => 'ISO 19115 Topic Categories'
+         },
+         {
+            'type' => 'Project Status',
+            'name' => 'Completed'
+         },
+         {
+            'type' => 'Project Status',
+            'name' => 'In Progress'
+         },
+         {
+            'type' => 'Project Status',
+            'name' => 'Approved'
          }
       ]
 

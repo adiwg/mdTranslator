@@ -50,6 +50,22 @@ module ADIWG
                      end
                   end
 
+                  # tags for projects
+                  hResource[:resourceTypes].each do |hType|
+                     type = hType[:type]
+                     if type == 'project'
+                        hResource[:status].each do |status|
+                           sbStatus = Codelists.codelist_iso_to_sb('iso_sb_progress', :isoCode => status)
+                           unless sbStatus.nil?
+                              hTag = {}
+                              hTag[:type] = 'Project Status'
+                              hTag[:name] = sbStatus
+                              aTags << hTag
+                           end
+                        end
+                     end
+                  end
+
                   aTags
 
                end
