@@ -19,46 +19,50 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
-      expect = [
-         {
-            'className' => 'gov.sciencebase.catalog.item.facet.BudgetFacet',
-            'annualBudgets' => [
-               {
-                  'fundingSources' => [
-                     {
-                        'amount' => 250.0,
-                        'matching' => 'true',
-                        'recipient' => 'bar1',
-                        'source' => 'foo1'
-                     },
-                     {
-                        'amount' => 250000.0,
-                        'matching' => 'false'
-                     }
-                  ],
-                  'year' => '2016'
-               },
-               {
-                  'fundingSources' => [
-                     {
-                        'amount' => 500.0,
-                        'matching' => 'true',
-                        'recipient' => 'bar2',
-                        'source' => 'foo2'
-                     },
-                     {
-                        'amount' => 500000.0,
-                        'matching' => 'false'
-                     }
-                  ],
-                  'year' => '2017'
-               }
-            ]
-         }
-      ]
-      
+      expect = {
+         'className' => 'gov.sciencebase.catalog.item.facet.BudgetFacet',
+         'annualBudgets' => [
+            {
+               'fundingSources' => [
+                  {
+                     'amount' => 250.0,
+                     'matching' => 'true',
+                     'recipient' => 'bar1',
+                     'source' => 'foo1'
+                  },
+                  {
+                     'amount' => 250000.0,
+                     'matching' => 'false'
+                  }
+               ],
+               'year' => '2016'
+            },
+            {
+               'fundingSources' => [
+                  {
+                     'amount' => 500.0,
+                     'matching' => 'true',
+                     'recipient' => 'bar2',
+                     'source' => 'foo2'
+                  },
+                  {
+                     'amount' => 500000.0,
+                     'matching' => 'false'
+                  }
+               ],
+               'year' => '2017'
+            }
+         ]
+      }
+
       hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['facets']
+      aGot = hJsonOut['facets']
+      got = {}
+      aGot.each do |hGot|
+         if hGot['className'] == 'gov.sciencebase.catalog.item.facet.BudgetFacet'
+            got = hGot
+         end
+      end
 
       assert_equal expect, got
 

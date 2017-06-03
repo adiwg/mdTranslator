@@ -112,6 +112,31 @@ module ADIWG
                   {iso: 'distribution', sb: 'date identifiers when an instance of the resource was distributed'}
                ]
 
+               @iso_sb_progress = [
+                  {iso: 'completed', sb: 'Completed'},
+                  {iso: 'historicalArchive', sb: nil},
+                  {iso: 'obsolete', sb: nil},
+                  {iso: 'onGoing', sb: 'In Progress'},
+                  {iso: 'onGoing', sb: 'Active'},
+                  {iso: 'planned', sb: nil},
+                  {iso: 'required', sb: nil},
+                  {iso: 'underDevelopment', sb: nil},
+                  {iso: 'final', sb: nil},
+                  {iso: 'pending', sb: nil},
+                  {iso: 'retired', sb: nil},
+                  {iso: 'superseded', sb: nil},
+                  {iso: 'tentative', sb: nil},
+                  {iso: 'valid', sb: nil},
+                  {iso: 'accepted', sb: 'Approved'},
+                  {iso: 'notAccepted', sb: nil},
+                  {iso: 'withdrawn', sb: nil},
+                  {iso: 'proposed', sb: 'Proposed'},
+                  {iso: 'deprecated', sb: nil},
+                  {iso: 'funded', sb: nil},
+                  {iso: 'cancelled', sb: nil},
+                  {iso: 'suspended', sb: nil}
+               ]
+
                   def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
                   codeList = instance_variable_get("@#{codelist}")

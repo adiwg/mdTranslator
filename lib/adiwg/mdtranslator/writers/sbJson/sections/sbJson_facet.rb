@@ -5,6 +5,7 @@
 #  Josh Bradley original script
 
 require_relative 'sbJson_budget'
+require_relative 'sbJson_project'
 
 module ADIWG
    module Mdtranslator
@@ -15,14 +16,13 @@ module ADIWG
 
                def self.build(hMetadata)
 
-                  aFunding = hMetadata[:funding]
-
                   aFacets = []
 
                   # budget facet
-                  aFacets << Budget.build(aFunding) unless aFunding.empty?
+                  aFacets << Budget.build(hMetadata[:funding]) unless hMetadata[:funding].empty?
 
                   # project facet
+                  aFacets << Project.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
 
                   aFacets
 
