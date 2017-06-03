@@ -6,6 +6,7 @@
 
 require_relative 'sbJson_budget'
 require_relative 'sbJson_project'
+require_relative 'sbJson_publication'
 
 module ADIWG
    module Mdtranslator
@@ -24,7 +25,8 @@ module ADIWG
                   # project facet
                   aFacets << Project.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
 
-                  # citation facet
+                  # publication facet (citation)
+                  aFacets << Publication.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
 
                   aFacets
 
