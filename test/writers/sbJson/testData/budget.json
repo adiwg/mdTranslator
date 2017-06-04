@@ -1,7 +1,7 @@
 {
    "schema": {
       "name": "mdJson",
-      "version": "2.0.0"
+      "version": "2.1.2"
    },
    "contact": [
       {
@@ -93,6 +93,24 @@
                "startDateTime": "2017-02",
                "endDateTime": "2017-12-31"
             }
+         },
+         {
+            "timePeriod": {
+               "startDateTime": "2014"
+            }
+         },
+         {
+            "timePeriod": {
+               "endDateTime": "2015"
+            }
+         },
+         {
+            "allocation": [
+               {
+                  "amount": 100.00,
+                  "currency": "THB"
+               }
+            ]
          }
       ]
    }

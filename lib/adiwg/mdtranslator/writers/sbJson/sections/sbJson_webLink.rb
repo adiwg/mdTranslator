@@ -50,6 +50,10 @@ module ADIWG
                      end
                   end
 
+                  if aLinks.empty?
+                     return nil
+                  end
+
                   aLinks
 
                end

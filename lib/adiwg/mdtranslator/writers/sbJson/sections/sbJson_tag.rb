@@ -66,6 +66,10 @@ module ADIWG
                      end
                   end
 
+                  if aTags.empty?
+                     return nil
+                  end
+
                   aTags
 
                end

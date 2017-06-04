@@ -51,6 +51,20 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
                   }
                ],
                'year' => '2017'
+            },
+            {
+               'year' => '2014'
+            },
+            {
+               'year' => '2015'
+            },
+            {
+               'fundingSources' => [
+                  {
+                     'amount' => 100.0,
+                     'matching' => 'false'
+                  }
+               ]
             }
          ]
       }

@@ -20,13 +20,26 @@ module ADIWG
                   aFacets = []
 
                   # budget facet
-                  aFacets << Budget.build(hMetadata[:funding]) unless hMetadata[:funding].empty?
+                  unless hMetadata[:funding].empty?
+                     hBudgetFacet = Budget.build(hMetadata[:funding])
+                     aFacets << hBudgetFacet unless hBudgetFacet.empty?
+                  end
 
                   # project facet
-                  aFacets << Project.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
+                  unless hMetadata[:resourceInfo].empty?
+                     hProjectFacet = Project.build(hMetadata[:resourceInfo])
+                     aFacets << hProjectFacet unless hProjectFacet.empty?
+                  end
 
                   # publication facet (citation)
-                  aFacets << Publication.build(hMetadata[:resourceInfo]) unless hMetadata[:resourceInfo].empty?
+                  unless hMetadata[:resourceInfo].empty?
+                     hPublicationFacet = Publication.build(hMetadata[:resourceInfo])
+                     aFacets << hPublicationFacet unless hPublicationFacet.empty?
+                  end
+
+                  if aFacets.empty?
+                     return nil
+                  end
 
                   aFacets
 

@@ -23,6 +23,10 @@ module ADIWG
                      aCategories << sbType unless sbType.nil?
                   end
 
+                  if aCategories.empty?
+                     return nil
+                  end
+
                   aCategories = aCategories.uniq
 
                end

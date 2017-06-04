@@ -24,6 +24,10 @@ module ADIWG
                      aDates << sbDate unless sbDate[:type].nil?
                   end
 
+                  if aDates.empty?
+                     return nil
+                  end
+
                   aDates
 
                end
