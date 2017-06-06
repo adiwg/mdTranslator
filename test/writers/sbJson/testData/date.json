@@ -1,0 +1,77 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle",
+            "date": [
+               {
+                  "date": "2017-05",
+                  "dateType": "creation",
+                  "description": "Creation Date"
+               },
+               {
+                  "date": "2017-05-16",
+                  "dateType": "publication",
+                  "description": "Published First Edition"
+               },
+               {
+                  "date": "2017-05-16T16:10:00-09:00",
+                  "dateType": "revision"
+               },
+               {
+                  "date": "2017-05-16T16:10:00-09:00",
+                  "dateType": "expiry"
+               }
+            ]
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

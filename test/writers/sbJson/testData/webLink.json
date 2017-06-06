@@ -1,0 +1,132 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "name"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "graphicOverview": [
+            {
+               "fileName": "fileName",
+               "fileDescription": "fileDescription",
+               "fileType": "fileType",
+               "fileUri": [
+                  {
+                     "uri": "http://ISO.uri/adiwg/4",
+                     "protocol": "protocol",
+                     "name": "myName4",
+                     "description": "myDescription4",
+                     "function": "browseGraphic"
+                  },
+                  {
+                     "uri": "http://ISO.uri/adiwg/5",
+                     "protocol": "protocol",
+                     "name": "myName5",
+                     "description": "myDescription5",
+                     "function": "browseGraphic"
+                  }
+               ]
+            }
+         ]
+      },
+      "additionalDocumentation": [
+         {
+            "resourceType": [
+               {
+                  "type": "type1",
+                  "name": "name1"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "myCitationTitle1",
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/1",
+                        "protocol": "protocol",
+                        "name": "myName1",
+                        "description": "myDescription1",
+                        "function": "download"
+                     },
+                     {
+                        "uri": "http://ISO.uri/adiwg/2"
+                     }
+                  ]
+               },
+               {
+                  "title": "myCitationTitle2"
+               }
+            ]
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type3",
+                  "name": "name3"
+               }
+            ],
+            "citation": [
+               {
+                  "title": "myCitationTitle3",
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/3",
+                        "protocol": "protocol",
+                        "name": "myName1",
+                        "description": "myDescription3",
+                        "function": "webApplication"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+}

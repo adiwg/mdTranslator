@@ -1,0 +1,117 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.1.2"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "funding": [
+         {
+            "allocation": [
+               {
+                  "amount": 250.00,
+                  "currency": "myCurrency",
+                  "sourceId": "foo1",
+                  "recipientId": "bar1",
+                  "matching": true,
+                  "comment": "myComment"
+               },
+               {
+                  "amount": 250000.00,
+                  "currency": "USD"
+               }
+            ],
+            "timePeriod": {
+               "startDateTime": "2016-10-14T11:10:15.2-10:00",
+               "endDateTime": "2016-12-31"
+            }
+         },
+         {
+            "allocation": [
+               {
+                  "amount": 500.00,
+                  "currency": "myNextCurrency",
+                  "sourceId": "foo2",
+                  "recipientId": "bar2",
+                  "matching": true,
+                  "comment": "myNextComment"
+               },
+               {
+                  "amount": 500000.00,
+                  "currency": "USD"
+               }
+            ],
+            "timePeriod": {
+               "startDateTime": "2017-02",
+               "endDateTime": "2017-12-31"
+            }
+         },
+         {
+            "timePeriod": {
+               "startDateTime": "2014"
+            }
+         },
+         {
+            "timePeriod": {
+               "endDateTime": "2015"
+            }
+         },
+         {
+            "allocation": [
+               {
+                  "amount": 100.00,
+                  "currency": "THB"
+               }
+            ]
+         }
+      ]
+   }
+}
