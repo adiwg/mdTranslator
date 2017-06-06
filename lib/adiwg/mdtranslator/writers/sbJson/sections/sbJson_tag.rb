@@ -55,9 +55,11 @@ module ADIWG
                      type = hType[:type]
                      if type == 'project'
                         hResource[:status].each do |status|
+                           # TODO don't translate, push out all
                            sbStatus = Codelists.codelist_iso_to_sb('iso_sb_progress', :isoCode => status)
                            unless sbStatus.nil?
                               hTag = {}
+                              # TODO just status
                               hTag[:type] = 'Project Status'
                               hTag[:name] = sbStatus
                               aTags << hTag

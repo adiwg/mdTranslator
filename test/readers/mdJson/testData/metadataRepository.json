@@ -1,8 +1,11 @@
 {
-  "metadataRepository": [
-    {
-      "repository": "repository",
-      "metadataStandard": "iso19115_2"
-    }
-  ]
+   "metadataRepository": [
+      {
+         "repository": "repository",
+         "citation": {
+            "title": "title"
+         },
+         "metadataStandard": "iso19115_2"
+      }
+   ]
 }

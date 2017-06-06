@@ -2972,11 +2972,26 @@
    ],
    "metadataRepository": [
       {
-         "repository": "USGS ScienceBase",
+         "repository": "data.gov",
+         "citation": {
+            "title": "My Repository Citation Title",
+            "alternateTitle": [
+               "alternateTitle0",
+               "alternateTitle1"
+            ],
+            "identifier": [
+               {
+                  "identifier": "identifier 0"
+               },
+               {
+                  "identifier": "identifier 1"
+               }
+            ]
+         },
          "metadataStandard": "FGDC"
       },
       {
-         "repository": "data.gov",
+         "repository": "dataOne",
          "metadataStandard": "iso19115_2"
       }
    ]
