@@ -1,6 +1,10 @@
 
 ## html
 
+### Supported versions
+
+> Supports mdTranslator version 2.x
+
 ### Writer for HTML 'human-readable' output of metadata
 
 The HTML Metadata Record output from the mdTranslator is intended to 

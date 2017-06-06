@@ -27,6 +27,10 @@ module ADIWG
                      end
                   end
 
+                  if hProvenance.empty?
+                     return nil
+                  end
+
                   hProvenance
 
                end

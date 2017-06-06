@@ -1,6 +1,9 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.0.0rc9 2017-05-26 allow choice of which dictionary to translate
+#                 ... fix bug when no dictionary is provided in mdJson
+#                 ... add sbJson writer
 # 2.0.0rc6 2017-05-24 move geometries to real world if in -1 or +1 world
 #                 --- removed special characters from ids for gml:id= in iso writers
 # 2.0.0rc5 2017-05-20 Fixed bug with no writer provided
@@ -13,7 +16,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.0.0rc8"
+      VERSION = "2.0.0rc9"
    end
 end
 

@@ -35,9 +35,19 @@ module ADIWG
             end
 
             # find contact in contact array and return the contact hash
-            def self.getContact(contactIndex)
+            def self.get_contact_by_index(contactIndex)
                if @contacts[contactIndex]
                   return @contacts[contactIndex]
+               end
+               {}
+            end
+
+            # find contact in contact array and return the contact hash
+            def self.get_contact_by_id(contactId)
+               @contacts.each do |hContact|
+                  if hContact[:contactId] == contactId
+                     return hContact
+                  end
                end
                {}
             end
@@ -49,6 +59,25 @@ module ADIWG
                else
                   collection.map { |item| _class.build(item).attributes! }
                end
+            end
+
+            # find all nested objects in 'obj' that contain the element 'ele'
+            def self.nested_objs_by_element(obj, ele)
+               aCollected = []
+               obj.each do |key, value|
+                  if key == ele.to_sym
+                     aCollected << obj
+                  elsif obj.is_a?(Array)
+                     if key.respond_to?(:each)
+                        aReturn = nested_objs_by_element(key, ele)
+                        aCollected = aCollected.concat(aReturn) unless aReturn.empty?
+                     end
+                  elsif obj[key].respond_to?(:each)
+                     aReturn = nested_objs_by_element(value, ele)
+                     aCollected = aCollected.concat(aReturn) unless aReturn.empty?
+                  end
+               end
+               aCollected
             end
 
          end

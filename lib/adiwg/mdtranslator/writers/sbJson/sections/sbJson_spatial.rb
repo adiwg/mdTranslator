@@ -1,49 +1,57 @@
-require 'jbuilder'
-require 'rgeo'
+# sbJson 1.0 writer spatial
+
+# History:
+#  Stan Smith 2017-06-01 original script
 
 module ADIWG
-  module Mdtranslator
-    module Writers
-      module SbJson
-        module Spatial
-          def self.build(intObj)
-            geo = []
-            intObj.each do |ext|
-              ext[:extGeoElements].each do |ge|
-                case ge[:elementType]
-                when 'GeometryCollection'
-                  ge[:elementGeometry][:geometry].each do |geom|
-                    geo << AdiwgGeoFormat.internal_to_wkt(geom[:elementGeometry])
+   module Mdtranslator
+      module Writers
+         module SbJson
+
+            module Spatial
+
+               def self.build(aExtents)
+
+                  spatial = {}
+                  aBoxObjects = []
+
+                  aExtents.each do |hExtent|
+                     hExtent[:geographicExtents].each do |hGeoExtent|
+                        hBbox = hGeoExtent[:computedBbox]
+                        sw = [ hBbox[:westLongitude], hBbox[:southLatitude] ]
+                        nw = [ hBbox[:westLongitude], hBbox[:northLatitude] ]
+                        ne = [ hBbox[:eastLongitude], hBbox[:northLatitude] ]
+                        se = [ hBbox[:eastLongitude], hBbox[:southLatitude] ]
+                        aPoly = [ sw, nw, ne, se ]
+                        geoJson = {
+                           type: 'Polygon',
+                           coordinates: [
+                              aPoly
+                           ]
+                        }
+                        aBoxObjects << geoJson
+                     end
                   end
 
-                when 'FeatureCollection'
-                  ge[:elementGeometry][:geometry].each do |fea|
-                    geo << AdiwgGeoFormat.internal_to_wkt(fea[:elementGeometry])
+                  unless aBoxObjects.empty?
+                     hBox = AdiwgCoordinates.computeBbox(aBoxObjects)
+                     sbBox = {}
+                     sbBox[:maxY] = hBox[:northLatitude]
+                     sbBox[:minY] = hBox[:southLatitude]
+                     sbBox[:maxX] = hBox[:eastLongitude]
+                     sbBox[:minX] = hBox[:westLongitude]
+                     spatial[:boundingBox] = sbBox
                   end
-                else
-                  geo << AdiwgGeoFormat.internal_to_wkt(ge[:elementGeometry])
-                end
-              end
+
+                  # representational point is not computed
+
+                  spatial
+
+               end
+
             end
-            # puts geo
-            # calculate the bounds
-            reader = RGeo::WKRep::WKTParser.new(nil, support_wkt12: true)
-            fact = RGeo::Geographic.spherical_factory
-            bbox = RGeo::Cartesian::BoundingBox.new(fact, ignore_z: true)
-            geo.each { |geom| bbox.add(reader.parse(geom)) }
 
-            {
-              boundingBox: {
-                minX: bbox.min_x,
-                maxX: bbox.max_x,
-                minY: bbox.min_y,
-                maxY: bbox.max_y
-              }
-            }
-
-          end
-        end
+         end
       end
-    end
-  end
+   end
 end
