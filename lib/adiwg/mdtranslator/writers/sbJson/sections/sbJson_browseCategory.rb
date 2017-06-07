@@ -17,14 +17,13 @@ module ADIWG
 
                   aCategories = []
 
+                  # always include a 'Data' browse category
+                  aCategories << 'Data'
+
                   aTypes.each do |hType|
                      type = hType[:type]
                      sbType = Codelists.codelist_iso_to_sb('iso_sb_scope', :isoCode => type)
                      aCategories << sbType unless sbType.nil?
-                  end
-
-                  if aCategories.empty?
-                     return nil
                   end
 
                   aCategories = aCategories.uniq

@@ -19,7 +19,7 @@ class TestWriterSbJsonBrowseCategory < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
-      expect = ['Document', 'Collection', 'Project', 'Data', 'Image', 'Report', 'Physical Item']
+      expect = ['Data', 'Document', 'Collection', 'Project', 'Image', 'Report', 'Physical Item']
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['browseCategories']
