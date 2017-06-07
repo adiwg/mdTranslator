@@ -30,6 +30,7 @@ class TestWriterSbJsonIdentifier < TestWriterSbJsonParent
            'type' => 'myDescription1'
          }
       ]
+
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['identifiers']
 

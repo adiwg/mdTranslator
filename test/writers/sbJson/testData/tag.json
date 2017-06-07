@@ -55,8 +55,7 @@
          "status": [
             "completed",
             "onGoing",
-            "underDevelopment",
-            "accepted"
+            "underDevelopment"
          ],
          "pointOfContact": [
             {
