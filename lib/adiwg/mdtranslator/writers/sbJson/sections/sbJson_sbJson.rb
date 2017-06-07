@@ -19,6 +19,8 @@ require_relative 'sbJson_tag'
 require_relative 'sbJson_date'
 require_relative 'sbJson_spatial'
 require_relative 'sbJson_facet'
+require_relative 'sbJson_metadataRepository'
+require_relative 'sbJson_geographicExtent'
 
 module ADIWG
    module Mdtranslator
@@ -56,6 +58,8 @@ module ADIWG
                   json.dates Date.build(hCitation) unless hCitation.empty?
                   json.spatial Spatial.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
                   json.facets Facet.build(intObj[:metadata])
+                  json.metadataRepository Repository.build(intObj[:metadataRepositories]) unless intObj[:metadataRepositories].empty?
+                  json.geographicExtents
 
                end
 
