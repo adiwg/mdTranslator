@@ -59,7 +59,7 @@ module ADIWG
                   json.spatial Spatial.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
                   json.facets Facet.build(intObj[:metadata])
                   json.metadataRepository Repository.build(intObj[:metadataRepositories]) unless intObj[:metadataRepositories].empty?
-                  json.geographicExtents
+                  json.geographicExtents GeographicExtent.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
 
                end
 

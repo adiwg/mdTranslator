@@ -10,8 +10,18 @@ module ADIWG
 
             module GeographicExtent
 
-               def self.build(hGeoExtent)
+               def self.build(aExtents)
 
+                  aGeoExtents = []
+
+                  # gather geographicExtents geoJson blocks
+                  aExtents.each do |hExtent|
+                     hExtent[:geographicExtents].each do |hGeoExtent|
+                        aGeoExtents << hGeoExtent[:nativeGeoJson]
+                     end
+                  end
+
+                  aGeoExtents
 
                end
 
