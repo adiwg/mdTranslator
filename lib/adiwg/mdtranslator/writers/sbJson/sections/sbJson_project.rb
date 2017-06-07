@@ -19,11 +19,12 @@ module ADIWG
                   hResource[:resourceTypes].each do |hResourceType|
                      if hResourceType[:type] == 'project'
                         hProject[:className] = 'gov.sciencebase.catalog.item.facet.ProjectFacet'
-                        # TODO treat as a array take first
-                        unless hResource[:status].empty?
-                           status = hResource[:status][0]
+                        hResource[:status].each do |status|
                            sbStatus = Codelists.codelist_iso_to_sb('iso_sb_progress', :isoCode => status)
-                           hProject[:projectStatus] = sbStatus
+                           unless sbStatus.nil?
+                              hProject[:projectStatus] = sbStatus
+                              break
+                           end
                         end
                         unless hResource[:shortAbstract].nil?
                            hProject[:parts] = [

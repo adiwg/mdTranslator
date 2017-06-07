@@ -40,7 +40,9 @@
          "abstract": "myBody",
          "shortAbstract": "My Short Abstract",
          "status": [
-            "onGoing"
+            "underDevelopment",
+            "onGoing",
+            "accepted"
          ],
          "pointOfContact": [
             {
