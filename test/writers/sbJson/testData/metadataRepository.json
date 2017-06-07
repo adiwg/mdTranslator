@@ -7,7 +7,7 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "Person 001"
+         "name": "name"
       }
    ],
    "metadata": {
@@ -26,11 +26,7 @@
       "resourceInfo": {
          "resourceType": [
             {
-               "type": "dataset",
-               "name": "name"
-            },
-            {
-               "type": "project",
+               "type": "type",
                "name": "name"
             }
          ],
@@ -38,11 +34,9 @@
             "title": "myCitationTitle"
          },
          "abstract": "myBody",
-         "shortAbstract": "My Short Abstract",
+         "purpose": "myPurpose",
          "status": [
-            "underDevelopment",
-            "onGoing",
-            "accepted"
+            "status"
          ],
          "pointOfContact": [
             {
@@ -60,5 +54,23 @@
             "characterSet": "UTF-8"
          }
       }
-   }
+   },
+   "metadataRepository":[
+      {
+         "repository": "data.gov",
+         "citation": {
+            "title": "Arctic LCC Data.gov",
+            "identifier": [
+               {
+                  "identifier": "6f991cdb-6bf5-4f1d-a05b-4b8345455150"
+               }
+            ]
+         },
+         "metadataStandard": "FGDC"
+      },
+      {
+         "repository": "DataOne",
+         "metadataStandard": "iso19115_2"
+      }
+   ]
 }

@@ -1,0 +1,229 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "Person 001"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "myCitationTitle"
+         },
+         "abstract": "myBody",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "extent": [
+            {
+               "description": "description0",
+               "geographicExtent": [
+                  {
+                     "containsData": false,
+                     "geographicElement": [
+                        {
+                           "type": "Point",
+                           "coordinates": [100.0, 0.0]
+                        },
+                        {
+                           "type": "LineString",
+                           "coordinates": [
+                              [100.0, 0.0],
+                              [101.0, 1.0]
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": true,
+                     "geographicElement": [
+                        {
+                           "type": "Point",
+                           "coordinates": [200.0, 0.0]
+                        },
+                        {
+                           "type": "LineString",
+                           "coordinates": [
+                              [200.0, 0.0],
+                              [202.0, 2.0]
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "description": "description0",
+               "geographicExtent": [
+                  {
+                     "containsData": true,
+                     "geographicElement": [
+                        {
+                           "type": "Feature",
+                           "id": "polygon-75",
+                           "bbox": [-10.0, -10.0, 10.0, 10.0],
+                           "geometry": {
+                              "type": "Polygon",
+                              "coordinates": [
+                                 [
+                                    [-161.74223, 67.663378],
+                                    [-161.440345, 67.630173],
+                                    [-161.294611, 67.656257],
+                                    [-161.228063, 67.625736],
+                                    [-161.247712, 67.585909],
+                                    [-161.334662, 67.591324],
+                                    [-161.566245, 67.491263],
+                                    [-161.812338, 67.455299],
+                                    [-161.825019, 67.40123],
+                                    [-162.128301, 67.414364],
+                                    [-162.167825, 67.363047],
+                                    [-162.383403, 67.293329],
+                                    [-162.633432, 67.272237],
+                                    [-162.645587, 67.356665],
+                                    [-162.369023, 67.455264],
+                                    [-162.287324, 67.551235],
+                                    [-162.171139, 67.559356],
+                                    [-161.99344, 67.646806],
+                                    [-161.857964, 67.620329],
+                                    [-161.769431, 67.629407],
+                                    [-161.74223, 67.663378]
+                                 ]
+                              ]
+                           },
+                           "properties": {
+                              "description": "Agashashok River site",
+                              "featureName": [
+                                 "Agashashok River",
+                                 "Camp Mosquito"
+                              ],
+                              "identifier": [
+                                 {
+                                    "identifier": "AGAR"
+                                 },
+                                 {
+                                    "identifier": "Kup25"
+                                 }
+                              ],
+                              "featureScope": "collectionSite",
+                              "acquisitionMethod": "butterfly net",
+                              "customField": "not in schema",
+                              "customArray": [
+                                 "string 1",
+                                 "string 2"
+                              ]
+                           }
+                        }
+                     ]
+                  },
+                  {
+                     "containsData": true,
+                     "geographicElement": [
+                        {
+                           "type": "FeatureCollection",
+                           "bbox": [-10.0, -10.0, 10.0, 10.0],
+                           "features": [
+                              {
+                                 "type": "Feature",
+                                 "id": "ALCC-BH55",
+                                 "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                 "geometry": {
+                                    "type": "Point",
+                                    "coordinates": [102.0, 0.5]
+                                 },
+                                 "properties": {
+                                    "description": "Ut enim ad minim veniam",
+                                    "featureName": [
+                                       "fake name"
+                                    ]
+                                 }
+                              },
+                              {
+                                 "type": "Feature",
+                                 "id": "ALCC-BH56",
+                                 "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                 "geometry": {
+                                    "type": "LineString",
+                                    "coordinates": [
+                                       [102.0, 0.0],
+                                       [103.0, 1.0],
+                                       [104.0, 0.0],
+                                       [105.0, 1.0]
+                                    ]
+                                 },
+                                 "properties": {
+                                    "description": "Ut enim ad minim veniam."
+                                 }
+                              },
+                              {
+                                 "type": "Feature",
+                                 "id": "ALCC-Co81",
+                                 "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                 "geometry": {
+                                    "type": "GeometryCollection",
+                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                    "geometries": [
+                                       {
+                                          "type": "Point",
+                                          "coordinates": [100.0, 0.0]
+                                       },
+                                       {
+                                          "type": "LineString",
+                                          "coordinates": [
+                                             [101.0, 0.0],
+                                             [102.0, 1.0]
+                                          ]
+                                       }
+                                    ]
+                                 },
+                                 "properties": {
+                                    "description": "Ut enim ad minim veniam."
+                                 }
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   }
+}

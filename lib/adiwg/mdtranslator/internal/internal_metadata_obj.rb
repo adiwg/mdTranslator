@@ -972,6 +972,7 @@ class InternalMetadata
    def newMetadataRepository
       {
          repository: nil,
+         citation: {},
          metadataStandard: nil
       }
    end
