@@ -47,10 +47,9 @@ module ADIWG
                         unless dateTime.nil?
                            year = AdiwgDateTimeFun.stringDateFromDateTime(dateTime, 'Y')
                            if dateTime.month > 9
-                              year = year.to_i
-                              year += 1
+                              year.succ!
                            end
-                           budget[:year] = year.to_s
+                           budget[:year] = year
                         end
                      end
 
