@@ -12,16 +12,38 @@ module ADIWG
 
             module Date
 
-               def self.build(hCitation)
+               def self.build(hResource)
 
                   aDates = []
+                  hCitation = hResource[:citation]
 
-                  hCitation[:dates].each do |hDate|
-                     sbDate = {}
-                     sbDate[:type] = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
-                     sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hDate)
-                     sbDate[:label] = hDate[:description] unless hDate[:description].nil?
-                     aDates << sbDate unless sbDate[:type].nil?
+                  # add citation dates to sbJson dates
+                  unless hCitation.empty?
+                     hCitation[:dates].each do |hDate|
+                        sbDate = {}
+                        sbDate[:type] = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
+                        sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                        sbDate[:label] = hDate[:description] unless hDate[:description].nil?
+                        aDates << sbDate unless sbDate[:type].nil?
+                     end
+                  end
+
+                  # add resource timePeriod dates to sbJson dates
+                  unless hResource[:timePeriod].empty?
+                     unless hResource[:timePeriod][:startDateTime].empty?
+                        sbDate = {}
+                        sbDate[:type] = 'Start'
+                        sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hResource[:timePeriod][:startDateTime])
+                        sbDate[:label] = hResource[:timePeriod][:description] unless hResource[:timePeriod][:description].nil?
+                        aDates << sbDate unless sbDate[:type].nil?
+                     end
+                     unless hResource[:timePeriod][:endDateTime].empty?
+                        sbDate = {}
+                        sbDate[:type] = 'End'
+                        sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hResource[:timePeriod][:endDateTime])
+                        sbDate[:label] = hResource[:timePeriod][:description] unless hResource[:timePeriod][:description].nil?
+                        aDates << sbDate unless sbDate[:type].nil?
+                     end
                   end
 
                   if aDates.empty?

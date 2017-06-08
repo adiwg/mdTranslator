@@ -57,6 +57,11 @@
          "status": [
             "status"
          ],
+         "timePeriod": {
+            "description": "My Project Period",
+            "startDateTime": "2016-10-14T11:10:15.2-10:00",
+            "endDateTime": "2016-12-31"
+         },
          "pointOfContact": [
             {
                "role": "pointOfContact",
