@@ -94,22 +94,38 @@ module ADIWG
                ]
 
                @iso_sb_date = [
-                  {iso: 'creation', sb: 'Creation'},
+                  {iso: 'creation', sb: 'creation'},
                   {iso: 'publication', sb: 'Publication'},
-                  {iso: 'revision', sb: 'Revision'},
+                  {iso: 'revision', sb: 'revision'},
                   {iso: 'expiry', sb: nil},
                   {iso: 'lastUpdate', sb: 'lastUpdate'},
                   {iso: 'lastRevision', sb: 'lastRevision'},
                   {iso: 'nextUpdate', sb: 'nextUpdate'},
                   {iso: 'unavailable', sb: 'unavailable'},
                   {iso: 'inForce', sb: 'inForce'},
-                  {iso: 'adopted', sb: 'adopted'},
+                  {iso: 'adopted', sb: 'Adopted'},
                   {iso: 'deprecated', sb: 'deprecated'},
                   {iso: 'suspended', sb: 'suspended'},
                   {iso: 'validityBegins', sb: 'validityBegins'},
                   {iso: 'validityExpires', sb: 'validityExpires'},
                   {iso: 'released', sb: 'Release'},
-                  {iso: 'distribution', sb: 'date identifiers when an instance of the resource was distributed'}
+                  {iso: 'distribution', sb: 'distribution'},
+                  {iso: 'acquisition', sb: 'Acquisition'},
+                  {iso: 'assessment', sb: 'AssessmentDate'},
+                  {iso: 'award', sb: 'Award'},
+                  {iso: nil, sb: 'beginPosition'},
+                  {iso: 'collected', sb: 'Collected'},
+                  {iso: 'deprecated', sb: 'deprecated'},
+                  {iso: 'due', sb: 'Due'},
+                  {iso: 'end', sb: 'End'},
+                  {iso: nil, sb: 'endPosition'},
+                  {iso: nil, sb: 'Info'},
+                  {iso: 'received', sb: 'Received'},
+                  {iso: 'reported', sb: 'Reported'},
+                  {iso: nil, sb: 'Repository Created'},
+                  {iso: nil, sb: 'Repository Updated'},
+                  {iso: 'start', sb: 'Start'},
+                  {iso: 'transmitted', sb: 'Transmitted'}
                ]
 
                @iso_sb_progress = [
