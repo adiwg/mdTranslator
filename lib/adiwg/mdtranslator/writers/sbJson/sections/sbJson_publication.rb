@@ -33,6 +33,13 @@ module ADIWG
                               series = hCitation[:series]
                               hPublication[:journal] = series[:seriesName] unless series[:seriesName].nil?
                               hPublication[:edition] = series[:seriesIssue] unless series[:seriesIssue].nil?
+                              unless series[:issuePage].nil?
+                                 hPublication[:parts] = []
+                                 part = {}
+                                 part[:type] = 'Page Number'
+                                 part[:value] = series[:issuePage]
+                                 hPublication[:parts] << part
+                              end
                            end
                         end
                         unless hResource[:defaultResourceLocale].empty?
