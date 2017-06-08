@@ -30,8 +30,6 @@ class TestWriterSbJsonSpatial < TestWriterSbJsonParent
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['spatial']
-      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut.to_json)
-
 
       assert_equal expect, got
 
