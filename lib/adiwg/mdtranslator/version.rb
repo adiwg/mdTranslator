@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.0.0rc10 2017-06-05 apply changes to sbJson writer after review
 # 2.0.0rc9 2017-05-26 allow choice of which dictionary to translate
 #                 ... fix bug when no dictionary is provided in mdJson
 #                 ... add sbJson writer
