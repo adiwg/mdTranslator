@@ -21,7 +21,7 @@ class TestWriterSbJsonMetadataRepository < TestWriterSbJsonParent
 
       expect = {
          'repository' => 'data.gov',
-         'title' => 'Data.gov',
+         'title' => 'Arctic LCC Data.gov',
          'identifier' => '6f991cdb-6bf5-4f1d-a05b-4b8345455150',
          'metadataStandard' => 'FGDC'
       }
