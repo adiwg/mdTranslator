@@ -35,7 +35,7 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
                      'matching' => 'false'
                   }
                ],
-               'year' => '2016'
+               'year' => '2017'
             },
             {
                'fundingSources' => [
@@ -77,6 +77,7 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
             got = hGot
          end
       end
+      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut.to_json)
 
       assert_equal expect, got
 

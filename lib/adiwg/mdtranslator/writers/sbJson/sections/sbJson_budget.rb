@@ -33,7 +33,9 @@ module ADIWG
                         budget[:fundingSources] = fundingSources
                      end
 
-                     # year only
+                     # give priority to ending dateTime
+                     # write year only
+                     # use fiscal year beginning October 1
                      unless hFunding[:timePeriod].empty?
                         unless hFunding[:timePeriod][:startDateTime].empty?
                            startDateTime = hFunding[:timePeriod][:startDateTime][:dateTime]
@@ -41,9 +43,14 @@ module ADIWG
                         unless hFunding[:timePeriod][:endDateTime].empty?
                            endDateTime = hFunding[:timePeriod][:endDateTime][:dateTime]
                         end
-                        dateTime = startDateTime.nil? ? endDateTime : startDateTime
+                        dateTime = endDateTime.nil? ? startDateTime : endDateTime
                         unless dateTime.nil?
-                           budget[:year] = AdiwgDateTimeFun.stringDateFromDateTime(dateTime, 'Y')
+                           year = AdiwgDateTimeFun.stringDateFromDateTime(dateTime, 'Y')
+                           if dateTime.month > 9
+                              year = year.to_i
+                              year += 1
+                           end
+                           budget[:year] = year.to_s
                         end
                      end
 
