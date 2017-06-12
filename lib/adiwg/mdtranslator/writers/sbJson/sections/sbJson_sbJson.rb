@@ -55,7 +55,7 @@ module ADIWG
                   json.webLinks WebLink.build(intObj[:metadata])
                   json.browseCategories BrowseCategory.build(resourceInfo[:resourceTypes])
                   json.tags Tag.build(resourceInfo)
-                  json.dates Date.build(hCitation) unless hCitation.empty?
+                  json.dates Date.build(resourceInfo) unless resourceInfo.empty?
                   json.spatial Spatial.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
                   json.facets Facet.build(intObj[:metadata])
                   json.metadataRepository Repository.build(intObj[:metadataRepositories]) unless intObj[:metadataRepositories].empty?

@@ -48,7 +48,7 @@
                   "dateType": "revision"
                },
                {
-                  "date": "2017-05-16T16:10:00-09:00",
+                  "date": "2017-04-15T06:35:00-06:00",
                   "dateType": "expiry"
                }
             ]
@@ -57,6 +57,11 @@
          "status": [
             "status"
          ],
+         "timePeriod": {
+            "description": "My Project Period",
+            "startDateTime": "2016-10-14T11:10:15.2-10:00",
+            "endDateTime": "2016-12-31"
+         },
          "pointOfContact": [
             {
                "role": "pointOfContact",

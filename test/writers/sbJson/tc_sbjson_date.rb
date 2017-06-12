@@ -21,7 +21,7 @@ class TestWriterSbJsonDate < TestWriterSbJsonParent
 
       expect = [
          {
-            'type' => 'Creation',
+            'type' => 'creation',
             'dateString' => '2017-05',
             'label' => 'Creation Date'
          },
@@ -31,8 +31,23 @@ class TestWriterSbJsonDate < TestWriterSbJsonParent
             'label' => 'Published First Edition'
          },
          {
-            'type' => 'Revision',
+            'type' => 'revision',
             'dateString' => '2017-05-16T16:10:00-09:00'
+         },
+         {
+            'type' => 'Info',
+            'dateString' => '2017-04-15T06:35:00-06:00',
+            'label' => 'expiry'
+         },
+         {
+            'type' => 'Start',
+            'dateString' => '2016-10-14T11:10:15.200-10:00',
+            'label' => 'My Project Period'
+         },
+         {
+            'type' => 'End',
+            'dateString' => '2016-12-31',
+            'label' => 'My Project Period'
          }
       ]
 

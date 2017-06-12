@@ -12,30 +12,48 @@ module ADIWG
 
                def self.build(aExtents)
 
-                  spatial = {}
                   aBoxObjects = []
 
                   aExtents.each do |hExtent|
                      hExtent[:geographicExtents].each do |hGeoExtent|
-                        hBbox = hGeoExtent[:computedBbox]
-                        sw = [ hBbox[:westLongitude], hBbox[:southLatitude] ]
-                        nw = [ hBbox[:westLongitude], hBbox[:northLatitude] ]
-                        ne = [ hBbox[:eastLongitude], hBbox[:northLatitude] ]
-                        se = [ hBbox[:eastLongitude], hBbox[:southLatitude] ]
-                        aPoly = [ sw, nw, ne, se ]
-                        geoJson = {
-                           type: 'Polygon',
-                           coordinates: [
-                              aPoly
-                           ]
-                        }
-                        aBoxObjects << geoJson
+                        # use computedBbox if exists
+                        # ... this is always exists if geographic extent has objects
+                        # otherwise use user provided boundingBox
+                        hBbox = {}
+                        if hGeoExtent[:computedBbox].empty?
+                           unless hGeoExtent[:boundingBox].empty?
+                              hBbox = hGeoExtent[:boundingBox]
+                           end
+                        else
+                           hBbox = hGeoExtent[:computedBbox]
+                        end
+
+                        # turn the box into a polygon
+                        unless hBbox.empty?
+                           sw = [ hBbox[:westLongitude], hBbox[:southLatitude] ]
+                           nw = [ hBbox[:westLongitude], hBbox[:northLatitude] ]
+                           ne = [ hBbox[:eastLongitude], hBbox[:northLatitude] ]
+                           se = [ hBbox[:eastLongitude], hBbox[:southLatitude] ]
+                           aPoly = [ sw, nw, ne, se ]
+                           geoJson = {
+                              type: 'Polygon',
+                              coordinates: [
+                                 aPoly
+                              ]
+                           }
+                           aBoxObjects << geoJson
+                        end
+
                      end
                   end
+
+                  spatial = {}
 
                   unless aBoxObjects.empty?
                      hBox = AdiwgCoordinates.computeBbox(aBoxObjects)
                      sbBox = {}
+
+                     # transform to sbJson bbox format
                      sbBox[:maxY] = hBox[:northLatitude]
                      sbBox[:minY] = hBox[:southLatitude]
                      sbBox[:maxX] = hBox[:eastLongitude]
@@ -43,7 +61,7 @@ module ADIWG
                      spatial[:boundingBox] = sbBox
                   end
 
-                  # representational point is not computed
+                  # sbJson representational point is not provided
 
                   spatial
 

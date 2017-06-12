@@ -24,6 +24,12 @@ class TestWriterSbJsonPublication < TestWriterSbJsonParent
          'citationType' => 'sciencePaper',
          'journal' => 'Journal Name',
          'edition' => 'Journal Issue Number',
+         'parts' => [
+            {
+               'type' => 'Page Number',
+               'value' => 'issuePage'
+            }
+         ],
          'language' => 'eng'
       }
 

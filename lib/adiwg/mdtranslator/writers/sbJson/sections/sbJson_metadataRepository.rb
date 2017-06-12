@@ -17,8 +17,9 @@ module ADIWG
                   aRepositories.each do |hRepo|
                      if hRepo[:repository] == 'data.gov'
                         repository[:repository] = hRepo[:repository]
-                        repository[:title] = 'Data.gov'
+                        repository[:title] = 'Data.gov' # default
                         unless hRepo[:citation].empty?
+                           repository[:title] = hRepo[:citation][:title] unless hRepo[:citation][:title].nil?
                            unless hRepo[:citation][:identifiers].empty?
                               repository[:identifier] = hRepo[:citation][:identifiers][0][:identifier]
                            end

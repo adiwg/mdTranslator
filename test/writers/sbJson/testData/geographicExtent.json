@@ -85,6 +85,23 @@
                               [200.0, 0.0],
                               [202.0, 2.0]
                            ]
+                        },
+                        {
+                           "type": "GeometryCollection",
+                           "bbox": [-10.0, -10.0, 10.0, 10.0],
+                           "geometries": [
+                              {
+                                 "type": "Point",
+                                 "coordinates": [100.0, 0.0]
+                              },
+                              {
+                                 "type": "LineString",
+                                 "coordinates": [
+                                    [101.0, 0.0],
+                                    [102.0, 1.0]
+                                 ]
+                              }
+                           ]
                         }
                      ]
                   }
@@ -186,31 +203,6 @@
                                        [103.0, 1.0],
                                        [104.0, 0.0],
                                        [105.0, 1.0]
-                                    ]
-                                 },
-                                 "properties": {
-                                    "description": "Ut enim ad minim veniam."
-                                 }
-                              },
-                              {
-                                 "type": "Feature",
-                                 "id": "ALCC-Co81",
-                                 "bbox": [-10.0, -10.0, 10.0, 10.0],
-                                 "geometry": {
-                                    "type": "GeometryCollection",
-                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
-                                    "geometries": [
-                                       {
-                                          "type": "Point",
-                                          "coordinates": [100.0, 0.0]
-                                       },
-                                       {
-                                          "type": "LineString",
-                                          "coordinates": [
-                                             [101.0, 0.0],
-                                             [102.0, 1.0]
-                                          ]
-                                       }
                                     ]
                                  },
                                  "properties": {
