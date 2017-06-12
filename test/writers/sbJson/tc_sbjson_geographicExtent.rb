@@ -22,7 +22,7 @@ class TestWriterSbJsonGeographicExtent < TestWriterSbJsonParent
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['geographicExtents']
 
-      assert_equal 4, got.length
+      assert_equal 5, got.length
 
    end
 

@@ -35,7 +35,7 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
                      'matching' => 'false'
                   }
                ],
-               'year' => '2016'
+               'year' => '2017'
             },
             {
                'fundingSources' => [

@@ -69,17 +69,6 @@
                      },
                      "geographicElement": [
                         {
-                           "type": "Point",
-                           "coordinates": [100.0, 0.0]
-                        },
-                        {
-                           "type": "LineString",
-                           "coordinates": [
-                              [100.0, 0.0],
-                              [101.0, 1.0]
-                           ]
-                        },
-                        {
                            "type": "Polygon",
                            "coordinates": [
                               [
@@ -116,11 +105,10 @@
                            "type": "Polygon",
                            "coordinates": [
                               [
-                                 [-10.0, 50.0],
-                                 [90.0, 50.0],
-                                 [90.0, 25.0],
-                                 [-10.0, 25.0],
-                                 [-10.0, 50.0]
+                                 [-100.0, 20.0],
+                                 [-100.0, 30.0],
+                                 [-80.0, 30.0],
+                                 [-80.0, 20.0]
                               ]
                            ]
                         }
@@ -130,15 +118,13 @@
                      "containsData": true,
                      "geographicElement": [
                         {
-                           "type": "Polygon",
+                           "type": "MultiPoint",
                            "coordinates": [
-                              [
-                                 [140, 65],
-                                 [-170, 65],
-                                 [-170, 55],
-                                 [140, 55],
-                                 [140, 65]
-                              ]
+                              [160, 65],
+                              [170, 52],
+                              [174, 56],
+                              [166, 63],
+                              [172, 58]
                            ]
                         }
                      ]
@@ -148,32 +134,12 @@
                      "identifier": {
                         "identifier": "identifier"
                      },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-162, 65],
-                                 [-161, 65],
-                                 [-161, 60],
-                                 [-162, 60],
-                                 [-162, 65]
-                              ]
-                           ]
-                        },
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [100, 55],
-                                 [102, 55],
-                                 [102, 50],
-                                 [100, 50],
-                                 [100, 55]
-                              ]
-                           ]
-                        }
-                     ]
+                     "boundingBox": {
+                        "westLongitude": 160.0,
+                        "eastLongitude": -160.0,
+                        "southLatitude": -10.0,
+                        "northLatitude": -20.0
+                     }
                   }
                ]
             }

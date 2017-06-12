@@ -22,9 +22,9 @@ class TestWriterSbJsonSpatial < TestWriterSbJsonParent
       expect = {
          'boundingBox' => {
             'maxY' =>67.663378,
-            'minY' =>0.0,
-            'maxX' =>-10.0,
-            'minX' =>90.0
+            'minY' =>-20.0,
+            'maxX' =>-80.0,
+            'minX' =>160.0
          }
       }
 
