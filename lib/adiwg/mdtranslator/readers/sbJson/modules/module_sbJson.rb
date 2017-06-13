@@ -5,40 +5,68 @@
 #  Stan Smith 2017-06-12 refactor for mdTranslator 2.0
 #  Josh Bradley original script
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_titles'
+
 module ADIWG
    module Mdtranslator
       module Readers
          module SbJson
 
-            def self.unpack(hSbJson, hResponseObj)
+            module SbJson
 
-               # something goes here
-               @contacts = []
+               def self.unpack(hSbJson, hResponseObj)
 
-            end
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
 
-            # find the array pointer and type for a contact
-            def self.findContact(contactId)
+                  intObj = intMetadataClass.newBase
 
-               contactIndex = nil
-               contactType = nil
-               @contacts.each_with_index do |contact, i|
-                  if contact[:contactId] == contactId
-                     contactIndex = i
-                     if contact[:isOrganization]
-                        contactType = 'organization'
-                     else
-                        contactType = 'individual'
+                  # build basic mdTranslator internal object
+                  hMetadata = intMetadataClass.newMetadata
+                  hMetadataInfo = intMetadataClass.newMetadataInfo
+                  hResource = intMetadataClass.newResourceInfo
+                  hCitation = intMetadataClass.newCitation
+
+                  hResource[:citation] = hCitation
+                  hMetadata[:metadataInfo] = hMetadataInfo
+                  hMetadata[:resourceInfo] = hResource
+                  intObj[:metadata] = hMetadata
+
+                  # titles / alternateTitles
+                  Title.unpack(hSbJson, hCitation, hResponseObj)
+
+                  # something goes here
+                  @contacts = []
+
+                  return intObj
+
+               end
+
+               # find the array pointer and type for a contact
+               def self.findContact(contactId)
+
+                  contactIndex = nil
+                  contactType = nil
+                  @contacts.each_with_index do |contact, i|
+                     if contact[:contactId] == contactId
+                        contactIndex = i
+                        if contact[:isOrganization]
+                           contactType = 'organization'
+                        else
+                           contactType = 'individual'
+                        end
                      end
                   end
+                  return contactIndex, contactType
+
                end
-               return contactIndex, contactType
 
-            end
+               # set contacts array for reader test modules
+               def self.setContacts(contacts)
+                  @contacts = contacts
+               end
 
-            # set contacts array for reader test modules
-            def self.setContacts(contacts)
-               @contacts = contacts
             end
 
          end

@@ -17,27 +17,6 @@ class TestReaderMdJsonParent < MiniTest::Test
         readerExecutionMessages: []
     }
 
-    # create new internal metadata container for the reader
-    intMetadataClass = InternalMetadata.new
-    intObj = intMetadataClass.newBase
-
-    # first contact
-    intObj[:contacts] << intMetadataClass.newContact
-    intObj[:contacts][0][:contactId] = 'individualId0'
-    intObj[:contacts][0][:isOrganization] = false
-
-    # second contact
-    intObj[:contacts] << intMetadataClass.newContact
-    intObj[:contacts][1][:contactId] = 'individualId1'
-    intObj[:contacts][1][:isOrganization] = false
-
-    # third contact
-    intObj[:contacts] << intMetadataClass.newContact
-    intObj[:contacts][2][:contactId] = 'organizationId0'
-    intObj[:contacts][2][:isOrganization] = true
-
-    @@contacts = intObj[:contacts]
-
     # get json file for tests from examples folder
     def self.getJson(fileName)
 
@@ -52,7 +31,26 @@ class TestReaderMdJsonParent < MiniTest::Test
     # set contact list for test modules
     def self.setContacts
 
-        ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(@@contacts)
+        # create new internal metadata container for the reader
+        intMetadataClass = InternalMetadata.new
+        intObj = intMetadataClass.newBase
+
+        # first contact
+        intObj[:contacts] << intMetadataClass.newContact
+        intObj[:contacts][0][:contactId] = 'individualId0'
+        intObj[:contacts][0][:isOrganization] = false
+
+        # second contact
+        intObj[:contacts] << intMetadataClass.newContact
+        intObj[:contacts][1][:contactId] = 'individualId1'
+        intObj[:contacts][1][:isOrganization] = false
+
+        # third contact
+        intObj[:contacts] << intMetadataClass.newContact
+        intObj[:contacts][2][:contactId] = 'organizationId0'
+        intObj[:contacts][2][:isOrganization] = true
+
+        ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(intObj[:contacts])
 
     end
 

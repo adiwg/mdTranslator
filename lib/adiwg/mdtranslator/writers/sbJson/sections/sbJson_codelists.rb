@@ -13,26 +13,51 @@ module ADIWG
                @iso_sb_role = [
                   {iso: 'resourceProvider', sb: 'Resource Provider'},
                   {iso: 'custodian', sb: 'Custodian'},
-                  {iso: 'rightsHolder', sb: 'Data Owner'},
+                  {iso: 'owner', sb: 'Data Owner'},
                   {iso: 'use', sb: 'User'},
                   {iso: 'distributor', sb: 'Distributor'},
                   {iso: 'originator', sb: 'Originator'},
                   {iso: 'pointOfContact', sb: 'Point of Contact'},
                   {iso: 'principalInvestigator', sb: 'Principal Investigator'},
                   {iso: 'processor', sb: 'Processor'},
+                  {iso: 'publisher', sb: 'publisher'},
                   {iso: 'author', sb: 'Author'},
+                  {iso: 'sponsor', sb: 'sponsor'},
                   {iso: 'coAuthor', sb: 'Author'},
                   {iso: 'collaborator', sb: 'Cooperator/Partner'},
-                  {iso: 'contributor', sb: 'Cooperator/Partner'},
                   {iso: 'editor', sb: 'Editor'},
-                  {iso: 'coPrincipalInvestigator', sb: 'Co-Investigator'},
-                  {iso: 'publisher', sb: 'publisher'},
-                  {iso: 'sponsor', sb: 'sponsor'},
+                  {iso: 'mediator', sb: 'mediator'},
+                  {iso: 'rightsHolder', sb: 'Data Owner'},
+                  {iso: 'contributor', sb: 'Cooperator/Partner'},
+                  {iso: 'contributor', sb: 'Cooperator/Partner'},
+                  {iso: 'funder', sb: 'funder'},
                   {iso: 'stakeholder', sb: 'stakeholder'},
                   {iso: 'administrator', sb: 'administrator'},
                   {iso: 'client', sb: 'client'},
                   {iso: 'logistics', sb: 'logistics'},
-                  {iso: 'mediator', sb: 'mediator'}
+                  {iso: 'coPrincipalInvestigator', sb: 'Co-Investigator'},
+                  {iso: nil, sb: 'Associate Project Chief'},
+                  {iso: nil, sb: 'Contact'},
+                  {iso: nil, sb: 'Data Provider'},
+                  {iso: nil, sb: 'Funding Agency'},
+                  {iso: nil, sb: 'Lead Organization'},
+                  {iso: nil, sb: 'Material Request Contact'},
+                  {iso: nil, sb: 'Metadata Contact'},
+                  {iso: nil, sb: 'Participant'},
+                  {iso: nil, sb: 'Photographer'},
+                  {iso: nil, sb: 'Process Contact'},
+                  {iso: nil, sb: 'Project Chief'},
+                  {iso: nil, sb: 'Project Team'},
+                  {iso: nil, sb: 'Referred By'},
+                  {iso: nil, sb: 'Report Prepared By'},
+                  {iso: nil, sb: 'SoftwareEngineer'},
+                  {iso: nil, sb: 'Subtask Leader'},
+                  {iso: nil, sb: 'Supporter'},
+                  {iso: nil, sb: 'Task Leader'},
+                  {iso: nil, sb: 'Transmitted'},
+                  {iso: nil, sb: 'User'},
+                  {iso: nil, sb: 'USGS Mission Area'},
+                  {iso: nil, sb: 'USGS Program'}
                ]
 
                @iso_sb_onlineFunction = [
@@ -153,7 +178,7 @@ module ADIWG
                   {iso: 'suspended', sb: nil}
                ]
 
-                  def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
+               def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
                   codeList = instance_variable_get("@#{codelist}")
 
