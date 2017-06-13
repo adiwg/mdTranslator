@@ -1,0 +1,13 @@
+{
+  "schema": {
+    "name": "sbJson",,
+    "version": "2.0.0"
+  },
+  "contact": [
+    {
+      "contactId": "CID001",
+      "isOrganization": false,
+      "name": "Stan W. Smith"
+    }
+  ]
+}

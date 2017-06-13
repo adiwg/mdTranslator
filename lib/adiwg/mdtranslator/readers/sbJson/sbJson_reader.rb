@@ -1,204 +1,62 @@
+# mdJson reader - process and direct mdJson ingest to internal data structure
+
+# History:
+#  Stan Smith 2016-06-12 refactor for mdTranslator 2.0
+# 	Josh Bradley original script
+
 require 'json'
+require_relative 'version'
+require_relative 'modules/module_sbJson'
 
 module ADIWG
-    module Mdtranslator
-        module Readers
-            module SbJson
+   module Mdtranslator
+      module Readers
+         module SbJson
 
-                def self.readFile(file, responseObj)
+            def self.readFile(file, hResponseObj)
 
-                    # set reference to responseObj for use throughout this module
-                    @hResponseObj = responseObj
+               # receive json file into ruby hash
+               begin
+                  hSbJson = JSON.parse(file)
+               rescue JSON::JSONError => err
+                  hResponseObj[:readerStructurePass] = false
+                  hResponseObj[:readerStructureMessages] << 'Parsing sbJson Failed - see following message(s):\n'
+                  hResponseObj[:readerStructureMessages] << err.to_s.slice(0, 300)
+                  return {}
+               end
 
-                    # receive json file into ruby hash
-                    parseJson(file)
-                    if !@hResponseObj[:readerStructurePass]
-                        return false
-                    end
+               # file must contain an mdJson object
+               if hSbJson.empty?
+                  hResponseObj[:readerStructureMessages] << 'sbJson object is empty'
+                  hResponseObj[:readerStructurePass] = false
+                  return {}
+               end
 
-                    # set format of file in $response
-                    @hResponseObj[:readerFormat] = 'json'
+               # faking the version since sbJSON has no version support
+               hSbJson['schema'] = {
+                  'name' => 'sbJson',
+                  'version' => '0.0.0'
+               }
 
-                    # check sbJson version name
-                    checkVersionName
-                    if !@hResponseObj[:readerStructurePass]
-                        return false
-                    end
+               # schema - current version
+               currentVersion = ADIWG::Mdtranslator::Readers::SbJson::VERSION
+               hResponseObj[:readerVersionRequested] = hSbJson['version']
+               hResponseObj[:readerVersionUsed] = currentVersion
+               unless currentVersion == hSbJson['version']
+                  hResponseObj[:readerStructureMessages] << "sbJson schema version '#{hSbJson['version']}' is not supported"
+                  hResponseObj[:readerStructurePass] = false
+                  return {}
+               end
 
-                    # check sbJson version number
-                    checkVersionNumber
-                    if !@hResponseObj[:readerStructurePass]
-                        return false
-                    end
+               # faking the validation since there is no schema definition
+               # @hResponseObj[:readerValidationPass] default is true
 
-                    #validate file against sbJson schema definition
-                    validate(file, @hResponseObj)
-                    if !@hResponseObj[:readerValidationPass]
-                        return false
-                    end
-
-                    # load sbJson file into internal object
-                    require readerModule('module_sbJson')
-                    # instance classes needed in script
-                    intMetadataClass = InternalMetadata.new
-
-                    # create new internal metadata container for the reader
-                    @intObj = intMetadataClass.newBase
-
-                    #
-                    ADIWG::Mdtranslator::Readers::SbJson.unpack(@intObj, @hSbJson, @hResponseObj)
-                    return @intObj
-
-                end
-
-                def self.parseJson(file)
-                    # validate the input file structure
-                    # test for valid json syntax by attempting to parse the file
-                    begin
-                        @hSbJson = JSON.parse(file)
-
-                        # faking the version since sbJSON has no support
-                        @hSbJson['version'] = {
-                          "name" => "sbJson",
-                          "version" => "0.0.0"
-                        }
-
-                        @hResponseObj[:readerStructurePass] = true
-                    rescue JSON::JSONError => err
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'JSON Parsing Failed - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << err.to_s.slice(0, 300)
-                    end
-                end
-
-                def self.checkVersionName
-                    # find version name on the input json file
-                    if @hSbJson.has_key?('version')
-                        hVersion = @hSbJson['version']
-                    else
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << 'The input file is missing the version:{} block.'
-                        return
-                    end
-
-                    # check the version name
-                    if hVersion.has_key?('name')
-                        s = hVersion['name']
-                        if s.nil?
-                            @hResponseObj[:readerStructurePass] = false
-                            @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                            @hResponseObj[:readerStructureMessages] << 'The input file version: => name: is missing.'
-                            return
-                        end
-                    else
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << "The input file version:{} block is missing the 'name:' attribute."
-                        return
-                    end
-
-                    # check the version name is 'sbJson'
-                    if s != 'sbJson'
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << "The mdTranslator reader expected the input file version: name: to be 'sbJson'."
-                        @hResponseObj[:readerStructureMessages] << "Version name found was: '#{s}'."
-                    end
-                end
-
-                def self.checkVersionNumber
-                    # find version number on the input json file
-                    hVersion = @hSbJson['version']
-                    if hVersion.has_key?('version')
-                        s = hVersion['version']
-                        if !s.nil?
-                            @hResponseObj[:readerVersionRequested] = s
-                        end
-                    else
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << "The input file version:{} block is missing the 'version:' number attribute."
-                        return
-                    end
-
-                    # split the version number into its parts
-                    aReqVersion = s.split('.')
-
-                    reqMajor = 0
-                    if !aReqVersion[0].nil?
-                        reqMajor = aReqVersion[0]
-                    end
-
-                    # test if the requested reader major version is supported
-                    # look for a folder with modules for the major version number
-                    dirName = File.join(File.dirname(__FILE__), 'modules_v' + reqMajor)
-                    if !File.directory?(dirName)
-                        @hResponseObj[:readerStructurePass] = false
-                        @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                        @hResponseObj[:readerStructureMessages] << 'A reader for the requested version is not supported.'
-                        @hResponseObj[:readerStructureMessages] << "sbJson version requested was '#{s}'"
-                        return false
-                    end
-
-                    # the requested major version is supported
-                    # get the full version number for this major version of sbJson
-                    require File.join(dirName, 'version')
-                    curVersion = ADIWG::Mdtranslator::Readers::SbJson::VERSION
-                    @hResponseObj[:readerVersionUsed] = curVersion
-                    aCurVersion = curVersion.split('.')
-                    curMinor = aCurVersion[1]
-
-                    # test that minor version number is not exceeded
-                    reqMinor = 0
-                    if !aReqVersion[1].nil?
-                        reqMinor = aReqVersion[1]
-                        if curMinor < reqMinor
-                            @hResponseObj[:readerStructurePass] = false
-                            @hResponseObj[:readerStructureMessages] << 'Invalid input file schema declaration - see following message(s):\n'
-                            @hResponseObj[:readerStructureMessages] << 'The requested reader minor version is not supported.'
-                            @hResponseObj[:readerStructureMessages] << "sbJson version requested was '#{s}'"
-                            return false
-                        end
-                    end
-
-                end
-
-                # find the array pointer for a contact
-                def self.findContact(contactId)
-                    pointer = nil
-                    i = 0
-                    @intObj[:contacts].each do |contact|
-                        if contact[:contactId] == contactId
-                            pointer = i
-                        end
-                        i += 1
-                    end
-
-                    return pointer
-                end
-
-                # require modules for the requested version
-                def self.readerModule(moduleName)
-                    majVersion = @hResponseObj[:readerVersionUsed].split('.')[0]
-                    dirName = File.join(File.dirname(__FILE__), 'modules_v' + majVersion.to_s)
-                    fileName = File.join(dirName, moduleName)
-
-                    # test for the existance of the module in the current sbJson version directory
-                    if !File.exist?(File.join(dirName, moduleName + '.rb'))
-                        # file not found
-                        # ... look for module in previous version directory
-                        # ... note: no previous version directories exist yet
-
-                        # no prior version directory found
-                        # ... file not found
-                        return nil
-                    end
-
-                    return fileName
-                end
+               # load sbJson file into internal object
+               return SbJson.unpack(hSbJson, hResponseObj)
 
             end
-        end
-    end
+
+         end
+      end
+   end
 end
