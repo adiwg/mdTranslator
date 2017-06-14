@@ -3,6 +3,8 @@
 # History:
 #  Stan Smith 2017-05-25 original script
 
+require_relative 'sbJson_codelists'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -23,6 +25,8 @@ module ADIWG
                         end
                         unless hDistributor[:contact].empty?
                            role = hDistributor[:contact][:roleName]
+                           sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                           sbRole = sbRole.nil? ? role : sbRole
                            aParties = hDistributor[:contact][:parties]
                            aParties.each do |hParty|
                               contactIndex = hParty[:contactIndex]
@@ -31,9 +35,9 @@ module ADIWG
                                  unless hContact.empty?
                                     name = hContact[:name]
                                     if instructions.nil?
-                                       materialRequest += name + '(' + role + '); '
+                                       materialRequest += name + '(' + sbRole + '); '
                                     else
-                                       materialRequest += name + '(' + role + ' - ' + instructions + '); '
+                                       materialRequest += name + '(' + sbRole + ' - ' + instructions + '); '
                                     end
                                  end
                               end

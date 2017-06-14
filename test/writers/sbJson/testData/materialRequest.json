@@ -7,18 +7,18 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "myName",
+         "name": "Person 1",
          "positionName": "myPositionName"
       },
       {
          "contactId": "CID002",
          "isOrganization": true,
-         "name": "myOrganization"
+         "name": "Organization 1"
       },
       {
          "contactId": "CID003",
          "isOrganization": true,
-         "name": "myOtherOrganization"
+         "name": "Organization 2"
       }
    ],
    "metadata": {
@@ -66,11 +66,11 @@
       },
       "resourceDistribution": [
          {
-            "description": "myDistributionDescription",
+            "description": "myDistributionDescription1",
             "distributor": [
                {
                   "contact": {
-                     "role": "role1",
+                     "role": "userRole",
                      "party": [
                         {
                            "contactId": "CID001"
@@ -79,17 +79,17 @@
                   },
                   "orderProcess": [
                      {
-                        "orderingInstructions": "myInstructions0"
+                        "orderingInstructions": "Instruction set 1"
                      },
                      {
-                        "orderingInstructions": "myInstructions1"
+                        "orderingInstructions": "Instruction set 2"
                      }
                   ],
                   "transferOption": []
                },
                {
                   "contact": {
-                     "role": "role2",
+                     "role": "distributor",
                      "party": [
                         {
                            "contactId": "CID002"
@@ -101,10 +101,10 @@
                   },
                   "orderProcess": [
                      {
-                        "orderingInstructions": "myInstructions2"
+                        "orderingInstructions": "Instruction set 3"
                      },
                      {
-                        "orderingInstructions": "myInstructions3"
+                        "orderingInstructions": "Instruction set 4"
                      }
                   ],
                   "transferOption": []
@@ -112,11 +112,11 @@
             ]
          },
          {
-            "description": "myDistributionDescription",
+            "description": "myDistributionDescription2",
             "distributor": [
                {
                   "contact": {
-                     "role": "role3",
+                     "role": "SoftwareEngineer",
                      "party": [
                         {
                            "contactId": "CID003"
