@@ -47,7 +47,7 @@ module ADIWG
                   json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier) unless hCitation.empty?
                   json.purpose resourceInfo[:purpose]
                   json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
-                  json.provenance Provenance.build(metadataInfo)
+                  json.provenance Provenance.build()
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
                   aContactList = Contact.get_contact_list(intObj)
