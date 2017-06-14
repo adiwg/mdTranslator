@@ -18,8 +18,17 @@ module ADIWG
                   hWebLink = {}
 
                   function = hResource[:olResFunction]
-                  function = 'download' if function.nil?
-                  hWebLink[:type] = Codelists.codelist_iso_to_sb('iso_sb_onlineFunction', :isoCode => function)
+                  if function.nil?
+                     hWebLink[:type] = 'webLink'
+                  else
+                     if Codelists.is_sb_code('iso_sb_onlineFunction', function)
+                        hWebLink[:type] = function
+                     else
+                        sbFunction = Codelists.codelist_iso_to_sb('iso_sb_onlineFunction', :isoCode => function)
+                        hWebLink[:type] = sbFunction.nil? ? 'webLink' : sbFunction
+                     end
+                  end
+
                   hWebLink[:typeLabel] = hResource[:olResDesc] unless hResource[:olResDesc].nil?
                   hWebLink[:uri] = hResource[:olResURI] unless hResource[:olResURI].nil?
                   hWebLink[:title] = hResource[:olResName] unless hResource[:olResName].nil?
@@ -47,6 +56,18 @@ module ADIWG
                      hGraphic[:graphicURI].each do |hResource|
                         hWebLink = buildWebLink(hResource)
                         aLinks << hWebLink unless hWebLink.empty?
+                     end
+                  end
+
+                  # build webLinks from distributor
+                  hMetadata[:distributorInfo].each do |aDistribution|
+                     aDistribution[:distributor].each do |aDistributor|
+                        aDistributor[:transferOptions].each do |aOption|
+                           aOption[:onlineOptions].each do |hResource|
+                              hWebLink = buildWebLink(hResource)
+                              aLinks << hWebLink unless hWebLink.empty?
+                           end
+                        end
                      end
                   end
 

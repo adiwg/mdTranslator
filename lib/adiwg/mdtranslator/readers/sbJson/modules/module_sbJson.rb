@@ -36,6 +36,8 @@ module ADIWG
                   # titles / alternateTitles
                   Title.unpack(hSbJson, hCitation, hResponseObj)
 
+                  # id
+
                   # something goes here
                   @contacts = []
 

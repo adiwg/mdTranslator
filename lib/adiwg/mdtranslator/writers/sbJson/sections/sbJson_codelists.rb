@@ -61,18 +61,44 @@ module ADIWG
                ]
 
                @iso_sb_onlineFunction = [
-                  {iso: 'information', sb: 'webLink'},
-                  {iso: 'completeMetadata', sb: 'originalMetadata'},
-                  {iso: 'browseGraphic', sb: 'browseImage'},
-                  {iso: 'webApplication', sb: 'webapp'},
                   {iso: 'download', sb: 'download'},
+                  {iso: 'information', sb: 'webLink'},
                   {iso: 'offlineAccess', sb: 'offlineAccess'},
                   {iso: 'order', sb: 'order'},
                   {iso: 'search', sb: 'search'},
+                  {iso: 'completeMetadata', sb: 'originalMetadata'},
+                  {iso: 'browseGraphic', sb: 'browseImage'},
                   {iso: 'upload', sb: 'upload'},
                   {iso: 'emailService', sb: 'emailService'},
                   {iso: 'browsing', sb: 'browsing'},
-                  {iso: 'fileAccess', sb: 'fileAccess'}
+                  {iso: 'fileAccess', sb: 'fileAccess'},
+                  {iso: 'webApplication', sb: 'webapp'},
+                  {iso: 'doi', sb: nil},
+                  {iso: 'orcid', sb: nil},
+                  {iso: 'dataUri', sb: nil},
+                  {iso: nil, sb: 'arcgis'},
+                  {iso: nil, sb: 'citation'},
+                  {iso: nil, sb: 'configFile'},
+                  {iso: nil, sb: 'kml'},
+                  {iso: nil, sb: 'mapapp'},
+                  {iso: nil, sb: 'method'},
+                  {iso: nil, sb: 'oia-pmh'},
+                  {iso: nil, sb: 'dpf'},
+                  {iso: nil, sb: 'publicationReferenceSouce'},
+                  {iso: nil, sb: 'repo'},
+                  {iso: nil, sb: 'serviceCapabilitiesUri'},
+                  {iso: nil, sb: 'serviceFeatureInfoUri'},
+                  {iso: nil, sb: 'serviceLegendUri'},
+                  {iso: nil, sb: 'serviceLink'},
+                  {iso: nil, sb: 'serviceMapUri'},
+                  {iso: nil, sb: 'serviceWfsBackingUri'},
+                  {iso: nil, sb: 'siteMap'},
+                  {iso: nil, sb: 'sourceCode'},
+                  {iso: nil, sb: 'txt'},
+                  {iso: nil, sb: 'WAF'},
+                  {iso: nil, sb: 'xls'},
+                  {iso: nil, sb: 'zip'}
+
                ]
 
                @iso_sb_scope = [
@@ -178,6 +204,7 @@ module ADIWG
                   {iso: 'suspended', sb: nil}
                ]
 
+               # translate iso/adiwg code to sb
                def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
                   codeList = instance_variable_get("@#{codelist}")
@@ -200,6 +227,23 @@ module ADIWG
 
                   # not found
                   return nil
+
+               end
+
+               # test if provided code is a valid sb code
+               def self.is_sb_code(codelist, sbCode)
+
+                  codeList = instance_variable_get("@#{codelist}")
+
+                  unless sbCode.nil?
+                     codeList.each do |obj|
+                        if obj[:sb] == sbCode
+                           return true
+                        end
+                     end
+                  end
+
+                  return false
 
                end
 
