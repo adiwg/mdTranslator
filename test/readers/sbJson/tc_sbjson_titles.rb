@@ -1,13 +1,13 @@
 # MdTranslator - minitest of
-# reader / mdJson / module_address
+# reader / sbJson / module_titles
 
 # History:
 #   Stan Smith 2017-06-13 original script
 
 require_relative 'sbjson_test_parent'
-require 'adiwg/mdtranslator/readers/sbJson/modules/module_sbJson'
+require 'adiwg/mdtranslator/readers/sbJson/modules/module_titles'
 
-class TestReaderSbJsonSbJson < TestReaderSbJsonParent
+class TestReaderSbJsonTitles < TestReaderSbJsonParent
 
    @@NameSpace = ADIWG::Mdtranslator::Readers::SbJson::Title
    @@hIn = TestReaderSbJsonParent.getJson('titles.json')

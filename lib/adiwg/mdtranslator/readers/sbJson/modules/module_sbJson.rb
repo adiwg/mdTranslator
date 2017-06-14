@@ -7,6 +7,7 @@
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_titles'
+require_relative 'module_id'
 
 module ADIWG
    module Mdtranslator
@@ -37,6 +38,7 @@ module ADIWG
                   Title.unpack(hSbJson, hCitation, hResponseObj)
 
                   # id
+                  Id.unpack(hSbJson, hMetadataInfo[:metadataIdentifier], hResponseObj)
 
                   # something goes here
                   @contacts = []
