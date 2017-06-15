@@ -3,6 +3,8 @@
 # History:
 #  Stan Smith 2017-05-22 original script
 
+require_relative 'sbJson_codelists'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -17,9 +19,20 @@ module ADIWG
                   aConstraints.each do |hConstraint|
                      if hConstraint[:type] = 'legal'
                         unless hConstraint[:legalConstraint].empty?
+
+                           # map legal constraint usage restriction codes
+                           hConstraint[:legalConstraint][:useCodes].each do |code|
+                              codeDef = Codelists.get_code_definition('iso_restriction', code)
+                              unless codeDef.nil?
+                                 rights += code + ' - ' + codeDef + '; '
+                              end
+                           end
+
+                           # map other legal constraints
                            hConstraint[:legalConstraint][:otherCons].each do |con|
                               rights += con + '; '
                            end
+
                         end
                      end
                   end

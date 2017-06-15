@@ -3,6 +3,8 @@
 # History:
 #  Stan Smith 2017-05-26 original script
 
+require 'adiwg-mdcodes'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -232,9 +234,7 @@ module ADIWG
 
                # test if provided code is a valid sb code
                def self.is_sb_code(codelist, sbCode)
-
                   codeList = instance_variable_get("@#{codelist}")
-
                   unless sbCode.nil?
                      codeList.each do |obj|
                         if obj[:sb] == sbCode
@@ -242,9 +242,18 @@ module ADIWG
                         end
                      end
                   end
-
                   return false
+               end
 
+               # get requested codelist from the adiwg-mdcodes gem
+               def self.get_code_definition(codeList, code)
+                  hCodelist = ADIWG::Mdcodes.getCodelistDetail(codeList, @hResponseObj)
+                  hCodelist['codelist'].each do |item|
+                     if item['codeName'] == code
+                        return item['description']
+                     end
+                  end
+                  return nil
                end
 
             end

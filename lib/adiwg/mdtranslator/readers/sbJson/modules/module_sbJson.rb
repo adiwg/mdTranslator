@@ -40,6 +40,8 @@ module ADIWG
                   # id
                   Id.unpack(hSbJson, hMetadataInfo[:metadataIdentifier], hResponseObj)
 
+                  # body / summary
+
                   # something goes here
                   @contacts = []
 

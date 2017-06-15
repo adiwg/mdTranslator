@@ -56,9 +56,14 @@
             {
                "type": "legal",
                "legal": {
+                  "useConstraint": [
+                     "copyright",
+                     "becauseISaidSo",
+                     "traditionalKnowledge"
+                  ],
                   "otherConstraint": [
-                     "myRightsConstraint 0",
-                     "myRightsConstraint 1"
+                     "myOtherConstraint 1",
+                     "myOtherConstraint 2"
                   ]
                }
             },
@@ -66,8 +71,7 @@
                "type": "legal",
                "legal": {
                   "useConstraint": [
-                     "useConstraint0",
-                     "useConstraint1"
+                     "intellectualPropertyRights"
                   ]
                }
             },
@@ -78,15 +82,6 @@
                   "classificationSystem": "classificationSystem",
                   "userNote": "userNote",
                   "handlingDescription": "handlingDescription"
-               }
-            },
-            {
-               "type": "legal",
-               "legal": {
-                  "otherConstraint": [
-                     "myRightsConstraint 2",
-                     "myRightsConstraint 3"
-                  ]
                }
             }
          ]
