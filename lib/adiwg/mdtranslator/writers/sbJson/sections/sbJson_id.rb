@@ -14,35 +14,34 @@ module ADIWG
             module Id
 
                # use metadataInfo identifier
-               # else use citation identifier [0]
-               # else use generated UUID
+               # else use citation identifier
+               # valid identifier must have namespace = 'gov.sciencebase.catalog'
                def self.build(intObj)
 
                   metadataInfo = intObj[:metadata][:metadataInfo]
                   resourceInfo = intObj[:metadata][:resourceInfo]
-                  hIdentifier = metadataInfo[:metadataIdentifier]
+                  hMetadataId = metadataInfo[:metadataIdentifier]
                   hCitation = resourceInfo[:citation]
 
-                  id = nil
-                  metadataId = nil
-                  citationId = nil
-                  unless hIdentifier.empty?
-                     metadataId = hIdentifier[:identifier]
-                  end
-
-                  unless hCitation.empty?
-                     unless hCitation[:identifiers].empty?
-                        citationId = hCitation[:identifiers][0][:identifier]
+                  unless hMetadataId.empty?
+                     if hMetadataId[:namespace] == 'gov.sciencebase.catalog'
+                        unless hMetadataId[:identifier].nil?
+                           return hMetadataId[:identifier]
+                        end
                      end
                   end
 
-                  if !metadataId.nil?
-                     id = metadataId
-                  elsif !citationId.nil?
-                     id = citationId
-                  else
-                     id = UUIDTools::UUID.random_create.to_s
+                  unless hCitation.empty?
+                     hCitation[:identifiers].each do |hIdentifier|
+                        if hIdentifier[:namespace] == 'gov.sciencebase.catalog'
+                           unless hIdentifier[:identifier].nil?
+                              return hIdentifier[:identifier]
+                           end
+                        end
+                     end
                   end
+
+                  return nil
 
                end
 

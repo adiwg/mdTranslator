@@ -13,10 +13,27 @@ class TestWriterSbJsonId < TestWriterSbJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('id.json')
 
-   def test_id_metadata_identifier
+   def test_id_no_valid_namespace
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
+         writer: 'sbJson', showAllTags: false)
+
+      hJsonOut = JSON.parse(metadata[:writerOutput])
+      got = hJsonOut['id']
+
+      assert_nil got
+
+   end
+
+   def test_id_namespace_in_metadata
+
+      hJsonIn = JSON.parse(@@jsonIn)
+      hJsonIn['metadata']['metadataInfo']['metadataIdentifier']['namespace'] = 'gov.sciencebase.catalog'
+      hIn = hJsonIn.to_json
+
+      metadata = ADIWG::Mdtranslator.translate(
+         file: hIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
@@ -26,10 +43,10 @@ class TestWriterSbJsonId < TestWriterSbJsonParent
 
    end
 
-   def test_id_metadata_citation
+   def test_id_namespace_in_citation
 
       hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['metadataInfo'].delete('metadataIdentifier')
+      hJsonIn['metadata']['resourceInfo']['citation']['identifier'][1]['namespace'] = 'gov.sciencebase.catalog'
       hIn = hJsonIn.to_json
 
       metadata = ADIWG::Mdtranslator.translate(
@@ -39,25 +56,7 @@ class TestWriterSbJsonId < TestWriterSbJsonParent
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['id']
 
-      assert_equal 'myCitationIdentifier0', got
-
-   end
-
-   def test_id_default
-
-      hJsonIn = JSON.parse(@@jsonIn)
-      hJsonIn['metadata']['metadataInfo'].delete('metadataIdentifier')
-      hJsonIn['metadata']['resourceInfo']['citation'].delete('identifier')
-      hIn = hJsonIn.to_json
-
-      metadata = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', validate: 'normal',
-         writer: 'sbJson', showAllTags: false)
-
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['id']
-
-      refute_nil got
+      assert_equal 'myCitationIdentifier2', got
 
    end
 

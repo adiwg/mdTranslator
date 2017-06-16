@@ -18,7 +18,7 @@ module ADIWG
                      sbId = hSbJson['id']
                      unless sbId.nil? || sbId == ''
                         hIdentifier[:identifier] = sbId
-                        hIdentifier[:namespace] = 'www.sciencebase.gov'
+                        hIdentifier[:namespace] = 'gov.sciencebase.catalog'
                         hIdentifier[:description] = 'USGS ScienceBase Identifier'
                      end
                   end
