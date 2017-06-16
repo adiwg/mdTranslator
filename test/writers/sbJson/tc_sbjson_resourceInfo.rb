@@ -19,10 +19,11 @@ class TestWriterSbJsonBody < TestWriterSbJsonParent
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
          writer: 'sbJson', showAllTags: false)
 
+      expect = '<h3 id="title">Title</h3><p><strong>BOLD</strong></p><ul>  <li>Item 1</li>  <li>Item 2</li></ul><p>Whitespace paragraph 1</p><p>Whitespace paragraph 2</p>'
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['body']
 
-      assert_equal 'myBody', got
+      assert_equal expect, got
 
    end
 
