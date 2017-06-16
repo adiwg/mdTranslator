@@ -21,7 +21,7 @@ class TestReaderSbJsonId < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hIdentifier, hResponse)
 
       assert_equal 'SB123456789', metadata[:identifier]
-      assert_equal 'www.sciencebase.gov', metadata[:namespace]
+      assert_equal 'gov.sciencebase.catalog', metadata[:namespace]
       assert_equal 'USGS ScienceBase Identifier', metadata[:description]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
