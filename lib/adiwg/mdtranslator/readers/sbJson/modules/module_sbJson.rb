@@ -8,6 +8,7 @@
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_titles'
 require_relative 'module_id'
+require_relative 'module_body'
 
 module ADIWG
    module Mdtranslator
@@ -26,12 +27,12 @@ module ADIWG
                   # build basic mdTranslator internal object
                   hMetadata = intMetadataClass.newMetadata
                   hMetadataInfo = intMetadataClass.newMetadataInfo
-                  hResource = intMetadataClass.newResourceInfo
+                  hResourceInfo = intMetadataClass.newResourceInfo
                   hCitation = intMetadataClass.newCitation
 
-                  hResource[:citation] = hCitation
+                  hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
-                  hMetadata[:resourceInfo] = hResource
+                  hMetadata[:resourceInfo] = hResourceInfo
                   intObj[:metadata] = hMetadata
 
                   # titles / alternateTitles
@@ -41,6 +42,9 @@ module ADIWG
                   Id.unpack(hSbJson, hMetadataInfo[:metadataIdentifier], hResponseObj)
 
                   # body / summary
+                  Body.unpack(hSbJson, hResourceInfo, hResponseObj)
+
+                  # citation
 
                   # something goes here
                   @contacts = []
