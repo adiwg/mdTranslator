@@ -10,6 +10,7 @@ require_relative 'module_titles'
 require_relative 'module_id'
 require_relative 'module_body'
 require_relative 'module_citation'
+require_relative 'module_identifier'
 
 module ADIWG
    module Mdtranslator
@@ -49,6 +50,9 @@ module ADIWG
                   Citation.unpack(hSbJson, hCitation, hResponseObj)
 
                   # identifier
+                  Identifier.unpack(hSbJson, hCitation, hResponseObj)
+
+                  # purpose
 
                   # something goes here
                   @contacts = []
