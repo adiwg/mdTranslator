@@ -12,6 +12,7 @@ require_relative 'module_body'
 require_relative 'module_citation'
 require_relative 'module_identifier'
 require_relative 'module_purpose'
+require_relative 'module_rights'
 
 module ADIWG
    module Mdtranslator
@@ -57,7 +58,10 @@ module ADIWG
                   Purpose.unpack(hSbJson, hResourceInfo, hResponseObj)
 
                   # rights
+                  hReturn = Rights(hSbJson, hResponseObj)
+                  hResourceInfo[:constraints] << hReturn unless hReturn.nil?
 
+                  # provenance
 
                   # something goes here
                   @contacts = []
