@@ -58,7 +58,7 @@ module ADIWG
                   Purpose.unpack(hSbJson, hResourceInfo, hResponseObj)
 
                   # rights
-                  hReturn = Rights(hSbJson, hResponseObj)
+                  hReturn = Rights.unpack(hSbJson, hResponseObj)
                   hResourceInfo[:constraints] << hReturn unless hReturn.nil?
 
                   # provenance
