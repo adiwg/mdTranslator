@@ -40,9 +40,9 @@ module ADIWG
 
                # schema - current version
                currentVersion = ADIWG::Mdtranslator::Readers::SbJson::VERSION
-               hResponseObj[:readerVersionRequested] = hSbJson['version']
+               hResponseObj[:readerVersionRequested] = hSbJson['schema']['version']
                hResponseObj[:readerVersionUsed] = currentVersion
-               unless currentVersion == hSbJson['version']
+               unless currentVersion == hSbJson['schema']['version']
                   hResponseObj[:readerStructureMessages] << "sbJson schema version '#{hSbJson['version']}' is not supported"
                   hResponseObj[:readerStructurePass] = false
                   return {}
