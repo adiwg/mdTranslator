@@ -3,6 +3,7 @@
 # History:
 #  Stan Smith 2017-05-16 original script
 
+require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative 'sbJson_codelists'
 
 module ADIWG

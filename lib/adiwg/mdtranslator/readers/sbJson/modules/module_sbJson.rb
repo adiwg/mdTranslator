@@ -13,6 +13,7 @@ require_relative 'module_citation'
 require_relative 'module_identifier'
 require_relative 'module_purpose'
 require_relative 'module_rights'
+require_relative 'module_provenance'
 
 module ADIWG
    module Mdtranslator
@@ -62,6 +63,9 @@ module ADIWG
                   hResourceInfo[:constraints] << hReturn unless hReturn.nil?
 
                   # provenance
+                  Provenance.unpack(hSbJson, hCitation, hResponseObj)
+
+                  # materialRequestInstructions
 
                   # something goes here
                   @contacts = []
