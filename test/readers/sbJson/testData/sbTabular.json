@@ -1,0 +1,397 @@
+{
+   "link": {
+      "rel": "self",
+      "url": "https://www.sciencebase.gov/catalog/item/56b3e649e4b0cc79997fb5ec"
+   },
+   "relatedItems": {
+      "link": {
+         "url": "https://www.sciencebase.gov/catalog/itemLinks?itemId=56b3e649e4b0cc79997fb5ec",
+         "rel": "related"
+      }
+   },
+   "id": "56b3e649e4b0cc79997fb5ec",
+   "identifiers": [
+      {
+         "type": "doi",
+         "scheme": "https://www.sciencebase.gov/vocab/category/item/identifier",
+         "key": "doi:10.5066/F7VX0DMQ"
+      },
+      {
+         "type": "IPDS",
+         "scheme": "https://www.sciencebase.gov/vocab/category/item/identifier",
+         "key": "IP-074686"
+      }
+   ],
+   "title": "Data used to estimate and project the effects of climate and land use change on wetland densities in the Prairie Pothole Region",
+   "summary": "These data were used to estimate models relating climate and land cover to wetland densities and develop projections under climate and land use change. Data for model estimation were derived from historical climate data, estimates of hydrological processes based on the Variable Infiltration Capacity model, National Wetlands Inventory, and the National Land Cover Database. Wetland densities were based on observations from the Waterfowl Breeding Population and Habitat Survey. Projected climate conditions were derived from ten Global Climate Models, and projected changes in land use were based on an economic model of the effects of climate on land use transitions.  These data support the following publication:  Sofaer, H. R., Skagen, [...]",
+   "body": "These data were used to estimate models relating climate and land cover to wetland densities and develop projections under climate and land use change. Data for model estimation were derived from historical climate data, estimates of hydrological processes based on the Variable Infiltration Capacity model, National Wetlands Inventory, and the National Land Cover Database. Wetland densities were based on observations from the Waterfowl Breeding Population and Habitat Survey. Projected climate conditions were derived from ten Global Climate Models, and projected changes in land use were based on an economic model of the effects of climate on land use transitions.\n<br> \n<br> These data support the following publication:\n<br> \n<br> Sofaer, H. R., Skagen, S. K., Barsugli, J. J., Rashford, B. S., Reese, G. C., Hoeting, J. A., Wood, A. W. and Noon, B. R. (2016), Projected wetland densities under climate change: habitat loss but little geographic shift in conservation strategy. Ecol Appl. Accepted Author Manuscript. doi:10.1890/15-0750.1.",
+   "citation": "Sofaer, H.R.  2016, Dataset used to estimate the effects of climate and land cover on wetland densities in the Prairie Pothole Region: U.S. Geological Survey data release, http://dx.doi.org/10.5066/F7VX0DMQ.",
+   "purpose": "These data were collated to understand the relationship between climate, land cover, and wetland densities, and to develop projections of wetland densities under climate and land use change.",
+   "provenance": {
+      "dataSource": "Input directly",
+      "dateCreated": "2016-02-05T00:01:13Z",
+      "lastUpdated": "2017-04-06T20:12:01Z"
+   },
+   "hasChildren": false,
+   "parentId": "504a0aa4e4b02b6b9f7bd99f",
+   "contacts": [
+      {
+         "name": "U.S. Geological Survey, Southwest Region",
+         "type": "Point of Contact",
+         "contactType": "organization",
+         "email": "hsofaer@usgs.gov",
+         "jobTitle": "Science Technician",
+         "organization": {},
+         "primaryLocation": {
+            "officePhone": "970-226-9173",
+            "faxPhone": "970-226-9230",
+            "streetAddress": {},
+            "mailAddress": {
+               "line1": "2150 Centre Avenue Bldg C",
+               "city": "Fort Collins",
+               "state": "CO",
+               "zip": "80526"
+            }
+         }
+      },
+      {
+         "name": "U.S. Geological Survey - ScienceBase",
+         "oldPartyId": 70157,
+         "type": "Distributor",
+         "contactType": "organization",
+         "onlineResource": "https://www.sciencebase.gov",
+         "email": "sciencebase@usgs.gov",
+         "organization": {},
+         "primaryLocation": {
+            "name": "U.S. Geological Survey - ScienceBase - Location",
+            "officePhone": "18882758747",
+            "streetAddress": {},
+            "mailAddress": {
+               "line1": "Denver Federal Center",
+               "line2": "Building 810",
+               "mailStopCode": "302",
+               "city": "Denver",
+               "state": "CO",
+               "zip": "80225",
+               "country": "United States"
+            }
+         }
+      },
+      {
+         "name": "GS-RMA-FORT Data Management",
+         "type": "Metadata Contact",
+         "contactType": "person",
+         "email": "fortdatamanagement@usgs.gov",
+         "jobTitle": "FORT Metadata Specialist",
+         "organization": {
+            "displayText": "U.S. Geological Survey"
+         },
+         "primaryLocation": {
+            "officePhone": "(970) 226-9100",
+            "streetAddress": {},
+            "mailAddress": {
+               "line1": "U.S. Geological Survey, Fort Collins Science Center (FORT)",
+               "line2": "2150 Centre Avenue, Bldg C",
+               "city": "Fort Collins",
+               "state": "CO",
+               "zip": "80526",
+               "country": "USA"
+            }
+         }
+      },
+      {
+         "name": "Helen R Sofaer",
+         "oldPartyId": 63500,
+         "type": "Originator",
+         "contactType": "person",
+         "email": "hsofaer@usgs.gov",
+         "active": true,
+         "jobTitle": "Science Technician",
+         "firstName": "Helen",
+         "middleName": "R",
+         "lastName": "Sofaer",
+         "organization": {
+            "displayText": "Fort Collins Science Center"
+         },
+         "primaryLocation": {
+            "name": "CN=Helen R Sofaer,OU=Fort Collins,OU=Users,OU=FortCollinsCO-B,OU=CR,DC=gs,DC=doi,DC=net - Primary Location",
+            "building": "NRRC Bldg C",
+            "buildingCode": "KBA",
+            "officePhone": "9702269173",
+            "faxPhone": "9702269230",
+            "streetAddress": {
+               "line1": "2150 Centre Avenue Bldg C",
+               "city": "Fort Collins",
+               "state": "CO",
+               "zip": "80526"
+            },
+            "mailAddress": {}
+         }
+      }
+   ],
+   "webLinks": [
+      {
+         "type": "publicationReferenceSource",
+         "typeLabel": "Publication that references this resource",
+         "uri": "https://doi.org/10.1890/15-0750.1",
+         "title": "Sofaer, H. R., Skagen, S. K., Barsugli, J. J., Rashford, B. S., Reese, G. C., Hoeting, J. A., Wood, A. W. and Noon, B. R. (2016), Projected wetland densities under climate change: habitat loss but little geographic shift in conservation strategy. Ecol Appl, 26: 1677-1692. doi:10.1890/15-0750.1",
+         "hidden": false
+      }
+   ],
+   "browseCategories": [
+      "Data"
+   ],
+   "browseTypes": [
+      "Citation"
+   ],
+   "systemTypes": [
+      "Data Release"
+   ],
+   "tags": [
+      {
+         "type": "Theme",
+         "scheme": "USGS Thesaurus",
+         "name": "wetland ecosystems"
+      },
+      {
+         "type": "Theme",
+         "scheme": "USGS Thesaurus",
+         "name": "effects of climate change"
+      },
+      {
+         "type": "Place",
+         "scheme": "None",
+         "name": "Prairie Pothole Region"
+      },
+      {
+         "type": "Place",
+         "scheme": "Common geographic areas",
+         "name": "South Dakota"
+      },
+      {
+         "type": "Place",
+         "scheme": "Common geographic areas",
+         "name": "North Dakota"
+      },
+      {
+         "type": "Place",
+         "scheme": "Common geographic areas",
+         "name": "Montana"
+      },
+      {
+         "type": "Organization",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/OrganizationName",
+         "name": "North Central CSC"
+      },
+      {
+         "type": "Wildlife and Plants",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/WildlifeandPlants",
+         "name": "Plants"
+      }
+   ],
+   "dates": [
+      {
+         "type": "Publication",
+         "dateString": "2016",
+         "label": "Publication Date"
+      }
+   ],
+   "files": [
+      {
+         "name": "Sofaer_etal_GCMcovSTS.csv",
+         "title": "",
+         "contentType": "text/csv",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__d3/3b/01/d33b01cd5f6f1da96ad6091ca804369ff17ff4b7",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 31800898,
+         "dateUploaded": "2016-03-30T16:37:38Z",
+         "originalMetadata": false,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__d3%2F3b%2F01%2Fd33b01cd5f6f1da96ad6091ca804369ff17ff4b7"
+      },
+      {
+         "name": "Sofaer_etal_RowCropProjections.csv",
+         "title": "",
+         "contentType": "text/csv",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__d9/ba/1f/d9ba1f62156c6f46f27a919b53f2fab8959c3c33",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 359875,
+         "dateUploaded": "2016-03-30T16:37:31Z",
+         "originalMetadata": false,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__d9%2Fba%2F1f%2Fd9ba1f62156c6f46f27a919b53f2fab8959c3c33"
+      },
+      {
+         "name": "Sofaer_etal_WetlandModelEstimation.csv",
+         "title": "",
+         "contentType": "text/csv",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__09/f3/10/09f31079335f111a9553468c9b190aed38a05d26",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 4863012,
+         "dateUploaded": "2016-03-30T16:37:33Z",
+         "originalMetadata": false,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__09%2Ff3%2F10%2F09f31079335f111a9553468c9b190aed38a05d26"
+      },
+      {
+         "name": "Sofaer_etal_WetlandProjections.csv",
+         "title": "",
+         "contentType": "text/csv",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__e8/eb/18/e8eb18352793afaf5c0a3e1dc3dbccf51e53e82f",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 751976,
+         "dateUploaded": "2016-03-30T16:37:31Z",
+         "originalMetadata": false,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__e8%2Feb%2F18%2Fe8eb18352793afaf5c0a3e1dc3dbccf51e53e82f"
+      },
+      {
+         "name": "Sofaer_etal_GCMcovSTS.csv.xml",
+         "title": "",
+         "contentType": "application/fgdc+xml",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__5a/1c/82/5a1c82a562c6f79a2edd6bb4be978608fb67a257",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 16742,
+         "dateUploaded": "2016-04-06T18:46:43Z",
+         "originalMetadata": true,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__5a%2F1c%2F82%2F5a1c82a562c6f79a2edd6bb4be978608fb67a257"
+      },
+      {
+         "name": "Sofaer_etal_RowCropProjections.csv.xml",
+         "title": "",
+         "contentType": "application/fgdc+xml",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__52/0b/7a/520b7a5b41689422abd2da323f735170d932bbaf",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 15603,
+         "dateUploaded": "2016-04-06T18:46:43Z",
+         "originalMetadata": true,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__52%2F0b%2F7a%2F520b7a5b41689422abd2da323f735170d932bbaf"
+      },
+      {
+         "name": "Sofaer_etal_WetlandModelEstimation.csv.xml",
+         "title": "",
+         "contentType": "application/fgdc+xml",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__fc/c8/54/fcc854e6a58693a2754e3755ce0b8667a0768dc7",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 26206,
+         "dateUploaded": "2016-04-06T18:46:43Z",
+         "originalMetadata": true,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__fc%2Fc8%2F54%2Ffcc854e6a58693a2754e3755ce0b8667a0768dc7"
+      },
+      {
+         "name": "Sofaer_etal_WetlandProjections.csv.xml",
+         "title": "",
+         "contentType": "application/fgdc+xml",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__6b/0b/80/6b0b808f8e8837be59bc68e1a5425d8b0a38150a",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": null,
+         "imageHeight": null,
+         "size": 17412,
+         "dateUploaded": "2016-04-06T18:46:43Z",
+         "originalMetadata": true,
+         "useForPreview": false,
+         "s3Object": null,
+         "checksum": null,
+         "url": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec?f=__disk__6b%2F0b%2F80%2F6b0b808f8e8837be59bc68e1a5425d8b0a38150a"
+      }
+   ],
+   "distributionLinks": [
+      {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/56b3e649e4b0cc79997fb5ec",
+         "title": "Download Attached Files",
+         "type": "downloadLink",
+         "typeLabel": "Download Link",
+         "rel": "alternate",
+         "name": "Datausedtoestim.zip",
+         "files": [
+            {
+               "name": "Sofaer_etal_GCMcovSTS.csv",
+               "title": "",
+               "contentType": "text/csv"
+            },
+            {
+               "name": "Sofaer_etal_RowCropProjections.csv",
+               "title": "",
+               "contentType": "text/csv"
+            },
+            {
+               "name": "Sofaer_etal_WetlandModelEstimation.csv",
+               "title": "",
+               "contentType": "text/csv"
+            },
+            {
+               "name": "Sofaer_etal_WetlandProjections.csv",
+               "title": "",
+               "contentType": "text/csv"
+            },
+            {
+               "name": "Sofaer_etal_GCMcovSTS.csv.xml",
+               "title": "",
+               "contentType": "application/fgdc+xml"
+            },
+            {
+               "name": "Sofaer_etal_RowCropProjections.csv.xml",
+               "title": "",
+               "contentType": "application/fgdc+xml"
+            },
+            {
+               "name": "Sofaer_etal_WetlandModelEstimation.csv.xml",
+               "title": "",
+               "contentType": "application/fgdc+xml"
+            },
+            {
+               "name": "Sofaer_etal_WetlandProjections.csv.xml",
+               "title": "",
+               "contentType": "application/fgdc+xml"
+            }
+         ]
+      }
+   ]
+}

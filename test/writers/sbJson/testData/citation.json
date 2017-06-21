@@ -88,6 +88,10 @@
             ],
             "date": [
                {
+                  "date": "2020",
+                  "dateType": "expiry"
+               },
+               {
                   "date": "2017-05",
                   "dateType": "creation"
                },

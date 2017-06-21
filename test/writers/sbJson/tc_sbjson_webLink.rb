@@ -21,32 +21,63 @@ class TestWriterSbJsonWebLink < TestWriterSbJsonParent
 
       expect = [
          {
-            'type' => 'download', 
-            'typeLabel' => 'myDescription1', 
-            'uri' => 'http://ISO.uri/adiwg/1', 
+            'type' => 'download',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/1',
             'title' => 'myName1'
-         }, 
+         },
          {
-            'type' => 'download', 
+            'type' => 'webLink',
+            'typeLabel' => 'missing function code',
             'uri' => 'http://ISO.uri/adiwg/2'
-         }, 
+         },
          {
-            'type' => 'webapp', 
-            'typeLabel' => 'myDescription3', 
-            'uri' => 'http://ISO.uri/adiwg/3', 
-            'title' => 'myName1'
-         }, 
+            'type' => 'webapp',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/3',
+            'title' => 'myName13'
+         },
          {
-            'type' => 'browseImage', 
-            'typeLabel' => 'myDescription4', 
-            'uri' => 'http://ISO.uri/adiwg/4', 
+            'type' => 'browseImage',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/4',
             'title' => 'myName4'
-         }, 
+         },
          {
-            'type' => 'browseImage', 
-            'typeLabel' => 'myDescription5', 
-            'uri' => 'http://ISO.uri/adiwg/5', 
+            'type' => 'browseImage',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/5',
             'title' => 'myName5'
+         },
+         {
+            'type' => 'download',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/6',
+            'title' => 'myName6'
+         },
+         {
+            'type' => 'fileAccess',
+            'typeLabel' => 'translated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/7',
+            'title' => 'myName7'
+         },
+         {
+            'type' => 'webLink',
+            'typeLabel' => 'untranslated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/8',
+            'title' => 'myName8'
+         },
+         {
+            'type' => 'webLink',
+            'typeLabel' => 'untranslated adiwg code',
+            'uri' => 'http://ISO.uri/adiwg/9',
+            'title' => 'myName9'
+         },
+         {
+            'type' => 'serviceMapUri',
+            'typeLabel' => 'untranslated sb type',
+            'uri' => 'http://ISO.uri/adiwg/10',
+            'title' => 'myName10'
          }
       ]
 
