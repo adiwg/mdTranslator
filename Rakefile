@@ -5,6 +5,7 @@ Rake::TestTask.new do |t|
 	t.libs << 'test'
 	t.test_files = FileList[
 		'test/readers/mdJson/tc*.rb',
+		'test/readers/sbJson/tc*.rb',
 		'test/writers/iso19115-2/tc*.rb',
 		'test/writers/iso19110/tc*.rb',
 		'test/writers/mdJson/tc*.rb',

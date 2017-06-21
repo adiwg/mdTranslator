@@ -23,9 +23,7 @@ class TestWriterSbJsonProvenance < TestWriterSbJsonParent
       got = hJsonOut['provenance']
       version = ADIWG::Mdtranslator::VERSION
       expect = {
-         'dataSource' => 'generated using ADIwg mdTranslator ' + version,
-         'dateCreated' => '2017-02-16T15:12:47',
-         'lastUpdated' => '2017-05-22'
+         'annotation' => 'generated using ADIwg mdTranslator ' + version,
       }
 
       assert_equal expect, got

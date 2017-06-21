@@ -22,15 +22,24 @@ module ADIWG
                   # gather all responsibility objects in intObj
                   aResponsibility = @Namespace.nested_objs_by_element(intObj, 'roleName')
 
+                  # set an additional 'Material Request Contact' for each distributor contact
+                  aMRContacts = @Namespace.nested_objs_by_element(intObj[:metadata][:distributorInfo], 'roleName')
+                  aMRContactsDup = Marshal::load(Marshal.dump(aMRContacts))
+                  aMRContactsDup.each do |hResponsibility|
+                     hResponsibility[:roleName] = 'Material Request Contact'
+                     aResponsibility << hResponsibility
+                  end
+
                   # make a list of unique role/party contacts
                   aContactList = []
                   aResponsibility.each do |hResponsibility|
                      role = hResponsibility[:roleName]
+                     sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                     sbRole = sbRole.nil? ? role : sbRole
                      hResponsibility[:parties].each do |hParty|
-                        aContactList << { :role => role, :index => hParty[:contactIndex] }
+                        aContactList << { :role => sbRole, :index => hParty[:contactIndex] }
                      end
                   end
-
                   aContactList = aContactList.uniq
 
                end
@@ -62,8 +71,7 @@ module ADIWG
                         json.name hContact[:name]
                         json.contactType type
                         json.personalTitle hContact[:positionName] if type == 'person'
-                        sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
-                        json.type sbRole = sbRole.nil? ? role : sbRole
+                        json.type role
                         json.email hContact[:eMailList][0] unless hContact[:eMailList].empty?
                         json.hours Hours.build(hContact[:hoursOfService]) unless hContact[:hoursOfService].empty?
                         json.instructions hContact[:contactInstructions]

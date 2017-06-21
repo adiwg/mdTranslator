@@ -7,8 +7,8 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "Person 001",
-         "positionName": "person001PositionName",
+         "name": "Person 1",
+         "positionName": "person 1 Position Name",
          "memberOfOrganization": [
             "CID005"
          ],
@@ -67,13 +67,13 @@
       {
          "contactId": "CID002",
          "isOrganization": false,
-         "name": "Person 002",
+         "name": "Person 2",
          "address": [
             {
                "addressType": ["mailing","other"],
                "description": "yourAddressDescription",
                "deliveryPoint": [
-                  "deliveryPoint 02"
+                  "deliveryPoint 01"
                ],
                "city": "yourCity",
                "administrativeArea": "yourState",
@@ -85,24 +85,24 @@
       {
          "contactId": "CID003",
          "isOrganization": false,
-         "name": "Person 003"
+         "name": "Person 3"
       },
       {
          "contactId": "CID004",
          "isOrganization": false,
-         "name": "Person 004"
+         "name": "Person 4"
       },
       {
          "contactId": "CID005",
          "isOrganization": true,
-         "name": "Organization 001"
+         "name": "Organization 1"
       }
    ],
    "metadata": {
       "metadataInfo": {
          "metadataContact": [
             {
-               "role": "metadataContact",
+               "role": "Metadata Contact",
                "party": [
                   {
                      "contactId": "CID001"
@@ -139,14 +139,13 @@
                         "contactId": "CID005",
                         "organizationMembers": [
                            "CID003",
-                           "CID004",
-                           "CID001"
+                           "CID004"
                         ]
                      }
                   ]
                },
                {
-                  "role": "principalInvestigator",
+                  "role": "coPrincipalInvestigator",
                   "party": [
                      {
                         "contactId": "CID003"
@@ -200,6 +199,43 @@
             "country": "USA",
             "characterSet": "UTF-8"
          }
-      }
+      },
+      "resourceDistribution": [
+         {
+            "description": "description",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "distributor",
+                     "party": [
+                        {
+                           "contactId": "CID002"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "contact": {
+                     "role": "userProvided",
+                     "party": [
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "contact": {
+                     "role": "SoftwareEngineer",
+                     "party": [
+                        {
+                           "contactId": "CID004"
+                        }
+                     ]
+                  }
+               }
+            ]
+         }
+      ]
    }
 }

@@ -14,7 +14,7 @@ module ADIWG
 
                def self.build(hDateTime)
 
-                  return AdiwgDateTimeFun.stringFromDateObject(hDateTime)
+                  return AdiwgDateTimeFun.stringDateTimeFromDateObject(hDateTime)
 
                end # build
             end # DateTime

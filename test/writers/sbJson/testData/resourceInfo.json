@@ -33,7 +33,7 @@
          "citation": {
             "title": "myCitationTitle"
          },
-         "abstract": "myBody",
+         "abstract": "### Title\n**BOLD**\n\n* Item 1\n* Item 2\n\nWhitespace paragraph 1\n\nWhitespace paragraph 2",
          "shortAbstract": "mySummary",
          "purpose": "myPurpose",
          "status": [

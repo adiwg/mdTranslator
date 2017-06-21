@@ -1,0 +1,14 @@
+{
+   "identifiers": [
+      {
+         "type": "identifier 1 type",
+         "scheme": "namespace 1",
+         "key": "identifier 1"
+      },
+      {
+         "type": "identifier 2 type",
+         "scheme": "namespace 2",
+         "key": "identifier 2"
+      }
+   ]
+}

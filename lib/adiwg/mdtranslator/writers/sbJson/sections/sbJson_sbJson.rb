@@ -21,6 +21,7 @@ require_relative 'sbJson_spatial'
 require_relative 'sbJson_facet'
 require_relative 'sbJson_metadataRepository'
 require_relative 'sbJson_geographicExtent'
+require_relative 'sbJson_abstract'
 
 module ADIWG
    module Mdtranslator
@@ -41,13 +42,13 @@ module ADIWG
                   json.id Id.build(intObj)
                   json.title hCitation[:title] unless hCitation.empty?
                   json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
-                  json.body resourceInfo[:abstract]
+                  json.body Abstract.build(resourceInfo[:abstract])
                   json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
                   json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier) unless hCitation.empty?
                   json.purpose resourceInfo[:purpose]
                   json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
-                  json.provenance Provenance.build(metadataInfo)
+                  json.provenance Provenance.build()
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
                   aContactList = Contact.get_contact_list(intObj)

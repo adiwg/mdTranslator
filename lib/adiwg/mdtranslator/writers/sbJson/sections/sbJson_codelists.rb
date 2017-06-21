@@ -3,6 +3,8 @@
 # History:
 #  Stan Smith 2017-05-26 original script
 
+require 'adiwg-mdcodes'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -13,41 +15,92 @@ module ADIWG
                @iso_sb_role = [
                   {iso: 'resourceProvider', sb: 'Resource Provider'},
                   {iso: 'custodian', sb: 'Custodian'},
-                  {iso: 'rightsHolder', sb: 'Data Owner'},
+                  {iso: 'owner', sb: 'Data Owner'},
                   {iso: 'use', sb: 'User'},
                   {iso: 'distributor', sb: 'Distributor'},
                   {iso: 'originator', sb: 'Originator'},
                   {iso: 'pointOfContact', sb: 'Point of Contact'},
                   {iso: 'principalInvestigator', sb: 'Principal Investigator'},
                   {iso: 'processor', sb: 'Processor'},
+                  {iso: 'publisher', sb: 'publisher'},
                   {iso: 'author', sb: 'Author'},
+                  {iso: 'sponsor', sb: 'sponsor'},
                   {iso: 'coAuthor', sb: 'Author'},
                   {iso: 'collaborator', sb: 'Cooperator/Partner'},
-                  {iso: 'contributor', sb: 'Cooperator/Partner'},
                   {iso: 'editor', sb: 'Editor'},
-                  {iso: 'coPrincipalInvestigator', sb: 'Co-Investigator'},
-                  {iso: 'publisher', sb: 'publisher'},
-                  {iso: 'sponsor', sb: 'sponsor'},
+                  {iso: 'mediator', sb: 'mediator'},
+                  {iso: 'rightsHolder', sb: 'Data Owner'},
+                  {iso: 'contributor', sb: 'Cooperator/Partner'},
+                  {iso: 'contributor', sb: 'Cooperator/Partner'},
+                  {iso: 'funder', sb: 'funder'},
                   {iso: 'stakeholder', sb: 'stakeholder'},
                   {iso: 'administrator', sb: 'administrator'},
                   {iso: 'client', sb: 'client'},
                   {iso: 'logistics', sb: 'logistics'},
-                  {iso: 'mediator', sb: 'mediator'}
+                  {iso: 'coPrincipalInvestigator', sb: 'Co-Investigator'},
+                  {iso: nil, sb: 'Associate Project Chief'},
+                  {iso: nil, sb: 'Contact'},
+                  {iso: nil, sb: 'Data Provider'},
+                  {iso: nil, sb: 'Funding Agency'},
+                  {iso: nil, sb: 'Lead Organization'},
+                  {iso: nil, sb: 'Material Request Contact'},
+                  {iso: nil, sb: 'Metadata Contact'},
+                  {iso: nil, sb: 'Participant'},
+                  {iso: nil, sb: 'Photographer'},
+                  {iso: nil, sb: 'Process Contact'},
+                  {iso: nil, sb: 'Project Chief'},
+                  {iso: nil, sb: 'Project Team'},
+                  {iso: nil, sb: 'Referred By'},
+                  {iso: nil, sb: 'Report Prepared By'},
+                  {iso: nil, sb: 'SoftwareEngineer'},
+                  {iso: nil, sb: 'Subtask Leader'},
+                  {iso: nil, sb: 'Supporter'},
+                  {iso: nil, sb: 'Task Leader'},
+                  {iso: nil, sb: 'Transmitted'},
+                  {iso: nil, sb: 'User'},
+                  {iso: nil, sb: 'USGS Mission Area'},
+                  {iso: nil, sb: 'USGS Program'}
                ]
 
                @iso_sb_onlineFunction = [
-                  {iso: 'information', sb: 'webLink'},
-                  {iso: 'completeMetadata', sb: 'originalMetadata'},
-                  {iso: 'browseGraphic', sb: 'browseImage'},
-                  {iso: 'webApplication', sb: 'webapp'},
                   {iso: 'download', sb: 'download'},
+                  {iso: 'information', sb: 'webLink'},
                   {iso: 'offlineAccess', sb: 'offlineAccess'},
                   {iso: 'order', sb: 'order'},
                   {iso: 'search', sb: 'search'},
+                  {iso: 'completeMetadata', sb: 'originalMetadata'},
+                  {iso: 'browseGraphic', sb: 'browseImage'},
                   {iso: 'upload', sb: 'upload'},
                   {iso: 'emailService', sb: 'emailService'},
                   {iso: 'browsing', sb: 'browsing'},
-                  {iso: 'fileAccess', sb: 'fileAccess'}
+                  {iso: 'fileAccess', sb: 'fileAccess'},
+                  {iso: 'webApplication', sb: 'webapp'},
+                  {iso: 'doi', sb: nil},
+                  {iso: 'orcid', sb: nil},
+                  {iso: 'dataUri', sb: nil},
+                  {iso: nil, sb: 'arcgis'},
+                  {iso: nil, sb: 'citation'},
+                  {iso: nil, sb: 'configFile'},
+                  {iso: nil, sb: 'kml'},
+                  {iso: nil, sb: 'mapapp'},
+                  {iso: nil, sb: 'method'},
+                  {iso: nil, sb: 'oia-pmh'},
+                  {iso: nil, sb: 'dpf'},
+                  {iso: nil, sb: 'publicationReferenceSouce'},
+                  {iso: nil, sb: 'repo'},
+                  {iso: nil, sb: 'serviceCapabilitiesUri'},
+                  {iso: nil, sb: 'serviceFeatureInfoUri'},
+                  {iso: nil, sb: 'serviceLegendUri'},
+                  {iso: nil, sb: 'serviceLink'},
+                  {iso: nil, sb: 'serviceMapUri'},
+                  {iso: nil, sb: 'serviceWfsBackingUri'},
+                  {iso: nil, sb: 'siteMap'},
+                  {iso: nil, sb: 'sourceCode'},
+                  {iso: nil, sb: 'txt'},
+                  {iso: nil, sb: 'WAF'},
+                  {iso: nil, sb: 'xls'},
+                  {iso: nil, sb: 'zip'}
+
                ]
 
                @iso_sb_scope = [
@@ -153,7 +206,8 @@ module ADIWG
                   {iso: 'suspended', sb: nil}
                ]
 
-                  def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
+               # translate iso/adiwg code to sb
+               def self.codelist_iso_to_sb(codelist, isoCode: nil, sbCode: nil)
 
                   codeList = instance_variable_get("@#{codelist}")
 
@@ -176,6 +230,30 @@ module ADIWG
                   # not found
                   return nil
 
+               end
+
+               # test if provided code is a valid sb code
+               def self.is_sb_code(codelist, sbCode)
+                  codeList = instance_variable_get("@#{codelist}")
+                  unless sbCode.nil?
+                     codeList.each do |obj|
+                        if obj[:sb] == sbCode
+                           return true
+                        end
+                     end
+                  end
+                  return false
+               end
+
+               # get requested codelist from the adiwg-mdcodes gem
+               def self.get_code_definition(codeList, code)
+                  hCodelist = ADIWG::Mdcodes.getCodelistDetail(codeList, @hResponseObj)
+                  hCodelist['codelist'].each do |item|
+                     if item['codeName'] == code
+                        return item['description']
+                     end
+                  end
+                  return nil
                end
 
             end

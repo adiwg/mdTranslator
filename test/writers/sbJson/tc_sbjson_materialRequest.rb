@@ -22,7 +22,7 @@ class TestWriterSbJsonMaterialRequest < TestWriterSbJsonParent
       hJsonOut = JSON.parse(metadata[:writerOutput])
 
       got = hJsonOut['materialRequestInstructions']
-      expect = 'myName(role1 - myInstructions0); myOrganization(role2 - myInstructions2); myOtherOrganization(role2 - myInstructions2); myOtherOrganization(role3)'
+      expect = 'Person 1(userRole - Instruction set 1); Organization 1(Distributor - Instruction set 3); Organization 2(Distributor - Instruction set 3); Organization 2(SoftwareEngineer)'
 
       assert_equal expect, got
 
