@@ -15,6 +15,7 @@ require_relative 'module_purpose'
 require_relative 'module_rights'
 require_relative 'module_provenance'
 require_relative 'module_materialRequest'
+require_relative 'module_parentId'
 
 module ADIWG
    module Mdtranslator
@@ -76,6 +77,12 @@ module ADIWG
                   end
 
                   # parent ID
+                  hReturn = ParentId.unpack(hSbJson, hResponseObj)
+                  unless aReturn.nil?
+                     hMetadataInfo[:parentMetadata] = hReturn
+                  end
+
+                  # contacts
 
                   # something goes here
                   @contacts = []
