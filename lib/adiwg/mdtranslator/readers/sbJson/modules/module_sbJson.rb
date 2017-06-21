@@ -14,6 +14,7 @@ require_relative 'module_identifier'
 require_relative 'module_purpose'
 require_relative 'module_rights'
 require_relative 'module_provenance'
+require_relative 'module_materialRequest'
 
 module ADIWG
    module Mdtranslator
@@ -66,6 +67,15 @@ module ADIWG
                   Provenance.unpack(hSbJson, hCitation, hResponseObj)
 
                   # materialRequestInstructions
+                  aReturn = MaterialRequest.unpack(hSbJson, hResponseObj)
+                  unless aReturn.nil?
+                     hContact = aReturn[0]
+                     hContact[:contactIndex] = intObj[:contacts].length
+                     intObj[:contacts] << hContact
+                     intObj[:metadata][:distributorInfo] << aReturn[1]
+                  end
+
+                  # parent ID
 
                   # something goes here
                   @contacts = []
