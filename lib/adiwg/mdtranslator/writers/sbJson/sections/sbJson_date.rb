@@ -26,11 +26,11 @@ module ADIWG
                         # if iso date codes does not map to scienceBase use type = 'Info'
                         if dateType.nil?
                            sbDate[:type] = 'Info'
-                           sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                           sbDate[:dateString] = AdiwgDateTimeFun.stringDateTimeFromDateObject(hDate)
                            sbDate[:label] = hDate[:dateType]
                         else
                            sbDate[:type] = dateType
-                           sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                           sbDate[:dateString] = AdiwgDateTimeFun.stringDateTimeFromDateObject(hDate)
                            sbDate[:label] = hDate[:description] unless hDate[:description].nil?
                         end
 
@@ -43,14 +43,14 @@ module ADIWG
                      unless hResource[:timePeriod][:startDateTime].empty?
                         sbDate = {}
                         sbDate[:type] = 'Start'
-                        sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hResource[:timePeriod][:startDateTime])
+                        sbDate[:dateString] = AdiwgDateTimeFun.stringDateTimeFromDateObject(hResource[:timePeriod][:startDateTime])
                         sbDate[:label] = hResource[:timePeriod][:description] unless hResource[:timePeriod][:description].nil?
                         aDates << sbDate
                      end
                      unless hResource[:timePeriod][:endDateTime].empty?
                         sbDate = {}
                         sbDate[:type] = 'End'
-                        sbDate[:dateString] = AdiwgDateTimeFun.stringFromDateObject(hResource[:timePeriod][:endDateTime])
+                        sbDate[:dateString] = AdiwgDateTimeFun.stringDateTimeFromDateObject(hResource[:timePeriod][:endDateTime])
                         sbDate[:label] = hResource[:timePeriod][:description] unless hResource[:timePeriod][:description].nil?
                         aDates << sbDate
                      end

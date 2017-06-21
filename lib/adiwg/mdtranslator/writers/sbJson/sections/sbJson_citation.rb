@@ -20,7 +20,6 @@ module ADIWG
                def self.build(hCitation)
 
                   citation = ''
-                  role = ''
 
                   # names
                   aIndexes = []
@@ -44,18 +43,18 @@ module ADIWG
                      hContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_index(hIndex[:index])
                      unless hContact.empty?
                         unless hContact[:name].nil?
-                           citation += hContact[:name] + '(' + hIndex[:role] + '), '
+                           sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => hIndex[:role])
+                           sbRole = sbRole.nil? ? hIndex[:role] : sbRole
+                           citation += hContact[:name] + '(' + sbRole + '), '
                         end
                      end
                   end
 
                   # dates
                   hCitation[:dates].each do |hDate|
-                     dateStr = AdiwgDateTimeFun.stringFromDateObject(hDate)
+                     dateStr = AdiwgDateTimeFun.stringDateFromDateObject(hDate)
                      dateType = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
-                     if dateType.nil?
-                        citation += dateStr + ', '
-                     else
+                     unless dateType.nil?
                         citation += dateStr + '(' + dateType + '), '
                      end
                   end
