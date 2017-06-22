@@ -2,30 +2,26 @@
    "contacts": [
       {
          "name": "Robert N Prescott",
-         "oldPartyId": 58818,
+         "oldPartyId": 99999,
          "type": "Distributor",
-         "sourceId": "asdf",
+         "sourceId": "notMapped",
          "contactType": "person",
          "organizationsPerson": "usgs",
-         "ttyPhone": "111-111-1111",
-         "officePhone": "222-222-2222",
-         "faxPhone": "333-333-3333",
          "hours": "8-4",
          "instructions": "test",
          "email": "rprescott@usgs.gov",
          "active": true,
          "jobTitle": "Computer Programmer",
-         "personalTitle": "test",
-         "firstName": "Robert",
-         "middleName": "N",
-         "lastName": "Prescott",
-         "note": "note",
+         "personalTitle": "notMapped",
+         "firstName": "notMapped",
+         "middleName": "notMapped",
+         "lastName": "notMapped",
+         "note": "notMapped",
          "aliases": [
-            "VOLCANO HAZARDS TEAM",
-            "VOLCANO SCIENCE CENTER"
+            "notMapped"
          ],
          "fbmsCodes": [
-            "GGWAWC0000"
+            "notMapped"
          ],
          "logoUrl": "http://my.usgs.gov/logosMed/USGSLogo.gif",
          "smallLogoUrl": "http://my.usgs.gov/logosSmall/USGSLogo.gif",
@@ -33,34 +29,34 @@
             "displayText": "Fort Collins Science Center"
          },
          "primaryLocation": {
-            "shortName": "asdf",
+            "shortName": "notMapped",
             "name": "Robert N Prescott/BRD/CONT/USGS/DOI",
-            "description": "asdf",
-            "location": "asdf",
-            "building": "NRRC Bldg C",
-            "buildingCode": "KBA",
-            "roomNumber": "123",
-            "officePhone": "9702269250",
-            "faxPhone": "9702269230",
+            "description": "notMapped",
+            "location": "notMapped",
+            "building": "notMapped",
+            "buildingCode": "notMapped",
+            "roomNumber": "notMapped",
+            "ttyPhone": "111-111-1111",
+            "officePhone": "222-222-2222",
+            "faxPhone": "333-333-3333",
             "latitude": 20,
             "longitude": 20,
             "streetAddress": {
                "line1": "2150 Centre Avenue Bldg C",
-               "line2": "sadf",
-               "mailStopCode": "safd",
+               "line2": "Room 258",
+               "mailStopCode": "notMapped",
                "city": "Fort Collins",
                "state": "CO",
                "zip": "80526",
-               "country": "asdf"
+               "country": "USA"
             },
             "mailAddress": {
-               "line1": "2150 Centre Avenue, Building C",
-               "line2": "asdf",
-               "mailStopCode": "asdf",
-               "city": "Fort Collins",
+               "line1": "2323 Bree Avenue",
+               "mailStopCode": "notMapped",
+               "city": "Denver",
                "state": "CO",
-               "zip": "80526-8118",
-               "country": "USA"
+               "zip": "80526",
+               "country": "MEX"
             }
          }
       },

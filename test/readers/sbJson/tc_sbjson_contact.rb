@@ -65,9 +65,26 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       assert_equal 1, hPhone[:phoneServiceTypes].length
       assert_equal 'tty', hPhone[:phoneServiceTypes][0]
 
-      # address (see primary location)
-      # TODO refute_empty hContact[:addresses]
+      # addresses
+      assert_equal 2, hContact[:addresses].length
 
+      hAddress = hContact[:addresses][0]
+      assert_equal 1, hAddress[:addressTypes].length
+      assert_equal 'physical', hAddress[:addressTypes][0]
+      assert_equal 2, hAddress[:deliveryPoints].length
+      assert_equal '2150 Centre Avenue Bldg C', hAddress[:deliveryPoints][0]
+      assert_equal 'Room 258', hAddress[:deliveryPoints][1]
+      assert_equal 'Fort Collins', hAddress[:city]
+      assert_equal 'CO', hAddress[:adminArea]
+      assert_equal '80526', hAddress[:postalCode]
+      assert_equal 'USA', hAddress[:country]
+
+      hAddress = hContact[:addresses][1]
+      assert_equal 1, hAddress[:addressTypes].length
+      assert_equal 'mailing', hAddress[:addressTypes][0]
+      assert_equal 1, hAddress[:deliveryPoints].length
+
+      # other contact information
       assert_equal 1, hContact[:eMailList].length
       assert_equal 'rprescott@usgs.gov', hContact[:eMailList][0]
       assert_empty hContact[:onlineResources]

@@ -14,6 +14,44 @@ module ADIWG
 
             module Contact
 
+               def self.unpackAddress(hSbPrimary, hAddress)
+
+                  if hSbPrimary.has_key?('line1')
+                     unless hSbPrimary['line1'].nil? || hSbPrimary['line1'] == ''
+                        hAddress[:deliveryPoints] << hSbPrimary['line1']
+                     end
+                  end
+                  if hSbPrimary.has_key?('line2')
+                     unless hSbPrimary['line2'].nil? || hSbPrimary['line2'] == ''
+                        hAddress[:deliveryPoints] << hSbPrimary['line2']
+                     end
+                  end
+
+                  if hSbPrimary.has_key?('city')
+                     unless hSbPrimary['city'].nil? || hSbPrimary['city'] == ''
+                        hAddress[:city] = hSbPrimary['city']
+                     end
+                  end
+                  if hSbPrimary.has_key?('state')
+                     unless hSbPrimary['state'].nil? || hSbPrimary['state'] == ''
+                        hAddress[:adminArea] = hSbPrimary['state']
+                     end
+                  end
+                  if hSbPrimary.has_key?('zip')
+                     unless hSbPrimary['zip'].nil? || hSbPrimary['zip'] == ''
+                        hAddress[:postalCode] = hSbPrimary['zip']
+                     end
+                  end
+                  if hSbPrimary.has_key?('country')
+                     unless hSbPrimary['country'].nil? || hSbPrimary['country'] == ''
+                        hAddress[:country] = hSbPrimary['country']
+                     end
+                  end
+
+                  return hAddress
+
+               end
+
                def self.unpack(hSbJson, aContacts, hResponseObj)
 
                   # instance classes needed in script
@@ -81,34 +119,73 @@ module ADIWG
                            end
                         end
 
-                        # phones
-                        if hSbContact.has_key?('officePhone')
-                           unless hSbContact['officePhone'].nil? || hSbContact['officePhone'] == ''
-                              hPhone = intMetadataClass.newPhone
-                              hPhone[:phoneNumber] = hSbContact['officePhone']
-                              hPhone[:phoneServiceTypes] << 'voice'
-                              hContact[:phones] << hPhone
-                           end
-                        end
-                        if hSbContact.has_key?('faxPhone')
-                           unless hSbContact['faxPhone'].nil? || hSbContact['faxPhone'] == ''
-                              hPhone = intMetadataClass.newPhone
-                              hPhone[:phoneNumber] = hSbContact['faxPhone']
-                              hPhone[:phoneServiceTypes] << 'facsimile'
-                              hContact[:phones] << hPhone
-                           end
-                        end
-                        if hSbContact.has_key?('ttyPhone')
-                           unless hSbContact['ttyPhone'].nil? || hSbContact['ttyPhone'] == ''
-                              hPhone = intMetadataClass.newPhone
-                              hPhone[:phoneNumber] = hSbContact['ttyPhone']
-                              hPhone[:phoneServiceTypes] << 'tty'
-                              hContact[:phones] << hPhone
-                           end
-                        end
+                        # primary location
+                        if hSbContact.has_key?('primaryLocation')
+                           unless hSbContact['primaryLocation'].empty?
 
-                        # address
-                        # TODO branch to primary location
+                              hPrimary = hSbContact['primaryLocation']
+
+                              # phones
+                              if hPrimary.has_key?('officePhone')
+                                 unless hPrimary['officePhone'].nil? || hPrimary['officePhone'] == ''
+                                    hPhone = intMetadataClass.newPhone
+                                    hPhone[:phoneNumber] = hPrimary['officePhone']
+                                    hPhone[:phoneServiceTypes] << 'voice'
+                                    hContact[:phones] << hPhone
+                                 end
+                              end
+                              if hPrimary.has_key?('faxPhone')
+                                 unless hPrimary['faxPhone'].nil? || hPrimary['faxPhone'] == ''
+                                    hPhone = intMetadataClass.newPhone
+                                    hPhone[:phoneNumber] = hPrimary['faxPhone']
+                                    hPhone[:phoneServiceTypes] << 'facsimile'
+                                    hContact[:phones] << hPhone
+                                 end
+                              end
+                              if hPrimary.has_key?('ttyPhone')
+                                 unless hPrimary['ttyPhone'].nil? || hPrimary['ttyPhone'] == ''
+                                    hPhone = intMetadataClass.newPhone
+                                    hPhone[:phoneNumber] = hPrimary['ttyPhone']
+                                    hPhone[:phoneServiceTypes] << 'tty'
+                                    hContact[:phones] << hPhone
+                                 end
+                              end
+
+                              # street address
+                              if hPrimary.has_key?('streetAddress')
+                                 unless hPrimary['streetAddress'].empty?
+                                    hAddress = intMetadataClass.newAddress
+                                    hAddress[:addressTypes] << 'physical'
+
+                                    if hPrimary.has_key?('name')
+                                       unless hPrimary['name'].nil? || hPrimary['name'] == ''
+                                          hAddress[:description] = hPrimary['name']
+                                       end
+                                    end
+
+                                    hContact[:addresses] << unpackAddress(hPrimary['streetAddress'], hAddress)
+                                 end
+                              end
+
+                              # mailing address
+                              if hPrimary.has_key?('mailAddress')
+                                 unless hPrimary['mailAddress'].empty?
+                                    hAddress = intMetadataClass.newAddress
+                                    hAddress[:addressTypes] << 'mailing'
+
+                                    if hPrimary.has_key?('name')
+                                       unless hPrimary['name'].nil? || hPrimary['name'] == ''
+                                          hAddress[:description] = hPrimary['name']
+                                       end
+                                    end
+
+                                    hContact[:addresses] << unpackAddress(hPrimary['mailAddress'], hAddress)
+                                 end
+                              end
+
+
+                           end
+                        end
 
                         # email / hours of service / contact instructions
                         if hSbContact.has_key?('email')
