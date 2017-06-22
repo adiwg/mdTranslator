@@ -16,6 +16,7 @@ require_relative 'module_rights'
 require_relative 'module_provenance'
 require_relative 'module_materialRequest'
 require_relative 'module_parentId'
+require_relative 'module_contact'
 
 module ADIWG
    module Mdtranslator
@@ -37,16 +38,12 @@ module ADIWG
                   hResourceInfo = intMetadataClass.newResourceInfo
                   hCitation = intMetadataClass.newCitation
 
-                  hResourceInfo[:citation] = hCitation
-                  hMetadata[:metadataInfo] = hMetadataInfo
-                  hMetadata[:resourceInfo] = hResourceInfo
-                  intObj[:metadata] = hMetadata
-
                   # titles / alternateTitles
                   Title.unpack(hSbJson, hCitation, hResponseObj)
 
                   # id
-                  Id.unpack(hSbJson, hMetadataInfo[:metadataIdentifier], hResponseObj)
+                  hReturn = Id.unpack(hSbJson, hResponseObj)
+                  hMetadataInfo[:metadataIdentifier] = hReturn unless hReturn.nil?
 
                   # body / summary
                   Body.unpack(hSbJson, hResourceInfo, hResponseObj)
@@ -71,21 +68,24 @@ module ADIWG
                   aReturn = MaterialRequest.unpack(hSbJson, hResponseObj)
                   unless aReturn.nil?
                      hContact = aReturn[0]
-                     hContact[:contactIndex] = intObj[:contacts].length
+                     myIndex = intObj[:contacts].length
                      intObj[:contacts] << hContact
-                     intObj[:metadata][:distributorInfo] << aReturn[1]
+                     aReturn[1][:distributor][0][:contact][:parties][0][:contactIndex] = myIndex
+                     hMetadata[:distributorInfo] << aReturn[1]
                   end
 
                   # parent ID
                   hReturn = ParentId.unpack(hSbJson, hResponseObj)
-                  unless aReturn.nil?
-                     hMetadataInfo[:parentMetadata] = hReturn
-                  end
+                  hMetadataInfo[:parentMetadata] = hReturn unless hReturn.nil?
 
                   # contacts
+                  Contact.unpack(hSbJson, intObj[:contacts], hResponseObj)
 
-                  # something goes here
-                  @contacts = []
+                  hResourceInfo[:citation] = hCitation
+                  hMetadata[:metadataInfo] = hMetadataInfo
+                  hMetadata[:resourceInfo] = hResourceInfo
+                  intObj[:metadata] = hMetadata
+                  @contacts = intObj[:contacts]
 
                   return intObj
 

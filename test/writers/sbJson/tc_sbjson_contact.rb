@@ -28,7 +28,9 @@ class TestWriterSbJsonContact < TestWriterSbJsonParent
             'email' => 'e.mail@address.com0',
             'hours' => 'myHoursOfService 00; myHoursOfService 01',
             'instructions' => 'my Contact Instructions',
-            'tty' => '222-222-2222',
+            'officePhone' => '111-111-1111',
+            'faxPhone' => '111-111-1111',
+            'ttyPhone' => '222-222-2222',
             'organization' => {
                'displayText' => 'Organization 1'
             },
@@ -36,6 +38,7 @@ class TestWriterSbJsonContact < TestWriterSbJsonParent
             'primaryLocation' => {
                'officePhone' => '111-111-1111',
                'faxPhone' => '111-111-1111',
+               'ttyPhone' => '222-222-2222',
                'description' => 'myAddressDescription',
                'streetAddress' =>
                   {
@@ -139,6 +142,8 @@ class TestWriterSbJsonContact < TestWriterSbJsonParent
 
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['contacts']
+      File.write('/mnt/hgfs/ShareDrive/writeOut.json', hJsonOut.to_json)
+
 
       assert_equal expect, got
 

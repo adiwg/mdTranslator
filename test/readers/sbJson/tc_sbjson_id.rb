@@ -16,9 +16,8 @@ class TestReaderSbJsonId < TestReaderSbJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      hIdentifier = @@intMetadataClass.newIdentifier
 
-      metadata = @@NameSpace.unpack(hIn, hIdentifier, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_equal 'SB123456789', metadata[:identifier]
       assert_equal 'gov.sciencebase.catalog', metadata[:namespace]
@@ -33,11 +32,10 @@ class TestReaderSbJsonId < TestReaderSbJsonParent
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['id'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      hIdentifier = @@intMetadataClass.newIdentifier
 
-      metadata = @@NameSpace.unpack(hIn, hIdentifier, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata[:identifier]
+      assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -48,11 +46,10 @@ class TestReaderSbJsonId < TestReaderSbJsonParent
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('id')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      hIdentifier = @@intMetadataClass.newIdentifier
 
-      metadata = @@NameSpace.unpack(hIn, hIdentifier, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata[:identifier]
+      assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

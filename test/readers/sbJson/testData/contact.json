@@ -1,0 +1,73 @@
+{
+   "contacts": [
+      {
+         "name": "Robert N Prescott",
+         "oldPartyId": 58818,
+         "type": "Distributor",
+         "sourceId": "asdf",
+         "contactType": "person",
+         "organizationsPerson": "usgs",
+         "ttyPhone": "111-111-1111",
+         "officePhone": "222-222-2222",
+         "faxPhone": "333-333-3333",
+         "hours": "8-4",
+         "instructions": "test",
+         "email": "rprescott@usgs.gov",
+         "active": true,
+         "jobTitle": "Computer Programmer",
+         "personalTitle": "test",
+         "firstName": "Robert",
+         "middleName": "N",
+         "lastName": "Prescott",
+         "note": "note",
+         "aliases": [
+            "VOLCANO HAZARDS TEAM",
+            "VOLCANO SCIENCE CENTER"
+         ],
+         "fbmsCodes": [
+            "GGWAWC0000"
+         ],
+         "logoUrl": "http://my.usgs.gov/logosMed/USGSLogo.gif",
+         "smallLogoUrl": "http://my.usgs.gov/logosSmall/USGSLogo.gif",
+         "organization": {
+            "displayText": "Fort Collins Science Center"
+         },
+         "primaryLocation": {
+            "shortName": "asdf",
+            "name": "Robert N Prescott/BRD/CONT/USGS/DOI",
+            "description": "asdf",
+            "location": "asdf",
+            "building": "NRRC Bldg C",
+            "buildingCode": "KBA",
+            "roomNumber": "123",
+            "officePhone": "9702269250",
+            "faxPhone": "9702269230",
+            "latitude": 20,
+            "longitude": 20,
+            "streetAddress": {
+               "line1": "2150 Centre Avenue Bldg C",
+               "line2": "sadf",
+               "mailStopCode": "safd",
+               "city": "Fort Collins",
+               "state": "CO",
+               "zip": "80526",
+               "country": "asdf"
+            },
+            "mailAddress": {
+               "line1": "2150 Centre Avenue, Building C",
+               "line2": "asdf",
+               "mailStopCode": "asdf",
+               "city": "Fort Collins",
+               "state": "CO",
+               "zip": "80526-8118",
+               "country": "USA"
+            }
+         }
+      },
+      {
+         "name": "Jordan S Read",
+         "type": "Metadata Contact",
+         "contactType": "person"
+      }
+   ]
+}

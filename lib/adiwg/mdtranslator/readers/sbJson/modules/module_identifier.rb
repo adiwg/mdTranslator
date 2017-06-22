@@ -13,13 +13,13 @@ module ADIWG
 
             module Identifier
 
-               # instance classes needed in script
-               @intMetadataClass = InternalMetadata.new
-
                def self.unpack(hSbJson, hCitation, hResponseObj)
 
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+
                   hSbJson['identifiers'].each_with_index do |hSbIdentifier, i|
-                     hIdentifier = @intMetadataClass.newIdentifier
+                     hIdentifier = intMetadataClass.newIdentifier
 
                      unless hSbIdentifier['type'].nil? || hSbIdentifier['type'] == ''
                         hIdentifier[:description] = hSbIdentifier['type']
