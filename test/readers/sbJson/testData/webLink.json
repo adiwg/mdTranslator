@@ -1,0 +1,40 @@
+{
+   "webLinks": [
+      {
+         "type": "publicationReferenceSource",
+         "typeLabel": "Publication that references this resource",
+         "uri": "https://doi.org/10.1890/15-0750.1",
+         "title": "Projected wetland densities",
+         "hidden": false
+      },
+      {
+         "type": "webLink",
+         "typeLabel": "Web Link",
+         "uri": "http://dx.doi.org/10.5066/F7DV1H10",
+         "rel": "related",
+         "hidden": false
+      },
+      {
+         "type": "browseImage",
+         "typeLabel": "Browse Graphic",
+         "uri": "http://example.gov/1",
+         "rel": "related",
+         "hidden": false
+      },
+      {
+         "type": "browseImage",
+         "title": "thumbnail",
+         "typeLabel": "Web-page Thumbnail",
+         "uri": "http://example.gov/2",
+         "rel": "related",
+         "hidden": false
+      },
+      {
+         "type": "download",
+         "typeLabel": "Download Link",
+         "uri": "http://example.gov/3",
+         "rel": "related",
+         "hidden": false
+      }
+   ]
+}

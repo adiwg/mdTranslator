@@ -17,6 +17,8 @@ require_relative 'module_provenance'
 require_relative 'module_materialRequest'
 require_relative 'module_parentId'
 require_relative 'module_contact'
+require_relative 'module_webLinkDocument'
+require_relative 'module_webLinkGraphic'
 
 module ADIWG
    module Mdtranslator
@@ -80,6 +82,10 @@ module ADIWG
 
                   # contacts
                   Contact.unpack(hSbJson, intObj[:contacts], hResponseObj)
+
+                  # web links
+                  aReturn = WebLinkDocs.unpack(hSbJson, hResponseObj)
+                  hMetadata[:additionalDocuments].concat(aReturn) unless aReturn.nil?
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
