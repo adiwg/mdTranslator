@@ -18,18 +18,66 @@ module ADIWG
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
 
-                  if hSbJson.has_key?('parentId')
-                     sbId = hSbJson['parentId']
-                     unless sbId.nil? || sbId == ''
-                        hCitation = intMetadataClass.newCitation
-                        hIdentifier = intMetadataClass.newIdentifier
-                        hCitation[:title] = 'U.S. Geological Survey ScienceBase parent identifier'
-                        hIdentifier[:identifier] = sbId
-                        hIdentifier[:namespace] = 'gov.sciencebase.catalog'
-                        hIdentifier[:description] = 'USGS ScienceBase Identifier'
-                        hCitation[:identifiers] << hIdentifier
-                        return hCitation
+                  aLinks = []
+
+                  if hSbJson.has_key?('webLinks')
+
+                     hSbJson['webLinks'].each do |hLink|
+                        unless hLink.empty?
+
+                           # web link - type (required)
+                           type = nil
+                           if hLink.has_key?('type')
+                              type = hLink['type']
+                           end
+                           if type.nil? || type == ''
+                              hResponseObj[:readerExecutionMessages] << 'WebLinks type is missing'
+                              hResponseObj[:readerExecutionPass] = false
+                              return nil
+                           end
+
+                           # only handle browse links
+                           if type == 'browseImage'
+
+                              hGraphic = intMetadataClass.newGraphic
+
+                              # web link - type
+                              hGraphic[:graphicType] = type
+
+                              # web link - type label
+                              if hLink.has_key?('typeLabel')
+                                 unless hLink['typeLabel'].nil? || hLink['typeLabel'] == ''
+                                    hGraphic[:graphicDescription] = hLink['typeLabel']
+                                 end
+                              end
+
+                              # web link - title
+                              if hLink.has_key?('title')
+                                 hGraphic[:graphicName] = hLink['title']
+                              end
+
+                              # web link - uri (required)
+                              hOlRes = intMetadataClass.newOnlineResource
+                              if hLink.has_key?('uri')
+                                 hOlRes[:olResURI] = hLink['uri']
+                              end
+                              if hOlRes[:olResURI].nil? || hOlRes[:olResURI] == ''
+                                 hResponseObj[:readerExecutionMessages] << 'WebLinks URI is missing'
+                                 hResponseObj[:readerExecutionPass] = false
+                                 return nil
+                              end
+                              hGraphic[:graphicURI] << hOlRes
+
+                              aLinks << hGraphic
+
+                           end
+
+                        end
+
                      end
+
+                     return aLinks
+
                   end
 
                   return nil

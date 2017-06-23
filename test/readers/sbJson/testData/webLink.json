@@ -16,15 +16,15 @@
       },
       {
          "type": "browseImage",
-         "typeLabel": "Browse Graphic",
+         "title": "thumbnail",
+         "typeLabel": "Web-page Thumbnail",
          "uri": "http://example.gov/1",
          "rel": "related",
          "hidden": false
       },
       {
          "type": "browseImage",
-         "title": "thumbnail",
-         "typeLabel": "Web-page Thumbnail",
+         "typeLabel": "Browse Graphic",
          "uri": "http://example.gov/2",
          "rel": "related",
          "hidden": false

@@ -11,7 +11,7 @@ module ADIWG
       module Readers
          module SbJson
 
-            module WebLinkDocs
+            module WebLinkDocument
 
                def self.unpack(hSbJson, hResponseObj)
 
@@ -42,8 +42,10 @@ module ADIWG
                               hDocument = intMetadataClass.newAdditionalDocumentation
                               hResType = intMetadataClass.newResourceType
 
-                              # web link - type label
+                              # web link - type
                               hResType[:type] = type
+
+                              # web link - type label
                               if hLink.has_key?('typeLabel')
                                  unless hLink['typeLabel'].nil? || hLink['typeLabel'] == ''
                                     hResType[:name] = hLink['typeLabel']

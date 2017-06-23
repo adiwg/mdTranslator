@@ -1,45 +1,34 @@
 # MdTranslator - minitest of
-# reader / sbJson / module_webLinkDocument
+# reader / sbJson / module_webLinkGraphic
 
 # History:
 #   Stan Smith 2017-06-22 original script
 
 require_relative 'sbjson_test_parent'
-require 'adiwg/mdtranslator/readers/sbJson/modules/module_webLinkDocument'
+require 'adiwg/mdtranslator/readers/sbJson/modules/module_webLinkGraphic'
 
-class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
+class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
 
-   @@NameSpace = ADIWG::Mdtranslator::Readers::SbJson::WebLinkDocument
+   @@NameSpace = ADIWG::Mdtranslator::Readers::SbJson::WebLinkGraphic
    @@hIn = TestReaderSbJsonParent.getJson('webLink.json')
 
-   def test_complete_webLinkDoc
+   def test_complete_webLinkGraph
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 3, metadata.length
+      assert_equal 2, metadata.length
 
       # first document
-      hDocument = metadata[0]
-      assert_equal 1, hDocument[:resourceTypes].length
-      assert_equal 'publicationReferenceSource', hDocument[:resourceTypes][0][:type]
-      assert_equal 'Publication that references this resource', hDocument[:resourceTypes][0][:name]
-      assert_equal 1, hDocument[:citation].length
-      hCitation = hDocument[:citation][0]
-      assert_equal 'Projected wetland densities', hCitation[:title]
-      assert_equal 1, hCitation[:onlineResources].length
-      hOnRes = hCitation[:onlineResources][0]
-      assert_equal 'https://doi.org/10.1890/15-0750.1', hOnRes[:olResURI]
-
-      # second document
-      hDocument = metadata[1]
-      hCitation = hDocument[:citation][0]
-      assert_equal 'Online Resource', hCitation[:title]
-
-      assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      hGraphic = metadata[0]
+      assert_equal 'thumbnail', hGraphic[:graphicName]
+      assert_equal 'Web-page Thumbnail', hGraphic[:graphicDescription]
+      assert_equal 'browseImage', hGraphic[:graphicType]
+      assert_equal 1, hGraphic[:graphicURI].length
+      hOnRes = hGraphic[:graphicURI][0]
+      assert_equal 'http://example.gov/1', hOnRes[:olResURI]
 
    end
 
@@ -74,7 +63,7 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
    def test_webLinkDoc_uri_empty
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['webLinks'][1]['uri'] = ''
+      hIn['webLinks'][2]['uri'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -88,7 +77,7 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
    def test_webLinkDoc_uri_missing
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['webLinks'][1].delete('uri')
+      hIn['webLinks'][2].delete('uri')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, hResponse)

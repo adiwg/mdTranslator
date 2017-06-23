@@ -84,8 +84,10 @@ module ADIWG
                   Contact.unpack(hSbJson, intObj[:contacts], hResponseObj)
 
                   # web links
-                  aReturn = WebLinkDocs.unpack(hSbJson, hResponseObj)
+                  aReturn = WebLinkDocument.unpack(hSbJson, hResponseObj)
                   hMetadata[:additionalDocuments].concat(aReturn) unless aReturn.nil?
+                  aReturn = WebLinkGraphic.unpack(hSbJson, hResponseObj)
+                  hResourceInfo[:graphicOverviews].concat(aReturn) unless aReturn.nil?
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo

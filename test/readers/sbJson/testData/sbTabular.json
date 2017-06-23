@@ -137,6 +137,21 @@
          "uri": "https://doi.org/10.1890/15-0750.1",
          "title": "Sofaer, H. R., Skagen, S. K., Barsugli, J. J., Rashford, B. S., Reese, G. C., Hoeting, J. A., Wood, A. W. and Noon, B. R. (2016), Projected wetland densities under climate change: habitat loss but little geographic shift in conservation strategy. Ecol Appl, 26: 1677-1692. doi:10.1890/15-0750.1",
          "hidden": false
+      },
+      {
+         "type": "browseImage",
+         "title": "thumbnail",
+         "typeLabel": "Web-page Thumbnail",
+         "uri": "http://example.gov/1",
+         "rel": "related",
+         "hidden": false
+      },
+      {
+         "type": "browseImage",
+         "typeLabel": "Browse Graphic",
+         "uri": "http://example.gov/2",
+         "rel": "related",
+         "hidden": false
       }
    ],
    "browseCategories": [
