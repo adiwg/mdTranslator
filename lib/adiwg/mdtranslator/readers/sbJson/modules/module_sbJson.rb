@@ -19,6 +19,7 @@ require_relative 'module_parentId'
 require_relative 'module_contact'
 require_relative 'module_webLinkDocument'
 require_relative 'module_webLinkGraphic'
+require_relative 'module_browseCategory'
 
 module ADIWG
    module Mdtranslator
@@ -88,6 +89,9 @@ module ADIWG
                   hMetadata[:additionalDocuments].concat(aReturn) unless aReturn.nil?
                   aReturn = WebLinkGraphic.unpack(hSbJson, hResponseObj)
                   hResourceInfo[:graphicOverviews].concat(aReturn) unless aReturn.nil?
+
+                  # browse categories
+                  BrowseCategory.unpack(hSbJson, hResourceInfo, hResponseObj)
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
