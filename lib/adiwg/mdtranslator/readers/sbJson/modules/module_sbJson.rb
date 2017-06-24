@@ -20,6 +20,7 @@ require_relative 'module_contact'
 require_relative 'module_webLinkDocument'
 require_relative 'module_webLinkGraphic'
 require_relative 'module_browseCategory'
+require_relative 'module_tag'
 
 module ADIWG
    module Mdtranslator
@@ -92,6 +93,11 @@ module ADIWG
 
                   # browse categories
                   BrowseCategory.unpack(hSbJson, hResourceInfo, hResponseObj)
+
+                  # tags
+                  Tag.unpack(hSbJson, hResourceInfo, hResponseObj)
+
+                  # dates
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo

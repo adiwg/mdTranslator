@@ -1,4 +1,4 @@
-# unpack citation
+# unpack browse category
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
