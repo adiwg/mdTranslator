@@ -22,6 +22,7 @@ require_relative 'module_webLinkGraphic'
 require_relative 'module_browseCategory'
 require_relative 'module_tag'
 require_relative 'module_date'
+require_relative 'module_spatial'
 
 module ADIWG
    module Mdtranslator
@@ -100,6 +101,9 @@ module ADIWG
 
                   # dates
                   Date.unpack(hSbJson, hCitation, hResponseObj)
+
+                  # Spatial
+                  Spatial.unpack(hSbJson, hResourceInfo, hResponseObj)
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
