@@ -1,0 +1,14 @@
+{
+   "dates": [
+      {
+         "type":"Publication",
+         "dateString":"2012-01-01",
+         "label": "Publication Date"
+      },
+      {
+         "type":"Repository Created",
+         "dateString":"2012",
+         "label":"Repository Created"
+      }
+   ]
+}
