@@ -23,6 +23,8 @@ require_relative 'module_browseCategory'
 require_relative 'module_tag'
 require_relative 'module_date'
 require_relative 'module_spatial'
+require_relative 'module_budget'
+require_relative 'module_publication'
 
 module ADIWG
    module Mdtranslator
@@ -104,6 +106,27 @@ module ADIWG
 
                   # Spatial
                   Spatial.unpack(hSbJson, hResourceInfo, hResponseObj)
+
+                  # facets
+                  if hSbJson.has_key?('facets')
+                     hSbJson['facets'].each do |hFacet|
+                        if hFacet.has_key?('className')
+
+                           # budget facet
+                           if hFacet['className'] == 'gov.sciencebase.catalog.item.facet.BudgetFacet'
+                              Budget.unpack(hFacet, hMetadata, hResponseObj)
+                           end
+
+                           # project facet
+
+                           # citation facet
+                           if hFacet['className'] == 'gov.sciencebase.catalog.item.facet.CitationFacet'
+                              Publication.unpack(hFacet, hResourceInfo, hCitation, hResponseObj)
+                           end
+
+                        end
+                     end
+                  end
 
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
