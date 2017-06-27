@@ -1,0 +1,10 @@
+{
+   "className": "gov.sciencebase.catalog.item.facet.ProjectFacet",
+   "projectStatus": "Active",
+   "parts": [
+      {
+         "type": "Short Project Description",
+         "value": "Precipitation has affected forest."
+      }
+   ]
+}

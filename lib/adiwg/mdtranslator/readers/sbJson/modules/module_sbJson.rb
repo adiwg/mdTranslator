@@ -25,6 +25,7 @@ require_relative 'module_date'
 require_relative 'module_spatial'
 require_relative 'module_budget'
 require_relative 'module_publication'
+require_relative 'module_project'
 
 module ADIWG
    module Mdtranslator
@@ -118,6 +119,9 @@ module ADIWG
                            end
 
                            # project facet
+                           if hFacet['className'] == 'gov.sciencebase.catalog.item.facet.ProjectFacet'
+                              Project.unpack(hFacet, hResourceInfo, hResponseObj)
+                           end
 
                            # citation facet
                            if hFacet['className'] == 'gov.sciencebase.catalog.item.facet.CitationFacet'
