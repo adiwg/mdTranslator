@@ -26,6 +26,7 @@ require_relative 'module_spatial'
 require_relative 'module_budget'
 require_relative 'module_publication'
 require_relative 'module_project'
+require_relative 'module_extent'
 
 module ADIWG
    module Mdtranslator
@@ -129,6 +130,14 @@ module ADIWG
                            end
 
                         end
+                     end
+                  end
+
+                  # extents
+                  if hSbJson.has_key?('extents')
+                     hSbJson['extents'].each do |extentId|
+                        hReturn = Extent.unpack(extentId, hResponseObj)
+                        hResourceInfo[:extents] << hReturn unless hReturn.empty?
                      end
                   end
 
