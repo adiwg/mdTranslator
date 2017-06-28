@@ -1,0 +1,45 @@
+{
+   "className": "gov.sciencebase.catalog.item.facet.BudgetFacet",
+   "annualBudgets": [
+      {
+         "fundingSources": [
+            {
+               "amount": 9.0,
+               "matching": true,
+               "recipient": "Bar",
+               "source": "Foo"
+            },
+            {
+               "amount": 90.0,
+               "matching": false,
+               "recipient": "Baz",
+               "source": "Biz"
+            }
+         ],
+         "totalFunding": 99.0,
+         "year": "2017"
+      },
+      {
+         "fundingSources": [
+            {
+               "amount": 9000.0,
+               "matching": null
+            }
+         ],
+         "totalFunding": 9000.0,
+         "year": "2016"
+      },
+      {
+         "year": "2015"
+      },
+      {
+         "fundingSources": [
+            {
+               "amount": 90000.0,
+               "matching": null
+            }
+         ],
+         "totalFunding": 90000.0
+      }
+   ]
+}

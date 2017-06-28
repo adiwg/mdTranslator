@@ -7,8 +7,12 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "contact - minimal",
-         "positionName": "positionName"
+         "name": "Person 1"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "Person 2"
       }
    ],
    "metadata": {
@@ -60,8 +64,8 @@
                {
                   "amount": 9.9,
                   "currency": "currency",
-                  "sourceId": "sourceId",
-                  "recipientId": "recipientId",
+                  "sourceId": "CID001",
+                  "recipientId": "CID002",
                   "matching": true,
                   "comment": "comment"
                },
