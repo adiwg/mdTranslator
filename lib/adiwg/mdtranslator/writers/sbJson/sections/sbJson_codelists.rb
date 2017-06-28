@@ -100,7 +100,6 @@ module ADIWG
                   {iso: nil, sb: 'WAF'},
                   {iso: nil, sb: 'xls'},
                   {iso: nil, sb: 'zip'}
-
                ]
 
                @iso_sb_scope = [
