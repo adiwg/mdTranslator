@@ -47,6 +47,11 @@ module ADIWG
                   hMetadataInfo = intMetadataClass.newMetadataInfo
                   hResourceInfo = intMetadataClass.newResourceInfo
                   hCitation = intMetadataClass.newCitation
+                  hSchema = intMetadataClass.newSchema
+
+                  # schema
+                  hSchema[:name] = hSbJson['schema']['name']
+                  hSchema[:version] = hSbJson['schema']['version']
 
                   # titles / alternateTitles
                   Title.unpack(hSbJson, hCitation, hResponseObj)
@@ -144,6 +149,7 @@ module ADIWG
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
                   hMetadata[:resourceInfo] = hResourceInfo
+                  intObj[:schema] = hSchema
                   intObj[:metadata] = hMetadata
                   @contacts = intObj[:contacts]
 

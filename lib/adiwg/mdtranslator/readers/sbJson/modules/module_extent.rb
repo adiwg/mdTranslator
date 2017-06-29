@@ -40,15 +40,15 @@ module ADIWG
                         'geographicExtent' => [
                            {
                               'containsData' => true,
-                              'identifier' => [
+                              'identifier' => {
                                  'identifier' => ''
-                              ],
+                              },
                               'geographicElement' => []
                            }
                         ]
                      }
-                     hExtent['identifier']['identifier'] = extentId
-                     hExtent['identifier']['namespace'] = 'gov.sciencebase.catalog'
+                     hExtent['geographicExtent'][0]['identifier']['identifier'] = extentId
+                     hExtent['geographicExtent'][0]['identifier']['namespace'] = 'gov.sciencebase.catalog'
                      hExtent['geographicExtent'][0]['geographicElement'] << hGeoJson
                      return ADIWG::Mdtranslator::Readers::MdJson::Extent.unpack(hExtent, hResponseObj)
                   end

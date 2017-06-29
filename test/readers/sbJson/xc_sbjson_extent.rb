@@ -28,7 +28,7 @@ class TestReaderSbJsonExtent < TestReaderSbJsonParent
          assert_equal 'Extent extracted from ScienceBase', metadata[:description]
 
          hGeoExt = metadata[:geographicExtents][0]
-         assert_equal hIn['extents'][0], hGeoExt[:identifier][:identifier]
+         assert_equal hIn, hGeoExt[:identifier][:identifier]
          refute_empty hGeoExt[:geographicElements]
          refute_empty hGeoExt[:nativeGeoJson]
          refute_empty hGeoExt[:computedBbox]
