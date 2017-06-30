@@ -12,12 +12,12 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
 
     # set constants and variables
     @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::MetadataInfo
-    aIn = TestReaderMdJsonParent.getJson('metadataInfo.json')
+    aIn = TestReaderMdJsonParent.getJson('metadataGeo.json')
     @@hIn = aIn['metadataInfo'][0]
 
     def test_metadataInfo_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadataInfo.json')
+        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadataGeo.json')
         assert_empty errors
 
     end

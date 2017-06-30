@@ -10,7 +10,7 @@ require 'adiwg/mdtranslator/readers/sbJson/modules/module_sbJson'
 class TestReaderSbJsonSbJson < TestReaderSbJsonParent
 
    @@NameSpace = ADIWG::Mdtranslator::Readers::SbJson::SbJson
-   @@hIn = TestReaderSbJsonParent.getJson('sbTabular.json')
+   @@hIn = TestReaderSbJsonParent.getJson('sbGeospatial.json')
 
    def test_complete_sbJson
 

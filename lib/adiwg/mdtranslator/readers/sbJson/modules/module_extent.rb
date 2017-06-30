@@ -35,7 +35,7 @@ module ADIWG
                         hResponseObj[:readerExecutionPass] = false
                         return {}
                      end
-                     hExtent = {
+                     mdJson = {
                         'description' => 'Extent extracted from ScienceBase',
                         'geographicExtent' => [
                            {
@@ -47,10 +47,11 @@ module ADIWG
                            }
                         ]
                      }
-                     hExtent['geographicExtent'][0]['identifier']['identifier'] = extentId
-                     hExtent['geographicExtent'][0]['identifier']['namespace'] = 'gov.sciencebase.catalog'
-                     hExtent['geographicExtent'][0]['geographicElement'] << hGeoJson
-                     return ADIWG::Mdtranslator::Readers::MdJson::Extent.unpack(hExtent, hResponseObj)
+                     mdJson['geographicExtent'][0]['identifier']['identifier'] = extentId.to_s
+                     mdJson['geographicExtent'][0]['identifier']['namespace'] = 'gov.sciencebase.catalog'
+                     mdJson['geographicExtent'][0]['geographicElement'] << hGeoJson
+                     hExtent = ADIWG::Mdtranslator::Readers::MdJson::Extent.unpack(mdJson, hResponseObj)
+                     return hExtent
                   end
 
                end

@@ -430,6 +430,9 @@
          "label": "Publication Date"
       }
    ],
+   "extents": [
+      2005798
+   ],
    "spatial": {
       "boundingBox": {
          "minX": -96.8589114267623,
