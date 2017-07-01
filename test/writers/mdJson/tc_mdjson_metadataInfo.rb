@@ -11,13 +11,13 @@ require_relative 'mdjson_test_parent'
 class TestWriterMdJsonMetadataInfo < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('metadataGeo.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('metadataInfo.json')
 
    def test_schema_metadataInfo
 
       hIn = JSON.parse(@@jsonIn)
       hTest = hIn['metadata']['metadataInfo']
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'metadataGeo.json')
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'metadataInfo.json')
       assert_empty errors
 
    end
