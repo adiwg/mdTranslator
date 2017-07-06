@@ -14,25 +14,52 @@ module ADIWG
 
                def self.build(aFunding)
 
+                  @Namespace = ADIWG::Mdtranslator::Writers::SbJson
+
                   hBudget = {}
                   hBudget[:className] = 'gov.sciencebase.catalog.item.facet.BudgetFacet'
                   hBudget[:annualBudgets] = []
 
                   aFunding.each do |hFunding|
                      budget = {}
+
+                     # funding sources
                      fundingSources = []
+                     total = 0.0
                      hFunding[:allocations].each do |hAllocation|
                         hSource = {}
                         hSource[:amount] = hAllocation[:amount] unless hAllocation[:amount].nil?
+                        total += hAllocation[:amount] unless hAllocation[:amount].nil?
                         hSource[:matching] = hAllocation[:matching].to_s
-                        hSource[:recipient] = hAllocation[:recipientId] unless hAllocation[:recipientId].nil?
-                        hSource[:source] = hAllocation[:sourceId] unless hAllocation[:sourceId].nil?
+
+                        # recipient id
+                        unless hAllocation[:recipientId].nil?
+                           hContact = @Namespace.get_contact_by_id(hAllocation[:recipientId])
+                           unless hContact.empty?
+                              hSource[:recipient] = hContact[:name]
+                           end
+                        end
+
+                        # source id
+                        unless hAllocation[:sourceId].nil?
+                           hContact = @Namespace.get_contact_by_id(hAllocation[:sourceId])
+                           unless hContact.empty?
+                              hSource[:source] = hContact[:name]
+                           end
+                        end
+
                         fundingSources << hSource
                      end
                      unless fundingSources.empty?
                         budget[:fundingSources] = fundingSources
                      end
 
+                     # total funds
+                     unless total == 0.0
+                        budget[:totalFunds] = total
+                     end
+
+                     # year
                      # give priority to ending dateTime
                      # write year only
                      # use fiscal year beginning October 1

@@ -33,9 +33,13 @@ module ADIWG
                   onlineClass = Html_OnlineResource.new(@html)
                   graphicClass = Html_Graphic.new(@html)
 
-                  # citation - title - required
+                  # citation - title
                   @html.em('Title: ')
-                  @html.text!(hCitation[:title])
+                  unless hCitation[:title].nil?
+                     @html.text!(hCitation[:title])
+                  else
+                     @html.text!('*MISSING*')
+                  end
                   @html.br
 
                   # citation - alternate title

@@ -1,0 +1,12 @@
+{
+   "spatial": {
+      "representationalPoint": [123,23],
+      "representationalPointIsDerived": false,
+      "boundingBox": {
+         "maxY": 23.22,
+         "maxX": 12.12,
+         "minX": 23.21,
+         "minY": 43
+      }
+   }
+}

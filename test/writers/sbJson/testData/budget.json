@@ -8,6 +8,11 @@
          "contactId": "CID001",
          "isOrganization": false,
          "name": "Person 001"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "Person 002"
       }
    ],
    "metadata": {
@@ -57,15 +62,15 @@
          {
             "allocation": [
                {
-                  "amount": 250.00,
+                  "amount": 9.00,
                   "currency": "myCurrency",
-                  "sourceId": "foo1",
-                  "recipientId": "bar1",
+                  "sourceId": "CID001",
+                  "recipientId": "CID002",
                   "matching": true,
                   "comment": "myComment"
                },
                {
-                  "amount": 250000.00,
+                  "amount": 90.00,
                   "currency": "USD"
                }
             ],
@@ -77,15 +82,15 @@
          {
             "allocation": [
                {
-                  "amount": 500.00,
+                  "amount": 900.00,
                   "currency": "myNextCurrency",
-                  "sourceId": "foo2",
-                  "recipientId": "bar2",
+                  "sourceId": "CID001",
+                  "recipientId": "CID002",
                   "matching": true,
                   "comment": "myNextComment"
                },
                {
-                  "amount": 500000.00,
+                  "amount": 9000.00,
                   "currency": "USD"
                }
             ],
@@ -107,7 +112,7 @@
          {
             "allocation": [
                {
-                  "amount": 100.00,
+                  "amount": 90000.00,
                   "currency": "THB"
                }
             ]

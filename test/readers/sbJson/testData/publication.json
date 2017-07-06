@@ -1,0 +1,17 @@
+{
+   "className":"gov.sciencebase.catalog.item.facet.CitationFacet",
+   "citationType":"journal",
+   "note":"Citation note",
+   "journal":"The Journal Name",
+   "conference":"notMapped",
+   "tableOfContents":"notMapped",
+   "edition":"February 2016",
+   "language": "ESP",
+   "parts":
+   [
+      {
+         "type":"notMapped",
+         "value":"notMapped"
+      }
+   ]
+}

@@ -1,4 +1,8 @@
 {
+   "schema": {
+      "name": "sbJson",
+      "version": "0.0.0"
+   },
    "link": {
       "rel": "self",
       "url": "https://www.sciencebase.gov/catalog/item/57d97341e4b090824ffb0e6f"
@@ -62,6 +66,7 @@
       {
          "name": "Luke A. Winslow",
          "type": "Originator",
+         "contactType": "person",
          "organization": {},
          "primaryLocation": {
             "streetAddress": {},
@@ -71,6 +76,7 @@
       {
          "name": "Gretchen J.A. Hansen",
          "type": "Originator",
+         "contactType": "person",
          "organization": {},
          "primaryLocation": {
             "streetAddress": {},
@@ -423,6 +429,9 @@
          "dateString": "2017",
          "label": "Publication Date"
       }
+   ],
+   "extents": [
+      2005798
    ],
    "spatial": {
       "boundingBox": {

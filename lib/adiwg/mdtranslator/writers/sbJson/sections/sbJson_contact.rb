@@ -75,7 +75,11 @@ module ADIWG
                         json.email hContact[:eMailList][0] unless hContact[:eMailList].empty?
                         json.hours Hours.build(hContact[:hoursOfService]) unless hContact[:hoursOfService].empty?
                         json.instructions hContact[:contactInstructions]
-                        json.tty hContact[:phones].collect {|ph| ph[:phoneNumber] if
+                        json.officePhone hContact[:phones].collect {|ph| ph[:phoneNumber] if
+                           ph[:phoneServiceTypes].include?('voice')}.reject(&:nil?).first
+                        json.faxPhone hContact[:phones].collect {|ph| ph[:phoneNumber] if
+                           ph[:phoneServiceTypes].include?('fax')}.reject(&:nil?).first
+                        json.ttyPhone hContact[:phones].collect {|ph| ph[:phoneNumber] if
                            ph[:phoneServiceTypes].include?('tty')}.reject(&:nil?).first
                         json.organization {json.displayText orgName} unless orgName.nil?
                         json.logoUrl logoUrl unless logoUrl.nil?
@@ -87,6 +91,8 @@ module ADIWG
                                     ph[:phoneServiceTypes].include?('voice')}.reject(&:nil?).first
                                  json.faxPhone hContact[:phones].collect {|ph| ph[:phoneNumber] if
                                     ph[:phoneServiceTypes].include?('fax')}.reject(&:nil?).first
+                                 json.ttyPhone hContact[:phones].collect {|ph| ph[:phoneNumber] if
+                                    ph[:phoneServiceTypes].include?('tty')}.reject(&:nil?).first
                               end
                               unless hContact[:addresses].empty?
                                  aAddress = hContact[:addresses]

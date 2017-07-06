@@ -13,25 +13,27 @@ module ADIWG
 
             module Identifier
 
-               # instance classes needed in script
-               @intMetadataClass = InternalMetadata.new
-
                def self.unpack(hSbJson, hCitation, hResponseObj)
 
-                  hSbJson['identifiers'].each_with_index do |hSbIdentifier, i|
-                     hIdentifier = @intMetadataClass.newIdentifier
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
 
-                     unless hSbIdentifier['type'].nil? || hSbIdentifier['type'] == ''
-                        hIdentifier[:description] = hSbIdentifier['type']
-                     end
-                     unless hSbIdentifier['scheme'].nil? || hSbIdentifier['scheme'] == ''
-                        hIdentifier[:namespace] = hSbIdentifier['scheme']
-                     end
-                     unless hSbIdentifier['key'].nil? || hSbIdentifier['key'] == ''
-                        hIdentifier[:identifier] = hSbIdentifier['key']
-                     end
+                  if hSbJson.has_key?('identifiers')
+                     hSbJson['identifiers'].each_with_index do |hSbIdentifier, i|
+                        hIdentifier = intMetadataClass.newIdentifier
 
-                     hCitation[:identifiers] << hIdentifier
+                        unless hSbIdentifier['type'].nil? || hSbIdentifier['type'] == ''
+                           hIdentifier[:description] = hSbIdentifier['type']
+                        end
+                        unless hSbIdentifier['scheme'].nil? || hSbIdentifier['scheme'] == ''
+                           hIdentifier[:namespace] = hSbIdentifier['scheme']
+                        end
+                        unless hSbIdentifier['key'].nil? || hSbIdentifier['key'] == ''
+                           hIdentifier[:identifier] = hSbIdentifier['key']
+                        end
+
+                        hCitation[:identifiers] << hIdentifier
+                     end
                   end
 
                   return hCitation

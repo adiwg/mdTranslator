@@ -1,0 +1,175 @@
+{
+   "tags": [
+      {
+         "type": "Resource Type",
+         "name": "project"
+      },
+      {
+         "type": "Resource Type",
+         "scheme": "",
+         "name": "sciencePaper"
+      },
+      {
+         "type": "Resource Type",
+         "scheme": "USGS ScienceBase",
+         "name": "tabularDataset"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "https://scienceBase.usgs.gov/01",
+         "name": "ecosystems"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "https://scienceBase.usgs.gov/01",
+         "name": "geology"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "https://scienceBase.usgs.gov/02",
+         "name": "climate"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "https://scienceBase.usgs.gov/02",
+         "name": "biology"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "Science Catalog",
+         "name": "astronomy"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "Science Catalog",
+         "name": "mars"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "LCC Catalog",
+         "name": "caribou"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "scheme": "LCC Catalog",
+         "name": "ice"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "name": "Sitka Spruce"
+      },
+      {
+         "type": "USGS Thesaurus",
+         "name": "Cedar"
+      },
+      {
+         "type": "none",
+         "scheme": "none",
+         "name": "Popcorn"
+      },
+      {
+         "type": "none",
+         "scheme": "none",
+         "name": "Peanuts"
+      },
+      {
+         "type": "none",
+         "scheme": "https://scienceBase.usgs.gov/03",
+         "name": "Larry"
+      },
+      {
+         "type": "None",
+         "scheme": "https://scienceBase.usgs.gov/03",
+         "name": "Curley"
+      },
+      {
+         "type": "NONE",
+         "scheme": "https://scienceBase.usgs.gov/03",
+         "name": "Mo"
+      },
+      {
+         "type": "none",
+         "scheme": "National Phenology Network",
+         "name": "lilac"
+      },
+      {
+         "type": "none",
+         "scheme": "National Phenology Network",
+         "name": "bees"
+      },
+      {
+         "type": "none",
+         "scheme": "none",
+         "name": "Mutt"
+      },
+      {
+         "type": "none",
+         "scheme": "none",
+         "name": "Jeff"
+      },
+      {
+         "type": "none",
+         "name": "black bear"
+      },
+      {
+         "type": "none",
+         "name": "brown bear"
+      },
+      {
+         "scheme": "https://scienceBase.usgs.gov/04",
+         "name": "ptarmigan"
+      },
+      {
+         "scheme": "https://scienceBase.usgs.gov/04",
+         "name": "raven"
+      },
+      {
+         "scheme": "USGS ASC",
+         "name": "volcano"
+      },
+      {
+         "scheme": "USGS ASC",
+         "name": "water"
+      },
+      {
+         "scheme": "none",
+         "name": "data management"
+      },
+      {
+         "scheme": "none",
+         "name": "photography"
+      },
+      {
+         "name": "Cotton Candy"
+      },
+      {
+         "name": "Ice Cream"
+      },
+      {
+         "type": "ISO 19115 Topic Categories",
+         "scheme": "ISO 19115 Topic Categories",
+         "name": "farming"
+      },
+      {
+         "type": "ISO 19115 Topic Categories",
+         "scheme": "ISO 19115 Topic Categories",
+         "name": "biota"
+      },
+      {
+         "type": "ISO 19115 Topic Categories",
+         "name": "boundaries"
+      },
+      {
+         "type": "ISO 19115 Topic Categories",
+         "name": "economy"
+      },
+      {
+         "scheme": "ISO 19115 Topic Categories",
+         "name": "elevation"
+      },
+      {
+         "scheme": "ISO 19115 Topic Categories",
+         "name": "environment"
+      }
+   ]
+}

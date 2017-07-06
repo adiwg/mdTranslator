@@ -13,7 +13,7 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterSbJsonParent.getJson('budget.json')
 
-   def test_budgetFacet
+   def test_complete_budgetFacet
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',
@@ -25,31 +25,33 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
             {
                'fundingSources' => [
                   {
-                     'amount' => 250.0,
+                     'amount' => 9.0,
                      'matching' => 'true',
-                     'recipient' => 'bar1',
-                     'source' => 'foo1'
+                     'recipient' => 'Person 002',
+                     'source' => 'Person 001'
                   },
                   {
-                     'amount' => 250000.0,
+                     'amount' => 90.0,
                      'matching' => 'false'
                   }
                ],
+               'totalFunds' => 99.0,
                'year' => '2017'
             },
             {
                'fundingSources' => [
                   {
-                     'amount' => 500.0,
+                     'amount' => 900.0,
                      'matching' => 'true',
-                     'recipient' => 'bar2',
-                     'source' => 'foo2'
+                     'recipient' => 'Person 002',
+                     'source' => 'Person 001'
                   },
                   {
-                     'amount' => 500000.0,
+                     'amount' => 9000.0,
                      'matching' => 'false'
                   }
                ],
+               'totalFunds' => 9900.0,
                'year' => '2017'
             },
             {
@@ -61,10 +63,11 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
             {
                'fundingSources' => [
                   {
-                     'amount' => 100.0,
+                     'amount' => 90000.0,
                      'matching' => 'false'
                   }
-               ]
+               ],
+               'totalFunds' => 90000.0
             }
          ]
       }
