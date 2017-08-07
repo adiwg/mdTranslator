@@ -31,30 +31,4 @@ class TestReaderSbJsonParent < MiniTest::Test
 
    end
 
-   # set contact list for test modules
-   def self.setContacts
-
-      intObj = @@intMetadataClass.newBase
-
-      # first contact
-      intObj[:contacts] << @@intMetadataClass.newContact
-      intObj[:contacts][0][:contactId] = 'individualId0'
-      intObj[:contacts][0][:isOrganization] = false
-
-      # second contact
-      intObj[:contacts] << @@intMetadataClass.newContact
-      intObj[:contacts][1][:contactId] = 'individualId1'
-      intObj[:contacts][1][:isOrganization] = false
-
-      # third contact
-      intObj[:contacts] << @@intMetadataClass.newContact
-      intObj[:contacts][2][:contactId] = 'organizationId0'
-      intObj[:contacts][2][:isOrganization] = true
-
-      @@contacts = intObj[:contacts]
-
-      ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(@@contacts)
-
-   end
-
 end

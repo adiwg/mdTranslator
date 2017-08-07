@@ -21,7 +21,7 @@ module ADIWG
                   unless hCitation.empty?
                      hCitation[:dates].each do |hDate|
                         sbDate = {}
-                        dateType = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
+                        dateType = Codelists.codelist_adiwg2sb('date_adiwg2sb', hDate[:dateType])
 
                         # if iso date codes does not map to scienceBase use type = 'Info'
                         if dateType.nil?

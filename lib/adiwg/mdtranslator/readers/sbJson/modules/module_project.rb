@@ -4,7 +4,7 @@
 # History:
 #   Stan Smith 2016-06-27 original script
 
-require 'adiwg/mdtranslator/writers/sbJson/sections/sbJson_codelists'
+require_relative 'module_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -13,15 +13,13 @@ module ADIWG
 
             module Project
 
-               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
-
                def self.unpack(hFacet, hResourceInfo, hResponseObj)
 
                   # project status
                   if hFacet.has_key?('projectStatus')
                      unless hFacet['projectStatus'].nil? || ['projectStatus'] == ''
                         sbStatus = hFacet['projectStatus']
-                        status = @Namespace::Codelists.codelist_iso_to_sb('iso_sb_progress', :sbCode => sbStatus)
+                        status = Codelists.codelist_sb2adiwg('progress_sb2adiwg', sbStatus)
                         status = status.nil? ? sbStatus : status
                         hResourceInfo[:status] << status
                      end

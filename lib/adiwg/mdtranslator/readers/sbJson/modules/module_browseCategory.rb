@@ -5,7 +5,7 @@
 #   Stan Smith 2016-06-22 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/writers/sbJson/sections/sbJson_codelists'
+require_relative 'module_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -13,8 +13,6 @@ module ADIWG
          module SbJson
 
             module BrowseCategory
-
-               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
 
                def self.unpack(hSbJson, hResourceInfo, hResponseObj)
 
@@ -24,7 +22,7 @@ module ADIWG
                   if hSbJson.has_key?('browseCategories')
                      hSbJson['browseCategories'].each do |category|
                         hResType = intMetadataClass.newResourceType
-                        scope = @Namespace::Codelists.codelist_iso_to_sb('iso_sb_scope', :sbCode => category)
+                        scope = Codelists.codelist_sb2adiwg('scope_sb2adiwg', category)
                         if scope.nil?
                            hResType[:type] = 'dataset'
                            hResType[:name] = category

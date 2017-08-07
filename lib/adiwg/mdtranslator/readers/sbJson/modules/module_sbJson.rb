@@ -27,6 +27,7 @@ require_relative 'module_budget'
 require_relative 'module_publication'
 require_relative 'module_project'
 require_relative 'module_extent'
+require_relative 'module_relatedItem'
 
 module ADIWG
    module Mdtranslator
@@ -146,6 +147,11 @@ module ADIWG
                      end
                   end
 
+                  # related items
+                  if hSbJson.has_key?('relatedItems')
+                     RelatedItem.unpack(hSbJson, hMetadata, hResponseObj)
+                  end
+
                   hResourceInfo[:citation] = hCitation
                   hMetadata[:metadataInfo] = hMetadataInfo
                   hMetadata[:resourceInfo] = hResourceInfo
@@ -154,6 +160,7 @@ module ADIWG
                   @contacts = intObj[:contacts]
 
                   return intObj
+
 
                end
 

@@ -21,7 +21,7 @@ module ADIWG
                      extentAdd = "http://www.sciencebase.gov/catalog/extent/#{extentId}?format=geojson"
                      web_contents = open(extentAdd, :read_timeout => 30) { |f| f.read }
                   rescue => readErr
-                     hResponseObj[:readerExecutionMessages] << 'ScienceBase read failed - see following message(s):\n'
+                     hResponseObj[:readerExecutionMessages] << 'Failed reading ScienceBase extent - see following message(s):\n'
                      hResponseObj[:readerExecutionMessages] << readErr.to_s.slice(0, 300)
                      return {}
                   else
@@ -29,7 +29,7 @@ module ADIWG
                      begin
                         hGeoJson = JSON.parse(web_contents)
                      rescue JSON::JSONError => parseErr
-                        hResponseObj[:readerExecutionMessages] << 'Parsing sbJson failed - see following message(s):\n'
+                        hResponseObj[:readerExecutionMessages] << 'Parsing extent failed - see following message(s):\n'
                         hResponseObj[:readerExecutionMessages] << parseErr.to_s.slice(0, 300)
                         return {}
                      end

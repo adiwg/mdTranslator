@@ -44,7 +44,7 @@ module ADIWG
                      hContact = ADIWG::Mdtranslator::Writers::SbJson.get_contact_by_index(hIndex[:index])
                      unless hContact.empty?
                         unless hContact[:name].nil?
-                           sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => hIndex[:role])
+                           sbRole = Codelists.codelist_adiwg2sb('role_adiwg2sb', hIndex[:role])
                            sbRole = sbRole.nil? ? hIndex[:role] : sbRole
                            citation += hContact[:name] + '(' + sbRole + '), '
                         end
@@ -54,7 +54,7 @@ module ADIWG
                   # dates
                   hCitation[:dates].each do |hDate|
                      dateStr = AdiwgDateTimeFun.stringDateFromDateObject(hDate)
-                     dateType = Codelists.codelist_iso_to_sb('iso_sb_date', :isoCode => hDate[:dateType])
+                     dateType = Codelists.codelist_adiwg2sb('date_adiwg2sb', hDate[:dateType])
                      unless dateType.nil?
                         citation += dateStr + '(' + dateType + '), '
                      end

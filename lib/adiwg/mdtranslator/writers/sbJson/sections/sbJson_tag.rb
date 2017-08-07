@@ -21,7 +21,7 @@ module ADIWG
                   hResource[:resourceTypes].each do |hType|
                      hTag = {}
                      type = hType[:type]
-                     sbType = Codelists.codelist_iso_to_sb('iso_sb_scope', :isoCode => type)
+                     sbType = Codelists.codelist_adiwg2sb('scope_adiwg2sb', type)
                      sbType = sbType.nil? ? type : sbType
                      hTag[:type] = 'Resource Type'
                      hTag[:name] = sbType
