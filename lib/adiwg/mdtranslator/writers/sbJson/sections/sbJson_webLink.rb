@@ -21,6 +21,10 @@ module ADIWG
                   hWebLink = {}
 
                   function = hResource[:olResFunction]
+                  # if function is nil use sbJson type 'webLink'
+                  # if function was entered as a valid sbJson code use it
+                  # if function was entered as a valid ADIwg/ISO code translate it to sbJson
+                  # if the translation is not possible use sbJson type 'webLink'
                   if function.nil?
                      hWebLink[:type] = 'webLink'
                   else

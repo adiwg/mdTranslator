@@ -21,7 +21,7 @@ class TestReaderSbJsonSbJson < TestReaderSbJsonParent
 
       refute_empty metadata
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      refute_empty hResponse[:readerExecutionMessages]
 
    end
 

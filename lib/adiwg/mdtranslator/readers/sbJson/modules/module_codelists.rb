@@ -100,7 +100,7 @@ module ADIWG
                   {sb: 'Data', adiwg: 'dataset'},
                   {sb: 'Data Release - In Progress', adiwg: nil},
                   {sb: 'Image', adiwg: 'photographicImage'},
-                  {sb: 'map', adiwg: 'map'},
+                  {sb: 'Map', adiwg: 'map'},
                   {sb: 'Physical Item', adiwg: 'sample'},
                   {sb: 'Project', adiwg: 'project'},
                   {sb: 'Publication', adiwg: 'publication'},

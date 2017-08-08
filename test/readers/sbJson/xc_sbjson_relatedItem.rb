@@ -16,43 +16,59 @@ class TestReaderSbJsonRelatedItem < TestReaderSbJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      hMetadata = @@intMetadataClass.newCitation
+      hMetadata = @@intMetadataClass.newMetadata
 
       metadata = @@NameSpace.unpack(hIn, hMetadata, hResponse)
 
-      assert_equal 1,1
+      assert_equal 2, metadata[:associatedResources].length
+      assert hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-      # if metadata.empty?
-      #    refute hResponse[:readerExecutionPass]
-      #    refute_empty hResponse[:readerExecutionMessages]
-      # else
-      #    assert_equal 1, metadata[:geographicExtents].length
-      #    assert_equal 'Extent extracted from ScienceBase', metadata[:description]
-      #
-      #    hGeoExt = metadata[:geographicExtents][0]
-      #    assert_equal hIn.to_s, hGeoExt[:identifier][:identifier]
-      #    refute_empty hGeoExt[:geographicElements]
-      #    refute_empty hGeoExt[:nativeGeoJson]
-      #    refute_empty hGeoExt[:computedBbox]
-      #
-      #    assert hResponse[:readerExecutionPass]
-      #    assert_empty hResponse[:readerExecutionMessages]
-      # end
+      hResource = metadata[:associatedResources][0]
+      assert_equal 2, hResource[:resourceTypes].length
+      assert_equal 'project', hResource[:resourceTypes][0]
+      assert_equal 'dataset', hResource[:resourceTypes][1]
+      refute_empty hResource[:resourceCitation]
+
+      hCitation = hResource[:resourceCitation]
+      assert 'Assessing the Vulnerability of Vegetation to Future Climate in the North Central U.S.', hCitation[:title]
+      assert_equal 4, hCitation[:identifiers].length
+
+      hIdentifier = hCitation[:identifiers][0]
+      assert_equal '58483232e4b06d80b7af6c6b', hIdentifier[:identifier]
+      assert_equal 'gov.sciencebase.catalog', hIdentifier[:namespace]
+      assert_equal 'id', hIdentifier[:description]
 
    end
 
-   # def test_extent_404
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@hIn))
-   #    hIn = hIn['extents'][1]
-   #    hResponse = Marshal::load(Marshal.dump(@@responseObj))
-   #
-   #    metadata = @@NameSpace.unpack(hIn, hResponse)
-   #
-   #    assert_empty metadata
-   #    refute hResponse[:readerExecutionPass]
-   #    refute_empty hResponse[:readerExecutionMessages]
-   #
-   # end
+   def test_relatedItems_missing_id
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('id')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hMetadata = @@intMetadataClass.newMetadata
+
+      metadata = @@NameSpace.unpack(hIn, hMetadata, hResponse)
+
+      assert_empty metadata[:associatedResources]
+      assert hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_relatedItems_404
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['relatedItems']['link']['url'] = 'https://www.sciencebase.gov/catalog/itemLinks?itemId=123456789'
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hMetadata = @@intMetadataClass.newMetadata
+
+      metadata = @@NameSpace.unpack(hIn, hMetadata, hResponse)
+
+      assert_empty metadata[:associatedResources]
+      assert hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
 
 end

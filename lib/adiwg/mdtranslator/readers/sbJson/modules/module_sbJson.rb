@@ -161,7 +161,6 @@ module ADIWG
 
                   return intObj
 
-
                end
 
                # find the array pointer and type for a contact
