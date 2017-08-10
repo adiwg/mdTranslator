@@ -152,13 +152,13 @@ module ADIWG
                ]
 
                @association_sb2adiwg = [
-                  {sb: 'alternate', adiwg: 'crossReference', reverse: 'alternate'},
+                  {sb: 'alternate', adiwg: 'alternate', reverse: 'alternate'},
                   {sb: 'constituentOf', adiwg: 'isComposedOf', reverse: 'constituent'},
                   {sb: 'copiedFrom', adiwg: nil, reverse: 'copiedInto'},
                   {sb: 'derivativeOf', adiwg: 'derivativeProduct', reverse: 'derived'},
                   {sb: 'precededBy', adiwg: nil, reverse: 'succeededBy'},
                   {sb: 'productOf', adiwg: 'parentProject', reverse: 'produced'},
-                  {sb: 'related', adiwg: nil, reverse: 'related'},
+                  {sb: 'related', adiwg: 'crossReference', reverse: 'related'},
                   {sb: 'subprojectOf', adiwg: 'subProject', reverse: 'mainprojectOf'}
                ]
 

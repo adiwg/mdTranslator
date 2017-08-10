@@ -155,8 +155,9 @@ module ADIWG
                ]
 
                @association_adiwg2sb = [
+                  {adiwg: 'alternate', sb: 'alternate'},
                   {adiwg: 'collectiveTitle', sb: nil},
-                  {adiwg: 'crossReference', sb: 'alternate'},
+                  {adiwg: 'crossReference', sb: 'related'},
                   {adiwg: 'dependency', sb: nil},
                   {adiwg: 'derivativeProduct', sb: 'derivativeOf'},
                   {adiwg: 'isComposedOf', sb: 'constituentOf'},
