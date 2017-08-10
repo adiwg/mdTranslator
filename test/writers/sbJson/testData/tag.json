@@ -139,5 +139,23 @@
             }
          ]
       }
-   }
+   },
+   "metadataRepository":[
+      {
+         "repository": "data.gov",
+         "citation": {
+            "title": "Arctic LCC Data.gov",
+            "identifier": [
+               {
+                  "identifier": "6f991cdb-6bf5-4f1d-a05b-4b8345455150"
+               }
+            ]
+         },
+         "metadataStandard": "FGDC"
+      },
+      {
+         "repository": "DataOne",
+         "metadataStandard": "iso19115_2"
+      }
+   ]
 }

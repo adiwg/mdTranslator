@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.1.0 2017-08-10 revisions to sbJson reader
 # 2.0.0 2017-06-28 added sbJson reader
 # 2.0.0rc13 2017-06-16 apply changes to sbJson writer after fourth review session
 # 2.0.0rc12 2017-06-14 apply changes to sbJson writer after third review session
@@ -21,7 +22,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.0.0"
+      VERSION = "2.1.0"
    end
 end
 

@@ -13,8 +13,9 @@ module ADIWG
 
             module Tag
 
-               def self.build(hResource)
+               def self.build(intObj)
 
+                  hResource = intObj[:metadata][:resourceInfo]
                   aTags = []
 
                   # tags from resource type
@@ -50,12 +51,28 @@ module ADIWG
                      end
                   end
 
-                  # tags for status
+                  # tags from status
                   hResource[:status].each do |status|
                      hTag = {}
                      hTag[:type] = 'Status'
                      hTag[:name] = status
                      aTags << hTag
+                  end
+
+                  # tags from repositories
+                  intObj[:metadataRepositories].each do |hRepo|
+                     if hRepo[:repository] == 'data.gov'
+                        unless hRepo[:citation].empty?
+                           tagName = nil
+                           tagName = hRepo[:citation][:title] unless hRepo[:citation][:title].nil?
+                           unless tagName.nil?
+                              hTag = {}
+                              hTag[:type] = 'Harvest Set'
+                              hTag[:name] = tagName
+                              aTags << hTag
+                           end
+                        end
+                     end
                   end
 
                   if aTags.empty?
