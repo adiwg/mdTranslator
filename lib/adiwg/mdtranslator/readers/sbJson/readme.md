@@ -15,4 +15,4 @@ integrate across multiple metadata standards, conventions, and
 practices in describing a wide array of scientific data and 
 information assets important to science teams using ScienceBase.
 
-The sbJSON format is fully documented on the [ScienceBase Confluence page](https://my.usgs.gov/confluence/display/sciencebase/ScienceBase+Information+Model).
+The sbJSON format is partially documented on the [ScienceBase Confluence page](https://my.usgs.gov/confluence/display/sciencebase/ScienceBase+Information+Model).

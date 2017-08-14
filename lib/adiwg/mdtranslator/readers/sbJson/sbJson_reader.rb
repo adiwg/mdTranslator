@@ -25,14 +25,14 @@ module ADIWG
                   return {}
                end
 
-               # file must contain an mdJson object
+               # file must contain an sbJson object
                if hSbJson.empty?
                   hResponseObj[:readerStructureMessages] << 'sbJson object is empty'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
 
-               # faking the version since sbJSON has no version support
+               # faking the version since sbJson has no version support
                hSbJson['schema'] = {
                   'name' => 'sbJson',
                   'version' => '0.0.0'
