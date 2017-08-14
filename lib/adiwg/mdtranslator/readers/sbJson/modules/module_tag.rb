@@ -14,8 +14,6 @@ module ADIWG
 
             module Tag
 
-               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
-
                def self.unpack(hSbJson, hResourceInfo, hResponseObj)
 
                   # instance classes needed in script

@@ -4,6 +4,7 @@
 #  Stan Smith 2017-05-30 original script
 
 require 'jbuilder'
+require 'adiwg/mdtranslator/readers/sbJson/modules/module_codelists'
 require_relative 'sbJson_codelists'
 
 module ADIWG
@@ -13,18 +14,24 @@ module ADIWG
 
             module WebLink
 
+               @Namespace = ADIWG::Mdtranslator::Readers::SbJson
+
                def self.buildWebLink(hResource)
 
                   hWebLink = {}
 
                   function = hResource[:olResFunction]
+                  # if function is nil use sbJson type 'webLink'
+                  # if function was entered as a valid sbJson code use it
+                  # if function was entered as a valid ADIwg/ISO code translate it to sbJson
+                  # if the translation is not possible use sbJson type 'webLink'
                   if function.nil?
                      hWebLink[:type] = 'webLink'
                   else
-                     if Codelists.is_sb_code('iso_sb_onlineFunction', function)
+                     if @Namespace::Codelists.is_sb_code('onlineFunction_sb2adiwg', function)
                         hWebLink[:type] = function
                      else
-                        sbFunction = Codelists.codelist_iso_to_sb('iso_sb_onlineFunction', :isoCode => function)
+                        sbFunction = Codelists.codelist_adiwg2sb('onlineFunction_adiwg2sb', function)
                         hWebLink[:type] = sbFunction.nil? ? 'webLink' : sbFunction
                      end
                   end

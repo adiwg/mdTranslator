@@ -27,6 +27,7 @@ require_relative 'module_budget'
 require_relative 'module_publication'
 require_relative 'module_project'
 require_relative 'module_extent'
+require_relative 'module_relatedItem'
 
 module ADIWG
    module Mdtranslator
@@ -144,6 +145,11 @@ module ADIWG
                         hReturn = Extent.unpack(extentId, hResponseObj)
                         hResourceInfo[:extents] << hReturn unless hReturn.empty?
                      end
+                  end
+
+                  # related items
+                  if hSbJson.has_key?('relatedItems')
+                     RelatedItem.unpack(hSbJson, hMetadata, hResponseObj)
                   end
 
                   hResourceInfo[:citation] = hCitation

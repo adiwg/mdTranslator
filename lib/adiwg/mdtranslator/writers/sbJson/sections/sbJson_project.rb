@@ -20,7 +20,7 @@ module ADIWG
                      if hResourceType[:type] == 'project'
                         hProject[:className] = 'gov.sciencebase.catalog.item.facet.ProjectFacet'
                         hResource[:status].each do |status|
-                           sbStatus = Codelists.codelist_iso_to_sb('iso_sb_progress', :isoCode => status)
+                           sbStatus = Codelists.codelist_adiwg2sb('progress_adiwg2sb', status)
                            unless sbStatus.nil?
                               hProject[:projectStatus] = sbStatus
                               break

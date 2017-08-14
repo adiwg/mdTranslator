@@ -22,7 +22,7 @@ module ADIWG
 
                   aTypes.each do |hType|
                      type = hType[:type]
-                     sbType = Codelists.codelist_iso_to_sb('iso_sb_scope', :isoCode => type)
+                     sbType = Codelists.codelist_adiwg2sb('scope_adiwg2sb', type)
                      aCategories << sbType unless sbType.nil?
                   end
 

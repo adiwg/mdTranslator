@@ -25,7 +25,7 @@ module ADIWG
                         end
                         unless hDistributor[:contact].empty?
                            role = hDistributor[:contact][:roleName]
-                           sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                           sbRole = Codelists.codelist_adiwg2sb('role_adiwg2sb', role)
                            sbRole = sbRole.nil? ? role : sbRole
                            aParties = hDistributor[:contact][:parties]
                            aParties.each do |hParty|

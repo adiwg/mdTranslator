@@ -34,7 +34,7 @@ module ADIWG
                   aContactList = []
                   aResponsibility.each do |hResponsibility|
                      role = hResponsibility[:roleName]
-                     sbRole = Codelists.codelist_iso_to_sb('iso_sb_role', :isoCode => role)
+                     sbRole = Codelists.codelist_adiwg2sb('role_adiwg2sb', role)
                      sbRole = sbRole.nil? ? role : sbRole
                      hResponsibility[:parties].each do |hParty|
                         aContactList << { :role => sbRole, :index => hParty[:contactIndex] }

@@ -5,7 +5,7 @@
 #   Stan Smith 2016-06-25 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/writers/sbJson/sections/sbJson_codelists'
+require_relative 'module_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -13,8 +13,6 @@ module ADIWG
          module SbJson
 
             module Date
-
-               @Namespace = ADIWG::Mdtranslator::Writers::SbJson
 
                def self.unpack(hSbJson, hCitation, hResponseObj)
 
@@ -29,8 +27,9 @@ module ADIWG
                            hDate[:date] = aReturn[0]
                            hDate[:dateResolution] = aReturn[1]
                            hDate[:description] = hSbDate['label']
-                           type = @Namespace::Codelists.codelist_iso_to_sb('iso_sb_date', :sbCode => hSbDate['type'])
-                           type = type.nil? ? hSbDate['type'] : type
+                           sbType = hSbDate['type']
+                           adiwgType = Codelists.codelist_sb2adiwg('date_sb2adiwg', sbType)
+                           type = adiwgType.nil? ? sbType : adiwgType
                            hDate[:dateType] = type
                            hCitation[:dates] << hDate
                         end

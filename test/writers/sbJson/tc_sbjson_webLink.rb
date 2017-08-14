@@ -74,7 +74,7 @@ class TestWriterSbJsonWebLink < TestWriterSbJsonParent
             'title' => 'myName9'
          },
          {
-            'type' => 'serviceMapUri',
+            'type' => 'serviceMapUrl',
             'typeLabel' => 'untranslated sb type',
             'uri' => 'http://ISO.uri/adiwg/10',
             'title' => 'myName10'

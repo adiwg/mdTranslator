@@ -5,7 +5,7 @@
 #   Stan Smith 2016-06-25 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/writers/sbJson/sections/sbJson_codelists'
+require_relative 'module_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -16,8 +16,6 @@ module ADIWG
 
                def self.unpack(hFacet, hResourceInfo, hCitation, hResponseObj)
 
-                  @Namespace = ADIWG::Mdtranslator::Writers::SbJson
-
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
 
@@ -26,8 +24,8 @@ module ADIWG
                      unless hFacet['citationType'].nil? || hFacet['citationType'] == ''
                         hResType = intMetadataClass.newResourceType
                         sbType = hFacet['citationType']
-                        type = @Namespace::Codelists.codelist_iso_to_sb('iso_sb_scope', :sbCode => sbType)
-                        type = type.nil? ? sbType : type
+                        adiwgType = Codelists.codelist_sb2adiwg('scope_sb2adiwg', sbType)
+                        type = adiwgType.nil? ? sbType : adiwgType
                         hResType[:type] = type
                         hResType[:name] = sbType
                         hResourceInfo[:resourceTypes] << hResType

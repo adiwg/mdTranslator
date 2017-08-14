@@ -168,7 +168,7 @@
                               "protocol": "protocol",
                               "name": "myName10",
                               "description": "untranslated sb type",
-                              "function": "serviceMapUri"
+                              "function": "serviceMapUrl"
                            }
                         ]
                      }

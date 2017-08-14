@@ -90,6 +90,10 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
          {
             'type' => 'Status',
             'name' => 'underDevelopment'
+         },
+         {
+            'type' => 'Harvest Set',
+            'name' => 'Arctic LCC Data.gov'
          }
       ]
 

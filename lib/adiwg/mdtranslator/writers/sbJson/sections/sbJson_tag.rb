@@ -13,15 +13,16 @@ module ADIWG
 
             module Tag
 
-               def self.build(hResource)
+               def self.build(intObj)
 
+                  hResource = intObj[:metadata][:resourceInfo]
                   aTags = []
 
                   # tags from resource type
                   hResource[:resourceTypes].each do |hType|
                      hTag = {}
                      type = hType[:type]
-                     sbType = Codelists.codelist_iso_to_sb('iso_sb_scope', :isoCode => type)
+                     sbType = Codelists.codelist_adiwg2sb('scope_adiwg2sb', type)
                      sbType = sbType.nil? ? type : sbType
                      hTag[:type] = 'Resource Type'
                      hTag[:name] = sbType
@@ -50,12 +51,28 @@ module ADIWG
                      end
                   end
 
-                  # tags for status
+                  # tags from status
                   hResource[:status].each do |status|
                      hTag = {}
                      hTag[:type] = 'Status'
                      hTag[:name] = status
                      aTags << hTag
+                  end
+
+                  # tags from repositories
+                  intObj[:metadataRepositories].each do |hRepo|
+                     if hRepo[:repository] == 'data.gov'
+                        unless hRepo[:citation].empty?
+                           tagName = nil
+                           tagName = hRepo[:citation][:title] unless hRepo[:citation][:title].nil?
+                           unless tagName.nil?
+                              hTag = {}
+                              hTag[:type] = 'Harvest Set'
+                              hTag[:name] = tagName
+                              aTags << hTag
+                           end
+                        end
+                     end
                   end
 
                   if aTags.empty?

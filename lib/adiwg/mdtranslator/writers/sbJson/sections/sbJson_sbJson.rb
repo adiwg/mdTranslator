@@ -19,7 +19,6 @@ require_relative 'sbJson_tag'
 require_relative 'sbJson_date'
 require_relative 'sbJson_spatial'
 require_relative 'sbJson_facet'
-require_relative 'sbJson_metadataRepository'
 require_relative 'sbJson_geographicExtent'
 require_relative 'sbJson_abstract'
 
@@ -48,18 +47,17 @@ module ADIWG
                   json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier) unless hCitation.empty?
                   json.purpose resourceInfo[:purpose]
                   json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
-                  json.provenance Provenance.build()
+                  json.provenance Provenance.build
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?
                   aContactList = Contact.get_contact_list(intObj)
                   json.contacts @Namespace.json_map(aContactList, Contact) unless aContactList.empty?
                   json.webLinks WebLink.build(intObj[:metadata])
                   json.browseCategories BrowseCategory.build(resourceInfo[:resourceTypes])
-                  json.tags Tag.build(resourceInfo)
+                  json.tags Tag.build(intObj)
                   json.dates Date.build(resourceInfo) unless resourceInfo.empty?
                   json.spatial Spatial.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
                   json.facets Facet.build(intObj[:metadata])
-                  json.metadataRepository Repository.build(intObj[:metadataRepositories]) unless intObj[:metadataRepositories].empty?
                   json.geographicExtents GeographicExtent.build(resourceInfo[:extents]) unless resourceInfo[:extents].empty?
 
                end
