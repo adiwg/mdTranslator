@@ -25,4 +25,11 @@ class TestReaderFGDCParent < MiniTest::Test
 
    end
 
+   def self.set_xDoc(xDoc)
+
+      ADIWG::Mdtranslator::Readers::Fgdc::Fgdc.set_xDoc(xDoc)
+
+   end
+
+
 end

@@ -33,8 +33,9 @@ module ADIWG
                # file must contain an fgdc <metadata> tag
                xMetadata = xDoc.xpath('/metadata')
                if xMetadata.empty?
-                  hResponseObj[:readerStructureMessages] << 'FGDC file did not contain a <metadata> tag'
-                  hResponseObj[:readerStructurePass] = false
+                  hResponseObj[:readerValidationMessages] << 'FGDC file did not contain a <metadata> tag'
+                  hResponseObj[:readerValidationPass] = false
+                  return {}
                end
 
                # load fgdc file into internal object

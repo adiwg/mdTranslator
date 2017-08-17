@@ -44,10 +44,10 @@ class TestFgdcReader < MiniTest::Test
 
         refute_empty metadata
         assert_equal 'fgdc', metadata[:readerRequested]
-        refute metadata[:readerStructurePass]
-        refute_empty metadata[:readerStructureMessages]
-        assert metadata[:readerValidationPass]
-        assert_empty metadata[:readerValidationMessages]
+        assert metadata[:readerStructurePass]
+        assert_empty metadata[:readerStructureMessages]
+        refute metadata[:readerValidationPass]
+        refute_empty metadata[:readerValidationMessages]
         assert metadata[:readerExecutionPass]
         assert_empty metadata[:readerExecutionMessages]
 
