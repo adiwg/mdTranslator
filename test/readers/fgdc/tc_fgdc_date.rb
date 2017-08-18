@@ -38,14 +38,13 @@ class TestReaderFgdcDate < TestReaderFGDCParent
       day = hDate[:date].day
       year = hDate[:date].year
       month = hDate[:date].month
-      hour = hDate[:date].hour
+      # cannot test hour - value dependent on timezone of travis server
       minute = hDate[:date].minute
       second = hDate[:date].second
       offset = hDate[:date].to_s.byteslice(-6,6)
       assert_equal 2017, year
       assert_equal 8, month
       assert_includes([16,17],day)
-      refute_equal 14, hour
       assert_equal 8, minute
       assert_equal 20, second
       assert_equal '+00:00', offset
