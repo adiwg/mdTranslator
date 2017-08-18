@@ -1,5 +1,5 @@
 # Reader - fgdc to internal data structure
-# unpack fgdc data quality
+# unpack fgdc spatial data organization
 
 # History:
 #  Stan Smith 2017-08-15 original script
@@ -12,9 +12,9 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module Quality
+            module SpatialOrganization
 
-               def self.unpack(xDataQual, hResponseObj)
+               def self.unpack(xSpatialOrg, hResponseObj)
 
 
 

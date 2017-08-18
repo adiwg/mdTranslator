@@ -1,5 +1,5 @@
 # Reader - fgdc to internal data structure
-# unpack fgdc distribution
+# unpack fgdc metadata information
 
 # History:
 #  Stan Smith 2017-08-15 original script
@@ -12,9 +12,9 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module Distribution
+            module MetadataInformation
 
-               def self.unpack(xDistribution, hResponseObj)
+               def self.unpack(xMetaInfo, hResponseObj)
 
 
 

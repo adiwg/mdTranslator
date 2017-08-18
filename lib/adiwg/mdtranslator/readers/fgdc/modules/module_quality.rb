@@ -1,5 +1,5 @@
 # Reader - fgdc to internal data structure
-# unpack fgdc metadata identification
+# unpack fgdc data quality
 
 # History:
 #  Stan Smith 2017-08-15 original script
@@ -12,15 +12,11 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module Identification
+            module Quality
 
-               def self.unpack(xIdInfo, hResponseObj)
+               def self.unpack(xDataQual, hResponseObj)
 
-                  xMetadata = xDoc.xpath('/metadata')
 
-                  # metadata - idinfo > identification information (required)
-                  xIdinfo = xMetadata.xpath('//idinfo')
-                  puts xIdinfo
 
                end
 

@@ -1,5 +1,5 @@
 # Reader - fgdc to internal data structure
-# unpack fgdc spatial data reference
+# unpack fgdc entity and attribute
 
 # History:
 #  Stan Smith 2017-08-15 original script
@@ -12,9 +12,9 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module SpatialReference
+            module EntityAttribute
 
-               def self.unpack(xSpatialRef, hResponseObj)
+               def self.unpack(xEntity, hResponseObj)
 
 
 
