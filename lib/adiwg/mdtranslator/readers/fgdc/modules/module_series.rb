@@ -14,9 +14,7 @@ module ADIWG
 
             module Series
 
-               def self.unpack(xSeries, hResponseObj)
-
-                  xSerInfo = xSeries.xpath('./serinfo')
+               def self.unpack(xSerInfo, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new

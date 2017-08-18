@@ -4,11 +4,16 @@
     <citation>
       <citeinfo>
         <origin>David Ward</origin>
+        <origin>Dennis Walworth</origin>
         <pubdate>20170615</pubdate>
         <pubtime>16:08</pubtime>
-        <title>Black Brant Banding and Recovery Encounter Histories, Alaska, 1990-2016</title>
+        <title>Black Brant Banding</title>
         <edition>2.1</edition>
         <geoform>tabular digital data</geoform>
+        <serinfo>
+          <sername>Eastern Denali Fault Map</sername>
+          <issue>1</issue>
+        </serinfo>
         <pubinfo>
           <pubplace>Anchorage, AK</pubplace>
           <publish>U.S. Geological Survey, Alaska Science Center</publish>
@@ -17,7 +22,7 @@
         <onlink>https://doi.org/10.5066/F76971SZ</onlink>
         <lworkcit>
           <citeinfo>
-            <origin>David Ward</origin>
+            <origin>Adrian M Bender (ORCID: 0000-0001-7469-1957)</origin>
             <pubdate>2015</pubdate>
             <title>Pacific Black Brant Ecology</title>
             <geoform>website</geoform>

@@ -9,8 +9,8 @@ require 'adiwg/mdtranslator/readers/fgdc/modules/module_date'
 
 class TestReaderFgdcDate < TestReaderFGDCParent
 
-   @@xDocLocal = TestReaderFGDCParent.getXML('date_local.xml')
-   @@xDocUTC = TestReaderFGDCParent.getXML('date_utc.xml')
+   @@xDocLocal = TestReaderFGDCParent.get_XML('date_local.xml')
+   @@xDocUTC = TestReaderFGDCParent.get_XML('date_utc.xml')
 
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Date
 
@@ -190,10 +190,56 @@ class TestReaderFgdcDate < TestReaderFGDCParent
 
    end
 
+   def test_date_YMDhm_no_time_separator
+
+      TestReaderFGDCParent.set_xDoc(@@xDocUTC)
+      hDate = @@NameSpace.unpack('20170816', '1408', 'test', @@hResponseObj)
+
+      refute_empty hDate
+      day = hDate[:date].day
+      year = hDate[:date].year
+      month = hDate[:date].month
+      hour = hDate[:date].hour
+      minute = hDate[:date].minute
+      second = hDate[:date].second
+      offset = hDate[:date].to_s.byteslice(-6,6)
+      assert_equal 2017, year
+      assert_equal 8, month
+      assert_equal 16,day
+      assert_equal 14, hour
+      assert_equal 8, minute
+      assert_equal 0, second
+      assert_equal '+00:00', offset
+
+   end
+
    def test_date_YMDhms
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
       hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', @@hResponseObj)
+
+      refute_empty hDate
+      day = hDate[:date].day
+      year = hDate[:date].year
+      month = hDate[:date].month
+      hour = hDate[:date].hour
+      minute = hDate[:date].minute
+      second = hDate[:date].second
+      offset = hDate[:date].to_s.byteslice(-6,6)
+      assert_equal 2017, year
+      assert_equal 8, month
+      assert_equal 16,day
+      assert_equal 14, hour
+      assert_equal 8, minute
+      assert_equal 20, second
+      assert_equal '+00:00', offset
+
+   end
+
+   def test_date_YMDhms_no_time_separator
+
+      TestReaderFGDCParent.set_xDoc(@@xDocUTC)
+      hDate = @@NameSpace.unpack('20170816', '140820', 'test', @@hResponseObj)
 
       refute_empty hDate
       day = hDate[:date].day

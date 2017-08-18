@@ -4,7 +4,6 @@
 # History:
 #  Stan Smith 2017-08-15 original script
 
-require 'nokogiri'
 require 'date'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
@@ -47,10 +46,17 @@ module ADIWG
                   if time.empty?
                      dtIn = dtIn + 'T' + '00:00:00'
                   else
-                     aTime = time.split(':')
-                     hour = aTime[0]
-                     minute = aTime[1]
-                     second = aTime[2]
+                     aScan = time.scan(/:/)
+                     if aScan.empty?
+                        hour = time.byteslice(0,2)
+                        minute = time.byteslice(2,2)
+                        second = time.byteslice(4,2)
+                     else
+                        aTime = time.split(':')
+                        hour = aTime[0]
+                        minute = aTime[1]
+                        second = aTime[2]
+                     end
                      minute = '00' if minute.nil? || minute == ''
                      second = '00' if second.nil? || second == ''
                      dtIn = dtIn + 'T' + hour + ':' + minute + ':' + second

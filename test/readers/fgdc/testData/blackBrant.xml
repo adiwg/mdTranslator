@@ -4,8 +4,10 @@
     <citation>
       <citeinfo>
         <origin>David Ward</origin>
-        <pubdate>201706</pubdate>
+        <pubdate>20170615</pubdate>
+        <pubtime>16:08</pubtime>
         <title>Black Brant Banding and Recovery Encounter Histories, Alaska, 1990-2016</title>
+        <edition>2.1</edition>
         <geoform>tabular digital data</geoform>
         <pubinfo>
           <pubplace>Anchorage, AK</pubplace>
@@ -603,5 +605,6 @@ Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
       <metsc>Unclassified</metsc>
       <metshd>None</metshd>
     </metsi>
+    <mettc>local time</mettc>
   </metainfo>
 </metadata>

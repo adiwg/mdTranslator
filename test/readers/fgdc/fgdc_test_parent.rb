@@ -8,6 +8,7 @@ require 'minitest/autorun'
 require 'rubygems'
 require 'nokogiri'
 require 'adiwg/mdtranslator'
+require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 
 class TestReaderFGDCParent < MiniTest::Test
 
@@ -17,7 +18,7 @@ class TestReaderFGDCParent < MiniTest::Test
    }
 
    # get fgdc file for testing from test data folder
-   def self.getXML(fileName)
+   def self.get_XML(fileName)
 
       file = File.join(File.dirname(__FILE__), 'testData', fileName)
       xDoc = Nokogiri::XML(File.read(file))
@@ -31,5 +32,15 @@ class TestReaderFGDCParent < MiniTest::Test
 
    end
 
+   # set contact list for test modules
+   def self.set_intObj
+
+      # create new internal metadata container for the reader
+      intMetadataClass = InternalMetadata.new
+      intObj = intMetadataClass.newBase
+
+      ADIWG::Mdtranslator::Readers::Fgdc::Fgdc.set_intObj(intObj)
+
+   end
 
 end

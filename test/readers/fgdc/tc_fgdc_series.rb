@@ -4,18 +4,20 @@
 # History:
 #   Stan Smith 2017-09-14 original script
 
-require_relative 'fgdc_test_parent'
+require 'nokogiri'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
+require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcSeries < TestReaderFGDCParent
 
-   @@xDoc = TestReaderFGDCParent.getXML('series.xml')
+   @@xDoc = TestReaderFGDCParent.get_XML('series.xml')
 
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Series
 
    def test_series_complete
 
-      hSeries = @@NameSpace.unpack(@@xDoc, @@hResponseObj)
+      xIn = @@xDoc.xpath('./serinfo')
+      hSeries = @@NameSpace.unpack(xIn, @@hResponseObj)
 
       refute_empty hSeries
       assert_equal 'Series Name', hSeries[:seriesName]
