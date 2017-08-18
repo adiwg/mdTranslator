@@ -103,7 +103,8 @@ module ADIWG
                   # citation 8.10 (onlink) - online linkage
                   onLink = xCiteInfo.xpath('./onlink').text
                   unless onLink.empty?
-                     hURI = OnlineResource.unpack(onLink, hResponseObj)
+                     description = 'Link to the resource described in this citation'
+                     hURI = OnlineResource.unpack(onLink, description, hResponseObj)
                      unless hURI.nil?
                         hCitation[:onlineResources] << hURI
                      end

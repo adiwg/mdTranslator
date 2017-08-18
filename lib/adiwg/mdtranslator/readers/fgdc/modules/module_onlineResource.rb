@@ -14,14 +14,14 @@ module ADIWG
 
             module OnlineResource
 
-               def self.unpack(onLink, hResponseObj)
+               def self.unpack(onLink, description, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   hURI = intMetadataClass.newOnlineResource
 
                   hURI[:olResURI] = onLink
-                  hURI[:olResDesc] = 'Link to resource described in this citation'
+                  hURI[:olResDesc] = description
 
                   return hURI
 
