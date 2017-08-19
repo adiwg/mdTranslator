@@ -125,10 +125,15 @@ module ADIWG
                   @contacts << hContact
                end
 
-               # set an internal object test modules
+               # set an internal object for tests
                def self.set_intObj(intObj)
                   @intObj = intObj
                   @contacts = @intObj[:contacts]
+               end
+
+               # get internal object for test modules
+               def self.get_intObj
+                  return @intObj
                end
 
                # get metadata time convention

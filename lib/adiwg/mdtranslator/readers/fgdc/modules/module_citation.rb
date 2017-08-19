@@ -100,13 +100,18 @@ module ADIWG
                      hCitation[:otherDetails] << other
                   end
 
-                  # citation 8.10 (onlink) - online linkage
-                  onLink = xCiteInfo.xpath('./onlink').text
-                  unless onLink.empty?
+                  # citation 8.10 (onlink) - online linkage []
+                  axOnLink = xCiteInfo.xpath('./onlink')
+                  unless axOnLink.empty?
                      description = 'Link to the resource described in this citation'
-                     hURI = OnlineResource.unpack(onLink, description, hResponseObj)
-                     unless hURI.nil?
-                        hCitation[:onlineResources] << hURI
+                     axOnLink.each do |xLink|
+                        onLink = xLink.text
+                        unless onLink.empty?
+                           hURI = OnlineResource.unpack(onLink, description, hResponseObj)
+                           unless hURI.nil?
+                              hCitation[:onlineResources] << hURI
+                           end
+                        end
                      end
                   end
 
