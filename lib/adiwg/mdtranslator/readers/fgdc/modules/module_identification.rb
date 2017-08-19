@@ -29,6 +29,9 @@ module ADIWG
                      hResponseObj[:readerExecutionMessages] << 'FGDC is missing identification information citation section (citation)'
                   end
 
+                  # identification information 1.2 (descript) - description (required)
+
+
                end
 
             end

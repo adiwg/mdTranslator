@@ -36,9 +36,9 @@
       </citeinfo>
     </citation>
     <descript>
-      <abstract>This data contains two tables of live-dead encounter histories of Black Brant geese banded 4 breeding locations in the Arctic of northern Alaska and western Canada and one sub-Arctic location, the Tutakoke River colony on the Yukon-Kuskokwim Delta of Alaska, from 1990 to 2016.  </abstract>
-      <purpose>We used joint live and dead mark recapture models to estimate first-year and adult (1+ year old) survival of brant, which have not been assessed since the 1990s for Arctic populations and mid-2000s for sub-Arctic breeding populations.  We also used band recovery rates from a Brownie model to assess temporal trends in harvest rates of adult brant.  </purpose>
-      <supplinf>This data set contains two banding and encounter history tables: one for the joint live dead analysis and one for the Brownie analysis. These data files are formatted in a machine-readable format for use with program MARK and RMark applications. The specific formatting is described in the entity attribute section.</supplinf>
+      <abstract>My abstract.</abstract>
+      <purpose>My purpose.</purpose>
+      <supplinf>My supplemental information.</supplinf>
     </descript>
     <timeperd>
       <timeinfo>

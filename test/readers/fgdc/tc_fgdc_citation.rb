@@ -15,21 +15,19 @@ class TestReaderFgdcCitation < TestReaderFGDCParent
 
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Citation
 
-   # instance classes needed in script
-   intMetadataClass = InternalMetadata.new
-
-   # build mdTranslator internal object
-   intObj = intMetadataClass.newBase
-   hMetadata = intMetadataClass.newMetadata
-   hResourceInfo = intMetadataClass.newResourceInfo
-   hMetadata[:resourceInfo] = hResourceInfo
-   intObj[:metadata] = hMetadata
-   TestReaderFGDCParent.set_intObj(intObj)
-
-   # make test XML available to other modules
-   TestReaderFGDCParent.set_xDoc(@@xDoc)
-
    def test_citation_complete
+
+      # build mdTranslator internal object
+      intMetadataClass = InternalMetadata.new
+      intObj = intMetadataClass.newBase
+      hMetadata = intMetadataClass.newMetadata
+      hResourceInfo = intMetadataClass.newResourceInfo
+      hMetadata[:resourceInfo] = hResourceInfo
+      intObj[:metadata] = hMetadata
+      TestReaderFGDCParent.set_intObj(intObj)
+
+      # make test XML available to other modules
+      TestReaderFGDCParent.set_xDoc(@@xDoc)
 
       hCitation = @@NameSpace.unpack(@@xCitation, @@hResponseObj)
 
