@@ -8,6 +8,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_citation'
 require_relative 'module_timePeriod'
+require_relative 'module_timeInstant'
 
 module ADIWG
    module Mdtranslator
@@ -67,6 +68,12 @@ module ADIWG
                      end
 
                      # multiple date time pairs
+                     xMultiple = xTimePeriod.xpath('./mdattime')
+                     unless xMultiple.empty?
+                        xMultiple.each do |xDateTime|
+                           a=1
+                        end
+                     end
 
                   end
 
