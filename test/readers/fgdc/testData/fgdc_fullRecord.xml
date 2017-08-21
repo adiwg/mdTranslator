@@ -43,8 +43,10 @@
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>1990</begdate>
+          <begdate>19900701</begdate>
+          <begtime>12:30:00</begtime>
           <enddate>2016</enddate>
+          <endtime>17:30:00</endtime>
         </rngdates>
       </timeinfo>
       <current>ground condition</current>

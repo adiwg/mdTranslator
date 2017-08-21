@@ -7,6 +7,7 @@
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_citation'
+require_relative 'module_timePeriod'
 
 module ADIWG
    module Mdtranslator
@@ -17,20 +18,57 @@ module ADIWG
 
                def self.unpack(xIdInfo, intObj, hResponseObj)
 
+                  # useful parts
+                  hMetadata = intObj[:metadata]
+                  hMetadataInfo = hMetadata[:metadataInfo]
+                  hResourceInfo = hMetadata[:resourceInfo]
+
                   # identification information 1.1 (citation) - citation (required)
                   xCitation = xIdInfo.xpath('./citation')
                   unless xCitation.empty?
                      hCitation = Citation.unpack(xCitation, hResponseObj)
                      unless hCitation.nil?
-                        intObj[:metadata][:resourceInfo][:citation] = hCitation
+                        hResourceInfo[:citation] = hCitation
                      end
-                  end
-                  if xCitation.empty?
-                     hResponseObj[:readerExecutionMessages] << 'FGDC is missing identification information citation section (citation)'
                   end
 
                   # identification information 1.2 (descript) - description (required)
+                  xDescription = xIdInfo.xpath('./descript')
+                  unless xDescription.empty?
 
+                     # description 1.2.1 (abstract) - abstract
+                     abstract = xDescription.xpath('./abstract').text
+                     unless abstract.empty?
+                        hResourceInfo[:abstract] = abstract
+                     end
+
+                     # description 1.2.2 (purpose) - purpose
+                     purpose = xDescription.xpath('./purpose').text
+                     unless purpose.empty?
+                        hResourceInfo[:purpose] = purpose
+                     end
+
+                     # description 1.2.3 (supplinf) - supplemental information
+                     supplemental = xDescription.xpath('./supplinf').text
+                     unless supplemental.empty?
+                        hResourceInfo[:supplementalInfo] = supplemental
+                     end
+
+                  end
+
+                  # identification information 1.3 (timeperd) - time period of content
+                  xTimePeriod = xIdInfo.xpath('./timeperd')
+                  unless xTimePeriod.empty?
+
+                     # for single date and range of dates
+                     hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
+                     unless hTimePeriod.nil?
+                        hResourceInfo[:timePeriod] = hTimePeriod
+                     end
+
+                     # multiple date time pairs
+
+                  end
 
                end
 
