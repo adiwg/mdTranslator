@@ -2,7 +2,7 @@
 # parent class for all tc_fgdc tests
 
 # History:
-# Stan Smith 2017-09-14 original script
+# Stan Smith 2017-08-14 original script
 
 require 'minitest/autorun'
 require 'rubygems'

@@ -2,7 +2,7 @@
 # readers / fgdc / module_onlineResource
 
 # History:
-#   Stan Smith 2017-09-18 original script
+#   Stan Smith 2017-08-18 original script
 
 require_relative 'fgdc_test_parent'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_onlineResource'

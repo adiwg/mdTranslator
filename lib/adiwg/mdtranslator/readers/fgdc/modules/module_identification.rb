@@ -19,6 +19,9 @@ module ADIWG
 
                def self.unpack(xIdInfo, intObj, hResponseObj)
 
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+
                   # useful parts
                   hMetadata = intObj[:metadata]
                   hMetadataInfo = hMetadata[:metadataInfo]
@@ -61,17 +64,30 @@ module ADIWG
                   xTimePeriod = xIdInfo.xpath('./timeperd')
                   unless xTimePeriod.empty?
 
-                     # for single date and range of dates
+                     # time period for single date and date range
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
                      unless hTimePeriod.nil?
                         hResourceInfo[:timePeriod] = hTimePeriod
                      end
 
-                     # multiple date time pairs
-                     xMultiple = xTimePeriod.xpath('./mdattime')
-                     unless xMultiple.empty?
-                        xMultiple.each do |xDateTime|
-                           a=1
+                     # time period multiple date time pairs 9.1.2 (mdattim)
+                     axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
+                     unless axMultiple.empty?
+                        hExtent = intMetadataClass.newExtent
+                        hExtent[:description] = 'FGDC resource time period multiple date/times'
+                        axMultiple.each do |xDateTime|
+                           date = xDateTime.xpath('./caldate').text
+                           time = xDateTime.xpath('./time').text
+                           hInstant = TimeInstant.unpack(date, time, hResponseObj)
+                           unless hInstant.nil?
+                              hTempExtent = intMetadataClass.newTemporalExtent
+                              hInstant[:description] = 'Resource period instant'
+                              hTempExtent[:timeInstant] = hInstant
+                              hExtent[:temporalExtents] << hTempExtent
+                           end
+                        end
+                        unless hExtent[:temporalExtents].empty?
+                           hResourceInfo[:extents] << hExtent
                         end
                      end
 

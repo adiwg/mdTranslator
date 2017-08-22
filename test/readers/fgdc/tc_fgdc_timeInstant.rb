@@ -2,7 +2,7 @@
 # readers / fgdc / module_timeInstant
 
 # History:
-#   Stan Smith 2017-09-21 original script
+#   Stan Smith 2017-08-21 original script
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_timeInstant'

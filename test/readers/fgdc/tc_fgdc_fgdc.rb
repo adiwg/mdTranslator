@@ -2,8 +2,9 @@
 # readers / fgdc / module_metadata
 
 # History:
-#   Stan Smith 2017-09-14 original script
+#   Stan Smith 2017-08-14 original script
 
+require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcFgdc < TestReaderFGDCParent
