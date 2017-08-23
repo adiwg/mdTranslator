@@ -56,15 +56,62 @@
       <update>None planned</update>
     </status>
     <spdom>
-      <descgeog>Banding data was collected on four Black Brant breeding locations in the Arctic: 1) the Colville River Delta in northern Alaska, 2) the Kuparuk River Delta/Prudhoe Bay in northern Alaska, 3) the Tuktoyaktuk Peninsula/Liverpool Bay area in northern Canada, and 4) Banks Island and Victoria Island, Northwest Territories, Canada.  One sub-Arctic location, the Tutakoke River colony on the Yukon-Kuskokwim Delta of western Alaska was also used.  Band encounters came resightings of banded birds on the breeding grounds and also from banding resightings and recovery of bands by sport hunters throughout North America during the non-breeding period.
-
-</descgeog>
+      <descgeog>Banding data was collected...</descgeog>
       <bounding>
         <westbc>-166.81640625</westbc>
         <eastbc>-74.00390625</eastbc>
         <northbc>71.6912927186</northbc>
         <southbc>24.0464639997</southbc>
       </bounding>
+      <dsgpoly>
+        <dsgpolyo>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>2.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>9.0</grnglat>
+            <grnglon>25.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>10.0</grnglat>
+            <grnglon>6.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+        </dsgpolyo>
+        <dsgpolyx>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>7.0</grnglat>
+            <grnglon>14.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>13.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>7.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+        </dsgpolyx>
+        <dsgpolyx>
+          <gring>12.0 3.0, 18.0 4.0, 19.0 5.0, 12.0 5.0, 12.0 3.0</gring>
+        </dsgpolyx>
+      </dsgpoly>
     </spdom>
     <keywords>
       <theme>

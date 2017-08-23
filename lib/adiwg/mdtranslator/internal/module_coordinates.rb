@@ -1,6 +1,7 @@
 # repack coordinates
 
 # History:
+#  Stan Smith 2017-08-23 added is_polygon_clockwise method
 #  Stan Smith 2017-05-24 added checkGeometry method to move objects to real world
 #  Stan Smith 2016-11-10 added computedBbox computation
 #  Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
@@ -217,6 +218,18 @@ module AdiwgCoordinates
    def self.addPoint(aPoint, aNorthings, aEastings)
       aEastings << aPoint[0]
       aNorthings << aPoint[1]
+   end
+
+   def self.is_polygon_clockwise(aCoords)
+      area = 0.0
+      i = 0
+      n = aCoords.length - 1
+      until i == n
+         area += (aCoords[i][0] * aCoords[i+1][1]) - (aCoords[i][1] * aCoords[i+1][0])
+         i += 1
+      end
+      area += (aCoords[n][0] * aCoords[0][1]) - (aCoords[n][1] * aCoords[0][0])
+      return area >= 0 ? false : true
    end
 
 end

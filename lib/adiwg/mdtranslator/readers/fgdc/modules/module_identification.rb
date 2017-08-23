@@ -9,6 +9,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_citation'
 require_relative 'module_timePeriod'
 require_relative 'module_timeInstant'
+require_relative 'module_spatialDomain'
 
 module ADIWG
    module Mdtranslator
@@ -91,6 +92,35 @@ module ADIWG
                         end
                      end
 
+                  end
+
+                  # identification information 1.4 (status) - status and maintenance
+                  xStatus = xIdInfo.xpath('./status')
+                  unless xStatus.empty?
+
+                     # status 1.4.1 (progress) - state of resource
+                     progress = xStatus.xpath('./progress').text
+                     unless progress.empty?
+                        hResourceInfo[:status] << progress
+                     end
+
+                     # status 1.4.2 (update) - maintenance frequency
+                     update = xStatus.xpath('./update').text
+                     unless update.empty?
+                        hMaintenance = intMetadataClass.newMaintenance
+                        hMaintenance[:frequency] = update
+                        hResourceInfo[:resourceMaintenance] << hMaintenance
+                     end
+
+                  end
+
+                  # identification information 1.5 (spdom) - spatial domain
+                  xDomain = xIdInfo.xpath('./spdom')
+                  unless xDomain.empty?
+                     hExtent = SpatialDomain.unpack(xDomain, hResponseObj)
+                     unless hExtent.nil?
+                        hResourceInfo[:extents] << hExtent
+                     end
                   end
 
                end

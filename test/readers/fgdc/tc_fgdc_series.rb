@@ -11,7 +11,6 @@ require_relative 'fgdc_test_parent'
 class TestReaderFgdcSeries < TestReaderFGDCParent
 
    @@xDoc = TestReaderFGDCParent.get_XML('series.xml')
-
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Series
 
    def test_series_complete
