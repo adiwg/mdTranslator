@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115</themekt>
+        <themekey>Biota</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA GCMD Earth Science Keywords Thesaurus</themekt>
+        <themekey>Earth Science</themekey>
+        <themekey>Biological Classification</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Geographic Names Information System</placekt>
+        <placekey>Alaska</placekey>
+        <placekey>Colville River Delta</placekey>
+      </place>
+      <place>
+        <placekt>NGA GEOnet Names Server</placekt>
+        <placekey>Canada</placekey>
+      </place>
+      <stratum>
+        <stratkt>Integumentary System</stratkt>
+        <stratkey>stratum corneum</stratkey>
+        <stratkey>stratum lucidum</stratkey>
+      </stratum>
+      <temporal>
+        <tempkt>Gregorian Calendar</tempkt>
+        <tempkey>year</tempkey>
+        <tempkey>month</tempkey>
+      </temporal>
+    </keywords>
+  </idinfo>
+</metadata>

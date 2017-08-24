@@ -126,11 +126,6 @@
         <themekey>Birds</themekey>
         <themekey>Waterfowl</themekey>
       </theme>
-      <theme>
-        <themekt>USGS CSA Biocomplexity Thesaurus</themekt>
-        <themekey>Waterfowl</themekey>
-        <themekey>Survival</themekey>
-      </theme>
       <place>
         <placekt>USGS Geographic Names Information System</placekt>
         <placekey>Alaska</placekey>
@@ -146,6 +141,20 @@
         <placekey>Banks Island</placekey>
         <placekey>Melville Island</placekey>
       </place>
+      <stratum>
+        <stratkt>Integumentary System</stratkt>
+        <stratkey>stratum corneum</stratkey>
+        <stratkey>stratum lucidum</stratkey>
+        <stratkey>stratum granulosum</stratkey>
+        <stratkey>stratum spinosum</stratkey>
+        <stratkey>stratum basal</stratkey>
+      </stratum>
+      <temporal>
+        <tempkt>Gregorian Calendar</tempkt>
+        <tempkey>year</tempkey>
+        <tempkey>month</tempkey>
+        <tempkey>day</tempkey>
+      </temporal>
     </keywords>
     <taxonomy>
       <keywtax>

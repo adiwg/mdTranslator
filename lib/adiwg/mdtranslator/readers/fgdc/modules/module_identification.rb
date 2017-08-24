@@ -10,6 +10,7 @@ require_relative 'module_citation'
 require_relative 'module_timePeriod'
 require_relative 'module_timeInstant'
 require_relative 'module_spatialDomain'
+require_relative 'module_keyword'
 
 module ADIWG
    module Mdtranslator
@@ -125,6 +126,12 @@ module ADIWG
                   end
 
                   # identification information 1.6 (keywords) - keywords
+                  xKeywords = xIdInfo.xpath('./keywords')
+                  unless xKeywords.empty?
+                     Keyword.unpack(xKeywords, hResourceInfo[:keywords], hResponseObj)
+                  end
+
+                  # identification information 1.7 (accconst) - access constraints
 
                end
 
