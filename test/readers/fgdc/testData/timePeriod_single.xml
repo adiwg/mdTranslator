@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20170820</caldate>
+          <time>13:30:00</time>
+        </sngdate>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+  </idinfo>
+  <metainfo>
+    <mettc>universal time</mettc>
+  </metainfo>
+</metadata>

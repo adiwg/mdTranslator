@@ -1,0 +1,314 @@
+{
+   "schema": {
+      "name": "sbJson",
+      "version": "0.0.0"
+   },
+   "link": {
+      "rel": "self",
+      "url": "https://www.sciencebase.gov/catalog/item/589a36bfe4b0efcedb71a61c"
+   },
+   "relatedItems": {
+      "link": {
+         "url": "https://www.sciencebase.gov/catalog/itemLinks?itemId=589a36bfe4b0efcedb71a61c",
+         "rel": "related"
+      }
+   },
+   "id": "589a36bfe4b0efcedb71a61c",
+   "title": "Building Capacity for Coordination of Strategic Science Research in the  US-Affiliated Pacific Islands",
+   "summary": "Small Pacific islands are especially vulnerable to climate change. Challenges these coastal communities face include sea level rise, erosion, saltwater intrusion, flooding, droughts, and coral bleaching which in turn affect food and water security, infrastructure, and the health of humans and ecosystems. These small islands also have limited resources; therefore, managing them effectively is important to ensure sustainable communities and healthy environments. To support natural resource management, accurate, detailed, up-to-date geospatial data and products are vital to help monitor these resources, identify potential threats, and reveal potential solutions.   Through this project, the University of Guam (UoG) Center for Island Sustainability [...]",
+   "body": "<div>Small Pacific islands are especially vulnerable to climate change. Challenges these coastal communities face include sea level rise, erosion, saltwater intrusion, flooding, droughts, and coral bleaching which in turn affect food and water security, infrastructure, and the health of humans and ecosystems. These small islands also have limited resources; therefore, managing them effectively is important to ensure sustainable communities and healthy environments. To support natural resource management, accurate, detailed, up-to-date geospatial data and products are vital to help monitor these resources, identify potential threats, and reveal potential solutions.<br>\n&nbsp;<br>\nThrough this project, the University of Guam (UoG) Center for Island Sustainability (CIS) is working with partners in the US-Affiliated Pacific Islands (USAPI) to provide needed regional geospatial technical assistance to the USAPI of Micronesia and to define potential impacts of climate change on natural, physical, and cultural resources, and related outcomes and endpoints for climate adaptation efforts.<br>\n&nbsp;<br>\nThis project has three primary objectives:<br>\n(1) drafting of a USAPI-focused plan identifying opportunities for implementing the Pacific Island CSC’s Strategic Science Plan for future years as well as the current year;<br>\n(2) developing written reports that demonstrate translation of regional climate science to formats useable by resource management or community planning, and<br>\n(3) a report and/or demonstration product describing a framework for geospatial training to increase USAPI capacity.<\u002fdiv>\n",
+   "provenance": {
+      "annotation": "DEPTH-2.7.1",
+      "dateCreated": "2017-02-07T21:06:07Z",
+      "lastUpdated": "2017-08-21T19:26:28Z"
+   },
+   "hasChildren": true,
+   "parentId": "5501c1b2e4b088b2d50c5c0a",
+   "contacts": [
+      {
+         "name": "John Peterson",
+         "type": "Principal Investigator",
+         "contactType": "person",
+         "organization": {
+            "displayText": "University of Guam"
+         },
+         "primaryLocation": {
+            "streetAddress": {},
+            "mailAddress": {}
+         }
+      },
+      {
+         "name": "Pacific Islands CSC",
+         "type": "Funding Agency",
+         "contactType": "organization",
+         "organization": {},
+         "primaryLocation": {
+            "streetAddress": {},
+            "mailAddress": {}
+         }
+      }
+   ],
+   "browseCategories": [
+      "Project"
+   ],
+   "browseTypes": [
+      "Map Service",
+      "OGC WMS Service",
+      "OGC WFS Layer",
+      "OGC WMS Layer"
+   ],
+   "systemTypes": [
+      "Folder"
+   ],
+   "tags": [
+      {
+         "type": "Community",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/OrganizationType",
+         "name": "CSC"
+      },
+      {
+         "type": "Organization",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/OrganizationName",
+         "name": "Pacific Islands CSC"
+      },
+      {
+         "type": "Fiscal Year",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/Project/FiscalYear",
+         "name": "2015"
+      },
+      {
+         "type": "Science Themes",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/ScienceThemes",
+         "name": "Education, Modeling and Tools"
+      },
+      {
+         "type": "Education, Modeling and Tools",
+         "scheme": "https://www.sciencebase.gov/vocab/category/NCCWSC/EducationModelingandTools",
+         "name": "Other Tools"
+      }
+   ],
+   "dates": [
+      {
+         "type": "Start",
+         "dateString": "2015-04-01",
+         "label": "Start Date"
+      },
+      {
+         "type": "End",
+         "dateString": "2018-03-31",
+         "label": "End Date"
+      }
+   ],
+   "spatial": {
+      "representationalPoint": [
+         0.144015667000005,
+         2.9984003335000002
+      ],
+      "representationalPointIsDerived": true,
+      "boundingBox": {
+         "minX": -171.090035333,
+         "maxX": 171.378066667,
+         "minY": -14.548699333,
+         "maxY": 20.5455
+      }
+   },
+   "extents": [
+      26,
+      23,
+      25,
+      27,
+      24,
+      22
+   ],
+   "facets": [
+      {
+         "projectStatus": "In Progress",
+         "projectProducts": [],
+         "parts": [],
+         "className": "gov.sciencebase.catalog.item.facet.ProjectFacet"
+      },
+      {
+         "parts": [
+            {
+               "type": "Award Type",
+               "value": "Cooperative Agreement"
+            },
+            {
+               "type": "Award Number",
+               "value": "G15AC00122"
+            }
+         ],
+         "totalFunds": 165189.39,
+         "annualBudgets": [
+            {
+               "fundingSources": [],
+               "totalFunds": 60340.0,
+               "year": "2015"
+            },
+            {
+               "fundingSources": [],
+               "totalFunds": 58766.0,
+               "year": "2016"
+            },
+            {
+               "fundingSources": [],
+               "totalFunds": 46083.39,
+               "year": "2017"
+            }
+         ],
+         "className": "gov.sciencebase.catalog.item.facet.BudgetFacet"
+      }
+   ],
+   "files": [
+      {
+         "name": "Cetti_Bay_Guam_MPD.JPG",
+         "title": "Cetti Bay, Guam - Public Domain",
+         "contentType": "image/jpeg",
+         "contentEncoding": null,
+         "pathOnDisk": "__disk__e8/ad/0b/e8ad0b3b0365fa66f3cb7120cc546fd3b1e57891",
+         "processed": false,
+         "processToken": null,
+         "imageWidth": 2048,
+         "imageHeight": 1536,
+         "size": 852640,
+         "dateUploaded": "2017-02-08T18:36:27Z",
+         "originalMetadata": false,
+         "useForPreview": true,
+         "s3Object": null,
+         "checksum": {
+            "value": "73b430819d059e10ffad6d12b2cf1ab6",
+            "type": "MD5"
+         },
+         "url": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891"
+      }
+   ],
+   "distributionLinks": [
+      {
+         "uri": "https://www.sciencebase.gov/catalogMaps/mapping/ows/589a36bfe4b0efcedb71a61c?mode=download&request=kml&service=wms&layers=footprint",
+         "title": "KML Service",
+         "type": "kml",
+         "typeLabel": "KML Download",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalogMaps/mapping/ows/589a36bfe4b0efcedb71a61c?service=wms&request=getcapabilities&version=1.3.0",
+         "title": "ScienceBase WMS Service",
+         "type": "serviceCapabilitiesUrl",
+         "typeLabel": "OGC Service Capabilities URL",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/items?parentId=589a36bfe4b0efcedb71a61c&format=json",
+         "title": "ScienceBase Collection JSON",
+         "type": "repo",
+         "typeLabel": "ScienceBase Repository",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/items?parentId=589a36bfe4b0efcedb71a61c&format=atom",
+         "title": "ScienceBase Collection ATOM",
+         "type": "repo",
+         "typeLabel": "ScienceBase Repository",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/items?parentId=589a36bfe4b0efcedb71a61c&format=csv",
+         "title": "ScienceBase Collection CSV",
+         "type": "repo",
+         "typeLabel": "ScienceBase Repository",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/oai-pmh?verb=ListRecords&metadataPrefix=fgdc-orig&set=589a36bfe4b0efcedb71a61c",
+         "title": "ScienceBase OAI PMH Service",
+         "type": "oai-pmh",
+         "typeLabel": "OAI-PMH",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/item/589a36bfe4b0efcedb71a61c/csw?service=CSW&version=2.0.2&request=GetRecords",
+         "title": "ScienceBase CSW Service",
+         "type": "csw",
+         "typeLabel": "",
+         "rel": "alternate",
+         "name": "",
+         "files": ""
+      },
+      {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c",
+         "title": "Download Attached Files",
+         "type": "downloadLink",
+         "typeLabel": "Download Link",
+         "rel": "alternate",
+         "name": "BuildingCapacit.zip",
+         "files": [
+            {
+               "name": "Cetti_Bay_Guam_MPD.JPG",
+               "title": "Cetti Bay, Guam - Public Domain",
+               "contentType": "image/jpeg"
+            }
+         ]
+      }
+   ],
+   "previewImage": {
+      "from": "attachedFile",
+      "original": {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891",
+         "viewUri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=2048&height=1536",
+         "viewUrl": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=2048&height=1536",
+         "width": 2048,
+         "height": 1536,
+         "size": 852640
+      },
+      "thumbnail": {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=150&height=113",
+         "width": 150,
+         "height": 113
+      },
+      "small": {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=350&height=263",
+         "width": 350,
+         "height": 263
+      },
+      "medium": {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=580&height=435",
+         "width": 580,
+         "height": 435
+      },
+      "large": {
+         "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e8%2Fad%2F0b%2Fe8ad0b3b0365fa66f3cb7120cc546fd3b1e57891&width=1000&height=750",
+         "width": 1000,
+         "height": 750
+      },
+      "alternateImages": [
+         {
+            "from": "mapPreview",
+            "original": {
+               "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e9%2Fb9%2F43%2Fe9b9432b447286f56b997c122c06d6d3208233ab",
+               "viewUri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e9%2Fb9%2F43%2Fe9b9432b447286f56b997c122c06d6d3208233ab&width=360&height=240",
+               "viewUrl": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e9%2Fb9%2F43%2Fe9b9432b447286f56b997c122c06d6d3208233ab&width=360&height=240",
+               "width": 360,
+               "height": 240,
+               "size": 142047
+            },
+            "thumbnail": {
+               "uri": "https://www.sciencebase.gov/catalog/file/get/589a36bfe4b0efcedb71a61c?f=__disk__e9%2Fb9%2F43%2Fe9b9432b447286f56b997c122c06d6d3208233ab&width=150&height=100",
+               "width": 150,
+               "height": 100
+            }
+         }
+      ]
+   }
+}

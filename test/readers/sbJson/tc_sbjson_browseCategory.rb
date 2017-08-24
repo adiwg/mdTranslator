@@ -18,15 +18,15 @@ class TestReaderSbJsonBrowseCategory < TestReaderSbJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hResInfo = @@intMetadataClass.newResourceInfo
 
-      metadata = @@NameSpace.unpack(hIn, hResInfo, hResponse)
+      aResourceTypes = @@NameSpace.unpack(hIn, hResInfo[:resourceTypes], hResponse)
 
-      assert_equal 5, metadata[:resourceTypes].length
-      assert_equal 'dataset', metadata[:resourceTypes][0][:type]
-      assert_equal 'publication', metadata[:resourceTypes][1][:type]
-      assert_equal 'project', metadata[:resourceTypes][2][:type]
-      assert_equal 'sample', metadata[:resourceTypes][3][:type]
-      assert_equal 'dataset', metadata[:resourceTypes][4][:type]
-      assert_equal 'Some other category', metadata[:resourceTypes][4][:name]
+      assert_equal 5, aResourceTypes.length
+      assert_equal 'dataset', aResourceTypes[0][:type]
+      assert_equal 'publication', aResourceTypes[1][:type]
+      assert_equal 'project', aResourceTypes[2][:type]
+      assert_equal 'sample', aResourceTypes[3][:type]
+      assert_equal 'dataset', aResourceTypes[4][:type]
+      assert_equal 'Some other category', aResourceTypes[4][:name]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -40,9 +40,9 @@ class TestReaderSbJsonBrowseCategory < TestReaderSbJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hResInfo = @@intMetadataClass.newResourceInfo
 
-      metadata = @@NameSpace.unpack(hIn, hResInfo, hResponse)
+      aResourceTypes = @@NameSpace.unpack(hIn, hResInfo[:resourceTypes], hResponse)
 
-      assert_empty metadata[:resourceTypes]
+      assert_empty aResourceTypes
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -55,9 +55,9 @@ class TestReaderSbJsonBrowseCategory < TestReaderSbJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hResInfo = @@intMetadataClass.newResourceInfo
 
-      metadata = @@NameSpace.unpack(hIn, hResInfo, hResponse)
+      aResourceTypes = @@NameSpace.unpack(hIn, hResInfo[:resourceTypes], hResponse)
 
-      assert_empty metadata[:resourceTypes]
+      assert_empty aResourceTypes
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<metadata>
+  <citation>
+    <citeinfo>
+      <origin>First Name</origin>
+      <origin>Second Name</origin>
+      <pubdate>20170615</pubdate>
+      <pubtime>13:08:00</pubtime>
+      <title>My Citation Title</title>
+      <edition>2.1</edition>
+      <geoform>tableDigital</geoform>
+      <serinfo>
+        <sername>My Series Name</sername>
+        <issue>1</issue>
+      </serinfo>
+      <pubinfo>
+        <pubplace>City, State, USA</pubplace>
+        <publish>My Publisher</publish>
+      </pubinfo>
+      <othercit>My other citation details</othercit>
+      <onlink>https://online.link/1</onlink>
+      <onlink>https://online.link/2</onlink>
+      <lworkcit>
+        <citeinfo>
+          <origin>Third Name</origin>
+          <pubdate>2015</pubdate>
+          <title>My Larger Work Citation Title</title>
+          <geoform>website</geoform>
+          <pubinfo>
+            <pubplace>City, Province, CA</pubplace>
+            <publish>My LWC Publisher</publish>
+          </pubinfo>
+          <onlink>https://online.link/3</onlink>
+        </citeinfo>
+      </lworkcit>
+    </citeinfo>
+  </citation>
+  <metainfo>
+    <mettc>universal time</mettc>
+  </metainfo>
+</metadata>

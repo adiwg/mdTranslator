@@ -48,7 +48,7 @@ class TestReaderSbJsonExtent < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_empty metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end

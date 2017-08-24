@@ -104,7 +104,7 @@ module ADIWG
                   hResourceInfo[:graphicOverviews].concat(aReturn) unless aReturn.nil?
 
                   # browse categories
-                  BrowseCategory.unpack(hSbJson, hResourceInfo, hResponseObj)
+                  BrowseCategory.unpack(hSbJson, hResourceInfo[:resourceTypes], hResponseObj)
 
                   # tags
                   Tag.unpack(hSbJson, hResourceInfo, hResponseObj)

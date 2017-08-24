@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href='NBII_classic.xsl' type='text/xsl'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Adrian M Bender (ORCID: 0000-0001-7469-1957)</origin>
+        <origin>Peter J Haeussler (ORCID: 0000-0002-1503-6247)</origin>
+        <pubdate>2017</pubdate>
+        <title>Photogrammetric Digital Elevation Model (1979-1989) Associated With Eastern Denali Fault Surface Trace Map, Eastern Alaska and Adjacent Canada</title>
+        <geoform>raster digital data</geoform>
+        <serinfo>
+          <sername>Eastern Denali Fault Surface Trace Map, Eastern Alaska and Adjacent Canada</sername>
+          <issue>1</issue>
+        </serinfo>
+        <othercit>Suggested Citation: Bender, A.M, Haeussler, P.J., 2017, Photogrammetric Digital Elevation Model (1979-1989) Associated With Eastern Denali Fault Surface Trace Map, Eastern Alaska and Adjacent Canada: U.S. Geological Survey data release, https://dx.doi.org/10.5066/F7T151WC </othercit>
+        <onlink>https://dx.doi.org/10.5066/F7T151WC</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Peter J Haeussler</origin>
+            <pubdate>20071015</pubdate>
+            <title>Alaska Earthquake Hazards</title>
+            <geoform>Website</geoform>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>USGS Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=33</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data set provides a photogrammetry-based digital elevation model (DEM) that covers ~90% of the surface trace of the Eastern Denali Fault between the Alaska-Yukon international border and the village of Haines Junction, Yukon, Canada. The DEM has an average resolution of 4 m/pixel.</abstract>
+      <purpose>The eastern section of the Denali Fault did not rupture during the 2002 Denali Fault earthquake (Mw 7.9), however seismologic, geodetic, and geomorphic evidence along with a paleoseismic record of several past ground-rupturing earthquakes demonstrate the fault is active. Thick vegetation, along with complex glacial landforms, large braided rivers, and fault-parallel bedrock structure (e.g., bedding) obscure the Eastern Denali Fault’s surface expression. Plafker and Clague mapped the fault in Alaska and Yukon respectively, providing the basis for generalized digital maps of the structure. While the generalized fault trace maps provide basic information for seismic hazard models (i.e., approximate fault location, total length), detailed fault trace maps may reveal information about past rupture length and offset, complementing paleoseismic information and informing future field investigations. The 13 photogrammetry-based DEMs in this data set cover the ~90% of the active Eastern Denali Fault at a resolution of 3-5 m/pixel. The DEMs facilitate mapping of the co-located Eastern Denali Fault surface trace at a scale of 1:10,000. The DEMs complement other data sets and may inform future investigations by providing an openly accessible digital topography dataset and forms one of several datasets on which we base our mapped interpretation of the location, length, and continuity of the fault’s surface trace. The derivative digitized fault trace may provide geometric constraints useful for modeling earthquake scenarios and related seismic hazard.</purpose>
+      <supplinf>We provide a supplemental text file (edf_airphoto_tbl.csv) that documents the file name, year of acquisition, and digital source for each legacy air photo used as source material for the photogrammetric DEM.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1979</begdate>
+          <enddate>1989</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-141.009694994</westbc>
+        <eastbc>-137.762161191</eastbc>
+        <northbc>62.200023972</northbc>
+        <southbc>60.752393083</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>geology</themekey>
+        <themekey>Eastern Denali Fault</themekey>
+        <themekey>fault trace map</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA GCMD Earth Science Keywords</themekt>
+        <themekey>Earth Science</themekey>
+        <themekey>Tectonic Landforms</themekey>
+        <themekey>Faults</themekey>
+        <themekey>Tectonic Processes</themekey>
+        <themekey>Land Surface</themekey>
+        <themekey>Topography</themekey>
+        <themekey>Terrain Elevation</themekey>
+        <themekey>Digital Elevation/Terrain Model (DEM)</themekey>
+        <themekey>Geomorphic Landforms/Processes</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Geographic Names Information System</placekt>
+        <placekey>Alaska</placekey>
+        <placekey>Tanana River</placekey>
+        <placekey>Alaska Range</placekey>
+        <placekey>Yukon</placekey>
+        <placekey>White River</placekey>
+        <placekey>Kluane Lake</placekey>
+        <placekey>Haines Junction</placekey>
+      </place>
+    </keywords>
+    <accconst>None.</accconst>
+    <useconst>It is requested that the authors and the USGS Alaska Science Center be cited for any subsequent publications referenced to this dataset. It is strongly recommended that careful attention be paid to the contents of the open file report and metadata file associated with these data to evaluate data set limitations, restrictions or intended use.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>We thank the NSF EarthScope program for the publicly available Denali Fault lidar dataset used in this map (available by searching www.opentopography.org). Thanks to Geomatics Yukon for providing digitized air photos over the fault in the Yukon. We acquired additional Yukon air photos and the 30 m Yukon DEM from the USGS Earth Explorer online portal (earthexplorer.usgs.gov). The IfSAR data used in this map was acquired by the US Geological Survey in 2010 and is publicly available at ifsar.gina.alaska.edu. Thanks to C. McNeil, E. Thoms, and K. Labay for helpful guidance with the data acquisition, GIS, and photogrammetry aspects of this project. Any use of trade, product or firm names is for descriptive purposes only and does not imply endorsement by the US Government.</datacred>
+    <native>Environment as of Metadata Creation: Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.3.1 (Build 4959) Service Pack N/A (Build N/A)</native>
+    <crossref>
+      <citeinfo>
+        <origin>Bender, A. M.</origin>
+        <origin>Haeussler, P. J.</origin>
+        <pubdate>2017</pubdate>
+        <title>Easter Denali Fault surface trace map, eastern Alaska and Yukon, Canada</title>
+        <geoform>document</geoform>
+        <serinfo>
+          <sername>Open File Report</sername>
+          <issue>2017-1049</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>On line</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.3133/ofr20171049</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Attributes of the air photo-based DEMs are elevations (in meters) with a roughly 30 m horizontal and relatively uncontrolled vertical registration accuracy. ). Visual inspection and comparison of the airphoto-based DEMs with both the Yukon 30 m DEM and source air photo orthomosaics indicates that the air photo-based rasters are generally registered within ~30 m horizontal accuracy, similar to the accuracy associated with the coarsest Landsat imagery utilized for reference points. Locations where the airphoto-based DEMs appear horizontally misfit in excess of 30 m may be explained by the reported total reference point location errors that approach 80 m, or by internal inconsistencies between compared datasets.We were unable to repair vertical discrepancies of 10s of m between the individual air photo-based DEMs by registering them to other Yukon DEMs, possibly because of differences in DEM resolution. Because we lack both ground survey control and higher resolution DEMs for co-registration, and because our interpretation of fault feature location does not rely on accurate absolute elevations, we accept the vertical discrepancies and inherent limitations these place on the utility of the dataset. We consider the elevation data housed in the air photo-based DEMs suitable for interpretational purposes, but not for quantitative analytical purposes.</attraccr>
+    </attracc>
+    <logic>No formal logical accuracy tests were conducted, but visual inspection and comparison of the airphoto-based DEMs with both the Yukon 30 m DEM and source air photo orthomosaics and Landsat and DigitalGlobe imagery (in Google Earth) indicates that the air photo-based rasters are registered with ~30 m horizontal accuracy. We suggest that the DEMs are useful for qualitative purposes at a minimum 1:10,000 scale.</logic>
+    <complete>Spatial gaps in the air photo-based DEM results from spatial gaps in airphoto coverage, and can be supplemented using the ArcticDEM (http://pgc.umn.edu/arcticdem).</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>A formal accuracy assessment of the horizontal positional information in the data set has not been conducted, however visual inspection and comparison of the airphoto-based DEMs with both the Yukon 30 m DEM and source air photo orthomosaics indicates that the air photo-based rasters are generally registered within ~30 m horizontal accuracy, similar to the accuracy associated with the coarsest Landsat imagery utilized for reference points. Locations where the airphoto-based DEMs appear horizontally misfit in excess of 30 m may be explained by the reported total reference point location errors that approach 80 m, or by internal inconsistencies between compared datasets.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Geomatics Yukon</origin>
+            <pubdate>2015</pubdate>
+            <title>Yukon Air Photos</title>
+            <geoform>Raster Digital Data</geoform>
+            <pubinfo>
+              <pubplace>Whitehorse, Yukon</pubplace>
+              <publish>Geomatics Yukon</publish>
+            </pubinfo>
+            <onlink>http://www.geomaticsyukon.ca/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy Resources</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1979</begdate>
+              <enddate>1989</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>GeomaticsYukon</srccitea>
+        <srccontr>Aerial imagery used to directly interpret and map fault features and to generate structure-from-motion photogrammetric DEMs.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey (USGS) Earth Resources Observation and Science (EROS) Center</origin>
+            <pubdate>2015</pubdate>
+            <title>Yukon Air Photos</title>
+            <geoform>Raster Digital Data (Aerial Imagery)</geoform>
+            <pubinfo>
+              <pubplace>Sioux Falls, South Dakota, USA</pubplace>
+              <publish>U.S. Geological Survey (USGS) Earth Resources Observation and Science (EROS) Center</publish>
+            </pubinfo>
+            <onlink>earthexplorer.usgs.gov</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>Digital and/or Hardcopy Resources</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>19780828</begdate>
+              <enddate>19800827</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>EROS</srccitea>
+        <srccontr>Aerial imagery used to directly interpret and map fault features and to generate structure-from-motion photogrammetric DEMs.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>PHOTOGRAMMETRY -- We used Agisoft PhotoScan photogrammetry software (version 1.2.3) to generate dense point clouds from legacy air photos of the fault trace between the Alaska-Yukon border and Haines Junction, Yukon, and constructed DEMs from the point clouds using Quick Terrain Modeler software. Computer hardware system requirements to run ArcMap, PhotoScan, and Quick Terrain Modeler software are similar. We used a Dell Precision Tower optimized to run PhotoScan with a Dual Intel Xeon processor, AMD FirePro 8GB video card, 500 GB Serial-ATA hard drive, and 16 GB memory. To generate the air photo-based DEMs, we generally followed the PhotoScan tutorial workflow (available by searching www.agisoft.com), however we modified the workflow with the following specific steps. We acquired TIF format scans (300 dpi minimum) of legacy air photos from the US Geological Survey Earth Explorer web portal (earthexplorer.usgs.gov) and from Geomatics Yukon (geomaticsyukon.ca). We tended to process no more than two flight lines (up to 12 photos) at a time in PhotoScan. Prior to aligning the photos in PhotoScan, we used the “smart scissors” tool to mask out fiduciary stamps and borders on the photos, and constrained the alignment by the masked photos. Because PhotoScan relies on pixel similarity to align photos, masking prevents misalignment of the photos based on the recurring frame location and, unlike cropping the imported photos outside of PhotoScan, masking does not remove useful data from the source photo set. Before optimizing the calibration of the reconstructed camera positions, we georeferenced each set of aligned photos. To georeference each photoset, we identified 10-12 matching features visible in both Google Earth and in at least two photos (e.g., very small closed lakes, intersecting roads, prominent bedrock features). We used PhotoScan to create reference points on the features in the air photos, and applied the Google Earth coordinates and altitude of each feature to the corresponding reference point. We also assigned a nominal 30 m uncertainty to reflect the reference point location accuracy that we estimated visually. We exported the georeferenced dense point clouds from PhotoScan as LAS files, and used the adaptive triangulation gridding algorithm in Quick Terrain Modeler to construct 3-5 m/pixel resolution DEMs from the point clouds. Although PhotoScan is independently capable of generating DEMs from the point clouds, we used Quick Terrain Modeler because it provides a range of options for gridding, and allows the user to progressively repair holes between points, which we did over distances up to 12 m. We also used Agisoft PhotoScan to generate registered orthomosaics of the air photos. Visual inspection and comparison of the airphoto-based DEMs with both the Yukon 30 m DEM and source air photo orthomosaics indicates that the air photo-based rasters are registered within 30 m horizontal accuracy, similar to the uncertainty associated with the Landsat imagery in Google Earth used to extract reference points.</procdesc>
+        <procdate>2016</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Grid Cell</rasttype>
+      <rowcount>36294</rowcount>
+      <colcount>39031</colcount>
+      <vrtcount>1</vrtcount>
+    </rastinfo>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <planar>
+        <gridsys>
+          <gridsysn>Universal Transverse Mercator</gridsysn>
+          <utm>
+            <utmzone>7</utmzone>
+            <transmer>
+              <sfctrmer>0.9996</sfctrmer>
+              <longcm>-141.0</longcm>
+              <latprjo>0.0</latprjo>
+              <feast>500000.0</feast>
+              <fnorth>0.0</fnorth>
+            </transmer>
+          </utm>
+        </gridsys>
+        <planci>
+          <plance>row and column</plance>
+          <coordrep>
+            <absres>4.33349990845</absres>
+            <ordres>4.33349990845</ordres>
+          </coordrep>
+          <plandu>Meter</plandu>
+        </planci>
+      </planar>
+      <geodetic>
+        <horizdn>D_WGS_1984</horizdn>
+        <ellips>WGS_1984</ellips>
+        <semiaxis>6378137</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Attribute Table</enttypl>
+        <enttypd>Table containing attribute information associated with the data set.</enttypd>
+        <enttypds>Producer defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Value</attrlabl>
+        <attrdef>The attribute "value" contains elevations (with unknown uncertainties) with horizontal locational accuracy of ~30 m and a resolution of 4 m/pixel.</attrdef>
+        <attrdefs>This data set.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>614</rdommin>
+            <rdommax>2358</rdommax>
+            <attrunit>meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <overview>
+      <eaover>The photogrammetric DEM of the Yukon Denali Fault contains elevation values, described here as attribute information.</eaover>
+      <eadetcit>The entity and attribute information was generated by originator/author of the data set. Please review the rest of the metadata record for additional details and information.</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>Authoritative source for the data collection.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>WinZip</formname>
+          <formvern>19</formvern>
+          <filedec>No compression applied.</filedec>
+          <transize>645</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://dx.doi.org/10.5066/F7T151WC</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None.</fees>
+    </stdorder>
+    <techpreq>GeoTIFF files require a native geotiff viewer such as ERDAS ER Viewer to view files.</techpreq>
+  </distinfo>
+  <metainfo>
+    <metd>20170306</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>Mailing and Physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

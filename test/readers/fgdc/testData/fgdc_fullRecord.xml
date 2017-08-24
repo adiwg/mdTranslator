@@ -1,0 +1,664 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>David Ward</origin>
+        <origin>Dennis Walworth</origin>
+        <pubdate>20170615</pubdate>
+        <pubtime>16:08</pubtime>
+        <title>Black Brant Banding</title>
+        <edition>2.1</edition>
+        <geoform>tabular digital data</geoform>
+        <serinfo>
+          <sername>Eastern Denali Fault Map</sername>
+          <issue>1</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Anchorage, AK</pubplace>
+          <publish>U.S. Geological Survey, Alaska Science Center</publish>
+        </pubinfo>
+        <othercit>Ward D. H., 2017, Black Brant Banding and Recovery Encounter Histories, Alaska, 1990-2016: U.S. Geological Survey data release, https://doi.org/10.5066/F76971SZ</othercit>
+        <onlink>https://doi.org/10.5066/F76971SZ</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Adrian M Bender (ORCID: 0000-0001-7469-1957)</origin>
+            <pubdate>2015</pubdate>
+            <title>Pacific Black Brant Ecology</title>
+            <geoform>website</geoform>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>U.S. Geological Survey, Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=76</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>My abstract.</abstract>
+      <purpose>My purpose.</purpose>
+      <supplinf>My supplemental information.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>19900701</begdate>
+          <begtime>12:30:00</begtime>
+          <enddate>2016</enddate>
+          <endtime>17:30:00</endtime>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <descgeog>Banding data was collected...</descgeog>
+      <bounding>
+        <westbc>-166.81640625</westbc>
+        <eastbc>-74.00390625</eastbc>
+        <northbc>71.6912927186</northbc>
+        <southbc>24.0464639997</southbc>
+      </bounding>
+      <dsgpoly>
+        <dsgpolyo>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>2.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>9.0</grnglat>
+            <grnglon>25.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>10.0</grnglat>
+            <grnglon>6.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+        </dsgpolyo>
+        <dsgpolyx>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>7.0</grnglat>
+            <grnglon>14.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>13.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>7.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+        </dsgpolyx>
+        <dsgpolyx>
+          <gring>12.0 3.0, 18.0 4.0, 19.0 5.0, 12.0 5.0, 12.0 3.0</gring>
+        </dsgpolyx>
+      </dsgpoly>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115</themekt>
+        <themekey>Biota</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA GCMD Earth Science Keywords Thesaurus</themekt>
+        <themekey>Earth Science</themekey>
+        <themekey>Biological Classification</themekey>
+        <themekey>Animals/Vertebrates</themekey>
+        <themekey>Birds</themekey>
+        <themekey>Waterfowl</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS CSA Biocomplexity Thesaurus</themekt>
+        <themekey>Waterfowl</themekey>
+        <themekey>Survival</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Geographic Names Information System</placekt>
+        <placekey>Alaska</placekey>
+        <placekey>Colville River Delta</placekey>
+        <placekey>Kuparuk River</placekey>
+        <placekey>Prudhoe Bay</placekey>
+        <placekey>Yukon Kuskokwim Delta</placekey>
+      </place>
+      <place>
+        <placekt>NGA GEOnet Names Server</placekt>
+        <placekey>Canada</placekey>
+        <placekey>Anderson River Delta</placekey>
+        <placekey>Banks Island</placekey>
+        <placekey>Melville Island</placekey>
+      </place>
+    </keywords>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>None</taxonkt>
+        <taxonkey>animals</taxonkey>
+        <taxonkey>vertebrates</taxonkey>
+        <taxonkey>bird</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>Integrated Taxonomic Information System</origin>
+              <pubdate>Unknown</pubdate>
+              <title>Integrated Taxonomic Information System</title>
+              <geoform>database</geoform>
+              <serinfo>
+                <sername>ITIS</sername>
+                <issue>TSN 39074</issue>
+              </serinfo>
+              <othercit>Retrieved December 14, 2016, from the Integrated Taxonomic Information System on-line database http://www.itis.gov</othercit>
+              <onlink>http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&amp;search_value=714723</onlink>
+            </citeinfo>
+          </classcit>
+          <classmod>None</classmod>
+        </classsys>
+        <idref>
+          <citeinfo>
+            <origin>Sibley, David Allen</origin>
+            <pubdate>200010</pubdate>
+            <title>National Audubon Society The Sibley Guide to Birds</title>
+            <edition>1st</edition>
+            <geoform>book</geoform>
+          </citeinfo>
+        </idref>
+        <taxonpro>Species were identified by skilled observers in the field based on general appearance of feathers and plumage, behavior, and vocalizations.</taxonpro>
+        <taxoncom>Taxonomy is complete for all samples.  No voucher specimens were collected.</taxoncom>
+      </taxonsys>
+      <taxoncl>
+        <taxonrn>Kingdom</taxonrn>
+        <taxonrv>Animalia</taxonrv>
+        <common>animals</common>
+        <taxoncl>
+          <taxonrn>Subkingdom</taxonrn>
+          <taxonrv>Bilateria</taxonrv>
+          <taxoncl>
+            <taxonrn>Infrakingdom</taxonrn>
+            <taxonrv>Deuterostomia</taxonrv>
+            <taxoncl>
+              <taxonrn>Phylum</taxonrn>
+              <taxonrv>Chordata</taxonrv>
+              <common>cordés</common>
+              <common>cordado</common>
+              <common>chordates</common>
+              <taxoncl>
+                <taxonrn>Subphylum</taxonrn>
+                <taxonrv>Vertebrata</taxonrv>
+                <common>vertebrado</common>
+                <common>vertébrés</common>
+                <common>vertebrates</common>
+                <taxoncl>
+                  <taxonrn>Infraphylum</taxonrn>
+                  <taxonrv>Gnathostomata</taxonrv>
+                  <taxoncl>
+                    <taxonrn>Superclass</taxonrn>
+                    <taxonrv>Tetrapoda</taxonrv>
+                    <taxoncl>
+                      <taxonrn>Class</taxonrn>
+                      <taxonrv>Aves</taxonrv>
+                      <common>Birds</common>
+                      <common>oiseaux</common>
+                      <taxoncl>
+                        <taxonrn>Order</taxonrn>
+                        <taxonrv>Anseriformes</taxonrv>
+                        <common>Ducks</common>
+                        <common>Geese</common>
+                        <common>Screamers</common>
+                        <common>Swans</common>
+                        <common>Waterfowl</common>
+                        <common>canards</common>
+                        <common>cygnes</common>
+                        <common>oies</common>
+                        <common>sauvagine</common>
+                        <taxoncl>
+                          <taxonrn>Family</taxonrn>
+                          <taxonrv>Anatidae</taxonrv>
+                          <common>Ducks</common>
+                          <common>Geese</common>
+                          <common>Swans</common>
+                          <common>canards</common>
+                          <common>cygnes</common>
+                          <common>oies</common>
+                          <taxoncl>
+                            <taxonrn>Subfamily</taxonrn>
+                            <taxonrv>Anserinae</taxonrv>
+                            <taxoncl>
+                              <taxonrn>Genus</taxonrn>
+                              <taxonrv>Branta</taxonrv>
+                              <common>Brent Geese</common>
+                              <taxoncl>
+                                <taxonrn>Species</taxonrn>
+                                <taxonrv>Branta bernicla</taxonrv>
+                                <common>Brant Goose</common>
+                                <common>Brent Goose</common>
+                                <common>Ganso de collar</common>
+                                <common>Brant</common>
+                                <common>bernache cravant</common>
+                              </taxoncl>
+                            </taxoncl>
+                          </taxoncl>
+                        </taxoncl>
+                      </taxoncl>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+    <accconst>None</accconst>
+    <useconst>It is requested that the authors and the USGS Alaska Science Center be cited for any subsequent publications referenced to this dataset. It is strongly recommended that careful attention be paid to the contents of the metadata file associated with these data to evaluate data set limitations, restrictions or intended use.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Dr.</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99503</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <crossref>
+      <citeinfo>
+        <origin>Alan G. Leach</origin>
+        <origin>David H. Ward</origin>
+        <origin>James S. Sedinger</origin>
+        <origin>Mark S. Lindberg</origin>
+        <origin>W. Sean Boyd</origin>
+        <origin>Jerry W. Hupp</origin>
+        <origin>Robert J. Ritchie</origin>
+        <pubdate>201706</pubdate>
+        <title>Survival and harvest rates of black brant from Arctic and subarctic breeding areas</title>
+        <geoform>journal article</geoform>
+        <serinfo>
+          <sername>Journal of Wildlife Management</sername>
+          <issue>Volume 81, Issue 5</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Online</pubplace>
+          <publish>Wiley Online Library</publish>
+        </pubinfo>
+        <othercit>Alan G. Leach, David H. Ward, James S. Sedinger, Mark S. Lindberg, W. Sean Boyd, Jerry W. Hupp, and Robert J. Ritchie. 2017. Survival and harvest rates of black brant from Arctic and subarctic breeding areas. Journal of Wildlife Management, In Press.</othercit>
+        <onlink>http://onlinelibrary.wiley.com/doi/10.1002/jwmg.21284/full</onlink>
+      </citeinfo>
+    </crossref>
+    <tool>
+      <tooldesc>Program MARK is a Windows-based software application, developed by Gary White (Colorado State University) for the analysis of data from marked individuals. Program MARK provides parameter estimates from marked animals when they are re-encountered at a later time. Re-encounters can be from dead recoveries (e.g., the animal is harvested), live recaptures (e.g. the animal is re-trapped or re-sighted), radio tracking, or from some combination of these sources of re-encounters.</tooldesc>
+      <toolacc>
+        <onlink>http://www.phidot.org/software/mark/index.html</onlink>
+        <onlink>http://www.phidot.org/software/mark/rmark/</onlink>
+        <toolinst>Tool can be downloaded and run on Windows from the phidot.org site. See site documentation for Unix based systems.</toolinst>
+        <toolcomp>Written for Windows XP or newer. The RMark interface is also available as an extension to MARK, from the CRAN website.</toolcomp>
+      </toolacc>
+      <toolcite>
+        <citeinfo>
+          <origin>White, G.C.</origin>
+          <origin>K.P. Burnham</origin>
+          <pubdate>19990626</pubdate>
+          <title>Program MARK: Survival estimation from populations of marked animals</title>
+          <geoform>document</geoform>
+          <serinfo>
+            <sername>Bird Study</sername>
+            <issue>Volume 46 Supplement, 120-138</issue>
+          </serinfo>
+          <pubinfo>
+            <pubplace>Online</pubplace>
+            <publish>Taylor &amp; Francis Online</publish>
+          </pubinfo>
+          <onlink>http://www.tandfonline.com/toc/tbis20/46/sup1?nav=tocList</onlink>
+        </citeinfo>
+      </toolcite>
+    </tool>
+    <tool>
+      <tooldesc>The RMark interface is also available as an extension to Program MARK.</tooldesc>
+      <toolacc>
+        <onlink>http://www.phidot.org/software/mark/rmark/</onlink>
+        <toolinst>Laake, J. L. 2013. RMark: An R interface for analysis of capture-recapture data with MARK.  in  Alaska Fisheries Science Center Report 2013-01. NOAA, National Marine Fisheries Service, Seattle, WA.</toolinst>
+      </toolacc>
+    </tool>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Attributes were spot checked and values were sorted to identify possible errors.  For example, if data looked like a potential error, original data sheets were checked to confirm and fixed it if it was a data entry error. Additionally peer-review used sort functions in Excel to identify attributes, domains, and domain ranges.  These were checked against metadata entries to ensure all definitions and levels were accounted for.</attraccr>
+    </attracc>
+    <logic>Data format and values are specific for use with program MARK and have been tested in that application, thus data values are considered valid for that usage.</logic>
+    <complete>There are no missing values in this dataset.  Users are advised to read the rest of the metadata record carefully for additional details, particularly the Entity and Attribute definitions for specifics on each entity and data within those entities.</complete>
+    <lineage>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>We captured brant by herding them into pens during the adult remigial molt in July and August.  Following capture, we marked brant with a unique metal band issued by the Bird Banding Lab, U.S. Geological Survey, and a uniquely engraved plastic tarsal band, and recorded bands from recaptures.  Brant were sexed using cloacal examination and aged as juvenile (hatching year), second-year, or after second-year using plumage characteristics.  Prior to banding, we recorded live resights of color-marked brant on breeding areas using 20–50x spotting scopes.  We included all summer reencounters in our analysis (not just breeding reencounters, for example, adults seen at a nest or with a brood) to improve the precision of our survival estimates.</methdesc>
+      </method>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>We conducted live resight surveys at 3 wintering lagoons along the central Pacific coast of Baja California.  Observations were made at Bahia San Quintin during winters 1991-1993, 1997–2006, and 2011–2013 and at Lagunas Ojo de Liebre and San Ignacio, during winters 1999-2001.  From spring 1991–2015 we conducted resights of brant at wintering and migration areas in southeastern Vancouver Island and Boundary Bay, British Columbia, Canada.  We also periodically collected live resights of brant during migration and wintering at Izembek Lagoon, AK; Humboldt and Morro bays, California; and Puget Sound, WA.  Observers typically concealed themselves near sand bars where brant came ashore to grit and loaf during high tide and read tarsal bands with 15–150X telescopes.  
+	We obtained band recovery information of brant harvested (i.e., “How obtained” code = 01) from August 1990–May 2016 from the U.S. Geological Survey Bird Banding Laboratory in Patuxent, Maryland, USA.  Our ‘recovery window’ for each year was 1 August to 30 June.  We only included brant that were color-marked in our analysis to avoid strong heterogeneity in live reencounter rates with individuals that were only marked with a metal band.</methdesc>
+      </method>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey Bird Banding Laboratory, Patuxent, Maryland, USA. </origin>
+            <pubdate>20160630</pubdate>
+            <title>Bird Recovery Data 1990-2016</title>
+            <geoform>tabular digital data</geoform>
+            <pubinfo>
+              <pubplace>online</pubplace>
+              <publish>USGS</publish>
+            </pubinfo>
+            <onlink>https://www.pwrc.usgs.gov/bbl/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>digital database file</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>19900801</begdate>
+              <enddate>20160630</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>observed</srccurr>
+        </srctime>
+        <srccitea>USGS BBL</srccitea>
+        <srccontr>The USGS Bird Banding Laboratory (BBL) provided all hunter shot recovery data for birds within the study period described.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>Data on bandings and encounters were converted into capture histories, where 1's indicate the banding and subsequent encounter(s) of that same band in a given year and zeros represent no encounter in a given year.  We sorted individuals into 2 groups, those marked at sub-Arctic and those marked in Arctic locations.  We included 2 age classes in our analysis: juveniles (&lt; 1 year old), and adult (1+ years old) brant and allowed juveniles to ‘graduate’ to adults after their second summer.  Though most individual capture histories began with initial banding during summer, we included 2,975 brant marked at Tutakoke River before 1990 whose capture histories began with their first live summer reencounter during or after 1990.</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>We removed brant banded in the Arctic, which were not banded in a "brood rearing" flock (i.e., at least 1 local banded).</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Point</direct>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geodetic>
+        <horizdn>World Geodetic System of 1984</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Brownie Capture History</enttypl>
+        <enttypd>Brownie dead recovery model (Brownie et al. 1985) implemented with RMark (Laake 2013) to estimate band recovery rates. The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
+        <enttypds>Brownie, C., Anderson, D. R., Burnham, K. P., and Robson, D. S. (1985). Statistical inference from band recovery data: A handbook, 2nd edition. Resource Publication 156. U.S. Fish and Wildlife Service, Washington , D.C. 
+
+Laake, J. L. 2013. RMark: An R interface for analysis of capture-recapture data with MARK.  in  Alaska Fisheries Science Center Report 2013-01. NOAA, National Marine Fisheries Service, Seattle, WA.</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>LD code</attrlabl>
+        <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter).</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>1</edomv>
+            <edomvd>If in the L or first column of a year, a number 1 represents the initial banding and release of a bird.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>0</edomv>
+            <edomvd>In the first or L column of a year, a 0 means not banded during this year.  A 0 in the second or D column means not encountered during subsequent banding efforts or hunting seasons.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SEX</attrlabl>
+        <attrdef>Sex of the sampled bird as determined by cloacal exam; M = Male, F = Female.</attrdef>
+        <attrdefs>Hochbaum HA. Sex and age determination of waterfowl by cloacal examination. Trans N A Wildlife Conf. 1942;7:299-307. Carney SM. Species, age and sex identification of ducks using wing plumage. Washington DC: US Fish and Wildlife Service; 1992.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>F</edomv>
+            <edomvd>Female</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>M</edomv>
+            <edomvd>Male</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BANDAGE_BR</attrlabl>
+        <attrdef>Represents the age for the Brownie (BR) Capture History Table at which an individual was banded: "S" = second-year; "A" = after second-year.  Birds were aged as juvenile (hatching year), second-year, or after second-year using plumage characteristics (Bellrose 1980, Owen 1980)</attrdef>
+        <attrdefs>Bellrose, F. C. 1980. Ducks, geese and swans of North America. Third edition. Stackpole, Harrisburg, Pennsylvania, USA.
+Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>A</edomv>
+            <edomvd>After second year</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>S</edomv>
+            <edomvd>Second year</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOC</attrlabl>
+        <attrdef>Location where an individual was initially banded with a uniquely numbered metal leg band.</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>A</edomv>
+            <edomvd>Arctic.</edomvd>
+            <edomvds>Arctic banding locations included Prudhoe Bay and the Colville River Delta on the north slope of Alaska and the Anderson River delta, Banks Island, and Melville Island in the eastern high Arctic of Canada.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>T</edomv>
+            <edomvd>Tutakoke.  Tutakoke represents the Tutakoke River Brant colony on the Yukon-Kuskokwim Delta of southwestern, Alaska, USA.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttyp>
+        <enttypl>Joint Live Dead Capture History</enttypl>
+        <enttypd>Joint live and dead encounter history file(or Barker) module as formatted for Program Mark with the primary goal of estimating survival and Seber band reporting rates of juvenile and adult brant (Barker 1997). The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
+        <enttypds>Barker, R. J. 1997. Joint modeling of live-recapture, tag-resight, and tag-recovery data. Biometrics 53:666-677.</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>LD code</attrlabl>
+        <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release or live encounter through recapture or resighting) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter or resighted live).</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>1</edomv>
+            <edomvd>If in the L or first column of a year, a number 1 represents the initial banding and release of a bird.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>0</edomv>
+            <edomvd>In the first or L column of a year, a 0 means not banded during this year.  A 0 in the second or D column means not encountered during subsequent banding efforts or hunting seasons.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SEX</attrlabl>
+        <attrdef>Sex of the sampled bird as determined by cloacal exam; M = Male, F = Female.</attrdef>
+        <attrdefs>Hochbaum HA. Sex and age determination of waterfowl by cloacal examination. Trans N A Wildlife Conf. 1942;7:299-307. Carney SM. Species, age and sex identification of ducks using wing plumage. Washington DC: US Fish and Wildlife Service; 1992.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>F</edomv>
+            <edomvd>Female</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>M</edomv>
+            <edomvd>Male</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BANDAGE_JLD</attrlabl>
+        <attrdef>Represents the age for the Brownie (BR) Capture History Table at which an individual was banded: "L" = local; "S" = second-year; "A" = after second-year.</attrdef>
+        <attrdefs>Bellrose, F. C. 1980. Ducks, geese and swans of North America. Third edition. Stackpole, Harrisburg, Pennsylvania, USA.
+Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>A</edomv>
+            <edomvd>After second year</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>S</edomv>
+            <edomvd>Second year</edomvd>
+            <edomvds>Author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>L</edomv>
+            <edomvd>Local</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOC</attrlabl>
+        <attrdef>Location where an individual was initially banded with a uniquely numbered metal leg band.</attrdef>
+        <attrdefs>Author defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>A</edomv>
+            <edomvd>Arctic.</edomvd>
+            <edomvds>Arctic banding locations included Prudhoe Bay and the Colville River Delta on the north slope of Alaska and the Anderson River delta, Banks Island, and Melville Island in the eastern high Arctic of Canada.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>T</edomv>
+            <edomvd>Tutakoke.  Tutakoke represents the Tutakoke River Brant colony on the Yukon-Kuskokwim Delta in southwestern, Alaska, USA.</edomvd>
+            <edomvds>Author defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>Authoritative reource for the data.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>Zip</formname>
+          <formvern>19.0</formvern>
+          <formcont>Zip file containing the data in TXT file format and FGDC metadata in XML and HTML formats.</formcont>
+          <filedec>Winzip legacy compression applied.</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/F76971SZ</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+    <techpreq>This data is formatted for use within the program MARK application or with the R extension of program Mark, RMark. See Analytical Tools for tool access information.</techpreq>
+  </distinfo>
+  <metainfo>
+    <metd>20161215</metd>
+    <metrd>20170228</metrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+    <metsi>
+      <metscs>None</metscs>
+      <metsc>Unclassified</metsc>
+      <metshd>None</metshd>
+    </metsi>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

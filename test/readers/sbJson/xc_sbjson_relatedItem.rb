@@ -26,8 +26,9 @@ class TestReaderSbJsonRelatedItem < TestReaderSbJsonParent
 
       hResource = metadata[:associatedResources][0]
       assert_equal 2, hResource[:resourceTypes].length
-      assert_equal 'project', hResource[:resourceTypes][0]
-      assert_equal 'dataset', hResource[:resourceTypes][1]
+      assert_equal 'project', hResource[:resourceTypes][0][:type]
+      assert_nil hResource[:resourceTypes][0][:name]
+      assert_equal 'dataset', hResource[:resourceTypes][1][:type]
       refute_empty hResource[:resourceCitation]
 
       hCitation = hResource[:resourceCitation]

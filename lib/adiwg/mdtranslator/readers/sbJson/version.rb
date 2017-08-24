@@ -7,7 +7,7 @@ module ADIWG
    module Mdtranslator
       module Readers
          module SbJson
-            VERSION = '0.0.0'
+            VERSION = '0.1.0'
          end
       end
    end

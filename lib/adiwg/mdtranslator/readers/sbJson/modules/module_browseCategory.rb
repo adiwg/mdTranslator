@@ -14,13 +14,13 @@ module ADIWG
 
             module BrowseCategory
 
-               def self.unpack(hSbJson, hResourceInfo, hResponseObj)
+               def self.unpack(hJson, aResourceTypes, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
 
-                  if hSbJson.has_key?('browseCategories')
-                     hSbJson['browseCategories'].each do |category|
+                  if hJson.has_key?('browseCategories')
+                     hJson['browseCategories'].each do |category|
                         hResType = intMetadataClass.newResourceType
                         scope = Codelists.codelist_sb2adiwg('scope_sb2adiwg', category)
                         if scope.nil?
@@ -29,11 +29,11 @@ module ADIWG
                         else
                            hResType[:type] = scope
                         end
-                        hResourceInfo[:resourceTypes] << hResType
+                        aResourceTypes << hResType
                      end
                   end
 
-                  return hResourceInfo
+                  return aResourceTypes
 
                end
 
