@@ -15,6 +15,7 @@ module ADIWG
 
                def self.build(hResType)
 
+
                   Jbuilder.new do |json|
                      json.type hResType[:type]
                      json.name hResType[:name]

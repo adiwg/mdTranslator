@@ -8,6 +8,7 @@ require 'json'
 require 'open-uri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_codelists'
+require_relative 'module_browseCategory'
 
 module ADIWG
    module Mdtranslator
@@ -93,6 +94,7 @@ module ADIWG
                               hResponseObj[:readerExecutionMessages] << 'Either the item does not exist or the item is secured and requires authentication to access.'
                               break
                            else
+
                               # parse related item
                               begin
                                  hRelatedItem = JSON.parse(web_contents)
@@ -105,16 +107,8 @@ module ADIWG
                               # create mew associated resource
                               hResource = intMetadataClass.newAssociatedResource
 
-                              if hRelatedItem.has_key?('browseCategories')
-                                 aBrowse = hRelatedItem['browseCategories']
-                                 aBrowse.each do |category|
-                                    resourceType = Codelists.codelist_sb2adiwg('scope_sb2adiwg', category)
-                                    resourceType = resourceType.nil? ? category : resourceType
-                                    hResource[:resourceTypes] << resourceType
-                                 end
-                              else
-                                 hResponseObj[:readerExecutionMessages] << "Related item #{resourceId} did not have browseCategories"
-                              end
+                              # add resource types
+                              BrowseCategory.unpack(hRelatedItem, hResource[:resourceTypes], hResponseObj)
 
                               # fill in associated resource citation
                               hCitation = intMetadataClass.newCitation
