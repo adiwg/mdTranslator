@@ -36,7 +36,7 @@ class TestReaderFgdcCitation < TestReaderFGDCParent
       assert_empty hCitation[:alternateTitles]
       assert_equal 1, hCitation[:dates].length
       assert_equal '2.1', hCitation[:edition]
-      assert_equal 1, hCitation[:responsibleParties].length
+      assert_equal 2, hCitation[:responsibleParties].length
       assert_equal 1, hCitation[:presentationForms].length
       assert_empty hCitation[:identifiers]
       refute_empty hCitation[:series]
@@ -70,7 +70,7 @@ class TestReaderFgdcCitation < TestReaderFGDCParent
       hPostObj = TestReaderFGDCParent.get_intObj
 
       aContacts = hPostObj[:contacts]
-      assert_equal 3, aContacts.length
+      assert_equal 5, aContacts.length
       refute_nil aContacts[0][:contactId]
       refute aContacts[0][:isOrganization]
       assert_equal 'First Name', aContacts[0][:name]

@@ -23,6 +23,7 @@ module ADIWG
 
                   # time period 9 (timeinfo) - time period information
                   xTimeInfo = xTimePeriod.xpath('./timeinfo')
+                  current = xTimePeriod.xpath('./current').text
 
                   unless xTimeInfo.empty?
 
@@ -37,6 +38,7 @@ module ADIWG
                         unless hDateTime.nil?
                            hTimePeriod[:endDateTime] = hDateTime
                         end
+                        hTimePeriod[:description] = current
 
                         return hTimePeriod
 
@@ -66,6 +68,7 @@ module ADIWG
                         unless hDateTime.nil?
                            hTimePeriod[:endDateTime] = hDateTime
                         end
+                        hTimePeriod[:description] = current
 
                         return hTimePeriod
 

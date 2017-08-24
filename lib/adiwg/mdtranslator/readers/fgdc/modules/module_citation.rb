@@ -31,20 +31,25 @@ module ADIWG
                   hCitation = intMetadataClass.newCitation
 
                   # citation 8.1 (origin) - originator [] (required)
+                  aContacts = []
                   axOrigins = xCiteInfo.xpath('./origin')
-                  unless axOrigins.empty?
-                     aNames = []
-                     axOrigins.each do |xOrigin|
-                        name = xOrigin.text
-                        unless name.empty?
-                           aNames << name
+                  axOrigins.each do |xOrigin|
+                     name = xOrigin.text
+                     unless name.empty?
+                        contactId = Fgdc.find_contact_by_name(name)
+                        if contactId.nil?
+                           # add a new contact for this originator
+                           contactId = Fgdc.add_contact(name, false)
+                           aContacts << contactId
+                        else
+                           aContacts << contactId
                         end
                      end
-                     unless aNames.empty?
-                        hResponsibility = Responsibility.unpack(aNames, 'originator', hResponseObj)
-                        unless hResponsibility.nil?
-                           hCitation[:responsibleParties] << hResponsibility
-                        end
+                  end
+                  unless aContacts.empty?
+                     hResponsibility = Responsibility.unpack(aContacts, 'originator', hResponseObj)
+                     unless hResponsibility.nil?
+                        hCitation[:responsibleParties] << hResponsibility
                      end
                   end
 
@@ -88,9 +93,9 @@ module ADIWG
                   # citation 8.8 (pubinfo) - publication information
                   xPublication = xCiteInfo.xpath('./pubinfo')
                   unless xPublication.empty?
-                     hSeries = Publication.unpack(xPublication, hResponseObj)
-                     unless hSeries.nil?
-                        hCitation[:series] = hSeries
+                     hResponsibility = Publication.unpack(xPublication, hResponseObj)
+                     unless hResponsibility.nil?
+                        hCitation[:responsibleParties] << hResponsibility
                      end
                   end
 

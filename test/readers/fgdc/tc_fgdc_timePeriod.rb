@@ -22,8 +22,7 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       hTimePeriod = @@NameSpace.unpack(xTimePeriod, @@hResponseObj)
 
       refute_empty hTimePeriod
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert_equal 'ground condition', hTimePeriod[:description]
 
       hDateTime = hTimePeriod[:endDateTime]
       day = hDateTime[:dateTime].day
@@ -41,6 +40,9 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       assert_equal 0, second
       assert_equal '+00:00', offset
 
+      assert @@hResponseObj[:readerExecutionPass]
+      assert_empty @@hResponseObj[:readerExecutionMessages]
+
    end
 
    def test_timePeriod_range_complete
@@ -50,8 +52,7 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       hTimePeriod = @@NameSpace.unpack(xTimePeriod, @@hResponseObj)
 
       refute_empty hTimePeriod
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert_equal 'ground condition', hTimePeriod[:description]
 
       hDateTime = hTimePeriod[:startDateTime]
       day = hDateTime[:dateTime].day
@@ -84,6 +85,9 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       assert_equal 30, minute
       assert_equal 00, second
       assert_equal '+00:00', offset
+
+      assert @@hResponseObj[:readerExecutionPass]
+      assert_empty @@hResponseObj[:readerExecutionMessages]
 
    end
 

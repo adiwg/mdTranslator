@@ -6,6 +6,7 @@
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_fgdc'
 
 module ADIWG
    module Mdtranslator
@@ -14,27 +15,43 @@ module ADIWG
 
             module Publication
 
-               def self.unpack(xPubInfo, hResponseObj)
-
-                  return nil
+               def self.unpack(xPublication, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  hSeries = intMetadataClass.newSeries
+                  hResponsibility = nil
+                  contactId = nil
 
-                  # publication 8.8.1 (pubplace) - publication place
-                  place = xPubInfo.xpath('./pubplace').text
-                  unless place.empty?
-                     hSeries[:seriesName] = place
-                  end
-
-                  # publication 8.8.2 (publish) - publisher
-                  publisher = xPubInfo.xpath('./publish').text
+                  # publication information 8.2 (publish) - publisher {contact}
+                  publisher = xPublication.xpath('./publish').text
                   unless publisher.empty?
-                     hSeries[:seriesIssue] = publisher
+                     contactId = Fgdc.find_contact_by_name(publisher)
+                     if contactId.nil?
+                        contactId = Fgdc.add_contact(publisher, true)
+                     end
+                     hResponsibility = Responsibility.unpack([contactId], 'publisher', hResponseObj)
                   end
 
-                  return hSeries
+                  # publication information 8.1 (pubplace) - place of publication
+                  place = xPublication.xpath('./pubplace').text
+                  unless place.empty?
+                     unless contactId.nil?
+                        hContact = Fgdc.get_contact_by_id(contactId)
+                        unless hContact.nil?
+                           if hContact[:addresses].empty?
+                              hAddress = intMetadataClass.newAddress
+                              hContact[:addresses] << hAddress
+                           else
+                              hAddress = hContact[:addresses][0]
+                           end
+                           hAddress[:addressTypes] << 'mailing'
+                           hAddress[:description] = place
+                           Fgdc.set_contact(hContact)
+                        end
+                     end
+                  end
+
+                  return hResponsibility
 
                end
 

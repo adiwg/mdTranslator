@@ -14,7 +14,7 @@ module ADIWG
 
             module Responsibility
 
-               def self.unpack(aNames, role, hResponseObj)
+               def self.unpack(aContacts, role, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -22,29 +22,16 @@ module ADIWG
 
                   hResponsibility[:roleName] = role
 
-                  aNames.each do |name|
-
-                     # get contactId for name
-                     contactId = Fgdc.find_contact_by_name(name)
-                     if contactId.nil?
-
-                        # build a new contact for this name
-                        hContact = intMetadataClass.newContact
-                        contactId = UUIDTools::UUID.random_create.to_s
-                        hContact[:contactId] = contactId
-                        hContact[:name] = name
-                        Fgdc.add_contact(hContact)
-
+                  # add contacts to responsibility party []
+                  aContacts.each do |contactId|
+                     hContactInfo = Fgdc.find_contact_by_id(contactId)
+                     unless hContactInfo[0].nil?
+                        hParty = intMetadataClass.newParty
+                        hParty[:contactId] = contactId
+                        hParty[:contactIndex] = hContactInfo[0]
+                        hParty[:contactType] = hContactInfo[1]
+                        hResponsibility[:parties] << hParty
                      end
-
-                     # add contact to responsibility party
-                     hParty = intMetadataClass.newParty
-                     aContact = Fgdc.find_contact_by_id(contactId)
-                     hParty[:contactId] = contactId
-                     hParty[:contactIndex] = aContact[0]
-                     hParty[:contactType] = aContact[1]
-                     hResponsibility[:parties] << hParty
-
                   end
 
                   return hResponsibility

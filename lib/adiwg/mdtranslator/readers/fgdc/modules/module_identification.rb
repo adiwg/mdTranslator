@@ -74,6 +74,7 @@ module ADIWG
                      # time period multiple date time pairs 9.1.2 (mdattim)
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
                      unless axMultiple.empty?
+                        current = xTimePeriod.xpath('./current').text
                         hExtent = intMetadataClass.newExtent
                         hExtent[:description] = 'FGDC resource time period multiple date/times'
                         axMultiple.each do |xDateTime|
@@ -82,7 +83,7 @@ module ADIWG
                            hInstant = TimeInstant.unpack(date, time, hResponseObj)
                            unless hInstant.nil?
                               hTempExtent = intMetadataClass.newTemporalExtent
-                              hInstant[:description] = 'Resource period instant'
+                              hInstant[:description] = current
                               hTempExtent[:timeInstant] = hInstant
                               hExtent[:temporalExtents] << hTempExtent
                            end
@@ -122,6 +123,8 @@ module ADIWG
                         hResourceInfo[:extents] << hExtent
                      end
                   end
+
+                  # identification information 1.6 (keywords) - keywords
 
                end
 

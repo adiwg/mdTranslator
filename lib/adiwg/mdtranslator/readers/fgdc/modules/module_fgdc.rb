@@ -5,6 +5,7 @@
 #  Stan Smith 2017-08-10 original script
 
 require 'nokogiri'
+require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_identification'
 require_relative 'module_quality'
@@ -97,13 +98,15 @@ module ADIWG
                def self.find_contact_by_id(contactId)
                   contactIndex = nil
                   contactType = nil
-                  @contacts.each_with_index do |contact, i|
-                     if contact[:contactId] == contactId
-                        contactIndex = i
-                        if contact[:isOrganization]
-                           contactType = 'organization'
-                        else
-                           contactType = 'individual'
+                  unless @contacts.empty?
+                     @contacts.each_with_index do |contact, i|
+                        if contact[:contactId] == contactId
+                           if contact[:isOrganization]
+                              contactType = 'organization'
+                           else
+                              contactType = 'individual'
+                           end
+                           contactIndex = i
                         end
                      end
                   end
@@ -121,8 +124,39 @@ module ADIWG
                end
 
                # add new contact to contacts array
-               def self.add_contact(hContact)
-                  @contacts << hContact
+               def self.add_contact(name, isOrg)
+                  contactId = find_contact_by_name(name)
+                  if contactId.nil?
+                     intMetadataClass = InternalMetadata.new
+                     hContact = intMetadataClass.newContact
+                     contactId = UUIDTools::UUID.random_create.to_s
+                     hContact[:contactId] = contactId
+                     hContact[:name] = name
+                     hContact[:isOrganization] = isOrg
+                     @contacts << hContact
+                  end
+                  return contactId
+               end
+
+               # return contact by id
+               def self.get_contact_by_id(contactId)
+                  index = find_contact_by_id(contactId)[0]
+                  unless index.nil?
+                     return @contacts[index]
+                  end
+                  return nil
+               end
+
+               # add or replace the contact
+               def self.set_contact(hContact)
+                  index = find_contact_by_id(hContact[:contactId])[0]
+                  if index.nil?
+                     @contacts << hContact
+                     index = @contacts.length - 1
+                  else
+                     @contacts[index] = hContact
+                  end
+                  return index
                end
 
                # set an internal object for tests
