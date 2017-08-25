@@ -32,25 +32,6 @@ module ADIWG
                   return {}
                end
 
-               # faking the version since sbJson has no version support
-               hSbJson['schema'] = {
-                  'name' => 'sbJson',
-                  'version' => '0.0.0'
-               }
-
-               # schema - current version
-               currentVersion = ADIWG::Mdtranslator::Readers::SbJson::VERSION
-               hResponseObj[:readerVersionRequested] = hSbJson['schema']['version']
-               hResponseObj[:readerVersionUsed] = currentVersion
-               unless currentVersion == hSbJson['schema']['version']
-                  hResponseObj[:readerStructureMessages] << "sbJson schema version '#{hSbJson['version']}' is not supported"
-                  hResponseObj[:readerStructurePass] = false
-                  return {}
-               end
-
-               # faking the validation since there is no schema definition
-               # @hResponseObj[:readerValidationPass] default is true
-
                # load sbJson file into internal object
                return SbJson.unpack(hSbJson, hResponseObj)
 

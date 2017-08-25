@@ -132,6 +132,8 @@ module ADIWG
                   end
 
                   # identification information 1.7 (accconst) - access constraints
+                  # identification information 1.8 (useconst) - use constraints
+
 
                end
 

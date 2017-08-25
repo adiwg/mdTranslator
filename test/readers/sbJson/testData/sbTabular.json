@@ -1,8 +1,4 @@
 {
-   "schema": {
-      "name": "sbJson",
-      "version": "0.0.0"
-   },
    "link": {
       "rel": "self",
       "url": "https://www.sciencebase.gov/catalog/item/56b3e649e4b0cc79997fb5ec"
