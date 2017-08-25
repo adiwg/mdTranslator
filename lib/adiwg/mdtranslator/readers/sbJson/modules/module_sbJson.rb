@@ -51,8 +51,8 @@ module ADIWG
                   hSchema = intMetadataClass.newSchema
 
                   # schema
-                  hSchema[:name] = hSbJson['schema']['name']
-                  hSchema[:version] = hSbJson['schema']['version']
+                  hSchema[:name] = 'sbJson'
+                  hSchema[:version] = '0.0.0'
 
                   # titles / alternateTitles
                   Title.unpack(hSbJson, hCitation, hResponseObj)
