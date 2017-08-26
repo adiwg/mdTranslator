@@ -28,7 +28,6 @@ module ADIWG
 
                   # useful parts
                   hMetadata = intObj[:metadata]
-                  hMetadataInfo = hMetadata[:metadataInfo]
                   hResourceInfo = hMetadata[:resourceInfo]
 
                   # identification information 1.1 (citation) - citation (required)
@@ -176,7 +175,19 @@ module ADIWG
                      hResourceInfo[:environmentDescription] = native
                   end
 
-                  # identification information 1.14 (crossref) - cross reference
+                  # identification information 1.14 (crossref) - cross reference {associatedResource}
+                  xCitation = xIdInfo.xpath('./crossref')
+                  unless xCitation.empty?
+                     hCitation = Citation.unpack(xCitation, hResponseObj)
+                     unless hCitation.empty?
+                        hAssociatedResource = intMetadataClass.newAssociatedResource
+                        hAssociatedResource[:associationType] = 'crossReference'
+                        hAssociatedResource[:resourceCitation] = hCitation
+                        hMetadata[:associatedResources] << hAssociatedResource
+                     end
+                  end
+
+                  return intObj
 
                end
 
