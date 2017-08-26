@@ -314,6 +314,18 @@
         <cntinst>my contact instructions</cntinst>
       </cntinfo>
     </ptcontac>
+    <browse>
+      <browsen>My browse file name</browsen>
+      <browsed>My browse file description</browsed>
+      <browset>My browse file type</browset>
+    </browse>
+    <datacred>My dataset credits</datacred>
+    <secinfo>
+      <secsys>My security system name</secsys>
+      <secclass>Secret</secclass>
+      <sechandl>My security handling instructions</sechandl>
+    </secinfo>
+    <native>My native dataset environment</native>
     <crossref>
       <citeinfo>
         <origin>Alan G. Leach</origin>

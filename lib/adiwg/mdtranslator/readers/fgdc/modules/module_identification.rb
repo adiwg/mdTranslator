@@ -12,6 +12,7 @@ require_relative 'module_timeInstant'
 require_relative 'module_spatialDomain'
 require_relative 'module_keyword'
 require_relative 'module_contact'
+require_relative 'module_security'
 
 module ADIWG
    module Mdtranslator
@@ -34,9 +35,7 @@ module ADIWG
                   xCitation = xIdInfo.xpath('./citation')
                   unless xCitation.empty?
                      hCitation = Citation.unpack(xCitation, hResponseObj)
-                     unless hCitation.nil?
-                        hResourceInfo[:citation] = hCitation
-                     end
+                     hResourceInfo[:citation] = hCitation unless hCitation.nil?
                   end
 
                   # identification information 1.2 (descript) - description (required)
@@ -45,21 +44,15 @@ module ADIWG
 
                      # description 1.2.1 (abstract) - abstract
                      abstract = xDescription.xpath('./abstract').text
-                     unless abstract.empty?
-                        hResourceInfo[:abstract] = abstract
-                     end
+                     hResourceInfo[:abstract] = abstract unless abstract.empty?
 
                      # description 1.2.2 (purpose) - purpose
                      purpose = xDescription.xpath('./purpose').text
-                     unless purpose.empty?
-                        hResourceInfo[:purpose] = purpose
-                     end
+                     hResourceInfo[:purpose] = purpose unless purpose.empty?
 
                      # description 1.2.3 (supplinf) - supplemental information
                      supplemental = xDescription.xpath('./supplinf').text
-                     unless supplemental.empty?
-                        hResourceInfo[:supplementalInfo] = supplemental
-                     end
+                     hResourceInfo[:supplementalInfo] = supplemental unless supplemental.empty?
 
                   end
 
@@ -69,9 +62,7 @@ module ADIWG
 
                      # time period for single date and date range
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
-                     unless hTimePeriod.nil?
-                        hResourceInfo[:timePeriod] = hTimePeriod
-                     end
+                     hResourceInfo[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
 
                      # time period multiple date time pairs 9.1.2 (mdattim)
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
@@ -90,9 +81,7 @@ module ADIWG
                               hExtent[:temporalExtents] << hTempExtent
                            end
                         end
-                        unless hExtent[:temporalExtents].empty?
-                           hResourceInfo[:extents] << hExtent
-                        end
+                        hResourceInfo[:extents] << hExtent unless hExtent[:temporalExtents].empty?
                      end
 
                   end
@@ -103,9 +92,7 @@ module ADIWG
 
                      # status 1.4.1 (progress) - state of resource
                      progress = xStatus.xpath('./progress').text
-                     unless progress.empty?
-                        hResourceInfo[:status] << progress
-                     end
+                     hResourceInfo[:status] << progress unless progress.empty?
 
                      # status 1.4.2 (update) - maintenance frequency
                      update = xStatus.xpath('./update').text
@@ -121,9 +108,7 @@ module ADIWG
                   xDomain = xIdInfo.xpath('./spdom')
                   unless xDomain.empty?
                      hExtent = SpatialDomain.unpack(xDomain, hResponseObj)
-                     unless hExtent.nil?
-                        hResourceInfo[:extents] << hExtent
-                     end
+                     hResourceInfo[:extents] << hExtent unless hExtent.nil?
                   end
 
                   # identification information 1.6 (keywords) - keywords
@@ -139,12 +124,9 @@ module ADIWG
                   hConstraint = intMetadataClass.newConstraint
                   hConstraint[:type] = 'legal'
                   hLegal = intMetadataClass.newLegalConstraint
-                  unless accessCon.empty?
-                     hLegal[:otherCons] << accessCon
-                  end
-                  unless useCon.empty?
-                     hLegal[:otherCons] << useCon
-                  end
+
+                  hLegal[:otherCons] << accessCon unless accessCon.empty?
+                  hLegal[:otherCons] << useCon unless useCon.empty?
                   unless hLegal[:otherCons].empty?
                      hConstraint[:legalConstraint] = hLegal
                      hResourceInfo[:constraints] << hConstraint
@@ -161,7 +143,40 @@ module ADIWG
                   end
 
                   # identification information 1.10 (browse) - browse graphic []
+                  axBrowse = xIdInfo.xpath('./browse')
+                  unless axBrowse.empty?
+                     axBrowse.each do |xBrowse|
+                        browseName = xBrowse.xpath('./browsen').text
+                        browseDesc = xBrowse.xpath('./browsed').text
+                        browseType = xBrowse.xpath('./browset').text
+                        hGraphic = intMetadataClass.newGraphic
+                        hGraphic[:graphicName] = browseName unless browseName.empty?
+                        hGraphic[:graphicDescription] = browseDesc unless browseDesc.empty?
+                        hGraphic[:graphicType] = browseType unless browseType.empty?
+                        hResourceInfo[:graphicOverviews] << hGraphic
+                     end
+                  end
 
+                  # identification information 1.11 (datacred) - data credit
+                  credits = xIdInfo.xpath('./datacred').text
+                  unless credits.empty?
+                     hResourceInfo[:credits] << credits
+                  end
+
+                  # identification information 1.12 (secinfo) - security information
+                  xSecurity = xIdInfo.xpath('./secinfo')
+                  unless xSecurity.empty?
+                     hConstraint = Security.unpack(xSecurity, hResponseObj)
+                     hResourceInfo[:constraints] << hConstraint unless hConstraint.nil?
+                  end
+
+                  # identification information 1.13 (native) - native dataset environment
+                  native = xIdInfo.xpath('./native').text
+                  unless native.empty?
+                     hResourceInfo[:environmentDescription] = native
+                  end
+
+                  # identification information 1.14 (crossref) - cross reference
 
                end
 
