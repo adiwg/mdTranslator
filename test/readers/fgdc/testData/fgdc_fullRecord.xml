@@ -276,23 +276,42 @@
         </taxoncl>
       </taxoncl>
     </taxonomy>
-    <accconst>None</accconst>
-    <useconst>It is requested that the authors and the USGS Alaska Science Center be cited for any subsequent publications referenced to this dataset. It is strongly recommended that careful attention be paid to the contents of the metadata file associated with these data to evaluate data set limitations, restrictions or intended use.</useconst>
+    <accconst>My access constraint</accconst>
+    <useconst>My use constraint</useconst>
     <ptcontac>
       <cntinfo>
-        <cntorgp>
-          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
-        </cntorgp>
+        <cntperp>
+          <cntper>Dennis Walworth</cntper>
+          <cntorg>USGS</cntorg>
+        </cntperp>
+        <cntpos>Data Manager</cntpos>
         <cntaddr>
-          <addrtype>mailing and physical</addrtype>
-          <address>4210 University Dr.</address>
+          <addrtype>mailing</addrtype>
+          <address>mail address line 1</address>
+          <address>mail address line 2</address>
           <city>Anchorage</city>
           <state>Alaska</state>
           <postal>99503</postal>
           <country>USA</country>
         </cntaddr>
-        <cntvoice>907-786-7000</cntvoice>
-        <cntemail>ascweb@usgs.gov</cntemail>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>physical location 1</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99503</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-555-1212</cntvoice>
+        <cntvoice>907-555-2323</cntvoice>
+        <cnttdd>907-555-3434</cnttdd>
+        <cnttdd>907-555-4545</cnttdd>
+        <cntfax>907-555-5656</cntfax>
+        <cntfax>907-555-6767</cntfax>
+        <cntemail>name1@myorg.org</cntemail>
+        <cntemail>name2@myorg.org</cntemail>
+        <hours>my hours of service</hours>
+        <cntinst>my contact instructions</cntinst>
       </cntinfo>
     </ptcontac>
     <crossref>

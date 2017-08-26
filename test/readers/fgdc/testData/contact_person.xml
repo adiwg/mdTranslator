@@ -1,0 +1,40 @@
+<metadata>
+  <idinfo>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>my primary person</cntper>
+          <cntorg>my primary person organization</cntorg>
+        </cntperp>
+        <cntpos>my position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>mail address line 1</address>
+          <address>mail address line 2</address>
+          <city>mail city</city>
+          <state>mail admin area</state>
+          <postal>mail postal</postal>
+          <country>mail country</country>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>physical location 1</address>
+          <city>physical city</city>
+          <state>physical admin area</state>
+          <postal>physical postal</postal>
+          <country>physical country</country>
+        </cntaddr>
+        <cntvoice>907-555-1212</cntvoice>
+        <cntvoice>907-555-2323</cntvoice>
+        <cnttdd>907-555-3434</cnttdd>
+        <cnttdd>907-555-4545</cnttdd>
+        <cntfax>907-555-5656</cntfax>
+        <cntfax>907-555-6767</cntfax>
+        <cntemail>name1@myorg.org</cntemail>
+        <cntemail>name2@myorg.org</cntemail>
+        <hours>my hours of service</hours>
+        <cntinst>my contact instructions</cntinst>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+</metadata>

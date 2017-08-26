@@ -11,6 +11,7 @@ require_relative 'module_timePeriod'
 require_relative 'module_timeInstant'
 require_relative 'module_spatialDomain'
 require_relative 'module_keyword'
+require_relative 'module_contact'
 
 module ADIWG
    module Mdtranslator
@@ -133,6 +134,33 @@ module ADIWG
 
                   # identification information 1.7 (accconst) - access constraints
                   # identification information 1.8 (useconst) - use constraints
+                  accessCon = xIdInfo.xpath('./accconst').text
+                  useCon = xIdInfo.xpath('./useconst').text
+                  hConstraint = intMetadataClass.newConstraint
+                  hConstraint[:type] = 'legal'
+                  hLegal = intMetadataClass.newLegalConstraint
+                  unless accessCon.empty?
+                     hLegal[:otherCons] << accessCon
+                  end
+                  unless useCon.empty?
+                     hLegal[:otherCons] << useCon
+                  end
+                  unless hLegal[:otherCons].empty?
+                     hConstraint[:legalConstraint] = hLegal
+                     hResourceInfo[:constraints] << hConstraint
+                  end
+
+                  # identification information 1.9 (ptcontac) - point of contact
+                  xContact = xIdInfo.xpath('./ptcontac')
+                  unless xContact.empty?
+                     hResponsibility = Contact.unpack(xContact, hResponseObj)
+                     unless hResponsibility.nil?
+                        hResponsibility[:roleName] = 'pointOfContact'
+                        hResourceInfo[:pointOfContacts] << hResponsibility
+                     end
+                  end
+
+                  # identification information 1.10 (browse) - browse graphic []
 
 
                end
