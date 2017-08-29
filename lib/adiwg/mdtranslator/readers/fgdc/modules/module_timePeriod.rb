@@ -23,7 +23,16 @@ module ADIWG
 
                   # time period 9 (timeinfo) - time period information
                   xTimeInfo = xTimePeriod.xpath('./timeinfo')
-                  current = xTimePeriod.xpath('./current').text
+
+                  # current may have different element tags depending on timePeriod source
+                  current = nil?
+                  xFoundIt = xTimePeriod.at('./current')
+                  if xFoundIt.nil?
+                     xFoundIt = xTimePeriod.at('./srccurr')
+                  end
+                  unless xFoundIt.nil?
+                     current = xFoundIt.text
+                  end
 
                   unless xTimeInfo.empty?
 

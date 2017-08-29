@@ -8,6 +8,7 @@ require 'minitest/autorun'
 require 'rubygems'
 require 'nokogiri'
 require 'adiwg/mdtranslator'
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 
 class TestReaderFGDCParent < MiniTest::Test

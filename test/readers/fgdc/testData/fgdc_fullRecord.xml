@@ -387,24 +387,46 @@
   </idinfo>
   <dataqual>
     <attracc>
-      <attraccr>Attributes were spot checked and values were sorted to identify possible errors.  For example, if data looked like a potential error, original data sheets were checked to confirm and fixed it if it was a data entry error. Additionally peer-review used sort functions in Excel to identify attributes, domains, and domain ranges.  These were checked against metadata entries to ensure all definitions and levels were accounted for.</attraccr>
+      <attraccr>Attributes were spot checked</attraccr>
     </attracc>
-    <logic>Data format and values are specific for use with program MARK and have been tested in that application, thus data values are considered valid for that usage.</logic>
-    <complete>There are no missing values in this dataset.  Users are advised to read the rest of the metadata record carefully for additional details, particularly the Entity and Attribute definitions for specifics on each entity and data within those entities.</complete>
+    <logic>Data format and values are specific</logic>
+    <complete>There are no missing values</complete>
     <lineage>
       <method>
         <methtype>Field</methtype>
-        <methdesc>We captured brant by herding them into pens during the adult remigial molt in July and August.  Following capture, we marked brant with a unique metal band issued by the Bird Banding Lab, U.S. Geological Survey, and a uniquely engraved plastic tarsal band, and recorded bands from recaptures.  Brant were sexed using cloacal examination and aged as juvenile (hatching year), second-year, or after second-year using plumage characteristics.  Prior to banding, we recorded live resights of color-marked brant on breeding areas using 20–50x spotting scopes.  We included all summer reencounters in our analysis (not just breeding reencounters, for example, adults seen at a nest or with a brood) to improve the precision of our survival estimates.</methdesc>
+        <methdesc>We captured brant by herding</methdesc>
       </method>
       <method>
         <methtype>Field</methtype>
-        <methdesc>We conducted live resight surveys at 3 wintering lagoons along the central Pacific coast of Baja California.  Observations were made at Bahia San Quintin during winters 1991-1993, 1997–2006, and 2011–2013 and at Lagunas Ojo de Liebre and San Ignacio, during winters 1999-2001.  From spring 1991–2015 we conducted resights of brant at wintering and migration areas in southeastern Vancouver Island and Boundary Bay, British Columbia, Canada.  We also periodically collected live resights of brant during migration and wintering at Izembek Lagoon, AK; Humboldt and Morro bays, California; and Puget Sound, WA.  Observers typically concealed themselves near sand bars where brant came ashore to grit and loaf during high tide and read tarsal bands with 15–150X telescopes.  
-	We obtained band recovery information of brant harvested (i.e., “How obtained” code = 01) from August 1990–May 2016 from the U.S. Geological Survey Bird Banding Laboratory in Patuxent, Maryland, USA.  Our ‘recovery window’ for each year was 1 August to 30 June.  We only included brant that were color-marked in our analysis to avoid strong heterogeneity in live reencounter rates with individuals that were only marked with a metal band.</methdesc>
+        <methdesc>We conducted live resight surveys</methdesc>
       </method>
       <srcinfo>
         <srccite>
           <citeinfo>
-            <origin>U.S. Geological Survey Bird Banding Laboratory, Patuxent, Maryland, USA. </origin>
+            <origin>Alaska Data Integration working group, AK</origin>
+            <pubdate>20120115</pubdate>
+            <title>ISO 19115-2 Review</title>
+            <geoform>white paper</geoform>
+          </citeinfo>
+        </srccite>
+        <srcscale>25000</srcscale>
+        <typesrc>paper</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>20170828</caldate>
+              <time>14:15</time>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication</srccurr>
+        </srctime>
+        <srccitea>ADIwg</srccitea>
+        <srccontr>Understanding of ISO 19115-2 metadata</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Geological Survey Bird Banding Laboratory, Patuxent, Maryland, USA.</origin>
             <pubdate>20160630</pubdate>
             <title>Bird Recovery Data 1990-2016</title>
             <geoform>tabular digital data</geoform>
@@ -426,14 +448,14 @@
           <srccurr>observed</srccurr>
         </srctime>
         <srccitea>USGS BBL</srccitea>
-        <srccontr>The USGS Bird Banding Laboratory (BBL) provided all hunter shot recovery data for birds within the study period described.</srccontr>
+        <srccontr>The USGS Bird Banding Laboratory (BBL)</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Data on bandings and encounters were converted into capture histories, where 1's indicate the banding and subsequent encounter(s) of that same band in a given year and zeros represent no encounter in a given year.  We sorted individuals into 2 groups, those marked at sub-Arctic and those marked in Arctic locations.  We included 2 age classes in our analysis: juveniles (&lt; 1 year old), and adult (1+ years old) brant and allowed juveniles to ‘graduate’ to adults after their second summer.  Though most individual capture histories began with initial banding during summer, we included 2,975 brant marked at Tutakoke River before 1990 whose capture histories began with their first live summer reencounter during or after 1990.</procdesc>
+        <procdesc>Data on bandings and encounters were converted</procdesc>
         <procdate>Unknown</procdate>
       </procstep>
       <procstep>
-        <procdesc>We removed brant banded in the Arctic, which were not banded in a "brood rearing" flock (i.e., at least 1 local banded).</procdesc>
+        <procdesc>We removed brant banded in the Arctic</procdesc>
         <procdate>Unknown</procdate>
       </procstep>
     </lineage>

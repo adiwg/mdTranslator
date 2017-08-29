@@ -1,0 +1,72 @@
+<metadata>
+  <dataqual>
+    <lineage>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>We captured brant by herding</methdesc>
+      </method>
+      <method>
+        <methtype>Field</methtype>
+        <methdesc>We conducted live resight surveys</methdesc>
+      </method>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20120115</pubdate>
+            <title>my source 1 citation title</title>
+            <geoform>my source 1 geo form</geoform>
+          </citeinfo>
+        </srccite>
+        <srcscale>25000</srcscale>
+        <typesrc>my source 1 type</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>20170828</caldate>
+              <time>14:15</time>
+            </sngdate>
+          </timeinfo>
+          <srccurr>publication</srccurr>
+        </srctime>
+        <srccitea>ADIwg</srccitea>
+        <srccontr>my source 1 contribution</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>my source 2 author</origin>
+            <pubdate>20160630</pubdate>
+            <title>my source 2 citation title</title>
+            <geoform>tabular data</geoform>
+            <pubinfo>
+              <pubplace>online</pubplace>
+              <publish>USGS</publish>
+            </pubinfo>
+            <onlink>https://www.pwrc.usgs.gov/bbl/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>digital database file</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>19900801</begdate>
+              <enddate>20160630</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>observed</srccurr>
+        </srctime>
+        <srccitea>USGS BBL</srccitea>
+        <srccontr>my source 2 contribution</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>Data on bandings and encounters were converted</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>We removed brant banded in the Arctic</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+</metadata>
