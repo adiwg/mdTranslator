@@ -113,7 +113,7 @@ module ADIWG
                   # identification information 1.6 (keywords) - keywords
                   xKeywords = xIdInfo.xpath('./keywords')
                   unless xKeywords.empty?
-                     Keyword.unpack(xKeywords, hResourceInfo[:keywords], hResponseObj)
+                     Keyword.unpack(xKeywords, hResourceInfo, hResponseObj)
                   end
 
                   # identification information 1.7 (accconst) - access constraints

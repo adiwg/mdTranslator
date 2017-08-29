@@ -53,11 +53,7 @@ module ADIWG
                         hTempExtent = intMetadataClass.newTemporalExtent
                         hTempExtent[:timePeriod] = hTimePeriod
                         hExtent[:temporalExtents] << hTempExtent
-                        if hSource[:description].nil?
-                           hScope[:scopeCode] = 'dataset'
-                        else
-                           hScope[:scopeCode] = hSource[:description] = type
-                        end
+                        hScope[:scopeCode] = 'dataset'
                         hScope[:extents] << hExtent
                         hSource[:scope] = hScope
                      end

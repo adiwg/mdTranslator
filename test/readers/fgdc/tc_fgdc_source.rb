@@ -46,7 +46,7 @@ class TestReaderFgdcSource < TestReaderFGDCParent
       assert_equal 1, hResponsibility[:parties].length
 
       hScope = hSource[:scope]
-      assert_equal 'my source 1 type', hScope[:scopeCode]
+      assert_equal 'dataset', hScope[:scopeCode]
       assert_empty hScope[:scopeDescriptions]
       assert_equal 1, hScope[:extents].length
 
