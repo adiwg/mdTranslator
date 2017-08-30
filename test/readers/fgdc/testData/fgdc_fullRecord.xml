@@ -446,14 +446,18 @@
               <enddate>20160630</enddate>
             </rngdates>
           </timeinfo>
-          <srccurr>observed</srccurr>
+          <srccurr>ground condition</srccurr>
         </srctime>
         <srccitea>USGS BBL</srccitea>
         <srccontr>The USGS Bird Banding Laboratory (BBL)</srccontr>
       </srcinfo>
       <procstep>
         <procdesc>Data on bandings and encounters were converted</procdesc>
+        <srcused></srcused>
         <procdate>Unknown</procdate>
+        <proctime></proctime>
+        <srcprod></srcprod>
+        <proccont></proccont>
       </procstep>
       <procstep>
         <procdesc>We removed brant banded in the Arctic</procdesc>

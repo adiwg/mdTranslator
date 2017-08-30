@@ -14,12 +14,16 @@ module ADIWG
 
             module Process
 
-               def self.unpack(xProcess, hResourceInfo, hResponseObj)
+               def self.unpack(xProcess, hLineage, hResponseObj)
+
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+                  hProcess = intMetadataClass.newProcessStep
 
                   # process 2.5.2.1 (procdesc) - process description
                   description = xProcess.xpath('./procdesc').text
                   unless description.empty?
-
+                     hProcess[:description] = description
                   end
 
                   # process 2.5.2.2 (srcused) - source used citation abbreviation []

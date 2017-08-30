@@ -28,6 +28,14 @@ module ADIWG
                      return nil
                   end
 
+                  # remove invalid date and time input strings
+                  unless date =~ /^[0-9\-]*$/
+                     return nil
+                  end
+                  unless time =~ /^[0-9:]*$/
+                     time = ''
+                  end
+
                   # convert date from fgdc to iso format
                   year = date.byteslice(0,4)
                   month = date.byteslice(4,2)
