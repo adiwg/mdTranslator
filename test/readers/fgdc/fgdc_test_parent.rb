@@ -48,6 +48,7 @@ class TestReaderFGDCParent < MiniTest::Test
          intObj[:metadata] = hMetadata
       end
       ADIWG::Mdtranslator::Readers::Fgdc::Fgdc.set_intObj(intObj)
+      return intObj
    end
 
    # get intObj for assertions of data written to other intObj sections during test
