@@ -38,7 +38,8 @@ module ADIWG
                      axProcess = xLineage.xpath('./procstep')
                      unless axProcess.empty?
                         axProcess.each do |xProcess|
-                           Process.unpack(xProcess, hLineage, hResponseObj)
+                           hProcess = Process.unpack(xProcess, hLineage, hResponseObj)
+                           hLineage[:processSteps] << hProcess
                         end
                      end
 

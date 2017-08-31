@@ -3,11 +3,11 @@
     <lineage>
       <method>
         <methtype>Field</methtype>
-        <methdesc>We captured brant by herding</methdesc>
+        <methdesc>my method 1 description</methdesc>
       </method>
       <method>
         <methtype>Field</methtype>
-        <methdesc>We conducted live resight surveys</methdesc>
+        <methdesc>my method 2 description</methdesc>
       </method>
       <srcinfo>
         <srccite>
@@ -60,11 +60,25 @@
         <srccontr>my source 2 contribution</srccontr>
       </srcinfo>
       <procstep>
-        <procdesc>Data on bandings and encounters were converted</procdesc>
-        <procdate>Unknown</procdate>
+        <procdesc>my proc step 1 description</procdesc>
+        <srcused>ADIwg</srcused>
+        <srcused>USGS BBL</srcused>
+        <procdate>20170831</procdate>
+        <proctime>142245</proctime>
+        <srcprod>USGS BBL</srcprod>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Dennis Walworth</cntper>
+              <cntorg>USGS</cntorg>
+            </cntperp>
+            <cntpos>Data Manager</cntpos>
+            <cntinst>my contact instructions</cntinst>
+          </cntinfo>
+        </proccont>
       </procstep>
       <procstep>
-        <procdesc>We removed brant banded in the Arctic</procdesc>
+        <procdesc>my proc step 2 description</procdesc>
         <procdate>Unknown</procdate>
       </procstep>
     </lineage>

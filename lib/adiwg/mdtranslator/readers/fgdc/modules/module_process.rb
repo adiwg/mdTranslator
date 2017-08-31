@@ -6,6 +6,8 @@
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_dateTime'
+require_relative 'module_contact'
 
 module ADIWG
    module Mdtranslator
@@ -29,31 +31,62 @@ module ADIWG
                   # process 2.5.2.2 (srcused) - source used citation abbreviation []
                   axUsed = xProcess.xpath('./srcused')
                   unless axUsed.empty?
-
+                     axUsed.each do |xUsed|
+                        usedSrc = xUsed.text
+                        unless usedSrc.empty?
+                           hLineage[:dataSources].each do |hSource|
+                              unless hSource[:sourceCitation].empty?
+                                 hSource[:sourceCitation][:alternateTitles].each do |altTitle|
+                                    if usedSrc == altTitle
+                                       hProcess[:stepSources] << hSource
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
                   end
 
-                  # process 2.5.2.3 (procdate) - procedure date
+                  # process 2.5.2.3/2.5.2.4 (procdate/proctime) - procedure date/time {date} (required) {time} (optional)
                   procDate = xProcess.xpath('./procdate').text
+                  procTime = xProcess.xpath('./proctime').text
                   unless procDate.empty?
-
-                  end
-
-                  # process 2.5.2.4 (proctime) - procedure time
-                  procTime = xProcess.xpath('./proctime')
-                  unless procTime.empty?
-
+                     hDateTime = DateTime.unpack(procDate, procTime, hResponseObj)
+                     unless hDateTime.nil?
+                        hTimePeriod = intMetadataClass.newTimePeriod
+                        hTimePeriod[:description] = 'Step completion dateTime'
+                        hTimePeriod[:endDateTime] = hDateTime
+                        hProcess[:timePeriod] = hTimePeriod
+                     end
                   end
 
                   # process 2.5.2.5 (srcprod) - source produced citation abbreviation []
-                  axProduced = xProcess.xpath('./srcprod')
-                  unless axProduced.empty?
-
+                  axProduct = xProcess.xpath('./srcprod')
+                  unless axProduct.empty?
+                     axProduct.each do |xProduct|
+                        prodSrc = xProduct.text
+                        unless prodSrc.empty?
+                           hLineage[:dataSources].each do |hSource|
+                              unless hSource[:sourceCitation].empty?
+                                 hSource[:sourceCitation][:alternateTitles].each do |altTitle|
+                                    if prodSrc == altTitle
+                                       hProcess[:stepProducts] << hSource
+                                    end
+                                 end
+                              end
+                           end
+                        end
+                     end
                   end
 
                   # process 2.5.2.6 (proccont) - process contact {contact}
                   xContact = xProcess.xpath('./proccont')
                   unless xContact.empty?
-
+                     hResponsibility = Contact.unpack(xContact, hResponseObj)
+                     unless hResponsibility.nil?
+                        hResponsibility[:roleName] = 'processor'
+                        hProcess[:processors] << hResponsibility
+                     end
                   end
 
                   return hProcess

@@ -455,10 +455,10 @@
         <procdesc>Data on bandings and encounters were converted</procdesc>
         <srcused>ADIwg</srcused>
         <srcused>USGS BBL</srcused>
-        <procdate>Unknown</procdate>
-        <proctime>Unknown</proctime>
-        <srcprod>Intermediate 1</srcprod>
-        <srcprod>Intermediate 2</srcprod>
+        <procdate>20170831</procdate>
+        <proctime>135530</proctime>
+        <srcprod>ADIwg</srcprod>
+        <srcprod>Intermediate</srcprod>
         <proccont>
           <cntinfo>
             <cntperp>
