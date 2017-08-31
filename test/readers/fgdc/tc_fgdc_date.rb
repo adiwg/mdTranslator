@@ -29,6 +29,36 @@ class TestReaderFgdcDate < TestReaderFGDCParent
 
    end
 
+   def test_date_invalid
+
+      TestReaderFGDCParent.set_xDoc(@@xDocUTC)
+      hDate = @@NameSpace.unpack('Unknown', '', 'test', @@hResponseObj)
+
+      assert_nil hDate
+      assert @@hResponseObj[:readerExecutionPass]
+      assert_empty @@hResponseObj[:readerExecutionMessages]
+
+   end
+
+   def test_time_invalid
+
+      TestReaderFGDCParent.set_xDoc(@@xDocUTC)
+      hDate = @@NameSpace.unpack('20170816', 'Unknown', 'test', @@hResponseObj)
+
+      refute_empty hDate
+      hour = hDate[:date].hour
+      minute = hDate[:date].minute
+      second = hDate[:date].second
+      offset = hDate[:date].to_s.byteslice(-6,6)
+      assert_equal 0, hour
+      assert_equal 0, minute
+      assert_equal 0, second
+      assert_equal '+00:00', offset
+      assert @@hResponseObj[:readerExecutionPass]
+      assert_empty @@hResponseObj[:readerExecutionMessages]
+
+   end
+
    def test_date_local
 
       TestReaderFGDCParent.set_xDoc(@@xDocLocal)

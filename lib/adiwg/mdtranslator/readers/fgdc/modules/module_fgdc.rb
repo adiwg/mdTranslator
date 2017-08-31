@@ -54,7 +54,7 @@ module ADIWG
                   # metadata (dataqual 2) - data quality
                   xDataQual = xMetadata.xpath('./dataqual')
                   unless xDataQual.empty?
-                     Quality.unpack(xDataQual, hResponseObj)
+                     Quality.unpack(xDataQual, hMetadata, hResponseObj)
                   end
 
                   # metadata (spdoinfo 3) - spatial data organization

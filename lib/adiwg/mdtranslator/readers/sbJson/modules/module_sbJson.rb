@@ -6,6 +6,7 @@
 #  Josh Bradley original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../version'
 require_relative 'module_titles'
 require_relative 'module_id'
 require_relative 'module_body'
@@ -52,7 +53,7 @@ module ADIWG
 
                   # schema
                   hSchema[:name] = 'sbJson'
-                  hSchema[:version] = '0.0.0'
+                  hSchema[:version] = ADIWG::Mdtranslator::Readers::SbJson::VERSION
 
                   # titles / alternateTitles
                   Title.unpack(hSbJson, hCitation, hResponseObj)

@@ -14,7 +14,9 @@ module ADIWG
 
             module Keyword
 
-               def self.unpack(xKeywords, aKeywords, hResponseObj)
+               def self.unpack(xKeywords, hResourceInfo, hResponseObj)
+
+                  aKeywords = hResourceInfo[:keywords]
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -45,6 +47,15 @@ module ADIWG
                                  hKeyword[:keywords] << hKeywordObj
                               end
                            end
+                        end
+
+                        # if keyword thesaurus is 'ISO 19115 Topic Category'
+                        # convert to ISO topic categories
+                        if hKeyword[:thesaurus][:title] == 'ISO 19115 Topic Category'
+                           hKeyword[:keywords].each do |hKeyObj|
+                              hResourceInfo[:topicCategories] << hKeyObj[:keyword]
+                           end
+                           hKeyword = {}
                         end
 
                         unless hKeyword.empty?
@@ -124,7 +135,7 @@ module ADIWG
                      end
                   end
 
-                  # kewords 1.6.4 (place) - temporal keywords {keyword}
+                  # kewords 1.6.4 (temporal) - temporal keywords {keyword}
                   axTemporal = xKeywords.xpath('./temporal')
                   unless axTemporal.empty?
                      axTemporal.each do |xTemporal|

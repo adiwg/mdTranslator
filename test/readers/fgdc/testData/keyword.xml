@@ -3,11 +3,12 @@
   <idinfo>
     <keywords>
       <theme>
-        <themekt>ISO 19115</themekt>
-        <themekey>Biota</themekey>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>farming</themekey>
       </theme>
       <theme>
-        <themekt>NASA GCMD Earth Science Keywords Thesaurus</themekt>
+        <themekt>NASA GCMD Earth Science Keywords</themekt>
         <themekey>Earth Science</themekey>
         <themekey>Biological Classification</themekey>
       </theme>

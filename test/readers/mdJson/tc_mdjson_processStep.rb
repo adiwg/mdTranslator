@@ -10,122 +10,132 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_processStep'
 
 class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ProcessStep
-    aIn = TestReaderMdJsonParent.getJson('processStep.json')
-    @@hIn = aIn['processStep'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ProcessStep
+   aIn = TestReaderMdJsonParent.getJson('processStep.json')
+   @@hIn = aIn['processStep'][0]
 
-    def test_processStep_schema
+   def test_processStep_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'processStep')
-        assert_empty errors
+       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'processStep')
+       assert_empty errors
 
-    end
+   end
 
-    def test_complete_processStep_object
+   def test_complete_processStep_object
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'stepId', metadata[:stepId]
-        assert_equal 'description', metadata[:description]
-        assert_equal 'rationale', metadata[:rationale]
-        refute_empty metadata[:timePeriod]
-        assert_equal 2, metadata[:processors].length
-        assert_equal 2, metadata[:references].length
-        refute_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'stepId', metadata[:stepId]
+      assert_equal 'description', metadata[:description]
+      assert_equal 'rationale', metadata[:rationale]
+      refute_empty metadata[:timePeriod]
+      assert_equal 2, metadata[:processors].length
+      assert_equal 2, metadata[:references].length
+      assert_equal 2, metadata[:stepSources].length
+      assert_equal 2, metadata[:stepProducts].length
+      refute_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_processStep_description
+   def test_empty_processStep_description
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['description'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['description'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_missing_processStep_description
+   def test_missing_processStep_description
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('description')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('description')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_processStep_elements
+   def test_empty_processStep_elements
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['stepId'] = ''
-        hIn['rationale'] = ''
-        hIn['timePeriod'] = {}
-        hIn['processor'] = []
-        hIn['reference'] = []
-        hIn['scope'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['stepId'] = ''
+      hIn['rationale'] = ''
+      hIn['timePeriod'] = {}
+      hIn['processor'] = []
+      hIn['reference'] = []
+      hIn['stepSource'] = []
+      hIn['stepProduct'] = []
+      hIn['scope'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:stepId]
-        assert_nil metadata[:rationale]
-        assert_empty metadata[:timePeriod]
-        assert_empty metadata[:processors]
-        assert_empty metadata[:references]
-        assert_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata[:stepId]
+      assert_nil metadata[:rationale]
+      assert_empty metadata[:timePeriod]
+      assert_empty metadata[:processors]
+      assert_empty metadata[:references]
+      assert_empty metadata[:stepSources]
+      assert_empty metadata[:stepProducts]
+      assert_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_missing_processStep_elements
+   def test_missing_processStep_elements
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('stepId')
-        hIn.delete('rationale')
-        hIn.delete('timePeriod')
-        hIn.delete('processor')
-        hIn.delete('reference')
-        hIn.delete('scope')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('stepId')
+      hIn.delete('rationale')
+      hIn.delete('timePeriod')
+      hIn.delete('processor')
+      hIn.delete('reference')
+      hIn.delete('stepSource')
+      hIn.delete('stepProduct')
+      hIn.delete('scope')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata[:stepId]
-        assert_nil metadata[:rationale]
-        assert_empty metadata[:timePeriod]
-        assert_empty metadata[:processors]
-        assert_empty metadata[:references]
-        assert_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata[:stepId]
+      assert_nil metadata[:rationale]
+      assert_empty metadata[:timePeriod]
+      assert_empty metadata[:processors]
+      assert_empty metadata[:references]
+      assert_empty metadata[:stepSources]
+      assert_empty metadata[:stepProducts]
+      assert_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_processStep_object
+   def test_empty_processStep_object
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
 end

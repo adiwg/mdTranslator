@@ -8,6 +8,7 @@ require 'minitest/autorun'
 require 'rubygems'
 require 'nokogiri'
 require 'adiwg/mdtranslator'
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 
 class TestReaderFGDCParent < MiniTest::Test
@@ -39,6 +40,12 @@ class TestReaderFGDCParent < MiniTest::Test
          # create new internal metadata container for the reader
          intMetadataClass = InternalMetadata.new
          intObj = intMetadataClass.newBase
+         hMetadata = intMetadataClass.newMetadata
+         hMetadataInfo = intMetadataClass.newMetadataInfo
+         hResourceInfo = intMetadataClass.newResourceInfo
+         hMetadata[:metadataInfo] = hMetadataInfo
+         hMetadata[:resourceInfo] = hResourceInfo
+         intObj[:metadata] = hMetadata
       end
       ADIWG::Mdtranslator::Readers::Fgdc::Fgdc.set_intObj(intObj)
    end

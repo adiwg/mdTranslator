@@ -33,6 +33,28 @@
                "title": "title"
             }
          ],
+         "stepSource": [
+            {
+               "description": "step source 1 description",
+               "sourceCitation": {
+                  "title": "title"
+               }
+            },
+            {
+               "description": "step source  2 description"
+            }
+         ],
+         "stepProduct": [
+            {
+               "description": "step product 1 description",
+               "sourceCitation": {
+                  "title": "title"
+               }
+            },
+            {
+               "description": "process product 2 description"
+            }
+         ],
          "scope": {
             "scopeCode": "scopeCode"
          }

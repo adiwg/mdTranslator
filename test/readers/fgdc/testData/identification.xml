@@ -1,0 +1,209 @@
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>David Ward</origin>
+        <origin>Dennis Walworth</origin>
+        <pubdate>20170615</pubdate>
+        <pubtime>16:08</pubtime>
+        <title>Black Brant Banding</title>
+        <edition>2.1</edition>
+        <geoform>tabular digital data</geoform>
+        <serinfo>
+          <sername>Eastern Denali Fault Map</sername>
+          <issue>1</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Anchorage, AK</pubplace>
+          <publish>U.S. Geological Survey, Alaska Science Center</publish>
+        </pubinfo>
+        <othercit>Ward D. H., 2017, Black Brant Banding and Recovery Encounter Histories, Alaska, 1990-2016: U.S. Geological Survey data release, https://doi.org/10.5066/F76971SZ</othercit>
+        <onlink>https://doi.org/10.5066/F76971SZ</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Adrian M Bender (ORCID: 0000-0001-7469-1957)</origin>
+            <pubdate>2015</pubdate>
+            <title>Pacific Black Brant Ecology</title>
+            <geoform>website</geoform>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>U.S. Geological Survey, Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=76</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>my abstract</abstract>
+      <purpose>my purpose</purpose>
+      <supplinf>my supplemental information</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>19900701</begdate>
+          <begtime>12:30:00</begtime>
+          <enddate>2016</enddate>
+          <endtime>17:30:00</endtime>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-166.81640625</westbc>
+        <eastbc>-74.00390625</eastbc>
+        <northbc>71.6912927186</northbc>
+        <southbc>24.0464639997</southbc>
+      </bounding>
+      <dsgpoly>
+        <dsgpolyo>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>2.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>9.0</grnglat>
+            <grnglon>25.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>10.0</grnglat>
+            <grnglon>6.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>1.0</grnglat>
+            <grnglon>1.0</grnglon>
+          </grngpoin>
+        </dsgpolyo>
+        <dsgpolyx>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>7.0</grnglat>
+            <grnglon>14.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>13.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>8.0</grnglat>
+            <grnglon>7.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>6.0</grnglat>
+            <grnglon>10.0</grnglon>
+          </grngpoin>
+        </dsgpolyx>
+        <dsgpolyx>
+          <gring>12.0 3.0, 18.0 4.0, 19.0 5.0, 12.0 5.0, 12.0 3.0</gring>
+        </dsgpolyx>
+      </dsgpoly>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115</themekt>
+        <themekey>Biota</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA GCMD Earth Science Keywords Thesaurus</themekt>
+        <themekey>Earth Science</themekey>
+        <themekey>Biological Classification</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Geographic Names Information System</placekt>
+        <placekey>Alaska</placekey>
+        <placekey>Colville River Delta</placekey>
+      </place>
+      <stratum>
+        <stratkt>Integumentary System</stratkt>
+        <stratkey>stratum corneum</stratkey>
+        <stratkey>stratum lucidum</stratkey>
+      </stratum>
+      <temporal>
+        <tempkt>Gregorian Calendar</tempkt>
+        <tempkey>year</tempkey>
+      </temporal>
+    </keywords>
+    <accconst>my access constraint</accconst>
+    <useconst>my use constraint</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Dennis Walworth</cntper>
+          <cntorg>USGS</cntorg>
+        </cntperp>
+        <cntpos>Data Manager</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>mail address line 1</address>
+          <address>mail address line 2</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99503</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>physical location 1</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99503</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>907-555-1212</cntvoice>
+        <cntvoice>907-555-2323</cntvoice>
+        <cnttdd>907-555-3434</cnttdd>
+        <cnttdd>907-555-4545</cnttdd>
+        <cntfax>907-555-5656</cntfax>
+        <cntfax>907-555-6767</cntfax>
+        <cntemail>name1@myorg.org</cntemail>
+        <cntemail>name2@myorg.org</cntemail>
+        <hours>my hours of service</hours>
+        <cntinst>my contact instructions</cntinst>
+      </cntinfo>
+    </ptcontac>
+    <browse>
+      <browsen>my browse file name</browsen>
+      <browsed>my browse file description</browsed>
+      <browset>my browse file type</browset>
+    </browse>
+    <datacred>my dataset credits</datacred>
+    <secinfo>
+      <secsys>my security system name</secsys>
+      <secclass>Secret</secclass>
+      <sechandl>my security handling instructions</sechandl>
+    </secinfo>
+    <native>my native dataset environment</native>
+    <crossref>
+      <citeinfo>
+        <origin>Alan G. Leach</origin>
+        <origin>David H. Ward</origin>
+        <pubdate>201706</pubdate>
+        <title>Survival and harvest rates of black brant</title>
+        <geoform>journal article</geoform>
+        <serinfo>
+          <sername>Journal of Wildlife Management</sername>
+          <issue>Volume 81, Issue 5</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Online</pubplace>
+          <publish>Wiley Online Library</publish>
+        </pubinfo>
+        <othercit>Alan G. Leach, David H. Ward ...</othercit>
+        <onlink>http://onlinelibrary.wiley.com/doi/10.1002/jwmg.21284/full</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+</metadata>
