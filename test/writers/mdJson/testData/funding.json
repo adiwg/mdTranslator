@@ -56,8 +56,14 @@
       },
       "funding": [
          {
+            "description": "funding description",
+            "timePeriod": {
+               "startDateTime": "2016-10-14T11:10:15-10:00",
+               "endDateTime": "2017-12-31"
+            },
             "allocation": [
                {
+                  "sourceAllocationId": "allocationId",
                   "amount": 9.9,
                   "currency": "currency",
                   "matching": true
@@ -67,11 +73,7 @@
                   "currency": "currency",
                   "matching": false
                }
-            ],
-            "timePeriod": {
-               "startDateTime": "2016-10-14T11:10:15-10:00",
-               "endDateTime": "2017-12-31"
-            }
+            ]
          }
       ]
    }

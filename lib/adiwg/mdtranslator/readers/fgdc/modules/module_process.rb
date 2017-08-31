@@ -56,7 +56,7 @@ module ADIWG
 
                   end
 
-                  a=1
+                  return hProcess
 
                end
 

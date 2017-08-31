@@ -1,6 +1,11 @@
 {
    "funding": [
       {
+         "description": "description of funding package",
+         "timePeriod": {
+            "startDateTime": "2016-10-14T11:10:15.2-10:00",
+            "endDateTime": "2016-12-31"
+         },
          "allocation": [
             {
                "amount": 9.9,
@@ -10,11 +15,7 @@
                "amount": 9.9,
                "currency": "currency"
             }
-         ],
-         "timePeriod": {
-            "startDateTime": "2016-10-14T11:10:15.2-10:00",
-            "endDateTime": "2016-12-31"
-         }
+         ]
       }
    ]
 }

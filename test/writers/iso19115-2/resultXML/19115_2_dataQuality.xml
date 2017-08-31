@@ -36,6 +36,7 @@
               <gmd:rationale/>
               <gmd:dateTime/>
               <gmd:processor/>
+              <gmd:source/>
             </gmd:LI_ProcessStep>
           </gmd:processStep>
           <gmd:processStep>
@@ -46,6 +47,7 @@
               <gmd:rationale/>
               <gmd:dateTime/>
               <gmd:processor/>
+              <gmd:source/>
             </gmd:LI_ProcessStep>
           </gmd:processStep>
           <gmd:source>

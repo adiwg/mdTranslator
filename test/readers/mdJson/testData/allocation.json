@@ -1,11 +1,22 @@
 {
    "allocation": [
       {
+         "sourceAllocationId": "allocationId",
          "amount": 9.9,
          "currency": "currency",
          "sourceId": "sourceId",
          "recipientId": "recipientId",
          "matching": true,
+         "onlineResource": [
+            {
+               "uri": "http://ISO.uri/adiwg/1",
+               "description": "allocation online resource 1"
+            },
+            {
+               "uri": "http://ISO.uri/adiwg/2",
+               "description": "allocation online resource 2"
+            }
+         ],
          "comment": "comment"
       }
    ]

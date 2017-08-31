@@ -2,6 +2,7 @@
 # process step
 
 # History:
+#  Stan Smith 2017-08-30 added support for process step sources
 #  Stan Smith 2017-04-03 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-27 original script
@@ -10,6 +11,7 @@ require_relative 'html_temporalExtent'
 require_relative 'html_responsibility'
 require_relative 'html_citation'
 require_relative 'html_scope'
+require_relative 'html_source'
 
 module ADIWG
    module Mdtranslator
@@ -29,6 +31,7 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   citationClass = Html_Citation.new(@html)
                   scopeClass = Html_Scope.new(@html)
+                  sourceClass = Html_Source.new(@html)
 
                   # process step - id
                   unless hStep[:stepId].nil?
@@ -71,6 +74,40 @@ module ADIWG
                                  @html.summary(hCitation[:title], {'class' => 'h5'})
                                  @html.section(:class => 'block') do
                                     citationClass.writeHtml(hCitation)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # process step - step sources [] {source}
+                  unless hStep[:stepSources].empty?
+                     @html.details do
+                        @html.summary('Step Source Datasets', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hStep[:stepSources].each do |hSource|
+                              @html.details do
+                                 @html.summary('Data Source', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    sourceClass.writeHtml(hSource)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # process step - step products [] {source}
+                  unless hStep[:stepProducts].empty?
+                     @html.details do
+                        @html.summary('Step Product Datasets', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           hStep[:stepProducts].each do |hSource|
+                              @html.details do
+                                 @html.summary('Data Product', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    sourceClass.writeHtml(hSource)
                                  end
                               end
                            end

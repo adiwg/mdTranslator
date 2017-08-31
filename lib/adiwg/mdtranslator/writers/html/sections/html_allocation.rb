@@ -2,7 +2,10 @@
 # allocation
 
 # History:
+#  Stan Smith 2017-08-31 refactored for mdJson 2.3 schema update
 #  Stan Smith 2017-04-04 original script
+
+require_relative 'html_onlineResource'
 
 module ADIWG
    module Mdtranslator
@@ -16,6 +19,16 @@ module ADIWG
                end
 
                def writeHtml(hAllocation)
+
+                  # classes used
+                  onlineClass = Html_OnlineResource.new(@html)
+
+                  # allocation - id
+                  unless hAllocation[:id].nil?
+                     @html.em('Source Allocation ID: ')
+                     @html.text!(hAllocation[:id])
+                     @html.br
+                  end
 
                   # allocation - amount
                   unless hAllocation[:amount].nil?
@@ -52,6 +65,16 @@ module ADIWG
                      @html.em('Matching Funds Provided: ')
                      @html.text!(hAllocation[:matching].to_s)
                      @html.br
+                  end
+
+                  # allocation - online resource []
+                  hAllocation[:onlineResources].each do |hOnline|
+                     @html.details do
+                        @html.summary('Online Resource', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           onlineClass.writeHtml(hOnline)
+                        end
+                     end
                   end
 
                   # allocation - comment

@@ -1,114 +1,132 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "resourceLineage": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
       {
-        "statement": "statement0",
-        "resourceScope": {
-          "scopeCode": "scopeCode0"
-        },
-        "lineageCitation": [],
-        "source": [],
-        "processStep": [
-          {
-            "stepId": "stepId0",
-            "description": "description0",
-            "rationale": "rationale0",
-            "timePeriod": {
-              "startDateTime": "2016-10-15"
-            },
-            "processor": [
-              {
-                "role": "role00",
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              },
-              {
-                "role": "role01",
-                "party": [
-                  {
-                    "contactId": "CID001"
-                  }
-                ]
-              }
-            ],
-            "reference": [
-              {
-                "title": "title00"
-              },
-              {
-                "title": "title01"
-              }
-            ],
-            "scope": {
-              "scopeCode": "scopeCode"
-            }
-          },
-          {
-            "stepId": "",
-            "description": "description1",
-            "rationale": "",
-            "processor": [],
-            "reference": []
-          },
-          {
-            "description": "description2"
-          }
-        ]
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
       }
-    ]
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceLineage": [
+         {
+            "statement": "statement0",
+            "resourceScope": {
+               "scopeCode": "scopeCode0"
+            },
+            "lineageCitation": [],
+            "source": [],
+            "processStep": [
+               {
+                  "stepId": "stepId0",
+                  "description": "description0",
+                  "rationale": "rationale0",
+                  "timePeriod": {
+                     "startDateTime": "2016-10-15"
+                  },
+                  "processor": [
+                     {
+                        "role": "role00",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     },
+                     {
+                        "role": "role01",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  ],
+                  "reference": [
+                     {
+                        "title": "title00"
+                     },
+                     {
+                        "title": "title01"
+                     }
+                  ],
+                  "stepSource": [
+                     {
+                        "description": "step source 1 description",
+                        "sourceCitation": {
+                           "title": "title"
+                        }
+                     },
+                     {
+                        "description": "step source  2 description"
+                     }
+                  ],
+                  "stepProduct": [
+                     {
+                        "description": "process product 2 description"
+                     }
+                  ],
+                  "scope": {
+                     "scopeCode": "scopeCode"
+                  }
+               },
+               {
+                  "stepId": "",
+                  "description": "description1",
+                  "rationale": "",
+                  "processor": [],
+                  "reference": []
+               },
+               {
+                  "description": "description2"
+               }
+            ]
+         }
+      ]
+   }
 }

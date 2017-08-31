@@ -2615,6 +2615,28 @@
                         "title": "Another Process Step Reference"
                      }
                   ],
+                  "stepSource": [
+                     {
+                        "description": "My step source description",
+                        "sourceCitation": {
+                           "title": "title"
+                        }
+                     },
+                     {
+                        "description": "My other step source description"
+                     }
+                  ],
+                  "stepProduct": [
+                     {
+                        "description": "My step intermediate product description",
+                        "sourceCitation": {
+                           "title": "title"
+                        }
+                     },
+                     {
+                        "description": "My other step intermediate product description"
+                     }
+                  ],
                   "scope": {
                      "scopeCode": "scopeCode"
                   }
@@ -2806,16 +2828,27 @@
       ],
       "funding": [
          {
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
             "allocation": [
                {
+                  "sourceAllocationID": "A999999X1",
                   "amount": 9999.99,
                   "currency": "USD",
                   "sourceId": "CID005",
                   "recipientId": "CID006",
                   "matching": true,
+                  "onlineResource": [
+                     {
+                        "uri": "http://ISO.uri/adiwg/8"
+                     },
+                     {
+                        "uri": "http://ISO.uri/adiwg/9"
+                     }
+                  ],
                   "comment": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                },
                {
+                  "sourceAllocationID": "A999999X2",
                   "amount": 999.99,
                   "currency": "CAD"
                }

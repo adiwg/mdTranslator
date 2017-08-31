@@ -453,11 +453,22 @@
       </srcinfo>
       <procstep>
         <procdesc>Data on bandings and encounters were converted</procdesc>
-        <srcused></srcused>
+        <srcused>ADIwg</srcused>
+        <srcused>USGS BBL</srcused>
         <procdate>Unknown</procdate>
-        <proctime></proctime>
-        <srcprod></srcprod>
-        <proccont></proccont>
+        <proctime>Unknown</proctime>
+        <srcprod>Intermediate 1</srcprod>
+        <srcprod>Intermediate 2</srcprod>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Rose Cunningham</cntper>
+              <cntorg>USGS</cntorg>
+            </cntperp>
+            <cntpos>Data Manager</cntpos>
+            <cntemail>name3@myorg.org</cntemail>
+          </cntinfo>
+        </proccont>
       </procstep>
       <procstep>
         <procdesc>We removed brant banded in the Arctic</procdesc>

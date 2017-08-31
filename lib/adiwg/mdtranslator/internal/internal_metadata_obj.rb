@@ -662,6 +662,8 @@ class InternalMetadata
          timePeriod: {},
          processors: [],
          references: [],
+         stepSources: [],
+         stepProducts: [],
          scope: {}
       }
    end
@@ -953,19 +955,22 @@ class InternalMetadata
 
    def newAllocation
       {
+         id: nil,
          amount: nil,
          currency: nil,
          sourceId: nil,
          recipientId: nil,
          matching: false,
+         onlineResources: [],
          comment: nil
       }
    end
 
    def newFunding
       {
-         allocations: [],
-         timePeriod: {}
+         description: nil,
+         timePeriod: {},
+         allocations: []
       }
    end
 
