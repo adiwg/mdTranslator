@@ -60,7 +60,7 @@ module ADIWG
                   # metadata (spdoinfo 3) - spatial data organization
                   xSpatialOrg = xMetadata.xpath('./spdoinfo')
                   unless xSpatialOrg.empty?
-                     SpatialOrganization.unpack(xSpatialOrg, hResponseObj)
+                     SpatialOrganization.unpack(xSpatialOrg, hResourceInfo, hResponseObj)
                   end
 
                   # metadata (spref 4) - spatial reference

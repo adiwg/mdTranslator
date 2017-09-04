@@ -1,0 +1,12 @@
+<metadata>
+  <spdoinfo>
+    <indspref>indirect reference</indspref>
+    <direct>Raster</direct>
+    <rastinfo>
+      <rasttype>Pixel</rasttype>
+      <rowcount>999</rowcount>
+      <colcount>99</colcount>
+      <vrtcount>9</vrtcount>
+    </rastinfo>
+  </spdoinfo>
+</metadata>

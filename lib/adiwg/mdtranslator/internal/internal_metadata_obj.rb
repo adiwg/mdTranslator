@@ -436,29 +436,6 @@ class InternalMetadata
       }
    end
 
-   def newSpatialReferenceSystem
-      {
-         systemType: nil,
-         systemIdentifier: {}
-      }
-   end
-
-   def newSpatialResolution
-      {
-         scaleFactor: nil,
-         measure: {},
-         levelOfDetail: nil
-      }
-   end
-
-   def newMeasure
-      {
-         type: nil,
-         value: nil,
-         unitOfMeasure: nil
-      }
-   end
-
    def newExtent
       {
          description: nil,
@@ -790,6 +767,29 @@ class InternalMetadata
          fkLocalAttributes: [],
          fkReferencedEntity: nil,
          fkReferencedAttributes: []
+      }
+   end
+
+   def newSpatialReferenceSystem
+      {
+         systemType: nil,
+         systemIdentifier: {}
+      }
+   end
+
+   def newSpatialResolution
+      {
+         scaleFactor: nil,
+         measure: {},
+         levelOfDetail: nil
+      }
+   end
+
+   def newMeasure
+      {
+         type: nil,
+         value: nil,
+         unitOfMeasure: nil
       }
    end
 
