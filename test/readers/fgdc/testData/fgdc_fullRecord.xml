@@ -520,181 +520,94 @@
   <eainfo>
     <detailed>
       <enttyp>
-        <enttypl>Brownie Capture History</enttypl>
-        <enttypd>Brownie dead recovery model (Brownie et al. 1985) implemented with RMark (Laake 2013) to estimate band recovery rates. The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
-        <enttypds>Brownie, C., Anderson, D. R., Burnham, K. P., and Robson, D. S. (1985). Statistical inference from band recovery data: A handbook, 2nd edition. Resource Publication 156. U.S. Fish and Wildlife Service, Washington , D.C. 
-
-Laake, J. L. 2013. RMark: An R interface for analysis of capture-recapture data with MARK.  in  Alaska Fisheries Science Center Report 2013-01. NOAA, National Marine Fisheries Service, Seattle, WA.</enttypds>
+        <enttypl>entity 1 label</enttypl>
+        <enttypd>entity 1 definition</enttypd>
+        <enttypds>entity 1 definition source</enttypds>
       </enttyp>
       <attr>
-        <attrlabl>LD code</attrlabl>
-        <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter).</attrdef>
-        <attrdefs>Author defined.</attrdefs>
+        <attrlabl>attribute 1 label</attrlabl>
+        <attrdef>attribute 1 definition</attrdef>
+        <attrdefs>attribute 1 definition source</attrdefs>
         <attrdomv>
           <edom>
-            <edomv>1</edomv>
-            <edomvd>If in the L or first column of a year, a number 1 represents the initial banding and release of a bird.</edomvd>
-            <edomvds>Author defined.</edomvds>
+            <edomv>attribute 1 enumerated domain value 1</edomv>
+            <edomvd>attribute 1 enumerated domain value 1 definition</edomvd>
+            <edomvds>attribute 1 enumerated domain value 1 definition source</edomvds>
           </edom>
         </attrdomv>
         <attrdomv>
           <edom>
-            <edomv>0</edomv>
-            <edomvd>In the first or L column of a year, a 0 means not banded during this year.  A 0 in the second or D column means not encountered during subsequent banding efforts or hunting seasons.</edomvd>
-            <edomvds>Author defined.</edomvds>
+            <edomv>attribute 1 enumerated domain value 2</edomv>
+            <edomvd>attribute 1 enumerated domain value 2 definition</edomvd>
+            <edomvds>attribute 1 enumerated domain value 2 definition source</edomvds>
           </edom>
+        </attrdomv>
+        <begdatea>20020501</begdatea>
+        <enddatea>20020831</enddatea>
+        <begdatea>20040501</begdatea>
+        <enddatea>20040831</enddatea>
+        <attrvai>
+          <attrva>9.9</attrva>
+          <attrvae>attribute value accuracy explanation</attrvae>
+        </attrvai>
+        <attrmfrq>attribute measurement frequency</attrmfrq>
+      </attr>
+      <attr>
+        <attrlabl>attribute 2 label</attrlabl>
+        <attrdef>attribute 2 definition</attrdef>
+        <attrdefs>attribute 2 definition source</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>9</rdommax>
+            <attrunit>units</attrunit>
+            <attrmres>1</attrmres>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>A</rdommin>
+            <rdommax>F</rdommax>
+            <attrunit>grade</attrunit>
+            <attrmres>each letter</attrmres>
+          </rdom>
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>SEX</attrlabl>
-        <attrdef>Sex of the sampled bird as determined by cloacal exam; M = Male, F = Female.</attrdef>
-        <attrdefs>Hochbaum HA. Sex and age determination of waterfowl by cloacal examination. Trans N A Wildlife Conf. 1942;7:299-307. Carney SM. Species, age and sex identification of ducks using wing plumage. Washington DC: US Fish and Wildlife Service; 1992.</attrdefs>
+        <attrlabl>attribute 3 label</attrlabl>
+        <attrdef>attribute 3 definition</attrdef>
+        <attrdefs>attribute 3 definition source</attrdefs>
         <attrdomv>
-          <edom>
-            <edomv>F</edomv>
-            <edomvd>Female</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>M</edomv>
-            <edomvd>Male</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
+          <codesetd>
+            <codesetn>codeset name</codesetn>
+            <codesets>codeset source</codesets>
+          </codesetd>
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>BANDAGE_BR</attrlabl>
-        <attrdef>Represents the age for the Brownie (BR) Capture History Table at which an individual was banded: "S" = second-year; "A" = after second-year.  Birds were aged as juvenile (hatching year), second-year, or after second-year using plumage characteristics (Bellrose 1980, Owen 1980)</attrdef>
-        <attrdefs>Bellrose, F. C. 1980. Ducks, geese and swans of North America. Third edition. Stackpole, Harrisburg, Pennsylvania, USA.
-Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
+        <attrlabl>attribute 4 label</attrlabl>
+        <attrdef>attribute 4 definition</attrdef>
+        <attrdefs>attribute 4 definition source</attrdefs>
         <attrdomv>
-          <edom>
-            <edomv>A</edomv>
-            <edomvd>After second year</edomvd>
-            <edomvds>Author defined</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>S</edomv>
-            <edomvd>Second year</edomvd>
-            <edomvds>Author defined</edomvds>
-          </edom>
-        </attrdomv>
-      </attr>
-      <attr>
-        <attrlabl>LOC</attrlabl>
-        <attrdef>Location where an individual was initially banded with a uniquely numbered metal leg band.</attrdef>
-        <attrdefs>Author defined.</attrdefs>
-        <attrdomv>
-          <edom>
-            <edomv>A</edomv>
-            <edomvd>Arctic.</edomvd>
-            <edomvds>Arctic banding locations included Prudhoe Bay and the Colville River Delta on the north slope of Alaska and the Anderson River delta, Banks Island, and Melville Island in the eastern high Arctic of Canada.</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>T</edomv>
-            <edomvd>Tutakoke.  Tutakoke represents the Tutakoke River Brant colony on the Yukon-Kuskokwim Delta of southwestern, Alaska, USA.</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
+          <udom>unrepresented domain domain</udom>
         </attrdomv>
       </attr>
     </detailed>
     <detailed>
       <enttyp>
-        <enttypl>Joint Live Dead Capture History</enttypl>
-        <enttypd>Joint live and dead encounter history file(or Barker) module as formatted for Program Mark with the primary goal of estimating survival and Seber band reporting rates of juvenile and adult brant (Barker 1997). The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
-        <enttypds>Barker, R. J. 1997. Joint modeling of live-recapture, tag-resight, and tag-recovery data. Biometrics 53:666-677.</enttypds>
+        <enttypl>entity 2 label</enttypl>
+        <enttypd>entity 2 definition</enttypd>
       </enttyp>
-      <attr>
-        <attrlabl>LD code</attrlabl>
-        <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release or live encounter through recapture or resighting) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter or resighted live).</attrdef>
-        <attrdefs>Author defined.</attrdefs>
-        <attrdomv>
-          <edom>
-            <edomv>1</edomv>
-            <edomvd>If in the L or first column of a year, a number 1 represents the initial banding and release of a bird.</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>0</edomv>
-            <edomvd>In the first or L column of a year, a 0 means not banded during this year.  A 0 in the second or D column means not encountered during subsequent banding efforts or hunting seasons.</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-      </attr>
-      <attr>
-        <attrlabl>SEX</attrlabl>
-        <attrdef>Sex of the sampled bird as determined by cloacal exam; M = Male, F = Female.</attrdef>
-        <attrdefs>Hochbaum HA. Sex and age determination of waterfowl by cloacal examination. Trans N A Wildlife Conf. 1942;7:299-307. Carney SM. Species, age and sex identification of ducks using wing plumage. Washington DC: US Fish and Wildlife Service; 1992.</attrdefs>
-        <attrdomv>
-          <edom>
-            <edomv>F</edomv>
-            <edomvd>Female</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>M</edomv>
-            <edomvd>Male</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-      </attr>
-      <attr>
-        <attrlabl>BANDAGE_JLD</attrlabl>
-        <attrdef>Represents the age for the Brownie (BR) Capture History Table at which an individual was banded: "L" = local; "S" = second-year; "A" = after second-year.</attrdef>
-        <attrdefs>Bellrose, F. C. 1980. Ducks, geese and swans of North America. Third edition. Stackpole, Harrisburg, Pennsylvania, USA.
-Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
-        <attrdomv>
-          <edom>
-            <edomv>A</edomv>
-            <edomvd>After second year</edomvd>
-            <edomvds>Author defined</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>S</edomv>
-            <edomvd>Second year</edomvd>
-            <edomvds>Author defined</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>L</edomv>
-            <edomvd>Local</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-      </attr>
-      <attr>
-        <attrlabl>LOC</attrlabl>
-        <attrdef>Location where an individual was initially banded with a uniquely numbered metal leg band.</attrdef>
-        <attrdefs>Author defined.</attrdefs>
-        <attrdomv>
-          <edom>
-            <edomv>A</edomv>
-            <edomvd>Arctic.</edomvd>
-            <edomvds>Arctic banding locations included Prudhoe Bay and the Colville River Delta on the north slope of Alaska and the Anderson River delta, Banks Island, and Melville Island in the eastern high Arctic of Canada.</edomvds>
-          </edom>
-        </attrdomv>
-        <attrdomv>
-          <edom>
-            <edomv>T</edomv>
-            <edomvd>Tutakoke.  Tutakoke represents the Tutakoke River Brant colony on the Yukon-Kuskokwim Delta in southwestern, Alaska, USA.</edomvd>
-            <edomvds>Author defined.</edomvds>
-          </edom>
-        </attrdomv>
-      </attr>
     </detailed>
+    <overview>
+      <eaover>entity and attribute overview 1</eaover>
+      <eadetcit>entity and attribute 1 detail citation 1</eadetcit>
+      <eadetcit>entity and attribute 1 detail citation 2</eadetcit>
+    </overview>
+    <overview>
+      <eaover>another entity and attribute overview 2</eaover>
+      <eadetcit>another entity and attribute 2 detail citation 1</eadetcit>
+    </overview>
   </eainfo>
   <distinfo>
     <distrib>
