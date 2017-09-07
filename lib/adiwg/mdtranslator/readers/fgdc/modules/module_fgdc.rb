@@ -64,15 +64,18 @@ module ADIWG
                   end
 
                   # metadata (spref 4) - spatial reference
-                  xSpatialRef = xMetadata.xpath('./spref')
-                  unless xSpatialRef.empty?
-                     SpatialReference.unpack(xSpatialRef, hResponseObj)
-                  end
+                  # xSpatialRef = xMetadata.xpath('./spref')
+                  # unless xSpatialRef.empty?
+                  #    SpatialReference.unpack(xSpatialRef, hResponseObj)
+                  # end
 
                   # metadata (eainfo 5) - entity and attribute
                   xEntity = xMetadata.xpath('./eainfo')
                   unless xEntity.empty?
-                     EntityAttribute.unpack(xEntity, hResponseObj)
+                     hDictionary = EntityAttribute.unpack(xEntity, hResponseObj)
+                     unless hDictionary.nil?
+                        @intObj[:dataDictionaries] << hDictionary
+                     end
                   end
 
                   # metadata (distinfo 6) - distribution information

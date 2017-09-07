@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<metadata>
+  <eainfo>
+    <detailed>
+      <enttype>
+        <enttypl>entity 1 label</enttypl>
+        <enttypd>entity 1 definition</enttypd>
+        <enttypds>entity 1 definition source</enttypds>
+      </enttype>
+      <attr>
+        <attrlabl>attribute 1 label</attrlabl>
+        <attrdef>attribute 1 definition</attrdef>
+        <attrdefs>attribute 1 definition source</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>attribute 1 enumerated domain value 1</edomv>
+            <edomvd>attribute 1 enumerated domain value 1 definition</edomvd>
+            <edomvds>attribute 1 enumerated domain value 1 definition source</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>attribute 1 enumerated domain value 2</edomv>
+            <edomvd>attribute 1 enumerated domain value 2 definition</edomvd>
+            <edomvds>attribute 1 enumerated domain value 2 definition source</edomvds>
+          </edom>
+        </attrdomv>
+        <begdatea>20020501</begdatea>
+        <enddatea>20020831</enddatea>
+        <begdatea>20040501</begdatea>
+        <enddatea>20040831</enddatea>
+        <attrvai>
+          <attrva>9.9</attrva>
+          <attrvae>attribute value accuracy explanation</attrvae>
+        </attrvai>
+        <attrmfrq>attribute measurement frequency</attrmfrq>
+      </attr>
+      <attr>
+        <attrlabl>attribute 2 label</attrlabl>
+        <attrdef>attribute 2 definition</attrdef>
+        <attrdefs>attribute 2 definition source</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>9</rdommax>
+            <attrunit>units</attrunit>
+            <attrmres>1</attrmres>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>A</rdommin>
+            <rdommax>F</rdommax>
+            <attrunit>grade</attrunit>
+            <attrmres>each letter</attrmres>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 3 label</attrlabl>
+        <attrdef>attribute 3 definition</attrdef>
+        <attrdefs>attribute 3 definition source</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>codeset name</codesetn>
+            <codesets>codeset source</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 4 label</attrlabl>
+        <attrdef>attribute 4 definition</attrdef>
+        <attrdefs>attribute 4 definition source</attrdefs>
+        <attrdomv>
+          <udom>unrepresented domain domain</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttype>
+        <enttypl>entity 2 label</enttypl>
+        <enttypd>entity 2 definition</enttypd>
+      </enttype>
+    </detailed>
+    <overview>
+      <eaover>entity and attribute overview 1</eaover>
+      <eadetcit>entity and attribute 1 detail citation 1</eadetcit>
+      <eadetcit>entity and attribute 1 detail citation 2</eadetcit>
+    </overview>
+    <overview>
+      <eaover>another entity and attribute overview 2</eaover>
+      <eadetcit>another entity and attribute 2 detail citation 1</eadetcit>
+    </overview>
+  </eainfo>
+</metadata>
