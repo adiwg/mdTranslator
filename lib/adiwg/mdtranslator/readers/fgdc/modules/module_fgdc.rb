@@ -78,10 +78,15 @@ module ADIWG
                      end
                   end
 
-                  # metadata (distinfo 6) - distribution information
-                  xDistribution = xMetadata.xpath('./distinfo')
-                  unless xDistribution.empty?
-                     Distribution.unpack(xDistribution, hResponseObj)
+                  # metadata (distinfo 6) - distribution information []
+                  axDistribution = xMetadata.xpath('./distinfo')
+                  unless axDistribution.empty?
+                     axDistribution.each do |xDistribution|
+                        hDistribution = Distribution.unpack(xDistribution, hResourceInfo, hResponseObj)
+                        unless hDistribution.nil?
+                           hMetadata[:distributorInfo] << hDistribution
+                        end
+                     end
                   end
 
                   # metadata (metainfo 7) - metadata reference (required)

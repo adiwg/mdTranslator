@@ -613,7 +613,7 @@
     <distrib>
       <cntinfo>
         <cntorgp>
-          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+          <cntorg>distributor 1r</cntorg>
         </cntorgp>
         <cntaddr>
           <addrtype>mailing and physical</addrtype>
@@ -627,29 +627,114 @@
         <cntemail>ascweb@usgs.gov</cntemail>
       </cntinfo>
     </distrib>
-    <resdesc>Authoritative reource for the data.</resdesc>
-    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <resdesc>distribution resource description</resdesc>
+    <distliab>distributor liability statement</distliab>
     <stdorder>
+      <nondig>option for obtaining non-digital data 1</nondig>
       <digform>
         <digtinfo>
           <formname>Zip</formname>
           <formvern>19.0</formvern>
-          <formcont>Zip file containing the data in TXT file format and FGDC metadata in XML and HTML formats.</formcont>
-          <filedec>Winzip legacy compression applied.</filedec>
+          <formverd>20170907</formverd>
+          <formspec>format specification</formspec>
+          <formcont>format information content</formcont>
+          <filedec>Winzip legacy compression</filedec>
+          <transize>999</transize>
         </digtinfo>
         <digtopt>
           <onlinopt>
             <computer>
               <networka>
-                <networkr>https://doi.org/10.5066/F76971SZ</networkr>
+                <networkr>https://doi.org/10.5066/1</networkr>
+                <networkr>https://doi.org/10.5066/2</networkr>
+              </networka>
+            </computer>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/3</networkr>
+              </networka>
+            </computer>
+            <accinstr>online access instructions</accinstr>
+            <oncomp>online computer and OS</oncomp>
+          </onlinopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/4</networkr>
+                <networkr>https://doi.org/10.5066/5</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+          <offoptn>
+            <offmedia>media 1</offmedia>
+            <reccap>
+              <recden>25</recden>
+              <recden>50</recden>
+              <recden>100</recden>
+              <recdenu>GB</recdenu>
+            </reccap>
+            <recfmt>media format 1</recfmt>
+            <recfmt>media format 2</recfmt>
+            <compat>medium compatibility information</compat>
+          </offoptn>
+          <offoptn>
+            <offmedia>media 2</offmedia>
+            <recfmt>media format 3</recfmt>
+          </offoptn>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>Zip7</formname>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/6</networkr>
               </networka>
             </computer>
           </onlinopt>
         </digtopt>
       </digform>
       <fees>None</fees>
+      <ordering>ordering instructions</ordering>
+      <turnarnd>typical turnaround time</turnarnd>
     </stdorder>
-    <techpreq>This data is formatted for use within the program MARK application or with the R extension of program Mark, RMark. See Analytical Tools for tool access information.</techpreq>
+    <stdorder>
+      <nondig>option for obtaining non-digital data 2</nondig>
+      <fees>999.99</fees>
+    </stdorder>
+    <custom>distributor custom order process</custom>
+    <techpreq>distribution technical prerequisite</techpreq>
+    <availabl>
+      <timeinfo>
+        <sngdate>
+          <caldate>20170820</caldate>
+          <time>13:30:00</time>
+        </sngdate>
+      </timeinfo>
+    </availabl>
+  </distinfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>distributor 2</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>distributor liability statement 2</distliab>
   </distinfo>
   <metainfo>
     <metd>20161215</metd>

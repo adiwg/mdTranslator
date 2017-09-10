@@ -131,7 +131,7 @@ module ADIWG
                      hResourceInfo[:constraints] << hConstraint
                   end
 
-                  # identification information 1.9 (ptcontac) - point of contact
+                  # identification information 1.9 (ptcontac) - point of contact {contact}
                   xContact = xIdInfo.xpath('./ptcontac')
                   unless xContact.empty?
                      hResponsibility = Contact.unpack(xContact, hResponseObj)
