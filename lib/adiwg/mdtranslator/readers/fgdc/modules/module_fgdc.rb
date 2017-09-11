@@ -34,9 +34,7 @@ module ADIWG
 
                   # build basic mdTranslator internal object
                   hMetadata = intMetadataClass.newMetadata
-                  hMetadataInfo = intMetadataClass.newMetadataInfo
                   hResourceInfo = intMetadataClass.newResourceInfo
-                  hMetadata[:metadataInfo] = hMetadataInfo
                   hMetadata[:resourceInfo] = hResourceInfo
                   intObj[:metadata] = hMetadata
 
@@ -92,7 +90,10 @@ module ADIWG
                   # metadata (metainfo 7) - metadata reference (required)
                   xMetaInfo = xMetadata.xpath('./metainfo')
                   unless xMetaInfo.empty?
-                     MetadataInformation.unpack(xMetaInfo, hResponseObj)
+                     hMetadataInfo = MetadataInformation.unpack(xMetaInfo, hResourceInfo, hResponseObj)
+                     unless hMetadataInfo.nil?
+                        hMetadata[:metadataInfo] = hMetadataInfo
+                     end
                   end
                   if xMetaInfo.empty?
                      hResponseObj[:readerExecutionMessages] << 'FGDC is missing metadata information section (metainfo)'

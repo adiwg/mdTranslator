@@ -519,11 +519,11 @@
   </spref>
   <eainfo>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>entity 1 label</enttypl>
         <enttypd>entity 1 definition</enttypd>
         <enttypds>entity 1 definition source</enttypds>
-      </enttyp>
+      </enttype>
       <attr>
         <attrlabl>attribute 1 label</attrlabl>
         <attrdef>attribute 1 definition</attrdef>
@@ -594,10 +594,10 @@
       </attr>
     </detailed>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>entity 2 label</enttypl>
         <enttypd>entity 2 definition</enttypd>
-      </enttyp>
+      </enttype>
     </detailed>
     <overview>
       <eaover>entity and attribute overview 1</eaover>
@@ -739,6 +739,7 @@
   <metainfo>
     <metd>20161215</metd>
     <metrd>20170228</metrd>
+    <metfrd>20200701</metfrd>
     <metc>
       <cntinfo>
         <cntorgp>
@@ -758,11 +759,13 @@
     </metc>
     <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
     <metstdv>FGDC-STD-001.1-1999</metstdv>
+    <mettc>universal time</mettc>
+    <metac>access restriction</metac>
+    <metuc>use restriction</metuc>
     <metsi>
-      <metscs>None</metscs>
-      <metsc>Unclassified</metsc>
-      <metshd>None</metshd>
+      <metscs>security classification system</metscs>
+      <metsc>security classification</metsc>
+      <metshd>handling instructions</metshd>
     </metsi>
-    <mettc>local time</mettc>
   </metainfo>
 </metadata>

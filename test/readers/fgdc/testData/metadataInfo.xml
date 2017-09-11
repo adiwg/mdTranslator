@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<metadata>
+  <metainfo>
+    <metd>20161215</metd>
+    <metrd>20170228</metrd>
+    <metfrd>20200701</metfrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Drive</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>907-786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+    <mettc>universal time</mettc>
+    <metac>access restriction</metac>
+    <metuc>use restriction</metuc>
+    <metsi>
+      <metscs>security classification system</metscs>
+      <metsc>security classification</metsc>
+      <metshd>handling instructions</metshd>
+    </metsi>
+  </metainfo>
+</metadata>
