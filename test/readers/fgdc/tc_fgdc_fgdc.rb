@@ -19,7 +19,8 @@ class TestReaderFgdcFgdc < TestReaderFGDCParent
       intObj = @@NameSpace.unpack(@@xDoc, @@hResponseObj)
 
       refute_empty intObj
-      assert_empty intObj[:schema]
+      refute_empty intObj[:schema]
+      assert_equal 'fgdc', intObj[:schema][:name]
       assert_equal 18, intObj[:contacts].length
       refute_empty intObj[:metadata]
       assert_equal 1, intObj[:dataDictionaries].length

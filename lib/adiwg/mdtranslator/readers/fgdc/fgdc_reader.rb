@@ -4,6 +4,7 @@
 #  Stan Smith 2017-08-10 original script
 
 require 'nokogiri'
+require_relative 'version'
 require_relative 'modules/module_fgdc'
 
 module ADIWG

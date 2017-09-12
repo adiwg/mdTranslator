@@ -7,6 +7,7 @@
 require 'nokogiri'
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../version'
 require_relative 'module_identification'
 require_relative 'module_quality'
 require_relative 'module_spatialOrganization'
@@ -39,6 +40,12 @@ module ADIWG
                   intObj[:metadata] = hMetadata
 
                   xMetadata = xDoc.xpath('./metadata')
+
+                  # schema
+                  hSchema = intMetadataClass.newSchema
+                  hSchema[:name] = 'fgdc'
+                  hSchema[:version] = ADIWG::Mdtranslator::Readers::Fgdc::VERSION
+                  @intObj[:schema] = hSchema
 
                   # metadata (idinfo 1) - identification information (required)
                   xIdInfo = xMetadata.xpath('./idinfo')
