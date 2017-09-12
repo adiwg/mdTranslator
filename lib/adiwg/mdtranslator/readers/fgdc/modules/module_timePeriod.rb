@@ -54,7 +54,26 @@ module ADIWG
                      end
 
                      # time period 9.2 (mdattim) - multiple date times
-                     # placed in temporal extent
+                     # take first date
+                     xMulti = xTimeInfo.xpath('./mdattim')
+                     unless xMulti.empty?
+                        axSingle = xMulti.xpath('./sngdate')
+
+                        # use first occurrence of the multiple date times
+                        unless axSingle.empty?
+                           xSingle = axSingle[0]
+                           date = xSingle.xpath('./caldate').text
+                           time = xSingle.xpath('./time').text
+                           hDateTime = DateTime.unpack(date, time, hResponseObj)
+                           unless hDateTime.nil?
+                              hTimePeriod[:startDateTime] = hDateTime
+                           end
+                           hTimePeriod[:description] = current
+
+                           return hTimePeriod
+
+                        end
+                     end
 
                      # time period 9.3 (rngdates) - range of dates
                      xRange = xTimeInfo.xpath('./rngdates')

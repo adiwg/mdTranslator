@@ -16,9 +16,23 @@ class TestReaderFgdcFgdc < TestReaderFGDCParent
 
    def test_metadata_complete
 
-      hMetadata = @@NameSpace.unpack(@@xDoc, @@hResponseObj)
+      intObj = @@NameSpace.unpack(@@xDoc, @@hResponseObj)
 
-      assert 1==1
+      refute_empty intObj
+      refute_empty intObj[:schema]
+      assert_equal 'fgdc', intObj[:schema][:name]
+      assert_equal 18, intObj[:contacts].length
+      refute_empty intObj[:metadata]
+      assert_equal 1, intObj[:dataDictionaries].length
+      assert_empty intObj[:metadataRepositories]
+
+      hMetadata = intObj[:metadata]
+      refute_empty hMetadata[:metadataInfo]
+      refute_empty hMetadata[:resourceInfo]
+      assert_equal 1, hMetadata[:lineageInfo].length
+      assert_equal 2, hMetadata[:distributorInfo].length
+      assert_equal 2, hMetadata[:associatedResources].length
+      assert_empty hMetadata[:additionalDocuments]
 
    end
 

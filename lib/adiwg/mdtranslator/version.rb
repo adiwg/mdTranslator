@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.3.0 2017-09-11 add fgdc 1998 CSDGM reader
 # 2.2.0 2017-08-31 refactor for schema changes to Lineage and Funding
 # 2.1.2 2017-08-24 remove schema version from sbJson
 # 2.1.0 2017-08-10 revisions to sbJson reader
@@ -24,7 +25,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.2.0"
+      VERSION = "2.3.0"
    end
 end
 

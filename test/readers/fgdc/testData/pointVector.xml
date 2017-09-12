@@ -1,0 +1,27 @@
+<metadata>
+  <spdoinfo>
+    <indspref>indirect reference</indspref>
+    <direct>Point</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>Circular arc, three point center</sdtstype>
+        <ptvctcnt>9</ptvctcnt>
+      </sdtsterm>
+      <sdtsterm>
+        <sdtstype>G-polygon</sdtstype>
+        <ptvctcnt>99</ptvctcnt>
+      </sdtsterm>
+      <vpfterm>
+        <vpflevel>2</vpflevel>
+        <vpfinfo>
+          <vpftype>Node</vpftype>
+          <ptvctcnt>999</ptvctcnt>
+        </vpfinfo>
+        <vpfinfo>
+          <vpftype>Edge</vpftype>
+          <ptvctcnt>9999</ptvctcnt>
+        </vpfinfo>
+      </vpfterm>
+    </ptvctinf>
+  </spdoinfo>
+</metadata>

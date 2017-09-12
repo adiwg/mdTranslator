@@ -22,7 +22,6 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage')
-
       hLineage = @@NameSpace.unpack(xIn, hResourceInfo,@@hResponseObj)
 
       refute_nil hLineage

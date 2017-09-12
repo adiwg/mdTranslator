@@ -7,6 +7,7 @@
 require 'nokogiri'
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../version'
 require_relative 'module_identification'
 require_relative 'module_quality'
 require_relative 'module_spatialOrganization'
@@ -34,13 +35,17 @@ module ADIWG
 
                   # build basic mdTranslator internal object
                   hMetadata = intMetadataClass.newMetadata
-                  hMetadataInfo = intMetadataClass.newMetadataInfo
                   hResourceInfo = intMetadataClass.newResourceInfo
-                  hMetadata[:metadataInfo] = hMetadataInfo
                   hMetadata[:resourceInfo] = hResourceInfo
                   intObj[:metadata] = hMetadata
 
                   xMetadata = xDoc.xpath('./metadata')
+
+                  # schema
+                  hSchema = intMetadataClass.newSchema
+                  hSchema[:name] = 'fgdc'
+                  hSchema[:version] = ADIWG::Mdtranslator::Readers::Fgdc::VERSION
+                  @intObj[:schema] = hSchema
 
                   # metadata (idinfo 1) - identification information (required)
                   xIdInfo = xMetadata.xpath('./idinfo')
@@ -60,31 +65,42 @@ module ADIWG
                   # metadata (spdoinfo 3) - spatial data organization
                   xSpatialOrg = xMetadata.xpath('./spdoinfo')
                   unless xSpatialOrg.empty?
-                     SpatialOrganization.unpack(xSpatialOrg, hResponseObj)
+                     SpatialOrganization.unpack(xSpatialOrg, hResourceInfo, hResponseObj)
                   end
 
                   # metadata (spref 4) - spatial reference
-                  xSpatialRef = xMetadata.xpath('./spref')
-                  unless xSpatialRef.empty?
-                     SpatialReference.unpack(xSpatialRef, hResponseObj)
-                  end
+                  # xSpatialRef = xMetadata.xpath('./spref')
+                  # unless xSpatialRef.empty?
+                  #    SpatialReference.unpack(xSpatialRef, hResponseObj)
+                  # end
 
                   # metadata (eainfo 5) - entity and attribute
                   xEntity = xMetadata.xpath('./eainfo')
                   unless xEntity.empty?
-                     EntityAttribute.unpack(xEntity, hResponseObj)
+                     hDictionary = EntityAttribute.unpack(xEntity, hResponseObj)
+                     unless hDictionary.nil?
+                        @intObj[:dataDictionaries] << hDictionary
+                     end
                   end
 
-                  # metadata (distinfo 6) - distribution information
-                  xDistribution = xMetadata.xpath('./distinfo')
-                  unless xDistribution.empty?
-                     Distribution.unpack(xDistribution, hResponseObj)
+                  # metadata (distinfo 6) - distribution information []
+                  axDistribution = xMetadata.xpath('./distinfo')
+                  unless axDistribution.empty?
+                     axDistribution.each do |xDistribution|
+                        hDistribution = Distribution.unpack(xDistribution, hResourceInfo, hResponseObj)
+                        unless hDistribution.nil?
+                           hMetadata[:distributorInfo] << hDistribution
+                        end
+                     end
                   end
 
                   # metadata (metainfo 7) - metadata reference (required)
                   xMetaInfo = xMetadata.xpath('./metainfo')
                   unless xMetaInfo.empty?
-                     MetadataInformation.unpack(xMetaInfo, hResponseObj)
+                     hMetadataInfo = MetadataInformation.unpack(xMetaInfo, hResourceInfo, hResponseObj)
+                     unless hMetadataInfo.nil?
+                        hMetadata[:metadataInfo] = hMetadataInfo
+                     end
                   end
                   if xMetaInfo.empty?
                      hResponseObj[:readerExecutionMessages] << 'FGDC is missing metadata information section (metainfo)'
