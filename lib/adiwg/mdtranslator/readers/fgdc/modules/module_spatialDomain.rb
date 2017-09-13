@@ -61,6 +61,7 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hExtent = intMetadataClass.newExtent
                   hGeoExtent = intMetadataClass.newGeographicExtent
+                  hExtent[:geographicExtents] << hGeoExtent
 
                   # spatial domain 1.5.1 (bounding) - bounding box
                   xBbox = xDomain.xpath('./bounding')
@@ -127,27 +128,27 @@ module ADIWG
 
                         # make geoJson FeatureCollection from polygon
                         hGeometry = {
-                           type: 'Polygon',
-                           coordinates: polygon
+                           'type' => 'Polygon',
+                           'coordinates' => polygon
                         }
                         hFeature = {
-                           type: 'Feature',
-                           geometry: hGeometry,
-                           properties: {
-                              description: 'FGDC bounding polygon'
+                           'type' => 'Feature',
+                           'geometry' => hGeometry,
+                           'properties' => {
+                              'description' => 'FGDC bounding polygon'
                            }
                         }
                         hCollection = {
-                           type: 'FeatureCollection',
-                           features: [hFeature]
+                           'type' => 'FeatureCollection',
+                           'features' => [hFeature]
                         }
-                        geoJson = hCollection.to_json
+                        geoJson = hCollection
 
                         # make internal geometries from polygon
                         hIntGeo = intMetadataClass.newGeometryObject
                         hIntGeo[:type] = 'Polygon'
                         hIntGeo[:coordinates] = polygon
-                        hIntGeo[:nativeGeoJson] = hGeometry.to_json
+                        hIntGeo[:nativeGeoJson] = hGeometry
 
                         hIntProps = intMetadataClass.newGeometryProperties
                         hIntProps[:description] = 'FGDC bounding polygon'
@@ -155,18 +156,17 @@ module ADIWG
                         hIntFeature = intMetadataClass.newGeometryFeature
                         hIntFeature[:type] = 'Feature'
                         hIntFeature[:geometryObject] = hIntGeo
-                        hIntFeature[:nativeGeoJson] = hFeature.to_json
+                        hIntFeature[:nativeGeoJson] = hFeature
                         hIntFeature[:properties] = hIntProps
 
                         hIntCollect = intMetadataClass.newFeatureCollection
                         hIntCollect[:type] = 'FeatureCollection'
                         hIntCollect[:features] << hIntFeature
-                        hIntCollect[:nativeGeoJson] = hCollection.to_json
+                        hIntCollect[:nativeGeoJson] = hCollection
 
                         hGeoExtent[:geographicElements] << hIntCollect
-                        hGeoExtent[:nativeGeoJson] = geoJson
+                        hGeoExtent[:nativeGeoJson] << geoJson
 
-                        hExtent[:geographicExtents] << hGeoExtent
                         hExtent[:description] = 'FGDC spatial domain'
 
                      end
