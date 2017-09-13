@@ -2,7 +2,8 @@
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-06-21 original script
+#  Stan Smith 2017-09-13 remove fail restriction on contactType
+#  Stan Smith 2016-06-21 original script
 
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
