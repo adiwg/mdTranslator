@@ -77,7 +77,6 @@ module ADIWG
                         end
                         if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
                            hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
-                           hResponseObj[:readerExecutionPass] = false
                            return nil
                         end
 
