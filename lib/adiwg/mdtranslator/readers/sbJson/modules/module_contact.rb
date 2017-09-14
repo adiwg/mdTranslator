@@ -66,19 +66,21 @@ module ADIWG
 
                         hContact[:contactId] = UUIDTools::UUID.random_create.to_s
 
-                        # contact - contactType (required) [ person | organization ]
+                        # contact - contactType [ person | organization ]
                         if hSbContact.has_key?('contactType')
-                           if %w(person organization).include?(hSbContact['contactType'])
+                           if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
+                              hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
+                              hContact[:isOrganization] = false
+                           elsif %w(person organization).include?(hSbContact['contactType'])
                               hContact[:isOrganization] = true if hSbContact['contactType'] == 'organization'
                            else
                               hResponseObj[:readerExecutionMessages] << 'Contact contactType must be person or organization'
                               hResponseObj[:readerExecutionPass] = false
                               return nil
                            end
-                        end
-                        if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
+                        else
                            hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
-                           return nil
+                           hContact[:isOrganization] = false
                         end
 
                         # contact - name (required)

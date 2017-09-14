@@ -101,72 +101,39 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
       # test response object
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      refute_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_contact_empty_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['contacts'].delete_at(1)
-      hIn0 = hIn['contacts'][0]
-      hIn0['oldPartyId'] = ''
-      hIn0['sourceId'] = ''
-      hIn0['organizationsPerson'] = ''
-      hIn0['ttyPhone'] = ''
-      hIn0['officePhone'] = ''
-      hIn0['faxPhone'] = ''
-      hIn0['hours'] = ''
-      hIn0['instructions'] = ''
-      hIn0['email'] = ''
-      hIn0['active'] = ''
-      hIn0['jobTitle'] = ''
-      hIn0['personalTitle'] = ''
-      hIn0['firstName'] = ''
-      hIn0['middleName'] = ''
-      hIn0['lastName'] = ''
-      hIn0['note'] = ''
-      hIn0['aliases'] = []
-      hIn0['fbmsCodes'] = []
-      hIn0['logoUrl'] = ''
-      hIn0['smallLogoUrl'] = ''
-      hIn0['organization'] = {}
-      hIn0['primaryLocation'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
-
-      # test array
-      assert_equal 1, metadata.length
-
-      # test person contact
-      hContact = metadata[0]
-      refute_nil hContact[:contactId]
-      refute hContact[:isOrganization]
-      assert_equal 'Robert N Prescott', hContact[:name]
-      assert_equal 'Distributor', hContact[:contactType]
-
-      # empty elements
-      assert_nil hContact[:positionName]
-      assert_empty hContact[:memberOfOrgs]
-      assert_empty hContact[:logos]
-      assert_empty hContact[:phones]
-      assert_empty hContact[:addresses]
-      assert_empty hContact[:eMailList]
-      assert_empty hContact[:onlineResources]
-      assert_empty hContact[:hoursOfService]
-      assert_nil hContact[:contactInstructions]
-
-      assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_contact_missing_elements
-
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hContact = hIn['contacts'][0]
+      hContact['contactType'] = ''
+      hContact['oldPartyId'] = ''
+      hContact['sourceId'] = ''
+      hContact['organizationsPerson'] = ''
+      hContact['ttyPhone'] = ''
+      hContact['officePhone'] = ''
+      hContact['faxPhone'] = ''
+      hContact['hours'] = ''
+      hContact['instructions'] = ''
+      hContact['email'] = ''
+      hContact['active'] = ''
+      hContact['jobTitle'] = ''
+      hContact['personalTitle'] = ''
+      hContact['firstName'] = ''
+      hContact['middleName'] = ''
+      hContact['lastName'] = ''
+      hContact['note'] = ''
+      hContact['aliases'] = []
+      hContact['fbmsCodes'] = []
+      hContact['logoUrl'] = ''
+      hContact['smallLogoUrl'] = ''
+      hContact['organization'] = {}
+      hContact['primaryLocation'] = {}
 
       metadata = @@NameSpace.unpack(hIn, [], hResponse)
 
@@ -192,16 +159,50 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       assert_nil hContact[:contactInstructions]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_contact_missing_elements
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['contacts'].delete_at(0)
+
+      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+
+      # test array
+      assert_equal 1, metadata.length
+
+      # test person contact
+      hContact = metadata[0]
+      refute_nil hContact[:contactId]
+      refute hContact[:isOrganization]
+      assert_equal 'Jordan S Read', hContact[:name]
+      assert_equal 'Metadata Contact', hContact[:contactType]
+
+      # empty elements
+      assert_nil hContact[:positionName]
+      assert_empty hContact[:memberOfOrgs]
+      assert_empty hContact[:logos]
+      assert_empty hContact[:phones]
+      assert_empty hContact[:addresses]
+      assert_empty hContact[:eMailList]
+      assert_empty hContact[:onlineResources]
+      assert_empty hContact[:hoursOfService]
+      assert_nil hContact[:contactInstructions]
+
+      assert hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_contact_name_empty
 
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0]['name'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, [], hResponse)
 
@@ -214,42 +215,10 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_name_missing
 
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0].delete('name')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
-
-      # test array
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_contact_contactType_empty
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['contacts'].delete_at(0)
-      hIn['contacts'][0]['contactType'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
-
-      # test array
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_contact_contactType_missing
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['contacts'].delete_at(0)
-      hIn['contacts'][0].delete('contactType')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, [], hResponse)
 
@@ -262,42 +231,10 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_contactType_invalid
 
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0]['contactType'] = 'badName'
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
-
-      # test array
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_contact_type_empty
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['contacts'].delete_at(0)
-      hIn['contacts'][0]['type'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
-
-      # test array
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_contact_type_missing
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['contacts'].delete_at(0)
-      hIn['contacts'][0].delete('type')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
 
       metadata = @@NameSpace.unpack(hIn, [], hResponse)
 
