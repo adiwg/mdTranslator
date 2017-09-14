@@ -33,12 +33,12 @@ class TestReaderSbJsonRelatedItem < TestReaderSbJsonParent
 
       hCitation = hResource[:resourceCitation]
       assert 'Assessing the Vulnerability of Vegetation to Future Climate in the North Central U.S.', hCitation[:title]
-      assert_equal 4, hCitation[:identifiers].length
+      assert_equal 1, hCitation[:identifiers].length
 
       hIdentifier = hCitation[:identifiers][0]
-      assert_equal '58483232e4b06d80b7af6c6b', hIdentifier[:identifier]
+      assert_equal '504a01afe4b02b6b9f7bd940', hIdentifier[:identifier]
       assert_equal 'gov.sciencebase.catalog', hIdentifier[:namespace]
-      assert_equal 'id', hIdentifier[:description]
+      assert_equal 'relatedItemId', hIdentifier[:description]
 
    end
 

@@ -2,7 +2,7 @@
 # reader / sbJson / module_extent
 
 # History:
-#   Stan Smith 2017-06-28 original script
+#  Stan Smith 2017-06-28 original script
 
 require_relative 'sbjson_test_parent'
 require 'adiwg/mdtranslator/readers/sbJson/modules/module_extent'

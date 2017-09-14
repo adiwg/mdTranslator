@@ -2,7 +2,8 @@
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-08-03 original script
+#  Stan Smith 2017-09-14 remove all identifiers except relatedItemId
+#  Stan Smith 2017-08-03 original script
 
 require 'json'
 require 'open-uri'
@@ -121,35 +122,13 @@ module ADIWG
                               end
                               hCitation[:title] = citationTitle
 
-                              # create an identifier for each related item id
-                              if hItem.has_key?('id')
-                                 hIdentifier = intMetadataClass.newIdentifier
-                                 hIdentifier[:identifier] = hItem['id']
-                                 hIdentifier[:namespace] = 'gov.sciencebase.catalog'
-                                 hIdentifier[:description] = 'id'
-                                 hCitation[:identifiers] << hIdentifier
-                              end
-                              if hItem.has_key?('itemId')
-                                 hIdentifier = intMetadataClass.newIdentifier
-                                 hIdentifier[:identifier] = hItem['itemId']
-                                 hIdentifier[:namespace] = 'gov.sciencebase.catalog'
-                                 hIdentifier[:description] = 'itemId'
-                                 hCitation[:identifiers] << hIdentifier
-                              end
-                              if hItem.has_key?('relatedItemId')
-                                 hIdentifier = intMetadataClass.newIdentifier
-                                 hIdentifier[:identifier] = hItem['relatedItemId']
-                                 hIdentifier[:namespace] = 'gov.sciencebase.catalog'
-                                 hIdentifier[:description] = 'relatedItemId'
-                                 hCitation[:identifiers] << hIdentifier
-                              end
-                              if hItem.has_key?('itemLinkTypeId')
-                                 hIdentifier = intMetadataClass.newIdentifier
-                                 hIdentifier[:identifier] = hItem['itemLinkTypeId']
-                                 hIdentifier[:namespace] = 'gov.sciencebase.catalog'
-                                 hIdentifier[:description] = 'itemLinkTypeId'
-                                 hCitation[:identifiers] << hIdentifier
-                              end
+                              # create an identifier for the related item
+                              # use resourceId computed above
+                              hIdentifier = intMetadataClass.newIdentifier
+                              hIdentifier[:identifier] = resourceId
+                              hIdentifier[:namespace] = 'gov.sciencebase.catalog'
+                              hIdentifier[:description] = 'relatedItemId'
+                              hCitation[:identifiers] << hIdentifier
 
                               hResource[:resourceCitation] = hCitation
                               hMetadata[:associatedResources] << hResource
