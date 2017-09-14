@@ -151,15 +151,26 @@ module ADIWG
                   {sb: 'Proposed', adiwg: 'proposed'}
                ]
 
-               @association_sb2adiwg = [
-                  {sb: 'alternate', adiwg: 'alternate', reverse: 'alternate'},
-                  {sb: 'constituentOf', adiwg: 'isComposedOf', reverse: 'constituent'},
-                  {sb: 'copiedFrom', adiwg: nil, reverse: 'copiedInto'},
-                  {sb: 'derivativeOf', adiwg: 'derivativeProduct', reverse: 'derived'},
-                  {sb: 'precededBy', adiwg: nil, reverse: 'succeededBy'},
-                  {sb: 'productOf', adiwg: 'parentProject', reverse: 'produced'},
-                  {sb: 'related', adiwg: 'crossReference', reverse: 'related'},
-                  {sb: 'subprojectOf', adiwg: 'subProject', reverse: 'mainprojectOf'}
+               @association_sb2adiwg_forward = [
+                  {sb: 'alternate', adiwg: 'alternate'},
+                  {sb: 'constituentOf', adiwg: 'isComposedOf'},
+                  {sb: 'copiedFrom', adiwg: 'copiedFrom'},
+                  {sb: 'derivativeOf', adiwg: 'derivativeProduct'},
+                  {sb: 'precededBy', adiwg: 'precededBy'},
+                  {sb: 'productOf', adiwg: 'product'},
+                  {sb: 'related', adiwg: 'crossReference'},
+                  {sb: 'subprojectOf', adiwg: 'subProject'}
+               ]
+
+               @association_sb2adiwg_reverse = [
+                  {sb: 'alternate', adiwg: 'alternate'},
+                  {sb: 'constituent', adiwg: 'isComposedOf'},
+                  {sb: 'copiedInto', adiwg: 'copiedFrom'},
+                  {sb: 'derived', adiwg: 'derivativeProduct'},
+                  {sb: 'succeededBy', adiwg: 'precededBy'},
+                  {sb: 'produced', adiwg: 'product'},
+                  {sb: 'related', adiwg: 'crossReference'},
+                  {sb: 'mainprojectOf', adiwg: 'subProject'}
                ]
 
                # translate iso/adiwg code to sb

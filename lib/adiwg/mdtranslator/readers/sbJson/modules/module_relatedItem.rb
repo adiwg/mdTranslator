@@ -111,6 +111,27 @@ module ADIWG
                               # add resource types
                               BrowseCategory.unpack(hRelatedItem, hResource[:resourceTypes], hResponseObj)
 
+                              # add association type
+                              if hItem.has_key?('type')
+                                 sbAssocType = hItem['type']
+                                 unless sbAssocType.nil? || sbAssocType == ''
+                                    assocType = nil
+                                    if forward
+                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_forward', sbAssocType)
+                                    else
+                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_reverse', sbAssocType)
+                                    end
+                                    if assocType.nil?
+                                       hResource[:associationType] = sbAssocType
+                                    else
+                                       hResource[:associationType] = assocType
+                                    end
+                                 end
+                              end
+                              if hResource[:associationType].nil?
+                                 hResource[:associationType] = 'missing'
+                              end
+
                               # fill in associated resource citation
                               hCitation = intMetadataClass.newCitation
                               citationTitle = nil
