@@ -48,7 +48,11 @@ module ADIWG
                   unless hAllocation[:sourceId].nil?
                      hContact = Html_Document.getContact(hAllocation[:sourceId])
                      @html.em('Source Contact: ')
-                     @html.a(hContact[:contactId], 'href' => '#CID_'+hContact[:contactId])
+                     if hContact.empty?
+                        @html.text!("Contact #{hAllocation[:sourceId]} not found!")
+                     else
+                        @html.a(hContact[:contactId], 'href' => '#CID_'+hContact[:contactId])
+                     end
                      @html.br
                   end
 
@@ -56,7 +60,11 @@ module ADIWG
                   unless hAllocation[:recipientId].nil?
                      hContact = Html_Document.getContact(hAllocation[:recipientId])
                      @html.em('Recipient Contact: ')
-                     @html.a(hContact[:contactId], 'href' => '#CID_'+hContact[:contactId])
+                     if hContact.empty?
+                        @html.text!("Contact #{hAllocation[:recipientId]} not found!")
+                     else
+                        @html.a(hContact[:contactId], 'href' => '#CID_'+hContact[:contactId])
+                     end
                      @html.br
                   end
 

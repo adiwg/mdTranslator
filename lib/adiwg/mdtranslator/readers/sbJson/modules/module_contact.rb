@@ -2,7 +2,8 @@
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-06-21 original script
+#  Stan Smith 2017-09-13 remove fail restriction on contactType
+#  Stan Smith 2016-06-21 original script
 
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
@@ -65,20 +66,21 @@ module ADIWG
 
                         hContact[:contactId] = UUIDTools::UUID.random_create.to_s
 
-                        # contact - contactType (required) [ person | organization ]
+                        # contact - contactType [ person | organization ]
                         if hSbContact.has_key?('contactType')
-                           if %w(person organization).include?(hSbContact['contactType'])
+                           if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
+                              hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
+                              hContact[:isOrganization] = false
+                           elsif %w(person organization).include?(hSbContact['contactType'])
                               hContact[:isOrganization] = true if hSbContact['contactType'] == 'organization'
                            else
                               hResponseObj[:readerExecutionMessages] << 'Contact contactType must be person or organization'
                               hResponseObj[:readerExecutionPass] = false
                               return nil
                            end
-                        end
-                        if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
+                        else
                            hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
-                           hResponseObj[:readerExecutionPass] = false
-                           return nil
+                           hContact[:isOrganization] = false
                         end
 
                         # contact - name (required)

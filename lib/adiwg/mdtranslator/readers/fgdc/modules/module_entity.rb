@@ -22,7 +22,11 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
 
                   # entity attribute 5.1.1 (enttype) - definition and description set
+                  # also search for (enttyp); Metavist and USGS fgdc validator use 'enttyp'
                   xEntity = xDetail.xpath('./enttype')
+                  if xEntity.empty?
+                     xEntity = xDetail.xpath('./enttyp')
+                  end
                   unless xEntity.empty?
 
                      hEntity = intMetadataClass.newEntity
