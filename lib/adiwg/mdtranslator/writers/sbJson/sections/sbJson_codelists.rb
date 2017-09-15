@@ -172,11 +172,11 @@ module ADIWG
                   {adiwg: 'subProject', sb: 'subprojectOf'},
                   {adiwg: 'supplementalResource', sb: nil},
 
-                  {adiwg: 'mainprojectOf', sb: 'subprojectOf', deprecated: true},
+                  {adiwg: 'mainProjectOf', sb: 'subprojectOf', deprecated: true},
                   {adiwg: 'produced', sb: 'productOf', deprecated: true},
                   {adiwg: 'productOf', sb: 'productOf', deprecated: true},
                   {adiwg: 'projectProduct', sb: 'productOf', deprecated: true},
-                  {adiwg: 'subprojectOf', sb: 'subprojectOf', deprecated: true}
+                  {adiwg: 'subProjectOf', sb: 'subprojectOf', deprecated: true}
                ]
 
                # translate iso/adiwg code to sb

@@ -5,6 +5,7 @@
 #   Stan Smith 2017-06-21 original script
 
 require_relative 'sbjson_test_parent'
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/sbJson/modules/module_contact'
 
 class TestReaderSbJsonContact < TestReaderSbJsonParent
@@ -14,10 +15,14 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_complete_contact
 
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
+
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      aContacts = []
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, aContacts, hCitation, hResponse)
 
       # test array
       assert_equal 3, metadata.length
@@ -99,6 +104,29 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       assert hContact[:isOrganization]
       assert_equal 'Fort Collins Science Center', hContact[:name]
 
+      # check citation
+      assert_equal 2, hCitation[:responsibleParties].length
+
+      # check responsibility
+      hResParty0 = hCitation[:responsibleParties][0]
+      assert_equal 'distributor', hResParty0[:roleName]
+      assert_empty hResParty0[:roleExtents]
+      assert_equal 1, hResParty0[:parties].length
+
+      hResParty1 = hCitation[:responsibleParties][1]
+      assert_equal 'Metadata Contact', hResParty1[:roleName]
+
+      # check party
+      hParty0 = hResParty0[:parties][0]
+      assert_equal hParty0[:contactId], aContacts[0][:contactId]
+      assert_equal 0, hParty0[:contactIndex]
+      assert_equal 'individual', hParty0[:contactType]
+      assert_empty hParty0[:organizationMembers]
+
+      hParty1 = hResParty1[:parties][0]
+      assert_equal hParty1[:contactId], aContacts[2][:contactId]
+      assert_equal 2, hParty1[:contactIndex]
+
       # test response object
       assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
@@ -106,6 +134,9 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
    end
 
    def test_contact_empty_elements
+
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -135,7 +166,7 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       hContact['organization'] = {}
       hContact['primaryLocation'] = {}
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
       assert_equal 1, metadata.length
@@ -165,11 +196,14 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_missing_elements
 
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
+
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
       assert_equal 1, metadata.length
@@ -199,12 +233,15 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_name_empty
 
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
+
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0]['name'] = ''
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
       assert_nil metadata
@@ -215,12 +252,15 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_name_missing
 
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
+
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0].delete('name')
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
       assert_nil metadata
@@ -231,12 +271,15 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
    def test_contact_contactType_invalid
 
+      intMetadataClass = InternalMetadata.new
+      hCitation = intMetadataClass.newCitation
+
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contacts'].delete_at(0)
       hIn['contacts'][0]['contactType'] = 'badName'
 
-      metadata = @@NameSpace.unpack(hIn, [], hResponse)
+      metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
       assert_nil metadata
