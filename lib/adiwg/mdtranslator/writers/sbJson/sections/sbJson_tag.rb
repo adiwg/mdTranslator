@@ -61,16 +61,14 @@ module ADIWG
 
                   # tags from repositories
                   intObj[:metadataRepositories].each do |hRepo|
-                     if hRepo[:repository] == 'data.gov'
-                        unless hRepo[:citation].empty?
-                           tagName = nil
-                           tagName = hRepo[:citation][:title] unless hRepo[:citation][:title].nil?
-                           unless tagName.nil?
-                              hTag = {}
-                              hTag[:type] = 'Harvest Set'
-                              hTag[:name] = tagName
-                              aTags << hTag
-                           end
+                     unless hRepo[:citation].empty?
+                        tagName = nil
+                        tagName = hRepo[:citation][:title] unless hRepo[:citation][:title].nil?
+                        unless tagName.nil?
+                           hTag = {}
+                           hTag[:type] = 'Harvest Set'
+                           hTag[:name] = tagName + ' - ' + hRepo[:repository]
+                           aTags << hTag
                         end
                      end
                   end
