@@ -50,6 +50,7 @@ module ADIWG
                   hResourceInfo = intMetadataClass.newResourceInfo
                   hCitation = intMetadataClass.newCitation
                   hSchema = intMetadataClass.newSchema
+                  @contacts = intObj[:contacts]
 
                   # schema
                   hSchema[:name] = 'sbJson'
@@ -96,7 +97,7 @@ module ADIWG
                   hMetadataInfo[:parentMetadata] = hReturn unless hReturn.nil?
 
                   # contacts
-                  Contact.unpack(hSbJson, intObj[:contacts], hResponseObj)
+                  Contact.unpack(hSbJson, intObj[:contacts], hCitation, hResponseObj)
 
                   # web links
                   aReturn = WebLinkDocument.unpack(hSbJson, hResponseObj)
@@ -158,34 +159,9 @@ module ADIWG
                   hMetadata[:resourceInfo] = hResourceInfo
                   intObj[:schema] = hSchema
                   intObj[:metadata] = hMetadata
-                  @contacts = intObj[:contacts]
 
                   return intObj
 
-               end
-
-               # find the array pointer and type for a contact
-               def self.findContact(contactId)
-
-                  contactIndex = nil
-                  contactType = nil
-                  @contacts.each_with_index do |contact, i|
-                     if contact[:contactId] == contactId
-                        contactIndex = i
-                        if contact[:isOrganization]
-                           contactType = 'organization'
-                        else
-                           contactType = 'individual'
-                        end
-                     end
-                  end
-                  return contactIndex, contactType
-
-               end
-
-               # set contacts array for reader test modules
-               def self.setContacts(contacts)
-                  @contacts = contacts
                end
 
             end

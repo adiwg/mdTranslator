@@ -7,6 +7,7 @@
 
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_codelists'
 
 module ADIWG
    module Mdtranslator
@@ -53,7 +54,26 @@ module ADIWG
 
                end
 
-               def self.unpack(hSbJson, aContacts, hResponseObj)
+               # find the array pointer and type for a contact
+               def self.findContact(contactId, aContacts)
+
+                  contactIndex = nil
+                  contactType = nil
+                  aContacts.each_with_index do |contact, i|
+                     if contact[:contactId] == contactId
+                        contactIndex = i
+                        if contact[:isOrganization]
+                           contactType = 'organization'
+                        else
+                           contactType = 'individual'
+                        end
+                     end
+                  end
+                  return contactIndex, contactType
+
+               end
+
+               def self.unpack(hSbJson, aContacts, hCitation, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -233,6 +253,19 @@ module ADIWG
 
                         aContacts << hContact
                         aContacts << hContactOrg unless hContactOrg.empty?
+
+                        # add contact to resource citation
+                        hResponsibility = intMetadataClass.newResponsibility
+                        roleType = Codelists.codelist_sb2adiwg('role_sb2adiwg', hContact[:contactType])
+                        roleType = hContact[:contactType] if roleType.nil?
+                        hResponsibility[:roleName] = roleType
+                        hParty = intMetadataClass.newParty
+                        aReturn = findContact(hContact[:contactId], aContacts)
+                        hParty[:contactId] = hContact[:contactId]
+                        hParty[:contactIndex] = aReturn[0]
+                        hParty[:contactType] = aReturn[1]
+                        hResponsibility[:parties] << hParty
+                        hCitation[:responsibleParties] << hResponsibility
 
                      end
 

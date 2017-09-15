@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.3.2 2017-09-14 add contacts to resource citation
 # 2.3.1 2017-09-13 fixed fgdc reader: removed conversion of hash to json
 # 2.3.0 2017-09-11 add fgdc 1998 CSDGM reader
 # 2.2.0 2017-08-31 refactor for schema changes to Lineage and Funding
@@ -26,7 +27,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.1"
+      VERSION = "2.3.2"
    end
 end
 
