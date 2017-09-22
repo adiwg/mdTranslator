@@ -159,7 +159,7 @@
     </keywords>
     <taxonomy>
       <keywtax>
-        <taxonkt>None</taxonkt>
+        <taxonkt>taxonomy</taxonkt>
         <taxonkey>animals</taxonkey>
         <taxonkey>vertebrates</taxonkey>
         <taxonkey>bird</taxonkey>
@@ -182,6 +182,15 @@
           </classcit>
           <classmod>None</classmod>
         </classsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>Other Taxonomic System</origin>
+              <pubdate>Unknown</pubdate>
+              <title>Other Taxonomic System</title>
+            </citeinfo>
+          </classcit>
+        </classsys>
         <idref>
           <citeinfo>
             <origin>Sibley, David Allen</origin>
@@ -191,9 +200,86 @@
             <geoform>book</geoform>
           </citeinfo>
         </idref>
-        <taxonpro>Species were identified by skilled observers in the field based on general appearance of feathers and plumage, behavior, and vocalizations.</taxonpro>
-        <taxoncom>Taxonomy is complete for all samples.  No voucher specimens were collected.</taxoncom>
+        <idref>
+          <citeinfo>
+            <origin>Stan Smith</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Other taxonomic reference</title>
+          </citeinfo>
+        </idref>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>Dennis Walworth</cntper>
+              <cntorg>USGS</cntorg>
+            </cntperp>
+            <cntpos>Data Manager</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>mail address line 1</address>
+              <city>Anchorage</city>
+              <state>Alaska</state>
+              <postal>99503</postal>
+              <country>USA</country>
+            </cntaddr>
+            <cntvoice>907-555-1212</cntvoice>
+          </cntinfo>
+        </ider>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>Stan Smith</cntper>
+              <cntorg>ADIwg</cntorg>
+            </cntperp>
+            <cntaddr>
+              <addrtype>no address provided</addrtype>
+              <city>Anchorage</city>
+              <state>Alaska</state>
+              <postal>99515</postal>
+            </cntaddr>
+            <cntvoice>907-555-3434</cntvoice>
+          </cntinfo>
+        </ider>
+        <taxonpro>Species were identified by skilled observers.</taxonpro>
+        <taxoncom>Taxonomy is complete for all samples.</taxoncom>
+        <vouchers>
+          <specimen>specimen 1</specimen>
+          <reposit>
+            <cntinfo>
+              <cntperp>
+                <cntper>Stan Smith</cntper>
+                <cntorg>ADIwg</cntorg>
+              </cntperp>
+              <cntaddr>
+                <addrtype>no address provided</addrtype>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99515</postal>
+              </cntaddr>
+              <cntvoice>907-555-3434</cntvoice>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>specimen 2</specimen>
+          <reposit>
+            <cntinfo>
+              <cntperp>
+                <cntper>Stan Smith</cntper>
+                <cntorg>ADIwg</cntorg>
+              </cntperp>
+              <cntaddr>
+                <addrtype>no address provided</addrtype>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99515</postal>
+              </cntaddr>
+              <cntvoice>907-555-3434</cntvoice>
+            </cntinfo>
+          </reposit>
+        </vouchers>
       </taxonsys>
+      <taxongen>general taxonomic coverage</taxongen>
       <taxoncl>
         <taxonrn>Kingdom</taxonrn>
         <taxonrv>Animalia</taxonrv>
@@ -230,14 +316,7 @@
                       <taxoncl>
                         <taxonrn>Order</taxonrn>
                         <taxonrv>Anseriformes</taxonrv>
-                        <common>Ducks</common>
-                        <common>Geese</common>
-                        <common>Screamers</common>
-                        <common>Swans</common>
                         <common>Waterfowl</common>
-                        <common>canards</common>
-                        <common>cygnes</common>
-                        <common>oies</common>
                         <common>sauvagine</common>
                         <taxoncl>
                           <taxonrn>Family</taxonrn>
@@ -263,6 +342,14 @@
                                 <common>Ganso de collar</common>
                                 <common>Brant</common>
                                 <common>bernache cravant</common>
+                              </taxoncl>
+                            </taxoncl>
+                            <taxoncl>
+                              <taxonrn>Genus</taxonrn>
+                              <taxonrv>Anser</taxonrv>
+                              <taxoncl>
+                                <taxonrn>Species</taxonrn>
+                                <taxonrv>albifrons</taxonrv>
                               </taxoncl>
                             </taxoncl>
                           </taxoncl>

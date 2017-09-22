@@ -13,6 +13,7 @@ require_relative 'module_spatialDomain'
 require_relative 'module_keyword'
 require_relative 'module_contact'
 require_relative 'module_security'
+require_relative 'module_taxonomy'
 
 module ADIWG
    module Mdtranslator
@@ -114,6 +115,12 @@ module ADIWG
                   xKeywords = xIdInfo.xpath('./keywords')
                   unless xKeywords.empty?
                      Keyword.unpack(xKeywords, hResourceInfo, hResponseObj)
+                  end
+
+                  # identification information bio (taxonomy) - taxonomic information
+                  xTaxonomy = xIdInfo.xpath('./taxonomy')
+                  unless xTaxonomy.empty?
+                     Taxonomy.unpack(xTaxonomy, hResourceInfo, hResponseObj)
                   end
 
                   # identification information 1.7 (accconst) - access constraints

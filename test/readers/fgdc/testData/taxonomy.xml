@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>taxonomy</taxonkt>
+        <taxonkey>animals</taxonkey>
+        <taxonkey>vertebrates</taxonkey>
+        <taxonkey>bird</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>Integrated Taxonomic Information System</origin>
+              <pubdate>Unknown</pubdate>
+              <title>Integrated Taxonomic Information System</title>
+              <geoform>database</geoform>
+              <serinfo>
+                <sername>ITIS</sername>
+                <issue>TSN 39074</issue>
+              </serinfo>
+              <othercit>Retrieved December 14, 2016, from the Integrated Taxonomic Information System on-line database http://www.itis.gov</othercit>
+              <onlink>http://www.itis.gov/servlet/SingleRpt/SingleRpt?search_topic=TSN&amp;search_value=714723</onlink>
+            </citeinfo>
+          </classcit>
+          <classmod>none</classmod>
+        </classsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>Other Taxonomic System</origin>
+              <pubdate>Unknown</pubdate>
+              <title>Other Taxonomic System</title>
+            </citeinfo>
+          </classcit>
+        </classsys>
+        <idref>
+          <citeinfo>
+            <origin>Sibley, David Allen</origin>
+            <pubdate>200010</pubdate>
+            <title>National Audubon Society The Sibley Guide to Birds</title>
+            <edition>1st</edition>
+            <geoform>book</geoform>
+          </citeinfo>
+        </idref>
+        <idref>
+          <citeinfo>
+            <origin>Stan Smith</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Other taxonomic reference</title>
+          </citeinfo>
+        </idref>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>Dennis Walworth</cntper>
+              <cntorg>USGS</cntorg>
+            </cntperp>
+            <cntpos>Data Manager</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>mail address line 1</address>
+              <city>Anchorage</city>
+              <state>Alaska</state>
+              <postal>99503</postal>
+              <country>USA</country>
+            </cntaddr>
+            <cntvoice>907-555-1212</cntvoice>
+          </cntinfo>
+        </ider>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>Stan Smith</cntper>
+              <cntorg>ADIwg</cntorg>
+            </cntperp>
+            <cntaddr>
+              <addrtype>no address provided</addrtype>
+              <city>Anchorage</city>
+              <state>Alaska</state>
+              <postal>99515</postal>
+            </cntaddr>
+            <cntvoice>907-555-3434</cntvoice>
+          </cntinfo>
+        </ider>
+        <taxonpro>identification procedure</taxonpro>
+        <taxoncom>taxonomy completeness</taxoncom>
+        <vouchers>
+          <specimen>specimen 1</specimen>
+          <reposit>
+            <cntinfo>
+              <cntperp>
+                <cntper>Stan Smith</cntper>
+                <cntorg>ADIwg</cntorg>
+              </cntperp>
+              <cntaddr>
+                <addrtype>no address provided</addrtype>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99515</postal>
+              </cntaddr>
+              <cntvoice>907-555-3434</cntvoice>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+        <vouchers>
+          <specimen>specimen 2</specimen>
+          <reposit>
+            <cntinfo>
+              <cntperp>
+                <cntper>Stan Smith</cntper>
+                <cntorg>ADIwg</cntorg>
+              </cntperp>
+              <cntaddr>
+                <addrtype>no address provided</addrtype>
+                <city>Anchorage</city>
+                <state>Alaska</state>
+                <postal>99515</postal>
+              </cntaddr>
+              <cntvoice>907-555-3434</cntvoice>
+            </cntinfo>
+          </reposit>
+        </vouchers>
+      </taxonsys>
+      <taxongen>general taxonomic coverage</taxongen>
+      <taxoncl>
+        <taxonrn>kingdom</taxonrn>
+        <taxonrv>animalia</taxonrv>
+        <common>animals</common>
+        <taxoncl>
+          <taxonrn>subkingdom</taxonrn>
+          <taxonrv>bilateria</taxonrv>
+          <taxoncl>
+            <taxonrn>Infrakingdom</taxonrn>
+            <taxonrv>Deuterostomia</taxonrv>
+            <taxoncl>
+              <taxonrn>Phylum</taxonrn>
+              <taxonrv>Chordata</taxonrv>
+              <common>cordés</common>
+              <common>cordado</common>
+              <common>chordates</common>
+              <taxoncl>
+                <taxonrn>Subphylum</taxonrn>
+                <taxonrv>Vertebrata</taxonrv>
+                <common>vertebrado</common>
+                <common>vertébrés</common>
+                <common>vertebrates</common>
+                <taxoncl>
+                  <taxonrn>Infraphylum</taxonrn>
+                  <taxonrv>Gnathostomata</taxonrv>
+                  <taxoncl>
+                    <taxonrn>Superclass</taxonrn>
+                    <taxonrv>Tetrapoda</taxonrv>
+                    <taxoncl>
+                      <taxonrn>Class</taxonrn>
+                      <taxonrv>Aves</taxonrv>
+                      <common>Birds</common>
+                      <common>oiseaux</common>
+                      <taxoncl>
+                        <taxonrn>Order</taxonrn>
+                        <taxonrv>Anseriformes</taxonrv>
+                        <common>Waterfowl</common>
+                        <common>sauvagine</common>
+                        <taxoncl>
+                          <taxonrn>Family</taxonrn>
+                          <taxonrv>Anatidae</taxonrv>
+                          <common>Ducks</common>
+                          <common>Geese</common>
+                          <common>Swans</common>
+                          <common>canards</common>
+                          <common>cygnes</common>
+                          <common>oies</common>
+                          <taxoncl>
+                            <taxonrn>Subfamily</taxonrn>
+                            <taxonrv>Anserinae</taxonrv>
+                            <taxoncl>
+                              <taxonrn>Genus</taxonrn>
+                              <taxonrv>Branta</taxonrv>
+                              <common>Brent Geese</common>
+                              <taxoncl>
+                                <taxonrn>Species</taxonrn>
+                                <taxonrv>Branta bernicla</taxonrv>
+                                <common>Brant Goose</common>
+                                <common>Brent Goose</common>
+                                <common>Ganso de collar</common>
+                                <common>Brant</common>
+                                <common>bernache cravant</common>
+                              </taxoncl>
+                            </taxoncl>
+                            <taxoncl>
+                              <taxonrn>Genus</taxonrn>
+                              <taxonrv>Anser</taxonrv>
+                              <taxoncl>
+                                <taxonrn>Species</taxonrn>
+                                <taxonrv>albifrons</taxonrv>
+                              </taxoncl>
+                            </taxoncl>
+                          </taxoncl>
+                        </taxoncl>
+                      </taxoncl>
+                    </taxoncl>
+                  </taxoncl>
+                </taxoncl>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+  </idinfo>
+</metadata>

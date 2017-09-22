@@ -72,7 +72,7 @@ module ADIWG
                         hKeyword = intMetadataClass.newKeyword
                         hKeyword[:keywordType] = 'place'
 
-                        # theme keyword 1.6.2.1 placekt) - place keyword thesaurus {citation}
+                        # theme keyword 1.6.2.1 (placekt) - place keyword thesaurus {citation}
                         thesaurus = xPlace.xpath('./placekt').text
                         unless thesaurus.empty?
                            hCitation = intMetadataClass.newCitation
@@ -107,7 +107,7 @@ module ADIWG
                         hKeyword = intMetadataClass.newKeyword
                         hKeyword[:keywordType] = 'stratum'
 
-                        # theme keyword 1.6.3.1 stratkt) - stratum keyword thesaurus {citation}
+                        # theme keyword 1.6.3.1 (stratkt) - stratum keyword thesaurus {citation}
                         thesaurus = xStratum.xpath('./stratkt').text
                         unless thesaurus.empty?
                            hCitation = intMetadataClass.newCitation
@@ -142,7 +142,7 @@ module ADIWG
                         hKeyword = intMetadataClass.newKeyword
                         hKeyword[:keywordType] = 'temporal'
 
-                        # theme keyword 1.6.4.1 tempkt) - temporal keyword thesaurus {citation}
+                        # theme keyword 1.6.4.1 (tempkt) - temporal keyword thesaurus {citation}
                         thesaurus = xTemporal.xpath('./tempkt').text
                         unless thesaurus.empty?
                            hCitation = intMetadataClass.newCitation
@@ -168,6 +168,39 @@ module ADIWG
                         end
 
                      end
+                  end
+
+                  # kewords bio (keywtax) - taxonomy keywords {keyword}
+                  nodeName = xKeywords.xpath('./*').first.name
+                  if nodeName == 'keywtax'
+                     hKeyword = intMetadataClass.newKeyword
+                     hKeyword[:keywordType] = 'taxonomy'
+
+                     # theme bio.1.1 (taxonkt) - taxonomy keyword thesaurus {citation}
+                     thesaurus = xKeywords.xpath('./taxonkt').text
+                     unless thesaurus.empty?
+                        hCitation = intMetadataClass.newCitation
+                        hCitation[:title] = thesaurus
+                        hKeyword[:thesaurus] = hCitation
+                     end
+
+                     # theme keyword bio.1.2 (taxonkey) - taxonomy keyword keywords {keywordObject}
+                     axKeywords = xKeywords.xpath('./taxonkey')
+                     unless axKeywords.empty?
+                        axKeywords.each do |xKeyword|
+                           keyword = xKeyword.text
+                           unless keyword.empty?
+                              hKeywordObj = intMetadataClass.newKeywordObject
+                              hKeywordObj[:keyword] = keyword
+                              hKeyword[:keywords] << hKeywordObj
+                           end
+                        end
+                     end
+
+                     unless hKeyword.empty?
+                        aKeywords << hKeyword
+                     end
+
                   end
 
                   return aKeywords
