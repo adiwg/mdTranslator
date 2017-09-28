@@ -1,6 +1,7 @@
 <metadata>
   <idinfo>
     <spdom>
+      <descgeog>spatial domain description</descgeog>
       <bounding>
         <westbc>-166.0</westbc>
         <eastbc>-74.00</eastbc>

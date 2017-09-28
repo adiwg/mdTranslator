@@ -62,6 +62,11 @@
         <eastbc>-74.00390625</eastbc>
         <northbc>71.6912927186</northbc>
         <southbc>24.0464639997</southbc>
+        <boundalt>
+          <altmin>0.0</altmin>
+          <altmax>1000.0</altmax>
+          <altunit>meters</altunit>
+        </boundalt>
       </bounding>
       <dsgpoly>
         <dsgpolyo>
@@ -446,6 +451,25 @@
         <toolinst>Tool can be downloaded and run on Windows from the phidot.org site. See site documentation for Unix based systems.</toolinst>
         <toolcomp>Written for Windows XP or newer. The RMark interface is also available as an extension to MARK, from the CRAN website.</toolcomp>
       </toolacc>
+      <toolcont>
+        <cntinfo>
+          <cntperp>
+            <cntper>Dennis Walworth</cntper>
+            <cntorg>USGS</cntorg>
+          </cntperp>
+          <cntpos>Tool Manager</cntpos>
+          <cntaddr>
+            <addrtype>mailing</addrtype>
+            <address>mail address line 1</address>
+            <city>Anchorage</city>
+            <state>Alaska</state>
+            <postal>99503</postal>
+            <country>USA</country>
+          </cntaddr>
+          <cntvoice>907-555-1212</cntvoice>
+          <cntemail>name1@myorg.org</cntemail>
+        </cntinfo>
+      </toolcont>
       <toolcite>
         <citeinfo>
           <origin>White, G.C.</origin>
@@ -482,7 +506,28 @@
     <lineage>
       <method>
         <methtype>Field</methtype>
+        <methodid>
+          <methkt>methodology keyword thesaurus</methkt>
+          <methkey>methodology keyword 1</methkey>
+          <methkey>methodology keyword 2</methkey>
+        </methodid>
         <methdesc>We captured brant by herding</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>National Environmental Methods Index</origin>
+            <pubdate>Unknown</pubdate>
+            <title>NEMI</title>
+            <geoform>database</geoform>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>Another methods index</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Another methods index title</title>
+            <geoform>database</geoform>
+          </citeinfo>
+        </methcite>
       </method>
       <method>
         <methtype>Field</methtype>
@@ -724,6 +769,25 @@
           <formvern>19.0</formvern>
           <formverd>20170907</formverd>
           <formspec>format specification</formspec>
+          <asciistr>
+            <recdel>\n</recdel>
+            <numheadl>1</numheadl>
+            <deschead>column names</deschead>
+            <orienta>columnmajor</orienta>
+            <casesens>N</casesens>
+            <authent>12ad155ee845d5c4</authent>
+            <quotech>"'"</quotech>
+            <datafiel>
+              <dfieldnm>field1</dfieldnm>
+              <missingv>-1</missingv>
+              <dfwidth>12</dfwidth>
+            </datafiel>
+            <datafiel>
+              <dfieldnm>field2</dfieldnm>
+              <missingv>-1</missingv>
+              <dfwidthd>;</dfwidthd>
+            </datafiel>
+          </asciistr>
           <formcont>format information content</formcont>
           <filedec>Winzip legacy compression</filedec>
           <transize>999</transize>

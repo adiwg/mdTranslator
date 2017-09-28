@@ -63,6 +63,12 @@ module ADIWG
                   hGeoExtent = intMetadataClass.newGeographicExtent
                   hExtent[:geographicExtents] << hGeoExtent
 
+                  # spatial domain bio (descgeog) - geographic description
+                  description = xDomain.xpath('./descgeog').text
+                  unless description.empty?
+                     hGeoExtent[:description] = description
+                  end
+
                   # spatial domain 1.5.1 (bounding) - bounding box
                   xBbox = xDomain.xpath('./bounding')
                   unless xBbox.empty?

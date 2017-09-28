@@ -60,6 +60,11 @@
         <eastbc>-74.00390625</eastbc>
         <northbc>71.6912927186</northbc>
         <southbc>24.0464639997</southbc>
+        <boundalt>
+          <altmin>0.0</altmin>
+          <altmax>1000.0</altmax>
+          <altunit>meters</altunit>
+        </boundalt>
       </bounding>
       <dsgpoly>
         <dsgpolyo>
@@ -205,5 +210,58 @@
         <onlink>http://onlinelibrary.wiley.com/doi/10.1002/jwmg.21284/full</onlink>
       </citeinfo>
     </crossref>
+    <tool>
+      <tooldesc>Program MARK is a Windows-based software application, developed by Gary White (Colorado State University) for the analysis of data from marked individuals. Program MARK provides parameter estimates from marked animals when they are re-encountered at a later time. Re-encounters can be from dead recoveries (e.g., the animal is harvested), live recaptures (e.g. the animal is re-trapped or re-sighted), radio tracking, or from some combination of these sources of re-encounters.</tooldesc>
+      <toolacc>
+        <onlink>http://www.phidot.org/software/mark/index.html</onlink>
+        <onlink>http://www.phidot.org/software/mark/rmark/</onlink>
+        <toolinst>Tool can be downloaded and run on Windows from the phidot.org site. See site documentation for Unix based systems.</toolinst>
+        <toolcomp>Written for Windows XP or newer. The RMark interface is also available as an extension to MARK, from the CRAN website.</toolcomp>
+      </toolacc>
+      <toolcont>
+        <cntinfo>
+          <cntperp>
+            <cntper>Dennis Walworth</cntper>
+            <cntorg>USGS</cntorg>
+          </cntperp>
+          <cntpos>Tool Manager</cntpos>
+          <cntaddr>
+            <addrtype>mailing</addrtype>
+            <address>mail address line 1</address>
+            <city>Anchorage</city>
+            <state>Alaska</state>
+            <postal>99503</postal>
+            <country>USA</country>
+          </cntaddr>
+          <cntvoice>907-555-1212</cntvoice>
+          <cntemail>name1@myorg.org</cntemail>
+        </cntinfo>
+      </toolcont>
+      <toolcite>
+        <citeinfo>
+          <origin>White, G.C.</origin>
+          <origin>K.P. Burnham</origin>
+          <pubdate>19990626</pubdate>
+          <title>Program MARK: Survival estimation from populations of marked animals</title>
+          <geoform>document</geoform>
+          <serinfo>
+            <sername>Bird Study</sername>
+            <issue>Volume 46 Supplement, 120-138</issue>
+          </serinfo>
+          <pubinfo>
+            <pubplace>Online</pubplace>
+            <publish>Taylor &amp; Francis Online</publish>
+          </pubinfo>
+          <onlink>http://www.tandfonline.com/toc/tbis20/46/sup1?nav=tocList</onlink>
+        </citeinfo>
+      </toolcite>
+    </tool>
+    <tool>
+      <tooldesc>The RMark interface is also available as an extension to Program MARK.</tooldesc>
+      <toolacc>
+        <onlink>http://www.phidot.org/software/mark/rmark/</onlink>
+        <toolinst>Laake, J. L. 2013. RMark: An R interface for analysis of capture-recapture data with MARK.  in  Alaska Fisheries Science Center Report 2013-01. NOAA, National Marine Fisheries Service, Seattle, WA.</toolinst>
+      </toolacc>
+    </tool>
   </idinfo>
 </metadata>

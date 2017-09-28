@@ -174,7 +174,7 @@ module ADIWG
                   nodeName = xKeywords.xpath('./*').first.name
                   if nodeName == 'keywtax'
                      hKeyword = intMetadataClass.newKeyword
-                     hKeyword[:keywordType] = 'taxonomy'
+                     hKeyword[:keywordType] = 'taxon'
 
                      # theme bio.1.1 (taxonkt) - taxonomy keyword thesaurus {citation}
                      thesaurus = xKeywords.xpath('./taxonkt').text

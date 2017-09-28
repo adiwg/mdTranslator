@@ -57,6 +57,7 @@
             {
                "geographicExtent": [
                   {
+                     "description": "geographic extent description",
                      "containsData": false,
                      "identifier": {
                         "identifier": "identifier"

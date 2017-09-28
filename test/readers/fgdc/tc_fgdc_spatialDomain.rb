@@ -27,6 +27,7 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
 
       hGeoExtent = hExtent[:geographicExtents][0]
       refute_empty hGeoExtent
+      assert_equal 'spatial domain description', hGeoExtent[:description]
       assert hGeoExtent[:containsData]
       assert_empty hGeoExtent[:identifier]
       refute_empty hGeoExtent[:boundingBox]

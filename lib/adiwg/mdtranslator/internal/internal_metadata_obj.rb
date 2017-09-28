@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#  Stan Smith 2017-09-28 add description to geographicExtent for fgdc
 #  Stan Smith 2017-04-22 removed 'intObj = ' from new object definitions
 #  Stan Smith 2017-02-15 added newResourceType
 #  Stan Smith 2017-02-09 added newMetadataRepository
@@ -447,6 +448,7 @@ class InternalMetadata
 
    def newGeographicExtent
       {
+         description: nil,
          containsData: true,
          identifier: {},
          boundingBox: {},
