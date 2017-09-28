@@ -62,11 +62,9 @@
         <eastbc>-74.00390625</eastbc>
         <northbc>71.6912927186</northbc>
         <southbc>24.0464639997</southbc>
-        <boundalt>
-          <altmin>0.0</altmin>
-          <altmax>1000.0</altmax>
-          <altunit>meters</altunit>
-        </boundalt>
+        <altmin>0.0</altmin>
+        <altmax>1000.0</altmax>
+        <altunit>meters</altunit>
       </bounding>
       <dsgpoly>
         <dsgpolyo>

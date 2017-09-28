@@ -1,7 +1,8 @@
 # mdJson 2.0 writer - bounding box
 
 # History:
-#   Stan Smith 2017-03-15 original script
+#  Stan Smith 2017-09-08 add altitude to support fgdc
+#  Stan Smith 2017-03-15 original script
 
 require 'jbuilder'
 
@@ -19,6 +20,9 @@ module ADIWG
                      json.eastLongitude hBbox[:eastLongitude]
                      json.southLatitude hBbox[:southLatitude]
                      json.northLatitude hBbox[:northLatitude]
+                     json.minimumAltitude hBbox[:minimumAltitude]
+                     json.maximumAltitude hBbox[:maximumAltitude]
+                     json.unitsOfAltitude hBbox[:unitsOfAltitude]
                   end
 
                end # build

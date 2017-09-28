@@ -2,6 +2,7 @@
 
 # History:
 # version 2
+#  Stan Smith 2017-09-28 add altitude to bounding box for fgdc
 #  Stan Smith 2017-09-28 add description to geographicExtent for fgdc
 #  Stan Smith 2017-04-22 removed 'intObj = ' from new object definitions
 #  Stan Smith 2017-02-15 added newResourceType
@@ -463,7 +464,10 @@ class InternalMetadata
          westLongitude: nil,
          eastLongitude: nil,
          southLatitude: nil,
-         northLatitude: nil
+         northLatitude: nil,
+         minimumAltitude: nil,
+         maximumAltitude: nil,
+         unitsOfAltitude: nil
       }
    end
 

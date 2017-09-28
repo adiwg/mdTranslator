@@ -7,6 +7,9 @@
         <eastbc>-74.00</eastbc>
         <northbc>71.0</northbc>
         <southbc>24.00</southbc>
+        <altmin>100.0</altmin>
+        <altmax>1000.0</altmax>
+        <altunit>meters</altunit>
       </bounding>
       <dsgpoly>
         <dsgpolyo>

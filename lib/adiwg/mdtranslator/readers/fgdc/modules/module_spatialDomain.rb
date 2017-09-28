@@ -86,6 +86,15 @@ module ADIWG
                      # bounding box 1.5.1.4 (southbc) - south coordinate
                      hBbox[:southLatitude] = xBbox.xpath('./southbc').text.to_f
 
+                     # bounding box bio (altmin) - minimum altitude
+                     hBbox[:minimumAltitude] = xBbox.xpath('./altmin').text.to_f
+
+                     # bounding box bio (altmax) - maximum altitude
+                     hBbox[:maximumAltitude] = xBbox.xpath('./altmax').text.to_f
+
+                     # bounding box bio (altunit) - altitude unit of measure
+                     hBbox[:unitsOfAltitude] = xBbox.xpath('./altunit').text
+
                      hGeoExtent[:boundingBox] = hBbox
                   end
 
