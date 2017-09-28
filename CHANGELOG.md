@@ -1,7 +1,47 @@
 # Change Log
 
-## [v2.2.0](https://github.com/adiwg/mdTranslator/tree/v2.2.0)
+## [v2.3.2](https://github.com/adiwg/mdTranslator/tree/v2.3.2) (2017-09-15)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.1...v2.3.2)
 
+**Implemented enhancements:**
+
+- sbJson add all contacts as citation responsible parties [\#138](https://github.com/adiwg/mdTranslator/issues/138)
+- sbJSON data.gov [\#83](https://github.com/adiwg/mdTranslator/issues/83)
+
+**Fixed bugs:**
+
+- sbJSON itemLink associationType not translated [\#137](https://github.com/adiwg/mdTranslator/issues/137)
+- Too many identifiers created when reading itemLinks from ScienceBase [\#126](https://github.com/adiwg/mdTranslator/issues/126)
+- sbJSON data.gov [\#83](https://github.com/adiwg/mdTranslator/issues/83)
+
+**Closed issues:**
+
+- sbJson 2.0 relatedItems [\#81](https://github.com/adiwg/mdTranslator/issues/81)
+
+**Merged pull requests:**
+
+- Minor patches and enhancements [\#139](https://github.com/adiwg/mdTranslator/pull/139) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.3.1](https://github.com/adiwg/mdTranslator/tree/v2.3.1) (2017-09-14)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.0...v2.3.1)
+
+**Fixed bugs:**
+
+- nil error in HTML writer \(allocation\) [\#135](https://github.com/adiwg/mdTranslator/issues/135)
+- GeoJSON for geographicElement is parsed as a string or not at all [\#133](https://github.com/adiwg/mdTranslator/issues/133)
+
+**Merged pull requests:**
+
+- Minor bug fixes and patches [\#136](https://github.com/adiwg/mdTranslator/pull/136) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.3.0](https://github.com/adiwg/mdTranslator/tree/v2.3.0) (2017-09-12)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.2.0...v2.3.0)
+
+**Merged pull requests:**
+
+- Add FGDC CSDGM 1998 reader [\#131](https://github.com/adiwg/mdTranslator/pull/131) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.2.0](https://github.com/adiwg/mdTranslator/tree/v2.2.0) (2017-08-31)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.1.2...v2.2.0)
 
 **Fixed bugs:**
