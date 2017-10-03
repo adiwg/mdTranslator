@@ -51,8 +51,10 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
 
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      refute_nil metadata
+      assert_equal 3, metadata.length
+      assert_equal 'unknown', metadata[1][:resourceTypes][0][:type]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
@@ -65,8 +67,10 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
 
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      refute_nil metadata
+      assert_equal 3, metadata.length
+      assert_equal 'unknown', metadata[1][:resourceTypes][0][:type]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
@@ -80,7 +84,7 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
@@ -94,7 +98,7 @@ class TestReaderSbJsonWebLinkDocument < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end

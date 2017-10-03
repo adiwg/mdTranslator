@@ -32,7 +32,7 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
 
    end
 
-   def test_webLinkDoc_type_empty
+   def test_webLinkGraph_type_empty
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][1]['type'] = ''
@@ -41,12 +41,12 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_webLinkDoc_type_missing
+   def test_webLinkGraph_type_missing
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][1].delete('type')
@@ -55,12 +55,12 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_webLinkDoc_uri_empty
+   def test_webLinkGraph_uri_empty
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][2]['uri'] = ''
@@ -69,12 +69,12 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_webLinkDoc_uri_missing
+   def test_webLinkGraph_uri_missing
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][2].delete('uri')
@@ -83,12 +83,12 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_webLinkDoc_empty_elements
+   def test_webLinkGraph_empty_elements
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][1]['title'] = ''
@@ -102,7 +102,7 @@ class TestReaderSbJsonWebLinkGraphic < TestReaderSbJsonParent
 
    end
 
-   def test_webLinkDoc_missing_elements
+   def test_webLinkGraph_missing_elements
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['webLinks'][1].delete('title')

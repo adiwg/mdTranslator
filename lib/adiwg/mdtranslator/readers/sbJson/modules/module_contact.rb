@@ -87,20 +87,19 @@ module ADIWG
                         hContact[:contactId] = UUIDTools::UUID.random_create.to_s
 
                         # contact - contactType [ person | organization ]
+                        hContact[:isOrganization] = false
                         if hSbContact.has_key?('contactType')
                            if hSbContact['contactType'].nil? || hSbContact['contactType'] == ''
-                              hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
-                              hContact[:isOrganization] = false
+                              hResponseObj[:readerExecutionMessages] << 'Contact contactType is empty, default to "person"'
                            elsif %w(person organization).include?(hSbContact['contactType'])
                               hContact[:isOrganization] = true if hSbContact['contactType'] == 'organization'
                            else
-                              hResponseObj[:readerExecutionMessages] << 'Contact contactType must be person or organization'
-                              hResponseObj[:readerExecutionPass] = false
-                              return nil
+                              hResponseObj[:readerExecutionMessages] << "Contact contactType cannot be '#{hSbContact['contactType']}'"
+                              hResponseObj[:readerExecutionMessages] << "Contact contactType set to 'person'"
                            end
                         else
                            hResponseObj[:readerExecutionMessages] << 'Contact contactType is missing'
-                           hContact[:isOrganization] = false
+                           hResponseObj[:readerExecutionMessages] << "Contact contactType set to 'person'"
                         end
 
                         # contact - name (required)
@@ -108,8 +107,7 @@ module ADIWG
                            hContact[:name] = hSbContact['name']
                         end
                         if hSbContact['name'].nil? || hSbContact['name'] == ''
-                           hResponseObj[:readerExecutionMessages] << 'Contact name is missing'
-                           hResponseObj[:readerExecutionPass] = false
+                           hResponseObj[:readerExecutionMessages] << 'Contact name is missing, contact dropped'
                            return nil
                         end
 
@@ -254,7 +252,7 @@ module ADIWG
                         aContacts << hContact
                         aContacts << hContactOrg unless hContactOrg.empty?
 
-                        # add contact to resource citation
+                        # add contact to resourceInfo citation
                         hResponsibility = intMetadataClass.newResponsibility
                         roleType = Codelists.codelist_sb2adiwg('role_sb2adiwg', hContact[:contactType])
                         roleType = hContact[:contactType] if roleType.nil?

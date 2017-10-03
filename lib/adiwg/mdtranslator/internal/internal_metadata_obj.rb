@@ -779,7 +779,56 @@ class InternalMetadata
    def newSpatialReferenceSystem
       {
          systemType: nil,
-         systemIdentifier: {}
+         systemIdentifier: {},
+         systemParameters: {}
+      }
+   end
+
+   def newReferenceSystemParameters
+      {
+         projection: {},
+         ellipsoid: {},
+         datumIdentifier: {}
+      }
+   end
+
+   def newProjection
+      {
+         projectionIdentifier: {},
+         zone: nil,
+         standardParallel1: nil,
+         standardParallel2: nil,
+         longitudeOfCentralMeridian: nil,
+         latitudeOfProjectionOrigin: nil,
+         falseEasting: nil,
+         falseNorthing: nil,
+         falseEastingNorthingUnits: nil,
+         scaleFactorAtEquator: nil,
+         heightOfProspectivePointAboveSurface: nil,
+         longitudeOfProjectionCenter: nil,
+         latitudeOfProjectionCenter: nil,
+         scaleFactorAtCenterLine: nil,
+         straightVerticalLongitudeFromPole: nil,
+         scaleFactorAtProjectionOrigin: nil,
+         azimuthAngle: nil,
+         azimuthMeasurePointLongitude: nil,
+         obliqueLinePoint: []
+      }
+   end
+
+   def newObliqueLinePoint
+      {
+         azimuthLineLatitude: nil,
+         azimuthLineLongitude: nil
+      }
+   end
+
+   def newEllipsoid
+      {
+         ellipsoidIdentifier: {},
+         semiMajorAxis: nil,
+         axisUnits: nil,
+         denominatorOfFlatteningRatio: nil
       }
    end
 
@@ -787,6 +836,7 @@ class InternalMetadata
       {
          scaleFactor: nil,
          measure: {},
+         geographicMeasure: {},
          levelOfDetail: nil
       }
    end
@@ -795,6 +845,14 @@ class InternalMetadata
       {
          type: nil,
          value: nil,
+         unitOfMeasure: nil
+      }
+   end
+
+   def newGeographicMeasure
+      {
+         latitudeMeasure: nil,
+         longitudeMeasure: nil,
          unitOfMeasure: nil
       }
    end
