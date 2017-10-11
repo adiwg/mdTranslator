@@ -1,5 +1,22 @@
 # Change Log
 
+## [v2.3.3](https://github.com/adiwg/mdTranslator/tree/v2.3.3) (2017-10-11)
+
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.2...v2.3.3)
+
+**Fixed bugs:**
+
+- sbJSON association mapping error [\#149](https://github.com/adiwg/mdTranslator/issues/149)
+- sbJson reader execution fail tests [\#146](https://github.com/adiwg/mdTranslator/issues/146)
+
+**Closed issues:**
+
+- fgdc ISO 19115 Topic Category [\#123](https://github.com/adiwg/mdTranslator/issues/123)
+
+**Merged pull requests:**
+
+- Fix issue of invalid/incomplete sbJson records terminating import [\#148](https://github.com/adiwg/mdTranslator/pull/148) ([stansmith907](https://github.com/stansmith907))
+
 ## [v2.3.2](https://github.com/adiwg/mdTranslator/tree/v2.3.2) (2017-09-15)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.1...v2.3.2)
 
