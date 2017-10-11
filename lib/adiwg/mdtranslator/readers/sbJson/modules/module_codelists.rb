@@ -151,26 +151,36 @@ module ADIWG
                   {sb: 'Proposed', adiwg: 'proposed'}
                ]
 
-               @association_sb2adiwg_forward = [
+               # mdJson/mdTranslator view point is always: how the associated resource relates to the main resource
+               # dropped 'copiedFrom', 'copiedInfo' from translation tables
+
+               # scienceBaseId = relatedItemId (forward)
+               # assoc2main = the associated resource is (a) ___ of the main resource
+               # example = the associated resource is 'constituentOf' the main resource
+               # so the adiwg equivalent is 'ifPartOf'
+               @association_sb2adiwg_assoc2main = [
                   {sb: 'alternate', adiwg: 'alternate'},
-                  {sb: 'constituentOf', adiwg: 'isComposedOf'},
-                  {sb: 'copiedFrom', adiwg: 'copiedFrom'},
-                  {sb: 'derivativeOf', adiwg: 'derivativeProduct'},
-                  {sb: 'precededBy', adiwg: 'precededBy'},
+                  {sb: 'constituentOf', adiwg: 'isPartOf'},
+                  {sb: 'derivativeOf', adiwg: 'derivativeResource'},
+                  {sb: 'precededBy', adiwg: 'series'},
                   {sb: 'productOf', adiwg: 'product'},
                   {sb: 'related', adiwg: 'crossReference'},
                   {sb: 'subprojectOf', adiwg: 'subProject'}
                ]
 
-               @association_sb2adiwg_reverse = [
+               # scienceBaseId = itemId (reverse)
+               # main2assoc = the main resource is (a) ___ of the associated resource
+               # example = the main resource is 'constituentOf' the associated resource
+               # reverse the direction for mdJson/mdTranslator which is mono-directional
+               # so the adiwg equivalent is 'isComposedOf'
+               @association_sb2adiwg_main2assoc = [
                   {sb: 'alternate', adiwg: 'alternate'},
-                  {sb: 'constituent', adiwg: 'isComposedOf'},
-                  {sb: 'copiedInto', adiwg: 'copiedFrom'},
-                  {sb: 'derived', adiwg: 'derivativeProduct'},
-                  {sb: 'succeededBy', adiwg: 'precededBy'},
-                  {sb: 'produced', adiwg: 'product'},
+                  {sb: 'constituentOf', adiwg: 'isComposedOf'},
+                  {sb: 'derivativeOf', adiwg: 'source'},
+                  {sb: 'precededBy', adiwg: 'series'},
+                  {sb: 'productOf', adiwg: 'parentProject'},
                   {sb: 'related', adiwg: 'crossReference'},
-                  {sb: 'mainprojectOf', adiwg: 'subProject'}
+                  {sb: 'subprojectOf', adiwg: 'parentProject'}
                ]
 
                # translate iso/adiwg code to sb

@@ -154,6 +154,8 @@ module ADIWG
                   {adiwg: 'withdrawn', sb: nil}
                ]
 
+               # related items are not written back to sbJson
+               # so this table has not been used, review before using
                @association_adiwg2sb = [
                   {adiwg: 'alternate', sb: 'alternate'},
                   {adiwg: 'collectiveTitle', sb: nil},
