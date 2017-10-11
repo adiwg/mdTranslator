@@ -129,7 +129,7 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
       # test response object
       assert hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
@@ -227,7 +227,7 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       assert_nil hContact[:contactInstructions]
 
       assert hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
@@ -245,7 +245,7 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
       # test array
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
@@ -264,7 +264,7 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
 
       # test array
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end
@@ -282,8 +282,8 @@ class TestReaderSbJsonContact < TestReaderSbJsonParent
       metadata = @@NameSpace.unpack(hIn, [], hCitation, hResponse)
 
       # test array
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
 
    end

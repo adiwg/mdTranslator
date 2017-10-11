@@ -63,6 +63,12 @@ module ADIWG
                   hGeoExtent = intMetadataClass.newGeographicExtent
                   hExtent[:geographicExtents] << hGeoExtent
 
+                  # spatial domain bio (descgeog) - geographic description
+                  description = xDomain.xpath('./descgeog').text
+                  unless description.empty?
+                     hGeoExtent[:description] = description
+                  end
+
                   # spatial domain 1.5.1 (bounding) - bounding box
                   xBbox = xDomain.xpath('./bounding')
                   unless xBbox.empty?
@@ -79,6 +85,21 @@ module ADIWG
 
                      # bounding box 1.5.1.4 (southbc) - south coordinate
                      hBbox[:southLatitude] = xBbox.xpath('./southbc').text.to_f
+
+                     # bounding box bio (boundalt) - altitude
+                     xAltitude = xBbox.xpath('./boundalt')
+                     unless xAltitude.empty?
+
+                        # bounding box bio (altmin) - minimum altitude
+                        hBbox[:minimumAltitude] = xAltitude.xpath('./altmin').text.to_f
+
+                        # bounding box bio (altmax) - maximum altitude
+                        hBbox[:maximumAltitude] = xAltitude.xpath('./altmax').text.to_f
+
+                        # bounding box bio (altunit) - altitude unit of measure
+                        hBbox[:unitsOfAltitude] = xAltitude.xpath('./altunit').text
+
+                     end
 
                      hGeoExtent[:boundingBox] = hBbox
                   end

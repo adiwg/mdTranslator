@@ -62,7 +62,8 @@
       },
       {
          "name": "Jordan S Read",
-         "type": "Metadata Contact"
+         "type": "Metadata Contact",
+         "contactType": "person"
       }
    ]
 }

@@ -27,6 +27,7 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
 
       hGeoExtent = hExtent[:geographicExtents][0]
       refute_empty hGeoExtent
+      assert_equal 'spatial domain description', hGeoExtent[:description]
       assert hGeoExtent[:containsData]
       assert_empty hGeoExtent[:identifier]
       refute_empty hGeoExtent[:boundingBox]
@@ -39,6 +40,9 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
       assert_equal -74.0, hBbox[:eastLongitude]
       assert_equal 71.0, hBbox[:northLatitude]
       assert_equal 24.0, hBbox[:southLatitude]
+      assert_equal 100.0, hBbox[:minimumAltitude]
+      assert_equal 1000.0, hBbox[:maximumAltitude]
+      assert_equal 'meters', hBbox[:unitsOfAltitude]
 
       hGeoElement = hGeoExtent[:geographicElements][0]
       refute_empty hGeoElement

@@ -31,9 +31,8 @@ module ADIWG
                               type = hLink['type']
                            end
                            if type.nil? || type == ''
-                              hResponseObj[:readerExecutionMessages] << 'WebLinks type is missing'
-                              hResponseObj[:readerExecutionPass] = false
-                              return nil
+                              hResponseObj[:readerExecutionMessages] << 'WebLink type is missing, set to "unknown"'
+                              type = 'unknown'
                            end
 
                            # handle non-browse links
@@ -67,8 +66,8 @@ module ADIWG
                                  hOlRes[:olResURI] = hLink['uri']
                               end
                               if hOlRes[:olResURI].nil? || hOlRes[:olResURI] == ''
-                                 hResponseObj[:readerExecutionMessages] << 'WebLinks URI is missing'
-                                 hResponseObj[:readerExecutionPass] = false
+                                 hResponseObj[:readerExecutionMessages] << 'WebLink URI is missing'
+                                 hResponseObj[:readerExecutionMessages] << 'WebLink skipped'
                                  return nil
                               end
                               hCitation[:onlineResources] << hOlRes

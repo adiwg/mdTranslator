@@ -8,6 +8,8 @@
           <begtime>12:30:00</begtime>
           <enddate>2016</enddate>
           <endtime>17:30:00</endtime>
+          <beggeol></beggeol>
+          <endgeol></endgeol>
         </rngdates>
       </timeinfo>
       <current>ground condition</current>

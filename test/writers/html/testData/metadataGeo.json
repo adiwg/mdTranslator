@@ -256,6 +256,7 @@
                         "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                         "geographicExtent": [
                            {
+                              "description": "Polygon in Northern Alaska",
                               "containsData": true,
                               "geographicElement": [
                                  {
@@ -1803,6 +1804,7 @@
                "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "geographicExtent": [
                   {
+                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                      "containsData": false,
                      "identifier": {
                         "identifier": "identifier"
@@ -1811,7 +1813,10 @@
                         "westLongitude": -140.0,
                         "eastLongitude": -120.0,
                         "southLatitude": 49.0,
-                        "northLatitude": 70.0
+                        "northLatitude": 70.0,
+                        "minimumAltitude": 250.0,
+                        "maximumAltitude": 1500.0,
+                        "unitsOfAltitude": "meters"
                      },
                      "geographicElement": [
                         {
@@ -1856,6 +1861,7 @@
                      ]
                   },
                   {
+                     "description": "Polygon spans prime meridian",
                      "containsData": true,
                      "geographicElement": [
                         {

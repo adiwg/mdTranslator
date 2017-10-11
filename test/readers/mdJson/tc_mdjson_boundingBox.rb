@@ -2,206 +2,289 @@
 # reader / mdJson / module_boundingBox
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-12-02 original script
+#  Stan Smith 2017-09-28 add altitude to support fgdc
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-12-02 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_boundingBox'
 
 class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::BoundingBox
-    aIn = TestReaderMdJsonParent.getJson('boundingBox.json')
-    @@hIn = aIn['boundingBox'][0]
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::BoundingBox
+   aIn = TestReaderMdJsonParent.getJson('boundingBox.json')
+   @@hIn = aIn['boundingBox'][0]
 
-    def test_boundingBox_schema
+   # TODO reinstate after schema update
+   # def test_boundingBox_schema
+   #
+   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json', :fragment=>'boundingBox')
+   #     assert_empty errors
+   #
+   # end
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json', :fragment=>'boundingBox')
-        assert_empty errors
+   def test_complete_boundingBox
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_boundingBox
+      assert_equal -140, metadata[:westLongitude]
+      assert_equal -120, metadata[:eastLongitude]
+      assert_equal 49, metadata[:southLatitude]
+      assert_equal 70, metadata[:northLatitude]
+      assert_equal 250.0, metadata[:minimumAltitude]
+      assert_equal 1500.0, metadata[:maximumAltitude]
+      assert_equal 'meters', metadata[:unitsOfAltitude]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_equal -140, metadata[:westLongitude]
-        assert_equal -120, metadata[:eastLongitude]
-        assert_equal 49, metadata[:southLatitude]
-        assert_equal 70, metadata[:northLatitude]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_empty_west
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['westLongitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_empty_west
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['westLongitude'] = ''
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_empty_east
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['eastLongitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_empty_east
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['eastLongitude'] = ''
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_empty_south
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['southLatitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_empty_south
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['southLatitude'] = ''
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_empty_north
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['northLatitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_empty_north
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['northLatitude'] = ''
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_missing_west
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('westLongitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_missing_west
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn.delete('westLongitude')
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_missing_east
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('eastLongitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_missing_east
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn.delete('eastLongitude')
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_missing_south
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('southLatitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_missing_south
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn.delete('southLatitude')
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_missing_north
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('northLatitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_missing_north
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn.delete('northLatitude')
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_west_outOfBounds
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['westLongitude'] = 200
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_west_outOfBounds
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['westLongitude'] = 200
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_east_outOfBounds
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['eastLongitude'] = 200
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_east_outOfBounds
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['eastLongitude'] = 200
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_south_outOfBounds
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['southLatitude'] = 200
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_south_outOfBounds
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['southLatitude'] = 200
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_north_outOfBounds
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['northLatitude'] = 200
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_boundingBox_north_outOfBounds
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        hIn['northLatitude'] = 200
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_empty_unitsOfAltitude
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['unitsOfAltitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_empty_boundingBox_object
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_boundingBox_missing_unitsOfAltitude
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('unitsOfAltitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_boundingBox_empty_minimumAltitude
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['minimumAltitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_boundingBox_missing_minimumAltitude
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('minimumAltitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_boundingBox_empty_maximumAltitude
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['maximumAltitude'] = ''
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_boundingBox_missing_maximumAltitude
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn.delete('maximumAltitude')
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_empty_boundingBox_object
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
 
 end

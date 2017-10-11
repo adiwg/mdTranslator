@@ -2,6 +2,7 @@
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
+#  Stan Smith 2017-10-11 revise forward and reverse association definition
 #  Stan Smith 2017-09-14 remove all identifiers except relatedItemId
 #  Stan Smith 2017-08-03 original script
 
@@ -68,23 +69,30 @@ module ADIWG
                         unless hItem.empty?
 
                            # determine relationship direction
+                           # forward: how the associated resource relates to the main resource
+                           # ... in other words - the relationship is defined in terms of the associated resource
+                           # ... example: the associated resource is a 'subProject' of the main resource
+                           # reverse: how the main resource relates to the associated resource
+                           # ... in other words - the relationship is defined in terms of the main resource
+                           # ... example: the main resource is the 'parentProject' of the associated resource
+                           # all mdJson/mdTranslator relationships must be expressed as forward
                            forward = nil
                            if hItem.has_key?('itemId')
-                              forward = true if sbId == hItem['itemId']
+                              forward = false if sbId == hItem['itemId']
                            end
                            if hItem.has_key?('relatedItemId')
-                              forward = false if sbId == hItem['relatedItemId']
+                              forward = true if sbId == hItem['relatedItemId']
                            end
                            if forward.nil?
                               hResponseObj[:readerExecutionMessages] << 'Main ScienceBase id was not referenced in related item'
                               return hMetadata
                            end
 
-                           # fetch resourceTypes from related item
+                           # fetch resourceTypes from related item's record
                            if forward
-                              resourceId = hItem['relatedItemId']
-                           else
                               resourceId = hItem['itemId']
+                           else
+                              resourceId = hItem['relatedItemId']
                            end
                            resourceLink = "https://www.sciencebase.gov/catalog/item/#{resourceId}?format=json"
                            begin
@@ -117,9 +125,9 @@ module ADIWG
                                  unless sbAssocType.nil? || sbAssocType == ''
                                     assocType = nil
                                     if forward
-                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_forward', sbAssocType)
+                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_assoc2main', sbAssocType)
                                     else
-                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_reverse', sbAssocType)
+                                       assocType = Codelists.codelist_sb2adiwg('association_sb2adiwg_main2assoc', sbAssocType)
                                     end
                                     if assocType.nil?
                                        hResource[:associationType] = sbAssocType
@@ -134,12 +142,15 @@ module ADIWG
 
                               # fill in associated resource citation
                               hCitation = intMetadataClass.newCitation
-                              citationTitle = nil
-                              if hItem.has_key?('relatedItemTitle')
-                                 citationTitle = hItem['relatedItemTitle'] if forward
-                              end
-                              if hItem.has_key?('title')
-                                 citationTitle = hItem['title'] unless forward
+                              citationTitle = 'associated resource title'
+                              if forward
+                                 if hItem.has_key?('title')
+                                    citationTitle = hItem['title']
+                                 end
+                              else
+                                 if hItem.has_key?('relatedItemTitle')
+                                    citationTitle = hItem['relatedItemTitle']
+                                 end
                               end
                               hCitation[:title] = citationTitle
 

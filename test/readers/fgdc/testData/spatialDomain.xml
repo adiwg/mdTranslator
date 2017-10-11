@@ -1,11 +1,17 @@
 <metadata>
   <idinfo>
     <spdom>
+      <descgeog>spatial domain description</descgeog>
       <bounding>
         <westbc>-166.0</westbc>
         <eastbc>-74.00</eastbc>
         <northbc>71.0</northbc>
         <southbc>24.00</southbc>
+        <boundalt>
+          <altmin>100.0</altmin>
+          <altmax>1000.0</altmax>
+          <altunit>meters</altunit>
+        </boundalt>
       </bounding>
       <dsgpoly>
         <dsgpolyo>

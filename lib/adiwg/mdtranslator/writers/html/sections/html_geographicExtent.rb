@@ -33,6 +33,14 @@ module ADIWG
                   @html.text!(hExtent[:containsData].to_s)
                   @html.br
 
+                  # geographic extent - description
+                  unless hExtent[:description].nil?
+                     @html.em('Geographic Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hExtent[:description])
+                     end
+                  end
+
                   # geographic extent - map {div}
                   @html.details do
                      @html.summary('Map', 'class' => 'h5 map-summary')

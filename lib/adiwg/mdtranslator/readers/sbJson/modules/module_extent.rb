@@ -37,6 +37,7 @@ module ADIWG
                         'description' => 'Extent extracted from ScienceBase',
                         'geographicExtent' => [
                            {
+                              'description' => 'Geographic Extent imported from USGS ScienceBase',
                               'containsData' => true,
                               'identifier' => {
                                  'identifier' => ''

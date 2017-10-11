@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.3.3 2017-10-03 modify sbJson reader execution fail tests
 # 2.3.2 2017-09-14 add associationType to sbJson relatedItems
 # 2.3.2 2017-09-14 add contacts to resource citation
 # 2.3.1 2017-09-13 fixed fgdc reader: removed conversion of hash to json
@@ -28,7 +29,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.2"
+      VERSION = "2.3.3"
    end
 end
 
