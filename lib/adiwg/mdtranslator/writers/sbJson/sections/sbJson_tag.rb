@@ -1,6 +1,7 @@
 # sbJson 1.0 writer tags
 
 # History:
+#  Stan Smith 2017-10-12 remove repository name from harvest set tag
 #  Stan Smith 2017-05-31 original script
 
 require 'jbuilder'
@@ -67,7 +68,7 @@ module ADIWG
                         unless tagName.nil?
                            hTag = {}
                            hTag[:type] = 'Harvest Set'
-                           hTag[:name] = tagName + ' - ' + hRepo[:repository]
+                           hTag[:name] = tagName
                            aTags << hTag
                         end
                      end
