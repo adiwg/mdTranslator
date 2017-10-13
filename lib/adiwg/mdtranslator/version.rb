@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.3.4 2017-10-12 drop harvest set tag if repository citation is missing
 # 2.3.3 2017-10-03 modify sbJson reader execution fail tests
 # 2.3.2 2017-09-14 add associationType to sbJson relatedItems
 # 2.3.2 2017-09-14 add contacts to resource citation
@@ -29,7 +30,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.3"
+      VERSION = "2.3.4"
    end
 end
 
