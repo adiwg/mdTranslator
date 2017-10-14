@@ -2,6 +2,7 @@
 # vector representation
 
 # History:
+#  Stan Smith 2017-10-13 trap missing topology level
 #  Stan Smith 2017-03-28 original script
 
 require_relative 'html_vectorObject'
@@ -23,9 +24,11 @@ module ADIWG
                   objectClass = Html_VectorObject.new(@html)
 
                   # vector representation - topology level
-                  @html.em('Topology Level: ')
-                  @html.text!(hVector[:topologyLevel])
-                  @html.br
+                  unless hVector[:topologyLevel].nil?
+                     @html.em('Topology Level: ')
+                     @html.text!(hVector[:topologyLevel])
+                     @html.br
+                  end
 
                   # vector representation - vector object []
                   hVector[:vectorObject].each do |hObject|
