@@ -18,14 +18,16 @@ module ADIWG
 
                def writeHtml(hType)
 
-                  # resource type
-                  @html.em('Resource Type: ')
-                  @html.text!(hType[:type])
-                  unless hType[:name].nil?
-                     @html.em(' Name: ')
-                     @html.text!(hType[:name])
+                  # resource type - (required)
+                  unless hType[:type].nil?
+                     @html.em('Resource Type: ')
+                     @html.text!(hType[:type])
+                     unless hType[:name].nil?
+                        @html.em(' Name: ')
+                        @html.text!(hType[:name])
+                     end
+                     @html.br
                   end
-                  @html.br
 
                end # writeHtml
             end # Html_ResourceType

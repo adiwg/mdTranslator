@@ -5,35 +5,36 @@
 # 	Stan Smith 2015-03-24 original script
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Html
+   module Mdtranslator
+      module Writers
+         module Html
 
-                class MdHtmlResourceFormat
-                    def initialize(html)
-                        @html = html
-                    end
+            class MdHtmlResourceFormat
+               def initialize(html)
+                  @html = html
+               end
 
-                    def writeHtml(hResFormat)
+               def writeHtml(hResFormat)
 
-                        # resource format - name - required
-                        @html.em('Resource Format: ')
-                        @html.text!(hResFormat[:formatName])
+                  # resource format - name - required
+                  unless hResFormat[:formatName].nil?
+                     @html.em('Resource Format: ')
+                     @html.text!(hResFormat[:formatName])
+                  end
 
-                        # resource format - version
-                        s = hResFormat[:formatVersion]
-                        if !s.nil?
-                            @html.em(' Version: ')
-                            @html.text!(s)
-                        end
+                  # resource format - version
+                  unless  !hResFormat[:formatVersion].nil?
+                     @html.em(' Version: ')
+                     @html.text!(hResFormat[:formatVersion])
+                  end
 
-                        @html.br
+                  @html.br
 
-                    end # writeHtml
+               end # writeHtml
 
-                end # class
+            end # class
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

@@ -28,13 +28,15 @@ module ADIWG
                   graphicClass = Html_Graphic.new(@html)
 
                   @html.details do
-                     @html.summary(hContact[:name], {'id' => 'CID_'+hContact[:contactId], 'class' => 'h3'})
+                     @html.summary(hContact[:name], {'id' => 'CID_' + hContact[:contactId], 'class' => 'h3'})
                      @html.section(:class => 'block') do
 
                         # contact - contact ID
-                        @html.em('Contact ID: ')
-                        @html.text!(hContact[:contactId])
-                        @html.br
+                        unless hContact[:contactId].nil?
+                           @html.em('Contact ID: ')
+                           @html.text!(hContact[:contactId])
+                           @html.br
+                        end
 
                         # contact - isOrganization
                         @html.em('is Organization: ')
