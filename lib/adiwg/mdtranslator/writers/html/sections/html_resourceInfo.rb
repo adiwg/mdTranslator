@@ -97,9 +97,11 @@ module ADIWG
                            end
 
                            # full abstract
-                           @html.em('Full Abstract:')
-                           @html.br
-                           @html.text!(hResource[:abstract])
+                           unless hResource[:abstract].nil?
+                              @html.em('Full Abstract:')
+                              @html.br
+                              @html.text!(hResource[:abstract])
+                           end
 
                         end
                      end

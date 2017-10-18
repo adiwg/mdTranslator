@@ -52,7 +52,7 @@ module ADIWG
                   end
 
                   # citation - date [] {}
-                     hCitation[:dates].each do |hDate|
+                  hCitation[:dates].each do |hDate|
                      @html.em('Date: ')
                      dateClass.writeHtml(hDate)
                      @html.br

@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.3.5 2017-10-17 fixed problem with adding technical prerequisite to nil distribution description
+# 2.3.5 2017-10-13 trap missing topology level in html writer vectorRepresentation
 # 2.3.4 2017-10-12 drop harvest set tag if repository citation is missing
 # 2.3.3 2017-10-03 modify sbJson reader execution fail tests
 # 2.3.2 2017-09-14 add associationType to sbJson relatedItems
@@ -30,7 +32,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.4"
+      VERSION = "2.3.5"
    end
 end
 

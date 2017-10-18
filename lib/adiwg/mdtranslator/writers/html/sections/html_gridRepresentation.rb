@@ -24,9 +24,11 @@ module ADIWG
                   dimensionClass = Html_Dimension.new(@html)
 
                   # grid representation - number of dimensions
-                  @html.em('Number of dimensions: ')
-                  @html.text!(hGrid[:numberOfDimensions].to_s)
-                  @html.br
+                  unless hGrid[:numberOfDimensions].nil?
+                     @html.em('Number of dimensions: ')
+                     @html.text!(hGrid[:numberOfDimensions].to_s)
+                     @html.br
+                  end
 
                   # grid representation - dimension []
                   dimensionCount = 0
@@ -48,7 +50,7 @@ module ADIWG
                      @html.br
                   end
 
-                  # grid representation - transformation parameters available
+                  # grid representation - transformation parameters available {Boolean}
                   @html.em('Transformation parameters available: ')
                   @html.text!(hGrid[:transformationParameterAvailable].to_s)
 

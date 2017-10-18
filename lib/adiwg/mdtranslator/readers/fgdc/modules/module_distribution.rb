@@ -2,6 +2,7 @@
 # unpack fgdc distribution
 
 # History:
+#  Stan Smith 2017-10-17 fixed problem with adding technical prerequisite to nil distribution description
 #  Stan Smith 2017-08-15 original script
 
 require 'nokogiri'
@@ -75,7 +76,11 @@ module ADIWG
                   # -> distribution.description {+=}
                   techPre = xDistribution.xpath('./techpreq').text
                   unless techPre.empty?
-                     hDistribution[:description] += '\n\n Technical Prerequisites: ' + techPre
+                     if hDistribution[:description].nil?
+                        hDistribution[:description] = techPre
+                     else
+                        hDistribution[:description] += '\n\n Technical Prerequisites: ' + techPre
+                     end
                   end
 
                   # distribution 6.7 (availabl) - available time period {time period}

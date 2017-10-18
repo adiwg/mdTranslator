@@ -18,16 +18,19 @@ module ADIWG
 
                def writeHtml(hSecCon)
 
-                  # security constraint - classification code {classification}
-                  @html.em('Classification: ')
-                  @html.text!(hSecCon[:classCode])
-                  @html.br
-
+                  # security constraint - classification code {classification} (required)
+                  unless hSecCon[:classCode].nil?
+                     @html.em('Classification: ')
+                     @html.text!(hSecCon[:classCode])
+                     @html.br
+                  end
 
                   # security constraint - classification system
-                  @html.em('Classification System: ')
-                  @html.text!(hSecCon[:classSystem])
-                  @html.br
+                  unless hSecCon[:classSystem].nil?
+                     @html.em('Classification System: ')
+                     @html.text!(hSecCon[:classSystem])
+                     @html.br
+                  end
 
                   # security constraint - user note
                   unless hSecCon[:userNote].nil?
