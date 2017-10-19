@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.4.0 2017-10-19 added mdJson reader for coordinateResolution
+# 2.4.0 2017-10-19 added fgdc readers for spatial reference
 # 2.3.5 2017-10-17 fixed problem with adding technical prerequisite to nil distribution description
 # 2.3.5 2017-10-13 trap missing topology level in html writer vectorRepresentation
 # 2.3.4 2017-10-12 drop harvest set tag if repository citation is missing
@@ -32,7 +34,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.5"
+      VERSION = "2.4.0"
    end
 end
 
