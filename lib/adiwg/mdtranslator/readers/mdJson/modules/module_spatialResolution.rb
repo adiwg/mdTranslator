@@ -2,6 +2,8 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2017-10-19 add geographic resolution
+#  Stan Smith 2017-10-19 add bearingDistance resolution
 #  Stan Smith 2017-10-19 add coordinate resolution
 #  Stan Smith 2016-10-17 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -12,6 +14,7 @@
 require_relative 'module_measure'
 require_relative 'module_coordinateResolution'
 require_relative 'module_bearingDistanceResolution'
+require_relative 'module_geographicResolution'
 
 module ADIWG
    module Mdtranslator
@@ -73,6 +76,18 @@ module ADIWG
                         hReturn = BearingDistanceResolution.unpack(hBearRes, responseObj)
                         unless hReturn.nil?
                            intResolution[:bearingDistanceResolution] = hReturn
+                           haveOne = true
+                        end
+                     end
+                  end
+
+                  # spatial resolution - geographic resolution (required if not others)
+                  if hResolution.has_key?('geographicResolution')
+                     hGeoRes = hResolution['geographicResolution']
+                     unless hGeoRes.empty?
+                        hReturn = GeographicResolution.unpack(hGeoRes, responseObj)
+                        unless hReturn.nil?
+                           intResolution[:geographicResolution] = hReturn
                            haveOne = true
                         end
                      end

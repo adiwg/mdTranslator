@@ -29,6 +29,13 @@
             "bearingReferenceDirection": "north",
             "bearingReferenceMeridian": "assumed"
          }
+      },
+      {
+         "geographicResolution": {
+            "latitudeResolution": 9.9,
+            "longitudeResolution": 99.9,
+            "unitOfMeasure": "geographic resolution UOM"
+         }
       }
    ]
 }

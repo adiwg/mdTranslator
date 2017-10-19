@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.4.0 2017-10-19 added mdJson reader for geographicResolution
+# 2.4.0 2017-10-19 added mdJson reader for bearingDistanceResolution
 # 2.4.0 2017-10-19 added mdJson reader for coordinateResolution
 # 2.4.0 2017-10-19 added fgdc readers for spatial reference
 # 2.3.5 2017-10-17 fixed problem with adding technical prerequisite to nil distribution description
