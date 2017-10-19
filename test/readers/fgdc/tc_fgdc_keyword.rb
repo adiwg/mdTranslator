@@ -20,7 +20,8 @@ class TestReaderFgdcKeyword < TestReaderFGDCParent
       hResourceInfo = intMetadataClass.newResourceInfo
 
       xIn = @@xDoc.xpath('./metadata/idinfo/keywords')
-      aKeywords = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      aKeywords = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty aKeywords
       assert_equal 5, aKeywords.length
@@ -60,8 +61,8 @@ class TestReaderFgdcKeyword < TestReaderFGDCParent
       assert_equal 2, hResourceInfo[:topicCategories].length
       assert_equal 'biota', hResourceInfo[:topicCategories][0]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

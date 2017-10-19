@@ -22,7 +22,8 @@ class TestReaderFgdcTransferInfo < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hDistribution
 
@@ -55,8 +56,8 @@ class TestReaderFgdcTransferInfo < TestReaderFGDCParent
       assert_equal 'format specification', hSpecification[:otherDetails][0]
       assert_equal 'format information content', hSpecification[:otherDetails][1]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

@@ -16,15 +16,16 @@ class TestReaderFgdcEntityAttribute < TestReaderFGDCParent
    def test_entityAttribute_complete
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
-      hDictionary = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDictionary = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDictionary
       refute_empty hDictionary[:citation]
       assert_equal 'FGDC EntityAttribute Section 5', hDictionary[:citation][:title]
       assert_equal 1, hDictionary[:domains].length
       assert_equal 4, hDictionary[:entities].length
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

@@ -18,8 +18,9 @@ class TestReaderFgdcSource < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage/srcinfo').first
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       aResolutions = []
-      hSource = @@NameSpace.unpack(xIn, aResolutions,@@hResponseObj)
+      hSource = @@NameSpace.unpack(xIn, aResolutions,hResponse)
 
       assert_equal 1, aResolutions.length
       assert_equal 25000, aResolutions[0][:scaleFactor]
@@ -65,8 +66,8 @@ class TestReaderFgdcSource < TestReaderFGDCParent
       assert_empty hTimePeriod[:startDateTime]
       refute_empty hTimePeriod[:endDateTime]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

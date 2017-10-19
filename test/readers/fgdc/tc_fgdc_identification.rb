@@ -20,7 +20,8 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       intObj = TestReaderFGDCParent.get_intObj
 
       xIn = @@xDoc.xpath('./metadata/idinfo')
-      hIntObj = @@NameSpace.unpack(xIn, intObj, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hIntObj = @@NameSpace.unpack(xIn, intObj, hResponse)
 
       refute_empty hIntObj
       assert_empty hIntObj[:schema]
@@ -86,8 +87,8 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       hConstraint = hResourceInfo[:constraints][1]
       assert_equal 'security', hConstraint[:type]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

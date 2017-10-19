@@ -15,13 +15,14 @@ class TestReaderFgdcOnlineResource < TestReaderFGDCParent
 
       linkName = 'https://link.name'
       linkDescription = 'link description'
-      hOnline = @@NameSpace.unpack(linkName, linkDescription,@@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hOnline = @@NameSpace.unpack(linkName, linkDescription,hResponse)
 
       refute_empty hOnline
       assert_equal linkName, hOnline[:olResURI]
       assert_equal linkDescription, hOnline[:olResDesc]
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

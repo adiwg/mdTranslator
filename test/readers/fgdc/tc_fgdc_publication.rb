@@ -19,8 +19,8 @@ class TestReaderFgdcPublication < TestReaderFGDCParent
    def test_publication_complete
 
       TestReaderFGDCParent.set_intObj
-
-      hResponsibility = @@NameSpace.unpack(@@xPublication, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hResponsibility = @@NameSpace.unpack(@@xPublication, hResponse)
 
       refute_empty hResponsibility
       assert_equal 'publisher', hResponsibility[:roleName]
@@ -43,8 +43,8 @@ class TestReaderFgdcPublication < TestReaderFGDCParent
       assert_equal 'mailing', hAddress[:addressTypes][0]
       assert_equal 'City, State, USA', hAddress[:description]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

@@ -69,10 +69,10 @@ module ADIWG
                   end
 
                   # metadata (spref 4) - spatial reference
-                  # xSpatialRef = xMetadata.xpath('./spref')
-                  # unless xSpatialRef.empty?
-                  #    SpatialReference.unpack(xSpatialRef, hResponseObj)
-                  # end
+                  xSpatialRef = xMetadata.xpath('./spref')
+                  unless xSpatialRef.empty?
+                     SpatialReference.unpack(xSpatialRef, hResourceInfo, hResponseObj)
+                  end
 
                   # metadata (eainfo 5) - entity and attribute
                   xEntity = xMetadata.xpath('./eainfo')

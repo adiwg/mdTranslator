@@ -22,7 +22,8 @@ class TestReaderFgdcOnlineOption < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hDistribution
 
@@ -45,8 +46,8 @@ class TestReaderFgdcOnlineOption < TestReaderFGDCParent
       assert_equal 'https://doi.org/10.5066/3', hTransfer0[:onlineOptions][2][:olResURI]
       assert_equal 'https://doi.org/10.5066/4', hTransfer0[:onlineOptions][3][:olResURI]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

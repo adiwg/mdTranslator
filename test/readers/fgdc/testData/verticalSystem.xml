@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <vertdef>
+      <altsys>
+        <altdatum>altitude datum name</altdatum>
+        <altres>0.9</altres>
+        <altres>1.9</altres>
+        <altunits>kilometers</altunits>
+        <altenc>attribute values</altenc>
+      </altsys>
+      <depthsys>
+        <depthdn>depth datum name</depthdn>
+        <depthres>1.0</depthres>
+        <depthres>3.0</depthres>
+        <depthdu>fathom</depthdu>
+        <depthem>explicit depth coordinate</depthem>
+      </depthsys>
+    </vertdef>
+  </spref>
+</metadata>

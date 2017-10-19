@@ -21,7 +21,8 @@ class TestReaderFgdcContact < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDocPerson)
       TestReaderFGDCParent.set_intObj
       xContact = @@xDocPerson.xpath('./metadata/idinfo/ptcontac')
-      hResponsibility = @@NameSpace.unpack(xContact, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hResponsibility = @@NameSpace.unpack(xContact, hResponse)
 
       refute_empty hResponsibility
       assert_nil hResponsibility[:roleName]
@@ -64,8 +65,8 @@ class TestReaderFgdcContact < TestReaderFGDCParent
       assert_equal 'mail postal', hAddress[:postalCode]
       assert_equal 'mail country', hAddress[:country]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
@@ -74,7 +75,8 @@ class TestReaderFgdcContact < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDocOrg)
       TestReaderFGDCParent.set_intObj
       xContact = @@xDocOrg.xpath('./metadata/idinfo/ptcontac')
-      hResponsibility = @@NameSpace.unpack(xContact, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hResponsibility = @@NameSpace.unpack(xContact, hResponse)
 
       refute_empty hResponsibility
       assert_nil hResponsibility[:roleName]
@@ -93,8 +95,8 @@ class TestReaderFgdcContact < TestReaderFGDCParent
       assert_equal 'my primary organization', hContact[:name]
       assert_nil hContact[:positionName]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

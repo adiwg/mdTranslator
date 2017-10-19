@@ -16,14 +16,15 @@ class TestReaderFgdcSeries < TestReaderFGDCParent
    def test_series_complete
 
       xIn = @@xDoc.xpath('./serinfo')
-      hSeries = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hSeries = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hSeries
       assert_equal 'Series Name', hSeries[:seriesName]
       assert_equal 'Spring 2017', hSeries[:seriesIssue]
       assert_nil hSeries[:issuePage]
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

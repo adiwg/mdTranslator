@@ -647,6 +647,19 @@
         <semiaxis>6378137</semiaxis>
         <denflat>298.257223563</denflat>
       </geodetic>
+      <planar>
+        <mapproj>
+          <mapprojn>map projection name</mapprojn>
+          <albers>
+            <stdparll>9.0</stdparll>
+            <stdparll>19.0</stdparll>
+            <longcm>-150.0</longcm>
+            <latprjo>15.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>1000000.0</fnorth>
+          </albers>
+        </mapproj>
+      </planar>
     </horizsys>
   </spref>
   <eainfo>

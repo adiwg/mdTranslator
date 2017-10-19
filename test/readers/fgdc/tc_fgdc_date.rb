@@ -17,7 +17,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_complete
 
       TestReaderFGDCParent.set_xDoc(@@xDocLocal)
-      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', hResponse)
 
       refute_empty hDate
       assert_kind_of DateTime, hDate[:date]
@@ -32,7 +33,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_invalid
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('Unknown', '', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('Unknown', '', 'test', hResponse)
 
       assert_nil hDate
       assert @@hResponseObj[:readerExecutionPass]
@@ -43,7 +45,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_time_invalid
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', 'Unknown', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', 'Unknown', 'test', hResponse)
 
       refute_empty hDate
       hour = hDate[:date].hour
@@ -62,7 +65,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_local
 
       TestReaderFGDCParent.set_xDoc(@@xDocLocal)
-      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -84,7 +88,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_universal
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -107,7 +112,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_Y
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('2017', '', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('2017', '', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -130,7 +136,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YM
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('201708', '', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('201708', '', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -153,7 +160,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMD
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -176,7 +184,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMDh
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '14', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -199,7 +208,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMDhm
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '14:08', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14:08', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -222,7 +232,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMDhm_no_time_separator
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '1408', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '1408', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -245,7 +256,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMDhms
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '14:08:20', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day
@@ -268,7 +280,8 @@ class TestReaderFgdcDate < TestReaderFGDCParent
    def test_date_YMDhms_no_time_separator
 
       TestReaderFGDCParent.set_xDoc(@@xDocUTC)
-      hDate = @@NameSpace.unpack('20170816', '140820', 'test', @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDate = @@NameSpace.unpack('20170816', '140820', 'test', hResponse)
 
       refute_empty hDate
       day = hDate[:date].day

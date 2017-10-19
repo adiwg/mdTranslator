@@ -780,21 +780,22 @@ class InternalMetadata
       {
          systemType: nil,
          systemIdentifier: {},
-         systemParameters: {}
+         systemParameterSet: {}
       }
    end
 
-   def newReferenceSystemParameters
+   def newReferenceSystemParameterSet
       {
          projection: {},
          ellipsoid: {},
-         datumIdentifier: {}
+         verticalDatum: {}
       }
    end
 
    def newProjection
       {
          projectionIdentifier: {},
+         projectionName: nil,
          zone: nil,
          standardParallel1: nil,
          standardParallel2: nil,
@@ -808,11 +809,18 @@ class InternalMetadata
          longitudeOfProjectionCenter: nil,
          latitudeOfProjectionCenter: nil,
          scaleFactorAtCenterLine: nil,
+         scaleFactorAtCentralMeridian: nil,
          straightVerticalLongitudeFromPole: nil,
          scaleFactorAtProjectionOrigin: nil,
          azimuthAngle: nil,
          azimuthMeasurePointLongitude: nil,
-         obliqueLinePoint: []
+         obliqueLinePoints: [],
+         landsatNumber: nil,
+         landsatPath: nil,
+         localPlanarDescription: nil,
+         localPlanarGeoreference: nil,
+         otherProjection: nil,
+         otherGrid: nil
       }
    end
 
@@ -826,6 +834,7 @@ class InternalMetadata
    def newEllipsoid
       {
          ellipsoidIdentifier: {},
+         ellipsoidName: nil,
          semiMajorAxis: nil,
          axisUnits: nil,
          denominatorOfFlatteningRatio: nil
@@ -836,7 +845,9 @@ class InternalMetadata
       {
          scaleFactor: nil,
          measure: {},
-         geographicMeasure: {},
+         coordinateResolution: {},
+         bearingDistanceResolution: {},
+         geographicResolution: {},
          levelOfDetail: nil
       }
    end
@@ -849,12 +860,42 @@ class InternalMetadata
       }
    end
 
-   def newGeographicMeasure
+   def newCoordinateResolution
       {
-         latitudeMeasure: nil,
-         longitudeMeasure: nil,
+         abscissaResolutionX: nil,
+         ordinateResolutionY: nil,
          unitOfMeasure: nil
       }
+   end
+
+   def newBearingDistanceResolution
+      {
+         distanceResolution: nil,
+         distanceUnitOfMeasure: nil,
+         bearingResolution: nil,
+         bearingUnitsOfMeasure: nil,
+         bearingReferenceDirection: nil,
+         bearingReferenceMeridian: nil
+      }
+   end
+
+   def newGeographicResolution
+      {
+         latitudeResolution: nil,
+         longitudeResolution: nil,
+         unitOfMeasure: nil
+      }
+   end
+
+   def newVerticalDatum
+      {
+         datumIdentifier: {},
+         isDepthSystem: false,
+         encodingMethod: nil,
+         verticalResolution: nil,
+         unitOfMeasure: nil
+      }
+
    end
 
    def newSpatialRepresentation

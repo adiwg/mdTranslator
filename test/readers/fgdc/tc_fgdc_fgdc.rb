@@ -16,7 +16,8 @@ class TestReaderFgdcFgdc < TestReaderFGDCParent
 
    def test_metadata_complete
 
-      intObj = @@NameSpace.unpack(@@xDoc, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      intObj = @@NameSpace.unpack(@@xDoc, hResponse)
 
       refute_empty intObj
       refute_empty intObj[:schema]

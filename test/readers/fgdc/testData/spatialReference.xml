@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+
+      <geograph>
+        <latres>0.00009</latres>
+        <longres>0.00004</longres>
+        <geogunit>decimal degrees</geogunit>
+      </geograph>
+
+      <planar>
+        <mapproj>
+          <mapprojn>albers projection</mapprojn>
+          <albers>
+            <stdparll>9.0</stdparll>
+            <stdparll>19.0</stdparll>
+            <longcm>-150.0</longcm>
+            <latprjo>15.0</latprjo>
+            <feast>500000.0</feast>
+            <fnorth>1000000.0</fnorth>
+          </albers>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>azimuth equidistant projection</mapprojn>
+          <azimequi>
+            <longcm>-150.0</longcm>
+            <latprjo>48.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>500000.0</fnorth>
+          </azimequi>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>equidistant conic projection</mapprojn>
+          <equicon>
+            <stdparll>9.0</stdparll>
+            <stdparll>70.0</stdparll>
+            <longcm>-150.0</longcm>
+            <latprjo>48.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>500000.0</fnorth>
+          </equicon>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>equirectangular projection</mapprojn>
+          <equirect>
+            <stdparll>9.0</stdparll>
+            <longcm>-150.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>500000.0</fnorth>
+          </equirect>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>general vertical near-side perspective projection</mapprojn>
+          <gvnsp>
+            <heightpt>1000.0</heightpt>
+            <longpc>-100.0</longpc>
+            <latprjc>30.0</latprjc>
+            <feast>1000000</feast>
+            <fnorth>250000</fnorth>
+          </gvnsp>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>gnomonic projection</mapprojn>
+          <gnomonic>
+            <longpc>-110.0</longpc>
+            <latprjc>-25.0</latprjc>
+            <feast>1000000.0</feast>
+            <fnorth>400000.0</fnorth>
+          </gnomonic>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>lambert azimuthal equal area projection</mapprojn>
+          <lamberta>
+            <longpc>-120.0</longpc>
+            <latprjc>50.0</latprjc>
+            <feast>1000000.0</feast>
+            <fnorth>600000.0</fnorth>
+          </lamberta>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>lambert conformal conic projection</mapprojn>
+          <lambertc>
+            <stdparll>20.0</stdparll>
+            <stdparll>40.0</stdparll>
+            <longcm>-100.0</longcm>
+            <latprjo>30.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>700000.0</fnorth>
+          </lambertc>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>mercator projection standard parallel</mapprojn>
+          <mercator>
+            <stdparll>55.0</stdparll>
+            <longcm>-120.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>550000.0</fnorth>
+          </mercator>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>mercator projection scale factor at equator</mapprojn>
+          <mercator>
+            <sfequat>101.5</sfequat>
+            <longcm>-120.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>550000.0</fnorth>
+          </mercator>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>modified stereographic projection for alaska</mapprojn>
+          <modsak>
+            <feast>1000000.0</feast>
+            <fnorth>490000.0</fnorth>
+          </modsak>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>miller cylindrical projection</mapprojn>
+          <miller>
+            <longcm>-160.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>400000.0</fnorth>
+          </miller>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>oblique mercator projection</mapprojn>
+          <obqmerc>
+            <sfctrlin>103.5</sfctrlin>
+            <obqlazim>
+              <asimangl>60.0</asimangl>
+              <asimptl>-110.0</asimptl>
+            </obqlazim>
+            <latprjo>25.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>400000.0</fnorth>
+          </obqmerc>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>oblique mercator projection</mapprojn>
+          <obqmerc>
+            <sfctrlin>103.5</sfctrlin>
+            <obqlpt>
+              <obqllat>20.0</obqllat>
+              <obqllong>-105.0</obqllong>
+              <obqllat>30.0</obqllat>
+              <obqllong>-115.0</obqllong>
+            </obqlpt>
+            <latprjo>25.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>400000.0</fnorth>
+          </obqmerc>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>orthographic projection</mapprojn>
+          <orthogr>
+            <longpc>-125.0</longpc>
+            <latprjc>70.0</latprjc>
+            <feast>1000000.0</feast>
+            <fnorth>700000.0</fnorth>
+          </orthogr>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>polar stereographic projection</mapprojn>
+          <polarst>
+            <svlong>-90.0</svlong>
+            <stdparll>50.0</stdparll>
+            <feast>1000000.0</feast>
+            <fnorth>800000.0</fnorth>
+          </polarst>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>polar stereographic projection</mapprojn>
+          <polarst>
+            <svlong>-90.0</svlong>
+            <sfprjorg>78.5</sfprjorg>
+            <feast>1000000.0</feast>
+            <fnorth>800000.0</fnorth>
+          </polarst>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>polyconic projection</mapprojn>
+          <polycon>
+            <longcm>-160</longcm>
+            <latprjo>65.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>900000.0</fnorth>
+          </polycon>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>robinson projection</mapprojn>
+          <robinson>
+            <longpc>20.0</longpc>
+            <feast>1000000.0</feast>
+            <fnorth>850000.0</fnorth>
+          </robinson>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>sinusoidal projection</mapprojn>
+          <sinusoid>
+            <longcm>30.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>650000.0</fnorth>
+          </sinusoid>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>space oblique mercator projection</mapprojn>
+          <spaceobq>
+            <landsat>7</landsat>
+            <pathnum>1234</pathnum>
+            <feast>1000000.0</feast>
+            <fnorth>950000.0</fnorth>
+          </spaceobq>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>stereographic projection</mapprojn>
+          <stereo>
+            <longpc>50.0</longpc>
+            <latprjc>-50.0</latprjc>
+            <feast>1000000.0</feast>
+            <fnorth>550000.0</fnorth>
+          </stereo>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>transverse mercator projection</mapprojn>
+          <transmer>
+            <sfctrmer>49.25</sfctrmer>
+            <longcm>-165.0</longcm>
+            <latprjo>65.0</latprjo>
+            <feast>1000000.0</feast>
+            <fnorth>500000.0</fnorth>
+          </transmer>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>van der grinten projection</mapprojn>
+          <vdgrin>
+            <longcm>170.0</longcm>
+            <feast>1000000.0</feast>
+            <fnorth>400000.0</fnorth>
+          </vdgrin>
+        </mapproj>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <mapproj>
+          <mapprojn>projection parameters</mapprojn>
+          <mapprojp>
+            <stdparll>1.0</stdparll>
+            <stdparll>2.0</stdparll>
+            <longcm>3.0</longcm>
+            <latprjo>4.0</latprjo>
+            <feast>5.0</feast>
+            <fnorth>6.0</fnorth>
+            <sfequat>7.0</sfequat>
+            <heightpt>8.0</heightpt>
+            <longpc>9.0</longpc>
+            <latprjc>10.0</latprjc>
+            <sfctrlin>11.0</sfctrlin>
+            <obqlazim>
+              <asimangl>12.0</asimangl>
+              <asimptl>13.0</asimptl>
+            </obqlazim>
+            <obqlpt>
+              <obqllat>14.0</obqllat>
+              <obqllong>15.0</obqllong>
+              <obqllat>16.0</obqllat>
+              <obqllong>17.0</obqllong>
+            </obqlpt>
+            <svlong>18.0</svlong>
+            <sfprjorg>19.0</sfprjorg>
+            <landsat>20</landsat>
+            <pathnum>21</pathnum>
+            <sfctrmer>22.0</sfctrmer>
+            <otherprj>other</otherprj>
+          </mapprojp>
+        </mapproj>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+
+      <planar>
+        <gridsys>
+          <gridsysn>universal transverse mercator UTM grid system</gridsysn>
+          <utm>
+            <utmzone>9</utmzone>
+            <transmer>
+              <sfctrmer>9.9</sfctrmer>
+              <longcm>-99.0</longcm>
+              <latprjo>19.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>750000.0</fnorth>
+            </transmer>
+          </utm>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>universal polar stereographic UPS grid system</gridsysn>
+          <ups>
+            <upszone>B</upszone>
+            <polarst>
+              <svlong>102.0</svlong>
+              <stdparll>52.0</stdparll>
+              <feast>1000000.0</feast>
+              <fnorth>300000.0</fnorth>
+            </polarst>
+          </ups>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>universal polar stereographic UPS grid system</gridsysn>
+          <ups>
+            <upszone>B</upszone>
+            <polarst>
+              <svlong>102.0</svlong>
+              <sfprjorg>0.58</sfprjorg>
+              <feast>1000000.0</feast>
+              <fnorth>300000.0</fnorth>
+            </polarst>
+          </ups>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>state plane grid system</gridsysn>
+          <spcs>
+            <spcszone>alaska zone 9</spcszone>
+            <lambertc>
+              <stdparll>50.0</stdparll>
+              <stdparll>55.0</stdparll>
+              <longcm>-160.0</longcm>
+              <latprjo>0.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>500000.0</fnorth>
+            </lambertc>
+          </spcs>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>state plane grid system</gridsysn>
+          <spcs>
+            <spcszone>alaska zone 8</spcszone>
+            <transmer>
+              <sfctrmer>0.45</sfctrmer>
+              <longcm>-160.0</longcm>
+              <latprjo>50.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>600000.0</fnorth>
+            </transmer>
+          </spcs>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>state plane grid system</gridsysn>
+          <spcs>
+            <spcszone>alaska zone 7</spcszone>
+            <obqmerc>
+              <sfctrlin>0.55</sfctrlin>
+              <obqlazim>
+                <asimangl>15.0</asimangl>
+                <asimptl>-160.0</asimptl>
+              </obqlazim>
+              <latprjo>55.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>400000.0</fnorth>
+            </obqmerc>
+          </spcs>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>state plane grid system</gridsysn>
+          <spcs>
+            <spcszone>alaska zone 6</spcszone>
+            <obqmerc>
+              <sfctrlin>0.55</sfctrlin>
+              <obqlpt>
+                <obqllat>45.0</obqllat>
+                <obqllong>-155.0</obqllong>
+                <obqllat>55.0</obqllat>
+                <obqllong>-165.0</obqllong>
+              </obqlpt>
+              <latprjo>55.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>400000.0</fnorth>
+            </obqmerc>
+          </spcs>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>state plane grid system</gridsysn>
+          <spcs>
+            <spcszone>alaska zone 5</spcszone>
+            <polycon>
+              <longcm>-155.0</longcm>
+              <latprjo>61.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>450000.0</fnorth>
+            </polycon>
+          </spcs>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>arc grid coordinate system</gridsysn>
+          <arcsys>
+            <arczone>10</arczone>
+            <equirect>
+              <stdparll>60.0</stdparll>
+              <longcm>-140.0</longcm>
+              <feast>1000000.0</feast>
+              <fnorth>400000.0</fnorth>
+            </equirect>
+          </arcsys>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>arc grid coordinate system</gridsysn>
+          <arcsys>
+            <arczone>10</arczone>
+            <azimequi>
+              <longcm>-140.0</longcm>
+              <latprjo>60.0</latprjo>
+              <feast>1000000.0</feast>
+              <fnorth>400000.0</fnorth>
+            </azimequi>
+          </arcsys>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <gridsys>
+          <gridsysn>other grid coordinate system</gridsysn>
+          <othergrd>other</othergrd>
+        </gridsys>
+        <planci>
+          <plandu>meters</plandu>
+        </planci>
+      </planar>
+
+      <planar>
+        <localp>
+          <localpd>local planar description</localpd>
+          <localpgi>local planar georeference information</localpgi>
+        </localp>
+        <planci>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+
+      <planar>
+        <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
+          <distbrep>
+            <distres>99.99</distres>
+            <bearres>9.99</bearres>
+            <bearunit>bearing units</bearunit>
+            <bearrefd>bearing direction</bearrefd>
+            <bearrefm>bearing meridian</bearrefm>
+          </distbrep>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+
+      <local>
+        <localdes>local description</localdes>
+        <localgeo>local georeference information</localgeo>
+      </local>
+
+      <geodetic>
+        <horizdn>World Geodetic System of 1984 identifier</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+
+    </horizsys>
+  </spref>
+</metadata>

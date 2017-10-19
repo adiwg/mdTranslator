@@ -22,7 +22,8 @@ class TestReaderFgdcMetadataInfo < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/metainfo')
-      hMetadataInfo = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hMetadataInfo = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hMetadataInfo
       assert_empty hMetadataInfo[:metadataIdentifier]
@@ -72,8 +73,8 @@ class TestReaderFgdcMetadataInfo < TestReaderFGDCParent
       assert_equal 'security classification system', hSecurity[:classSystem]
       assert_equal 'handling instructions', hSecurity[:handling]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

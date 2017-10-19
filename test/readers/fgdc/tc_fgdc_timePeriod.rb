@@ -19,8 +19,9 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
    def test_timePeriod_single_complete
 
       TestReaderFGDCParent.set_xDoc(@@xSingle)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       xTimePeriod = @@xSingle.xpath('./metadata/idinfo/timeperd')
-      hTimePeriod = @@NameSpace.unpack(xTimePeriod, @@hResponseObj)
+      hTimePeriod = @@NameSpace.unpack(xTimePeriod, hResponse)
 
       refute_empty hTimePeriod
       assert_equal 'ground condition', hTimePeriod[:description]
@@ -43,16 +44,17 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
 
       assert_empty hTimePeriod[:startDateTime]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_timePeriod_range_complete
 
       TestReaderFGDCParent.set_xDoc(@@xRange)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       xTimePeriod = @@xRange.xpath('./metadata/idinfo/timeperd')
-      hTimePeriod = @@NameSpace.unpack(xTimePeriod, @@hResponseObj)
+      hTimePeriod = @@NameSpace.unpack(xTimePeriod, hResponse)
 
       refute_empty hTimePeriod
       assert_equal 'ground condition', hTimePeriod[:description]
@@ -89,16 +91,17 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       assert_equal 00, second
       assert_equal '+00:00', offset
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_timePeriod_multi_complete
 
       TestReaderFGDCParent.set_xDoc(@@xMulti)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       xTimePeriod = @@xMulti.xpath('./metadata/idinfo/timeperd')
-      hTimePeriod = @@NameSpace.unpack(xTimePeriod, @@hResponseObj)
+      hTimePeriod = @@NameSpace.unpack(xTimePeriod, hResponse)
 
       refute_empty hTimePeriod
       assert_equal 'ground condition', hTimePeriod[:description]
@@ -121,8 +124,8 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
 
       assert_empty hTimePeriod[:endDateTime]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

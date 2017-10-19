@@ -22,7 +22,8 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage')
-      hLineage = @@NameSpace.unpack(xIn, hResourceInfo,@@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hLineage = @@NameSpace.unpack(xIn, hResourceInfo,hResponse)
 
       refute_nil hLineage
 
@@ -56,8 +57,8 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       hProduct = hProcess[:stepProducts][0]
       assert_equal 'my source 2 contribution', hProduct[:description]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

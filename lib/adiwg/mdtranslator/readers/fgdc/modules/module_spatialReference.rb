@@ -6,6 +6,8 @@
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'module_horizontalReference'
+require_relative 'module_verticalReference'
 
 module ADIWG
    module Mdtranslator
@@ -14,9 +16,21 @@ module ADIWG
 
             module SpatialReference
 
-               def self.unpack(xSpatialRef, hResponseObj)
+               def self.unpack(xSpatialRef, hResourceInfo, hResponseObj)
 
+                  # spatial reference 4.1 (horizsys) - horizontal coordinate system
+                  xHorizontalRef = xSpatialRef.xpath('./horizsys')
+                  unless xHorizontalRef.empty?
+                     HorizontalReference.unpack(xHorizontalRef, hResourceInfo, hResponseObj)
+                  end
 
+                  # spatial reference 4.2 (vertdef) - vertical coordinate system
+                  xVerticalRef = xSpatialRef.xpath('./vertdef')
+                  unless xVerticalRef.empty?
+                     VerticalReference.unpack(xVerticalRef, hResourceInfo, hResponseObj)
+                  end
+
+                  return hResourceInfo
 
                end
 

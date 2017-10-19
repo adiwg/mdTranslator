@@ -22,7 +22,8 @@ class TestReaderFgdcOrderProcess < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hDistribution
 
@@ -46,8 +47,8 @@ class TestReaderFgdcOrderProcess < TestReaderFGDCParent
       hPlanned1 = hOrder1[:plannedAvailability]
       assert_equal hPlanned1[:dateTime], hPlanned0[:dateTime]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
