@@ -19,6 +19,16 @@
             "ordinateResolutionY": 99.9,
             "unitOfMeasure": "coordinate resolution UOM"
          }
+      },
+      {
+         "bearingDistanceResolution": {
+            "distanceResolution": 9.9,
+            "distanceUnitOfMeasure": "distance UOM",
+            "bearingResolution": 99.9,
+            "bearingUnitOfMeasure": "bearing UOM",
+            "bearingReferenceDirection": "north",
+            "bearingReferenceMeridian": "assumed"
+         }
       }
    ]
 }

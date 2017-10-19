@@ -36,6 +36,10 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
    #     errors = JSON::Validator.fully_validate('spatialResolution.json', @@hIn[3])
    #     assert_empty errors
    #
+   #     # test bearing distance resolution
+   #     errors = JSON::Validator.fully_validate('spatialResolution.json', @@hIn[4])
+   #     assert_empty errors
+   #
    # end
 
    def test_spatialResolution_scaleFactor
@@ -48,6 +52,7 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       assert_empty metadata[:measure]
       assert_nil metadata[:levelOfDetail]
       assert_empty metadata[:coordinateResolution]
+      assert_empty metadata[:bearingDistanceResolution]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -63,6 +68,7 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       refute_empty metadata[:measure]
       assert_nil metadata[:levelOfDetail]
       assert_empty metadata[:coordinateResolution]
+      assert_empty metadata[:bearingDistanceResolution]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -78,6 +84,7 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       assert_empty metadata[:measure]
       assert_equal 'levelOfDetail', metadata[:levelOfDetail]
       assert_empty metadata[:coordinateResolution]
+      assert_empty metadata[:bearingDistanceResolution]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -93,6 +100,23 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       assert_empty metadata[:measure]
       assert_nil metadata[:levelOfDetail]
       refute_empty metadata[:coordinateResolution]
+      assert_empty metadata[:bearingDistanceResolution]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_spatialResolution_bearingDistanceResolution
+
+      hIn = Marshal::load(Marshal.dump(@@hIn[4]))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata[:scaleFactor]
+      assert_empty metadata[:measure]
+      assert_nil metadata[:levelOfDetail]
+      assert_empty metadata[:coordinateResolution]
+      refute_empty metadata[:bearingDistanceResolution]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

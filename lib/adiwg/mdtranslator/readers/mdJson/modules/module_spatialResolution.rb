@@ -11,6 +11,7 @@
 
 require_relative 'module_measure'
 require_relative 'module_coordinateResolution'
+require_relative 'module_bearingDistanceResolution'
 
 module ADIWG
    module Mdtranslator
@@ -60,6 +61,18 @@ module ADIWG
                         hReturn = CoordinateResolution.unpack(hCoordRes, responseObj)
                         unless hReturn.nil?
                            intResolution[:coordinateResolution] = hReturn
+                           haveOne = true
+                        end
+                     end
+                  end
+
+                  # spatial resolution - bearing distance resolution (required if not others)
+                  if hResolution.has_key?('bearingDistanceResolution')
+                     hBearRes = hResolution['bearingDistanceResolution']
+                     unless hBearRes.empty?
+                        hReturn = BearingDistanceResolution.unpack(hBearRes, responseObj)
+                        unless hReturn.nil?
+                           intResolution[:bearingDistanceResolution] = hReturn
                            haveOne = true
                         end
                      end

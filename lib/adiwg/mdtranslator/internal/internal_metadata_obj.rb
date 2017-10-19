@@ -873,7 +873,7 @@ class InternalMetadata
          distanceResolution: nil,
          distanceUnitOfMeasure: nil,
          bearingResolution: nil,
-         bearingUnitsOfMeasure: nil,
+         bearingUnitOfMeasure: nil,
          bearingReferenceDirection: nil,
          bearingReferenceMeridian: nil
       }
