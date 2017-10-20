@@ -106,9 +106,11 @@ module ADIWG
                end
 
                # validate file against mdJson schema definition
-               validate(hMdJson, hResponseObj)
-               unless hResponseObj[:readerValidationPass]
-                  return {}
+               unless hResponseObj[:readerValidationLevel] == 'none'
+                  validate(hMdJson, hResponseObj)
+                  unless hResponseObj[:readerValidationPass]
+                     return {}
+                  end
                end
 
                # unpack the mdJson into the internal object

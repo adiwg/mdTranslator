@@ -61,7 +61,31 @@
                "measure": {
                   "type": "distance",
                   "value": 99.9,
-                  "unitOfMeasure": "unitOfMeasure"
+                  "unitOfMeasure": "measure UOM"
+               }
+            },
+            {
+               "coordinateResolution": {
+                  "abscissaResolutionX": 9.9,
+                  "ordinateResolutionY": 99.9,
+                  "unitOfMeasure": "coord UOM"
+               }
+            },
+            {
+               "bearingDistanceResolution": {
+                  "distanceResolution": 9.9,
+                  "distanceUnitOfMeasure": "distance UOM",
+                  "bearingResolution": 19.9,
+                  "bearingUnitOfMeasure": "bearing UOM",
+                  "bearingReferenceDirection": "north",
+                  "bearingReferenceMeridian": "assumed"
+               }
+            },
+            {
+               "geographicResolution": {
+                  "latitudeResolution": 19.9,
+                  "longitudeResolution": 119.9,
+                  "unitOfMeasure": "geographic UOM"
                }
             },
             {
