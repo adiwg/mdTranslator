@@ -26,11 +26,7 @@ module ADIWG
 
                   # bearing distance resolution - distance resolution (required)
                   if hBearRes.has_key?('distanceResolution')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     distanceRes = hBearRes['distanceResolution']
-                     unless distanceRes.nil? || distanceRes == ''
-                        intBearRes[:distanceResolution] = distanceRes.to_f
-                     end
+                     intBearRes[:distanceResolution] = hBearRes['distanceResolution']
                   end
                   if intBearRes[:distanceResolution].nil? || intBearRes[:distanceResolution] == ''
                      responseObj[:readerExecutionMessages] << 'Bearing Distance Resolution is missing distance resolution'
@@ -50,11 +46,7 @@ module ADIWG
 
                   # bearing distance resolution - bearing resolution (required)
                   if hBearRes.has_key?('bearingResolution')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     bearingRes = hBearRes['bearingResolution']
-                     unless bearingRes.nil? || bearingRes == ''
-                        intBearRes[:bearingResolution] = bearingRes.to_f
-                     end
+                     intBearRes[:bearingResolution] = hBearRes['bearingResolution']
                   end
                   if intBearRes[:bearingResolution].nil? || intBearRes[:bearingResolution] == ''
                      responseObj[:readerExecutionMessages] << 'Bearing Distance Resolution is missing bearing resolution'

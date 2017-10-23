@@ -26,11 +26,7 @@ module ADIWG
 
                   # coordinate resolution - abscissa (X) (required)
                   if hCoordRes.has_key?('abscissaResolutionX')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     abscissa = hCoordRes['abscissaResolutionX']
-                     unless abscissa.nil? || abscissa == ''
-                        intCoordRes[:abscissaResolutionX] = abscissa.to_f
-                     end
+                     intCoordRes[:abscissaResolutionX] = hCoordRes['abscissaResolutionX']
                   end
                   if intCoordRes[:abscissaResolutionX].nil? || intCoordRes[:abscissaResolutionX] == ''
                      responseObj[:readerExecutionMessages] << 'Coordinate Resolution is missing abscissa resolution'
@@ -40,11 +36,7 @@ module ADIWG
 
                   # coordinate resolution - ordinate (Y) (required)
                   if hCoordRes.has_key?('ordinateResolutionY')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     ordinate = hCoordRes['ordinateResolutionY']
-                     unless ordinate.nil? || ordinate == ''
-                        intCoordRes[:ordinateResolutionY] = ordinate.to_f
-                     end
+                     intCoordRes[:ordinateResolutionY] = hCoordRes['ordinateResolutionY']
                   end
                   if intCoordRes[:ordinateResolutionY].nil? || intCoordRes[:ordinateResolutionY] == ''
                      responseObj[:readerExecutionMessages] << 'Coordinate Resolution is missing ordinate resolution'

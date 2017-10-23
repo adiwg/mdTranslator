@@ -10,7 +10,8 @@
                "projectionIdentifier": {
                   "identifier": "identifier"
                },
-               "zone": 9,
+               "projectionName": "projection name",
+               "zone": "zone 8",
                "standardParallel1": 9.0,
                "standardParallel2": 99.0,
                "longitudeOfCentralMeridian": -9.0,
@@ -23,6 +24,7 @@
                "longitudeOfProjectionCenter": -99.0,
                "latitudeOfProjectionCenter": 9.0,
                "scaleFactorAtCenterLine": 99.9,
+               "scaleFactorAtCentralMeridian": 9.9,
                "straightVerticalLongitudeFromPole": 999.9,
                "scaleFactorAtProjectionOrigin": 99.9,
                "azimuthAngle": 9.9,
@@ -36,22 +38,31 @@
                      "azimuthLineLatitude": 19.9,
                      "azimuthLineLongitude": -109.9
                   }
-               ]
+               ],
+               "landsatNumber": 9,
+               "landsatPath": 9999,
+               "localPlanarDescription": "local planar description",
+               "localPlanarGeoreference": "local planar georeference",
+               "otherProjectionDescription": "other projection description",
+               "otherGridDescription": "other grid description"
             },
             "ellipsoid": {
                "ellipsoidIdentifier": {
                   "identifier": "identifier"
                },
+               "ellipsoidName": "WGS84",
                "semiMajorAxis": 9999999.0,
                "axisUnits": "feet",
                "denominatorOfFlatteningRatio": 999.9
             },
             "verticalDatum": {
-               "datumIdentifier": {},
-               "encodingMethod": "",
+               "datumIdentifier": {
+                  "identifier": "identifier"
+               },
+               "encodingMethod": "attribute values",
                "isDepthSystem": false,
                "verticalResolution": 9.9,
-               "unitOfMeasure": ""
+               "unitOfMeasure": "meters"
             }
          }
       }

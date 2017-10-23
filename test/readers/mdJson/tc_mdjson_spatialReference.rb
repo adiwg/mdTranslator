@@ -32,6 +32,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       assert_equal 'MD_ReferenceSystemTypeCode', metadata[:systemType]
       refute_empty metadata[:systemIdentifier]
       assert_equal 'identifier', metadata[:systemIdentifier][:identifier]
+      refute_empty metadata[:systemParameterSet]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -47,6 +48,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       assert_nil metadata[:systemType]
       refute_empty metadata[:systemIdentifier]
       assert_equal 'identifier', metadata[:systemIdentifier][:identifier]
+      refute_empty metadata[:systemParameterSet]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -62,12 +64,12 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       assert_nil metadata[:systemType]
       refute_empty metadata[:systemIdentifier]
       assert_equal 'identifier', metadata[:systemIdentifier][:identifier]
+      refute_empty metadata[:systemParameterSet]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
    end
 
-   #
    def test_referenceSystem_empty_system
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -77,6 +79,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
 
       assert_equal 'MD_ReferenceSystemTypeCode', metadata[:systemType]
       assert_empty metadata[:systemIdentifier]
+      refute_empty metadata[:systemParameterSet]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -91,37 +94,40 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
 
       assert_equal 'MD_ReferenceSystemTypeCode', metadata[:systemType]
       assert_empty metadata[:systemIdentifier]
+      refute_empty metadata[:systemParameterSet]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_referenceSystem_empty_elements
+   def test_referenceSystem_empty_referenceSystemParameterSet
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['referenceSystemType'] = ''
-      hIn['referenceSystemIdentifier'] = {}
+      hIn['referenceSystemParameterSet'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 'MD_ReferenceSystemTypeCode', metadata[:systemType]
+      refute_empty metadata[:systemIdentifier]
+      assert_empty metadata[:systemParameterSet]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_referenceSystem_missing_elements
+   def test_referenceSystem_missing_referenceSystemParameterSet
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['nonElement'] = ''
-      hIn.delete('referenceSystemType')
-      hIn.delete('referenceSystemIdentifier')
+      hIn.delete('referenceSystemParameterSet')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 'MD_ReferenceSystemTypeCode', metadata[:systemType]
+      refute_empty metadata[:systemIdentifier]
+      assert_empty metadata[:systemParameterSet]
+      assert hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

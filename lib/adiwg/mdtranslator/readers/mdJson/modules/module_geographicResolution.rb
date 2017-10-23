@@ -26,11 +26,7 @@ module ADIWG
 
                   # geographic resolution - latitude resolution (required)
                   if hGeoRes.has_key?('latitudeResolution')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     latRes = hGeoRes['latitudeResolution']
-                     unless latRes.nil? || latRes == ''
-                        intGeoRes[:latitudeResolution] = latRes.to_f
-                     end
+                     intGeoRes[:latitudeResolution] = hGeoRes['latitudeResolution']
                   end
                   if intGeoRes[:latitudeResolution].nil? || intGeoRes[:latitudeResolution] == ''
                      responseObj[:readerExecutionMessages] << 'Geographic Resolution is missing latitude resolution'
@@ -40,11 +36,7 @@ module ADIWG
 
                   # geographic resolution - longitude resolution (required)
                   if hGeoRes.has_key?('longitudeResolution')
-                     # careful here: .to_f converts nil and '' to 0.0
-                     lonRes = hGeoRes['longitudeResolution']
-                     unless lonRes.nil? || lonRes == ''
-                        intGeoRes[:longitudeResolution] = lonRes.to_f
-                     end
+                     intGeoRes[:longitudeResolution] = hGeoRes['longitudeResolution']
                   end
                   if intGeoRes[:longitudeResolution].nil? || intGeoRes[:longitudeResolution] == ''
                      responseObj[:readerExecutionMessages] << 'Geographic Resolution is missing longitude resolution'

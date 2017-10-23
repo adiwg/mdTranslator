@@ -72,7 +72,7 @@ module ADIWG
                      # -> ReferenceSystemParameters.projection.landsatPath
                      ProjectionCommon.unpackLandSatPath(xParams, hProjection, hResponseObj)
 
-                     # -> ReferenceSystemParameters.projection.otherProjection
+                     # -> ReferenceSystemParameters.projection.otherProjectionDescription
                      ProjectionCommon.unpackOtherProjection(xParams, hProjection, hResponseObj)
 
                      return hProjection

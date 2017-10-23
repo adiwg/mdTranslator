@@ -387,7 +387,7 @@
             <landsat>20</landsat>
             <pathnum>21</pathnum>
             <sfctrmer>22.0</sfctrmer>
-            <otherprj>other</otherprj>
+            <otherprj>other projection description</otherprj>
           </mapprojp>
         </mapproj>
         <planci>
@@ -582,7 +582,7 @@
       <planar>
         <gridsys>
           <gridsysn>other grid coordinate system</gridsysn>
-          <othergrd>other</othergrd>
+          <othergrd>other grid description</othergrd>
         </gridsys>
         <planci>
           <plandu>meters</plandu>

@@ -139,9 +139,10 @@ module ADIWG
                   end
 
                   # grid system 4.1.2.2.6 (othergrd) - other coordinate system {text}
+                  # -> ReferenceSystemParameters.projection.otherGridDescription
                   otherG = xMapGrid.xpath('./othergrd').text
                   unless otherG.empty?
-                     hProjection[:otherGrid] = otherG
+                     hProjection[:otherGridDescription] = otherG
                      hProjection[:projectionName] = 'other grid system'
                      return hProjection
                   end

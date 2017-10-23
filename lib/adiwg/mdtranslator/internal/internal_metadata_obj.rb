@@ -819,8 +819,8 @@ class InternalMetadata
          landsatPath: nil,
          localPlanarDescription: nil,
          localPlanarGeoreference: nil,
-         otherProjection: nil,
-         otherGrid: nil
+         otherProjectionDescription: nil,
+         otherGridDescription: nil
       }
    end
 

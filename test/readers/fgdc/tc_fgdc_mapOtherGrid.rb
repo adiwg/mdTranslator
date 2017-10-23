@@ -41,7 +41,7 @@ class TestReaderFgdcOther < TestReaderFGDCParent
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
       assert_equal 'other grid system', hProjection[:projectionName]
-      assert_equal 'other', hProjection[:otherGrid]
+      assert_equal 'other grid description', hProjection[:otherGridDescription]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
       assert hResponse[:readerExecutionPass]
