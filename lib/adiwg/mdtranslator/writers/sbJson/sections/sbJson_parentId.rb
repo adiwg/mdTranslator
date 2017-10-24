@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2017-10-24 fix bug that returns first identifier if no SB namespace is found
 #  Stan Smith 2017-05-25 original script
 
 module ADIWG
@@ -12,20 +13,16 @@ module ADIWG
 
                def self.build(hCitation)
 
-                  parentId = ''
-
-                  hCitation[:identifiers].each_with_index do |hIdentifier, index|
-                     if index == 0
-                        parentId = hIdentifier[:identifier]
-                     end
+                  # return identifier as parentId where namespace = 'gov.sciencebase.catalog'
+                  hCitation[:identifiers].each do |hIdentifier|
                      unless hIdentifier[:namespace].nil?
                         if hIdentifier[:namespace] == 'gov.sciencebase.catalog'
-                           parentId = hIdentifier[:identifier]
+                           return hIdentifier[:identifier]
                         end
                      end
                   end
 
-                  parentId
+                  return nil
 
                end
 

@@ -30,12 +30,12 @@
                   "identifier": "notThisId"
                },
                {
-                  "identifier": "1866dd77-d40c-4a0d-8589-cf6d0dec3ee4",
-                  "namespace": "gov.sciencebase.catalog"
-               },
-               {
                   "identifier": "notThisIdEither",
                   "namespace": "notThisNamespace"
+               },
+               {
+                  "identifier": "1866dd77-d40c-4a0d-8589-cf6d0dec3ee4",
+                  "namespace": "gov.sciencebase.catalog"
                }
             ]
          }
