@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.4.0 2017-10-24 added mdJson writers for reference system parameter set
 # 2.4.0 2017-10-19 added mdJson reader for geographicResolution
 # 2.4.0 2017-10-19 added mdJson reader for bearingDistanceResolution
 # 2.4.0 2017-10-19 added mdJson reader for coordinateResolution
@@ -37,7 +38,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.3.6"
+      VERSION = "2.4.0"
    end
 end
 
