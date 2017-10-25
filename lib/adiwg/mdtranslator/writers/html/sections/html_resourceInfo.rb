@@ -15,7 +15,7 @@ require_relative 'html_temporalExtent'
 require_relative 'html_duration'
 require_relative 'html_spatialReference'
 require_relative 'html_spatialRepresentation'
-require_relative 'html_resolution'
+require_relative 'html_spatialResolution'
 require_relative 'html_keyword'
 require_relative 'html_taxonomy'
 require_relative 'html_graphic'
@@ -48,7 +48,7 @@ module ADIWG
                   durationClass = Html_Duration.new(@html)
                   referenceClass = Html_SpatialReference.new(@html)
                   representationClass = Html_SpatialRepresentation.new(@html)
-                  resolutionClass = Html_Resolution.new(@html)
+                  resolutionClass = Html_SpatialResolution.new(@html)
                   keywordClass = Html_Keyword.new(@html)
                   taxonomyClass = Html_Taxonomy.new(@html)
                   graphicClass = Html_Graphic.new(@html)
@@ -238,6 +238,52 @@ module ADIWG
                               @html.br
                            end
 
+                           # spatial resolution [] {resolution}
+                           unless hResource[:spatialResolutions].empty?
+                              @html.details do
+                                 @html.summary('Spatial Resolutions', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+
+                                    # keep like resolution types together
+                                    # find all scale factors
+                                    hResource[:spatialResolutions].each do |hResolution|
+                                       unless hResolution[:scaleFactor].nil?
+                                          resolutionClass.writeHtml(hResolution)
+                                       end
+                                    end
+
+                                    # find all measures
+                                    hResource[:spatialResolutions].each do |hResolution|
+                                       unless hResolution[:measure].empty?
+                                          resolutionClass.writeHtml(hResolution)
+                                       end
+                                    end
+
+                                    # find all coordinate resolutions
+                                    hResource[:spatialResolutions].each do |hResolution|
+                                       unless hResolution[:coordinateResolution].empty?
+                                          resolutionClass.writeHtml(hResolution)
+                                       end
+                                    end
+
+                                    # find all bearing distance resolutions
+                                    hResource[:spatialResolutions].each do |hResolution|
+                                       unless hResolution[:bearingDistanceResolution].empty?
+                                          resolutionClass.writeHtml(hResolution)
+                                       end
+                                    end
+
+                                    # find all geographic resolutions
+                                    hResource[:spatialResolutions].each do |hResolution|
+                                       unless hResolution[:geographicResolution].empty?
+                                          resolutionClass.writeHtml(hResolution)
+                                       end
+                                    end
+
+                                 end
+                              end
+                           end
+
                            # reference system [] {spatialReference}
                            hResource[:spatialReferenceSystems].each do |hRefSystem|
                               @html.details do
@@ -251,11 +297,6 @@ module ADIWG
                            # spatial representation [] {spatialRepresentation}
                            hResource[:spatialRepresentations].each do |hRepresentation|
                               representationClass.writeHtml(hRepresentation)
-                           end
-
-                           # spatial resolution [] {resolution}
-                           hResource[:spatialResolutions].each do |hResolution|
-                              resolutionClass.writeHtml(hResolution)
                            end
 
                         end

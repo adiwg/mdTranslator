@@ -22,7 +22,8 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/idinfo/taxonomy')
-      hTaxonomy = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hTaxonomy = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hTaxonomy
 
@@ -61,8 +62,8 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       assert_empty hRepository[:roleExtents]
       assert_equal 1, hRepository[:parties].length
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

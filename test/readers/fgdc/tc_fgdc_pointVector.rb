@@ -22,8 +22,8 @@ class TestReaderFgdcPointVector < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/spdoinfo')
-
-      hResInfo = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hResInfo = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hResInfo
       assert_equal 1, hResInfo[:spatialReferenceSystems].length
@@ -54,8 +54,8 @@ class TestReaderFgdcPointVector < TestReaderFGDCParent
       assert_equal 'Node', hVector[:vectorObject][0][:objectType]
       assert_equal 999, hVector[:vectorObject][0][:objectCount]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

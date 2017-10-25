@@ -32,75 +32,7 @@
             }
          ],
          "citation": {
-            "title": "title",
-            "alternateTitle": [
-               "alternateTitle0",
-               "alternateTitle1"
-            ],
-            "date": [
-               {
-                  "date": "2016-10-13",
-                  "dateType": "dateType0"
-               },
-               {
-                  "date": "2016-10-22",
-                  "dateType": "dateType1"
-               }
-            ],
-            "edition": "edition",
-            "responsibleParty": [
-               {
-                  "role": "role0",
-                  "party": [
-                     {
-                        "contactId": "CID001"
-                     }
-                  ]
-               },
-               {
-                  "role": "role1",
-                  "party": [
-                     {
-                        "contactId": "CID001"
-                     }
-                  ]
-               }
-            ],
-            "presentationForm": [
-               "presentationForm0",
-               "presentationForm1"
-            ],
-            "identifier": [
-               {
-                  "identifier": "identifier0"
-               },
-               {
-                  "identifier": "identifier1"
-               }
-            ],
-            "series": {
-               "seriesName": "seriesName"
-            },
-            "otherCitationDetails": [
-               "otherCitationDetails0",
-               "otherCitationDetails1"
-            ],
-            "onlineResource": [
-               {
-                  "uri": "http://ISO.uri/adiwg/0"
-               },
-               {
-                  "uri": "http://ISO.uri/adiwg/1"
-               }
-            ],
-            "graphic": [
-               {
-                  "fileName": "fileName"
-               },
-               {
-                  "fileName": "fileName"
-               }
-            ]
+            "title": "title"
          },
          "abstract": "abstract",
          "status": [
@@ -126,6 +58,11 @@
                "referenceSystemType": "referenceSystemType0",
                "referenceSystemIdentifier": {
                   "identifier": "identifier0"
+               },
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionName": "projection name"
+                  }
                }
             },
             {
@@ -134,6 +71,14 @@
             {
                "referenceSystemIdentifier": {
                   "identifier": "identifier2"
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionName": "projection name",
+                     "zone": "16"
+                  }
                }
             }
          ]

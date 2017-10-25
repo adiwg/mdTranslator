@@ -16,7 +16,8 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
    def test_enumerated_complete
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
-      hDictionary = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDictionary = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDictionary
       assert_equal 1, hDictionary[:domains].length
@@ -36,8 +37,8 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
       hItem1 = hDomain[:domainItems][1]
       assert_equal 'attribute 1 enumerated domain value 2', hItem1[:itemName]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

@@ -22,7 +22,8 @@ class TestReaderFgdcDistribution < TestReaderFGDCParent
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hDistribution
       text = 'distribution resource description\n\n Technical Prerequisites: distribution technical prerequisite'
@@ -46,8 +47,8 @@ class TestReaderFgdcDistribution < TestReaderFGDCParent
       assert_equal 1,hLegalCon[:otherCons].length
       assert_equal 'distributor liability statement 1', hLegalCon[:otherCons][0]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

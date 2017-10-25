@@ -6,6 +6,7 @@
 
 require 'jbuilder'
 require_relative 'mdJson_identifier'
+require_relative 'mdJson_spatialReferenceParameters'
 
 module ADIWG
    module Mdtranslator
@@ -19,6 +20,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.referenceSystemType hSystem[:systemType]
                      json.referenceSystemIdentifier Identifier.build(hSystem[:systemIdentifier]) unless hSystem[:systemIdentifier].empty?
+                     json.referenceSystemParameterSet SpatialReferenceParameters.build(hSystem[:systemParameterSet]) unless hSystem[:systemParameterSet].empty?
                   end
 
                end # build

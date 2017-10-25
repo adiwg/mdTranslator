@@ -1,9 +1,69 @@
 {
    "spatialReferenceSystem": [
       {
-         "referenceSystemType": "referenceSystemType",
+         "referenceSystemType": "MD_ReferenceSystemTypeCode",
          "referenceSystemIdentifier": {
             "identifier": "identifier"
+         },
+         "referenceSystemParameterSet": {
+            "projection": {
+               "projectionIdentifier": {
+                  "identifier": "identifier"
+               },
+               "projectionName": "projection name",
+               "zone": "zone 8",
+               "standardParallel1": 9.0,
+               "standardParallel2": 99.0,
+               "longitudeOfCentralMeridian": -9.0,
+               "latitudeOfProjectionOrigin": 9.0,
+               "falseEasting": 99999.0,
+               "falseNorthing": 999999.0,
+               "falseEastingNorthingUnits": "feet",
+               "scaleFactorAtEquator": 99.9,
+               "heightOfProspectivePointAboveSurface": 999.0,
+               "longitudeOfProjectionCenter": -99.0,
+               "latitudeOfProjectionCenter": 9.0,
+               "scaleFactorAtCenterLine": 99.9,
+               "scaleFactorAtCentralMeridian": 9.9,
+               "straightVerticalLongitudeFromPole": 999.9,
+               "scaleFactorAtProjectionOrigin": 99.9,
+               "azimuthAngle": 9.9,
+               "azimuthMeasurePointLongitude": -99.0,
+               "obliqueLinePoint": [
+                  {
+                     "azimuthLineLatitude": 9.9,
+                     "azimuthLineLongitude": -99.9
+                  },
+                  {
+                     "azimuthLineLatitude": 19.9,
+                     "azimuthLineLongitude": -109.9
+                  }
+               ],
+               "landsatNumber": 9,
+               "landsatPath": 9999,
+               "localPlanarDescription": "local planar description",
+               "localPlanarGeoreference": "local planar georeference",
+               "otherProjectionDescription": "other projection description",
+               "otherGridDescription": "other grid description"
+            },
+            "ellipsoid": {
+               "ellipsoidIdentifier": {
+                  "identifier": "identifier"
+               },
+               "ellipsoidName": "WGS84",
+               "semiMajorAxis": 9999999.0,
+               "axisUnits": "feet",
+               "denominatorOfFlatteningRatio": 999.9
+            },
+            "verticalDatum": {
+               "datumIdentifier": {
+                  "identifier": "identifier"
+               },
+               "encodingMethod": "attribute values",
+               "isDepthSystem": false,
+               "verticalResolution": 9.9,
+               "unitOfMeasure": "meters"
+            }
          }
       }
    ]

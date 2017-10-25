@@ -1221,7 +1221,7 @@
          ],
          "spatialResolution": [
             {
-               "scaleFactor": 99999
+               "scaleFactor": 63360
             },
             {
                "measure": {
@@ -1231,7 +1231,40 @@
                }
             },
             {
+               "coordinateResolution": {
+                  "abscissaResolutionX": 9.9,
+                  "ordinateResolutionY": 99.9,
+                  "unitOfMeasure": "coord UOM"
+               }
+            },
+            {
+               "bearingDistanceResolution": {
+                  "distanceResolution": 9.9,
+                  "distanceUnitOfMeasure": "distance UOM",
+                  "bearingResolution": 19.9,
+                  "bearingUnitOfMeasure": "bearing UOM",
+                  "bearingReferenceDirection": "north",
+                  "bearingReferenceMeridian": "assumed"
+               }
+            },
+            {
+               "geographicResolution": {
+                  "latitudeResolution": 19.9,
+                  "longitudeResolution": 119.9,
+                  "unitOfMeasure": "geographic UOM"
+               }
+            },            {
                "levelOfDetail": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+            },
+            {
+               "scaleFactor": 250000
+            },
+            {
+               "coordinateResolution": {
+                  "abscissaResolutionX": 100.0,
+                  "ordinateResolutionY": 500.0,
+                  "unitOfMeasure": "coord UOM"
+               }
             }
          ],
          "keyword": [

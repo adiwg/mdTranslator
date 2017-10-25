@@ -16,7 +16,8 @@ class TestReaderFgdcTemporalExtent < TestReaderFGDCParent
    def test_temporalExtent_complete
 
       TestReaderFGDCParent.set_xDoc(@@xTempEx)
-      hMetadata = @@NameSpace.unpack(@@xTempEx, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hMetadata = @@NameSpace.unpack(@@xTempEx, hResponse)
 
       refute_empty hMetadata
 
@@ -43,8 +44,8 @@ class TestReaderFgdcTemporalExtent < TestReaderFGDCParent
       assert_kind_of DateTime, hInstant[:timeInstant][:dateTime]
       assert_equal 'YMDhmsZ', hInstant[:timeInstant][:dateResolution]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

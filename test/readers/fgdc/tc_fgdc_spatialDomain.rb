@@ -17,7 +17,8 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
    def test_spatialDomain_complete
 
       xIn = @@xDoc.xpath('./metadata/idinfo/spdom')
-      hExtent = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hExtent = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hExtent
       refute_nil hExtent[:description]
@@ -81,8 +82,8 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
       assert_equal 5, hCoords.length
       assert AdiwgCoordinates.is_polygon_clockwise(hCoords)
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

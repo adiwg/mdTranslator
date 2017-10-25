@@ -22,143 +22,143 @@ require_relative 'module_series'
 require_relative 'module_graphic'
 
 module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
+   module Mdtranslator
+      module Readers
+         module MdJson
 
-                module Citation
+            module Citation
 
-                    def self.unpack(hCitation, responseObj)
+               def self.unpack(hCitation, responseObj)
 
 
-                        # return nil object if input is empty
-                        if hCitation.empty?
-                            responseObj[:readerExecutionMessages] << 'Citation object is empty'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                  # return nil object if input is empty
+                  if hCitation.empty?
+                     responseObj[:readerExecutionMessages] << 'Citation object is empty'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
+
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+                  intCitation = intMetadataClass.newCitation
+
+                  # citation - title (required)
+                  if hCitation.has_key?('title')
+                     intCitation[:title] = hCitation['title']
+                  end
+                  if intCitation[:title].nil? || intCitation[:title] == ''
+                     responseObj[:readerExecutionMessages] << 'Citation attribute title is missing'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
+
+                  # citation - alternate title []
+                  if hCitation.has_key?('alternateTitle')
+                     hCitation['alternateTitle'].each do |item|
+                        if item != ''
+                           intCitation[:alternateTitles] << item
                         end
+                     end
+                  end
 
-                        # instance classes needed in script
-                        intMetadataClass = InternalMetadata.new
-                        intCitation = intMetadataClass.newCitation
-
-                        # citation - title (required)
-                        if hCitation.has_key?('title')
-                            intCitation[:title] = hCitation['title']
+                  # citation - date []
+                  if hCitation.has_key?('date')
+                     aItems = hCitation['date']
+                     aItems.each do |item|
+                        hReturn = Date.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:dates] << hReturn
                         end
-                        if intCitation[:title].nil? || intCitation[:title] == ''
-                            responseObj[:readerExecutionMessages] << 'Citation attribute title is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                     end
+                  end
+
+                  # citation - edition
+                  if hCitation.has_key?('edition')
+                     if hCitation['edition'] != ''
+                        intCitation[:edition] = hCitation['edition']
+                     end
+                  end
+
+                  # citation - responsible party []
+                  if hCitation.has_key?('responsibleParty')
+                     aItems = hCitation['responsibleParty']
+                     aItems.each do |item|
+                        hReturn = ResponsibleParty.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:responsibleParties] << hReturn
                         end
+                     end
+                  end
 
-                        # citation - alternate title []
-                        if hCitation.has_key?('alternateTitle')
-                            hCitation['alternateTitle'].each do |item|
-                                if item != ''
-                                    intCitation[:alternateTitles] << item
-                                end
-                            end
+                  # citation - presentation form []
+                  if hCitation.has_key?('presentationForm')
+                     hCitation['presentationForm'].each do |item|
+                        if item != ''
+                           intCitation[:presentationForms] << item
                         end
+                     end
+                  end
 
-                        # citation - date []
-                        if hCitation.has_key?('date')
-                            aItems = hCitation['date']
-                            aItems.each do |item|
-                                hReturn = Date.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:dates] << hReturn
-                                end
-                            end
+                  # citation - identifier []
+                  if hCitation.has_key?('identifier')
+                     aItems = hCitation['identifier']
+                     aItems.each do |item|
+                        hReturn = Identifier.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:identifiers] << hReturn
                         end
+                     end
+                  end
 
-                        # citation - edition
-                        if hCitation.has_key?('edition')
-                            if hCitation['edition'] != ''
-                                intCitation[:edition] = hCitation['edition']
-                            end
+                  # citation - series
+                  if hCitation.has_key?('series')
+                     hObject = hCitation['series']
+                     unless hObject.empty?
+                        hReturn = Series.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:series] = hReturn
                         end
+                     end
+                  end
 
-                        # citation - responsible party []
-                        if hCitation.has_key?('responsibleParty')
-                            aItems = hCitation['responsibleParty']
-                            aItems.each do |item|
-                                hReturn = ResponsibleParty.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:responsibleParties] << hReturn
-                                end
-                            end
+                  # citation - other details
+                  if hCitation.has_key?('otherCitationDetails')
+                     hCitation['otherCitationDetails'].each do |item|
+                        if item != ''
+                           intCitation[:otherDetails] << item
                         end
+                     end
+                  end
 
-                        # citation - presentation form []
-                        if hCitation.has_key?('presentationForm')
-                            hCitation['presentationForm'].each do |item|
-                                if item != ''
-                                    intCitation[:presentationForms] << item
-                                end
-                            end
+                  # citation - online resource []
+                  if hCitation.has_key?('onlineResource')
+                     aItems = hCitation['onlineResource']
+                     aItems.each do |item|
+                        hReturn = OnlineResource.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:onlineResources] << hReturn
                         end
+                     end
+                  end
 
-                        # citation - identifier []
-                        if hCitation.has_key?('identifier')
-                            aItems = hCitation['identifier']
-                            aItems.each do |item|
-                                hReturn = Identifier.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:identifiers] << hReturn
-                                end
-                            end
+                  # citation - graphic []
+                  if hCitation.has_key?('graphic')
+                     aItems = hCitation['graphic']
+                     aItems.each do |item|
+                        hReturn = Graphic.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intCitation[:browseGraphics] << hReturn
                         end
+                     end
+                  end
 
-                        # citation - series
-                        if hCitation.has_key?('series')
-                            hObject = hCitation['series']
-                            unless hObject.empty?
-                                hReturn = Series.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:series] = hReturn
-                                end
-                            end
-                        end
+                  return intCitation
 
-                        # citation - other details
-                        if hCitation.has_key?('otherCitationDetails')
-                            hCitation['otherCitationDetails'].each do |item|
-                                if item != ''
-                                    intCitation[:otherDetails] << item
-                                end
-                            end
-                        end
-
-                        # citation - online resource []
-                        if hCitation.has_key?('onlineResource')
-                            aItems = hCitation['onlineResource']
-                            aItems.each do |item|
-                                hReturn = OnlineResource.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:onlineResources] << hReturn
-                                end
-                            end
-                        end
-
-                        # citation - graphic []
-                        if hCitation.has_key?('graphic')
-                            aItems = hCitation['graphic']
-                            aItems.each do |item|
-                                hReturn = Graphic.unpack(item, responseObj)
-                                unless hReturn.nil?
-                                    intCitation[:browseGraphics] << hReturn
-                                end
-                            end
-                        end
-
-                        return intCitation
-
-                    end
-
-                end
+               end
 
             end
-        end
-    end
+
+         end
+      end
+   end
 end

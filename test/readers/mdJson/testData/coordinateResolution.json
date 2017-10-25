@@ -1,0 +1,11 @@
+{
+   "spatialResolution": [
+      {
+         "coordinateResolution": {
+            "abscissaResolutionX": 9.9,
+            "ordinateResolutionY": 99.9,
+            "unitOfMeasure": "coordinate resolution UOM"
+         }
+      }
+   ]
+}

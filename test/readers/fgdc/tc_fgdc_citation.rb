@@ -29,7 +29,8 @@ class TestReaderFgdcCitation < TestReaderFGDCParent
       # make test XML available to other modules
       TestReaderFGDCParent.set_xDoc(@@xDoc)
 
-      hCitation = @@NameSpace.unpack(@@xCitation, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hCitation = @@NameSpace.unpack(@@xCitation, hResponse)
 
       refute_empty hCitation
       assert_equal 'My Citation Title', hCitation[:title]
@@ -80,8 +81,8 @@ class TestReaderFgdcCitation < TestReaderFGDCParent
       assert_equal 'largerWorkCitation', aAssRes[0][:associationType]
       refute_empty aAssRes[0][:resourceCitation]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

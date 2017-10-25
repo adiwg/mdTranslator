@@ -16,7 +16,8 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
    def test_attribute_complete
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
-      hDictionary = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hDictionary = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDictionary
       assert_equal 4, hDictionary[:entities].length
@@ -48,8 +49,8 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal 'A', hAttribute1[:minValue]
       assert_equal 'F', hAttribute1[:maxValue]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

@@ -16,7 +16,8 @@ class TestReaderFgdcSecurity < TestReaderFGDCParent
    def test_security_complete
 
       xIn = @@xDoc.xpath('./metadata/idinfo/secinfo')
-      hConstraint = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hConstraint = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hConstraint
       assert_equal 'security', hConstraint[:type]
@@ -28,8 +29,8 @@ class TestReaderFgdcSecurity < TestReaderFGDCParent
       assert_equal 'my security system name', hSecurity[:classSystem]
       assert_equal 'my security handling instructions', hSecurity[:handling]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

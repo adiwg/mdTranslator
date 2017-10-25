@@ -16,7 +16,8 @@ class TestReaderFgdcTaxonClass < TestReaderFGDCParent
    def test_taxonClass_complete
 
       xIn = @@xDoc.xpath('./metadata/idinfo/taxonomy/taxoncl')
-      hTaxonClass = @@NameSpace.unpack(xIn, @@hResponseObj)
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hTaxonClass = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hTaxonClass
 
@@ -34,8 +35,8 @@ class TestReaderFgdcTaxonClass < TestReaderFGDCParent
       assert_equal 1, hSubclass[:subClasses].length
 
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 

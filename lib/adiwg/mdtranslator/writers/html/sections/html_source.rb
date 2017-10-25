@@ -7,7 +7,7 @@
 # 	Stan Smith 2015-03-27 original script
 
 require_relative 'html_citation'
-require_relative 'html_resolution'
+require_relative 'html_spatialResolution'
 require_relative 'html_spatialReference'
 require_relative 'html_processStep'
 require_relative 'html_scope'
@@ -27,7 +27,7 @@ module ADIWG
 
                   # classes used
                   citationClass = Html_Citation.new(@html)
-                  resolutionClass = Html_Resolution.new(@html)
+                  resolutionClass = Html_SpatialResolution.new(@html)
                   referenceClass = Html_SpatialReference.new(@html)
                   stepClass = Html_ProcessStep.new(@html)
                   scopeClass = Html_Scope.new(@html)

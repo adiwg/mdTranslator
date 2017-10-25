@@ -16,6 +16,7 @@ class TestReaderFgdcResponsibility < TestReaderFGDCParent
    def test_responsibility_complete
 
       TestReaderFGDCParent.set_intObj
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hContact1 = {
          contactId: '24da7dd9-0af2-405b-be24-f0374634d567',
          isOrganization: false,
@@ -30,7 +31,7 @@ class TestReaderFgdcResponsibility < TestReaderFGDCParent
       @@FgdcNameSpace.set_contact(hContact2)
 
       aContacts = ['24da7dd9-0af2-405b-be24-f0374634d567', 'ba467960-105d-4806-a503-2041663311c2']
-      hResponsibility = @@NameSpace.unpack(aContacts, 'roleName', @@hResponseObj)
+      hResponsibility = @@NameSpace.unpack(aContacts, 'roleName', hResponse)
 
       refute_empty hResponsibility
       assert_equal 'roleName', hResponsibility[:roleName]
@@ -43,8 +44,8 @@ class TestReaderFgdcResponsibility < TestReaderFGDCParent
       assert_equal 'individual', hParty[:contactType]
       assert_empty hParty[:organizationMembers]
 
-      assert @@hResponseObj[:readerExecutionPass]
-      assert_empty @@hResponseObj[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
