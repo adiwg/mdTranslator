@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.4.0 2017-10-25 added html writers for reference system parameter set
 # 2.4.0 2017-10-24 added mdJson writers for reference system parameter set
 # 2.4.0 2017-10-19 added mdJson reader for geographicResolution
 # 2.4.0 2017-10-19 added mdJson reader for bearingDistanceResolution

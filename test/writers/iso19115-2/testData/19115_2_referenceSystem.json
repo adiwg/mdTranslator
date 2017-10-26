@@ -1,71 +1,151 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "spatialReferenceSystem": [
-        {
-          "referenceSystemType": "referenceSystemType0",
-          "referenceSystemIdentifier": {
-            "identifier": "identifier0"
-          }
-        },
-        {
-          "referenceSystemType": "referenceSystemType1"
-        },
-        {
-          "referenceSystemIdentifier": {
-            "identifier": "identifier2"
-          }
-        }
-      ]
-    }
-  }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "spatialReferenceSystem": [
+            {
+               "referenceSystemType": "referenceSystemType0",
+               "referenceSystemIdentifier": {
+                  "identifier": "reference system identifier 1"
+               },
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionName": "transverse mercator",
+                     "projectionIdentifier": {
+                        "identifier": "projection identifier"
+                     }
+                  }
+               }
+            },
+            {
+               "referenceSystemType": "referenceSystemType1"
+            },
+            {
+               "referenceSystemIdentifier": {
+                  "identifier": "reference system identifier 2"
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionName": "transverse mercator",
+                     "projectionIdentifier": {
+                        "identifier": "projection identifier"
+                     },
+                     "zone": "zone 8",
+                     "standardParallel1": 9.0,
+                     "standardParallel2": 99.0,
+                     "longitudeOfCentralMeridian": -9.0,
+                     "latitudeOfProjectionOrigin": 9.0,
+                     "falseEasting": 99999.0,
+                     "falseNorthing": 999999.0,
+                     "falseEastingNorthingUnits": "feet",
+                     "scaleFactorAtEquator": 99.9,
+                     "heightOfProspectivePointAboveSurface": 999.0,
+                     "longitudeOfProjectionCenter": -99.0,
+                     "latitudeOfProjectionCenter": 9.0,
+                     "scaleFactorAtCenterLine": 99.9,
+                     "scaleFactorAtCentralMeridian": 9.9,
+                     "straightVerticalLongitudeFromPole": 999.9,
+                     "scaleFactorAtProjectionOrigin": 99.9,
+                     "azimuthAngle": 9.9,
+                     "azimuthMeasurePointLongitude": -99.0,
+                     "obliqueLinePoint": [
+                        {
+                           "azimuthLineLatitude": 9.99999,
+                           "azimuthLineLongitude": -9.99999
+                        },
+                        {
+                           "azimuthLineLatitude": 19.99999,
+                           "azimuthLineLongitude": -19.99999
+                        }
+                     ],
+                     "landsatNumber": 9,
+                     "landsatPath": 9999,
+                     "localPlanarDescription": "local planar",
+                     "localPlanarGeoreference": "local planar",
+                     "otherProjectionDescription": "other projection",
+                     "otherGridDescription": "other grid"
+                  }
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "ellipsoid": {
+                     "ellipsoidIdentifier": {
+                        "identifier": "ellipsoid identifier"
+                     },
+                     "ellipsoidName": "WGS84",
+                     "semiMajorAxis": 9999999.0,
+                     "axisUnits": "feet",
+                     "denominatorOfFlatteningRatio": 999.9
+                  }
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "verticalDatum": {
+                     "datumIdentifier": {
+                        "identifier": "vertical datum identifier"
+                     },
+                     "encodingMethod": "attribute values",
+                     "isDepthSystem": false,
+                     "verticalResolution": 9.9,
+                     "unitOfMeasure": "meters"
+                  }
+               }
+            }
+         ]
+      }
+   }
 }
