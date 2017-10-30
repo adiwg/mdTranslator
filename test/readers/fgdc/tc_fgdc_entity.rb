@@ -31,7 +31,7 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
       assert_equal 'entity 1 definition', hEntity0[:entityDefinition]
       assert_empty hEntity0[:primaryKey]
       assert_empty hEntity0[:indexes]
-      assert_equal 4, hEntity0[:attributes].length
+      assert_equal 5, hEntity0[:attributes].length
       assert_empty hEntity0[:foreignKeys]
 
       hEntity2 = hDictionary[:entities][2]

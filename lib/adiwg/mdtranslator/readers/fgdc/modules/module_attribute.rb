@@ -2,6 +2,7 @@
 # unpack fgdc entity attribute
 
 # History:
+#  Stan Smith 2017-10-30 added timePeriodOfValues
 #  Stan Smith 2017-09-06 original script
 
 require 'uuidtools'
@@ -9,6 +10,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_enumerated'
 require_relative 'module_range'
+require_relative 'module_dateTime'
 
 module ADIWG
    module Mdtranslator
@@ -39,7 +41,13 @@ module ADIWG
                   end
 
                   # entity attribute 5.1.2.3 (attrdefs) - attribute definition source
-                  # -> not mapped
+                  # -> dataDictionary.entities.attributes.attributeCitation.title
+                  reference = xAttribute.xpath('./attrdefs').text
+                  unless reference.empty?
+                     hCitation = intMetadataClass.newCitation
+                     hCitation[:title] = reference
+                     hAttribute[:attributeReference] = hCitation
+                  end
 
                   # entity attribute 5.1.2.4 (attrdomv) - attribute domain value
                   axDomain = xAttribute.xpath('./attrdomv')
@@ -84,11 +92,28 @@ module ADIWG
 
                   end
 
+                  axBegin = xAttribute.xpath('./begdatea')
                   # entity attribute 5.1.2.5 (begdatea) - beginning date of attribute values
-                  # -> not mapped
-
                   # entity attribute 5.1.2.6 (enddatea) - ending date of attribute values
-                  # -> not mapped
+                  # -> dataDictionary.entities.attributes.timePeriodOfValues.startDateTime
+                  # -> dataDictionary.entities.attributes.timePeriodOfValues.endDateTime
+                  axBegin.each_with_index do |xBegin, index|
+                     beginDate = xBegin.text
+                     unless beginDate.empty?
+                        hTimePeriod = intMetadataClass.newTimePeriod
+                        hDateTime = DateTime.unpack(beginDate, nil, hResponseObj)
+                        unless hDateTime.nil?
+                           hTimePeriod[:startDateTime] = hDateTime
+                        end
+                        endDate = xAttribute.xpath("./enddatea[#{index+1}]").text
+                        hDateTime = DateTime.unpack(endDate, nil, hResponseObj)
+                        unless hDateTime.nil?
+                           hTimePeriod[:endDateTime] = hDateTime
+                        end
+                        hTimePeriod[:description] = 'attribute date range'
+                        hAttribute[:timePeriodOfValues] << hTimePeriod
+                     end
+                  end
 
                   # entity attribute 5.1.2.7 (attrvai) - attribute value accuracy information
 
@@ -97,6 +122,9 @@ module ADIWG
 
                   # entity attribute 5.1.2.7.2 (attrvae) - attribute value accuracy explanation
                   # -> not mapped
+
+                  # entity attribute 5.1.2.8 (attrmfrq) - attribute measurement frequency
+                  # -> not mapped; same as resource maintenance but at attribute level
 
                   hAttribute
 

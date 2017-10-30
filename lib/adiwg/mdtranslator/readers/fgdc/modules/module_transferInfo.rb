@@ -55,6 +55,9 @@ module ADIWG
                      hSpecification[:otherDetails] << specification
                   end
 
+                  # distribution bio (asciistr) - ASCII file specification
+                  # -> not mapped; cannot reliably merge with entity-attribute definition
+
                   # distribution 6.4.2.1.5 (formcont) - format information content
                   # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.otherCitationDetails
                   specification = xTranInfo.xpath('./formcont').text
