@@ -1,7 +1,33 @@
 # Change Log
 
-## [v2.3.3](https://github.com/adiwg/mdTranslator/tree/v2.3.3) (2017-10-11)
+## [v2.4.0](https://github.com/adiwg/mdTranslator/tree/v2.4.0) (2017-10-25)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.5...v2.4.0)
 
+**Fixed bugs:**
+
+- Error in html writer when topologyLevel is null [\#152](https://github.com/adiwg/mdTranslator/issues/152)
+- Harvest Set tag for sbJSON should include the title only [\#150](https://github.com/adiwg/mdTranslator/issues/150)
+- sbJSON writer should only write parentId with proper namespace [\#154](https://github.com/adiwg/mdTranslator/issues/154)
+
+**Merged pull requests:**
+
+- Fix bug that returns first identifier as parentId when no SB namespace is found [\#155](https://github.com/adiwg/mdTranslator/pull/155) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.3.5](https://github.com/adiwg/mdTranslator/tree/v2.3.5) (2017-10-18)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.4...v2.3.5)
+
+**Merged pull requests:**
+
+- Trap missing topology level in html writer vectorRepresentation modul… [\#153](https://github.com/adiwg/mdTranslator/pull/153) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.3.4](https://github.com/adiwg/mdTranslator/tree/v2.3.4) (2017-10-13)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.3...v2.3.4)
+
+**Merged pull requests:**
+
+- Remove repository name from harvest set tag in sbJson writer.  [\#151](https://github.com/adiwg/mdTranslator/pull/151) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.3.3](https://github.com/adiwg/mdTranslator/tree/v2.3.3) (2017-10-11)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.2...v2.3.3)
 
 **Fixed bugs:**
