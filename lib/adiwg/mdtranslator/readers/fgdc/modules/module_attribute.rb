@@ -41,7 +41,7 @@ module ADIWG
                   end
 
                   # entity attribute 5.1.2.3 (attrdefs) - attribute definition source
-                  # -> dataDictionary.entities.attributes.attributeCitation.title
+                  # -> dataDictionary.entities.attributes.attributeReference.title
                   reference = xAttribute.xpath('./attrdefs').text
                   unless reference.empty?
                      hCitation = intMetadataClass.newCitation

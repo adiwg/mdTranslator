@@ -717,8 +717,8 @@ class InternalMetadata
          domainId: nil,
          domainName: nil,
          domainCode: nil,
-         domainCitation: {},
          domainDescription: nil,
+         domainReference: {},
          domainItems: []
       }
    end
@@ -737,15 +737,15 @@ class InternalMetadata
          entityName: nil,
          entityCode: nil,
          entityAlias: [],
-         entityCitation: {},
          entityDefinition: nil,
+         entityReference: [],
          primaryKey: [],
          indexes: [],
          attributes: [],
          foreignKeys: [],
          fieldSeparatorCharacter: nil,
          numberOfHeaderLines: nil,
-         quoteCharacter: nil,
+         quoteCharacter: nil
       }
    end
 

@@ -47,7 +47,13 @@ module ADIWG
                      end
 
                      # entity attribute 5.1.1.3 (enttypds) - entity definition source
-                     # -> not mapped
+                     # -> dataDictionary.entities.entityReference.title
+                     reference = xEntity.xpath('./enttypds').text
+                     unless reference.empty?
+                        hCitation = intMetadataClass.newCitation
+                        hCitation[:title] = reference
+                        hEntity[:entityReference] << hCitation
+                     end
 
                      # entity attribute 5.1.2 (attr) - characteristics of an attribute
                      axAttribute = xDetail.xpath('./attr')
