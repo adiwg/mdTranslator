@@ -59,32 +59,52 @@ module ADIWG
                         budget[:totalFunds] = total
                      end
 
-                     # year
-                     # give priority to ending dateTime
-                     # write year only
-                     # use fiscal year beginning October 1
+                     # federal fiscal year
+                     # compute federal fiscal year for timePeriod of funding
+                     # use federal fiscal year beginning October 1
+                     # if timePeriod occupies more than one fiscal year, use only ending period
+
+                     # if ending date month 1-9 year = year
+                     # if ending date month 10-12 year = +1
+                     # if no ending date use starting year with same rules
+
+                     # dates will be encoded as zulu when saved
+                     # ... add one day to starting date for eastern hemisphere dateTime
+                     # ... subtract one day from ending date for western hemisphere dateTime
+                     startMonth = nil
+                     startYear = nil
+                     endMonth = nil
+                     endYear = nil
                      unless hFunding[:timePeriod].empty?
                         unless hFunding[:timePeriod][:startDateTime].empty?
                            startDateTime = hFunding[:timePeriod][:startDateTime][:dateTime]
+                           date = startDateTime.to_date + 1
+                           startMonth = date.month
+                           startYear = date.year
                         end
                         unless hFunding[:timePeriod][:endDateTime].empty?
                            endDateTime = hFunding[:timePeriod][:endDateTime][:dateTime]
+                           date = endDateTime.to_date - 1
+                           endMonth = date.month
+                           endYear = date.year
                         end
-                        dateTime = endDateTime.nil? ? startDateTime : endDateTime
-                        unless dateTime.nil?
-                           year = AdiwgDateTimeFun.stringDateFromDateTime(dateTime, 'Y')
-                           if dateTime.month > 9
-                              year.succ!
-                           end
-                           budget[:year] = year
+                        if endYear.nil?
+                           month = startMonth
+                           year = startYear
+                        else
+                           month = endMonth
+                           year = endYear
                         end
+                        if month > 9
+                           year += 1
+                        end
+                        budget[:year] = year.to_s
                      end
 
                      hBudget[:annualBudgets] << budget
-
                   end
 
-                  hBudget
+                  return hBudget
 
                end
 
