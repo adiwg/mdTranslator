@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.4.1](https://github.com/adiwg/mdTranslator/tree/v2.4.1) (2017-11-01)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.4.0...v2.4.1)
+
+**Fixed bugs:**
+
+- sbJSON writer should only write parentId with proper namespace [\#154](https://github.com/adiwg/mdTranslator/issues/154)
+
+**Merged pull requests:**
+
+- Fix computation of federal fiscal year in sbJson budget writer [\#156](https://github.com/adiwg/mdTranslator/pull/156) ([stansmith907](https://github.com/stansmith907))
+
 ## [v2.4.0](https://github.com/adiwg/mdTranslator/tree/v2.4.0) (2017-10-25)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.3.5...v2.4.0)
 
@@ -7,7 +18,6 @@
 
 - Error in html writer when topologyLevel is null [\#152](https://github.com/adiwg/mdTranslator/issues/152)
 - Harvest Set tag for sbJSON should include the title only [\#150](https://github.com/adiwg/mdTranslator/issues/150)
-- sbJSON writer should only write parentId with proper namespace [\#154](https://github.com/adiwg/mdTranslator/issues/154)
 
 **Merged pull requests:**
 
