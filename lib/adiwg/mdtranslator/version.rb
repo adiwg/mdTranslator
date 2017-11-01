@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.4.1 2017-10-31 fix issue with computation of federal fiscal year in sbJson budget writer
+# 2.4.1 2017-10-30 refactored fgdc reader for added entity, attribute, and domain elements
 # 2.4.0 2017-10-25 added html writers for reference system parameter set
 # 2.4.0 2017-10-24 added mdJson writers for reference system parameter set
 # 2.4.0 2017-10-19 added mdJson reader for geographicResolution
@@ -39,7 +41,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.4.0"
+      VERSION = "2.4.1"
    end
 end
 
