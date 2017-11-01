@@ -738,7 +738,7 @@ class InternalMetadata
          entityCode: nil,
          entityAlias: [],
          entityDefinition: nil,
-         entityReference: [],
+         entityReferences: [],
          primaryKey: [],
          indexes: [],
          attributes: [],

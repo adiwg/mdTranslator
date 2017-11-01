@@ -100,6 +100,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['commonName'] = ''
+      hIn['domainReference'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -113,6 +114,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('commonName')
+      hIn.delete('domainReference')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 

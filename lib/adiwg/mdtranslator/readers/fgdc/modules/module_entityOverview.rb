@@ -38,7 +38,7 @@ module ADIWG
                      unless reference.empty?
                         hCitation = intMetadataClass.newCitation
                         hCitation[:title] = reference
-                        hEntity[:entityReference] << hCitation
+                        hEntity[:entityReferences] << hCitation
                      end
                   end
 

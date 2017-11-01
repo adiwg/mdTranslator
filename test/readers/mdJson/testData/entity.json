@@ -9,13 +9,24 @@
             "alias1"
          ],
          "definition": "definition",
+         "entityReference": [
+            {
+               "title": "entity reference title 1"
+            },
+            {
+               "title": "entity reference title 2"
+            }
+         ],
          "primaryKeyAttributeCodeName": [
             "primaryKeyAttributeCodeName0",
             "primaryKeyAttributeCodeName1"
          ],
          "index": [],
          "attribute": [],
-         "foreignKey": []
+         "foreignKey": [],
+         "fieldSeparatorCharacter": "tab",
+         "numberOfHeaderLines": 4,
+         "quoteCharacter": "double"
       },
       {
          "entityId": "",
@@ -23,6 +34,7 @@
          "codeName": "",
          "alias": [""],
          "definition": "",
+         "entityReference": [],
          "primaryKeyAttributeCodeName": [""],
          "index": [
             {
@@ -51,7 +63,10 @@
                "referencedEntityCodeName": "",
                "referencedAttributeCodeName": [""]
             }
-         ]
+         ],
+         "fieldSeparatorCharacter": "",
+         "numberOfHeaderLines": "",
+         "quoteCharacter": ""
       }
    ]
 }

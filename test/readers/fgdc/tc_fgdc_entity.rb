@@ -31,8 +31,8 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
       assert_equal 'entity 1 label', hEntity0[:entityCode]
       assert_empty hEntity0[:entityAlias]
       assert_equal 'entity 1 definition', hEntity0[:entityDefinition]
-      assert_equal 1, hEntity0[:entityReference].length
-      assert_equal 'entity 1 definition source', hEntity0[:entityReference][0][:title]
+      assert_equal 1, hEntity0[:entityReferences].length
+      assert_equal 'entity 1 definition source', hEntity0[:entityReferences][0][:title]
       assert_empty hEntity0[:primaryKey]
       assert_empty hEntity0[:indexes]
       assert_equal 5, hEntity0[:attributes].length
@@ -48,9 +48,9 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
       assert_equal 'overview', hEntity2[:entityCode]
       assert_empty hEntity2[:entityAlias]
       assert_equal 'entity and attribute overview 1', hEntity2[:entityDefinition]
-      assert_equal 2, hEntity2[:entityReference].length
-      assert_equal 'entity and attribute 1 detail citation 1', hEntity2[:entityReference][0][:title]
-      assert_equal 'entity and attribute 1 detail citation 2', hEntity2[:entityReference][1][:title]
+      assert_equal 2, hEntity2[:entityReferences].length
+      assert_equal 'entity and attribute 1 detail citation 1', hEntity2[:entityReferences][0][:title]
+      assert_equal 'entity and attribute 1 detail citation 2', hEntity2[:entityReferences][1][:title]
       assert_empty hEntity2[:primaryKey]
       assert_empty hEntity2[:indexes]
       assert_empty hEntity2[:attributes]
