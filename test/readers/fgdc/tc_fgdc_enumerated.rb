@@ -20,11 +20,11 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
       hDictionary = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDictionary
-      assert_equal 1, hDictionary[:domains].length
+      assert_equal 3, hDictionary[:domains].length
 
       hDomain = hDictionary[:domains][0]
       refute_nil hDomain[:domainId]
-      assert_nil hDomain[:domainName]
+      assert_equal 'attribute 1 label', hDomain[:domainName]
       assert_equal 'attribute 1 label', hDomain[:domainCode]
       assert_equal 'FGDC enumerated domain', hDomain[:domainDescription]
       assert_equal 2, hDomain[:domainItems].length

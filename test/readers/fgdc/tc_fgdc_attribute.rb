@@ -69,7 +69,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       refute hAttribute1[:isCaseSensitive]
       assert_nil hAttribute1[:fieldWidth]
       assert_nil hAttribute1[:missingValue]
-      assert_nil hAttribute1[:domainId]
+      refute_nil hAttribute1[:domainId]
       assert_equal 0.0, hAttribute1[:minValue]
       assert_equal 40.0, hAttribute1[:maxValue]
       assert_equal 2, hAttribute1[:rangeOfValues].length
