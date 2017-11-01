@@ -5,6 +5,9 @@
          "commonName": "commonName",
          "codeName": "codeName",
          "description": "description",
+         "domainReference": {
+            "title": "domain reference title"
+         },
          "domainItem": [
             {
                "name": "name0",
@@ -23,6 +26,7 @@
          "commonName": "US States",
          "codeName": "STATE",
          "description": "States of the United States of America",
+         "domainReference": {},
          "domainItem": [
             {
                "see": "domainMember 2.0"
