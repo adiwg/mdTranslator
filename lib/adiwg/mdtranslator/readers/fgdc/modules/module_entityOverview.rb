@@ -31,7 +31,16 @@ module ADIWG
                   end
 
                   # entity attribute 5.2.2 (eadetcit) - entity attribute detail citation []
-                  # -> not mapped
+                  # -> dataDictionary.entities.entityReference.title
+                  axReference = xOverview.xpath('./eadetcit')
+                  axReference.each do |xReference|
+                     reference = xReference.text
+                     unless reference.empty?
+                        hCitation = intMetadataClass.newCitation
+                        hCitation[:title] = reference
+                        hEntity[:entityReferences] << hCitation
+                     end
+                  end
 
                   return hEntity
 

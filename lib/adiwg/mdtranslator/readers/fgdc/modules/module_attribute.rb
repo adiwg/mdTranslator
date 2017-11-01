@@ -2,13 +2,15 @@
 # unpack fgdc entity attribute
 
 # History:
+#  Stan Smith 2017-10-30 added timePeriodOfValues
 #  Stan Smith 2017-09-06 original script
 
-require 'uuidtools'
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_enumerated'
 require_relative 'module_range'
+require_relative 'module_codeSet'
+require_relative 'module_dateTime'
 
 module ADIWG
    module Mdtranslator
@@ -39,56 +41,84 @@ module ADIWG
                   end
 
                   # entity attribute 5.1.2.3 (attrdefs) - attribute definition source
-                  # -> not mapped
+                  # -> dataDictionary.entities.attributes.attributeReference.title
+                  reference = xAttribute.xpath('./attrdefs').text
+                  unless reference.empty?
+                     hCitation = intMetadataClass.newCitation
+                     hCitation[:title] = reference
+                     hAttribute[:attributeReference] = hCitation
+                  end
 
                   # entity attribute 5.1.2.4 (attrdomv) - attribute domain value
                   axDomain = xAttribute.xpath('./attrdomv')
                   unless axDomain.empty?
-                     hDomain = intMetadataClass.newDictionaryDomain
-                     hDomain[:domainId] = UUIDTools::UUID.random_create.to_s
-                     hDomain[:domainCode] = code
-                     hDomain[:domainDescription] = 'FGDC enumerated domain'
 
-                     axDomain.each do |xDomain|
-
-                        # entity attribute 5.1.2.4.1 (edom) - enumerated domain
-                        xEnumeration = xDomain.xpath('./edom')
-                        unless xEnumeration.empty?
-                           hItem = Enumerated.unpack(xEnumeration, hResponseObj)
-                           hDomain[:domainItems] << hItem
+                     # entity attribute 5.1.2.4.1 (edom) - enumerated domain
+                     unless axDomain.empty?
+                        hDomain = Enumerated.unpack(axDomain, code, hResponseObj)
+                        unless hDomain.nil?
+                           hDictionary[:domains] << hDomain
                         end
-
-                        # entity attribute 5.1.2.4.2 (rdom) - range domain
-                        xRange = xDomain.xpath('./rdom')
-                        unless xRange.empty?
-                           Range.unpack(xRange, hAttribute, hResponseObj)
-                        end
-
-                        # entity attribute 5.1.2.4.3 (codesetd) - codeset domain
-
-                           # entity attribute 5.1.2.4.3.1 (codesetn) - codeset name
-                           # -> not mapped
-
-                           # entity attribute 5.1.2.4.3.2 (codesets) - codeset source
-                           # -> not mapped
-
-                        # entity attribute 5.1.2.4.4 (udom) - unrepresentable domain
-                        # -> not mapped
-
                      end
 
-                     unless hDomain[:domainItems].empty?
-                        hAttribute[:domainId] = hDomain[:domainId]
-                        hDictionary[:domains] << hDomain
+                     # entity attribute 5.1.2.4.2 (rdom) - range domain
+                     unless axDomain.empty?
+                        Range.unpack(axDomain, hAttribute, hResponseObj)
+                     end
+
+                     # entity attribute 5.1.2.4.3 (codesetd) - codeset domain
+                     unless axDomain.empty?
+                        aDomains = CodeSet.unpack(axDomain, code, hResponseObj)
+                        hDictionary[:domains].concat aDomains
+                     end
+
+                     # entity attribute 5.1.2.4.4 (udom) - unrepresentable domain
+                     # -> dataDictionary.domains.domainDescription
+                     axUnRep = axDomain.xpath('./udom')
+                     axUnRep.each do |xUnRep|
+                        unRep = xUnRep.text
+                        unless unRep.empty?
+                           hDomain = intMetadataClass.newDictionaryDomain
+                           hDomain[:domainId] = UUIDTools::UUID.random_create.to_s
+                           hDomain[:domainName] = code
+                           hDomain[:domainCode] = code
+                           hDomain[:domainDescription] = unRep
+                           hDictionary[:domains] << hDomain
+                        end
                      end
 
                   end
 
-                  # entity attribute 5.1.2.5 (begdatea) - beginning date of attribute values
-                  # -> not mapped
+                  # add domainId to attribute
+                  # fgdc allows multiple domain definitions
+                  # mdJson allows only one domain definition for an attribute
+                  # take the first, if this is a problem the user will need to fix in the editor
+                  unless hDictionary[:domains].empty?
+                     hAttribute[:domainId] = hDictionary[:domains][0][:domainId]
+                  end
 
+                  axBegin = xAttribute.xpath('./begdatea')
+                  # entity attribute 5.1.2.5 (begdatea) - beginning date of attribute values
                   # entity attribute 5.1.2.6 (enddatea) - ending date of attribute values
-                  # -> not mapped
+                  # -> dataDictionary.entities.attributes.timePeriodOfValues.startDateTime
+                  # -> dataDictionary.entities.attributes.timePeriodOfValues.endDateTime
+                  axBegin.each_with_index do |xBegin, index|
+                     beginDate = xBegin.text
+                     unless beginDate.empty?
+                        hTimePeriod = intMetadataClass.newTimePeriod
+                        hDateTime = DateTime.unpack(beginDate, nil, hResponseObj)
+                        unless hDateTime.nil?
+                           hTimePeriod[:startDateTime] = hDateTime
+                        end
+                        endDate = xAttribute.xpath("./enddatea[#{index+1}]").text
+                        hDateTime = DateTime.unpack(endDate, nil, hResponseObj)
+                        unless hDateTime.nil?
+                           hTimePeriod[:endDateTime] = hDateTime
+                        end
+                        hTimePeriod[:description] = 'attribute date range'
+                        hAttribute[:timePeriodOfValues] << hTimePeriod
+                     end
+                  end
 
                   # entity attribute 5.1.2.7 (attrvai) - attribute value accuracy information
 
@@ -97,6 +127,9 @@ module ADIWG
 
                   # entity attribute 5.1.2.7.2 (attrvae) - attribute value accuracy explanation
                   # -> not mapped
+
+                  # entity attribute 5.1.2.8 (attrmfrq) - attribute measurement frequency
+                  # -> not mapped; same as resource maintenance but at attribute level
 
                   hAttribute
 

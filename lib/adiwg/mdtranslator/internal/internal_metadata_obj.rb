@@ -718,6 +718,7 @@ class InternalMetadata
          domainName: nil,
          domainCode: nil,
          domainDescription: nil,
+         domainReference: {},
          domainItems: []
       }
    end
@@ -737,10 +738,14 @@ class InternalMetadata
          entityCode: nil,
          entityAlias: [],
          entityDefinition: nil,
+         entityReferences: [],
          primaryKey: [],
          indexes: [],
          attributes: [],
-         foreignKeys: []
+         foreignKeys: [],
+         fieldSeparatorCharacter: nil,
+         numberOfHeaderLines: nil,
+         quoteCharacter: nil
       }
    end
 
@@ -758,13 +763,27 @@ class InternalMetadata
          attributeCode: nil,
          attributeAlias: [],
          attributeDefinition: nil,
+         attributeReference: {},
          dataType: nil,
          allowNull: false,
          allowMany: false,
          unitOfMeasure: nil,
+         measureResolution: nil,
+         isCaseSensitive: false,
+         fieldWidth: nil,
+         missingValue: nil,
          domainId: nil,
          minValue: nil,
-         maxValue: nil
+         maxValue: nil,
+         rangeOfValues: [],
+         timePeriodOfValues: []
+      }
+   end
+
+   def newValueRange
+      {
+         minRangeValue: nil,
+         maxRangeValue: nil
       }
    end
 

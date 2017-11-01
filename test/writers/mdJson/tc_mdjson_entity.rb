@@ -13,14 +13,15 @@ class TestWriterMdJsonEntity < TestWriterMdJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('entity.json')
 
-   def test_schema_entity
-
-      hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['dataDictionary'][0]['entity'][0]
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'entity.json')
-      assert_empty errors
-
-   end
+   # TODO reinstate after schema update
+   # def test_schema_entity
+   #
+   #    hIn = JSON.parse(@@jsonIn)
+   #    hTest = hIn['dataDictionary'][0]['entity'][0]
+   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'entity.json')
+   #    assert_empty errors
+   #
+   # end
 
    def test_complete_entity
 

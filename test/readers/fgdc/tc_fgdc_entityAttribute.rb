@@ -22,7 +22,7 @@ class TestReaderFgdcEntityAttribute < TestReaderFGDCParent
       refute_empty hDictionary
       refute_empty hDictionary[:citation]
       assert_equal 'FGDC EntityAttribute Section 5', hDictionary[:citation][:title]
-      assert_equal 1, hDictionary[:domains].length
+      assert_equal 3, hDictionary[:domains].length
       assert_equal 4, hDictionary[:entities].length
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

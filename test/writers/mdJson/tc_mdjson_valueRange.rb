@@ -1,20 +1,20 @@
-# mdJson 2.0 writer tests - entity attribute
+# mdJson 2.0 writer tests - attribute value range
 
 # History:
-#   Stan Smith 2017-03-19 original script
+#  Stan Smith 2017-11-01 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterMdJsonEntityAttribute < TestWriterMdJsonParent
+class TestWriterMdJsonValueRange < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('entityAttribute.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('valueRange.json')
 
    # TODO reinstate after schema update
-   # def test_schema_entityAttribute
+   # def test_schema_valueRange
    #
    #    hIn = JSON.parse(@@jsonIn)
    #    hTest = hIn['dataDictionary'][0]['entity'][0]['attribute'][0]
@@ -23,7 +23,7 @@ class TestWriterMdJsonEntityAttribute < TestWriterMdJsonParent
    #
    # end
 
-   def test_complete_entityAttribute
+   def test_complete_valueRange
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@jsonIn, reader: 'mdJson', validate: 'normal',

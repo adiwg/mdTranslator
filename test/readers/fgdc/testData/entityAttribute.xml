@@ -49,10 +49,10 @@
         </attrdomv>
         <attrdomv>
           <rdom>
-            <rdommin>A</rdommin>
-            <rdommax>F</rdommax>
-            <attrunit>grade</attrunit>
-            <attrmres>each letter</attrmres>
+            <rdommin>20</rdommin>
+            <rdommax>40</rdommax>
+            <attrunit>units</attrunit>
+            <attrmres>2</attrmres>
           </rdom>
         </attrdomv>
       </attr>
@@ -72,7 +72,28 @@
         <attrdef>attribute 4 definition</attrdef>
         <attrdefs>attribute 4 definition source</attrdefs>
         <attrdomv>
-          <udom>unrepresented domain domain</udom>
+          <udom>unrepresented domain description</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 5 label</attrlabl>
+        <attrdef>attribute 5 definition</attrdef>
+        <attrdefs>attribute 5 definition source</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>A</rdommin>
+            <rdommax>F</rdommax>
+            <attrunit>grades</attrunit>
+            <attrmres>each letter</attrmres>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>X</rdommin>
+            <rdommax>Z</rdommax>
+            <attrunit>grades</attrunit>
+            <attrmres>each letter</attrmres>
+          </rdom>
         </attrdomv>
       </attr>
     </detailed>

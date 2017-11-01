@@ -80,25 +80,11 @@
                   {
                      "commonName": "commonName",
                      "codeName": "codeName",
-                     "alias": [
-                        "alias0",
-                        "alias1"
-                     ],
                      "definition": "definition",
-                     "attributeReference": {
-                        "title": "attribute reference title"
-                     },
                      "dataType": "dataType",
                      "allowNull": true,
-                     "allowMany": false,
-                     "units": "units",
-                     "unitsResolution": 9.9,
+                     "allowMany": true,
                      "isCaseSensitive": true,
-                     "fieldWidth": 4,
-                     "missingValue": "-",
-                     "domainId": "domainId",
-                     "minValue": "minValue",
-                     "maxValue": "maxValue",
                      "rangeOfValues": [
                         {
                            "minRangeValue": "0",
@@ -107,26 +93,20 @@
                         {
                            "minRangeValue": "20",
                            "maxRangeValue": "40"
-                        }
-                     ],
-                     "timePeriodOfValues": [
-                        {
-                           "startDateTime": "2016-10-14",
-                           "endDateTime": "2016-12-31"
                         },
                         {
-                           "startDateTime": "2017-05-22",
-                           "endDateTime": "2017-06-15"
+                           "minRangeValue": "A",
+                           "maxRangeValue": "Z"
+                        },
+                        {
+                           "minRangeValue": "-6",
+                           "maxRangeValue": "-50"
+                        },
+                        {
+                           "minRangeValue": "9.99",
+                           "maxRangeValue": "-55.33"
                         }
                      ]
-                  },
-                  {
-                     "codeName": "codeName",
-                     "definition": "definition",
-                     "dataType": "dataType",
-                     "allowNull": false,
-                     "allowMany": false,
-                     "isCaseSensitive": false
                   }
                ]
             }
