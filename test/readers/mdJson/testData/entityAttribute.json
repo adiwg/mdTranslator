@@ -8,13 +8,40 @@
             "alias1"
          ],
          "definition": "definition",
+         "attributeReference": {
+            "title": "attribute reference title"
+         },
          "dataType": "dataType",
          "allowNull": true,
          "allowMany": false,
          "units": "units",
+         "unitsResolution": 9.9,
+         "isCaseSensitive": true,
+         "fieldWidth": 4,
+         "missingValue": "-",
          "domainId": "domainId",
          "minValue": "minValue",
-         "maxValue": "maxValue"
+         "maxValue": "maxValue",
+         "rangeOfValues": [
+            {
+               "minRangeValue": "0",
+               "maxRangeValue": "9"
+            },
+            {
+               "minRangeValue": "20",
+               "maxRangeValue": "40"
+            }
+         ],
+         "timePeriodOfValues": [
+            {
+               "startDateTime": "2016-10-14",
+               "endDateTime": "2016-12-31"
+            },
+            {
+               "startDateTime": "2017-05-22",
+               "endDateTime": "2017-06-15"
+            }
+         ]
       },
       {
          "commonName": "Employee ID",
@@ -24,13 +51,20 @@
             "employeeNumber"
          ],
          "definition": "Numeric code to uniquely identify an employee of Acme Oil",
+         "attributeReference": {},
          "dataType": "numeric",
          "allowNull": false,
          "allowMany": true,
          "units": "meters",
+         "unitsResolution": 9.9,
+         "isCaseSensitive": false,
+         "fieldWidth": 9,
+         "missingValue": "-",
          "domainId": "dom042",
          "minValue": "1000000",
-         "maxValue": "5000000"
+         "maxValue": "5000000",
+         "rangeOfValues": [],
+         "timePeriodOfValues": []
       }
    ]
 }

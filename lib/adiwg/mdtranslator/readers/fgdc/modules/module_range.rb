@@ -16,7 +16,7 @@ module ADIWG
             module Range
 
                def self.is_number?(str)
-                  return true if str =~ /\A\d+\Z/
+                  return true if str =~ /[-+]?[0-9]*\.?[0-9]+/
                   true if Float(str) rescue false
                end
 
@@ -37,13 +37,17 @@ module ADIWG
                         # -> dataDictionary.entities.attributes.rangeOfValues.minRangeValue
                         min = xRange.xpath('./rdommin').text
                         unless min.empty?
-                           min = min.to_f if is_number?(min)
                            hRange[:minRangeValue] = min
-                           if hAttribute[:minValue].nil?
-                              hAttribute[:minValue] = min
-                           else
-                              hAttribute[:minValue] = [hAttribute[:minValue], min].min
+                           a = [min]
+                           a << hAttribute[:minValue] unless hAttribute[:minValue].nil?
+                           b = a.sort_by do |s|
+                              if s =~ /[-+]?[0-9]*\.?[0-9]+/
+                                 [2, $&.to_f]
+                              else
+                                 [1, s]
+                              end
                            end
+                           hAttribute[:minValue] = b[0]
                         end
 
                         # entity attribute 5.1.2.4.2.2 (rdommax) - range maximum
@@ -51,13 +55,17 @@ module ADIWG
                         # -> dataDictionary.entities.attributes.rangeOfValues.maxRangeValue
                         max = xRange.xpath('./rdommax').text
                         unless max.empty?
-                           max = max.to_f if is_number?(max)
                            hRange[:maxRangeValue] = max
-                           if hAttribute[:maxValue].nil?
-                              hAttribute[:maxValue] = max
-                           else
-                              hAttribute[:maxValue] = [hAttribute[:maxValue], max].max
+                           a = [max]
+                           a << hAttribute[:maxValue] unless hAttribute[:maxValue].nil?
+                           b = a.sort_by do |s|
+                              if s =~ /[-+]?[0-9]*\.?[0-9]+/
+                                 [2, $&.to_f]
+                              else
+                                 [1, s]
+                              end
                            end
+                           hAttribute[:maxValue] = b[b.length-1]
                         end
 
                         # entity attribute 5.1.2.4.2.3 (attrunit) - units of measure
