@@ -78,6 +78,9 @@
                "commonName": "commonName0",
                "codeName": "codeName0",
                "description": "description0",
+               "domainReference": {
+                  "title": "domain reference title"
+               },
                "domainItem": [
                   {
                      "name": "name00",

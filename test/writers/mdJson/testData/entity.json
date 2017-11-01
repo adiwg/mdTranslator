@@ -82,6 +82,14 @@
                   "alias1"
                ],
                "definition": "definition0",
+               "entityReference": [
+                  {
+                     "title": "entity reference title 1"
+                  },
+                  {
+                     "title": "entity reference title 2"
+                  }
+               ],
                "primaryKeyAttributeCodeName": [
                   "primaryKeyAttributeCodeName0"
                ],
@@ -116,6 +124,7 @@
                      "allowNull": true,
                      "allowMany": true,
                      "units": "units",
+                     "isCaseSensitive": true,
                      "domainId": "domainId",
                      "minValue": "minValue",
                      "maxValue": "maxValue"
@@ -125,7 +134,8 @@
                      "definition": "definition",
                      "dataType": "dataType",
                      "allowNull": false,
-                     "allowMany": false
+                     "allowMany": false,
+                     "isCaseSensitive": false
                   }
                ],
                "foreignKey": [
@@ -151,7 +161,10 @@
                         "referencedAttributeCodeName11"
                      ]
                   }
-               ]
+               ],
+               "fieldSeparatorCharacter": "tab",
+               "numberOfHeaderLines": 4,
+               "quoteCharacter": "double"
             },
             {
                "codeName": "codeName1",
