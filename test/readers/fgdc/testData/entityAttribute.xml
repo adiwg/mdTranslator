@@ -113,4 +113,7 @@
       <eadetcit>another entity and attribute 2 detail citation 1</eadetcit>
     </overview>
   </eainfo>
+  <metainfo>
+    <mettc>universal time</mettc>
+  </metainfo>
 </metadata>
