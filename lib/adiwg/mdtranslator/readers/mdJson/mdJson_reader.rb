@@ -100,7 +100,9 @@ module ADIWG
                   end
                end
                unless approved
+                  approvedVersion = aCurVersion[0] + '.0.0'
                   hResponseObj[:readerStructureMessages] << "mdJson schema version '#{requestedVersion}' is not supported"
+                  hResponseObj[:readerStructureMessages] << "mdJson versions '#{approvedVersion}' to '#{currentVersion}' are supported"
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end

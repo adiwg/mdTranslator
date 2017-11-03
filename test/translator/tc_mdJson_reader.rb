@@ -6,6 +6,7 @@
 
 require 'minitest/autorun'
 require 'json'
+require 'rubygems'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/readers/mdJson/version'
 
@@ -239,6 +240,32 @@ class TestMdJsonReader < MiniTest::Test
       assert_equal 'mdJson', metadata[:readerRequested]
       refute metadata[:readerStructurePass]
       refute_empty metadata[:readerStructureMessages]
+
+   end
+
+   def test_mdJson_reader_schema_version_supports_gemspec_version
+
+      # read in an mdJson 2.x test file with schema object
+      file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
+      file = File.open(file, 'r')
+      jsonMinimal = file.read
+      file.close
+
+      # get gemspec version
+      spec = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version
+
+      # empty mdJson schema name
+      hJson = JSON.parse(jsonMinimal)
+      hSchema = hJson['schema']
+      hSchema['version'] = spec
+      jsonIn = hJson.to_json
+
+      metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
+
+      refute_empty metadata
+      assert_equal 'mdJson', metadata[:readerRequested]
+      assert metadata[:readerStructurePass]
+      assert_empty metadata[:readerStructureMessages]
 
    end
 
