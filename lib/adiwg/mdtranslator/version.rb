@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.5.0 2017-11-03 added support for additional fgdc and bio data dictionary element
 # 2.4.1 2017-11-02 refactored mdJson writer for added entity, attribute, and domain elements
 # 2.4.1 2017-10-31 fix issue with computation of federal fiscal year in sbJson budget writer
 # 2.4.1 2017-10-30 refactored fgdc reader for added entity, attribute, and domain elements
@@ -42,7 +43,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.4.1"
+      VERSION = "2.5.0"
    end
 end
 

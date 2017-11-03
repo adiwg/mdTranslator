@@ -90,9 +90,9 @@ module ADIWG
                      end
 
                      # report title
-                     aShortVersion = version.split('.')
-                     shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
-                     @html.h1('mdTranslator ' + shortVersion + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
+                     # aShortVersion = version.split('.')
+                     # shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
+                     @html.h1('mdTranslator ' + version + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
                      # report date
                      @html.section(:class => 'block') do
