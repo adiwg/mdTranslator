@@ -8,7 +8,6 @@ require 'minitest/autorun'
 require 'json'
 require 'rubygems'
 require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/readers/mdJson/version'
 
 class TestMdJsonReader < MiniTest::Test
 
@@ -167,7 +166,7 @@ class TestMdJsonReader < MiniTest::Test
       file.close
 
       # bump minor version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMinor = aVersion[1].to_i + 1
       testVersion = aVersion[0] + '.' + newMinor.to_s + '.' + aVersion[2]
@@ -195,7 +194,7 @@ class TestMdJsonReader < MiniTest::Test
       file.close
 
       # bump major version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMajor = aVersion[0].to_i + 1
       testVersion = newMajor.to_s + '.' +  aVersion[1] + '.' + aVersion[2]
@@ -222,8 +221,8 @@ class TestMdJsonReader < MiniTest::Test
       jsonMinimal = file.read
       file.close
 
-      # downgrand major version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      # downgrade major version
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMajor = aVersion[0].to_i - 1
       testVersion = newMajor.to_s + '.' +  aVersion[1] + '.' + aVersion[2]
@@ -240,32 +239,6 @@ class TestMdJsonReader < MiniTest::Test
       assert_equal 'mdJson', metadata[:readerRequested]
       refute metadata[:readerStructurePass]
       refute_empty metadata[:readerStructureMessages]
-
-   end
-
-   def test_mdJson_reader_schema_version_supports_gemspec_version
-
-      # read in an mdJson 2.x test file with schema object
-      file = File.join(File.dirname(__FILE__), 'testData', 'mdJson_minimal.json')
-      file = File.open(file, 'r')
-      jsonMinimal = file.read
-      file.close
-
-      # get gemspec version
-      spec = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version
-
-      # empty mdJson schema name
-      hJson = JSON.parse(jsonMinimal)
-      hSchema = hJson['schema']
-      hSchema['version'] = spec
-      jsonIn = hJson.to_json
-
-      metadata = ADIWG::Mdtranslator.translate(file: jsonIn)
-
-      refute_empty metadata
-      assert_equal 'mdJson', metadata[:readerRequested]
-      assert metadata[:readerStructurePass]
-      assert_empty metadata[:readerStructureMessages]
 
    end
 
