@@ -21,8 +21,8 @@
 # 	Stan Smith 2013-08-09 original script
 
 require 'json'
+require 'rubygems'
 require_relative 'mdJson_validator'
-require_relative 'version'
 require_relative 'modules/module_mdJson'
 
 module ADIWG
@@ -88,7 +88,7 @@ module ADIWG
                end
 
                # schema - 2.0.0 =< requested version =< current version
-               currentVersion = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+               currentVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
                hResponseObj[:readerVersionRequested] = requestedVersion
                hResponseObj[:readerVersionUsed] = currentVersion
                aCurVersion = currentVersion.split('.')
@@ -100,7 +100,9 @@ module ADIWG
                   end
                end
                unless approved
+                  approvedVersion = aCurVersion[0] + '.0.0'
                   hResponseObj[:readerStructureMessages] << "mdJson schema version '#{requestedVersion}' is not supported"
+                  hResponseObj[:readerStructureMessages] << "mdJson versions '#{approvedVersion}' to '#{currentVersion}' are supported"
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end

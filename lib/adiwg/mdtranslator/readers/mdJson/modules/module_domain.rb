@@ -81,7 +81,7 @@ module ADIWG
                      end
                   end
 
-                  # data dictionary domain - items [] (required)
+                  # data dictionary domain - items []
                   if hDomain.has_key?('domainItem')
                      hDomain['domainItem'].each do |item|
                         hDom = DomainItem.unpack(item, responseObj)
@@ -89,11 +89,6 @@ module ADIWG
                            intDomain[:domainItems] << hDom
                         end
                      end
-                  end
-                  if intDomain[:domainItems].empty?
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain has no domain items'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
                   end
 
                   return intDomain

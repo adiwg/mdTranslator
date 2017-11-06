@@ -546,8 +546,20 @@ class InternalMetadata
          periodNames: [],
          startDateTime: {},
          endDateTime: {},
+         startGeologicAge: {},
+         endGeologicAge: {},
          timeInterval: {},
          duration: {}
+      }
+   end
+
+   def newGeologicAge
+      {
+         ageTimeScale: nil,
+         ageEstimate: nil,
+         ageUncertainty: nil,
+         ageExplanation: nil,
+         ageReference: []
       }
    end
 

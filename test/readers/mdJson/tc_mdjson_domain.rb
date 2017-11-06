@@ -44,10 +44,23 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    end
 
-   def test_empty_domain_id
+   def test_empty_domainId
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['domainId'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_missing_domainId
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('domainId')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -70,6 +83,19 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    end
 
+   def test_missing_domain_codeName
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('codeName')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
+
+   end
+
    def test_empty_domain_description
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -83,10 +109,10 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    end
 
-   def test_empty_domain_item
+   def test_missing_domain_description
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['domainItem'] = []
+      hIn.delete('description')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -101,6 +127,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['commonName'] = ''
       hIn['domainReference'] = {}
+      hIn['domainItems'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -115,6 +142,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('commonName')
       hIn.delete('domainReference')
+      hIn.delete('domainItems')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 

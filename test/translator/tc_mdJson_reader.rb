@@ -6,8 +6,8 @@
 
 require 'minitest/autorun'
 require 'json'
+require 'rubygems'
 require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/readers/mdJson/version'
 
 class TestMdJsonReader < MiniTest::Test
 
@@ -166,7 +166,7 @@ class TestMdJsonReader < MiniTest::Test
       file.close
 
       # bump minor version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMinor = aVersion[1].to_i + 1
       testVersion = aVersion[0] + '.' + newMinor.to_s + '.' + aVersion[2]
@@ -194,7 +194,7 @@ class TestMdJsonReader < MiniTest::Test
       file.close
 
       # bump major version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMajor = aVersion[0].to_i + 1
       testVersion = newMajor.to_s + '.' +  aVersion[1] + '.' + aVersion[2]
@@ -221,8 +221,8 @@ class TestMdJsonReader < MiniTest::Test
       jsonMinimal = file.read
       file.close
 
-      # downgrand major version
-      version = ADIWG::Mdtranslator::Readers::MdJson::VERSION
+      # downgrade major version
+      version = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
       aVersion = version.split('.')
       newMajor = aVersion[0].to_i - 1
       testVersion = newMajor.to_s + '.' +  aVersion[1] + '.' + aVersion[2]

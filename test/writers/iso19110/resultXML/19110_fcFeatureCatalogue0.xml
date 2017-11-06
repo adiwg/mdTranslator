@@ -109,6 +109,7 @@
       </gfc:isAbstract>
       <gfc:featureCatalogue gco:nilReason="inapplicable"/>
       <gfc:constrainedBy/>
+      <gfc:definitionReference/>
       <gfc:carrierOfCharacteristics/>
     </gfc:FC_FeatureType>
   </gfc:featureType>
@@ -126,7 +127,9 @@
       </gfc:isAbstract>
       <gfc:featureCatalogue gco:nilReason="inapplicable"/>
       <gfc:constrainedBy/>
+      <gfc:definitionReference/>
       <gfc:carrierOfCharacteristics/>
     </gfc:FC_FeatureType>
   </gfc:featureType>
+
 </gfc:FC_FeatureCatalogue>

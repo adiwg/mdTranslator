@@ -40,21 +40,21 @@ module ADIWG
                   end
 
                   # dictionary - domains [] {domain}
-                  hDictionary[:domains].each do |hDomain|
+                  unless hDictionary[:domains].empty?
                      @html.details do
-                        @html.summary('Domain: '+hDomain[:domainCode], {'class' => 'h5'})
+                        @html.summary('Domains', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           domainClass.writeHtml(hDomain)
+                           domainClass.writeHtml(hDictionary[:domains])
                         end
                      end
                   end
 
                   # dictionary - entities [] {entity}
-                  hDictionary[:entities].each do |hEntity|
+                  unless hDictionary[:entities].empty?
                      @html.details do
-                        @html.summary('Entity: '+hEntity[:entityCode], {'class' => 'h5'})
+                        @html.summary('Entities', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           entityClass.writeHtml(hEntity)
+                           entityClass.writeHtml(hDictionary[:entities])
                         end
                      end
                   end

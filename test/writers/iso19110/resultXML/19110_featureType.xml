@@ -70,6 +70,110 @@
           </gfc:description>
         </gfc:FC_Constraint>
       </gfc:constrainedBy>
+      <gfc:definitionReference>
+        <gfc:FC_DefinitionReference>
+          <gfc:definitionSource>
+            <gfc:FC_DefinitionSource>
+              <gfc:source>
+                <gmd:CI_Citation>
+                  <gmd:title>
+                    <gco:CharacterString>title</gco:CharacterString>
+                  </gmd:title>
+                  <gmd:alternateTitle>
+                    <gco:CharacterString>alternateTitle0</gco:CharacterString>
+                  </gmd:alternateTitle>
+                  <gmd:alternateTitle>
+                    <gco:CharacterString>alternateTitle1</gco:CharacterString>
+                  </gmd:alternateTitle>
+                  <gmd:date>
+                    <gmd:CI_Date>
+                      <gmd:date>
+                        <gco:Date>2016-10-13</gco:Date>
+                      </gmd:date>
+                      <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="dateType0" codeSpace="userCode"/>
+                      </gmd:dateType>
+                    </gmd:CI_Date>
+                  </gmd:date>
+                  <gmd:date>
+                    <gmd:CI_Date>
+                      <gmd:date>
+                        <gco:Date>2016-10-22</gco:Date>
+                      </gmd:date>
+                      <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="dateType1" codeSpace="userCode"/>
+                      </gmd:dateType>
+                    </gmd:CI_Date>
+                  </gmd:date>
+                  <gmd:edition>
+                    <gco:CharacterString>edition</gco:CharacterString>
+                  </gmd:edition>
+                  <gmd:identifier>
+                    <gmd:MD_Identifier>
+                      <gmd:authority/>
+                      <gmd:code>
+                        <gco:CharacterString>identifier0</gco:CharacterString>
+                      </gmd:code>
+                    </gmd:MD_Identifier>
+                  </gmd:identifier>
+                  <gmd:identifier>
+                    <gmd:MD_Identifier>
+                      <gmd:authority/>
+                      <gmd:code>
+                        <gco:CharacterString>identifier1</gco:CharacterString>
+                      </gmd:code>
+                    </gmd:MD_Identifier>
+                  </gmd:identifier>
+                  <gmd:citedResponsibleParty>
+                    <gmd:CI_ResponsibleParty>
+                      <gmd:individualName>
+                        <gco:CharacterString>dictionary contact</gco:CharacterString>
+                      </gmd:individualName>
+                      <gmd:positionName/>
+                      <gmd:contactInfo/>
+                      <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role0" codeSpace="userCode"/>
+                      </gmd:role>
+                    </gmd:CI_ResponsibleParty>
+                  </gmd:citedResponsibleParty>
+                  <gmd:citedResponsibleParty>
+                    <gmd:CI_ResponsibleParty>
+                      <gmd:individualName>
+                        <gco:CharacterString>dictionary contact</gco:CharacterString>
+                      </gmd:individualName>
+                      <gmd:positionName/>
+                      <gmd:contactInfo/>
+                      <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role1" codeSpace="userCode"/>
+                      </gmd:role>
+                    </gmd:CI_ResponsibleParty>
+                  </gmd:citedResponsibleParty>
+                  <gmd:presentationForm>
+                    <gmd:CI_PresentationFormCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode" codeListValue="presentationForm0" codeSpace="userCode"/>
+                  </gmd:presentationForm>
+                  <gmd:presentationForm>
+                    <gmd:CI_PresentationFormCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode" codeListValue="presentationForm1" codeSpace="userCode"/>
+                  </gmd:presentationForm>
+                  <gmd:series>
+                    <gmd:CI_Series>
+                      <gmd:name>
+                        <gco:CharacterString>seriesName</gco:CharacterString>
+                      </gmd:name>
+                      <gmd:issueIdentification/>
+                      <gmd:page/>
+                    </gmd:CI_Series>
+                  </gmd:series>
+                  <gmd:otherCitationDetails>
+                    <gco:CharacterString>otherCitationDetails0</gco:CharacterString>
+                  </gmd:otherCitationDetails>
+                  <gmd:ISBN/>
+                  <gmd:ISSN/>
+                </gmd:CI_Citation>
+              </gfc:source>
+            </gfc:FC_DefinitionSource>
+          </gfc:definitionSource>
+        </gfc:FC_DefinitionReference>
+      </gfc:definitionReference>
       <gfc:carrierOfCharacteristics>
         <gfc:FC_FeatureAttribute>
           <gfc:memberName>
@@ -92,6 +196,7 @@
               </gco:range>
             </gco:Multiplicity>
           </gfc:cardinality>
+          <gfc:definitionReference/>
           <gfc:code>
             <gco:CharacterString>codeName0</gco:CharacterString>
           </gfc:code>
@@ -103,7 +208,6 @@
               </gco:aName>
             </gco:TypeName>
           </gfc:valueType>
-          <gfc:listedValue/>
         </gfc:FC_FeatureAttribute>
       </gfc:carrierOfCharacteristics>
       <gfc:carrierOfCharacteristics>
@@ -128,6 +232,7 @@
               </gco:range>
             </gco:Multiplicity>
           </gfc:cardinality>
+          <gfc:definitionReference/>
           <gfc:code>
             <gco:CharacterString>codeName1</gco:CharacterString>
           </gfc:code>
@@ -139,7 +244,6 @@
               </gco:aName>
             </gco:TypeName>
           </gfc:valueType>
-          <gfc:listedValue/>
         </gfc:FC_FeatureAttribute>
       </gfc:carrierOfCharacteristics>
     </gfc:FC_FeatureType>
@@ -159,6 +263,7 @@
       </gfc:isAbstract>
       <gfc:featureCatalogue gco:nilReason="inapplicable"/>
       <gfc:constrainedBy/>
+      <gfc:definitionReference/>
       <gfc:carrierOfCharacteristics/>
     </gfc:FC_FeatureType>
   </gfc:featureType>
@@ -177,6 +282,7 @@
       </gfc:isAbstract>
       <gfc:featureCatalogue gco:nilReason="inapplicable"/>
       <gfc:constrainedBy/>
+      <gfc:definitionReference/>
       <gfc:carrierOfCharacteristics/>
     </gfc:FC_FeatureType>
   </gfc:featureType>
