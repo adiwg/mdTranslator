@@ -1,14 +1,28 @@
 # Change Log
 
-## [v2.4.1](https://github.com/adiwg/mdTranslator/tree/v2.4.1) (2017-11-01)
-[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.4.0...v2.4.1)
+## [v2.5.0](https://github.com/adiwg/mdTranslator/tree/v2.5.0) (2017-11-06)
+
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.4.0...v2.5.0)
 
 **Fixed bugs:**
 
+- Tests failing with seed 30538 [\#157](https://github.com/adiwg/mdTranslator/issues/157)
 - sbJSON writer should only write parentId with proper namespace [\#154](https://github.com/adiwg/mdTranslator/issues/154)
+
+**Closed issues:**
+
+- fgdc spatial reference - resolution [\#147](https://github.com/adiwg/mdTranslator/issues/147)
+- fgdc bio ASCII file format [\#143](https://github.com/adiwg/mdTranslator/issues/143)
+- fgdc bio bounding box altitude [\#140](https://github.com/adiwg/mdTranslator/issues/140)
+- fgdc entity-attribute multiple domain definitions [\#130](https://github.com/adiwg/mdTranslator/issues/130)
+- fgdc entity-attribute information not supported by mdJson/mdTranslator [\#129](https://github.com/adiwg/mdTranslator/issues/129)
+- fgdc spatial reference information [\#127](https://github.com/adiwg/mdTranslator/issues/127)
+- fgdc lineage source datasets [\#122](https://github.com/adiwg/mdTranslator/issues/122)
+- fgdc bio Spatial Domain geographic description [\#115](https://github.com/adiwg/mdTranslator/issues/115)
 
 **Merged pull requests:**
 
+- Add test to verify mdJson reader version is compatible with schema version [\#159](https://github.com/adiwg/mdTranslator/pull/159) ([stansmith907](https://github.com/stansmith907))
 - Fix computation of federal fiscal year in sbJson budget writer [\#156](https://github.com/adiwg/mdTranslator/pull/156) ([stansmith907](https://github.com/stansmith907))
 
 ## [v2.4.0](https://github.com/adiwg/mdTranslator/tree/v2.4.0) (2017-10-25)
