@@ -36,9 +36,7 @@
       <current>ground condition</current>
     </timeperd>
   </idinfo>
-  <metadata>
-    <metainfo>
-      <mettc>universal time</mettc>
-    </metainfo>
-  </metadata>
+  <metainfo>
+    <mettc>universal time</mettc>
+  </metainfo>
 </metadata>
