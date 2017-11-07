@@ -23,7 +23,7 @@ module ADIWG
                   hDateTime = intMetadataClass.newDateTime
 
                   if date.nil? || date == ''
-                     hResponseObj[:readerExecutionMessages] << 'date string is missing from dateTime conversion'
+                     hResponseObj[:readerExecutionMessages] << 'date string is missing from dateTime'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end

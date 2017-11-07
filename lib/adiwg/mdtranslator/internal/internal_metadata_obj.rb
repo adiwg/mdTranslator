@@ -534,7 +534,8 @@ class InternalMetadata
          description: nil,
          identifier: {},
          instantNames: [],
-         timeInstant: {}
+         timeInstant: {},
+         geologicAge: {}
       }
    end
 
@@ -559,7 +560,7 @@ class InternalMetadata
          ageEstimate: nil,
          ageUncertainty: nil,
          ageExplanation: nil,
-         ageReference: []
+         ageReferences: []
       }
    end
 

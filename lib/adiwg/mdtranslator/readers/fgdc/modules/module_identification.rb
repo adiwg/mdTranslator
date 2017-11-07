@@ -60,20 +60,18 @@ module ADIWG
                   xTimePeriod = xIdInfo.xpath('./timeperd')
                   unless xTimePeriod.empty?
 
-                     # time period for single date and date range
+                     # time period for single date, multi-date, and date range {resource timePeriod}
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
                      hResourceInfo[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
 
-                     # time period multiple date time pairs 9.1.2 (mdattim)
+                     # time period multi-date also placed in temporalExtent
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
                      unless axMultiple.empty?
                         current = xTimePeriod.xpath('./current').text
                         hExtent = intMetadataClass.newExtent
-                        hExtent[:description] = 'FGDC resource time period multiple date/times'
+                        hExtent[:description] = 'FGDC resource time period for multiple date/times/geological age'
                         axMultiple.each do |xDateTime|
-                           date = xDateTime.xpath('./caldate').text
-                           time = xDateTime.xpath('./time').text
-                           hInstant = TimeInstant.unpack(date, time, hResponseObj)
+                           hInstant = TimeInstant.unpack(xDateTime, hResponseObj)
                            unless hInstant.nil?
                               hTempExtent = intMetadataClass.newTemporalExtent
                               hInstant[:description] = current

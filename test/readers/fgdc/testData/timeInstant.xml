@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <metadata>
   <idinfo>
     <timeperd>
@@ -37,7 +36,9 @@
       <current>ground condition</current>
     </timeperd>
   </idinfo>
-  <metainfo>
-    <mettc>universal time</mettc>
-  </metainfo>
+  <metadata>
+    <metainfo>
+      <mettc>universal time</mettc>
+    </metainfo>
+  </metadata>
 </metadata>
