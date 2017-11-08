@@ -1,0 +1,18 @@
+{
+   "geologicAge": [
+      {
+         "ageTimeScale": "geologic age time scale",
+         "ageEstimate": "geologic age estimate",
+         "ageUncertainty": "geologic age uncertainty",
+         "ageExplanation": "geologic age explanation",
+         "ageReference": [
+            {
+               "title": "geologic age reference title 1"
+            },
+            {
+               "title": "geologic age reference title 2"
+            }
+         ]
+      }
+   ]
+}
