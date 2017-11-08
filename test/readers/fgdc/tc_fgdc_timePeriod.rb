@@ -10,7 +10,8 @@ require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcTimePeriod < TestReaderFGDCParent
 
-   @@xSingle = TestReaderFGDCParent.get_XML('timePeriod_single.xml')
+   @@xSingle1 = TestReaderFGDCParent.get_XML('timePeriod_single.xml')
+   @@xSingle2 = TestReaderFGDCParent.get_XML('timePeriod_single.xml')
    @@xRange = TestReaderFGDCParent.get_XML('timePeriod_range.xml')
    @@xMulti = TestReaderFGDCParent.get_XML('timePeriod_multi.xml')
 
@@ -19,9 +20,9 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
    def test_timePeriod_single_complete
 
       TestReaderFGDCParent.set_intObj()
-      TestReaderFGDCParent.set_xDoc(@@xSingle)
+      TestReaderFGDCParent.set_xDoc(@@xSingle1)
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      xTimePeriod = @@xSingle.xpath('./metadata/idinfo/timeperd')
+      xTimePeriod = @@xSingle1.xpath('./metadata/idinfo/timeperd')
       hTimePeriod = @@NameSpace.unpack(xTimePeriod, hResponse)
 
       refute_empty hTimePeriod
@@ -56,9 +57,9 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
    def test_timePeriod_single_geologicAge
 
       TestReaderFGDCParent.set_intObj()
-      TestReaderFGDCParent.set_xDoc(@@xSingle)
+      TestReaderFGDCParent.set_xDoc(@@xSingle2)
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      xTimePeriod = @@xSingle.xpath('./metadata/idinfo/timeperd')
+      xTimePeriod = @@xSingle2.xpath('./metadata/idinfo/timeperd')
       xTimePeriod.xpath('//caldate').remove
       xTimePeriod.xpath('//time').remove
       hTimePeriod = @@NameSpace.unpack(xTimePeriod, hResponse)
