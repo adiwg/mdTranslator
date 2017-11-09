@@ -93,22 +93,26 @@ module ADIWG
                         end
 
                         # and/or bio extension's geologic age
-                        # use first occurrence of the multiple geologic age as start age
-                        xGeoAge = axGeoAge.xpath('//geolage').first
-                        unless xGeoAge.nil?
-                           hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
-                           unless hGeoAge.nil?
-                              hTimePeriod[:startGeologicAge] = hGeoAge
-                           end
-                        end
+                        unless axGeoAge.empty?
 
-                        # use lase occurrence of the multiple geologic age as end age
-                        xGeoAge = axGeoAge.xpath('//geolage').last
-                        unless xGeoAge.nil?
-                           hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
-                           unless hGeoAge.nil?
-                              hTimePeriod[:endGeologicAge] = hGeoAge
+                           # use first occurrence of the multiple geologic age as start age
+                           xGeoAge = axGeoAge.xpath('//geolage').first
+                           unless xGeoAge.nil?
+                              hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
+                              unless hGeoAge.nil?
+                                 hTimePeriod[:startGeologicAge] = hGeoAge
+                              end
                            end
+
+                           # use lase occurrence of the multiple geologic age as end age
+                           xGeoAge = axGeoAge.xpath('//geolage').last
+                           unless xGeoAge.nil?
+                              hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
+                              unless hGeoAge.nil?
+                                 hTimePeriod[:endGeologicAge] = hGeoAge
+                              end
+                           end
+                           
                         end
 
                         return hTimePeriod
