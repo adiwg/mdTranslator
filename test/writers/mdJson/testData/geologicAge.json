@@ -57,30 +57,20 @@
             {
                "temporalExtent": [
                   {
-                     "timeInstant": {
-                        "id": "id",
-                        "description": "description",
-                        "identifier": {
-                           "identifier": "identifier",
-                           "namespace": "namespace"
-                        },
-                        "instantName": [
-                           "instantName0",
-                           "instantName1"
-                        ],
-                        "dateTime": "2016-10-24T10:25"
-                     }
-                  },
-                  {
-                     "timeInstant": {
-                        "dateTime": "2016-10-24T11:10:15.200-10:00"
-                     }
-                  },
-                  {
-                     "timeInstant": {
-                        "geologicAge": {
+                     "timePeriod": {
+                        "startGeologicAge": {
                            "ageTimeScale": "geologic age time scale",
-                           "ageEstimate": "geologic age estimate"
+                           "ageEstimate": "geologic age estimate",
+                           "ageUncertainty": "geologic age uncertainty",
+                           "ageExplanation": "geologic age explanation",
+                           "ageReference": [
+                              {
+                                 "title": "geologic age reference title 1"
+                              },
+                              {
+                                 "title": "geologic age reference title 2"
+                              }
+                           ]
                         }
                      }
                   }
