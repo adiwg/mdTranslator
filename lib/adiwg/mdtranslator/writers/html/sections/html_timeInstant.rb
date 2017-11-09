@@ -2,12 +2,14 @@
 # time instant
 
 # History:
+#  Stan Smith 2017-11-09 add geologic age
 #  Stan Smith 2017-03-26 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-04-03 original script
 
 require_relative 'html_identifier'
 require_relative 'html_datetime'
+require_relative 'html_geologicAge'
 
 module ADIWG
    module Mdtranslator
@@ -25,6 +27,7 @@ module ADIWG
                   # classes used
                   identifierClass = Html_Identifier.new(@html)
                   datetimeClass = Html_Datetime.new(@html)
+                  geoAgeClass = Html_GeologicAge.new(@html)
 
                   # time instant - id
                   unless hInstant[:timeId].nil?
@@ -53,6 +56,11 @@ module ADIWG
                      @html.section(:class => 'block') do
                         @html.text!(hInstant[:description])
                      end
+                  end
+
+                  # time instant - geologic age
+                  unless hInstant[:geologicAge].empty?
+                     geoAgeClass.writeHtml(hInstant[:geologicAge])
                   end
 
                   # time instant - identifier {identifier}

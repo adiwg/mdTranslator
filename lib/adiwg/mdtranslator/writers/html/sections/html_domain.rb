@@ -23,11 +23,11 @@ module ADIWG
 
                def writeHtml(aDomains)
 
-                  aDomains.each do |hDomain|
+                  # classes used
+                  itemClass = Html_DomainItem.new(@html)
+                  citationClass = Html_Citation.new(@html)
 
-                     # classes used
-                     itemClass = Html_DomainItem.new(@html)
-                     citationClass = Html_Citation.new(@html)
+                  aDomains.each do |hDomain|
 
                      dName = 'domain'
                      dName = hDomain[:domainCode] unless hDomain[:domainCode].nil?

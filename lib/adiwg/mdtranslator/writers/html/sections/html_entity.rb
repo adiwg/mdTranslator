@@ -25,13 +25,13 @@ module ADIWG
 
                def writeHtml(aEntities)
 
-                  aEntities.each do |hEntity|
+                  # classes used
+                  indexClass = Html_EntityIndex.new(@html)
+                  attributeClass = Html_EntityAttribute.new(@html)
+                  foreignClass = Html_EntityForeignKey.new(@html)
+                  citationClass = Html_Citation.new(@html)
 
-                     # classes used
-                     indexClass = Html_EntityIndex.new(@html)
-                     attributeClass = Html_EntityAttribute.new(@html)
-                     foreignClass = Html_EntityForeignKey.new(@html)
-                     citationClass = Html_Citation.new(@html)
+                  aEntities.each do |hEntity|
 
                      eName = 'entity'
                      eName = hEntity[:entityCode] unless hEntity[:entityCode].nil?

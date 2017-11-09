@@ -2040,12 +2040,104 @@
                "temporalExtent": [
                   {
                      "timeInstant": {
+                        "id": "instant_002",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "identifier": {
+                           "identifier": "LowTide",
+                           "namespace": "namespace",
+                           "version": "version",
+                           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,"
+                        },
+                        "instantName": [
+                           "instantName 20",
+                           "instantName 21"
+                        ],
                         "dateTime": "2016-10-24T11:10:15.200-10:00"
                      }
                   },
                   {
+                     "timeInstant": {
+                        "id": "instant_002",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "instantName": [
+                           "instantName 50"
+                        ],
+                        "geologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "geologic age estimate",
+                           "ageUncertainty": "geologic age uncertainty",
+                           "ageExplanation": "geologic age explanation",
+                           "ageReference": [
+                              {
+                                 "title": "geologic age reference title 1"
+                              },
+                              {
+                                 "title": "geologic age reference title 2"
+                              }
+                           ]
+                        }
+                     }
+                  },
+                  {
                      "timePeriod": {
-                        "startDateTime": "2016-10-24T11:10:15.200-10:00"
+                        "startDateTime": "2016-10-14T11:10:15.2-10:00",
+                        "endDateTime": "2016-12-31",
+                        "id": "TimePeriod101",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "identifier": {
+                           "identifier": "TimePeriod Identifier",
+                           "namespace": "namespace"
+                        },
+                        "periodName": [
+                           "periodName0",
+                           "periodName1"
+                        ],
+                        "timeInterval": {
+                           "interval": 9.9,
+                           "units": "year"
+                        },
+                        "duration": {
+                           "months": 9
+                        }
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "id": "TimePeriod101",
+                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "startGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "start geologic age",
+                           "ageUncertainty": "geologic age uncertainty",
+                           "ageExplanation": "geologic age explanation",
+                           "ageReference": [
+                              {
+                                 "title": "geologic age reference title 1"
+                              },
+                              {
+                                 "title": "geologic age reference title 2"
+                              }
+                           ]
+                        },
+                        "endGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "end geologic age"
+                        },
+                        "identifier": {
+                           "identifier": "TimePeriod Identifier",
+                           "namespace": "namespace"
+                        },
+                        "periodName": [
+                           "periodName0",
+                           "periodName1"
+                        ],
+                        "timeInterval": {
+                           "interval": 9.9,
+                           "units": "year"
+                        },
+                        "duration": {
+                           "months": 9
+                        }
                      }
                   }
                ],
