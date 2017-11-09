@@ -713,8 +713,9 @@ class InternalMetadata
 
    def newDataDictionary
       {
-         citation: {},
+         description: nil,
          subjects: [],
+         citation: {},
          recommendedUses: [],
          locales: [],
          responsibleParty: {},
