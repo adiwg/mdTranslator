@@ -67,15 +67,12 @@ module ADIWG
                      # time period 9.2 (mdattim) - multiple date times
                      xMulti = xTimeInfo.xpath('./mdattim')
                      unless xMulti.empty?
-                        axCalDate = xMulti.xpath('//caldate')
-                        axTime = xMulti.xpath('//time')
-                        axGeoAge = xMulti.xpath('//geolage')
-                        tdLength = axCalDate.length
 
                         # use first occurrence of the multiple date-times as start date
-                        startDate = axCalDate[0].text
-                        startTime = axTime[0].text
-                        unless startDate.nil?
+                        xStart = xMulti.xpath('//sngdate').first
+                        startDate = xStart.xpath('./caldate').text
+                        startTime = xStart.xpath('./time').text
+                        unless startDate.empty?
                            hStartDateTime = DateTime.unpack(startDate, startTime, hResponseObj)
                            unless hStartDateTime.nil?
                               hTimePeriod[:startDateTime] = hStartDateTime
@@ -83,9 +80,10 @@ module ADIWG
                         end
 
                         # use last occurrence of the multiple date-times as end date
-                        endDate = axCalDate[tdLength-1].text
-                        endTime = axTime[tdLength-1].text
-                        unless endDate.nil?
+                        xEnd = xMulti.xpath('//sngdate').last
+                        endDate = xEnd.xpath('./caldate').text
+                        endTime = xEnd.xpath('./time').text
+                        unless endDate.empty?
                            hEndDateTime = DateTime.unpack(endDate, endTime, hResponseObj)
                            unless hEndDateTime.nil?
                               hTimePeriod[:endDateTime] = hEndDateTime
@@ -93,6 +91,7 @@ module ADIWG
                         end
 
                         # and/or bio extension's geologic age
+                        axGeoAge = xMulti.xpath('//geolage')
                         unless axGeoAge.empty?
 
                            # use first occurrence of the multiple geologic age as start age
@@ -105,14 +104,16 @@ module ADIWG
                            end
 
                            # use lase occurrence of the multiple geologic age as end age
-                           xGeoAge = axGeoAge.xpath('//geolage').last
-                           unless xGeoAge.nil?
-                              hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
-                              unless hGeoAge.nil?
-                                 hTimePeriod[:endGeologicAge] = hGeoAge
+                           if axGeoAge.length > 1
+                              xGeoAge = axGeoAge.xpath('//geolage').last
+                              unless xGeoAge.nil?
+                                 hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
+                                 unless hGeoAge.nil?
+                                    hTimePeriod[:endGeologicAge] = hGeoAge
+                                 end
                               end
                            end
-                           
+
                         end
 
                         return hTimePeriod

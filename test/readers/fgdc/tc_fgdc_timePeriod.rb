@@ -96,7 +96,7 @@ class TestReaderFgdcTimePeriod < TestReaderFGDCParent
       assert_equal 'ground condition', hTimePeriod[:description]
 
       assert_equal 2015, hTimePeriod[:startDateTime][:dateTime].year
-      assert_equal 2017, hTimePeriod[:endDateTime][:dateTime].year
+      assert_empty hTimePeriod[:endDateTime]
 
       assert_equal 'geologic estimate first', hTimePeriod[:startGeologicAge][:ageEstimate]
       assert_equal 'geologic estimate last', hTimePeriod[:endGeologicAge][:ageEstimate]
