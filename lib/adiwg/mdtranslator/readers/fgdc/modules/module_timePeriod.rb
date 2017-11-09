@@ -71,7 +71,6 @@ module ADIWG
                         axTime = xMulti.xpath('//time')
                         axGeoAge = xMulti.xpath('//geolage')
                         tdLength = axCalDate.length
-                        ageLength =  axGeoAge.length
 
                         # use first occurrence of the multiple date-times as start date
                         startDate = axCalDate[0].text
@@ -95,7 +94,7 @@ module ADIWG
 
                         # and/or bio extension's geologic age
                         # use first occurrence of the multiple geologic age as start age
-                        xGeoAge = axGeoAge[0]
+                        xGeoAge = axGeoAge.xpath('//geolage').first
                         unless xGeoAge.nil?
                            hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
                            unless hGeoAge.nil?
@@ -104,7 +103,7 @@ module ADIWG
                         end
 
                         # use lase occurrence of the multiple geologic age as end age
-                        xGeoAge = axGeoAge[ageLength-1]
+                        xGeoAge = axGeoAge.xpath('//geolage').last
                         unless xGeoAge.nil?
                            hGeoAge = GeologicAge.unpack(xGeoAge, hResponseObj)
                            unless hGeoAge.nil?
@@ -141,7 +140,7 @@ module ADIWG
                         # and/or bio extension's geologic age
                         # start geologic age
                         xBegGeoAge = xRange.xpath('./beggeol')
-                        unless xBegGeoAge.nil?
+                        unless xBegGeoAge.empty?
                            hGeoAge = GeologicAge.unpack(xBegGeoAge, hResponseObj)
                            unless hGeoAge.nil?
                               hTimePeriod[:startGeologicAge] = hGeoAge
@@ -150,7 +149,7 @@ module ADIWG
 
                         # end geologic age
                         xEndGeoAge = xRange.xpath('./endgeol')
-                        unless xEndGeoAge.nil?
+                        unless xEndGeoAge.empty?
                            hGeoAge = GeologicAge.unpack(xEndGeoAge, hResponseObj)
                            unless hGeoAge.nil?
                               hTimePeriod[:endGeologicAge] = hGeoAge
