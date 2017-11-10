@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2017-11-09 add metadata identifier to output identifiers
 #  Stan Smith 2017-11-08 remove identifier which is the primary resource
 #  Stan Smith 2017-05-12 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
@@ -47,9 +48,15 @@ module ADIWG
                   json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
 
-                  # do not duplicate the identifier which is the primary resource
-                  # build new array of identifiers
+                  # gather all identifiers
+                  # include the metadataIdentifier if it is not in the 'gov.sciencebase.catalog' namespace
                   aIdentifiers = []
+                  unless metadataInfo[:metadataIdentifier].empty?
+                     unless metadataInfo[:metadataIdentifier][:namespace] == 'gov.sciencebase.catalog'
+                        aIdentifiers << metadataInfo[:metadataIdentifier]
+                     end
+                  end
+                  # do not duplicate the identifier which is the primary resource
                   unless hCitation.empty?
                      hCitation[:identifiers].each do |hIdentifier|
                         unless hIdentifier[:identifier] == resourceId
