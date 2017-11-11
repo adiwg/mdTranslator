@@ -2,11 +2,13 @@
 # time period
 
 # History:
+#  Stan Smith 2017-11-09 add geologic age
 #  Stan Smith 2017-03-26 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-23 original script
 
 require_relative 'html_datetime'
+require_relative 'html_geologicAge'
 require_relative 'html_identifier'
 require_relative 'html_timeInterval'
 require_relative 'html_duration'
@@ -26,6 +28,7 @@ module ADIWG
 
                   # classes used
                   datetimeClass = Html_Datetime.new(@html)
+                  geoAgeClass = Html_GeologicAge.new(@html)
                   identifierClass = Html_Identifier.new(@html)
                   intervalClass = Html_TimeInterval.new(@html)
                   durationClass = Html_Duration.new(@html)
@@ -63,6 +66,26 @@ module ADIWG
                      @html.em('Description: ')
                      @html.section(:class => 'block') do
                         @html.text!(hPeriod[:description])
+                     end
+                  end
+
+                  # time period - start geologic age {geologic age}
+                  unless hPeriod[:startGeologicAge].empty?
+                     @html.details do
+                        @html.summary('Starting Geologic Age', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           geoAgeClass.writeHtml(hPeriod[:startGeologicAge])
+                        end
+                     end
+                  end
+
+                  # time period - end geologic age {geologic age}
+                  unless hPeriod[:endGeologicAge].empty?
+                     @html.details do
+                        @html.summary('Ending Geologic Age', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           geoAgeClass.writeHtml(hPeriod[:endGeologicAge])
+                        end
                      end
                   end
 

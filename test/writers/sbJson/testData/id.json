@@ -14,7 +14,7 @@
       "metadataInfo": {
          "metadataIdentifier": {
             "identifier": "myMetadataIdentifier",
-            "namespace": "XYZ"
+            "namespace": "ABC"
          },
          "metadataContact": [
             {
@@ -38,12 +38,16 @@
             "title": "title",
             "identifier": [
                {
+                  "identifier": "myMetadataIdentifier",
+                  "namespace": "ABC"
+               },
+               {
                   "identifier": "myCitationIdentifier1",
                   "namespace": "XYZ"
                },
                {
                   "identifier": "myCitationIdentifier2",
-                  "namespace": "XYZ"
+                  "namespace": "123"
                }
             ]
          },

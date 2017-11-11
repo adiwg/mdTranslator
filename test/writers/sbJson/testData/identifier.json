@@ -12,6 +12,11 @@
    ],
    "metadata": {
       "metadataInfo": {
+         "metadataIdentifier": {
+            "identifier": "myMetadataIdentifierID",
+            "namespace": "gov.sciencebase.catalog",
+            "description": "metadata identifier"
+         },
          "metadataContact": [
             {
                "role": "metadataContact",
@@ -37,6 +42,10 @@
                   "identifier": "myIdentifier0",
                   "namespace": "mySchema0",
                   "description": "myDescription0"
+               },
+               {
+                  "identifier": "myMetadataIdentifierID",
+                  "namespace": "gov.sciencebase.catalog"
                },
                {
                   "identifier": "myIdentifier1",

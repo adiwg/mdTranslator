@@ -1,12 +1,14 @@
 # mdJson 2.0 writer - time period
 
 # History:
-#   Stan Smith 2017-03-14 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2017-11-08 add geologic age
+#  Stan Smith 2017-03-14 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 require_relative 'mdJson_identifier'
 require_relative 'mdJson_dateTime'
+require_relative 'mdJson_geologicAge'
 require_relative 'mdJson_timeInterval'
 require_relative 'mdJson_duration'
 
@@ -26,6 +28,8 @@ module ADIWG
                      json.periodName hTimePeriod[:periodNames] unless hTimePeriod[:periodNames].empty?
                      json.startDateTime DateTime.build(hTimePeriod[:startDateTime]) unless hTimePeriod[:startDateTime].empty?
                      json.endDateTime DateTime.build(hTimePeriod[:endDateTime]) unless hTimePeriod[:endDateTime].empty?
+                     json.startGeologicAge GeologicAge.build(hTimePeriod[:startGeologicAge]) unless hTimePeriod[:startGeologicAge].empty?
+                     json.endGeologicAge GeologicAge.build(hTimePeriod[:endGeologicAge]) unless hTimePeriod[:endGeologicAge].empty?
                      json.timeInterval TimeInterval.build(hTimePeriod[:timeInterval]) unless hTimePeriod[:timeInterval].empty?
                      json.duration Duration.build(hTimePeriod[:duration]) unless hTimePeriod[:duration].empty?
                   end

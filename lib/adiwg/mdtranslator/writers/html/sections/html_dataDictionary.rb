@@ -2,6 +2,7 @@
 # data dictionary
 
 # History:
+#  Stan Smith 2017-11-09 add data dictionary description
 #  Stan Smith 2017-04-05 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-26 original script
@@ -31,6 +32,14 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   domainClass = Html_Domain.new(@html)
                   entityClass = Html_Entity.new(@html)
+
+                  # dictionary -  description
+                  unless hDictionary[:description].nil?
+                     @html.em('Dictionary Description:')
+                     @html.section(:class => 'block') do
+                        @html.text!(hDictionary[:description])
+                     end
+                  end
 
                   # dictionary - subjects []
                   hDictionary[:subjects].each do |subject|

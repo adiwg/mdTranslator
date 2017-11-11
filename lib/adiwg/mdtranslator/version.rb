@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.6.0 2017-11-09 added data dictionary description
+# 2.6.0 2017-11-09 added readers and writers for geologic age
 # 2.5.0 2017-11-03 bug fix, add test to verify mdJson reader version is compatible with schema version
 # 2.5.0 2017-11-03 added support for additional fgdc and bio data dictionary element
 # 2.4.1 2017-11-02 refactored mdJson writer for added entity, attribute, and domain elements
@@ -44,7 +46,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.5.0"
+      VERSION = "2.6.0"
    end
 end
 

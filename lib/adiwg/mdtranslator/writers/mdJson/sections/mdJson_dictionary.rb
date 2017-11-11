@@ -1,8 +1,9 @@
 # mdJson 2.0 writer - dictionary
 
 # History:
-#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2017-11-09 add data dictionary description
+#  Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 require_relative 'mdJson_citation'
@@ -23,8 +24,9 @@ module ADIWG
                def self.build(hDictionary)
 
                   Jbuilder.new do |json|
-                     json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
+                     json.description hDictionary[:description]
                      json.subject hDictionary[:subjects] unless hDictionary[:subjects].empty?
+                     json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
                      json.recommendedUse hDictionary[:recommendedUses] unless hDictionary[:recommendedUses].empty?
                      json.locale @Namespace.json_map(hDictionary[:locales], Locale)
                      json.responsibleParty ResponsibleParty.build(hDictionary[:responsibleParty])

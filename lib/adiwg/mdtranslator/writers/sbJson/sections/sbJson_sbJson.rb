@@ -1,6 +1,8 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2017-11-09 add metadata identifier to output identifiers
+#  Stan Smith 2017-11-08 remove identifier which is the primary resource
 #  Stan Smith 2017-05-12 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
 
@@ -38,13 +40,32 @@ module ADIWG
 
                Jbuilder.new do |json|
 
-                  json.id Id.build(intObj)
+                  resourceId = Id.build(intObj)
+                  json.id resourceId
                   json.title hCitation[:title] unless hCitation.empty?
                   json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   json.body Abstract.build(resourceInfo[:abstract])
                   json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
-                  json.identifiers @Namespace.json_map(hCitation[:identifiers], Identifier) unless hCitation.empty?
+
+                  # gather all identifiers
+                  # include the metadataIdentifier if it is not in the 'gov.sciencebase.catalog' namespace
+                  aIdentifiers = []
+                  unless metadataInfo[:metadataIdentifier].empty?
+                     unless metadataInfo[:metadataIdentifier][:namespace] == 'gov.sciencebase.catalog'
+                        aIdentifiers << metadataInfo[:metadataIdentifier]
+                     end
+                  end
+                  # do not duplicate the identifier which is the primary resource
+                  unless hCitation.empty?
+                     hCitation[:identifiers].each do |hIdentifier|
+                        unless hIdentifier[:identifier] == resourceId
+                           aIdentifiers << hIdentifier
+                        end
+                     end
+                  end
+                  json.identifiers @Namespace.json_map(aIdentifiers, Identifier) unless aIdentifiers.empty?
+
                   json.purpose resourceInfo[:purpose]
                   json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
                   json.provenance Provenance.build

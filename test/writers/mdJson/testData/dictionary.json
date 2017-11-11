@@ -57,6 +57,7 @@
    },
    "dataDictionary": [
       {
+         "description": "data dictionary description",
          "citation": {
             "title": "title"
          },

@@ -149,12 +149,40 @@
                   },
                   {
                      "timePeriod": {
+                        "startGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "geologic age estimate"
+                        },
+                        "endGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "geologic age estimate"
+                        }
+                     }
+                  },
+                  {
+                     "timePeriod": {
                         "startDateTime": "2016-10-24T11:10:15.200-10:00"
                      }
                   },
                   {
                      "timePeriod": {
                         "endDateTime": "2017-03-16"
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "startGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "geologic age estimate"
+                        }
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "endGeologicAge": {
+                           "ageTimeScale": "geologic age time scale",
+                           "ageEstimate": "geologic age estimate"
+                        }
                      }
                   }
                ]

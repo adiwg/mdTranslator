@@ -23,7 +23,7 @@ module ADIWG
                   hDateTime = intMetadataClass.newDateTime
 
                   if date.nil? || date == ''
-                     hResponseObj[:readerExecutionMessages] << 'date string is missing from dateTime conversion'
+                     hResponseObj[:readerExecutionMessages] << 'date string is missing from dateTime'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -74,12 +74,12 @@ module ADIWG
                   else
                      timeOffset = Time.now.gmt_offset
                      aOffset = timeOffset.divmod(3600)
-                     hOffset = aOffset[0]
-                     mOffset = aOffset[1] * 60
-                     if hOffset >= 0
-                        zone = '+' + '%02d' % hOffset + ':' + '%02d' % mOffset
+                     hourOff = aOffset[0]
+                     minOff = aOffset[1] * 60
+                     if hourOff >= 0
+                        zone = '+' + '%02d' % hourOff + ':' + '%02d' % minOff
                      else
-                        zone = '%03d' % hOffset + ':' + '%02d' % mOffset
+                        zone = '%03d' % hourOff + ':' + '%02d' % minOff
                      end
                      dtIn = dtIn + zone
                   end

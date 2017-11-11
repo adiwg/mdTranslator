@@ -8,8 +8,18 @@
           <begtime>12:30:00</begtime>
           <enddate>2016</enddate>
           <endtime>17:30:00</endtime>
-          <beggeol></beggeol>
-          <endgeol></endgeol>
+          <beggeol>
+            <geolscal>time scale</geolscal>
+            <geolest>geologic estimate first</geolest>
+            <geolun>geologic uncertainty</geolun>
+            <geolexpl>method to estimate</geolexpl>
+          </beggeol>
+          <endgeol>
+            <geolscal>time scale</geolscal>
+            <geolest>geologic estimate last</geolest>
+            <geolun>geologic uncertainty</geolun>
+            <geolexpl>method to estimate</geolexpl>
+          </endgeol>
         </rngdates>
       </timeinfo>
       <current>ground condition</current>

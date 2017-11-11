@@ -56,7 +56,7 @@ class TestWriterSbJsonId < TestWriterSbJsonParent
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['id']
 
-      assert_equal 'myCitationIdentifier2', got
+      assert_equal 'myCitationIdentifier1', got
 
    end
 

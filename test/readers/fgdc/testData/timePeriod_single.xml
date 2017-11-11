@@ -7,10 +7,10 @@
           <caldate>20170820</caldate>
           <time>13:30:00</time>
           <geolage>
-            <geolscal>International Geologic Time Scale</geolscal>
-            <geolest>jurassic</geolest>
-            <geolun>error estimate for geologic time</geolun>
-            <geolexpl>method used to calculate geologic age estimate</geolexpl>
+            <geolscal>time scale</geolscal>
+            <geolest>geologic estimate</geolest>
+            <geolun>geologic uncertainty</geolun>
+            <geolexpl>method to estimate</geolexpl>
             <geolcit>
               <citeinfo>
                 <origin>Dennis Walworth</origin>
@@ -18,7 +18,13 @@
                 <title>Method for carbon dating</title>
               </citeinfo>
             </geolcit>
-            <geolcit></geolcit>
+            <geolcit>
+              <citeinfo>
+                <origin>Stan Smith</origin>
+                <pubdate>20171101</pubdate>
+                <title>Method for other dating</title>
+              </citeinfo>
+            </geolcit>
           </geolage>
         </sngdate>
       </timeinfo>
