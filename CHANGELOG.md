@@ -1,7 +1,18 @@
 # Change Log
 
-## [v2.5.0](https://github.com/adiwg/mdTranslator/tree/v2.5.0) (2017-11-06)
+## [v2.6.0](https://github.com/adiwg/mdTranslator/tree/v2.6.0) (2017-11-10)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.5.0...v2.6.0)
+
+**Fixed bugs:**
+
+- mdJSON reader version is stale [\#158](https://github.com/adiwg/mdTranslator/issues/158)
+
+**Merged pull requests:**
+
+- Add Geologic Age to timeInstant and timePeriod [\#161](https://github.com/adiwg/mdTranslator/pull/161) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.5.0](https://github.com/adiwg/mdTranslator/tree/v2.5.0) (2017-11-06)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.4.0...v2.5.0)
 
 **Fixed bugs:**
