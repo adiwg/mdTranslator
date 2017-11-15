@@ -36,14 +36,14 @@ links:
   - title: News
     url: /news/
   - title: API
-    url: http://mdtranslator.adiwg.org
+    url: https://mdtranslator.adiwg.org
     external: true
   - title: GitHub
     url: https://github.com/adiwg/mdTranslator
     external: true
   - title: ADIwg
     notransform: true
-    url: http://adiwg.org
+    url: https://adiwg.org
     external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
