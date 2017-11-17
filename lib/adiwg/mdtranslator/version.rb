@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.6.0 2017-11-09 add metadataIdentifier to sbJson identifier
 # 2.6.0 2017-11-09 added data dictionary description
 # 2.6.0 2017-11-09 added readers and writers for geologic age
 # 2.5.0 2017-11-03 bug fix, add test to verify mdJson reader version is compatible with schema version

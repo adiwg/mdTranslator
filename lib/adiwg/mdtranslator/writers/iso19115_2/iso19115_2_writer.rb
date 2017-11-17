@@ -16,42 +16,43 @@ require 'builder'
 require_relative 'classes/class_miMetadata'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Iso19115_2
+   module Mdtranslator
+      module Writers
+         module Iso19115_2
 
-                def self.startWriter(intObj, hResponseObj)
+            def self.startWriter(intObj, hResponseObj)
 
-                    # make contact available to the instance
-                    @contacts = intObj[:contacts]
+               # make contact available to the instance
+               @contacts = intObj[:contacts]
 
-                    # set the format of the output file based on the writer specified
-                    hResponseObj[:writerFormat] = 'xml'
+               # set the format of the output file based on the writer specified
+               hResponseObj[:writerOutputFormat] = 'xml'
+               hResponseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19115_2::VERSION
 
-                    # create new XML document
-                    xml = Builder::XmlMarkup.new(indent: 3)
+               # create new XML document
+               xml = Builder::XmlMarkup.new(indent: 3)
 
-                    # start writing the ISO 19115-2 XML record
-                    metadataWriter = MI_Metadata.new(xml, hResponseObj)
-                    metadata = metadataWriter.writeXML(intObj)
+               # start writing the ISO 19115-2 XML record
+               metadataWriter = MI_Metadata.new(xml, hResponseObj)
+               metadata = metadataWriter.writeXML(intObj)
 
-                    return metadata
-
-                end
-
-                # find contact in contact array and return the contact hash
-                def self.getContact(contactId)
-
-                    @contacts.each do |contact|
-                        if contact[:contactId] == contactId
-                            return contact
-                        end
-                    end
-                    return {}
-
-                end
+               return metadata
 
             end
-        end
-    end
+
+            # find contact in contact array and return the contact hash
+            def self.getContact(contactId)
+
+               @contacts.each do |contact|
+                  if contact[:contactId] == contactId
+                     return contact
+                  end
+               end
+               return {}
+
+            end
+
+         end
+      end
+   end
 end

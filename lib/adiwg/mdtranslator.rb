@@ -70,16 +70,16 @@ module ADIWG
             # writerRequested: name of the writer requested by the user
             #   - set from the parameter list (writer)
             # ------------------------------------------------------------------------------------
-            # writerVersion: current version of the requested writer
-            #   - set by the writer
-            # ------------------------------------------------------------------------------------
-            # writerFormat: format of writer output
+            # writerVersion: version of the writer used within mdTranslator
             #   - set by the writer
             # ------------------------------------------------------------------------------------
             # writerPass: false if the writer fails to complete creation of output file
             #   - set by the writer
             # ------------------------------------------------------------------------------------
             # writerMessages: an array of writer warning and error messages
+            #   - set by the writer
+            # ------------------------------------------------------------------------------------
+            # writerOutputFormat: format of writer output
             #   - set by the writer
             # ------------------------------------------------------------------------------------
             # writerOutput: the output file returned by the writer
@@ -110,6 +110,7 @@ module ADIWG
                 readerExecutionPass: true,
                 readerExecutionMessages: [],
                 writerRequested: nil,
+                writerVersion: nil,
                 writerPass: true,
                 writerMessages: [],
                 writerOutputFormat: nil,

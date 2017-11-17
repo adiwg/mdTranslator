@@ -1,41 +1,39 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_miMetadata
+# writers / fgdc / class_fgdc
 
 # History:
-#   Stan Smith 2017-01-07 original script
+#   Stan Smith 2017-11-16 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rubygems'
 require 'rexml/document'
+require 'rubygems'
 require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/writers/iso19115_2/version'
+require 'adiwg/mdtranslator/writers/fgdc/version'
 include REXML
 
-class TestWriter191152MIMetadata < MiniTest::Test
-
-   # read the ISO 19115-2 reference file
-   fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_miMetadata.xml')
-   file = File.new(fname)
-   @@iso_xml = Document.new(file)
+class TestWriterFgdcFgdc < MiniTest::Test
 
    # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_miMetadata.json')
+   fname = File.join(File.dirname(__FILE__), 'testData', 'fgdc.json')
    file = File.open(fname, 'r')
    @@mdJson = file.read
    file.close
 
-   def test_19115_2_miMetadata
+   def test_fgdc
 
-      aRefXML = []
-      XPath.each(@@iso_xml, '//gmi:MI_Metadata') {|e| aRefXML << e}
+      # read the fgdc complete reference file
+      fname = File.join(File.dirname(__FILE__), 'resultXML', 'fgdc.xml')
+      file = File.new(fname)
+      iso_xml = Document.new(file)
+      refXML = XPath.first(iso_xml, '//metadata')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+         file: @@mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       translatorVersion = ADIWG::Mdtranslator::VERSION
-      writerVersion = ADIWG::Mdtranslator::Writers::Iso19115_2::VERSION
+      writerVersion = ADIWG::Mdtranslator::Writers::Fgdc::VERSION
       schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
 
       assert_equal 'mdJson', hResponseObj[:readerRequested]
@@ -48,7 +46,7 @@ class TestWriter191152MIMetadata < MiniTest::Test
       assert_empty hResponseObj[:readerValidationMessages]
       assert hResponseObj[:readerExecutionPass]
       assert_empty hResponseObj[:readerExecutionMessages]
-      assert_equal 'iso19115_2', hResponseObj[:writerRequested]
+      assert_equal 'fgdc', hResponseObj[:writerRequested]
       assert_equal writerVersion, hResponseObj[:writerVersion]
       assert hResponseObj[:writerPass]
       assert_equal 'xml', hResponseObj[:writerOutputFormat]
@@ -59,13 +57,9 @@ class TestWriter191152MIMetadata < MiniTest::Test
 
       metadata = hResponseObj[:writerOutput]
       iso_out = Document.new(metadata)
+      checkXML = XPath.first(iso_out, '//metadata')
 
-      aCheckXML = []
-      XPath.each(iso_out, '//gmi:MI_Metadata') {|e| aCheckXML << e}
-
-      aRefXML.length.times {|i|
-         assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-      }
+      assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
 
    end
 

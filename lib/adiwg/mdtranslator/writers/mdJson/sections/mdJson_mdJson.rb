@@ -5,6 +5,7 @@
 #   Josh Bradley original script
 
 require 'jbuilder'
+require 'rubygems'
 require_relative 'mdJson_contact'
 require_relative 'mdJson_metadata'
 require_relative 'mdJson_dictionary'

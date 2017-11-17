@@ -6,8 +6,10 @@
 
 require 'minitest/autorun'
 require 'json'
+require 'rubygems'
 require 'rexml/document'
 require 'adiwg/mdtranslator'
+require 'adiwg/mdtranslator/writers/iso19110/version'
 include REXML
 
 class TestWriter19110FeatureCatalogue < MiniTest::Test
@@ -35,9 +37,31 @@ class TestWriter19110FeatureCatalogue < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
+      translatorVersion = ADIWG::Mdtranslator::VERSION
+      writerVersion = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
+      schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
+
+      assert_equal 'mdJson', hResponseObj[:readerRequested]
+      assert_equal '2.0.0', hResponseObj[:readerVersionRequested]
+      assert_equal schemaVersion, hResponseObj[:readerVersionUsed]
+      assert hResponseObj[:readerStructurePass]
+      assert_empty hResponseObj[:readerStructureMessages]
+      assert_equal 'normal', hResponseObj[:readerValidationLevel]
+      assert hResponseObj[:readerValidationPass]
+      assert_empty hResponseObj[:readerValidationMessages]
+      assert hResponseObj[:readerExecutionPass]
+      assert_empty hResponseObj[:readerExecutionMessages]
+      assert_equal 'iso19110', hResponseObj[:writerRequested]
+      assert_equal writerVersion, hResponseObj[:writerVersion]
+      assert hResponseObj[:writerPass]
+      assert_equal 'xml', hResponseObj[:writerOutputFormat]
+      assert hResponseObj[:writerShowTags]
+      assert_nil hResponseObj[:writerCSSlink]
+      assert_equal '_000', hResponseObj[:writerMissingIdCount]
+      assert_equal translatorVersion, hResponseObj[:translatorVersion]
+
       metadata = hResponseObj[:writerOutput]
       iso_out = Document.new(metadata)
-
       checkXML = XPath.first(iso_out, '//gfc:FC_FeatureCatalogue')
 
       assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
