@@ -6,27 +6,21 @@
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'rubygems'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/writers/fgdc/version'
-include REXML
+require_relative 'fgdc_test_parent'
 
-class TestWriterFgdcFgdc < MiniTest::Test
+class TestWriterFgdcFgdc < TestReaderFgdcParent
 
-   # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', 'fgdc.json')
-   file = File.open(fname, 'r')
-   @@mdJson = file.read
-   file.close
+   # read the input json file
+   @@mdJson = TestReaderFgdcParent.get_file('fgdc.json')
 
    def test_fgdc
 
-      # read the fgdc complete reference file
-      fname = File.join(File.dirname(__FILE__), 'resultXML', 'fgdc.xml')
-      file = File.new(fname)
-      iso_xml = Document.new(file)
-      refXML = XPath.first(iso_xml, '//metadata')
+      # read the fgdc reference file
+      xFile = TestReaderFgdcParent.get_xml('fgdc.xml')
+      xExpect = xFile.xpath('//metadata')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: @@mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true
@@ -55,11 +49,10 @@ class TestWriterFgdcFgdc < MiniTest::Test
       assert_equal '_000', hResponseObj[:writerMissingIdCount]
       assert_equal translatorVersion, hResponseObj[:translatorVersion]
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
-      checkXML = XPath.first(iso_out, '//metadata')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//metadata')
 
-      assert_equal refXML.to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 

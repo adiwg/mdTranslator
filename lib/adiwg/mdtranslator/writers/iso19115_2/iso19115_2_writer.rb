@@ -13,6 +13,7 @@
 # 	Stan Smith 2013-08-10 original script
 
 require 'builder'
+require 'adiwg/mdtranslator/writers/iso19115_2/version'
 require_relative 'classes/class_miMetadata'
 
 module ADIWG

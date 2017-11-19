@@ -2,31 +2,27 @@
 # writers / iso19110 / class_address
 
 # History:
-#   Stan Smith 2017-01-23 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-01-23 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110Address < MiniTest::Test
+class TestWriter19110Address < TestWriter19110Parent
 
    # read the ISO 19110 reference file
-   fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_address.xml')
-   file = File.new(fname)
-   iso_xml = Document.new(file)
-   @@aRefXML = []
-   XPath.each(iso_xml, '//gmd:CI_Contact') {|e| @@aRefXML << e}
+   @@xFile = TestWriter19110Parent.get_xml('19110_address.xml')
 
    # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', '19110_address.json')
-   file = File.open(fname, 'r')
-   @@mdJson = file.read
-   file.close
+   @@mdJson = TestWriter19110Parent.get_file('19110_address.json')
 
+   # test all keys with single elements
    def test_19110_address
 
+      xExpect = @@xFile.xpath('//gmd:contactInfo[1]')
+
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
@@ -39,17 +35,18 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 
+   # test all keys with multiple array elements
    def test_19110_address_2
 
+      xExpect = @@xFile.xpath('//gmd:contactInfo[2]')
+
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
@@ -62,17 +59,18 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 
+   # test all keys with empty values where allowed
    def test_19110_address_3
 
+      xExpect = @@xFile.xpath('//gmd:contactInfo[3]')
+
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
@@ -85,17 +83,18 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 
+   # test minimal address
    def test_19110_address_4
 
+      xExpect = @@xFile.xpath('//gmd:contactInfo[3]')
+
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
@@ -108,16 +107,17 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 
+   # test empty address array
    def test_19110_address_5
+
+      xExpect = @@xFile.xpath('//gmd:contactInfo[4]')
 
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
@@ -131,16 +131,17 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      assert_equal @@aRefXML[3].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 
+   # test missing array
    def test_19110_address_6
+
+      xExpect = @@xFile.xpath('//gmd:contactInfo[4]')
 
       hJson = JSON.parse(@@mdJson)
       hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
@@ -154,12 +155,10 @@ class TestWriter19110Address < MiniTest::Test
          file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      checkXML = XPath.first(iso_out, '//gmd:CI_Contact')
-
-      refute checkXML
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
    end
 

@@ -4,6 +4,7 @@
 #  Stan Smith 2017-11-16 original script
 
 require 'builder'
+require_relative 'version'
 require_relative 'classes/class_fgdc'
 
 module ADIWG
@@ -15,7 +16,6 @@ module ADIWG
 
                # make contacts and domains available to the instance
                @contacts = intObj[:contacts]
-               dictionary = intObj[:dataDictionaries][whichDict]
 
                # set the format of the output file based on the writer
                responseObj[:writerOutputFormat] = 'xml'

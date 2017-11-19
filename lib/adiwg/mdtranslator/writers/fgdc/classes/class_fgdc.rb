@@ -4,6 +4,8 @@
 # History:
 #  Stan Smith 2017-11-16 original script
 
+require_relative 'class_identification'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -19,6 +21,7 @@ module ADIWG
                def writeXML(intObj)
 
                   # classes used
+                  idClass = Identification.new(@xml, @hResponseObj)
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -34,34 +37,15 @@ module ADIWG
                   # metadata
                   @xml.tag!('metadata') do
 
-                     # # feature catalogue - name (required)
-                     # unless name.nil?
-                     #    @xml.tag!('gmx:name') do
-                     #       @xml.tag!('gco:CharacterString', name)
-                     #    end
-                     # end
-                     # if name.nil?
-                     #    @xml.tag!('gmx:name', {'gco:nilReason' => 'missing'})
-                     # end
-                     #
-                     # # feature catalogue - scope (required) []
-                     # aScopes = hDictionary[:subjects]
-                     # aScopes.each do |scope|
-                     #    @xml.tag!('gmx:scope') do
-                     #       @xml.tag!('gco:CharacterString', scope)
-                     #    end
-                     # end
-                     # if aScopes.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmx:scope', {'gco:nilReason' => 'missing'})
-                     # end
-                     #
-                     # # feature catalogue - field of application []
-                     # aUses = hDictionary[:recommendedUses]
-                     # aUses.each do |use|
-                     #    @xml.tag!('gmx:fieldOfApplication') do
-                     #       @xml.tag!('gco:CharacterString', use)
-                     #    end
-                     # end
+                     # metadata 1 (idinfo) - identification information
+                     idClass.writeXML(intObj)
+
+                     # metadata 2 (dataqual) - data quality information
+                     # metadata 3 (spdoinfo) - spatial domain information
+                     # metadata 4 (spref) - spatial reference systems
+                     # metadata 5 (eainfo) - entity attribute information
+                     # metadata 6 (distinfo) - distribution information
+                     # metadata 7 (metainfo) - metadata information
 
                      return metadata
                   end

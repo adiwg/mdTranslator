@@ -12,6 +12,7 @@
 # 	Stan Smith 2014-12-01 original script
 
 require 'builder'
+require_relative 'version'
 require_relative 'classes/class_fcFeatureCatalogue'
 
 module ADIWG

@@ -2,43 +2,35 @@
 # writers / iso19110 / class_featureAttribute
 
 # History:
-#   Stan Smith 2017-02-02 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-02-02 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110FeatureAttribute < MiniTest::Test
+class TestWriter19110FeatureAttribute < TestWriter19110Parent
 
    # read the ISO 19110 reference file
-   fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_featureAttribute.xml')
-   file = File.new(fname)
-   iso_xml = Document.new(file)
-   @@aRefXML = []
-   XPath.each(iso_xml, '//gfc:carrierOfCharacteristics') {|e| @@aRefXML << e}
+   @@xFile = TestWriter19110Parent.get_xml('19110_featureAttribute.xml')
 
    # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', '19110_featureAttribute.json')
-   file = File.open(fname, 'r')
-   @@mdJson = file.read
-   file.close
+   @@mdJson = TestWriter19110Parent.get_file('19110_featureAttribute.json')
 
    def test_19110_attribute
+
+      axExpect = @@xFile.xpath('//gfc:carrierOfCharacteristics')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: @@mdJson, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gfc:carrierOfCharacteristics')
 
-      aCheckXML = []
-      XPath.each(iso_out, '//gfc:carrierOfCharacteristics') {|e| aCheckXML << e}
-
-      @@aRefXML.length.times {|i|
-         assert_equal @@aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+      axExpect.length.times {|i|
+         assert_equal axExpect[i+1].to_s.squeeze, axGot[i+1].to_s.squeeze
       }
 
    end

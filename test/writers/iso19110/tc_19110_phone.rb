@@ -2,87 +2,80 @@
 # writers / iso19110 / class_phone
 
 # History:
-#   Stan Smith 2017-02-01 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-02-01 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110Phone < MiniTest::Test
+class TestWriter19110Phone < TestWriter19110Parent
 
-    # read the ISO 19110 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_phone.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gmd:phone') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter19110Parent.get_xml('19110_phone.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19110_phone.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter19110Parent.get_file('19110_phone.json')
 
-    def test_19110_phone_single
+   def test_19110_phone_single
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:phone[1]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:phone')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:phone')
 
-        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
-    end
+   end
 
-    def test_19110_phone_multiple
+   def test_19110_phone_multiple
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:phone[2]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:phone')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:phone')
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
-    end
+   end
 
-    def test_19110_phone_unknown
+   def test_19110_phone_unknown
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:phone[3]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:phone')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:phone')
 
-        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
 
-    end
+   end
 
 end

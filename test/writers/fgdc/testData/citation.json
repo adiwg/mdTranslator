@@ -9,6 +9,24 @@
          "isOrganization": false,
          "name": "contact one",
          "positionName": "positionName"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "contact two",
+         "positionName": "positionName"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "contact three",
+         "positionName": "positionName"
+      },
+      {
+         "contactId": "CID004",
+         "isOrganization": false,
+         "name": "contact four",
+         "positionName": "positionName"
       }
    ],
    "metadata": {
@@ -39,6 +57,25 @@
                   "party": [
                      {
                         "contactId": "CID001"
+                     },
+                     {
+                        "contactId": "CID002"
+                     }
+                  ]
+               },
+               {
+                  "role": "funder",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               },
+               {
+                  "role": "originator",
+                  "party": [
+                     {
+                        "contactId": "CID004"
                      }
                   ]
                }
