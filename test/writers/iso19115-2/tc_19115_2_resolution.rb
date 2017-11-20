@@ -2,44 +2,35 @@
 # writers / iso19115_2 / class_resolution
 
 # History:
-#   Stan Smith 2017-01-02 original script
+#  Stan Smith 2017-11-20 replace REXML with Nokogiri
+#  Stan Smith 2017-01-02 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Resolution < MiniTest::Test
+class TestWriter191152Resolution < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_resolution.xml')
-    file = File.new(fname)
-    @@iso_xml = Document.new(file)
+    # read the ISO 19110 reference file
+    @@xFile = TestWriter191152Parent.get_xml('19115_2_resolution.xml')
 
     # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_resolution.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+    @@mdJson = TestWriter191152Parent.get_file('19115_2_resolution.json')
 
     def test_19115_2_resolution
 
-        aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:spatialResolution') {|e| aRefXML << e}
+        axExpect = @@xFile.xpath('//gmd:spatialResolution')
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+        xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+        axGot = xMetadata.xpath('//gmd:spatialResolution')
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:spatialResolution') {|e| aCheckXML << e}
-
-        aRefXML.length.times{|i|
-            assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+        axExpect.length.times {|i|
+            assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
         }
 
     end

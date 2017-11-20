@@ -1,85 +1,87 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "associatedResource": [
+         {
+            "resourceType": [
+               {
+                  "type": "type0",
+                  "name": "name0"
+               }
+            ],
+            "associationType": "associationType0",
+            "initiativeType": "initiativeType0",
+            "resourceCitation": {
+               "title": "resource citation"
+            },
+            "metadataCitation": {
+               "title": "metadata citation"
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type1",
+                  "name": "name1"
+               }
+            ],
+            "associationType": "associationType1",
+            "resourceCitation": {
+               "title": "resource citation"
+            }
+         }
       ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "associatedResource": [
-      {
-        "resourceType": [
-          {
-            "type": "type0",
-            "name": "name0"
-          }
-        ],
-        "associationType": "associationType0",
-        "initiativeType": "initiativeType0",
-        "resourceCitation": {
-          "title": "resource citation"
-        },
-        "metadataCitation": {
-          "title": "metadata citation"
-        }
-      },
-      {
-        "resourceType": [
-          {
-            "type": "type1",
-            "name": "name1"
-          }
-        ],
-        "associationType": "associationType1",
-        "resourceCitation": {
-          "title": "resource citation"
-        }
-      }
-    ]
-  }
+   }
 }

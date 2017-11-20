@@ -2,63 +2,53 @@
 # writers / iso19115_2 / class_miMetadata
 
 # History:
-#   Stan Smith 2017-02-01 original script
+#  Stan Smith 2017-11-19 replace REXML with Nokogiri
+#  Stan Smith 2017-02-01 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
-require 'adiwg/mdtranslator'
 require 'date'
-include REXML
+require 'adiwg/mdtranslator'
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152MetadataDate < MiniTest::Test
+class TestWriter191152MetadataDate < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_metadataDate.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gmd:dateStamp') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_metadataDate.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_metadataDate.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter191152Parent.get_file('19115_2_metadataDate.json')
 
-    def test_19115_2_metadataDate
+   def test_19115_2_metadataDate
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+      axExpect = @@xFile.xpath('//gmd:dateStamp')
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:dateStamp')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:dateStamp')
 
-        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal axExpect[0].to_s.squeeze, axGot.to_s.squeeze
 
-    end
+   end
 
-    def test_19115_2_metadataDate_missing_create
+   def test_19115_2_metadataDate_missing_create
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['metadata']['metadataInfo']['metadataDate'].delete_at(1)
-        jsonIn = hJson.to_json
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['metadata']['metadataInfo']['metadataDate'].delete_at(1)
+      jsonIn = hJson.to_json
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+      )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:dateStamp').text.gsub("\n",'').strip
+      today = Time.now.strftime("%Y-%m-%d")
 
-        checkXML = XPath.first(iso_out, '//gmd:dateStamp')
-        checkXML = XPath.first(checkXML, '//gco:Date').get_text
-        today = Time.now.strftime("%Y-%m-%d")
+      assert_equal today.to_s, axGot
 
-        assert_equal today.to_s, checkXML.to_s
-
-    end
+   end
 
 end

@@ -1,74 +1,76 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "extent": [
-        {
-          "description": "extent 0",
-          "geographicExtent": [],
-          "temporalExtent": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "timeInstant": {
-                "dateTime": "2016-10-24T11:10:15.2-10:00"
-              }
-            },
-            {
-              "timePeriod": {
-                "startDateTime": "2016-10-24T11:10:15.2-10:00"
-              }
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ],
-          "verticalExtent": []
-        }
-      ]
-    }
-  }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "extent": [
+            {
+               "description": "extent 0",
+               "geographicExtent": [],
+               "temporalExtent": [
+                  {
+                     "timeInstant": {
+                        "dateTime": "2016-10-24T11:10:15.2-10:00"
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2016-10-24T11:10:15.2-10:00"
+                     }
+                  }
+               ],
+               "verticalExtent": []
+            }
+         ]
+      }
+   }
 }

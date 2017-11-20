@@ -1,194 +1,196 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "phone tests",
-      "phone": [
-        {
-          "phoneName": "single service",
-          "phoneNumber": "111-111-1111",
-          "service": [
-            "voice"
-          ]
-        },
-        {
-          "phoneName": "multiple services",
-          "phoneNumber": "222-222-2222",
-          "service": [
-            "voice",
-            "fax"
-          ]
-        },
-        {
-          "phoneName": "alternate value facsimile",
-          "phoneNumber": "333-333-3333",
-          "service": [
-            "facsimile"
-          ]
-        }
-      ]
-    },
-    {
-      "contactId": "CID002",
-      "isOrganization": false,
-      "name": "phone - empty service",
-      "phone": [
-        {
-          "phoneName": "empty service",
-          "phoneNumber": "555-555-5555",
-          "service": []
-        }
-      ]
-    },
-    {
-      "contactId": "CID003",
-      "isOrganization": false,
-      "name": "phone - empty array",
-      "phone": [],
-      "contactInstructions": "test empty phone"
-    },
-    {
-      "contactId": "CID004",
-      "isOrganization": false,
-      "name": "phone - missing key",
-      "contactInstructions": "test missing phone:"
-    },
-    {
-      "contactId": "CID005",
-      "isOrganization": false,
-      "name": "phone - invalid service",
-      "phone": [
-        {
-          "phoneName": "invalid ISO service",
-          "phoneNumber": "666-666-6666",
-          "service": [
-            "text"
-          ]
-        }
-      ]
-    },
-    {
-      "contactId": "CID006",
-      "isOrganization": false,
-      "name": "phone - empty phone name",
-      "phone": [
-        {
-          "phoneName": "",
-          "phoneNumber": "777-777-7777",
-          "service": [
-            "voice"
-          ]
-        }
-      ]
-    },
-    {
-      "contactId": "CID007",
-      "isOrganization": false,
-      "name": "phone - missing phone name",
-      "phone": [
-        {
-          "phoneName": "",
-          "phoneNumber": "888-888-8888",
-          "service": [
-            "voice"
-          ]
-        }
-      ]
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "custodian",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "phone tests",
+         "phone": [
             {
-              "contactId": "CID001"
-            }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
+               "phoneName": "single service",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice"
+               ]
+            },
             {
-              "contactId": "CID002"
-            }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
+               "phoneName": "multiple services",
+               "phoneNumber": "222-222-2222",
+               "service": [
+                  "voice",
+                  "fax"
+               ]
+            },
             {
-              "contactId": "CID003"
+               "phoneName": "alternate value facsimile",
+               "phoneNumber": "333-333-3333",
+               "service": [
+                  "facsimile"
+               ]
             }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
-            {
-              "contactId": "CID004"
-            }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
-            {
-              "contactId": "CID005"
-            }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
-            {
-              "contactId": "CID006"
-            }
-          ]
-        },
-        {
-          "role": "custodian",
-          "party": [
-            {
-              "contactId": "CID007"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      {
+         "contactId": "CID002",
+         "isOrganization": false,
+         "name": "phone - empty service",
+         "phone": [
             {
-              "contactId": "CID001"
+               "phoneName": "empty service",
+               "phoneNumber": "555-555-5555",
+               "service": []
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
+         ]
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "phone - empty array",
+         "phone": [],
+         "contactInstructions": "test empty phone"
+      },
+      {
+         "contactId": "CID004",
+         "isOrganization": false,
+         "name": "phone - missing key",
+         "contactInstructions": "test missing phone:"
+      },
+      {
+         "contactId": "CID005",
+         "isOrganization": false,
+         "name": "phone - invalid service",
+         "phone": [
+            {
+               "phoneName": "invalid ISO service",
+               "phoneNumber": "666-666-6666",
+               "service": [
+                  "text"
+               ]
+            }
+         ]
+      },
+      {
+         "contactId": "CID006",
+         "isOrganization": false,
+         "name": "phone - empty phone name",
+         "phone": [
+            {
+               "phoneName": "",
+               "phoneNumber": "777-777-7777",
+               "service": [
+                  "voice"
+               ]
+            }
+         ]
+      },
+      {
+         "contactId": "CID007",
+         "isOrganization": false,
+         "name": "phone - missing phone name",
+         "phone": [
+            {
+               "phoneName": "",
+               "phoneNumber": "888-888-8888",
+               "service": [
+                  "voice"
+               ]
+            }
+         ]
       }
-    }
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID002"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID004"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID005"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID006"
+                  }
+               ]
+            },
+            {
+               "role": "custodian",
+               "party": [
+                  {
+                     "contactId": "CID007"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
 }

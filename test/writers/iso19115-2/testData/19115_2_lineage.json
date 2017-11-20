@@ -1,96 +1,98 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceLineage": [
+         {
+            "statement": "statement0",
+            "scope": {
+               "scopeCode": "scopeCode0"
+            },
+            "lineageCitation": [
+               {
+                  "title": "title00"
+               },
+               {
+                  "title": "title01"
+               }
+            ],
+            "source": [
+               {
+                  "description": "source00"
+               },
+               {
+                  "description": "source01"
+               }
+            ],
+            "processStep": [
+               {
+                  "description": "step00"
+               },
+               {
+                  "description": "step01"
+               }
+            ]
+         },
+         {
+            "statement": "statement1",
+            "lineageCitation": [],
+            "source": [],
+            "processStep": []
+         },
+         {
+            "statement": "statement2"
+         }
       ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "resourceLineage": [
-      {
-        "statement": "statement0",
-        "scope": {
-          "scopeCode": "scopeCode0"
-        },
-        "lineageCitation": [
-          {
-            "title": "title00"
-          },
-          {
-            "title": "title01"
-          }
-        ],
-        "source": [
-          {
-            "description": "source00"
-          },
-          {
-            "description": "source01"
-          }
-        ],
-        "processStep": [
-          {
-            "description": "step00"
-          },
-          {
-            "description": "step01"
-          }
-        ]
-      },
-      {
-        "statement": "statement1",
-        "lineageCitation": [],
-        "source": [],
-        "processStep": []
-      },
-      {
-        "statement": "statement2"
-      }
-    ]
-  }
+   }
 }

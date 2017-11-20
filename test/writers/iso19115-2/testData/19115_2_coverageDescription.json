@@ -1,136 +1,138 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "coverageDescription": [
-        {
-          "coverageName": "coverageName0",
-          "coverageDescription": "coverageDescription0",
-          "processingLevelCode": {
-            "identifier": "identifier0"
-          },
-          "attributeGroup": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "attributeContentType": [
-                "attributeContentType0"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier0",
-                  "sequenceIdentifierType": "sequenceIdentifierType0",
-                  "attributeDescription": "attributeDescription0",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier0"
-                    }
-                  ]
-                }
-              ]
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ],
-          "imageDescription": {
-            "illuminationElevationAngle": 60.0
-          }
-        },
-        {
-          "coverageName": "coverageName1",
-          "coverageDescription": "coverageDescription1",
-          "attributeGroup": [
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "coverageDescription": [
             {
-              "attributeContentType": [
-                "attributeContentType1"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier1",
-                  "sequenceIdentifierType": "sequenceIdentifierType1",
-                  "attributeDescription": "attributeDescription1"
-                }
-              ]
-            }
-          ],
-          "imageDescription": {
-            "illuminationElevationAngle": 60.0
-          }
-        },
-        {
-          "coverageName": "coverageName2",
-          "coverageDescription": "coverageDescription2",
-          "attributeGroup": [
+               "coverageName": "coverageName0",
+               "coverageDescription": "coverageDescription0",
+               "processingLevelCode": {
+                  "identifier": "identifier0"
+               },
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "attributeContentType0"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier0",
+                           "sequenceIdentifierType": "sequenceIdentifierType0",
+                           "attributeDescription": "attributeDescription0",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier0"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ],
+               "imageDescription": {
+                  "illuminationElevationAngle": 60.0
+               }
+            },
             {
-              "attributeContentType": [
-                "attributeContentType2"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier2",
-                  "sequenceIdentifierType": "sequenceIdentifierType2",
-                  "attributeDescription": "attributeDescription2"
-                }
-              ]
+               "coverageName": "coverageName1",
+               "coverageDescription": "coverageDescription1",
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "attributeContentType1"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier1",
+                           "sequenceIdentifierType": "sequenceIdentifierType1",
+                           "attributeDescription": "attributeDescription1"
+                        }
+                     ]
+                  }
+               ],
+               "imageDescription": {
+                  "illuminationElevationAngle": 60.0
+               }
+            },
+            {
+               "coverageName": "coverageName2",
+               "coverageDescription": "coverageDescription2",
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "attributeContentType2"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier2",
+                           "sequenceIdentifierType": "sequenceIdentifierType2",
+                           "attributeDescription": "attributeDescription2"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "coverageName": "coverageName3",
+               "coverageDescription": "coverageDescription3",
+               "imageDescription": {
+                  "illuminationElevationAngle": 60.0
+               }
+            },
+            {
+               "coverageName": "coverageName4",
+               "coverageDescription": "coverageDescription4"
             }
-          ]
-        },
-        {
-          "coverageName": "coverageName3",
-          "coverageDescription": "coverageDescription3",
-          "imageDescription": {
-            "illuminationElevationAngle": 60.0
-          }
-        },
-        {
-          "coverageName": "coverageName4",
-          "coverageDescription": "coverageDescription4"
-        }
-      ]
-    }
-  }
+         ]
+      }
+   }
 }

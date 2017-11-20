@@ -34,7 +34,9 @@
             "title": "title"
          },
          "abstract": "abstract",
-         "status": ["status"],
+         "status": [
+            "status"
+         ],
          "pointOfContact": [
             {
                "role": "pointOfContact",
@@ -60,10 +62,18 @@
                         {
                            "type": "Feature",
                            "id": "featureId01",
-                           "bbox": [-10.0, -10.0, 10.0, 10.0],
+                           "bbox": [
+                              -10.0,
+                              -10.0,
+                              10.0,
+                              10.0
+                           ],
                            "geometry": {
                               "type": "Point",
-                              "coordinates": [102.0, 0.5]
+                              "coordinates": [
+                                 102.0,
+                                 0.5
+                              ]
                            },
                            "properties": {
                               "identifier": [
@@ -81,5 +91,4 @@
          ]
       }
    }
-
 }

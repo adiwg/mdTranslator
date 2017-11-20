@@ -1,104 +1,106 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "resourceLineage": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
       {
-        "statement": "statement0",
-        "scope": {
-          "scopeCode": "scopeCode0",
-          "scopeDescription": [
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "dataset": "dataset0"
-            }
-          ],
-          "scopeExtent": [
-            {
-              "description": "description",
-              "temporalExtent": [
-                {
-                  "type": "period",
-                  "timePeriod": {
-                    "startDateTime": "2017-02-15"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
                   }
-                }
-              ]
+               ]
             }
-          ]
-        },
-        "citation": [],
-        "source": [],
-        "processStep": []
+         ]
       },
-      {
-        "statement": "statement1",
-        "scope": {
-          "scopeCode": "scopeCode1",
-          "scopeDescription": [],
-          "scopeExtent": []
-        },
-        "citation": [],
-        "source": [],
-        "processStep": []
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
       },
-      {
-        "statement": "statement2",
-        "scope": {
-          "scopeCode": "scopeCode2"
-        },
-        "citation": [],
-        "source": [],
-        "processStep": []
-      }
-    ]
-  }
+      "resourceLineage": [
+         {
+            "statement": "statement0",
+            "scope": {
+               "scopeCode": "scopeCode0",
+               "scopeDescription": [
+                  {
+                     "dataset": "dataset0"
+                  }
+               ],
+               "scopeExtent": [
+                  {
+                     "description": "description",
+                     "temporalExtent": [
+                        {
+                           "type": "period",
+                           "timePeriod": {
+                              "startDateTime": "2017-02-15"
+                           }
+                        }
+                     ]
+                  }
+               ]
+            },
+            "citation": [],
+            "source": [],
+            "processStep": []
+         },
+         {
+            "statement": "statement1",
+            "scope": {
+               "scopeCode": "scopeCode1",
+               "scopeDescription": [],
+               "scopeExtent": []
+            },
+            "citation": [],
+            "source": [],
+            "processStep": []
+         },
+         {
+            "statement": "statement2",
+            "scope": {
+               "scopeCode": "scopeCode2"
+            },
+            "citation": [],
+            "source": [],
+            "processStep": []
+         }
+      ]
+   }
 }

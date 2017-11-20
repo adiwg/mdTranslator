@@ -1,126 +1,128 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "coverageDescription": [
-        {
-          "coverageName": "coverageName0",
-          "coverageDescription": "coverageDescription0",
-          "processingLevelCode": {
-            "identifier": "identifier0"
-          },
-          "attributeGroup": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "attributeContentType": [
-                "attributeContentType0"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier0",
-                  "sequenceIdentifierType": "sequenceIdentifierType0",
-                  "attributeDescription": "attributeDescription0",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier0"
-                    }
-                  ],
-                  "minValue": 9.9,
-                  "maxValue": 9.9,
-                  "units": "units",
-                  "scaleFactor": 999,
-                  "offset": 999,
-                  "meanValue": 9.9,
-                  "numberOfValues": 999,
-                  "standardDeviation": 9.9,
-                  "bitsPerValue": 999,
-                  "boundMin": 9.9,
-                  "boundMax": 9.9,
-                  "boundUnits": "boundUnits",
-                  "peakResponse": 9.9,
-                  "toneGradations": 999,
-                  "bandBoundaryDefinition": "bandBoundaryDefinition",
-                  "nominalSpatialResolution": 9.9,
-                  "transferFunctionType": "transferFunctionType",
-                  "transmittedPolarization": "transmittedPolarization",
-                  "detectedPolarization": "detectedPolarization"
-                },
-                {
-                  "sequenceIdentifier": "sequenceIdentifier1",
-                  "sequenceIdentifierType": "sequenceIdentifierType1",
-                  "attributeDescription": "attributeDescription1",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier1"
-                    }
-                  ]
-                },
-                {
-                  "sequenceIdentifier": "sequenceIdentifier2",
-                  "sequenceIdentifierType": "sequenceIdentifierType2",
-                  "attributeDescription": "attributeDescription2"
-                },
-                {
-                  "sequenceIdentifier": "sequenceIdentifier3",
-                  "sequenceIdentifierType": "sequenceIdentifierType3",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier3"
-                    }
-                  ]
-                }
-              ]
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    }
-  }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "coverageDescription": [
+            {
+               "coverageName": "coverageName0",
+               "coverageDescription": "coverageDescription0",
+               "processingLevelCode": {
+                  "identifier": "identifier0"
+               },
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "attributeContentType0"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier0",
+                           "sequenceIdentifierType": "sequenceIdentifierType0",
+                           "attributeDescription": "attributeDescription0",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier0"
+                              }
+                           ],
+                           "minValue": 9.9,
+                           "maxValue": 9.9,
+                           "units": "units",
+                           "scaleFactor": 999,
+                           "offset": 999,
+                           "meanValue": 9.9,
+                           "numberOfValues": 999,
+                           "standardDeviation": 9.9,
+                           "bitsPerValue": 999,
+                           "boundMin": 9.9,
+                           "boundMax": 9.9,
+                           "boundUnits": "boundUnits",
+                           "peakResponse": 9.9,
+                           "toneGradations": 999,
+                           "bandBoundaryDefinition": "bandBoundaryDefinition",
+                           "nominalSpatialResolution": 9.9,
+                           "transferFunctionType": "transferFunctionType",
+                           "transmittedPolarization": "transmittedPolarization",
+                           "detectedPolarization": "detectedPolarization"
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier1",
+                           "sequenceIdentifierType": "sequenceIdentifierType1",
+                           "attributeDescription": "attributeDescription1",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier1"
+                              }
+                           ]
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier2",
+                           "sequenceIdentifierType": "sequenceIdentifierType2",
+                           "attributeDescription": "attributeDescription2"
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier3",
+                           "sequenceIdentifierType": "sequenceIdentifierType3",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier3"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   }
 }

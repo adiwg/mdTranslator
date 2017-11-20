@@ -2,46 +2,37 @@
 # writers / iso19115_2 / class_usage
 
 # History:
-#   Stan Smith 2017-01-13 original script
+#  Stan Smith 2017-11-20 replace REXML with Nokogiri
+#  Stan Smith 2017-01-13 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Usage < MiniTest::Test
+class TestWriter191152Usage < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_usage.xml')
-    file = File.new(fname)
-    @@iso_xml = Document.new(file)
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_usage.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_usage.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter191152Parent.get_file('19115_2_usage.json')
 
-    def test_19115_2_usage
+   def test_19115_2_usage
 
-        aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:resourceSpecificUsage') {|e| aRefXML << e}
+      axExpect = @@xFile.xpath('//gmd:resourceSpecificUsage')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+      )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:resourceSpecificUsage')
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:resourceSpecificUsage') {|e| aCheckXML << e}
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+      }
 
-        aRefXML.length.times{|i|
-            assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-        }
-
-    end
+   end
 
 end

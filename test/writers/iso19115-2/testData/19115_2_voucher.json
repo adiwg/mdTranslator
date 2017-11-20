@@ -1,107 +1,109 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "taxonomy": {
-        "taxonomicSystem": [
-          {
-            "citation": {
-              "title": "title0"
-            }
-          }
-        ],
-        "generalScope": "generalScope",
-        "identificationReference": [
-          {
-            "identifier": "identifier0",
-            "namespace": "namespace0",
-            "version": "version0",
-            "description": "description0",
-            "authority": {
-              "title": "title0"
-            }
-          }
-        ],
-        "observer": [],
-        "identificationProcedure": "identificationProcedure",
-        "identificationCompleteness": "identificationCompleteness",
-        "voucher": [
-          {
-            "specimen": "specimen0",
-            "repository": {
-              "role": "role0",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          },
-          {
-            "specimen": "specimen1",
-            "repository": {
-              "role": "role1",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          }
-        ],
-        "taxonomicClassification": {
-          "taxonomicRank": "taxonomicRank0",
-          "latinName": "latinName"
-        }
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
       }
-    }
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "taxonomy": {
+            "taxonomicSystem": [
+               {
+                  "citation": {
+                     "title": "title0"
+                  }
+               }
+            ],
+            "generalScope": "generalScope",
+            "identificationReference": [
+               {
+                  "identifier": "identifier0",
+                  "namespace": "namespace0",
+                  "version": "version0",
+                  "description": "description0",
+                  "authority": {
+                     "title": "title0"
+                  }
+               }
+            ],
+            "observer": [],
+            "identificationProcedure": "identificationProcedure",
+            "identificationCompleteness": "identificationCompleteness",
+            "voucher": [
+               {
+                  "specimen": "specimen0",
+                  "repository": {
+                     "role": "role0",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               },
+               {
+                  "specimen": "specimen1",
+                  "repository": {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               }
+            ],
+            "taxonomicClassification": {
+               "taxonomicRank": "taxonomicRank0",
+               "latinName": "latinName"
+            }
+         }
+      }
+   }
 }

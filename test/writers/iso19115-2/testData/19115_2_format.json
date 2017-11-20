@@ -1,98 +1,100 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "resourceDistribution": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
       {
-        "description": "description",
-        "distributor": [
-          {
-            "contact": {
-              "role": "role",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            },
-            "transferOption": [
-              {
-                "distributionFormat": [
-                  {
-                    "formatSpecification": {
-                      "title": "title0",
-                      "edition": "edition0"
-                    },
-                    "amendmentNumber": "amendmentNumber0",
-                    "compressionMethod": "compressionMethod0"
-                  },
-                  {
-                    "formatSpecification": {
-                      "title": "title1"
-                    },
-                    "amendmentNumber": "amendmentNumber1",
-                    "compressionMethod": "compressionMethod1"
-                  },
-                  {
-                    "formatSpecification": {
-                      "title": "title2"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
       }
-    ]
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceDistribution": [
+         {
+            "description": "description",
+            "distributor": [
+               {
+                  "contact": {
+                     "role": "role",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  "transferOption": [
+                     {
+                        "distributionFormat": [
+                           {
+                              "formatSpecification": {
+                                 "title": "title0",
+                                 "edition": "edition0"
+                              },
+                              "amendmentNumber": "amendmentNumber0",
+                              "compressionMethod": "compressionMethod0"
+                           },
+                           {
+                              "formatSpecification": {
+                                 "title": "title1"
+                              },
+                              "amendmentNumber": "amendmentNumber1",
+                              "compressionMethod": "compressionMethod1"
+                           },
+                           {
+                              "formatSpecification": {
+                                 "title": "title2"
+                              }
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
 }

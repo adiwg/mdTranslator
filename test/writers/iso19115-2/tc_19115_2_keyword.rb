@@ -2,66 +2,53 @@
 # writers / iso19115_2 / class_keyword
 
 # History:
+#  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-05-16 added isoTopicCategory to keyword
 #  Stan Smith 2017-01-04 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Keyword < MiniTest::Test
+class TestWriter191152Keyword < TestWriter191152Parent
 
-   # read the ISO 19115-2 reference file
-   fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_keyword.xml')
-   file = File.new(fname)
-   @@iso_xml = Document.new(file)
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_keyword.xml')
 
    # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_keyword.json')
-   file = File.open(fname, 'r')
-   @@mdJson = file.read
-   file.close
+   @@mdJson = TestWriter191152Parent.get_file('19115_2_keyword.json')
 
    def test_19115_2_keyword
 
-      aRefXML = []
-      XPath.each(@@iso_xml, '//gmd:descriptiveKeywords') {|e| aRefXML << e}
+      axExpect = @@xFile.xpath('//gmd:descriptiveKeywords')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:descriptiveKeywords')
 
-      aCheckXML = []
-      XPath.each(iso_out, '//gmd:descriptiveKeywords') {|e| aCheckXML << e}
-
-      aRefXML.length.times {|i|
-         assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
       }
 
    end
 
    def test_19115_2_topicCategory
 
-      aRefXML = []
-      XPath.each(@@iso_xml, '//gmd:topicCategory') {|e| aRefXML << e}
+      axExpect = @@xFile.xpath('//gmd:topicCategory')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:topicCategory')
 
-      aCheckXML = []
-      XPath.each(iso_out, '//gmd:topicCategory') {|e| aCheckXML << e}
-
-      aRefXML.length.times {|i|
-         assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
       }
 
    end
