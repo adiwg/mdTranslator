@@ -20,7 +20,21 @@
          "contactId": "CID003",
          "isOrganization": false,
          "name": "contact three",
-         "positionName": "positionName"
+         "positionName": "positionName",
+         "address": [
+            {
+               "addressType": ["mailing","physical"],
+               "description": "address description",
+               "deliveryPoint": [
+                  "deliveryPoint0",
+                  "deliveryPoint1"
+               ],
+               "city": "city",
+               "administrativeArea": "admin area",
+               "postalCode": "postal code",
+               "country": "country"
+            }
+         ]
       },
       {
          "contactId": "CID004",
@@ -50,7 +64,22 @@
             }
          ],
          "citation": {
-            "title": "title",
+            "title": "citation title",
+            "date": [
+               {
+                  "date": "2018-01-15",
+                  "dateType": "revision"
+               },
+               {
+                  "date": "2017-11-20T17:06:43-10:00",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2014-11-19",
+                  "dateType": "publication"
+               }
+            ],
+            "edition": "citation edition",
             "responsibleParty": [
                {
                   "role": "originator",
@@ -64,10 +93,13 @@
                   ]
                },
                {
-                  "role": "funder",
+                  "role": "publisher",
                   "party": [
                      {
                         "contactId": "CID003"
+                     },
+                     {
+                        "contactId": "CID002"
                      }
                   ]
                },
@@ -76,8 +108,30 @@
                   "party": [
                      {
                         "contactId": "CID004"
+                     },
+                     {
+                        "contactId": "CID002"
                      }
                   ]
+               }
+            ],
+            "presentationForm": ["first form","second form"],
+            "identifier": [],
+            "series": {
+               "seriesName": "series name",
+               "seriesIssue": "series issue",
+               "issuePage": "issue page"
+            },
+            "otherCitationDetails": [
+               "other detail one",
+               "other detail two"
+            ],
+            "onlineResource": [
+               {
+                  "uri": "https://adiwg.mdtranslator/1"
+               },
+               {
+                  "uri": "https://adiwg.mdtranslator/2"
                }
             ]
          },
@@ -100,6 +154,71 @@
             "country": "USA",
             "characterSet": "UTF-8"
          }
-      }
+      },
+      "associatedResource": [
+         {
+            "resourceType": [
+               {
+                  "type": "type0",
+                  "name": "name0"
+               }
+            ],
+            "associationType": "decoy",
+            "initiativeType": "initiativeType",
+            "resourceCitation": {
+               "title": "title"
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type0",
+                  "name": "name0"
+               }
+            ],
+            "associationType": "largerWorkCitation",
+            "initiativeType": "initiativeType",
+            "resourceCitation": {
+               "title": "associated resource one title",
+               "date": [
+                  {
+                     "date": "2017-11-22",
+                     "dateType": "publication"
+                  }
+               ],
+               "responsibleParty": [
+                  {
+                     "role": "originator",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "publisher",
+                     "party": [
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  }
+               ]
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type0",
+                  "name": "name0"
+               }
+            ],
+            "associationType": "largerWorkCitation",
+            "initiativeType": "initiativeType",
+            "resourceCitation": {
+               "title": "associated resource two title"
+            }
+         }
+      ]
    }
 }

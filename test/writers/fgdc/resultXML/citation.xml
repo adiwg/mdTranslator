@@ -6,6 +6,33 @@
         <origin>contact one</origin>
         <origin>contact two</origin>
         <origin>contact four</origin>
+        <pubdate>2017-11-20</pubdate>
+        <pubtime>17:06:43-10:00</pubtime>
+        <title>citation title</title>
+        <edition>citation edition</edition>
+        <geoform>first form</geoform>
+        <serinfo>
+          <sername>series name</sername>
+          <issue>series issue</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>city, admin area, country</pubplace>
+          <publish>contact three</publish>
+        </pubinfo>
+        <othercit>other detail one</othercit>
+        <onlink>https://adiwg.mdtranslator/1</onlink>
+        <onlink>https://adiwg.mdtranslator/2</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>contact one</origin>
+            <pubdate>2017-11-22</pubdate>
+            <title>associated resource one title</title>
+            <pubinfo>
+              <pubplace>city, admin area, country</pubplace>
+              <publish>contact three</publish>
+            </pubinfo>
+          </citeinfo>
+        </lworkcit>
       </citeinfo>
     </citation>
   </idinfo>
