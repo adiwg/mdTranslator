@@ -8,7 +8,9 @@ require 'minitest/autorun'
 require 'json'
 require 'json-schema'
 require 'nokogiri'
+require 'rubygems'
 require 'adiwg-mdjson_schemas'
+require 'adiwg/mdtranslator'
 
 class TestReaderFgdcParent < MiniTest::Test
 
@@ -20,7 +22,7 @@ class TestReaderFgdcParent < MiniTest::Test
    # get file for tests from testData folder
    def self.get_file(fileName)
 
-      file = File.join(File.dirname(__FILE__), 'testData', fileName)
+      file = File.join(File.dirname(__FILE__), 'testData', fileName) + '.json'
       file = File.open(file, 'r')
       jsonFile = file.read
       file.close
@@ -31,7 +33,7 @@ class TestReaderFgdcParent < MiniTest::Test
    # get json for tests from testData folder
    def self.get_json(fileName)
 
-      file = File.join(File.dirname(__FILE__), 'testData', fileName)
+      file = File.join(File.dirname(__FILE__), 'testData', fileName) + '.json'
       file = File.open(file, 'r')
       jsonFile = file.read
       file.close
@@ -41,13 +43,13 @@ class TestReaderFgdcParent < MiniTest::Test
 
    # get fgdc XML for test reference from resultXML folder
    def self.get_xml(fileName)
-      file = File.join(File.dirname(__FILE__), 'resultXML', fileName)
+      file = File.join(File.dirname(__FILE__), 'resultXML', fileName) + '.xml'
       xDoc = Nokogiri::XML(File.read(file))
       return xDoc
    end
 
    # test schema for reader modules
-   def self.testSchema(mdJson, schema, fragment: nil, remove: [])
+   def self.test_schema(mdJson, schema, fragment: nil, remove: [])
 
       # load all schemas with 'true' to prohibit additional parameters
       ADIWG::MdjsonSchemas::Utils.load_schemas(false)
@@ -68,6 +70,30 @@ class TestReaderFgdcParent < MiniTest::Test
 
       # scan
       return JSON::Validator.fully_validate(strictSchema, mdJson, :fragment => fragmentPath)
+
+   end
+
+   def self.get_complete(fileName, path)
+
+      # read the mdJson 2.0 file
+      mdFile = TestReaderFgdcParent.get_file(fileName)
+
+      # read the fgdc reference file
+      xmlFile = TestReaderFgdcParent.get_xml(fileName)
+
+      xExpect = xmlFile.xpath(path)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: mdFile, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(path)
+
+      xExpect = xExpect.to_s.squeeze
+      xGot = xGot.to_s.squeeze
+
+      return xExpect, xGot
 
    end
 

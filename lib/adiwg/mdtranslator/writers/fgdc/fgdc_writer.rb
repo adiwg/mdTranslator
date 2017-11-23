@@ -32,28 +32,14 @@ module ADIWG
 
             end
 
-            # find contact in contact array and return the contact hash
+            # find contact and return the contact hash
             def self.getContact(contactId)
-
                @contacts.each do |contact|
                   if contact[:contactId] == contactId
                      return contact
                   end
                end
                return {}
-
-            end
-
-            # find domain in domain array and return the domain hash
-            def self.getDomain(domainId)
-
-               @domains.each do |domain|
-                  if domain[:domainId] == domainId
-                     return domain
-                  end
-               end
-               return {}
-
             end
 
          end
