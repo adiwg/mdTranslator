@@ -42,6 +42,12 @@
                      }
                   ]
                }
+            ],
+            "date": [
+               {
+                  "date": "2017-11-22",
+                  "dateType": "publication"
+               }
             ]
          },
          "abstract": "abstract",

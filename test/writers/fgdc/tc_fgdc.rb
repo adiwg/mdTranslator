@@ -14,12 +14,12 @@ require_relative 'fgdc_test_parent'
 class TestWriterFgdcFgdc < TestReaderFgdcParent
 
    # read the input json file
-   @@mdJson = TestReaderFgdcParent.get_file('fgdc.json')
+   @@mdJson = TestReaderFgdcParent.get_file('fgdc')
 
    def test_fgdc
 
       # read the fgdc reference file
-      xFile = TestReaderFgdcParent.get_xml('fgdc.xml')
+      xFile = TestReaderFgdcParent.get_xml('fgdc')
       xExpect = xFile.xpath('//metadata')
 
       hResponseObj = ADIWG::Mdtranslator.translate(

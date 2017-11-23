@@ -29,9 +29,10 @@ module ADIWG
 
                      # identification information 1.1 (citation) - citation (required)
                      hCitation = hResource[:citation]
+                     aAssocResource = intObj[:metadata][:associatedResources]
                      unless hCitation.empty?
                         @xml.tag!('citation') do
-                           citationClass.writeXML(hCitation)
+                           citationClass.writeXML(hCitation, aAssocResource)
                         end
                      end
                      if hCitation.empty?
