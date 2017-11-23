@@ -5,6 +5,7 @@
 #   Stan Smith 2017-11-17 original script
 
 require_relative 'class_citation'
+require_relative 'class_description'
 
 module ADIWG
    module Mdtranslator
@@ -22,13 +23,15 @@ module ADIWG
 
                   # classes used
                   citationClass = Citation.new(@xml, @hResponseObj)
+                  descriptionClass = Description.new(@xml, @hResponseObj)
 
-                  hResource = intObj[:metadata][:resourceInfo]
+                  hResourceInfo = intObj[:metadata][:resourceInfo]
 
                   @xml.tag!('idinfo') do
 
                      # identification information 1.1 (citation) - citation (required)
-                     hCitation = hResource[:citation]
+                     # <- hResourceInfo[:citation]
+                     hCitation = hResourceInfo[:citation]
                      aAssocResource = intObj[:metadata][:associatedResources]
                      unless hCitation.empty?
                         @xml.tag!('citation') do
@@ -41,6 +44,13 @@ module ADIWG
                      end
 
                      # identification information 1.2 (descript) - description (required)
+                     # <- hResourceInfo[:abstract,:purpose,:supplementalInfo] (required)
+                     unless hResourceInfo[:abstract].nil? && hResourceInfo[:purpose].nil? && hResourceInfo[:supplementalInfo].nil?
+                        @xml.tag!('descript') do
+                           descriptionClass.writeXML(hResourceInfo)
+                        end
+                     end
+
                      # identification information 1.3 (timeperd) - time period of content (required)
                      # identification information 1.4 (status) - status (required)
                      # identification information 1.5 (spdom) - spatial domain

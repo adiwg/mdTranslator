@@ -1,28 +1,28 @@
 # MdTranslator - minitest of
-# writers / fgdc / class_series
+# writers / fgdc / class_description
 
 # History:
 #   Stan Smith 2017-11-22 original script
 
 require_relative 'fgdc_test_parent'
 
-class TestWriterFgdcSeries < TestReaderFgdcParent
+class TestWriterFgdcDescription < TestReaderFgdcParent
 
    # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_json('series')
+   @@mdJson = TestReaderFgdcParent.get_json('description')
 
-   def test_series_complete
+   def test_description_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('series', './metadata/idinfo/citation/citeinfo/serinfo')
+      aReturn = TestReaderFgdcParent.get_complete('description', './metadata/idinfo/descript')
       assert_equal aReturn[0], aReturn[1]
 
    end
 
-   def test_series_name
+   def test_description_purpose
 
-      # name empty
+      # purpose empty
       hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series']['seriesName'] = ''
+      hIn['metadata']['resourceInfo']['purpose'] = ''
       hIn = hIn.to_json
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -37,7 +37,7 @@ class TestWriterFgdcSeries < TestReaderFgdcParent
 
       # name missing
       hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series'].delete('seriesName')
+      hIn['metadata']['resourceInfo'].delete('purpose')
       hIn = hIn.to_json
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -52,11 +52,11 @@ class TestWriterFgdcSeries < TestReaderFgdcParent
 
    end
 
-   def test_series_issue
+   def test_purpose_elements
 
-      # issue empty
+      # empty
       hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series']['seriesIssue'] = ''
+      hIn['metadata']['resourceInfo']['supplementalInfo'] = ''
       hIn = hIn.to_json
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -66,12 +66,12 @@ class TestWriterFgdcSeries < TestReaderFgdcParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
 
-      # issue missing
+      # missing
       hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series'].delete('seriesIssue')
+      hIn['metadata']['resourceInfo'].delete('supplementalInfo')
       hIn = hIn.to_json
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -81,8 +81,8 @@ class TestWriterFgdcSeries < TestReaderFgdcParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
 
    end
 

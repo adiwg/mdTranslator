@@ -69,7 +69,8 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         }
+         },
+         "supplementalInfo": "supplemental information"
       }
    }
 }
