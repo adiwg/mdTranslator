@@ -65,6 +65,9 @@ module ADIWG
                      end
 
                      # time period 9.2 (mdattim) - multiple date times
+                     # -> place into timePeriod since mdJson does not handle multi-date
+                     # -> did not put multi-date in temporalExtent since it would be
+                     # -> difficult to return it to the same context
                      xMulti = xTimeInfo.xpath('./mdattim')
                      unless xMulti.empty?
 

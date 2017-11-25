@@ -5,10 +5,24 @@
    },
    "contact": [
       {
-         "contactId": "CID001",
+         "contactId": "CID003",
          "isOrganization": false,
-         "name": "contact one",
-         "positionName": "positionName"
+         "name": "contact three",
+         "positionName": "positionName",
+         "address": [
+            {
+               "addressType": ["mailing","physical"],
+               "description": "address description",
+               "deliveryPoint": [
+                  "deliveryPoint0",
+                  "deliveryPoint1"
+               ],
+               "city": "city",
+               "administrativeArea": "admin area",
+               "postalCode": "postal code",
+               "country": "country"
+            }
+         ]
       }
    ],
    "metadata": {
@@ -18,7 +32,7 @@
                "role": "metadataContact",
                "party": [
                   {
-                     "contactId": "CID001"
+                     "contactId": "CID003"
                   }
                ]
             }
@@ -32,28 +46,37 @@
             }
          ],
          "citation": {
-            "title": "title",
+            "title": "citation title",
+            "date": [
+               {
+                  "date": "2017-11-22T17:06:43-10:00",
+                  "dateType": "publication"
+               }
+            ],
+            "edition": "citation edition",
             "responsibleParty": [
                {
                   "role": "originator",
                   "party": [
                      {
-                        "contactId": "CID001"
+                        "contactId": "CID003"
                      }
                   ]
-               }
-            ],
-            "date": [
+               },
                {
-                  "date": "2017-11-22",
-                  "dateType": "publication"
+                  "role": "publisher",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
                }
             ]
          },
          "abstract": "abstract",
-         "purpose": "purpose",
          "timePeriod": {
-            "endDateTime": "2017-11-24"
+            "startDateTime": "2017-11-23T10:42:50",
+            "endDateTime": "2017-11-23T17:19:58"
          },
          "status": [
             "status0"
@@ -63,7 +86,7 @@
                "role": "pointOfContact",
                "party": [
                   {
-                     "contactId": "CID001"
+                     "contactId": "CID003"
                   }
                ]
             }
@@ -72,8 +95,7 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         },
-         "supplementalInfo": "supplemental information"
+         }
       }
    }
 }

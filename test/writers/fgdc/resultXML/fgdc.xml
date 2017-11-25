@@ -12,5 +12,13 @@
       <abstract>abstract</abstract>
       <purpose>purpose</purpose>
     </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>2017-11-24</caldate>
+          <time/>
+        </sngdate>
+      </timeinfo>
+    </timeperd>
   </idinfo>
 </metadata>

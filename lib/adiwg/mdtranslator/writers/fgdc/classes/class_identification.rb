@@ -6,6 +6,7 @@
 
 require_relative 'class_citation'
 require_relative 'class_description'
+require_relative 'class_timePeriod'
 
 module ADIWG
    module Mdtranslator
@@ -24,6 +25,7 @@ module ADIWG
                   # classes used
                   citationClass = Citation.new(@xml, @hResponseObj)
                   descriptionClass = Description.new(@xml, @hResponseObj)
+                  timePeriodClass = TimePeriod.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -50,8 +52,28 @@ module ADIWG
                            descriptionClass.writeXML(hResourceInfo)
                         end
                      end
+                     if hResourceInfo[:abstract].nil?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Identification section missing abstract'
+                     end
+                     if hResourceInfo[:purpose].nil?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Identification section missing purpose'
+                     end
 
                      # identification information 1.3 (timeperd) - time period of content (required)
+                     # <- hResourceInfo[:timePeriod]
+                     unless hResourceInfo[:timePeriod].empty?
+                        @xml.tag!('timeperd') do
+                           timePeriodClass.writeXML(hResourceInfo[:timePeriod])
+                        end
+                     end
+                     if hResourceInfo[:timePeriod].empty?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Identification section missing time period'
+                     end
+
+
                      # identification information 1.4 (status) - status (required)
                      # identification information 1.5 (spdom) - spatial domain
                      # identification information 1.6 (keywords) - keywords (required)

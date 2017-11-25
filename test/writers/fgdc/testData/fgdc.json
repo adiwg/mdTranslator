@@ -52,6 +52,9 @@
          },
          "abstract": "abstract",
          "purpose": "purpose",
+         "timePeriod": {
+            "startDateTime": "2017-11-24"
+         },
          "status": [
             "status0"
          ],

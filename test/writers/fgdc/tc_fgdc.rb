@@ -14,7 +14,7 @@ require_relative 'fgdc_test_parent'
 class TestWriterFgdcFgdc < TestReaderFgdcParent
 
    # read the input json file
-   @@mdJson = TestReaderFgdcParent.get_file('fgdc')
+   @@mdJson = TestReaderFgdcParent.get_json('fgdc')
 
    def test_fgdc
 
@@ -52,7 +52,7 @@ class TestWriterFgdcFgdc < TestReaderFgdcParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//metadata')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

@@ -1,0 +1,196 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "contact three",
+         "positionName": "positionName",
+         "address": [
+            {
+               "addressType": ["mailing","physical"],
+               "description": "address description",
+               "deliveryPoint": [
+                  "deliveryPoint0",
+                  "deliveryPoint1"
+               ],
+               "city": "city",
+               "administrativeArea": "admin area",
+               "postalCode": "postal code",
+               "country": "country"
+            }
+         ]
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "citation title",
+            "date": [
+               {
+                  "date": "2017-11-22T17:06:43-10:00",
+                  "dateType": "publication"
+               }
+            ],
+            "edition": "citation edition",
+            "responsibleParty": [
+               {
+                  "role": "originator",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               },
+               {
+                  "role": "publisher",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               }
+            ]
+         },
+         "abstract": "abstract",
+         "timePeriod": {
+            "startGeologicAge": {
+               "ageTimeScale": "start geologic age time scale",
+               "ageEstimate": "start geologic age estimate",
+               "ageUncertainty": "start geologic age uncertainty",
+               "ageExplanation": "start geologic age explanation",
+               "ageReference": [
+                  {
+                     "title": "start geologic age reference title 1",
+                     "date": [
+                        {
+                           "date": "2017-11-22T17:06:43-10:00",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        },
+                        {
+                           "role": "publisher",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "title": "start geologic age reference title 2",
+                     "date": [
+                        {
+                           "date": "2011-04",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        },
+                        {
+                           "role": "publisher",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            },
+            "endGeologicAge": {
+               "ageTimeScale": "end geologic age time scale",
+               "ageEstimate": "end geologic age estimate",
+               "ageUncertainty": "end geologic age uncertainty",
+               "ageExplanation": "end geologic age explanation",
+               "ageReference": [
+                  {
+                     "title": "end geologic age reference title",
+                     "date": [
+                        {
+                           "date": "2004",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        },
+                        {
+                           "role": "publisher",
+                           "party": [
+                              {
+                                 "contactId": "CID003"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         },
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
+}

@@ -20,7 +20,7 @@ class TestReaderFgdcParent < MiniTest::Test
    }
 
    # get file for tests from testData folder
-   def self.get_file(fileName)
+   def self.get_json(fileName)
 
       file = File.join(File.dirname(__FILE__), 'testData', fileName) + '.json'
       file = File.open(file, 'r')
@@ -30,8 +30,8 @@ class TestReaderFgdcParent < MiniTest::Test
 
    end
 
-   # get json for tests from testData folder
-   def self.get_json(fileName)
+   # get ruby hash for tests from testData folder
+   def self.get_hash(fileName)
 
       file = File.join(File.dirname(__FILE__), 'testData', fileName) + '.json'
       file = File.open(file, 'r')
@@ -76,22 +76,23 @@ class TestReaderFgdcParent < MiniTest::Test
    def self.get_complete(fileName, path)
 
       # read the mdJson 2.0 file
-      mdFile = TestReaderFgdcParent.get_file(fileName)
+      mdFile = TestReaderFgdcParent.get_json(fileName)
 
       # read the fgdc reference file
       xmlFile = TestReaderFgdcParent.get_xml(fileName)
 
       xExpect = xmlFile.xpath(path)
 
+      # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdFile, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: mdFile, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath(path)
 
-      xExpect = xExpect.to_s.squeeze
-      xGot = xGot.to_s.squeeze
+      xExpect = xExpect.to_s.squeeze(' ')
+      xGot = xGot.to_s.squeeze(' ')
 
       return xExpect, xGot
 

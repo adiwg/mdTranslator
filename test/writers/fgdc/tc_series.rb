@@ -9,7 +9,9 @@ require_relative 'fgdc_test_parent'
 class TestWriterFgdcSeries < TestReaderFgdcParent
 
    # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_json('series')
+   @@mdJson = TestReaderFgdcParent.get_hash('series')
+
+   # TODO add schema validation test after schema update
 
    def test_series_complete
 

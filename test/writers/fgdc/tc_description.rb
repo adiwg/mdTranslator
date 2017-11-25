@@ -9,7 +9,9 @@ require_relative 'fgdc_test_parent'
 class TestWriterFgdcDescription < TestReaderFgdcParent
 
    # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_json('description')
+   @@mdJson = TestReaderFgdcParent.get_hash('description')
+
+   # TODO add schema validation test after schema update
 
    def test_description_complete
 
@@ -52,7 +54,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
 
    end
 
-   def test_purpose_elements
+   def test_description_elements
 
       # empty
       hIn = Marshal::load(Marshal.dump(@@mdJson))
