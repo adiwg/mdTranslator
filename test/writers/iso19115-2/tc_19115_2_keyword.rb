@@ -17,7 +17,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_keyword.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_keyword.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_keyword.json')
 
    def test_19115_2_keyword
 
@@ -31,7 +31,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmd:descriptiveKeywords')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end
@@ -48,7 +48,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmd:topicCategory')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

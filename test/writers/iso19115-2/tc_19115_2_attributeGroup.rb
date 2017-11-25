@@ -16,7 +16,7 @@ class TestWriter191152AttributeGroup < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_attributeGroup.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_attributeGroup.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_attributeGroup.json')
 
    # read the ISO 19115-2 reference file
    def test_19115_2_attributeGroup
@@ -31,7 +31,7 @@ class TestWriter191152AttributeGroup < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmi:MI_CoverageDescription')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

@@ -16,7 +16,7 @@ class TestWriter19110Address < TestWriter19110Parent
    @@xFile = TestWriter19110Parent.get_xml('19110_address.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_file('19110_address.json')
+   @@mdJson = TestWriter19110Parent.get_json('19110_address.json')
 
    # test all keys with single elements
    def test_19110_address
@@ -38,7 +38,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -62,7 +62,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -86,7 +86,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -110,7 +110,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -134,7 +134,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -158,7 +158,7 @@ class TestWriter19110Address < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

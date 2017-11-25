@@ -16,7 +16,7 @@ class TestWriter191152Voucher < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_voucher.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_voucher.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_voucher.json')
 
    def test_19115_2_voucher
 
@@ -29,7 +29,7 @@ class TestWriter191152Voucher < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:voucher')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

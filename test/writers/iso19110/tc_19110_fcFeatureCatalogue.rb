@@ -15,7 +15,7 @@ require_relative 'iso19110_test_parent'
 class TestWriter19110FeatureCatalogue < TestWriter19110Parent
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_file('19110_fcFeatureCatalogue.json')
+   @@mdJson = TestWriter19110Parent.get_json('19110_fcFeatureCatalogue.json')
 
    def test_19110_featureCatalogue
 
@@ -58,7 +58,7 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -80,7 +80,7 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -102,7 +102,7 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

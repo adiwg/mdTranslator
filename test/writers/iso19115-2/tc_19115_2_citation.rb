@@ -16,7 +16,7 @@ class TestWriter191152Citation < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_citation.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_citation.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_citation.json')
 
    def test_19115_2_citation
 
@@ -29,7 +29,7 @@ class TestWriter191152Citation < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:citation')
 
-      assert_equal axExpect[0].to_s.squeeze, xGot.to_s.squeeze
+      assert_equal axExpect[0].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -50,7 +50,7 @@ class TestWriter191152Citation < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:citation')
 
-      assert_equal axExpect[0].to_s.squeeze, xGot.to_s.squeeze
+      assert_equal axExpect[0].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -80,7 +80,7 @@ class TestWriter191152Citation < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:citation')
 
-      assert_equal axExpect[1].to_s.squeeze, xGot.to_s.squeeze
+      assert_equal axExpect[1].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -110,7 +110,7 @@ class TestWriter191152Citation < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:citation')
 
-      assert_equal axExpect[1].to_s.squeeze, xGot.to_s.squeeze
+      assert_equal axExpect[1].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

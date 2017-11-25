@@ -16,7 +16,7 @@ class TestWriter191152TransferOptions < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_transferOptions.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_transferOptions.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_transferOptions.json')
 
    def test_19115_2_transferOptions
 
@@ -34,7 +34,7 @@ class TestWriter191152TransferOptions < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmd:distributorFormat')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
       # check distributor transfer options
@@ -44,7 +44,7 @@ class TestWriter191152TransferOptions < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmd:distributorTransferOptions')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

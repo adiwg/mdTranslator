@@ -17,8 +17,8 @@ class TestWriter19110Parent < MiniTest::Test
       readerExecutionMessages: []
    }
 
-   # get file for tests from testData folder
-   def self.get_file(fileName)
+   # get json for tests from testData folder
+   def self.get_json(fileName)
 
       file = File.join(File.dirname(__FILE__), 'testData', fileName)
       file = File.open(file, 'r')
@@ -28,8 +28,8 @@ class TestWriter19110Parent < MiniTest::Test
 
    end
 
-   # get json for tests from testData folder
-   def self.get_json(fileName)
+   # get hash from json file for tests from testData folder
+   def self.get_hash(fileName)
 
       file = File.join(File.dirname(__FILE__), 'testData', fileName)
       file = File.open(file, 'r')

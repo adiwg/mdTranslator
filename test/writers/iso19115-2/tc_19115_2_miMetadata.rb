@@ -18,7 +18,7 @@ class TestWriter191152MIMetadata < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_miMetadata.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_miMetadata.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_miMetadata.json')
 
    def test_19115_2_miMetadata
 
@@ -54,7 +54,7 @@ class TestWriter191152MIMetadata < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:MI_Metadata')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

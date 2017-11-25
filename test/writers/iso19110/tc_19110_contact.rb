@@ -16,7 +16,7 @@ class TestWriter19110Contact < TestWriter19110Parent
    @@xFile = TestWriter19110Parent.get_xml('19110_contact.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_file('19110_contact.json')
+   @@mdJson = TestWriter19110Parent.get_json('19110_contact.json')
 
    def test_19110_contact_individual_complete
 
@@ -37,7 +37,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -60,7 +60,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -83,7 +83,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -106,7 +106,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -129,7 +129,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -152,7 +152,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

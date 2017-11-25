@@ -16,7 +16,7 @@ class TestWriter191152OrderProcess < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_orderProcess.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_orderProcess.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_orderProcess.json')
 
    def test_19115_2_orderProcess
 
@@ -30,7 +30,7 @@ class TestWriter191152OrderProcess < TestWriter191152Parent
       axGot = xMetadata.xpath('//gmd:distributionOrderProcess')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

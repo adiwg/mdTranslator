@@ -16,7 +16,7 @@ class TestWriter19110Phone < TestWriter19110Parent
    @@xFile = TestWriter19110Parent.get_xml('19110_phone.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_file('19110_phone.json')
+   @@mdJson = TestWriter19110Parent.get_json('19110_phone.json')
 
    def test_19110_phone_single
 
@@ -34,7 +34,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:phone')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -54,7 +54,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:phone')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 
@@ -74,7 +74,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:phone')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

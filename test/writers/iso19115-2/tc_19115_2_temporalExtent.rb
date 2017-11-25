@@ -16,7 +16,7 @@ class TestWriter191152TemporalExtent < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_temporalExtent.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_temporalExtent.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_temporalExtent.json')
 
    def test_19115_2_temporalExtent
 
@@ -29,7 +29,7 @@ class TestWriter191152TemporalExtent < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:EX_Extent')
 
-      assert_equal xExpect.to_s.squeeze, xGot.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
    end
 

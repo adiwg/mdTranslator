@@ -16,7 +16,7 @@ class TestWriter191152Medium < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_medium.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_medium.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_medium.json')
 
    def test_19115_2_medium_complete
 
@@ -29,7 +29,7 @@ class TestWriter191152Medium < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:offLine')
 
-      assert_equal axExpect[0].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[0].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -48,7 +48,7 @@ class TestWriter191152Medium < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:offLine')
 
-      assert_equal axExpect[1].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[1].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -68,7 +68,7 @@ class TestWriter191152Medium < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:offLine')
 
-      assert_equal axExpect[2].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[2].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 

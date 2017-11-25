@@ -16,7 +16,7 @@ class TestWriter19110ListedValue < TestWriter19110Parent
    @@xFile = TestWriter19110Parent.get_xml('19110_listedValue.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_file('19110_listedValue.json')
+   @@mdJson = TestWriter19110Parent.get_json('19110_listedValue.json')
 
    def test_19110_listedValue
 
@@ -32,7 +32,7 @@ class TestWriter19110ListedValue < TestWriter19110Parent
       axGot = xMetadata.xpath('//gfc:carrierOfCharacteristics')
 
       axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze, axGot[i].to_s.squeeze
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

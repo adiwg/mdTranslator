@@ -16,7 +16,7 @@ class TestWriter191152Measure < TestWriter191152Parent
    @@xFile = TestWriter191152Parent.get_xml('19115_2_measure.xml')
 
    # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_file('19115_2_measure.json')
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_measure.json')
 
    def test_19115_2_measure_distance
 
@@ -29,7 +29,7 @@ class TestWriter191152Measure < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:resolution')
 
-      assert_equal axExpect[0].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[0].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -50,7 +50,7 @@ class TestWriter191152Measure < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:resolution')
 
-      assert_equal axExpect[1].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[1].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -71,7 +71,7 @@ class TestWriter191152Measure < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:resolution')
 
-      assert_equal axExpect[2].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[2].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -92,7 +92,7 @@ class TestWriter191152Measure < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:resolution')
 
-      assert_equal axExpect[3].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[3].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
@@ -113,7 +113,7 @@ class TestWriter191152Measure < TestWriter191152Parent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       axGot = xMetadata.xpath('//gmd:resolution')
 
-      assert_equal axExpect[4].to_s.squeeze, axGot.to_s.squeeze
+      assert_equal axExpect[4].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
 
    end
 
