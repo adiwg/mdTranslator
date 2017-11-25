@@ -77,6 +77,10 @@
          "status": [
             "status0"
          ],
+         "purpose": "purpose",
+         "timePeriod": {
+            "startDateTime": "2017-11-24"
+         },
          "pointOfContact": [
             {
                "role": "pointOfContact",
@@ -91,7 +95,12 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         }
+         },
+         "resourceMaintenance": [
+            {
+               "frequency": "resource maintenance frequency 0"
+            }
+         ]
       }
    }
 }

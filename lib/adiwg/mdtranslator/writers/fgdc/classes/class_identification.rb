@@ -7,6 +7,7 @@
 require_relative 'class_citation'
 require_relative 'class_description'
 require_relative 'class_timePeriod'
+require_relative 'class_status'
 
 module ADIWG
    module Mdtranslator
@@ -26,6 +27,7 @@ module ADIWG
                   citationClass = Citation.new(@xml, @hResponseObj)
                   descriptionClass = Description.new(@xml, @hResponseObj)
                   timePeriodClass = TimePeriod.new(@xml, @hResponseObj)
+                  statusClass = Status.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -73,8 +75,9 @@ module ADIWG
                         @hResponseObj[:writerMessages] << 'Identification section missing time period'
                      end
 
+                     # identification information 1.4 (status) - status
+                     statusClass.writeXML(hResourceInfo)
 
-                     # identification information 1.4 (status) - status (required)
                      # identification information 1.5 (spdom) - spatial domain
                      # identification information 1.6 (keywords) - keywords (required)
                      # identification information bio (taxonomy) - taxonomy

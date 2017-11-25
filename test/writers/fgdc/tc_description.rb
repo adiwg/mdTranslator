@@ -37,7 +37,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
       refute hResponseObj[:writerPass]
       refute_empty hResponseObj[:writerMessages]
 
-      # name missing
+      # purpose missing
       hIn = Marshal::load(Marshal.dump(@@mdJson))
       hIn['metadata']['resourceInfo'].delete('purpose')
       hIn = hIn.to_json
@@ -56,7 +56,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
 
    def test_description_elements
 
-      # empty
+      # empty elements
       hIn = Marshal::load(Marshal.dump(@@mdJson))
       hIn['metadata']['resourceInfo']['supplementalInfo'] = ''
       hIn = hIn.to_json
@@ -71,7 +71,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
       assert hResponseObj[:writerPass]
       assert_empty hResponseObj[:writerMessages]
 
-      # missing
+      # missing elements
       hIn = Marshal::load(Marshal.dump(@@mdJson))
       hIn['metadata']['resourceInfo'].delete('supplementalInfo')
       hIn = hIn.to_json

@@ -20,7 +20,7 @@ class TestWriterFgdcPublisher < TestReaderFgdcParent
 
    end
 
-   def test_publisher_pubplace
+   def test_publisher_place
 
       # no address
       hIn = Marshal::load(Marshal.dump(@@mdJson))

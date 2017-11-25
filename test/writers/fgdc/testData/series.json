@@ -79,6 +79,10 @@
             }
          },
          "abstract": "abstract",
+         "purpose": "purpose",
+         "timePeriod": {
+            "startDateTime": "2017-11-24"
+         },
          "status": [
             "status0"
          ],
@@ -96,7 +100,12 @@
             "language": "eng",
             "country": "USA",
             "characterSet": "UTF-8"
-         }
+         },
+         "resourceMaintenance": [
+            {
+               "frequency": "resource maintenance frequency 0"
+            }
+         ]
       }
    }
 }

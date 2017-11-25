@@ -73,6 +73,11 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
+         "resourceMaintenance": [
+            {
+               "frequency": "resource maintenance frequency 0"
+            }
+         ],
          "supplementalInfo": "supplemental information"
       }
    }
