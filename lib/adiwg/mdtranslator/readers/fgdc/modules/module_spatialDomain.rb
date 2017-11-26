@@ -2,6 +2,7 @@
 # unpack fgdc spatial domain
 
 # History:
+#  Stan Smith 2017-11-25 fix: allows multiple bounding polygons
 #  Stan Smith 2017-08-22 original script
 
 require 'nokogiri'
@@ -59,14 +60,15 @@ module ADIWG
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  hExtent = intMetadataClass.newExtent
-                  hGeoExtent = intMetadataClass.newGeographicExtent
-                  hExtent[:geographicExtents] << hGeoExtent
+                  hIntExtent = intMetadataClass.newExtent
+                  hIntGeoExtent = intMetadataClass.newGeographicExtent
+                  hIntExtent[:geographicExtents] << hIntGeoExtent
+                  hIntExtent[:description] = 'FGDC spatial domain'
 
                   # spatial domain bio (descgeog) - geographic description
                   description = xDomain.xpath('./descgeog').text
                   unless description.empty?
-                     hGeoExtent[:description] = description
+                     hIntGeoExtent[:description] = description
                   end
 
                   # spatial domain 1.5.1 (bounding) - bounding box
@@ -101,103 +103,115 @@ module ADIWG
 
                      end
 
-                     hGeoExtent[:boundingBox] = hBbox
+                     hIntGeoExtent[:boundingBox] = hBbox
                   end
 
-                  # spatial domain 1.5.2 (dsgpoly) - data set geographic polygon
-                  xPoly = xDomain.xpath('./dsgpoly')
-                  unless xPoly.empty?
+                  # spatial domain 1.5.2 (dsgpoly) - data set geographic polygon []
+                  axPoly = xDomain.xpath('//dsgpoly')
+                  unless axPoly.empty?
 
-                     polygon = []
+                     # start new feature collection
+                     hIntCollect = intMetadataClass.newFeatureCollection
+                     hIntCollect[:type] = 'FeatureCollection'
+                     hCollection = {
+                        'type' => 'FeatureCollection',
+                        'features' => []
+                     }
 
-                     # polygon 1.5.2.1 (dsgpolyo) - polygon outer ring
-                     xOring = xPoly.xpath('./dsgpolyo')
-                     unless xOring.empty?
+                     axPoly.each do |xPoly|
 
-                        # outer ring 1.5.2.1.1 (grngpoin) - g ring point
-                        # outer ring 1.5.2.1.2 (gring) - g ring
-                        # outer ring must be counterclockwise
-                        aOutCoords = process_polygon(xOring)
-                        unless aOutCoords.empty?
-                           if AdiwgCoordinates.is_polygon_clockwise(aOutCoords)
-                              aOutCoords.reverse!
-                           end
-                           polygon << aOutCoords
-                        end
+                        # place the polygon in a feature
+                        polygon = []
 
-                        # first ring must be outer
-                        # only process if already have outer ring
-                        # polygon 1.5.2.2 (dsgpolyx) - polygon exclusion ring []
-                        axXring = xPoly.xpath('./dsgpolyx')
-                        axXring.each do |xRing|
+                        # polygon 1.5.2.1 (dsgpolyo) - polygon outer ring
+                        xOring = xPoly.xpath('./dsgpolyo')
+                        unless xOring.empty?
 
-                           # exclusion ring 1.5.2.2.1 (grngpoin) - g ring point
-                           # exclusion ring 1.5.2.2.2 (gring) - g ring
-                           # exclusion ring must be clockwise
-                           aInCoords = process_polygon(xRing)
-                           unless aInCoords.empty?
-                              unless AdiwgCoordinates.is_polygon_clockwise(aInCoords)
-                                 aInCoords.reverse!
+                           # outer ring 1.5.2.1.1 (grngpoin) - g ring point
+                           # outer ring 1.5.2.1.2 (gring) - g ring
+                           # outer ring must be counterclockwise
+                           aOutCoords = process_polygon(xOring)
+                           unless aOutCoords.empty?
+                              if AdiwgCoordinates.is_polygon_clockwise(aOutCoords)
+                                 aOutCoords.reverse!
                               end
-                              polygon << aInCoords
+                              polygon << aOutCoords
                            end
+
+                           # first ring must be outer
+                           # only process if already have outer ring
+                           # polygon 1.5.2.2 (dsgpolyx) - polygon exclusion ring []
+                           axXring = xPoly.xpath('./dsgpolyx')
+                           unless axXring.empty?
+                              axXring.each do |xRing|
+
+                                 # exclusion ring 1.5.2.2.1 (grngpoin) - g ring point
+                                 # exclusion ring 1.5.2.2.2 (gring) - g ring
+                                 # exclusion ring must be clockwise
+                                 aInCoords = process_polygon(xRing)
+                                 unless aInCoords.empty?
+                                    unless AdiwgCoordinates.is_polygon_clockwise(aInCoords)
+                                       aInCoords.reverse!
+                                    end
+                                    polygon << aInCoords
+                                 end
+
+                              end
+                           end
+
+                        end
+
+                        unless polygon.empty?
+
+                           # make geoJson FeatureCollection from polygon
+                           hGeometry = {
+                              'type' => 'Polygon',
+                              'coordinates' => polygon
+                           }
+                           hFeature = {
+                              'type' => 'Feature',
+                              'geometry' => hGeometry,
+                              'properties' => {
+                                 'description' => 'FGDC bounding polygon'
+                              }
+                           }
+                           hCollection['features'] << hFeature
+
+                           # make internal geometry object from polygon
+                           hIntGeo = intMetadataClass.newGeometryObject
+                           hIntGeo[:type] = 'Polygon'
+                           hIntGeo[:coordinates] = polygon
+                           hIntGeo[:nativeGeoJson] = hGeometry
+
+                           # make internal geometry feature from geometry object
+                           hIntFeature = intMetadataClass.newGeometryFeature
+                           hIntFeature[:type] = 'Feature'
+                           hIntFeature[:geometryObject] = hIntGeo
+                           hIntFeature[:nativeGeoJson] = hFeature
+
+                           # add properties to geometry feature
+                           hIntProps = intMetadataClass.newGeometryProperties
+                           hIntProps[:description] = 'FGDC bounding polygon'
+                           hIntFeature[:properties] = hIntProps
+
+                           # place feature into collection
+                           # the collection nativeGeoJson is rewritten each pass
+                           hIntCollect[:features] << hIntFeature
+                           hIntCollect[:nativeGeoJson] = hCollection
 
                         end
                      end
 
-                     unless polygon.empty?
+                     # place collection into geographic extent
+                     hIntGeoExtent[:geographicElements] << hIntCollect
+                     hIntGeoExtent[:nativeGeoJson] << hIntCollect[:nativeGeoJson]
 
-                        # make geoJson FeatureCollection from polygon
-                        hGeometry = {
-                           'type' => 'Polygon',
-                           'coordinates' => polygon
-                        }
-                        hFeature = {
-                           'type' => 'Feature',
-                           'geometry' => hGeometry,
-                           'properties' => {
-                              'description' => 'FGDC bounding polygon'
-                           }
-                        }
-                        hCollection = {
-                           'type' => 'FeatureCollection',
-                           'features' => [hFeature]
-                        }
-                        geoJson = hCollection
-
-                        # make internal geometries from polygon
-                        hIntGeo = intMetadataClass.newGeometryObject
-                        hIntGeo[:type] = 'Polygon'
-                        hIntGeo[:coordinates] = polygon
-                        hIntGeo[:nativeGeoJson] = hGeometry
-
-                        hIntProps = intMetadataClass.newGeometryProperties
-                        hIntProps[:description] = 'FGDC bounding polygon'
-
-                        hIntFeature = intMetadataClass.newGeometryFeature
-                        hIntFeature[:type] = 'Feature'
-                        hIntFeature[:geometryObject] = hIntGeo
-                        hIntFeature[:nativeGeoJson] = hFeature
-                        hIntFeature[:properties] = hIntProps
-
-                        hIntCollect = intMetadataClass.newFeatureCollection
-                        hIntCollect[:type] = 'FeatureCollection'
-                        hIntCollect[:features] << hIntFeature
-                        hIntCollect[:nativeGeoJson] = hCollection
-
-                        hGeoExtent[:geographicElements] << hIntCollect
-                        hGeoExtent[:nativeGeoJson] << geoJson
-
-                        hExtent[:description] = 'FGDC spatial domain'
-
-                     end
                   end
 
-                  return hExtent
+                  return hIntExtent
 
-               end
-
-            end
+               end # unpack
+            end # SpatialDomain
 
          end
       end
