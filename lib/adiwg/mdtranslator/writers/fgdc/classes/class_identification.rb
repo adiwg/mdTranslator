@@ -8,6 +8,7 @@ require_relative 'class_citation'
 require_relative 'class_description'
 require_relative 'class_timePeriod'
 require_relative 'class_status'
+require_relative 'class_spatialDomain'
 
 module ADIWG
    module Mdtranslator
@@ -28,6 +29,7 @@ module ADIWG
                   descriptionClass = Description.new(@xml, @hResponseObj)
                   timePeriodClass = TimePeriod.new(@xml, @hResponseObj)
                   statusClass = Status.new(@xml, @hResponseObj)
+                  spDomainClass = SpatialDomain.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -79,6 +81,11 @@ module ADIWG
                      statusClass.writeXML(hResourceInfo)
 
                      # identification information 1.5 (spdom) - spatial domain
+                     # not required under biological extension rules
+                     unless hResourceInfo[:extents].empty?
+                        spDomainClass.writeXML(hResourceInfo[:extents])
+                     end
+
                      # identification information 1.6 (keywords) - keywords (required)
                      # identification information bio (taxonomy) - taxonomy
                      # identification information 1.7 (accconst) - access constraint (required)
