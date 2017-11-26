@@ -9,6 +9,7 @@ require_relative 'class_description'
 require_relative 'class_timePeriod'
 require_relative 'class_status'
 require_relative 'class_spatialDomain'
+require_relative 'class_keyword'
 
 module ADIWG
    module Mdtranslator
@@ -30,6 +31,7 @@ module ADIWG
                   timePeriodClass = TimePeriod.new(@xml, @hResponseObj)
                   statusClass = Status.new(@xml, @hResponseObj)
                   spDomainClass = SpatialDomain.new(@xml, @hResponseObj)
+                  keywordClass = Keyword.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -86,7 +88,17 @@ module ADIWG
                         spDomainClass.writeXML(hResourceInfo[:extents])
                      end
 
-                     # identification information 1.6 (keywords) - keywords (required)
+                     # identification information 1.6 (keywords) - keywords [] (required)
+                     unless hResourceInfo[:keywords].empty?
+                        @xml.tag!('keywords') do
+                           keywordClass.writeXML(hResourceInfo[:keywords])
+                        end
+                     end
+                     if hResourceInfo[:keywords].empty?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Identification section missing keywords'
+                     end
+
                      # identification information bio (taxonomy) - taxonomy
                      # identification information 1.7 (accconst) - access constraint (required)
                      # identification information 1.8 (useconst) - use constraint (required)

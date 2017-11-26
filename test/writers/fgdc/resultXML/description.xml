@@ -21,5 +21,12 @@
         </sngdate>
       </timeinfo>
     </timeperd>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>farming</themekey>
+      </theme>
+    </keywords>
   </idinfo>
 </metadata>

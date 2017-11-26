@@ -1,0 +1,182 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact one",
+         "positionName": "positionName"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title",
+            "responsibleParty": [
+               {
+                  "role": "originator",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
+               }
+            ],
+            "date": [
+               {
+                  "date": "2017-11-22",
+                  "dateType": "publication"
+               }
+            ]
+         },
+         "abstract": "abstract",
+         "purpose": "purpose",
+         "timePeriod": {
+            "startDateTime": "2017-11-24"
+         },
+         "status": [
+            "status 0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "keyword": [
+            {
+               "keyword": [
+                  {
+                     "keyword": "biota",
+                     "keywordId": "ISO004"
+                  },
+                  {
+                     "keyword": "farming"
+                  }
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "ISO 19115 Topic Category"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "Earth Science",
+                     "keywordId": "14rr-95sh74-ue17"
+                  },
+                  {
+                     "keyword": "Biological Classification"
+                  }
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "NASA GCMD Earth Science Keywords"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "Alaska"
+                  },
+                  {
+                     "keyword": "Colville River Delta"
+                  }
+               ],
+               "keywordType": "place",
+               "thesaurus": {
+                  "title": "USGS Geographic Names Information System"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "Canada"
+                  }
+               ],
+               "keywordType": "place",
+               "thesaurus": {
+                  "title": "NGA GEOnet Names Server"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "stratum corneum"
+                  },
+                  {
+                     "keyword": "stratum lucidum"
+                  }
+               ],
+               "keywordType": "stratum",
+               "thesaurus": {
+                  "title": "Integumentary System"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "year"
+                  },
+                  {
+                     "keyword": "month"
+                  }
+               ],
+               "keywordType": "temporal",
+               "thesaurus": {
+                  "title": "Gregorian Calendar"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "one"
+                  },
+                  {
+                     "keyword": "two"
+                  }
+               ],
+               "keywordType": "nonFGDC",
+               "thesaurus": {
+                  "title": "thesaurus title"
+               }
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "resourceMaintenance": [
+            {
+               "frequency": "resource maintenance frequency 0"
+            }
+         ]
+      }
+   }
+}

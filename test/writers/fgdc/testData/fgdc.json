@@ -74,6 +74,23 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
+         "keyword": [
+            {
+               "keyword": [
+                  {
+                     "keyword": "biota",
+                     "keywordId": "ISO004"
+                  },
+                  {
+                     "keyword": "farming"
+                  }
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "ISO 19115 Topic Category"
+               }
+            }
+         ],
          "resourceMaintenance": [
             {
                "frequency": "resource maintenance frequency 0"
