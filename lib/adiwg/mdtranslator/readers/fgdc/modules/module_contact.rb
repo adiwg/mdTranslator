@@ -2,6 +2,7 @@
 # unpack fgdc contact
 
 # History:
+#  Stan Smith 2017-11-27 add support for 'memberOfOrgs'
 #  Stan Smith 2017-08-25 original script
 
 require 'nokogiri'
@@ -24,6 +25,8 @@ module ADIWG
                   contactType = nil
                   personName = ''
                   orgName = ''
+                  personId = nil
+                  orgId = nil
                   xContactInfo = xContact.xpath('./cntinfo')
                   unless xContactInfo.empty?
 
@@ -59,6 +62,13 @@ module ADIWG
                         orgId = Fgdc.add_contact(orgName, true) unless orgName.empty?
                         hContact = Fgdc.get_contact_by_id(personId) if contactType == 'person'
                         hContact = Fgdc.get_contact_by_id(orgId) if contactType == 'organization'
+
+                        # contact - member of organization
+                        if contactType == 'person'
+                           unless orgId.nil?
+                              hContact[:memberOfOrgs] << orgId
+                           end
+                        end
 
                         # contact 10.3 (cntpos) - contact position
                         position = xContactInfo.xpath('./cntpos').text
