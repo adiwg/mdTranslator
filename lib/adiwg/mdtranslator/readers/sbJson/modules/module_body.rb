@@ -2,7 +2,8 @@
 # Reader - ScienceBase JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-06-19 original script
+#  Stan Smith 2017-11-29 do not import short abstract
+#  Stan Smith 2016-06-19 original script
 
 module ADIWG
    module Mdtranslator
@@ -22,12 +23,8 @@ module ADIWG
                   end
 
                   # summary
-                  if hSbJson.has_key?('summary')
-                     sbShort = hSbJson['summary']
-                     unless sbShort.nil? || sbShort == ''
-                        hResourceInfo[:shortAbstract] = sbShort
-                     end
-                  end
+                  # do not import short abstract
+                  # sbJson forces summary to first 300 characters of abstract
 
                   return hResourceInfo
 

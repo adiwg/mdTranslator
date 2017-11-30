@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2017-11-29 remove summary (short abstract)
 #  Stan Smith 2017-11-29 remove duplicate identifiers
 #  Stan Smith 2017-11-09 add metadata identifier to output identifiers
 #  Stan Smith 2017-11-08 remove identifier which is the primary resource
@@ -46,7 +47,6 @@ module ADIWG
                   json.title hCitation[:title] unless hCitation.empty?
                   json.alternateTitles hCitation[:alternateTitles] unless hCitation[:alternateTitles].empty?
                   json.body Abstract.build(resourceInfo[:abstract])
-                  json.summary resourceInfo[:shortAbstract]
                   json.citation Citation.build(hCitation) unless hCitation.empty?
 
                   # gather all identifiers

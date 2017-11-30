@@ -27,19 +27,6 @@ class TestWriterSbJsonBody < TestWriterSbJsonParent
 
    end
 
-   def test_summary
-
-      metadata = ADIWG::Mdtranslator.translate(
-         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
-         writer: 'sbJson', showAllTags: false)
-
-      hJsonOut = JSON.parse(metadata[:writerOutput])
-      got = hJsonOut['summary']
-
-      assert_equal 'mySummary', got
-
-   end
-
    def test_purpose
 
       metadata = ADIWG::Mdtranslator.translate(
