@@ -3,7 +3,7 @@
   <idinfo>
     <citation>
       <citeinfo>
-        <origin>contact one</origin>
+        <origin>person name</origin>
         <pubdate>2017-11-22</pubdate>
         <title>title</title>
       </citeinfo>
@@ -31,5 +31,28 @@
         <themekey>farming</themekey>
       </theme>
     </keywords>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos/>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address/>
+          <city>city</city>
+          <state>admin area</state>
+          <postal>postal code</postal>
+          <country/>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </ptcontac>
   </idinfo>
 </metadata>

@@ -33,7 +33,7 @@ module ADIWG
             end
 
             # find contact and return the contact hash
-            def self.getContact(contactId)
+            def self.get_contact(contactId)
                @contacts.each do |contact|
                   if contact[:contactId] == contactId
                      return contact

@@ -56,28 +56,6 @@ class TestWriterFgdcKeyword < TestReaderFgdcParent
 
    def test_keyword_thesaurus
 
-      # empty keyword thesaurus
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'].delete_at(0)
-      hIn['metadata']['resourceInfo']['keyword'][0]['thesaurus'] = {}
-      hIn = hIn.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      # TODO reinstate test after schema update
-      # refute_empty xMetadata.to_s
-      # refute hResponseObj[:writerPass]
-      # refute_empty hResponseObj[:writerMessages]
-
       # missing keyword thesaurus
       hIn = Marshal::load(Marshal.dump(@@mdJson))
       hIn['metadata']['resourceInfo']['keyword'].delete_at(0)

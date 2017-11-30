@@ -47,7 +47,7 @@ module ADIWG
                      haveOriginator = false
                      aOriginators = find_responsibility(hCitation, 'originator')
                      aOriginators.each do |contactId|
-                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.getContact(contactId)
+                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
                         unless hContact.empty?
                            name = hContact[:name]
                            unless name.nil?
@@ -126,7 +126,7 @@ module ADIWG
                      # only take first publisher
                      aPublisher = find_responsibility(hCitation, 'publisher')
                      unless aPublisher.empty?
-                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.getContact(aPublisher[0])
+                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aPublisher[0])
                         unless hContact.empty?
                            @xml.tag!('pubinfo') do
                               pubClass.writeXML(hContact)

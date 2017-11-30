@@ -4,12 +4,14 @@
 # History:
 #   Stan Smith 2017-11-17 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_citation'
 require_relative 'class_description'
 require_relative 'class_timePeriod'
 require_relative 'class_status'
 require_relative 'class_spatialDomain'
 require_relative 'class_keyword'
+require_relative 'class_contact'
 
 module ADIWG
    module Mdtranslator
@@ -23,6 +25,19 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
+               def find_responsibility(aResponsibility, roleName)
+                  aParties = []
+                  aResponsibility.each do |hRParty|
+                     if hRParty[:roleName] == roleName
+                        hRParty[:parties].each do |hParty|
+                           aParties << hParty[:contactId]
+                        end
+                     end
+                  end
+                  aParties = aParties.uniq
+                  return aParties
+               end
+
                def writeXML(intObj)
 
                   # classes used
@@ -32,6 +47,7 @@ module ADIWG
                   statusClass = Status.new(@xml, @hResponseObj)
                   spDomainClass = SpatialDomain.new(@xml, @hResponseObj)
                   keywordClass = Keyword.new(@xml, @hResponseObj)
+                  contactClass = Contact.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -48,7 +64,7 @@ module ADIWG
                      end
                      if hCitation.empty?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Identification section missing citation'
+                        @hResponseObj[:writerMessages] << 'Identification section is missing citation'
                      end
 
                      # identification information 1.2 (descript) - description (required)
@@ -60,11 +76,11 @@ module ADIWG
                      end
                      if hResourceInfo[:abstract].nil?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Identification section missing abstract'
+                        @hResponseObj[:writerMessages] << 'Identification section is missing abstract'
                      end
                      if hResourceInfo[:purpose].nil?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Identification section missing purpose'
+                        @hResponseObj[:writerMessages] << 'Identification section is missing purpose'
                      end
 
                      # identification information 1.3 (timeperd) - time period of content (required)
@@ -76,7 +92,7 @@ module ADIWG
                      end
                      if hResourceInfo[:timePeriod].empty?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Identification section missing time period'
+                        @hResponseObj[:writerMessages] << 'Identification section is missing time period'
                      end
 
                      # identification information 1.4 (status) - status
@@ -96,13 +112,29 @@ module ADIWG
                      end
                      if hResourceInfo[:keywords].empty?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Identification section missing keywords'
+                        @hResponseObj[:writerMessages] << 'Identification section is missing keywords'
                      end
 
                      # identification information bio (taxonomy) - taxonomy
                      # identification information 1.7 (accconst) - access constraint (required)
                      # identification information 1.8 (useconst) - use constraint (required)
-                     # identification information 1.9 (ptcontac) - point of contact (required)
+
+                     # identification information 1.9 (ptcontac) - point of contact
+                     unless hResourceInfo[:pointOfContacts].empty?
+                        aParties = find_responsibility(hResourceInfo[:pointOfContacts], 'pointOfContact')
+                        unless aParties.empty?
+                           hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aParties[0])
+                           unless hContact.empty?
+                              @xml.tag!('ptcontac') do
+                                 contactClass.writeXML(hContact)
+                              end
+                           end
+                        end
+                     end
+                     if hResourceInfo[:pointOfContacts].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('ptcontac')
+                     end
+
                      # identification information 1.10 (browse) - browse graphic []
                      # identification information 1.11 (datacred) - dataset credit
                      # identification information 1.12 (secinfo) - security information

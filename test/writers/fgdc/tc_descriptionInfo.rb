@@ -35,7 +35,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing purpose'
 
       # purpose missing
       hIn = Marshal::load(Marshal.dump(@@mdJson))
@@ -50,41 +50,7 @@ class TestWriterFgdcDescription < TestReaderFgdcParent
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
-
-   end
-
-   def test_description_elements
-
-      # empty elements
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['supplementalInfo'] = ''
-      hIn = hIn.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
-
-      # missing elements
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo'].delete('supplementalInfo')
-      hIn = hIn.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing purpose'
 
    end
 

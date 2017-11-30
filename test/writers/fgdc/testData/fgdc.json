@@ -7,8 +7,22 @@
       {
          "contactId": "CID001",
          "isOrganization": false,
-         "name": "contact one",
-         "positionName": "positionName"
+         "name": "person name",
+         "phone": [
+            {
+               "phoneName": "phone 1",
+               "phoneNumber": "111-111-1111",
+               "service": ["voice"]
+            }
+         ],
+         "address": [
+            {
+               "addressType": ["mailing"],
+               "city": "city",
+               "administrativeArea": "admin area",
+               "postalCode": "postal code"
+            }
+         ]
       }
    ],
    "metadata": {
