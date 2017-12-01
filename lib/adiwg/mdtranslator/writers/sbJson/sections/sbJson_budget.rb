@@ -1,6 +1,7 @@
 # sbJson 1.0 writer budget
 
 # History:
+#  Stan Smith 2017-11-30 add agreement number (allocation[:id])
 #  Stan Smith 2017-06-02 original script
 
 require_relative 'sbJson_codelists'
@@ -17,20 +18,30 @@ module ADIWG
                   @Namespace = ADIWG::Mdtranslator::Writers::SbJson
 
                   hBudget = {}
-                  hBudget[:className] = 'gov.sciencebase.catalog.item.facet.BudgetFacet'
+                  hBudget[:parts] = []
+                  hBudget[:totalFunds] = 0.0
                   hBudget[:annualBudgets] = []
+                  hBudget[:className] = 'gov.sciencebase.catalog.item.facet.BudgetFacet'
 
                   aFunding.each do |hFunding|
-                     budget = {}
+                     hAnnualBudget = {}
 
                      # funding sources
-                     fundingSources = []
+                     aFundingSources = []
                      total = 0.0
                      hFunding[:allocations].each do |hAllocation|
                         hSource = {}
                         hSource[:amount] = hAllocation[:amount] unless hAllocation[:amount].nil?
                         total += hAllocation[:amount] unless hAllocation[:amount].nil?
                         hSource[:matching] = hAllocation[:matching].to_s
+
+                        # agreement number
+                        unless hAllocation[:id].nil?
+                           hAgreement = {}
+                           hAgreement[:type] = 'Agreement Number'
+                           hAgreement[:value] = hAllocation[:id]
+                           hBudget[:parts] << hAgreement
+                        end
 
                         # recipient id
                         unless hAllocation[:recipientId].nil?
@@ -48,15 +59,16 @@ module ADIWG
                            end
                         end
 
-                        fundingSources << hSource
+                        aFundingSources << hSource
                      end
-                     unless fundingSources.empty?
-                        budget[:fundingSources] = fundingSources
+                     unless aFundingSources.empty?
+                        hAnnualBudget[:fundingSources] = aFundingSources
                      end
 
                      # total funds
                      unless total == 0.0
-                        budget[:totalFunds] = total
+                        hAnnualBudget[:totalFunds] = total
+                        hBudget[:totalFunds] += total
                      end
 
                      # federal fiscal year
@@ -98,10 +110,10 @@ module ADIWG
                         if month > 9
                            year += 1
                         end
-                        budget[:year] = year.to_s
+                        hAnnualBudget[:year] = year.to_s
                      end
 
-                     hBudget[:annualBudgets] << budget
+                     hBudget[:annualBudgets] << hAnnualBudget
                   end
 
                   return hBudget
