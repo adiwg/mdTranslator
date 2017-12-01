@@ -21,6 +21,16 @@
                   }
                ]
             }
+         ],
+         "metadataOnlineResource": [
+            {
+               "uri": "http://ISO.uri/adiwg/10",
+               "function": "metadataInfo link"
+            },
+            {
+               "uri": "http://ISO.uri/adiwg/11",
+               "function": "metadataInfo link"
+            }
          ]
       },
       "resourceInfo": {
@@ -31,7 +41,21 @@
             }
          ],
          "citation": {
-            "title": "myCitationTitle"
+            "title": "myCitationTitle",
+            "onlineResource": [
+               {
+                  "uri": "http://ISO.uri/adiwg/20",
+                  "protocol": "protocol",
+                  "name": "myName20",
+                  "function": "citation resource"
+               },
+               {
+                  "uri": "http://ISO.uri/adiwg/21",
+                  "protocol": "protocol",
+                  "name": "myName21",
+                  "function": "citation resource"
+               }
+            ]
          },
          "abstract": "myBody",
          "status": [

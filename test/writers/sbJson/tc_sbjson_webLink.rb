@@ -1,6 +1,7 @@
 # sbJson 1 writer tests - webLinks
 
 # History:
+#  Stan Smith 2017-11-30 added metadataInfo and citation online resources
 #  Stan Smith 2017-05-31 original script
 
 require 'minitest/autorun'
@@ -20,6 +21,24 @@ class TestWriterSbJsonWebLink < TestWriterSbJsonParent
          writer: 'sbJson', showAllTags: false)
 
       expect = [
+         {
+            'type' => 'webLink',
+            'uri' => 'http://ISO.uri/adiwg/10'
+         },
+         {
+            'type' => 'webLink',
+            'uri' => 'http://ISO.uri/adiwg/11'
+         },
+         {
+            'type' => 'webLink',
+            'uri' => 'http://ISO.uri/adiwg/20',
+            'title' => 'myName20'
+         },
+         {
+            'type' => 'webLink',
+            'uri' => 'http://ISO.uri/adiwg/21',
+            'title' => 'myName21'
+         },
          {
             'type' => 'download',
             'typeLabel' => 'translated adiwg code',
