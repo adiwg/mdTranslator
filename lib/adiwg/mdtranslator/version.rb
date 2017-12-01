@@ -1,6 +1,11 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.6.1 2017-11-30 add agreement number to sbJson budget facet
+# 2.6.1 2017-11-30 add metadataOnlineResources and citation onlineResources to sbJson
+# 2.6.1 2017-11-30 remove duplicate citation identifiers from sbJson
+# 2.6.1 2017-11-30 handle keywords greater than 80 characters in sbJson
+# 2.6.1 2017-11-30 do not import short abstract in sbJson
 # 2.6.0 2017-11-09 add metadataIdentifier to sbJson identifier
 # 2.6.0 2017-11-09 added data dictionary description
 # 2.6.0 2017-11-09 added readers and writers for geologic age
@@ -47,7 +52,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.6.0"
+      VERSION = "2.6.1"
    end
 end
 
