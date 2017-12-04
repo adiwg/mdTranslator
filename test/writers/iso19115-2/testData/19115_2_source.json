@@ -1,129 +1,131 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "resourceLineage": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
       {
-        "statement": "statement0",
-        "scope": {
-          "scopeCode": "scopeCode0"
-        },
-        "lineageCitation": [],
-        "source": [
-          {
-            "description": "description0",
-            "sourceCitation": {
-              "title": "title0"
-            },
-            "sourceMetadata": [
-              {
-                "title": "title00"
-              },
-              {
-                "title": "title01"
-              }
-            ],
-            "spatialResolution": {
-              "scaleFactor": 99999
-            },
-            "referenceSystem": {
-              "referenceSystemType": "referenceSystemType0",
-              "referenceSystemIdentifier": {
-                "identifier": "identifier0"
-              }
-            },
-            "sourceProcessStep": [
-              {
-                "description": "description00"
-              },
-              {
-                "description": "description01"
-              }
-            ],
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "resourceLineage": [
+         {
+            "statement": "statement0",
             "scope": {
-              "scopeCode": "scopeCode"
-            }
-          }
-        ],
-        "processStep": []
-      },
-      {
-        "statement": "statement1",
-        "scope": {
-          "scopeCode": "scopeCode1"
-        },
-        "lineageCitation": [],
-        "source": [
-          {
-            "description": "description1",
-            "sourceMetadata": [],
-            "sourceProcessStep": []
-          }
-        ],
-        "processStep": []
-      },
-      {
-        "statement": "statement2",
-        "scope": {
-          "scopeCode": "scopeCode2"
-        },
-        "lineageCitation": [],
-        "source": [
-          {
-            "description": "description2"
-          }
-        ],
-        "processStep": []
-      }
-    ]
-  }
+               "scopeCode": "scopeCode0"
+            },
+            "lineageCitation": [],
+            "source": [
+               {
+                  "description": "description0",
+                  "sourceCitation": {
+                     "title": "title0"
+                  },
+                  "sourceMetadata": [
+                     {
+                        "title": "title00"
+                     },
+                     {
+                        "title": "title01"
+                     }
+                  ],
+                  "spatialResolution": {
+                     "scaleFactor": 99999
+                  },
+                  "referenceSystem": {
+                     "referenceSystemType": "referenceSystemType0",
+                     "referenceSystemIdentifier": {
+                        "identifier": "identifier0"
+                     }
+                  },
+                  "sourceProcessStep": [
+                     {
+                        "description": "description00"
+                     },
+                     {
+                        "description": "description01"
+                     }
+                  ],
+                  "scope": {
+                     "scopeCode": "scopeCode"
+                  }
+               }
+            ],
+            "processStep": []
+         },
+         {
+            "statement": "statement1",
+            "scope": {
+               "scopeCode": "scopeCode1"
+            },
+            "lineageCitation": [],
+            "source": [
+               {
+                  "description": "description1",
+                  "sourceMetadata": [],
+                  "sourceProcessStep": []
+               }
+            ],
+            "processStep": []
+         },
+         {
+            "statement": "statement2",
+            "scope": {
+               "scopeCode": "scopeCode2"
+            },
+            "lineageCitation": [],
+            "source": [
+               {
+                  "description": "description2"
+               }
+            ],
+            "processStep": []
+         }
+      ]
+   }
 }

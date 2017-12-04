@@ -51,6 +51,16 @@
                   "identifier": "myIdentifier1",
                   "namespace": "mySchema1",
                   "description": "myDescription1"
+               },
+               {
+                  "identifier": "myIdentifier1",
+                  "namespace": "mySchema1",
+                  "description": "myDescription1"
+               },
+               {
+                  "identifier": "myIdentifier0",
+                  "namespace": "mySchema0",
+                  "description": "myDescription1"
                }
             ]
          },

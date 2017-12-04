@@ -1,139 +1,141 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "constraint": [
-        {
-          "type": "use",
-          "useLimitation": [
-            "useLimitation0",
-            "useLimitation1"
-          ],
-          "scope": {
-            "scopeCode": "scopeCode"
-          },
-          "graphic": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "fileName": "fileName00"
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "constraint": [
+            {
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0",
+                  "useLimitation1"
+               ],
+               "scope": {
+                  "scopeCode": "scopeCode"
+               },
+               "graphic": [
+                  {
+                     "fileName": "fileName00"
+                  },
+                  {
+                     "fileName": "fileName01"
+                  }
+               ],
+               "reference": [
+                  {
+                     "title": "title0"
+                  },
+                  {
+                     "title": "title1"
+                  }
+               ],
+               "releasability": {
+                  "statement": "statement0"
+               },
+               "responsibleParty": [
+                  {
+                     "role": "role0",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               ],
+               "legal": {
+                  "useConstraint": [
+                     "useConstraint0",
+                     "useConstraint1"
+                  ],
+                  "accessConstraint": [
+                     "accessConstraint0",
+                     "accessConstraint1"
+                  ],
+                  "otherConstraint": [
+                     "otherConstraint0",
+                     "otherConstraint1"
+                  ]
+               },
+               "security": {
+                  "classification": "classification",
+                  "classificationSystem": "classificationSystem",
+                  "userNote": "userNote",
+                  "handlingDescription": "handlingDescription"
+               }
             },
             {
-              "fileName": "fileName01"
-            }
-          ],
-          "reference": [
-            {
-              "title": "title0"
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0"
+               ],
+               "graphic": [],
+               "reference": [],
+               "responsibleParty": []
             },
             {
-              "title": "title1"
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0"
+               ]
             }
-          ],
-          "releasability": {
-            "statement": "statement0"
-          },
-          "responsibleParty": [
-            {
-              "role": "role0",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            },
-            {
-              "role": "role1",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          ],
-          "legal": {
-            "useConstraint": [
-              "useConstraint0",
-              "useConstraint1"
-            ],
-            "accessConstraint": [
-              "accessConstraint0",
-              "accessConstraint1"
-            ],
-            "otherConstraint": [
-              "otherConstraint0",
-              "otherConstraint1"
-            ]
-          },
-          "security": {
-            "classification": "classification",
-            "classificationSystem": "classificationSystem",
-            "userNote": "userNote",
-            "handlingDescription": "handlingDescription"
-          }
-        },
-        {
-          "type": "use",
-          "useLimitation": [
-            "useLimitation0"
-          ],
-          "graphic": [],
-          "reference": [],
-          "responsibleParty": []
-        },
-        {
-          "type": "use",
-          "useLimitation": [
-            "useLimitation0"
-          ]
-        }
-      ]
-    }
-  }
+         ]
+      }
+   }
 }

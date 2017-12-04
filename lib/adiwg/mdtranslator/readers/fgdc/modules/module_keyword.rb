@@ -21,7 +21,7 @@ module ADIWG
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
 
-                  # kewords 1.6.1 (theme) - thematic keywords {keyword}
+                  # keywords 1.6.1 (theme) - thematic keywords {keyword}
                   axTheme = xKeywords.xpath('./theme')
                   unless axTheme.empty?
                      axTheme.each do |xTheme|
@@ -50,7 +50,7 @@ module ADIWG
                         end
 
                         # if keyword thesaurus is 'ISO 19115 Topic Category'
-                        # convert to ISO topic categories
+                        # also convert to ISO topic categories
                         if hKeyword[:thesaurus][:title] == 'ISO 19115 Topic Category'
                            hKeyword[:keywords].each do |hKeyObj|
                               hResourceInfo[:topicCategories] << hKeyObj[:keyword]
@@ -65,7 +65,7 @@ module ADIWG
                      end
                   end
 
-                  # kewords 1.6.2 (place) - place keywords {keyword}
+                  # keywords 1.6.2 (place) - place keywords {keyword}
                   axPlace = xKeywords.xpath('./place')
                   unless axPlace.empty?
                      axPlace.each do |xPlace|
@@ -100,7 +100,7 @@ module ADIWG
                      end
                   end
 
-                  # kewords 1.6.3 (stratum) - stratum keywords {keyword}
+                  # keywords 1.6.3 (stratum) - stratum keywords {keyword}
                   axStratum = xKeywords.xpath('./stratum')
                   unless axStratum.empty?
                      axStratum.each do |xStratum|
@@ -135,7 +135,7 @@ module ADIWG
                      end
                   end
 
-                  # kewords 1.6.4 (temporal) - temporal keywords {keyword}
+                  # keywords 1.6.4 (temporal) - temporal keywords {keyword}
                   axTemporal = xKeywords.xpath('./temporal')
                   unless axTemporal.empty?
                      axTemporal.each do |xTemporal|
@@ -170,7 +170,7 @@ module ADIWG
                      end
                   end
 
-                  # kewords bio (keywtax) - taxonomy keywords {keyword}
+                  # keywords bio (keywtax) - taxonomy keywords {keyword}
                   nodeName = xKeywords.xpath('./*').first.name
                   if nodeName == 'keywtax'
                      hKeyword = intMetadataClass.newKeyword

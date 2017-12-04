@@ -136,6 +136,20 @@
                "thesaurus": {
                   "title": "title"
                }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "The quick brown fox jumped over the lazy dog. The quick brown fox jumped over the lazy dog."
+                  },
+                  {
+                     "keyword": "first word>second word>third word>fourth word>fifth word>sixth word>seventh word>eighth word"
+                  }
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "title"
+               }
             }
          ]
       }

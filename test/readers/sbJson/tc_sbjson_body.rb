@@ -22,7 +22,7 @@ class TestReaderSbJsonBody < TestReaderSbJsonParent
 
       expect = "### Title\n**BOLD**\n\n* Item 1\n* Item 2\n\nWhitespace paragraph 1\n\nWhitespace paragraph 2"
       assert_equal expect, metadata[:abstract]
-      assert_equal 'mySummary', metadata[:shortAbstract]
+      assert_nil metadata[:shortAbstract]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

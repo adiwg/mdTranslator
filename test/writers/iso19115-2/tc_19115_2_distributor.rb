@@ -2,45 +2,37 @@
 # writers / iso19115_2 / class_distributor
 
 # History:
-#   Stan Smith 2016-12-22 original script
+#  Stan Smith 2017-11-19 replace REXML with Nokogiri
+#  Stan Smith 2016-12-22 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Distributor < MiniTest::Test
+class TestWriter191152Distributor < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_distributor.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gmd:distributor') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_distributor.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_distributor.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_distributor.json')
 
-    def test_19115_2_distributor
+   def test_19115_2_distributor
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+      axExpect = @@xFile.xpath('//gmd:distributor')
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+      )
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:distributor') {|e| aCheckXML << e}
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:distributor')
 
-        @@aRefXML.length.times{|i|
-            assert_equal @@aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-        }
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
+      }
 
-    end
+   end
 
 end

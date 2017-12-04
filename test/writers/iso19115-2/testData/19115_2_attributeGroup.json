@@ -1,145 +1,147 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "coverageDescription": [
-        {
-          "coverageName": "coverageName",
-          "coverageDescription": "coverageDescription",
-          "processingLevelCode": {
-            "identifier": "identifier"
-          },
-          "attributeGroup": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "attributeContentType": [
-                "thematicClassification",
-                "attributeContentType"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier",
-                  "sequenceIdentifierType": "sequenceIdentifierType",
-                  "attributeDescription": "attributeDescription",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier"
-                    }
-                  ],
-                  "minValue": 9.9,
-                  "maxValue": 9.9,
-                  "units": "meter",
-                  "scaleFactor": 9,
-                  "offset": 9,
-                  "meanValue": 9.9,
-                  "numberOfValues": 9,
-                  "standardDeviation": 9.9,
-                  "bitsPerValue": 9,
-                  "boundMin": 9.9,
-                  "boundMax": 9.9,
-                  "boundUnits": "boundUnits",
-                  "peakResponse": 9.9,
-                  "toneGradations": 9,
-                  "bandBoundaryDefinition": "oneOverE",
-                  "nominalSpatialResolution": 9.9,
-                  "transferFunctionType": "exponential",
-                  "transmittedPolarization": "rightCircular",
-                  "detectedPolarization": "rightCircular"
-                },
-                {
-                  "sequenceIdentifier": "sequenceIdentifier",
-                  "sequenceIdentifierType": "sequenceIdentifierType",
-                  "attributeDescription": "attributeDescription",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier"
-                    }
-                  ],
-                  "minValue": 9.9,
-                  "maxValue": 9.9,
-                  "units": "units",
-                  "scaleFactor": 9,
-                  "offset": 9,
-                  "meanValue": 9.9,
-                  "numberOfValues": 9,
-                  "standardDeviation": 9.9,
-                  "bitsPerValue": 9,
-                  "boundMin": 9.9,
-                  "boundMax": 9.9,
-                  "boundUnits": "boundUnits",
-                  "peakResponse": 9.9,
-                  "toneGradations": 9
-                }
-              ]
-            },
-            {
-              "attributeContentType": [
-                "thematicClassification",
-                "attributeContentType"
-              ],
-              "attribute": [
-                {
-                  "sequenceIdentifier": "sequenceIdentifier",
-                  "sequenceIdentifierType": "sequenceIdentifierType",
-                  "attributeDescription": "attributeDescription",
-                  "attributeIdentifier": [
-                    {
-                      "identifier": "identifier"
-                    }
-                  ]
-                }
-              ]
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    }
-  }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "coverageDescription": [
+            {
+               "coverageName": "coverageName",
+               "coverageDescription": "coverageDescription",
+               "processingLevelCode": {
+                  "identifier": "identifier"
+               },
+               "attributeGroup": [
+                  {
+                     "attributeContentType": [
+                        "thematicClassification",
+                        "attributeContentType"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier",
+                           "sequenceIdentifierType": "sequenceIdentifierType",
+                           "attributeDescription": "attributeDescription",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier"
+                              }
+                           ],
+                           "minValue": 9.9,
+                           "maxValue": 9.9,
+                           "units": "meter",
+                           "scaleFactor": 9,
+                           "offset": 9,
+                           "meanValue": 9.9,
+                           "numberOfValues": 9,
+                           "standardDeviation": 9.9,
+                           "bitsPerValue": 9,
+                           "boundMin": 9.9,
+                           "boundMax": 9.9,
+                           "boundUnits": "boundUnits",
+                           "peakResponse": 9.9,
+                           "toneGradations": 9,
+                           "bandBoundaryDefinition": "oneOverE",
+                           "nominalSpatialResolution": 9.9,
+                           "transferFunctionType": "exponential",
+                           "transmittedPolarization": "rightCircular",
+                           "detectedPolarization": "rightCircular"
+                        },
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier",
+                           "sequenceIdentifierType": "sequenceIdentifierType",
+                           "attributeDescription": "attributeDescription",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier"
+                              }
+                           ],
+                           "minValue": 9.9,
+                           "maxValue": 9.9,
+                           "units": "units",
+                           "scaleFactor": 9,
+                           "offset": 9,
+                           "meanValue": 9.9,
+                           "numberOfValues": 9,
+                           "standardDeviation": 9.9,
+                           "bitsPerValue": 9,
+                           "boundMin": 9.9,
+                           "boundMax": 9.9,
+                           "boundUnits": "boundUnits",
+                           "peakResponse": 9.9,
+                           "toneGradations": 9
+                        }
+                     ]
+                  },
+                  {
+                     "attributeContentType": [
+                        "thematicClassification",
+                        "attributeContentType"
+                     ],
+                     "attribute": [
+                        {
+                           "sequenceIdentifier": "sequenceIdentifier",
+                           "sequenceIdentifierType": "sequenceIdentifierType",
+                           "attributeDescription": "attributeDescription",
+                           "attributeIdentifier": [
+                              {
+                                 "identifier": "identifier"
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   }
 }

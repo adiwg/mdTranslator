@@ -5,6 +5,7 @@
 #   Josh Bradley original script
 
 require 'jbuilder'
+require 'rubygems'
 require_relative 'version'
 require_relative 'sections/mdJson_mdJson'
 
@@ -21,8 +22,9 @@ module ADIWG
                Jbuilder.ignore_nil(!responseObj[:writerShowTags])
 
                # set the format of the output file based on the writer specified
-               responseObj[:writerFormat] = 'json'
-               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::MdJson::VERSION
+               responseObj[:writerOutputFormat] = 'json'
+               schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
+               responseObj[:writerVersion] = schemaVersion
 
                # write the mdJson metadata record
                metadata = MdJson.build(intObj, responseObj)

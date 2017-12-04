@@ -40,6 +40,7 @@ class TestReaderFgdcContact < TestReaderFGDCParent
       refute hContact[:isOrganization]
       assert_equal 'my primary person', hContact[:name]
       assert_equal 'my position name', hContact[:positionName]
+      assert_equal 1, hContact[:memberOfOrgs].length
       assert_equal 6, hContact[:phones].length
       assert_equal 2, hContact[:addresses].length
       assert_equal 2, hContact[:eMailList].length

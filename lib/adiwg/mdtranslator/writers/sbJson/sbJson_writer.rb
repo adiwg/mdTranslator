@@ -20,7 +20,7 @@ module ADIWG
                Jbuilder.ignore_nil(!responseObj[:writerShowTags])
 
                # set the format of the output file based on the writer specified
-               responseObj[:writerFormat] = 'json'
+               responseObj[:writerOutputFormat] = 'json'
                responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::SbJson::VERSION
 
                # write the sbJson metadata record

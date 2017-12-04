@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-22</pubdate>
+        <title>title</title>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>abstract</abstract>
+      <purpose>purpose</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>2017-11-24</caldate>
+          <time/>
+        </sngdate>
+      </timeinfo>
+    </timeperd>
+    <status>
+      <progress>status 0</progress>
+      <update>resource maintenance frequency 0</update>
+    </status>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>farming</themekey>
+      </theme>
+    </keywords>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos/>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address/>
+          <city>city</city>
+          <state>admin area</state>
+          <postal>postal code</postal>
+          <country/>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+</metadata>

@@ -2,46 +2,37 @@
 # writers / iso19115_2 / class_fraction
 
 # History:
-#   Stan Smith 2017-01-02 original script
+#  Stan Smith 2017-11-19 replace REXML with Nokogiri
+#  Stan Smith 2017-01-02 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Fraction < MiniTest::Test
+class TestWriter191152Fraction < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_fraction.xml')
-    file = File.new(fname)
-    @@iso_xml = Document.new(file)
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_fraction.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_fraction.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_fraction.json')
 
-    def test_19115_2_aggregateInfo
+   def test_19115_2_aggregateInfo
 
-        aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:equivalentScale') {|e| aRefXML << e}
+      axExpect = @@xFile.xpath('//gmd:equivalentScale')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+      )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:equivalentScale')
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:equivalentScale') {|e| aCheckXML << e}
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
+      }
 
-        aRefXML.length.times{|i|
-            assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-        }
-
-    end
+   end
 
 end

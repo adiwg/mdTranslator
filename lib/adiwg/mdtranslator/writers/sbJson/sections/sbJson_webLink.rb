@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2017-11-30 added citation and metadata online resources to webLinks
 #  Stan Smith 2017-05-30 original script
 
 require 'jbuilder'
@@ -16,7 +17,7 @@ module ADIWG
 
                @Namespace = ADIWG::Mdtranslator::Readers::SbJson
 
-               def self.buildWebLink(hResource)
+               def self.build_webLink(hResource)
 
                   hWebLink = {}
 
@@ -48,11 +49,23 @@ module ADIWG
 
                   aLinks = []
 
+                  # build webLinks from metadataLinkages
+                  hMetadata[:metadataInfo][:metadataLinkages].each do |hResource|
+                     hWebLink = build_webLink(hResource)
+                     aLinks << hWebLink unless hWebLink.empty?
+                  end
+
+                  # build webLinks from resourceInfo[:citation][:onlineResources]
+                  hMetadata[:resourceInfo][:citation][:onlineResources].each do |hResource|
+                     hWebLink = build_webLink(hResource)
+                     aLinks << hWebLink unless hWebLink.empty?
+                  end
+
                   # build webLinks from additionalDocumentation
                   hMetadata[:additionalDocuments].each do |hDocument|
                      hDocument[:citation].each do |hCitation|
                         hCitation[:onlineResources].each do |hResource|
-                           hWebLink = buildWebLink(hResource)
+                           hWebLink = build_webLink(hResource)
                            aLinks << hWebLink unless hWebLink.empty?
                         end
                      end
@@ -61,7 +74,7 @@ module ADIWG
                   # build webLinks from graphic
                   hMetadata[:resourceInfo][:graphicOverviews].each do |hGraphic|
                      hGraphic[:graphicURI].each do |hResource|
-                        hWebLink = buildWebLink(hResource)
+                        hWebLink = build_webLink(hResource)
                         aLinks << hWebLink unless hWebLink.empty?
                      end
                   end
@@ -71,7 +84,7 @@ module ADIWG
                      aDistribution[:distributor].each do |aDistributor|
                         aDistributor[:transferOptions].each do |aOption|
                            aOption[:onlineOptions].each do |hResource|
-                              hWebLink = buildWebLink(hResource)
+                              hWebLink = build_webLink(hResource)
                               aLinks << hWebLink unless hWebLink.empty?
                            end
                         end

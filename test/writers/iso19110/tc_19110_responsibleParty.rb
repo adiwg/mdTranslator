@@ -2,87 +2,80 @@
 # writers / iso19110 / class_responsibleParty
 
 # History:
-#   Stan Smith 2017-01-23 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-01-23 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110ResponsibleParty < MiniTest::Test
+class TestWriter19110ResponsibleParty < TestWriter19110Parent
 
-    # read the ISO 19110 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_responsibleParty.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gfc:producer') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter19110Parent.get_xml('19110_responsibleParty.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19110_responsibleParty.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter19110Parent.get_json('19110_responsibleParty.json')
 
-    def test_19110_responsibleParty_individual
+   def test_19110_responsibleParty_individual
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gfc:producer[1]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gfc:producer')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gfc:producer')
 
-        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
-    def test_19110_responsibleParty_organization
+   def test_19110_responsibleParty_organization
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gfc:producer[2]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gfc:producer')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gfc:producer')
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
-    def test_19110_responsibleParty_missing_elements
+   def test_19110_responsibleParty_missing_elements
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gfc:producer[3]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gfc:producer')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gfc:producer')
 
-        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
 end

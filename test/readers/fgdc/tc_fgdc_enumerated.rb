@@ -15,6 +15,8 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
 
    def test_enumerated_complete
 
+      TestReaderFGDCParent.set_xDoc(@@xDoc)
+
       xIn = @@xDoc.xpath('./metadata/eainfo')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hDictionary = @@NameSpace.unpack(xIn, hResponse)

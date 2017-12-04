@@ -80,6 +80,42 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
             'scheme' => 'ISO 19115 Topic Categories'
          },
          {
+            'type' => 'theme',
+            'name' => 'The quick brown fox jumped over the lazy dog. The quick brown fox jumped ove...'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'first word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'second word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'third word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'fourth word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'fifth word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'sixth word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'seventh word'
+         },
+         {
+            'type' => 'theme',
+            'name' => 'eighth word'
+         },
+         {
             'type' => 'Status',
             'name' => 'completed'
          },
@@ -105,5 +141,3 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
    end
 
 end
-
-

@@ -49,7 +49,7 @@ class TestReaderFgdcSpatialDomain < TestReaderFGDCParent
       refute_empty hGeoElement
       assert_equal 'FeatureCollection', hGeoElement[:type]
       assert_empty hGeoElement[:bbox]
-      assert_equal 1, hGeoElement[:features].length
+      assert_equal 2, hGeoElement[:features].length
       assert_empty hGeoElement[:computedBbox]
       refute_empty hGeoElement[:nativeGeoJson]
 

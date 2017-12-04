@@ -1,130 +1,132 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "metadataMaintenance": {
-        "frequency": "frequency0",
-        "date": [
-          {
-            "date": "2016-10-12",
-            "dateType": "dateType00"
-          },
-          {
-            "date": "2017-02-10",
-            "dateType": "nextUpdate"
-          }
-        ],
-        "scope": [
-          {
-            "scopeCode": "scopeCode00"
-          },
-          {
-            "scopeCode": "scopeCode01"
-          }
-        ],
-        "note": [
-          "note00",
-          "note01"
-        ],
-        "contact": [
-          {
-            "role": "role00",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          },
-          {
-            "role": "role01",
-            "party": [
-              {
-                "contactId": "CID001"
-              }
-            ]
-          }
-        ]
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
       }
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "metadataMaintenance": {
+            "frequency": "frequency0",
+            "date": [
+               {
+                  "date": "2016-10-12",
+                  "dateType": "dateType00"
+               },
+               {
+                  "date": "2017-02-10",
+                  "dateType": "nextUpdate"
+               }
+            ],
+            "scope": [
+               {
+                  "scopeCode": "scopeCode00"
+               },
+               {
+                  "scopeCode": "scopeCode01"
+               }
+            ],
+            "note": [
+               "note00",
+               "note01"
+            ],
+            "contact": [
+               {
+                  "role": "role00",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
+               },
+               {
+                  "role": "role01",
+                  "party": [
+                     {
+                        "contactId": "CID001"
+                     }
+                  ]
+               }
+            ]
+         }
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "resourceMaintenance": [
-        {
-          "frequency": "frequency1",
-          "date": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "date": "2016-10-12",
-              "dateType": "dateType1"
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ],
-          "scope": [
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "resourceMaintenance": [
             {
-              "scopeCode": "scopeCode1"
-            }
-          ],
-          "note": [
-            "note1"
-          ],
-          "contact": [
+               "frequency": "frequency1",
+               "date": [
+                  {
+                     "date": "2016-10-12",
+                     "dateType": "dateType1"
+                  }
+               ],
+               "scope": [
+                  {
+                     "scopeCode": "scopeCode1"
+                  }
+               ],
+               "note": [
+                  "note1"
+               ],
+               "contact": [
+                  {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               ]
+            },
             {
-              "role": "role1",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
+               "frequency": "frequency2"
             }
-          ]
-        },
-        {
-          "frequency": "frequency2"
-        }
-      ]
-    }
-  }
+         ]
+      }
+   }
 }

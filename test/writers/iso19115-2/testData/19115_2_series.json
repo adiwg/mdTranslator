@@ -1,109 +1,111 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      },
+      "associatedResource": [
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "crossReference",
+            "initiativeType": "campaign",
+            "resourceCitation": {
+               "title": "resource citation0",
+               "series": {
+                  "seriesName": "seriesName0",
+                  "seriesIssue": "seriesIssue0",
+                  "issuePage": "issuePage0"
+               }
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "crossReference",
+            "initiativeType": "campaign",
+            "resourceCitation": {
+               "title": "resource citation1",
+               "series": {
+                  "seriesName": "seriesName1",
+                  "seriesIssue": "",
+                  "issuePage": ""
+               }
+            }
+         },
+         {
+            "resourceType": [
+               {
+                  "type": "type",
+                  "name": "name"
+               }
+            ],
+            "associationType": "crossReference",
+            "initiativeType": "campaign",
+            "resourceCitation": {
+               "title": "resource citation2",
+               "series": {
+                  "nonElement": "nonElement"
+               }
+            }
+         }
       ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      }
-    },
-    "associatedResource": [
-      {
-        "resourceType": [
-          {
-            "type": "type",
-            "name": "name"
-          }
-        ],
-        "associationType": "crossReference",
-        "initiativeType": "campaign",
-        "resourceCitation": {
-          "title": "resource citation0",
-          "series": {
-            "seriesName": "seriesName0",
-            "seriesIssue": "seriesIssue0",
-            "issuePage": "issuePage0"
-          }
-        }
-      },
-      {
-        "resourceType": [
-          {
-            "type": "type",
-            "name": "name"
-          }
-        ],
-        "associationType": "crossReference",
-        "initiativeType": "campaign",
-        "resourceCitation": {
-          "title": "resource citation1",
-          "series": {
-            "seriesName": "seriesName1",
-            "seriesIssue": "",
-            "issuePage": ""
-          }
-        }
-      },
-      {
-        "resourceType": [
-          {
-            "type": "type",
-            "name": "name"
-          }
-        ],
-        "associationType": "crossReference",
-        "initiativeType": "campaign",
-        "resourceCitation": {
-          "title": "resource citation2",
-          "series": {
-            "nonElement": "nonElement"
-          }
-        }
-      }
-    ]
-  }
+   }
 }

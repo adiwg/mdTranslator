@@ -1,6 +1,7 @@
 # sbJson 1.0 writer tags
 
 # History:
+#  Stan Smith 2017-11-29 handle keywords over 80 characters
 #  Stan Smith 2017-10-12 remove repository name from harvest set tag
 #  Stan Smith 2017-05-31 original script
 
@@ -13,6 +14,17 @@ module ADIWG
          module SbJson
 
             module Tag
+
+               def self.tag_from_keyword(theme, keyword, namespace)
+                  hTag = {}
+                  hTag[:type] = theme unless theme.nil?
+                  hTag[:name] = keyword
+                  hTag[:scheme] = namespace unless namespace.nil?
+                  if theme == 'isoTopicCategory'
+                     hTag[:type] = hTag[:scheme] = 'ISO 19115 Topic Categories'
+                  end
+                  return hTag
+               end
 
                def self.build(intObj)
 
@@ -41,14 +53,22 @@ module ADIWG
                         end
                      end
                      hThemeSet[:keywords].each do |hKeywordObj|
-                        hTag = {}
-                        hTag[:type] = theme unless theme.nil?
-                        hTag[:name] = hKeywordObj[:keyword]
-                        hTag[:scheme] = scheme unless scheme.nil?
-                        if theme == 'isoTopicCategory'
-                           hTag[:type] = hTag[:scheme] = 'ISO 19115 Topic Categories'
+                        keyword = hKeywordObj[:keyword]
+                        if keyword.length > 80
+                           if keyword.include?('>')
+                              aKeyList = keyword.split('>')
+                              aKeyList.each do |part|
+                                 hTag = tag_from_keyword(theme, part, scheme)
+                                 aTags << hTag
+                              end
+                           else
+                              hTag = tag_from_keyword(theme, keyword[0,76]+'...', scheme)
+                              aTags << hTag
+                           end
+                        else
+                           hTag = tag_from_keyword(theme, keyword, scheme)
+                           aTags << hTag
                         end
-                        aTags << hTag
                      end
                   end
 

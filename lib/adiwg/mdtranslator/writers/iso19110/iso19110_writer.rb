@@ -12,6 +12,7 @@
 # 	Stan Smith 2014-12-01 original script
 
 require 'builder'
+require_relative 'version'
 require_relative 'classes/class_fcFeatureCatalogue'
 
 module ADIWG
@@ -35,7 +36,8 @@ module ADIWG
                @domains = dictionary[:domains]
 
                # set the format of the output file based on the writer specified
-               responseObj[:writerFormat] = 'xml'
+               responseObj[:writerOutputFormat] = 'xml'
+               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
 
                # create new XML document
                xml = Builder::XmlMarkup.new(indent: 3)

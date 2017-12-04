@@ -1,0 +1,102 @@
+<metadata>
+  <idinfo>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <beggeol>
+            <geolscal>start geologic age time scale</geolscal>
+            <geolest>start geologic age estimate</geolest>
+            <geolun>start geologic age uncertainty</geolun>
+            <geolexpl>start geologic age explanation</geolexpl>
+            <geolcit>
+              <citeinfo>
+                <origin>contact three</origin>
+                <pubdate>2017-11-22</pubdate>
+                <pubtime>17:06:43-10:00</pubtime>
+                <title>start geologic age reference title 1</title>
+                <pubinfo>
+                  <pubplace>city, admin area, country</pubplace>
+                  <publish>contact three</publish>
+                </pubinfo>
+              </citeinfo>
+            </geolcit>
+            <geolcit>
+              <citeinfo>
+                <origin>contact three</origin>
+                <pubdate>2011-04</pubdate>
+                <title>start geologic age reference title 2</title>
+                <pubinfo>
+                  <pubplace>city, admin area, country</pubplace>
+                  <publish>contact three</publish>
+                </pubinfo>
+              </citeinfo>
+            </geolcit>
+          </beggeol>
+          <endgeol>
+            <geolscal>end geologic age time scale</geolscal>
+            <geolest>end geologic age estimate</geolest>
+            <geolun>end geologic age uncertainty</geolun>
+            <geolexpl>end geologic age explanation</geolexpl>
+            <geolcit>
+              <citeinfo>
+                <origin>contact three</origin>
+                <pubdate>2004</pubdate>
+                <title>end geologic age reference title</title>
+                <pubinfo>
+                  <pubplace>city, admin area, country</pubplace>
+                  <publish>contact three</publish>
+                </pubinfo>
+              </citeinfo>
+            </geolcit>
+          </endgeol>
+        </rngdates>
+      </timeinfo>
+    </timeperd>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <beggeol>
+            <geolscal>start geologic age time scale</geolscal>
+            <geolest>start geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </beggeol>
+          <endgeol>
+            <geolscal>end geologic age time scale</geolscal>
+            <geolest>end geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </endgeol>
+        </rngdates>
+      </timeinfo>
+    </timeperd>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <geolage>
+            <geolscal>start geologic age time scale</geolscal>
+            <geolest>start geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </geolage>
+        </sngdate>
+      </timeinfo>
+    </timeperd>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <geolage>
+            <geolscal>end geologic age time scale</geolscal>
+            <geolest>end geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </geolage>
+        </sngdate>
+      </timeinfo>
+    </timeperd>
+  </idinfo>
+</metadata>

@@ -1,0 +1,111 @@
+{
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID003",
+         "isOrganization": false,
+         "name": "contact three",
+         "positionName": "positionName",
+         "address": [
+            {
+               "addressType": ["mailing","physical"],
+               "description": "address description",
+               "deliveryPoint": [
+                  "deliveryPoint0",
+                  "deliveryPoint1"
+               ],
+               "city": "city",
+               "administrativeArea": "admin area",
+               "postalCode": "postal code",
+               "country": "country"
+            }
+         ]
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "citation title",
+            "date": [
+               {
+                  "date": "2017-11-22T17:06:43-10:00",
+                  "dateType": "publication"
+               }
+            ],
+            "edition": "citation edition",
+            "responsibleParty": [
+               {
+                  "role": "originator",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               },
+               {
+                  "role": "publisher",
+                  "party": [
+                     {
+                        "contactId": "CID003"
+                     }
+                  ]
+               }
+            ],
+            "series": {
+               "seriesName": "series name",
+               "seriesIssue": "series issue",
+               "issuePage": "issue page"
+            }
+         },
+         "abstract": "abstract",
+         "purpose": "purpose",
+         "timePeriod": {
+            "startDateTime": "2017-11-24"
+         },
+         "status": [
+            "status0"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID003"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "resourceMaintenance": [
+            {
+               "frequency": "resource maintenance frequency 0"
+            }
+         ]
+      }
+   }
+}

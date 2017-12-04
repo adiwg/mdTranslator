@@ -2,87 +2,80 @@
 # writers / iso19110 / class_onlineResource
 
 # History:
-#   Stan Smith 2017-02-01 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-02-01 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110OnlineResource < MiniTest::Test
+class TestWriter19110OnlineResource < TestWriter19110Parent
 
-    # read the ISO 19110 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_onlineResource.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gmd:onlineResource') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter19110Parent.get_xml('19110_onlineResource.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19110_onlineResource.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter19110Parent.get_json('19110_onlineResource.json')
 
-    def test_19110_onlineResource_single
+   def test_19110_onlineResource_single
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['contact'][0]['onlineResource'].delete_at(1)
-        hJson['contact'][0]['onlineResource'].delete_at(1)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:onlineResource[1]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['contact'][0]['onlineResource'].delete_at(1)
+      hJson['contact'][0]['onlineResource'].delete_at(1)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:onlineResource')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:onlineResource')
 
-        assert_equal @@aRefXML[0].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
-    def test_19110_onlineResource_empty_elements
+   def test_19110_onlineResource_empty_elements
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['contact'][0]['onlineResource'].delete_at(0)
-        hJson['contact'][0]['onlineResource'].delete_at(1)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:onlineResource[2]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['contact'][0]['onlineResource'].delete_at(0)
+      hJson['contact'][0]['onlineResource'].delete_at(1)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:onlineResource')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:onlineResource')
 
-        assert_equal @@aRefXML[1].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
-    def test_19110_onlineResource_missing_elements
+   def test_19110_onlineResource_missing_elements
 
-        hJson = JSON.parse(@@mdJson)
-        hJson['contact'][0]['onlineResource'].delete_at(0)
-        hJson['contact'][0]['onlineResource'].delete_at(0)
-        jsonIn = hJson.to_json
+      xExpect = @@xFile.xpath('//gmd:onlineResource[3]')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hJson = JSON.parse(@@mdJson)
+      hJson['contact'][0]['onlineResource'].delete_at(0)
+      hJson['contact'][0]['onlineResource'].delete_at(0)
+      jsonIn = hJson.to_json
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        checkXML = XPath.first(iso_out, '//gmd:onlineResource')
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath('//gmd:onlineResource')
 
-        assert_equal @@aRefXML[2].to_s.squeeze, checkXML.to_s.squeeze
+      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
-    end
+   end
 
 end

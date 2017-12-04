@@ -1,109 +1,111 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title",
-        "date": [
-          {
-            "date": "2016",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14Z",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12Z",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34Z",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34.567",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34.567Z",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34.567-09",
-            "dateType": "publication"
-          },
-          {
-            "date": "2016-12-22T14:12:34.567-09:15",
-            "dateType": "publication"
-          }
-        ]
-      },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
-            {
-              "contactId": "CID001"
-            }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
       }
-    }
-  }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
+            {
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ]
+      },
+      "resourceInfo": {
+         "resourceType": [
+            {
+               "type": "type",
+               "name": "name"
+            }
+         ],
+         "citation": {
+            "title": "title",
+            "date": [
+               {
+                  "date": "2016",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14Z",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12Z",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34Z",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34.567",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34.567Z",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34.567-09",
+                  "dateType": "publication"
+               },
+               {
+                  "date": "2016-12-22T14:12:34.567-09:15",
+                  "dateType": "publication"
+               }
+            ]
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
+            {
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         }
+      }
+   }
 }

@@ -41,7 +41,7 @@ module ADIWG
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                   @xml.comment!('ISO 19110 METADATA')
-                  @xml.comment!('Metadata file was constructed using the ADIwg mdTranslator, http://mdtranslator.adiwg.org')
+                  @xml.comment!('The following metadata file was constructed using the ADIwg mdTranslator, http://mdtranslator.adiwg.org')
                   @xml.comment!('mdTranslator software is an open-source project of the Alaska Data Integration working group (ADIwg)')
                   @xml.comment!('mdTranslator and other metadata tools are available at https://github.com/adiwg')
                   @xml.comment!('ADIwg is not responsible for the content of this metadata record')

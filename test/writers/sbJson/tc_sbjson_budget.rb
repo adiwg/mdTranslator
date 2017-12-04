@@ -20,7 +20,17 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
          writer: 'sbJson', showAllTags: false)
 
       expect = {
-         'className' => 'gov.sciencebase.catalog.item.facet.BudgetFacet',
+         'parts' => [
+            {
+               'type' => 'Agreement Number',
+               'value' => '123-456'
+            },
+            {
+               'type' => 'Agreement Number',
+               'value' => '123-789'
+            }
+         ],
+         'totalFunds' => 99999.0,
          'annualBudgets' => [
             {
                'fundingSources' => [
@@ -69,7 +79,8 @@ class TestWriterSbJsonBudget < TestWriterSbJsonParent
                ],
                'totalFunds' => 90000.0
             }
-         ]
+         ],
+         'className' => 'gov.sciencebase.catalog.item.facet.BudgetFacet'
       }
 
       hJsonOut = JSON.parse(metadata[:writerOutput])

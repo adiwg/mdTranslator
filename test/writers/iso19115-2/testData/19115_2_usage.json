@@ -1,117 +1,119 @@
 {
-  "schema": {
-    "name": "mdJson",
-    "version": "2.0.0"
-  },
-  "contact": [
-    {
-      "contactId": "CID001",
-      "isOrganization": false,
-      "name": "contact - minimal"
-    }
-  ],
-  "metadata": {
-    "metadataInfo": {
-      "metadataContact": [
-        {
-          "role": "metadataContact",
-          "party": [
+   "schema": {
+      "name": "mdJson",
+      "version": "2.0.0"
+   },
+   "contact": [
+      {
+         "contactId": "CID001",
+         "isOrganization": false,
+         "name": "contact - minimal"
+      }
+   ],
+   "metadata": {
+      "metadataInfo": {
+         "metadataContact": [
             {
-              "contactId": "CID001"
+               "role": "metadataContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
             }
-          ]
-        }
-      ]
-    },
-    "resourceInfo": {
-      "resourceType": [
-        {
-          "type": "type",
-          "name": "name"
-        }
-      ],
-      "citation": {
-        "title": "title"
+         ]
       },
-      "abstract": "abstract",
-      "status": ["status"],
-      "pointOfContact": [
-        {
-          "role": "pointOfContact",
-          "party": [
+      "resourceInfo": {
+         "resourceType": [
             {
-              "contactId": "CID001"
+               "type": "type",
+               "name": "name"
             }
-          ]
-        }
-      ],
-      "defaultResourceLocale": {
-        "language": "eng",
-        "country": "USA",
-        "characterSet": "UTF-8"
-      },
-      "resourceUsage": [
-        {
-          "specificUsage": "specificUsage0",
-          "temporalExtent": [
+         ],
+         "citation": {
+            "title": "title"
+         },
+         "abstract": "abstract",
+         "status": [
+            "status"
+         ],
+         "pointOfContact": [
             {
-              "timeInstant": {
-                "dateTime": "2016-10-24T11:10:15.2-10:00"
-              }
+               "role": "pointOfContact",
+               "party": [
+                  {
+                     "contactId": "CID001"
+                  }
+               ]
+            }
+         ],
+         "defaultResourceLocale": {
+            "language": "eng",
+            "country": "USA",
+            "characterSet": "UTF-8"
+         },
+         "resourceUsage": [
+            {
+               "specificUsage": "specificUsage0",
+               "temporalExtent": [
+                  {
+                     "timeInstant": {
+                        "dateTime": "2016-10-24T11:10:15.2-10:00"
+                     }
+                  },
+                  {
+                     "timePeriod": {
+                        "startDateTime": "2016-10-24T11:10:15.2-10:00"
+                     }
+                  }
+               ],
+               "userDeterminedLimitation": "userDeterminedLimitation0",
+               "limitationResponse": [
+                  "limitationResponse0",
+                  "limitationResponse1"
+               ],
+               "documentedIssue": {
+                  "title": "title0"
+               },
+               "additionalDocumentation": [
+                  {
+                     "title": "title1"
+                  },
+                  {
+                     "title": "title2"
+                  }
+               ],
+               "userContactInfo": [
+                  {
+                     "role": "role0",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  },
+                  {
+                     "role": "role1",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
+                  }
+               ]
             },
             {
-              "timePeriod": {
-                "startDateTime": "2016-10-24T11:10:15.2-10:00"
-              }
-            }
-          ],
-          "userDeterminedLimitation": "userDeterminedLimitation0",
-          "limitationResponse": [
-            "limitationResponse0",
-            "limitationResponse1"
-          ],
-          "documentedIssue": {
-            "title": "title0"
-          },
-          "additionalDocumentation": [
-            {
-              "title": "title1"
+               "specificUsage": "specificUsage1",
+               "temporalExtent": [],
+               "userDeterminedLimitation": "",
+               "limitationResponse": [],
+               "additionalDocumentation": [],
+               "userContactInfo": []
             },
             {
-              "title": "title2"
+               "specificUsage": "specificUsage2"
             }
-          ],
-          "userContactInfo": [
-            {
-              "role": "role0",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            },
-            {
-              "role": "role1",
-              "party": [
-                {
-                  "contactId": "CID001"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "specificUsage": "specificUsage1",
-          "temporalExtent": [],
-          "userDeterminedLimitation": "",
-          "limitationResponse": [],
-          "additionalDocumentation": [],
-          "userContactInfo": []
-        },
-        {
-          "specificUsage": "specificUsage2"
-        }
-      ]
-    }
-  }
+         ]
+      }
+   }
 }

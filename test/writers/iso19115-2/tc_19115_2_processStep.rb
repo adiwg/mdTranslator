@@ -2,44 +2,35 @@
 # writers / iso19115_2 / class_processStep
 
 # History:
-#   Stan Smith 2017-01-05 original script
+#  Stan Smith 2017-11-20 replace REXML with Nokogiri
+#  Stan Smith 2017-01-05 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152ProcessStep < MiniTest::Test
+class TestWriter191152ProcessStep < TestWriter191152Parent
 
-   # read the ISO 19115-2 reference file
-   fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_processStep.xml')
-   file = File.new(fname)
-   @@iso_xml = Document.new(file)
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter191152Parent.get_xml('19115_2_processStep.xml')
 
    # read the mdJson 2.0 file
-   fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_processStep.json')
-   file = File.open(fname, 'r')
-   @@mdJson = file.read
-   file.close
+   @@mdJson = TestWriter191152Parent.get_json('19115_2_processStep.json')
 
    def test_19115_2_processStep
 
-      aRefXML = []
-      XPath.each(@@iso_xml, '//gmd:processStep') {|e| aRefXML << e}
+      axExpect = @@xFile.xpath('//gmd:processStep')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
       )
 
-      metadata = hResponseObj[:writerOutput]
-      iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmd:processStep')
 
-      aCheckXML = []
-      XPath.each(iso_out, '//gmd:processStep') {|e| aCheckXML << e}
-
-      aRefXML.length.times {|i|
-         assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
       }
 
    end

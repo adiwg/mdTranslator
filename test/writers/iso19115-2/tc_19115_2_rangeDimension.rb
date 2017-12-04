@@ -2,44 +2,35 @@
 # writers / iso19115_2 / class_rangeDimension
 
 # History:
-#   Stan Smith 2017-01-06 original script
+#  Stan Smith 2017-11-20 replace REXML with Nokogiri
+#  Stan Smith 2017-01-06 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152RangeDimension < MiniTest::Test
+class TestWriter191152RangeDimension < TestWriter191152Parent
 
-    # read the ISO 19115-2 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19115_2_rangeDimension.xml')
-    file = File.new(fname)
-    @@iso_xml = Document.new(file)
+    # read the ISO 19110 reference file
+    @@xFile = TestWriter191152Parent.get_xml('19115_2_rangeDimension.xml')
 
     # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19115_2_rangeDimension.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+    @@mdJson = TestWriter191152Parent.get_json('19115_2_rangeDimension.json')
 
     def test_19115_2_rangeDimension
 
-        aRefXML = []
-        XPath.each(@@iso_xml, '//gmd:dimension') {|e| aRefXML << e}
+        axExpect = @@xFile.xpath('//gmd:dimension')
 
         hResponseObj = ADIWG::Mdtranslator.translate(
             file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
         )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+        xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+        axGot = xMetadata.xpath('//gmd:dimension')
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmd:dimension') {|e| aCheckXML << e}
-
-        aRefXML.length.times{|i|
-            assert_equal aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
+        axExpect.length.times {|i|
+            assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
         }
 
     end

@@ -16,51 +16,94 @@
       <dsgpoly>
         <dsgpolyo>
           <grngpoin>
-            <grnglat>1.0</grnglat>
-            <grnglon>1.0</grnglon>
+            <grnglat>100.0</grnglat>
+            <grnglon>10.0</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>2.0</grnglat>
-            <grnglon>21.0</grnglon>
+            <grnglat>101.0</grnglat>
+            <grnglon>10.0</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>9.0</grnglat>
-            <grnglon>25.0</grnglon>
+            <grnglat>101.0</grnglat>
+            <grnglon>11.0</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>10.0</grnglat>
-            <grnglon>6.0</grnglon>
+            <grnglat>100.0</grnglat>
+            <grnglon>11.0</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>1.0</grnglat>
-            <grnglon>1.0</grnglon>
+            <grnglat>100.0</grnglat>
+            <grnglon>10.0</grnglon>
           </grngpoin>
         </dsgpolyo>
         <dsgpolyx>
           <grngpoin>
-            <grnglat>6.0</grnglat>
-            <grnglon>10.0</grnglon>
+            <grnglat>110.8</grnglat>
+            <grnglon>10.8</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>7.0</grnglat>
-            <grnglon>14.0</grnglon>
+            <grnglat>110.8</grnglat>
+            <grnglon>10.2</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>8.0</grnglat>
-            <grnglon>13.0</grnglon>
+            <grnglat>110.2</grnglat>
+            <grnglon>10.2</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>8.0</grnglat>
-            <grnglon>7.0</grnglon>
+            <grnglat>110.2</grnglat>
+            <grnglon>10.8</grnglon>
           </grngpoin>
           <grngpoin>
-            <grnglat>6.0</grnglat>
-            <grnglon>10.0</grnglon>
+            <grnglat>110.8</grnglat>
+            <grnglon>10.8</grnglon>
           </grngpoin>
         </dsgpolyx>
         <dsgpolyx>
-          <gring>12.0 3.0, 18.0 4.0, 19.0 5.0, 12.0 5.0, 12.0 3.0</gring>
+          <grngpoin>
+            <grnglat>120.8</grnglat>
+            <grnglon>10.8</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>120.8</grnglat>
+            <grnglon>10.2</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>120.2</grnglat>
+            <grnglon>10.2</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>120.2</grnglat>
+            <grnglon>10.8</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>120.8</grnglat>
+            <grnglon>10.8</grnglon>
+          </grngpoin>
         </dsgpolyx>
+      </dsgpoly>
+      <dsgpoly>
+        <dsgpolyo>
+          <grngpoin>
+            <grnglat>200.0</grnglat>
+            <grnglon>20.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>201.0</grnglat>
+            <grnglon>20.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>201.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>200.0</grnglat>
+            <grnglon>21.0</grnglon>
+          </grngpoin>
+          <grngpoin>
+            <grnglat>200.0</grnglat>
+            <grnglon>20.0</grnglon>
+          </grngpoin>
+        </dsgpolyo>
       </dsgpoly>
     </spdom>
   </idinfo>

@@ -16,3 +16,7 @@ Standards that are now encouraged for use.
 
 The FGDC CSDGM format standard is fully documented on the 
 [Content Standard for Digital Geospatial Metadata page](https://www.fgdc.gov/metadata/csdgm-standard).
+
+This FGDC reader extends the FGDC standard by added the Biological Data Profile 
+FGDC-STD-001.1-1999 as defined by the U.S. Geological Survey National Biological
+Information Infrastructure (NBII).

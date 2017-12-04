@@ -2,48 +2,37 @@
 # writers / iso19110 / class_locale
 
 # History:
-#   Stan Smith 2017-01-31 original script
+#  Stan Smith 2017-11-18 replace REXML with Nokogiri
+#  Stan Smith 2017-01-31 original script
 
 require 'minitest/autorun'
 require 'json'
-require 'rexml/document'
 require 'adiwg/mdtranslator'
-include REXML
+require_relative 'iso19110_test_parent'
 
-class TestWriter19110Locale < MiniTest::Test
+class TestWriter19110Locale < TestWriter19110Parent
 
-    # read the ISO 19110 reference file
-    fname = File.join(File.dirname(__FILE__), 'resultXML', '19110_locale.xml')
-    file = File.new(fname)
-    iso_xml = Document.new(file)
-    @@aRefXML = []
-    XPath.each(iso_xml, '//gmx:locale') {|e| @@aRefXML << e}
+   # read the ISO 19110 reference file
+   @@xFile = TestWriter19110Parent.get_xml('19110_locale.xml')
 
-    # read the mdJson 2.0 file
-    fname = File.join(File.dirname(__FILE__), 'testData', '19110_locale.json')
-    file = File.open(fname, 'r')
-    @@mdJson = file.read
-    file.close
+   # read the mdJson 2.0 file
+   @@mdJson = TestWriter19110Parent.get_json('19110_locale.json')
 
-    def test_19110_locale
+   def test_19110_locale
 
-        hJson = JSON.parse(@@mdJson)
-        jsonIn = hJson.to_json
+      axExpect = @@xFile.xpath('//gmx:locale')
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-        )
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+      )
 
-        metadata = hResponseObj[:writerOutput]
-        iso_out = Document.new(metadata)
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      axGot = xMetadata.xpath('//gmx:locale')
 
-        aCheckXML = []
-        XPath.each(iso_out, '//gmx:locale') {|e| aCheckXML << e}
+      axExpect.length.times {|i|
+         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
+      }
 
-        @@aRefXML.length.times{|i|
-            assert_equal @@aRefXML[i].to_s.squeeze, aCheckXML[i].to_s.squeeze
-        }
-
-    end
+   end
 
 end
