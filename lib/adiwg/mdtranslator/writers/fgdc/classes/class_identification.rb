@@ -87,7 +87,7 @@ module ADIWG
                      # <- hResourceInfo[:timePeriod]
                      unless hResourceInfo[:timePeriod].empty?
                         @xml.tag!('timeperd') do
-                           timePeriodClass.writeXML(hResourceInfo[:timePeriod])
+                           timePeriodClass.writeXML(hResourceInfo[:timePeriod], 'current')
                         end
                      end
                      if hResourceInfo[:timePeriod].empty?

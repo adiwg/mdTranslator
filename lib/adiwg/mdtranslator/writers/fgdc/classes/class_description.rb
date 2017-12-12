@@ -34,7 +34,7 @@ module ADIWG
                      @hResponseObj[:writerMessages] << 'Description is missing purpose'
                   end
 
-                  # description 1.2.3 (supplinf) - supplemental information (required)
+                  # description 1.2.3 (supplinf) - supplemental information
                   # <- hResourceInfo[:supplementalInfo]
                   unless hResourceInfo[:supplementalInfo].nil?
                      @xml.tag!('supplinf', hResourceInfo[:supplementalInfo])

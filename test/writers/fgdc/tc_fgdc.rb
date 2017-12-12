@@ -2,7 +2,8 @@
 # writers / fgdc / class_fgdc
 
 # History:
-#   Stan Smith 2017-11-16 original script
+#  Stan Smith 2017-12-01 build mdJson from hash objects
+#  Stan Smith 2017-11-16 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -10,20 +11,24 @@ require 'rubygems'
 require 'adiwg/mdtranslator'
 require 'adiwg/mdtranslator/writers/fgdc/version'
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
 
 class TestWriterFgdcFgdc < TestReaderFgdcParent
 
-   # read the input json file
-   @@mdJson = TestReaderFgdcParent.get_json('fgdc')
+   # instance classes needed in script
+   @@TDClass = FgdcWriterTD.new
 
    def test_fgdc
 
       # read the fgdc reference file
       xFile = TestReaderFgdcParent.get_xml('fgdc')
-      xExpect = xFile.xpath('//metadata')
+      expect = xFile.xpath('./metadata').to_s.squeeze(' ')
+
+      # build mdJson in hash
+      mdHash = @@TDClass.base
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       translatorVersion = ADIWG::Mdtranslator::VERSION
@@ -31,7 +36,7 @@ class TestWriterFgdcFgdc < TestReaderFgdcParent
       schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
 
       assert_equal 'mdJson', hResponseObj[:readerRequested]
-      assert_equal '2.0.0', hResponseObj[:readerVersionRequested]
+      assert_equal '2.3.0', hResponseObj[:readerVersionRequested]
       assert_equal schemaVersion, hResponseObj[:readerVersionUsed]
       assert hResponseObj[:readerStructurePass]
       assert_empty hResponseObj[:readerStructureMessages]
@@ -50,9 +55,9 @@ class TestWriterFgdcFgdc < TestReaderFgdcParent
       assert_equal translatorVersion, hResponseObj[:translatorVersion]
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//metadata')
+      got = xMetadata.xpath('./metadata').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
    end
 

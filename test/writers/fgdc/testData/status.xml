@@ -21,8 +21,8 @@
       </timeinfo>
     </timeperd>
     <status>
-      <progress>status 0</progress>
-      <update>resource maintenance frequency 0</update>
+      <progress>status 1</progress>
+      <update>resource maintenance frequency</update>
     </status>
   </idinfo>
 </metadata>

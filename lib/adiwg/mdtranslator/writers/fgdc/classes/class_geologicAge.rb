@@ -2,7 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-24 original script
+#  Stan Smith 2017-11-24 original script
 
 require_relative 'class_citation'
 

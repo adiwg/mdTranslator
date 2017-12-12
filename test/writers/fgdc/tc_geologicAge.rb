@@ -2,101 +2,110 @@
 # writers / fgdc / class_geologicAge
 
 # History:
-#   Stan Smith 2017-11-24 original script
+#  Stan Smith 2017-11-24 original script
 
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriterFgdcGeologicAge < TestReaderFgdcParent
 
-   # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_hash('geologicAge')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
+   
+   # get expected results
+   xExpect = TestReaderFgdcParent.get_xml('geologicAgeResults')
+   @@axExpect = xExpect.xpath('//timeperd')
 
-   # read the xml expected results
-   xDoc = TestReaderFgdcParent.get_xml('geologicAgeResults')
-   @@axExpect = xDoc.xpath('//timeperd')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
+   hTimePeriod = mdHash[:metadata][:resourceInfo][:timePeriod]
+   hTimePeriod.delete(:startDateTime)
+   hTimePeriod[:startGeologicAge] = TDClass.build_geologicAge
+   hTimePeriod[:startGeologicAge][:ageReference] << TDClass.build_citation('start geologic age reference one', 'CID001')
+   hTimePeriod[:startGeologicAge][:ageReference] << TDClass.build_citation('start geologic age reference two', 'CID001')
+   hTimePeriod[:endGeologicAge] = TDClass.build_geologicAge
+   hTimePeriod[:endGeologicAge][:ageReference] << TDClass.build_citation('end geologic age reference one', 'CID001')
 
-   # TODO add schema validation test after schema update
+   @@mdHash = mdHash
 
    def test_geologicAge_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('geologicAge', './metadata/idinfo/timeperd')
-      assert_equal aReturn[0], aReturn[1]
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'geologicAge', './metadata/idinfo/timeperd')
+      assert_equal hReturn[0], hReturn[1]
 
    end
 
    def test_geologicAge_missing_elements
 
-      xExpect = @@axExpect[1]
+      expect = @@axExpect[0].to_s.squeeze(' ')
 
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageReference')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageReference')
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageReference)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
 
       # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       xGot = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xGot.xpath('./metadata/idinfo/timeperd')
+      got = xGot.xpath('./metadata/idinfo/timeperd').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
    end
 
    def test_geologicAge_single_age
 
       # start age only
-      xExpect = @@axExpect[2]
+      expect = @@axExpect[1].to_s.squeeze(' ')
 
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageReference')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageReference')
-      hIn['metadata']['resourceInfo']['timePeriod'].delete('endGeologicAge')
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageReference)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
+      hIn[:metadata][:resourceInfo][:timePeriod].delete(:endGeologicAge)
 
       # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       xGot = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xGot.xpath('./metadata/idinfo/timeperd')
+      got = xGot.xpath('./metadata/idinfo/timeperd').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
       # end age only
-      xExpect = @@axExpect[3]
+      expect = @@axExpect[2].to_s.squeeze(' ')
 
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['startGeologicAge'].delete('ageReference')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageUncertainty')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageExplanation')
-      hIn['metadata']['resourceInfo']['timePeriod']['endGeologicAge'].delete('ageReference')
-      hIn['metadata']['resourceInfo']['timePeriod'].delete('startGeologicAge')
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge].delete(:ageReference)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageUncertainty)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageExplanation)
+      hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
+      hIn[:metadata][:resourceInfo][:timePeriod].delete(:startGeologicAge)
 
       # TODO validate 'normal' after schema udpdate
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       xGot = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xGot.xpath('./metadata/idinfo/timeperd')
+      got = xGot.xpath('./metadata/idinfo/timeperd').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
    end
 

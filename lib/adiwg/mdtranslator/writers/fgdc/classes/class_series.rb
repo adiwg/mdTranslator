@@ -2,7 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-21 original script
+#  Stan Smith 2017-11-21 original script
 
 module ADIWG
    module Mdtranslator

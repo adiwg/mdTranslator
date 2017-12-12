@@ -65,6 +65,7 @@ module ADIWG
                      # citation 8.3 (pubtime) - publication time
                      # <- hCitation[:dates] dateType = 'publication'
                      havePubDate = false
+                     havePubTime = false
                      hCitation[:dates].each do |hDate|
                         unless hDate.empty?
                            unless hDate[:dateType].nil?
@@ -77,6 +78,7 @@ module ADIWG
                                  end
                                  unless pubTime == 'ERROR'
                                     @xml.tag!('pubtime', pubTime)
+                                    havePubTime = true
                                  end
                                  break
                               end
@@ -86,6 +88,9 @@ module ADIWG
                      unless havePubDate
                         @hResponseObj[:writerPass] = false
                         @hResponseObj[:writerMessages] << 'Citation is missing publication date'
+                     end
+                     if !havePubTime && @hResponseObj[:writerShowTags]
+                        @xml.tag!('pubtime')
                      end
 
                      # citation 8.4 (title) - title (required)
@@ -103,6 +108,9 @@ module ADIWG
                      unless hCitation[:edition].nil?
                         @xml.tag!('edition', hCitation[:edition])
                      end
+                     if hCitation[:edition].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('edition')
+                     end
 
                      # citation 8.6 (geoform) - geospatial data presentation form
                      # <- hCitation[:presentationForm] [] - take first
@@ -112,6 +120,9 @@ module ADIWG
                            break
                         end
                      end
+                     if hCitation[:presentationForms].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('geoform')
+                     end
 
                      # citation 8.7 (serinfo) - series information
                      # <- hCitation[:series]
@@ -120,24 +131,35 @@ module ADIWG
                            seriesClass.writeXML(hCitation[:series])
                         end
                      end
+                     if hCitation[:series].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('serinfo')
+                     end
 
                      # citation 8.8 (pubinfo) - publication information
                      # <- hCitation[:responsibleParties] role = 'publisher'
                      # only take first publisher
+                     havePublisher = false
                      aPublisher = find_responsibility(hCitation, 'publisher')
                      unless aPublisher.empty?
                         hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aPublisher[0])
                         unless hContact.empty?
                            @xml.tag!('pubinfo') do
                               pubClass.writeXML(hContact)
+                              havePublisher = true
                            end
                         end
+                     end
+                     if !havePublisher && @hResponseObj[:writerShowTags]
+                        @xml.tag!('pubinfo')
                      end
 
                      # citation 8.9 (othercit) - other citation details
                      # <- hCitation[:otherDetails][0] - take first
                      unless hCitation[:otherDetails].empty?
                         @xml.tag!('othercit', hCitation[:otherDetails][0])
+                     end
+                     if hCitation[:otherDetails].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('othercit')
                      end
 
                      # citation 8.10 (onlink) - online linkage []
@@ -147,19 +169,27 @@ module ADIWG
                            @xml.tag!('onlink', hOnline[:olResURI])
                         end
                      end
+                     if hCitation[:onlineResources].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('onlink')
+                     end
 
                      # citation 8.11 (lworkcit) - larger work citation
                      # <- associatedResource[] - associationType = 'largerWorkCitation' take first
                      # <- associatedResource[:resourceCitation]
+                     haveLarger = false
                      aAssocResource.each do |hResource|
                         if hResource[:associationType] == 'largerWorkCitation'
                            unless hResource[:resourceCitation].empty?
                               @xml.tag!('lworkcit') do
                                  citationClass.writeXML(hResource[:resourceCitation], [])
+                                 haveLarger = true
                               end
                               break
                            end
                         end
+                     end
+                     if !haveLarger && @hResponseObj[:writerShowTags]
+                        @xml.tag!('lworkcit')
                      end
 
                   end # citeinfo tag

@@ -3,7 +3,7 @@
   <idinfo>
     <citation>
       <citeinfo>
-        <origin>contact one</origin>
+        <origin>person name</origin>
         <pubdate>2017-11-22</pubdate>
         <title>title</title>
       </citeinfo>
@@ -20,6 +20,7 @@
           <enddate>2017-11-23</enddate>
           <endtime>17:19:58</endtime>
         </rngdates>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
   </idinfo>

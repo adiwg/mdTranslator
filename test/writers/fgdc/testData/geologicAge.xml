@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>contact one</origin>
+        <pubdate>2017-11-22</pubdate>
+        <title>title</title>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>abstract</abstract>
+      <purpose>purpose</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <beggeol>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun>geologic age uncertainty</geolun>
+            <geolexpl>geologic age explanation</geolexpl>
+            <geolcit>
+              <citeinfo>
+                <origin>person name</origin>
+                <pubdate>2017-11-22</pubdate>
+                <pubtime/>
+                <title>start geologic age reference one</title>
+                <edition/>
+                <geoform/>
+                <serinfo/>
+                <pubinfo/>
+                <othercit/>
+                <onlink/>
+                <lworkcit/>
+              </citeinfo>
+            </geolcit>
+            <geolcit>
+              <citeinfo>
+                <origin>person name</origin>
+                <pubdate>2017-11-22</pubdate>
+                <pubtime/>
+                <title>start geologic age reference two</title>
+                <edition/>
+                <geoform/>
+                <serinfo/>
+                <pubinfo/>
+                <othercit/>
+                <onlink/>
+                <lworkcit/>
+              </citeinfo>
+            </geolcit>
+          </beggeol>
+          <endgeol>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun>geologic age uncertainty</geolun>
+            <geolexpl>geologic age explanation</geolexpl>
+            <geolcit>
+              <citeinfo>
+                <origin>person name</origin>
+                <pubdate>2017-11-22</pubdate>
+                <pubtime/>
+                <title>end geologic age reference one</title>
+                <edition/>
+                <geoform/>
+                <serinfo/>
+                <pubinfo/>
+                <othercit/>
+                <onlink/>
+                <lworkcit/>
+              </citeinfo>
+            </geolcit>
+          </endgeol>
+        </rngdates>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+  </idinfo>
+</metadata>

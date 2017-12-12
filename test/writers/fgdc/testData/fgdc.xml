@@ -5,7 +5,15 @@
       <citeinfo>
         <origin>person name</origin>
         <pubdate>2017-11-22</pubdate>
-        <title>title</title>
+        <pubtime/>
+        <title>citation title</title>
+        <edition/>
+        <geoform/>
+        <serinfo/>
+        <pubinfo/>
+        <othercit/>
+        <onlink/>
+        <lworkcit/>
       </citeinfo>
     </citation>
     <descript>
@@ -15,15 +23,26 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-11-24</caldate>
+          <caldate>2017-12-01</caldate>
           <time/>
         </sngdate>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <status>
-      <progress>status 0</progress>
-      <update>resource maintenance frequency 0</update>
+      <progress>status 1</progress>
+      <update>resource maintenance frequency</update>
     </status>
+    <spdom>
+      <descgeog>FGDC spatial domain</descgeog>
+      <bounding>
+        <westbc>-166.0</westbc>
+        <eastbc>-74.0</eastbc>
+        <northbc>71.0</northbc>
+        <southbc>24.0</southbc>
+        <boundalt/>
+      </bounding>
+    </spdom>
     <keywords>
       <theme>
         <themekt>ISO 19115 Topic Category</themekt>
@@ -37,14 +56,15 @@
           <cntper>person name</cntper>
           <cntorg/>
         </cntperp>
-        <cntpos/>
+        <cntpos>position name</cntpos>
         <cntaddr>
           <addrtype>mailing</addrtype>
-          <address/>
+          <address>address line 1</address>
+          <address>address line 2</address>
           <city>city</city>
-          <state>admin area</state>
+          <state>administrative area</state>
           <postal>postal code</postal>
-          <country/>
+          <country>country</country>
         </cntaddr>
         <cntvoice>111-111-1111</cntvoice>
         <cnttdd/>

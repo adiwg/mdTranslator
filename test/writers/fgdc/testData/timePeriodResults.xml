@@ -8,6 +8,7 @@
           <enddate>2017-11-23</enddate>
           <endtime>17:19:58</endtime>
         </rngdates>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <timeperd>
@@ -18,6 +19,7 @@
           <enddate>2017-11-23</enddate>
           <endtime/>
         </rngdates>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <timeperd>
@@ -26,6 +28,7 @@
           <caldate>2017-11-24</caldate>
           <time>10:45:14.666</time>
         </sngdate>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <timeperd>
@@ -34,6 +37,7 @@
           <caldate>2017-11-24</caldate>
           <time/>
         </sngdate>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <timeperd>
@@ -42,6 +46,7 @@
           <caldate>2017-11-24</caldate>
           <time>10:48:17</time>
         </sngdate>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
     <timeperd>
@@ -50,6 +55,7 @@
           <caldate>2017-11-24</caldate>
           <time/>
         </sngdate>
+        <current>time info currentness</current>
       </timeinfo>
     </timeperd>
   </idinfo>

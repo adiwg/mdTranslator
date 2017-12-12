@@ -2,103 +2,106 @@
 # writers / fgdc / class_publisher
 
 # History:
-#   Stan Smith 2017-11-22 original script
+#  Stan Smith 2017-11-22 original script
 
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriterFgdcPublisher < TestReaderFgdcParent
 
-   # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_hash('publisher')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
 
-   # TODO add schema validation test after schema update
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   hRepParty = TDClass.build_responsibleParty('publisher', ['CID001'])
+   mdHash[:metadata][:resourceInfo][:citation][:responsibleParty] << hRepParty
+
+   @@mdHash = mdHash
 
    def test_publisher_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('publisher', './metadata/idinfo/citation/citeinfo/pubinfo')
-      assert_equal aReturn[0], aReturn[1]
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'publisher', './metadata/idinfo/citation/citeinfo/pubinfo')
+      assert_equal hReturn[0], hReturn[1]
 
    end
 
    def test_publisher_place
 
       # no address
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['contact'][0]['address'] = []
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Publisher is missing place of publication'
 
       # no country
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['contact'][0]['address'][0]['country'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:country] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
+      got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
-      assert_equal 'city, admin area', xGot
+      assert_equal 'city, administrative area', got
 
       # no admin area
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['contact'][0]['address'][0]['administrativeArea'] = ''
-      hIn['contact'][0]['address'][0]['country'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:administrativeArea] = ''
+      hIn[:contact][0][:address][0][:country] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
+      got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
-      assert_equal 'city', xGot
+      assert_equal 'city', got
 
       # no city
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['contact'][0]['address'][0]['city'] = ''
-      hIn['contact'][0]['address'][0]['administrativeArea'] = ''
-      hIn['contact'][0]['address'][0]['country'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:city] = ''
+      hIn[:contact][0][:address][0][:administrativeArea] = ''
+      hIn[:contact][0][:address][0][:country] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
+      got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
-      assert_equal 'address description', xGot
+      assert_equal 'address description', got
 
       # no description
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['contact'][0]['address'][0]['description'] = ''
-      hIn['contact'][0]['address'][0]['city'] = ''
-      hIn['contact'][0]['address'][0]['administrativeArea'] = ''
-      hIn['contact'][0]['address'][0]['country'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0]['description'] = ''
+      hIn[:contact][0][:address][0][:city] = ''
+      hIn[:contact][0][:address][0][:administrativeArea] = ''
+      hIn[:contact][0][:address][0][:country] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Publisher is missing place of publication'
 
    end
 

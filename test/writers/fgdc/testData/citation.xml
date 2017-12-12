@@ -1,0 +1,42 @@
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>person name three</origin>
+        <origin>person name two</origin>
+        <origin>person name four</origin>
+        <pubdate>2017-12-02</pubdate>
+        <pubtime>13:41:13</pubtime>
+        <title>citation title</title>
+        <edition>edition</edition>
+        <geoform>form one</geoform>
+        <serinfo>
+          <sername>series name</sername>
+          <issue>series issue</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>city, administrative area, country</pubplace>
+          <publish>person name</publish>
+        </pubinfo>
+        <othercit>other detail one</othercit>
+        <onlink>https://adiwg.mdtranslator/1</onlink>
+        <onlink>https://adiwg.mdtranslator/2</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+  </idinfo>
+</metadata>
