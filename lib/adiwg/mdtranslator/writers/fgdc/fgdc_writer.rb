@@ -42,6 +42,19 @@ module ADIWG
                return {}
             end
 
+            def self.find_responsibility(aResponsibility, roleName)
+               aParties = []
+               aResponsibility.each do |hRParty|
+                  if hRParty[:roleName] == roleName
+                     hRParty[:parties].each do |hParty|
+                        aParties << hParty[:contactId]
+                     end
+                  end
+               end
+               aParties = aParties.uniq
+               return aParties
+            end
+
          end
       end
    end

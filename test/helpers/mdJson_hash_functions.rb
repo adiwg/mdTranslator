@@ -82,6 +82,38 @@ class FgdcWriterTD
       return hFeature
    end
 
+   def build_identifier(id, namespace = nil, version = nil, description = nil)
+      hIdentifier = identifier
+      hIdentifier[:identifier] = id
+      unless namespace.nil?
+         hIdentifier[:namespace] = namespace
+      end
+      unless version.nil?
+         hIdentifier[:version] = version
+      end
+      unless description.nil?
+         hIdentifier[:description] = description
+      end
+      return hIdentifier
+   end
+
+   def build_taxonSystem(title, contactId, modifications = nil)
+      hTaxSystem = taxonSystem
+      hTaxSystem[:citation][:title] = title
+      hTaxSystem[:citation][:responsibleParty][0][:party][0][:contactId] = contactId
+      unless modifications.nil?
+         hTaxSystem[:modifications] = modifications
+      end
+      return hTaxSystem
+   end
+
+   def build_taxonVoucher(specimen, aContacts)
+      hVoucher = taxonVoucher
+      hVoucher[:specimen] = specimen
+      hVoucher[:repository] = build_responsibleParty('custodian', aContacts)
+      return hVoucher
+   end
+
    def add_address(hContact, aAddType)
       hAddress = address
       hAddress[:addressType] = aAddType
@@ -117,6 +149,20 @@ class FgdcWriterTD
    def add_featureCollection(hGeoElement)
       hGeoElement << featureCollection
       return hGeoElement
+   end
+
+   def add_taxonClass(hObject, rank, name, aCommon = [], id = nil)
+      hTaxClass = taxonClass
+      unless id.nil?
+         hTaxClass[:taxonomicSystemId] = id
+      end
+      hTaxClass[:taxonomicRank] = rank
+      hTaxClass[:latinName] = name
+      unless aCommon.empty?
+         hTaxClass[:commonName] = aCommon
+      end
+      hObject[:subClassification] << hTaxClass
+      return hObject
    end
 
 end

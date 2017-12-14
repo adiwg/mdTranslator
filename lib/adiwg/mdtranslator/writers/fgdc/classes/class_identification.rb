@@ -2,7 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-17 original script
+#  Stan Smith 2017-11-17 original script
 
 require_relative '../fgdc_writer'
 require_relative 'class_citation'
@@ -12,6 +12,7 @@ require_relative 'class_status'
 require_relative 'class_spatialDomain'
 require_relative 'class_keyword'
 require_relative 'class_contact'
+require_relative 'class_taxonomy'
 
 module ADIWG
    module Mdtranslator
@@ -25,19 +26,6 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def find_responsibility(aResponsibility, roleName)
-                  aParties = []
-                  aResponsibility.each do |hRParty|
-                     if hRParty[:roleName] == roleName
-                        hRParty[:parties].each do |hParty|
-                           aParties << hParty[:contactId]
-                        end
-                     end
-                  end
-                  aParties = aParties.uniq
-                  return aParties
-               end
-
                def writeXML(intObj)
 
                   # classes used
@@ -48,6 +36,7 @@ module ADIWG
                   spDomainClass = SpatialDomain.new(@xml, @hResponseObj)
                   keywordClass = Keyword.new(@xml, @hResponseObj)
                   contactClass = Contact.new(@xml, @hResponseObj)
+                  taxonomyClass = Taxonomy.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -116,12 +105,22 @@ module ADIWG
                      end
 
                      # identification information bio (taxonomy) - taxonomy
+                     unless hResourceInfo[:taxonomy].empty?
+                        @xml.tag!('taxonomy') do
+                           taxonomyClass.writeXML(hResourceInfo[:taxonomy], hResourceInfo[:keywords])
+                        end
+                     end
+                     if hResourceInfo[:taxonomy].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('taxonomy')
+                     end
+
                      # identification information 1.7 (accconst) - access constraint (required)
                      # identification information 1.8 (useconst) - use constraint (required)
 
                      # identification information 1.9 (ptcontac) - point of contact
                      unless hResourceInfo[:pointOfContacts].empty?
-                        aParties = find_responsibility(hResourceInfo[:pointOfContacts], 'pointOfContact')
+                        aRParties = hResourceInfo[:pointOfContacts]
+                        aParties = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'pointOfContact')
                         unless aParties.empty?
                            hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aParties[0])
                            unless hContact.empty?

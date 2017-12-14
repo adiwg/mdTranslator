@@ -205,6 +205,7 @@ class FgdcWriterTD
    def responsibleParty
       {
          role: nil,
+         roleExtent: [],
          party: []
       }
    end
@@ -396,6 +397,57 @@ class FgdcWriterTD
                [120.8, 10.8]
             ]
          ]
+      }
+   end
+
+   def identifier
+      {
+         identifier: 'identifier',
+         namespace: 'namespace',
+         version: 'version',
+         description: 'description',
+         authority: citation
+      }
+   end
+
+   def taxonomy
+      {
+         taxonomicSystem: [
+            taxonSystem
+         ],
+         generalScope: 'general scope',
+         identificationReference: [
+            identifier
+         ],
+         observer: [],
+         identificationProcedure: 'procedures',
+         identificationCompleteness: 'completeness',
+         voucher: [],
+         taxonomicClassification: taxonClass
+      }
+   end
+
+   def taxonSystem
+      {
+         citation: citation,
+         modifications: 'modifications'
+      }
+   end
+
+   def taxonClass
+      {
+         taxonomicSystemId: 'taxon id',
+         taxonomicRank: 'taxon rank',
+         latinName: 'latin name',
+         commonName: [],
+         subClassification: []
+      }
+   end
+
+   def taxonVoucher
+      {
+         specimen: 'specimen',
+         repository: responsibleParty
       }
    end
 

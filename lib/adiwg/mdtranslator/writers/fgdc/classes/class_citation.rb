@@ -5,6 +5,7 @@
 #   Stan Smith 2017-11-17 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
+require_relative '../fgdc_writer'
 require_relative 'class_series'
 require_relative 'class_publisher'
 require_relative 'class_citation'
@@ -21,19 +22,6 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def find_responsibility(hCitation, roleName)
-                  aParties = []
-                  hCitation[:responsibleParties].each do |hRParty|
-                     if hRParty[:roleName] == roleName
-                        hRParty[:parties].each do |hParty|
-                           aParties << hParty[:contactId]
-                        end
-                     end
-                  end
-                  aParties = aParties.uniq
-                  return aParties
-               end
-
                def writeXML(hCitation, aAssocResource)
 
                   seriesClass = Series.new(@xml, @hResponseObj)
@@ -45,7 +33,8 @@ module ADIWG
                      # citation 8.1 (origin) - originator [] (required)
                      # <- hCitation[:responsibleParties] role = 'originator'
                      haveOriginator = false
-                     aOriginators = find_responsibility(hCitation, 'originator')
+                     aRParties = hCitation[:responsibleParties]
+                     aOriginators = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'originator')
                      aOriginators.each do |contactId|
                         hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
                         unless hContact.empty?
@@ -139,7 +128,8 @@ module ADIWG
                      # <- hCitation[:responsibleParties] role = 'publisher'
                      # only take first publisher
                      havePublisher = false
-                     aPublisher = find_responsibility(hCitation, 'publisher')
+                     aRParties = hCitation[:responsibleParties]
+                     aPublisher = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'publisher')
                      unless aPublisher.empty?
                         hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aPublisher[0])
                         unless hContact.empty?

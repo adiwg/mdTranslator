@@ -42,11 +42,12 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       assert_equal 'none', hTaxonSystem[:modifications]
 
       hReference = hTaxonomy[:idReferences][0]
-      assert_equal 'National Audubon Society The Sibley Guide to Birds', hReference[:title]
-      assert_equal 1, hReference[:dates].length
-      assert_equal '1st', hReference[:edition]
-      assert_equal 1, hReference[:responsibleParties].length
-      assert_equal 1, hReference[:presentationForms].length
+      assert_equal 'none', hReference[:identifier]
+      assert_equal 'National Audubon Society The Sibley Guide to Birds', hReference[:citation][:title]
+      assert_equal 1, hReference[:citation][:dates].length
+      assert_equal '1st', hReference[:citation][:edition]
+      assert_equal 1, hReference[:citation][:responsibleParties].length
+      assert_equal 1, hReference[:citation][:presentationForms].length
 
       hObserver = hTaxonomy[:observers][0]
       assert_equal 'observer', hObserver[:roleName]

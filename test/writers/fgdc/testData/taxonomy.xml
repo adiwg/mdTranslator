@@ -2,18 +2,32 @@
   <idinfo>
     <taxonomy>
       <keywtax>
-        <taxonkt>taxonomy thesaurus</taxonkt>
+        <taxonkt>fgdc taxonomy keywords</taxonkt>
         <taxonkey>animals</taxonkey>
         <taxonkey>vertebrates</taxonkey>
-        <taxonkey>bird</taxonkey>
+        <taxonkey>birds</taxonkey>
+      </keywtax>
+      <keywtax>
+        <taxonkt>fgdc taxonomy keywords two</taxonkt>
+        <taxonkey>plants</taxonkey>
+        <taxonkey>grasses</taxonkey>
+        <taxonkey>bamboo</taxonkey>
       </keywtax>
       <taxonsys>
         <classsys>
           <classcit>
             <citeinfo>
-              <origin>taxon class system citation origin</origin>
-              <pubdate>Unknown</pubdate>
-              <title>taxon class system citation title</title>
+              <origin>person name</origin>
+              <pubdate>2017-11-22</pubdate>
+              <pubtime/>
+              <title>citation title</title>
+              <edition/>
+              <geoform/>
+              <serinfo/>
+              <pubinfo/>
+              <othercit/>
+              <onlink/>
+              <lworkcit/>
             </citeinfo>
           </classcit>
           <classmod>modifications</classmod>
@@ -21,97 +35,157 @@
         <classsys>
           <classcit>
             <citeinfo>
-              <origin>other taxon class system citation origin</origin>
-              <pubdate>Unknown</pubdate>
-              <title>other taxon class system citation title</title>
+              <origin>person name</origin>
+              <pubdate>2017-11-22</pubdate>
+              <pubtime/>
+              <title>taxonomic system two</title>
+              <edition/>
+              <geoform/>
+              <serinfo/>
+              <pubinfo/>
+              <othercit/>
+              <onlink/>
+              <lworkcit/>
             </citeinfo>
           </classcit>
+          <classmod>modifications two</classmod>
         </classsys>
         <idref>
           <citeinfo>
-            <origin>identification reference citation origin</origin>
-            <pubdate>200010</pubdate>
-            <title>identification reference citation title</title>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>taxonomic identification reference</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
           </citeinfo>
         </idref>
         <idref>
           <citeinfo>
-            <origin>other identification reference citation origin</origin>
-            <pubdate>Unknown</pubdate>
-            <title>other identification reference citation title</title>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>taxonomic identification reference two</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
           </citeinfo>
         </idref>
         <ider>
           <cntinfo>
             <cntperp>
-              <cntper>contact person 1</cntper>
-              <cntorg>contact organization 1</cntorg>
+              <cntper>person name</cntper>
+              <cntorg/>
             </cntperp>
-            <cntpos>contact position</cntpos>
+            <cntpos>position name</cntpos>
             <cntaddr>
-              <addrtype>address type</addrtype>
+              <addrtype>mailing</addrtype>
               <address>address line 1</address>
+              <address>address line 2</address>
               <city>city</city>
-              <state>admin area</state>
+              <state>administrative area</state>
               <postal>postal code</postal>
               <country>country</country>
             </cntaddr>
-            <cntvoice>907-555-1212</cntvoice>
+            <cntvoice>111-111-1111</cntvoice>
+            <cnttdd/>
+            <cntfax/>
+            <cntemail/>
+            <hours/>
+            <cntinst/>
           </cntinfo>
         </ider>
         <ider>
           <cntinfo>
             <cntperp>
-              <cntper>contact person 2</cntper>
-              <cntorg>contact organization 2</cntorg>
+              <cntper>person name two</cntper>
+              <cntorg/>
             </cntperp>
+            <cntpos>position name</cntpos>
             <cntaddr>
-              <addrtype>no address provided</addrtype>
+              <addrtype>mailing</addrtype>
+              <address>address line 1</address>
+              <address>address line 2</address>
               <city>city</city>
-              <state>state</state>
+              <state>administrative area</state>
               <postal>postal code</postal>
+              <country>country</country>
             </cntaddr>
-            <cntvoice>907-555-3434</cntvoice>
+            <cntvoice>111-111-1111</cntvoice>
+            <cnttdd/>
+            <cntfax/>
+            <cntemail/>
+            <hours/>
+            <cntinst/>
           </cntinfo>
         </ider>
-        <taxonpro>identification procedure</taxonpro>
-        <taxoncom>taxonomy completeness</taxoncom>
+        <taxonpro>procedures</taxonpro>
+        <taxoncom>completeness</taxoncom>
         <vouchers>
-          <specimen>specimen 1</specimen>
-          <reposit>
+          <specimen>specimen one</specimen>
+          <repository>
             <cntinfo>
               <cntperp>
-                <cntper>contact person 3</cntper>
+                <cntper>person name</cntper>
+                <cntorg/>
               </cntperp>
+              <cntpos>position name</cntpos>
               <cntaddr>
-                <addrtype>no address provided</addrtype>
+                <addrtype>mailing</addrtype>
+                <address>address line 1</address>
+                <address>address line 2</address>
                 <city>city</city>
-                <state>state</state>
+                <state>administrative area</state>
                 <postal>postal code</postal>
+                <country>country</country>
               </cntaddr>
-              <cntvoice>907-555-3434</cntvoice>
+              <cntvoice>111-111-1111</cntvoice>
+              <cnttdd/>
+              <cntfax/>
+              <cntemail/>
+              <hours/>
+              <cntinst/>
             </cntinfo>
-          </reposit>
+          </repository>
         </vouchers>
         <vouchers>
-          <specimen>specimen 2</specimen>
-          <reposit>
+          <specimen>specimen two</specimen>
+          <repository>
             <cntinfo>
               <cntperp>
-                <cntper>contact person 4</cntper>
+                <cntper>person name</cntper>
+                <cntorg/>
               </cntperp>
+              <cntpos>position name</cntpos>
               <cntaddr>
-                <addrtype>no address provided</addrtype>
+                <addrtype>mailing</addrtype>
+                <address>address line 1</address>
+                <address>address line 2</address>
                 <city>city</city>
-                <state>state</state>
+                <state>administrative area</state>
                 <postal>postal code</postal>
+                <country>country</country>
               </cntaddr>
-              <cntvoice>907-555-3434</cntvoice>
+              <cntvoice>111-111-1111</cntvoice>
+              <cnttdd/>
+              <cntfax/>
+              <cntemail/>
+              <hours/>
+              <cntinst/>
             </cntinfo>
-          </reposit>
+          </repository>
         </vouchers>
       </taxonsys>
-      <taxongen>general taxonomic coverage</taxongen>
+      <taxongen>general scope</taxongen>
       <taxoncl>
         <taxonrn>kingdom</taxonrn>
         <taxonrv>animalia</taxonrv>
@@ -119,27 +193,30 @@
         <taxoncl>
           <taxonrn>subkingdom</taxonrn>
           <taxonrv>bilateria</taxonrv>
+          <common/>
           <taxoncl>
-            <taxonrn>Subfamily</taxonrn>
-            <taxonrv>Anserinae</taxonrv>
+            <taxonrn>subfamily</taxonrn>
+            <taxonrv>anserinae</taxonrv>
+            <common/>
             <taxoncl>
-              <taxonrn>Genus</taxonrn>
-              <taxonrv>Branta</taxonrv>
-              <common>Brent Geese</common>
+              <taxonrn>genus</taxonrn>
+              <taxonrv>branta</taxonrv>
+              <common/>
               <taxoncl>
-                <taxonrn>Species</taxonrn>
-                <taxonrv>Branta bernicla</taxonrv>
-                <common>Brant Goose</common>
-                <common>Brent Goose</common>
-                <common>Ganso de collar</common>
+                <taxonrn>species</taxonrn>
+                <taxonrv>branta bernicla</taxonrv>
+                <common>brant goose</common>
+                <common>ganso de collar</common>
               </taxoncl>
             </taxoncl>
             <taxoncl>
-              <taxonrn>Genus</taxonrn>
-              <taxonrv>Anser</taxonrv>
+              <taxonrn>genus</taxonrn>
+              <taxonrv>anser</taxonrv>
+              <common>brent geese</common>
               <taxoncl>
-                <taxonrn>Species</taxonrn>
+                <taxonrn>species</taxonrn>
                 <taxonrv>albifrons</taxonrv>
+                <common/>
               </taxoncl>
             </taxoncl>
           </taxoncl>
