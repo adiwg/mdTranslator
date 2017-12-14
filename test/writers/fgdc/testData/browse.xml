@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <browse>
+      <browsen>graphic name one</browsen>
+      <browsed>description</browsed>
+      <browset>type</browset>
+    </browse>
+    <browse>
+      <browsen>graphic name two</browsen>
+      <browsed>description</browsed>
+      <browset>type</browset>
+    </browse>
+  </idinfo>
+</metadata>

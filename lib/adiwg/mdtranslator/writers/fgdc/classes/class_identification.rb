@@ -154,9 +154,39 @@ module ADIWG
                      end
 
                      # identification information 1.10 (browse) - browse graphic []
-                     
+                     unless hResourceInfo[:graphicOverviews].empty?
+                        hResourceInfo[:graphicOverviews].each do |hGraphic|
+                           @xml.tag!('browse') do
+
+                              # browse 1.10.1 (browsen) - browse name (required)
+                              unless hGraphic[:graphicName].nil?
+                                 @xml.tag!('browsen', hGraphic[:graphicName])
+                              end
+                              if hGraphic[:graphicName].nil?
+                                 @hResponseObj[:writerPass] = false
+                                 @hResponseObj[:writerMessages] << 'Browse Graphic is missing time name'
+                              end
+
+                              # browse 1.10.2 (browsed) - browse description
+                              unless hGraphic[:graphicDescription].nil?
+                                 @xml.tag!('browsed', hGraphic[:graphicDescription])
+                              end
+
+                              # browse 1.10.3 (browset) - browse type
+                              unless hGraphic[:graphicType].nil?
+                                 @xml.tag!('browset', hGraphic[:graphicType])
+                              end
+
+                           end
+                        end
+                     end
+                     if hResourceInfo[:graphicOverviews].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('browse')
+                     end
 
                      # identification information 1.11 (datacred) - dataset credit
+
+
                      # identification information 1.12 (secinfo) - security information
                      # identification information 1.13 (native) - native dataset environment
                      # identification information 1.14 (crossref) - cross reference []

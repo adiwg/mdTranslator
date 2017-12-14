@@ -46,7 +46,7 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       assert_equal 'complete', hResourceInfo[:status][0]
       assert_equal 1, hResourceInfo[:pointOfContacts].length
       assert_equal 1, hResourceInfo[:extents].length
-      assert_equal 1, hResourceInfo[:graphicOverviews].length
+      assert_equal 2, hResourceInfo[:graphicOverviews].length
       assert_equal 5, hResourceInfo[:keywords].length
       assert_equal 2, hResourceInfo[:constraints].length
       assert_equal 'my native dataset environment', hResourceInfo[:environmentDescription]
@@ -66,6 +66,8 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       assert_equal 'my browse file type', hGraphic[:graphicType]
       assert_empty hGraphic[:graphicConstraints]
       assert_empty hGraphic[:graphicURI]
+      hGraphic2 = hResourceInfo[:graphicOverviews][1]
+      assert_equal 'my browse file name two', hGraphic2[:graphicName]
 
       hConstraint = hResourceInfo[:constraints][0]
       assert_equal 'legal', hConstraint[:type]

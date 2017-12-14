@@ -152,7 +152,7 @@ module ADIWG
                   end
 
                   # identification information 1.10 (browse) - browse graphic []
-                  axBrowse = xIdInfo.xpath('./browse')
+                  axBrowse = xIdInfo.xpath('//browse')
                   unless axBrowse.empty?
                      axBrowse.each do |xBrowse|
                         browseName = xBrowse.xpath('./browsen').text

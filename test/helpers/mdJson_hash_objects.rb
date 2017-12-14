@@ -456,4 +456,14 @@ class FgdcWriterTD
       }
    end
 
+   def graphic
+      {
+         fileName: nil,
+         fileDescription: 'graphic description',
+         fileType: 'graphic type',
+         fileConstraint: [],
+         fileUri: []
+      }
+   end
+
 end

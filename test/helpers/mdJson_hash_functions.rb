@@ -125,6 +125,18 @@ class FgdcWriterTD
       return hCon
    end
 
+   def build_graphic(name, description = nil, type = nil)
+      hGraphic = graphic
+      hGraphic[:fileName] = name
+      unless description.nil?
+         hGraphic[:fileDescription] = description
+      end
+      unless type.nil?
+         hGraphic[:fileType] = type
+      end
+      return hGraphic
+   end
+
    def add_accessConstraint(hObj, constraint)
       hObj[:legal][:accessConstraint] << constraint
       return hObj
