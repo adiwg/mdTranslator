@@ -185,9 +185,22 @@ module ADIWG
                      end
 
                      # identification information 1.11 (datacred) - dataset credit
-
+                     # <- concatenate  resourceInfo.credits[]
+                     unless hResourceInfo[:credits].empty?
+                        dataCred = ''
+                        hResourceInfo[:credits].each do |credit|
+                           dataCred += credit + '; '
+                        end
+                        dataCred.chomp!('; ')
+                        @xml.tag!('datacred', dataCred)
+                     end
+                     if hResourceInfo[:credits].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('datacred')
+                     end
 
                      # identification information 1.12 (secinfo) - security information
+
+
                      # identification information 1.13 (native) - native dataset environment
                      # identification information 1.14 (crossref) - cross reference []
                      # identification information bio (tool) - analytical tool [] (not supported)
