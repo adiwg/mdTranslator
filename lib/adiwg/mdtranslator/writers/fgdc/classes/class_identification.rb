@@ -116,6 +116,25 @@ module ADIWG
 
                      # identification information 1.7 (accconst) - access constraint (required)
                      # identification information 1.8 (useconst) - use constraint (required)
+                     # <- resourceInfo.constraints. first type = legal
+                     haveLegal = false
+                     unless hResourceInfo[:constraints].empty?
+                        hResourceInfo[:constraints].each do |hConstraint|
+                           if hConstraint[:type] == 'legal'
+                              haveLegal = true
+                              unless hConstraint[:legalConstraint][:accessCodes].empty?
+                                 @xml.tag!('accconst', hConstraint[:legalConstraint][:accessCodes][0])
+                              end
+                              unless hConstraint[:legalConstraint][:accessCodes].empty?
+                                 @xml.tag!('useconst', hConstraint[:legalConstraint][:useCodes][0])
+                              end
+                           end
+                        end
+                     end
+                     if !haveLegal && @hResponseObj[:writerShowTags]
+                        @xml.tag!('accconst')
+                        @xml.tag!('useconst')
+                     end
 
                      # identification information 1.9 (ptcontac) - point of contact
                      unless hResourceInfo[:pointOfContacts].empty?
@@ -135,6 +154,8 @@ module ADIWG
                      end
 
                      # identification information 1.10 (browse) - browse graphic []
+                     
+
                      # identification information 1.11 (datacred) - dataset credit
                      # identification information 1.12 (secinfo) - security information
                      # identification information 1.13 (native) - native dataset environment

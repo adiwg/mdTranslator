@@ -114,6 +114,32 @@ class FgdcWriterTD
       return hVoucher
    end
 
+   def build_legalCon
+      hCon = constraint
+      hCon[:type] = 'legal'
+      hCon[:legal] = {
+         accessConstraint: [],
+         useConstraint: [],
+         otherConstraint: []
+      }
+      return hCon
+   end
+
+   def add_accessConstraint(hObj, constraint)
+      hObj[:legal][:accessConstraint] << constraint
+      return hObj
+   end
+
+   def add_useConstraint(hObj, constraint)
+      hObj[:legal][:useConstraint] << constraint
+      return hObj
+   end
+
+   def add_otherConstraint(hObj, constraint)
+      hObj[:legal][:otherConstraint] << constraint
+      return hObj
+   end
+
    def add_address(hContact, aAddType)
       hAddress = address
       hAddress[:addressType] = aAddType

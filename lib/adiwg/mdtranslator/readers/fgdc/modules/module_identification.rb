@@ -132,6 +132,8 @@ module ADIWG
                   hConstraint[:type] = 'legal'
                   hLegal = intMetadataClass.newLegalConstraint
 
+                  hLegal[:accessCodes] << accessCon unless accessCon.empty?
+                  hLegal[:useCodes] << useCon unless useCon.empty?
                   hLegal[:otherCons] << accessCon unless accessCon.empty?
                   hLegal[:otherCons] << useCon unless useCon.empty?
                   unless hLegal[:otherCons].empty?

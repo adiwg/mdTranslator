@@ -127,12 +127,9 @@ class FgdcWriterTD
                   {
                      type: 'legal',
                      legal: {
-                        'accessConstraint': ['accessConstraint'],
-                        'useConstraint': ['useConstraint'],
-                        'otherConstraint': [
-                           'access constraint',
-                           'use constraint'
-                        ]
+                        'accessConstraint': ['access constraint'],
+                        'useConstraint': ['use constraint'],
+                        'otherConstraint': ['other constraint']
                      }
                   }
                ],
@@ -448,6 +445,14 @@ class FgdcWriterTD
       {
          specimen: 'specimen',
          repository: responsibleParty
+      }
+   end
+
+   def constraint
+      {
+         type: nil,
+         useLimitation: [],
+         responsibleParty: []
       }
    end
 
