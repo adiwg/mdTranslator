@@ -13,6 +13,9 @@ require_relative 'class_spatialDomain'
 require_relative 'class_keyword'
 require_relative 'class_contact'
 require_relative 'class_taxonomy'
+require_relative 'class_constraint'
+require_relative 'class_security'
+require_relative 'class_browse'
 
 module ADIWG
    module Mdtranslator
@@ -37,6 +40,9 @@ module ADIWG
                   keywordClass = Keyword.new(@xml, @hResponseObj)
                   contactClass = Contact.new(@xml, @hResponseObj)
                   taxonomyClass = Taxonomy.new(@xml, @hResponseObj)
+                  constraintClass = Constraint.new(@xml, @hResponseObj)
+                  securityClass = Security.new(@xml, @hResponseObj)
+                  browseClass = Browse.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
 
@@ -116,24 +122,12 @@ module ADIWG
 
                      # identification information 1.7 (accconst) - access constraint (required)
                      # identification information 1.8 (useconst) - use constraint (required)
-                     # <- resourceInfo.constraints. first type = legal
-                     haveLegal = false
                      unless hResourceInfo[:constraints].empty?
-                        hResourceInfo[:constraints].each do |hConstraint|
-                           if hConstraint[:type] == 'legal'
-                              haveLegal = true
-                              unless hConstraint[:legalConstraint][:accessCodes].empty?
-                                 @xml.tag!('accconst', hConstraint[:legalConstraint][:accessCodes][0])
-                              end
-                              unless hConstraint[:legalConstraint][:accessCodes].empty?
-                                 @xml.tag!('useconst', hConstraint[:legalConstraint][:useCodes][0])
-                              end
-                           end
-                        end
+                        constraintClass.writeXML(hResourceInfo[:constraints])
                      end
-                     if !haveLegal && @hResponseObj[:writerShowTags]
-                        @xml.tag!('accconst')
-                        @xml.tag!('useconst')
+                     if hResourceInfo[:constraints].empty?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Identification section is missing access and use constraints'
                      end
 
                      # identification information 1.9 (ptcontac) - point of contact
@@ -154,30 +148,9 @@ module ADIWG
                      end
 
                      # identification information 1.10 (browse) - browse graphic []
-                     unless hResourceInfo[:graphicOverviews].empty?
-                        hResourceInfo[:graphicOverviews].each do |hGraphic|
-                           @xml.tag!('browse') do
-
-                              # browse 1.10.1 (browsen) - browse name (required)
-                              unless hGraphic[:graphicName].nil?
-                                 @xml.tag!('browsen', hGraphic[:graphicName])
-                              end
-                              if hGraphic[:graphicName].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Browse Graphic is missing time name'
-                              end
-
-                              # browse 1.10.2 (browsed) - browse description
-                              unless hGraphic[:graphicDescription].nil?
-                                 @xml.tag!('browsed', hGraphic[:graphicDescription])
-                              end
-
-                              # browse 1.10.3 (browset) - browse type
-                              unless hGraphic[:graphicType].nil?
-                                 @xml.tag!('browset', hGraphic[:graphicType])
-                              end
-
-                           end
+                     hResourceInfo[:graphicOverviews].each do |hGraphic|
+                        @xml.tag!('browse') do
+                           browseClass.writeXML(hGraphic)
                         end
                      end
                      if hResourceInfo[:graphicOverviews].empty? && @hResponseObj[:writerShowTags]
@@ -199,9 +172,16 @@ module ADIWG
                      end
 
                      # identification information 1.12 (secinfo) - security information
-
+                     unless hResourceInfo[:constraints].empty?
+                        securityClass.writeXML(hResourceInfo[:constraints])
+                     end
+                     if hResourceInfo[:constraints].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('secinfo')
+                     end
 
                      # identification information 1.13 (native) - native dataset environment
+
+
                      # identification information 1.14 (crossref) - cross reference []
                      # identification information bio (tool) - analytical tool [] (not supported)
 

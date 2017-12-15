@@ -32,4 +32,58 @@ class TestWriterFgdcConstraint < TestReaderFgdcParent
 
    end
 
+   def test_missing_constraints
+
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:constraint] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      refute hResponseObj[:writerPass]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing access and use constraints'
+
+      # missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo].delete(:constraint)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      refute hResponseObj[:writerPass]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing access and use constraints'
+
+   end
+
+   def test_missing_accessConstraint
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:constraint][0][:legal][:accessConstraint] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      refute hResponseObj[:writerPass]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing access constraint'
+
+   end
+
+   def test_missing_useConstraint
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:constraint][0][:legal][:useConstraint] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      refute hResponseObj[:writerPass]
+      assert_includes hResponseObj[:writerMessages], 'Identification section is missing use constraint'
+
+   end
+
 end

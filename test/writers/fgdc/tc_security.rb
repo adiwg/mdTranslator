@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcBrowse < TestReaderFgdcParent
+class TestWriterFgdcSecurity < TestReaderFgdcParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -16,46 +16,43 @@ class TestWriterFgdcBrowse < TestReaderFgdcParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hGraphic1 = TDClass.build_graphic('graphic name one', 'description', 'type')
-   hGraphic2 = TDClass.build_graphic('graphic name two', 'description', 'type')
-   mdHash[:metadata][:resourceInfo][:graphicOverview] = []
-   mdHash[:metadata][:resourceInfo][:graphicOverview] << hGraphic1
-   mdHash[:metadata][:resourceInfo][:graphicOverview] << hGraphic2
+   hConstraint = TDClass.build_securityCon('classification', 'security system name', 'handling instructions')
+   mdHash[:metadata][:resourceInfo][:constraint] << hConstraint
 
    @@mdHash = mdHash
 
-   def test_browse_complete
+   def test_securityConstraint_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'browse', './metadata/idinfo/browse')
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'security', './metadata/idinfo/secinfo')
       assert_equal hReturn[0], hReturn[1]
 
    end
 
-   def test_missing_browse_description
+   def test_missing_security_className
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:graphicOverview][0].delete(:fileDescription)
+      hIn[:metadata][:resourceInfo][:constraint][1][:security].delete(:classificationSystem)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Browse Graphic is missing description'
+      assert_includes hResponseObj[:writerMessages], 'Security is missing classification system'
 
    end
 
-   def test_missing_browse_type
+   def test_missing_security_handling
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:graphicOverview][0].delete(:fileType)
+      hIn[:metadata][:resourceInfo][:constraint][1][:security].delete(:handlingDescription)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Browse Graphic is missing file type'
+      assert_includes hResponseObj[:writerMessages], 'Security is missing handling instructions'
 
    end
 

@@ -125,6 +125,24 @@ class FgdcWriterTD
       return hCon
    end
 
+   def build_securityCon(classification, system = nil, handling = nil, note = nil)
+      hCon = constraint
+      hCon[:type] = 'security'
+      hCon[:security] = {
+         classification: classification
+      }
+      unless system.nil?
+         hCon[:security][:classificationSystem] = system
+      end
+      unless handling.nil?
+         hCon[:security][:handlingDescription] = handling
+      end
+      unless note.nil?
+         hCon[:security][:userNote] = note
+      end
+      return hCon
+   end
+
    def build_graphic(name, description = nil, type = nil)
       hGraphic = graphic
       hGraphic[:fileName] = name
