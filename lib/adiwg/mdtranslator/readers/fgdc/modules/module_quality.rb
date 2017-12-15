@@ -36,6 +36,8 @@ module ADIWG
                      end
                   end
 
+                  # data quality 2.6 (cloud) - cloud cover (not implemented)
+
                   return hMetadata
 
                end

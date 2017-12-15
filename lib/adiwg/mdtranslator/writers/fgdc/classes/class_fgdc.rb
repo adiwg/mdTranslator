@@ -5,6 +5,7 @@
 #  Stan Smith 2017-11-16 original script
 
 require_relative 'class_identification'
+require_relative 'class_quality'
 
 module ADIWG
    module Mdtranslator
@@ -20,14 +21,16 @@ module ADIWG
 
                def writeXML(intObj)
 
+                  version = @hResponseObj[:translatorVersion]
+
                   # classes used
                   idClass = Identification.new(@xml, @hResponseObj)
-                  version = @hResponseObj[:translatorVersion]
+                  qualityClass = Quality.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                   @xml.comment!('FGDC METADATA (FGDC-STD-001-1998)')
-                  @xml.comment!('Includes Biological Data Profile (FGDC-STD-001.1-1999)')
+                  @xml.comment!('This file conforms to the Biological Data Profile (FGDC-STD-001.1-1999)')
                   @xml.comment!('The following metadata file was constructed using the ADIwg mdTranslator, http://mdtranslator.adiwg.org')
                   @xml.comment!('mdTranslator software is an open-source project of the Alaska Data Integration working group (ADIwg)')
                   @xml.comment!('mdTranslator and other metadata tools are available at https://github.com/adiwg')
@@ -38,9 +41,18 @@ module ADIWG
                   @xml.tag!('metadata') do
 
                      # metadata 1 (idinfo) - identification information
-                     idClass.writeXML(intObj)
+                     @xml.tag!('idinfo') do
+                        idClass.writeXML(intObj)
+                     end
 
                      # metadata 2 (dataqual) - data quality information
+                     # currently only lineage is implemented
+                     unless intObj[:metadata][:lineageInfo].empty?
+                        @xml.tag!('dataqual') do
+                           qualityClass.writeXML(intObj)
+                        end
+                     end
+
                      # metadata 3 (spdoinfo) - spatial domain information
                      # metadata 4 (spref) - spatial reference systems
                      # metadata 5 (eainfo) - entity attribute information
