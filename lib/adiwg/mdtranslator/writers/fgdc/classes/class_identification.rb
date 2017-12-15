@@ -45,13 +45,13 @@ module ADIWG
                   browseClass = Browse.new(@xml, @hResponseObj)
 
                   hResourceInfo = intObj[:metadata][:resourceInfo]
+                  aAssocResource = intObj[:metadata][:associatedResources]
 
                   @xml.tag!('idinfo') do
 
                      # identification information 1.1 (citation) - citation (required)
                      # <- hResourceInfo[:citation]
                      hCitation = hResourceInfo[:citation]
-                     aAssocResource = intObj[:metadata][:associatedResources]
                      unless hCitation.empty?
                         @xml.tag!('citation') do
                            citationClass.writeXML(hCitation, aAssocResource)
@@ -188,7 +188,19 @@ module ADIWG
                      end
 
                      # identification information 1.14 (crossref) - cross reference []
-
+                     # <- associatedResources[:associationType] = 'crossReference'
+                     haveXRef = false
+                     aAssocResource.each do |hAssocRes|
+                        if hAssocRes[:associationType] == 'crossReference'
+                           haveXRef = true
+                           @xml.tag!('crossref') do
+                              citationClass.writeXML(hAssocRes[:resourceCitation], [])
+                           end
+                        end
+                     end
+                     if !haveXRef && @hResponseObj[:writerShowTags]
+                        @xml.tag!('crossref')
+                     end
 
                      # identification information bio (tool) - analytical tool [] (not supported)
 

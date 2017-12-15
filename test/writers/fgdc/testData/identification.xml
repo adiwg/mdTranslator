@@ -78,9 +78,38 @@
       </cntinfo>
     </ptcontac>
     <browse/>
-    <datacred/>
+    <datacred>first credit; second credit</datacred>
     <secinfo/>
-    <native/>
-    <crossref/>
+    <native>environment description</native>
+    <crossref>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-22</pubdate>
+        <pubtime/>
+        <title>cross reference one</title>
+        <edition/>
+        <geoform/>
+        <serinfo/>
+        <pubinfo/>
+        <othercit/>
+        <onlink/>
+        <lworkcit/>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-22</pubdate>
+        <pubtime/>
+        <title>cross reference two</title>
+        <edition/>
+        <geoform/>
+        <serinfo/>
+        <pubinfo/>
+        <othercit/>
+        <onlink/>
+        <lworkcit/>
+      </citeinfo>
+    </crossref>
   </idinfo>
 </metadata>

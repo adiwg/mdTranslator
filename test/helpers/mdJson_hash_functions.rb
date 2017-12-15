@@ -39,9 +39,12 @@ class FgdcWriterTD
       return hContact
    end
 
-   def build_associatedResource(associationType)
+   def build_associatedResource(associationType, title = nil)
       hAssocRes = associatedResource
       hAssocRes[:associationType] = associationType
+      unless title.nil?
+         hAssocRes[:resourceCitation][:title] = title
+      end
       return hAssocRes
    end
 

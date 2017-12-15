@@ -18,7 +18,7 @@ class TestWriterFgdcFgdc < TestReaderFgdcParent
    # instance classes needed in script
    @@TDClass = FgdcWriterTD.new
 
-   def test_fgdc
+   def test_minimum_fgdc
 
       # read the fgdc reference file
       xFile = TestReaderFgdcParent.get_xml('fgdc')
