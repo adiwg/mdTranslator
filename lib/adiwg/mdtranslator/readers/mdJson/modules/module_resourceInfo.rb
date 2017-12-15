@@ -342,14 +342,14 @@ module ADIWG
 
                   # resource information - environment description
                   if hResInfo.has_key?('environmentDescription')
-                     if hResInfo['environmentDescription'] != ''
+                     unless hResInfo['environmentDescription'] == ''
                         intResInfo[:environmentDescription] = hResInfo['environmentDescription']
                      end
                   end
 
                   # resource information - supplemental information
                   if hResInfo.has_key?('supplementalInfo')
-                     if hResInfo['supplementalInfo'] != ''
+                     unless hResInfo['supplementalInfo'] == ''
                         intResInfo[:supplementalInfo] = hResInfo['supplementalInfo']
                      end
                   end

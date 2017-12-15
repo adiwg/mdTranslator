@@ -180,9 +180,16 @@ module ADIWG
                      end
 
                      # identification information 1.13 (native) - native dataset environment
-
+                     unless hResourceInfo[:environmentDescription].nil?
+                        @xml.tag!('native', hResourceInfo[:environmentDescription])
+                     end
+                     if hResourceInfo[:environmentDescription].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('native')
+                     end
 
                      # identification information 1.14 (crossref) - cross reference []
+
+
                      # identification information bio (tool) - analytical tool [] (not supported)
 
                   end # idinfo tag
