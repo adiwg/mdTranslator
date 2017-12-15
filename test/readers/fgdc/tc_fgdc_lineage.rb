@@ -16,14 +16,9 @@ class TestReaderFgdcLineage < TestReaderFGDCParent
 
    def test_lineage_complete
 
-      intMetadataClass = InternalMetadata.new
-      hResourceInfo = intMetadataClass.newResourceInfo
-
-      TestReaderFGDCParent.set_xDoc(@@xDoc)
-      TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hLineage = @@NameSpace.unpack(xIn, hResourceInfo,hResponse)
+      hLineage = @@NameSpace.unpack(xIn, hResponse)
 
       refute_nil hLineage
       assert_equal 2, hLineage[:dataSources].length

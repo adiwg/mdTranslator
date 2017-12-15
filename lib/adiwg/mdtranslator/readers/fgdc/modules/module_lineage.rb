@@ -16,7 +16,7 @@ module ADIWG
 
             module Lineage
 
-               def self.unpack(xLineage, hResourceInfo, hResponseObj)
+               def self.unpack(xLineage, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -29,7 +29,7 @@ module ADIWG
                      axSource = xLineage.xpath('./srcinfo')
                      unless axSource.empty?
                         axSource.each do |xSource|
-                           hSource = Source.unpack(xSource, hResourceInfo[:spatialResolutions], hResponseObj)
+                           hSource = Source.unpack(xSource, hResponseObj)
                            hLineage[:dataSources] << hSource
                         end
                      end

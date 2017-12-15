@@ -16,7 +16,7 @@ module ADIWG
 
             module Source
 
-               def self.unpack(xSource, aSpatialResolutions, hResponseObj)
+               def self.unpack(xSource, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -34,7 +34,7 @@ module ADIWG
                   unless scale.empty?
                      hResolution = intMetadataClass.newSpatialResolution
                      hResolution[:scaleFactor] = scale.to_i
-                     aSpatialResolutions << hResolution
+                     hSource[:spatialResolution] = hResolution
                   end
 
                   # source 2.5.1.3 (typesrc) - type of source media

@@ -17,8 +17,6 @@ module ADIWG
 
                def self.unpack(xDataQual, hMetadata, hResponseObj)
 
-                  hResourceInfo = hMetadata[:resourceInfo]
-
                   # data quality 2.1 (attracc) - attribute accuracy (not implemented)
 
                   # data quality 2.2 (logic) - logical consistency (not implemented)
@@ -30,7 +28,7 @@ module ADIWG
                   # data quality 2.5 (lineage) - lineage
                   xLineage = xDataQual.xpath('./lineage')
                   unless xLineage.empty?
-                     hLineage = Lineage.unpack(xLineage, hResourceInfo, hResponseObj)
+                     hLineage = Lineage.unpack(xLineage, hResponseObj)
                      unless hLineage.nil?
                         hMetadata[:lineageInfo] << hLineage
                      end
