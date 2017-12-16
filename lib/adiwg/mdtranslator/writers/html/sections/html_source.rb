@@ -32,6 +32,13 @@ module ADIWG
                   stepClass = Html_ProcessStep.new(@html)
                   scopeClass = Html_Scope.new(@html)
 
+                  # source - source ID
+                  unless hSource[:sourceId].nil?
+                     @html.em('Source ID: ')
+                     @html.text!(hSource[:sourceId])
+                     @html.br
+                  end
+
                   # source - description
                   unless hSource[:description].nil?
                      @html.em('Description: ')

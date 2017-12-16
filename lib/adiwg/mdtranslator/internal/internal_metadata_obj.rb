@@ -666,6 +666,7 @@ class InternalMetadata
 
    def newDataSource
       {
+         sourceId: nil,
          description: nil,
          sourceCitation: {},
          metadataCitation: [],

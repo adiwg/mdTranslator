@@ -1,6 +1,7 @@
 {
    "source": [
       {
+         "sourceId": "source ID",
          "description": "description",
          "sourceCitation": {
             "title": "title"

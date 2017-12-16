@@ -35,11 +35,9 @@ module ADIWG
                         usedSrc = xUsed.text
                         unless usedSrc.empty?
                            hLineage[:dataSources].each do |hSource|
-                              unless hSource[:sourceCitation].empty?
-                                 hSource[:sourceCitation][:alternateTitles].each do |altTitle|
-                                    if usedSrc == altTitle
-                                       hProcess[:stepSources] << hSource
-                                    end
+                              unless hSource[:sourceId].nil?
+                                 if usedSrc == hSource[:sourceId]
+                                    hProcess[:stepSources] << hSource
                                  end
                               end
                            end
@@ -67,11 +65,9 @@ module ADIWG
                         prodSrc = xProduct.text
                         unless prodSrc.empty?
                            hLineage[:dataSources].each do |hSource|
-                              unless hSource[:sourceCitation].empty?
-                                 hSource[:sourceCitation][:alternateTitles].each do |altTitle|
-                                    if prodSrc == altTitle
-                                       hProcess[:stepProducts] << hSource
-                                    end
+                              unless hSource[:sourceId].nil?
+                                 if prodSrc == hSource[:sourceId]
+                                    hProcess[:stepProducts] << hSource
                                  end
                               end
                            end

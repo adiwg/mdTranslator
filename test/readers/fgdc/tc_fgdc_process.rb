@@ -16,6 +16,8 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
 
    def test_process_complete
 
+      TestReaderFGDCParent.set_intObj()
+      TestReaderFGDCParent.set_xDoc(@@xDoc)
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hLineage = @@NameSpace.unpack(xIn, hResponse)

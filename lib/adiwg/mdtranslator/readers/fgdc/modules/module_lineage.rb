@@ -26,7 +26,7 @@ module ADIWG
                   unless xLineage.empty?
 
                      # lineage 2.5.1 (srcinfo) - source information []
-                     axSource = xLineage.xpath('./srcinfo')
+                     axSource = xLineage.xpath('//srcinfo')
                      unless axSource.empty?
                         axSource.each do |xSource|
                            hSource = Source.unpack(xSource, hResponseObj)
@@ -35,7 +35,7 @@ module ADIWG
                      end
 
                      # lineage 2.5.2 (procstep) - process step []
-                     axProcess = xLineage.xpath('./procstep')
+                     axProcess = xLineage.xpath('//procstep')
                      unless axProcess.empty?
                         axProcess.each do |xProcess|
                            hProcess = Process.unpack(xProcess, hLineage, hResponseObj)

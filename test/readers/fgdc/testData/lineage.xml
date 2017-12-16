@@ -29,7 +29,7 @@
           </timeinfo>
           <srccurr>publication</srccurr>
         </srctime>
-        <srccitea>ADIwg</srccitea>
+        <srccitea>source id</srccitea>
         <srccontr>my source 1 contribution</srccontr>
       </srcinfo>
       <srcinfo>
@@ -56,16 +56,16 @@
           </timeinfo>
           <srccurr>observed</srccurr>
         </srctime>
-        <srccitea>USGS BBL</srccitea>
+        <srccitea>source id 2</srccitea>
         <srccontr>my source 2 contribution</srccontr>
       </srcinfo>
       <procstep>
         <procdesc>my proc step 1 description</procdesc>
-        <srcused>ADIwg</srcused>
-        <srcused>USGS BBL</srcused>
+        <srcused>source id</srcused>
+        <srcused>source id 2</srcused>
         <procdate>20170831</procdate>
         <proctime>142245</proctime>
-        <srcprod>USGS BBL</srcprod>
+        <srcprod>source id 2</srcprod>
         <proccont>
           <cntinfo>
             <cntperp>

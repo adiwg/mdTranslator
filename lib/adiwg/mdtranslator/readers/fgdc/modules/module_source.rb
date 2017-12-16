@@ -60,9 +60,9 @@ module ADIWG
                   end
 
                   # source 2.5.1.5 (srccitea) - source citation abbreviation
-                  citationAbb = xSource.xpath('./srccitea').text
-                  unless citationAbb.empty?
-                     hSource[:sourceCitation][:alternateTitles] << citationAbb
+                  sourceAbb = xSource.xpath('./srccitea').text
+                  unless sourceAbb.empty?
+                     hSource[:sourceId] = sourceAbb
                   end
 
                   # source 2.5.1.6 (srccontr) - source contribution

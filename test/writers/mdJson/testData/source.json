@@ -58,6 +58,7 @@
          {
             "source": [
                {
+                  "sourceId": "source id",
                   "description": "description0",
                   "sourceCitation": {
                      "title": "title"

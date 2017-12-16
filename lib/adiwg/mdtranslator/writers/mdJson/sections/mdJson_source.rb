@@ -22,6 +22,7 @@ module ADIWG
                def self.build(hSource)
 
                   Jbuilder.new do |json|
+                     json.sourceId hSource[:sourceId]
                      json.description hSource[:description]
                      json.sourceCitation Citation.build(hSource[:sourceCitation]) unless hSource[:sourceCitation].empty?
                      json.metadataCitation @Namespace.json_map(hSource[:metadataCitation], Citation)

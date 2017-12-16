@@ -22,14 +22,13 @@ class TestReaderFgdcSource < TestReaderFGDCParent
       hSource = @@NameSpace.unpack(xIn, hResponse)
 
       refute_nil hSource
+      assert_equal 'source id', hSource[:sourceId]
       assert_equal 'my source 1 contribution', hSource[:description]
       refute_empty hSource[:sourceCitation]
       refute_empty hSource[:scope]
 
       hCitation = hSource[:sourceCitation]
       assert_equal 'my source 1 citation title', hCitation[:title]
-      assert_equal 1, hCitation[:alternateTitles].length
-      assert_equal 'ADIwg', hCitation[:alternateTitles][0]
       assert_equal 1, hCitation[:dates].length
       assert_equal 1, hCitation[:responsibleParties].length
       assert_equal 1, hCitation[:presentationForms].length
