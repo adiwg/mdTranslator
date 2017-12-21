@@ -14,7 +14,8 @@ module ADIWG
 
             def self.startWriter(intObj, responseObj, whichDict: 0)
 
-               # make contacts and domains available to the instance
+               # make objects available to the instance
+               @intObj = intObj
                @contacts = intObj[:contacts]
 
                # set the format of the output file based on the writer
@@ -53,6 +54,10 @@ module ADIWG
                end
                aParties = aParties.uniq
                return aParties
+            end
+
+            def  self.get_intObj
+               return @intObj
             end
 
          end

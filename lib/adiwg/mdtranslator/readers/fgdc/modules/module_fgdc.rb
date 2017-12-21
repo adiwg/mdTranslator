@@ -181,7 +181,7 @@ module ADIWG
                   @contacts = @intObj[:contacts]
                end
 
-               # get internal object for test modules
+               # get internal object
                def self.get_intObj
                   return @intObj
                end

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<metadata>
+  <dataqual>
+    <lineage>
+      <method>
+        <methtype>statement</methtype>
+        <methodid>
+          <methkt>method keyword set one</methkt>
+          <methkey>one</methkey>
+          <methkey>two</methkey>
+        </methodid>
+        <methodid>
+          <methkt>method keyword set two</methkt>
+          <methkey>three</methkey>
+          <methkey>four</methkey>
+        </methodid>
+        <methdesc>statement</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>method citation one</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>method citation two</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </methcite>
+      </method>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </srccite>
+        <srcscale>1111</srcscale>
+        <typesrc>lineage source one</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2017-12-17</begdate>
+              <begtime/>
+              <enddate>2017-12-18</enddate>
+              <endtime/>
+            </rngdates>
+            <srccurr>description</srccurr>
+          </timeinfo>
+        </srctime>
+        <srccitea>1</srccitea>
+        <srccontr>lineage source one</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </srccite>
+        <srcscale>2222</srcscale>
+        <typesrc>lineage source two</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2017-12-17</begdate>
+              <begtime/>
+              <enddate>2017-12-18</enddate>
+              <endtime/>
+            </rngdates>
+            <srccurr>description</srccurr>
+          </timeinfo>
+        </srctime>
+        <srccitea>2</srccitea>
+        <srccontr>lineage source two</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </srccite>
+        <srcscale>3333</srcscale>
+        <typesrc>process step source three</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2017-12-17</begdate>
+              <begtime/>
+              <enddate>2017-12-18</enddate>
+              <endtime/>
+            </rngdates>
+            <srccurr>description</srccurr>
+          </timeinfo>
+        </srctime>
+        <srccitea>3</srccitea>
+        <srccontr>process step source three</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </srccite>
+        <srcscale>4444</srcscale>
+        <typesrc>process step product four</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2017-12-17</begdate>
+              <begtime/>
+              <enddate>2017-12-18</enddate>
+              <endtime/>
+            </rngdates>
+            <srccurr>description</srccurr>
+          </timeinfo>
+        </srctime>
+        <srccitea>4</srccitea>
+        <srccontr>process step product four</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>lineage step one</procdesc>
+        <srcused>1</srcused>
+        <srcused>3</srcused>
+        <procdate>2017-12-18</procdate>
+        <proctime/>
+        <srcprod/>
+        <proccont/>
+      </procstep>
+      <procstep>
+        <procdesc>lineage step two</procdesc>
+        <srcused/>
+        <procdate>2017-12-18</procdate>
+        <proctime/>
+        <srcprod>2</srcprod>
+        <srcprod>4</srcprod>
+        <proccont/>
+      </procstep>
+      <procstep>
+        <procdesc>source step one</procdesc>
+        <srcused/>
+        <procdate>2017-12-18</procdate>
+        <proctime/>
+        <srcprod/>
+        <proccont/>
+      </procstep>
+      <procstep>
+        <procdesc>source step two</procdesc>
+        <srcused/>
+        <procdate>2017-12-18</procdate>
+        <proctime/>
+        <srcprod/>
+        <proccont/>
+      </procstep>
+    </lineage>
+  </dataqual>
+</metadata>

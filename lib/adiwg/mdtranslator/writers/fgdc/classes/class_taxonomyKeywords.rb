@@ -18,18 +18,17 @@ module ADIWG
 
                def writeXML(aKeywords)
 
-                  # taxonomy bio (keywtax) - taxonomic keywords
+                  # taxonomy bio (keywtax) - taxonomic keywords (required)
                   haveTaxon = false
                   aKeywords.each do |hKeySet|
                      type = hKeySet[:keywordType]
-                     aKeywords = hKeySet[:keywords]
-                     thesaurus = hKeySet[:thesaurus]
-                     if thesaurus.empty?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Taxonomy Keyword Set is missing thesaurus'
-                     end
-
                      if type == 'taxon'
+                        aKeywords = hKeySet[:keywords]
+                        thesaurus = hKeySet[:thesaurus]
+                        if thesaurus.empty?
+                           @hResponseObj[:writerPass] = false
+                           @hResponseObj[:writerMessages] << 'Taxonomy Keyword Set is missing thesaurus'
+                        end
                         @xml.tag!('keywtax') do
                            @xml.tag!('taxonkt', thesaurus[:title])
                            aKeywords.each do |hKeyword|
@@ -41,7 +40,6 @@ module ADIWG
                            end
                         end
                      end
-
                   end
                   unless haveTaxon
                      @hResponseObj[:writerPass] = false
