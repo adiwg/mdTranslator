@@ -1,7 +1,29 @@
 # Change Log
 
-## [v2.6.0](https://github.com/adiwg/mdTranslator/tree/v2.6.0) (2017-11-10)
+## [v2.6.1](https://github.com/adiwg/mdTranslator/tree/v2.6.1)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.6.0...v2.6.1)
+
+**Implemented enhancements:**
+
+- Include citation.onlineResource and metadataOnlineResource in webLinks [\#165](https://github.com/adiwg/mdTranslator/issues/165)
+
+**Fixed bugs:**
+
+- sbJSON identifier objects are not unique [\#162](https://github.com/adiwg/mdTranslator/issues/162)
+- Metadata identifier is not written to sbJSON [\#160](https://github.com/adiwg/mdTranslator/issues/160)
+
+**Closed issues:**
+
+- add 'Agreement Number' to sbJson budget facet [\#166](https://github.com/adiwg/mdTranslator/issues/166)
+- handle 80 character keyword length in sbJson writer [\#164](https://github.com/adiwg/mdTranslator/issues/164)
+- sbJson reader should not import short abstract [\#163](https://github.com/adiwg/mdTranslator/issues/163)
+
+**Merged pull requests:**
+
+- Patches and enhancements to sbJson reader and writer [\#167](https://github.com/adiwg/mdTranslator/pull/167) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.6.0](https://github.com/adiwg/mdTranslator/tree/v2.6.0) (2017-11-11)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.5.0...v2.6.0)
 
 **Fixed bugs:**
