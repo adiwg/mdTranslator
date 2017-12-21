@@ -466,4 +466,60 @@ class FgdcWriterTD
       }
    end
 
+   def lineage
+      {
+         statement: 'statement',
+         citation: [],
+         processStep: [],
+         source: []
+      }
+   end
+
+   def source
+      {
+         sourceId: nil,
+         description: 'description',
+         sourceProcessStep: []
+      }
+   end
+
+   def processStep
+      {
+         stepId: nil,
+         description: 'description',
+         rationale: 'rationale',
+         processor: [],
+         stepSource: [],
+         stepProduct: [],
+         reference: []
+      }
+   end
+
+   def  timePeriod
+      {
+         id: nil,
+         description: 'description',
+         periodName: [],
+         startDateTime: nil,
+         endDateTime: nil,
+      }
+   end
+
+   def scope
+      {
+         scopeCode: 'code',
+         scopeDescription: [],
+         scopeExtent: []
+      }
+   end
+
+   def extent
+      {
+         description: 'description',
+         geographicExtent: [],
+         verticalExtent: [],
+         temporalExtent: []
+      }
+   end
+
 end

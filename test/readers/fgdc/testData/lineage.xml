@@ -3,11 +3,50 @@
     <lineage>
       <method>
         <methtype>Field</methtype>
-        <methdesc>my method 1 description</methdesc>
+        <methodid>
+          <methkt>method keyword thesaurus one</methkt>
+          <methkey>one</methkey>
+          <methkey>two</methkey>
+        </methodid>
+        <methodid>
+          <methkt>method keyword thesaurus two</methkt>
+          <methkey>three</methkey>
+          <methkey>four</methkey>
+        </methodid>
+        <methdesc>method description one</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20120115</pubdate>
+            <title>method citation one</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20130115</pubdate>
+            <title>method citation two</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
       </method>
       <method>
         <methtype>Field</methtype>
-        <methdesc>my method 2 description</methdesc>
+        <methodid>
+          <methkt>method keyword thesaurus three</methkt>
+          <methkey>five</methkey>
+          <methkey>six</methkey>
+        </methodid>
+        <methdesc>method description two</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20140115</pubdate>
+            <title>method citation three</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
       </method>
       <srcinfo>
         <srccite>

@@ -158,6 +158,51 @@ class FgdcWriterTD
       return hGraphic
    end
 
+   def build_source(id, description = nil, resolution = nil, hScope = nil)
+      hSource = source
+      hSource[:sourceId] = id
+      hSource[:sourceCitation] =  citation
+      unless description.nil?
+         hSource[:description] = description
+      end
+      unless resolution.nil?
+         hResolution = {}
+         hResolution[:scaleFactor] = resolution
+         hSource[:spatialResolution] = hResolution
+      end
+      unless hScope.nil?
+         hSource[:scope] = hScope
+      end
+      return hSource
+   end
+
+   def build_processStep(id, description = nil, hTimePeriod = nil)
+      hStep = processStep
+      hStep[:stepId] = id
+      unless description.nil?
+         hStep[:description] = description
+      end
+      unless hTimePeriod.nil?
+         hStep[:timePeriod] = hTimePeriod
+      end
+      return hStep
+   end
+
+   def build_timePeriod(id, description = nil, startDT = nil, endDT = nil)
+      hTimePeriod = timePeriod
+      hTimePeriod[:id] = id
+      unless description.nil?
+         hTimePeriod[:description] = description
+      end
+      unless startDT.nil?
+         hTimePeriod[:startDateTime] = startDT
+      end
+      unless endDT.nil?
+         hTimePeriod[:endDateTime] = endDT
+      end
+      return hTimePeriod
+   end
+
    def add_accessConstraint(hObj, constraint)
       hObj[:legal][:accessConstraint] << constraint
       return hObj

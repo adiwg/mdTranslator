@@ -3,10 +3,16 @@
   <idinfo>
     <taxonomy>
       <keywtax>
-        <taxonkt>taxonomy</taxonkt>
-        <taxonkey>animals</taxonkey>
-        <taxonkey>vertebrates</taxonkey>
+        <taxonkt>taxonomy one</taxonkt>
+        <taxonkey>animal</taxonkey>
+        <taxonkey>vertebrate</taxonkey>
         <taxonkey>bird</taxonkey>
+      </keywtax>
+      <keywtax>
+        <taxonkt>taxonomy two</taxonkt>
+        <taxonkey>plant</taxonkey>
+        <taxonkey>aster</taxonkey>
+        <taxonkey>dandy lion</taxonkey>
       </keywtax>
       <taxonsys>
         <classsys>
