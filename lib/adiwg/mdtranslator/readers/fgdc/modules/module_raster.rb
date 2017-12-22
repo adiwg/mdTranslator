@@ -30,7 +30,7 @@ module ADIWG
                      hGridInfo[:cellGeometry] = cellGeometry.downcase
                   end
 
-                  # -> make number of dimensions from total occurrence of 3.4.2-4
+                  # -> compute number of dimensions from total occurrence of 3.4.2-4
                   hGridInfo[:numberOfDimensions] = 0
 
                   # raster object 3.4.2 (rowcount) - row count

@@ -6,6 +6,7 @@
 
 require_relative 'class_identification'
 require_relative 'class_quality'
+require_relative 'class_spatialOrganization'
 
 module ADIWG
    module Mdtranslator
@@ -22,10 +23,12 @@ module ADIWG
                def writeXML(intObj)
 
                   version = @hResponseObj[:translatorVersion]
+                  hResourceInfo = intObj[:metadata][:resourceInfo]
 
                   # classes used
                   idClass = Identification.new(@xml, @hResponseObj)
                   qualityClass = Quality.new(@xml, @hResponseObj)
+                  spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -52,8 +55,29 @@ module ADIWG
                            qualityClass.writeXML(intObj)
                         end
                      end
+                     if intObj[:metadata][:lineageInfo].empty?
+                        @xml.tag!('dataqual')
+                     end
 
                      # metadata 3 (spdoinfo) - spatial domain information
+                     hDomainInfo = false
+                     hDomainInfo = true unless hResourceInfo[:spatialRepresentations].empty?
+                     hDomainInfo = true unless hResourceInfo[:spatialRepresentationTypes].empty?
+                     hResourceInfo[:spatialReferenceSystems].each do |hSystem|
+                        unless hSystem[:systemIdentifier].empty?
+                           if hSystem[:systemIdentifier][:identifier] == 'indirect'
+                              hDomainInfo = true
+                           end
+                        end
+                     end
+                     if hDomainInfo
+                        @xml.tag!('spdoinfo') do
+                           spaceOrgClass.writeXML(hResourceInfo)
+                        end
+                     elsif @hResponseObj[:writerShowTags]
+                        @xml.tag!('spdoinfo')
+                     end
+
                      # metadata 4 (spref) - spatial reference systems
                      # metadata 5 (eainfo) - entity attribute information
                      # metadata 6 (distinfo) - distribution information

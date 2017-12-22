@@ -522,4 +522,45 @@ class FgdcWriterTD
       }
    end
 
+   def spatialReference
+      {
+         referenceSystemType: nil,
+         referenceSystemIdentifier: {},
+         systemParameterSet: {}
+      }
+   end
+
+   def vectorRepresentation
+      {
+         topologyLevel: nil,
+         vectorObject: []
+      }
+   end
+
+   def gridRepresentation
+      {
+         numberOfDimensions: nil,
+         dimension: [],
+         cellGeometry: nil,
+         transformationParameterAvailable: false
+      }
+   end
+
+   def vectorObject
+      {
+         objectType: nil,
+         objectCount: nil
+      }
+   end
+
+   def dimension
+      {
+         dimensionType: nil,
+         dimensionSize: nil,
+         resolution: {},
+         dimensionTitle: nil,
+         dimensionDescription: nil
+      }
+   end
+
 end

@@ -28,13 +28,17 @@ class TestReaderFgdcPointVector < TestReaderFGDCParent
       refute_empty hResInfo
       assert_equal 1, hResInfo[:spatialReferenceSystems].length
       assert_equal 1, hResInfo[:spatialRepresentationTypes].length
-      assert_equal 'vector', hResInfo[:spatialRepresentationTypes][0]
+      assert_equal 'point', hResInfo[:spatialRepresentationTypes][0]
       assert_equal 2, hResInfo[:spatialRepresentations].length
 
       hRefSystem = hResInfo[:spatialReferenceSystems][0]
       assert_nil hRefSystem[:systemType]
       refute_empty hRefSystem[:systemIdentifier]
-      assert_equal 'indirect reference', hRefSystem[:systemIdentifier][:identifier]
+
+      hIdentifier = hRefSystem[:systemIdentifier]
+      assert_equal 'indirect', hIdentifier[:identifier]
+      assert_equal 'FGDC', hIdentifier[:namespace]
+      assert_equal 'indirect reference', hIdentifier[:description]
 
       hSpatialRep = hResInfo[:spatialRepresentations][0]
       assert_empty hSpatialRep[:gridRepresentation]

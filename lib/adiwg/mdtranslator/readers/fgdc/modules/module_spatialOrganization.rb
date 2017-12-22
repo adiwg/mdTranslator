@@ -22,13 +22,15 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
 
                   # spatial organization 3.1 (indspref) - indirect spatial reference
-                  # -> resourceInfo.spatialReferenceSystems.spatialReferenceSystem.systemIdentifier.identifier per NOAA
+                  # -> resourceInfo.spatialReferenceSystems.systemIdentifier.identifier per NOAA
                   # -> however definitions are not close
                   indirect = xSpatialOrg.xpath('./indspref').text
                   unless indirect.empty?
                      hSystem = intMetadataClass.newSpatialReferenceSystem
                      hIdentifier = intMetadataClass.newIdentifier
-                     hIdentifier[:identifier] = indirect
+                     hIdentifier[:identifier] = 'indirect'
+                     hIdentifier[:namespace] = 'FGDC'
+                     hIdentifier[:description] = indirect
                      hSystem[:systemIdentifier] = hIdentifier
                      hResourceInfo[:spatialReferenceSystems] << hSystem
                   end
@@ -40,13 +42,13 @@ module ADIWG
                   # -> raster = grid do 3.4
                   direct = xSpatialOrg.xpath('./direct').text
                   unless direct.empty?
-                     type = 'vector' if direct == 'Point'
+                     type = 'point' if direct == 'Point'
                      type = 'vector' if direct == 'Vector'
                      type = 'grid' if direct == 'Raster'
                      hResourceInfo[:spatialRepresentationTypes] << type
 
                      # spatial organization 3.3 (ptvctinfo) - point and vector object
-                     if type == 'vector'
+                     if type == 'vector' || type == 'point'
                         xPtVec = xSpatialOrg.xpath('./ptvctinf')
                         unless xPtVec.empty?
                            PointVector.unpack(xPtVec, hResourceInfo, hResponseObj)

@@ -34,7 +34,11 @@ class TestReaderFgdcRaster < TestReaderFGDCParent
       hRefSystem = hResInfo[:spatialReferenceSystems][0]
       assert_nil hRefSystem[:systemType]
       refute_empty hRefSystem[:systemIdentifier]
-      assert_equal 'indirect reference', hRefSystem[:systemIdentifier][:identifier]
+
+      hIdentifier = hRefSystem[:systemIdentifier]
+      assert_equal 'indirect', hIdentifier[:identifier]
+      assert_equal 'FGDC', hIdentifier[:namespace]
+      assert_equal 'indirect reference', hIdentifier[:description]
 
       hSpatialRep = hResInfo[:spatialRepresentations][0]
       refute_empty hSpatialRep[:gridRepresentation]

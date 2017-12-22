@@ -203,6 +203,54 @@ class FgdcWriterTD
       return hTimePeriod
    end
 
+   def build_spatialReference(type = nil, hIdentifier = nil, hParameters = nil)
+      hSpatialRef = spatialReference
+      if type.nil?
+         hSpatialRef.delete(:referenceSystemType)
+      else
+         hSpatialRef[:referenceSystemType] = type
+      end
+      if hIdentifier.nil?
+         hSpatialRef.delete(:referenceSystemIdentifier)
+      else
+         hSpatialRef[:referenceSystemIdentifier] = hIdentifier
+      end
+      if hParameters.nil?
+         hSpatialRef.delete(:systemParameterSet)
+      else
+         hSpatialRef[:systemParameterSet] = hParameters
+      end
+      return hSpatialRef
+   end
+
+   def build_spatialRepresentation(type, hObj)
+      hSpaceRep = {}
+      if type == 'grid'
+         hSpaceRep[:gridRepresentation] = hObj
+      end
+      if type == 'vector'
+         hSpaceRep[:vectorRepresentation] = hObj
+      end
+      return hSpaceRep
+   end
+
+   def build_vectorRepresentation(level = nil)
+      hVector = vectorRepresentation
+      if level.nil?
+         hVector.delete(:topologyLevel)
+      else
+         hVector[:topologyLevel] = level
+      end
+      return hVector
+   end
+
+   def build_gridRepresentation(dimensions, geometry)
+      hGrid = gridRepresentation
+      hGrid[:numberOfDimensions] = dimensions
+      hGrid[:cellGeometry] = geometry
+      return hGrid
+   end
+
    def add_accessConstraint(hObj, constraint)
       hObj[:legal][:accessConstraint] << constraint
       return hObj
@@ -267,6 +315,35 @@ class FgdcWriterTD
       end
       hObject[:subClassification] << hTaxClass
       return hObject
+   end
+
+   def add_vectorObject(hVecRep, type, count = nil)
+      hVecObj = {}
+      hVecObj[:objectType] = type
+      unless count.nil?
+         hVecObj[:objectCount] = count
+      end
+      hVecRep[:vectorObject] << hVecObj
+      return hVecRep
+   end
+
+   def add_dimension(hObj, type, size, title = nil, description = nil)
+      hDimension = dimension
+      hDimension[:dimensionType] = type
+      hDimension[:dimensionSize] = size
+      hDimension.delete(:resolution)
+      if title.nil?
+         hDimension.delete(:dimensionTitle)
+      else
+         hDimension[:dimensionTitle] = title
+      end
+      if description.nil?
+         hDimension.delete(:dimensionDescription)
+      else
+         hDimension[:dimensionDescription] = description
+      end
+      hObj[:dimension] << hDimension
+      return hObj
    end
 
 end
