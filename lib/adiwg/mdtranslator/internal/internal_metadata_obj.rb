@@ -791,7 +791,7 @@ class InternalMetadata
          minValue: nil,
          maxValue: nil,
          valueRange: [],
-         timePeriodOfValues: []
+         timePeriod: []
       }
    end
 

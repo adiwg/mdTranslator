@@ -2,7 +2,7 @@
 # unpack fgdc entity attribute
 
 # History:
-#  Stan Smith 2017-10-30 added timePeriodOfValues
+#  Stan Smith 2017-10-30 added timePeriod
 #  Stan Smith 2017-09-06 original script
 
 require 'nokogiri'
@@ -100,8 +100,8 @@ module ADIWG
                   axBegin = xAttribute.xpath('./begdatea')
                   # entity attribute 5.1.2.5 (begdatea) - beginning date of attribute values
                   # entity attribute 5.1.2.6 (enddatea) - ending date of attribute values
-                  # -> dataDictionary.entities.attributes.timePeriodOfValues.startDateTime
-                  # -> dataDictionary.entities.attributes.timePeriodOfValues.endDateTime
+                  # -> dataDictionary.entities.attributes.timePeriod.startDateTime
+                  # -> dataDictionary.entities.attributes.timePeriod.endDateTime
                   axBegin.each_with_index do |xBegin, index|
                      beginDate = xBegin.text
                      unless beginDate.empty?
@@ -116,7 +116,7 @@ module ADIWG
                            hTimePeriod[:endDateTime] = hDateTime
                         end
                         hTimePeriod[:description] = 'attribute date range'
-                        hAttribute[:timePeriodOfValues] << hTimePeriod
+                        hAttribute[:timePeriod] << hTimePeriod
                      end
                   end
 

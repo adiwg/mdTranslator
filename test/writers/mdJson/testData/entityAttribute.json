@@ -109,7 +109,7 @@
                            "maxRangeValue": "40"
                         }
                      ],
-                     "timePeriodOfValues": [
+                     "timePeriod": [
                         {
                            "startDateTime": "2016-10-14",
                            "endDateTime": "2016-12-31"

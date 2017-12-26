@@ -151,7 +151,7 @@ module ADIWG
                   end
 
                   # entity attribute - time period of values {timePeriod}
-                  hAttribute[:timePeriodOfValues].each do |hPeriod|
+                  hAttribute[:timePeriod].each do |hPeriod|
                      @html.details do
                         @html.summary('Time Period of Values', {'class' => 'h5'})
                         @html.section(:class => 'block') do

@@ -47,12 +47,12 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_nil hAttribute0[:minValue]
       assert_nil hAttribute0[:maxValue]
       assert_empty hAttribute0[:valueRange]
-      assert_equal 2, hAttribute0[:timePeriodOfValues].length
-      assert_equal 'attribute date range', hAttribute0[:timePeriodOfValues][0][:description]
-      assert_kind_of DateTime, hAttribute0[:timePeriodOfValues][0][:startDateTime][:dateTime]
-      assert_equal 'YMDhmsZ', hAttribute0[:timePeriodOfValues][0][:startDateTime][:dateResolution]
-      assert_kind_of DateTime, hAttribute0[:timePeriodOfValues][0][:endDateTime][:dateTime]
-      assert_equal 'YMDhmsZ', hAttribute0[:timePeriodOfValues][0][:endDateTime][:dateResolution]
+      assert_equal 2, hAttribute0[:timePeriod].length
+      assert_equal 'attribute date range', hAttribute0[:timePeriod][0][:description]
+      assert_kind_of DateTime, hAttribute0[:timePeriod][0][:startDateTime][:dateTime]
+      assert_equal 'YMDhmsZ', hAttribute0[:timePeriod][0][:startDateTime][:dateResolution]
+      assert_kind_of DateTime, hAttribute0[:timePeriod][0][:endDateTime][:dateTime]
+      assert_equal 'YMDhmsZ', hAttribute0[:timePeriod][0][:endDateTime][:dateResolution]
 
       hAttribute1 = hEntity0[:attributes][1]
       refute_empty hAttribute1
@@ -77,7 +77,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal '9', hAttribute1[:valueRange][0][:maxRangeValue]
       assert_equal '20', hAttribute1[:valueRange][1][:minRangeValue]
       assert_equal '40', hAttribute1[:valueRange][1][:maxRangeValue]
-      assert_empty hAttribute1[:timePeriodOfValues]
+      assert_empty hAttribute1[:timePeriod]
 
       hAttribute4 = hEntity0[:attributes][4]
       assert_equal 'A', hAttribute4[:minValue]

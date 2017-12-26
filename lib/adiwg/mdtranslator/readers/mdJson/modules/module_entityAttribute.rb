@@ -177,13 +177,13 @@ module ADIWG
                   end
 
                   # attribute - time period of values [] {timePeriod}
-                  if hAttribute.has_key?('timePeriodOfValues')
-                     aTimePeriods = hAttribute['timePeriodOfValues']
+                  if hAttribute.has_key?('timePeriod')
+                     aTimePeriods = hAttribute['timePeriod']
                      aTimePeriods.each do |hTimePeriod|
                         unless hTimePeriod.empty?
                            hReturn = TimePeriod.unpack(hTimePeriod, responseObj)
                            unless hReturn.nil?
-                              intAttribute[:timePeriodOfValues] << hReturn
+                              intAttribute[:timePeriod] << hReturn
                            end
                         end
                      end
