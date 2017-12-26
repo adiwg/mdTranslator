@@ -40,7 +40,7 @@ module ADIWG
                      json.domainId hAttribute[:domainId]
                      json.minValue hAttribute[:minValue]
                      json.maxValue hAttribute[:maxValue]
-                     json.rangeOfValues @Namespace.json_map(hAttribute[:rangeOfValues], ValueRange)
+                     json.valueRange @Namespace.json_map(hAttribute[:valueRange], ValueRange)
                      json.timePeriodOfValues @Namespace.json_map(hAttribute[:timePeriodOfValues], TimePeriod)
 
                   end

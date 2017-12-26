@@ -127,7 +127,7 @@ module ADIWG
                   end
 
                   # entity attribute - range of values [] {citation}
-                  hAttribute[:rangeOfValues].each do |hRange|
+                  hAttribute[:valueRange].each do |hRange|
                      @html.details do
                         @html.summary('Range of Values', {'class' => 'h5'})
                         @html.section(:class => 'block') do

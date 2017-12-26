@@ -164,13 +164,13 @@ module ADIWG
                   end
 
                   # attribute - domain range of values [] {valueRange}
-                  if hAttribute.has_key?('rangeOfValues')
-                     aValueRange = hAttribute['rangeOfValues']
+                  if hAttribute.has_key?('valueRange')
+                     aValueRange = hAttribute['valueRange']
                      aValueRange.each do |hRange|
                         unless hRange.empty?
                            hReturn = ValueRange.unpack(hRange, responseObj)
                            unless hReturn.nil?
-                              intAttribute[:rangeOfValues] << hReturn
+                              intAttribute[:valueRange] << hReturn
                            end
                         end
                      end

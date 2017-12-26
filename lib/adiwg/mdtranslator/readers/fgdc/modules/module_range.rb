@@ -30,11 +30,11 @@ module ADIWG
                      axRanges.each do |xRange|
 
                         hRange = intMetadataClass.newValueRange
-                        hAttribute[:rangeOfValues] << hRange
+                        hAttribute[:valueRange] << hRange
 
                         # entity attribute 5.1.2.4.2.1 (rdommin) - range minimum
                         # -> dataDictionary.entities.attributes.minValue
-                        # -> dataDictionary.entities.attributes.rangeOfValues.minRangeValue
+                        # -> dataDictionary.entities.attributes.valueRange.minRangeValue
                         min = xRange.xpath('./rdommin').text
                         unless min.empty?
                            hRange[:minRangeValue] = min
@@ -52,7 +52,7 @@ module ADIWG
 
                         # entity attribute 5.1.2.4.2.2 (rdommax) - range maximum
                         # -> dataDictionary.entities.attributes.maxValue
-                        # -> dataDictionary.entities.attributes.rangeOfValues.maxRangeValue
+                        # -> dataDictionary.entities.attributes.valueRange.maxRangeValue
                         max = xRange.xpath('./rdommax').text
                         unless max.empty?
                            hRange[:maxRangeValue] = max

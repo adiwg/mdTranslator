@@ -790,7 +790,7 @@ class InternalMetadata
          domainId: nil,
          minValue: nil,
          maxValue: nil,
-         rangeOfValues: [],
+         valueRange: [],
          timePeriodOfValues: []
       }
    end

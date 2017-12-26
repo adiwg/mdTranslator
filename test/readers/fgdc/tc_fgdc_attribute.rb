@@ -46,7 +46,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal hDictionary[:domains][0][:domainId], hAttribute0[:domainId]
       assert_nil hAttribute0[:minValue]
       assert_nil hAttribute0[:maxValue]
-      assert_empty hAttribute0[:rangeOfValues]
+      assert_empty hAttribute0[:valueRange]
       assert_equal 2, hAttribute0[:timePeriodOfValues].length
       assert_equal 'attribute date range', hAttribute0[:timePeriodOfValues][0][:description]
       assert_kind_of DateTime, hAttribute0[:timePeriodOfValues][0][:startDateTime][:dateTime]
@@ -72,21 +72,21 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       refute_nil hAttribute1[:domainId]
       assert_equal '0', hAttribute1[:minValue]
       assert_equal '40', hAttribute1[:maxValue]
-      assert_equal 2, hAttribute1[:rangeOfValues].length
-      assert_equal '0', hAttribute1[:rangeOfValues][0][:minRangeValue]
-      assert_equal '9', hAttribute1[:rangeOfValues][0][:maxRangeValue]
-      assert_equal '20', hAttribute1[:rangeOfValues][1][:minRangeValue]
-      assert_equal '40', hAttribute1[:rangeOfValues][1][:maxRangeValue]
+      assert_equal 2, hAttribute1[:valueRange].length
+      assert_equal '0', hAttribute1[:valueRange][0][:minRangeValue]
+      assert_equal '9', hAttribute1[:valueRange][0][:maxRangeValue]
+      assert_equal '20', hAttribute1[:valueRange][1][:minRangeValue]
+      assert_equal '40', hAttribute1[:valueRange][1][:maxRangeValue]
       assert_empty hAttribute1[:timePeriodOfValues]
 
       hAttribute4 = hEntity0[:attributes][4]
       assert_equal 'A', hAttribute4[:minValue]
       assert_equal 'Z', hAttribute4[:maxValue]
-      assert_equal 2, hAttribute4[:rangeOfValues].length
-      assert_equal 'A', hAttribute4[:rangeOfValues][0][:minRangeValue]
-      assert_equal 'F', hAttribute4[:rangeOfValues][0][:maxRangeValue]
-      assert_equal 'X', hAttribute4[:rangeOfValues][1][:minRangeValue]
-      assert_equal 'Z', hAttribute4[:rangeOfValues][1][:maxRangeValue]
+      assert_equal 2, hAttribute4[:valueRange].length
+      assert_equal 'A', hAttribute4[:valueRange][0][:minRangeValue]
+      assert_equal 'F', hAttribute4[:valueRange][0][:maxRangeValue]
+      assert_equal 'X', hAttribute4[:valueRange][1][:minRangeValue]
+      assert_equal 'Z', hAttribute4[:valueRange][1][:maxRangeValue]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
