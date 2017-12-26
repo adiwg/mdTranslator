@@ -1,6 +1,9 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.7.0 2017-12-26 add fgdc writer identification info section
+# 2.7.0 2017-12-26 add fgdc writer data quality info section
+# 2.7.0 2017-12-26 add fgdc writer spatial domain info section
 # 2.6.1 2017-11-30 add agreement number to sbJson budget facet
 # 2.6.1 2017-11-30 add metadataOnlineResources and citation onlineResources to sbJson
 # 2.6.1 2017-11-30 remove duplicate citation identifiers from sbJson
@@ -52,7 +55,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.6.1"
+      VERSION = "2.7.0"
    end
 end
 
