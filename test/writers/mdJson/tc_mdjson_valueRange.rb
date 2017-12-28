@@ -13,15 +13,14 @@ class TestWriterMdJsonValueRange < TestWriterMdJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('valueRange.json')
 
-   # TODO reinstate after schema update
-   # def test_schema_valueRange
-   #
-   #    hIn = JSON.parse(@@jsonIn)
-   #    hTest = hIn['dataDictionary'][0]['entity'][0]['attribute'][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'entity.json', :fragment=>'attribute')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_valueRange
+
+      hIn = JSON.parse(@@jsonIn)
+      hTest = hIn['dataDictionary'][0]['entity'][0]['attribute'][0]['valueRange'][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'entityAttribute.json', :fragment=>'valueRange')
+      assert_empty errors
+
+   end
 
    def test_complete_valueRange
 

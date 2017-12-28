@@ -16,13 +16,12 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('dictionary.json')
    @@hIn = aIn['dataDictionary'][0]
 
-   # TODO reinstate after schema update
-   # def test_dictionary_schema
-   #
-   #    errors = TestReaderMdJsonParent.testSchema(@@hIn, 'dataDictionary.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_dictionary_schema
+
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'dataDictionary.json')
+      assert_empty errors
+
+   end
 
    def test_complete_dictionary_object
 
