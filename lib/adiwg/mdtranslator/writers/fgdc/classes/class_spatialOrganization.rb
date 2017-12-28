@@ -57,45 +57,20 @@ module ADIWG
                   # <- resourceInfo.spatialRepresentations.vectorRepresentation (first)
                   if direct == 'Point' || direct == 'Vector'
                      hResourceInfo[:spatialRepresentations].each do |hSpaceRep|
-                        if hSpaceRep[:vectorRepresentation]
+                        unless hSpaceRep[:vectorRepresentation].empty?
                            hVectorRep = hSpaceRep[:vectorRepresentation]
-                           @xml.tag!('ptvctinf') do
-                              if hVectorRep[:topologyLevel].nil?
+                           unless hVectorRep.empty?
+                              @xml.tag!('ptvctinf') do
+                                 if hVectorRep[:topologyLevel].nil?
 
-                                 # spatial organization point and vector object 3.3.1 (sdtsterm) - SDTS term []
-                                 hVectorRep[:vectorObject].each do |hVecObj|
-                                    @xml.tag!('sdtsterm') do
-
-                                       # spatial organization point and vector object 3.3.1.1 (sdtstype) - SDTS object type (requied)
-                                       @xml.tag!('sdtstype', hVecObj[:objectType])
-
-                                       # spatial organization point and vector object 3.3.1.2 (ptvctcnt) - SDTS count
-                                       unless hVecObj[:objectCount].nil?
-                                          @xml.tag!('ptvctcnt', hVecObj[:objectCount])
-                                       end
-                                       if hVecObj[:objectCount].nil?
-                                          @xml.tag!('ptvctcnt')
-                                       end
-
-                                    end
-                                 end
-
-                              else
-
-                                 # point and vector object 3.3.2 (vpfterm) - VPF terms description
-                                 @xml.tag!('vpfterm') do
-
-                                    # VPF term 3.3.2.1 (vpflevel) - VPF topology level
-                                    @xml.tag!('vpflevel', hVectorRep[:topologyLevel])
-
-                                    # VPF term 3.3.2.2 (vpfinfo) - VPF point and vector object information []
+                                    # spatial organization point and vector object 3.3.1 (sdtsterm) - SDTS term []
                                     hVectorRep[:vectorObject].each do |hVecObj|
-                                       @xml.tag!('vpfinfo') do
+                                       @xml.tag!('sdtsterm') do
 
-                                          # spatial organization point and vector object 3.3.2.2.1 (vpftype) - VPF object type (requied)
-                                          @xml.tag!('vpftype', hVecObj[:objectType])
+                                          # spatial organization point and vector object 3.3.1.1 (sdtstype) - SDTS object type (requied)
+                                          @xml.tag!('sdtstype', hVecObj[:objectType])
 
-                                          # spatial organization point and vector object 3.3.2.2.2 (ptvctcnt) - VPF object type
+                                          # spatial organization point and vector object 3.3.1.2 (ptvctcnt) - SDTS count
                                           unless hVecObj[:objectCount].nil?
                                              @xml.tag!('ptvctcnt', hVecObj[:objectCount])
                                           end
@@ -106,11 +81,39 @@ module ADIWG
                                        end
                                     end
 
-                                 end
+                                 else
 
+                                    # point and vector object 3.3.2 (vpfterm) - VPF terms description
+                                    @xml.tag!('vpfterm') do
+
+                                       # VPF term 3.3.2.1 (vpflevel) - VPF topology level
+                                       @xml.tag!('vpflevel', hVectorRep[:topologyLevel])
+
+                                       # VPF term 3.3.2.2 (vpfinfo) - VPF point and vector object information []
+                                       hVectorRep[:vectorObject].each do |hVecObj|
+                                          @xml.tag!('vpfinfo') do
+
+                                             # spatial organization point and vector object 3.3.2.2.1 (vpftype) - VPF object type (requied)
+                                             @xml.tag!('vpftype', hVecObj[:objectType])
+
+                                             # spatial organization point and vector object 3.3.2.2.2 (ptvctcnt) - VPF object type
+                                             unless hVecObj[:objectCount].nil?
+                                                @xml.tag!('ptvctcnt', hVecObj[:objectCount])
+                                             end
+                                             if hVecObj[:objectCount].nil?
+                                                @xml.tag!('ptvctcnt')
+                                             end
+
+                                          end
+                                       end
+
+                                    end
+
+                                 end
                               end
+                              break
                            end
-                           break
+
                         end
                      end
                   end

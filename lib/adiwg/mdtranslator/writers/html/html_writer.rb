@@ -18,7 +18,7 @@ module ADIWG
             def self.startWriter(intObj, responseObj)
 
                # set the format and version of the output file
-               responseObj[:writerFormat] = 'html'
+               responseObj[:writerOutputFormat] = 'html'
                responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Html::VERSION
 
                # create new HTML document

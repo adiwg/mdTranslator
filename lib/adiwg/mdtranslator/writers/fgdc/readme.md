@@ -1,9 +1,9 @@
 
-## sbJson
+## fgdc
 
 ### Supported versions
 
-> 1.x (FGDC-STD-001-1998)
+> 1.x (FGDC-STD-001-1998) with Biological Data Profile
 
 ### Writer for Federal Geographic Data Committee's Content Standard for Digital Geospatial Metadata (fgdc)
 

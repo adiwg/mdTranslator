@@ -28,7 +28,7 @@ module ADIWG
                   end
                   if hSource[:sourceId].nil?
                      @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Lineage Source is missing source abbreviation (source id)'
+                     @hResponseObj[:writerMessages] << 'Source is missing source abbreviation (source id)'
                   end
 
                   @xml.tag!('srcinfo') do
@@ -46,7 +46,7 @@ module ADIWG
                      end
                      if hSource[:sourceCitation].empty?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Lineage Source is missing citation'
+                        @hResponseObj[:writerMessages] << 'Source is missing citation'
                      end
 
                      # source 2.5.1.2 (srcscale) - source scale denominator
@@ -69,7 +69,7 @@ module ADIWG
                      end
                      if hSource[:description].nil?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Lineage Source is missing media type (description)'
+                        @hResponseObj[:writerMessages] << 'Source is missing media type (description)'
                      end
 
                      # source 2.5.1.4 (srctime) - source time period (required)
@@ -90,7 +90,7 @@ module ADIWG
                      end
                      unless haveTime
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Lineage Source is missing time period'
+                        @hResponseObj[:writerMessages] << 'Source is missing time period'
                      end
 
                      # source 2.5.1.5 (srccitea) - source citation abbreviation (required)
@@ -100,7 +100,7 @@ module ADIWG
                      end
                      if hSource[:sourceId].nil?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Lineage Source is missing citation abbreviation (id)'
+                        @hResponseObj[:writerMessages] << 'Source is missing citation abbreviation (id)'
                      end
 
                      # source 2.5.1.6 (srccontr) - source contribution (required)
@@ -110,7 +110,7 @@ module ADIWG
                      end
                      if hSource[:sourceId].nil?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Lineage Source is missing contribution (description)'
+                        @hResponseObj[:writerMessages] << 'Source is missing contribution (description)'
                      end
 
                   end

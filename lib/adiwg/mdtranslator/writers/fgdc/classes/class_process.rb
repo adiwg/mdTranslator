@@ -5,6 +5,7 @@
 #  Stan Smith 2017-12-18 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
+require_relative '../fgdc_writer'
 require_relative 'class_contact'
 
 module ADIWG
@@ -91,13 +92,21 @@ module ADIWG
                      @xml.tag!('srcprod')
                   end
 
-                  # process 2.5.2.6 (proccont) - process contact {contact}
-                  unless hStep[:processors].empty?
-                     @xml.tag!('proccont') do
-                        contactClass.writeXML(hStep[:processors][0])
+                  # process 2.5.2.6 (proccont) - process contact {contact} first
+                  haveProcessor = false
+                  aRParties = hStep[:processors]
+                  aProcessors = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'processor')
+                  aProcessors.each do |contactId|
+                     hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                     unless hContact.empty?
+                        @xml.tag!('proccont') do
+                           contactClass.writeXML(hContact)
+                           haveProcessor = true
+                           break
+                        end
                      end
                   end
-                  if hStep[:processors].empty? && @hResponseObj[:writerShowTags]
+                  if !haveProcessor && @hResponseObj[:writerShowTags]
                      @xml.tag!('proccont')
                   end
 

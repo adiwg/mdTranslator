@@ -97,7 +97,7 @@ class TestWriterFgdcSource < TestReaderFgdcParent
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Source is missing source abbreviation (source id)'
+      assert_includes hResponseObj[:writerMessages], 'Source is missing source abbreviation (source id)'
 
       # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -108,7 +108,7 @@ class TestWriterFgdcSource < TestReaderFgdcParent
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Source is missing source abbreviation (source id)'
+      assert_includes hResponseObj[:writerMessages], 'Source is missing source abbreviation (source id)'
 
    end
 
@@ -122,7 +122,7 @@ class TestWriterFgdcSource < TestReaderFgdcParent
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Source is missing citation'
+      assert_includes hResponseObj[:writerMessages], 'Source is missing citation'
 
    end
 
@@ -137,7 +137,7 @@ class TestWriterFgdcSource < TestReaderFgdcParent
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Source is missing time period'
+      assert_includes hResponseObj[:writerMessages], 'Source is missing time period'
 
    end
 

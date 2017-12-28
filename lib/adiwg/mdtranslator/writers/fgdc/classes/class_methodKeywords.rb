@@ -27,7 +27,7 @@ module ADIWG
                         thesaurus = hKeySet[:thesaurus]
                         if thesaurus.empty?
                            @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Lineage Methodology Keyword Set is missing thesaurus'
+                           @hResponseObj[:writerMessages] << 'Lineage Method Keyword Set is missing thesaurus'
                         end
                         @xml.tag!('methodid') do
                            @xml.tag!('methkt', thesaurus[:title])
@@ -43,7 +43,7 @@ module ADIWG
                   end
                   unless haveMethod
                      @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Lineage Methodology is missing keyword set'
+                     @hResponseObj[:writerMessages] << 'Lineage Method is missing keyword set'
                   end
 
                end # writeXML

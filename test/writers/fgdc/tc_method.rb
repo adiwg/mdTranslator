@@ -116,7 +116,7 @@ class TestWriterFgdcMethod < TestReaderFgdcParent
       )
 
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Methodology is missing keyword set'
+      assert_includes hResponseObj[:writerMessages], 'Lineage Method is missing keyword set'
 
    end
 
