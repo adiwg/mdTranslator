@@ -14,13 +14,12 @@ class TestReaderMdJsonValueRange < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('valueRange.json')
    @@hIn = aIn['valueRange'][0]
 
-   # TODO complete after schema update
-   # def test_series_schema
-   #
-   #    errors = TestReaderMdJsonParent.testSchema(@@hIn, 'citation.json', :fragment => 'series')
-   #    assert_empty errors
-   #
-   # end
+   def test_valueRange_schema
+
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entityAttribute.json', :fragment => 'valueRange')
+      assert_empty errors
+
+   end
 
    def test_complete_valueRange_object
 

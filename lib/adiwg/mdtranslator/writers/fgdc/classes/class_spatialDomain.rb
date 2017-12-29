@@ -90,7 +90,7 @@ module ADIWG
                         end
                         if geoDescription.empty?
                            @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Spatial Domain section is missing geographic description'
+                           @hResponseObj[:writerMessages] << 'Spatial Domain is missing geographic description'
                         end
 
                         # spatial domain 1.5.1 (bounding) - bounding box (required)
@@ -149,7 +149,7 @@ module ADIWG
                         end
                         if hBBox.empty?
                            @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Spatial Domain section is missing bounding box'
+                           @hResponseObj[:writerMessages] << 'Spatial Domain is missing bounding box'
                         end
 
                         # spatial domain 1.5.2 (dsgpoly) - bounding polygon [] (required)

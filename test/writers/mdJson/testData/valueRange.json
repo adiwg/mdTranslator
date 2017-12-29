@@ -85,7 +85,7 @@
                      "allowNull": true,
                      "allowMany": true,
                      "isCaseSensitive": true,
-                     "rangeOfValues": [
+                     "valueRange": [
                         {
                            "minRangeValue": "0",
                            "maxRangeValue": "9"

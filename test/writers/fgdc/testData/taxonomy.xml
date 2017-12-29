@@ -1,0 +1,227 @@
+<metadata>
+  <idinfo>
+    <taxonomy>
+      <keywtax>
+        <taxonkt>fgdc taxonomy keywords</taxonkt>
+        <taxonkey>animals</taxonkey>
+        <taxonkey>vertebrates</taxonkey>
+        <taxonkey>birds</taxonkey>
+      </keywtax>
+      <keywtax>
+        <taxonkt>fgdc taxonomy keywords two</taxonkt>
+        <taxonkey>plants</taxonkey>
+        <taxonkey>grasses</taxonkey>
+        <taxonkey>bamboo</taxonkey>
+      </keywtax>
+      <taxonsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>person name</origin>
+              <pubdate>2017-11-22</pubdate>
+              <pubtime/>
+              <title>citation title</title>
+              <edition/>
+              <geoform/>
+              <serinfo/>
+              <pubinfo/>
+              <othercit/>
+              <onlink/>
+              <lworkcit/>
+            </citeinfo>
+          </classcit>
+          <classmod>modifications</classmod>
+        </classsys>
+        <classsys>
+          <classcit>
+            <citeinfo>
+              <origin>person name</origin>
+              <pubdate>2017-11-22</pubdate>
+              <pubtime/>
+              <title>taxonomic system two</title>
+              <edition/>
+              <geoform/>
+              <serinfo/>
+              <pubinfo/>
+              <othercit/>
+              <onlink/>
+              <lworkcit/>
+            </citeinfo>
+          </classcit>
+          <classmod>modifications two</classmod>
+        </classsys>
+        <idref>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>taxonomic identification reference</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </idref>
+        <idref>
+          <citeinfo>
+            <origin>person name</origin>
+            <pubdate>2017-11-22</pubdate>
+            <pubtime/>
+            <title>taxonomic identification reference two</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </idref>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>person name</cntper>
+              <cntorg/>
+            </cntperp>
+            <cntpos>position name</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>address line 1</address>
+              <address>address line 2</address>
+              <city>city</city>
+              <state>administrative area</state>
+              <postal>postal code</postal>
+              <country>country</country>
+            </cntaddr>
+            <cntvoice>111-111-1111</cntvoice>
+            <cnttdd/>
+            <cntfax/>
+            <cntemail/>
+            <hours/>
+            <cntinst/>
+          </cntinfo>
+        </ider>
+        <ider>
+          <cntinfo>
+            <cntperp>
+              <cntper>person name two</cntper>
+              <cntorg/>
+            </cntperp>
+            <cntpos>position name</cntpos>
+            <cntaddr>
+              <addrtype>mailing</addrtype>
+              <address>address line 1</address>
+              <address>address line 2</address>
+              <city>city</city>
+              <state>administrative area</state>
+              <postal>postal code</postal>
+              <country>country</country>
+            </cntaddr>
+            <cntvoice>111-111-1111</cntvoice>
+            <cnttdd/>
+            <cntfax/>
+            <cntemail/>
+            <hours/>
+            <cntinst/>
+          </cntinfo>
+        </ider>
+        <taxonpro>procedures</taxonpro>
+        <taxoncom>completeness</taxoncom>
+        <vouchers>
+          <specimen>specimen one</specimen>
+          <repository>
+            <cntinfo>
+              <cntperp>
+                <cntper>person name</cntper>
+                <cntorg/>
+              </cntperp>
+              <cntpos>position name</cntpos>
+              <cntaddr>
+                <addrtype>mailing</addrtype>
+                <address>address line 1</address>
+                <address>address line 2</address>
+                <city>city</city>
+                <state>administrative area</state>
+                <postal>postal code</postal>
+                <country>country</country>
+              </cntaddr>
+              <cntvoice>111-111-1111</cntvoice>
+              <cnttdd/>
+              <cntfax/>
+              <cntemail/>
+              <hours/>
+              <cntinst/>
+            </cntinfo>
+          </repository>
+        </vouchers>
+        <vouchers>
+          <specimen>specimen two</specimen>
+          <repository>
+            <cntinfo>
+              <cntperp>
+                <cntper>person name</cntper>
+                <cntorg/>
+              </cntperp>
+              <cntpos>position name</cntpos>
+              <cntaddr>
+                <addrtype>mailing</addrtype>
+                <address>address line 1</address>
+                <address>address line 2</address>
+                <city>city</city>
+                <state>administrative area</state>
+                <postal>postal code</postal>
+                <country>country</country>
+              </cntaddr>
+              <cntvoice>111-111-1111</cntvoice>
+              <cnttdd/>
+              <cntfax/>
+              <cntemail/>
+              <hours/>
+              <cntinst/>
+            </cntinfo>
+          </repository>
+        </vouchers>
+      </taxonsys>
+      <taxongen>general scope</taxongen>
+      <taxoncl>
+        <taxonrn>kingdom</taxonrn>
+        <taxonrv>animalia</taxonrv>
+        <common>animals</common>
+        <taxoncl>
+          <taxonrn>subkingdom</taxonrn>
+          <taxonrv>bilateria</taxonrv>
+          <common/>
+          <taxoncl>
+            <taxonrn>subfamily</taxonrn>
+            <taxonrv>anserinae</taxonrv>
+            <common/>
+            <taxoncl>
+              <taxonrn>genus</taxonrn>
+              <taxonrv>branta</taxonrv>
+              <common/>
+              <taxoncl>
+                <taxonrn>species</taxonrn>
+                <taxonrv>branta bernicla</taxonrv>
+                <common>brant goose</common>
+                <common>ganso de collar</common>
+              </taxoncl>
+            </taxoncl>
+            <taxoncl>
+              <taxonrn>genus</taxonrn>
+              <taxonrv>anser</taxonrv>
+              <common>brent geese</common>
+              <taxoncl>
+                <taxonrn>species</taxonrn>
+                <taxonrv>albifrons</taxonrv>
+                <common/>
+              </taxoncl>
+            </taxoncl>
+          </taxoncl>
+        </taxoncl>
+      </taxoncl>
+    </taxonomy>
+  </idinfo>
+</metadata>

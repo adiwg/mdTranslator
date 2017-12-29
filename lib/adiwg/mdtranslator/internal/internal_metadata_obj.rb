@@ -666,6 +666,7 @@ class InternalMetadata
 
    def newDataSource
       {
+         sourceId: nil,
          description: nil,
          sourceCitation: {},
          metadataCitation: [],
@@ -789,8 +790,8 @@ class InternalMetadata
          domainId: nil,
          minValue: nil,
          maxValue: nil,
-         rangeOfValues: [],
-         timePeriodOfValues: []
+         valueRange: [],
+         timePeriod: []
       }
    end
 

@@ -16,12 +16,12 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('entityAttribute.json')
    @@hIn = aIn['attribute'][0]
 
-   # def test_entityAttribute_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json', :fragment=>'attribute')
-   #     assert_empty errors
-   #
-   # end
+   def test_entityAttribute_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entityAttribute.json')
+       assert_empty errors
+
+   end
 
    def test_complete_entityAttribute_object
 
@@ -46,8 +46,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_equal 'domainId', metadata[:domainId]
       assert_equal 'minValue', metadata[:minValue]
       assert_equal 'maxValue', metadata[:maxValue]
-      assert_equal 2, metadata[:rangeOfValues].length
-      assert_equal 2, metadata[:timePeriodOfValues].length
+      assert_equal 2, metadata[:valueRange].length
+      assert_equal 2, metadata[:timePeriod].length
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -196,8 +196,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       hIn['domainId'] = ''
       hIn['minValue'] = ''
       hIn['maxValue'] = ''
-      hIn['rangeOfValues'] = []
-      hIn['timePeriodOfValues'] = []
+      hIn['valueRange'] = []
+      hIn['timePeriod'] = []
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -213,8 +213,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata[:domainId]
       assert_nil metadata[:minValue]
       assert_nil metadata[:maxValue]
-      assert_empty metadata[:rangeOfValues]
-      assert_empty metadata[:timePeriodOfValues]
+      assert_empty metadata[:valueRange]
+      assert_empty metadata[:timePeriod]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -235,8 +235,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       hIn.delete('domainId')
       hIn.delete('minValue')
       hIn.delete('maxValue')
-      hIn.delete('rangeOfValues')
-      hIn.delete('timePeriodOfValues')
+      hIn.delete('valueRange')
+      hIn.delete('timePeriod')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -251,8 +251,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata[:domainId]
       assert_nil metadata[:minValue]
       assert_nil metadata[:maxValue]
-      assert_empty metadata[:rangeOfValues]
-      assert_empty metadata[:timePeriodOfValues]
+      assert_empty metadata[:valueRange]
+      assert_empty metadata[:timePeriod]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

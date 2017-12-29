@@ -2,89 +2,92 @@
 # writers / fgdc / class_series
 
 # History:
-#   Stan Smith 2017-11-22 original script
+#  Stan Smith 2017-11-22 original script
 
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriterFgdcSeries < TestReaderFgdcParent
 
-   # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_hash('series')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
 
-   # TODO add schema validation test after schema update
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   mdHash[:metadata][:resourceInfo][:citation][:series] = TDClass.series
+
+   @@mdHash = mdHash
 
    def test_series_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('series', './metadata/idinfo/citation/citeinfo/serinfo')
-      assert_equal aReturn[0], aReturn[1]
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'series', './metadata/idinfo/citation/citeinfo/serinfo')
+      assert_equal hReturn[0], hReturn[1]
 
    end
 
    def test_series_name
 
       # name empty
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series']['seriesName'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:series][:seriesName] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Series is missing name'
 
       # name missing
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series'].delete('seriesName')
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:series].delete(:seriesName)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Series is missing name'
 
    end
 
    def test_series_issue
 
       # issue empty
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series']['seriesIssue'] = ''
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:series][:seriesIssue] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Series is missing issue'
 
       # issue missing
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['series'].delete('seriesIssue')
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:series].delete(:seriesIssue)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
       refute_empty xMetadata.to_s
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Series is missing issue'
 
    end
 

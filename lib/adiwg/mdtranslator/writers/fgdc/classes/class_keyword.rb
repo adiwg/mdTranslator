@@ -21,21 +21,21 @@ module ADIWG
                   # array of keyword sets
                   aKeywords.each do |hKeySet|
 
-                     # find all the keyword set parts
+                     # find the keyword set parts
                      type = hKeySet[:keywordType]
-                     thesaurusName = nil
+                     aKeywords = hKeySet[:keywords]
                      thesaurus = hKeySet[:thesaurus]
+                     thesaurusName = nil
                      unless thesaurus.empty?
                         thesaurusName = thesaurus[:title]
                      end
-                     aKeywords = hKeySet[:keywords]
-                     if thesaurusName.nil?
+                     if thesaurus.empty?
                         @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'keyword set is missing thesaurus name'
+                        @hResponseObj[:writerMessages] << 'Keyword Set is missing thesaurus'
                      end
 
                      # keyword 1.6.1 (theme) - theme keywords
-                     if type == 'theme'
+                     if type == 'theme' || type == 'isoTopicCategory'
                         @xml.tag!('theme') do
                            @xml.tag!('themekt', thesaurusName)
                            aKeywords.each do |hKeyword|

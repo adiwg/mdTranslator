@@ -19,27 +19,25 @@ class TestReaderFgdcSource < TestReaderFGDCParent
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/dataqual/lineage/srcinfo').first
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      aResolutions = []
-      hSource = @@NameSpace.unpack(xIn, aResolutions,hResponse)
-
-      assert_equal 1, aResolutions.length
-      assert_equal 25000, aResolutions[0][:scaleFactor]
-      assert_empty aResolutions[0][:measure]
-      assert_nil aResolutions[0][:levelOfDetail]
+      hSource = @@NameSpace.unpack(xIn, hResponse)
 
       refute_nil hSource
+      assert_equal 'source id', hSource[:sourceId]
       assert_equal 'my source 1 contribution', hSource[:description]
       refute_empty hSource[:sourceCitation]
       refute_empty hSource[:scope]
 
       hCitation = hSource[:sourceCitation]
       assert_equal 'my source 1 citation title', hCitation[:title]
-      assert_equal 1, hCitation[:alternateTitles].length
-      assert_equal 'ADIwg', hCitation[:alternateTitles][0]
       assert_equal 1, hCitation[:dates].length
       assert_equal 1, hCitation[:responsibleParties].length
       assert_equal 1, hCitation[:presentationForms].length
       assert_equal 'my source 1 geo form', hCitation[:presentationForms][0]
+
+      hResolution = hSource[:spatialResolution]
+      assert_equal 25000, hResolution[:scaleFactor]
+      assert_empty hResolution[:measure]
+      assert_nil hResolution[:levelOfDetail]
 
       hResponsibility = hCitation[:responsibleParties][0]
       assert_equal 'originator', hResponsibility[:roleName]

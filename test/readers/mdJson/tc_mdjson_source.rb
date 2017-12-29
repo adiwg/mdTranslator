@@ -11,119 +11,125 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_source'
 
 class TestReaderMdJsonSource < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Source
-    aIn = TestReaderMdJsonParent.getJson('source.json')
-    @@hIn = aIn['source'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Source
+   aIn = TestReaderMdJsonParent.getJson('source.json')
+   @@hIn = aIn['source'][0]
 
-    def test_source_schema
+   # TODO reinstate after schema update
+   # def test_source_schema
+   #
+   #    errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment => 'source')
+   #    assert_empty errors
+   #
+   # end
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment=>'source')
-        assert_empty errors
+   def test_complete_source_object
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_source_object
+      assert_equal 'source ID', metadata[:sourceId]
+      assert_equal 'description', metadata[:description]
+      refute_empty metadata[:sourceCitation]
+      assert_equal 2, metadata[:metadataCitation].length
+      refute_empty metadata[:spatialResolution]
+      refute_empty metadata[:referenceSystem]
+      assert_equal 2, metadata[:sourceSteps].length
+      refute_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_equal 'description', metadata[:description]
-        refute_empty metadata[:sourceCitation]
-        assert_equal 2, metadata[:metadataCitation].length
-        refute_empty metadata[:spatialResolution]
-        refute_empty metadata[:referenceSystem]
-        assert_equal 2, metadata[:sourceSteps].length
-        refute_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_source_description_empty
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['description'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_source_description_empty
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['description'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_source_description_missing
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('description')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_source_description_missing
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('description')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_source_elements_empty
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['sourceId'] = ''
+      hIn['sourceCitation'] = {}
+      hIn['metadataCitation'] = []
+      hIn['spatialResolution'] = {}
+      hIn['referenceSystem'] = {}
+      hIn['sourceProcessStep'] = []
+      hIn['scope'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_source_elements_empty
+      assert_nil metadata[:sourceId]
+      assert_equal 'description', metadata[:description]
+      assert_empty metadata[:sourceCitation]
+      assert_empty metadata[:metadataCitation]
+      assert_empty metadata[:spatialResolution]
+      assert_empty metadata[:referenceSystem]
+      assert_empty metadata[:sourceSteps]
+      assert_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['sourceCitation'] = {}
-        hIn['metadataCitation'] = []
-        hIn['spatialResolution'] = {}
-        hIn['referenceSystem'] = {}
-        hIn['sourceProcessStep'] = []
-        hIn['scope'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_equal 'description', metadata[:description]
-        assert_empty metadata[:sourceCitation]
-        assert_empty metadata[:metadataCitation]
-        assert_empty metadata[:spatialResolution]
-        assert_empty metadata[:referenceSystem]
-        assert_empty metadata[:sourceSteps]
-        assert_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_source_elements_missing
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('sourceId')
+      hIn.delete('sourceCitation')
+      hIn.delete('metadataCitation')
+      hIn.delete('spatialResolution')
+      hIn.delete('referenceSystem')
+      hIn.delete('sourceProcessStep')
+      hIn.delete('scope')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_source_elements_missing
+      assert_nil metadata[:sourceId]
+      assert_equal 'description', metadata[:description]
+      assert_empty metadata[:sourceCitation]
+      assert_empty metadata[:metadataCitation]
+      assert_empty metadata[:spatialResolution]
+      assert_empty metadata[:referenceSystem]
+      assert_empty metadata[:sourceSteps]
+      assert_empty metadata[:scope]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('sourceCitation')
-        hIn.delete('metadataCitation')
-        hIn.delete('spatialResolution')
-        hIn.delete('referenceSystem')
-        hIn.delete('sourceProcessStep')
-        hIn.delete('scope')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_equal 'description', metadata[:description]
-        assert_empty metadata[:sourceCitation]
-        assert_empty metadata[:metadataCitation]
-        assert_empty metadata[:spatialResolution]
-        assert_empty metadata[:referenceSystem]
-        assert_empty metadata[:sourceSteps]
-        assert_empty metadata[:scope]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_empty_source_object
 
-    end
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-    def test_empty_source_object
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      refute_empty hResponse[:readerExecutionMessages]
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
+   end
 
 end

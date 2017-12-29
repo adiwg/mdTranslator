@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-22</pubdate>
+        <title>title</title>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>abstract</abstract>
+      <purpose>purpose</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>2017-11-23</begdate>
+          <begtime>10:42:50</begtime>
+          <enddate>2017-11-23</enddate>
+          <endtime>17:19:58</endtime>
+        </rngdates>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+  </idinfo>
+</metadata>

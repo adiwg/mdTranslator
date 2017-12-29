@@ -3,11 +3,50 @@
     <lineage>
       <method>
         <methtype>Field</methtype>
-        <methdesc>my method 1 description</methdesc>
+        <methodid>
+          <methkt>method keyword thesaurus one</methkt>
+          <methkey>one</methkey>
+          <methkey>two</methkey>
+        </methodid>
+        <methodid>
+          <methkt>method keyword thesaurus two</methkt>
+          <methkey>three</methkey>
+          <methkey>four</methkey>
+        </methodid>
+        <methdesc>method description one</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20120115</pubdate>
+            <title>method citation one</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20130115</pubdate>
+            <title>method citation two</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
       </method>
       <method>
         <methtype>Field</methtype>
-        <methdesc>my method 2 description</methdesc>
+        <methodid>
+          <methkt>method keyword thesaurus three</methkt>
+          <methkey>five</methkey>
+          <methkey>six</methkey>
+        </methodid>
+        <methdesc>method description two</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>my source 1 origin</origin>
+            <pubdate>20140115</pubdate>
+            <title>method citation three</title>
+            <geoform>geo form</geoform>
+          </citeinfo>
+        </methcite>
       </method>
       <srcinfo>
         <srccite>
@@ -29,7 +68,7 @@
           </timeinfo>
           <srccurr>publication</srccurr>
         </srctime>
-        <srccitea>ADIwg</srccitea>
+        <srccitea>source id</srccitea>
         <srccontr>my source 1 contribution</srccontr>
       </srcinfo>
       <srcinfo>
@@ -56,16 +95,16 @@
           </timeinfo>
           <srccurr>observed</srccurr>
         </srctime>
-        <srccitea>USGS BBL</srccitea>
+        <srccitea>source id 2</srccitea>
         <srccontr>my source 2 contribution</srccontr>
       </srcinfo>
       <procstep>
         <procdesc>my proc step 1 description</procdesc>
-        <srcused>ADIwg</srcused>
-        <srcused>USGS BBL</srcused>
+        <srcused>source id</srcused>
+        <srcused>source id 2</srcused>
         <procdate>20170831</procdate>
         <proctime>142245</proctime>
-        <srcprod>USGS BBL</srcprod>
+        <srcprod>source id 2</srcprod>
         <proccont>
           <cntinfo>
             <cntperp>

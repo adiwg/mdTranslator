@@ -51,14 +51,17 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy bio.2.2 (idref) - taxonomic identification reference [] {citation}
-                  # -> resourceInfo.taxonomy.idReferences.citation
+                  # taxonomy bio.2.2 (idref) - taxonomic identification reference [] {identifier}
+                  # -> resourceInfo.taxonomy.idReferences.authority
                   axTaxRef = xSystem.xpath('./idref')
                   unless axTaxRef.empty?
                      axTaxRef.each do |xTaxRef|
                         hCitation = Citation.unpack(xTaxRef, hResponseObj)
                         unless hCitation.nil?
-                           hTaxonomy[:idReferences] << hCitation
+                           hIdentifier = intMetadataClass.newIdentifier
+                           hIdentifier[:identifier] = 'none'
+                           hIdentifier[:citation] = hCitation
+                           hTaxonomy[:idReferences] << hIdentifier
                         end
                      end
                   end

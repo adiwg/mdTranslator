@@ -23,11 +23,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hTaxonomy = intMetadataClass.newTaxonomy
 
-                  # taxonomy bio.1 (keywtax) - taxonomic keywords {keyword}
+                  # taxonomy bio.1 (keywtax) - taxonomic keywords [] {keyword}
                   # -> resourceInfo.keywords
-                  xKeywords = xTaxonomy.xpath('./keywtax')
-                  unless xKeywords.empty?
-                     Keyword.unpack(xKeywords, hResourceInfo, hResponseObj)
+                  axKeywords = xTaxonomy.xpath('./keywtax')
+                  unless axKeywords.empty?
+                     axKeywords.each do |xKeyword|
+                        Keyword.unpack(xKeyword, hResourceInfo, hResponseObj)
+                     end
                   end
 
                   # taxonomy bio.2 (taxonsys) - taxonomic system

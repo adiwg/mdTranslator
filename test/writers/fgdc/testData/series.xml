@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-20</pubdate>
+        <title>citation title</title>
+        <serinfo>
+          <sername>series name</sername>
+          <issue>series issue</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>city, administrative area, country</pubplace>
+          <publish>person name</publish>
+        </pubinfo>
+      </citeinfo>
+    </citation>
+  </idinfo>
+</metadata>

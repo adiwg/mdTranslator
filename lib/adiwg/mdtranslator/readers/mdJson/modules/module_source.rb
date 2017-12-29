@@ -16,108 +16,115 @@ require_relative 'module_scope'
 require_relative 'module_spatialResolution'
 
 module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
+   module Mdtranslator
+      module Readers
+         module MdJson
 
-                module Source
+            module Source
 
-                    def self.unpack(hSource, responseObj)
+               def self.unpack(hSource, responseObj)
 
-                        # return nil object if input is empty
-                        if hSource.empty?
-                            responseObj[:readerExecutionMessages] << 'Source object is empty'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                  # return nil object if input is empty
+                  if hSource.empty?
+                     responseObj[:readerExecutionMessages] << 'Source object is empty'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
+
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+                  intSource = intMetadataClass.newDataSource
+
+                  # source - source ID
+                  if hSource.has_key?('sourceId')
+                     unless hSource['sourceId'] == ''
+                        intSource[:sourceId] = hSource['sourceId']
+                     end
+                  end
+
+                  # source - description (required)
+                  if hSource.has_key?('description')
+                     intSource[:description] = hSource['description']
+                  end
+                  if intSource[:description].nil? || intSource[:description] == ''
+                     responseObj[:readerExecutionMessages] << 'Source description is missing'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
+
+                  # source - source citation
+                  if hSource.has_key?('sourceCitation')
+                     hObject = hSource['sourceCitation']
+                     unless hObject.empty?
+                        hReturn = Citation.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intSource[:sourceCitation] = hReturn
                         end
+                     end
+                  end
 
-                        # instance classes needed in script
-                        intMetadataClass = InternalMetadata.new
-                        intSource = intMetadataClass.newDataSource
-
-                        # source - description (required)
-                        if hSource.has_key?('description')
-                            intSource[:description] = hSource['description']
+                  # source - source metadata []
+                  if hSource.has_key?('metadataCitation')
+                     aCitation = hSource['metadataCitation']
+                     aCitation.each do |item|
+                        hCitation = Citation.unpack(item, responseObj)
+                        unless hCitation.nil?
+                           intSource[:metadataCitation] << hCitation
                         end
-                        if intSource[:description].nil? || intSource[:description] == ''
-                            responseObj[:readerExecutionMessages] << 'Source description is missing'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                     end
+                  end
+
+                  # source - spatial resolution
+                  if hSource.has_key?('spatialResolution')
+                     hObject = hSource['spatialResolution']
+                     unless hObject.empty?
+                        hReturn = SpatialResolution.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intSource[:spatialResolution] = hReturn
                         end
+                     end
+                  end
 
-                        # source - source citation
-                        if hSource.has_key?('sourceCitation')
-                            hObject = hSource['sourceCitation']
-                            unless hObject.empty?
-                                hReturn = Citation.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSource[:sourceCitation] = hReturn
-                                end
-                            end
+                  # source - reference system
+                  if hSource.has_key?('referenceSystem')
+                     hObject = hSource['referenceSystem']
+                     unless hObject.empty?
+                        hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intSource[:referenceSystem] = hReturn
                         end
+                     end
+                  end
 
-                        # source - source metadata []
-                        if hSource.has_key?('metadataCitation')
-                            aCitation = hSource['metadataCitation']
-                            aCitation.each do |item|
-                                hCitation = Citation.unpack(item, responseObj)
-                                unless hCitation.nil?
-                                    intSource[:metadataCitation] << hCitation
-                                end
-                            end
+                  # source - source steps []
+                  if hSource.has_key?('sourceProcessStep')
+                     aSteps = hSource['sourceProcessStep']
+                     aSteps.each do |item|
+                        hStep = ProcessStep.unpack(item, responseObj)
+                        unless hStep.nil?
+                           intSource[:sourceSteps] << hStep
                         end
+                     end
+                  end
 
-                        # source - spatial resolution
-                        if hSource.has_key?('spatialResolution')
-                            hObject = hSource['spatialResolution']
-                            unless hObject.empty?
-                                hReturn = SpatialResolution.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSource[:spatialResolution] = hReturn
-                                end
-                            end
+                  # source - scope {scope}
+                  if hSource.has_key?('scope')
+                     hObject = hSource['scope']
+                     unless hObject.empty?
+                        hReturn = Scope.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intSource[:scope] = hReturn
                         end
+                     end
+                  end
 
-                        # source - reference system
-                        if hSource.has_key?('referenceSystem')
-                            hObject = hSource['referenceSystem']
-                            unless hObject.empty?
-                                hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSource[:referenceSystem] = hReturn
-                                end
-                            end
-                        end
+                  return intSource
 
-                        # source - source steps []
-                        if hSource.has_key?('sourceProcessStep')
-                            aSteps = hSource['sourceProcessStep']
-                            aSteps.each do |item|
-                                hStep = ProcessStep.unpack(item, responseObj)
-                                unless hStep.nil?
-                                    intSource[:sourceSteps] << hStep
-                                end
-                            end
-                        end
-
-                        # source - scope {scope}
-                        if hSource.has_key?('scope')
-                            hObject = hSource['scope']
-                            unless hObject.empty?
-                                hReturn = Scope.unpack(hObject, responseObj)
-                                unless hReturn.nil?
-                                    intSource[:scope] = hReturn
-                                end
-                            end
-                        end
-
-                        return intSource
-
-                    end
-
-                end
+               end
 
             end
-        end
-    end
+
+         end
+      end
+   end
 end

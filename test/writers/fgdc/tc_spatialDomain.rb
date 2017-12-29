@@ -2,21 +2,33 @@
 # writers / fgdc / class_spatialDomain
 
 # History:
-#   Stan Smith 2017-11-25 original script
+#  Stan Smith 2017-11-25 original script
 
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriterFgdcSpatialDomain < TestReaderFgdcParent
 
-   # read the mdJson 2.0
-   @@mdJson = TestReaderFgdcParent.get_hash('spatialDomain')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
 
-   # TODO add schema validation test after schema update
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   hGeoExtent = mdHash[:metadata][:resourceInfo][:extent][0][:geographicExtent][0]
+   TDClass.add_altitudeBB(hGeoExtent[:boundingBox])
+
+   hGeoExtent[:geographicElement] = []
+   TDClass.add_featureCollection(hGeoExtent[:geographicElement])
+   hGeoExtent[:geographicElement][0][:features] << TDClass.build_feature('id001', 'polygon', 'FGDC bounding polygon')
+
+   @@mdHash = mdHash
 
    def test_spatialDomain_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('spatialDomain', './metadata/idinfo/spdom')
-      assert_equal aReturn[0], aReturn[1]
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'spatialDomain', './metadata/idinfo/spdom')
+      assert_equal hReturn[0], hReturn[1]
 
    end
 

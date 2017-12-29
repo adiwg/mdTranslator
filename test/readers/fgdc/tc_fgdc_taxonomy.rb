@@ -21,10 +21,23 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
 
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
+      hIntObj = TestReaderFGDCParent.get_intObj
       xIn = @@xDoc.xpath('./metadata/idinfo/taxonomy')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hTaxonomy = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
+      # keywords
+      aKeywords = hResourceInfo[:keywords]
+      assert_equal 2, aKeywords.length
+      hKeyword = aKeywords[0]
+      assert_equal 'taxon', hKeyword[:keywordType]
+      assert_equal 3, hKeyword[:keywords].length
+      assert_equal 'taxonomy one', hKeyword[:thesaurus][:title]
+      assert_equal 'animal', hKeyword[:keywords][0][:keyword]
+      assert_nil hKeyword[:keywords][0][:keywordId]
+      assert_equal 'bird', hKeyword[:keywords][2][:keyword]
+
+      # taxonomy
       refute_empty hTaxonomy
 
       assert_equal 2, hTaxonomy[:taxonSystem].length
@@ -42,11 +55,12 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       assert_equal 'none', hTaxonSystem[:modifications]
 
       hReference = hTaxonomy[:idReferences][0]
-      assert_equal 'National Audubon Society The Sibley Guide to Birds', hReference[:title]
-      assert_equal 1, hReference[:dates].length
-      assert_equal '1st', hReference[:edition]
-      assert_equal 1, hReference[:responsibleParties].length
-      assert_equal 1, hReference[:presentationForms].length
+      assert_equal 'none', hReference[:identifier]
+      assert_equal 'National Audubon Society The Sibley Guide to Birds', hReference[:citation][:title]
+      assert_equal 1, hReference[:citation][:dates].length
+      assert_equal '1st', hReference[:citation][:edition]
+      assert_equal 1, hReference[:citation][:responsibleParties].length
+      assert_equal 1, hReference[:citation][:presentationForms].length
 
       hObserver = hTaxonomy[:observers][0]
       assert_equal 'observer', hObserver[:roleName]

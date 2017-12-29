@@ -2,132 +2,143 @@
 # writers / fgdc / class_citation
 
 # History:
-#   Stan Smith 2017-11-17 original script
+#  Stan Smith 2017-11-17 original script
 
 require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriterFgdcCitation < TestReaderFgdcParent
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestReaderFgdcParent.get_hash('citation')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
 
-   # TODO add schema validation test after schema update
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   mdHash[:contact] << TDClass.build_person('CID002', 'person name two')
+   mdHash[:contact] << TDClass.build_person('CID003', 'person name three')
+   mdHash[:contact] << TDClass.build_person('CID004', 'person name four')
+
+   hCitation = TDClass.citation_full
+   hCitation[:date] << TDClass.build_date('2017-12-01T16:32:36', 'revision')
+   hCitation[:date] << TDClass.build_date('2017-12-01T16:32:36', 'publication')
+   hCitation[:responsibleParty] << TDClass.build_responsibleParty('originator', ['CID003', 'CID002'])
+   hCitation[:responsibleParty] << TDClass.build_responsibleParty('publisher', ['CID001', 'CID002'])
+   hCitation[:responsibleParty] << TDClass.build_responsibleParty('originator', ['CID004', 'CID002'])
+   mdHash[:metadata][:resourceInfo][:citation] = hCitation
+
+   mdHash[:metadata][:associatedResource] = []
+   mdHash[:metadata][:associatedResource] << TDClass.build_associatedResource('decoy')
+   mdHash[:metadata][:associatedResource] << TDClass.build_associatedResource('largerWorkCitation')
+
+   @@mdHash = mdHash
 
    def test_citation_complete
 
-      aReturn = TestReaderFgdcParent.get_complete('citation', './metadata/idinfo/citation')
-      assert_equal aReturn[0], aReturn[1]
+      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'citation', './metadata/idinfo/citation')
+      assert_equal hReturn[0], hReturn[1]
 
    end
 
-   def test_citation_originator_empty
+   def test_citation_originator
 
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['responsibleParty'] = []
-      hIn = hIn.to_json
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:responsibleParty] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Citation is missing originator'
 
-   end
-
-   def test_citation_originator_missing
-
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation'].delete('responsibleParty')
-      hIn = hIn.to_json
+      # missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation].delete(:responsibleParty)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Citation is missing originator'
 
    end
 
    def test_citation_publication_date_format
 
       # year only
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['date'][1]['date'] = '2014'
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:date][0][:date] = '2014'
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
-      xNot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
+      pubDate = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
+      pubTime = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
 
-      assert_equal '2014', xGot
-      assert_empty xNot
+      assert_equal '2014', pubDate
+      assert_empty pubTime
 
       # year-month only
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['date'][1]['date'] = '2015-11'
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:date][0][:date] = '2015-11'
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
-      xNot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
+      pubDate = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
+      pubTime = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
 
-      assert_equal '2015-11', xGot
-      assert_empty xNot
+      assert_equal '2015-11', pubDate
+      assert_empty pubTime
 
       # year-month-day only
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['date'][1]['date'] = '2016-12-25'
-      hIn = hIn.to_json
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:date][0][:date] = '2016-12-25'
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
+      pubDate = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
+      pubTime = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
 
-      assert_equal '2016-12-25', xGot
-      assert_empty xNot
-
-   end
-
-   def test_citation_publication_date_empty
-
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation']['date'] = []
-      hIn = hIn.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
-      )
-
-      refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_equal '2016-12-25', pubDate
+      assert_empty pubTime
 
    end
 
-   def test_citation_publication_date_missing
+   def test_citation_publication_date
 
-      hIn = Marshal::load(Marshal.dump(@@mdJson))
-      hIn['metadata']['resourceInfo']['citation'].delete('date')
-      hIn = hIn.to_json
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation][:date] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       refute hResponseObj[:writerPass]
-      refute_empty hResponseObj[:writerMessages]
+      assert_includes hResponseObj[:writerMessages], 'Citation is missing publication date'
+
+      # missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:citation].delete(:date)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+      )
+
+      refute hResponseObj[:writerPass]
+      assert_includes hResponseObj[:writerMessages], 'Citation is missing publication date'
 
    end
 

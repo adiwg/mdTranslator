@@ -184,6 +184,11 @@
       <browsed>my browse file description</browsed>
       <browset>my browse file type</browset>
     </browse>
+    <browse>
+      <browsen>my browse file name two</browsen>
+      <browsed>my browse file description two</browsed>
+      <browset>my browse file type two</browset>
+    </browse>
     <datacred>my dataset credits</datacred>
     <secinfo>
       <secsys>my security system name</secsys>

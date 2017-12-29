@@ -2,6 +2,7 @@
 # unpack fgdc keyword
 
 # History:
+#  Stan Smith 2017-12-19 add lineage method keywords
 #  Stan Smith 2017-08-24 original script
 
 require 'nokogiri'
@@ -171,7 +172,7 @@ module ADIWG
                   end
 
                   # keywords bio (keywtax) - taxonomy keywords {keyword}
-                  nodeName = xKeywords.xpath('./*').first.name
+                  nodeName = xKeywords.xpath('.').first.name
                   if nodeName == 'keywtax'
                      hKeyword = intMetadataClass.newKeyword
                      hKeyword[:keywordType] = 'taxon'
@@ -186,6 +187,39 @@ module ADIWG
 
                      # theme keyword bio.1.2 (taxonkey) - taxonomy keyword keywords {keywordObject}
                      axKeywords = xKeywords.xpath('./taxonkey')
+                     unless axKeywords.empty?
+                        axKeywords.each do |xKeyword|
+                           keyword = xKeyword.text
+                           unless keyword.empty?
+                              hKeywordObj = intMetadataClass.newKeywordObject
+                              hKeywordObj[:keyword] = keyword
+                              hKeyword[:keywords] << hKeywordObj
+                           end
+                        end
+                     end
+
+                     unless hKeyword.empty?
+                        aKeywords << hKeyword
+                     end
+
+                  end
+
+                  # keywords bio (methodid) - lineage method keywords {keyword}
+                  nodeName = xKeywords.xpath('.').first.name
+                  if nodeName == 'methodid'
+                     hKeyword = intMetadataClass.newKeyword
+                     hKeyword[:keywordType] = 'method'
+
+                     # theme bio.1.1 (methkt) - lineage method keyword thesaurus {citation}
+                     thesaurus = xKeywords.xpath('./methkt').text
+                     unless thesaurus.empty?
+                        hCitation = intMetadataClass.newCitation
+                        hCitation[:title] = thesaurus
+                        hKeyword[:thesaurus] = hCitation
+                     end
+
+                     # theme keyword bio.1.2 (methkey) - lineage method keywords {keywordObject}
+                     axKeywords = xKeywords.xpath('./methkey')
                      unless axKeywords.empty?
                         axKeywords.each do |xKeyword|
                            keyword = xKeyword.text

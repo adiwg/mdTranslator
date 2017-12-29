@@ -1,0 +1,41 @@
+<metadata>
+  <idinfo>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg>organization name</cntorg>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cntvoice>333-333-3333</cntvoice>
+        <cnttdd>222-222-2222</cnttdd>
+        <cnttdd>333-333-3333</cnttdd>
+        <cntfax>222-222-2222</cntfax>
+        <cntfax>333-333-3333</cntfax>
+        <cntemail>name1@adiwg.org</cntemail>
+        <cntemail>name2@adiwg.org</cntemail>
+        <hours>8-5 weekdays</hours>
+        <cntinst>contact instructions</cntinst>
+      </cntinfo>
+    </ptcontac>
+  </idinfo>
+</metadata>

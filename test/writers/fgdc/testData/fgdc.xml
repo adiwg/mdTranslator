@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>person name</origin>
+        <pubdate>2017-11-22</pubdate>
+        <pubtime/>
+        <title>citation title</title>
+        <edition/>
+        <geoform/>
+        <serinfo/>
+        <pubinfo/>
+        <othercit/>
+        <onlink/>
+        <lworkcit/>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>abstract</abstract>
+      <purpose>purpose</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>2017-12-01</caldate>
+          <time/>
+        </sngdate>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+    <status>
+      <progress>status 1</progress>
+      <update>resource maintenance frequency</update>
+    </status>
+    <spdom>
+      <descgeog>FGDC spatial domain</descgeog>
+      <bounding>
+        <westbc>-166.0</westbc>
+        <eastbc>-74.0</eastbc>
+        <northbc>71.0</northbc>
+        <southbc>24.0</southbc>
+        <boundalt/>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>farming</themekey>
+      </theme>
+    </keywords>
+    <taxonomy/>
+    <accconst>access constraint</accconst>
+    <useconst>use constraint</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </ptcontac>
+    <browse/>
+    <datacred/>
+    <secinfo/>
+    <native/>
+    <crossref/>
+  </idinfo>
+  <dataqual/>
+  <spdoinfo/>
+</metadata>

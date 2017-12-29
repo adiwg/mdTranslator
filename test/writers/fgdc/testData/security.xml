@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<metadata>
+  <idinfo>
+    <secinfo>
+      <secsys>security system name</secsys>
+      <secclass>classification</secclass>
+      <sechandl>handling instructions</sechandl>
+    </secinfo>
+  </idinfo>
+</metadata>

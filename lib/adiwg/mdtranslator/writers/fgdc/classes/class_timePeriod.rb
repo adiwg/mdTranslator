@@ -21,7 +21,7 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hTimePeriod)
+               def writeXML(hTimePeriod, currentTag)
 
                   # classes used
                   singDateClass = DateSingle.new(@xml, @hResponseObj)
@@ -33,6 +33,7 @@ module ADIWG
                   hEndDate = hTimePeriod[:endDateTime]
                   hStartGeoAge = hTimePeriod[:startGeologicAge]
                   hEndGeoAge = hTimePeriod[:endGeologicAge]
+                  current = hTimePeriod[:description]
 
                   dateCount = 0
                   ageCount = 0
@@ -51,27 +52,24 @@ module ADIWG
                      @hResponseObj[:writerMessages] << 'Time Period must be either conventional or geologic time, not both'
                   end
 
-                  # single date
-                  if dateCount == 1
-                     @xml.tag!('timeinfo') do
+                  @xml.tag!('timeinfo') do
+
+                     # single date
+                     if dateCount == 1
                         if hStartDate.empty?
                            singDateClass.writeXML(hEndDate)
                         else
                            singDateClass.writeXML(hStartDate)
                         end
                      end
-                  end
 
-                  # date range
-                  if dateCount == 2
-                     @xml.tag!('timeinfo') do
+                     # date range
+                     if dateCount == 2
                         rangeDateClass.writeXML(hStartDate, hEndDate)
                      end
-                  end
 
-                  # single geologic age
-                  if ageCount == 1
-                     @xml.tag!('timeinfo') do
+                     # single geologic age
+                     if ageCount == 1
                         @xml.tag!('sngdate') do
                            @xml.tag!('geolage') do
                               if hStartGeoAge.empty?
@@ -82,15 +80,23 @@ module ADIWG
                            end
                         end
                      end
-                  end
 
-                  # geologic age range
-                  if ageCount == 2
-                     @xml.tag!('timeinfo') do
+                     # geologic age range
+                     if ageCount == 2
                         @xml.tag!('rngdates') do
                            geologicRangeClass.writeXML(hStartGeoAge,hEndGeoAge )
                         end
                      end
+
+                     # add timeInfo currentness (required)
+                     unless current.nil?
+                        @xml.tag!(currentTag, current)
+                     end
+                     if current.nil?
+                        @hResponseObj[:writerPass] = false
+                        @hResponseObj[:writerMessages] << 'Time Info is missing time currentness'
+                     end
+
                   end
 
                end # writeXML

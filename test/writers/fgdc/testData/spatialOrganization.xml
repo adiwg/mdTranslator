@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<metadata>
+  <spdoinfo>
+    <indspref>indirect reference</indspref>
+    <direct>Point</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>sdts type one</sdtstype>
+        <ptvctcnt>9</ptvctcnt>
+      </sdtsterm>
+      <sdtsterm>
+        <sdtstype>sdts type two</sdtstype>
+        <ptvctcnt/>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spdoinfo>
+    <indspref>indirect reference</indspref>
+    <direct>Point</direct>
+    <ptvctinf>
+      <vpfterm>
+        <vpflevel>2</vpflevel>
+        <vpfinfo>
+          <vpftype>vpf type one</vpftype>
+          <ptvctcnt>999</ptvctcnt>
+        </vpfinfo>
+        <vpfinfo>
+          <vpftype>vpf type two</vpftype>
+          <ptvctcnt/>
+        </vpfinfo>
+      </vpfterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spdoinfo>
+    <indspref>indirect reference</indspref>
+    <direct>Point</direct>
+    <rastinfo>
+      <rasttype>raster type</rasttype>
+      <rowcount>999</rowcount>
+      <colcount>99</colcount>
+      <vrtcount>9</vrtcount>
+    </rastinfo>
+  </spdoinfo>
+</metadata>

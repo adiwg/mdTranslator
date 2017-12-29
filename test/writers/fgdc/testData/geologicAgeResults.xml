@@ -1,0 +1,53 @@
+<metadata>
+  <idinfo>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <beggeol>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </beggeol>
+          <endgeol>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </endgeol>
+        </rngdates>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <geolage>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </geolage>
+        </sngdate>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <geolage>
+            <geolscal>geologic age time scale</geolscal>
+            <geolest>geologic age estimate</geolest>
+            <geolun/>
+            <geolexpl/>
+            <geolcit/>
+          </geolage>
+        </sngdate>
+        <current>time info currentness</current>
+      </timeinfo>
+    </timeperd>
+  </idinfo>
+</metadata>

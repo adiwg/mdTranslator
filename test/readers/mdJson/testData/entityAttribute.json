@@ -22,7 +22,7 @@
          "domainId": "domainId",
          "minValue": "minValue",
          "maxValue": "maxValue",
-         "rangeOfValues": [
+         "valueRange": [
             {
                "minRangeValue": "0",
                "maxRangeValue": "9"
@@ -32,7 +32,7 @@
                "maxRangeValue": "40"
             }
          ],
-         "timePeriodOfValues": [
+         "timePeriod": [
             {
                "startDateTime": "2016-10-14",
                "endDateTime": "2016-12-31"
@@ -63,8 +63,8 @@
          "domainId": "dom042",
          "minValue": "1000000",
          "maxValue": "5000000",
-         "rangeOfValues": [],
-         "timePeriodOfValues": []
+         "valueRange": [],
+         "timePeriod": []
       }
    ]
 }

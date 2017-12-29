@@ -60,14 +60,17 @@ module ADIWG
                   xTimePeriod = xIdInfo.xpath('./timeperd')
                   unless xTimePeriod.empty?
 
+                     # timeInfo currentness
+                     current = xTimePeriod.xpath('./current').text
+
                      # time period for single date, multi-date, and date range {resource timePeriod}
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
                      hResourceInfo[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
+                     hResourceInfo[:timePeriod][:description] = current
 
                      # time period multi-date also placed in temporalExtent
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
                      unless axMultiple.empty?
-                        current = xTimePeriod.xpath('./current').text
                         hExtent = intMetadataClass.newExtent
                         hExtent[:description] = 'FGDC resource time period for multiple date/times/geological age'
                         axMultiple.each do |xDateTime|
@@ -129,6 +132,8 @@ module ADIWG
                   hConstraint[:type] = 'legal'
                   hLegal = intMetadataClass.newLegalConstraint
 
+                  hLegal[:accessCodes] << accessCon unless accessCon.empty?
+                  hLegal[:useCodes] << useCon unless useCon.empty?
                   hLegal[:otherCons] << accessCon unless accessCon.empty?
                   hLegal[:otherCons] << useCon unless useCon.empty?
                   unless hLegal[:otherCons].empty?
@@ -147,7 +152,7 @@ module ADIWG
                   end
 
                   # identification information 1.10 (browse) - browse graphic []
-                  axBrowse = xIdInfo.xpath('./browse')
+                  axBrowse = xIdInfo.xpath('//browse')
                   unless axBrowse.empty?
                      axBrowse.each do |xBrowse|
                         browseName = xBrowse.xpath('./browsen').text

@@ -14,7 +14,8 @@ module ADIWG
 
             def self.startWriter(intObj, responseObj, whichDict: 0)
 
-               # make contacts and domains available to the instance
+               # make objects available to the instance
+               @intObj = intObj
                @contacts = intObj[:contacts]
 
                # set the format of the output file based on the writer
@@ -40,6 +41,23 @@ module ADIWG
                   end
                end
                return {}
+            end
+
+            def self.find_responsibility(aResponsibility, roleName)
+               aParties = []
+               aResponsibility.each do |hRParty|
+                  if hRParty[:roleName] == roleName
+                     hRParty[:parties].each do |hParty|
+                        aParties << hParty[:contactId]
+                     end
+                  end
+               end
+               aParties = aParties.uniq
+               return aParties
+            end
+
+            def  self.get_intObj
+               return @intObj
             end
 
          end

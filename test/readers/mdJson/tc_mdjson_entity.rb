@@ -17,13 +17,12 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('entity.json')
    @@hIn = aIn['entity'][0]
 
-   # TODO reinstate after schema update
-   # def test_entity_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_entity_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json')
+       assert_empty errors
+
+   end
 
    def test_complete_entity_object
 
