@@ -1,7 +1,14 @@
 # Change Log
 
-## [v2.6.1](https://github.com/adiwg/mdTranslator/tree/v2.6.1)
+## [v2.7.0](https://github.com/adiwg/mdTranslator/tree/v2.7.0)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.6.1...v2.7.0)
+
+**Merged pull requests:**
+
+- Add basic FGDC writer [\#169](https://github.com/adiwg/mdTranslator/pull/169) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.6.1](https://github.com/adiwg/mdTranslator/tree/v2.6.1) (2017-12-05)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.6.0...v2.6.1)
 
 **Implemented enhancements:**
