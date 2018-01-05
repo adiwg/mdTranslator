@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.7.1 2017-01-05 fix issue #171, fully implement deprecation of topicCategories[]
+# 2.7.0 2017-12-28 reinstate schema validation checks for schema 2.4.1
 # 2.7.0 2017-12-26 add fgdc writer identification info section
 # 2.7.0 2017-12-26 add fgdc writer data quality info section
 # 2.7.0 2017-12-26 add fgdc writer spatial domain info section
@@ -55,7 +57,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.7.0"
+      VERSION = "2.7.1"
    end
 end
 
