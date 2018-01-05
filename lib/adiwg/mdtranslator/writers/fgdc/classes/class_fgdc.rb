@@ -7,6 +7,7 @@
 require_relative 'class_identification'
 require_relative 'class_quality'
 require_relative 'class_spatialOrganization'
+require_relative 'class_spatialReference'
 
 module ADIWG
    module Mdtranslator
@@ -29,6 +30,7 @@ module ADIWG
                   idClass = Identification.new(@xml, @hResponseObj)
                   qualityClass = Quality.new(@xml, @hResponseObj)
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
+                  spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -60,17 +62,17 @@ module ADIWG
                      end
 
                      # metadata 3 (spdoinfo) - spatial domain information
-                     hDomainInfo = false
-                     hDomainInfo = true unless hResourceInfo[:spatialRepresentations].empty?
-                     hDomainInfo = true unless hResourceInfo[:spatialRepresentationTypes].empty?
+                     haveDomain = false
+                     haveDomain = true unless hResourceInfo[:spatialRepresentations].empty?
+                     haveDomain = true unless hResourceInfo[:spatialRepresentationTypes].empty?
                      hResourceInfo[:spatialReferenceSystems].each do |hSystem|
                         unless hSystem[:systemIdentifier].empty?
                            if hSystem[:systemIdentifier][:identifier] == 'indirect'
-                              hDomainInfo = true
+                              haveDomain = true
                            end
                         end
                      end
-                     if hDomainInfo
+                     if haveDomain
                         @xml.tag!('spdoinfo') do
                            spaceOrgClass.writeXML(hResourceInfo)
                         end
@@ -79,6 +81,17 @@ module ADIWG
                      end
 
                      # metadata 4 (spref) - spatial reference systems
+                     haveSpaceRef = false
+                     haveSpaceRef = true unless hResourceInfo[:spatialResolutions].empty?
+                     haveSpaceRef = true unless hResourceInfo[:spatialReferenceSystems].empty?
+                     if haveSpaceRef
+                        @xml.tag!('spref') do
+                           spaceRefClass.writeXML(hResourceInfo[:spatialResolutions], hResourceInfo[:spatialReferenceSystems])
+                        end
+                     elsif @hResponseObj[:writerShowTags]
+                        @xml.tag!('spref')
+                     end
+
                      # metadata 5 (eainfo) - entity attribute information
                      # metadata 6 (distinfo) - distribution information
                      # metadata 7 (metainfo) - metadata information
