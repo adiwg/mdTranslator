@@ -256,7 +256,6 @@ class InternalMetadata
          credits: [],
          timePeriod: {},
          status: [],
-         topicCategories: [],
          pointOfContacts: [],
          spatialReferenceSystems: [],
          spatialRepresentationTypes: [],

@@ -28,6 +28,7 @@
             "status0",
             "status1"
          ],
+         "topicCategory": ["society", "inlandWaters"],
          "pointOfContact": [
             {
                "role": "role0",

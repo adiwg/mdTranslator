@@ -26,8 +26,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      aReturn = @@NameSpace.unpack(hIn, hResponse)
-      metadata = aReturn[0]
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_equal 2, metadata[:keywords].length
       assert_equal 'keywordType', metadata[:keywordType]
@@ -69,8 +68,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
        hIn['keywordType'] = ''
        hIn['thesaurus'] = {}
        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       aReturn = @@NameSpace.unpack(hIn, hResponse)
-       metadata = aReturn[0]
+       metadata = @@NameSpace.unpack(hIn, hResponse)
 
        refute_empty metadata[:keywords]
        assert_nil metadata[:keywordType]
@@ -86,8 +84,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
        hIn.delete('keywordType')
        hIn.delete('thesaurus')
        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       aReturn = @@NameSpace.unpack(hIn, hResponse)
-       metadata = aReturn[0]
+       metadata = @@NameSpace.unpack(hIn, hResponse)
 
        refute_empty metadata[:keywords]
        assert_nil metadata[:keywordType]

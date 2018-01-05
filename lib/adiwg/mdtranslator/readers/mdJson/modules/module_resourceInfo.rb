@@ -6,6 +6,7 @@
 #                    ... topic category is now handled as keyword list
 #  Stan Smith 2016-11-01 original script
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_resourceType'
 require_relative 'module_citation'
 require_relative 'module_timePeriod'
@@ -139,8 +140,20 @@ module ADIWG
                   # resource information - topic category (deprecated)
                   if hResInfo.has_key?('topicCategory')
                      unless hResInfo['topicCategory'].empty?
+                        # move topicCategories to keywordObject
+                        hKeyword = {}
+                        hKeyword['keyword'] = []
+                        hKeyword['keywordType'] = 'isoTopicCategory'
+                        hResInfo['topicCategory'].each do |keyword|
+                           hKeywordObj = {}
+                           hKeywordObj['keyword'] = keyword
+                           hKeyword['keyword'] << hKeywordObj
+                        end
+                        hReturn = Keyword.unpack(hKeyword, responseObj)
+                        unless hReturn.nil?
+                           intResInfo[:keywords] << hReturn[0]
+                        end
                         responseObj[:readerExecutionMessages] << 'TopicCategory is deprecated, use keyword type isoTopicCategory instead'
-                        responseObj[:readerExecutionPass] = false
                      end
                   end
 
@@ -275,7 +288,6 @@ module ADIWG
                         hReturn = Keyword.unpack(item, responseObj)
                         unless hReturn.nil?
                            intResInfo[:keywords] << hReturn[0]
-                           intResInfo[:topicCategories] = intResInfo[:topicCategories] | hReturn[1]
                         end
                      end
                   end

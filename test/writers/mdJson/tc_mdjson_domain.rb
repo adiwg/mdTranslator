@@ -13,15 +13,14 @@ class TestWriterMdJsonDomain < TestWriterMdJsonParent
    # get input JSON for test
    @@jsonIn = TestWriterMdJsonParent.getJson('domain.json')
 
-   # TODO reinstate after schema update
-   # def test_schema_domain
-   #
-   #    hIn = JSON.parse(@@jsonIn)
-   #    hTest = hIn['dataDictionary'][0]['domain'][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'domain.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_domain
+
+      hIn = JSON.parse(@@jsonIn)
+      hTest = hIn['dataDictionary'][0]['domain'][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'domain.json')
+      assert_empty errors
+
+   end
 
    def test_complete_domain
 
