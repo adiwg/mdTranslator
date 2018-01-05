@@ -65,19 +65,19 @@ class TestWriterSbJsonTag < TestWriterSbJsonParent
             'scheme' => 'http://ISO.uri/adiwg/1'
          },
          {
-            'type' => 'ISO 19115 Topic Categories',
+            'type' => 'ISO 19115 Topic Category',
             'name' => 'oceans',
-            'scheme' => 'ISO 19115 Topic Categories'
+            'scheme' => 'ISO 19115 Topic Category'
          },
          {
-            'type' => 'ISO 19115 Topic Categories',
+            'type' => 'ISO 19115 Topic Category',
             'name' => 'extraTerrestrial',
-            'scheme' => 'ISO 19115 Topic Categories'
+            'scheme' => 'ISO 19115 Topic Category'
          },
          {
-            'type' => 'ISO 19115 Topic Categories',
+            'type' => 'ISO 19115 Topic Category',
             'name' => 'structure',
-            'scheme' => 'ISO 19115 Topic Categories'
+            'scheme' => 'ISO 19115 Topic Category'
          },
          {
             'type' => 'theme',

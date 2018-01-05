@@ -21,7 +21,7 @@ module ADIWG
                   hTag[:name] = keyword
                   hTag[:scheme] = namespace unless namespace.nil?
                   if theme == 'isoTopicCategory'
-                     hTag[:type] = hTag[:scheme] = 'ISO 19115 Topic Categories'
+                     hTag[:type] = hTag[:scheme] = 'ISO 19115 Topic Category'
                   end
                   return hTag
                end

@@ -36,7 +36,7 @@ module ADIWG
                         if hTag['scheme'].downcase == 'none'
                            hTag['scheme'] = 'none'
                         end
-                        if hTag['scheme'] == 'ISO 19115 Topic Categories'
+                        if hTag['scheme'] == 'ISO 19115 Topic Category'
                            hTag['scheme'] = 'none'
                            hTag['type'] = 'isoTopicCategory'
                         end
@@ -52,7 +52,7 @@ module ADIWG
                         if hTag['type'].downcase == 'none'
                            hTag['type'] = 'none'
                         end
-                        if hTag['type'] == 'ISO 19115 Topic Categories'
+                        if hTag['type'] == 'ISO 19115 Topic Category'
                            hTag['scheme'] = 'none'
                            hTag['type'] = 'isoTopicCategory'
                         end
