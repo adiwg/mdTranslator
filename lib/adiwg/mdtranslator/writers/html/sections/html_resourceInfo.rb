@@ -321,8 +321,7 @@ module ADIWG
                   end
 
                   # resource - keywords [] {keyword}
-                  unless hResource[:topicCategories].empty? &&
-                     hResource[:keywords].empty?
+                  unless hResource[:keywords].empty?
                      @html.details do
                         @html.summary('Keywords', {'id' => 'resourceInfo-keyword', 'class' => 'h3'})
                         @html.section(:class => 'block') do
