@@ -287,7 +287,7 @@ module ADIWG
                      aItems.each do |item|
                         hReturn = Keyword.unpack(item, responseObj)
                         unless hReturn.nil?
-                           intResInfo[:keywords] << hReturn[0]
+                           intResInfo[:keywords] << hReturn
                         end
                      end
                   end
