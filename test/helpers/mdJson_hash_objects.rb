@@ -532,34 +532,97 @@ class FgdcWriterTD
 
    def vectorRepresentation
       {
-         topologyLevel: nil,
+         topologyLevel: 'topology level',
          vectorObject: []
       }
    end
 
    def gridRepresentation
       {
-         numberOfDimensions: nil,
+         numberOfDimensions: 9,
          dimension: [],
-         cellGeometry: nil,
+         cellGeometry: 'point',
          transformationParameterAvailable: false
       }
    end
 
    def vectorObject
       {
-         objectType: nil,
-         objectCount: nil
+         objectType: 'object type code',
+         objectCount: 9
       }
    end
 
    def dimension
       {
-         dimensionType: nil,
-         dimensionSize: nil,
+         dimensionType: 'dimension type',
+         dimensionSize: 9,
          resolution: {},
-         dimensionTitle: nil,
-         dimensionDescription: nil
+         dimensionTitle: 'dimension title',
+         dimensionDescription: 'dimension description'
+      }
+   end
+   
+   def verticalDatum
+      {
+         datumIdentifier: {},
+         datumName: 'datum name',
+         encodingMethod: 'encoding method',
+         isDepthSystem: false,
+         verticalResolution: 9.99,
+         unitOfMeasure: 'unit of measure'
+      }
+   end
+   
+   def geographicResolution
+      {
+         latitudeResolution: 99.9,
+         longitudeResolution: 9.9,
+         unitOfMeasure: 'unit'
+      }
+   end
+   
+   def bearingDistanceResolution
+      {
+         destanceResolution: 99.9,
+         distanceUnitOfMeasure: 'distance unit',
+         bearingResolution: 9.9,
+         bearingUnitOfMeasure: 'bearing unit',
+         bearingReferenceDirection: 'north',
+         bearingReferenceMeridian: 'magnetic'
+      }
+   end
+   
+   def coordinateResolution
+      {
+         abscissaResolutionX: 999.9,
+         ordinateResolutionY: 99.9,
+         unitOfMeasure: 'units'
+      }
+   end
+   
+   def geodetic
+      {
+         datumIdentifier: {},
+         datumName: 'datum name',
+         ellipsoidIdentifier: {},
+         ellipsoidName: 'ellipsoid name',
+         semiMajorAxis: 9999.9,
+         axisUnits: 'axis units',
+         denominatorOfFlatteningRatio: 999.9
+      }
+   end
+   
+   def obliqueLinePoint 
+      {
+         azimuthLineLatitude: 99.9,
+         azimuthLineLongitude: 99.9
+      }
+   end
+
+   def spatialReferenceSystem
+      {
+         referenceSystemType: 'reference system type'
       }
    end
 

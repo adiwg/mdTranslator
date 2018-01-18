@@ -35,12 +35,15 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'projection parameters', hProjection[:projectionName]
+      assert_nil hProjection[:gridSystem]
+      assert_nil hProjection[:gridSystemName]
+      assert_equal 'parameters', hProjection[:projection]
+      assert_equal 'Projection Parameter Set', hProjection[:projectionName]
       assert_equal 1.0, hProjection[:standardParallel1]
       assert_equal 2.0, hProjection[:standardParallel2]
       assert_equal 3.0, hProjection[:longitudeOfCentralMeridian]

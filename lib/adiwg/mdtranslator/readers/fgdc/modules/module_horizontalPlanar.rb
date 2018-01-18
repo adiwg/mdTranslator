@@ -8,7 +8,7 @@ require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_mapProjection'
 require_relative 'module_mapGridSystem'
-require_relative 'module_mapLocalSystem'
+require_relative 'module_mapLocalPlanar'
 require_relative 'module_mapCoordinateInfo'
 
 module ADIWG
@@ -49,7 +49,7 @@ module ADIWG
                   # planar reference 4.1.2.3 (localp) - local planar
                   xMapLocal = xPlanar.xpath('./localp')
                   unless xMapLocal.empty?
-                     hProjection = MapLocalSystem.unpack(xMapLocal, hResponseObj)
+                     hProjection = MapLocalPlanar.unpack(xMapLocal, hResponseObj)
                   end
 
                   unless hProjection.nil?

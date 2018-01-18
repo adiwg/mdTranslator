@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.14 (orthogr) - Orthographic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'orthographic'
+                     hProjection[:projection] = 'orthographic'
+                     hProjection[:projectionName] = 'Orthographic'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
                      paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)

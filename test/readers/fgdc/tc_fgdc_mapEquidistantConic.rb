@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarEquidistantConic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'equidistant conic', hProjection[:projectionName]
+      assert_equal 'equidistantConic', hProjection[:projection]
+      assert_equal 'Equidistant Conic', hProjection[:projectionName]
       assert_equal 9.0, hProjection[:standardParallel1]
       assert_equal 70.0, hProjection[:standardParallel2]
       assert_equal -150.0, hProjection[:longitudeOfCentralMeridian]

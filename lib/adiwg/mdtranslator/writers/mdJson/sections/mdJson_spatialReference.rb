@@ -20,6 +20,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.referenceSystemType hSystem[:systemType]
                      json.referenceSystemIdentifier Identifier.build(hSystem[:systemIdentifier]) unless hSystem[:systemIdentifier].empty?
+                     json.referenceSystemWKT hSystem[:systemWKT]
                      json.referenceSystemParameterSet SpatialReferenceParameters.build(hSystem[:systemParameterSet]) unless hSystem[:systemParameterSet].empty?
                   end
 

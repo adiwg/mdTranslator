@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarAlbers < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'albers', hProjection[:projectionName]
+      assert_equal 'albers', hProjection[:projection]
+      assert_equal 'Albers Conical Equal Area', hProjection[:projectionName]
       assert_equal 9.0, hProjection[:standardParallel1]
       assert_equal 19.0, hProjection[:standardParallel2]
       assert_equal -150.0, hProjection[:longitudeOfCentralMeridian]

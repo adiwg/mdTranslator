@@ -20,8 +20,11 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.projectionIdentifier Identifier.build(hProjection[:projectionIdentifier]) unless hProjection[:projectionIdentifier].empty?
+                     json.gridSystem hProjection[:gridSystem]
+                     json.gridSystemName hProjection[:gridSystemName]
+                     json.gridZone hProjection[:gridZone]
+                     json.projection hProjection[:projection]
                      json.projectionName hProjection[:projectionName]
-                     json.zone hProjection[:zone]
                      json.standardParallel1 hProjection[:standardParallel1]
                      json.standardParallel2 hProjection[:standardParallel2]
                      json.longitudeOfCentralMeridian hProjection[:longitudeOfCentralMeridian]
@@ -44,8 +47,8 @@ module ADIWG
                      json.landsatPath hProjection[:landsatPath]
                      json.localPlanarDescription hProjection[:localPlanarDescription]
                      json.localPlanarGeoreference hProjection[:localPlanarGeoreference]
-                     json.otherProjectionDescription hProjection[:otherProjectionDescription]
                      json.otherGridDescription hProjection[:otherGridDescription]
+                     json.otherProjectionDescription hProjection[:otherProjectionDescription]
                   end
 
                end # build

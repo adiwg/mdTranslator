@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.17 (robinson) - Robinson
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'robinson'
+                     hProjection[:projection] = 'robinson'
+                     hProjection[:projectionName] = 'Robinson'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
                      paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)

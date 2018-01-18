@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.2 (albers) - Albers Conical Equal Area
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'albers'
+                     hProjection[:projection] = 'albers'
+                     hProjection[:projectionName] = 'Albers Conical Equal Area'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2

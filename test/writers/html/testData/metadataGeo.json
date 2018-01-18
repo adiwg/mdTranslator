@@ -1092,8 +1092,11 @@
                      "projectionIdentifier": {
                         "identifier": "identifier"
                      },
-                     "projectionName": "projection name",
-                     "zone": "zone 8",
+                     "gridSystem": "spcs",
+                     "gridSystemName": "Alaska State Plane Coordinate System",
+                     "gridZone": "zone 8",
+                     "projection": "transverseMercator",
+                     "projectionName": "Transverse Mercator",
                      "standardParallel1": 9.0,
                      "standardParallel2": 99.0,
                      "longitudeOfCentralMeridian": -9.0,
@@ -1128,7 +1131,11 @@
                      "otherProjectionDescription": "Ut other projection enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
                      "otherGridDescription": "Ut other grid enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident"
                   },
-                  "ellipsoid": {
+                  "geodetic": {
+                     "datumIdentifier": {
+                        "identifier": "datum identifier"
+                     },
+                     "datumName": "geodetic datum name",
                      "ellipsoidIdentifier": {
                         "identifier": "ellipsoid identifier"
                      },
@@ -1141,6 +1148,7 @@
                      "datumIdentifier": {
                         "identifier": "vertical datum identifier"
                      },
+                     "datumName": "vertical datum name",
                      "encodingMethod": "attribute values",
                      "isDepthSystem": false,
                      "verticalResolution": 9.9,
@@ -1162,7 +1170,7 @@
                      "projectionIdentifier": {
                         "identifier": "projection identifier"
                      },
-                     "projectionName": "transverse mercator",
+                     "projection": "transverseMercator",
                      "longitudeOfCentralMeridian": -9.0,
                      "latitudeOfProjectionOrigin": 9.0,
                      "falseEasting": 99999.0,

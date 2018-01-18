@@ -60,6 +60,7 @@
                },
                "referenceSystemParameterSet": {
                   "projection": {
+                     "projection": "transverseMercator",
                      "projectionName": "transverse mercator",
                      "projectionIdentifier": {
                         "identifier": "projection identifier"
@@ -78,11 +79,14 @@
             {
                "referenceSystemParameterSet": {
                   "projection": {
-                     "projectionName": "transverse mercator",
                      "projectionIdentifier": {
                         "identifier": "projection identifier"
                      },
-                     "zone": "zone 8",
+                     "gridSystem": "grid system",
+                     "gridSystemName": "grid system name",
+                     "gridZone": "zone 8",
+                     "projection": "transverseMercator",
+                     "projectionName": "transverse mercator",
                      "standardParallel1": 9.0,
                      "standardParallel2": 99.0,
                      "longitudeOfCentralMeridian": -9.0,
@@ -121,7 +125,11 @@
             },
             {
                "referenceSystemParameterSet": {
-                  "ellipsoid": {
+                  "geodetic": {
+                     "datumIdentifier": {
+                        "identifier": "datum identifier"
+                     },
+                     "datumName": "datum name",
                      "ellipsoidIdentifier": {
                         "identifier": "ellipsoid identifier"
                      },
@@ -138,6 +146,7 @@
                      "datumIdentifier": {
                         "identifier": "vertical datum identifier"
                      },
+                     "datumName": "datum name",
                      "encodingMethod": "attribute values",
                      "isDepthSystem": false,
                      "verticalResolution": 9.9,

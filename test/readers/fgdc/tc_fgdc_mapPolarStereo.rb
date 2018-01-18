@@ -35,12 +35,12 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'polar stereographic', hProjection[:projectionName]
+      assert_equal 'polarStereo', hProjection[:projection]
       assert_equal -90.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_equal 50.0, hProjection[:standardParallel1]
       assert_nil hProjection[:standardParallel2]
@@ -75,12 +75,13 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'polar stereographic', hProjection[:projectionName]
+      assert_equal 'polarStereo', hProjection[:projection]
+      assert_equal 'Polar Stereographic', hProjection[:projectionName]
       assert_equal -90.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_nil hProjection[:standardParallel1]
       assert_nil hProjection[:standardParallel2]

@@ -35,12 +35,13 @@ class TestReaderFgdcPolyconic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'polyconic', hProjection[:projectionName]
+      assert_equal 'polyconic', hProjection[:projection]
+      assert_equal 'Polyconic', hProjection[:projectionName]
       assert_equal -160.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 65.0, hProjection[:latitudeOfProjectionOrigin]
       assert_equal 1000000.0, hProjection[:falseEasting]

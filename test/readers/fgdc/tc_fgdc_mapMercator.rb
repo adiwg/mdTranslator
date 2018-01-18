@@ -35,12 +35,12 @@ class TestReaderFgdcPlanarMercator < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'mercator', hProjection[:projectionName]
+      assert_equal 'mercator', hProjection[:projection]
       assert_equal 55.0, hProjection[:standardParallel1]
       assert_nil  hProjection[:scaleFactorAtEquator]
       assert_equal -120.0, hProjection[:longitudeOfCentralMeridian]
@@ -74,12 +74,13 @@ class TestReaderFgdcPlanarMercator < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'mercator', hProjection[:projectionName]
+      assert_equal 'mercator', hProjection[:projection]
+      assert_equal 'Mercator', hProjection[:projectionName]
       assert_nil hProjection[:standardParallel1]
       assert_equal 101.5, hProjection[:scaleFactorAtEquator]
       assert_equal -120.0, hProjection[:longitudeOfCentralMeridian]

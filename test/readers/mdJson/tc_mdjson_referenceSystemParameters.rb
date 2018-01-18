@@ -29,7 +29,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       refute_empty metadata[:projection]
-      refute_empty metadata[:ellipsoid]
+      refute_empty metadata[:geodetic]
       refute_empty metadata[:verticalDatum]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

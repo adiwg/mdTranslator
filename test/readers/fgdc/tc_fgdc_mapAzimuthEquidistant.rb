@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarAzimuthEqui < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'azimuthal equidistant', hProjection[:projectionName]
+      assert_equal 'azimuthalEquidistant', hProjection[:projection]
+      assert_equal 'Azimuthal Equidistant', hProjection[:projectionName]
       assert_equal -150.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 48.0, hProjection[:latitudeOfProjectionOrigin]
       assert_equal 1000000, hProjection[:falseEasting]

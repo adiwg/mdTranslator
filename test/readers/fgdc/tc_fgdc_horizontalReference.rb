@@ -49,7 +49,7 @@ class TestReaderFgdcHorizontalReference < TestReaderFGDCParent
 
       hLocalParams = hLocal[:systemParameterSet]
       refute_empty hLocalParams[:projection]
-      assert_empty hLocalParams[:ellipsoid]
+      assert_empty hLocalParams[:geodetic]
       assert_empty hLocalParams[:verticalDatum]
 
       hLocalProjection = hLocalParams[:projection]
@@ -65,17 +65,17 @@ class TestReaderFgdcHorizontalReference < TestReaderFGDCParent
 
       hGeodeticParams = hGeodetic[:systemParameterSet]
       assert_empty hGeodeticParams[:projection]
-      refute_empty hGeodeticParams[:ellipsoid]
+      refute_empty hGeodeticParams[:geodetic]
       assert_empty hGeodeticParams[:verticalDatum]
 
-      hGeodeticProjection = hGeodeticParams[:ellipsoid]
-      refute_empty hGeodeticProjection[:ellipsoidIdentifier]
-      identifier = hGeodeticProjection[:ellipsoidIdentifier][:identifier]
-      assert_equal 'World Geodetic System of 1984 identifier', identifier
-      assert_equal 'World Geodetic System of 1984', hGeodeticProjection[:ellipsoidName]
-      assert_equal 6378137.0, hGeodeticProjection[:semiMajorAxis]
-      assert_equal 'feet', hGeodeticProjection[:axisUnits]
-      assert_equal 298.257223563, hGeodeticProjection[:denominatorOfFlatteningRatio]
+      hGeodeticRef = hGeodeticParams[:geodetic]
+      assert_empty hGeodeticRef[:datumIdentifier]
+      assert_empty hGeodeticRef[:ellipsoidIdentifier]
+      assert_equal 'World Geodetic System of 1984 identifier', hGeodeticRef[:datumName]
+      assert_equal 'World Geodetic System of 1984', hGeodeticRef[:ellipsoidName]
+      assert_equal 6378137.0, hGeodeticRef[:semiMajorAxis]
+      assert_equal 'feet', hGeodeticRef[:axisUnits]
+      assert_equal 298.257223563, hGeodeticRef[:denominatorOfFlatteningRatio]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

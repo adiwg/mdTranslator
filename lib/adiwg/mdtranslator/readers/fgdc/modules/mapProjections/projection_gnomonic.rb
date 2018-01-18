@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.7 (gnomonic) - Gnomonic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'gnomonic'
+                     hProjection[:projection] = 'gnomonic'
+                     hProjection[:projectionName] = 'Gnomonic'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
                      paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)

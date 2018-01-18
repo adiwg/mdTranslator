@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.3 (azimequi) - Azimuthal Equidistant
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'azimuthal equidistant'
+                     hProjection[:projection] = 'azimuthalEquidistant'
+                     hProjection[:projectionName] = 'Azimuthal Equidistant'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
                      paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)

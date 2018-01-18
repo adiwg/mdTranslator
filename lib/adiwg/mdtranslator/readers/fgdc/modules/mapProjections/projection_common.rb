@@ -149,12 +149,12 @@ module ADIWG
                   xObliqueLA = xParams.xpath('./obqlazim')
                   unless xObliqueLA.empty?
                      paramCount = 0
-                     lineAzimuth = xObliqueLA.xpath('./asimangl').text
+                     lineAzimuth = xObliqueLA.xpath('./azimangl').text
                      unless lineAzimuth.empty?
                         hProjection[:azimuthAngle] = lineAzimuth.to_f
                         paramCount += 1
                      end
-                     lineLong = xObliqueLA.xpath('./asimptl').text
+                     lineLong = xObliqueLA.xpath('./azimptl').text
                      unless lineLong.empty?
                         hProjection[:azimuthMeasurePointLongitude] = lineLong.to_f
                         paramCount += 1

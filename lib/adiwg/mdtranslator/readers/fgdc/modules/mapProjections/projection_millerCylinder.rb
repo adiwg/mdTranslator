@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.12 (miller) - Miller Cylindrical
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'miller cylindrical'
+                     hProjection[:projection] = 'miller'
+                     hProjection[:projectionName] = 'Miller Cylindrical'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
                      paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)

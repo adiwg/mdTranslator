@@ -56,11 +56,15 @@
          "spatialReferenceSystem": [
             {
                "referenceSystemParameterSet": {
-                  "ellipsoid": {
-                     "ellipsoidIdentifier": {
-                        "identifier": "identifier"
+                  "geodetic": {
+                     "datumIdentifier": {
+                        "identifier": "datum identifier"
                      },
-                     "ellipsoidName": "WGS84",
+                     "datumName": "WGS84 datum",
+                     "ellipsoidIdentifier": {
+                        "identifier": "ellipsoid identifier"
+                     },
+                     "ellipsoidName": "WGS84 ellipse",
                      "semiMajorAxis": 9999999.0,
                      "axisUnits": "feet",
                      "denominatorOfFlatteningRatio": 999.9

@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.9 (lambertc) - Lambert Conformal Conic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'lambert conformal conic'
+                     hProjection[:projection] = 'lambertConic'
+                     hProjection[:projectionName] = 'Lambert Conformal Conic'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2

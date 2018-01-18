@@ -5,7 +5,7 @@
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_projectionParameters'
-require_relative 'module_ellipsoid'
+require_relative 'module_geodetic'
 require_relative 'module_verticalDatum'
 
 module ADIWG
@@ -39,11 +39,11 @@ module ADIWG
                   end
 
                   # reference system parameters - ellipsoid parameters
-                  if hParams.has_key?('ellipsoid')
-                     unless hParams['ellipsoid'].empty?
-                        hReturn = Ellipsoid.unpack(hParams['ellipsoid'], responseObj)
+                  if hParams.has_key?('geodetic')
+                     unless hParams['geodetic'].empty?
+                        hReturn = Geodetic.unpack(hParams['geodetic'], responseObj)
                         unless hReturn.nil?
-                           intParamSet[:ellipsoid] = hReturn
+                           intParamSet[:geodetic] = hReturn
                         end
                      end
                   end

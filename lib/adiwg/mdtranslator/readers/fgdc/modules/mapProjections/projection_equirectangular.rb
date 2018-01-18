@@ -19,7 +19,8 @@ module ADIWG
                   # map projection 4.1.2.1.5 (equirect) - Equirectangular
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'equirectangular'
+                     hProjection[:projection] = 'equirectangular'
+                     hProjection[:projectionName] = 'Equirectangular'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      paramCount += ProjectionCommon.unpackStandParallel(xParams, hProjection, hResponseObj)

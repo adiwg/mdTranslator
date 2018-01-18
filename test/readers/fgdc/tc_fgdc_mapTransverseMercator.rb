@@ -35,12 +35,13 @@ class TestReaderFgdcTransverseMercator < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'transverse mercator', hProjection[:projectionName]
+      assert_equal 'transverseMercator', hProjection[:projection]
+      assert_equal 'Transverse Mercator', hProjection[:projectionName]
       assert_equal 49.25, hProjection[:scaleFactorAtCentralMeridian]
       assert_equal -165.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 65.0, hProjection[:latitudeOfProjectionOrigin]

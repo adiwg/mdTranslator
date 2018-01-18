@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.18 (sinusoid) - Sinusoidal
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'sinusoidal'
+                     hProjection[:projection] = 'sinusoidal'
+                     hProjection[:projectionName] = 'Sinusoidal'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
                      paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)

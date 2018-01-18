@@ -35,12 +35,13 @@ class TestReaderFgdcSpaceOblique < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'space oblique', hProjection[:projectionName]
+      assert_equal 'spaceOblique', hProjection[:projection]
+      assert_equal 'Space Oblique Mercator (Landsat)', hProjection[:projectionName]
       assert_equal 7, hProjection[:landsatNumber]
       assert_equal 1234, hProjection[:landsatPath]
       assert_equal 1000000.0, hProjection[:falseEasting]

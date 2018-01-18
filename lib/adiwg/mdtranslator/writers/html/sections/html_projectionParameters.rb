@@ -24,17 +24,38 @@ module ADIWG
                   identifierClass = Html_Identifier.new(@html)
                   linePointClass = Html_ObliqueLinePoint.new()
 
-                  # projection parameters - projection name
-                  unless hProjection[:projectionName].nil?
-                     @html.em('Projection Name: ')
-                     @html.text!(hProjection[:projectionName])
+                  # projection parameters - grid system
+                  unless hProjection[:gridSystem].nil?
+                     @html.em('Grid System: ')
+                     @html.text!(hProjection[:gridSystem])
+                     @html.br
+                  end
+
+                  # projection parameters - grid system name
+                  unless hProjection[:gridSystemName].nil?
+                     @html.em('Grid System Name: ')
+                     @html.text!(hProjection[:gridSystemName])
                      @html.br
                   end
 
                   # projection parameters - zone
-                  unless hProjection[:zone].nil?
-                     @html.em('Projection Zone: ')
-                     @html.text!(hProjection[:zone])
+                  unless hProjection[:gridZone].nil?
+                     @html.em('Grid System Zone: ')
+                     @html.text!(hProjection[:gridZone])
+                     @html.br
+                  end
+
+                  # projection parameters - projection
+                  unless hProjection[:projection].nil?
+                     @html.em('Projection: ')
+                     @html.text!(hProjection[:projection])
+                     @html.br
+                  end
+
+                  # projection parameters - projection name
+                  unless hProjection[:projectionName].nil?
+                     @html.em('Projection Name: ')
+                     @html.text!(hProjection[:projectionName])
                      @html.br
                   end
 
@@ -194,19 +215,19 @@ module ADIWG
                      end
                   end
 
-                  # projection parameters - other projection description
-                  unless hProjection[:otherProjectionDescription].nil?
-                     @html.em('Other Projection Description: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(hProjection[:otherProjectionDescription])
-                     end
-                  end
-
                   # projection parameters - other grid description
                   unless hProjection[:otherGridDescription].nil?
                      @html.em('Other Grid Description: ')
                      @html.section(:class => 'block') do
                         @html.text!(hProjection[:otherGridDescription])
+                     end
+                  end
+
+                  # projection parameters - other projection description
+                  unless hProjection[:otherProjectionDescription].nil?
+                     @html.em('Other Projection Description: ')
+                     @html.section(:class => 'block') do
+                        @html.text!(hProjection[:otherProjectionDescription])
                      end
                   end
 

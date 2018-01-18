@@ -26,7 +26,7 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intDatum = intMetadataClass.newVerticalDatum
 
-                  # vertical datum - identifier {identifier} (required)
+                  # vertical datum - identifier {identifier}
                   if hDatum.has_key?('datumIdentifier')
                      unless hDatum['datumIdentifier'].empty?
                         hReturn = Identifier.unpack(hDatum['datumIdentifier'], responseObj)
@@ -35,20 +35,15 @@ module ADIWG
                         end
                      end
                   end
-                  if intDatum[:datumIdentifier].empty?
-                     responseObj[:readerExecutionMessages] << 'Vertical Datum Identifier  is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+
+                  # vertical datum - datum name
+                  if hDatum.has_key?('datumName')
+                     intDatum[:datumName] = hDatum['datumName']
                   end
 
-                  # vertical datum - encoding method (required)
+                  # vertical datum - encoding method
                   if hDatum.has_key?('encodingMethod')
                      intDatum[:encodingMethod] = hDatum['encodingMethod']
-                  end
-                  if intDatum[:encodingMethod].nil? || intDatum[:encodingMethod] == ''
-                     responseObj[:readerExecutionMessages] << 'Vertical Datum Encoding Method is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
                   end
 
                   # vertical datum - is depth system {Boolean} (required)
@@ -58,24 +53,14 @@ module ADIWG
                      end
                   end
 
-                  # vertical datum - vertical resolution (required)
+                  # vertical datum - vertical resolution
                   if hDatum.has_key?('verticalResolution')
                      intDatum[:verticalResolution] = hDatum['verticalResolution']
                   end
-                  if intDatum[:verticalResolution].nil? || intDatum[:verticalResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'Vertical Resolution is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
 
-                  # vertical datum - unit of measure (required)
+                  # vertical datum - unit of measure
                   if hDatum.has_key?('unitOfMeasure')
                      intDatum[:unitOfMeasure] = hDatum['unitOfMeasure']
-                  end
-                  if intDatum[:unitOfMeasure].nil? || intDatum[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'Unit of Measure is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
                   end
 
                   return intDatum

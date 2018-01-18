@@ -19,7 +19,8 @@ module ADIWG
                   # map projection 4.1.2.1.21 (transmer) - Transverse Mercator
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'transverse mercator'
+                     hProjection[:projection] = 'transverseMercator'
+                     hProjection[:projectionName] = 'Transverse Mercator'
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCentralMeridian
                      paramCount += ProjectionCommon.unpackSFCM(xParams, hProjection, hResponseObj)

@@ -113,6 +113,7 @@ module ADIWG
                   end
 
                   # map projection 4.1.2.4.4 (plandu) - planar distance units
+                  # handled in sections coordinateResolution and bearingDistanceResolution sections above
                   # -> resourceInfo.spatialResolutions.spatialResolution.bearingDistanceResolution.distanceUnitOfMeasure
                   # -> resourceInfo.spatialResolutions.spatialResolution.coordinateResolution.unitOfMeasure
 

@@ -18,16 +18,14 @@ module ADIWG
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  hIdentifier = intMetadataClass.newIdentifier
                   hDatum = intMetadataClass.newVerticalDatum
-
                   hDatum[:isDepthSystem] = true
 
                   # depth datum 4.2.2.1 (depthdn) - depth datum name
-                  # -> referenceSystemParameters.verticalDatum.datumIdentifier.identifier
-                  identifier = xDepthSys.xpath('./depthdn').text
-                  unless identifier.empty?
-                     hIdentifier[:identifier] = identifier
+                  # -> referenceSystemParameters.verticalDatum.datumName
+                  datumName = xDepthSys.xpath('./depthdn').text
+                  unless datumName.empty?
+                     hDatum[:datumName] = datumName
                   end
 
                   # depth datum 4.2.2.2 (depthres) - depth resolution [] (take first)
@@ -53,7 +51,6 @@ module ADIWG
 
                   hParamSet = intMetadataClass.newReferenceSystemParameterSet
                   hRefSystem = intMetadataClass.newSpatialReferenceSystem
-                  hDatum[:datumIdentifier] = hIdentifier
                   hParamSet[:verticalDatum] = hDatum
                   hRefSystem[:systemParameterSet] = hParamSet
                   return hRefSystem

@@ -86,7 +86,7 @@ module ADIWG
                      haveSpaceRef = true unless hResourceInfo[:spatialReferenceSystems].empty?
                      if haveSpaceRef
                         @xml.tag!('spref') do
-                           spaceRefClass.writeXML(hResourceInfo[:spatialResolutions], hResourceInfo[:spatialReferenceSystems])
+                           spaceRefClass.writeXML(hResourceInfo)
                         end
                      elsif @hResponseObj[:writerShowTags]
                         @xml.tag!('spref')

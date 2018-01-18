@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.11 (modsak) - Modified Stereographic for Alaska
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'alaska modified stereographic'
+                     hProjection[:projection] = 'alaska'
+                     hProjection[:projectionName] = 'Modified Stereographic for Alaska'
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing

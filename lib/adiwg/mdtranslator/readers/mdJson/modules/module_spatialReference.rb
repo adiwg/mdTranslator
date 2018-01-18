@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-01-10 added reference system WKT
 #  Stan Smith 2017-10-23 added reference system parameter set
 #  Stan Smith 2016-10-16 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -32,10 +33,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intSpatialRef = intMetadataClass.newSpatialReferenceSystem
 
+                  haveSystem = false
+
                   # spatial reference system - type
                   if hSpatialRef.has_key?('referenceSystemType')
                      if hSpatialRef['referenceSystemType'] != ''
                         intSpatialRef[:systemType] = hSpatialRef['referenceSystemType']
+                        haveSystem = true
                      end
                   end
 
@@ -46,7 +50,16 @@ module ADIWG
                         hReturn = Identifier.unpack(hObject, responseObj)
                         unless hReturn.nil?
                            intSpatialRef[:systemIdentifier] = hReturn
+                           haveSystem = true
                         end
+                     end
+                  end
+
+                  # spatial reference system - wkt
+                  if hSpatialRef.has_key?('referenceSystemWKT')
+                     if hSpatialRef['referenceSystemWKT'] != ''
+                        intSpatialRef[:systemWKT] = hSpatialRef['referenceSystemWKT']
+                        haveSystem = true
                      end
                   end
 
@@ -57,14 +70,13 @@ module ADIWG
                         hReturn = ReferenceSystemParameters.unpack(hObject, responseObj)
                         unless hReturn.nil?
                            intSpatialRef[:systemParameterSet] = hReturn
+                           haveSystem = true
                         end
                      end
                   end
 
-                  if intSpatialRef[:systemType].nil? &&
-                     intSpatialRef[:systemIdentifier].empty? &&
-                     intSpatialRef[:systemParameterSet].empty?
-                     responseObj[:readerExecutionMessages] << 'Spatial Reference System must declare reference system type, identifier, or parameter set'
+                  unless haveSystem
+                     responseObj[:readerExecutionMessages] << 'Spatial Reference System must declare reference system type, identifier, WKT, or parameter set'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

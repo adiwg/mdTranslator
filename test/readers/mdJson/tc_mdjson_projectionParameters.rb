@@ -30,8 +30,11 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
       refute_empty metadata[:projectionIdentifier]
       assert_equal 'identifier', metadata[:projectionIdentifier][:identifier]
+      assert_equal 'grid system', metadata[:gridSystem]
+      assert_equal 'grid system name', metadata[:gridSystemName]
+      assert_equal 'zone 8', metadata[:gridZone]
+      assert_equal 'projection', metadata[:projection]
       assert_equal 'projection name', metadata[:projectionName]
-      assert_equal 'zone 8', metadata[:zone]
       assert_equal 9.0, metadata[:standardParallel1]
       assert_equal 99.0, metadata[:standardParallel2]
       assert_equal -9.0, metadata[:longitudeOfCentralMeridian]
@@ -68,10 +71,10 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
    end
 
-   def test_projectionParameters_missing_projectionName
+   def test_projectionParameters_missing_projection
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('projectionName')
+      hIn.delete('projection')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -81,10 +84,10 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
    end
 
-   def test_projectionParameters_empty_projectionName
+   def test_projectionParameters_empty_projection
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['projectionName'] = ''
+      hIn['projection'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 

@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarOrthographic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'orthographic', hProjection[:projectionName]
+      assert_equal 'orthographic', hProjection[:projection]
+      assert_equal 'Orthographic', hProjection[:projectionName]
       assert_equal -125.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 70.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000.0, hProjection[:falseEasting]

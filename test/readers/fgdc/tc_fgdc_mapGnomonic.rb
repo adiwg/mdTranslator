@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarGnomonic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'gnomonic', hProjection[:projectionName]
+      assert_equal 'gnomonic', hProjection[:projection]
+      assert_equal 'Gnomonic', hProjection[:projectionName]
       assert_equal -110.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal -25.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000, hProjection[:falseEasting]

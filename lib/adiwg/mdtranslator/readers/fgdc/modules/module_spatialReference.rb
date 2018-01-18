@@ -7,7 +7,7 @@
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_horizontalReference'
-require_relative 'module_verticalReference'
+require_relative 'module_verticalDatum'
 
 module ADIWG
    module Mdtranslator

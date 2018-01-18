@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarModifiedAlaska < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'alaska modified stereographic', hProjection[:projectionName]
+      assert_equal 'alaska', hProjection[:projection]
+      assert_equal 'Modified Stereographic for Alaska', hProjection[:projectionName]
       assert_equal 1000000.0, hProjection[:falseEasting]
       assert_equal 490000.0, hProjection[:falseNorthing]
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]

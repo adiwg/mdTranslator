@@ -57,9 +57,9 @@
             {
                "referenceSystemParameterSet": {
                   "projection": {
-                     "projectionName": "projection name"
+                     "projection": "projection"
                   },
-                  "ellipsoid": {
+                  "geodetic": {
                      "ellipsoidName": "ellipsoid name",
                      "semiMajorAxis": 9.9,
                      "axisUnits": "meters",
@@ -79,13 +79,13 @@
             {
                "referenceSystemParameterSet": {
                   "projection": {
-                     "projectionName": "projection name"
+                     "projection": "projection"
                   }
                }
             },
             {
                "referenceSystemParameterSet": {
-                  "ellipsoid": {
+                  "geodetic": {
                      "ellipsoidName": "ellipsoid name",
                      "semiMajorAxis": 9.9,
                      "axisUnits": "meters",

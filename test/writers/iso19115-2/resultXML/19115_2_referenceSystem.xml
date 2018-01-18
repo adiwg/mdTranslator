@@ -192,8 +192,16 @@
           <gmd:version/>
         </gmd:RS_Identifier>
       </gmd:ellipsoid>
-      <gmd:ellipsoid/>
-      <gmd:datum/>
+      <gmd:datum>
+        <gmd:RS_Identifier>
+          <gmd:authority/>
+          <gmd:code>
+            <gco:CharacterString>datum identifier</gco:CharacterString>
+          </gmd:code>
+          <gmd:codeSpace/>
+          <gmd:version/>
+        </gmd:RS_Identifier>
+      </gmd:datum>
       <gmd:ellipsoidParameters>
         <gmd:MD_EllipsoidParameters>
           <gmd:semiMajorAxis>

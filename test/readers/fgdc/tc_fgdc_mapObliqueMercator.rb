@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'oblique mercator', hProjection[:projectionName]
+      assert_equal 'obliqueMercator', hProjection[:projection]
+      assert_equal 'Oblique Mercator', hProjection[:projectionName]
       assert_equal 103.5, hProjection[:scaleFactorAtCenterLine]
       assert_equal 60.0, hProjection[:azimuthAngle]
       assert_equal -110.0, hProjection[:azimuthMeasurePointLongitude]
@@ -75,12 +76,13 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'oblique mercator', hProjection[:projectionName]
+      assert_equal 'obliqueMercator', hProjection[:projection]
+      assert_equal 'Oblique Mercator', hProjection[:projectionName]
       assert_equal 103.5, hProjection[:scaleFactorAtCenterLine]
       assert_equal 2, hProjection[:obliqueLinePoints].length
       assert_equal 20.0, hProjection[:obliqueLinePoints][0][:azimuthLineLatitude]

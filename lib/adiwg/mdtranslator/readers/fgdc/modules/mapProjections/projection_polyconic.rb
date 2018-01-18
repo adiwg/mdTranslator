@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.16 (polycon) - Polyconic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'polyconic'
+                     hProjection[:projection] = 'polyconic'
+                     hProjection[:projectionName] = 'Polyconic'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
                      paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)

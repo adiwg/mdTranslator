@@ -35,12 +35,13 @@ class TestReaderFgdcRobinson < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'robinson', hProjection[:projectionName]
+      assert_equal 'robinson', hProjection[:projection]
+      assert_equal 'Robinson', hProjection[:projectionName]
       assert_equal 20.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 1000000.0, hProjection[:falseEasting]
       assert_equal 850000.0, hProjection[:falseNorthing]

@@ -30,6 +30,13 @@ module ADIWG
                   end
                   @html.br
 
+                  # vertical datum - datum name
+                  unless hDatum[:datumName].nil?
+                     @html.em('Datum Name: ')
+                     @html.text!(hDatum[:datumName])
+                     @html.br
+                  end
+
                   # vertical datum - encoding method
                   unless hDatum[:encodingMethod].nil?
                      @html.em('Encoding Method: ')
