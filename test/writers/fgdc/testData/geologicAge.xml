@@ -73,8 +73,8 @@
             </geolcit>
           </endgeol>
         </rngdates>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
   </idinfo>
 </metadata>

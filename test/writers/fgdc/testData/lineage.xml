@@ -72,8 +72,8 @@
               <enddate>2017-12-18</enddate>
               <endtime/>
             </rngdates>
-            <srccurr>description</srccurr>
           </timeinfo>
+          <srccurr>description</srccurr>
         </srctime>
         <srccitea>1</srccitea>
         <srccontr>lineage source one</srccontr>
@@ -104,8 +104,8 @@
               <enddate>2017-12-18</enddate>
               <endtime/>
             </rngdates>
-            <srccurr>description</srccurr>
           </timeinfo>
+          <srccurr>description</srccurr>
         </srctime>
         <srccitea>2</srccitea>
         <srccontr>lineage source two</srccontr>
@@ -136,8 +136,8 @@
               <enddate>2017-12-18</enddate>
               <endtime/>
             </rngdates>
-            <srccurr>description</srccurr>
           </timeinfo>
+          <srccurr>description</srccurr>
         </srctime>
         <srccitea>3</srccitea>
         <srccontr>process step source three</srccontr>
@@ -168,8 +168,8 @@
               <enddate>2017-12-18</enddate>
               <endtime/>
             </rngdates>
-            <srccurr>description</srccurr>
           </timeinfo>
+          <srccurr>description</srccurr>
         </srctime>
         <srccitea>4</srccitea>
         <srccontr>process step product four</srccontr>

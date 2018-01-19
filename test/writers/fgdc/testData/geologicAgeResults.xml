@@ -18,8 +18,8 @@
             <geolcit/>
           </endgeol>
         </rngdates>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -32,8 +32,8 @@
             <geolcit/>
           </geolage>
         </sngdate>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -46,8 +46,8 @@
             <geolcit/>
           </geolage>
         </sngdate>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
   </idinfo>
 </metadata>

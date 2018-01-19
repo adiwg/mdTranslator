@@ -26,8 +26,8 @@
           <caldate>2017-12-01</caldate>
           <time/>
         </sngdate>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
     <status>
       <progress>status 1</progress>
