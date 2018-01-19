@@ -72,7 +72,7 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       refute_empty hVoucher[:repository]
 
       hRepository = hVoucher[:repository]
-      assert_equal 'curator', hRepository[:roleName]
+      assert_equal 'custodian', hRepository[:roleName]
       assert_empty hRepository[:roleExtents]
       assert_equal 1, hRepository[:parties].length
 
