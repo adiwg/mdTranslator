@@ -96,7 +96,7 @@ class TestWriterFgdcCitation < TestReaderFgdcParent
       pubDate = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
       pubTime = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
 
-      assert_equal '2015-11', pubDate
+      assert_equal '201511', pubDate
       assert_empty pubTime
 
       # year-month-day only
@@ -111,7 +111,7 @@ class TestWriterFgdcCitation < TestReaderFgdcParent
       pubDate = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubdate').text
       pubTime = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubtime').text
 
-      assert_equal '2016-12-25', pubDate
+      assert_equal '20161225', pubDate
       assert_empty pubTime
 
    end

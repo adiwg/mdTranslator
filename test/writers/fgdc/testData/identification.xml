@@ -4,7 +4,7 @@
     <citation>
       <citeinfo>
         <origin>person name</origin>
-        <pubdate>2017-11-22</pubdate>
+        <pubdate>20171122</pubdate>
         <pubtime/>
         <title>citation title</title>
         <edition/>
@@ -23,7 +23,7 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-12-01</caldate>
+          <caldate>20171201</caldate>
           <time/>
         </sngdate>
       </timeinfo>
@@ -84,7 +84,7 @@
     <crossref>
       <citeinfo>
         <origin>person name</origin>
-        <pubdate>2017-11-22</pubdate>
+        <pubdate>20171122</pubdate>
         <pubtime/>
         <title>cross reference one</title>
         <edition/>
@@ -99,7 +99,7 @@
     <crossref>
       <citeinfo>
         <origin>person name</origin>
-        <pubdate>2017-11-22</pubdate>
+        <pubdate>20171122</pubdate>
         <pubtime/>
         <title>cross reference two</title>
         <edition/>

@@ -3,9 +3,9 @@
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>2017-11-23</begdate>
+          <begdate>20171123</begdate>
           <begtime>10:42:50</begtime>
-          <enddate>2017-11-23</enddate>
+          <enddate>20171123</enddate>
           <endtime>17:19:58</endtime>
         </rngdates>
       </timeinfo>
@@ -14,9 +14,9 @@
     <timeperd>
       <timeinfo>
         <rngdates>
-          <begdate>2016-11-23</begdate>
+          <begdate>20161123</begdate>
           <begtime/>
-          <enddate>2017-11-23</enddate>
+          <enddate>20171123</enddate>
           <endtime/>
         </rngdates>
       </timeinfo>
@@ -25,7 +25,7 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-11-24</caldate>
+          <caldate>20171124</caldate>
           <time>10:45:14.666</time>
         </sngdate>
       </timeinfo>
@@ -34,7 +34,7 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-11-24</caldate>
+          <caldate>20171124</caldate>
           <time/>
         </sngdate>
       </timeinfo>
@@ -43,7 +43,7 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-11-24</caldate>
+          <caldate>20171124</caldate>
           <time>10:48:17</time>
         </sngdate>
       </timeinfo>
@@ -52,7 +52,7 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-11-24</caldate>
+          <caldate>20171124</caldate>
           <time/>
         </sngdate>
       </timeinfo>

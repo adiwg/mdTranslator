@@ -61,6 +61,7 @@ module ADIWG
                               if hDate[:dateType] == 'publication'
                                  pubDate = AdiwgDateTimeFun.stringDateFromDateTime(hDate[:date], hDate[:dateResolution])
                                  pubTime = AdiwgDateTimeFun.stringTimeFromDateTime(hDate[:date], hDate[:dateResolution])
+                                 pubDate.gsub!(/[-]/,'')
                                  unless pubDate == 'ERROR'
                                     @xml.tag!('pubdate', pubDate)
                                     havePubDate = true

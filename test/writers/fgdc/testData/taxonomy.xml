@@ -18,7 +18,7 @@
           <classcit>
             <citeinfo>
               <origin>person name</origin>
-              <pubdate>2017-11-22</pubdate>
+              <pubdate>20171122</pubdate>
               <pubtime/>
               <title>citation title</title>
               <edition/>
@@ -36,7 +36,7 @@
           <classcit>
             <citeinfo>
               <origin>person name</origin>
-              <pubdate>2017-11-22</pubdate>
+              <pubdate>20171122</pubdate>
               <pubtime/>
               <title>taxonomic system two</title>
               <edition/>
@@ -53,7 +53,7 @@
         <idref>
           <citeinfo>
             <origin>person name</origin>
-            <pubdate>2017-11-22</pubdate>
+            <pubdate>20171122</pubdate>
             <pubtime/>
             <title>taxonomic identification reference</title>
             <edition/>
@@ -68,7 +68,7 @@
         <idref>
           <citeinfo>
             <origin>person name</origin>
-            <pubdate>2017-11-22</pubdate>
+            <pubdate>20171122</pubdate>
             <pubtime/>
             <title>taxonomic identification reference two</title>
             <edition/>
