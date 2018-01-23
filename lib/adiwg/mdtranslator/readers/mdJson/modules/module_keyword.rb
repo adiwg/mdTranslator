@@ -71,20 +71,7 @@ module ADIWG
                      end
                   end
 
-                  # if keywordType is 'isoTopicCategory'
-                  # resourceInfo.topicCategory [] << keyword
-                  topicArray = []
-                  if hKeyword.has_key?('keywordType')
-                     if hKeyword['keywordType'] == 'isoTopicCategory'
-                        hKeyword['keyword'].each do |hItem|
-                           unless hItem.empty?
-                              topicArray << hItem['keyword']
-                           end
-                        end
-                     end
-                  end
-
-                  return intKeyword, topicArray
+                  return intKeyword
 
                end
 

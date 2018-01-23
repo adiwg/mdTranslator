@@ -18,7 +18,8 @@ module ADIWG
 
                   # map projection 4.1.2.1.23 (mapprojp) - projection parameter set
                   unless xParams.empty?
-                     hProjection[:projectionName] = 'projection parameters'
+                     hProjection[:projection] = 'parameters'
+                     hProjection[:projectionName] = 'Projection Parameter Set'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2

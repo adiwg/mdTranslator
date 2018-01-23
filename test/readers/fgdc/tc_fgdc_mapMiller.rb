@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarMillerCylinder < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'miller cylindrical', hProjection[:projectionName]
+      assert_equal 'miller', hProjection[:projection]
+      assert_equal 'Miller Cylindrical', hProjection[:projectionName]
       assert_equal -160.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 1000000, hProjection[:falseEasting]
       assert_equal 400000, hProjection[:falseNorthing]

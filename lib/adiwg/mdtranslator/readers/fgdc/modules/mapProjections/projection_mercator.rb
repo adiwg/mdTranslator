@@ -21,7 +21,8 @@ module ADIWG
                   # -> ReferenceSystemParameters.projection.[ standardParallel1 | scaleFactorAtEquator ]
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'mercator'
+                     hProjection[:projection] = 'mercator'
+                     hProjection[:projectionName] = 'Mercator'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2

@@ -41,17 +41,29 @@ module ADIWG
                      @xml.tag!('gmd:projection')
                   end
 
-                  # ellipsoid identifier {rsIdentifier}
-                  unless hParamSet[:ellipsoid].empty?
-                     hIdentifier = hParamSet[:ellipsoid][:ellipsoidIdentifier]
+                  # geodetic ellipsoid identifier {rsIdentifier}
+                  unless hParamSet[:geodetic].empty?
+                     hIdentifier = hParamSet[:geodetic][:ellipsoidIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:ellipsoid') do
                            idClass.writeXML(hIdentifier)
                         end
                      end
                   end
-                  if hParamSet[:ellipsoid] && @hResponseObj[:writerShowTags]
+                  if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:ellipsoid')
+                  end
+
+                  haveDatum = false
+                  # geodetic datum identifier {rsIdentifier}
+                  unless hParamSet[:geodetic].empty?
+                     hIdentifier = hParamSet[:geodetic][:datumIdentifier]
+                     unless hIdentifier.empty?
+                        @xml.tag!('gmd:datum') do
+                           idClass.writeXML(hIdentifier)
+                           haveDatum = true
+                        end
+                     end
                   end
 
                   # vertical datum identifier {rsIdentifier}
@@ -60,20 +72,21 @@ module ADIWG
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:datum') do
                            idClass.writeXML(hIdentifier)
+                           haveDatum = true
                         end
                      end
                   end
-                  if hParamSet[:verticalDatum].empty? && @hResponseObj[:writerShowTags]
+                  if !haveDatum && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:datum')
                   end
 
                   # ellipsoid parameters
-                  unless hParamSet[:ellipsoid].empty?
+                  unless hParamSet[:geodetic].empty?
                      @xml.tag!('gmd:ellipsoidParameters') do
-                        ellipsoidClass.writeXML(hParamSet[:ellipsoid])
+                        ellipsoidClass.writeXML(hParamSet[:geodetic])
                      end
                   end
-                  if hParamSet[:ellipsoid].empty? && @hResponseObj[:writerShowTags]
+                  if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:ellipsoidParameters')
                   end
 

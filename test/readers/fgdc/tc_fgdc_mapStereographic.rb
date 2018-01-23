@@ -35,12 +35,13 @@ class TestReaderFgdcStereographic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'stereographic', hProjection[:projectionName]
+      assert_equal 'stereographic', hProjection[:projection]
+      assert_equal 'Stereographic', hProjection[:projectionName]
       assert_equal 50.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal -50.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000.0, hProjection[:falseEasting]

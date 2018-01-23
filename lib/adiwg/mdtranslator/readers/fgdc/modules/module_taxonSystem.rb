@@ -114,7 +114,7 @@ module ADIWG
                         unless xRepository.empty?
                            hResponsibility = Contact.unpack(xRepository, hResponseObj)
                            unless hResponsibility.nil?
-                              hResponsibility[:roleName] = 'curator'
+                              hResponsibility[:roleName] = 'custodian'
                               hVoucher[:repository] = hResponsibility
                            end
                         end

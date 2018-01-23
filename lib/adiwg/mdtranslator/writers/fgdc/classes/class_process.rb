@@ -60,6 +60,7 @@ module ADIWG
                         unless hEndDT.empty?
                            procDate = AdiwgDateTimeFun.stringDateFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
                            procTime = AdiwgDateTimeFun.stringTimeFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
+                           procDate.gsub!(/[-]/,'')
                            unless procDate == 'ERROR'
                               @xml.tag!('procdate', procDate)
                               haveProcDate = true

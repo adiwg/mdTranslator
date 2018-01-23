@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>99.9</latres>
+        <longres>9.9</longres>
+        <geogunit>unit</geogunit>
+      </geograph>
+    </horizsys>
+  </spref>
+</metadata>

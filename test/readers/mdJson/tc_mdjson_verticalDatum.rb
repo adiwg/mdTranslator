@@ -29,6 +29,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       refute_empty metadata[:datumIdentifier]
+      assert_equal 'datum name', metadata[:datumName]
       assert_equal 'attribute values', metadata[:encodingMethod]
       refute metadata[:isDepthSystem]
       assert_equal 9.9, metadata[:verticalResolution]
@@ -36,97 +37,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_missing_datumIdentifier
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('datumIdentifier')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_empty_encodingMethod
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['datumIdentifier'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_missing_encodingMethod
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('encodingMethod')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_empty_verticalResolution
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['verticalResolution'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_missing_verticalResolution
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('verticalResolution')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_empty_unitOfMeasure
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['unitOfMeasure'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_verticalDatum_missing_unitOfMeasure
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('unitOfMeasure')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
 
    end
 

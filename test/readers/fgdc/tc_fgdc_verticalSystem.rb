@@ -36,12 +36,12 @@ class TestReaderFgdcVerticalSystem < TestReaderFGDCParent
 
       hAltParams = hAltSystem[:systemParameterSet]
       assert_empty hAltParams[:projection]
-      assert_empty hAltParams[:ellipsoid]
+      assert_empty hAltParams[:geodetic]
       refute_empty hAltParams[:verticalDatum]
 
       hAltDatum = hAltParams[:verticalDatum]
-      refute_empty hAltDatum[:datumIdentifier]
-      assert_equal 'altitude datum name', hAltDatum[:datumIdentifier][:identifier]
+      assert_empty hAltDatum[:datumIdentifier]
+      assert_equal 'altitude datum name', hAltDatum[:datumName]
       refute hAltDatum[:isDepthSystem]
       assert_equal 'attribute values', hAltDatum[:encodingMethod]
       assert_equal 0.9, hAltDatum[:verticalResolution]
@@ -55,12 +55,12 @@ class TestReaderFgdcVerticalSystem < TestReaderFGDCParent
 
       hDepthParams = hDepthSystem[:systemParameterSet]
       assert_empty hDepthParams[:projection]
-      assert_empty hDepthParams[:ellipsoid]
+      assert_empty hDepthParams[:geodetic]
       refute_empty hDepthParams[:verticalDatum]
 
       hDepthDatum = hDepthParams[:verticalDatum]
-      refute_empty hDepthDatum[:datumIdentifier]
-      assert_equal 'depth datum name', hDepthDatum[:datumIdentifier][:identifier]
+      assert_empty hDepthDatum[:datumIdentifier]
+      assert_equal 'depth datum name', hDepthDatum[:datumName]
       assert hDepthDatum[:isDepthSystem]
       assert_equal 'explicit depth coordinate', hDepthDatum[:encodingMethod]
       assert_equal 1.0, hDepthDatum[:verticalResolution]

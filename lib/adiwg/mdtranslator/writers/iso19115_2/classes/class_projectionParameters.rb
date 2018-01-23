@@ -27,7 +27,7 @@ module ADIWG
                   @xml.tag!('gmd:MD_ProjectionParameters') do
 
                      # projection parameters - zone {integer}
-                     i = hProjection[:zone]
+                     i = hProjection[:gridZone]
                      unless i.nil?
                         @xml.tag!('gmd:zone') do
                            @xml.tag!('gco:integer', i.to_s)

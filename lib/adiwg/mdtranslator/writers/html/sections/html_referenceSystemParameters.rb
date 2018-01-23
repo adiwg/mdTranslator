@@ -5,7 +5,7 @@
 #  Stan Smith 2017-10-24 original script
 
 require_relative 'html_projectionParameters'
-require_relative 'html_ellipsoidParameters'
+require_relative 'html_geodeticParameters'
 require_relative 'html_verticalDatumParameters'
 
 module ADIWG
@@ -23,7 +23,7 @@ module ADIWG
 
                   # classes used
                   projectionClass = Html_ProjectionParameters.new(@html)
-                  ellipsoidClass = Html_EllipsoidParameters.new(@html)
+                  ellipsoidClass = Html_GeodeticParameters.new(@html)
                   verticalClass = Html_VerticalDatumParameters.new(@html)
 
                   # reference parameter set - projection
@@ -36,12 +36,12 @@ module ADIWG
                      end
                   end
 
-                  # reference parameter set - ellipsoid
-                  unless hParamSet[:ellipsoid].empty?
+                  # reference parameter set - geodetic
+                  unless hParamSet[:geodetic].empty?
                      @html.details do
-                        @html.summary('Ellipsoid Parameters', {'id' => 'ellipsoid', 'class' => 'h5'})
+                        @html.summary('Geodetic Parameters', {'id' => 'geodetic', 'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           ellipsoidClass.writeHtml(hParamSet[:ellipsoid])
+                           ellipsoidClass.writeHtml(hParamSet[:geodetic])
                         end
                      end
                   end

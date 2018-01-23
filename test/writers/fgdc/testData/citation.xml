@@ -5,7 +5,7 @@
         <origin>person name three</origin>
         <origin>person name two</origin>
         <origin>person name four</origin>
-        <pubdate>2017-12-02</pubdate>
+        <pubdate>20171202</pubdate>
         <pubtime>13:41:13</pubtime>
         <title>citation title</title>
         <edition>edition</edition>
@@ -24,7 +24,7 @@
         <lworkcit>
           <citeinfo>
             <origin>person name</origin>
-            <pubdate>2017-11-22</pubdate>
+            <pubdate>20171122</pubdate>
             <pubtime/>
             <title>citation title</title>
             <edition/>

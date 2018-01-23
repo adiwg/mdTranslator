@@ -37,7 +37,11 @@ module ADIWG
                         @html.ul do
                            hKeyword[:keywords].each do |hKeyword|
                               unless hKeyword[:keyword].nil?
-                                 @html.li(hKeyword[:keyword])
+                                 keyword = hKeyword[:keyword]
+                                 unless hKeyword[:keywordId].nil?
+                                    keyword += ' (ID: ' + hKeyword[:keywordId].to_s + ')'
+                                 end
+                                 @html.li(keyword)
                               end
                            end
                         end

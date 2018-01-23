@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.15 (polarst) - Polar Stereographic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'polar stereographic'
+                     hProjection[:projection] = 'polarStereo'
+                     hProjection[:projectionName] = 'Polar Stereographic'
 
                      # -> ReferenceSystemParameters.projection.straightVerticalLongitudeFromPole
                      paramCount += ProjectionCommon.unpackVSLong(xParams, hProjection, hResponseObj)

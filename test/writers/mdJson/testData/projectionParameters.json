@@ -60,8 +60,11 @@
                      "projectionIdentifier": {
                         "identifier": "identifier"
                      },
+                     "gridSystem": "grid system",
+                     "gridSystemName": "grid system name",
+                     "gridZone": "zone 8",
+                     "projection": "projection",
                      "projectionName": "projection name",
-                     "zone": "zone 8",
                      "standardParallel1": 9.0,
                      "standardParallel2": 99.0,
                      "longitudeOfCentralMeridian": -9.0,
@@ -93,8 +96,8 @@
                      "landsatPath": 9999,
                      "localPlanarDescription": "local planar description",
                      "localPlanarGeoreference": "local planar georeference",
-                     "otherProjectionDescription": "other projection description",
-                     "otherGridDescription": "other grid description"
+                     "otherGridDescription": "other grid description",
+                     "otherProjectionDescription": "other projection description"
                   }
                }
             }

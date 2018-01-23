@@ -88,15 +88,15 @@ module ADIWG
                         end
                      end
 
-                     # add timeInfo currentness (required)
-                     unless current.nil?
-                        @xml.tag!(currentTag, current)
-                     end
-                     if current.nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Time Info is missing time currentness'
-                     end
+                  end
 
+                  # add timeInfo currentness (required)
+                  unless current.nil?
+                     @xml.tag!(currentTag, current)
+                  end
+                  if current.nil?
+                     @hResponseObj[:writerPass] = false
+                     @hResponseObj[:writerMessages] << 'Time Info is missing time currentness'
                   end
 
                end # writeXML

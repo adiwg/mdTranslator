@@ -5,7 +5,7 @@
 
 require 'jbuilder'
 require_relative 'mdJson_projectionParameters'
-require_relative 'mdJson_ellipsoidParameters'
+require_relative 'mdJson_geodeticParameters'
 require_relative 'mdJson_verticalDatumParameters'
 
 module ADIWG
@@ -19,7 +19,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.projection ProjectionParameters.build(hSystem[:projection]) unless hSystem[:projection].empty?
-                     json.ellipsoid EllipsoidParameters.build(hSystem[:ellipsoid]) unless hSystem[:ellipsoid].empty?
+                     json.geodetic GeodeticParameters.build(hSystem[:geodetic]) unless hSystem[:geodetic].empty?
                      json.verticalDatum VerticalDatumParameters.build(hSystem[:verticalDatum]) unless hSystem[:verticalDatum].empty?
                   end
 

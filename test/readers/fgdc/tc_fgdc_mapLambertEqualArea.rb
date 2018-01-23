@@ -35,12 +35,12 @@ class TestReaderFgdcPlanarLambertEqualArea < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'lambert azimuthal equal area', hProjection[:projectionName]
+      assert_equal 'lambertEqualArea', hProjection[:projection]
       assert_equal -120.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 50.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000, hProjection[:falseEasting]

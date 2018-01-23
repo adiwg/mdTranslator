@@ -115,20 +115,17 @@ module ADIWG
                         end
 
                         # voucher (repository) - repository (required)
+                        # take first party as repository custodian
                         unless hVoucher[:repository].empty?
-                           haveRepo = false
-                           aRParties = [hVoucher[:repository]]
-                           aRepos = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'custodian')
-                           aRepos.each do |contactId|
-                              hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
-                              unless hContact.empty?
-                                 @xml.tag!('repository') do
-                                    contactClass.writeXML(hContact)
-                                    haveRepo = true
-                                 end
+                           aRParties = hVoucher[:repository][:parties]
+                           contactId = aRParties[0][:contactId]
+                           hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                           unless hContact.empty?
+                              @xml.tag!('repository') do
+                                 contactClass.writeXML(hContact)
                               end
                            end
-                           unless haveRepo
+                           if hContact.empty?
                               @hResponseObj[:writerPass] = false
                               @hResponseObj[:writerMessages] << 'Taxonomic Voucher is missing repository'
                            end

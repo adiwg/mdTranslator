@@ -37,6 +37,7 @@ module ADIWG
                      # keyword 1.6.1 (theme) - theme keywords
                      if type == 'theme' || type == 'isoTopicCategory'
                         @xml.tag!('theme') do
+                           thesaurusName = 'ISO 19115 Topic Category' if type == 'isoTopicCategory'
                            @xml.tag!('themekt', thesaurusName)
                            aKeywords.each do |hKeyword|
                               keyword = hKeyword[:keyword]

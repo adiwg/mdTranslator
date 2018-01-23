@@ -8,10 +8,10 @@ require 'json'
 require 'adiwg-mdtranslator'
 require_relative 'mdjson_test_parent'
 
-class TestWriterMdJsonEllipsoidParameters < TestWriterMdJsonParent
+class TestWriterMdJsonGeodeticParameters < TestWriterMdJsonParent
 
    # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('ellipsoidParameters.json')
+   @@jsonIn = TestWriterMdJsonParent.getJson('geodeticParameters.json')
 
    # TODO complete after schema update
    # def test_schema_spatialReferenceParameters
@@ -23,7 +23,7 @@ class TestWriterMdJsonEllipsoidParameters < TestWriterMdJsonParent
    #
    # end
 
-   def test_complete_ellipsoidParameters
+   def test_complete_geodeticParameters
 
       # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
@@ -31,9 +31,9 @@ class TestWriterMdJsonEllipsoidParameters < TestWriterMdJsonParent
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@jsonIn)
-      expect = expect['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['ellipsoid']
+      expect = expect['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['geodetic']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['ellipsoid']
+      got = got['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['geodetic']
 
       assert_equal expect, got
 

@@ -86,7 +86,7 @@
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>gnomonic projection</mapprojn>
+          <mapprojn>gnomonic</mapprojn>
           <gnomonic>
             <longpc>-110.0</longpc>
             <latprjc>-25.0</latprjc>
@@ -187,8 +187,8 @@
           <obqmerc>
             <sfctrlin>103.5</sfctrlin>
             <obqlazim>
-              <asimangl>60.0</asimangl>
-              <asimptl>-110.0</asimptl>
+              <azimangl>60.0</azimangl>
+              <azimptl>-110.0</azimptl>
             </obqlazim>
             <latprjo>25.0</latprjo>
             <feast>1000000.0</feast>
@@ -373,8 +373,8 @@
             <latprjc>10.0</latprjc>
             <sfctrlin>11.0</sfctrlin>
             <obqlazim>
-              <asimangl>12.0</asimangl>
-              <asimptl>13.0</asimptl>
+              <azimangl>12.0</azimangl>
+              <azimptl>13.0</azimptl>
             </obqlazim>
             <obqlpt>
               <obqllat>14.0</obqllat>
@@ -492,8 +492,8 @@
             <obqmerc>
               <sfctrlin>0.55</sfctrlin>
               <obqlazim>
-                <asimangl>15.0</asimangl>
-                <asimptl>-160.0</asimptl>
+                <azimangl>15.0</azimangl>
+                <azimptl>-160.0</azimptl>
               </obqlazim>
               <latprjo>55.0</latprjo>
               <feast>1000000.0</feast>
@@ -547,7 +547,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>arc grid coordinate system</gridsysn>
+          <gridsysn>equal arc-second grid coordinate system</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <equirect>
@@ -564,7 +564,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>arc grid coordinate system</gridsysn>
+          <gridsysn>equal arc-second grid coordinate system</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <azimequi>
@@ -581,7 +581,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>other grid coordinate system</gridsysn>
+          <gridsysn>other grid system name</gridsysn>
           <othergrd>other grid description</othergrd>
         </gridsys>
         <planci>

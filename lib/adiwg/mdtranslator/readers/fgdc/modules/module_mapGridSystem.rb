@@ -5,7 +5,6 @@
 #  Stan Smith 2017-10-04 original script
 
 require 'nokogiri'
-require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'mapProjections/projection_transverseMercator'
 require_relative 'mapProjections/projection_polarStereo'
 require_relative 'mapProjections/projection_lambertConic'
@@ -29,22 +28,23 @@ module ADIWG
 
                   # grid system 4.1.2.2.1 (gridsysn) - grid coordinate system name
                   # -> ReferenceSystemParameters.projection.projectionIdentifier.identifier
-                  name = xMapGrid.xpath('./gridsysn').text
-                  unless name.empty?
-                     hIdentifier = intMetadataClass.newIdentifier
-                     hIdentifier[:identifier] = name
-                     hProjection[:projectionIdentifier] = hIdentifier
+                  gridName = xMapGrid.xpath('./gridsysn').text
+                  unless gridName.empty?
+                     hProjection[:gridSystemName] = gridName
                   end
 
                   # grid system 4.1.2.2.2 (utm) - universal transverse mercator
                   xUTM = xMapGrid.xpath('./utm')
                   unless xUTM.empty?
 
+                     hProjection[:gridSystem] = 'utm'
+                     hProjection[:gridSystemName] = 'Universal Transverse Mercator (UTM)' if gridName.empty?
+
                      # grid system 4.1.2.2.2.1 (utmzone) - utm zone number {-60..-1, 1..60}
-                     # -> ReferenceSystemParameters.projection.zone
+                     # -> ReferenceSystemParameters.projection.gridZone
                      zone = xUTM.xpath('./utmzone').text
                      unless zone.empty?
-                        hProjection[:zone] = zone
+                        hProjection[:gridZone] = zone
                      end
 
                      # + transverse mercator
@@ -59,11 +59,14 @@ module ADIWG
                   xUSP = xMapGrid.xpath('./ups')
                   unless xUSP.empty?
 
+                     hProjection[:gridSystem] = 'ups'
+                     hProjection[:gridSystemName] = 'Universal Polar Stereographic (UPS)' if gridName.empty?
+
                      # grid system 4.1.2.2.3.1 (upszone) - utm zone number {-60..-1, 1..60}
-                     # -> ReferenceSystemParameters.projection.zone
+                     # -> ReferenceSystemParameters.projection.gridZone
                      zone = xUSP.xpath('./upszone').text
                      unless zone.empty?
-                        hProjection[:zone] = zone
+                        hProjection[:gridZone] = zone
                      end
 
                      # + polar stereographic
@@ -78,11 +81,14 @@ module ADIWG
                   xStateP = xMapGrid.xpath('./spcs')
                   unless xStateP.empty?
 
+                     hProjection[:gridSystem] = 'spcs'
+                     hProjection[:gridSystemName] = 'State Plane Coordinate System (SPCS)' if gridName.empty?
+
                      # grid system 4.1.2.2.4.1 (spcszone) - state plane zone number {nnnn}
-                     # -> ReferenceSystemParameters.projection.zone
+                     # -> ReferenceSystemParameters.projection.gridZone
                      zone = xStateP.xpath('./spcszone').text
                      unless zone.empty?
-                        hProjection[:zone] = zone
+                        hProjection[:gridZone] = zone
                      end
 
                      # + [ lambert conformal conic | transverse mercator | oblique mercator | polyconic ]
@@ -116,11 +122,14 @@ module ADIWG
                   xArc = xMapGrid.xpath('./arcsys')
                   unless xArc.empty?
 
+                     hProjection[:gridSystem] = 'arcsys'
+                     hProjection[:gridSystemName] = 'Equal Arc-second Coordinate System (ARC)' if gridName.empty?
+
                      # grid system 4.1.2.2.5.1 (arcszone) - state plane zone number {1..18}
-                     # -> ReferenceSystemParameters.projection.zone
+                     # -> ReferenceSystemParameters.projection.gridZone
                      zone = xArc.xpath('./arczone').text
                      unless zone.empty?
-                        hProjection[:zone] = zone
+                        hProjection[:gridZone] = zone
                      end
 
                      # + [ equirectangular | azimuthal equidistant ]
@@ -142,8 +151,11 @@ module ADIWG
                   # -> ReferenceSystemParameters.projection.otherGridDescription
                   otherG = xMapGrid.xpath('./othergrd').text
                   unless otherG.empty?
+
+                     hProjection[:gridSystem] = 'other'
+                     hProjection[:gridSystemName] = 'other grid coordinate system' if gridName.empty?
+
                      hProjection[:otherGridDescription] = otherG
-                     hProjection[:projectionName] = 'other grid system'
                      return hProjection
                   end
 

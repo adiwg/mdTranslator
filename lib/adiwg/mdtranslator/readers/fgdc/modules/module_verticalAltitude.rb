@@ -18,16 +18,15 @@ module ADIWG
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  hIdentifier = intMetadataClass.newIdentifier
                   hDatum = intMetadataClass.newVerticalDatum
 
                   hDatum[:isDepthSystem] = false
 
                   # altitude datum 4.2.1.1 (altdatum) - altitude datum name
-                  # -> referenceSystemParameters.verticalDatum.datumIdentifier.identifier
-                  identifier = xAltSys.xpath('./altdatum').text
-                  unless identifier.empty?
-                     hIdentifier[:identifier] = identifier
+                  # -> referenceSystemParameters.verticalDatum.datumName
+                  datumName = xAltSys.xpath('./altdatum').text
+                  unless datumName.empty?
+                     hDatum[:datumName] = datumName
                   end
 
                   # altitude datum 4.2.1.2 (altres) - altitude resolution []
@@ -53,7 +52,6 @@ module ADIWG
 
                   hParamSet = intMetadataClass.newReferenceSystemParameterSet
                   hRefSystem = intMetadataClass.newSpatialReferenceSystem
-                  hDatum[:datumIdentifier] = hIdentifier
                   hParamSet[:verticalDatum] = hDatum
                   hRefSystem[:systemParameterSet] = hParamSet
                   return hRefSystem

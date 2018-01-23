@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <vertdef>
+      <altsys>
+        <altdatum>altitude datum name</altdatum>
+        <altres>9.99</altres>
+        <altunits>unit of measure</altunits>
+        <altenc>encoding method</altenc>
+      </altsys>
+      <depthsys>
+        <depthdn>depth datum name</depthdn>
+        <depthres>9.99</depthres>
+        <depthdu>unit of measure</depthdu>
+        <depthem>encoding method</depthem>
+      </depthsys>
+    </vertdef>
+  </spref>
+</metadata>

@@ -223,6 +223,29 @@ class FgdcWriterTD
       return hSpatialRef
    end
 
+   def build_CoordinateResolution(x = nil, y = nil, measure = nil)
+      hResolution = {}
+      hCoordResolution = {}
+      x ? hCoordResolution[:abscissaResolutionX] = x : hCoordResolution[:abscissaResolutionX] = 9.99
+      y ? hCoordResolution[:ordinateResolutionY] = y : hCoordResolution[:ordinateResolutionY] = 9.99
+      measure ? hCoordResolution[:unitOfMeasure] = measure : hCoordResolution[:unitOfMeasure] = 'unit of measure'
+      hResolution[:coordinateResolution] = hCoordResolution
+      return hResolution
+   end
+
+   def build_BearingResolution(distRes = nil, distUnit = nil, bearRes = nil, bearUnit = nil, direct = nil, meridian = nil)
+      hResolution = {}
+      hBearRes = {}
+      distRes ? hBearRes[:distanceResolution] = distRes : hBearRes[:distanceResolution] = 9.99
+      distUnit ? hBearRes[:distanceUnitOfMeasure] = distUnit : hBearRes[:distanceUnitOfMeasure] = 'unit of measure'
+      bearRes ? hBearRes[:bearingResolution] = bearRes : hBearRes[:bearingResolution] = 9.99
+      bearUnit ? hBearRes[:bearingUnitOfMeasure] = bearUnit : hBearRes[:bearingUnitOfMeasure] = 'bearing units'
+      direct ? hBearRes[:bearingReferenceDirection] = direct : hBearRes[:bearingReferenceDirection] = 'bearing direction'
+      meridian ? hBearRes[:bearingReferenceMeridian] = meridian : hBearRes[:bearingReferenceMeridian] = 'bearing meridian'
+      hResolution[:bearingDistanceResolution] = hBearRes
+      return hResolution
+   end
+
    def build_spatialRepresentation(type, hObj)
       hSpaceRep = {}
       if type == 'grid'
@@ -249,6 +272,12 @@ class FgdcWriterTD
       hGrid[:numberOfDimensions] = dimensions
       hGrid[:cellGeometry] = geometry
       return hGrid
+   end
+
+   def build_geographicResolution
+      hResolution = {}
+      hResolution[:geographicResolution] = geographicResolution
+      return hResolution
    end
 
    def add_accessConstraint(hObj, constraint)
@@ -344,6 +373,212 @@ class FgdcWriterTD
       end
       hObj[:dimension] << hDimension
       return hObj
+   end
+
+   def add_projection(hSpaceRef, projection, name = nil)
+      hSpaceRef[:referenceSystemParameterSet] = {}
+      hSpaceRef[:referenceSystemParameterSet][:projection] = {}
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:projection] = projection
+      unless name.nil?
+         hParamSet[:projectionName] = name
+      end
+      return hSpaceRef
+   end
+
+   def add_geodetic(hSpaceRef, datum = nil, ellipse = nil)
+      hSpaceRef[:referenceSystemParameterSet] = {}
+      hSpaceRef[:referenceSystemParameterSet][:geodetic] = geodetic
+      hGeodetic = hSpaceRef[:referenceSystemParameterSet][:geodetic]
+      hGeodetic[:datumIdentifier][:identifier] = 'identifier'
+      hGeodetic[:ellipsoidIdentifier][:identifier] = 'identifier'
+      hGeodetic[:datumName] = datum unless datum.nil?
+      hGeodetic[:ellipseName] = ellipse unless ellipse.nil?
+      return hSpaceRef
+   end
+
+   def add_verticalDatum(hSpaceRef, isDepth = true)
+      hSpaceRef[:referenceSystemParameterSet] = {}
+      hSpaceRef[:referenceSystemParameterSet][:verticalDatum] = verticalDatum
+      hDatum = hSpaceRef[:referenceSystemParameterSet][:verticalDatum]
+      hDatum[:datumIdentifier][:identifier] = 'identifier'
+      hDatum[:isDepthSystem] = isDepth
+      if isDepth
+         hDatum[:datumName] = 'depth datum name'
+      else
+         hDatum[:datumName] = 'altitude datum name'
+      end
+      return hSpaceRef
+   end
+
+   def add_grid(hSpaceRef, grid, name = nil, zone = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:gridSystem] = grid
+      hParamSet[:gridSystemName] = name unless name.nil?
+      hParamSet[:gridZone] = zone  unless zone.nil?
+      return hSpaceRef
+   end
+
+   def add_falseNE(hSpaceRef, northing = nil, easting = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:falseEasting] = 9.9
+      hParamSet[:falseNorthing] = 9.9
+      unless easting.nil?
+         hParamSet[:falseEasting] = easting
+      end
+      unless northing.nil?
+         hParamSet[:falseNorthing] = northing
+      end
+      return hSpaceRef
+   end
+
+   def add_standardParallel(hSpaceRef, num = 1, parallel1 = nil, parallel2 = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:standardParallel1] = 99.9
+      unless parallel1.nil?
+         hParamSet[:standardParallel1] = parallel1
+      end
+      if num == 2
+         hParamSet[:standardParallel2] = 99.9
+         unless parallel2.nil?
+            hParamSet[:standardParallel2] = parallel2
+         end
+      end
+      return hSpaceRef
+   end
+
+   def add_longCM(hSpaceRef, longCM = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:longitudeOfCentralMeridian] = 99.9
+      unless longCM.nil?
+         hParamSet[:longitudeOfCentralMeridian] = longCM
+      end
+      return hSpaceRef
+   end
+
+   def add_latPO(hSpaceRef, latPO = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:latitudeOfProjectionOrigin] = 99.9
+      unless latPO.nil?
+         hParamSet[:latitudeOfProjectionOrigin] = latPO
+      end
+      return hSpaceRef
+   end
+
+   def add_heightPP(hSpaceRef, height = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:heightOfProspectivePointAboveSurface] = 99.9
+      unless height.nil?
+         hParamSet[:heightOfProspectivePointAboveSurface] = height
+      end
+      return hSpaceRef
+   end
+
+   def add_longPC(hSpaceRef, longPC = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:longitudeOfProjectionCenter] = 99.9
+      unless longPC.nil?
+         hParamSet[:longitudeOfProjectionCenter] = longPC
+      end
+      return hSpaceRef
+   end
+
+   def add_latPC(hSpaceRef, latPC = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:latitudeOfProjectionCenter] = 99.9
+      unless latPC.nil?
+         hParamSet[:latitudeOfProjectionCenter] = latPC
+      end
+      return hSpaceRef
+   end
+
+   def add_scaleFactorE(hSpaceRef, scale = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:scaleFactorAtEquator] = 9.99
+      hParamSet[:scaleFactorAtEquator] = scale unless scale.nil?
+      return hSpaceRef
+   end
+
+   def add_scaleFactorCL(hSpaceRef, scale = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:scaleFactorAtCenterLine] = 9.99
+      hParamSet[:scaleFactorAtCenterLine] = scale unless scale.nil?
+      return hSpaceRef
+   end
+
+   def add_scaleFactorPO(hSpaceRef, scale = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:scaleFactorAtProjectionOrigin] = 9.99
+      hParamSet[:scaleFactorAtProjectionOrigin] = scale unless scale.nil?
+      return hSpaceRef
+   end
+
+   def add_scaleFactorCM(hSpaceRef, scale = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:scaleFactorAtCentralMeridian] = 9.99
+      hParamSet[:scaleFactorAtCentralMeridian] = scale unless scale.nil?
+      return hSpaceRef
+   end
+
+   def add_obliqueLineAzimuth(hSpaceRef, angle = nil, longitude = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:azimuthAngle] = 99.9
+      hParamSet[:azimuthMeasurePointLongitude] = 99.9
+      hParamSet[:azimuthAngle] = angle unless angle.nil?
+      hParamSet[:azimuthMeasurePointLongitude] = longitude unless longitude.nil?
+      return hSpaceRef
+   end
+
+   def add_obliqueLinePoint(hSpaceRef, latitude = nil, longitude = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hLinePoint = obliqueLinePoint
+      hLinePoint[:azimuthLineLatitude] = latitude unless latitude.nil?
+      hLinePoint[:azimuthLineLongitude] = longitude unless longitude.nil?
+      hParamSet[:obliqueLinePoint] = [] unless hParamSet[:obliqueLinePoint]
+      hParamSet[:obliqueLinePoint] << hLinePoint
+      return hSpaceRef
+   end
+
+   def add_straightFromPole(hSpaceRef, longitude = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:straightVerticalLongitudeFromPole] = 99.9
+      hParamSet[:straightVerticalLongitudeFromPole] = longitude unless longitude.nil?
+      return hSpaceRef
+   end
+
+   def add_landsat(hSpaceRef, number = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:landsatNumber] = 9
+      hParamSet[:landsatNumber] = number unless number.nil?
+      return hSpaceRef
+   end
+
+   def add_landsatPath(hSpaceRef, number = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:landsatPath] = 9999
+      hParamSet[:landsatPath] = number unless number.nil?
+      return hSpaceRef
+   end
+
+   def add_otherProjection(hSpaceRef, other = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:otherProjectionDescription] = 'other projection description'
+      hParamSet[:otherProjectionDescription] = other unless other.nil?
+      return hSpaceRef
+   end
+
+   def add_localDesc(hSpaceRef, description = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:localPlanarDescription] = 'local planar description'
+      hParamSet[:localPlanarDescription] = description unless description.nil?
+      return hSpaceRef
+   end
+
+   def add_localGeoInfo(hSpaceRef, geoRef = nil)
+      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+      hParamSet[:localPlanarGeoreference] = 'local planar georeference information'
+      hParamSet[:localPlanarGeoreference] = geoRef unless geoRef.nil?
+       return hSpaceRef
    end
 
 end

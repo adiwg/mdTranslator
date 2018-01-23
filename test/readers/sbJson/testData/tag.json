@@ -146,29 +146,29 @@
          "name": "Ice Cream"
       },
       {
-         "type": "ISO 19115 Topic Categories",
-         "scheme": "ISO 19115 Topic Categories",
+         "type": "ISO 19115 Topic Category",
+         "scheme": "ISO 19115 Topic Category",
          "name": "farming"
       },
       {
-         "type": "ISO 19115 Topic Categories",
-         "scheme": "ISO 19115 Topic Categories",
+         "type": "ISO 19115 Topic Category",
+         "scheme": "ISO 19115 Topic Category",
          "name": "biota"
       },
       {
-         "type": "ISO 19115 Topic Categories",
+         "type": "ISO 19115 Topic Category",
          "name": "boundaries"
       },
       {
-         "type": "ISO 19115 Topic Categories",
+         "type": "ISO 19115 Topic Category",
          "name": "economy"
       },
       {
-         "scheme": "ISO 19115 Topic Categories",
+         "scheme": "ISO 19115 Topic Category",
          "name": "elevation"
       },
       {
-         "scheme": "ISO 19115 Topic Categories",
+         "scheme": "ISO 19115 Topic Category",
          "name": "environment"
       }
    ]

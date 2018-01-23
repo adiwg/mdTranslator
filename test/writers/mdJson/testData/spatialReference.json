@@ -59,9 +59,10 @@
                "referenceSystemIdentifier": {
                   "identifier": "identifier0"
                },
+               "referenceSystemWKT": "reference system wkt 0",
                "referenceSystemParameterSet": {
                   "projection": {
-                     "projectionName": "projection name"
+                     "projection": "projection"
                   }
                }
             },
@@ -74,10 +75,13 @@
                }
             },
             {
+               "referenceSystemWKT": "reference system wkt 1"
+            },
+            {
                "referenceSystemParameterSet": {
                   "projection": {
-                     "projectionName": "projection name",
-                     "zone": "16"
+                     "gridZone": "16",
+                     "projection": "projection"
                   }
                }
             }

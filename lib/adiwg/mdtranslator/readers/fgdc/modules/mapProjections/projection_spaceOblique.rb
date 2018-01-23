@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.19 (spaceobq) - Space Oblique Mercator (Landsat)
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'space oblique'
+                     hProjection[:projection] = 'spaceOblique'
+                     hProjection[:projectionName] = 'Space Oblique Mercator (Landsat)'
 
                      # -> ReferenceSystemParameters.projection.landsatNumber
                      paramCount += ProjectionCommon.unpackLandSat(xParams, hProjection, hResponseObj)

@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.6 (gvnsp) - General Vertical Near-sided Perspective
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'general vertical near-side perspective'
+                     hProjection[:projection] = 'generalVertical'
+                     hProjection[:projectionName] = 'General Vertical Near-sided Perspective'
 
                      # -> ReferenceSystemParameters.projection.heightOfProspectivePointAboveSurface
                      paramCount += ProjectionCommon.unpackHeightAS(xParams, hProjection, hResponseObj)

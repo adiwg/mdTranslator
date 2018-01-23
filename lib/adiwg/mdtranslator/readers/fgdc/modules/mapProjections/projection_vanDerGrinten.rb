@@ -19,7 +19,8 @@ module ADIWG
                   # map projection 4.1.2.1.22 (vdgrin) - van der Grinten
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'van der grinten'
+                     hProjection[:projection] = 'grinten'
+                     hProjection[:projectionName] = 'van der Grinten'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
                      paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)

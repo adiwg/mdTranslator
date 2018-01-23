@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarGeneralVertical < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'general vertical near-side perspective', hProjection[:projectionName]
+      assert_equal 'generalVertical', hProjection[:projection]
+      assert_equal 'General Vertical Near-sided Perspective', hProjection[:projectionName]
       assert_equal 1000.0, hProjection[:heightOfProspectivePointAboveSurface]
       assert_equal -100.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 30.0, hProjection[:latitudeOfProjectionCenter]

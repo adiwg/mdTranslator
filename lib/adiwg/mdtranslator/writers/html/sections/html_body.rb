@@ -2,6 +2,7 @@
 # html body
 
 # History:
+#  Stan Smith 2018-01-19 add resource citation title to report header
 #  Stan Smith 2017-03-22 refactor for mdTranslator 2.0
 #  Stan Smith 2015-07-20 moved mdTranslator logo to html_inlineCss.css
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
@@ -30,7 +31,7 @@ module ADIWG
                   @html = html
                end
 
-               def writeHtml(version,intObj)
+               def writeHtml(version, intObj)
                   @html.body do
 
                      # classes used
@@ -94,6 +95,15 @@ module ADIWG
                      # shortVersion = aShortVersion[0].to_s + '.' + aShortVersion[1].to_s
                      @html.h1('mdTranslator ' + version + ' HTML Metadata Record', 'id' => 'mdtranslator-metadata-report')
 
+                     # resource citation title
+                     unless hResourceInfo.empty?
+                        unless hResourceInfo[:citation].empty?
+                           unless hResourceInfo[:citation][:title].nil?
+                              @html.h2(hResourceInfo[:citation][:title])
+                           end
+                        end
+                     end
+
                      # report date
                      @html.section(:class => 'block') do
                         @html.em('Report Generated:')
@@ -101,7 +111,7 @@ module ADIWG
                      end
 
                      # metadata source
-                     @html.h2('Metadata Source', 'id' => 'metadataSource')
+                     @html.h3('Metadata Source', 'id' => 'metadataSource')
                      @html.section(:class => 'block') do
                         @html.em('Metadata schema:')
                         @html.text!(hSchema[:name])

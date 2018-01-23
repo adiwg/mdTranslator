@@ -24,42 +24,45 @@ class TestReaderFgdcKeyword < TestReaderFGDCParent
       aKeywords = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty aKeywords
-      assert_equal 5, aKeywords.length
+      assert_equal 6, aKeywords.length
 
       hKeyword = aKeywords[0]
       assert_equal 2, hKeyword[:keywords].length
-      assert_equal 'theme', hKeyword[:keywordType]
-      refute_empty hKeyword[:thesaurus]
+      assert_equal 'isoTopicCategory', hKeyword[:keywordType]
+      assert_equal 'ISO 19115 Topic Category', hKeyword[:thesaurus][:title]
 
-      hThesaurus = hKeyword[:thesaurus]
-      assert_equal 'NASA GCMD Earth Science Keywords', hThesaurus[:title]
+      hKeywordObj = hKeyword[:keywords][0]
+      assert_equal 'biota', hKeywordObj[:keyword]
+      assert_nil hKeywordObj[:keywordId]
+
+      hKeyword = aKeywords[1]
+      assert_equal 2, hKeyword[:keywords].length
+      assert_equal 'theme', hKeyword[:keywordType]
+      assert_equal 'NASA GCMD Earth Science Keywords', hKeyword[:thesaurus][:title]
 
       hKeywordObj = hKeyword[:keywords][0]
       assert_equal 'Earth Science', hKeywordObj[:keyword]
       assert_nil hKeywordObj[:keywordId]
 
-      hKeyword = aKeywords[1]
-      assert_equal 2, hKeyword[:keywords].length
-      assert_equal 'place', hKeyword[:keywordType]
-      refute_empty hKeyword[:thesaurus]
-
       hKeyword = aKeywords[2]
-      assert_equal 1, hKeyword[:keywords].length
+      assert_equal 2, hKeyword[:keywords].length
       assert_equal 'place', hKeyword[:keywordType]
       refute_empty hKeyword[:thesaurus]
 
       hKeyword = aKeywords[3]
-      assert_equal 2, hKeyword[:keywords].length
-      assert_equal 'stratum', hKeyword[:keywordType]
+      assert_equal 1, hKeyword[:keywords].length
+      assert_equal 'place', hKeyword[:keywordType]
       refute_empty hKeyword[:thesaurus]
 
       hKeyword = aKeywords[4]
       assert_equal 2, hKeyword[:keywords].length
-      assert_equal 'temporal', hKeyword[:keywordType]
+      assert_equal 'stratum', hKeyword[:keywordType]
       refute_empty hKeyword[:thesaurus]
 
-      assert_equal 2, hResourceInfo[:topicCategories].length
-      assert_equal 'biota', hResourceInfo[:topicCategories][0]
+      hKeyword = aKeywords[5]
+      assert_equal 2, hKeyword[:keywords].length
+      assert_equal 'temporal', hKeyword[:keywordType]
+      refute_empty hKeyword[:thesaurus]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

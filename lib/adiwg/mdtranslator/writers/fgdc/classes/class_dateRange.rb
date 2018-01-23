@@ -2,7 +2,8 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-23 original script
+#  Stan Smith 2018-01-19 convert ISO date formats to FGDC
+#  Stan Smith 2017-11-23 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
@@ -24,6 +25,10 @@ module ADIWG
                   sSTime = AdiwgDateTimeFun.stringTimeFromDateTime(hStartDT[:dateTime], hStartDT[:dateResolution])
                   sEDate = AdiwgDateTimeFun.stringDateFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
                   sETime = AdiwgDateTimeFun.stringTimeFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
+
+                  # convert ISO date format to FGDC
+                  sSDate.gsub!(/[-]/,'')
+                  sEDate.gsub!(/[-]/,'')
 
                   # single date 9.3 (rngdates) - date range
                   @xml.tag!('rngdates') do

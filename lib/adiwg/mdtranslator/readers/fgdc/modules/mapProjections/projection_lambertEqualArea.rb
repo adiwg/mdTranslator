@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.8 (lamberta) - Lambert Azimuthal Equal Area
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'lambert azimuthal equal area'
+                     hProjection[:projection] = 'lambertEqualArea'
+                     hProjection[:projectionName] = 'Lambert Azimuthal Equal Area'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
                      paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)

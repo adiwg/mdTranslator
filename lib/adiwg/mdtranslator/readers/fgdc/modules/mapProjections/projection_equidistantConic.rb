@@ -19,7 +19,8 @@ module ADIWG
                   # map projection 4.1.2.1.4 (equicon) - Equidistant Conic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'equidistant conic'
+                     hProjection[:projection] = 'equidistantConic'
+                     hProjection[:projectionName] = 'Equidistant Conic'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2

@@ -4,7 +4,7 @@
     <citation>
       <citeinfo>
         <origin>contact one</origin>
-        <pubdate>2017-11-22</pubdate>
+        <pubdate>20171122</pubdate>
         <title>title</title>
       </citeinfo>
     </citation>
@@ -23,7 +23,7 @@
             <geolcit>
               <citeinfo>
                 <origin>person name</origin>
-                <pubdate>2017-11-22</pubdate>
+                <pubdate>20171122</pubdate>
                 <pubtime/>
                 <title>start geologic age reference one</title>
                 <edition/>
@@ -38,7 +38,7 @@
             <geolcit>
               <citeinfo>
                 <origin>person name</origin>
-                <pubdate>2017-11-22</pubdate>
+                <pubdate>20171122</pubdate>
                 <pubtime/>
                 <title>start geologic age reference two</title>
                 <edition/>
@@ -59,7 +59,7 @@
             <geolcit>
               <citeinfo>
                 <origin>person name</origin>
-                <pubdate>2017-11-22</pubdate>
+                <pubdate>20171122</pubdate>
                 <pubtime/>
                 <title>end geologic age reference one</title>
                 <edition/>
@@ -73,8 +73,8 @@
             </geolcit>
           </endgeol>
         </rngdates>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
   </idinfo>
 </metadata>

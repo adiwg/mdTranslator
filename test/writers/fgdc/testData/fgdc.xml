@@ -4,7 +4,7 @@
     <citation>
       <citeinfo>
         <origin>person name</origin>
-        <pubdate>2017-11-22</pubdate>
+        <pubdate>20171122</pubdate>
         <pubtime/>
         <title>citation title</title>
         <edition/>
@@ -23,11 +23,11 @@
     <timeperd>
       <timeinfo>
         <sngdate>
-          <caldate>2017-12-01</caldate>
+          <caldate>20171201</caldate>
           <time/>
         </sngdate>
-        <current>time info currentness</current>
       </timeinfo>
+      <current>time info currentness</current>
     </timeperd>
     <status>
       <progress>status 1</progress>
@@ -85,4 +85,5 @@
   </idinfo>
   <dataqual/>
   <spdoinfo/>
+  <spref/>
 </metadata>

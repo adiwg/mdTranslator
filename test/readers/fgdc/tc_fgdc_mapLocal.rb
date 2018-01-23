@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarLocal < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
-      refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'local planar', hProjection[:projectionName]
+      assert_empty hProjection[:projectionIdentifier]
+      assert_equal 'localPlanar', hProjection[:projection]
+      assert_equal 'local planar coordinate system', hProjection[:projectionName]
       assert_equal 'local planar description', hProjection[:localPlanarDescription]
       assert_equal 'local planar georeference information', hProjection[:localPlanarGeoreference]
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]

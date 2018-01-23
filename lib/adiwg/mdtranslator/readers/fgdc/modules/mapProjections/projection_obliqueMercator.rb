@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.13 (obqmerc) - Oblique Mercator
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'oblique mercator'
+                     hProjection[:projection] = 'obliqueMercator'
+                     hProjection[:projectionName] = 'Oblique Mercator'
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCenterLine
                      paramCount += ProjectionCommon.unpackSFCenter(xParams, hProjection, hResponseObj)

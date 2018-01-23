@@ -35,6 +35,9 @@ module ADIWG
                            hCitation = intMetadataClass.newCitation
                            hCitation[:title] = thesaurus
                            hKeyword[:thesaurus] = hCitation
+                           if thesaurus == 'ISO 19115 Topic Category'
+                              hKeyword[:keywordType] = 'isoTopicCategory'
+                           end
                         end
 
                         # theme keyword 1.6.1.2 (themekey) - theme keyword keyword {keywordObject}
@@ -50,18 +53,7 @@ module ADIWG
                            end
                         end
 
-                        # if keyword thesaurus is 'ISO 19115 Topic Category'
-                        # also convert to ISO topic categories
-                        if hKeyword[:thesaurus][:title] == 'ISO 19115 Topic Category'
-                           hKeyword[:keywords].each do |hKeyObj|
-                              hResourceInfo[:topicCategories] << hKeyObj[:keyword]
-                           end
-                           hKeyword = {}
-                        end
-
-                        unless hKeyword.empty?
-                           aKeywords << hKeyword
-                        end
+                        aKeywords << hKeyword
 
                      end
                   end
@@ -94,9 +86,7 @@ module ADIWG
                            end
                         end
 
-                        unless hKeyword.empty?
-                           aKeywords << hKeyword
-                        end
+                        aKeywords << hKeyword
 
                      end
                   end
@@ -129,9 +119,7 @@ module ADIWG
                            end
                         end
 
-                        unless hKeyword.empty?
-                           aKeywords << hKeyword
-                        end
+                        aKeywords << hKeyword
 
                      end
                   end
@@ -164,9 +152,7 @@ module ADIWG
                            end
                         end
 
-                        unless hKeyword.empty?
-                           aKeywords << hKeyword
-                        end
+                        aKeywords << hKeyword
 
                      end
                   end
@@ -198,9 +184,7 @@ module ADIWG
                         end
                      end
 
-                     unless hKeyword.empty?
-                        aKeywords << hKeyword
-                     end
+                     aKeywords << hKeyword
 
                   end
 
@@ -231,9 +215,7 @@ module ADIWG
                         end
                      end
 
-                     unless hKeyword.empty?
-                        aKeywords << hKeyword
-                     end
+                     aKeywords << hKeyword
 
                   end
 

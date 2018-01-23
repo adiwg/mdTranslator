@@ -20,7 +20,8 @@ module ADIWG
                   # map projection 4.1.2.1.20 (stereo) - Stereographic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projectionName] = 'stereographic'
+                     hProjection[:projection] = 'stereographic'
+                     hProjection[:projectionName] = 'Stereographic'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
                      paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)

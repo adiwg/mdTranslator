@@ -256,7 +256,6 @@ class InternalMetadata
          credits: [],
          timePeriod: {},
          status: [],
-         topicCategories: [],
          pointOfContacts: [],
          spatialReferenceSystems: [],
          spatialRepresentationTypes: [],
@@ -814,6 +813,7 @@ class InternalMetadata
       {
          systemType: nil,
          systemIdentifier: {},
+         systemWKT: nil,
          systemParameterSet: {}
       }
    end
@@ -821,7 +821,7 @@ class InternalMetadata
    def newReferenceSystemParameterSet
       {
          projection: {},
-         ellipsoid: {},
+         geodetic: {},
          verticalDatum: {}
       }
    end
@@ -829,8 +829,11 @@ class InternalMetadata
    def newProjection
       {
          projectionIdentifier: {},
+         gridSystem: nil,
+         gridSystemName: nil,
+         gridZone: nil,
+         projection: nil,
          projectionName: nil,
-         zone: nil,
          standardParallel1: nil,
          standardParallel2: nil,
          longitudeOfCentralMeridian: nil,
@@ -853,8 +856,8 @@ class InternalMetadata
          landsatPath: nil,
          localPlanarDescription: nil,
          localPlanarGeoreference: nil,
-         otherProjectionDescription: nil,
-         otherGridDescription: nil
+         otherGridDescription: nil,
+         otherProjectionDescription: nil
       }
    end
 
@@ -865,8 +868,10 @@ class InternalMetadata
       }
    end
 
-   def newEllipsoid
+   def newGeodetic
       {
+         datumIdentifier: {},
+         datumName: nil,
          ellipsoidIdentifier: {},
          ellipsoidName: nil,
          semiMajorAxis: nil,
@@ -924,6 +929,7 @@ class InternalMetadata
    def newVerticalDatum
       {
          datumIdentifier: {},
+         datumName: nil,
          isDepthSystem: false,
          encodingMethod: nil,
          verticalResolution: nil,

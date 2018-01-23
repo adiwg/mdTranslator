@@ -46,7 +46,7 @@ class TestWriterFgdcTaxonomy < TestReaderFgdcParent
    hTaxonomy[:identificationReference] << hIdentifier2
    hTaxonomy[:observer] << TDClass.build_responsibleParty('observer', ['CID001','CID002'])
    hTaxonomy[:voucher] << TDClass.build_taxonVoucher('specimen one', ['CID001'])
-   hTaxonomy[:voucher] << TDClass.build_taxonVoucher('specimen two', ['CID001'])
+   hTaxonomy[:voucher] << TDClass.build_taxonVoucher('specimen two', ['CID002'])
 
    # taxonomic classification
    hLevel0 = hTaxonomy[:taxonomicClassification]

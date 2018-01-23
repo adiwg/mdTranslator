@@ -37,20 +37,41 @@ module ADIWG
                      end
                   end
 
-                  # projection parameters - projection name (required)
-                  if hProjection.has_key?('projectionName')
-                     intProjection[:projectionName] = hProjection['projectionName']
+                  # projection parameters - grid system
+                  if hProjection.has_key?('gridSystem')
+                     if hProjection['gridSystem'] != ''
+                        intProjection[:gridSystem] = hProjection['gridSystem']
+                     end
                   end
-                  if intProjection[:projectionName].nil? || intProjection[:projectionName] == ''
-                     responseObj[:readerExecutionMessages] << 'Projection name is missing'
+
+                  # projection parameters - grid system name
+                  if hProjection.has_key?('gridSystemName')
+                     if hProjection['gridSystemName'] != ''
+                        intProjection[:gridSystemName] = hProjection['gridSystemName']
+                     end
+                  end
+
+                  # projection parameters - projection (required)
+                  if hProjection.has_key?('projection')
+                     intProjection[:projection] = hProjection['projection']
+                  end
+                  if intProjection[:projection].nil? || intProjection[:projection] == ''
+                     responseObj[:readerExecutionMessages] << 'Spatial Reference Projection is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
+                  # projection parameters - projection name
+                  if hProjection.has_key?('projectionName')
+                     if hProjection['projectionName'] != ''
+                        intProjection[:projectionName] = hProjection['projectionName']
+                     end
+                  end
+
                   # projection parameters - zone
-                  if hProjection.has_key?('zone')
-                     if hProjection['zone'] != ''
-                        intProjection[:zone] = hProjection['zone']
+                  if hProjection.has_key?('gridZone')
+                     if hProjection['gridZone'] != ''
+                        intProjection[:gridZone] = hProjection['gridZone']
                      end
                   end
 

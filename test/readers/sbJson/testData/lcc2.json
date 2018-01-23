@@ -88,7 +88,7 @@
     "systemTypes": ["Folder", "Downloadable", "Mappable"],
     "tags": [{
         "type": "Label",
-        "scheme": "ISO 19115 Topic Categories",
+        "scheme": "ISO 19115 Topic Category",
         "name": "imageryBaseMapsEarthCover"
     }, {
         "type": "Label",

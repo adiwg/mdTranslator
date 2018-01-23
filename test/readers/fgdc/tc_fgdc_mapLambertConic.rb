@@ -35,12 +35,13 @@ class TestReaderFgdcPlanarLambertConic < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'lambert conformal conic', hProjection[:projectionName]
+      assert_equal 'lambertConic', hProjection[:projection]
+      assert_equal 'Lambert Conformal Conic', hProjection[:projectionName]
       assert_equal 20.0, hProjection[:standardParallel1]
       assert_equal 40.0, hProjection[:standardParallel2]
       assert_equal -100.0, hProjection[:longitudeOfCentralMeridian]

@@ -35,12 +35,15 @@ class TestReaderFgdcOther < TestReaderFGDCParent
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
-      assert_empty hParameterSet[:ellipsoid]
+      assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
 
       hProjection = hParameterSet[:projection]
-      refute_empty hProjection[:projectionIdentifier]
-      assert_equal 'other grid system', hProjection[:projectionName]
+      assert_empty hProjection[:projectionIdentifier]
+      assert_equal 'other', hProjection[:gridSystem]
+      assert_equal 'other grid system name', hProjection[:gridSystemName]
+      assert_nil hProjection[:projection]
+      assert_nil hProjection[:projectionName]
       assert_equal 'other grid description', hProjection[:otherGridDescription]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 

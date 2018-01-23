@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+      <geodetic>
+        <horizdn>datum name</horizdn>
+        <ellips>ellipsoid name</ellips>
+        <semiaxis>9999.9</semiaxis>
+        <denflat>999.9</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+</metadata>
