@@ -3150,12 +3150,18 @@
                   {
                      "name": "Canada",
                      "value": "CAN",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "reference": {
+                        "title": "author defined"
+                     }
                   },
                   {
                      "name": "United States of America",
                      "value": "USA",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "reference": {
+                        "title": "GCMD version 8.3"
+                     }
                   },
                   {
                      "name": "United States of Mexico",

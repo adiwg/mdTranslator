@@ -59,6 +59,31 @@
           <gfc:definition>
             <gco:CharacterString>domainItemDef1.1</gco:CharacterString>
           </gfc:definition>
+          <gfc:definitionReference>
+            <gfc:FC_DefinitionReference>
+              <gfc:definitionSource>
+                <gfc:FC_DefinitionSource>
+                  <gfc:source>
+                    <gmd:CI_Citation>
+                      <gmd:title>
+                        <gco:CharacterString>domain item reference title 1.1</gco:CharacterString>
+                      </gmd:title>
+                      <gmd:alternateTitle/>
+                      <gmd:date gco:nilReason="missing"/>
+                      <gmd:edition/>
+                      <gmd:identifier/>
+                      <gmd:citedResponsibleParty/>
+                      <gmd:presentationForm/>
+                      <gmd:series/>
+                      <gmd:otherCitationDetails/>
+                      <gmd:ISBN/>
+                      <gmd:ISSN/>
+                    </gmd:CI_Citation>
+                  </gfc:source>
+                </gfc:FC_DefinitionSource>
+              </gfc:definitionSource>
+            </gfc:FC_DefinitionReference>
+          </gfc:definitionReference>
         </gfc:FC_ListedValue>
       </gfc:listedValue>
       <gfc:listedValue>
@@ -72,6 +97,31 @@
           <gfc:definition>
             <gco:CharacterString>domainItemDef1.2</gco:CharacterString>
           </gfc:definition>
+          <gfc:definitionReference>
+            <gfc:FC_DefinitionReference>
+              <gfc:definitionSource>
+                <gfc:FC_DefinitionSource>
+                  <gfc:source>
+                    <gmd:CI_Citation>
+                      <gmd:title>
+                        <gco:CharacterString>domain item reference title 1.2</gco:CharacterString>
+                      </gmd:title>
+                      <gmd:alternateTitle/>
+                      <gmd:date gco:nilReason="missing"/>
+                      <gmd:edition/>
+                      <gmd:identifier/>
+                      <gmd:citedResponsibleParty/>
+                      <gmd:presentationForm/>
+                      <gmd:series/>
+                      <gmd:otherCitationDetails/>
+                      <gmd:ISBN/>
+                      <gmd:ISSN/>
+                    </gmd:CI_Citation>
+                  </gfc:source>
+                </gfc:FC_DefinitionSource>
+              </gfc:definitionSource>
+            </gfc:FC_DefinitionReference>
+          </gfc:definitionReference>
         </gfc:FC_ListedValue>
       </gfc:listedValue>
       <gfc:listedValue>

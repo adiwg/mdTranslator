@@ -3,7 +3,10 @@
       {
          "name": "name",
          "value": "value",
-         "definition": "definition"
+         "definition": "definition",
+         "reference": {
+            "title": "domain item reference title"
+         }
       },
       {
          "name": "Alaska",

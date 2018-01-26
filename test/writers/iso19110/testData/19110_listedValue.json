@@ -91,12 +91,18 @@
                   {
                      "name": "domainItemName1.1",
                      "value": "domainItemValue1.1",
-                     "definition": "domainItemDef1.1"
+                     "definition": "domainItemDef1.1",
+                     "reference": {
+                        "title": "domain item reference title 1.1"
+                     }
                   },
                   {
                      "name": "domainItemName1.2",
                      "value": "domainItemValue1.2",
-                     "definition": "domainItemDef1.2"
+                     "definition": "domainItemDef1.2",
+                     "reference": {
+                        "title": "domain item reference title 1.2"
+                     }
                   },
                   {
                      "name": "domainItemName1.3",
