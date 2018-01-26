@@ -5,61 +5,56 @@
       <enttype>
         <enttypl>entity 1 label</enttypl>
         <enttypd>entity 1 definition</enttypd>
-        <enttypds>entity 1 definition source</enttypds>
+        <enttypds>entity 1 source</enttypds>
       </enttype>
       <attr>
         <attrlabl>attribute 1 label</attrlabl>
         <attrdef>attribute 1 definition</attrdef>
-        <attrdefs>attribute 1 definition source</attrdefs>
+        <attrdefs>attribute 1 source</attrdefs>
         <attrdomv>
           <edom>
-            <edomv>attribute 1 enumerated domain value 1</edomv>
-            <edomvd>attribute 1 enumerated domain value 1 definition</edomvd>
-            <edomvds>attribute 1 enumerated domain value 1 definition source</edomvds>
+            <edomv>domain 1 enum value 1</edomv>
+            <edomvd>domain 1 enum value 1 definition</edomvd>
+            <edomvds>domain item reference title</edomvds>
           </edom>
         </attrdomv>
         <attrdomv>
           <edom>
-            <edomv>attribute 1 enumerated domain value 2</edomv>
-            <edomvd>attribute 1 enumerated domain value 2 definition</edomvd>
-            <edomvds>attribute 1 enumerated domain value 2 definition source</edomvds>
+            <edomv>domain 1 enum value 2</edomv>
+            <edomvd>domain 1 enum value 2 definition</edomvd>
+            <edomvds>author defined</edomvds>
           </edom>
         </attrdomv>
-        <begdatea>20020501</begdatea>
-        <enddatea>20020831</enddatea>
-        <begdatea>20040501</begdatea>
-        <enddatea>20040831</enddatea>
-        <attrvai>
-          <attrva>9.9</attrva>
-          <attrvae>attribute value accuracy explanation</attrvae>
-        </attrvai>
-        <attrmfrq>attribute measurement frequency</attrmfrq>
+        <begdatea>20170401</begdatea>
+        <enddatea>20170430</enddatea>
+        <begdatea>20171001</begdatea>
+        <enddatea>20171031</enddatea>
       </attr>
       <attr>
         <attrlabl>attribute 2 label</attrlabl>
         <attrdef>attribute 2 definition</attrdef>
-        <attrdefs>attribute 2 definition source</attrdefs>
+        <attrdefs>attribute 2 source</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>0</rdommin>
             <rdommax>9</rdommax>
-            <attrunit>units</attrunit>
-            <attrmres>1</attrmres>
+            <attrunit>units of measure</attrunit>
+            <attrmres>1.0</attrmres>
           </rdom>
         </attrdomv>
         <attrdomv>
           <rdom>
             <rdommin>20</rdommin>
             <rdommax>40</rdommax>
-            <attrunit>units</attrunit>
-            <attrmres>2</attrmres>
+            <attrunit>units of measure</attrunit>
+            <attrmres>1.0</attrmres>
           </rdom>
         </attrdomv>
       </attr>
       <attr>
         <attrlabl>attribute 3 label</attrlabl>
         <attrdef>attribute 3 definition</attrdef>
-        <attrdefs>attribute 3 definition source</attrdefs>
+        <attrdefs>attribute 3 source</attrdefs>
         <attrdomv>
           <codesetd>
             <codesetn>codeset name</codesetn>
@@ -70,7 +65,7 @@
       <attr>
         <attrlabl>attribute 4 label</attrlabl>
         <attrdef>attribute 4 definition</attrdef>
-        <attrdefs>attribute 4 definition source</attrdefs>
+        <attrdefs>attribute 4 source</attrdefs>
         <attrdomv>
           <udom>unrepresented domain description</udom>
         </attrdomv>
@@ -78,13 +73,13 @@
       <attr>
         <attrlabl>attribute 5 label</attrlabl>
         <attrdef>attribute 5 definition</attrdef>
-        <attrdefs>attribute 5 definition source</attrdefs>
+        <attrdefs>attribute 5 source</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>A</rdommin>
             <rdommax>F</rdommax>
             <attrunit>grades</attrunit>
-            <attrmres>each letter</attrmres>
+            <attrmres>one letter</attrmres>
           </rdom>
         </attrdomv>
         <attrdomv>
@@ -92,7 +87,7 @@
             <rdommin>X</rdommin>
             <rdommax>Z</rdommax>
             <attrunit>grades</attrunit>
-            <attrmres>each letter</attrmres>
+            <attrmres>one letter</attrmres>
           </rdom>
         </attrdomv>
       </attr>
@@ -101,16 +96,17 @@
       <enttype>
         <enttypl>entity 2 label</enttypl>
         <enttypd>entity 2 definition</enttypd>
+        <enttypds>entity 2 source</enttypds>
       </enttype>
     </detailed>
     <overview>
-      <eaover>entity and attribute overview 1</eaover>
-      <eadetcit>entity and attribute 1 detail citation 1</eadetcit>
-      <eadetcit>entity and attribute 1 detail citation 2</eadetcit>
+      <eaover>ea overview 1</eaover>
+      <eadetcit>ea overview 1 citation 1</eadetcit>
+      <eadetcit>ea overview 1 citation 2</eadetcit>
     </overview>
     <overview>
-      <eaover>another entity and attribute overview 2</eaover>
-      <eadetcit>another entity and attribute 2 detail citation 1</eadetcit>
+      <eaover>ea overview 2</eaover>
+      <eadetcit>ea overview 2 citation 1</eadetcit>
     </overview>
   </eainfo>
   <metainfo>

@@ -8,6 +8,7 @@ require_relative 'class_identification'
 require_relative 'class_quality'
 require_relative 'class_spatialOrganization'
 require_relative 'class_spatialReference'
+require_relative 'class_dictionary'
 
 module ADIWG
    module Mdtranslator
@@ -31,6 +32,7 @@ module ADIWG
                   qualityClass = Quality.new(@xml, @hResponseObj)
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
                   spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
+                  dictionaryClass = DataDictionary.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -45,7 +47,7 @@ module ADIWG
                   # metadata
                   @xml.tag!('metadata') do
 
-                     # metadata 1 (idinfo) - identification information
+                     # metadata 1 (idinfo) - identification information (required)
                      @xml.tag!('idinfo') do
                         idClass.writeXML(intObj)
                      end
@@ -57,7 +59,7 @@ module ADIWG
                            qualityClass.writeXML(intObj)
                         end
                      end
-                     if intObj[:metadata][:lineageInfo].empty?
+                     if intObj[:metadata][:lineageInfo].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('dataqual')
                      end
 
@@ -93,8 +95,23 @@ module ADIWG
                      end
 
                      # metadata 5 (eainfo) - entity attribute information
+                     # <- dataDictionaries[0]
+                     haveDict = false
+                     unless intObj[:dataDictionaries].empty?
+                        hDictionary = intObj[:dataDictionaries][0]
+                        unless hDictionary.empty?
+                           @xml.tag!('eainfo') do
+                              dictionaryClass.writeXML(hDictionary)
+                           end
+                           haveDict = true
+                        end
+                     end
+                     if !haveDict && @hResponseObj[:writerShowTags]
+                        @xml.tag!('eainfo')
+                     end
+
                      # metadata 6 (distinfo) - distribution information
-                     # metadata 7 (metainfo) - metadata information
+                     # metadata 7 (metainfo) - metadata information (required)
 
                      return metadata
                   end

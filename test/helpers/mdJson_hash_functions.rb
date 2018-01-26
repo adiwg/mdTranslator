@@ -280,6 +280,37 @@ class FgdcWriterTD
       return hResolution
    end
 
+   def build_dataDictionary
+      hDictionary = dataDictionary
+      return hDictionary
+   end
+
+   def build_entity(id = nil, common = nil, code = nil, definition = nil)
+      hEntity = entity
+      hEntity[:entityId] = id unless id.nil?
+      hEntity[:commonName] = common unless common.nil?
+      hEntity[:codeName] = code unless code.nil?
+      hEntity[:definition] = definition unless definition.nil?
+      return hEntity
+   end
+
+   def build_entityAttribute(common = nil, code = nil, definition = nil)
+      hAttribute = entityAttribute
+      hAttribute[:commonName] = common unless common.nil?
+      hAttribute[:codeName] = code unless code.nil?
+      hAttribute[:definition] = definition unless definition.nil?
+      return hAttribute
+   end
+
+   def build_dictionaryDomain(id = nil, common = nil, code = nil, description = nil)
+      hDomain = dictionaryDomain
+      hDomain[:domainId] = id unless id.nil?
+      hDomain[:commonName] = common unless common.nil?
+      hDomain[:codeName] = code unless code.nil?
+      hDomain[:description] = description unless description.nil?
+      return hDomain
+   end
+
    def add_accessConstraint(hObj, constraint)
       hObj[:legal][:accessConstraint] << constraint
       return hObj
@@ -578,7 +609,24 @@ class FgdcWriterTD
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:localPlanarGeoreference] = 'local planar georeference information'
       hParamSet[:localPlanarGeoreference] = geoRef unless geoRef.nil?
-       return hSpaceRef
+      return hSpaceRef
+   end
+
+   def add_domainItem(hDomain, name = nil, value = nil, definition = nil)
+      hDomItem = domainItem
+      hDomItem[:name] = name unless name.nil?
+      hDomItem[:value] = value unless value.nil?
+      hDomItem[:definition] = definition unless definition.nil?
+      hDomain[:domainItem] << hDomItem
+      return hDomain
+   end
+
+   def add_valueRange(hAttribute, min, max)
+      hRange = valueRange
+      hRange[:minRangeValue] = min
+      hRange[:maxRangeValue] = max
+      hAttribute[:valueRange] << hRange
+      return hAttribute
    end
 
 end

@@ -121,6 +121,7 @@ module ADIWG
                   end
 
                   # entity attribute 5.1.2.7 (attrvai) - attribute value accuracy information
+                  # -> not mapped
 
                   # entity attribute 5.1.2.7.1 (attrva) - attribute value accuracy
                   # -> not mapped

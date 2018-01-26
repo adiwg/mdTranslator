@@ -246,11 +246,11 @@
   </spref>
   <eainfo>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>Attribute Table</enttypl>
         <enttypd>Table containing attribute information associated with the data set.</enttypd>
         <enttypds>Producer defined</enttypds>
-      </enttyp>
+      </enttype>
       <attr>
         <attrlabl>Value</attrlabl>
         <attrdef>The attribute "value" contains elevations (with unknown uncertainties) with horizontal locational accuracy of ~30 m and a resolution of 4 m/pixel.</attrdef>

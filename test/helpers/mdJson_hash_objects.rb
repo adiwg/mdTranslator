@@ -144,7 +144,9 @@ class FgdcWriterTD
                   }
                ]
             }
-         }
+         },
+         metadataRepository: [],
+         dataDictionary: []
       }
    end
 
@@ -623,6 +625,101 @@ class FgdcWriterTD
    def spatialReferenceSystem
       {
          referenceSystemType: 'reference system type'
+      }
+   end
+
+   def dataDictionary
+      {
+         citation: {
+            title: 'dictionary title'
+         },
+         description: 'dictionary description',
+         subject: ['subject one', 'subject two'],
+         recommendedUse: ['use one', 'use two'],
+         locale: [],
+         responsibleParty: {
+            role: 'dictionary role',
+            roleExtent: [],
+            party: [
+               {
+                  contactId: 'CID001'
+               }
+            ]
+         },
+         dictionaryFormat: 'dictionary format',
+         dictionaryIncludedWithResource: false,
+         domain: [],
+         entity: []
+      }
+   end
+
+   def entity
+      {
+         entityId: 'EID001',
+         commonName: 'entity common name',
+         codeName: 'entity code name',
+         alias: ['alias one', 'alias two'],
+         definition: 'entity definition',
+         entityReference: [],
+         primaryKeyAttributeCodeName: [],
+         index: [],
+         attribute: [],
+         foreignKey: [],
+         fieldSeparatorCharacter: nil,
+         numberOfHeaderLines: nil,
+         quoteCharacter: nil
+      }
+   end
+
+   def entityAttribute
+      {
+         commonName: 'attribute common name',
+         codeName: 'attribute code name',
+         alias: ['alias one', 'alias two'],
+         definition: 'attribute definition',
+         attributeReference: {},
+         dataType: 'data type',
+         allowNull: false,
+         allowMany: false,
+         units: 'units of measure',
+         unitsResolution: 1.0,
+         isCaseSensitive: false,
+         fieldWidth: nil,
+         missingValue: nil,
+         domainId: nil,
+         minValue: nil,
+         maxValue: nil,
+         valueRange: [],
+         timePeriod: []
+      }
+   end
+
+   def dictionaryDomain
+      {
+         domainId: 'DOM001',
+         commonName: 'domain common name',
+         codeName: 'domain code name',
+         description: 'domain description',
+         domainItem: [],
+         domainReference: {}
+      }
+   end
+
+   def domainItem
+      {
+         name: 'domain item name',
+         value: 'domain item value',
+         definition: 'domain item definition',
+         reference: {
+            title: 'domain item reference title'
+         }
+      }
+   end
+
+   def valueRange
+      {
+         minRangeValue: nil,
+         maxRangeValue: nil
       }
    end
 

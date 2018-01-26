@@ -12,7 +12,10 @@
             {
                "name": "name0",
                "value": "value0",
-               "definition": "definition0"
+               "definition": "definition0",
+               "reference": {
+                  "title": "domain item citation title"
+               }
             },
             {
                "name": "name1",

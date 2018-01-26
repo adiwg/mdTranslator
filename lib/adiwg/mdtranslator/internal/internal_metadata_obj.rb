@@ -741,7 +741,8 @@ class InternalMetadata
       {
          itemName: nil,
          itemValue: nil,
-         itemDefinition: nil
+         itemDefinition: nil,
+         itemReference: {}
       }
    end
 

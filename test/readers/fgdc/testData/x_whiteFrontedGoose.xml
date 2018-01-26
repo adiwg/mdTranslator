@@ -372,11 +372,11 @@
   </spref>
   <eainfo>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>Greater White-fronted Goose sample and microsatellite genotype data</enttypl>
         <enttypd>Description of sample type, age, sex, collection date, and location and values for eight autosomal loci (Bca6, Bca9, Bca11, CRG, Aaμ1OXY13, TSP 1.20.09, and TSP1.20.46) were used to generate genotype data and describe genetic diversity and structure.</enttypd>
         <enttypds>Author defined</enttypds>
-      </enttyp>
+      </enttype>
       <attr>
         <attrlabl>Id No</attrlabl>
         <attrdef>Identifying number for the sample.</attrdef>
