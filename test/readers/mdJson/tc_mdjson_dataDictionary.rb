@@ -16,7 +16,6 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('dictionary.json')
    @@hIn = aIn['dataDictionary'][0]
 
-   # TODO reinstate after dictionaryFormat deprecation removed
    def test_dictionary_schema
 
       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'dataDictionary.json')
