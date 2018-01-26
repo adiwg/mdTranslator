@@ -1,7 +1,24 @@
 # Change Log
 
-## [v2.7.0](https://github.com/adiwg/mdTranslator/tree/v2.7.0)
+## [v2.8.0](https://github.com/adiwg/mdTranslator/tree/v2.8.0)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.7.0...v2.8.0)
+
+**Implemented enhancements:**
+
+- Add resource citation title to HTML heading [\#172](https://github.com/adiwg/mdTranslator/issues/172)
+
+**Fixed bugs:**
+
+- FGDC writer outputs time in ISO format [\#176](https://github.com/adiwg/mdTranslator/issues/176)
+- FGDC writer time-currentness tag is in wrong location [\#173](https://github.com/adiwg/mdTranslator/issues/173)
+- ISO Topic Category keywords not translated [\#171](https://github.com/adiwg/mdTranslator/issues/171)
+
+**Merged pull requests:**
+
+- Add spatial resolution section and various patches to FGDC writer beta release [\#179](https://github.com/adiwg/mdTranslator/pull/179) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.7.0](https://github.com/adiwg/mdTranslator/tree/v2.7.0) (2017-12-29)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.6.1...v2.7.0)
 
 **Merged pull requests:**
