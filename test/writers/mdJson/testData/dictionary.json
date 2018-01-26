@@ -89,7 +89,8 @@
                }
             ]
          },
-         "dictionaryFormat": "format",
+         "dictionaryFormat": "deprecated",
+         "dictionaryFunctionalLanguage": "functional language",
          "dictionaryIncludedWithResource": true,
          "domain": [
             {

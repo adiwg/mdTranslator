@@ -168,7 +168,7 @@ module ADIWG
                      end
 
                      # feature catalogue - functional language
-                     s = hDictionary[:dictionaryFormat]
+                     s = hDictionary[:dictionaryFunctionalLanguage]
                      unless s.nil?
                         @xml.tag!('gfc:functionalLanguage') do
                            @xml.tag!('gco:CharacterString', s)

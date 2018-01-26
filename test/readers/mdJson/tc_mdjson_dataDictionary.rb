@@ -16,6 +16,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('dictionary.json')
    @@hIn = aIn['dataDictionary'][0]
 
+   # TODO reinstate after dictionaryFormat deprecation removed
    def test_dictionary_schema
 
       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'dataDictionary.json')
@@ -40,7 +41,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_equal 'use1', metadata[:recommendedUses][1]
       assert_equal 2, metadata[:locales].length
       refute_empty metadata[:responsibleParty]
-      assert_equal 'format', metadata[:dictionaryFormat]
+      assert_equal 'functional language', metadata[:dictionaryFunctionalLanguage]
       assert metadata[:includedWithDataset]
       assert_equal 2, metadata[:domains].length
       assert_equal 2, metadata[:entities].length
@@ -141,6 +142,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       hIn['recommendedUse'] = []
       hIn['locale'] = []
       hIn['dictionaryFormat'] = ''
+      hIn['dictionaryFunctionalLanguage'] = ''
       hIn['dictionaryIncludedWithResource'] = ''
       hIn['domain'] = []
       hIn['entity'] = []
@@ -153,7 +155,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_empty metadata[:recommendedUses]
       assert_empty metadata[:locales]
       refute_empty metadata[:responsibleParty]
-      assert_nil metadata[:dictionaryFormat]
+      assert_nil metadata[:dictionaryFunctionalLanguage]
       refute metadata[:includedWithDataset]
       assert_empty metadata[:domains]
       assert_empty metadata[:entities]
@@ -170,6 +172,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       hIn.delete('recommendedUse')
       hIn.delete('locale')
       hIn.delete('dictionaryFormat')
+      hIn.delete('dictionaryFunctionalLanguage')
       hIn.delete('dictionaryIncludedWithResource')
       hIn.delete('domain')
       hIn.delete('entity')
@@ -182,10 +185,29 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_empty metadata[:recommendedUses]
       assert_empty metadata[:locales]
       refute_empty metadata[:responsibleParty]
-      assert_nil metadata[:dictionaryFormat]
+      assert_nil metadata[:dictionaryFunctionalLanguage]
       refute metadata[:includedWithDataset]
       assert_empty metadata[:domains]
       assert_empty metadata[:entities]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_deprecated_elements
+
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+
+      hIn.delete('dictionaryFunctionalLanguage')
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+
+      refute_empty metadata[:responsibleParty]
+
+      assert_equal 'deprecated', metadata[:dictionaryFunctionalLanguage]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

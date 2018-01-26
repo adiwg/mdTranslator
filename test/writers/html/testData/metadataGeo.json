@@ -3138,7 +3138,7 @@
                }
             ]
          },
-         "dictionaryFormat": "format",
+         "dictionaryFunctionalLanguage": "SQL",
          "dictionaryIncludedWithResource": true,
          "domain": [
             {

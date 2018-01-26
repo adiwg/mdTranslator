@@ -719,7 +719,7 @@ class InternalMetadata
          recommendedUses: [],
          locales: [],
          responsibleParty: {},
-         dictionaryFormat: nil,
+         dictionaryFunctionalLanguage: nil,
          includedWithDataset: false,
          domains: [],
          entities: []

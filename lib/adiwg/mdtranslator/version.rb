@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.9.0 2018-01-26 deprecate dictionaryFormat in favor of dictionaryFunctionalLanguage
 # 2.9.0 2018-01-25 added fgdc writer entity and attribute section
 # 2.8.0 2018-01-17 added fgdc writer spatial reference section
 # 2.7.1 2018-01-05 fix issue #171, fully implement deprecation of topicCategories[]

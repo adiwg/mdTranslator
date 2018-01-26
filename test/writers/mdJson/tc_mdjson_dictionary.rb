@@ -30,6 +30,10 @@ class TestWriterMdJsonDictionary < TestWriterMdJsonParent
 
       expect = JSON.parse(@@jsonIn)
       expect = expect['dataDictionary']
+
+      # delete deprecated element from source mdJson so it will match output from writer
+      expect[0].delete('dictionaryFormat')
+
       got = JSON.parse(metadata[:writerOutput])
       got = got['dataDictionary']
 

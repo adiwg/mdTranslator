@@ -646,7 +646,8 @@ class FgdcWriterTD
                }
             ]
          },
-         dictionaryFormat: 'dictionary format',
+         dictionaryFormat: 'deprecated',
+         dictionaryFunctionalLanguage: 'dictionary functional language',
          dictionaryIncludedWithResource: false,
          domain: [],
          entity: []

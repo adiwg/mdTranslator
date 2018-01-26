@@ -30,7 +30,7 @@ module ADIWG
                      json.recommendedUse hDictionary[:recommendedUses] unless hDictionary[:recommendedUses].empty?
                      json.locale @Namespace.json_map(hDictionary[:locales], Locale)
                      json.responsibleParty ResponsibleParty.build(hDictionary[:responsibleParty])
-                     json.dictionaryFormat hDictionary[:dictionaryFormat]
+                     json.dictionaryFunctionalLanguage hDictionary[:dictionaryFunctionalLanguage]
                      json.dictionaryIncludedWithResource hDictionary[:includedWithDataset]
                      json.domain @Namespace.json_map(hDictionary[:domains], Domain)
                      json.entity @Namespace.json_map(hDictionary[:entities], Entity)
