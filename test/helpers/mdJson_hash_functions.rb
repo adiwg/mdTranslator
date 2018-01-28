@@ -117,7 +117,7 @@ class FgdcWriterTD
       return hVoucher
    end
 
-   def build_legalCon
+   def build_legalConstraint
       hCon = constraint
       hCon[:type] = 'legal'
       hCon[:legal] = {
@@ -128,7 +128,7 @@ class FgdcWriterTD
       return hCon
    end
 
-   def build_securityCon(classification, system = nil, handling = nil, note = nil)
+   def build_securityConstraint(classification, system = nil, handling = nil, note = nil)
       hCon = constraint
       hCon[:type] = 'security'
       hCon[:security] = {

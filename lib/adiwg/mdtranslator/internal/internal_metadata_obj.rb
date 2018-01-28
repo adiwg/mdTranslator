@@ -212,6 +212,7 @@ class InternalMetadata
          metadataContacts: [],
          metadataDates: [],
          metadataLinkages: [],
+         metadataConstraints: [],
          metadataMaintenance: {},
          alternateMetadataReferences: [],
          metadataStatus: nil,

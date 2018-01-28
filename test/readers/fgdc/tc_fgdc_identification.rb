@@ -80,11 +80,11 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       assert_empty hConstraint[:securityConstraint]
 
       hLegal = hConstraint[:legalConstraint]
-      assert_equal 'my access constraint', hLegal[:accessCodes][0]
-      assert_equal 'my use constraint', hLegal[:useCodes][0]
+      assert_equal 'resource access constraint', hLegal[:accessCodes][0]
+      assert_equal 'resource use constraint', hLegal[:useCodes][0]
       assert_equal 2, hLegal[:otherCons].length
-      assert_equal 'my access constraint', hLegal[:otherCons][0]
-      assert_equal 'my use constraint', hLegal[:otherCons][1]
+      assert_equal 'resource access constraint', hLegal[:otherCons][0]
+      assert_equal 'resource use constraint', hLegal[:otherCons][1]
 
       hConstraint = hResourceInfo[:constraints][1]
       assert_equal 'security', hConstraint[:type]

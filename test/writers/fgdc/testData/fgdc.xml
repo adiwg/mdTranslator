@@ -87,4 +87,35 @@
   <spdoinfo/>
   <spref/>
   <eainfo/>
+  <metainfo>
+    <metd>20180126</metd>
+    <metrd/>
+    <metfrd/>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </metc>
+    <metstdn>Content Standard for Digital Geospatial Metadata with with Biological Data Profile</metstdn>
+    <metstdv>FGDC-STD-001.1-1999</metstdv>
+  </metainfo>
 </metadata>

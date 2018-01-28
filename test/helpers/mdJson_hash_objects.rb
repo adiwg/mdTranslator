@@ -41,14 +41,20 @@ class FgdcWriterTD
             metadataInfo: {
                metadataContact: [
                   {
-                     role: 'metadataContact',
+                     role: 'pointOfContact',
                      party: [
                         {
                            contactId: 'CID001'
                         }
                      ]
                   }
-               ]
+               ],
+               metadataDate: [
+                  {
+                     'date': '2018-01-26',
+                     'dateType': 'creation'
+                  }
+               ],
             },
             resourceInfo: {
                resourceType: [

@@ -9,6 +9,7 @@ require_relative 'class_quality'
 require_relative 'class_spatialOrganization'
 require_relative 'class_spatialReference'
 require_relative 'class_dictionary'
+require_relative 'class_metadataInfo'
 
 module ADIWG
    module Mdtranslator
@@ -26,6 +27,7 @@ module ADIWG
 
                   version = @hResponseObj[:translatorVersion]
                   hResourceInfo = intObj[:metadata][:resourceInfo]
+                  hMetadataInfo = intObj[:metadata][:metadataInfo]
 
                   # classes used
                   idClass = Identification.new(@xml, @hResponseObj)
@@ -33,6 +35,7 @@ module ADIWG
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
                   spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
                   dictionaryClass = DataDictionary.new(@xml, @hResponseObj)
+                  metaInfoClass = MetadataInformation.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -111,7 +114,12 @@ module ADIWG
                      end
 
                      # metadata 6 (distinfo) - distribution information
+
+
                      # metadata 7 (metainfo) - metadata information (required)
+                     @xml.tag!('metainfo') do
+                        metaInfoClass.writeXML(intObj)
+                     end
 
                      return metadata
                   end

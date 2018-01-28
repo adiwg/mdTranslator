@@ -16,7 +16,7 @@ class TestWriterFgdcSecurity < TestReaderFgdcParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hConstraint = TDClass.build_securityCon('classification', 'security system name', 'handling instructions')
+   hConstraint = TDClass.build_securityConstraint('classification', 'security system name', 'handling instructions')
    mdHash[:metadata][:resourceInfo][:constraint] << hConstraint
 
    @@mdHash = mdHash

@@ -2,31 +2,32 @@
 # 19115-2 writer output in XML.
 
 # History:
-#   Stan Smith 2016-11-15 refactored for mdTranslator/mdJson 2.0
-#   Stan Smith 2015-08-27 added support for content information
-#   Stan Smith 2015-07-30 added support for grid information
-#   Stan Smith 2015-07-28 added support for PT_Locale
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
-#   Stan Smith 2015-06-12 added support for user to specify metadataCharacterSet
-#   Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
-#   Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
-#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-#   Stan Smith 2014-11-06 changed hierarchy level to load values from resourceInfo > resourceType
-#   Stan Smith 2014-10-10 modified to pass minimum metadata input test
+#  Stan Smith 2018-01-27 add metadata constraints
+#  Stan Smith 2016-11-15 refactored for mdTranslator/mdJson 2.0
+#  Stan Smith 2015-08-27 added support for content information
+#  Stan Smith 2015-07-30 added support for grid information
+#  Stan Smith 2015-07-28 added support for PT_Locale
+#  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#  Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
+#  Stan Smith 2015-06-12 added support for user to specify metadataCharacterSet
+#  Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
+#  Stan Smith 2014-12-29 set builder object '@xml' into string 'metadata'
+#  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#  Stan Smith 2014-11-06 changed hierarchy level to load values from resourceInfo > resourceType
+#  Stan Smith 2014-10-10 modified to pass minimum metadata input test
 #   ... test were added to handle a missing metadata > metadataInfo block in the input
-#   Stan Smith 2014-10-07 changed source of dataSetURI to
+#  Stan Smith 2014-10-07 changed source of dataSetURI to
 #   ... metadata: {resourceInfo: {citation: {citOlResources[0]: {olResURI:}}}}
-#   Stan Smith 2014-09-19 changed file identifier to read from internal storage as
+#  Stan Smith 2014-09-19 changed file identifier to read from internal storage as
 #   ... an MD_Identifier class.  To support version 0.8.0 json.
-#   Stan Smith 2014-09-03 replaced spatial reference system code with named, epsg, and
+#  Stan Smith 2014-09-03 replaced spatial reference system code with named, epsg, and
 #   ... wkt reference system descriptions using RS_Identifier for 0.7.0
-#   Stan Smith 2014-08-18 add dataSetURI
-#   Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
-#   Stan Smith 2014-05-28 added resource URI
-#   Stan Smith 2014-05-14 refactored method calls to be consistent w/ other classes
-#   Stan Smith 2014-05-14 modify for JSON schema 0.4.0
+#  Stan Smith 2014-08-18 add dataSetURI
+#  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
+#  Stan Smith 2014-05-28 added resource URI
+#  Stan Smith 2014-05-14 refactored method calls to be consistent w/ other classes
+#  Stan Smith 2014-05-14 modify for JSON schema 0.4.0
 # 	Stan Smith 2013-12-27 added parent identifier
 # 	Stan Smith 2013-09-25 added reference system info
 # 	Stan Smith 2013-09-25 added metadata maintenance
@@ -47,6 +48,9 @@ require_relative 'class_dataIdentification'
 require_relative 'class_coverageDescription'
 require_relative 'class_distribution'
 require_relative 'class_dataQuality'
+require_relative 'class_useConstraints'
+require_relative 'class_legalConstraints'
+require_relative 'class_securityConstraints'
 require_relative 'class_maintenance'
 require_relative 'class_gcoDateTime'
 
@@ -77,6 +81,9 @@ module ADIWG
                   coverageClass = CoverageDescription.new(@xml, @hResponseObj)
                   distClass = MD_Distribution.new(@xml, @hResponseObj)
                   dqClass = DQ_DataQuality.new(@xml, @hResponseObj)
+                  uConClass = MD_Constraints.new(@xml, @hResponseObj)
+                  lConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
+                  sConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
                   maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
                   dateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
 
@@ -114,6 +121,7 @@ module ADIWG
 
                      # remote schema location - for deployment
                      # ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd
+
                      # local schema location - for development
                      # C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd
 
@@ -329,6 +337,26 @@ module ADIWG
                      end
                      if aDQInfo.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:dataQualityInfo')
+                     end
+
+                     # metadata information - metadata constraints {}
+                     aCons = hMetaInfo[:metadataConstraints]
+                     aCons.each do |hCon|
+                        @xml.tag!('gmd:metadataConstraints') do
+                           type = hCon[:type]
+                           if type == 'use'
+                              uConClass.writeXML(hCon)
+                           end
+                           if type == 'legal'
+                              lConClass.writeXML(hCon)
+                           end
+                           if type == 'security'
+                              sConClass.writeXML(hCon)
+                           end
+                        end
+                     end
+                     if aCons.nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gmd:metadataConstraints')
                      end
 
                      # metadata information - metadata maintenance

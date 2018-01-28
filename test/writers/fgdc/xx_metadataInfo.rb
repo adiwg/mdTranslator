@@ -1,39 +1,44 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_miMetadata
+# writers / fgdc / class_metadataInfo
 
 # History:
-#  Stan Smith 2017-11-20 replace REXML with Nokogiri
-#  Stan Smith 2017-01-07 original script
+#  Stan Smith 2018-01-27 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'rubygems'
 require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/writers/iso19115_2/version'
-require_relative 'iso19115_2_test_parent'
+require 'adiwg/mdtranslator/writers/fgdc/version'
+require_relative 'fgdc_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
 
-class TestWriter191152MIMetadata < TestWriter191152Parent
+class TestWriterFgdcMetadataInfo < TestReaderFgdcParent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_miMetadata.xml')
+   # instance classes needed in script
+   TDClass = FgdcWriterTD.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_miMetadata.json')
+   def test_metadataInfo_complete
 
-   def test_19115_2_miMetadata
+      # read the fgdc reference file
+      xFile = TestReaderFgdcParent.get_xml('metadataInfo')
+      expect = xFile.xpath('./metainfo').to_s.squeeze(' ')
 
-      xExpect = @@xFile.xpath('//gmd:MI_Metadata')
+      # build mdJson in hash
+      mdHash = TDClass.base
+
+      hCon = TDClass.build_legalCon
+      TDClass.add_accessConstraint('access constraint jkjkjkjkj')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
       translatorVersion = ADIWG::Mdtranslator::VERSION
-      writerVersion = ADIWG::Mdtranslator::Writers::Iso19115_2::VERSION
+      writerVersion = ADIWG::Mdtranslator::Writers::Fgdc::VERSION
       schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
 
       assert_equal 'mdJson', hResponseObj[:readerRequested]
-      assert_equal '2.0.0', hResponseObj[:readerVersionRequested]
+      assert_equal '2.3.0', hResponseObj[:readerVersionRequested]
       assert_equal schemaVersion, hResponseObj[:readerVersionUsed]
       assert hResponseObj[:readerStructurePass]
       assert_empty hResponseObj[:readerStructureMessages]
@@ -42,7 +47,7 @@ class TestWriter191152MIMetadata < TestWriter191152Parent
       assert_empty hResponseObj[:readerValidationMessages]
       assert hResponseObj[:readerExecutionPass]
       assert_empty hResponseObj[:readerExecutionMessages]
-      assert_equal 'iso19115_2', hResponseObj[:writerRequested]
+      assert_equal 'fgdc', hResponseObj[:writerRequested]
       assert_equal writerVersion, hResponseObj[:writerVersion]
       assert hResponseObj[:writerPass]
       assert_equal 'xml', hResponseObj[:writerOutputFormat]
@@ -52,10 +57,9 @@ class TestWriter191152MIMetadata < TestWriter191152Parent
       assert_equal translatorVersion, hResponseObj[:translatorVersion]
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:MI_Metadata')
-      File.write('/mnt/hgfs/ShareDrive/writeOut.xml', xMetadata)
+      got = xMetadata.xpath('./metadata').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
    end
 
