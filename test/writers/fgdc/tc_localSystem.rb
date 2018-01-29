@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcLocalSystem < TestReaderFgdcParent
+class TestWriterFgdcLocalSystem < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -17,7 +17,7 @@ class TestWriterFgdcLocalSystem < TestReaderFgdcParent
 
       path = './metadata/spref/horizsys/local'
 
-      xFile = TestReaderFgdcParent.get_xml('localSystem')
+      xFile = TestWriterFGDCParent.get_xml('localSystem')
       xExpect = xFile.xpath(path)
       expect = xExpect.to_s.squeeze(' ')
 

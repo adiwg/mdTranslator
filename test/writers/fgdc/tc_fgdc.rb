@@ -5,27 +5,22 @@
 #  Stan Smith 2017-12-01 build mdJson from hash objects
 #  Stan Smith 2017-11-16 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'rubygems'
-require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/writers/fgdc/version'
 require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 
-class TestWriterFgdcFgdc < TestReaderFgdcParent
+class TestWriterFgdcFgdc < TestWriterFGDCParent
 
    # instance classes needed in script
-   @@TDClass = FgdcWriterTD.new
+   TDClass = FgdcWriterTD.new
 
    def test_minimum_fgdc
 
       # read the fgdc reference file
-      xFile = TestReaderFgdcParent.get_xml('fgdc')
+      xFile = TestWriterFGDCParent.get_xml('fgdc')
       expect = xFile.xpath('./metadata').to_s.squeeze(' ')
 
       # build mdJson in hash
-      mdHash = @@TDClass.base
+      mdHash = TDClass.base
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true

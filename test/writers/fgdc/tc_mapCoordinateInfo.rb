@@ -8,14 +8,14 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcMapCoordinateInfo < TestReaderFgdcParent
+class TestWriterFgdcMapCoordinateInfo < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
    @@path = './metadata/spref/horizsys/planar/planci'
 
-   xFile = TestReaderFgdcParent.get_xml('mapCoordinateInfo')
+   xFile = TestWriterFGDCParent.get_xml('mapCoordinateInfo')
    @@xaExpect = xFile.xpath(@@path)
 
    def test_coordinate_resolution
@@ -26,7 +26,7 @@ class TestWriterFgdcMapCoordinateInfo < TestReaderFgdcParent
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'planar coordinate encoding method'
       mdHash[:metadata][:resourceInfo][:spatialResolution] = []
-      hSpaceRes = TDClass.build_CoordinateResolution
+      hSpaceRes = TDClass.build_coordinateResolution
       mdHash[:metadata][:resourceInfo][:spatialResolution] << hSpaceRes
 
       # TODO validate 'normal' after schema update
@@ -52,7 +52,7 @@ class TestWriterFgdcMapCoordinateInfo < TestReaderFgdcParent
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'planar coordinate encoding method'
       mdHash[:metadata][:resourceInfo][:spatialResolution] = []
-      hSpaceRes = TDClass.build_BearingResolution
+      hSpaceRes = TDClass.build_bearingResolution
       mdHash[:metadata][:resourceInfo][:spatialResolution] << hSpaceRes
 
       # TODO validate 'normal' after schema update

@@ -8,13 +8,13 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcTimePeriod < TestReaderFgdcParent
+class TestWriterFgdcTimePeriod < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
    # get expected results
-   xExpect = TestReaderFgdcParent.get_xml('timePeriodResults')
+   xExpect = TestWriterFGDCParent.get_xml('timePeriodResults')
    @@axExpect = xExpect.xpath('//timeperd')
 
    # build mdJson test file in hash
@@ -27,7 +27,7 @@ class TestWriterFgdcTimePeriod < TestReaderFgdcParent
 
    def test_timePeriod_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'timePeriod', './metadata/idinfo/timeperd')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'timePeriod', './metadata/idinfo/timeperd')
       assert_equal hReturn[0], hReturn[1]
 
    end

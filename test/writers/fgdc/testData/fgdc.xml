@@ -115,7 +115,8 @@
         <cntinst/>
       </cntinfo>
     </metc>
-    <metstdn>Content Standard for Digital Geospatial Metadata with with Biological Data Profile</metstdn>
+    <metstdn>Content Standard for Digital Geospatial Metadata with Biological Data Profile</metstdn>
     <metstdv>FGDC-STD-001.1-1999</metstdv>
+    <metsi/>
   </metainfo>
 </metadata>

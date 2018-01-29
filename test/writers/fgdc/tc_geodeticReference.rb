@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcGeodeticSystem < TestReaderFgdcParent
+class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -17,7 +17,7 @@ class TestWriterFgdcGeodeticSystem < TestReaderFgdcParent
 
       path = './metadata/spref/horizsys/geodetic'
 
-      xFile = TestReaderFgdcParent.get_xml('geodeticReference')
+      xFile = TestWriterFGDCParent.get_xml('geodeticReference')
       xExpect = xFile.xpath(path)
       expect = xExpect.to_s.squeeze(' ')
 

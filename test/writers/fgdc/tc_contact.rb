@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcContact < TestReaderFgdcParent
+class TestWriterFgdcContact < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -38,7 +38,7 @@ class TestWriterFgdcContact < TestReaderFgdcParent
 
    def test_contact_person_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'contact_person', './metadata/idinfo/ptcontac')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'contact_person', './metadata/idinfo/ptcontac')
       assert_equal hReturn[0], hReturn[1]
 
    end
@@ -49,7 +49,7 @@ class TestWriterFgdcContact < TestReaderFgdcParent
       hIn[:contact][0][:isOrganization] = true
       hIn[:contact][0][:name] = 'organization name'
 
-      hReturn = TestReaderFgdcParent.get_complete(hIn, 'contact_organization', './metadata/idinfo/ptcontac')
+      hReturn = TestWriterFGDCParent.get_complete(hIn, 'contact_organization', './metadata/idinfo/ptcontac')
       assert_equal hReturn[0], hReturn[1]
 
    end

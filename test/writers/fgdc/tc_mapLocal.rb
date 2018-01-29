@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcMapLocalPlanar < TestReaderFgdcParent
+class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -17,7 +17,7 @@ class TestWriterFgdcMapLocalPlanar < TestReaderFgdcParent
 
       path = './metadata/spref/horizsys/planar/localp'
 
-      xFile = TestReaderFgdcParent.get_xml('mapLocal')
+      xFile = TestWriterFGDCParent.get_xml('mapLocal')
       xExpect = xFile.xpath(path)
       expect = xExpect.to_s.squeeze(' ')
 

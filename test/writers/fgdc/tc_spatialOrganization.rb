@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
+class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -26,7 +26,7 @@ class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
 
    def test_spatialOrganization_indirect
 
-      xDoc = TestReaderFgdcParent.get_xml('spatialOrganization')
+      xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/indspref')
       expect = axExpect[0].to_s.squeeze(' ')
 
@@ -50,7 +50,7 @@ class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
       hIn[:metadata][:resourceInfo][:spatialRepresentationType] = []
       hIn[:metadata][:resourceInfo][:spatialRepresentationType] << 'point'
 
-      xDoc = TestReaderFgdcParent.get_xml('spatialOrganization')
+      xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/direct')
       expect = axExpect[0].to_s.squeeze(' ')
 
@@ -86,7 +86,7 @@ class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
       hSpaceRep2 = TDClass.build_spatialRepresentation('vector', hVectorRep2)
       hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep2
 
-      xDoc = TestReaderFgdcParent.get_xml('spatialOrganization')
+      xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/ptvctinf')
       expect = axExpect[0].to_s.squeeze(' ')
 
@@ -118,7 +118,7 @@ class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
       hIn[:metadata][:resourceInfo][:spatialRepresentation] = []
       hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
-      xDoc = TestReaderFgdcParent.get_xml('spatialOrganization')
+      xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/ptvctinf')
       expect = axExpect[1].to_s.squeeze(' ')
 
@@ -151,7 +151,7 @@ class TestWriterFgdcSpatialOrganization < TestReaderFgdcParent
       hIn[:metadata][:resourceInfo][:spatialRepresentation] = []
       hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
-      xDoc = TestReaderFgdcParent.get_xml('spatialOrganization')
+      xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/rastinfo')
       expect = axExpect.to_s.squeeze(' ')
 

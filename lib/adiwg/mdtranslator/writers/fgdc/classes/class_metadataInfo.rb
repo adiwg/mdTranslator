@@ -19,10 +19,7 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(intObj)
-
-                  hMetadataInfo = intObj[:metadata][:metadataInfo]
-                  hResourceInfo = intObj[:metadata][:resourceInfo]
+               def writeXML(hMetadataInfo)
 
                   # classes used
                   contactClass = Contact.new(@xml, @hResponseObj)
@@ -117,7 +114,7 @@ module ADIWG
                   end
 
                   # metadata information 7.5 (metstdn) - metadata standard name (required)
-                  @xml.tag!('metstdn', 'Content Standard for Digital Geospatial Metadata with with Biological Data Profile')
+                  @xml.tag!('metstdn', 'Content Standard for Digital Geospatial Metadata with Biological Data Profile')
 
                   # metadata information 7.6 (metstdv) - metadata standard version (required)
                   @xml.tag!('metstdv', 'FGDC-STD-001.1-1999')
@@ -127,11 +124,86 @@ module ADIWG
                   # don't know how to handle this, leaving it out
 
                   # metadata information 7.8 (metac) - metadata access constraint
-                  # <- resourceInfo.constraints.type=legal.accessCode
-                  hResourceInfo[:constraints].each do |hConstraint|
+                  # <- metadataInfo.metadataConstraints.type=legal.accessCode[0]
+                  haveAccess = false
+                  hMetadataInfo[:metadataConstraints].each do |hConstraint|
                      if hConstraint[:type] == 'legal'
-                        a=1
+                        unless hConstraint[:legalConstraint].empty?
+                           unless hConstraint[:legalConstraint][:accessCodes].empty?
+                              @xml.tag!('metac', hConstraint[:legalConstraint][:accessCodes][0])
+                              haveAccess = true
+                           end
+                        end
                      end
+                  end
+                  if !haveAccess && @hResponseObj[:witerShowTags]
+                     @xml.tag!('metac')
+                  end
+
+                  # metadata information 7.9 (metuc) - metadata user constraint
+                  # <- metadataInfo.metadataConstraints.type=legal.useCode[0]
+                  haveUse = false
+                  hMetadataInfo[:metadataConstraints].each do |hConstraint|
+                     if hConstraint[:type] == 'legal'
+                        unless hConstraint[:legalConstraint].empty?
+                           unless hConstraint[:legalConstraint][:useCodes].empty?
+                              @xml.tag!('metuc', hConstraint[:legalConstraint][:useCodes][0])
+                              haveUse = true
+                           end
+                        end
+                     end
+                  end
+                  if !haveUse && @hResponseObj[:witerShowTags]
+                     @xml.tag!('metuc')
+                  end
+
+                  # metadata information 7.10 (metsi) - metadata user constraint
+                  # <- metadataInfo.metadataConstraints.type=security
+                  haveSecurity = false
+                  hMetadataInfo[:metadataConstraints].each do |hConstraint|
+                     if hConstraint[:type] == 'security'
+                        unless hConstraint[:securityConstraint].empty?
+                           @xml.tag!('metsi') do
+
+                              haveSecurity = true
+                              hSecurity = hConstraint[:securityConstraint]
+
+                              # security information 10.7.1 (metscs) - metadata security classification system (required)
+                              # <- securityConstraint.classSystem
+                              unless hSecurity[:classSystem].nil?
+                                 @xml.tag!('metscs', hSecurity[:classSystem])
+                              end
+                              if hSecurity[:classSystem].nil?
+                                 @hResponseObj[:writerPass] = false
+                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing classification system'
+                              end
+
+                              # security information 10.7.2 (metsc) - metadata security classification (required)
+                              # <- securityConstraint.classCode
+                              unless hSecurity[:classCode].nil?
+                                 @xml.tag!('metsc', hSecurity[:classCode])
+                              end
+                              if hSecurity[:classCode].nil?
+                                 @hResponseObj[:writerPass] = false
+                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing classification'
+                              end
+
+                              # security information 10.7.3 (metshd) - metadata security classification (required)
+                              # <- securityConstraint.handling
+                              unless hSecurity[:handling].nil?
+                                 @xml.tag!('metshd', hSecurity[:handling])
+                              end
+                              if hSecurity[:handling].nil?
+                                 @hResponseObj[:writerPass] = false
+                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing handling instructions'
+                              end
+
+                           end
+                        end
+                     end
+                  end
+                  if !haveSecurity && @hResponseObj[:writerShowTags]
+                     @xml.tag!('metsi')
                   end
 
                end # writeXML

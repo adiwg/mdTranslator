@@ -8,14 +8,14 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcMapGridSystem < TestReaderFgdcParent
+class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
    # read the fgdc reference file
    @@path = './metadata/spref/horizsys/planar/gridsys'
-   xFile = TestReaderFgdcParent.get_xml('mapGridSystem')
+   xFile = TestWriterFGDCParent.get_xml('mapGridSystem')
    @@axExpect = xFile.xpath(@@path)
 
    def run_test(mdHash, path, expect)

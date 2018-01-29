@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcLineage < TestReaderFgdcParent
+class TestWriterFgdcLineage < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -76,7 +76,7 @@ class TestWriterFgdcLineage < TestReaderFgdcParent
 
    def test_lineage_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'lineage', './metadata/dataqual/lineage')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'lineage', './metadata/dataqual/lineage')
       assert_equal hReturn[0], hReturn[1]
 
    end

@@ -118,7 +118,7 @@ module ADIWG
 
                      # metadata 7 (metainfo) - metadata information (required)
                      @xml.tag!('metainfo') do
-                        metaInfoClass.writeXML(intObj)
+                        metaInfoClass.writeXML(hMetadataInfo)
                      end
 
                      return metadata
