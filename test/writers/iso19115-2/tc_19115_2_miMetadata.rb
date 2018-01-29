@@ -53,7 +53,6 @@ class TestWriter191152MIMetadata < TestWriter191152Parent
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath('//gmd:MI_Metadata')
-      File.write('/mnt/hgfs/ShareDrive/writeOut.xml', xMetadata)
 
       assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
 
