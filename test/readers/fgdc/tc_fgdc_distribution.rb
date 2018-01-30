@@ -25,9 +25,9 @@ class TestReaderFgdcDistribution < TestReaderFGDCParent
       hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       refute_empty hDistribution
-      text = 'distribution resource description\n\n Technical Prerequisites: distribution technical prerequisite'
-      assert_equal text, hDistribution[:description]
+      assert_equal 'distribution description', hDistribution[:description]
       assert_equal 'distribution liability statement', hDistribution[:liabilityStatement]
+      assert_equal 'distribution technical prerequisite', hDistribution[:technicalPrerequisite]
       assert_equal 1, hDistribution[:distributor].length
 
       hDistributor = hDistribution[:distributor][0]

@@ -377,6 +377,7 @@ class InternalMetadata
       {
          description: nil,
          liabilityStatement: nil,
+         technicalPrerequisite: nil,
          distributor: []
       }
    end

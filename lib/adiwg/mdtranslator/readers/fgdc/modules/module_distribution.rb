@@ -68,14 +68,10 @@ module ADIWG
                   end
 
                   # distribution 6.6 (techpreq) - technical prerequisites
-                  # -> distribution.description {+=}
+                  # -> distribution.technicalPrerequisite
                   techPre = xDistribution.xpath('./techpreq').text
                   unless techPre.empty?
-                     if hDistribution[:description].nil?
-                        hDistribution[:description] = techPre
-                     else
-                        hDistribution[:description] += '\n\n Technical Prerequisites: ' + techPre
-                     end
+                     hDistribution[:technicalPrerequisite] = techPre
                   end
 
                   # distribution 6.7 (availabl) - available time period {time period}

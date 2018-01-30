@@ -32,6 +32,7 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
 
       assert_equal 'description', metadata[:description]
       assert_equal 'distribution liability statement', metadata[:liabilityStatement]
+      assert_equal 'distribution technical prerequisite', metadata[:technicalPrerequisite]
       assert_equal 2, metadata[:distributor].length
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -44,6 +45,7 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['description'] = ''
       hIn['liabilityStatement'] = ''
+      hIn['technicalPrerequisite'] = ''
       hIn['distributor'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
@@ -62,6 +64,7 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
       hIn['nonElement'] = ''
       hIn.delete('description')
       hIn.delete('liabilityStatement')
+      hIn.delete('technicalPrerequisite')
       hIn.delete('distributor')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)

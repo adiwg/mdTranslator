@@ -34,7 +34,7 @@ module ADIWG
                   # <- distribution.distributor[0].contact{}
 
                   # distribution 6.6 (techpreq) - technical prerequisites
-                  # <- distribution.distributor[0].contact{}
+                  # <- distribution.technicalPrerequisite
 
                   # distribution 6.7 (availabl) - available timePeriod  {timePeriod}
                   # <- distribution.distributor[0].contact{}
