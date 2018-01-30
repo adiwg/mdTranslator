@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-10-18 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
