@@ -44,15 +44,10 @@ module ADIWG
                   end
 
                   # distribution 6.3 (distliab) - distribution liability
-                  # -> resourceInfo.constraints.legal.otherConstraint
-                  constraint = xDistribution.xpath('./distliab').text
-                  unless constraint.empty?
-                     hConstraint = intMetadataClass.newConstraint
-                     hConstraint[:type] = 'legal'
-                     hLegal = intMetadataClass.newLegalConstraint
-                     hLegal[:otherCons] << constraint
-                     hConstraint[:legalConstraint] = hLegal
-                     hResourceInfo[:constraints] << hConstraint
+                  # -> distribution.liabilityStatement
+                  liability = xDistribution.xpath('./distliab').text
+                  unless liability.empty?
+                     hDistribution[:liabilityStatement] = liability
                   end
 
                   # distribution 6.4 (stdorder) - standard order process []

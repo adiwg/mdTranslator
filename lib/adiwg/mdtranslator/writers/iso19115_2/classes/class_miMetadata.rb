@@ -92,6 +92,7 @@ module ADIWG
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
                   aAssocRes = hMetadata[:associatedResources]
+                  aDistInfo = hMetadata[:distributorInfo]
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -294,7 +295,7 @@ module ADIWG
                      # metadata information - identification info - required
                      unless hResInfo.empty?
                         @xml.tag!('gmd:identificationInfo') do
-                           dataIdClass.writeXML(hResInfo, aAssocRes)
+                           dataIdClass.writeXML(hResInfo, aAssocRes, aDistInfo)
                         end
                      end
                      if hResInfo.empty?
@@ -315,7 +316,6 @@ module ADIWG
                      end
 
                      # metadata information - distribution info [0]
-                     aDistInfo = hMetadata[:distributorInfo]
                      unless aDistInfo.empty?
                         hDistInfo = aDistInfo[0]
                         unless hDistInfo.empty?

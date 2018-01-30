@@ -28,24 +28,13 @@ class TestReaderFgdcDistribution < TestReaderFGDCParent
       refute_empty hDistribution
       text = 'distribution resource description\n\n Technical Prerequisites: distribution technical prerequisite'
       assert_equal text, hDistribution[:description]
+      assert_equal 'distribution liability statement', hDistribution[:liabilityStatement]
       assert_equal 1, hDistribution[:distributor].length
 
       hDistributor = hDistribution[:distributor][0]
       refute_empty hDistributor[:contact]
       assert_equal 3, hDistributor[:orderProcess].length
       assert_equal 3, hDistributor[:transferOptions].length
-
-      assert_equal 1, hResourceInfo[:constraints].length
-
-      hConstraint = hResourceInfo[:constraints][0]
-      assert_equal 'legal', hConstraint[:type]
-      refute_empty hConstraint[:legalConstraint]
-
-      hLegalCon = hConstraint[:legalConstraint]
-      assert_empty hLegalCon[:accessCodes]
-      assert_empty hLegalCon[:useCodes]
-      assert_equal 1,hLegalCon[:otherCons].length
-      assert_equal 'distributor liability statement 1', hLegalCon[:otherCons][0]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

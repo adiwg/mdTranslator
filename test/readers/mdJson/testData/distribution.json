@@ -2,6 +2,7 @@
    "resourceDistribution": [
       {
          "description": "description",
+         "liabilityStatement": "distribution liability statement",
          "distributor": [
             {
                "contact": {

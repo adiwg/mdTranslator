@@ -106,4 +106,20 @@
     </gmd:MD_SecurityConstraints>
   </gmd:resourceConstraints>
 
+  <gmd:resourceConstraints>
+    <gmd:MD_LegalConstraints>
+      <gmd:otherConstraints>
+        <gco:CharacterString>distribution liability statement 1</gco:CharacterString>
+      </gmd:otherConstraints>
+    </gmd:MD_LegalConstraints>
+  </gmd:resourceConstraints>
+
+  <gmd:resourceConstraints>
+    <gmd:MD_LegalConstraints>
+      <gmd:otherConstraints>
+        <gco:CharacterString>distribution liability statement 2</gco:CharacterString>
+      </gmd:otherConstraints>
+    </gmd:MD_LegalConstraints>
+  </gmd:resourceConstraints>
+
 </gmi:MI_Metadata>

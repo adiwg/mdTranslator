@@ -376,6 +376,7 @@ class InternalMetadata
    def newDistribution
       {
          description: nil,
+         liabilityStatement: nil,
          distributor: []
       }
    end

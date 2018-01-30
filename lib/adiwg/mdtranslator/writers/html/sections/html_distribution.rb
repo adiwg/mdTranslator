@@ -30,6 +30,14 @@ module ADIWG
                      end
                   end
 
+                  # distribution - liability statement
+                  unless hDistribution[:liabilityStatement].nil?
+                     @html.em('Liability Statement:')
+                     @html.section(:class => 'block') do
+                        @html.text!(hDistribution[:liabilityStatement])
+                     end
+                  end
+
                   # distribution - distributor [] {distributor}
                   hDistribution[:distributor].each do |hDistributor|
                      @html.details do

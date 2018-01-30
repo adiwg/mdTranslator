@@ -113,6 +113,14 @@
                }
             }
          ]
-      }
+      },
+      "resourceDistribution": [
+         {
+            "liabilityStatement": "distribution liability statement 1"
+         },
+         {
+            "liabilityStatement": "distribution liability statement 2"
+         }
+      ]
    }
 }

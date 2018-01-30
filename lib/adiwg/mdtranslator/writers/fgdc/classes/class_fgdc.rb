@@ -9,6 +9,7 @@ require_relative 'class_quality'
 require_relative 'class_spatialOrganization'
 require_relative 'class_spatialReference'
 require_relative 'class_dictionary'
+require_relative 'class_distribution'
 require_relative 'class_metadataInfo'
 
 module ADIWG
@@ -27,6 +28,7 @@ module ADIWG
 
                   version = @hResponseObj[:translatorVersion]
                   hResourceInfo = intObj[:metadata][:resourceInfo]
+                  aDistributorInfo = intObj[:metadata][:distributorInfo]
                   hMetadataInfo = intObj[:metadata][:metadataInfo]
 
                   # classes used
@@ -35,6 +37,7 @@ module ADIWG
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
                   spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
                   dictionaryClass = DataDictionary.new(@xml, @hResponseObj)
+                  distributorClass = Distribution.new(@xml, @hResponseObj)
                   metaInfoClass = MetadataInformation.new(@xml, @hResponseObj)
 
                   # document head
@@ -113,10 +116,21 @@ module ADIWG
                         @xml.tag!('eainfo')
                      end
 
-                     # metadata 6 (distinfo) - distribution information
-
+                     # metadata 6 (distinfo) - distributor information []
+                     # <- metadata.distributionInfo[]
+                     aDistributorInfo.each do |hDistribution|
+                        unless hDistribution.empty?
+                           @xml.tag!('distinfo') do
+                              distributorClass.writeXML(hDistribution)
+                           end
+                        end
+                     end
+                     if aDistributorInfo.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('distinfo')
+                     end
 
                      # metadata 7 (metainfo) - metadata information (required)
+                     # <- metadata.metadataInfo
                      @xml.tag!('metainfo') do
                         metaInfoClass.writeXML(hMetadataInfo)
                      end
