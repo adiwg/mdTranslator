@@ -63,6 +63,21 @@ class FgdcWriterTD
       return hDomain
    end
 
+   def build_distribution(description = nil, liability = nil, prereq = nil)
+      hDistribution = distribution
+      hDistribution[:description] = description unless description.nil?
+      hDistribution[:liabilityStatement] = liability unless liability.nil?
+      hDistribution[:technicalPrerequisite] = prereq unless prereq.nil?
+      return hDistribution
+   end
+
+   def build_distributor(contactId)
+      hDistributor = distributor
+      hResParty = build_responsibleParty('distributor', [contactId])
+      hDistributor[:contact] = hResParty
+      return hDistributor
+   end
+
    def build_entity(id = nil, common = nil, code = nil, definition = nil)
       hEntity = entity
       hEntity[:entityId] = id unless id.nil?
@@ -301,6 +316,10 @@ class FgdcWriterTD
       return hTimePeriod
    end
 
+   def build_transferOption
+      return transferOption
+   end
+
    def build_vectorRepresentation(level = nil)
       hVector = vectorRepresentation
       if level.nil?
@@ -499,6 +518,31 @@ class FgdcWriterTD
       return hSpaceRef
    end
 
+   def add_offlineOption(hTranOpt, noteOnly = false)
+      hMedium = medium
+      if noteOnly
+         hMedium.delete(:mediumSpecification)
+         hMedium.delete(:density)
+         hMedium.delete(:units)
+         hMedium.delete(:numberOfVolumes)
+         hMedium.delete(:mediumFormat)
+         hMedium.delete(:identifier)
+      end
+      hTranOpt[:offlineOption] << hMedium
+      return hTranOpt
+   end
+
+   def add_onlineOption(hTranOpt, uri)
+      hOnlineRes = build_onlineResource(uri)
+      hTranOpt[:onlineOption] << hOnlineRes
+      return hTranOpt
+   end
+
+   def add_orderProcess(hDistributor)
+      hDistributor[:orderProcess] << orderProcess
+      return hDistributor
+   end
+
    def add_otherConstraint(hObj, constraint)
       hObj[:legal][:otherConstraint] << constraint
       return hObj
@@ -528,6 +572,13 @@ class FgdcWriterTD
          hParamSet[:projectionName] = name
       end
       return hSpaceRef
+   end
+
+   def add_resourceFormat(hTransOpt, title = nil)
+      hFormat = resourceFormat
+      hFormat[:formatSpecification][:title] = title unless title.nil?
+      hTransOpt[:distributionFormat] << hFormat
+      return hTransOpt
    end
 
    def add_scaleFactorCL(hSpaceRef, scale = nil)

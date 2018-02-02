@@ -15,14 +15,11 @@ class TestReaderFgdcOfflineOption < TestReaderFGDCParent
 
    def test_offlineOption_complete
 
-      intMetadataClass = InternalMetadata.new
-      hResourceInfo = intMetadataClass.newResourceInfo
-
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+      hDistribution = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDistribution
 

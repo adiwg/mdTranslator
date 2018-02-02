@@ -120,9 +120,7 @@ module ADIWG
                      # <- metadata.distributionInfo[]
                      aDistributorInfo.each do |hDistribution|
                         unless hDistribution.empty?
-                           @xml.tag!('distinfo') do
-                              distributorClass.writeXML(hDistribution)
-                           end
+                           distributorClass.writeXML(hDistribution)
                         end
                      end
                      if aDistributorInfo.empty? && @hResponseObj[:writerShowTags]

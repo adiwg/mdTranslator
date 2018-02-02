@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<metadata>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </distrib>
+    <resdesc>distribution description</resdesc>
+    <distliab>distribution liability statement</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>format identifier</formname>
+          <formvern>format edition</formvern>
+          <formverd>20180201</formverd>
+          <formspec>format one</formspec>
+          <formcont>format information content</formcont>
+          <filedec>compression method</filedec>
+          <transize>999</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://127.0.0.1/one</networkr>
+              </networka>
+            </computer>
+            <accinstr>protocol</accinstr>
+            <oncomp>online resource description</oncomp>
+          </onlinopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://127.0.0.1/two</networkr>
+              </networka>
+            </computer>
+            <accinstr>protocol</accinstr>
+            <oncomp>online resource description</oncomp>
+          </onlinopt>
+          <offoptn>
+            <offmedia>medium specification</offmedia>
+            <recden>99.9</recden>
+            <recdenu>units of density</recdenu>
+            <recfmt>medium format one</recfmt>
+            <recfmt>medium format two</recfmt>
+            <compat>medium note</compat>
+          </offoptn>
+          <offoptn>
+            <offmedia>medium specification</offmedia>
+            <recden>99.9</recden>
+            <recdenu>units of density</recdenu>
+            <recfmt>medium format one</recfmt>
+            <recfmt>medium format two</recfmt>
+            <compat>medium note</compat>
+          </offoptn>
+        </digtopt>
+      </digform>
+      <fees>no charge</fees>
+      <ordering>ordering instructions</ordering>
+      <turnarnd>one week turnaround</turnarnd>
+    </stdorder>
+    <custom/>
+    <techpreq>distribution technical prerequisite</techpreq>
+    <availabl>
+      <timeinfo>
+        <sngdate>
+          <caldate>20180205</caldate>
+          <time>00:00:00</time>
+        </sngdate>
+      </timeinfo>
+    </availabl>
+  </distinfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </distrib>
+    <resdesc>distribution description</resdesc>
+    <distliab>distribution liability statement</distliab>
+    <stdorder>
+      <digform/>
+      <fees>no charge</fees>
+      <ordering>ordering instructions</ordering>
+      <turnarnd>one week turnaround</turnarnd>
+    </stdorder>
+    <custom>ordering instructions</custom>
+    <techpreq>distribution technical prerequisite</techpreq>
+    <availabl>
+      <timeinfo>
+        <sngdate>
+          <caldate>20180205</caldate>
+          <time>00:00:00</time>
+        </sngdate>
+      </timeinfo>
+    </availabl>
+  </distinfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </distrib>
+    <resdesc>distribution description</resdesc>
+    <distliab>distribution liability statement</distliab>
+    <stdorder>
+      <nondig>medium note</nondig>
+      <digform>
+        <digtinfo>
+          <formvern/>
+          <formverd/>
+          <formspec/>
+          <formcont/>
+          <filedec/>
+          <transize>999</transize>
+        </digtinfo>
+        <digtopt>
+        </digtopt>
+      </digform>
+      <fees>no charge</fees>
+      <ordering>ordering instructions</ordering>
+      <turnarnd>one week turnaround</turnarnd>
+    </stdorder>
+    <custom/>
+    <techpreq>distribution technical prerequisite</techpreq>
+    <availabl>
+      <timeinfo>
+        <sngdate>
+          <caldate>20180205</caldate>
+          <time>00:00:00</time>
+        </sngdate>
+      </timeinfo>
+    </availabl>
+  </distinfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntperp>
+          <cntper>person name</cntper>
+          <cntorg/>
+        </cntperp>
+        <cntpos>position name</cntpos>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>address line 1</address>
+          <address>address line 2</address>
+          <city>city</city>
+          <state>administrative area</state>
+          <postal>postal code</postal>
+          <country>country</country>
+        </cntaddr>
+        <cntvoice>111-111-1111</cntvoice>
+        <cnttdd/>
+        <cntfax/>
+        <cntemail/>
+        <hours/>
+        <cntinst/>
+      </cntinfo>
+    </distrib>
+    <resdesc>distribution description</resdesc>
+    <distliab>distribution liability statement</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formvern/>
+          <formverd/>
+          <formspec/>
+          <formcont/>
+          <filedec/>
+          <transize>999</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://127.0.0.1/three</networkr>
+              </networka>
+            </computer>
+            <accinstr>protocol</accinstr>
+            <oncomp>online resource description</oncomp>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>no charge</fees>
+      <ordering>ordering instructions</ordering>
+      <turnarnd>one week turnaround</turnarnd>
+    </stdorder>
+    <custom/>
+    <techpreq>distribution technical prerequisite</techpreq>
+    <availabl>
+      <timeinfo>
+        <sngdate>
+          <caldate>20180205</caldate>
+          <time>00:00:00</time>
+        </sngdate>
+      </timeinfo>
+    </availabl>
+  </distinfo>
+</metadata>

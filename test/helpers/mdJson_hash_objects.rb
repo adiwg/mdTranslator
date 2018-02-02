@@ -347,6 +347,23 @@ class FgdcWriterTD
       }
    end
 
+   def distribution
+      {
+         description: 'distribution description',
+         liabilityStatement: 'distribution liability statement',
+         technicalPrerequisite: 'distribution technical prerequisite',
+         distributor: []
+      }
+   end
+
+   def distributor
+      {
+         contact: {},
+         orderProcess: [],
+         transferOption: []
+      }
+   end
+
    def domainItem
       {
          name: 'domain item name',
@@ -508,6 +525,25 @@ class FgdcWriterTD
       }
    end
 
+   def medium
+      {
+         mediumSpecification: {
+            title: 'medium specification'
+         },
+         density: 99.9,
+         units: 'units of density',
+         numberOfVolumes: 9,
+         mediumFormat: [
+            'medium format one',
+            'medium format two'
+         ],
+         note: 'medium note',
+         identifier: {
+            identifier: 'medium identifier'
+         }
+      }
+   end
+
    def obliqueLinePoint
       {
          azimuthLineLatitude: 99.9,
@@ -522,6 +558,15 @@ class FgdcWriterTD
          protocol: 'protocol',
          description: 'online resource description',
          function: 'online description function'
+      }
+   end
+
+   def orderProcess
+      {
+         fees: 'no charge',
+         plannedAvailability: '2018-02-05T00:00:00',
+         orderingInstructions: 'ordering instructions',
+         turnaround: 'one week turnaround'
       }
    end
 
@@ -598,6 +643,29 @@ class FgdcWriterTD
          stepSource: [],
          stepProduct: [],
          reference: []
+      }
+   end
+
+   def resourceFormat
+      {
+         formatSpecification: {
+            title: 'format specification',
+            edition: 'format edition',
+            date: [
+               date: '2018-02-01',
+               dateType: 'revision'
+            ],
+            identifier: [
+               {
+                  identifier: 'format identifier'
+               }
+            ],
+            otherCitationDetails: [
+               'format information content'
+            ]
+         },
+         amendmentNumber: 'amendment number',
+         compressionMethod: 'compression method'
       }
    end
 
@@ -695,6 +763,19 @@ class FgdcWriterTD
          periodName: [],
          startDateTime: nil,
          endDateTime: nil,
+      }
+   end
+
+   def transferOption
+      {
+         transferSize: 999,
+         unitsOfDistribution: 'MB',
+         onlineOption: [],
+         offlineOption: [],
+         transferFrequency: {
+            months: 9
+         },
+         distributionFormat: []
       }
    end
 

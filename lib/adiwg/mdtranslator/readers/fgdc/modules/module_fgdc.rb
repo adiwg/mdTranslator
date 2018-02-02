@@ -87,7 +87,7 @@ module ADIWG
                   axDistribution = xMetadata.xpath('./distinfo')
                   unless axDistribution.empty?
                      axDistribution.each do |xDistribution|
-                        hDistribution = Distribution.unpack(xDistribution, hResourceInfo, hResponseObj)
+                        hDistribution = Distribution.unpack(xDistribution, hResponseObj)
                         unless hDistribution.nil?
                            hMetadata[:distributorInfo] << hDistribution
                         end

@@ -15,14 +15,11 @@ class TestReaderFgdcTransferInfo < TestReaderFGDCParent
 
    def test_transferInfo_complete
 
-      intMetadataClass = InternalMetadata.new
-      hResourceInfo = intMetadataClass.newResourceInfo
-
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+      hDistribution = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDistribution
 
@@ -46,14 +43,13 @@ class TestReaderFgdcTransferInfo < TestReaderFGDCParent
       assert_equal 'winzip legacy compression', hFormat0[:compressionMethod]
 
       hSpecification = hFormat0[:formatSpecification]
-      assert_equal 'zip', hSpecification[:title]
+      assert_equal 'format specification', hSpecification[:title]
       assert_equal 1, hSpecification[:dates].length
       assert_kind_of DateTime, hSpecification[:dates][0][:date]
       assert_equal 'YMDhmsZ', hSpecification[:dates][0][:dateResolution]
       assert_equal '1.13.2', hSpecification[:edition]
-      assert_equal 2, hSpecification[:otherDetails].length
-      assert_equal 'format specification', hSpecification[:otherDetails][0]
-      assert_equal 'format information content', hSpecification[:otherDetails][1]
+      assert_equal 1, hSpecification[:otherDetails].length
+      assert_equal 'format information content', hSpecification[:otherDetails][0]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

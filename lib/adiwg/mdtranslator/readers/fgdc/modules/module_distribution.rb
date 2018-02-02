@@ -18,7 +18,7 @@ module ADIWG
 
             module Distribution
 
-               def self.unpack(xDistribution, hResourceInfo, hResponseObj)
+               def self.unpack(xDistribution, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new

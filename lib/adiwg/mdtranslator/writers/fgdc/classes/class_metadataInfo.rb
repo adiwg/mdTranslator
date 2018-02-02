@@ -94,7 +94,7 @@ module ADIWG
                      @xml.tag!('metfrd')
                   end
 
-                  # metadata information 7.4 (metc) - metadata contact {contact}
+                  # metadata information 7.4 (metc) - metadata contact {contact} (required)
                   # <- metadataInfo.metadataContacts[] role = 'pointOfContact'
                   unless hMetadataInfo[:metadataContacts].empty?
                      aRParties = hMetadataInfo[:metadataContacts]
