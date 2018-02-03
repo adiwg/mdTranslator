@@ -1,7 +1,14 @@
 # Change Log
 
-## [v2.8.0](https://github.com/adiwg/mdTranslator/tree/v2.8.0)
+## [v2.9.0](https://github.com/adiwg/mdTranslator/tree/v2.9.0)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.8.0...v2.9.0)
+
+**Merged pull requests:**
+
+- mdTranslator version 2.9.0 [\#181](https://github.com/adiwg/mdTranslator/pull/181) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.8.0](https://github.com/adiwg/mdTranslator/tree/v2.8.0) (2018-01-24)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.7.0...v2.8.0)
 
 **Implemented enhancements:**
