@@ -27,7 +27,8 @@ module ADIWG
                   # in FGDC transferOptions are children of orderProcess
                   # in mdJson/ISO transferOptions are children of distributor
                   # therefore in FGDC all transferOptions will be collected and mapped to
-                  # the first orderProcess and all other orderProcess records will be lost
+                  # the first orderProcess
+                  # all other orderProcess records will be lost
                   hOrder = hDistributor[:orderProcess][0]
                   aTransfer = hDistributor[:transferOptions]
 

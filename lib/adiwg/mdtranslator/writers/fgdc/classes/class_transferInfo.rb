@@ -29,6 +29,8 @@ module ADIWG
 
                   # transfer information 6.4.2.1.1 (formname) - format name (required)
                   # <- formatSpecification.identifier.identifier
+                  # FGDC requires a format name for digital options (online and offline)
+                  # the format name is saved in the format specification of the first distribution format
                   haveId = false
                   unless hSpec.empty?
                      unless hSpec[:identifiers].empty?

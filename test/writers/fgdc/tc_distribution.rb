@@ -24,17 +24,17 @@ class TestWriterFgdcDistribution < TestWriterFGDCParent
    # distributor 1 -----------------------------------------
    # .. 1 order process
    # .. 1 transfer option
-   # .. 2 offline and 2 online options
    # .. 2 resource formats
+   # .. 2 offline and 2 online options
    hDistributor1 = TDClass.build_distributor('CID001')
    TDClass.add_orderProcess(hDistributor1)
    hTranOption1 = TDClass.build_transferOption
+   TDClass.add_resourceFormat(hTranOption1, 'format one')
+   TDClass.add_resourceFormat(hTranOption1, 'format two')
    TDClass.add_offlineOption(hTranOption1)
    TDClass.add_offlineOption(hTranOption1)
    TDClass.add_onlineOption(hTranOption1, 'https://127.0.0.1/one')
    TDClass.add_onlineOption(hTranOption1, 'https://127.0.0.1/two')
-   TDClass.add_resourceFormat(hTranOption1, 'format one')
-   TDClass.add_resourceFormat(hTranOption1, 'format two')
    hDistributor1[:transferOption] << hTranOption1
    hDistribution1[:distributor] << hDistributor1
 
@@ -49,10 +49,12 @@ class TestWriterFgdcDistribution < TestWriterFGDCParent
    # non-digital order process
    # .. 1 order process
    # .. 1 transfer option
+   # .. 1 resource format
    # .. 1 offline (note only)
    hDistributor3 = TDClass.build_distributor('CID001')
    TDClass.add_orderProcess(hDistributor3)
    hTranOption3 = TDClass.build_transferOption
+   TDClass.add_resourceFormat(hTranOption3, 'format three')
    TDClass.add_offlineOption(hTranOption3, true)
    hDistributor3[:transferOption] << hTranOption3
    hDistribution1[:distributor] << hDistributor3
@@ -66,11 +68,13 @@ class TestWriterFgdcDistribution < TestWriterFGDCParent
    # distributor 4 -----------------------------------------
    # .. 2 order process
    # .. 1 transfer option
+   # .. 1 resource format
    # .. 1 online options
    hDistributor4 = TDClass.build_distributor('CID001')
    TDClass.add_orderProcess(hDistributor4)
    TDClass.add_orderProcess(hDistributor4)
    hTranOption4 = TDClass.build_transferOption
+   TDClass.add_resourceFormat(hTranOption4, 'format four')
    TDClass.add_onlineOption(hTranOption4, 'https://127.0.0.1/three')
    hDistributor4[:transferOption] << hTranOption4
    hDistribution2[:distributor] << hDistributor4

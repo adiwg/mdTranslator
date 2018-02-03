@@ -165,11 +165,12 @@
       <nondig>medium note</nondig>
       <digform>
         <digtinfo>
-          <formvern/>
-          <formverd/>
-          <formspec/>
-          <formcont/>
-          <filedec/>
+          <formname>format identifier</formname>
+          <formvern>format edition</formvern>
+          <formverd>20180201</formverd>
+          <formspec>format three</formspec>
+          <formcont>format information content</formcont>
+          <filedec>compression method</filedec>
           <transize>999</transize>
         </digtinfo>
         <digtopt>
@@ -220,11 +221,12 @@
     <stdorder>
       <digform>
         <digtinfo>
-          <formvern/>
-          <formverd/>
-          <formspec/>
-          <formcont/>
-          <filedec/>
+          <formname>format identifier</formname>
+          <formvern>format edition</formvern>
+          <formverd>20180201</formverd>
+          <formspec>format four</formspec>
+          <formcont>format information content</formcont>
+          <filedec>compression method</filedec>
           <transize>999</transize>
         </digtinfo>
         <digtopt>

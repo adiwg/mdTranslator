@@ -121,7 +121,10 @@ module ADIWG
                   # identification information bio (taxonomy) - taxonomic information
                   xTaxonomy = xIdInfo.xpath('./taxonomy')
                   unless xTaxonomy.empty?
-                     Taxonomy.unpack(xTaxonomy, hResourceInfo, hResponseObj)
+                     hTaxonomy = Taxonomy.unpack(xTaxonomy, hResourceInfo, hResponseObj)
+                     unless hTaxonomy.nil?
+                        hResourceInfo[:taxonomy] = hTaxonomy
+                     end
                   end
 
                   # identification information 1.7 (accconst) - access constraints
