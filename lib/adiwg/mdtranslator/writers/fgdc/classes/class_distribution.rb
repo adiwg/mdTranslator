@@ -100,9 +100,11 @@ module ADIWG
                         haveCustom = false
                         unless hDistributor.empty?
                            if hDistributor[:transferOptions].empty?
-                              unless hDistributor[:orderProcess][0].empty?
-                                 unless hDistributor[:orderProcess][0][:orderingInstructions].nil?
-                                    @xml.tag!('custom', hDistributor[:orderProcess][0][:orderingInstructions])
+                              unless hDistributor[:orderProcess].empty?
+                                 unless hDistributor[:orderProcess][0].empty?
+                                    unless hDistributor[:orderProcess][0][:orderingInstructions].nil?
+                                       @xml.tag!('custom', hDistributor[:orderProcess][0][:orderingInstructions])
+                                    end
                                  end
                                  haveCustom = true
                               end
