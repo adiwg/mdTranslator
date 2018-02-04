@@ -34,6 +34,7 @@ module ADIWG
                   if hDomain.empty?
                      @hResponseObj[:writerPass] = false
                      @hResponseObj[:writerMessages] << "Dictionary Domain #{domainId} not found"
+                     return
                   end
 
                   # attribute 5.1.2.4.1 (edom) - enumerated domain
