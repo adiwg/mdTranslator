@@ -2,7 +2,8 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-25 original script
+#  Stan Smith 2018-02-05 fixed typo in variable name 'aBPoly'
+#  Stan Smith 2017-11-25 original script
 
 module ADIWG
    module Mdtranslator
@@ -18,7 +19,7 @@ module ADIWG
 
                def writeXML(aExtents)
 
-                  # spatial domain section is no required under bio extension rules
+                  # spatial domain section is not required under biological extension rules
 
                   # look for geographic description - take first
                   # <- geographicExtent[:description]
@@ -54,7 +55,7 @@ module ADIWG
 
                   # look for bounding polygon
                   # <- geographicExtent[:geographicElements]
-                  # polygon must be in FeatureCollection with properties description of 'FGDC bounding polygon'
+                  # polygon must be in a FeatureCollection with properties description of 'FGDC bounding polygon'
                   aBPoly = []
                   aExtents.each do |hExtent|
                      unless hExtent.empty?
@@ -81,7 +82,7 @@ module ADIWG
                   end
 
                   # spatial domain 1.5 (spdom)
-                  unless geoDescription.empty? && hBBox.empty? && hBPoly.empty?
+                  unless geoDescription.empty? && hBBox.empty? && aBPoly.empty?
                      @xml.tag!('spdom') do
 
                         # spatial domain bio (descgeog) - geographic description (required)
