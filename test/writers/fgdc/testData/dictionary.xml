@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<metadata>
+  <eainfo>
+    <detailed>
+      <enttype>
+        <enttypl>entity 1 label</enttypl>
+        <enttypd>entity 1 definition</enttypd>
+        <enttypds>entity 1 source</enttypds>
+      </enttype>
+      <attr>
+        <attrlabl>attribute 1 label</attrlabl>
+        <attrdef>attribute 1 definition</attrdef>
+        <attrdefs>attribute 1 source</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>domain 1 enum value 1</edomv>
+            <edomvd>domain 1 enum value 1 definition</edomvd>
+            <edomvds>domain item reference title</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>domain 1 enum value 2</edomv>
+            <edomvd>domain 1 enum value 2 definition</edomvd>
+            <edomvds>author defined</edomvds>
+          </edom>
+        </attrdomv>
+        <begdatea>20170401</begdatea>
+        <enddatea>20170430</enddatea>
+        <begdatea>20171001</begdatea>
+        <enddatea>20171031</enddatea>
+      </attr>
+      <attr>
+        <attrlabl>attribute 2 label</attrlabl>
+        <attrdef>attribute 2 definition</attrdef>
+        <attrdefs>attribute 2 source</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>9</rdommax>
+            <attrunit>units of measure</attrunit>
+            <attrmres>1.0</attrmres>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>20</rdommin>
+            <rdommax>40</rdommax>
+            <attrunit>units of measure</attrunit>
+            <attrmres>1.0</attrmres>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 3 label</attrlabl>
+        <attrdef>attribute 3 definition</attrdef>
+        <attrdefs>attribute 3 source</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>codeset name</codesetn>
+            <codesets>codeset source</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 4 label</attrlabl>
+        <attrdef>attribute 4 definition</attrdef>
+        <attrdefs>attribute 4 source</attrdefs>
+        <attrdomv>
+          <udom>unrepresented domain description</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>attribute 5 label</attrlabl>
+        <attrdef>attribute 5 definition</attrdef>
+        <attrdefs>attribute 5 source</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>A</rdommin>
+            <rdommax>F</rdommax>
+            <attrunit>grades</attrunit>
+            <attrmres>one letter</attrmres>
+          </rdom>
+        </attrdomv>
+        <attrdomv>
+          <rdom>
+            <rdommin>X</rdommin>
+            <rdommax>Z</rdommax>
+            <attrunit>grades</attrunit>
+            <attrmres>one letter</attrmres>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <detailed>
+      <enttype>
+        <enttypl>entity 2 label</enttypl>
+        <enttypd>entity 2 definition</enttypd>
+        <enttypds>entity 2 source</enttypds>
+      </enttype>
+    </detailed>
+    <overview>
+      <eaover>ea overview 1</eaover>
+      <eadetcit>ea overview 1 citation 1</eadetcit>
+      <eadetcit>ea overview 1 citation 2</eadetcit>
+    </overview>
+    <overview>
+      <eaover>ea overview 2</eaover>
+      <eadetcit>ea overview 2 citation 1</eadetcit>
+    </overview>
+  </eainfo>
+  <metainfo>
+    <mettc>universal time</mettc>
+  </metainfo>
+</metadata>

@@ -18,7 +18,7 @@ module ADIWG
 
             module Distribution
 
-               def self.unpack(xDistribution, hResourceInfo, hResponseObj)
+               def self.unpack(xDistribution, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -44,15 +44,10 @@ module ADIWG
                   end
 
                   # distribution 6.3 (distliab) - distribution liability
-                  # -> resourceInfo.constraints.legal.otherConstraint
-                  constraint = xDistribution.xpath('./distliab').text
-                  unless constraint.empty?
-                     hConstraint = intMetadataClass.newConstraint
-                     hConstraint[:type] = 'legal'
-                     hLegal = intMetadataClass.newLegalConstraint
-                     hLegal[:otherCons] << constraint
-                     hConstraint[:legalConstraint] = hLegal
-                     hResourceInfo[:constraints] << hConstraint
+                  # -> distribution.liabilityStatement
+                  liability = xDistribution.xpath('./distliab').text
+                  unless liability.empty?
+                     hDistribution[:liabilityStatement] = liability
                   end
 
                   # distribution 6.4 (stdorder) - standard order process []
@@ -73,14 +68,10 @@ module ADIWG
                   end
 
                   # distribution 6.6 (techpreq) - technical prerequisites
-                  # -> distribution.description {+=}
+                  # -> distribution.technicalPrerequisite
                   techPre = xDistribution.xpath('./techpreq').text
                   unless techPre.empty?
-                     if hDistribution[:description].nil?
-                        hDistribution[:description] = techPre
-                     else
-                        hDistribution[:description] += '\n\n Technical Prerequisites: ' + techPre
-                     end
+                     hDistribution[:technicalPrerequisite] = techPre
                   end
 
                   # distribution 6.7 (availabl) - available time period {time period}

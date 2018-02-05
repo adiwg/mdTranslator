@@ -21,25 +21,29 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hFormat = intMetadataClass.newResourceFormat
                   hSpecification = intMetadataClass.newCitation
+                  hIdentifier = intMetadataClass.newIdentifier
+                  hSpecification[:identifiers] << hIdentifier
                   hFormat[:formatSpecification] = hSpecification
                   hTransfer[:distributionFormats] << hFormat
 
                   # distribution 6.4.2.1.1 (formname) - format name
-                  # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.title
-                  title = xTranInfo.xpath('./formname').text
-                  unless title.empty?
-                     hSpecification[:title] = title
+                  # -> transferOption.distributionFormat.formatSpecification.title
+                  # -> transferOption.distributionFormat.formatSpecification.identifier[].identifier
+                  formName = xTranInfo.xpath('./formname').text
+                  unless formName.empty?
+                     hSpecification[:title] = formName
+                     hSpecification[:identifiers][0][:identifier] = formName
                   end
 
                   # distribution 6.4.2.1.2 (formvern) - format version number
-                  # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.edition
+                  # -> transferOption.distributionFormat.formatSpecification.edition
                   version = xTranInfo.xpath('./formvern').text
                   unless version.empty?
                      hSpecification[:edition] = version
                   end
 
                   # distribution 6.4.2.1.3 (formverd) - format version date
-                  # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.date(version)
+                  # -> transferOption.distributionFormat.formatSpecification.date(version)
                   date = xTranInfo.xpath('./formverd').text
                   unless date.empty?
                      hDate = Date.unpack(date, '', 'revision', hResponseObj)
@@ -49,31 +53,31 @@ module ADIWG
                   end
 
                   # distribution 6.4.2.1.4 (formspec) - format specification
-                  # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.otherCitationDetails
+                  # -> transferOption.distributionFormat.formatSpecification.title
                   specification = xTranInfo.xpath('./formspec').text
                   unless specification.empty?
-                     hSpecification[:otherDetails] << specification
+                     hSpecification[:title] = specification
                   end
 
                   # distribution bio (asciistr) - ASCII file specification
                   # -> not mapped; cannot reliably merge with entity-attribute definition
 
                   # distribution 6.4.2.1.5 (formcont) - format information content
-                  # -> distribution.distributor.transferOption.distributionFormat.formatSpecification.otherCitationDetails
+                  # -> transferOption.distributionFormat.formatSpecification.otherCitationDetails
                   specification = xTranInfo.xpath('./formcont').text
                   unless specification.empty?
                      hSpecification[:otherDetails] << specification
                   end
 
                   # distribution 6.4.2.1.6 (filedec) - file decompression technique
-                  # -> distribution.distributor.transferOption.distributionFormat.compressionMethod
+                  # -> transferOption.distributionFormat.compressionMethod
                   compress = xTranInfo.xpath('./filedec').text
                   unless compress.empty?
                      hFormat[:compressionMethod] = compress
                   end
 
                   # distribution 6.4.2.1.7 (transize) - file transfer size in MB
-                  # -> distribution.distributor.transferOption.transferSize
+                  # -> transferOption.transferSize
                   size = xTranInfo.xpath('./transize').text
                   unless size.empty?
                      hTransfer[:transferSize] = size.to_i

@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcKeyword < TestReaderFgdcParent
+class TestWriterFgdcKeyword < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -51,7 +51,7 @@ class TestWriterFgdcKeyword < TestReaderFgdcParent
 
    def test_keyword_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'keyword', './metadata/idinfo/keywords')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'keyword', './metadata/idinfo/keywords')
       assert_equal hReturn[0], hReturn[1]
 
    end

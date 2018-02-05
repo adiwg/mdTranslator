@@ -21,6 +21,7 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hEntity = intMetadataClass.newEntity
                   hEntity[:entityId] = UUIDTools::UUID.random_create.to_s
+                  hEntity[:entityName] = 'Entity Overview'
                   hEntity[:entityCode] = 'overview'
 
                   # entity attribute 5.2.1 (eaover) - entity attribute overview

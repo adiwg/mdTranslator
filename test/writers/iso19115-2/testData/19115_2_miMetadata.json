@@ -75,6 +75,41 @@
                "uri": "http://ISO.uri/adiwg/1"
             }
          ],
+         "metadataConstraint": [
+            {
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0",
+                  "useLimitation1"
+               ]
+            },
+            {
+               "type": "legal",
+               "legal": {
+                  "useConstraint": [
+                     "useConstraint0",
+                     "useConstraint1"
+                  ],
+                  "accessConstraint": [
+                     "accessConstraint0",
+                     "accessConstraint1"
+                  ],
+                  "otherConstraint": [
+                     "otherConstraint0",
+                     "otherConstraint1"
+                  ]
+               }
+            },
+            {
+               "type": "security",
+               "security": {
+                  "classification": "classification",
+                  "classificationSystem": "classificationSystem",
+                  "userNote": "userNote",
+                  "handlingDescription": "handlingDescription"
+               }
+            }
+         ],
          "metadataMaintenance": {
             "frequency": "frequency"
          },

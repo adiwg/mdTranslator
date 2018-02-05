@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-09-06 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
@@ -35,6 +34,7 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
       assert_equal 'attribute 1 enumerated domain value 1', hItem0[:itemName]
       assert_equal 'attribute 1 enumerated domain value 1', hItem0[:itemValue]
       assert_equal 'attribute 1 enumerated domain value 1 definition', hItem0[:itemDefinition]
+      assert_equal 'attribute 1 enumerated domain value 1 definition source', hItem0[:itemReference][:title]
 
       hItem1 = hDomain[:domainItems][1]
       assert_equal 'attribute 1 enumerated domain value 2', hItem1[:itemName]

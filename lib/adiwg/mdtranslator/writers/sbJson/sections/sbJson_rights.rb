@@ -12,7 +12,7 @@ module ADIWG
 
             module Rights
 
-               def self.build(aConstraints)
+               def self.build(aConstraints, aDistributionInfo)
 
                   rights = ''
 
@@ -34,6 +34,12 @@ module ADIWG
                            end
 
                         end
+                     end
+                  end
+
+                  aDistributionInfo.each do |hDistribution|
+                     unless hDistribution[:liabilityStatement].nil?
+                        rights += hDistribution[:liabilityStatement] + '; '
                      end
                   end
 

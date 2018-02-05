@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-09-06 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
@@ -44,7 +43,7 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
       hEntity2 = hDictionary[:entities][2]
       refute_empty hEntity2
       refute_nil hEntity2[:entityId]
-      assert_nil hEntity2[:entityName]
+      assert_equal 'Entity Overview', hEntity2[:entityName]
       assert_equal 'overview', hEntity2[:entityCode]
       assert_empty hEntity2[:entityAlias]
       assert_equal 'entity and attribute overview 1', hEntity2[:entityDefinition]

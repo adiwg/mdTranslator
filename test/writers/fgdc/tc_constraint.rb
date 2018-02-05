@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcConstraint < TestReaderFgdcParent
+class TestWriterFgdcConstraint < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -20,14 +20,14 @@ class TestWriterFgdcConstraint < TestReaderFgdcParent
 
    def test_accessConstraint_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'constraint', './metadata/idinfo/accconst')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'constraint', './metadata/idinfo/accconst')
       assert_equal hReturn[0], hReturn[1]
 
    end
 
    def test_useConstraint_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'constraint', './metadata/idinfo/useconst')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'constraint', './metadata/idinfo/useconst')
       assert_equal hReturn[0], hReturn[1]
 
    end

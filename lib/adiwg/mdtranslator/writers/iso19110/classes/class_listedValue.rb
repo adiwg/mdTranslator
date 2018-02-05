@@ -2,7 +2,10 @@
 # writer output in XML
 # to define the domain of an attribute
 
+require_relative 'class_definitionReference'
+
 # History:
+#  Stan Smith 2018-01-25 add support for domain itemReference
 #  Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
@@ -23,6 +26,9 @@ module ADIWG
                end
 
                def writeXML(hItem)
+
+                  # classes used
+                  defRefClass = FC_DefinitionReference.new(@xml, @hResponseObj)
 
                   @xml.tag!('gfc:FC_ListedValue') do
 
@@ -59,6 +65,14 @@ module ADIWG
                      end
                      if s.nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gfc:definition')
+                     end
+
+                     # listed value - definition reference
+                     unless hItem[:itemReference].empty?
+                        hCitation = hItem[:itemReference]
+                        @xml.tag!('gfc:definitionReference') do
+                           defRefClass.writeXML(hCitation)
+                        end
                      end
 
                   end # gfc:FC_ListedValue tag

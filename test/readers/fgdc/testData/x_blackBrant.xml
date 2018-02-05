@@ -359,13 +359,13 @@
   </spref>
   <eainfo>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>Brownie Capture History</enttypl>
         <enttypd>Brownie dead recovery model (Brownie et al. 1985) implemented with RMark (Laake 2013) to estimate band recovery rates. The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
         <enttypds>Brownie, C., Anderson, D. R., Burnham, K. P., and Robson, D. S. (1985). Statistical inference from band recovery data: A handbook, 2nd edition. Resource Publication 156. U.S. Fish and Wildlife Service, Washington , D.C. 
 
 Laake, J. L. 2013. RMark: An R interface for analysis of capture-recapture data with MARK.  in  Alaska Fisheries Science Center Report 2013-01. NOAA, National Marine Fisheries Service, Seattle, WA.</enttypds>
-      </enttyp>
+      </enttype>
       <attr>
         <attrlabl>LD code</attrlabl>
         <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter).</attrdef>
@@ -445,11 +445,11 @@ Owen, M. 1980. Wild geese of the world. Batsford, London, England.</attrdefs>
       </attr>
     </detailed>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>Joint Live Dead Capture History</enttypl>
         <enttypd>Joint live and dead encounter history file(or Barker) module as formatted for Program Mark with the primary goal of estimating survival and Seber band reporting rates of juvenile and adult brant (Barker 1997). The data files have a single column heading on the first row, but these do not align with the columns they are describing because this format is meant to serve as an input statement for the common tool for analyzing these kinds of tables.  A fully delimited table would result in a non-machine readable format for this kind of file. LD code is contained within columns 1 through 52, sex in columns 54 to 55, bandage in columns 57 to 58, and location in columns 60 to 61.</enttypd>
         <enttypds>Barker, R. J. 1997. Joint modeling of live-recapture, tag-resight, and tag-recovery data. Biometrics 53:666-677.</enttypds>
-      </enttyp>
+      </enttype>
       <attr>
         <attrlabl>LD code</attrlabl>
         <attrdef>Data of 52 columns for 26 years, with each year having two columns for live and dead encounters.  Each column represents Live (L) information in first column for a given year and Dead (D) information in second column for a given year with the first representing summer 1990 and the last column representing the period between 2015 and 2016. The L columns represent live reencounters (0 = not encountered, 1 = initial release or live encounter through recapture or resighting) during summer.  The D columns represent the period between summer reencounter occasions (0 = not encountered, 1 = recovered by hunter or resighted live).</attrdef>

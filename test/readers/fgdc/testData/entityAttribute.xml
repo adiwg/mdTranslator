@@ -98,10 +98,10 @@
       </attr>
     </detailed>
     <detailed>
-      <enttyp>
+      <enttype>
         <enttypl>entity 2 label</enttypl>
         <enttypd>entity 2 definition</enttypd>
-      </enttyp>
+      </enttype>
     </detailed>
     <overview>
       <eaover>entity and attribute overview 1</eaover>

@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-09-10 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
@@ -16,14 +15,11 @@ class TestReaderFgdcMetadataInfo < TestReaderFGDCParent
 
    def test_metadataInfo_complete
 
-      intMetadataClass = InternalMetadata.new
-      hResourceInfo = intMetadataClass.newResourceInfo
-
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/metainfo')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hMetadataInfo = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+      hMetadataInfo = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hMetadataInfo
       assert_empty hMetadataInfo[:metadataIdentifier]
@@ -49,20 +45,20 @@ class TestReaderFgdcMetadataInfo < TestReaderFGDCParent
       hDate2 = hMetadataInfo[:metadataDates][2]
       assert_equal 'nextReview', hDate2[:dateType]
 
-      assert_equal 2, hResourceInfo[:constraints].length
-      hConstraint0 = hResourceInfo[:constraints][0]
+      assert_equal 2, hMetadataInfo[:metadataConstraints].length
+      hConstraint0 = hMetadataInfo[:metadataConstraints][0]
       assert_equal 'legal', hConstraint0[:type]
       refute_empty hConstraint0[:legalConstraint]
       assert_empty hConstraint0[:securityConstraint]
 
       hLegal = hConstraint0[:legalConstraint]
       assert_equal 1, hLegal[:accessCodes].length
-      assert_equal 'access restriction', hLegal[:accessCodes][0]
+      assert_equal 'metadata access restriction', hLegal[:accessCodes][0]
       assert_equal 1, hLegal[:useCodes].length
-      assert_equal 'use restriction', hLegal[:useCodes][0]
+      assert_equal 'metadata use restriction', hLegal[:useCodes][0]
       assert_empty hLegal[:otherCons]
 
-      hConstraint1 = hResourceInfo[:constraints][1]
+      hConstraint1 = hMetadataInfo[:metadataConstraints][1]
       assert_equal 'security', hConstraint1[:type]
       assert_empty hConstraint1[:legalConstraint]
       refute_empty hConstraint1[:securityConstraint]

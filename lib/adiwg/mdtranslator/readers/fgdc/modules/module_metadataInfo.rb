@@ -2,6 +2,7 @@
 # unpack fgdc metadata information
 
 # History:
+#  Stan Smith 2018-01-27 move constraints to metadataConstraints
 #  Stan Smith 2017-08-15 original script
 
 require 'nokogiri'
@@ -16,7 +17,7 @@ module ADIWG
 
             module MetadataInformation
 
-               def self.unpack(xMetaInfo, hResourceInfo, hResponseObj)
+               def self.unpack(xMetaInfo, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -92,7 +93,7 @@ module ADIWG
                      hConstraint = intMetadataClass.newConstraint
                      hConstraint[:type] = 'legal'
                      hConstraint[:legalConstraint] = hLegal
-                     hResourceInfo[:constraints] << hConstraint
+                     hMetadataInfo[:metadataConstraints] << hConstraint
                   end
 
                   # metadata information 7.10 (metsi) - metadata security information
@@ -127,7 +128,7 @@ module ADIWG
                         hConstraint = intMetadataClass.newConstraint
                         hConstraint[:type] = 'security'
                         hConstraint[:securityConstraint] = hSecurity
-                        hResourceInfo[:constraints] << hConstraint
+                        hMetadataInfo[:metadataConstraints] << hConstraint
                      end
 
                   end

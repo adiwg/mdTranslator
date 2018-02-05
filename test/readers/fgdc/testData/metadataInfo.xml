@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <metadata>
   <metainfo>
     <metd>20161215</metd>
@@ -24,8 +23,8 @@
     <metstdn>FGDC Biological Data Profile of the Content Standard for Digital Geospatial Metadata</metstdn>
     <metstdv>FGDC-STD-001.1-1999</metstdv>
     <mettc>universal time</mettc>
-    <metac>access restriction</metac>
-    <metuc>use restriction</metuc>
+    <metac>metadata access restriction</metac>
+    <metuc>metadata use restriction</metuc>
     <metsi>
       <metscs>security classification system</metscs>
       <metsc>security classification</metsc>

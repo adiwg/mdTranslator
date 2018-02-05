@@ -3,7 +3,7 @@
 
 # History:
 #  Stan Smith 2017-05-16 deprecated topic category
-#                    ... topic category is now handled as keyword list
+#   ... topic category is now handled as keyword list
 #  Stan Smith 2016-11-01 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'

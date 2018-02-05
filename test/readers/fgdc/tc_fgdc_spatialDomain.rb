@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-08-23 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/internal/module_coordinates'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_spatialDomain'
 require_relative 'fgdc_test_parent'

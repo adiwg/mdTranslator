@@ -87,7 +87,7 @@ module ADIWG
                   axDistribution = xMetadata.xpath('./distinfo')
                   unless axDistribution.empty?
                      axDistribution.each do |xDistribution|
-                        hDistribution = Distribution.unpack(xDistribution, hResourceInfo, hResponseObj)
+                        hDistribution = Distribution.unpack(xDistribution, hResponseObj)
                         unless hDistribution.nil?
                            hMetadata[:distributorInfo] << hDistribution
                         end
@@ -97,7 +97,7 @@ module ADIWG
                   # metadata (metainfo 7) - metadata reference (required)
                   xMetaInfo = xMetadata.xpath('./metainfo')
                   unless xMetaInfo.empty?
-                     hMetadataInfo = MetadataInformation.unpack(xMetaInfo, hResourceInfo, hResponseObj)
+                     hMetadataInfo = MetadataInformation.unpack(xMetaInfo, hResponseObj)
                      unless hMetadataInfo.nil?
                         hMetadata[:metadataInfo] = hMetadataInfo
                      end

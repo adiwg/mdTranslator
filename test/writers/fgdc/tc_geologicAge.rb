@@ -8,13 +8,13 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcGeologicAge < TestReaderFgdcParent
+class TestWriterFgdcGeologicAge < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
    
    # get expected results
-   xExpect = TestReaderFgdcParent.get_xml('geologicAgeResults')
+   xExpect = TestWriterFGDCParent.get_xml('geologicAgeResults')
    @@axExpect = xExpect.xpath('//timeperd')
 
    # build mdJson test file in hash
@@ -32,7 +32,7 @@ class TestWriterFgdcGeologicAge < TestReaderFgdcParent
 
    def test_geologicAge_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'geologicAge', './metadata/idinfo/timeperd')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'geologicAge', './metadata/idinfo/timeperd')
       assert_equal hReturn[0], hReturn[1]
 
    end

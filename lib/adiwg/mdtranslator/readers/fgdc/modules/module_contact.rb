@@ -16,6 +16,30 @@ module ADIWG
 
             module Contact
 
+               def self.add_phone(hContact, number, type)
+
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+
+                  # test if phone number already exists for this contact
+                  hPhone = intMetadataClass.newPhone
+                  newPhone = true
+                  hContact[:phones].each do |hOld|
+                     if hOld[:phoneNumber] == number
+                        newPhone = false
+                        hPhone = hOld
+                     end
+                  end
+                  if newPhone
+                     hContact[:phones] << hPhone
+                  end
+                  hPhone[:phoneNumber] = number
+                  unless hPhone[:phoneServiceTypes].include?(type)
+                     hPhone[:phoneServiceTypes] << type
+                  end
+
+               end
+
                def self.unpack(xContact, hResponseObj)
 
                   # instance classes needed in script
@@ -63,10 +87,16 @@ module ADIWG
                         hContact = Fgdc.get_contact_by_id(personId) if contactType == 'person'
                         hContact = Fgdc.get_contact_by_id(orgId) if contactType == 'organization'
 
+                        # CAUTION: the contact being processed may have been added previously.
+                        # check that addresses, phones, emails, org members, hours of service
+                        # were not previous defined for this contact.
+
                         # contact - member of organization
                         if contactType == 'person'
                            unless orgId.nil?
-                              hContact[:memberOfOrgs] << orgId
+                              unless hContact.include?(orgId)
+                                 hContact[:memberOfOrgs] << orgId
+                              end
                            end
                         end
 
@@ -111,7 +141,27 @@ module ADIWG
                               country = xAddress.xpath('./country').text
                               hAddress[:country] = country unless country.empty?
 
-                              hContact[:addresses] << hAddress
+                              # test if new address before adding to contact
+                              saveAddress = true
+                              hContact[:addresses].each do |hOld|
+                                 isSame = true
+                                 isSame = false unless hAddress[:deliveryPoints].length == hOld[:deliveryPoints].length
+                                 if hAddress[:deliveryPoints].length == hOld[:deliveryPoints].length
+                                    (1..hAddress[:deliveryPoints].length).each do |x|
+                                       isSame = false unless hAddress[:deliveryPoints][x] == hOld[:deliveryPoints][x]
+                                    end
+                                 end
+                                 isSame = false unless hAddress[:city] == hOld[:city]
+                                 isSame = false unless hAddress[:adminArea] == hOld[:adminArea]
+                                 isSame = false unless hAddress[:postalCode] == hOld[:postalCode]
+                                 isSame = false unless hAddress[:country] == hOld[:country]
+                                 if isSame
+                                    saveAddress = false
+                                    break
+                                 end
+                              end
+
+                              hContact[:addresses] << hAddress if saveAddress
 
                            end
                         end
@@ -122,10 +172,7 @@ module ADIWG
                            axVoice.each do |xPhone|
                               phone = xPhone.text
                               unless phone.empty?
-                                 hPhone = intMetadataClass.newPhone
-                                 hPhone[:phoneNumber] = phone
-                                 hPhone[:phoneServiceTypes] << 'voice'
-                                 hContact[:phones] << hPhone
+                                 add_phone(hContact, phone, 'voice')
                               end
                            end
                         end
@@ -136,10 +183,7 @@ module ADIWG
                            axTDD.each do |xPhone|
                               phone = xPhone.text
                               unless phone.empty?
-                                 hPhone = intMetadataClass.newPhone
-                                 hPhone[:phoneNumber] = phone
-                                 hPhone[:phoneServiceTypes] << 'tty'
-                                 hContact[:phones] << hPhone
+                                 add_phone(hContact, phone, 'tty')
                               end
                            end
                         end
@@ -150,10 +194,7 @@ module ADIWG
                            axFax.each do |xPhone|
                               phone = xPhone.text
                               unless phone.empty?
-                                 hPhone = intMetadataClass.newPhone
-                                 hPhone[:phoneNumber] = phone
-                                 hPhone[:phoneServiceTypes] << 'facsimile'
-                                 hContact[:phones] << hPhone
+                                 add_phone(hContact, phone, 'facsimile')
                               end
                            end
                         end
@@ -164,14 +205,20 @@ module ADIWG
                            axEmail.each do |xEmail|
                               email = xEmail.text
                               unless email.empty?
-                                 hContact[:eMailList] << email
+                                 unless hContact[:eMailList].include?(email)
+                                    hContact[:eMailList] << email
+                                 end
                               end
                            end
                         end
 
                         # contact 10.9 (hours) - hours of service
                         hours = xContactInfo.xpath('./hours').text
-                        hContact[:hoursOfService] << hours unless hours.empty?
+                        unless hours.empty?
+                           unless hContact[:hoursOfService].include?(hours)
+                              hContact[:hoursOfService] << hours
+                           end
+                        end
 
                         # contact 10.10 (cntinst) - contact instructions
                         instruct = xContactInfo.xpath('./cntinst').text

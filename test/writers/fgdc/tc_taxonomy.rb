@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcTaxonomy < TestReaderFgdcParent
+class TestWriterFgdcTaxonomy < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -72,7 +72,7 @@ class TestWriterFgdcTaxonomy < TestReaderFgdcParent
 
    def test_taxonomy_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'taxonomy', './metadata/idinfo/taxonomy')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'taxonomy', './metadata/idinfo/taxonomy')
       assert_equal hReturn[0], hReturn[1]
 
    end

@@ -120,6 +120,8 @@ class InternalMetadata
    def initialize
    end
 
+
+   # base -----------------------------------
    def newBase
       {
          schema: {},
@@ -130,6 +132,18 @@ class InternalMetadata
       }
    end
 
+   def newMetadata
+      {
+         metadataInfo: {},
+         resourceInfo: {},
+         lineageInfo: [],
+         distributorInfo: [],
+         associatedResources: [],
+         additionalDocuments: [],
+         funding: []
+      }
+   end
+
    def newSchema
       {
          name: nil,
@@ -137,19 +151,17 @@ class InternalMetadata
       }
    end
 
-   def newDate
-      {
-         date: nil,
-         dateResolution: nil,
-         dateType: nil,
-         description: nil
-      }
-   end
 
-   def newDateTime
+   # contacts--------------------------------
+   def newAddress
       {
-         dateTime: nil,
-         dateResolution: nil
+         addressTypes: [],
+         description: nil,
+         deliveryPoints: [],
+         city: nil,
+         adminArea: nil,
+         postalCode: nil,
+         country: nil
       }
    end
 
@@ -179,105 +191,8 @@ class InternalMetadata
       }
    end
 
-   def newAddress
-      {
-         addressTypes: [],
-         description: nil,
-         deliveryPoints: [],
-         city: nil,
-         adminArea: nil,
-         postalCode: nil,
-         country: nil
-      }
-   end
 
-   def newMetadata
-      {
-         metadataInfo: {},
-         resourceInfo: {},
-         lineageInfo: [],
-         distributorInfo: [],
-         associatedResources: [],
-         additionalDocuments: [],
-         funding: []
-      }
-   end
-
-   def newMetadataInfo
-      {
-         metadataIdentifier: {},
-         parentMetadata: {},
-         defaultMetadataLocale: {},
-         otherMetadataLocales: [],
-         metadataContacts: [],
-         metadataDates: [],
-         metadataLinkages: [],
-         metadataMaintenance: {},
-         alternateMetadataReferences: [],
-         metadataStatus: nil,
-         extensions: []
-      }
-   end
-
-   def newResponsibility
-      {
-         roleName: nil,
-         roleExtents: [],
-         parties: []
-      }
-   end
-
-   def newParty
-      {
-         contactId: nil,
-         contactIndex: nil,
-         contactType: nil,
-         organizationMembers: []
-      }
-   end
-
-   def newOnlineResource
-      {
-         olResURI: nil,
-         olResProtocol: nil,
-         olResName: nil,
-         olResDesc: nil,
-         olResFunction: nil
-      }
-   end
-
-   def newResourceInfo
-      {
-         resourceTypes: [],
-         citation: {},
-         abstract: nil,
-         shortAbstract: nil,
-         purpose: nil,
-         credits: [],
-         timePeriod: {},
-         status: [],
-         pointOfContacts: [],
-         spatialReferenceSystems: [],
-         spatialRepresentationTypes: [],
-         spatialRepresentations: [],
-         spatialResolutions: [],
-         temporalResolutions: [],
-         extents: [],
-         coverageDescriptions: [],
-         taxonomy: {},
-         graphicOverviews: [],
-         resourceFormats: [],
-         keywords: [],
-         resourceUsages: [],
-         constraints: [],
-         defaultResourceLocale: {},
-         otherResourceLocales: [],
-         resourceMaintenance: [],
-         environmentDescription: nil,
-         supplementalInfo: nil
-      }
-   end
-
+   # common ---------------------------------
    def newCitation
       {
          title: nil,
@@ -294,6 +209,15 @@ class InternalMetadata
       }
    end
 
+   def newGraphic
+      {
+         graphicName: nil,
+         graphicDescription: nil,
+         graphicType: nil,
+         graphicConstraints: [],
+         graphicURI: []
+      }
+   end
 
    def newIdentifier
       # handles MD_Identifier (ISO 19115-2 & -1)
@@ -308,6 +232,14 @@ class InternalMetadata
       }
    end
 
+   def newLocale
+      {
+         languageCode: nil,
+         countryCode: nil,
+         characterEncoding: nil
+      }
+   end
+
    def newMaintenance
       {
          frequency: nil,
@@ -318,21 +250,33 @@ class InternalMetadata
       }
    end
 
-   def newKeyword
+   def newOnlineResource
       {
-         keywords: [],
-         keywordType: nil,
-         thesaurus: {}
+         olResURI: nil,
+         olResProtocol: nil,
+         olResName: nil,
+         olResDesc: nil,
+         olResFunction: nil
       }
    end
 
-   def newKeywordObject
+   def newResourceType
       {
-         keyword: nil,
-         keywordId: nil
+         type: nil,
+         name: nil
       }
    end
 
+   def newSeries
+      {
+         seriesName: nil,
+         seriesIssue: nil,
+         issuePage: nil
+      }
+   end
+
+
+   # constraint -----------------------------
    def newConstraint
       {
          type: nil,
@@ -372,9 +316,207 @@ class InternalMetadata
       }
    end
 
+   def newResourceUsage
+      {
+         specificUsage: nil,
+         temporalExtents: [],
+         userLimitation: nil,
+         limitationResponses: [],
+         identifiedIssue: {},
+         additionalDocumentation: [],
+         userContacts: []
+      }
+   end
+
+
+   # coverage description -------------------
+   def newCoverageDescription
+      {
+         coverageName: nil,
+         coverageDescription: nil,
+         processingLevelCode: {},
+         attributeGroups: [],
+         imageDescription: {}
+      }
+   end
+
+   def newAttributeGroup
+      {
+         attributeContentTypes: [],
+         attributes: []
+      }
+   end
+
+   def newAttribute
+      {
+         sequenceIdentifier: nil,
+         sequenceIdentifierType: nil,
+         attributeDescription: nil,
+         attributeIdentifiers: [],
+         minValue: nil,
+         maxValue: nil,
+         units: nil,
+         scaleFactor: nil,
+         offset: nil,
+         meanValue: nil,
+         numberOfValues: nil,
+         standardDeviation: nil,
+         bitsPerValue: nil,
+         boundMin: nil,
+         boundMax: nil,
+         boundUnits: nil,
+         peakResponse: nil,
+         toneGradations: nil,
+         bandBoundaryDefinition: nil,
+         nominalSpatialResolution: nil,
+         transferFunctionType: nil,
+         transmittedPolarization: nil,
+         detectedPolarization: nil
+      }
+   end
+
+   def newImageDescription
+      {
+         illuminationElevationAngle: nil,
+         illuminationAzimuthAngle: nil,
+         imagingCondition: nil,
+         imageQualityCode: {},
+         cloudCoverPercent: nil,
+         compressionQuantity: nil,
+         triangulationIndicator: false,
+         radiometricCalibrationAvailable: false,
+         cameraCalibrationAvailable: false,
+         filmDistortionAvailable: false,
+         lensDistortionAvailable: false
+      }
+   end
+
+
+   # data dictionary ------------------------
+   def newDataDictionary
+      {
+         description: nil,
+         subjects: [],
+         citation: {},
+         recommendedUses: [],
+         locales: [],
+         responsibleParty: {},
+         dictionaryFunctionalLanguage: nil,
+         includedWithDataset: false,
+         domains: [],
+         entities: []
+      }
+   end
+
+   def newDictionaryDomain
+      {
+         domainId: nil,
+         domainName: nil,
+         domainCode: nil,
+         domainDescription: nil,
+         domainReference: {},
+         domainItems: []
+      }
+   end
+
+   def newDomainItem
+      {
+         itemName: nil,
+         itemValue: nil,
+         itemDefinition: nil,
+         itemReference: {}
+      }
+   end
+
+   def newEntity
+      {
+         entityId: nil,
+         entityName: nil,
+         entityCode: nil,
+         entityAlias: [],
+         entityDefinition: nil,
+         entityReferences: [],
+         primaryKey: [],
+         indexes: [],
+         attributes: [],
+         foreignKeys: [],
+         fieldSeparatorCharacter: nil,
+         numberOfHeaderLines: nil,
+         quoteCharacter: nil
+      }
+   end
+
+   def newEntityIndex
+      {
+         indexCode: nil,
+         duplicate: false,
+         attributeNames: []
+      }
+   end
+
+   def newEntityAttribute
+      {
+         attributeName: nil,
+         attributeCode: nil,
+         attributeAlias: [],
+         attributeDefinition: nil,
+         attributeReference: {},
+         dataType: nil,
+         allowNull: false,
+         allowMany: false,
+         unitOfMeasure: nil,
+         measureResolution: nil,
+         isCaseSensitive: false,
+         fieldWidth: nil,
+         missingValue: nil,
+         domainId: nil,
+         minValue: nil,
+         maxValue: nil,
+         valueRange: [],
+         timePeriod: []
+      }
+   end
+
+   def newValueRange
+      {
+         minRangeValue: nil,
+         maxRangeValue: nil
+      }
+   end
+
+   def newEntityForeignKey
+      {
+         fkLocalAttributes: [],
+         fkReferencedEntity: nil,
+         fkReferencedAttributes: []
+      }
+   end
+
+
+   # date-time ------------------------------
+   def newDate
+      {
+         date: nil,
+         dateResolution: nil,
+         dateType: nil,
+         description: nil
+      }
+   end
+
+   def newDateTime
+      {
+         dateTime: nil,
+         dateResolution: nil
+      }
+   end
+
+
+   # distribution ---------------------------
    def newDistribution
       {
          description: nil,
+         liabilityStatement: nil,
+         technicalPrerequisite: nil,
          distributor: []
       }
    end
@@ -427,16 +569,31 @@ class InternalMetadata
       }
    end
 
-   def newGraphic
+
+   # funding --------------------------------
+   def newAllocation
       {
-         graphicName: nil,
-         graphicDescription: nil,
-         graphicType: nil,
-         graphicConstraints: [],
-         graphicURI: []
+         id: nil,
+         amount: nil,
+         currency: nil,
+         sourceId: nil,
+         recipientId: nil,
+         matching: false,
+         onlineResources: [],
+         comment: nil
       }
    end
 
+   def newFunding
+      {
+         description: nil,
+         timePeriod: {},
+         allocations: []
+      }
+   end
+
+
+   # graphic extent --------------------------
    def newExtent
       {
          description: nil,
@@ -520,125 +677,25 @@ class InternalMetadata
       }
    end
 
-   def newTemporalExtent
+
+   # keyword --------------------------------
+   def newKeyword
       {
-         timeInstant: {},
-         timePeriod: {}
+         keywords: [],
+         keywordType: nil,
+         thesaurus: {}
       }
    end
 
-   def newTimeInstant
+   def newKeywordObject
       {
-         timeId: nil,
-         description: nil,
-         identifier: {},
-         instantNames: [],
-         timeInstant: {},
-         geologicAge: {}
+         keyword: nil,
+         keywordId: nil
       }
    end
 
-   def newTimePeriod
-      {
-         timeId: nil,
-         description: nil,
-         identifier: {},
-         periodNames: [],
-         startDateTime: {},
-         endDateTime: {},
-         startGeologicAge: {},
-         endGeologicAge: {},
-         timeInterval: {},
-         duration: {}
-      }
-   end
 
-   def newGeologicAge
-      {
-         ageTimeScale: nil,
-         ageEstimate: nil,
-         ageUncertainty: nil,
-         ageExplanation: nil,
-         ageReferences: []
-      }
-   end
-
-   def newDuration
-      {
-         years: nil,
-         months: nil,
-         days: nil,
-         hours: nil,
-         minutes: nil,
-         seconds: nil
-      }
-   end
-
-   def newTimeInterval
-      {
-         interval: nil,
-         units: nil
-      }
-   end
-
-   def newVerticalExtent
-      {
-         description: nil,
-         minValue: nil,
-         maxValue: nil,
-         crsId: {}
-      }
-   end
-
-   def newResourceUsage
-      {
-         specificUsage: nil,
-         temporalExtents: [],
-         userLimitation: nil,
-         limitationResponses: [],
-         identifiedIssue: {},
-         additionalDocumentation: [],
-         userContacts: []
-      }
-   end
-
-   def newTaxonomy
-      {
-         taxonSystem: [],
-         generalScope: nil,
-         idReferences: [],
-         observers: [],
-         idProcedure: nil,
-         idCompleteness: nil,
-         vouchers: [],
-         taxonClass: {}
-      }
-   end
-
-   def newTaxonSystem
-      {
-         citation: {},
-         modifications: nil
-      }
-   end
-
-   def newTaxonVoucher
-      {
-         specimen: nil,
-         repository: {}
-      }
-   end
-
-   def newTaxonClass
-      {
-         taxonId: nil,
-         taxonRank: nil,
-         taxonValue: nil,
-         commonNames: [],
-         subClasses: []
-      }
-   end
-
+   # lineage --------------------------------
    def newLineage
       {
          statement: nil,
@@ -676,139 +733,99 @@ class InternalMetadata
       }
    end
 
-   def newMetadataExtension
+
+   # metadata info --------------------------
+   def newMetadataInfo
       {
-         onLineResource: {},
-         name: nil,
-         shortName: nil,
-         definition: nil,
-         obligation: nil,
-         dataType: nil,
-         maxOccurrence: nil,
-         parentEntities: [],
-         rule: nil,
-         rationales: [],
-         sourceOrganization: nil,
-         sourceURI: nil,
-         sourceRole: nil
+         metadataIdentifier: {},
+         parentMetadata: {},
+         defaultMetadataLocale: {},
+         otherMetadataLocales: [],
+         metadataContacts: [],
+         metadataDates: [],
+         metadataLinkages: [],
+         metadataConstraints: [],
+         metadataMaintenance: {},
+         alternateMetadataReferences: [],
+         metadataStatus: nil,
+         extensions: []
       }
    end
 
-   def newAssociatedResource
+
+   # resource info --------------------------
+   def newResourceInfo
       {
          resourceTypes: [],
-         associationType: nil,
-         initiativeType: nil,
-         resourceCitation: {},
-         metadataCitation: {}
-      }
-   end
-
-   def newAdditionalDocumentation
-      {
-         resourceTypes: [],
-         citation: []
-      }
-   end
-
-   def newDataDictionary
-      {
-         description: nil,
-         subjects: [],
          citation: {},
-         recommendedUses: [],
-         locales: [],
-         responsibleParty: {},
-         dictionaryFormat: nil,
-         includedWithDataset: false,
-         domains: [],
-         entities: []
+         abstract: nil,
+         shortAbstract: nil,
+         purpose: nil,
+         credits: [],
+         timePeriod: {},
+         status: [],
+         pointOfContacts: [],
+         spatialReferenceSystems: [],
+         spatialRepresentationTypes: [],
+         spatialRepresentations: [],
+         spatialResolutions: [],
+         temporalResolutions: [],
+         extents: [],
+         coverageDescriptions: [],
+         taxonomy: {},
+         graphicOverviews: [],
+         resourceFormats: [],
+         keywords: [],
+         resourceUsages: [],
+         constraints: [],
+         defaultResourceLocale: {},
+         otherResourceLocales: [],
+         resourceMaintenance: [],
+         environmentDescription: nil,
+         supplementalInfo: nil
       }
    end
 
-   def newDictionaryDomain
+
+   # responsibility -------------------------
+   def newResponsibility
       {
-         domainId: nil,
-         domainName: nil,
-         domainCode: nil,
-         domainDescription: nil,
-         domainReference: {},
-         domainItems: []
+         roleName: nil,
+         roleExtents: [],
+         parties: []
       }
    end
 
-   def newDomainItem
+   def newParty
       {
-         itemName: nil,
-         itemValue: nil,
-         itemDefinition: nil
+         contactId: nil,
+         contactIndex: nil,
+         contactType: nil,
+         organizationMembers: []
       }
    end
 
-   def newEntity
+
+   # scope ----------------------------------
+   def newScope
       {
-         entityId: nil,
-         entityName: nil,
-         entityCode: nil,
-         entityAlias: [],
-         entityDefinition: nil,
-         entityReferences: [],
-         primaryKey: [],
-         indexes: [],
-         attributes: [],
-         foreignKeys: [],
-         fieldSeparatorCharacter: nil,
-         numberOfHeaderLines: nil,
-         quoteCharacter: nil
+         scopeCode: nil,
+         scopeDescriptions: [],
+         extents: []
       }
    end
 
-   def newEntityIndex
+   def newScopeDescription
       {
-         indexCode: nil,
-         duplicate: false,
-         attributeNames: []
+         dataset: nil,
+         attributes: nil,
+         features: nil,
+         other: nil
       }
    end
 
-   def newEntityAttribute
-      {
-         attributeName: nil,
-         attributeCode: nil,
-         attributeAlias: [],
-         attributeDefinition: nil,
-         attributeReference: {},
-         dataType: nil,
-         allowNull: false,
-         allowMany: false,
-         unitOfMeasure: nil,
-         measureResolution: nil,
-         isCaseSensitive: false,
-         fieldWidth: nil,
-         missingValue: nil,
-         domainId: nil,
-         minValue: nil,
-         maxValue: nil,
-         valueRange: [],
-         timePeriod: []
-      }
-   end
 
-   def newValueRange
-      {
-         minRangeValue: nil,
-         maxRangeValue: nil
-      }
-   end
-
-   def newEntityForeignKey
-      {
-         fkLocalAttributes: [],
-         fkReferencedEntity: nil,
-         fkReferencedAttributes: []
-      }
-   end
-
+   # spatial reference ----------------------
    def newSpatialReferenceSystem
       {
          systemType: nil,
@@ -880,52 +897,6 @@ class InternalMetadata
       }
    end
 
-   def newSpatialResolution
-      {
-         scaleFactor: nil,
-         measure: {},
-         coordinateResolution: {},
-         bearingDistanceResolution: {},
-         geographicResolution: {},
-         levelOfDetail: nil
-      }
-   end
-
-   def newMeasure
-      {
-         type: nil,
-         value: nil,
-         unitOfMeasure: nil
-      }
-   end
-
-   def newCoordinateResolution
-      {
-         abscissaResolutionX: nil,
-         ordinateResolutionY: nil,
-         unitOfMeasure: nil
-      }
-   end
-
-   def newBearingDistanceResolution
-      {
-         distanceResolution: nil,
-         distanceUnitOfMeasure: nil,
-         bearingResolution: nil,
-         bearingUnitOfMeasure: nil,
-         bearingReferenceDirection: nil,
-         bearingReferenceMeridian: nil
-      }
-   end
-
-   def newGeographicResolution
-      {
-         latitudeResolution: nil,
-         longitudeResolution: nil,
-         unitOfMeasure: nil
-      }
-   end
-
    def newVerticalDatum
       {
          datumIdentifier: {},
@@ -938,6 +909,8 @@ class InternalMetadata
 
    end
 
+
+   # spatial representation -----------------
    def newSpatialRepresentation
       {
          gridRepresentation: {},
@@ -1004,118 +977,201 @@ class InternalMetadata
       }
    end
 
-   def newCoverageDescription
-      {
-         coverageName: nil,
-         coverageDescription: nil,
-         processingLevelCode: {},
-         attributeGroups: [],
-         imageDescription: {}
-      }
-   end
 
-   def newAttributeGroup
+   # spatial resolution ----------------------
+   def newSpatialResolution
       {
-         attributeContentTypes: [],
-         attributes: []
-      }
-   end
-
-   def newAttribute
-      {
-         sequenceIdentifier: nil,
-         sequenceIdentifierType: nil,
-         attributeDescription: nil,
-         attributeIdentifiers: [],
-         minValue: nil,
-         maxValue: nil,
-         units: nil,
          scaleFactor: nil,
-         offset: nil,
-         meanValue: nil,
-         numberOfValues: nil,
-         standardDeviation: nil,
-         bitsPerValue: nil,
-         boundMin: nil,
-         boundMax: nil,
-         boundUnits: nil,
-         peakResponse: nil,
-         toneGradations: nil,
-         bandBoundaryDefinition: nil,
-         nominalSpatialResolution: nil,
-         transferFunctionType: nil,
-         transmittedPolarization: nil,
-         detectedPolarization: nil
+         measure: {},
+         coordinateResolution: {},
+         bearingDistanceResolution: {},
+         geographicResolution: {},
+         levelOfDetail: nil
       }
    end
 
-   def newImageDescription
+   def newMeasure
       {
-         illuminationElevationAngle: nil,
-         illuminationAzimuthAngle: nil,
-         imagingCondition: nil,
-         imageQualityCode: {},
-         cloudCoverPercent: nil,
-         compressionQuantity: nil,
-         triangulationIndicator: false,
-         radiometricCalibrationAvailable: false,
-         cameraCalibrationAvailable: false,
-         filmDistortionAvailable: false,
-         lensDistortionAvailable: false
+         type: nil,
+         value: nil,
+         unitOfMeasure: nil
       }
    end
 
-   def newLocale
+   def newCoordinateResolution
       {
-         languageCode: nil,
-         countryCode: nil,
-         characterEncoding: nil
+         abscissaResolutionX: nil,
+         ordinateResolutionY: nil,
+         unitOfMeasure: nil
       }
    end
 
-   def newSeries
+   def newBearingDistanceResolution
       {
-         seriesName: nil,
-         seriesIssue: nil,
-         issuePage: nil
+         distanceResolution: nil,
+         distanceUnitOfMeasure: nil,
+         bearingResolution: nil,
+         bearingUnitOfMeasure: nil,
+         bearingReferenceDirection: nil,
+         bearingReferenceMeridian: nil
       }
    end
 
-   def newScope
+   def newGeographicResolution
       {
-         scopeCode: nil,
-         scopeDescriptions: [],
-         extents: []
+         latitudeResolution: nil,
+         longitudeResolution: nil,
+         unitOfMeasure: nil
       }
    end
 
-   def newScopeDescription
+
+   # taxonomy -------------------------------
+   def newTaxonomy
       {
-         dataset: nil,
-         attributes: nil,
-         features: nil,
-         other: nil
+         taxonSystem: [],
+         generalScope: nil,
+         idReferences: [],
+         observers: [],
+         idProcedure: nil,
+         idCompleteness: nil,
+         vouchers: [],
+         taxonClass: {}
       }
    end
 
-   def newAllocation
+   def newTaxonSystem
       {
-         id: nil,
-         amount: nil,
-         currency: nil,
-         sourceId: nil,
-         recipientId: nil,
-         matching: false,
-         onlineResources: [],
-         comment: nil
+         citation: {},
+         modifications: nil
       }
    end
 
-   def newFunding
+   def newTaxonVoucher
+      {
+         specimen: nil,
+         repository: {}
+      }
+   end
+
+   def newTaxonClass
+      {
+         taxonId: nil,
+         taxonRank: nil,
+         taxonValue: nil,
+         commonNames: [],
+         subClasses: []
+      }
+   end
+
+
+   # temporal extent ------------------------
+   def newTemporalExtent
+      {
+         timeInstant: {},
+         timePeriod: {}
+      }
+   end
+
+   def newTimeInstant
+      {
+         timeId: nil,
+         description: nil,
+         identifier: {},
+         instantNames: [],
+         timeInstant: {},
+         geologicAge: {}
+      }
+   end
+
+   def newTimePeriod
+      {
+         timeId: nil,
+         description: nil,
+         identifier: {},
+         periodNames: [],
+         startDateTime: {},
+         endDateTime: {},
+         startGeologicAge: {},
+         endGeologicAge: {},
+         timeInterval: {},
+         duration: {}
+      }
+   end
+
+   def newGeologicAge
+      {
+         ageTimeScale: nil,
+         ageEstimate: nil,
+         ageUncertainty: nil,
+         ageExplanation: nil,
+         ageReferences: []
+      }
+   end
+
+   def newDuration
+      {
+         years: nil,
+         months: nil,
+         days: nil,
+         hours: nil,
+         minutes: nil,
+         seconds: nil
+      }
+   end
+
+   def newTimeInterval
+      {
+         interval: nil,
+         units: nil
+      }
+   end
+
+
+   # vertical extent ------------------------
+   def newVerticalExtent
       {
          description: nil,
-         timePeriod: {},
-         allocations: []
+         minValue: nil,
+         maxValue: nil,
+         crsId: {}
+      }
+   end
+
+
+   # miscellaneous---------------------------
+   def newAssociatedResource
+      {
+         resourceTypes: [],
+         associationType: nil,
+         initiativeType: nil,
+         resourceCitation: {},
+         metadataCitation: {}
+      }
+   end
+
+   def newAdditionalDocumentation
+      {
+         resourceTypes: [],
+         citation: []
+      }
+   end
+
+   def newMetadataExtension
+      {
+         onLineResource: {},
+         name: nil,
+         shortName: nil,
+         definition: nil,
+         obligation: nil,
+         dataType: nil,
+         maxOccurrence: nil,
+         parentEntities: [],
+         rule: nil,
+         rationales: [],
+         sourceOrganization: nil,
+         sourceURI: nil,
+         sourceRole: nil
       }
    end
 
@@ -1127,11 +1183,7 @@ class InternalMetadata
       }
    end
 
-   def newResourceType
-      {
-         type: nil,
-         name: nil
-      }
-   end
+   # ----------------------------------------
+   # ----------------------------------------
 
 end

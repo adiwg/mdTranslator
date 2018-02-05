@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-01-25 rename dictionaryFormat to dictionaryFunctionalLanguage
 #  Stan Smith 2017-11-09 add dictionary description
 #  Stan Smith 2017-01-20 refactored for mdJson/mdTranslator 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -112,11 +113,15 @@ module ADIWG
                   end
 
                   # dictionary - dictionary format
-                  if hDictionary.has_key?('dictionaryFormat')
+                  # deprecate dictionaryFormat in favor of dictionaryFunctionalLanguage
+                  s = nil
+                  if hDictionary.has_key?('dictionaryFunctionalLanguage')
+                     s = hDictionary['dictionaryFunctionalLanguage']
+                  elsif hDictionary.has_key?('dictionaryFormat')
                      s = hDictionary['dictionaryFormat']
-                     unless s == ''
-                        intDictionary[:dictionaryFormat] = s
-                     end
+                  end
+                  unless s.nil? || s == ''
+                     intDictionary[:dictionaryFunctionalLanguage] = s
                   end
 
                   # dictionary - dictionary included with resource

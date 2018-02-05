@@ -141,8 +141,8 @@
         <tempkey>year</tempkey>
       </temporal>
     </keywords>
-    <accconst>my access constraint</accconst>
-    <useconst>my use constraint</useconst>
+    <accconst>resource access constraint</accconst>
+    <useconst>resource use constraint</useconst>
     <ptcontac>
       <cntinfo>
         <cntperp>

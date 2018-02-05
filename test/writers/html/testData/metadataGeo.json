@@ -442,6 +442,41 @@
                "uri": "http://ISO.uri/adiwg/1"
             }
          ],
+         "metadataConstraint": [
+            {
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0",
+                  "useLimitation1"
+               ]
+            },
+            {
+               "type": "legal",
+               "legal": {
+                  "useConstraint": [
+                     "useConstraint0",
+                     "useConstraint1"
+                  ],
+                  "accessConstraint": [
+                     "accessConstraint0",
+                     "accessConstraint1"
+                  ],
+                  "otherConstraint": [
+                     "otherConstraint0",
+                     "otherConstraint1"
+                  ]
+               }
+            },
+            {
+               "type": "security",
+               "security": {
+                  "classification": "classification",
+                  "classificationSystem": "classificationSystem",
+                  "userNote": "userNote",
+                  "handlingDescription": "handlingDescription"
+               }
+            }
+         ],
          "metadataMaintenance": {
             "frequency": "monthly",
             "date": [
@@ -2869,6 +2904,8 @@
       "resourceDistribution": [
          {
             "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+            "liabilityStatement": "Accuracy of this data is absolutely guaranteed.",
+            "technicalPrerequisite": "Must have ArcGIS 10.x or higher installed.",
             "distributor": [
                {
                   "contact": {
@@ -3138,7 +3175,7 @@
                }
             ]
          },
-         "dictionaryFormat": "format",
+         "dictionaryFunctionalLanguage": "SQL",
          "dictionaryIncludedWithResource": true,
          "domain": [
             {
@@ -3150,12 +3187,18 @@
                   {
                      "name": "Canada",
                      "value": "CAN",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "reference": {
+                        "title": "author defined"
+                     }
                   },
                   {
                      "name": "United States of America",
                      "value": "USA",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "reference": {
+                        "title": "GCMD version 8.3"
+                     }
                   },
                   {
                      "name": "United States of Mexico",

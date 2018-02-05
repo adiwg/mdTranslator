@@ -105,10 +105,10 @@ module ADIWG
                      @html.br
                   end
 
-                  # dictionary - dictionary format
-                  unless hDictionary[:dictionaryFormat].nil?
-                     @html.em('Dictionary Format: ')
-                     @html.text!(hDictionary[:dictionaryFormat])
+                  # dictionary - dictionary functional language
+                  unless hDictionary[:dictionaryFunctionalLanguage].nil?
+                     @html.em('Dictionary Functional Language: ')
+                     @html.text!(hDictionary[:dictionaryFunctionalLanguage])
                      @html.br
                   end
 

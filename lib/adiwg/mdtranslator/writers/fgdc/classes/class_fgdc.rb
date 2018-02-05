@@ -8,6 +8,9 @@ require_relative 'class_identification'
 require_relative 'class_quality'
 require_relative 'class_spatialOrganization'
 require_relative 'class_spatialReference'
+require_relative 'class_dictionary'
+require_relative 'class_distribution'
+require_relative 'class_metadataInfo'
 
 module ADIWG
    module Mdtranslator
@@ -25,12 +28,17 @@ module ADIWG
 
                   version = @hResponseObj[:translatorVersion]
                   hResourceInfo = intObj[:metadata][:resourceInfo]
+                  aDistributorInfo = intObj[:metadata][:distributorInfo]
+                  hMetadataInfo = intObj[:metadata][:metadataInfo]
 
                   # classes used
                   idClass = Identification.new(@xml, @hResponseObj)
                   qualityClass = Quality.new(@xml, @hResponseObj)
                   spaceOrgClass = SpatialOrganization.new(@xml, @hResponseObj)
                   spaceRefClass = SpatialReference.new(@xml, @hResponseObj)
+                  dictionaryClass = DataDictionary.new(@xml, @hResponseObj)
+                  distributorClass = Distribution.new(@xml, @hResponseObj)
+                  metaInfoClass = MetadataInformation.new(@xml, @hResponseObj)
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -45,7 +53,7 @@ module ADIWG
                   # metadata
                   @xml.tag!('metadata') do
 
-                     # metadata 1 (idinfo) - identification information
+                     # metadata 1 (idinfo) - identification information (required)
                      @xml.tag!('idinfo') do
                         idClass.writeXML(intObj)
                      end
@@ -57,7 +65,7 @@ module ADIWG
                            qualityClass.writeXML(intObj)
                         end
                      end
-                     if intObj[:metadata][:lineageInfo].empty?
+                     if intObj[:metadata][:lineageInfo].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('dataqual')
                      end
 
@@ -93,8 +101,37 @@ module ADIWG
                      end
 
                      # metadata 5 (eainfo) - entity attribute information
-                     # metadata 6 (distinfo) - distribution information
-                     # metadata 7 (metainfo) - metadata information
+                     # <- dataDictionaries[0]
+                     haveDict = false
+                     unless intObj[:dataDictionaries].empty?
+                        hDictionary = intObj[:dataDictionaries][0]
+                        unless hDictionary.empty?
+                           @xml.tag!('eainfo') do
+                              dictionaryClass.writeXML(hDictionary)
+                           end
+                           haveDict = true
+                        end
+                     end
+                     if !haveDict && @hResponseObj[:writerShowTags]
+                        @xml.tag!('eainfo')
+                     end
+
+                     # metadata 6 (distinfo) - distributor information []
+                     # <- metadata.distributionInfo[]
+                     aDistributorInfo.each do |hDistribution|
+                        unless hDistribution.empty?
+                           distributorClass.writeXML(hDistribution)
+                        end
+                     end
+                     if aDistributorInfo.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('distinfo')
+                     end
+
+                     # metadata 7 (metainfo) - metadata information (required)
+                     # <- metadata.metadataInfo
+                     @xml.tag!('metainfo') do
+                        metaInfoClass.writeXML(hMetadataInfo)
+                     end
 
                      return metadata
                   end

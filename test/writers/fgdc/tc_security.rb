@@ -8,7 +8,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcSecurity < TestReaderFgdcParent
+class TestWriterFgdcSecurity < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
@@ -16,14 +16,14 @@ class TestWriterFgdcSecurity < TestReaderFgdcParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hConstraint = TDClass.build_securityCon('classification', 'security system name', 'handling instructions')
+   hConstraint = TDClass.build_securityConstraint('classification', 'security system name', 'handling instructions')
    mdHash[:metadata][:resourceInfo][:constraint] << hConstraint
 
    @@mdHash = mdHash
 
    def test_securityConstraint_complete
 
-      hReturn = TestReaderFgdcParent.get_complete(@@mdHash, 'security', './metadata/idinfo/secinfo')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'security', './metadata/idinfo/secinfo')
       assert_equal hReturn[0], hReturn[1]
 
    end

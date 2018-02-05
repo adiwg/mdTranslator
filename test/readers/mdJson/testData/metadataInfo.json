@@ -90,6 +90,15 @@
                "uri": "http://ISO.uri/adiwg/1"
             }
          ],
+         "metadataConstraint": [
+            {
+               "type": "use",
+               "useLimitation": [
+                  "useLimitation0",
+                  "useLimitation1"
+               ]
+            }
+         ],
          "metadataMaintenance": {
             "frequency": "frequency"
          },

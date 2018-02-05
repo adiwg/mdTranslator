@@ -262,6 +262,9 @@
                 <postal>99515</postal>
               </cntaddr>
               <cntvoice>907-555-3434</cntvoice>
+              <cntfax>907-555-3434</cntfax>
+              <cnttdd>907-555-3434</cnttdd>
+              <cntemail>name1@mywork.org</cntemail>
             </cntinfo>
           </reposit>
         </vouchers>
@@ -274,12 +277,14 @@
                 <cntorg>ADIwg</cntorg>
               </cntperp>
               <cntaddr>
-                <addrtype>no address provided</addrtype>
-                <city>Anchorage</city>
-                <state>Alaska</state>
-                <postal>99515</postal>
+                <addrtype>P.O.Box 319</addrtype>
+                <city>Maunaloa</city>
+                <state>Hawaii</state>
+                <postal>96770</postal>
               </cntaddr>
-              <cntvoice>907-555-3434</cntvoice>
+              <cntvoice>808-555-3434</cntvoice>
+              <cntfax>808-555-5656</cntfax>
+              <cntemail>name1@mycondo.org</cntemail>
             </cntinfo>
           </reposit>
         </vouchers>
@@ -933,14 +938,14 @@
           <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
         </cntorgp>
         <cntaddr>
-          <addrtype>mailing and physical</addrtype>
-          <address>4210 University Drive</address>
+          <addrtype>mailing</addrtype>
+          <address>P.O. Box 1449</address>
           <city>Anchorage</city>
           <state>AK</state>
           <postal>99508</postal>
           <country>United States</country>
         </cntaddr>
-        <cntvoice>907-786-7000</cntvoice>
+        <cntvoice>800-222-1212</cntvoice>
         <cntemail>ascweb@usgs.gov</cntemail>
       </cntinfo>
     </metc>

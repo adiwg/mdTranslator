@@ -4,6 +4,7 @@
 #   Stan Smith 2017-03-19 original script
 
 require 'jbuilder'
+require_relative 'mdJson_citation'
 
 module ADIWG
    module Mdtranslator
@@ -18,6 +19,9 @@ module ADIWG
                      json.name hItem[:itemName]
                      json.value hItem[:itemValue]
                      json.definition hItem[:itemDefinition]
+                     unless hItem[:itemReference].empty?
+                        json.reference Citation.build(hItem[:itemReference])
+                     end
                   end
 
                end # build

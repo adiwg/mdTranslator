@@ -55,7 +55,7 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hData, aAssocRes)
+               def writeXML(hData, aAssocRes, aDistInfo)
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
@@ -204,6 +204,7 @@ module ADIWG
                      end
 
                      # data identification - resource constraints {}
+                     haveCon = false
                      aCons = hData[:constraints]
                      aCons.each do |hCon|
                         @xml.tag!('gmd:resourceConstraints') do
@@ -217,9 +218,27 @@ module ADIWG
                            if type == 'security'
                               sConClass.writeXML(hCon)
                            end
+                           haveCon = true
                         end
                      end
-                     if aCons.nil? && @hResponseObj[:writerShowTags]
+
+                     # data identification - resource constraints {}  from distribution liability statement
+                     aDistInfo.each do |hDistribution|
+                        unless hDistribution.empty?
+                           unless hDistribution[:liabilityStatement].nil?
+                              @xml.tag!('gmd:resourceConstraints') do
+                                 @xml.tag!('gmd:MD_LegalConstraints') do
+                                    @xml.tag!('gmd:otherConstraints') do
+                                       @xml.tag!('gco:CharacterString', hDistribution[:liabilityStatement])
+                                    end
+                                 end
+                              end
+                              haveCon = true
+                           end
+                        end
+                     end
+
+                     if !haveCon && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:resourceConstraints')
                      end
 

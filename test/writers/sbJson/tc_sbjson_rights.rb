@@ -23,7 +23,9 @@ class TestWriterSbJsonRights < TestWriterSbJsonParent
       expect += 'traditionalKnowledge - information protected by American Indian or Alaska Native rights or culture; '
       expect += 'myOtherConstraint 1; '
       expect += 'myOtherConstraint 2; '
-      expect += 'intellectualPropertyRights - rights to financial benefit from and control of distribution of non-tangible property that is a result of creativity'
+      expect += 'intellectualPropertyRights - rights to financial benefit from and control of distribution of non-tangible property that is a result of creativity; '
+      expect += 'distribution liability statement 1; '
+      expect += 'distribution liability statement 2'
       hJsonOut = JSON.parse(metadata[:writerOutput])
       got = hJsonOut['rights']
 

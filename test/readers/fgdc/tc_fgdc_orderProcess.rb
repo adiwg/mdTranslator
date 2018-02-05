@@ -4,7 +4,6 @@
 # History:
 #   Stan Smith 2017-09-10 original script
 
-require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
@@ -16,14 +15,11 @@ class TestReaderFgdcOrderProcess < TestReaderFGDCParent
 
    def test_orderProcess_complete
 
-      intMetadataClass = InternalMetadata.new
-      hResourceInfo = intMetadataClass.newResourceInfo
-
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
       xIn = @@xDoc.xpath('./metadata/distinfo[1]')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDistribution = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+      hDistribution = @@NameSpace.unpack(xIn, hResponse)
 
       refute_empty hDistribution
 

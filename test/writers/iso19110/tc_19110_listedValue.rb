@@ -22,10 +22,8 @@ class TestWriter19110ListedValue < TestWriter19110Parent
 
       axExpect = @@xFile.xpath('//gfc:carrierOfCharacteristics')
 
-      # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19110', showAllTags: true,
-         validate: 'none'
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])

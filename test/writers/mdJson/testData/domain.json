@@ -85,12 +85,18 @@
                   {
                      "name": "name00",
                      "value": "value00",
-                     "definition": "definition00"
+                     "definition": "definition00",
+                     "reference": {
+                        "title": "domain item reference title 00"
+                     }
                   },
                   {
                      "name": "name01",
                      "value": "value01",
-                     "definition": "definition01"
+                     "definition": "definition01",
+                     "reference": {
+                        "title": "domain item reference title 01"
+                     }
                   }
                ]
             },

@@ -85,7 +85,18 @@ module ADIWG
                   json.identifiers @Namespace.json_map(aUniqIds, Identifier) unless aIdentifiers.empty?
 
                   json.purpose resourceInfo[:purpose]
-                  json.rights Rights.build(resourceInfo[:constraints]) unless resourceInfo[:constraints].empty?
+
+                  haveRights = false
+                  haveRights = true unless resourceInfo[:constraints].empty?
+                  distributorInfo.each do |hDistribution|
+                     unless hDistribution[:liabilityStatement].nil?
+                        haveRights = true
+                     end
+                  end
+                  if haveRights
+                     json.rights Rights.build(resourceInfo[:constraints], distributorInfo)
+                  end
+
                   json.provenance Provenance.build
                   json.materialRequestInstructions MaterialRequest.build(distributorInfo) unless distributorInfo.empty?
                   json.parentId ParentId.build(metadataInfo[:parentMetadata]) unless metadataInfo[:parentMetadata].empty?

@@ -2,6 +2,7 @@
 # metadata information section
 
 # History:
+#  Stan Smith 2018-01-27 add metadata constraints
 #  Stan Smith 2017-03-23 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 #  Stan Smith 2016-06-12 added metadata character set
@@ -13,6 +14,7 @@ require_relative 'html_locale'
 require_relative 'html_responsibility'
 require_relative 'html_date'
 require_relative 'html_onlineResource'
+require_relative 'html_constraint'
 require_relative 'html_maintenance'
 
 module ADIWG
@@ -35,6 +37,7 @@ module ADIWG
                   responsibilityClass = Html_Responsibility.new(@html)
                   dateClass = Html_Date.new(@html)
                   onlineClass = Html_OnlineResource.new(@html)
+                  constraintClass = Html_Constraint.new(@html)
                   maintClass = Html_Maintenance.new(@html)
 
                   # metadataInfo - metadata status
@@ -135,6 +138,23 @@ module ADIWG
                                  @html.summary('Online Resource', {'class' => 'h5'})
                                  @html.section(:class => 'block') do
                                     onlineClass.writeHtml(hOnline)
+                                 end
+                              end
+                           end
+                        end
+                     end
+                  end
+
+                  # metadataInfo - constraints [] {constraint}
+                  unless hMetaInfo[:metadataConstraints].empty?
+                     @html.details do
+                        @html.summary('Metadata Constraints', {'id' => 'metadataInfo-constraint', 'class' => 'h3'})
+                        @html.section(:class => 'block') do
+                           hMetaInfo[:metadataConstraints].each do |hConstraint|
+                              @html.details do
+                                 @html.summary(hConstraint[:type].capitalize+' Constraint', {'class' => 'h5'})
+                                 @html.section(:class => 'block') do
+                                    constraintClass.writeHtml(hConstraint)
                                  end
                               end
                            end

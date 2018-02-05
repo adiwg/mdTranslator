@@ -1,6 +1,9 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.9.0 2018-02-01 added fgdc writer distribution information section
+# 2.9.0 2018-01-26 deprecate dictionaryFormat in favor of dictionaryFunctionalLanguage
+# 2.9.0 2018-01-25 added fgdc writer entity and attribute section
 # 2.8.0 2018-01-17 added fgdc writer spatial reference section
 # 2.7.1 2018-01-05 fix issue #171, fully implement deprecation of topicCategories[]
 # 2.7.0 2017-12-28 reinstate schema validation checks for schema 2.4.1
@@ -58,7 +61,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.8.0"
+      VERSION = "2.9.0"
    end
 end
 

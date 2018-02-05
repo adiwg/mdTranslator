@@ -2,6 +2,7 @@
 # unpack fgdc entity enumerated domain
 
 # History:
+#  Stan Smith 2018-01-25 add support for enumerated domain value definition source
 #  Stan Smith 2017-09-06 original script
 
 require 'uuidtools'
@@ -47,7 +48,12 @@ module ADIWG
                         end
 
                         # entity attribute 5.1.2.4.1.3 (edomvds) - enumerated domain value definition source
-                        # -> not mapped
+                        source = xValue.xpath('./edomvds').text
+                        unless source.empty?
+                           hCitation = intMetadataClass.newCitation
+                           hCitation[:title] = source
+                           hItem[:itemReference] = hCitation
+                        end
 
                         hDomain[:domainItems] << hItem
 
