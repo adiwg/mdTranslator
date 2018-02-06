@@ -2,7 +2,6 @@
 # distribution
 
 # History:
-#  Stan Smith 2018-01-30 add technicalPrerequisite
 #  Stan Smith 2018-01-29 add liabilityStatement
 # 	Stan Smith 2017-04-04 original script
 
@@ -37,14 +36,6 @@ module ADIWG
                      @html.em('Liability Statement:')
                      @html.section(:class => 'block') do
                         @html.text!(hDistribution[:liabilityStatement])
-                     end
-                  end
-
-                  # distribution - technical prerequisite
-                  unless hDistribution[:technicalPrerequisite].nil?
-                     @html.em('Technical Prerequisite:')
-                     @html.section(:class => 'block') do
-                        @html.text!(hDistribution[:technicalPrerequisite])
                      end
                   end
 

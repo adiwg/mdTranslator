@@ -21,7 +21,6 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.description hDistribution[:description]
                      json.liabilityStatement hDistribution[:liabilityStatement]
-                     json.technicalPrerequisite hDistribution[:technicalPrerequisite]
                      json.distributor @Namespace.json_map(hDistribution[:distributor], Distributor)
                   end
 

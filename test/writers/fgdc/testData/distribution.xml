@@ -80,7 +80,7 @@
       <turnarnd>one week turnaround</turnarnd>
     </stdorder>
     <custom/>
-    <techpreq>distribution technical prerequisite</techpreq>
+    <techpreq>prerequisite one; prerequisite two</techpreq>
     <availabl>
       <timeinfo>
         <sngdate>
@@ -124,7 +124,7 @@
       <turnarnd>one week turnaround</turnarnd>
     </stdorder>
     <custom>ordering instructions</custom>
-    <techpreq>distribution technical prerequisite</techpreq>
+    <techpreq/>
     <availabl>
       <timeinfo>
         <sngdate>
@@ -181,7 +181,7 @@
       <turnarnd>one week turnaround</turnarnd>
     </stdorder>
     <custom/>
-    <techpreq>distribution technical prerequisite</techpreq>
+    <techpreq>format technical prerequisite</techpreq>
     <availabl>
       <timeinfo>
         <sngdate>
@@ -246,7 +246,7 @@
       <turnarnd>one week turnaround</turnarnd>
     </stdorder>
     <custom/>
-    <techpreq>distribution technical prerequisite</techpreq>
+    <techpreq>format technical prerequisite</techpreq>
     <availabl>
       <timeinfo>
         <sngdate>

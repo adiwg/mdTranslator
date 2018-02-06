@@ -15,7 +15,7 @@ module ADIWG
 
             module OrderProcess
 
-               def self.unpack(xOrder, hDistributor, hResponseObj)
+               def self.unpack(xOrder, hDistributor, techPre, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -37,7 +37,7 @@ module ADIWG
                   axDigital = xOrder.xpath('./digform')
                   unless axDigital.empty?
                      axDigital.each do |xDigiForm|
-                        hReturn = DigitalForm.unpack(xDigiForm, hResponseObj)
+                        hReturn = DigitalForm.unpack(xDigiForm, techPre, hResponseObj)
                         unless hReturn.nil?
                            hDistributor[:transferOptions] << hReturn
                         end

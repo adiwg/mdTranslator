@@ -515,8 +515,7 @@ class InternalMetadata
    def newDistribution
       {
          description: nil,
-         liabilityStatement: nil,
-         technicalPrerequisite: nil,
+         liabrailityStatement: nil,
          distributor: []
       }
    end
@@ -565,7 +564,8 @@ class InternalMetadata
       {
          formatSpecification: {},
          amendmentNumber: nil,
-         compressionMethod: nil
+         compressionMethod: nil,
+         technicalPrerequisite: nil
       }
    end
 

@@ -2,6 +2,7 @@
 # format
 
 # History:
+#  Stan Smith 2018-02-05 add 'technicalPrerequisite'
 #  Stan Smith 2017-04-03 refactored for mdTranslator 2.0
 #  Stan Smith 2015-09-21 added compression method element
 # 	Stan Smith 2015-03-27 original script
@@ -46,6 +47,14 @@ module ADIWG
                      @html.em('Compression Method: ')
                      @html.text!(hFormat[:compressionMethod])
                      @html.br
+                  end
+
+                  # distribution - technical prerequisite
+                  unless hFormat[:technicalPrerequisite].nil?
+                     @html.em('Technical Prerequisite:')
+                     @html.section(:class => 'block') do
+                        @html.text!(hFormat[:technicalPrerequisite])
+                     end
                   end
 
                end # writeHtml

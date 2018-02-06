@@ -20,6 +20,7 @@ module ADIWG
                      json.formatSpecification Citation.build(hFormat[:formatSpecification]) unless hFormat[:formatSpecification].empty?
                      json.amendmentNumber hFormat[:amendmentNumber]
                      json.compressionMethod hFormat[:compressionMethod]
+                     json.technicalPrerequisite hFormat[:technicalPrerequisite]
                   end
 
                end # build

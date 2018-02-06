@@ -63,11 +63,10 @@ class FgdcWriterTD
       return hDomain
    end
 
-   def build_distribution(description = nil, liability = nil, prereq = nil)
+   def build_distribution(description = nil, liability = nil)
       hDistribution = distribution
       hDistribution[:description] = description unless description.nil?
       hDistribution[:liabilityStatement] = liability unless liability.nil?
-      hDistribution[:technicalPrerequisite] = prereq unless prereq.nil?
       return hDistribution
    end
 
@@ -574,9 +573,10 @@ class FgdcWriterTD
       return hSpaceRef
    end
 
-   def add_resourceFormat(hTransOpt, title = nil)
+   def add_resourceFormat(hTransOpt, title = nil, prereq = nil)
       hFormat = resourceFormat
       hFormat[:formatSpecification][:title] = title unless title.nil?
+      hFormat[:technicalPrerequisite] = prereq unless prereq.nil?
       hTransOpt[:distributionFormat] << hFormat
       return hTransOpt
    end

@@ -2,7 +2,6 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-01-30 add technicalPrerequisite
 #  Stan Smith 2018-01-29 add liabilityStatement
 #  Stan Smith 2016-10-21 original script
 
@@ -39,13 +38,6 @@ module ADIWG
                   if hDistribution.has_key?('liabilityStatement')
                      if hDistribution['liabilityStatement'] != ''
                         intDistribution[:liabilityStatement] = hDistribution['liabilityStatement']
-                     end
-                  end
-
-                  # distribution - technical prerequisite
-                  if hDistribution.has_key?('technicalPrerequisite')
-                     if hDistribution['technicalPrerequisite'] != ''
-                        intDistribution[:technicalPrerequisite] = hDistribution['technicalPrerequisite']
                      end
                   end
 

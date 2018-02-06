@@ -18,7 +18,7 @@ module ADIWG
 
             module DigitalForm
 
-               def self.unpack(xDigiForm, hResponseObj)
+               def self.unpack(xDigiForm, techPre, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -27,7 +27,7 @@ module ADIWG
                   # distribution 6.4.2.1 (digtinfo) - digital transfer information
                   xTranInfo = xDigiForm.xpath('./digtinfo')
                   unless xTranInfo.empty?
-                     TransferInfo.unpack(xTranInfo, hTransfer, hResponseObj)
+                     TransferInfo.unpack(xTranInfo, hTransfer, techPre, hResponseObj)
                   end
 
                   # distribution 6.4.2.2 (digtopt) - digital transfer option

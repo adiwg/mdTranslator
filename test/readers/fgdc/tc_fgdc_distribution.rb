@@ -24,7 +24,6 @@ class TestReaderFgdcDistribution < TestReaderFGDCParent
       refute_empty hDistribution
       assert_equal 'distribution description', hDistribution[:description]
       assert_equal 'distribution liability statement', hDistribution[:liabilityStatement]
-      assert_equal 'distribution technical prerequisite', hDistribution[:technicalPrerequisite]
       assert_equal 1, hDistribution[:distributor].length
 
       hDistributor = hDistribution[:distributor][0]

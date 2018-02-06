@@ -115,11 +115,28 @@ module ADIWG
                         end
 
                         # distribution 6.6 (techpreq) - technical prerequisites
-                        # <- distribution.technicalPrerequisite
-                        unless hDistribution[:technicalPrerequisite].nil?
-                           @xml.tag!('techpreq', hDistribution[:technicalPrerequisite])
+                        # -> distribution.distributor[all].transferOption[all].distributionFormat[all].technicalPrerequisite
+                        # collect these and string unique together
+                        techPre = ''
+                        aTechPre = []
+                        unless hDistributor.empty?
+                           hDistributor[:transferOptions].each do |hTransOpt|
+                              hTransOpt[:distributionFormats].each do |hFormat|
+                                 unless hFormat[:technicalPrerequisite].nil?
+                                    aTechPre << hFormat[:technicalPrerequisite]
+                                 end
+                              end
+                           end
                         end
-                        if hDistribution[:technicalPrerequisite].nil?
+                        aTechPre = aTechPre.uniq
+                        aTechPre.each do |prereq|
+                           techPre += prereq + '; '
+                        end
+                        techPre.chomp!('; ')
+                        unless techPre == ''
+                           @xml.tag!('techpreq', techPre)
+                        end
+                        if techPre == ''
                            @xml.tag!('techpreq')
                         end
 
