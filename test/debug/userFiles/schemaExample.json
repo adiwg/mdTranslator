@@ -1,7 +1,7 @@
 {
    "schema": {
       "name": "mdJson",
-      "version": "2.0.0"
+      "version": "2.4.0"
    },
    "contact": [
       {
@@ -165,7 +165,10 @@
             {
                "addressType": [
                   "addressType"
-               ]
+               ],
+               "city": "Anchorage",
+               "administrativeArea": "AK",
+               "postalCode": "99508"
             }
          ],
          "electronicMailAddress": [
@@ -186,7 +189,26 @@
          "contactId": "CID003",
          "isOrganization": true,
          "name": "Arctic Landscape Conservation Cooperative",
-         "contactType": "federal"
+         "contactType": "federal",
+         "phone": [
+            {
+               "phoneName": "single service",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice"
+               ]
+            }
+         ],
+         "address": [
+            {
+               "addressType": [
+                  "addressType"
+               ],
+               "city": "Anchorage",
+               "administrativeArea": "AK",
+               "postalCode": "99508"
+            }
+         ]
       },
       {
          "contactId": "CID004",
@@ -195,6 +217,25 @@
          "positionName": "Data Manager",
          "memberOfOrganization": [
             "CID003"
+         ],
+         "phone": [
+            {
+               "phoneName": "single service",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice"
+               ]
+            }
+         ],
+         "address": [
+            {
+               "addressType": [
+                  "addressType"
+               ],
+               "city": "Anchorage",
+               "administrativeArea": "AK",
+               "postalCode": "99508"
+            }
          ]
       },
       {
@@ -210,7 +251,26 @@
          "memberOfOrganization": [
             "CID002"
          ],
-         "contactType": "individual"
+         "contactType": "individual",
+         "phone": [
+            {
+               "phoneName": "single service",
+               "phoneNumber": "111-111-1111",
+               "service": [
+                  "voice"
+               ]
+            }
+         ],
+         "address": [
+            {
+               "addressType": [
+                  "addressType"
+               ],
+               "city": "Anchorage",
+               "administrativeArea": "AK",
+               "postalCode": "99508"
+            }
+         ]
       }
    ],
    "metadata": {
@@ -256,38 +316,105 @@
                         "description": "Extent 2: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                         "geographicExtent": [
                            {
-                              "description": "Polygon in Northern Alaska",
                               "containsData": true,
                               "geographicElement": [
                                  {
                                     "type": "Feature",
                                     "id": "polygon-75",
-                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                    "bbox": [
+                                       -10.0,
+                                       -10.0,
+                                       10.0,
+                                       10.0
+                                    ],
                                     "geometry": {
                                        "type": "Polygon",
                                        "coordinates": [
                                           [
-                                             [-161.74223, 67.663378],
-                                             [-161.440345, 67.630173],
-                                             [-161.294611, 67.656257],
-                                             [-161.228063, 67.625736],
-                                             [-161.247712, 67.585909],
-                                             [-161.334662, 67.591324],
-                                             [-161.566245, 67.491263],
-                                             [-161.812338, 67.455299],
-                                             [-161.825019, 67.40123],
-                                             [-162.128301, 67.414364],
-                                             [-162.167825, 67.363047],
-                                             [-162.383403, 67.293329],
-                                             [-162.633432, 67.272237],
-                                             [-162.645587, 67.356665],
-                                             [-162.369023, 67.455264],
-                                             [-162.287324, 67.551235],
-                                             [-162.171139, 67.559356],
-                                             [-161.99344, 67.646806],
-                                             [-161.857964, 67.620329],
-                                             [-161.769431, 67.629407],
-                                             [-161.74223, 67.663378]
+                                             [
+                                                -161.74223,
+                                                67.663378
+                                             ],
+                                             [
+                                                -161.440345,
+                                                67.630173
+                                             ],
+                                             [
+                                                -161.294611,
+                                                67.656257
+                                             ],
+                                             [
+                                                -161.228063,
+                                                67.625736
+                                             ],
+                                             [
+                                                -161.247712,
+                                                67.585909
+                                             ],
+                                             [
+                                                -161.334662,
+                                                67.591324
+                                             ],
+                                             [
+                                                -161.566245,
+                                                67.491263
+                                             ],
+                                             [
+                                                -161.812338,
+                                                67.455299
+                                             ],
+                                             [
+                                                -161.825019,
+                                                67.40123
+                                             ],
+                                             [
+                                                -162.128301,
+                                                67.414364
+                                             ],
+                                             [
+                                                -162.167825,
+                                                67.363047
+                                             ],
+                                             [
+                                                -162.383403,
+                                                67.293329
+                                             ],
+                                             [
+                                                -162.633432,
+                                                67.272237
+                                             ],
+                                             [
+                                                -162.645587,
+                                                67.356665
+                                             ],
+                                             [
+                                                -162.369023,
+                                                67.455264
+                                             ],
+                                             [
+                                                -162.287324,
+                                                67.551235
+                                             ],
+                                             [
+                                                -162.171139,
+                                                67.559356
+                                             ],
+                                             [
+                                                -161.99344,
+                                                67.646806
+                                             ],
+                                             [
+                                                -161.857964,
+                                                67.620329
+                                             ],
+                                             [
+                                                -161.769431,
+                                                67.629407
+                                             ],
+                                             [
+                                                -161.74223,
+                                                67.663378
+                                             ]
                                           ]
                                        ]
                                     },
@@ -442,41 +569,6 @@
                "uri": "http://ISO.uri/adiwg/1"
             }
          ],
-         "metadataConstraint": [
-            {
-               "type": "use",
-               "useLimitation": [
-                  "useLimitation0",
-                  "useLimitation1"
-               ]
-            },
-            {
-               "type": "legal",
-               "legal": {
-                  "useConstraint": [
-                     "useConstraint0",
-                     "useConstraint1"
-                  ],
-                  "accessConstraint": [
-                     "accessConstraint0",
-                     "accessConstraint1"
-                  ],
-                  "otherConstraint": [
-                     "otherConstraint0",
-                     "otherConstraint1"
-                  ]
-               }
-            },
-            {
-               "type": "security",
-               "security": {
-                  "classification": "classification",
-                  "classificationSystem": "classificationSystem",
-                  "userNote": "userNote",
-                  "handlingDescription": "handlingDescription"
-               }
-            }
-         ],
          "metadataMaintenance": {
             "frequency": "monthly",
             "date": [
@@ -525,40 +617,112 @@
                               "geographicElement": [
                                  {
                                     "type": "Point",
-                                    "coordinates": [100.0, 0.0]
+                                    "coordinates": [
+                                       100.0,
+                                       0.0
+                                    ]
                                  },
                                  {
                                     "type": "LineString",
                                     "coordinates": [
-                                       [100.0, 0.0],
-                                       [101.0, 1.0]
+                                       [
+                                          100.0,
+                                          0.0
+                                       ],
+                                       [
+                                          101.0,
+                                          1.0
+                                       ]
                                     ]
                                  },
                                  {
                                     "type": "Polygon",
                                     "coordinates": [
                                        [
-                                          [-161.74223, 67.663378],
-                                          [-161.440345, 67.630173],
-                                          [-161.294611, 67.656257],
-                                          [-161.228063, 67.625736],
-                                          [-161.247712, 67.585909],
-                                          [-161.334662, 67.591324],
-                                          [-161.566245, 67.491263],
-                                          [-161.812338, 67.455299],
-                                          [-161.825019, 67.40123],
-                                          [-162.128301, 67.414364],
-                                          [-162.167825, 67.363047],
-                                          [-162.383403, 67.293329],
-                                          [-162.633432, 67.272237],
-                                          [-162.645587, 67.356665],
-                                          [-162.369023, 67.455264],
-                                          [-162.287324, 67.551235],
-                                          [-162.171139, 67.559356],
-                                          [-161.99344, 67.646806],
-                                          [-161.857964, 67.620329],
-                                          [-161.769431, 67.629407],
-                                          [-161.74223, 67.663378]
+                                          [
+                                             -161.74223,
+                                             67.663378
+                                          ],
+                                          [
+                                             -161.440345,
+                                             67.630173
+                                          ],
+                                          [
+                                             -161.294611,
+                                             67.656257
+                                          ],
+                                          [
+                                             -161.228063,
+                                             67.625736
+                                          ],
+                                          [
+                                             -161.247712,
+                                             67.585909
+                                          ],
+                                          [
+                                             -161.334662,
+                                             67.591324
+                                          ],
+                                          [
+                                             -161.566245,
+                                             67.491263
+                                          ],
+                                          [
+                                             -161.812338,
+                                             67.455299
+                                          ],
+                                          [
+                                             -161.825019,
+                                             67.40123
+                                          ],
+                                          [
+                                             -162.128301,
+                                             67.414364
+                                          ],
+                                          [
+                                             -162.167825,
+                                             67.363047
+                                          ],
+                                          [
+                                             -162.383403,
+                                             67.293329
+                                          ],
+                                          [
+                                             -162.633432,
+                                             67.272237
+                                          ],
+                                          [
+                                             -162.645587,
+                                             67.356665
+                                          ],
+                                          [
+                                             -162.369023,
+                                             67.455264
+                                          ],
+                                          [
+                                             -162.287324,
+                                             67.551235
+                                          ],
+                                          [
+                                             -162.171139,
+                                             67.559356
+                                          ],
+                                          [
+                                             -161.99344,
+                                             67.646806
+                                          ],
+                                          [
+                                             -161.857964,
+                                             67.620329
+                                          ],
+                                          [
+                                             -161.769431,
+                                             67.629407
+                                          ],
+                                          [
+                                             -161.74223,
+                                             67.663378
+                                          ]
                                        ]
                                     ]
                                  }
@@ -629,7 +793,7 @@
             }
          ],
          "citation": {
-            "title": "International migration patterns of Red-throated Loons (Gavia stellata) from four breeding populations in Alaska",
+            "title": "Main Resource Title - Citation",
             "alternateTitle": [
                "How I spent my summer",
                "Research under the midnight-sun"
@@ -637,11 +801,11 @@
             "date": [
                {
                   "date": "2017-06-13",
-                  "dateType": "date type"
+                  "dateType": "publication"
                },
                {
                   "date": "2017-06-22T16:15:14",
-                  "dateType": "dateTime type"
+                  "dateType": "revision"
                }
             ],
             "edition": "edition",
@@ -661,32 +825,100 @@
                                  {
                                     "type": "Feature",
                                     "id": "polygon-75",
-                                    "bbox": [-10.0, -10.0, 10.0, 10.0],
+                                    "bbox": [
+                                       -10.0,
+                                       -10.0,
+                                       10.0,
+                                       10.0
+                                    ],
                                     "geometry": {
                                        "type": "Polygon",
                                        "coordinates": [
                                           [
-                                             [-161.74223, 67.663378],
-                                             [-161.440345, 67.630173],
-                                             [-161.294611, 67.656257],
-                                             [-161.228063, 67.625736],
-                                             [-161.247712, 67.585909],
-                                             [-161.334662, 67.591324],
-                                             [-161.566245, 67.491263],
-                                             [-161.812338, 67.455299],
-                                             [-161.825019, 67.40123],
-                                             [-162.128301, 67.414364],
-                                             [-162.167825, 67.363047],
-                                             [-162.383403, 67.293329],
-                                             [-162.633432, 67.272237],
-                                             [-162.645587, 67.356665],
-                                             [-162.369023, 67.455264],
-                                             [-162.287324, 67.551235],
-                                             [-162.171139, 67.559356],
-                                             [-161.99344, 67.646806],
-                                             [-161.857964, 67.620329],
-                                             [-161.769431, 67.629407],
-                                             [-161.74223, 67.663378]
+                                             [
+                                                -161.74223,
+                                                67.663378
+                                             ],
+                                             [
+                                                -161.440345,
+                                                67.630173
+                                             ],
+                                             [
+                                                -161.294611,
+                                                67.656257
+                                             ],
+                                             [
+                                                -161.228063,
+                                                67.625736
+                                             ],
+                                             [
+                                                -161.247712,
+                                                67.585909
+                                             ],
+                                             [
+                                                -161.334662,
+                                                67.591324
+                                             ],
+                                             [
+                                                -161.566245,
+                                                67.491263
+                                             ],
+                                             [
+                                                -161.812338,
+                                                67.455299
+                                             ],
+                                             [
+                                                -161.825019,
+                                                67.40123
+                                             ],
+                                             [
+                                                -162.128301,
+                                                67.414364
+                                             ],
+                                             [
+                                                -162.167825,
+                                                67.363047
+                                             ],
+                                             [
+                                                -162.383403,
+                                                67.293329
+                                             ],
+                                             [
+                                                -162.633432,
+                                                67.272237
+                                             ],
+                                             [
+                                                -162.645587,
+                                                67.356665
+                                             ],
+                                             [
+                                                -162.369023,
+                                                67.455264
+                                             ],
+                                             [
+                                                -162.287324,
+                                                67.551235
+                                             ],
+                                             [
+                                                -162.171139,
+                                                67.559356
+                                             ],
+                                             [
+                                                -161.99344,
+                                                67.646806
+                                             ],
+                                             [
+                                                -161.857964,
+                                                67.620329
+                                             ],
+                                             [
+                                                -161.769431,
+                                                67.629407
+                                             ],
+                                             [
+                                                -161.74223,
+                                                67.663378
+                                             ]
                                           ]
                                        ]
                                     },
@@ -736,6 +968,14 @@
                            "CID004",
                            "CID001"
                         ]
+                     }
+                  ]
+               },
+               {
+                  "role": "originator",
+                  "party": [
+                     {
+                        "contactId": "CID004"
                      }
                   ]
                }
@@ -1021,7 +1261,9 @@
             "Kamakawiwo'ole, Israel - Vocal"
          ],
          "timePeriod": {
-            "startDateTime": "2016-11-01"
+            "description": "ground condition",
+            "startDateTime": "2016-06-01",
+            "endDateTime": "2016-08-15"
          },
          "temporalResolution": [
             {
@@ -1121,74 +1363,6 @@
                         }
                      ]
                   }
-               },
-               "referenceSystemParameterSet": {
-                  "projection": {
-                     "projectionIdentifier": {
-                        "identifier": "identifier"
-                     },
-                     "gridSystem": "spcs",
-                     "gridSystemName": "Alaska State Plane Coordinate System",
-                     "gridZone": "zone 8",
-                     "projection": "transverseMercator",
-                     "projectionName": "Transverse Mercator",
-                     "standardParallel1": 9.0,
-                     "standardParallel2": 99.0,
-                     "longitudeOfCentralMeridian": -9.0,
-                     "latitudeOfProjectionOrigin": 9.0,
-                     "falseEasting": 99999.0,
-                     "falseNorthing": 999999.0,
-                     "falseEastingNorthingUnits": "feet",
-                     "scaleFactorAtEquator": 99.9,
-                     "heightOfProspectivePointAboveSurface": 999.0,
-                     "longitudeOfProjectionCenter": -99.0,
-                     "latitudeOfProjectionCenter": 9.0,
-                     "scaleFactorAtCenterLine": 99.9,
-                     "scaleFactorAtCentralMeridian": 9.9,
-                     "straightVerticalLongitudeFromPole": 999.9,
-                     "scaleFactorAtProjectionOrigin": 99.9,
-                     "azimuthAngle": 9.9,
-                     "azimuthMeasurePointLongitude": -99.0,
-                     "obliqueLinePoint": [
-                        {
-                           "azimuthLineLatitude": 9.99999,
-                           "azimuthLineLongitude": -9.99999
-                        },
-                        {
-                           "azimuthLineLatitude": 19.99999,
-                           "azimuthLineLongitude": -19.99999
-                        }
-                     ],
-                     "landsatNumber": 9,
-                     "landsatPath": 9999,
-                     "localPlanarDescription": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "localPlanarGeoreference": "Ut local planar georeference enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "otherProjectionDescription": "Ut other projection enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "otherGridDescription": "Ut other grid enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident"
-                  },
-                  "geodetic": {
-                     "datumIdentifier": {
-                        "identifier": "datum identifier"
-                     },
-                     "datumName": "geodetic datum name",
-                     "ellipsoidIdentifier": {
-                        "identifier": "ellipsoid identifier"
-                     },
-                     "ellipsoidName": "WGS84",
-                     "semiMajorAxis": 9999999.0,
-                     "axisUnits": "feet",
-                     "denominatorOfFlatteningRatio": 999.9
-                  },
-                  "verticalDatum": {
-                     "datumIdentifier": {
-                        "identifier": "vertical datum identifier"
-                     },
-                     "datumName": "vertical datum name",
-                     "encodingMethod": "attribute values",
-                     "isDepthSystem": false,
-                     "verticalResolution": 9.9,
-                     "unitOfMeasure": "meters"
-                  }
                }
             },
             {
@@ -1197,22 +1371,6 @@
             {
                "referenceSystemIdentifier": {
                   "identifier": "identifier2"
-               }
-            },
-            {
-               "referenceSystemParameterSet": {
-                  "projection": {
-                     "projectionIdentifier": {
-                        "identifier": "projection identifier"
-                     },
-                     "projection": "transverseMercator",
-                     "longitudeOfCentralMeridian": -9.0,
-                     "latitudeOfProjectionOrigin": 9.0,
-                     "falseEasting": 99999.0,
-                     "falseNorthing": 999999.0,
-                     "falseEastingNorthingUnits": "feet",
-                     "scaleFactorAtCentralMeridian": 9.9
-                  }
                }
             }
          ],
@@ -1340,7 +1498,7 @@
          ],
          "spatialResolution": [
             {
-               "scaleFactor": 63360
+               "scaleFactor": 99999
             },
             {
                "measure": {
@@ -1350,40 +1508,7 @@
                }
             },
             {
-               "coordinateResolution": {
-                  "abscissaResolutionX": 9.9,
-                  "ordinateResolutionY": 99.9,
-                  "unitOfMeasure": "coord UOM"
-               }
-            },
-            {
-               "bearingDistanceResolution": {
-                  "distanceResolution": 9.9,
-                  "distanceUnitOfMeasure": "distance UOM",
-                  "bearingResolution": 19.9,
-                  "bearingUnitOfMeasure": "bearing UOM",
-                  "bearingReferenceDirection": "north",
-                  "bearingReferenceMeridian": "assumed"
-               }
-            },
-            {
-               "geographicResolution": {
-                  "latitudeResolution": 19.9,
-                  "longitudeResolution": 119.9,
-                  "unitOfMeasure": "geographic UOM"
-               }
-            },            {
                "levelOfDetail": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-            },
-            {
-               "scaleFactor": 250000
-            },
-            {
-               "coordinateResolution": {
-                  "abscissaResolutionX": 100.0,
-                  "ordinateResolutionY": 500.0,
-                  "unitOfMeasure": "coord UOM"
-               }
             }
          ],
          "keyword": [
@@ -1399,7 +1524,7 @@
                      "keyword": "Kaparuk"
                   }
                ],
-               "keywordType": "Place Names",
+               "keywordType": "place",
                "thesaurus": {
                   "title": "USGS Geographic Names Information System"
                }
@@ -1426,7 +1551,10 @@
                      "keyword": "Teddy Bear"
                   }
                ],
-               "keywordType": "Taxonomy"
+               "keywordType": "taxon",
+               "thesaurus": {
+                  "title": "ITIS - Integrated Taxonomic Information System"
+               }
             },
             {
                "keyword": [
@@ -1439,7 +1567,11 @@
                   {
                      "keyword": "eggs"
                   }
-               ]
+               ],
+               "keywordType": "theme",
+               "thesaurus": {
+                  "title": "Exploring Cookies"
+               }
             },
             {
                "keyword": [
@@ -1456,7 +1588,24 @@
                      "keywordId": "004"
                   }
                ],
-               "keywordType": "isoTopicCategory"
+               "keywordType": "isoTopicCategory",
+               "thesaurus": {
+                  "title": "ISO Topic Categories"
+               }
+            },
+            {
+               "keyword": [
+                  {
+                     "keyword": "carbon dating"
+                  },
+                  {
+                     "keyword": "ionization"
+                  }
+               ],
+               "keywordType": "method",
+               "thesaurus": {
+                  "title": "Lineage Methodology keyword set"
+               }
             }
          ],
          "taxonomy": {
@@ -1466,13 +1615,45 @@
                      "title": "ITIS - Integrated Taxonomic Information System",
                      "alternateTitle": [
                         "Citation for ITIS"
+                     ],
+                     "date": [
+                        {
+                           "date": "2013-06-22",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
                      ]
                   },
                   "modifications": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                },
                {
                   "citation": {
-                     "title": "Some OTHER Taxonomic System"
+                     "title": "Some OTHER Taxonomic System",
+                     "date": [
+                        {
+                           "date": "2013-06-22",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
+                     ]
                   }
                }
             ],
@@ -1484,7 +1665,23 @@
                   "version": "version0",
                   "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                   "authority": {
-                     "title": "title0"
+                     "title": "title0",
+                     "date": [
+                        {
+                           "date": "2013-06-22",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
+                     ]
                   }
                },
                {
@@ -1493,7 +1690,23 @@
                   "version": "version1",
                   "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                   "authority": {
-                     "title": "title1"
+                     "title": "title1",
+                     "date": [
+                        {
+                           "date": "2013-06-22",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
+                     ]
                   }
                }
             ],
@@ -1956,7 +2169,7 @@
                "description": "Extent 1: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "geographicExtent": [
                   {
-                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "description": "geographic extent description",
                      "containsData": false,
                      "identifier": {
                         "identifier": "identifier"
@@ -1965,10 +2178,7 @@
                         "westLongitude": -140.0,
                         "eastLongitude": -120.0,
                         "southLatitude": 49.0,
-                        "northLatitude": 70.0,
-                        "minimumAltitude": 250.0,
-                        "maximumAltitude": 1500.0,
-                        "unitsOfAltitude": "meters"
+                        "northLatitude": 70.0
                      },
                      "geographicElement": [
                         {
@@ -2013,7 +2223,6 @@
                      ]
                   },
                   {
-                     "description": "Polygon spans prime meridian",
                      "containsData": true,
                      "geographicElement": [
                         {
@@ -2074,215 +2283,6 @@
                                  [102, 50],
                                  [100, 50],
                                  [100, 55]
-                              ]
-                           ]
-                        }
-                     ]
-                  }
-               ],
-               "temporalExtent": [
-                  {
-                     "timeInstant": {
-                        "id": "instant_002",
-                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                        "identifier": {
-                           "identifier": "LowTide",
-                           "namespace": "namespace",
-                           "version": "version",
-                           "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt,"
-                        },
-                        "instantName": [
-                           "instantName 20",
-                           "instantName 21"
-                        ],
-                        "dateTime": "2016-10-24T11:10:15.200-10:00"
-                     }
-                  },
-                  {
-                     "timeInstant": {
-                        "id": "instant_002",
-                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                        "instantName": [
-                           "instantName 50"
-                        ],
-                        "geologicAge": {
-                           "ageTimeScale": "geologic age time scale",
-                           "ageEstimate": "geologic age estimate",
-                           "ageUncertainty": "geologic age uncertainty",
-                           "ageExplanation": "geologic age explanation",
-                           "ageReference": [
-                              {
-                                 "title": "geologic age reference title 1"
-                              },
-                              {
-                                 "title": "geologic age reference title 2"
-                              }
-                           ]
-                        }
-                     }
-                  },
-                  {
-                     "timePeriod": {
-                        "startDateTime": "2016-10-14T11:10:15.2-10:00",
-                        "endDateTime": "2016-12-31",
-                        "id": "TimePeriod101",
-                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                        "identifier": {
-                           "identifier": "TimePeriod Identifier",
-                           "namespace": "namespace"
-                        },
-                        "periodName": [
-                           "periodName0",
-                           "periodName1"
-                        ],
-                        "timeInterval": {
-                           "interval": 9.9,
-                           "units": "year"
-                        },
-                        "duration": {
-                           "months": 9
-                        }
-                     }
-                  },
-                  {
-                     "timePeriod": {
-                        "id": "TimePeriod101",
-                        "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                        "startGeologicAge": {
-                           "ageTimeScale": "geologic age time scale",
-                           "ageEstimate": "start geologic age",
-                           "ageUncertainty": "geologic age uncertainty",
-                           "ageExplanation": "geologic age explanation",
-                           "ageReference": [
-                              {
-                                 "title": "geologic age reference title 1"
-                              },
-                              {
-                                 "title": "geologic age reference title 2"
-                              }
-                           ]
-                        },
-                        "endGeologicAge": {
-                           "ageTimeScale": "geologic age time scale",
-                           "ageEstimate": "end geologic age"
-                        },
-                        "identifier": {
-                           "identifier": "TimePeriod Identifier",
-                           "namespace": "namespace"
-                        },
-                        "periodName": [
-                           "periodName0",
-                           "periodName1"
-                        ],
-                        "timeInterval": {
-                           "interval": 9.9,
-                           "units": "year"
-                        },
-                        "duration": {
-                           "months": 9
-                        }
-                     }
-                  }
-               ],
-               "verticalExtent": [
-                  {
-                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                     "minValue": 9.9,
-                     "maxValue": 9.9,
-                     "crsId": {
-                        "referenceSystemType": "referenceSystemType0",
-                        "referenceSystemIdentifier": {
-                           "identifier": "identifier0"
-                        }
-                     }
-                  },
-                  {
-                     "minValue": 99.99,
-                     "maxValue": 99.99,
-                     "crsId": {
-                        "referenceSystemType": "referenceSystemType1",
-                        "referenceSystemIdentifier": {
-                           "identifier": "identifier1"
-                        }
-                     }
-                  }
-               ]
-            },
-            {
-               "description": "Extent 1m: Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-               "geographicExtent": [
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "boundingBox": {
-                        "westLongitude": -140.0,
-                        "eastLongitude": -120.0,
-                        "southLatitude": 49.0,
-                        "northLatitude": 70.0
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "MultiPoint",
-                           "coordinates": [
-                              [100.0, 0.0],
-                              [100.0, 10.0],
-                              [100.0, 20.0]
-                           ]
-                        },
-                        {
-                           "type": "MultiLineString",
-                           "coordinates": [
-                              [
-                                 [100.0, 0.0],
-                                 [101.0, 1.0]
-                              ],
-                              [
-                                 [110.0, 0.0],
-                                 [111.0, 1.0]
-                              ],
-                              [
-                                 [120.0, 0.0],
-                                 [121.0, 1.0]
-                              ]
-                           ]
-                        },
-                        {
-                           "type": "MultiPolygon",
-                           "coordinates": [
-                              [
-                                 [
-                                    [-161.74223, 67.663378],
-                                    [-161.440345, 67.630173],
-                                    [-161.294611, 67.656257],
-                                    [-161.228063, 67.625736],
-                                    [-161.247712, 67.585909],
-                                    [-161.334662, 67.591324],
-                                    [-161.566245, 67.491263],
-                                    [-161.812338, 67.455299],
-                                    [-161.825019, 67.40123],
-                                    [-162.128301, 67.414364],
-                                    [-162.167825, 67.363047],
-                                    [-162.383403, 67.293329],
-                                    [-162.633432, 67.272237],
-                                    [-162.645587, 67.356665],
-                                    [-162.369023, 67.455264],
-                                    [-162.287324, 67.551235],
-                                    [-162.171139, 67.559356],
-                                    [-161.99344, 67.646806],
-                                    [-161.857964, 67.620329],
-                                    [-161.769431, 67.629407],
-                                    [-161.74223, 67.663378]
-                                 ]
-                              ],
-                              [
-                                 [
-                                    [-150, 65],
-                                    [-151, 66],
-                                    [-152, 67],
-                                    [-153, 68]
-                                 ]
                               ]
                            ]
                         }
@@ -2523,240 +2523,6 @@
                      ]
                   }
                ]
-            },
-            {
-               "description": "Extent 3: Other world coordinates.",
-               "geographicExtent": [
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-265, 65],
-                                 [-260, 65],
-                                 [-260, 63],
-                                 [-265, 63],
-                                 [-265, 65]
-                              ]
-                           ]
-                        },
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [200, 55],
-                                 [202, 55],
-                                 [202, 50],
-                                 [200, 50],
-                                 [200, 55]
-                              ]
-                           ]
-                        },
-                        {
-                           "type": "MultiPoint",
-                           "coordinates": [
-                              [-150, 61],
-                              [150, 61]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "MultiPoint",
-                           "coordinates": [
-                              [-150, 61],
-                              [-122, 47],
-                              [-112, 33],
-                              [-105, 39],
-                              [-97, 32],
-                              [-82, 41],
-                              [-81, 39],
-                              [-76, 38],
-                              [-66, 18],
-                              [-118, 34],
-                              [11, 43],
-                              [8, 46],
-                              [98, 8],
-                              [178, -19],
-                              [-157, 21],
-                              [-147, 65],
-                              [-145, 60],
-                              [-148, 70],
-                              [-132, 56]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "MultiPoint",
-                           "coordinates": [
-                              [-150, 61],
-                              [-122, 47],
-                              [-112, 33],
-                              [-105, 39],
-                              [-97, 32],
-                              [-82, 41],
-                              [-81, 39],
-                              [-76, 38],
-                              [-66, 18],
-                              [-118, 34],
-                              [11, 43],
-                              [8, 46],
-                              [98, 8],
-                              [-147, 65],
-                              [-145, 60],
-                              [-148, 70],
-                              [-132, 56]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-100, 30],
-                                 [-95, 40],
-                                 [-100, 50],
-                                 [0, 45],
-                                 [100, 50],
-                                 [95, 40],
-                                 [100, 30],
-                                 [0, 35],
-                                 [-100, 30]
-                              ]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-100, 30],
-                                 [-95, 40],
-                                 [-100, 50],
-                                 [0, 45],
-                                 [200, 50],
-                                 [195, 40],
-                                 [200, 30],
-                                 [0, 35],
-                                 [-100, 30]
-                              ]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [40, 30],
-                                 [45, 40],
-                                 [40, 50],
-                                 [180, 45],
-                                 [250, 50],
-                                 [245, 40],
-                                 [250, 30],
-                                 [180, 35],
-                                 [40, 30]
-                              ]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-250, 30],
-                                 [-245, 40],
-                                 [-250, 50],
-                                 [-180, 45],
-                                 [-50, 50],
-                                 [-55, 40],
-                                 [-50, 30],
-                                 [-180, 35],
-                                 [-250, 30]
-                              ]
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "containsData": false,
-                     "identifier": {
-                        "identifier": "identifier"
-                     },
-                     "geographicElement": [
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [-200, 40],
-                                 [-200, 55],
-                                 [-170, 55],
-                                 [-170, 40],
-                                 [-200, 40]
-                              ]
-                           ]
-                        },
-                        {
-                           "type": "Polygon",
-                           "coordinates": [
-                              [
-                                 [220, -40],
-                                 [220, -55],
-                                 [150, -55],
-                                 [150, -40],
-                                 [220, -40]
-                              ]
-                           ]
-                        }
-                     ]
-                  }
-               ]
             }
          ]
       },
@@ -2768,18 +2534,66 @@
             },
             "citation": [
                {
-                  "title": "Lineage Title 1"
+                  "title": "Lineage Title 1",
+                  "date": [
+                     {
+                        "date": "2017-10-13",
+                        "dateType": "publication"
+                     }
+                  ],
+                  "responsibleParty": [
+                     {
+                        "role": "originator",
+                        "party": [
+                           {
+                              "contactId": "CID004"
+                           }
+                        ]
+                     }
+                  ]
                },
                {
-                  "title": "Lineage Title 2"
+                  "title": "Lineage Title 2",
+                  "date": [
+                     {
+                        "date": "2017-10-13",
+                        "dateType": "publication"
+                     }
+                  ],
+                  "responsibleParty": [
+                     {
+                        "role": "originator",
+                        "party": [
+                           {
+                              "contactId": "CID004"
+                           }
+                        ]
+                     }
+                  ]
                }
             ],
             "source": [
                {
-                  "sourceId": "Source ID 15",
+                  "sourceId": "SRC001",
                   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                   "sourceCitation": {
-                     "title": "Source Citation Title"
+                     "title": "Source Citation Title SRC001",
+                     "date": [
+                        {
+                           "date": "2017-10-13",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
+                     ]
                   },
                   "metadataCitation": [
                      {
@@ -2800,18 +2614,71 @@
                   },
                   "sourceProcessStep": [
                      {
-                        "description": "description"
+                        "description": "description",
+                        "timePeriod": {
+                           "endDateTime": "2017-12-28T15:15"
+                        }
                      },
                      {
-                        "description": "description"
+                        "description": "description",
+                        "timePeriod": {
+                           "endDateTime": "2017-12-28T15:16"
+                        }
                      }
                   ],
                   "scope": {
-                     "scopeCode": "scopeCode"
+                     "scopeCode": "scopeCode SRC001",
+                     "scopeExtent": [
+                        {
+                           "temporalExtent": [
+                              {
+                                 "timePeriod": {
+                                    "description": "publication date",
+                                    "startDateTime": "2016-11-01"
+                                 }
+                              }
+                           ]
+                        }
+                     ]
                   }
                },
                {
-                  "description": "description"
+                  "sourceId": "SRC002",
+                  "description": "description",
+                  "sourceCitation": {
+                     "title": "Source Citation Title SRC002",
+                     "date": [
+                        {
+                           "date": "2017-10-13",
+                           "dateType": "publication"
+                        }
+                     ],
+                     "responsibleParty": [
+                        {
+                           "role": "originator",
+                           "party": [
+                              {
+                                 "contactId": "CID004"
+                              }
+                           ]
+                        }
+                     ]
+                  },
+                  "scope": {
+                     "scopeCode": "scopeCode SRC002",
+                     "scopeExtent": [
+                        {
+                           "temporalExtent": [
+                              {
+                                 "timePeriod": {
+                                    "description": "publication date",
+                                    "startDateTime": "2016-11-02"
+                                 }
+                              }
+                           ]
+                        }
+                     ]
+                  }
                }
             ],
             "processStep": [
@@ -2820,9 +2687,9 @@
                   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                   "rationale": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                   "timePeriod": {
+                     "id": "TimePeriod001",
                      "startDateTime": "2016-10-14T11:10:15.2-10:00",
                      "endDateTime": "2016-12-31",
-                     "id": "TimePeriod001",
                      "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                      "identifier": {
                         "identifier": "TimePeriod Identifier",
@@ -2866,34 +2733,15 @@
                         "title": "Another Process Step Reference"
                      }
                   ],
-                  "stepSource": [
-                     {
-                        "description": "My step source description",
-                        "sourceCitation": {
-                           "title": "title"
-                        }
-                     },
-                     {
-                        "description": "My other step source description"
-                     }
-                  ],
-                  "stepProduct": [
-                     {
-                        "description": "My step intermediate product description",
-                        "sourceCitation": {
-                           "title": "title"
-                        }
-                     },
-                     {
-                        "description": "My other step intermediate product description"
-                     }
-                  ],
                   "scope": {
                      "scopeCode": "scopeCode"
                   }
                },
                {
-                  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
+                  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                  "timePeriod": {
+                     "endDateTime": "2017-12-28T15:28"
+                  }
                }
             ]
          },
@@ -2904,7 +2752,7 @@
       "resourceDistribution": [
          {
             "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-            "liabilityStatement": "Accuracy of this data is absolutely guaranteed.",
+            "liabilityStatement": "Blah blah blah liability. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             "distributor": [
                {
                   "contact": {
@@ -2971,7 +2819,7 @@
                               },
                               "amendmentNumber": "2.0.8-beta",
                               "compressionMethod": "7ZipUp",
-                              "technicalPrerequisite": "Must have ArcGIS 10.x or higher installed."
+                              "technicalPrerequisite": "Blah blah blah 2.0 technical prerequisite"
                            },
                            {
                               "formatSpecification": {
@@ -2981,7 +2829,14 @@
                         ]
                      },
                      {
-                        "transferSize": 10.9
+                        "transferSize": 10.9,
+                        "distributionFormat": [
+                           {
+                              "formatSpecification": {
+                                 "title": "Microsoft Excel"
+                              }
+                           }
+                        ]
                      }
                   ]
                },
@@ -3081,10 +2936,9 @@
       ],
       "funding": [
          {
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
             "allocation": [
                {
-                  "sourceAllocationID": "A999999X1",
+                  "sourceAllocationId": "A123FW009",
                   "amount": 9999.99,
                   "currency": "USD",
                   "sourceId": "CID005",
@@ -3092,16 +2946,12 @@
                   "matching": true,
                   "onlineResource": [
                      {
-                        "uri": "http://ISO.uri/adiwg/8"
-                     },
-                     {
-                        "uri": "http://ISO.uri/adiwg/9"
+                        "uri": "http://adiwg.org"
                      }
                   ],
                   "comment": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                },
                {
-                  "sourceAllocationID": "A999999X2",
                   "amount": 999.99,
                   "currency": "CAD"
                }
@@ -3143,14 +2993,13 @@
    },
    "dataDictionary": [
       {
-         "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+         "citation": {
+            "title": "title"
+         },
          "subject": [
             "subject0",
             "subject1"
          ],
-         "citation": {
-            "title": "title"
-         },
          "recommendedUse": [
             "use0",
             "use1"
@@ -3175,94 +3024,55 @@
                }
             ]
          },
-         "dictionaryFunctionalLanguage": "SQL",
+         "dictionaryFunctionalLanguage": "UML",
          "dictionaryIncludedWithResource": true,
          "domain": [
             {
-               "domainId": "domainId0",
-               "commonName": "country",
-               "codeName": "country",
+               "domainId": "DID001",
+               "commonName": "commonName",
+               "codeName": "codeName",
                "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "domainItem": [
                   {
-                     "name": "Canada",
-                     "value": "CAN",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-                     "reference": {
-                        "title": "author defined"
-                     }
+                     "name": "name0",
+                     "value": "value0",
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
                   },
                   {
-                     "name": "United States of America",
-                     "value": "USA",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
-                     "reference": {
-                        "title": "GCMD version 8.3"
-                     }
+                     "name": "name1",
+                     "value": "value1",
+                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
                   },
                   {
-                     "name": "United States of Mexico",
-                     "value": "MEX",
+                     "name": "name2",
+                     "value": "value2",
                      "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
                   }
                ]
             },
             {
-               "domainId": "domainId1",
-               "commonName": "administrative area",
-               "codeName": "province",
+               "domainId": "DID002",
+               "commonName": "commonName",
+               "codeName": "codeName",
                "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "domainItem": [
                   {
-                     "name": "Alberta, CA",
-                     "value": "Alberta",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-                  },
-                  {
-                     "name": "California, USA",
-                     "value": "California",
-                     "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
-                  },
-                  {
-                     "name": "Jalisco, MEX",
-                     "value": "Jalisco",
+                     "name": "name0",
+                     "value": "value0",
                      "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
                   }
                ]
-            },
-            {
-               "domainId": "domainId2",
-               "commonName": "time zones",
-               "codeName": "timezone",
-               "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-               "domainReference": {
-                  "title": "World Time Zone Reference",
-                  "onlineResource": [
-                     {
-                        "uri": "https://www.worldtimezone.com"
-                     }
-                  ]
-               }
-            },
-            {
-               "domainId": "domainId3",
-               "commonName": "ID type",
-               "codeName": "type",
-               "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
             }
          ],
          "entity": [
             {
                "entityId": "entityId0",
-               "commonName": "country",
-               "codeName": "country",
+               "commonName": "commonName",
+               "codeName": "codeName",
                "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                "entityReference": [
                   {
-                     "title": "entity reference title 1"
-                  },
-                  {
-                     "title": "entity reference title 2"
+                     "title": "entity reference citation 0"
                   }
                ],
                "primaryKeyAttributeCodeName": [
@@ -3288,18 +3098,21 @@
                ],
                "attribute": [
                   {
-                     "commonName": "Common Name for Attribute",
+                     "commonName": "Department ID",
                      "codeName": "codeName",
                      "alias": [
                         "alias0",
                         "alias1"
                      ],
                      "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+                     "attributeReference": {
+                        "title": "attribute reference citation Department ID"
+                     },
                      "dataType": "dataType",
                      "allowNull": true,
                      "allowMany": false,
                      "units": "units",
-                     "domainId": "domainId",
+                     "domainId": "DID001",
                      "minValue": "minValue",
                      "maxValue": "maxValue"
                   },
@@ -3311,11 +3124,14 @@
                         "employeeNumber"
                      ],
                      "definition": "Numeric code to uniquely identify an employee of Acme Oil",
+                     "attributeReference": {
+                        "title": "attribute reference citation for Employee ID"
+                     },
                      "dataType": "numeric",
                      "allowNull": false,
                      "allowMany": true,
                      "units": "meters",
-                     "domainId": "dom042",
+                     "domainId": "DID002",
                      "minValue": "1000000",
                      "maxValue": "5000000"
                   }
@@ -3341,22 +3157,24 @@
                         "employeeID"
                      ]
                   }
-               ],
-               "fieldSeparatorCharacter": "tab",
-               "numberOfHeaderLines": 4,
-               "quoteCharacter": "double"
+               ]
             },
             {
                "entityId": "entityId1",
-               "commonName": "administrative area",
-               "codeName": "province",
+               "commonName": "commonName",
+               "codeName": "codeName",
                "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
+               "entityReference": [
+                  {
+                     "title": "entity reference citation 1"
+                  }
+               ],
                "primaryKeyAttributeCodeName": [
                   "primaryAttribute"
                ],
                "attribute": [
                   {
-                     "commonName": "commonName",
+                     "commonName": "Supervisor",
                      "codeName": "codeName",
                      "alias": [
                         "alias0",
@@ -3364,53 +3182,32 @@
                      ],
                      "definition": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                      "attributeReference": {
-                        "title": "attribute reference title"
+                        "title": "attribute reference citation for supervisor"
                      },
                      "dataType": "dataType",
                      "allowNull": true,
                      "allowMany": false,
                      "units": "units",
-                     "unitsResolution": 9.9,
-                     "isCaseSensitive": true,
-                     "fieldWidth": 4,
-                     "missingValue": "-",
-                     "domainId": "domainId",
+                     "domainId": "DID001",
                      "minValue": "minValue",
-                     "maxValue": "maxValue",
-                     "valueRange": [
-                        {
-                           "minRangeValue": "0",
-                           "maxRangeValue": "9"
-                        },
-                        {
-                           "minRangeValue": "20",
-                           "maxRangeValue": "40"
-                        }
-                     ],
-                     "timePeriod": [
-                        {
-                           "startDateTime": "2016-10-14",
-                           "endDateTime": "2016-12-31"
-                        },
-                        {
-                           "startDateTime": "2017-05-22",
-                           "endDateTime": "2017-06-15"
-                        }
-                     ]
+                     "maxValue": "maxValue"
                   },
                   {
-                     "commonName": "Employee ID",
+                     "commonName": "Grade",
                      "codeName": "empId",
                      "alias": [
                         "employeeId",
                         "employeeNumber"
                      ],
                      "definition": "Numeric code to uniquely identify an employee of Acme Oil",
+                     "attributeReference": {
+                        "title": "attribute reference citation for grade"
+                     },
                      "dataType": "numeric",
                      "allowNull": false,
                      "allowMany": true,
                      "units": "meters",
-                     "domainId": "dom042",
+                     "domainId": "DID002",
                      "minValue": "1000000",
                      "maxValue": "5000000"
                   }
@@ -3444,32 +3241,17 @@
                }
             ]
          },
-         "dictionaryFormat": "MSSQL",
+         "dictionaryFunctionalLanguage": "MSSQL",
          "dictionaryIncludedWithResource": false
       }
    ],
    "metadataRepository": [
       {
-         "repository": "data.gov",
-         "citation": {
-            "title": "My Repository Citation Title",
-            "alternateTitle": [
-               "alternateTitle0",
-               "alternateTitle1"
-            ],
-            "identifier": [
-               {
-                  "identifier": "identifier 0"
-               },
-               {
-                  "identifier": "identifier 1"
-               }
-            ]
-         },
+         "repository": "USGS ScienceBase",
          "metadataStandard": "FGDC"
       },
       {
-         "repository": "dataOne",
+         "repository": "data.gov",
          "metadataStandard": "iso19115_2"
       }
    ]

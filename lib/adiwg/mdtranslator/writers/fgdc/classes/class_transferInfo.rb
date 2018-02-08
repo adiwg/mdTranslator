@@ -30,10 +30,15 @@ module ADIWG
                   # transfer information 6.4.2.1.1 (formname) - format name (required)
                   # <- formatSpecification.identifier.identifier
                   # FGDC requires a format name for digital options (online and offline)
-                  # the format name is saved in the format specification of the first distribution format
+                  # the format name is saved in the identifier of the format specification
+                  # of the first distribution format
+                  # as backup, allow specification title to serve as format name
                   haveId = false
                   unless hSpec.empty?
-                     unless hSpec[:identifiers].empty?
+                     if hSpec[:identifiers].empty?
+                        @xml.tag!('formname', hSpec[:title])
+                        haveId = true
+                     else
                         unless hSpec[:identifiers][0][:identifier].nil?
                            @xml.tag!('formname', hSpec[:identifiers][0][:identifier])
                            haveId = true
@@ -42,7 +47,7 @@ module ADIWG
                   end
                   unless haveId
                      @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Distribution Format is mission format name'
+                     @hResponseObj[:writerMessages] << 'Distribution Format is missing format name'
                   end
 
                   # transfer information 6.4.2.1.2 (formvern) - format version number

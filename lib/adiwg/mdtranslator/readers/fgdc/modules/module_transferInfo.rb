@@ -15,7 +15,7 @@ module ADIWG
 
             module TransferInfo
 
-               def self.unpack(xTranInfo, hTransfer, hResponseObj)
+               def self.unpack(xTranInfo, hTransfer, techPre, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -25,6 +25,11 @@ module ADIWG
                   hSpecification[:identifiers] << hIdentifier
                   hFormat[:formatSpecification] = hSpecification
                   hTransfer[:distributionFormats] << hFormat
+
+                  # add technical prerequisite to resourceFormat
+                  unless techPre.empty?
+                     hFormat[:technicalPrerequisite] = techPre
+                  end
 
                   # distribution 6.4.2.1.1 (formname) - format name
                   # -> transferOption.distributionFormat.formatSpecification.title

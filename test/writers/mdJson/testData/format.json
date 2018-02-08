@@ -59,7 +59,8 @@
                   "title": "title0"
                },
                "amendmentNumber": "amendmentNumber",
-               "compressionMethod": "compressionMethod"
+               "compressionMethod": "compressionMethod",
+               "technicalPrerequisite": "technicalPrerequisite"
             },
             {
                "formatSpecification": {

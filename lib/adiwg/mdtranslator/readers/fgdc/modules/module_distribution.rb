@@ -50,11 +50,16 @@ module ADIWG
                      hDistribution[:liabilityStatement] = liability
                   end
 
+                  # distribution 6.6 (techpreq) - technical prerequisites
+                  # -> distribution.distributor[all].transferOption[all].distributionFormat[all].technicalPrerequisite
+                  # pass it down the line
+                  techPre = xDistribution.xpath('./techpreq').text
+
                   # distribution 6.4 (stdorder) - standard order process []
                   axOrders = xDistribution.xpath('./stdorder')
                   unless axOrders.empty?
                      axOrders.each do |xOrder|
-                        OrderProcess.unpack(xOrder, hDistributor, hResponseObj)
+                        OrderProcess.unpack(xOrder, hDistributor, techPre, hResponseObj)
                      end
                   end
 
@@ -65,13 +70,6 @@ module ADIWG
                      hOrder = intMetadataClass.newOrderProcess
                      hOrder[:orderingInstructions] = custom
                      hDistributor[:orderProcess] << hOrder
-                  end
-
-                  # distribution 6.6 (techpreq) - technical prerequisites
-                  # -> distribution.technicalPrerequisite
-                  techPre = xDistribution.xpath('./techpreq').text
-                  unless techPre.empty?
-                     hDistribution[:technicalPrerequisite] = techPre
                   end
 
                   # distribution 6.7 (availabl) - available time period {time period}

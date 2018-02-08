@@ -58,7 +58,6 @@
          {
             "description": "description",
             "liabilityStatement": "resource liability statement",
-            "technicalPrerequisite": "resource technical prerequisite",
             "distributor": [
                {
                   "contact": {

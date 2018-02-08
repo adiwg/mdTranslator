@@ -41,6 +41,7 @@ class TestReaderFgdcTransferInfo < TestReaderFGDCParent
       refute_empty hFormat0[:formatSpecification]
       assert_nil hFormat0[:amendmentNumber]
       assert_equal 'winzip legacy compression', hFormat0[:compressionMethod]
+      assert_equal 'distribution technical prerequisite', hFormat0[:technicalPrerequisite]
 
       hSpecification = hFormat0[:formatSpecification]
       assert_equal 'format specification', hSpecification[:title]

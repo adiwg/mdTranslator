@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.9.1 2018-02-05 move 'technicalPrerequisite' to 'resourceFormat'
+# 2.9.1 2018-02-05 fix variable name in fgdc spatial domain writer
 # 2.9.0 2018-02-01 added fgdc writer distribution information section
 # 2.9.0 2018-01-26 deprecate dictionaryFormat in favor of dictionaryFunctionalLanguage
 # 2.9.0 2018-01-25 added fgdc writer entity and attribute section
@@ -61,7 +63,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.9.0"
+      VERSION = "2.9.1"
    end
 end
 

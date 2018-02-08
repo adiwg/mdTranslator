@@ -516,7 +516,6 @@ class InternalMetadata
       {
          description: nil,
          liabilityStatement: nil,
-         technicalPrerequisite: nil,
          distributor: []
       }
    end
@@ -565,7 +564,8 @@ class InternalMetadata
       {
          formatSpecification: {},
          amendmentNumber: nil,
-         compressionMethod: nil
+         compressionMethod: nil,
+         technicalPrerequisite: nil
       }
    end
 

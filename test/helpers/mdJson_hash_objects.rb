@@ -351,7 +351,6 @@ class FgdcWriterTD
       {
          description: 'distribution description',
          liabilityStatement: 'distribution liability statement',
-         technicalPrerequisite: 'distribution technical prerequisite',
          distributor: []
       }
    end
@@ -665,7 +664,8 @@ class FgdcWriterTD
             ]
          },
          amendmentNumber: 'amendment number',
-         compressionMethod: 'compression method'
+         compressionMethod: 'compression method',
+         technicalPrerequisite: 'format technical prerequisite'
       }
    end
 
