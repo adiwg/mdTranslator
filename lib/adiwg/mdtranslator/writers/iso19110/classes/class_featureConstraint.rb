@@ -5,65 +5,69 @@
 # ... all constraints need to be expressed as character strings
 
 # History:
-#   Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#  Stan Smith 2018-02-14 enhance constraint formatting
+#  Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
+#  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-12-02 original script
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Iso19110
+   module Mdtranslator
+      module Writers
+         module Iso19110
 
-                class FC_Constraint
+            class FC_Constraint
 
-                    def initialize(xml, responseObj)
-                        @xml = xml
-                        @hResponseObj = responseObj
-                    end
+               def initialize(xml, responseObj)
+                  @xml = xml
+                  @hResponseObj = responseObj
+               end
 
-                    def writeXML(conType, hConstraint)
+               def writeXML(conType, hConstraint)
 
-                        @xml.tag!('gfc:FC_Constraint') do
-                            @xml.tag!('gfc:description') do
+                  @xml.tag!('gfc:FC_Constraint') do
+                     @xml.tag!('gfc:description') do
 
-                                # find type of constraint (primary key or index)
-                                case conType
+                        # find type of constraint (primary key or index)
+                        case conType
 
-                                    # primary keys
-                                    when 'pk'
-                                        s = 'primary key: '
-                                        s += hConstraint.to_s
+                           # primary keys
+                           when 'pk'
+                              s = 'PRIMARY KEY ' + hConstraint.to_s
 
-                                    # indexes
-                                    when 'index'
-                                        if hConstraint[:duplicate]
-                                            indexType = 'duplicate'
-                                        else
-                                            indexType = 'unique'
-                                        end
-                                        s = indexType + ' index ' + hConstraint[:indexCode]
-                                        s += ' on ' + hConstraint[:attributeNames].to_s
+                           # indexes
+                           when 'index'
+                              if hConstraint[:duplicate]
+                                 indexType = 'DUPLICATE'
+                              else
+                                 indexType = 'UNIQUE'
+                              end
+                              s = indexType + ' INDEX ' + hConstraint[:indexCode]
+                              s += ' ON ' + hConstraint[:attributeNames].to_s
 
-                                    # foreign keys
-                                    when 'fk'
-                                        s = 'foreign key '
-                                        s += hConstraint[:fkLocalAttributes].to_s
-                                        s += ' references ' + hConstraint[:fkReferencedEntity] + '.'
-                                        s += hConstraint[:fkReferencedAttributes].to_s
+                           # foreign keys
+                           when 'fk'
+                              s = 'FK'
+                              hConstraint[:fkLocalAttributes].each do |attribute|
+                                 s += '_' + attribute
+                              end
+                              s += ' FOREIGN KEY '
+                              s += hConstraint[:fkLocalAttributes].to_s
+                              s += ' REFERENCES ' + hConstraint[:fkReferencedEntity]
+                              s += hConstraint[:fkReferencedAttributes].to_s
 
-                                end
+                        end
 
-                                @xml.tag!('gco:CharacterString', s)
+                        @xml.tag!('gco:CharacterString', s)
 
-                            end
-                        end # gfc:FC_Constraint tag
-                    end # writeXML
-                end # FC_Constraint class
+                     end
+                  end # gfc:FC_Constraint tag
+               end # writeXML
+            end # FC_Constraint class
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

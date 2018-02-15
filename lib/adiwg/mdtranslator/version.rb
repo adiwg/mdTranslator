@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.9.2 2018-02-14 refactored 19110 cardinality
+# 2.9.2 2018-02-14 refactored 19110 constraints
 # 2.9.2 2018-02-14 deprecated and renamed allowMany to mustBeUnique
 # 2.9.1 2018-02-05 move 'technicalPrerequisite' to 'resourceFormat'
 # 2.9.1 2018-02-05 fix variable name in fgdc spatial domain writer

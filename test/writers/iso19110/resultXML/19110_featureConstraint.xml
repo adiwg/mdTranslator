@@ -17,7 +17,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>primary key: ["codeName0", "codeName1"]</gco:CharacterString>
+        <gco:CharacterString>PRIMARY KEY ["codeName0", "codeName1"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -25,7 +25,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>unique index ui_codeName1 on ["codeName0", "codeName1"]</gco:CharacterString>
+        <gco:CharacterString>UNIQUE INDEX ui_codeName1 ON ["codeName0", "codeName1"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -33,7 +33,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>duplicate index di_codeName2 on ["codeName2"]</gco:CharacterString>
+        <gco:CharacterString>DUPLICATE INDEX di_codeName2 ON ["codeName2"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -41,7 +41,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>foreign key ["codeName0", "codeName1"] references entityId1.["codeName10", "codeName11"]</gco:CharacterString>
+        <gco:CharacterString>FK_codeName0_codeName1 FOREIGN KEY ["codeName0", "codeName1"] REFERENCES entityId1["codeName10", "codeName11"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -49,7 +49,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>foreign key ["codeName2"] references entityId1.["codeName12"]</gco:CharacterString>
+        <gco:CharacterString>FK_codeName2 FOREIGN KEY ["codeName2"] REFERENCES entityId1["codeName12"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
