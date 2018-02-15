@@ -31,7 +31,7 @@ module ADIWG
                      end
                      json.dataType hAttribute[:dataType]
                      json.allowNull hAttribute[:allowNull]
-                     json.allowMany hAttribute[:allowMany]
+                     json.mustBeUnique hAttribute[:mustBeUnique]
                      json.units hAttribute[:unitOfMeasure]
                      json.unitsResolution hAttribute[:measureResolution]
                      json.isCaseSensitive hAttribute[:isCaseSensitive]

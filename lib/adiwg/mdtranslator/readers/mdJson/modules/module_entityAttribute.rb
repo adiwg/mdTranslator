@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#  Stan Smith 2018-02-14 rename allowMany to mustBeUnique
 #  Stan Smith 2017-11-01 added new elements to support fgdc and flat files
 #  Stan Smith 2016-10-05 refactored for mdJson 2.0
 #  Stan Smith 2015-07-24 added error reporting of missing items
@@ -93,17 +94,23 @@ module ADIWG
                      return nil
                   end
 
-                  # attribute - minimum cardinality (required)
+                  # attribute - allow nulls (required)
                   if hAttribute.has_key?('allowNull')
                      if hAttribute['allowNull'] === true
                         intAttribute[:allowNull] = hAttribute['allowNull']
                      end
                   end
 
-                  # attribute - maximum cardinality
+                  # attribute - require value to be unique (required)
+                  # ... allowMany deprecated
                   if hAttribute.has_key?('allowMany')
                      if hAttribute['allowMany'] === true
-                        intAttribute[:allowMany] = hAttribute['allowMany']
+                        intAttribute[:mustBeUnique] = hAttribute['allowMany']
+                     end
+                  end
+                  if hAttribute.has_key?('mustBeUnique')
+                     if hAttribute['mustBeUnique'] === true
+                        intAttribute[:mustBeUnique] = hAttribute['mustBeUnique']
                      end
                   end
 

@@ -38,7 +38,7 @@ module ADIWG
                             minCard = 0
                         end
                         maxCard = 1
-                        if hAttribute[:allowMany]
+                        if hAttribute[:mustBeUnique]
                             maxCard = 99999
                         end
 

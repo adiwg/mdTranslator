@@ -67,9 +67,9 @@ module ADIWG
                   @html.text!(hAttribute[:allowNull].to_s)
                   @html.br
 
-                  # entity attribute - allow many {Boolean}
-                  @html.em('Allow Many Values: ')
-                  @html.text!(hAttribute[:allowMany].to_s)
+                  # entity attribute - must be unique {Boolean}
+                  @html.em('Attribute Values Must Be Unique: ')
+                  @html.text!(hAttribute[:mustBeUnique].to_s)
                   @html.br
 
                   # entity attribute - unit of measure

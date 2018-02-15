@@ -83,7 +83,7 @@
                      "definition": "definition",
                      "dataType": "dataType",
                      "allowNull": true,
-                     "allowMany": true,
+                     "mustBeUnique": true,
                      "isCaseSensitive": true,
                      "valueRange": [
                         {

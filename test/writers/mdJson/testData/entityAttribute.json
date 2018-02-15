@@ -90,7 +90,7 @@
                      },
                      "dataType": "dataType",
                      "allowNull": true,
-                     "allowMany": false,
+                     "mustBeUnique": false,
                      "units": "units",
                      "unitsResolution": 9.9,
                      "isCaseSensitive": true,
@@ -125,7 +125,7 @@
                      "definition": "definition",
                      "dataType": "dataType",
                      "allowNull": false,
-                     "allowMany": false,
+                     "mustBeUnique": false,
                      "isCaseSensitive": false
                   }
                ]

@@ -92,7 +92,7 @@
               "definition": "definition0",
               "dataType": "dataType0",
               "allowNull": false,
-              "allowMany": false
+              "mustBeUnique": false
             },
             {
               "commonName": "commonName1",
@@ -100,7 +100,7 @@
               "definition": "definition1",
               "dataType": "dataType1",
               "allowNull": true,
-              "allowMany": true
+              "mustBeUnique": true
             }
           ],
           "primaryKeyAttributeCodeName": ["codeName0", "codeName1"],

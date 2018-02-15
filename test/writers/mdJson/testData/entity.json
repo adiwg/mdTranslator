@@ -122,7 +122,7 @@
                      "definition": "definition",
                      "dataType": "dataType",
                      "allowNull": true,
-                     "allowMany": true,
+                     "mustBeUnique": true,
                      "units": "units",
                      "isCaseSensitive": true,
                      "domainId": "domainId",
@@ -134,7 +134,7 @@
                      "definition": "definition",
                      "dataType": "dataType",
                      "allowNull": false,
-                     "allowMany": false,
+                     "mustBeUnique": false,
                      "isCaseSensitive": false
                   }
                ],
