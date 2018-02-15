@@ -30,7 +30,7 @@
                 <gco:Integer>0</gco:Integer>
               </gco:lower>
               <gco:upper>
-                <gco:UnlimitedInteger>1</gco:UnlimitedInteger>
+                <gco:UnlimitedInteger isInfinite="true">9</gco:UnlimitedInteger>
               </gco:upper>
             </gco:MultiplicityRange>
           </gco:range>
@@ -156,7 +156,7 @@
                 <gco:Integer>0</gco:Integer>
               </gco:lower>
               <gco:upper>
-                <gco:UnlimitedInteger>1</gco:UnlimitedInteger>
+                <gco:UnlimitedInteger isInfinite="true">9</gco:UnlimitedInteger>
               </gco:upper>
             </gco:MultiplicityRange>
           </gco:range>
@@ -203,7 +203,7 @@
                 <gco:Integer>0</gco:Integer>
               </gco:lower>
               <gco:upper>
-                <gco:UnlimitedInteger>1</gco:UnlimitedInteger>
+                <gco:UnlimitedInteger isInfinite="true">9</gco:UnlimitedInteger>
               </gco:upper>
             </gco:MultiplicityRange>
           </gco:range>

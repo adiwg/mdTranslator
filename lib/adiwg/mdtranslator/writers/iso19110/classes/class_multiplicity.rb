@@ -5,62 +5,72 @@
 # ... cardinality is defined between tables, not for attributes.
 # ... documentation by NOAA and modelManager suggest best practice for
 # ... propertyType is to default to 1.
+# ... upper not provided a value in examples but XSD required it to be present
 # ... I assume this is using cardinality like optionality.
 # ... therefore ...
-# ... lower = 0 => Null
-# ... lower = 1 => NotNull
-# ... upper not provided a value, but is required to be present.
+# ... lower = 0 if allowNull = false
+# ... lower = 1 if allowNull = true
+# ... upper = 1 if mustBeUnique = true
+# ... upper = 9 if mustBeUnique = false with isInfinite="true"
 
 # History:
-#   Stan Smith 2017-02-02 refactored for mdJson/mdTranslator 2.0
-#   Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
-#   Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
+#  Stan Smith 2018-02-14 add isInfinite="true" to upper multiplicity
+#  Stan Smith 2017-02-02 refactored for mdJson/mdTranslator 2.0
+#  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
+#  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
+#  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-12-02 original script.
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Iso19110
+   module Mdtranslator
+      module Writers
+         module Iso19110
 
-                class Multiplicity
+            class Multiplicity
 
-                    def initialize(xml, responseObj)
-                        @xml = xml
-                        @hResponseObj = responseObj
-                    end
+               def initialize(xml, responseObj)
+                  @xml = xml
+                  @hResponseObj = responseObj
+               end
 
-                    def writeXML(hAttribute)
+               def writeXML(hAttribute)
 
-                        minCard = 1
-                        if hAttribute[:allowNull]
-                            minCard = 0
+                  # xml for iso classes Multiplicity and MultiplicityRange
+                  # ISO 19110-2 rule
+                  # ... "If this is an attribute or operation, the default cardinality is 1"
+                  minCard = 1
+                  maxCard = 9
+                  if hAttribute[:allowNull]
+                     minCard = 0
+                  end
+                  if hAttribute[:mustBeUnique]
+                     maxCard = 1
+                  end
+
+                  # xml for iso classes Multiplicity and MultiplicityRange
+                  @xml.tag!('gco:Multiplicity') do
+
+                     @xml.tag!('gco:range') do
+                        @xml.tag!('gco:MultiplicityRange') do
+                           @xml.tag!('gco:lower') do
+                              @xml.tag!('gco:Integer', minCard)
+                           end
+                           @xml.tag!('gco:upper') do
+                              if maxCard == 1
+                                 @xml.tag!('gco:UnlimitedInteger', 1)
+                              else
+                                 @xml.tag!('gco:UnlimitedInteger', {'isInfinite'=>'true'}, 9)
+                              end
+                           end
                         end
-                        maxCard = 1
-                        if hAttribute[:mustBeUnique]
-                            maxCard = 99999
-                        end
+                     end
 
-                        # xml for iso classes Multiplicity and MultiplicityRange
-                        @xml.tag!('gco:Multiplicity') do
+                  end # gco:Multiplicity tag
+               end # writeXML
+            end # Multiplicity class
 
-                            @xml.tag!('gco:range') do
-                                @xml.tag!('gco:MultiplicityRange') do
-                                    @xml.tag!('gco:lower') do
-                                        @xml.tag!('gco:Integer', minCard)
-                                    end
-                                    @xml.tag!('gco:upper') do
-                                        @xml.tag!('gco:UnlimitedInteger', maxCard)
-                                    end
-                                end
-                            end
-
-                        end # gco:Multiplicity tag
-                    end # writeXML
-                end # Multiplicity class
-
-            end
-        end
-    end
+         end
+      end
+   end
 end
