@@ -44,11 +44,19 @@ module ADIWG
                      end
                   end
 
-                  # distribution 6.4.3 (fees) - fees
+                  # error messages
+                  if nonDigital.empty? && axDigital.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC standard order process digital/non-digital form is missing'
+                  end
+
+                  # distribution 6.4.3 (fees) - fees (required)
                   # -> distribution.distributor.orderProcess.fees
                   fees = xOrder.xpath('./fees').text
                   unless fees.empty?
                      hOrder[:fees] = fees
+                  end
+                  if fees.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC standard order process fee is missing'
                   end
 
                   # distribution 6.4.4 (ordering) - ordering information

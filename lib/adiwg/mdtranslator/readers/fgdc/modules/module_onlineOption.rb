@@ -29,16 +29,16 @@ module ADIWG
                   # -> distribution.distributor.onlineOption.description
                   description = xOnline.xpath('./oncomp').text
 
-                  # distribution 6.4.2.2.1.1 (computer) - computer contact information []
+                  # distribution 6.4.2.2.1.1 (computer) - computer contact information [] (required)
                   axComputers = xOnline.xpath('./computer')
                   unless axComputers.empty?
                      axComputers.each do |xComputer|
 
-                        # distribution 6.4.2.2.1.1.1 (networka) - network address
+                        # distribution 6.4.2.2.1.1.1 (networka) - network address (required)
                         xNetwork = xComputer.xpath('./networka')
                         unless xNetwork.empty?
 
-                           # distribution 6.4.2.2.1.1.1.1 (networkr) - network resource name []
+                           # distribution 6.4.2.2.1.1.1.1 (networkr) - network resource name [] (required)
                            # -> distribution.distributor.onlineOption.uri
                            axURI = xNetwork.xpath('./networkr')
                            unless axURI.empty?
@@ -53,10 +53,16 @@ module ADIWG
                                  end
                               end
                            end
+                           if axURI.empty?
+                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer network address is missing'
+                           end
 
                         end
+                        if xNetwork.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer network address section is missing'
+                        end
 
-                        # dialup section is deprecated and will not be supported in ADIwg toolkit
+                        # dialup section is antiquated and will not be supported by ADIwg
                         # distribution 6.4.2.2.1.1.2 (dialinst) - dialup instructions
                         # distribution 6.4.2.2.1.1.2.1 (lowbps) - lowest bits per second
                         # distribution 6.4.2.2.1.1.2.2 (highbps) - highest bits per second
@@ -68,6 +74,9 @@ module ADIWG
                         # distribution 6.4.2.2.1.1.2.8 (dialfile) - dialup file name []
 
                      end
+                  end
+                  if axComputers.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer computer contact information is missing'
                   end
 
                   return aOnlines

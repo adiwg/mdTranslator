@@ -24,13 +24,13 @@ module ADIWG
                   hDate = intMetadataClass.newDate
 
                   if date.nil? || date == ''
-                     hResponseObj[:readerExecutionMessages] << 'date string is missing from date conversion'
+                     hResponseObj[:readerExecutionMessages] << 'ERROR: date missing from dateType creation'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   if type.nil? || type == ''
-                     hResponseObj[:readerExecutionMessages] << 'date type is missing from date conversion'
+                     hResponseObj[:readerExecutionMessages] << 'ERROR: role missing from dateType creation'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -36,13 +36,17 @@ module ADIWG
                readerNS = hResponseObj[:readerRequested].dup
                readerNS[0] = readerNS[0].upcase
 
-               # reader will return intObj
+               # reader will create and return the intObj
                return ADIWG::Mdtranslator::Readers.const_get(readerNS).readFile(file, hResponseObj)
 
             else
+
                hResponseObj[:readerValidationMessages] << "ERROR: Requested reader '#{hResponseObj[:readerRequested]}' cannot be found."
                hResponseObj[:readerValidationPass] = false
-               return
+
+               # return empty intObj
+               return {}
+
             end
 
          end

@@ -20,16 +20,22 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hSeries = intMetadataClass.newSeries
 
-                  # series 8.7.1 (sername) - series name
+                  # series 8.7.1 (sername) - series name (required)
                   name = xSerInfo.xpath('./sername').text
                   unless name.empty?
                      hSeries[:seriesName] = name
                   end
+                  if name.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation series name is missing'
+                  end
 
-                  # series 8.7.2 (issue) - series issue
+                  # series 8.7.2 (issue) - series issue (required)
                   issue = xSerInfo.xpath('./issue').text
                   unless issue.empty?
                      hSeries[:seriesIssue] = issue
+                  end
+                  if issue.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation series issue is missing'
                   end
 
                   return hSeries

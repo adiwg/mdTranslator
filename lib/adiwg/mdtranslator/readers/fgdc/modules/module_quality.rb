@@ -19,19 +19,30 @@ module ADIWG
 
                   # data quality 2.1 (attracc) - attribute accuracy (not implemented)
 
-                  # data quality 2.2 (logic) - logical consistency (not implemented)
+                  # data quality 2.2 (logic) - logical consistency (required) (not implemented)
+                  xLogic = xDataQual.xpath('./logic')
+                  if xLogic.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC data quality logical consistency section is missing'
+                  end
 
-                  # data quality 2.3 (complete) - completion report (not implemented)
+                  # data quality 2.3 (complete) - completion report (required) (not implemented)
+                  xComplete = xDataQual.xpath('./complete')
+                  if xComplete.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC data quality completion report section is missing'
+                  end
 
                   # data quality 2.4 (position) - positional accuracy (not implemented)
 
-                  # data quality 2.5 (lineage) - lineage
+                  # data quality 2.5 (lineage) - lineage (required)
                   xLineage = xDataQual.xpath('./lineage')
                   unless xLineage.empty?
                      hLineage = Lineage.unpack(xLineage, hResponseObj)
                      unless hLineage.nil?
                         hMetadata[:lineageInfo] << hLineage
                      end
+                  end
+                  if xLineage.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC data quality lineage section is missing'
                   end
 
                   # data quality 2.6 (cloud) - cloud cover (not implemented)

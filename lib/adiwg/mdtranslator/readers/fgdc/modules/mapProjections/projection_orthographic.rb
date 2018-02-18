@@ -37,8 +37,7 @@ module ADIWG
                      if paramCount == 4
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'orthographic projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC Orthographic projection is missing one or more parameters'
                      end
                   end
 

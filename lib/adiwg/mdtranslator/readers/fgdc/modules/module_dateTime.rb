@@ -23,7 +23,7 @@ module ADIWG
                   hDateTime = intMetadataClass.newDateTime
 
                   if date.nil? || date == ''
-                     hResponseObj[:readerExecutionMessages] << 'date string is missing from dateTime'
+                     hResponseObj[:readerExecutionMessages] << 'ERROR: FGDC date missing from dateTime creation'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -87,7 +87,7 @@ module ADIWG
                   # if dateTimeFromString fails, [0] = nil; [1] = 'ERROR'
                   aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(dtIn)
                   if aDateTimeReturn[1] == 'ERROR'
-                     hResponseObj[:readerExecutionMessages] << 'Date string is invalid'
+                     hResponseObj[:readerExecutionMessages] << 'ERROR: FGDC Conversion of dateTime string to object failed'
                      hResponseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -49,7 +49,8 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate representation is missing'
 
    end
 
@@ -90,7 +91,8 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate representation is missing'
 
    end
 

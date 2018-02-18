@@ -27,10 +27,13 @@ module ADIWG
                   # data quality 2.5 (lineage) - lineage
                   unless xLineage.empty?
 
-                     # lineage bio (method) - methodology []
+                     # lineage bio (method) - methodology [] (required)
                      axMethods = xLineage.xpath('./method')
                      unless axMethods.empty?
                         Method.unpack(hLineage, axMethods, hResponseObj)
+                     end
+                     if axMethods.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO lineage methodology section is missing'
                      end
 
                      # lineage 2.5.1 (srcinfo) - source information []
@@ -42,13 +45,16 @@ module ADIWG
                         end
                      end
 
-                     # lineage 2.5.2 (procstep) - process step []
+                     # lineage 2.5.2 (procstep) - process step [] (required)
                      axProcess = xLineage.xpath('./procstep')
                      unless axProcess.empty?
                         axProcess.each do |xProcess|
                            hProcess = Process.unpack(xProcess, hLineage, hResponseObj)
                            hLineage[:processSteps] << hProcess
                         end
+                     end
+                     if axProcess.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage process step section is missing'
                      end
 
                      return hLineage

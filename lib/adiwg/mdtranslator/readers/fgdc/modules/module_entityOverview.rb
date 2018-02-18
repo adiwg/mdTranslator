@@ -24,11 +24,14 @@ module ADIWG
                   hEntity[:entityName] = 'Entity Overview'
                   hEntity[:entityCode] = 'overview'
 
-                  # entity attribute 5.2.1 (eaover) - entity attribute overview
+                  # entity attribute 5.2.1 (eaover) - entity attribute overview (required)
                   # -> dataDictionary.entities.entityDefinition
                   definition = xOverview.xpath('./eaover').text
                   unless definition.empty?
                      hEntity[:entityDefinition] = definition
+                  end
+                  if definition.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entityAttribute overview definition is missing'
                   end
 
                   # entity attribute 5.2.2 (eadetcit) - entity attribute detail citation []

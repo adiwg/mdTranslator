@@ -22,10 +22,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hProcess = intMetadataClass.newProcessStep
 
-                  # process 2.5.2.1 (procdesc) - process description
+                  # process 2.5.2.1 (procdesc) - process description (required)
                   description = xProcess.xpath('./procdesc').text
                   unless description.empty?
                      hProcess[:description] = description
+                  end
+                  if description.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage process description is missing'
                   end
 
                   # process 2.5.2.2 (srcused) - source used citation abbreviation []
@@ -46,6 +49,7 @@ module ADIWG
                   end
 
                   # process 2.5.2.3/2.5.2.4 (procdate/proctime) - procedure date/time {date} (required) {time} (optional)
+                  hDateTime = nil
                   procDate = xProcess.xpath('./procdate').text
                   procTime = xProcess.xpath('./proctime').text
                   unless procDate.empty?
@@ -56,6 +60,9 @@ module ADIWG
                         hTimePeriod[:endDateTime] = hDateTime
                         hProcess[:timePeriod] = hTimePeriod
                      end
+                  end
+                  if hDateTime.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage procedure date is missing'
                   end
 
                   # process 2.5.2.5 (srcprod) - source produced citation abbreviation []

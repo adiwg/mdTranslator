@@ -42,13 +42,16 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hProjection = intMetadataClass.newProjection
 
-                  # map projection 4.1.2.1.1 (mapprojn) - map projection name
+                  # map projection 4.1.2.1.1 (mapprojn) - map projection name (required)
                   # -> ReferenceSystemParameters.projection.projectionIdentifier.identifier
                   name = xMapProjection.xpath('./mapprojn').text
                   unless name.empty?
                      hIdentifier = intMetadataClass.newIdentifier
                      hIdentifier[:identifier] = name
                      hProjection[:projectionIdentifier] = hIdentifier
+                  end
+                  if name.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC map projection name is missing'
                   end
 
                   # map projection 4.1.2.1.2 (albers) - Albers Conical Equal Area

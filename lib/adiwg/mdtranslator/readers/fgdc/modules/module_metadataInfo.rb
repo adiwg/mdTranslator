@@ -24,7 +24,7 @@ module ADIWG
                   hMetadataInfo = intMetadataClass.newMetadataInfo
                   hLegal = intMetadataClass.newLegalConstraint
 
-                  # metadata information 7.1 (metd) - metadata date
+                  # metadata information 7.1 (metd) - metadata date (required)
                   # -> metadataInfo.metadataDates.date{type=creation}
                   date = xMetaInfo.xpath('./metd').text
                   unless date.empty?
@@ -32,6 +32,9 @@ module ADIWG
                      unless hDate.nil?
                         hMetadataInfo[:metadataDates] << hDate
                      end
+                  end
+                  if date.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC metadata creation date is missing'
                   end
 
                   # metadata information 7.2 (metrd) - metadata review date
@@ -54,7 +57,7 @@ module ADIWG
                      end
                   end
 
-                  # metadata information 7.4 (metc) - metadata contact
+                  # metadata information 7.4 (metc) - metadata contact (required)
                   # -> metadataInfo.metadataContacts.responsibility{roleType=pointOfContact}
                   xContact = xMetaInfo.xpath('./metc')
                   unless xContact.empty?
@@ -64,11 +67,14 @@ module ADIWG
                         hMetadataInfo[:metadataContacts] << hResponsibility
                      end
                   end
+                  if xContact.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC metadata point of contact is missing'
+                  end
 
-                  # metadata information 7.5 (metstdn) - metadata standard name
+                  # metadata information 7.5 (metstdn) - metadata standard name (required)
                   # -> set by writer
 
-                  # metadata information 7.6 (metstdv) - metadata standard version
+                  # metadata information 7.6 (metstdv) - metadata standard version (required)
                   # -> set by writer
 
                   # metadata information 7.7 (mettc) - metadata time convention

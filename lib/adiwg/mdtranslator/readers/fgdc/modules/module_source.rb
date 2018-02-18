@@ -22,11 +22,14 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hSource = intMetadataClass.newDataSource
 
-                  # source 2.5.1.1 (srccite) - source citation {citation}
+                  # source 2.5.1.1 (srccite) - source citation {citation} (required)
                   xCitation = xSource.xpath('./srccite')
                   unless xCitation.empty?
                      hCitation = Citation.unpack(xCitation, hResponseObj)
                      hSource[:sourceCitation] = hCitation
+                  end
+                  if xCitation.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source citation is missing'
                   end
 
                   # source 2.5.1.2 (srcscale) - source scale denominator
@@ -37,13 +40,16 @@ module ADIWG
                      hSource[:spatialResolution] = hResolution
                   end
 
-                  # source 2.5.1.3 (typesrc) - type of source media
+                  # source 2.5.1.3 (typesrc) - type of source media (required)
                   type = xSource.xpath('./typesrc').text
                   unless type.empty?
                      hSource[:description] = type
                   end
+                  if type.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source media type is missing'
+                  end
 
-                  # source 2.5.1.4 (srctime) - source time period {scope < temporalExtent}
+                  # source 2.5.1.4 (srctime) - source time period {scope < temporalExtent} (required)
                   xTimePeriod = xSource.xpath('./srctime')
                   unless xTimePeriod.empty?
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
@@ -58,17 +64,26 @@ module ADIWG
                         hSource[:scope] = hScope
                      end
                   end
+                  if xTimePeriod.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source time period is missing'
+                  end
 
-                  # source 2.5.1.5 (srccitea) - source citation abbreviation
+                  # source 2.5.1.5 (srccitea) - source citation abbreviation (required)
                   sourceAbb = xSource.xpath('./srccitea').text
                   unless sourceAbb.empty?
                      hSource[:sourceId] = sourceAbb
                   end
+                  if sourceAbb.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source citation abbreviation is missing'
+                  end
 
-                  # source 2.5.1.6 (srccontr) - source contribution
+                  # source 2.5.1.6 (srccontr) - source contribution (required)
                   contribution = xSource.xpath('./srccontr').text
                   unless contribution.empty?
                      hSource[:description] = contribution
+                  end
+                  if contribution.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source contribution is missing'
                   end
 
                   return hSource

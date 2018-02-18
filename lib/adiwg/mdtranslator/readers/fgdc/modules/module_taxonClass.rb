@@ -21,18 +21,24 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hTaxonClass = intMetadataClass.newTaxonClass
 
-                  # taxonomy bio.4.1 (taxonrn) - taxon rank name
+                  # taxonomy bio.4.1 (taxonrn) - taxon rank name (required)
                   # -> resourceInfo.taxonomy.taxonClass.taxonRank
                   rankName = xTaxonClass.xpath('./taxonrn').text
                   unless rankName.empty?
                      hTaxonClass[:taxonRank] = rankName
                   end
+                  if rankName.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxon classification rank name is missing'
+                  end
 
-                  # taxonomy bio.4.2 (taxonrv) - taxon rank value
+                  # taxonomy bio.4.2 (taxonrv) - taxon rank value (required)
                   # -> resourceInfo.taxonomy.taxonClass.taxonValue
                   rankValue = xTaxonClass.xpath('./taxonrv').text
                   unless rankValue.empty?
                      hTaxonClass[:taxonValue] = rankValue
+                  end
+                  if rankValue.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxon classification rank value is missing'
                   end
 
                   # taxonomy bio.4.3 (common) - taxon common name []

@@ -41,8 +41,7 @@ module ADIWG
                      if paramCount == 6
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'lambert conformal conic projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: Lambert Conformal Conic projection is missing one or more parameters'
                      end
                   end
 

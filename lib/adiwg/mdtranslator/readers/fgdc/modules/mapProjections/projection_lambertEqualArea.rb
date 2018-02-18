@@ -37,8 +37,7 @@ module ADIWG
                      if paramCount == 4
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'Lambert azimuthal equal area projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: Lambert Azimuthal Equal Area projection is missing one or more parameters'
                      end
                   end
 

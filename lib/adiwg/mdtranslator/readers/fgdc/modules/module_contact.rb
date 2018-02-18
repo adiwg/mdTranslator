@@ -63,7 +63,6 @@ module ADIWG
                         # person primary 10.1.2 (cntorg) - name of organization
                         personName = xPerson.xpath('./cntper').text
                         orgName = xPerson.xpath('./cntorg').text
-                        return nil if personName.empty?
 
                      end
 
@@ -76,8 +75,19 @@ module ADIWG
                         # organization primary 10.1.2 (cntorg) - name of organization
                         personName = xOrg.xpath('./cntper').text
                         orgName = xOrg.xpath('./cntorg').text
-                        return nil if orgName.empty?
 
+                     end
+
+                     # error handling
+                     if contactType.nil?
+                        hResponseObj[:readerExecutionMessages] << 'ERROR: FGDC contact is neither person or organization'
+                        return nil
+                     end
+                     if contactType == 'person' && personName == ''
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact person name is missing'
+                     end
+                     if contactType == 'organization' && orgName == ''
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact organization name is missing'
                      end
 
                      # add new contacts to contact array
@@ -106,15 +116,18 @@ module ADIWG
                            hContact[:positionName] = position
                         end
 
-                        # contact 10.4 (cntaddr) - contact address []
+                        # contact 10.4 (cntaddr) - contact address [] (required)
                         axAddress = xContactInfo.xpath('./cntaddr')
                         unless axAddress.empty?
                            axAddress.each do |xAddress|
                               hAddress = intMetadataClass.newAddress
 
-                              # address 10.4.1 (addrtype) - address type
+                              # address 10.4.1 (addrtype) - address type (required)
                               addType = xAddress.xpath('./addrtype').text
                               hAddress[:addressTypes] << addType unless addType.empty?
+                              if addType.empty?
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address type is missing'
+                              end
 
                               # address 10.4.2 (address) - address lines []
                               axAddLines = xAddress.xpath('./address')
@@ -125,17 +138,26 @@ module ADIWG
                                  end
                               end
 
-                              # address 10.4.3 (city) - city
+                              # address 10.4.3 (city) - city (required)
                               city = xAddress.xpath('./city').text
                               hAddress[:city] = city unless city.empty?
+                              if city.empty?
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address city is missing'
+                              end
 
-                              # address 10.4.4 (state) - state or province
+                              # address 10.4.4 (state) - state (required)
                               state = xAddress.xpath('./state').text
                               hAddress[:adminArea] = state unless state.empty?
+                              if state.empty?
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address state is missing'
+                              end
 
-                              # address 10.4.5 (postal) - postal code
+                              # address 10.4.5 (postal) - postal code (required)
                               postal = xAddress.xpath('./postal').text
                               hAddress[:postalCode] = postal unless postal.empty?
+                              if postal.empty?
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address zip code is missing'
+                              end
 
                               # address 10.4.6 (country) - country
                               country = xAddress.xpath('./country').text
@@ -165,8 +187,11 @@ module ADIWG
 
                            end
                         end
+                        if axAddress.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address is missing'
+                        end
 
-                        # contact 10.5 (cntvoice) - contact voice phone number []
+                        # contact 10.5 (cntvoice) - contact voice phone number [] (required)
                         axVoice = xContactInfo.xpath('./cntvoice')
                         unless axVoice.empty?
                            axVoice.each do |xPhone|
@@ -175,6 +200,9 @@ module ADIWG
                                  add_phone(hContact, phone, 'voice')
                               end
                            end
+                        end
+                        if axVoice.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact voice phone is missing'
                         end
 
                         # contact 10.6 (cnttdd) - contact TDD/TTY phone number []

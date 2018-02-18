@@ -44,7 +44,15 @@ class TestReaderFgdcTemporalExtent < TestReaderFGDCParent
       assert_equal 'YMDhmsZ', hInstant[:timeInstant][:dateResolution]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification section citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification section description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification status is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification spatial domain section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification keyword section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification access constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification use constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC metadata creation date is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC metadata point of contact is missing'
 
    end
 

@@ -14,7 +14,7 @@ module ADIWG
 
             module LocalSystem
 
-               def self.unpack(xLocal)
+               def self.unpack(xLocal, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new

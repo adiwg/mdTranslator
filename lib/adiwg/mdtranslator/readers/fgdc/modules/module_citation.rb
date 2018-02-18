@@ -46,27 +46,40 @@ module ADIWG
                         end
                      end
                   end
+                  havePR = false
                   unless aContacts.empty?
                      hResponsibility = Responsibility.unpack(aContacts, 'originator', hResponseObj)
                      unless hResponsibility.nil?
                         hCitation[:responsibleParties] << hResponsibility
+                        havePR = true
                      end
                   end
+                  unless havePR
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation originator is missing'
+                  end
 
-                  # citation 8.2/8.3 (pubdate/pubtime) - publication date/time {date} (required) {time} (optional)
+                  # citation 8.2/8.3 (pubdate/pubtime) - publication date/time {date} (required) - {time} (optional)
+                  haveDate = false
                   pubDate = xCiteInfo.xpath('./pubdate').text
                   pubTime = xCiteInfo.xpath('./pubtime').text
                   unless pubDate.empty?
                      hDate = Date.unpack(pubDate, pubTime, 'publication', hResponseObj)
                      unless hDate.nil?
                         hCitation[:dates] << hDate
+                        haveDate = true
                      end
+                  end
+                  unless haveDate
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation publication date is missing'
                   end
 
                   # citation 8.4 (title) - citation title (required)
                   title = xCiteInfo.xpath('./title').text
                   unless title.empty?
                      hCitation[:title] = title
+                  end
+                  if title.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation title is missing'
                   end
 
                   # citation 8.5 (edition) - edition

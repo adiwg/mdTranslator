@@ -25,22 +25,28 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hAttribute = intMetadataClass.newEntityAttribute
 
-                  # entity attribute 5.1.2.1 (attrlabl) - attribute name
+                  # entity attribute 5.1.2.1 (attrlabl) - attribute name (required)
                   # -> dataDictionary.entities.attributes.attributeCode
                   code = xAttribute.xpath('./attrlabl').text
                   unless code.empty?
                      hAttribute[:attributeName] = code
                      hAttribute[:attributeCode] = code
                   end
+                  if code.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute label is missing'
+                  end
 
-                  # entity attribute 5.1.2.2 (attrdef) - attribute definition
+                  # entity attribute 5.1.2.2 (attrdef) - attribute definition (required)
                   # -> dataDictionary.entities.attributes.attributeDefinition
                   definition = xAttribute.xpath('./attrdef').text
                   unless definition.empty?
                      hAttribute[:attributeDefinition] = definition
                   end
+                  if definition.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute definition is missing'
+                  end
 
-                  # entity attribute 5.1.2.3 (attrdefs) - attribute definition source
+                  # entity attribute 5.1.2.3 (attrdefs) - attribute definition source (required)
                   # -> dataDictionary.entities.attributes.attributeReference.title
                   reference = xAttribute.xpath('./attrdefs').text
                   unless reference.empty?
@@ -48,8 +54,11 @@ module ADIWG
                      hCitation[:title] = reference
                      hAttribute[:attributeReference] = hCitation
                   end
+                  if reference.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute reference source is missing'
+                  end
 
-                  # entity attribute 5.1.2.4 (attrdomv) - attribute domain value
+                  # entity attribute 5.1.2.4 (attrdomv) - attribute domain value (required)
                   axDomain = xAttribute.xpath('./attrdomv')
                   unless axDomain.empty?
 
@@ -87,6 +96,9 @@ module ADIWG
                         end
                      end
 
+                  end
+                  if axDomain.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute domain is missing'
                   end
 
                   # add domainId to attribute

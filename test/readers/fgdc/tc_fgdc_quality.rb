@@ -26,7 +26,9 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
       assert_equal 1, hMetadata[:lineageInfo].length
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC contact address is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC contact voice phone is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC lineage procedure date is missing'
 
    end
 

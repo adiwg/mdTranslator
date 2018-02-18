@@ -41,8 +41,7 @@ module ADIWG
                      if paramCount == 5
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'general vertical near-side perspective projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: General Vertical Near-side perspective projection is missing one or more parameters'
                      end
                   end
 

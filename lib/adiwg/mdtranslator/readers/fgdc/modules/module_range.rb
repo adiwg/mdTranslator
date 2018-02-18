@@ -32,7 +32,7 @@ module ADIWG
                         hRange = intMetadataClass.newValueRange
                         hAttribute[:valueRange] << hRange
 
-                        # entity attribute 5.1.2.4.2.1 (rdommin) - range minimum
+                        # entity attribute 5.1.2.4.2.1 (rdommin) - range minimum (required)
                         # -> dataDictionary.entities.attributes.minValue
                         # -> dataDictionary.entities.attributes.valueRange.minRangeValue
                         min = xRange.xpath('./rdommin').text
@@ -49,8 +49,11 @@ module ADIWG
                            end
                            hAttribute[:minValue] = b[0]
                         end
+                        if min.nil?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC domain range minimum is missing'
+                        end
 
-                        # entity attribute 5.1.2.4.2.2 (rdommax) - range maximum
+                        # entity attribute 5.1.2.4.2.2 (rdommax) - range maximum (required)
                         # -> dataDictionary.entities.attributes.maxValue
                         # -> dataDictionary.entities.attributes.valueRange.maxRangeValue
                         max = xRange.xpath('./rdommax').text
@@ -66,6 +69,9 @@ module ADIWG
                               end
                            end
                            hAttribute[:maxValue] = b[b.length-1]
+                        end
+                        if max.nil?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC domain range maximum is missing'
                         end
 
                         # entity attribute 5.1.2.4.2.3 (attrunit) - units of measure
