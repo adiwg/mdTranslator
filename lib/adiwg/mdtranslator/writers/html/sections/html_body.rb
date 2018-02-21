@@ -287,7 +287,7 @@ module ADIWG
                      # load leaflet
                      @html.link( :rel => 'stylesheet', :href => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.css')
                      @html.script('', :src => 'https://unpkg.com/leaflet@1.0.3/dist/leaflet.js')
-                     @html.script('', :src => 'http://maps.stamen.com/js/tile.stamen.js?v1.3.0')
+                     @html.script('', :src => 'https://stamen-maps.a.ssl.fastly.net/js/tile.stamen.js')
 
                      # add inline javascript
                      # read javascript from file
