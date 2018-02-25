@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-06-06 add citation to repository
 # 	Stan Smith 2017-02-09 original script
 
@@ -18,8 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMdDist.empty?
-                     responseObj[:readerExecutionMessages] << 'Metadata Repository object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson metadata repository object is empty'
                      return nil
                   end
 
@@ -32,7 +32,7 @@ module ADIWG
                      intMdDist[:repository] = hMdDist['repository']
                   end
                   if intMdDist[:repository].nil? || intMdDist[:repository] == ''
-                     responseObj[:readerExecutionMessages] << 'Metadata Repository repository is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata repository name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
 
                   # metadata distribution - metadata format
                   if hMdDist.has_key?('metadataStandard')
-                     if hMdDist['metadataStandard'] != ''
+                     unless hMdDist['metadataStandard'] == ''
                         intMdDist[:metadataStandard] = hMdDist['metadataStandard']
                      end
                   end

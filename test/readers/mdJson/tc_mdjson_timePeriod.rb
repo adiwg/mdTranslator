@@ -49,7 +49,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
    end
 
-   def test_timePeriod_empty_dateAgeAge_elements
+   def test_timePeriod_empty_dateAgeAge_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['startDateTime'] = ''
@@ -61,11 +61,13 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson time period must have a starting time, ending time, or geologic age'
 
    end
 
-   def test_timePeriod_missing_dateAgeAge_elements
+   def test_timePeriod_missing_dateAgeAge_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('startDateTime')
@@ -77,7 +79,9 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson time period must have a starting time, ending time, or geologic age'
 
    end
 
@@ -133,8 +137,9 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson time period object is empty'
 
    end
 

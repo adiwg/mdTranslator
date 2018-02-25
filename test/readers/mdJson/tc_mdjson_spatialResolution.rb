@@ -2,8 +2,8 @@
 # reader / mdJson / module_spatialResolution
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-14 original script
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-14 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_spatialResolution'
@@ -148,14 +148,56 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
 
    end
 
+   def test_spatialResolution_empty_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+      hIn['scaleFactor'] = ''
+      hIn['measure'] = {}
+      hIn['levelOfDetail'] = ''
+      hIn['coordinateResolution'] = {}
+      hIn['bearingDistanceResolution'] = {}
+      hIn['geographicResolution'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson spatial resolution did not have an object of supported type'
+
+   end
+
+   def test_spatialResolution_missing_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+      hIn['nonElement'] = ''
+      hIn.delete('scaleFactor')
+      hIn.delete('measure')
+      hIn.delete('levelOfDetail')
+      hIn.delete('coordinateResolution')
+      hIn.delete('bearingDistanceResolution')
+      hIn.delete('geographicResolution')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson spatial resolution did not have an object of supported type'
+
+   end
+
    def test_empty_spatialResolution_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson spatial resolution object is empty'
 
    end
 

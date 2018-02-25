@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2018-02-14 rename allowMany to mustBeUnique
 #  Stan Smith 2017-11-01 added new elements to support fgdc and flat files
 #  Stan Smith 2016-10-05 refactored for mdJson 2.0
@@ -28,8 +29,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAttribute.empty?
-                     responseObj[:readerExecutionMessages] << 'Entity Attribute object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary entity attribute object is empty'
                      return nil
                   end
 
@@ -39,7 +39,7 @@ module ADIWG
 
                   # attribute - common name
                   if hAttribute.has_key?('commonName')
-                     if hAttribute['commonName'] != ''
+                     unless hAttribute['commonName'] == ''
                         intAttribute[:attributeName] = hAttribute['commonName']
                      end
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intAttribute[:attributeCode] = hAttribute['codeName']
                   end
                   if intAttribute[:attributeCode].nil? || intAttribute[:attributeCode] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary attribute code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -57,7 +57,7 @@ module ADIWG
                   # attribute - alias []
                   if hAttribute.has_key?('alias')
                      hAttribute['alias'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intAttribute[:attributeAlias] << item
                         end
                      end
@@ -68,7 +68,7 @@ module ADIWG
                      intAttribute[:attributeDefinition] = hAttribute['definition']
                   end
                   if intAttribute[:attributeDefinition].nil? || intAttribute[:attributeDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary attribute definition is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute definition is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -89,7 +89,7 @@ module ADIWG
                      intAttribute[:dataType] = hAttribute['dataType']
                   end
                   if intAttribute[:dataType].nil? || intAttribute[:dataType] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary attribute data type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute data type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -106,6 +106,9 @@ module ADIWG
                   if hAttribute.has_key?('allowMany')
                      if hAttribute['allowMany'] === true
                         intAttribute[:mustBeUnique] = hAttribute['allowMany']
+                        responseObj[:readerExecutionMessages] <<
+                           'WARNING: mdJson data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
+                        return nil
                      end
                   end
                   if hAttribute.has_key?('mustBeUnique')
@@ -116,56 +119,56 @@ module ADIWG
 
                   # attribute - units of measure
                   if hAttribute.has_key?('units')
-                     if hAttribute['units'] != ''
+                     unless hAttribute['units'] == ''
                         intAttribute[:unitOfMeasure] = hAttribute['units']
                      end
                   end
 
                   # attribute - units of measure resolution
                   if hAttribute.has_key?('unitsResolution')
-                     if hAttribute['unitsResolution'] != ''
+                     unless hAttribute['unitsResolution'] == ''
                         intAttribute[:measureResolution] = hAttribute['unitsResolution']
                      end
                   end
 
                   # attribute - case sensitive {Boolean} (default = false)
                   if hAttribute.has_key?('isCaseSensitive')
-                     if hAttribute['unitsResolution'] != ''
+                     unless hAttribute['unitsResolution'] == ''
                         intAttribute[:isCaseSensitive] = hAttribute['isCaseSensitive']
                      end
                   end
 
                   # attribute - field width
                   if hAttribute.has_key?('fieldWidth')
-                     if hAttribute['fieldWidth'] != ''
+                     unless hAttribute['fieldWidth'] == ''
                         intAttribute[:fieldWidth] = hAttribute['fieldWidth']
                      end
                   end
 
                   # attribute - missing value
                   if hAttribute.has_key?('missingValue')
-                     if hAttribute['missingValue'] != ''
+                     unless hAttribute['missingValue'] == ''
                         intAttribute[:missingValue] = hAttribute['missingValue']
                      end
                   end
 
                   # attribute - domain ID
                   if hAttribute.has_key?('domainId')
-                     if hAttribute['domainId'] != ''
+                     unless hAttribute['domainId'] == ''
                         intAttribute[:domainId] = hAttribute['domainId']
                      end
                   end
 
                   # attribute - minimum value
                   if hAttribute.has_key?('minValue')
-                     if hAttribute['minValue'] != ''
+                     unless hAttribute['minValue'] == ''
                         intAttribute[:minValue] = hAttribute['minValue']
                      end
                   end
 
                   # attribute - maximum value
                   if hAttribute.has_key?('maxValue')
-                     if hAttribute['maxValue'] != ''
+                     unless hAttribute['maxValue'] == ''
                         intAttribute[:maxValue] = hAttribute['maxValue']
                      end
                   end

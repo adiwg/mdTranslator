@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-11-01 added domainReference
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-23 added error reporting of missing items
@@ -24,8 +25,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDomain.empty?
-                     responseObj[:readerExecutionMessages] << 'Domain Member object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary domain object is empty'
                      return nil
                   end
 
@@ -38,7 +38,7 @@ module ADIWG
                      intDomain[:domainId] = hDomain['domainId']
                   end
                   if intDomain[:domainId].nil? || intDomain[:domainId] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain ID is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain ID is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -55,7 +55,7 @@ module ADIWG
                      intDomain[:domainCode] = hDomain['codeName']
                   end
                   if intDomain[:domainCode].nil? || intDomain[:domainCode] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain code is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -65,7 +65,7 @@ module ADIWG
                      intDomain[:domainDescription] = hDomain['description']
                   end
                   if intDomain[:domainDescription].nil? || intDomain[:domainDescription] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

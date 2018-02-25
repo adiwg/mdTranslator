@@ -88,9 +88,11 @@
       },
       "resourceDistribution": [
          {
+            "description": "distribution description",
             "liabilityStatement": "distribution liability statement 1"
          },
          {
+            "description": "distribution description",
             "liabilityStatement": "distribution liability statement 2"
          }
       ]

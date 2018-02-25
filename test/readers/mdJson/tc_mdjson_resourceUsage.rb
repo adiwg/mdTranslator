@@ -53,7 +53,8 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson resource usage specific usage is missing'
 
     end
 
@@ -67,7 +68,8 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson resource usage specific usage is missing'
 
     end
 
@@ -127,8 +129,9 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert hResponse[:readerExecutionPass]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson resource usage object is empty'
 
     end
 

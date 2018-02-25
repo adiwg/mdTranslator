@@ -168,14 +168,52 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
 
    end
 
+   def test_referenceSystem_empty_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['referenceSystemType'] = ''
+      hIn['referenceSystemIdentifier'] = {}
+      hIn['referenceSystemWKT'] = ''
+      hIn['referenceSystemParameterSet'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson spatial reference system must declare reference system type, identifier, WKT, or parameter set'
+
+   end
+
+   def test_referenceSystem_missing_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['nonElement'] = ''
+      hIn.delete('referenceSystemType')
+      hIn.delete('referenceSystemIdentifier')
+      hIn.delete('referenceSystemWKT')
+      hIn.delete('referenceSystemParameterSet')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson spatial reference system must declare reference system type, identifier, WKT, or parameter set'
+
+   end
+
    def test_empty_referenceSystem_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson spatial reference system object is empty'
 
    end
 

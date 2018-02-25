@@ -2,11 +2,12 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-10-17 refactored for mdJson 2.0
-#   Stan Smith 2015-07-14 refactored to remove global namespace constants
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-#   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2016-10-17 refactored for mdJson 2.0
+#  Stan Smith 2015-07-14 refactored to remove global namespace constants
+#  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#  Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
 # 	Stan Smith 2013-11-26 original script
 
 require_relative 'module_citation'
@@ -26,8 +27,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hSource.empty?
-                     responseObj[:readerExecutionMessages] << 'Source object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson source object is empty'
                      return nil
                   end
 
@@ -47,7 +47,7 @@ module ADIWG
                      intSource[:description] = hSource['description']
                   end
                   if intSource[:description].nil? || intSource[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'Source description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson source description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

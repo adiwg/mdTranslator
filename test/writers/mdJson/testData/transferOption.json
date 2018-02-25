@@ -108,6 +108,11 @@
                         ]
                      },
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/1"
+                           }
+                        ],
                         "transferSize": 10.9
                      }
                   ]

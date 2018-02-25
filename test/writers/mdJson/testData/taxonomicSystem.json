@@ -67,6 +67,11 @@
                   }
                }
             ],
+            "identificationReference": [
+               {
+                  "identifier": "taxonomic reference identifier"
+               }
+            ],
             "identificationProcedure": "identificationProcedure",
             "taxonomicClassification": {
                "commonName": [

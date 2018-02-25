@@ -193,7 +193,14 @@
           <gml:pos>0.0 0.0 0.0 1.0 1.0 1.0 1.0 0.0</gml:pos>
         </gml:Point>
       </gmd:cornerPoints>
-      <gmd:centerPoint/>
+      <gmd:centerPoint>
+        <gml:Point gml:id="point_006" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:pos>0.5 0.5</gml:pos>
+        </gml:Point>
+      </gmd:centerPoint>
       <gmd:pointInPixel>
         <gmd:MD_PixelOrientationCode>upperRight</gmd:MD_PixelOrientationCode>
       </gmd:pointInPixel>

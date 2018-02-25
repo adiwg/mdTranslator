@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # 	Stan Smith 2017-10-19 original script
 
 module ADIWG
@@ -15,8 +16,8 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hCoordRes.empty?
-                     responseObj[:readerExecutionMessages] << 'Coordinate Resolution object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] <<
+                        'WARNING: mdJson spatial resolution coordinate resolution object is empty'
                      return nil
                   end
 
@@ -29,7 +30,8 @@ module ADIWG
                      intCoordRes[:abscissaResolutionX] = hCoordRes['abscissaResolutionX']
                   end
                   if intCoordRes[:abscissaResolutionX].nil? || intCoordRes[:abscissaResolutionX] == ''
-                     responseObj[:readerExecutionMessages] << 'Coordinate Resolution is missing abscissa resolution'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson coordinate spatial resolution abscissa resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +41,8 @@ module ADIWG
                      intCoordRes[:ordinateResolutionY] = hCoordRes['ordinateResolutionY']
                   end
                   if intCoordRes[:ordinateResolutionY].nil? || intCoordRes[:ordinateResolutionY] == ''
-                     responseObj[:readerExecutionMessages] << 'Coordinate Resolution is missing ordinate resolution'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson coordinate spatial resolution ordinate resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +52,7 @@ module ADIWG
                      intCoordRes[:unitOfMeasure] = hCoordRes['unitOfMeasure']
                   end
                   if intCoordRes[:unitOfMeasure].nil? || intCoordRes[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'Coordinate Resolution is missing units of measure'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson coordinate spatial resolution units are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

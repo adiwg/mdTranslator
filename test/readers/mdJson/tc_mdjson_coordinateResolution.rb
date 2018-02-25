@@ -45,7 +45,9 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson coordinate spatial resolution abscissa resolution is missing'
 
    end
 
@@ -58,7 +60,9 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson coordinate spatial resolution abscissa resolution is missing'
 
    end
 
@@ -71,7 +75,9 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson coordinate spatial resolution ordinate resolution is missing'
 
    end
 
@@ -84,7 +90,9 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson coordinate spatial resolution ordinate resolution is missing'
 
    end
 
@@ -97,7 +105,8 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coordinate spatial resolution units are missing'
 
    end
 
@@ -110,7 +119,8 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coordinate spatial resolution units are missing'
 
    end
 
@@ -120,8 +130,10 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson spatial resolution coordinate resolution object is empty'
 
    end
 

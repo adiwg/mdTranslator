@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-05-16 deprecated topic category
 #   ... topic category is now handled as keyword list
 #  Stan Smith 2016-11-01 original script
@@ -37,7 +38,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hResInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -58,7 +59,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo is missing resourceType'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info resource type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -74,7 +75,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo is missing citation'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info citation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -84,21 +85,21 @@ module ADIWG
                      intResInfo[:abstract] = hResInfo['abstract']
                   end
                   if intResInfo[:abstract].nil? || intResInfo[:abstract] == ''
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo is missing abstract'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info abstract is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # resource information - short abstract
                   if hResInfo.has_key?('shortAbstract')
-                     if hResInfo['shortAbstract'] != ''
+                     unless hResInfo['shortAbstract'] == ''
                         intResInfo[:shortAbstract] = hResInfo['shortAbstract']
                      end
                   end
 
                   # resource information - purpose
                   if hResInfo.has_key?('purpose')
-                     if hResInfo['purpose'] != ''
+                     unless hResInfo['purpose'] == ''
                         intResInfo[:purpose] = hResInfo['purpose']
                      end
                   end
@@ -106,7 +107,7 @@ module ADIWG
                   # resource information - credits []
                   if hResInfo.has_key?('credit')
                      hResInfo['credit'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intResInfo[:credits] << item
                         end
                      end
@@ -126,13 +127,13 @@ module ADIWG
                   # resource information - status [] (required)
                   if hResInfo.has_key?('status')
                      hResInfo['status'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intResInfo[:status] << item
                         end
                      end
                   end
                   if intResInfo[:status].empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo is missing status'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info status is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -153,7 +154,8 @@ module ADIWG
                         unless hReturn.nil?
                            intResInfo[:keywords] << hReturn[0]
                         end
-                        responseObj[:readerExecutionMessages] << 'TopicCategory is deprecated, use keyword type isoTopicCategory instead'
+                        responseObj[:readerExecutionMessages] <<
+                           'WARNING: mdJson TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
                      end
                   end
 
@@ -168,7 +170,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:pointOfContacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo object is missing pointOfContact'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info point-of-contact is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -187,7 +189,7 @@ module ADIWG
                   # resource information - spatial representation type []
                   if hResInfo.has_key?('spatialRepresentationType')
                      hResInfo['spatialRepresentationType'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intResInfo[:spatialRepresentationTypes] << item
                         end
                      end
@@ -325,7 +327,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:defaultResourceLocale].empty?
-                     responseObj[:readerExecutionMessages] << 'ResourceInfo object is missing defaultResourceLocale'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info default locale is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

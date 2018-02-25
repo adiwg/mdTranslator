@@ -52,7 +52,8 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson source description is missing'
 
    end
 
@@ -65,7 +66,8 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson source description is missing'
 
    end
 
@@ -127,8 +129,9 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson source object is empty'
 
    end
 

@@ -48,7 +48,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution is missing distance resolution'
 
    end
 
@@ -61,7 +62,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution is missing distance resolution'
 
    end
 
@@ -74,7 +76,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution distance units are missing'
 
    end
 
@@ -87,7 +90,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution distance units are missing'
 
    end
 
@@ -100,7 +104,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing resolution is missing '
 
    end
 
@@ -113,7 +118,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing resolution is missing '
 
    end
 
@@ -126,7 +132,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing units is missing'
 
    end
 
@@ -139,7 +146,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing units is missing'
 
    end
 
@@ -152,7 +160,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing direction is missing'
 
    end
 
@@ -165,7 +174,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing direction is missing'
 
    end
 
@@ -178,7 +188,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing meridian is missing'
 
    end
 
@@ -191,7 +202,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing meridian is missing'
 
    end
 
@@ -201,8 +213,9 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson bearing distance resolution object is empty'
 
    end
 

@@ -1,7 +1,9 @@
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # unpack geoJson
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-09-28 added description element to support fgdc
 #  Stan Smith 2016-12-01 original script
 
@@ -20,8 +22,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoExt.empty?
-                     responseObj[:readerExecutionMessages] << 'geographicExtent object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic extent object is empty'
                      return nil
                   end
 
@@ -29,10 +30,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intGeoExt = intMetadataClass.newGeographicExtent
 
+                  haveGExtent = false
+
                   # geographic extent - description
                   if hGeoExt.has_key?('description')
                      if hGeoExt['description'] != ''
                         intGeoExt[:description] = hGeoExt['description']
+                        haveGExtent = true
                      end
                   end
 
@@ -50,6 +54,7 @@ module ADIWG
                         unless hReturn.nil?
                            intGeoExt[:identifier] = hReturn
                         end
+                        haveGExtent = true
                      end
                   end
 
@@ -59,6 +64,7 @@ module ADIWG
                         hReturn = BoundingBox.unpack(hGeoExt['boundingBox'], responseObj)
                         unless hReturn.nil?
                            intGeoExt[:boundingBox] = hReturn
+                           haveGExtent = true
                         end
                      end
                   end
@@ -69,6 +75,7 @@ module ADIWG
                         hReturn = GeoJson.unpack(hElement, responseObj)
                         unless hReturn.nil?
                            intGeoExt[:geographicElements] << hReturn
+                           haveGExtent = true
                         end
                      end
                   end
@@ -85,12 +92,10 @@ module ADIWG
                      intGeoExt[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoExt[:geographicElements])
                   end
 
-                  # test for completeness
-                  if intGeoExt[:identifier].empty? &&
-                     intGeoExt[:boundingBox].empty? &&
-                     intGeoExt[:geographicElements].empty?
+                  # error messages
+                  unless haveGExtent
                      responseObj[:readerExecutionMessages] <<
-                        'geographicExtent must have at least one identifier, boundingBox, or geographic element'
+                        'ERROR: mdJson geographic extent must have at least one description, identifier, bounding box, or geographic element'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

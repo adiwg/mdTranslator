@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # 	Stan Smith 2017-10-19 original script
 
 module ADIWG
@@ -15,8 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoRes.empty?
-                     responseObj[:readerExecutionMessages] << 'Geographic Resolution object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution object is empty'
                      return nil
                   end
 
@@ -29,7 +29,8 @@ module ADIWG
                      intGeoRes[:latitudeResolution] = hGeoRes['latitudeResolution']
                   end
                   if intGeoRes[:latitudeResolution].nil? || intGeoRes[:latitudeResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'Geographic Resolution is missing latitude resolution'
+                     responseObj[:readerExecutionMessages] <<
+                        'WARNING: mdJson geographic spatial resolution latitude resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +40,7 @@ module ADIWG
                      intGeoRes[:longitudeResolution] = hGeoRes['longitudeResolution']
                   end
                   if intGeoRes[:longitudeResolution].nil? || intGeoRes[:longitudeResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'Geographic Resolution is missing longitude resolution'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution longitude resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +50,7 @@ module ADIWG
                      intGeoRes[:unitOfMeasure] = hGeoRes['unitOfMeasure']
                   end
                   if intGeoRes[:unitOfMeasure].nil? || intGeoRes[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'Geographic resolution is missing unit of measure'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution units are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

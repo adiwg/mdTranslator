@@ -36,14 +36,51 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
 
    end
 
+   def test_empty_referenceSystemParameter_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['projection'] = {}
+      hIn['geodetic'] = {}
+      hIn['verticalDatum'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
+
+   end
+
+   def test_missing_referenceSystemParameter_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['nonElement'] = ''
+      hIn.delete('projection')
+      hIn.delete('geodetic')
+      hIn.delete('verticalDatum')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
+
+   end
+
    def test_empty_referenceSystemParameter_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson spatial reference system parameters object is empty'
 
    end
 

@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # 	Stan Smith 2016-10-15 original script
 
 require_relative 'module_scope'
@@ -21,11 +22,9 @@ module ADIWG
 
                def self.unpack(hConstraint, responseObj)
 
-
                   # return nil object if input is empty
                   if hConstraint.empty?
-                     responseObj[:readerExecutionMessages] << 'Constraint object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson constraint object is empty'
                      return nil
                   end
 
@@ -36,19 +35,19 @@ module ADIWG
                   # constraint - type (required)
                   type = nil
                   if hConstraint.has_key?('type')
-                     if hConstraint['type'] != ''
+                     unless hConstraint['type'] == ''
                         type = hConstraint['type']
                         if %w{ use legal security }.one? {|word| word == type}
                            intConstraint[:type] = hConstraint['type']
                         else
-                           responseObj[:readerExecutionMessages] << 'Constraint type must be use, legal, or security'
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson constraint type must be use, legal, or security'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intConstraint[:type].nil? || intConstraint[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'Constraint type declaration is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson constraint type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -56,7 +55,7 @@ module ADIWG
                   # constraint - use limitation [] (required if type='use')
                   if hConstraint.has_key?('useLimitation')
                      hConstraint['useLimitation'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intConstraint[:useLimitation] << item
                         end
                      end
@@ -125,10 +124,17 @@ module ADIWG
                            unless hReturn.nil?
                               intConstraint[:legalConstraint] = hReturn
                            end
+                           if hReturn.nil?
+                              return nil
+                           end
                         end
-                     end
-                     if intConstraint[:legalConstraint].empty?
-                        responseObj[:readerExecutionMessages] << 'Legal Constraint object is missing or empty'
+                        if hObject.empty?
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson legal constraint object is missing'
+                           responseObj[:readerExecutionPass] = false
+                           return nil
+                        end
+                     else
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson legal constraint object is missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
@@ -142,10 +148,17 @@ module ADIWG
                            unless hReturn.nil?
                               intConstraint[:securityConstraint] = hReturn
                            end
+                           if hReturn.nil?
+                              return nil
+                           end
                         end
-                     end
-                     if intConstraint[:securityConstraint].empty?
-                        responseObj[:readerExecutionMessages] << 'Security Constraint object is missing or empty'
+                        if hObject.empty?
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson security constraint object is missing'
+                           responseObj[:readerExecutionPass] = false
+                           return nil
+                        end
+                     else
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson security constraint object is missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end

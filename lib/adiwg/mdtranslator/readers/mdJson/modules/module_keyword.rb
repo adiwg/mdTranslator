@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2016-10-23 refactored for mdJson 2.0
 #  Stan Smith 2015-08-24 added return if input hash is empty
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -27,8 +28,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hKeyword.empty?
-                     responseObj[:readerExecutionMessages] << 'Keyword is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson keyword object is empty'
                      return nil
                   end
 
@@ -48,14 +48,14 @@ module ADIWG
                      end
                   end
                   if intKeyword[:keywords].empty?
-                     responseObj[:readerExecutionMessages] << 'Keyword is missing keywords'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson keyword keyword list is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # keyword - keyType
                   if hKeyword.has_key?('keywordType')
-                     if hKeyword['keywordType'] != ''
+                     unless hKeyword['keywordType'] == ''
                         intKeyword[:keywordType] = hKeyword['keywordType']
                      end
                   end

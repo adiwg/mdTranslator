@@ -110,7 +110,11 @@
                      {
                         "unitsOfDistribution": "",
                         "transferSize": 9,
-                        "onlineOption": [],
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/1"
+                           }
+                        ],
                         "offlineOption": [],
                         "distributionFormat": [
                            {
@@ -121,7 +125,12 @@
                         ]
                      },
                      {
-                        "transferSize": 0
+                        "transferSize": 0,
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/1"
+                           }
+                        ]
                      }
                   ]
                }

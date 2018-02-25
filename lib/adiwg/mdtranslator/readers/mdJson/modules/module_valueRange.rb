@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 # 	Stan Smith 2017-11-01 original script
 
 module ADIWG
@@ -15,8 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hRange.empty?
-                     responseObj[:readerExecutionMessages] << 'Value Range object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson value range object is empty'
                      return nil
                   end
 
@@ -29,7 +29,7 @@ module ADIWG
                      intRange[:minRangeValue] = hRange['minRangeValue']
                   end
                   if intRange[:minRangeValue].nil? || intRange[:minRangeValue] == ''
-                     responseObj[:readerExecutionMessages] << 'Value Range object is missing minimum'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson value range minimum is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +39,7 @@ module ADIWG
                      intRange[:maxRangeValue] = hRange['maxRangeValue']
                   end
                   if intRange[:maxRangeValue].nil? || intRange[:maxRangeValue] == ''
-                     responseObj[:readerExecutionMessages] << 'Value Range object is missing maximum'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson value range maximum is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

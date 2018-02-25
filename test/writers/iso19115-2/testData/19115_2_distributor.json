@@ -76,9 +76,19 @@
                   ],
                   "transferOption": [
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/0"
+                           }
+                        ],
                         "transferSize": 1.9
                      },
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/0"
+                           }
+                        ],
                         "transferSize": 2.9
                      }
                   ]
@@ -99,6 +109,11 @@
                   ],
                   "transferOption": [
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/0"
+                           }
+                        ],
                         "transferSize": 3.9
                      }
                   ]

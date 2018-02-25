@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-08-30 added support for process step sources
 #  Stan Smith 2016-10-15 refactored for mdJson 2.0
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -25,8 +26,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hProcStep.empty?
-                     responseObj[:readerExecutionMessages] << 'Process Step object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson process step object is empty'
                      return nil
                   end
 
@@ -36,24 +36,24 @@ module ADIWG
 
                   # process step - step ID
                   if hProcStep.has_key?('stepId')
-                     if hProcStep['stepId'] != ''
+                     unless hProcStep['stepId'] == ''
                         intProcStep[:stepId] = hProcStep['stepId']
                      end
                   end
 
-                  # process step - description - required
+                  # process step - description - (required)
                   if hProcStep.has_key?('description')
                      intProcStep[:description] = hProcStep['description']
                   end
                   if intProcStep[:description].nil? || intProcStep[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'Process Step attribute description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson process step description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # process step - rationale
                   if hProcStep.has_key?('rationale')
-                     if hProcStep['rationale'] != ''
+                     unless hProcStep['rationale'] == ''
                         intProcStep[:rationale] = hProcStep['rationale']
                      end
                   end

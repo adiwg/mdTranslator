@@ -12,91 +12,94 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_additionalDocumentatio
 
 class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
 
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AdditionalDocumentation
-    aIn = TestReaderMdJsonParent.getJson('additionalDocumentation.json')
-    @@hIn = aIn['additionalDocumentation'][0]
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AdditionalDocumentation
+   aIn = TestReaderMdJsonParent.getJson('additionalDocumentation.json')
+   @@hIn = aIn['additionalDocumentation'][0]
 
-    def test_additionalDocumentation_schema
+   def test_additionalDocumentation_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'additionalDocumentation.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'additionalDocumentation.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_additionalDocumentation_object
+   def test_complete_additionalDocumentation_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 2, metadata[:resourceTypes].length
-        assert_equal 2, metadata[:citation].length
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 2, metadata[:resourceTypes].length
+      assert_equal 2, metadata[:citation].length
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_additionalDocumentation_resourceType
+   def test_empty_additionalDocumentation_resourceType
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceType'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['resourceType'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson additional documentation is missing resource type'
+   end
 
-    end
+   def test_missing_additionalDocumentation_resourceType
 
-    def test_missing_additionalDocumentation_resourceType
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('resourceType')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('resourceType')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing resource type'
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   end
 
-    end
+   def test_empty_additionalDocumentation_citation
 
-    def test_empty_additionalDocumentation_citation
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['citation'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['citation'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing citation'
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_missing_additionalDocumentation_citation
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('citation')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_missing_additionalDocumentation_citation
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing citation'
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('citation')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_empty_additionalDocumentation_object
 
-    end
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-    def test_empty_additionalDocumentation_object
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson additional documentation object is empty'
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
-
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
-
-    end
+   end
 
 end

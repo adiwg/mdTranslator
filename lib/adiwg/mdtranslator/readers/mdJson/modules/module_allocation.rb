@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-08-30 refactored for mdJson schema 2.3
 #  Stan Smith 2016-10-30 original script
 
@@ -18,8 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAlloc.empty?
-                     responseObj[:readerExecutionMessages] << 'Allocation object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson budget allocation object is empty'
                      return nil
                   end
 
@@ -29,7 +29,7 @@ module ADIWG
 
                   # allocation - id
                   if hAlloc.has_key?('sourceAllocationId')
-                     if hAlloc['sourceAllocationId'] != ''
+                     unless hAlloc['sourceAllocationId'] == ''
                         intAlloc[:id] = hAlloc['sourceAllocationId']
                      end
                   end
@@ -39,7 +39,7 @@ module ADIWG
                      intAlloc[:amount] = hAlloc['amount']
                   end
                   if intAlloc[:amount].nil? || intAlloc[:amount] == ''
-                     responseObj[:readerExecutionMessages] << 'Allocation attribute is missing amount'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson budget allocation amount is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,21 +49,21 @@ module ADIWG
                      intAlloc[:currency] = hAlloc['currency']
                   end
                   if intAlloc[:currency].nil? || intAlloc[:currency] == ''
-                     responseObj[:readerExecutionMessages] << 'Allocation attribute is missing currency'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson budget allocation currency is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # allocation - source ID {contactId}
                   if hAlloc.has_key?('sourceId')
-                     if hAlloc['sourceId'] != ''
+                     unless hAlloc['sourceId'] == ''
                         intAlloc[:sourceId] = hAlloc['sourceId']
                      end
                   end
 
                   # allocation - recipient ID {contactId}
                   if hAlloc.has_key?('recipientId')
-                     if hAlloc['recipientId'] != ''
+                     unless hAlloc['recipientId'] == ''
                         intAlloc[:recipientId] = hAlloc['recipientId']
                      end
                   end
@@ -88,7 +88,7 @@ module ADIWG
 
                   # allocation - comment
                   if hAlloc.has_key?('comment')
-                     if hAlloc['comment'] != ''
+                     unless hAlloc['comment'] == ''
                         intAlloc[:comment] = hAlloc['comment']
                      end
                   end

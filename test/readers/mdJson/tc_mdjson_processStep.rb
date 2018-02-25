@@ -53,7 +53,8 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson process step description is missing'
 
    end
 
@@ -67,7 +68,8 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson process step description is missing'
 
    end
 
@@ -133,8 +135,9 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson process step object is empty'
 
    end
 

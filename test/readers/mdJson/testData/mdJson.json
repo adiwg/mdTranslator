@@ -197,7 +197,7 @@
                }
             ]
          },
-         "dictionaryFormat": "format",
+         "dictionaryFunctionalLanguage": "format",
          "dictionaryIncludedWithResource": true,
          "domain": [],
          "entity": []

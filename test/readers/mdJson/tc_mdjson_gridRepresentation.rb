@@ -10,126 +10,133 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_gridRepresentation'
 
 class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GridRepresentation
-    aIn = TestReaderMdJsonParent.getJson('grid.json')
-    @@hIn = aIn['gridRepresentation'][0]
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GridRepresentation
+   aIn = TestReaderMdJsonParent.getJson('grid.json')
+   @@hIn = aIn['gridRepresentation'][0]
 
-    def test_gridRepresentation_schema
+   def test_gridRep_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'gridRepresentation.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'gridRepresentation.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_gridRepresentation_object
+   def test_complete_gridRep_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 9, metadata[:numberOfDimensions]
-        assert_equal 2, metadata[:dimension].length
-        assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformationParameterAvailable]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 9, metadata[:numberOfDimensions]
+      assert_equal 2, metadata[:dimension].length
+      assert_equal 'cellGeometry', metadata[:cellGeometry]
+      assert metadata[:transformationParameterAvailable]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_gridRepresentation_empty_numberOfDimensions
+   def test_gridRep_empty_numberOfDimensions
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['numberOfDimensions'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['numberOfDimensions'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation number-of-dimensions is missing'
 
-    end
+   end
 
-    def test_gridRepresentation_missing_numberOfDimensions
+   def test_gridRep_missing_numberOfDimensions
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('numberOfDimensions')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('numberOfDimensions')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation number-of-dimensions is missing'
 
-    end
+   end
 
-    def test_gridRepresentation_empty_cellGeometry
+   def test_gridRep_empty_dimensions
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['cellGeometry'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['dimension'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation dimensions are missing'
 
-    end
+   end
 
-    def test_gridRepresentation_missing_cellGeometry
+   def test_gridRep_missing_dimensions
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('cellGeometry')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('dimension')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation dimensions are missing'
 
-    end
+   end
 
-    def test_gridRepresentation_empty_elements
+   def test_gridRep_empty_cellGeometry
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['dimension'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['cellGeometry'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 9, metadata[:numberOfDimensions]
-        assert_empty metadata[:dimension]
-        assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformationParameterAvailable]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation cell geometry is missing'
 
-    end
+   end
 
-    def test_gridRepresentation_missing_elements
+   def test_gridRep_missing_cellGeometry
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('dimension')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('cellGeometry')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 9, metadata[:numberOfDimensions]
-        assert_empty metadata[:dimension]
-        assert_equal 'cellGeometry', metadata[:cellGeometry]
-        assert metadata[:transformationParameterAvailable]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson grid representation cell geometry is missing'
 
-    end
+   end
 
-    def test_empty_gridRepresentation_object
+   def test_empty_gridRep_object
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson grid representation object is empty'
 
-    end
+   end
 
 end

@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_identifier'
@@ -17,8 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeodetic.empty?
-                     responseObj[:readerExecutionMessages] << 'Geodetic object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson spatial reference geodetic object is empty'
                      return nil
                   end
 
@@ -38,7 +38,7 @@ module ADIWG
 
                   # geodetic - datum name
                   if hGeodetic.has_key?('datumName')
-                     if hGeodetic['datumName'] != ''
+                     unless hGeodetic['datumName'] == ''
                         intGeodetic[:datumName] = hGeodetic['datumName']
                      end
                   end
@@ -58,28 +58,28 @@ module ADIWG
                      intGeodetic[:ellipsoidName] = hGeodetic['ellipsoidName']
                   end
                   if intGeodetic[:ellipsoidName].nil? || intGeodetic[:ellipsoidName] == ''
-                     responseObj[:readerExecutionMessages] << 'Ellipsoid name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson spatial reference geodetic ellipsoid name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # geodetic - semi-major axis
                   if hGeodetic.has_key?('semiMajorAxis')
-                     if hGeodetic['semiMajorAxis'] != ''
+                     unless hGeodetic['semiMajorAxis'] == ''
                         intGeodetic[:semiMajorAxis] = hGeodetic['semiMajorAxis']
                      end
                   end
 
                   # geodetic - axis units
                   if hGeodetic.has_key?('axisUnits')
-                     if hGeodetic['axisUnits'] != ''
+                     unless['axisUnits'] == ''
                         intGeodetic[:axisUnits] = hGeodetic['axisUnits']
                      end
                   end
 
                   # geodetic - denominator of flattening ratio
                   if hGeodetic.has_key?('denominatorOfFlatteningRatio')
-                     if hGeodetic['denominatorOfFlatteningRatio'] != ''
+                     unless hGeodetic['denominatorOfFlatteningRatio'] == ''
                         intGeodetic[:denominatorOfFlatteningRatio] = hGeodetic['denominatorOfFlatteningRatio']
                      end
                   end

@@ -2981,6 +2981,11 @@
                         ]
                      },
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/3"
+                           }
+                        ],
                         "transferSize": 10.9
                      }
                   ]
@@ -3444,7 +3449,7 @@
                }
             ]
          },
-         "dictionaryFormat": "MSSQL",
+         "dictionaryFunctionalLanguage": "MSSQL",
          "dictionaryIncludedWithResource": false
       }
    ],

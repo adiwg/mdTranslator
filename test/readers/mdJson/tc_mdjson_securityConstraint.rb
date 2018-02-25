@@ -11,160 +11,179 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_securityConstraint'
 
 class TestReaderMdJsonSecurityConstraint < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Constraint
-    aIn = TestReaderMdJsonParent.getJson('securityConstraint.json')
-    @@hIn = aIn['constraint'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Constraint
+   aIn = TestReaderMdJsonParent.getJson('securityConstraint.json')
+   @@hIn = aIn['constraint'][0]
 
-    def test_securityConstraint_schema
+   def test_secCon_schema
 
-        hIn = @@hIn['security']
-        errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment=>'securityConstraint')
-        assert_empty errors
+      hIn = @@hIn['security']
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'constraint.json', :fragment => 'securityConstraint')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_securityConstraint
+   def test_complete_secCon
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'security', metadata[:type]
-        assert_empty metadata[:useLimitation]
-        assert_empty metadata[:scope]
-        assert_empty metadata[:graphic]
-        assert_empty metadata[:reference]
-        assert_empty metadata[:releasability]
-        assert_empty metadata[:responsibleParty]
-        assert_empty metadata[:legalConstraint]
-        refute_empty metadata[:securityConstraint]
+      assert_equal 'security', metadata[:type]
+      assert_empty metadata[:useLimitation]
+      assert_empty metadata[:scope]
+      assert_empty metadata[:graphic]
+      assert_empty metadata[:reference]
+      assert_empty metadata[:releasability]
+      assert_empty metadata[:responsibleParty]
+      assert_empty metadata[:legalConstraint]
+      refute_empty metadata[:securityConstraint]
 
-        hSecurityCon = metadata[:securityConstraint]
-        assert_equal 'classification', hSecurityCon[:classCode]
-        assert_equal 'classificationSystem', hSecurityCon[:classSystem]
-        assert_equal 'userNote', hSecurityCon[:userNote]
-        assert_equal 'handlingDescription', hSecurityCon[:handling]
+      hSecurityCon = metadata[:securityConstraint]
+      assert_equal 'classification', hSecurityCon[:classCode]
+      assert_equal 'classificationSystem', hSecurityCon[:classSystem]
+      assert_equal 'userNote', hSecurityCon[:userNote]
+      assert_equal 'handlingDescription', hSecurityCon[:handling]
 
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_securityConstraint_empty_classification
+   def test_secCon_empty_classification
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['security']['classification'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['security']['classification'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson security constraint classification is missing'
 
-    end
+   end
 
-    def test_securityConstraint_missing_classification
+   def test_secCon_missing_classification
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['security'].delete('classification')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['security'].delete('classification')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson security constraint classification is missing'
 
-    end
+   end
 
-    def test_securityConstraint_empty_elements
+   def test_empty_securityConstraint
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['security']['classificationSystem'] = ''
-        hIn['security']['userNote'] = ''
-        hIn['security']['handlingDescription'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('security')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'security', metadata[:type]
-        assert_empty metadata[:useLimitation]
-        assert_empty metadata[:scope]
-        assert_empty metadata[:graphic]
-        assert_empty metadata[:reference]
-        assert_empty metadata[:releasability]
-        assert_empty metadata[:responsibleParty]
-        assert_empty metadata[:legalConstraint]
-        refute_empty metadata[:securityConstraint]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson security constraint object is missing'
 
-        hSecurityCon = metadata[:securityConstraint]
-        assert_equal 'classification', hSecurityCon[:classCode]
-        assert_nil hSecurityCon[:classSystem]
-        assert_nil hSecurityCon[:userNote]
-        assert_nil hSecurityCon[:handling]
+   end
 
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_missing_securityConstraint
 
-    end
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('security')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_securityConstraint_missing_elements
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson security constraint object is missing'
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['security'].delete('classificationSystem')
-        hIn['security'].delete('userNote')
-        hIn['security'].delete('handlingDescription')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_equal 'security', metadata[:type]
-        assert_empty metadata[:useLimitation]
-        assert_empty metadata[:scope]
-        assert_empty metadata[:graphic]
-        assert_empty metadata[:reference]
-        assert_empty metadata[:releasability]
-        assert_empty metadata[:responsibleParty]
-        assert_empty metadata[:legalConstraint]
-        refute_empty metadata[:securityConstraint]
+   def test_secCon_empty_elements
 
-        hSecurityCon = metadata[:securityConstraint]
-        assert_equal 'classification', hSecurityCon[:classCode]
-        assert_nil hSecurityCon[:classSystem]
-        assert_nil hSecurityCon[:userNote]
-        assert_nil hSecurityCon[:handling]
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['security']['classificationSystem'] = ''
+      hIn['security']['userNote'] = ''
+      hIn['security']['handlingDescription'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'security', metadata[:type]
+      assert_empty metadata[:useLimitation]
+      assert_empty metadata[:scope]
+      assert_empty metadata[:graphic]
+      assert_empty metadata[:reference]
+      assert_empty metadata[:releasability]
+      assert_empty metadata[:responsibleParty]
+      assert_empty metadata[:legalConstraint]
+      refute_empty metadata[:securityConstraint]
 
-    end
+      hSecurityCon = metadata[:securityConstraint]
+      assert_equal 'classification', hSecurityCon[:classCode]
+      assert_nil hSecurityCon[:classSystem]
+      assert_nil hSecurityCon[:userNote]
+      assert_nil hSecurityCon[:handling]
 
-    def test_missing_securityConstraint
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        TestReaderMdJsonParent.setContacts
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('security')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+   end
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+   def test_secCon_missing_elements
 
-    end
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['security'].delete('classificationSystem')
+      hIn['security'].delete('userNote')
+      hIn['security'].delete('handlingDescription')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_empty_constraint_object
+      assert_equal 'security', metadata[:type]
+      assert_empty metadata[:useLimitation]
+      assert_empty metadata[:scope]
+      assert_empty metadata[:graphic]
+      assert_empty metadata[:reference]
+      assert_empty metadata[:releasability]
+      assert_empty metadata[:responsibleParty]
+      assert_empty metadata[:legalConstraint]
+      refute_empty metadata[:securityConstraint]
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hSecurityCon = metadata[:securityConstraint]
+      assert_equal 'classification', hSecurityCon[:classCode]
+      assert_nil hSecurityCon[:classSystem]
+      assert_nil hSecurityCon[:userNote]
+      assert_nil hSecurityCon[:handling]
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
+
+   def test_empty_constraint_object
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
+
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson constraint object is empty'
+
+   end
 
 end

@@ -47,7 +47,8 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description name is missing'
 
     end
 
@@ -60,7 +61,8 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description name is missing'
 
     end
 
@@ -73,7 +75,8 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description description is missing'
 
     end
 
@@ -86,7 +89,8 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description description is missing'
 
     end
 
@@ -134,8 +138,9 @@ class TestReaderMdJsonCoverageDescription < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert hResponse[:readerExecutionPass]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson coverage description object is empty'
 
     end
 

@@ -2,7 +2,8 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-11-07 original script
+#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2016-11-07 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_schema'
@@ -22,7 +23,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMdJson.empty?
-                     responseObj[:readerExecutionMessages] << 'mdJson object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -42,7 +43,7 @@ module ADIWG
                      end
                   end
                   if intObj[:schema].empty?
-                     responseObj[:readerExecutionMessages] << 'mdJson object is missing schema'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson schema object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -59,12 +60,12 @@ module ADIWG
                      end
                   end
                   if intObj[:contacts].empty?
-                     responseObj[:readerExecutionMessages] << 'mdJson object is missing contact'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson contact object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
-                  # mdJson - metadata {metadata}
+                  # mdJson - metadata {metadata} (required)
                   if hMdJson.has_key?('metadata')
                      hObject = hMdJson['metadata']
                      unless hObject.empty?
@@ -73,6 +74,11 @@ module ADIWG
                            intObj[:metadata] = hReturn
                         end
                      end
+                  end
+                  if intObj[:metadata].empty?
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata object is missing'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
                   end
 
                   # mdJson - data dictionary [] {dataDictionary}

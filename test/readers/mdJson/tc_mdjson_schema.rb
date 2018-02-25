@@ -44,7 +44,8 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema name is missing'
 
     end
 
@@ -57,7 +58,8 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema name is missing'
 
     end
 
@@ -70,7 +72,8 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema version is missing'
 
     end
 
@@ -83,7 +86,8 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema version is missing'
 
     end
 
@@ -94,7 +98,8 @@ class TestReaderMdJsonSchema < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema object is empty'
 
     end
 

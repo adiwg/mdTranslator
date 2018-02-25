@@ -11,130 +11,134 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_featureCollection'
 
 class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::FeatureCollection
-    aIn = TestReaderMdJsonParent.getJson('featureCollection.json')
-    @@hIn = aIn['featureCollection'][0]
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::FeatureCollection
+   aIn = TestReaderMdJsonParent.getJson('featureCollection.json')
+   @@hIn = aIn['featureCollection'][0]
 
-    def test_featureCollection_schema
+   def test_featureCollection_schema
 
-        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
-        errors = JSON::Validator.fully_validate('geojson.json', @@hIn)
-        assert_empty errors
+      ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+      errors = JSON::Validator.fully_validate('geojson.json', @@hIn)
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_featureCollection
+   def test_complete_featureCollection
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'FeatureCollection', metadata[:type]
-        refute_empty metadata[:bbox]
-        refute_empty metadata[:features]
-        refute_empty metadata[:computedBbox]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'FeatureCollection', metadata[:type]
+      refute_empty metadata[:bbox]
+      refute_empty metadata[:features]
+      refute_empty metadata[:computedBbox]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_featureCollection_empty_type
+   def test_featureCollection_empty_type
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['type'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['type'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection type is missing'
 
-    end
+   end
 
-    def test_featureCollection_missing_type
+   def test_featureCollection_missing_type
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('type')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('type')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection type is missing'
 
-    end
+   end
 
-    def test_featureCollection_empty_features
+   def test_featureCollection_empty_features
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['features'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['features'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'FeatureCollection', metadata[:type]
-        refute_empty metadata[:bbox]
-        assert_empty metadata[:features]
-        assert_empty metadata[:computedBbox]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'FeatureCollection', metadata[:type]
+      refute_empty metadata[:bbox]
+      assert_empty metadata[:features]
+      assert_empty metadata[:computedBbox]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_featureCollection_missing_features
+   def test_featureCollection_missing_features
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('features')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('features')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection features are missing'
 
-    end
+   end
 
-    def test_featureCollection_empty_elements
+   def test_featureCollection_empty_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['bbox'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['bbox'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'FeatureCollection', metadata[:type]
-        assert_empty metadata[:bbox]
-        refute_empty metadata[:features]
-        refute_empty metadata[:computedBbox]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'FeatureCollection', metadata[:type]
+      assert_empty metadata[:bbox]
+      refute_empty metadata[:features]
+      refute_empty metadata[:computedBbox]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_featureCollection_missing_elements
+   def test_featureCollection_missing_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('bbox')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('bbox')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'FeatureCollection', metadata[:type]
-        assert_empty metadata[:bbox]
-        refute_empty metadata[:features]
-        refute_empty metadata[:computedBbox]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'FeatureCollection', metadata[:type]
+      assert_empty metadata[:bbox]
+      refute_empty metadata[:features]
+      refute_empty metadata[:computedBbox]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_featureCollection
+   def test_empty_featureCollection
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson GeoJson feature collection object is empty'
 
-    end
+   end
 
 end

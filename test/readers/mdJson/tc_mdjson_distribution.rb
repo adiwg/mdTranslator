@@ -38,18 +38,47 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
 
    end
 
-   def test_distribution_empty_elements
+   def test_distribution_empty_required
 
       TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['description'] = ''
-      hIn['liabilityStatement'] = ''
       hIn['distributor'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata[:description]
-      assert_empty metadata[:distributor]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distribution must have description or distributor'
+
+   end
+
+   def test_distribution_missing_required
+
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('description')
+      hIn.delete('distributor')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distribution must have description or distributor'
+
+   end
+
+   def test_distribution_empty_elements
+
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['liabilityStatement'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata[:liabilityStatement]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -59,15 +88,11 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
 
       TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['nonElement'] = ''
-      hIn.delete('description')
       hIn.delete('liabilityStatement')
-      hIn.delete('distributor')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata[:description]
-      assert_empty metadata[:distributor]
+      assert_nil metadata[:liabilityStatement]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -79,8 +104,9 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson distribution object is empty'
 
    end
 

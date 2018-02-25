@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2018-01-24 add domain item reference
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-23 added error reporting of missing items
@@ -23,8 +24,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDomItem.empty?
-                     responseObj[:readerExecutionMessages] << 'Domain Member object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary domain item object is empty'
                      return nil
                   end
 
@@ -37,7 +37,7 @@ module ADIWG
                      intItem[:itemName] = hDomItem['name']
                   end
                   if intItem[:itemName].nil? || intItem[:itemName] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain item name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain item name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -47,7 +47,7 @@ module ADIWG
                      intItem[:itemValue] = hDomItem['value']
                   end
                   if intItem[:itemValue].nil? || intItem[:itemValue] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain item value is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain item value is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -57,7 +57,7 @@ module ADIWG
                      intItem[:itemDefinition] = hDomItem['definition']
                   end
                   if intItem[:itemDefinition].nil? || intItem[:itemDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary domain item definition is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain item definition is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

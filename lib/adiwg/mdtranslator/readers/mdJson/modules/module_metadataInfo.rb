@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2018-01-27 add metadataConstraints
 #  Stan Smith 2017-01-31 remove metadataCreationDate
 #  Stan Smith 2016-10-31 original script
@@ -27,7 +28,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMetaInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'MetadataInfo object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata info object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -91,7 +92,7 @@ module ADIWG
                      end
                   end
                   if intMetaInfo[:metadataContacts].empty?
-                     responseObj[:readerExecutionMessages] << 'MetadataInfo object is missing metadataContacts'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata info contact is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -152,7 +153,7 @@ module ADIWG
 
                   # metadata information - metadata status
                   if hMetaInfo.has_key?('metadataStatus')
-                     if hMetaInfo['metadataStatus'] != ''
+                     unless hMetaInfo['metadataStatus'] == ''
                         intMetaInfo[:metadataStatus] = hMetaInfo['metadataStatus']
                      end
                   end

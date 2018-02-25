@@ -19,8 +19,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
    def test_entity_schema
 
-       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json')
-       assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entity.json')
+      assert_empty errors
 
    end
 
@@ -62,7 +62,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity code name is missing'
 
    end
 
@@ -75,7 +76,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity code name is missing'
 
    end
 
@@ -88,7 +90,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity definition is missing'
 
    end
 
@@ -101,7 +104,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity definition is missing'
 
    end
 
@@ -157,8 +161,9 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson data dictionary entity object is empty'
 
    end
 

@@ -12,153 +12,165 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_associatedResource'
 
 class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AssociatedResource
-    aIn = TestReaderMdJsonParent.getJson('associatedResource.json')
-    @@hIn = aIn['associatedResource'][0]
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::AssociatedResource
+   aIn = TestReaderMdJsonParent.getJson('associatedResource.json')
+   @@hIn = aIn['associatedResource'][0]
 
-    def test_associatedResource_schema
+   def test_associatedResource_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'associatedResource.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'associatedResource.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_associatedResource
+   def test_complete_associatedResource
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 2, metadata[:resourceTypes].length
-        assert_equal 'associationType', metadata[:associationType]
-        assert_equal 'initiativeType', metadata[:initiativeType]
-        refute_empty metadata[:resourceCitation]
-        refute_empty metadata[:metadataCitation]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 2, metadata[:resourceTypes].length
+      assert_equal 'associationType', metadata[:associationType]
+      assert_equal 'initiativeType', metadata[:initiativeType]
+      refute_empty metadata[:resourceCitation]
+      refute_empty metadata[:metadataCitation]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_associatedResource_empty_resourceType
+   def test_associatedResource_empty_resourceType
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceType'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['resourceType'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource resource type is missing'
 
-    end
+   end
 
-    def test_associatedResource_missing_resourceType
+   def test_associatedResource_missing_resourceType
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('resourceType')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('resourceType')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      refute_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource resource type is missing'
 
-    end
+   end
 
-    def test_associatedResource_empty_associationType
+   def test_associatedResource_empty_associationType
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['associationType'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['associationType'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource association type is missing'
 
-    end
+   end
 
-    def test_associatedResource_missing_associationType
+   def test_associatedResource_missing_associationType
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('associationType')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('associationType')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource association type is missing'
 
-    end
+   end
 
-    def test_associatedResource_empty_citations
+   def test_associatedResource_empty_citations
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceCitation'] = {}
-        hIn['metadataCitation'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['resourceCitation'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource citation is missing'
 
-    end
+   end
 
-    def test_associatedResource_missing_citations
+   def test_associatedResource_missing_citations
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('resourceCitation')
-        hIn.delete('metadataCitation')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('resourceCitation')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource citation is missing'
 
-    end
+   end
 
-    def test_associatedResource_empty_resourceCitation
+   def test_associatedResource_empty_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['resourceCitation'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['initiativeType'] = ''
+      hIn['metadataCitation'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:resourceTypes]
+      assert_equal 'associationType', metadata[:associationType]
+      assert_nil metadata[:initiativeType]
+      refute_empty metadata[:resourceCitation]
+      assert_empty metadata[:metadataCitation]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_associatedResource_empty_metadataCitation
+   def test_associatedResource_missing_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['metadataCitation'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('initiativeType')
+      hIn.delete('metadataCitation')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:resourceTypes]
-        assert_equal 'associationType', metadata[:associationType]
-        assert_equal 'initiativeType', metadata[:initiativeType]
-        refute_empty metadata[:resourceCitation]
-        assert_empty metadata[:metadataCitation]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:resourceTypes]
+      assert_equal 'associationType', metadata[:associationType]
+      assert_nil metadata[:initiativeType]
+      refute_empty metadata[:resourceCitation]
+      assert_empty metadata[:metadataCitation]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_associatedResource_object
+   def test_empty_associatedResource_object
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson associated resource object is empty'
 
-    end
+   end
 
 end
