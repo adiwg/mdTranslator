@@ -1,7 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
-# 2.9.2 2018-02-17 add messaging to mdJson reader
+# 2.9.2 2018-02-24 add messaging to mdJson reader
+# 2.9.2 2018-02-22 call base maps with https:
 # 2.9.2 2018-02-20 add data and time format validation to module_dateTomeFun
 # 2.9.2 2018-02-17 add messaging to fgdc reader
 # 2.9.2 2018-02-14 refactored 19110 add isInfinite="true" to upper multiplicity
