@@ -1,6 +1,7 @@
 # MdTranslator - ADIwg MdTranslator entry point
 
 # History:
+#  Stan Smith 2018-02-26 add 'forceValid' parameter
 #  Stan Smith 2016-11-11 refactor for mdTranslator 2.0
 #  Stan Smith 2015-07-17 added support for user supplied CSS for html writer
 #  Stan Smith 2015-07-16 moved module_coordinates from mdJson reader to internal
@@ -32,7 +33,8 @@ require 'adiwg/mdtranslator/writers/mdWriters'
 module ADIWG
    module Mdtranslator
 
-      def self.translate(file:, reader: 'mdJson', writer: nil, validate: 'normal', showAllTags: false, cssLink: nil)
+      def self.translate(file:, reader: 'mdJson', writer: nil, validate: 'normal', forceValid: true,
+         showAllTags: false, cssLink: nil)
 
          # the reader and writer specified in the translate module parameter string will load and
          #     return this hash ...
@@ -85,11 +87,14 @@ module ADIWG
          # writerOutput: the output file returned by the writer
          #   - set by the writer
          # ------------------------------------------------------------------------------------
+         # writerForceValid: when required elements are missing from input add placeholder
+         #   - set from the parameter list (forceValid)
+         # ------------------------------------------------------------------------------------
          # writerShowTags: include tags in XML output for any empty elements
          #   - set from the parameter list (showAllTags)
          # ------------------------------------------------------------------------------------
          # writerCSSlink: CSS link to append to HTML writer output
-         #   - set from the parameter list (showAllTags)
+         #   - set from the parameter list (cssLink)
          # ------------------------------------------------------------------------------------
          # writerMissingIdCount: counter for creating unique element IDs as needed
          #   - set by the writer
@@ -115,6 +120,7 @@ module ADIWG
             writerMessages: [],
             writerOutputFormat: nil,
             writerOutput: nil,
+            writerForceValid: true,
             writerShowTags: false,
             writerCSSlink: nil,
             writerMissingIdCount: '_000',
@@ -139,8 +145,15 @@ module ADIWG
          hResponseObj[:readerRequested] = reader
          hResponseObj[:readerValidationLevel] = validate
          hResponseObj[:writerRequested] = writer
+         hResponseObj[:writerForceValid] = forceValid
          hResponseObj[:writerShowTags] = showAllTags
          hResponseObj[:writerCSSlink] = cssLink
+
+         # turn off showTags if forceValid is false
+         # ... by default showTags would add the missing required elements
+         unless forceValid
+            hResponseObj[:writerShowTags] = false
+         end
 
          # add mdTranslator version to response hash
          hResponseObj[:translatorVersion] = ADIWG::Mdtranslator::VERSION
