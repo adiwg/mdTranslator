@@ -1,13 +1,13 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.9.3 2018-02-22 call base maps with https:
+# 2.9.3 2018-02-20 add data and time format validation to module_dateTomeFun
+# 2.9.3 2018-02-17 add messaging to fgdc reader
+# 2.9.3 2018-02-14 refactored 19110 add isInfinite="true" to upper multiplicity
+# 2.9.3 2018-02-14 refactored 19110 constraints
+# 2.9.3 2018-02-14 deprecated and renamed allowMany to mustBeUnique
 # 2.9.2 2018-02-24 add messaging to mdJson reader
-# 2.9.2 2018-02-22 call base maps with https:
-# 2.9.2 2018-02-20 add data and time format validation to module_dateTomeFun
-# 2.9.2 2018-02-17 add messaging to fgdc reader
-# 2.9.2 2018-02-14 refactored 19110 add isInfinite="true" to upper multiplicity
-# 2.9.2 2018-02-14 refactored 19110 constraints
-# 2.9.2 2018-02-14 deprecated and renamed allowMany to mustBeUnique
 # 2.9.1 2018-02-05 move 'technicalPrerequisite' to 'resourceFormat'
 # 2.9.1 2018-02-05 fix variable name in fgdc spatial domain writer
 # 2.9.0 2018-02-01 added fgdc writer distribution information section
@@ -70,7 +70,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.9.2"
+      VERSION = "2.9.3"
    end
 end
 
