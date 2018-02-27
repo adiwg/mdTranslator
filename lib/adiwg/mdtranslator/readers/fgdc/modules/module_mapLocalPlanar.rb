@@ -29,7 +29,7 @@ module ADIWG
                      hProjection[:localPlanarDescription] = description
                   end
                   if description.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC local planar coordinate system description is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: local planar coordinate system description is missing'
                   end
 
                   # local planar 4.1.2.3.2 (localpgi) - local planar georeference information (required)
@@ -39,7 +39,7 @@ module ADIWG
                      hProjection[:localPlanarGeoreference] = georeference
                   end
                   if georeference.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC local planar coordinate system georeference information is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: local planar coordinate system georeference information is missing'
                   end
 
                   return hProjection

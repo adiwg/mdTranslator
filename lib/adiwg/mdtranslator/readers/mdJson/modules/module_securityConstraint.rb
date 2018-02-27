@@ -21,7 +21,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hSecurityCon.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson security constraint object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: security constraint object is empty'
                      return nil
                   end
 

@@ -29,7 +29,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAttribute.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary entity attribute object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity attribute object is empty'
                      return nil
                   end
 
@@ -107,7 +107,7 @@ module ADIWG
                      if hAttribute['allowMany'] === true
                         intAttribute[:mustBeUnique] = hAttribute['allowMany']
                         responseObj[:readerExecutionMessages] <<
-                           'WARNING: mdJson data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
+                           'WARNING: mdJson reader: data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
                         return nil
                      end
                   end

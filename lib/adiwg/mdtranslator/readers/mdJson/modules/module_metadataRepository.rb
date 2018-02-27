@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMdDist.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson metadata repository object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: metadata repository object is empty'
                      return nil
                   end
 

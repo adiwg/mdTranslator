@@ -137,7 +137,7 @@ class TestReaderMdJsonGeometryCollection < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson GeoJSON geometry collection object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: GeoJSON geometry collection object is empty'
 
    end
 

@@ -38,7 +38,7 @@ module ADIWG
                      if paramCount == 5
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC Transverse Mercator projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Transverse Mercator projection is missing one or more parameters'
                      end
                   end
 

@@ -30,7 +30,7 @@ module ADIWG
                      TransferInfo.unpack(xTranInfo, hTransfer, techPre, hResponseObj)
                   end
                   if xTranInfo.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC order process transfer info is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: order process transfer info is missing'
                   end
 
                   # distribution 6.4.2.2 (digtopt) - digital transfer option (required)
@@ -61,7 +61,7 @@ module ADIWG
 
                   end
                   if xDigiOption.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC order process transfer option is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: order process transfer option is missing'
                   end
 
                   return hTransfer

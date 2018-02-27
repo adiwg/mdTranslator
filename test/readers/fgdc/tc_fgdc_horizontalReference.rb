@@ -77,8 +77,8 @@ class TestReaderFgdcHorizontalReference < TestReaderFGDCParent
       assert_equal 298.257223563, hGeodeticRef[:denominatorOfFlatteningRatio]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate encoding method is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC planar coordinate representation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate representation is missing'
       assert_equal 74, hResponse[:readerExecutionMessages].length
 
    end

@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDate.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson date object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: date object is empty'
                      return nil
                   end
 

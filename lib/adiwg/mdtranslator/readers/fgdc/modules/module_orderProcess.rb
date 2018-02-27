@@ -46,7 +46,7 @@ module ADIWG
 
                   # error messages
                   if nonDigital.empty? && axDigital.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC standard order process digital/non-digital form is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: standard order process digital/non-digital form is missing'
                   end
 
                   # distribution 6.4.3 (fees) - fees (required)
@@ -56,7 +56,7 @@ module ADIWG
                      hOrder[:fees] = fees
                   end
                   if fees.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC standard order process fee is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: standard order process fee is missing'
                   end
 
                   # distribution 6.4.4 (ordering) - ordering information

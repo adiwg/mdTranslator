@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hVoucher.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson voucher object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: voucher object is empty'
                      return nil
                   end
 

@@ -82,13 +82,13 @@ class TestReaderFgdcTimeInstant < TestReaderFGDCParent
       assert_empty hGeoAge[:ageReferences]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification section citation is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification section description is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification status is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification spatial domain section is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification keyword section is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification access constraint is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC identification use constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification section citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification section description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification status is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification spatial domain section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification keyword section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification access constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification use constraint is missing'
 
    end
 

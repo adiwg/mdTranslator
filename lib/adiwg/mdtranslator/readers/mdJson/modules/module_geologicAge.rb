@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoAge.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geologic age object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geologic age object is empty'
                      return nil
                   end
 

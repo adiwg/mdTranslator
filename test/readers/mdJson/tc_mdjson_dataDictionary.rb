@@ -213,7 +213,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
+                      'WARNING: mdJson reader: data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
 
    end
 
@@ -225,7 +225,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson data dictionary object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: data dictionary object is empty'
 
    end
 

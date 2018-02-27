@@ -47,7 +47,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution latitude resolution is missing'
+                      'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
 
    end
 
@@ -62,7 +62,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution latitude resolution is missing'
+                      'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
 
    end
 
@@ -77,7 +77,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution longitude resolution is missing'
+                      'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
 
    end
 
@@ -92,7 +92,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution longitude resolution is missing'
+                      'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
 
    end
 
@@ -107,7 +107,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution units are missing'
+                      'WARNING: mdJson reader: geographic spatial resolution units are missing'
 
    end
 
@@ -122,7 +122,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution units are missing'
+                      'WARNING: mdJson reader: geographic spatial resolution units are missing'
 
    end
 
@@ -135,7 +135,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson geographic spatial resolution object is empty'
+                      'WARNING: mdJson reader: geographic spatial resolution object is empty'
 
    end
 

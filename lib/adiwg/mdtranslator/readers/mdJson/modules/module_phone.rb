@@ -26,7 +26,7 @@ module ADIWG
                   intPhone = intMetadataClass.newPhone
 
                   if hPhone.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson phone object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: phone object is empty'
                      return nil
                   end
 
@@ -53,7 +53,7 @@ module ADIWG
                      intPhone[:phoneServiceTypes] = hPhone['service']
                   end
                   if intPhone[:phoneServiceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson phone service type is missing'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: phone service type is missing'
                   end
 
                   return intPhone

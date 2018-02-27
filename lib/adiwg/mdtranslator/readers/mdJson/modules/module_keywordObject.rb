@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hKeyObj.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson keyword object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: keyword object is empty'
                      return nil
                   end
 

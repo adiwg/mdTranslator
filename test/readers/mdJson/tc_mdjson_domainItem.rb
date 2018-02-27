@@ -131,7 +131,7 @@ class TestReaderMdJsonDomainItem < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson data dictionary domain item object is empty'
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: data dictionary domain item object is empty'
 
    end
 

@@ -20,7 +20,7 @@ module ADIWG
                   # return nil object if input is empty
                   if hProjection.empty?
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reference system projection parameters object is empty'
+                        'WARNING: mdJson reader: reference system projection parameters object is empty'
                      return nil
                   end
 

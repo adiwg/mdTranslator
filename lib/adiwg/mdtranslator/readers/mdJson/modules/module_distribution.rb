@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDistribution.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson distribution object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distribution object is empty'
                      return nil
                   end
 

@@ -76,7 +76,7 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       assert_equal 1, hRepository[:parties].length
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC citation publication date is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: citation publication date is missing'
       assert_equal 3, hResponse[:readerExecutionMessages].length
 
    end

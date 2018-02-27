@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMedium.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson offline distribution medium object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: offline distribution medium object is empty'
                      return nil
                   end
 

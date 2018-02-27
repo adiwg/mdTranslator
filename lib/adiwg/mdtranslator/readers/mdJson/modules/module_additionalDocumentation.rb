@@ -25,7 +25,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAddDoc.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson additional documentation object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: additional documentation object is empty'
                      return nil
                   end
 

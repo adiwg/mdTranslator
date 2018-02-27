@@ -45,7 +45,7 @@ module ADIWG
                      if paramCount == 6
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC Oblique Mercator projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Oblique Mercator projection is missing one or more parameters'
                      end
                   end
 

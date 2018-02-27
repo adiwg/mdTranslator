@@ -53,7 +53,7 @@ module ADIWG
                      Identification.unpack(xIdInfo, intObj, hResponseObj)
                   end
                   if xIdInfo.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification information section (idinfo) missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification information section (idinfo) missing'
                   end
 
                   # metadata (dataqual 2) - data quality
@@ -103,7 +103,7 @@ module ADIWG
                      end
                   end
                   if xMetaInfo.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC metadata information section (metainfo) missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: metadata information section (metainfo) missing'
                   end
 
                   return intObj

@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hIdentifier.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson GML Identifier object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GML Identifier object is empty'
                      return nil
                   end
 

@@ -33,7 +33,7 @@ module ADIWG
                      hAttribute[:attributeCode] = code
                   end
                   if code.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute label is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: attribute label is missing'
                   end
 
                   # entity attribute 5.1.2.2 (attrdef) - attribute definition (required)
@@ -43,7 +43,7 @@ module ADIWG
                      hAttribute[:attributeDefinition] = definition
                   end
                   if definition.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute definition is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: attribute definition is missing'
                   end
 
                   # entity attribute 5.1.2.3 (attrdefs) - attribute definition source (required)
@@ -55,7 +55,7 @@ module ADIWG
                      hAttribute[:attributeReference] = hCitation
                   end
                   if reference.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute reference source is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: attribute reference source is missing'
                   end
 
                   # entity attribute 5.1.2.4 (attrdomv) - attribute domain value (required)
@@ -98,7 +98,7 @@ module ADIWG
 
                   end
                   if axDomain.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC attribute domain is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: attribute domain is missing'
                   end
 
                   # add domainId to attribute

@@ -27,7 +27,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hUsage.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson resource usage object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: resource usage object is empty'
                      return nil
                   end
 

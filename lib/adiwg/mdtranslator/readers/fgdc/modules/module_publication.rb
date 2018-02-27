@@ -32,7 +32,7 @@ module ADIWG
                      hResponsibility = Responsibility.unpack([contactId], 'publisher', hResponseObj)
                   end
                   if publisher.nil?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation publisher contact is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation publisher contact is missing'
                   end
 
                   # publication information 8.1 (pubplace) - place of publication (required)
@@ -54,7 +54,7 @@ module ADIWG
                      end
                   end
                   if place.nil?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation publication place is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation publication place is missing'
                   end
 
                   return hResponsibility

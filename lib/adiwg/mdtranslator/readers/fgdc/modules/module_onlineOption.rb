@@ -54,12 +54,12 @@ module ADIWG
                               end
                            end
                            if axURI.empty?
-                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer network address is missing'
+                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: online transfer network address is missing'
                            end
 
                         end
                         if xNetwork.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer network address section is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: online transfer network address section is missing'
                         end
 
                         # dialup section is antiquated and will not be supported by ADIwg
@@ -76,7 +76,7 @@ module ADIWG
                      end
                   end
                   if axComputers.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC online transfer computer contact information is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: online transfer computer contact information is missing'
                   end
 
                   return aOnlines

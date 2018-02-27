@@ -20,7 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hContent.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson coverage description object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: coverage description object is empty'
                      return nil
                   end
 

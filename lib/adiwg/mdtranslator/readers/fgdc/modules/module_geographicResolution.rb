@@ -29,7 +29,7 @@ module ADIWG
                      hGeoResolution[:latitudeResolution] = latResolution.to_f
                   end
                   if latResolution.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC geographic latitude resolution is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geographic latitude resolution is missing'
                   end
 
                   # geographic reference 4.1.1.2 (longres) - longitude resolution (required)
@@ -39,7 +39,7 @@ module ADIWG
                      hGeoResolution[:longitudeResolution] = longResolution.to_f
                   end
                   if longResolution.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC geographic longitude resolution is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geographic longitude resolution is missing'
                   end
 
                   # geographic reference 4.1.1.3 (geogunit) - latitude/longitude units (required)
@@ -49,7 +49,7 @@ module ADIWG
                      hGeoResolution[:unitOfMeasure] = unitMeasure
                   end
                   if unitMeasure.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC geographic latitude/longitude units are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geographic latitude/longitude units are missing'
                   end
 
                   hResolution[:geographicResolution] = hGeoResolution

@@ -29,7 +29,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAssocRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson associated resource object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: associated resource object is empty'
                      return nil
                   end
 

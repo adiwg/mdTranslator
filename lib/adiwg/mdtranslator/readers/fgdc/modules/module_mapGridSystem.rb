@@ -33,7 +33,7 @@ module ADIWG
                      hProjection[:gridSystemName] = gridName
                   end
                   if gridName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC grid system name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: grid system name is missing'
                   end
 
                   haveGrid = false
@@ -52,7 +52,7 @@ module ADIWG
                         hProjection[:gridZone] = zone
                      end
                      if zone.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UTM zone number is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UTM zone number is missing'
                      end
 
                      # + transverse mercator (required)
@@ -61,7 +61,7 @@ module ADIWG
                         return TransverseMercatorProjection.unpack(xTransMer, hProjection, hResponseObj)
                      end
                      if xTransMer.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UTM transverse mercator definition is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UTM transverse mercator definition is missing'
                      end
 
                   end
@@ -81,7 +81,7 @@ module ADIWG
                         hProjection[:gridZone] = zone
                      end
                      if zone.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UPS zone number is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UPS zone number is missing'
                      end
 
                      # + polar stereographic (required)
@@ -90,7 +90,7 @@ module ADIWG
                         return PolarStereoProjection.unpack(xPolarS, hProjection, hResponseObj)
                      end
                      if xPolarS.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UPS polar stereographic definition is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UPS polar stereographic definition is missing'
                      end
 
                   end
@@ -110,7 +110,7 @@ module ADIWG
                         hProjection[:gridZone] = zone
                      end
                      if zone.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC state plane zone number is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: state plane zone number is missing'
                      end
 
                      # + [ lambert conformal conic | transverse mercator | oblique mercator | polyconic ] (required)
@@ -139,7 +139,7 @@ module ADIWG
                      end
 
                      # error message
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UPS state plane projection definition is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UPS state plane projection definition is missing'
 
                   end
 
@@ -158,7 +158,7 @@ module ADIWG
                         hProjection[:gridZone] = zone
                      end
                      if zone.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC equal arc-second zone number is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: equal arc-second zone number is missing'
                      end
 
                      # + [ equirectangular | azimuthal equidistant ] (required)
@@ -175,7 +175,7 @@ module ADIWG
                      end
 
                      # error message
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC UPS equal arc-second projection definition is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: UPS equal arc-second projection definition is missing'
                   end
 
                   # grid system 4.1.2.2.6 (othergrd) - other coordinate system {text}
@@ -193,7 +193,7 @@ module ADIWG
 
                   # error message
                   unless haveGrid
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC grid system is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: grid system is missing'
                   end
 
                   return nil

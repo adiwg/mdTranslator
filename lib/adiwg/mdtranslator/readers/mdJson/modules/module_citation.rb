@@ -34,7 +34,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hCitation.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson citation object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: citation object is empty'
                      return nil
                   end
 

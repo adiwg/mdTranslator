@@ -58,7 +58,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_equal 'supplementalInfo', metadata[:supplementalInfo]
       assert hResponse[:readerExecutionPass]
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
+                      'WARNING: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
 
    end
 

@@ -31,7 +31,7 @@ module ADIWG
                      hEntity[:entityDefinition] = definition
                   end
                   if definition.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entityAttribute overview definition is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: entityAttribute overview definition is missing'
                   end
 
                   # entity attribute 5.2.2 (eadetcit) - entity attribute detail citation []

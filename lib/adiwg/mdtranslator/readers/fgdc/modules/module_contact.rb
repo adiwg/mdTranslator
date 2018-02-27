@@ -84,10 +84,10 @@ module ADIWG
                         return nil
                      end
                      if contactType == 'person' && personName == ''
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact person name is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact person name is missing'
                      end
                      if contactType == 'organization' && orgName == ''
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact organization name is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact organization name is missing'
                      end
 
                      # add new contacts to contact array
@@ -126,7 +126,7 @@ module ADIWG
                               addType = xAddress.xpath('./addrtype').text
                               hAddress[:addressTypes] << addType unless addType.empty?
                               if addType.empty?
-                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address type is missing'
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact address type is missing'
                               end
 
                               # address 10.4.2 (address) - address lines []
@@ -142,21 +142,21 @@ module ADIWG
                               city = xAddress.xpath('./city').text
                               hAddress[:city] = city unless city.empty?
                               if city.empty?
-                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address city is missing'
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact address city is missing'
                               end
 
                               # address 10.4.4 (state) - state (required)
                               state = xAddress.xpath('./state').text
                               hAddress[:adminArea] = state unless state.empty?
                               if state.empty?
-                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address state is missing'
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact address state is missing'
                               end
 
                               # address 10.4.5 (postal) - postal code (required)
                               postal = xAddress.xpath('./postal').text
                               hAddress[:postalCode] = postal unless postal.empty?
                               if postal.empty?
-                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address zip code is missing'
+                                 hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact address zip code is missing'
                               end
 
                               # address 10.4.6 (country) - country
@@ -188,7 +188,7 @@ module ADIWG
                            end
                         end
                         if axAddress.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact address is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact address is missing'
                         end
 
                         # contact 10.5 (cntvoice) - contact voice phone number [] (required)
@@ -202,7 +202,7 @@ module ADIWG
                            end
                         end
                         if axVoice.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC contact voice phone is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: contact voice phone is missing'
                         end
 
                         # contact 10.6 (cnttdd) - contact TDD/TTY phone number []

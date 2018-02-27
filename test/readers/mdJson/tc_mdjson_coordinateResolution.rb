@@ -133,7 +133,7 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial resolution coordinate resolution object is empty'
+                      'WARNING: mdJson reader: spatial resolution coordinate resolution object is empty'
 
    end
 

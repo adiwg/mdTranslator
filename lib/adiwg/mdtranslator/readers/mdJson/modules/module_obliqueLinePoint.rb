@@ -17,7 +17,7 @@ module ADIWG
                   # return nil object if input is empty
                   if hLinePt.empty?
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson spatial reference oblique line-point object is empty'
+                        'WARNING: mdJson reader: spatial reference oblique line-point object is empty'
                      return nil
                   end
 

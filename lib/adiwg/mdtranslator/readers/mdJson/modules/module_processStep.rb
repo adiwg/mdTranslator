@@ -26,7 +26,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hProcStep.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson process step object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: process step object is empty'
                      return nil
                   end
 

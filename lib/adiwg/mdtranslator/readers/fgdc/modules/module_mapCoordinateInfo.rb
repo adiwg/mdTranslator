@@ -26,7 +26,7 @@ module ADIWG
                      hResourceInfo[:spatialRepresentationTypes] << encoding
                   end
                   if encoding.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC planar coordinate encoding method is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: planar coordinate encoding method is missing'
                   end
 
                   haveRep = false
@@ -44,7 +44,7 @@ module ADIWG
                         hCoordResolution[:abscissaResolutionX] = abscissa.to_f
                      end
                      if abscissa.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC coordinate representation abscissa resolution is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: coordinate representation abscissa resolution is missing'
                      end
 
                      # map projection 4.1.2.4.2.2 (ordres) - ordinate resolution (required)
@@ -54,7 +54,7 @@ module ADIWG
                         hCoordResolution[:ordinateResolutionY] = ordinate.to_f
                      end
                      if ordinate.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC coordinate representation ordinate resolution is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: coordinate representation ordinate resolution is missing'
                      end
 
                      # map projection 4.1.2.4.4 (plandu) - planar distance units (required)
@@ -64,7 +64,7 @@ module ADIWG
                         hCoordResolution[:unitOfMeasure] = distUnits
                      end
                      if distUnits.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC planar distance units are missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: planar distance units are missing'
                      end
 
                      hResolution = intMetadataClass.newSpatialResolution
@@ -87,7 +87,7 @@ module ADIWG
                         hBDResolution[:distanceResolution] = distRes.to_f
                      end
                      if distRes.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance distance resolution is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance distance resolution is missing'
                      end
 
                      # map projection 4.1.2.4.4 (plandu) - planar distance units (required)
@@ -97,7 +97,7 @@ module ADIWG
                         hBDResolution[:distanceUnitOfMeasure] = distUnits
                      end
                      if distUnits.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance distance units is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance distance units is missing'
                      end
 
                      # map projection 4.1.2.4.3.2 (bearres) - bearing resolution (required)
@@ -107,7 +107,7 @@ module ADIWG
                         hBDResolution[:bearingResolution] = bearingRes.to_f
                      end
                      if bearingRes.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance bearing resolution is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance bearing resolution is missing'
                      end
 
                      # map projection 4.1.2.4.3.3 (bearunit) - bearing units (required)
@@ -117,7 +117,7 @@ module ADIWG
                         hBDResolution[:bearingUnitsOfMeasure] = bearingUnits
                      end
                      if bearingUnits.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance bearing units is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance bearing units is missing'
                      end
 
                      # map projection 4.1.2.4.3.4 (bearrefd) - bearing reference direction (required)
@@ -127,7 +127,7 @@ module ADIWG
                         hBDResolution[:bearingReferenceDirection] = bearingDirection
                      end
                      if bearingDirection.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance bearing direction is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance bearing direction is missing'
                      end
 
                      # map projection 4.1.2.4.3.5 (bearrefm) - bearing reference meridian (required)
@@ -137,7 +137,7 @@ module ADIWG
                         hBDResolution[:bearingReferenceMeridian] = bearingMeridian
                      end
                      if bearingMeridian.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC bearing-distance bearing meridian is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bearing-distance bearing meridian is missing'
                      end
 
                      hResolution = intMetadataClass.newSpatialResolution
@@ -148,7 +148,7 @@ module ADIWG
 
                   # error messages
                   unless haveRep
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC planar coordinate representation is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: planar coordinate representation is missing'
                   end
 
                   # map projection 4.1.2.4.4 (plandu) - planar distance units

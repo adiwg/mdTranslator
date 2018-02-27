@@ -148,7 +148,7 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson GeoJSON geometry feature object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: GeoJSON geometry feature object is empty'
 
    end
 

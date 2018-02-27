@@ -99,7 +99,7 @@ class TestReaderMdJsonTaxonomicSystem < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson taxonomic system object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: taxonomic system object is empty'
 
    end
 

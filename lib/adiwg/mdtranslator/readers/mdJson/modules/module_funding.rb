@@ -20,7 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hFunding.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson funding object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: funding object is empty'
                      return nil
                   end
 

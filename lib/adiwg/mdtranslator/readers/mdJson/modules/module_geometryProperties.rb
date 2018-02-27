@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoProp.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson GeoJSON geometry properties object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJSON geometry properties object is empty'
                      return nil
                   end
 

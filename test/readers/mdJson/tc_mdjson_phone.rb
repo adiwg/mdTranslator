@@ -82,7 +82,7 @@ class TestReaderMdJsonPhone < TestReaderMdJsonParent
       assert_equal 0, metadata[:phoneServiceTypes].length
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson phone service type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: phone service type is missing'
 
    end
 
@@ -98,7 +98,7 @@ class TestReaderMdJsonPhone < TestReaderMdJsonParent
       assert_equal 0, metadata[:phoneServiceTypes].length
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson phone service type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: phone service type is missing'
 
    end
 
@@ -110,7 +110,7 @@ class TestReaderMdJsonPhone < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson phone object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: phone object is empty'
 
    end
 

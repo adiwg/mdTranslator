@@ -32,7 +32,7 @@ module ADIWG
                      hOffline[:mediumSpecification] = hSpecification
                   end
                   if title.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC offline transfer media type is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer media type is missing'
                   end
 
                   # distribution 6.4.2.2.2.2 (reccap) - recording capacity
@@ -51,7 +51,7 @@ module ADIWG
                         end
                      end
                      if axDensity.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC offline transfer recording density is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording density is missing'
                      end
 
                      # distribution 6.4.2.2.2.2.2 (recdenu) - recording density units (required)
@@ -61,7 +61,7 @@ module ADIWG
                         hOffline[:units] = units
                      end
                      if units.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC offline transfer recording density units are missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording density units are missing'
                      end
 
                   end
@@ -78,7 +78,7 @@ module ADIWG
                      end
                   end
                   if axFormat.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC offline transfer recording format is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording format is missing'
                   end
 
                   # distribution 6.4.2.2.2.4 (compat) - compatibility information

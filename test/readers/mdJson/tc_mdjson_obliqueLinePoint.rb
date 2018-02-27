@@ -105,7 +105,7 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial reference oblique line-point object is empty'
+                      'WARNING: mdJson reader: spatial reference oblique line-point object is empty'
 
    end
 

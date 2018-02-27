@@ -104,7 +104,7 @@ class TestReaderMdJsonAttributeGroup < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson coverage description attribute group object is empty'
+                      'WARNING: mdJson reader: coverage description attribute group object is empty'
 
    end
 

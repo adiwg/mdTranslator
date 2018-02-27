@@ -25,7 +25,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDomain.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary domain object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary domain object is empty'
                      return nil
                   end
 

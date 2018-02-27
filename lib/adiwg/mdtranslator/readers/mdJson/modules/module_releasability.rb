@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hRelease.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson releasability object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: releasability object is empty'
                      return nil
                   end
 

@@ -21,7 +21,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hFKey.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data entity foreign key object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data entity foreign key object is empty'
                      return nil
                   end
 

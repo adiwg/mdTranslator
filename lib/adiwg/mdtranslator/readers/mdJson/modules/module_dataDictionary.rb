@@ -28,7 +28,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDictionary.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary object is empty'
                      return nil
                   end
 
@@ -120,7 +120,7 @@ module ADIWG
                   elsif hDictionary.has_key?('dictionaryFormat')
                      s = hDictionary['dictionaryFormat']
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
+                        'WARNING: mdJson reader: data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
                   end
                   unless s.nil? || s == ''
                      intDictionary[:dictionaryFunctionalLanguage] = s

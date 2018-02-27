@@ -51,7 +51,7 @@ module ADIWG
                      hProjection[:projectionIdentifier] = hIdentifier
                   end
                   if name.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC map projection name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: map projection name is missing'
                   end
 
                   # map projection 4.1.2.1.2 (albers) - Albers Conical Equal Area

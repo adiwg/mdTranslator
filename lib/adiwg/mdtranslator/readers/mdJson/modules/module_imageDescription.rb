@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hImageInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson image description object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: image description object is empty'
                      return nil
                   end
 

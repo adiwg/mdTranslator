@@ -40,7 +40,7 @@ module ADIWG
                            end
                         end
                         if thesaurus.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC theme keyword thesaurus is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: theme keyword thesaurus is missing'
                         end
 
                         # theme keyword 1.6.1.2 (themekey) - theme keyword keyword {keywordObject}
@@ -56,7 +56,7 @@ module ADIWG
                            end
                         end
                         if axKeywords.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC theme keyword is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: theme keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -79,7 +79,7 @@ module ADIWG
                            hKeyword[:thesaurus] = hCitation
                         end
                         if thesaurus.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC place keyword thesaurus is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: place keyword thesaurus is missing'
                         end
 
                         # theme keyword 1.6.2.2 (placekey) - place keyword keyword {keywordObject}
@@ -95,7 +95,7 @@ module ADIWG
                            end
                         end
                         if axKeywords.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC place keyword is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: place keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -118,7 +118,7 @@ module ADIWG
                            hKeyword[:thesaurus] = hCitation
                         end
                         if thesaurus.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC stratum keyword thesaurus is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: stratum keyword thesaurus is missing'
                         end
 
                         # theme keyword 1.6.3.2 (stratkey) - stratum keyword keyword {keywordObject}
@@ -134,7 +134,7 @@ module ADIWG
                            end
                         end
                         if axKeywords.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC stratum keyword is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: stratum keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -157,7 +157,7 @@ module ADIWG
                            hKeyword[:thesaurus] = hCitation
                         end
                         if thesaurus.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC temporal keyword thesaurus is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: temporal keyword thesaurus is missing'
                         end
 
                         # theme keyword 1.6.4.2 (tempkey) - temporal keyword keyword {keywordObject}
@@ -173,7 +173,7 @@ module ADIWG
                            end
                         end
                         if axKeywords.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC temporal keyword is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: temporal keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -195,7 +195,7 @@ module ADIWG
                         hKeyword[:thesaurus] = hCitation
                      end
                      if thesaurus.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxonomy keyword thesaurus is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keyword thesaurus is missing'
                      end
 
                      # theme keyword bio.1.2 (taxonkey) - taxonomy keyword keywords {keywordObject}
@@ -211,7 +211,7 @@ module ADIWG
                         end
                      end
                      if axKeywords.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxonomy keyword is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keyword is missing'
                      end
 
                      aKeywords << hKeyword
@@ -232,7 +232,7 @@ module ADIWG
                         hKeyword[:thesaurus] = hCitation
                      end
                      if thesaurus.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO method keyword thesaurus is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword thesaurus is missing'
                      end
 
                      # theme keyword bio.1.2 (methkey) - lineage method keywords {keywordObject}
@@ -248,7 +248,7 @@ module ADIWG
                         end
                      end
                      if axKeywords.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO method keyword is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword is missing'
                      end
 
                      aKeywords << hKeyword

@@ -32,7 +32,7 @@ module ADIWG
                      end
                   end
                   if axKeywords.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxonomy keywords are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keywords are missing'
                   end
 
                   # taxonomy bio.2 (taxonsys) - taxonomic system
@@ -58,7 +58,7 @@ module ADIWG
                      end
                   end
                   if xTaxClass.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO taxonomy classification is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy classification is missing'
                   end
 
                   return hTaxonomy

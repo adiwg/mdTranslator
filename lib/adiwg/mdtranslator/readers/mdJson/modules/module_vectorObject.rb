@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hVecObj.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson vector object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: vector object is empty'
                      return nil
                   end
 

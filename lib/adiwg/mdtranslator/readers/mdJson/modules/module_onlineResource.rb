@@ -24,7 +24,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hOnlineRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson online resource object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: online resource object is empty'
                      return nil
                   end
 

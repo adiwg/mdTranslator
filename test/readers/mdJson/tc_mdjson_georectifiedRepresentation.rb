@@ -229,7 +229,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson georectified spatial representation object is empty'
+                      'WARNING: mdJson reader: georectified spatial representation object is empty'
 
    end
 

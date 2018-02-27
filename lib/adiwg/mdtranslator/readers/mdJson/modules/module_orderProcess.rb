@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hOrder.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson distribution order process object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distribution order process object is empty'
                      return nil
                   end
 

@@ -21,7 +21,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hTransOp.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson distributor transfer option object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distributor transfer option object is empty'
                      return nil
                   end
 

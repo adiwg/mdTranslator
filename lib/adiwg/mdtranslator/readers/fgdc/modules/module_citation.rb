@@ -55,7 +55,7 @@ module ADIWG
                      end
                   end
                   unless havePR
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation originator is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation originator is missing'
                   end
 
                   # citation 8.2/8.3 (pubdate/pubtime) - publication date/time {date} (required) - {time} (optional)
@@ -70,7 +70,7 @@ module ADIWG
                      end
                   end
                   unless haveDate
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation publication date is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation publication date is missing'
                   end
 
                   # citation 8.4 (title) - citation title (required)
@@ -79,7 +79,7 @@ module ADIWG
                      hCitation[:title] = title
                   end
                   if title.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC citation title is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation title is missing'
                   end
 
                   # citation 8.5 (edition) - edition

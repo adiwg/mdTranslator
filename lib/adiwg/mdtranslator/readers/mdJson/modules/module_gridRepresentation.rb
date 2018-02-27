@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGrid.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson grid representation object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: grid representation object is empty'
                      return nil
                   end
 

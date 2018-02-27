@@ -39,7 +39,7 @@ module ADIWG
                            hDomain[:domainName] = name
                         end
                         if name.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC codeset domain name is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: codeset domain name is missing'
                         end
 
                         # entity attribute 5.1.2.4.3.2 (codesets) - codeset source name (required)
@@ -51,7 +51,7 @@ module ADIWG
                            hDomain[:domainReference] = hCitation
                         end
                         if title.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC codeset domain source is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: codeset domain source is missing'
                         end
 
                         aDomains << hDomain

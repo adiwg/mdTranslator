@@ -17,7 +17,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hBBox.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson bounding box object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: bounding box object is empty'
                      return nil
                   end
 

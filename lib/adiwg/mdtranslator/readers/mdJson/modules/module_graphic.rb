@@ -27,7 +27,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGraphic.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson graphic overview object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: graphic overview object is empty'
                      return nil
                   end
 

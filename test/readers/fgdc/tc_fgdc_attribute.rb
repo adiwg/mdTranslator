@@ -88,7 +88,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal 'Z', hAttribute4[:valueRange][1][:maxRangeValue]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC entity type definition source is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: entity type definition source is missing'
 
    end
 

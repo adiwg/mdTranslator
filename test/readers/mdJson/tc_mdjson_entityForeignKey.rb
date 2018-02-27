@@ -137,7 +137,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson data entity foreign key object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: data entity foreign key object is empty'
 
    end
 

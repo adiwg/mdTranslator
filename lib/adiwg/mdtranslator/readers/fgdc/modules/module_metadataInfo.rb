@@ -34,7 +34,7 @@ module ADIWG
                      end
                   end
                   if date.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC metadata creation date is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: metadata creation date is missing'
                   end
 
                   # metadata information 7.2 (metrd) - metadata review date
@@ -68,7 +68,7 @@ module ADIWG
                      end
                   end
                   if xContact.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC metadata point of contact is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: metadata point of contact is missing'
                   end
 
                   # metadata information 7.5 (metstdn) - metadata standard name (required)

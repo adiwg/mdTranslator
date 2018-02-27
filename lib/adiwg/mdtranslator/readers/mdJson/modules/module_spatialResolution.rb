@@ -28,7 +28,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hResolution.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson spatial resolution object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial resolution object is empty'
                      return nil
                   end
 

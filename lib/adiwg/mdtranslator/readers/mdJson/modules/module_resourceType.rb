@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hType.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson resource type object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: resource type object is empty'
                      return nil
                   end
 

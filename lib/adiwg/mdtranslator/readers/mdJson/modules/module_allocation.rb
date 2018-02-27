@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAlloc.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson budget allocation object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: budget allocation object is empty'
                      return nil
                   end
 

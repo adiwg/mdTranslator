@@ -21,7 +21,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hIndex.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson data dictionary entity index object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity index object is empty'
                      return nil
                   end
 

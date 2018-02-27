@@ -108,7 +108,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson reference system projection parameters object is empty'
+                      'WARNING: mdJson reader: reference system projection parameters object is empty'
 
    end
 

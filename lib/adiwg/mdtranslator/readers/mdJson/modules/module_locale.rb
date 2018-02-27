@@ -17,7 +17,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hLocale.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson locale object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: locale object is empty'
                      return nil
                   end
 

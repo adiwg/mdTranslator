@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution object is empty'
                      return nil
                   end
 
@@ -30,7 +30,7 @@ module ADIWG
                   end
                   if intGeoRes[:latitudeResolution].nil? || intGeoRes[:latitudeResolution] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson geographic spatial resolution latitude resolution is missing'
+                        'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -40,7 +40,7 @@ module ADIWG
                      intGeoRes[:longitudeResolution] = hGeoRes['longitudeResolution']
                   end
                   if intGeoRes[:longitudeResolution].nil? || intGeoRes[:longitudeResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution longitude resolution is missing'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -50,7 +50,7 @@ module ADIWG
                      intGeoRes[:unitOfMeasure] = hGeoRes['unitOfMeasure']
                   end
                   if intGeoRes[:unitOfMeasure].nil? || intGeoRes[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic spatial resolution units are missing'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution units are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

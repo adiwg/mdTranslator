@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hFormat.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson distribution media format object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distribution media format object is empty'
                      return nil
                   end
 

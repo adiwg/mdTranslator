@@ -104,7 +104,7 @@ class TestReaderMdJsonScope < TestReaderMdJsonParent
         assert_nil metadata
         assert hResponse[:readerExecutionPass]
         assert_equal 1, hResponse[:readerExecutionMessages].length
-        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson mdJson scope object is empty'
+        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: mdJson scope object is empty'
 
     end
 

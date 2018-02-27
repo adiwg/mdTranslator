@@ -20,7 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hScope.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson mdJson scope object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: mdJson scope object is empty'
                      return nil
                   end
 

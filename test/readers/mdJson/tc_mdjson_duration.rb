@@ -88,7 +88,7 @@ class TestReaderMdJsonDuration < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson duration object is empty'
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: duration object is empty'
 
    end
 

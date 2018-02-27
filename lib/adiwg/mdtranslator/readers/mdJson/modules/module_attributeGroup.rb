@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAttGroup.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson coverage description attribute group object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: coverage description attribute group object is empty'
                      return nil
                   end
 

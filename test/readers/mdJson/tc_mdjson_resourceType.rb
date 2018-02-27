@@ -98,7 +98,7 @@ class TestReaderMdJsonResourceType < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson resource type object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: resource type object is empty'
 
    end
 

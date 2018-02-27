@@ -26,7 +26,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hLineage.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson resource lineage object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: resource lineage object is empty'
                      return nil
                   end
 

@@ -20,7 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hExtent.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson extent object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: extent object is empty'
                      return nil
                   end
 

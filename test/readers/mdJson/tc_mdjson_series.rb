@@ -79,7 +79,7 @@ class TestReaderMdJsonSeries < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson citation series object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: citation series object is empty'
 
    end
 

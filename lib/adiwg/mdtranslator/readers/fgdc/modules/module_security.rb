@@ -26,21 +26,21 @@ module ADIWG
                   system = xSecurity.xpath('./secsys').text
                   hSecurity[:classSystem] = system unless system.empty?
                   if system.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC security system name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: security system name is missing'
                   end
 
                   # series 1.12.2 (secclass) - security classification (required)
                   secClass = xSecurity.xpath('./secclass').text
                   hSecurity[:classCode] = secClass unless secClass.empty?
                   if secClass.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC security classification is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: security classification is missing'
                   end
 
                   # series 1.12.3 (sechandl) - security handling instructions (required)
                   secHand = xSecurity.xpath('./sechandl').text
                   hSecurity[:handling] = secHand unless secHand.empty?
                   if secHand.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC security handling instructions are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: security handling instructions are missing'
                   end
 
                   hConstraint[:securityConstraint] = hSecurity

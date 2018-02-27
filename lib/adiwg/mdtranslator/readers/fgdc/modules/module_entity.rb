@@ -39,7 +39,7 @@ module ADIWG
                         hEntity[:entityCode] = code
                      end
                      if code.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entity type name is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: entity type name is missing'
                      end
 
                      # entity attribute 5.1.1.2 (enttypd) - entity definition (required)
@@ -49,7 +49,7 @@ module ADIWG
                         hEntity[:entityDefinition] = definition
                      end
                      if definition.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entity type definition is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: entity type definition is missing'
                      end
 
                      # entity attribute 5.1.1.3 (enttypds) - entity definition source (required)
@@ -61,7 +61,7 @@ module ADIWG
                         hEntity[:entityReferences] << hCitation
                      end
                      if reference.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entity type definition source is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: entity type definition source is missing'
                      end
 
                      # entity attribute 5.1.2 (attr) - characteristics of an attribute

@@ -20,7 +20,7 @@ module ADIWG
                   # return nil object if input is empty
                   if hGeoRef.empty?
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson georeferenceable spatial representation object is empty'
+                        'WARNING: mdJson reader: georeferenceable spatial representation object is empty'
                      return nil
                   end
 

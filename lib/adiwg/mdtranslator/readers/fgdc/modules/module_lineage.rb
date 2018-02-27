@@ -33,7 +33,7 @@ module ADIWG
                         Method.unpack(hLineage, axMethods, hResponseObj)
                      end
                      if axMethods.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC BIO lineage methodology section is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology section is missing'
                      end
 
                      # lineage 2.5.1 (srcinfo) - source information []
@@ -54,7 +54,7 @@ module ADIWG
                         end
                      end
                      if axProcess.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage process step section is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage process step section is missing'
                      end
 
                      return hLineage

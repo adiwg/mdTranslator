@@ -19,7 +19,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hTaxClass.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson taxonomic classification object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: taxonomic classification object is empty'
                      return nil
                   end
 

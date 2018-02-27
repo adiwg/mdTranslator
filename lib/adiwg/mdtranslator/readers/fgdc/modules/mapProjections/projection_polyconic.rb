@@ -37,7 +37,7 @@ module ADIWG
                      if paramCount == 4
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC Polyconic projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Polyconic projection is missing one or more parameters'
                      end
                   end
 

@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hBearRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson bearing distance resolution object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: bearing distance resolution object is empty'
                      return nil
                   end
 

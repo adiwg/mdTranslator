@@ -49,7 +49,7 @@ module ADIWG
 
                   # error messages
                   if axDetail.empty? && axOverview.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC entityAttribute description is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: entityAttribute description is missing'
                   end
 
                   return hDictionary

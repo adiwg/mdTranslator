@@ -36,7 +36,7 @@ module ADIWG
                      end
                   end
                   if xContact.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC distribution distributor is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution distributor is missing'
                   end
 
                   # distribution 6.2 (resdesc) - resource description
@@ -53,7 +53,7 @@ module ADIWG
                      hDistribution[:liabilityStatement] = liability
                   end
                   if liability.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC distribution liability is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution liability is missing'
                   end
 
                   # distribution 6.6 (techpreq) - technical prerequisites

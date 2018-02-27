@@ -114,7 +114,7 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson graphic overview object is empty'
+      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: graphic overview object is empty'
 
    end
 

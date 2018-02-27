@@ -50,7 +50,7 @@ module ADIWG
                            hAttribute[:minValue] = b[0]
                         end
                         if min.nil?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC domain range minimum is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: domain range minimum is missing'
                         end
 
                         # entity attribute 5.1.2.4.2.2 (rdommax) - range maximum (required)
@@ -71,7 +71,7 @@ module ADIWG
                            hAttribute[:maxValue] = b[b.length-1]
                         end
                         if max.nil?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC domain range maximum is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: domain range maximum is missing'
                         end
 
                         # entity attribute 5.1.2.4.2.3 (attrunit) - units of measure

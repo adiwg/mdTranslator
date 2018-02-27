@@ -176,7 +176,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson vertical datum object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: vertical datum object is empty'
 
    end
 

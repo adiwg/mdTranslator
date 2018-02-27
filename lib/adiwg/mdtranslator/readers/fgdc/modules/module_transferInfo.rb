@@ -40,7 +40,7 @@ module ADIWG
                      hSpecification[:identifiers][0][:identifier] = formName
                   end
                   if formName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC distribution transfer format name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution transfer format name is missing'
                   end
 
                   # distribution 6.4.2.1.2 (formvern) - format version number

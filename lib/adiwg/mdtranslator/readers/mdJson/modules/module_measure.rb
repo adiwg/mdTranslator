@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMeasure.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson measure object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: measure object is empty'
                      return nil
                   end
 

@@ -38,7 +38,7 @@ module ADIWG
                      hResourceInfo[:citation] = hCitation unless hCitation.nil?
                   end
                   if xCitation.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section citation is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section citation is missing'
                   end
 
                   # identification information 1.2 (descript) - description (required)
@@ -49,14 +49,14 @@ module ADIWG
                      abstract = xDescription.xpath('./abstract').text
                      hResourceInfo[:abstract] = abstract unless abstract.empty?
                      if abstract.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section abstract is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section abstract is missing'
                      end
 
                      # description 1.2.2 (purpose) - purpose (required)
                      purpose = xDescription.xpath('./purpose').text
                      hResourceInfo[:purpose] = purpose unless purpose.empty?
                      if purpose.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section purpose is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section purpose is missing'
                      end
 
                      # description 1.2.3 (supplinf) - supplemental information
@@ -65,7 +65,7 @@ module ADIWG
 
                   end
                   if xDescription.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section description is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section description is missing'
                   end
 
 
@@ -77,7 +77,7 @@ module ADIWG
                      # timeInfo currentness (required)
                      current = xTimePeriod.xpath('./current').text
                      if current.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section time period currentness is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section time period currentness is missing'
                      end
 
                      # time period for single date, multi-date, and date range {resource timePeriod}
@@ -105,7 +105,7 @@ module ADIWG
 
                   end
                   unless haveTimePeriod
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification section time period is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section time period is missing'
                   end
 
                   # identification information 1.4 (status) - status and maintenance (required)
@@ -116,7 +116,7 @@ module ADIWG
                      progress = xStatus.xpath('./progress').text
                      hResourceInfo[:status] << progress unless progress.empty?
                      if progress.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification progress is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification progress is missing'
                      end
 
                      # status 1.4.2 (update) - maintenance frequency (required)
@@ -127,12 +127,12 @@ module ADIWG
                         hResourceInfo[:resourceMaintenance] << hMaintenance
                      end
                      if update.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification update frequency is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification update frequency is missing'
                      end
 
                   end
                   if xStatus.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification status is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification status is missing'
                   end
 
                   # identification information 1.5 (spdom) - spatial domain (required)
@@ -142,7 +142,7 @@ module ADIWG
                      hResourceInfo[:extents] << hExtent unless hExtent.nil?
                   end
                   if xDomain.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification spatial domain section is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification spatial domain section is missing'
                   end
 
                   # identification information 1.6 (keywords) - keywords (required)
@@ -151,11 +151,11 @@ module ADIWG
                      Keyword.unpack(xKeywords, hResourceInfo, hResponseObj)
                      xTheme = xKeywords.xpath('./theme')
                      if xTheme.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification keyword section is missing theme keywords'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification keyword section is missing theme keywords'
                      end
                   end
                   if xKeywords.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification keyword section is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification keyword section is missing'
                   end
 
                   # identification information bio (taxonomy) - taxonomic information
@@ -184,10 +184,10 @@ module ADIWG
                      hResourceInfo[:constraints] << hConstraint
                   end
                   if accessCon.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification access constraint is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification access constraint is missing'
                   end
                   if useCon.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC identification use constraint is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification use constraint is missing'
                   end
 
                   # identification information 1.9 (ptcontac) - point of contact {contact}

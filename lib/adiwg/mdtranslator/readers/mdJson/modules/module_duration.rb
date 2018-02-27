@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDuration.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson duration object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: duration object is empty'
                      return nil
                   end
 

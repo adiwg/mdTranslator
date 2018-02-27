@@ -29,7 +29,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hRParty.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson responsible party object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: responsible party object is empty'
                      return nil
                   end
 

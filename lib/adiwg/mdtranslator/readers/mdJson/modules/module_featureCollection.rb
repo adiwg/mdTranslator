@@ -20,7 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hFeatCol.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson GeoJson feature collection object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJson feature collection object is empty'
                      return nil
                   end
 

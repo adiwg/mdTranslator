@@ -21,7 +21,7 @@ module ADIWG
                   # return nil object if input is empty
                   if hParams.empty?
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson spatial reference system parameters object is empty'
+                        'WARNING: mdJson reader: spatial reference system parameters object is empty'
                      return nil
                   end
 
@@ -67,7 +67,7 @@ module ADIWG
                   # error messages
                   unless haveParams
                      responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
+                        'WARNING: mdJson reader: spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

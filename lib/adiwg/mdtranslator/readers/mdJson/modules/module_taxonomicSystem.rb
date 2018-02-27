@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hSystem.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson taxonomic system object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: taxonomic system object is empty'
                      return nil
                   end
 

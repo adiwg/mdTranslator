@@ -22,7 +22,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoExt.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson geographic extent object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic extent object is empty'
                      return nil
                   end
 

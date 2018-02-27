@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hParty.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson responsibility party object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: responsibility party object is empty'
                      return nil
                   end
 
@@ -55,7 +55,7 @@ module ADIWG
                         hParty['organizationMembers'].each do |contactId|
                            hContact = MdJson.findContact(contactId)
                            if hContact[0].nil?
-                              responseObj[:readerExecutionMessages] << "WARNING: mdJson responsibility party organization member contact ID #{contactId} not found"
+                              responseObj[:readerExecutionMessages] << "WARNING: mdJson reader: responsibility party organization member contact ID #{contactId} not found"
                            else
                               newParty = intMetadataClass.newParty
                               newParty[:contactId] = contactId

@@ -29,7 +29,7 @@ module ADIWG
                      hDatum[:datumName] = datumName
                   end
                   if datumName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical altitude datum name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude datum name is missing'
                   end
 
                   # altitude datum 4.2.1.2 (altres) - altitude resolution []
@@ -46,7 +46,7 @@ module ADIWG
                      hDatum[:unitOfMeasure] = altUnits
                   end
                   if altUnits.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical altitude distance units are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude distance units are missing'
                   end
 
                   # altitude datum 4.2.1.4 (altenc) - altitude encoding method (required)
@@ -56,7 +56,7 @@ module ADIWG
                      hDatum[:encodingMethod] = altEncode
                   end
                   if altEncode.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical altitude encoding method is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude encoding method is missing'
                   end
 
                   hParamSet = intMetadataClass.newReferenceSystemParameterSet

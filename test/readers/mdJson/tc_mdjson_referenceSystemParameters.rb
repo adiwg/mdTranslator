@@ -49,7 +49,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
+                      'WARNING: mdJson reader: spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
+                      'WARNING: mdJson reader: spatial reference system parameters must have at least one projection, geodetic, or vertical datum'
 
    end
 
@@ -80,7 +80,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial reference system parameters object is empty'
+                      'WARNING: mdJson reader: spatial reference system parameters object is empty'
 
    end
 

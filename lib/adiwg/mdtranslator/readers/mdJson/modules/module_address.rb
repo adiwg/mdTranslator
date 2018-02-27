@@ -23,7 +23,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hAddress.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson address object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: address object is empty'
                      return nil
                   end
 

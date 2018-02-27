@@ -34,7 +34,7 @@ module ADIWG
                            hVectorObj[:objectType] = sdtsType
                         end
                         if sdtsType.empty?
-                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial data SDTS object type is missing'
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data SDTS object type is missing'
                         end
 
                         # SDTS term 3.3.1.2 (ptvctcnt) - point and vector object count
@@ -64,7 +64,7 @@ module ADIWG
                         hVectorInfo[:topologyLevel] = level.to_i
                      end
                      if level.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial data VPF topology level is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF topology level is missing'
                      end
 
                      # VPF term 3.3.2.2 (vpfinfo) - VPF point and vector object information [] (required)
@@ -80,7 +80,7 @@ module ADIWG
                               hVectorObj[:objectType] = vpfType
                            end
                            if vpfType.empty?
-                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial data VPF object type is missing'
+                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF object type is missing'
                            end
 
                            # VPF point and object 3.3.2.2.2 (ptvctcnt) - VPF point and vector object count
@@ -98,14 +98,14 @@ module ADIWG
                         hResourceInfo[:spatialRepresentations] << hSpatialRepresentation
                      end
                      if axVPFInfo.empty?
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial data VPF object information is missing'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF object information is missing'
                      end
 
                   end
 
                   # error message
                   if axSDTSterm.empty? && xVPFterm.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial data point-vector terms are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data point-vector terms are missing'
                   end
 
                   return hResourceInfo

@@ -28,7 +28,7 @@ module ADIWG
                      hDatum[:datumName] = datumName
                   end
                   if datumName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical depth datum name is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical depth datum name is missing'
                   end
 
                   # depth datum 4.2.2.2 (depthres) - depth resolution [] (take first)
@@ -45,7 +45,7 @@ module ADIWG
                      hDatum[:unitOfMeasure] = depthUnits
                   end
                   if depthUnits.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical depth distance units are missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical depth distance units are missing'
                   end
 
                   # depth datum 4.2.2.4 (depthem) - depth encoding method
@@ -55,7 +55,7 @@ module ADIWG
                      hDatum[:encodingMethod] = depthEncode
                   end
                   if depthEncode.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC vertical depth encoding method is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical depth encoding method is missing'
                   end
 
                   hParamSet = intMetadataClass.newReferenceSystemParameterSet

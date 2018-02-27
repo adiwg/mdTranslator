@@ -153,7 +153,7 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson budget allocation object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: budget allocation object is empty'
 
    end
 

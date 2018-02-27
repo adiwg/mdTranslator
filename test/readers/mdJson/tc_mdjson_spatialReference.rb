@@ -213,7 +213,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson spatial reference system object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: spatial reference system object is empty'
 
    end
 

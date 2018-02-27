@@ -30,7 +30,7 @@ module ADIWG
                      hGridInfo[:cellGeometry] = cellGeometry.downcase
                   end
                   if cellGeometry.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial domain raster type is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster type is missing'
                   end
 
                   # -> compute number of dimensions from total occurrence of 3.4.2-4
@@ -49,7 +49,7 @@ module ADIWG
                      hGridInfo[:numberOfDimensions] += 1
                   end
                   if rows.empty? && !columns.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial domain raster row count is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster row count is missing'
                   end
 
                   # raster object 3.4.3 (colcount) - column count
@@ -63,7 +63,7 @@ module ADIWG
                      hGridInfo[:numberOfDimensions] += 1
                   end
                   if columns.empty? && !rows.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC spatial domain raster column count is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster column count is missing'
                   end
 
                   # raster object 3.4.4 (vrtcount) - vertical count

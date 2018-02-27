@@ -155,7 +155,7 @@ module ADIWG
                            intResInfo[:keywords] << hReturn[0]
                         end
                         responseObj[:readerExecutionMessages] <<
-                           'WARNING: mdJson TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
+                           'WARNING: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
                      end
                   end
 

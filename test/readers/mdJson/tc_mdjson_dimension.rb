@@ -141,7 +141,7 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson spatial representation dimension object is empty'
+                      'WARNING: mdJson reader: spatial representation dimension object is empty'
 
    end
 

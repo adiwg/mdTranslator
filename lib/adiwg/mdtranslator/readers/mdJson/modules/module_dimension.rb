@@ -18,7 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hDimension.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson spatial representation dimension object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial representation dimension object is empty'
                      return nil
                   end
 

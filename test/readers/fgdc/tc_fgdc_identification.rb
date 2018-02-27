@@ -89,7 +89,7 @@ class TestReaderFgdcIdentification < TestReaderFGDCParent
       assert_equal 'security', hConstraint[:type]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC BIO geographic description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: BIO geographic description is missing'
 
    end
 

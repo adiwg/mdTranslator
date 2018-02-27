@@ -29,7 +29,7 @@ module ADIWG
                      hSource[:sourceCitation] = hCitation
                   end
                   if xCitation.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source citation is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage source citation is missing'
                   end
 
                   # source 2.5.1.2 (srcscale) - source scale denominator
@@ -46,7 +46,7 @@ module ADIWG
                      hSource[:description] = type
                   end
                   if type.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source media type is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage source media type is missing'
                   end
 
                   # source 2.5.1.4 (srctime) - source time period {scope < temporalExtent} (required)
@@ -65,7 +65,7 @@ module ADIWG
                      end
                   end
                   if xTimePeriod.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source time period is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage source time period is missing'
                   end
 
                   # source 2.5.1.5 (srccitea) - source citation abbreviation (required)
@@ -74,7 +74,7 @@ module ADIWG
                      hSource[:sourceId] = sourceAbb
                   end
                   if sourceAbb.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source citation abbreviation is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage source citation abbreviation is missing'
                   end
 
                   # source 2.5.1.6 (srccontr) - source contribution (required)
@@ -83,7 +83,7 @@ module ADIWG
                      hSource[:description] = contribution
                   end
                   if contribution.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage source contribution is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage source contribution is missing'
                   end
 
                   return hSource

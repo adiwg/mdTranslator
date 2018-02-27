@@ -34,7 +34,7 @@ module ADIWG
                      if paramCount == 3
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC Robinson projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Robinson projection is missing one or more parameters'
                      end
                   end
 

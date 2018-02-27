@@ -28,7 +28,7 @@ module ADIWG
                      hProcess[:description] = description
                   end
                   if description.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage process description is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage process description is missing'
                   end
 
                   # process 2.5.2.2 (srcused) - source used citation abbreviation []
@@ -62,7 +62,7 @@ module ADIWG
                      end
                   end
                   if hDateTime.nil?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC lineage procedure date is missing'
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: lineage procedure date is missing'
                   end
 
                   # process 2.5.2.5 (srcprod) - source produced citation abbreviation []

@@ -22,7 +22,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hLegalCon.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson legal constraint object is empty'
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: legal constraint object is empty'
                      return nil
                   end
 
