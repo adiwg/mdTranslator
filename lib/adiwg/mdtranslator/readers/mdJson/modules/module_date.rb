@@ -31,7 +31,7 @@ module ADIWG
                   if hDate.has_key?('date') && hDate['date'] != ''
                      aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(hDate['date'])
                      if aDateTimeReturn[1] == 'ERROR'
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson date string is invalid'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date string is invalid'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      else
@@ -39,7 +39,7 @@ module ADIWG
                         intDate[:dateResolution] = aDateTimeReturn[1]
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson date string is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date string is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intDate[:dateType] = hDate['dateType']
                   end
                   if intDate[:dateType].nil? || intDate[:dateType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson date type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

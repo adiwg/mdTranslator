@@ -59,7 +59,7 @@ module ADIWG
 
                   # error messages
                   if intFunding[:allocations].empty? && intFunding[:timePeriod].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson funding must have either allocation or timePeriod'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: funding must have either allocation or timePeriod'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

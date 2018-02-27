@@ -60,7 +60,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary citation is missing'
 
    end
 
@@ -75,7 +75,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary citation is missing'
 
    end
 
@@ -90,7 +90,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary subject is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary subject is missing'
 
    end
 
@@ -105,7 +105,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary subject is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary subject is missing'
 
    end
 
@@ -120,7 +120,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary responsible party is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary responsible party is missing'
 
    end
 
@@ -135,7 +136,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary responsible party is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary responsible party is missing'
 
    end
 

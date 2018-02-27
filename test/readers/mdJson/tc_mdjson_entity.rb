@@ -63,7 +63,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity code name is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity code name is missing'
 
    end
 
@@ -77,7 +78,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity code name is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity code name is missing'
 
    end
 
@@ -91,7 +93,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity definition is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity definition is missing'
 
    end
 
@@ -105,7 +108,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity definition is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity definition is missing'
 
    end
 
@@ -163,7 +167,8 @@ class TestReaderMdJsonEntity < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: data dictionary entity object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: data dictionary entity object is empty'
 
    end
 

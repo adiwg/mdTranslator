@@ -49,7 +49,7 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson online resource URI is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: online resource URI is missing'
 
    end
 
@@ -63,7 +63,7 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson online resource URI is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: online resource URI is missing'
 
    end
 

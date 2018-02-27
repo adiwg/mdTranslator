@@ -34,7 +34,7 @@ module ADIWG
                   # if dateTimeFromString fails, [0] = nil; [1] = 'ERROR'
                   aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
                   if aDateTimeReturn[1] == 'ERROR'
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson dateTime string is invalid'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: dateTime string is invalid'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   else

@@ -47,7 +47,7 @@ class TestReaderMdJsonVectorRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vector representation must have a topology level or vector object'
+                      'ERROR: mdJson reader: vector representation must have a topology level or vector object'
 
    end
 
@@ -64,7 +64,7 @@ class TestReaderMdJsonVectorRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vector representation must have a topology level or vector object'
+                      'ERROR: mdJson reader: vector representation must have a topology level or vector object'
 
    end
 
@@ -76,7 +76,8 @@ class TestReaderMdJsonVectorRepresentation < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: vector representation object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: vector representation object is empty'
 
    end
 

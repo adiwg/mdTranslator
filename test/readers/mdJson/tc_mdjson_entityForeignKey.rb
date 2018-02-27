@@ -50,7 +50,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key local attribute code name is missing'
+                      'ERROR: mdJson reader: data entity foreign key local attribute code name is missing'
 
    end
 
@@ -65,7 +65,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key local attribute code name is missing'
+                      'ERROR: mdJson reader: data entity foreign key local attribute code name is missing'
 
    end
 
@@ -80,7 +80,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key referenced entity name is missing'
+                      'ERROR: mdJson reader: data entity foreign key referenced entity name is missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key referenced entity name is missing'
+                      'ERROR: mdJson reader: data entity foreign key referenced entity name is missing'
 
    end
 
@@ -110,7 +110,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key referenced attribute name is missing'
+                      'ERROR: mdJson reader: data entity foreign key referenced attribute name is missing'
 
    end
 
@@ -125,7 +125,7 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data entity foreign key referenced attribute name is missing'
+                      'ERROR: mdJson reader: data entity foreign key referenced attribute name is missing'
 
    end
 
@@ -137,7 +137,8 @@ class TestReaderMdJsonForeignKey < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: data entity foreign key object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: data entity foreign key object is empty'
 
    end
 

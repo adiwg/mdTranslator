@@ -73,7 +73,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info resource type is missing'
 
    end
 
@@ -88,7 +88,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info resource type is missing'
 
    end
 
@@ -103,7 +103,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info citation is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info citation is missing'
 
    end
 
@@ -118,7 +118,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info citation is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info citation is missing'
 
    end
 
@@ -133,7 +133,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info abstract is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info abstract is missing'
 
    end
 
@@ -148,7 +148,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info abstract is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info abstract is missing'
 
    end
 
@@ -164,7 +164,8 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info point-of-contact is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource info point-of-contact is missing'
 
    end
 
@@ -180,7 +181,8 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info point-of-contact is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource info point-of-contact is missing'
 
    end
 
@@ -196,7 +198,8 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info default locale is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource info default locale is missing'
 
    end
 
@@ -212,7 +215,8 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info default locale is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource info default locale is missing'
 
    end
 
@@ -227,7 +231,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info status is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info status is missing'
 
    end
 
@@ -242,7 +246,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info status is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info status is missing'
 
    end
 
@@ -374,7 +378,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson resource info object is empty'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info object is empty'
 
    end
 

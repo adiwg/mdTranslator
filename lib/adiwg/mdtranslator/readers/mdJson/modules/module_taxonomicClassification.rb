@@ -39,7 +39,7 @@ module ADIWG
                      intTaxClass[:taxonRank] = hTaxClass['taxonomicRank']
                   end
                   if intTaxClass[:taxonRank].nil? || intTaxClass[:taxonRank] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomic classification rank is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic classification rank is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intTaxClass[:taxonValue] = hTaxClass['latinName']
                   end
                   if intTaxClass[:taxonValue].nil? || intTaxClass[:taxonValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomic classification latin name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic classification latin name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

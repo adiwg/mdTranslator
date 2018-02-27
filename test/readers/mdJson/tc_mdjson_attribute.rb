@@ -181,7 +181,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute units are missing'
 
    end
 
@@ -195,7 +196,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute units are missing'
 
    end
 
@@ -209,7 +211,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute bound units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute bound units are missing'
 
    end
 
@@ -223,7 +226,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute bound units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute bound units are missing'
 
    end
 
@@ -237,7 +241,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute sequence identifierType is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute sequence identifierType is missing'
 
    end
 
@@ -251,7 +256,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson coverage description attribute sequence identifierType is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: coverage description attribute sequence identifierType is missing'
 
    end
 
@@ -263,7 +269,8 @@ class TestReaderMdJsonAttribute < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: coverage description attribute object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: coverage description attribute object is empty'
 
    end
 

@@ -44,7 +44,7 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata repository name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata repository name is missing'
 
    end
 
@@ -58,7 +58,7 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata repository name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata repository name is missing'
 
    end
 

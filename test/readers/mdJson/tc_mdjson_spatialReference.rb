@@ -182,7 +182,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference system must declare reference system type, identifier, WKT, or parameter set'
+                      'ERROR: mdJson reader: spatial reference system must declare reference system type, identifier, WKT, or parameter set'
 
    end
 
@@ -201,7 +201,7 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference system must declare reference system type, identifier, WKT, or parameter set'
+                      'ERROR: mdJson reader: spatial reference system must declare reference system type, identifier, WKT, or parameter set'
 
    end
 
@@ -213,7 +213,8 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: spatial reference system object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: spatial reference system object is empty'
 
    end
 

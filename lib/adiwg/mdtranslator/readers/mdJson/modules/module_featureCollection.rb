@@ -35,14 +35,14 @@ module ADIWG
                            intFeatCol[:type] = hFeatCol['type']
                         else
                            responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson GeoJson feature collection type must be FeatureCollection'
+                              'ERROR: mdJson reader: GeoJson feature collection type must be FeatureCollection'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intFeatCol[:type].nil? || intFeatCol[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJson feature collection type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJson feature collection type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -63,7 +63,7 @@ module ADIWG
                         end
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJson feature collection features are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJson feature collection features are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

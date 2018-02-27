@@ -44,7 +44,7 @@ module ADIWG
                      intResParty[:roleName] = hRParty['role']
                   end
                   if intResParty[:roleName].nil? || intResParty[:roleName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson responsible party role is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsible party role is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -74,7 +74,7 @@ module ADIWG
                      end
                   end
                   if intResParty[:parties].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson responsible party must have at least one party'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsible party must have at least one party'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

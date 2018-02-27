@@ -31,7 +31,7 @@ module ADIWG
                      intParty[:contactId] = hParty['contactId']
                   end
                   if intParty[:contactId].nil? || intParty[:contactId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson responsibility party contact ID is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsibility party contact ID is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -40,7 +40,7 @@ module ADIWG
                   # return nil if contact ID does not exist in contact array
                   hContact = MdJson.findContact(hParty['contactId'])
                   if hContact[0].nil?
-                     responseObj[:readerExecutionMessages] << "ERROR: mdJson responsibility party contact ID #{hParty['contactId']} not found"
+                     responseObj[:readerExecutionMessages] << "ERROR: mdJson reader: responsibility party contact ID #{hParty['contactId']} not found"
                      responseObj[:readerExecutionPass] = false
                      return nil
                   else

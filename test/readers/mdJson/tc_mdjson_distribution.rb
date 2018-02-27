@@ -50,7 +50,8 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distribution must have description or distributor'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: distribution must have description or distributor'
 
    end
 
@@ -66,7 +67,8 @@ class TestReaderMdJsonDistribution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distribution must have description or distributor'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: distribution must have description or distributor'
 
    end
 

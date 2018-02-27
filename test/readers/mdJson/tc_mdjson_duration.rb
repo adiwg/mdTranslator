@@ -55,7 +55,7 @@ class TestReaderMdJsonDuration < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson duration not specified'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: duration not specified'
 
    end
 
@@ -76,7 +76,7 @@ class TestReaderMdJsonDuration < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson duration not specified'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: duration not specified'
 
    end
 

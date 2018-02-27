@@ -31,14 +31,14 @@ module ADIWG
                         if interval.is_a?(Integer) || interval.is_a?(Float)
                            intTime[:interval] = hTimeInt['interval']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson time interval must be a number'
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval must be a number'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intTime[:interval].nil? || intTime[:interval] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson time interval is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -53,7 +53,7 @@ module ADIWG
                      end
                   end
                   if intTime[:units].nil? || intTime[:units] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson time interval units are missing or invalid'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval units are missing or invalid'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

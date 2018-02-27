@@ -38,7 +38,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hResInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -59,7 +59,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info resource type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info resource type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -75,7 +75,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info citation is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info citation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -85,7 +85,7 @@ module ADIWG
                      intResInfo[:abstract] = hResInfo['abstract']
                   end
                   if intResInfo[:abstract].nil? || intResInfo[:abstract] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info abstract is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info abstract is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -133,7 +133,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:status].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info status is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info status is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -170,7 +170,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:pointOfContacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info point-of-contact is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info point-of-contact is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -327,7 +327,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:defaultResourceLocale].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource info default locale is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info default locale is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

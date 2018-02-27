@@ -95,7 +95,7 @@ module ADIWG
                   # error messages
                   unless haveGExtent
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson geographic extent must have at least one description, identifier, bounding box, or geographic element'
+                        'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

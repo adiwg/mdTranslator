@@ -31,7 +31,7 @@ module ADIWG
                      intGeoAge[:ageTimeScale] = hGeoAge['ageTimeScale']
                   end
                   if intGeoAge[:ageTimeScale].nil? || intGeoAge[:ageTimeScale] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson geologic age time scale is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age time scale is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -41,7 +41,7 @@ module ADIWG
                      intGeoAge[:ageEstimate] = hGeoAge['ageEstimate']
                   end
                   if intGeoAge[:ageEstimate].nil? || intGeoAge[:ageEstimate] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson geologic age age-estimate is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age age-estimate is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

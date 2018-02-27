@@ -52,7 +52,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -68,7 +68,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -84,7 +84,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -100,7 +100,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -116,7 +116,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -132,7 +132,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -148,7 +148,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 
@@ -164,7 +164,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
 
    end
 

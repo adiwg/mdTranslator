@@ -29,7 +29,7 @@ module ADIWG
                      intRange[:minRangeValue] = hRange['minRangeValue']
                   end
                   if intRange[:minRangeValue].nil? || intRange[:minRangeValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson value range minimum is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: value range minimum is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +39,7 @@ module ADIWG
                      intRange[:maxRangeValue] = hRange['maxRangeValue']
                   end
                   if intRange[:maxRangeValue].nil? || intRange[:maxRangeValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson value range maximum is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: value range maximum is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

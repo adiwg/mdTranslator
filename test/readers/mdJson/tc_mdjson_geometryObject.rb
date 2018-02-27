@@ -115,7 +115,7 @@ class TestReaderMdJsonGeometryObject < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon'
+                      'ERROR: mdJson reader: GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon'
 
    end
 
@@ -129,7 +129,8 @@ class TestReaderMdJsonGeometryObject < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry object type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry object type is missing'
 
    end
 
@@ -143,7 +144,8 @@ class TestReaderMdJsonGeometryObject < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry object type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry object type is missing'
 
    end
 
@@ -157,7 +159,8 @@ class TestReaderMdJsonGeometryObject < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry object coordinates are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry object coordinates are missing'
 
    end
 
@@ -171,7 +174,8 @@ class TestReaderMdJsonGeometryObject < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry object coordinates are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry object coordinates are missing'
 
    end
 

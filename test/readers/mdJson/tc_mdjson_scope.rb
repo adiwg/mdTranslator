@@ -10,102 +10,102 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_scope'
 
 class TestReaderMdJsonScope < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Scope
-    aIn = TestReaderMdJsonParent.getJson('scope.json')
-    @@hIn = aIn['scope'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Scope
+   aIn = TestReaderMdJsonParent.getJson('scope.json')
+   @@hIn = aIn['scope'][0]
 
-    def test_scope_schema
+   def test_scope_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'scope.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_scope_object
+   def test_complete_scope_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_equal 2, metadata[:scopeDescriptions].length
-        assert_equal 1, metadata[:extents].length
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'scopeCode', metadata[:scopeCode]
+      assert_equal 2, metadata[:scopeDescriptions].length
+      assert_equal 1, metadata[:extents].length
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_scope_empty_scopeCode
+   def test_scope_empty_scopeCode
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['scopeCode'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['scopeCode'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        assert_equal 1, hResponse[:readerExecutionMessages].length
-        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson scope scopeCode is missing'
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: scope scopeCode is missing'
 
-    end
+   end
 
-    def test_scope_missing_scopeCode
+   def test_scope_missing_scopeCode
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('scopeCode')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('scopeCode')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        assert_equal 1, hResponse[:readerExecutionMessages].length
-        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson scope scopeCode is missing'
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: scope scopeCode is missing'
 
-    end
+   end
 
-    def test_empty_scope_elements
+   def test_empty_scope_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['scopeDescription'] = []
-        hIn['scopeExtent'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['scopeDescription'] = []
+      hIn['scopeExtent'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_empty metadata[:scopeDescriptions]
-        assert_empty metadata[:extents]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'scopeCode', metadata[:scopeCode]
+      assert_empty metadata[:scopeDescriptions]
+      assert_empty metadata[:extents]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_missing_scope_elements
+   def test_missing_scope_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('scopeDescription')
-        hIn.delete('scopeExtent')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('scopeDescription')
+      hIn.delete('scopeExtent')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'scopeCode', metadata[:scopeCode]
-        assert_empty metadata[:scopeDescriptions]
-        assert_empty metadata[:extents]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'scopeCode', metadata[:scopeCode]
+      assert_empty metadata[:scopeDescriptions]
+      assert_empty metadata[:extents]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_scope_object
+   def test_empty_scope_object
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        assert hResponse[:readerExecutionPass]
-        assert_equal 1, hResponse[:readerExecutionMessages].length
-        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: mdJson scope object is empty'
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: mdJson scope object is empty'
 
-    end
+   end
 
 end

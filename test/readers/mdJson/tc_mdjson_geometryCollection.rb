@@ -49,7 +49,8 @@ class TestReaderMdJsonGeometryCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry collection type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJSON geometry collection type is missing'
 
    end
 
@@ -63,7 +64,8 @@ class TestReaderMdJsonGeometryCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry collection type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJSON geometry collection type is missing'
 
    end
 
@@ -93,7 +95,8 @@ class TestReaderMdJsonGeometryCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry collection geometries are missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJSON geometry collection geometries are missing'
 
    end
 
@@ -137,7 +140,8 @@ class TestReaderMdJsonGeometryCollection < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: GeoJSON geometry collection object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: GeoJSON geometry collection object is empty'
 
    end
 

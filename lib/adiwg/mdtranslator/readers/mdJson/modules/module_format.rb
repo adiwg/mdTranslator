@@ -38,7 +38,7 @@ module ADIWG
                      end
                   end
                   if intFormat[:formatSpecification].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson distribution media format specification is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: distribution media format specification is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

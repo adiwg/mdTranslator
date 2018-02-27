@@ -40,7 +40,7 @@ module ADIWG
                   end
                   if intGeoRef[:gridRepresentation].empty?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson georeferenceable spatial representation grid representation is missing'
+                        'ERROR: mdJson reader: georeferenceable spatial representation grid representation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -74,7 +74,7 @@ module ADIWG
                   end
                   if intGeoRef[:georeferencedParameter].nil?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson georeferenceable spatial representation georeferenced parameters are missing'
+                        'ERROR: mdJson reader: georeferenceable spatial representation georeferenced parameters are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

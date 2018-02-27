@@ -76,7 +76,7 @@ class TestReaderMdJsonAttributeGroup < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson coverage description attribute group attribute content type is missing'
+                      'ERROR: mdJson reader: coverage description attribute group attribute content type is missing'
 
    end
 
@@ -91,7 +91,7 @@ class TestReaderMdJsonAttributeGroup < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson coverage description attribute group attribute content type is missing'
+                      'ERROR: mdJson reader: coverage description attribute group attribute content type is missing'
 
    end
 

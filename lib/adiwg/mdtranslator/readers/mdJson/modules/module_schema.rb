@@ -16,7 +16,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hSchema.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson schema object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -30,7 +30,7 @@ module ADIWG
                      intSchema[:name] = hSchema['name']
                   end
                   if intSchema[:name].nil? || intSchema[:name] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson schema name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -40,7 +40,7 @@ module ADIWG
                      intSchema[:version] = hSchema['version']
                   end
                   if intSchema[:version].nil? || intSchema[:version] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson schema version is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema version is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

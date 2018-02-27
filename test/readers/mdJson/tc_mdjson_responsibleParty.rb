@@ -49,7 +49,7 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson responsible party role is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: responsible party role is missing'
 
    end
 
@@ -64,7 +64,7 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson responsible party role is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: responsible party role is missing'
 
    end
 
@@ -79,7 +79,8 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson responsible party must have at least one party'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: responsible party must have at least one party'
 
    end
 
@@ -94,7 +95,8 @@ class TestReaderMdJsonResponsibleParty < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson responsible party must have at least one party'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: responsible party must have at least one party'
 
    end
 

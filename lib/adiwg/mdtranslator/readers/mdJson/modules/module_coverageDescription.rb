@@ -35,7 +35,7 @@ module ADIWG
                      end
                   end
                   if intContent[:coverageName].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -47,7 +47,7 @@ module ADIWG
                      end
                   end
                   if intContent[:coverageDescription].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

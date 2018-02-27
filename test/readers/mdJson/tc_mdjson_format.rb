@@ -48,7 +48,8 @@ class TestReaderMdJsonFormat < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson distribution media format specification is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: distribution media format specification is missing'
 
    end
 
@@ -62,7 +63,8 @@ class TestReaderMdJsonFormat < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson distribution media format specification is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: distribution media format specification is missing'
 
    end
 
@@ -108,7 +110,8 @@ class TestReaderMdJsonFormat < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: distribution media format object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: distribution media format object is empty'
 
    end
 

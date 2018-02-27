@@ -31,7 +31,7 @@ module ADIWG
                      intLocale[:languageCode] = hLocale['language']
                   end
                   if intLocale[:languageCode].nil? || intLocale[:languageCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson locale language code is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: locale language code is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intLocale[:characterEncoding] = hLocale['characterSet']
                   end
                   if intLocale[:characterEncoding].nil? || intLocale[:characterEncoding] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson locale character set code is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: locale character set code is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

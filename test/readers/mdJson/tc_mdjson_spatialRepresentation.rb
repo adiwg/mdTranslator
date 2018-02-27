@@ -111,7 +111,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial representation did not have an object of supported type'
+                      'ERROR: mdJson reader: spatial representation did not have an object of supported type'
 
    end
 
@@ -130,7 +130,7 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial representation did not have an object of supported type'
+                      'ERROR: mdJson reader: spatial representation did not have an object of supported type'
 
    end
 
@@ -142,7 +142,8 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: spatial representation object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: spatial representation object is empty'
 
    end
 

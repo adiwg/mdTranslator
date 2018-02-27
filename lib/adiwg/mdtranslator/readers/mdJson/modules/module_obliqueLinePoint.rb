@@ -31,7 +31,7 @@ module ADIWG
                   end
                   if intLinePoint[:azimuthLineLatitude].nil? || intLinePoint[:azimuthLineLatitude] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson spatial reference oblique line-point latitude is missing'
+                        'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -42,7 +42,7 @@ module ADIWG
                   end
                   if intLinePoint[:azimuthLineLongitude].nil? || intLinePoint[:azimuthLineLongitude] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson spatial reference oblique line-point longitude is missing'
+                        'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

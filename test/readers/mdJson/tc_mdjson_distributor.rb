@@ -48,7 +48,7 @@ class TestReaderMdJsonDistributor < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distributor contact is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: distributor contact is missing'
 
    end
 
@@ -63,7 +63,7 @@ class TestReaderMdJsonDistributor < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson distributor contact is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: distributor contact is missing'
 
    end
 

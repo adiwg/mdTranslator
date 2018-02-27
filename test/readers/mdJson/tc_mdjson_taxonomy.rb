@@ -54,7 +54,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy taxonomic classification system object is missing'
+                      'ERROR: mdJson reader: taxonomy taxonomic classification system object is missing'
 
    end
 
@@ -70,7 +70,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy taxonomic classification system object is missing'
+                      'ERROR: mdJson reader: taxonomy taxonomic classification system object is missing'
 
    end
 
@@ -86,7 +86,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy identification reference object is missing'
+                      'ERROR: mdJson reader: taxonomy identification reference object is missing'
 
    end
 
@@ -102,7 +102,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy identification reference object is missing'
+                      'ERROR: mdJson reader: taxonomy identification reference object is missing'
 
    end
 
@@ -118,7 +118,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy identification procedure is missing'
+                      'ERROR: mdJson reader: taxonomy identification procedure is missing'
 
    end
 
@@ -134,7 +134,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomy identification procedure is missing'
+                      'ERROR: mdJson reader: taxonomy identification procedure is missing'
 
    end
 
@@ -150,7 +150,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomic classification is missing'
+                      'ERROR: mdJson reader: taxonomic classification is missing'
 
    end
 
@@ -166,7 +166,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson taxonomic classification is missing'
+                      'ERROR: mdJson reader: taxonomic classification is missing'
 
    end
 

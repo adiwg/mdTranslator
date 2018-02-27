@@ -57,7 +57,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata info contact is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata info contact is missing'
 
    end
 
@@ -72,7 +72,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata info contact is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata info contact is missing'
 
    end
 
@@ -152,7 +152,7 @@ class TestReaderMdJsonMetadataInfo < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata info object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata info object is empty'
 
    end
 

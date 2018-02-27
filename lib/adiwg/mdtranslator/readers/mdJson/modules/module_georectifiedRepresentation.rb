@@ -40,7 +40,7 @@ module ADIWG
                   end
                   if intGeoRec[:gridRepresentation].empty?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson georectified spatial representation grid representation is missing'
+                        'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -67,7 +67,7 @@ module ADIWG
                   end
                   unless intGeoRec[:cornerPoints].length == 2 || intGeoRec[:cornerPoints].length == 4
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson georectified spatial representation must have either 2 or 4 corner points'
+                        'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -79,13 +79,13 @@ module ADIWG
                      end
                   end
                   if intGeoRec[:centerPoint].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson georectified spatial representation center point is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: georectified spatial representation center point is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
                   unless intGeoRec[:centerPoint].length == 2
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson georectified spatial representation center point must be single 2D coordinate'
+                        'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -97,7 +97,7 @@ module ADIWG
                      end
                   end
                   if intGeoRec[:pointInPixel].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson georectified spatial representation point-in-pixel is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

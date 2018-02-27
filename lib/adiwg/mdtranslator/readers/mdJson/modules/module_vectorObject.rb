@@ -31,7 +31,7 @@ module ADIWG
                      end
                   end
                   if intVecObj[:objectType].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson vector object type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vector object type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

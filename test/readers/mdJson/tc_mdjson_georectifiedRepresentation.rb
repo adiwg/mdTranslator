@@ -52,7 +52,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation grid representation is missing'
+                      'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation grid representation is missing'
+                      'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
 
    end
 
@@ -82,7 +82,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation must have either 2 or 4 corner points'
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
    end
 
@@ -97,7 +97,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation must have either 2 or 4 corner points'
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
    end
 
@@ -112,7 +112,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation center point must be single 2D coordinate'
+                      'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
 
    end
 
@@ -127,7 +127,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation center point is missing'
+                      'ERROR: mdJson reader: georectified spatial representation center point is missing'
 
    end
 
@@ -142,7 +142,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation must have either 2 or 4 corner points'
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
    end
 
@@ -157,7 +157,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation point-in-pixel is missing'
+                      'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
 
    end
 
@@ -172,7 +172,7 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georectified spatial representation point-in-pixel is missing'
+                      'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
 
    end
 

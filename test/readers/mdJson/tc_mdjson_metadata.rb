@@ -52,7 +52,8 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata metadata-info object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: metadata metadata-info object is missing'
 
    end
 
@@ -67,7 +68,8 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata metadata-info object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: metadata metadata-info object is missing'
 
    end
 
@@ -82,7 +84,8 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata resource info object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: metadata resource info object is missing'
 
    end
 
@@ -97,7 +100,8 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata resource info object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: metadata resource info object is missing'
 
    end
 
@@ -157,7 +161,7 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata object is empty'
 
    end
 

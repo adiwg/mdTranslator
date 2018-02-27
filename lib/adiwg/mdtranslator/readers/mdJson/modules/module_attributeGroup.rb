@@ -35,7 +35,7 @@ module ADIWG
                      end
                   end
                   if intAttGroup[:attributeContentTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description attribute group attribute content type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute group attribute content type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

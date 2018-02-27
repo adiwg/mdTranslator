@@ -45,7 +45,7 @@ class TestReaderMdJsonTaxonomicSystem < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic system citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: taxonomic system citation is missing'
 
    end
 
@@ -59,7 +59,7 @@ class TestReaderMdJsonTaxonomicSystem < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic system citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: taxonomic system citation is missing'
 
    end
 

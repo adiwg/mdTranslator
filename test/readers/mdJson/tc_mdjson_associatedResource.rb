@@ -50,7 +50,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource resource type is missing'
 
    end
 
@@ -65,7 +66,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       refute_empty hResponse[:readerExecutionMessages]
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource resource type is missing'
 
    end
 
@@ -79,7 +81,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource association type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource association type is missing'
 
    end
 
@@ -93,7 +96,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource association type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource association type is missing'
 
    end
 
@@ -107,7 +111,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource citation is missing'
 
    end
 
@@ -121,7 +126,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson associated resource citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: associated resource citation is missing'
 
    end
 
@@ -169,7 +175,8 @@ class TestReaderMdJsonAssociatedResource < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: associated resource object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: associated resource object is empty'
 
    end
 

@@ -95,7 +95,7 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson geographic extent must have at least one description, identifier, bounding box, or geographic element'
+                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
 
    end
 
@@ -114,7 +114,7 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson geographic extent must have at least one description, identifier, bounding box, or geographic element'
+                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
 
    end
 

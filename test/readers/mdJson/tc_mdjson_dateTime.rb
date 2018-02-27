@@ -151,7 +151,7 @@ class TestReaderMdJsonDateTime < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson dateTime string is invalid'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: dateTime string is invalid'
 
    end
 

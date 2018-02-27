@@ -48,7 +48,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation number-of-dimensions is missing'
+                      'ERROR: mdJson reader: grid representation number-of-dimensions is missing'
 
    end
 
@@ -63,7 +63,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation number-of-dimensions is missing'
+                      'ERROR: mdJson reader: grid representation number-of-dimensions is missing'
 
    end
 
@@ -78,7 +78,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation dimensions are missing'
+                      'ERROR: mdJson reader: grid representation dimensions are missing'
 
    end
 
@@ -93,7 +93,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation dimensions are missing'
+                      'ERROR: mdJson reader: grid representation dimensions are missing'
 
    end
 
@@ -108,7 +108,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation cell geometry is missing'
+                      'ERROR: mdJson reader: grid representation cell geometry is missing'
 
    end
 
@@ -123,7 +123,7 @@ class TestReaderMdJsonGridRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson grid representation cell geometry is missing'
+                      'ERROR: mdJson reader: grid representation cell geometry is missing'
 
    end
 

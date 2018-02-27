@@ -36,7 +36,7 @@ module ADIWG
                begin
                   hMdJson = JSON.parse(file)
                rescue JSON::JSONError => err
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson Parsing mdJson Failed - see following message(s):\n'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: Parsing mdJson Failed - see following message(s):\n'
                   hResponseObj[:readerStructureMessages] << err.to_s.slice(0, 300)
                   hResponseObj[:readerStructurePass] = false
                   return {}
@@ -44,45 +44,45 @@ module ADIWG
 
                # file must contain an mdJson object
                if hMdJson.empty?
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson object is empty'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: object is empty'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
 
                # schema - (required)
                unless hMdJson.has_key?('schema')
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson schema definition is missing '
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: schema definition is missing '
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
 
                # schema - name (required) (must = 'mdJson')
                unless hMdJson['schema'].has_key?('name')
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson schema element is missing'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: schema element is missing'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
                schemaName = hMdJson['schema']['name']
                if schemaName.nil? || schemaName == ''
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson schema name is missing'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: schema name is missing'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
                unless schemaName.downcase == 'mdjson'
-                  hResponseObj[:readerStructureMessages] << "ERROR: mdJson schema name is '#{schemaName}', should be mdJson"
+                  hResponseObj[:readerStructureMessages] << "ERROR: mdJson reader: schema name is '#{schemaName}', should be mdJson"
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
 
                # schema - version (required)
                unless hMdJson['schema'].has_key?('version')
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson schema version element is missing'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: schema version element is missing'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
                requestedVersion = hMdJson['schema']['version']
                if requestedVersion.nil? || requestedVersion == ''
-                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson schema version is missing'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: schema version is missing'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
@@ -101,7 +101,7 @@ module ADIWG
                end
                unless approved
                   approvedVersion = aCurVersion[0] + '.0.0'
-                  hResponseObj[:readerStructureMessages] << "ERROR: mdJson schema version '#{requestedVersion}' is not supported"
+                  hResponseObj[:readerStructureMessages] << "ERROR: mdJson reader: schema version '#{requestedVersion}' is not supported"
                   hResponseObj[:readerStructureMessages] << "... mdTranslator supports mdJson schema version '#{approvedVersion}' through '#{currentVersion}'"
                   hResponseObj[:readerStructurePass] = false
                   return {}

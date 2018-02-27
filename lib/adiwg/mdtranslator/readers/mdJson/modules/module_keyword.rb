@@ -48,7 +48,7 @@ module ADIWG
                      end
                   end
                   if intKeyword[:keywords].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson keyword keyword list is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: keyword keyword list is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

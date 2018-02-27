@@ -36,7 +36,7 @@ module ADIWG
                      intPhone[:phoneNumber] = hPhone['phoneNumber']
                   end
                   if hPhone['phoneNumber'].nil? || hPhone['phoneNumber'] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson phone number is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: phone number is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

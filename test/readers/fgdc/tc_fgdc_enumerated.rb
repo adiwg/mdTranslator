@@ -40,7 +40,8 @@ class TestReaderFgdcEnumerated < TestReaderFGDCParent
       assert_equal 'attribute 1 enumerated domain value 2', hItem1[:itemName]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: entity type definition source is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: entity type definition source is missing'
 
    end
 

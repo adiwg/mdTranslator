@@ -44,7 +44,7 @@ class TestReaderMdJsonResourceType < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: resource type is missing'
 
    end
 
@@ -58,7 +58,7 @@ class TestReaderMdJsonResourceType < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: resource type is missing'
 
    end
 

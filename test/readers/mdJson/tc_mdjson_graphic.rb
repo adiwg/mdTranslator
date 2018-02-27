@@ -50,7 +50,7 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson graphic overview file name is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: graphic overview file name is missing'
 
    end
 
@@ -64,7 +64,7 @@ class TestReaderMdJsonGraphic < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson graphic overview file name is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: graphic overview file name is missing'
 
    end
 

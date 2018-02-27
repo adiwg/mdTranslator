@@ -51,7 +51,7 @@ class TestReaderMdJsonExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson extent must have description or at least one geographic, temporal, or vertical extent'
+                      'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
 
    end
 
@@ -70,7 +70,7 @@ class TestReaderMdJsonExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson extent must have description or at least one geographic, temporal, or vertical extent'
+                      'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
 
    end
 

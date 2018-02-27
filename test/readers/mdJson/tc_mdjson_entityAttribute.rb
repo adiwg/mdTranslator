@@ -65,7 +65,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute code name is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute code name is missing'
 
    end
 
@@ -79,7 +80,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute code name is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute code name is missing'
 
    end
 
@@ -93,7 +95,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute definition is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
 
    end
 
@@ -107,7 +110,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute definition is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
 
    end
 
@@ -121,7 +125,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute data type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
 
    end
 
@@ -135,7 +140,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary entity attribute data type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
 
    end
 
@@ -274,7 +280,8 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: data dictionary entity attribute object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: data dictionary entity attribute object is empty'
 
    end
 

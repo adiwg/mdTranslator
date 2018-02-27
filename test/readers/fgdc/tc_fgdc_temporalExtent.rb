@@ -44,15 +44,24 @@ class TestReaderFgdcTemporalExtent < TestReaderFGDCParent
       assert_equal 'YMDhmsZ', hInstant[:timeInstant][:dateResolution]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification section citation is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification section description is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification status is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification spatial domain section is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification keyword section is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification access constraint is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: identification use constraint is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: metadata creation date is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: metadata point of contact is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification section citation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification section description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification status is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification spatial domain section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification keyword section is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification access constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: identification use constraint is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: metadata creation date is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: metadata point of contact is missing'
 
    end
 

@@ -80,7 +80,7 @@ module ADIWG
                   # error messages
                   unless haveExtent
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson extent must have description or at least one geographic, temporal, or vertical extent'
+                        'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

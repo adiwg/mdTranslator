@@ -90,7 +90,7 @@ module ADIWG
                   # error messages
                   unless haveOption
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson transfer option must have an online or offline option'
+                        'ERROR: mdJson reader: transfer option must have an online or offline option'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

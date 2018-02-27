@@ -40,7 +40,7 @@ module ADIWG
                      intUsage[:specificUsage] = hUsage['specificUsage']
                   end
                   if intUsage[:specificUsage].nil? || intUsage[:specificUsage] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource usage specific usage is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource usage specific usage is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

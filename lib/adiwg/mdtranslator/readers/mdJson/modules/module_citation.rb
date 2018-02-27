@@ -47,7 +47,7 @@ module ADIWG
                      intCitation[:title] = hCitation['title']
                   end
                   if intCitation[:title].nil? || intCitation[:title] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson citation title is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: citation title is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

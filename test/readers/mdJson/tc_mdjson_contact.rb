@@ -73,7 +73,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson contact id is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact id is missing'
 
    end
 
@@ -87,7 +87,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson contact id is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact id is missing'
 
    end
 
@@ -101,7 +101,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson organization contact name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: organization contact name is missing'
 
    end
 
@@ -115,7 +115,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson organization contact name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: organization contact name is missing'
 
    end
 
@@ -147,7 +147,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson individual contact name and/or position are missing'
+                      'ERROR: mdJson reader: individual contact name and/or position are missing'
 
    end
 
@@ -229,7 +229,7 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson contact object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact object is empty'
 
    end
 

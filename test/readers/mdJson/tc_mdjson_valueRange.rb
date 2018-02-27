@@ -44,7 +44,7 @@ class TestReaderMdJsonValueRange < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson value range minimum is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: value range minimum is missing'
 
    end
 
@@ -58,7 +58,7 @@ class TestReaderMdJsonValueRange < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson value range minimum is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: value range minimum is missing'
 
    end
 
@@ -72,7 +72,7 @@ class TestReaderMdJsonValueRange < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson value range maximum is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: value range maximum is missing'
 
    end
 
@@ -86,7 +86,7 @@ class TestReaderMdJsonValueRange < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson value range maximum is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: value range maximum is missing'
 
    end
 

@@ -38,7 +38,7 @@ module ADIWG
                      intVertical[:minValue] = hVertical['minValue']
                   end
                   if intVertical[:minValue].nil? || intVertical[:minValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson vertical extent minimum value is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent minimum value is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -48,7 +48,7 @@ module ADIWG
                      intVertical[:maxValue] = hVertical['maxValue']
                   end
                   if intVertical[:maxValue].nil? || intVertical[:maxValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson vertical extent maximum value is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent maximum value is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -64,7 +64,7 @@ module ADIWG
                      end
                   end
                   if intVertical[:crsId].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson vertical extent CRS identifier is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent CRS identifier is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

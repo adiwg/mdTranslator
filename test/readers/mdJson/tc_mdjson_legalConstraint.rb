@@ -70,7 +70,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson legal constraint was not defined'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: legal constraint was not defined'
 
    end
 
@@ -88,7 +88,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson legal constraint was not defined'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: legal constraint was not defined'
 
    end
 
@@ -103,7 +103,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson legal constraint object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: legal constraint object is missing'
 
    end
 
@@ -118,7 +118,7 @@ class TestReaderMdJsonLegalConstraint < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson legal constraint object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: legal constraint object is missing'
 
    end
 

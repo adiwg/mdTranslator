@@ -77,7 +77,7 @@ module ADIWG
 
                   unless haveSystem
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson spatial reference system must declare reference system type, identifier, WKT, or parameter set'
+                        'ERROR: mdJson reader: spatial reference system must declare reference system type, identifier, WKT, or parameter set'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

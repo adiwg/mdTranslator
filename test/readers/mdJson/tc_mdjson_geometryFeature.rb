@@ -50,7 +50,8 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry feature type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry feature type is missing'
 
    end
 
@@ -64,7 +65,8 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry feature type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry feature type is missing'
 
    end
 
@@ -96,7 +98,8 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson GeoJSON geometry feature geometry is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: GeoJSON geometry feature geometry is missing'
 
    end
 
@@ -148,7 +151,8 @@ class TestReaderMdJsonGeometryFeature < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: GeoJSON geometry feature object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: GeoJSON geometry feature object is empty'
 
    end
 

@@ -58,7 +58,7 @@ module ADIWG
                      intGeodetic[:ellipsoidName] = hGeodetic['ellipsoidName']
                   end
                   if intGeodetic[:ellipsoidName].nil? || intGeodetic[:ellipsoidName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson spatial reference geodetic ellipsoid name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial reference geodetic ellipsoid name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -29,7 +29,7 @@ module ADIWG
                      intBearRes[:distanceResolution] = hBearRes['distanceResolution']
                   end
                   if intBearRes[:distanceResolution].nil? || intBearRes[:distanceResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution is missing distance resolution'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution is missing distance resolution'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +39,7 @@ module ADIWG
                      intBearRes[:distanceUnitOfMeasure] = hBearRes['distanceUnitOfMeasure']
                   end
                   if intBearRes[:distanceUnitOfMeasure].nil? || intBearRes[:distanceUnitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution distance units are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution distance units are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intBearRes[:bearingResolution] = hBearRes['bearingResolution']
                   end
                   if intBearRes[:bearingResolution].nil? || intBearRes[:bearingResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution bearing resolution is missing '
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing resolution is missing '
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -59,7 +59,7 @@ module ADIWG
                      intBearRes[:bearingUnitOfMeasure] = hBearRes['bearingUnitOfMeasure']
                   end
                   if intBearRes[:bearingUnitOfMeasure].nil? || intBearRes[:bearingUnitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution bearing units is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing units is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -69,7 +69,7 @@ module ADIWG
                      intBearRes[:bearingReferenceDirection] = hBearRes['bearingReferenceDirection']
                   end
                   if intBearRes[:bearingReferenceDirection].nil? || intBearRes[:bearingReferenceDirection] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution bearing direction is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing direction is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -79,7 +79,7 @@ module ADIWG
                      intBearRes[:bearingReferenceMeridian] = hBearRes['bearingReferenceMeridian']
                   end
                   if intBearRes[:bearingReferenceMeridian].nil? || intBearRes[:bearingReferenceMeridian] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson bearing distance resolution bearing meridian is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing meridian is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

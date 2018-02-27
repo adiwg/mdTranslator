@@ -40,7 +40,7 @@ module ADIWG
                      end
                   end
                   if intAdd[:addressTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson address type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: address type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -80,7 +80,7 @@ module ADIWG
                   # error messages
                   if intDatum[:datumIdentifier].empty? && haveOthers != 4
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson vertical datum must have an identifier or all other elements'
+                        'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

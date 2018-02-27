@@ -37,7 +37,7 @@ module ADIWG
                      end
                   end
                   if intSystem[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomic system citation is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic system citation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

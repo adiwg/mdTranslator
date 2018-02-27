@@ -51,7 +51,7 @@ class TestReaderMdJsonScopeDescription < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson scope description needs at least one dataset, attribute, feature, or other'
+                      'ERROR: mdJson reader: scope description needs at least one dataset, attribute, feature, or other'
 
    end
 
@@ -70,7 +70,7 @@ class TestReaderMdJsonScopeDescription < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson scope description needs at least one dataset, attribute, feature, or other'
+                      'ERROR: mdJson reader: scope description needs at least one dataset, attribute, feature, or other'
 
    end
 

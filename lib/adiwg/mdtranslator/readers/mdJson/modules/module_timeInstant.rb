@@ -83,7 +83,7 @@ module ADIWG
 
                   # time instant must have either a timeInstant or geologicAge
                   if intInstant[:timeInstant].empty? && intInstant[:geologicAge].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson time instant must have dateTime or geologic age'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time instant must have dateTime or geologic age'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

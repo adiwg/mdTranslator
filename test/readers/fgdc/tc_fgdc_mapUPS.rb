@@ -53,8 +53,10 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate encoding method is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate representation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: planar coordinate representation is missing'
 
    end
 
@@ -97,8 +99,10 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate encoding method is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: planar coordinate representation is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: planar coordinate representation is missing'
 
    end
 

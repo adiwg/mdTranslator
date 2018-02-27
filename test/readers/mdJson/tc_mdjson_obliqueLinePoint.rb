@@ -47,7 +47,7 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference oblique line-point latitude is missing'
+                      'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
 
    end
 
@@ -62,7 +62,7 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference oblique line-point latitude is missing'
+                      'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
 
    end
 
@@ -77,7 +77,7 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference oblique line-point longitude is missing'
+                      'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
 
    end
 
@@ -92,7 +92,7 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial reference oblique line-point longitude is missing'
+                      'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
 
    end
 

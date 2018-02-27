@@ -104,7 +104,7 @@ module ADIWG
                   # error messages
                   unless haveOne
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson spatial resolution did not have an object of supported type'
+                        'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

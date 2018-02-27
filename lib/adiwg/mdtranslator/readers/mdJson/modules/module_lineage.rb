@@ -92,7 +92,7 @@ module ADIWG
 
                   unless haveLineage
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson resource lineage must have at least one statement, process step, or source'
+                        'ERROR: mdJson reader: resource lineage must have at least one statement, process step, or source'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

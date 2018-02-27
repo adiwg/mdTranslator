@@ -39,7 +39,7 @@ module ADIWG
                      end
                   end
                   if intDistrib[:contact].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson distributor contact is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: distributor contact is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

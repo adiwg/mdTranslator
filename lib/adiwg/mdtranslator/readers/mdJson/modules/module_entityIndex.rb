@@ -35,7 +35,7 @@ module ADIWG
                      intIndex[:indexCode] = hIndex['codeName']
                   end
                   if intIndex[:indexCode].nil? || intIndex[:indexCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity index code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity index code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -54,7 +54,7 @@ module ADIWG
                   end
                   if intIndex[:attributeNames].empty?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson data dictionary entity index attribute list is missing'
+                        'ERROR: mdJson reader: data dictionary entity index attribute list is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

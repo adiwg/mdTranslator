@@ -46,7 +46,8 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson additional documentation is missing resource type'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: additional documentation is missing resource type'
    end
 
    def test_missing_additionalDocumentation_resourceType
@@ -59,7 +60,8 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing resource type'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: additional documentation is missing resource type'
 
    end
 
@@ -73,7 +75,8 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing citation'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: additional documentation is missing citation'
    end
 
    def test_missing_additionalDocumentation_citation
@@ -86,7 +89,8 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson additional documentation is missing citation'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: additional documentation is missing citation'
 
    end
 
@@ -98,7 +102,8 @@ class TestReaderMdJsonAdditionalDocumentation < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: additional documentation object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: additional documentation object is empty'
 
    end
 

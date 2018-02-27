@@ -53,7 +53,7 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson address type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: address type is missing'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonAddress < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson address type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: address type is missing'
 
    end
 

@@ -47,7 +47,7 @@ class TestReaderMdJsonVoucher < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson voucher specimen is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: voucher specimen is missing'
 
    end
 
@@ -62,7 +62,7 @@ class TestReaderMdJsonVoucher < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson voucher specimen is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: voucher specimen is missing'
 
    end
 
@@ -77,7 +77,7 @@ class TestReaderMdJsonVoucher < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson voucher repository is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: voucher repository is missing'
 
    end
 
@@ -92,7 +92,7 @@ class TestReaderMdJsonVoucher < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson voucher repository is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: voucher repository is missing'
 
    end
 

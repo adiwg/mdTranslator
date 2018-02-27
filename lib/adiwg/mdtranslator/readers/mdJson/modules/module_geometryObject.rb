@@ -34,14 +34,14 @@ module ADIWG
                            intGeoObject[:type] = hGeoObject['type']
                         else
                            responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon'
+                              'ERROR: mdJson reader: GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intGeoObject[:type].nil? || intGeoObject[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry object type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry object type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -51,7 +51,7 @@ module ADIWG
                      intGeoObject[:coordinates] = hGeoObject['coordinates']
                   end
                   if intGeoObject[:coordinates].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry object coordinates are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry object coordinates are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

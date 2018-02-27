@@ -37,7 +37,7 @@ module ADIWG
                      intOLRes[:olResURI] = hOnlineRes['uri']
                   end
                   if intOLRes[:olResURI].nil? || intOLRes[:olResURI] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson online resource URI is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: online resource URI is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

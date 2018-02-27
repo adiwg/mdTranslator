@@ -98,7 +98,7 @@ module ADIWG
                      intDuration[:minutes] +
                      intDuration[:seconds]
                   unless totalDuration > 0
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson duration not specified'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: duration not specified'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

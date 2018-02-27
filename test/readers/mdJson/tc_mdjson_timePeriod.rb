@@ -63,7 +63,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson time period must have a starting time, ending time, or geologic age'
+                      'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
 
    end
 
@@ -81,7 +81,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson time period must have a starting time, ending time, or geologic age'
+                      'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
 
    end
 

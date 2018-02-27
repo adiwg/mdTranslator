@@ -48,7 +48,8 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson spatial representation dimension type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: spatial representation dimension type is missing'
 
    end
 
@@ -62,7 +63,8 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson spatial representation dimension type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: spatial representation dimension type is missing'
 
    end
 
@@ -76,7 +78,7 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson spatial representation dimension size is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: spatial representation dimension size is missing'
 
    end
 
@@ -90,7 +92,8 @@ class TestReaderMdJsonDimension < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson spatial representation dimension size is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: spatial representation dimension size is missing'
 
    end
 

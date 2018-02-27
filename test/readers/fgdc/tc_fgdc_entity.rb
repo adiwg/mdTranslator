@@ -59,7 +59,8 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
       assert_nil hEntity2[:quoteCharacter]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: entity type definition source is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: FGDC reader: entity type definition source is missing'
 
    end
 

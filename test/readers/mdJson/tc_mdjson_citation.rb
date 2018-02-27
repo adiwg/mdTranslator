@@ -64,7 +64,7 @@ class TestReaderMdJsonCitation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       refute_empty hResponse[:readerExecutionMessages]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson citation title is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: citation title is missing'
 
    end
 
@@ -79,7 +79,7 @@ class TestReaderMdJsonCitation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson citation title is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: citation title is missing'
 
    end
 

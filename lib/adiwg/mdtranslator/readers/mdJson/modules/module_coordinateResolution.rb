@@ -31,7 +31,7 @@ module ADIWG
                   end
                   if intCoordRes[:abscissaResolutionX].nil? || intCoordRes[:abscissaResolutionX] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson coordinate spatial resolution abscissa resolution is missing'
+                        'ERROR: mdJson reader: coordinate spatial resolution abscissa resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -42,7 +42,7 @@ module ADIWG
                   end
                   if intCoordRes[:ordinateResolutionY].nil? || intCoordRes[:ordinateResolutionY] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson coordinate spatial resolution ordinate resolution is missing'
+                        'ERROR: mdJson reader: coordinate spatial resolution ordinate resolution is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -52,7 +52,7 @@ module ADIWG
                      intCoordRes[:unitOfMeasure] = hCoordRes['unitOfMeasure']
                   end
                   if intCoordRes[:unitOfMeasure].nil? || intCoordRes[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson coordinate spatial resolution units are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coordinate spatial resolution units are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

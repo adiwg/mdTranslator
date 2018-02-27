@@ -39,7 +39,7 @@ module ADIWG
                      intAlloc[:amount] = hAlloc['amount']
                   end
                   if intAlloc[:amount].nil? || intAlloc[:amount] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson budget allocation amount is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: budget allocation amount is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intAlloc[:currency] = hAlloc['currency']
                   end
                   if intAlloc[:currency].nil? || intAlloc[:currency] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson budget allocation currency is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: budget allocation currency is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -48,7 +48,8 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary entity index code name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: data dictionary entity index code name is missing'
 
    end
 
@@ -62,7 +63,8 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson data dictionary entity index code name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: data dictionary entity index code name is missing'
 
    end
 
@@ -77,7 +79,7 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data dictionary entity index attribute list is missing'
+                      'ERROR: mdJson reader: data dictionary entity index attribute list is missing'
 
    end
 
@@ -92,7 +94,7 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson data dictionary entity index attribute list is missing'
+                      'ERROR: mdJson reader: data dictionary entity index attribute list is missing'
 
    end
 
@@ -104,7 +106,8 @@ class TestReaderMdJsonEntityIndex < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: data dictionary entity index object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: data dictionary entity index object is empty'
 
    end
 

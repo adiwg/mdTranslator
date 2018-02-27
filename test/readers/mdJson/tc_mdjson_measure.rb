@@ -92,7 +92,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson measure type must be distance, length, vertical, or angle'
+                      'ERROR: mdJson reader: measure type must be distance, length, vertical, or angle'
 
    end
 
@@ -106,7 +106,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure type is missing'
 
    end
 
@@ -120,7 +120,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure type is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure type is missing'
 
    end
 
@@ -134,7 +134,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure value is missing'
 
    end
 
@@ -148,7 +148,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure value is missing'
 
    end
 
@@ -162,7 +162,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure unit-of-measure is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure unit-of-measure is missing'
 
    end
 
@@ -176,7 +176,7 @@ class TestReaderMdJsonMeasure < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson measure unit-of-measure is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: measure unit-of-measure is missing'
 
    end
 

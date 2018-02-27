@@ -49,7 +49,7 @@ module ADIWG
                      intAttribute[:attributeCode] = hAttribute['codeName']
                   end
                   if intAttribute[:attributeCode].nil? || intAttribute[:attributeCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -68,7 +68,7 @@ module ADIWG
                      intAttribute[:attributeDefinition] = hAttribute['definition']
                   end
                   if intAttribute[:attributeDefinition].nil? || intAttribute[:attributeDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute definition is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -89,7 +89,7 @@ module ADIWG
                      intAttribute[:dataType] = hAttribute['dataType']
                   end
                   if intAttribute[:dataType].nil? || intAttribute[:dataType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity attribute data type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

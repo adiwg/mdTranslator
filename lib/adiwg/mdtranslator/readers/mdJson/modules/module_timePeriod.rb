@@ -113,7 +113,7 @@ module ADIWG
                   # error messages
                   unless haveTime
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson time period must have a starting time, ending time, or geologic age'
+                        'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

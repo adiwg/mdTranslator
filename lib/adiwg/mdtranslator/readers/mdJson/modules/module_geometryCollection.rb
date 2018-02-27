@@ -34,14 +34,14 @@ module ADIWG
                         if hGeoCol['type'] == 'GeometryCollection'
                            intGeoCol[:type] = hGeoCol['type']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry collection type must be GeometryCollection'
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection type must be GeometryCollection'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intGeoCol[:type].nil? || intGeoCol[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry collection type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -62,7 +62,7 @@ module ADIWG
                         end
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry collection geometries are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection geometries are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

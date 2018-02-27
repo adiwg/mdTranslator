@@ -45,7 +45,7 @@ module ADIWG
                      end
                   end
                   if intAddDoc[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson additional documentation is missing resource type'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: additional documentation is missing resource type'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -60,7 +60,7 @@ module ADIWG
                      end
                   end
                   if intAddDoc[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson additional documentation is missing citation'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: additional documentation is missing citation'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

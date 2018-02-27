@@ -41,7 +41,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:sequenceIdentifierType].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description attribute sequence identifierType is missing'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute sequence identifierType is missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
@@ -87,7 +87,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:units].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description attribute units are missing'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute units are missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
@@ -157,7 +157,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:boundUnits].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson coverage description attribute bound units are missing'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute bound units are missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end

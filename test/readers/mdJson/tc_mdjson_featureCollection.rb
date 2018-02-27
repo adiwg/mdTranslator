@@ -49,7 +49,8 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJson feature collection type is missing'
 
    end
 
@@ -63,7 +64,8 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJson feature collection type is missing'
 
    end
 
@@ -93,7 +95,8 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson GeoJson feature collection features are missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJson feature collection features are missing'
 
    end
 
@@ -137,7 +140,8 @@ class TestReaderMdJsonFeatureCollection < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: GeoJson feature collection object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: GeoJson feature collection object is empty'
 
    end
 

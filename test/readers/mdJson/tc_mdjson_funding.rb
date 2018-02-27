@@ -74,7 +74,8 @@ class TestReaderMdJsonFunding < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson funding must have either allocation or timePeriod'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: funding must have either allocation or timePeriod'
 
    end
 
@@ -89,7 +90,8 @@ class TestReaderMdJsonFunding < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson funding must have either allocation or timePeriod'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: funding must have either allocation or timePeriod'
 
    end
 

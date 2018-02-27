@@ -34,7 +34,7 @@ module ADIWG
                      intSecCon[:classCode] = hSecurityCon['classification']
                   end
                   if intSecCon[:classCode].nil? || intSecCon[:classCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson security constraint classification is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: security constraint classification is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

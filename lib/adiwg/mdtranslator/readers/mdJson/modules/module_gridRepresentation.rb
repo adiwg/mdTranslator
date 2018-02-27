@@ -33,7 +33,7 @@ module ADIWG
                      end
                   end
                   if intGrid[:numberOfDimensions].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson grid representation number-of-dimensions is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: grid representation number-of-dimensions is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -48,7 +48,7 @@ module ADIWG
                      end
                   end
                   if intGrid[:dimension].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson grid representation dimensions are missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: grid representation dimensions are missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -60,7 +60,7 @@ module ADIWG
                      end
                   end
                   if intGrid[:cellGeometry].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson grid representation cell geometry is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: grid representation cell geometry is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

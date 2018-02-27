@@ -32,7 +32,7 @@ module ADIWG
                      intMdDist[:repository] = hMdDist['repository']
                   end
                   if intMdDist[:repository].nil? || intMdDist[:repository] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata repository name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata repository name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

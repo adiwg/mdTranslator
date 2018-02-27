@@ -52,7 +52,7 @@ class TestReaderMdJsonReleasability < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson releasability must have at least one addressee or statement'
+                      'ERROR: mdJson reader: releasability must have at least one addressee or statement'
 
    end
 
@@ -69,7 +69,7 @@ class TestReaderMdJsonReleasability < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson releasability must have at least one addressee or statement'
+                      'ERROR: mdJson reader: releasability must have at least one addressee or statement'
 
    end
 

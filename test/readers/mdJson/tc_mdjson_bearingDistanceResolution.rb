@@ -22,7 +22,7 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
    #
    # end
 
-   def test_complete_bearingDistanceResolution
+   def test_complete_bearDistRes
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -39,7 +39,7 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
    end
 
-   def test_bearingDistanceResolution_empty_distanceResolution
+   def test_bearDistRes_empty_distanceResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['distanceResolution'] = ''
@@ -49,11 +49,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution is missing distance resolution'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution is missing distance resolution'
 
    end
 
-   def test_bearingDistanceResolution_missing_distanceResolution
+   def test_bearDistRes_missing_distanceResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('distanceResolution')
@@ -63,11 +64,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution is missing distance resolution'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution is missing distance resolution'
 
    end
 
-   def test_bearingDistanceResolution_empty_distanceUOM
+   def test_bearDistRes_empty_distanceUOM
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['distanceUnitOfMeasure'] = ''
@@ -77,11 +79,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution distance units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution distance units are missing'
 
    end
 
-   def test_bearingDistanceResolution_missing_distanceUOM
+   def test_bearDistRes_missing_distanceUOM
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('distanceUnitOfMeasure')
@@ -91,11 +94,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution distance units are missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution distance units are missing'
 
    end
 
-   def test_bearingDistanceResolution_empty_bearingResolution
+   def test_bearDistRes_empty_bearingResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['bearingResolution'] = ''
@@ -105,11 +109,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing resolution is missing '
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing resolution is missing '
 
    end
 
-   def test_bearingDistanceResolution_missing_bearingResolution
+   def test_bearDistRes_missing_bearingResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('bearingResolution')
@@ -119,11 +124,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing resolution is missing '
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing resolution is missing '
 
    end
 
-   def test_bearingDistanceResolution_empty_bearingUnitOfMeasure
+   def test_bearDistRes_empty_bearingUnitOfMeasure
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['bearingUnitOfMeasure'] = ''
@@ -133,11 +139,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing units is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing units is missing'
 
    end
 
-   def test_bearingDistanceResolution_missing_bearingUnitOfMeasure
+   def test_bearDistRes_missing_bearingUnitOfMeasure
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('bearingUnitOfMeasure')
@@ -147,11 +154,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing units is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing units is missing'
 
    end
 
-   def test_bearingDistanceResolution_empty_bearingReferenceDirection
+   def test_bearDistRes_empty_bearingReferenceDirection
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['bearingReferenceDirection'] = ''
@@ -161,11 +169,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing direction is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing direction is missing'
 
    end
 
-   def test_bearingDistanceResolution_missing_bearingReferenceDirection
+   def test_bearDistRes_missing_bearingReferenceDirection
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('bearingReferenceDirection')
@@ -175,11 +184,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing direction is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing direction is missing'
 
    end
 
-   def test_bearingDistanceResolution_empty_bearingReferenceMeridian
+   def test_bearDistRes_empty_bearingReferenceMeridian
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['bearingReferenceMeridian'] = ''
@@ -189,11 +199,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing meridian is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing meridian is missing'
 
    end
 
-   def test_bearingDistanceResolution_missing_bearingReferenceMeridian
+   def test_bearDistRes_missing_bearingReferenceMeridian
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('bearingReferenceMeridian')
@@ -203,11 +214,12 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson bearing distance resolution bearing meridian is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: bearing distance resolution bearing meridian is missing'
 
    end
 
-   def test_empty_bearingDistanceResolution_object
+   def test_empty_bearDistRes_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
@@ -215,7 +227,8 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: bearing distance resolution object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: bearing distance resolution object is empty'
 
    end
 

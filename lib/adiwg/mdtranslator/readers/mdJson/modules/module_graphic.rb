@@ -40,7 +40,7 @@ module ADIWG
                      intGraphic[:graphicName] = hGraphic['fileName']
                   end
                   if intGraphic[:graphicName].nil? || intGraphic[:graphicName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson graphic overview file name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: graphic overview file name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

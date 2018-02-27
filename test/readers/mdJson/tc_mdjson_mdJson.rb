@@ -49,7 +49,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: schema object is missing'
 
    end
 
@@ -64,7 +64,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson schema object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: schema object is missing'
 
    end
 
@@ -79,7 +79,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson contact object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact object is missing'
 
    end
 
@@ -94,7 +94,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson contact object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact object is missing'
 
    end
 
@@ -109,7 +109,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata object is missing'
 
    end
 
@@ -124,7 +124,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson metadata object is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata object is missing'
 
    end
 
@@ -174,7 +174,7 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: object is empty'
 
    end
 

@@ -23,7 +23,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMdJson.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -43,7 +43,7 @@ module ADIWG
                      end
                   end
                   if intObj[:schema].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson schema object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -60,7 +60,7 @@ module ADIWG
                      end
                   end
                   if intObj[:contacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson contact object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -76,7 +76,7 @@ module ADIWG
                      end
                   end
                   if intObj[:metadata].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

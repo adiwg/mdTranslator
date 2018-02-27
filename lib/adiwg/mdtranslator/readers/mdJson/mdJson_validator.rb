@@ -35,14 +35,14 @@ module ADIWG
                   aErrors = JSON::Validator.fully_validate('schema.json', file, :strict => bStrict)
 
                   unless aErrors.empty?
-                     responseObj[:readerValidationMessages] << 'ERROR: mdJson schema validation Failed - see following message(s)'
+                     responseObj[:readerValidationMessages] << 'ERROR: mdJson reader: schema validation Failed - see following message(s)'
                      responseObj[:readerValidationMessages] << aErrors
                      responseObj[:readerValidationPass] = false
                      return
                   end
 
                rescue JSON::Schema::ValidationError
-                  responseObj[:readerValidationMessages] << 'ERROR: mdJson schema validation Failed - see following message(s)'
+                  responseObj[:readerValidationMessages] << 'ERROR: mdJson reader: schema validation Failed - see following message(s)'
                   responseObj[:readerValidationMessages] << $!.message
                   responseObj[:readerValidationPass] = false
                   return

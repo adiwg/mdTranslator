@@ -33,7 +33,7 @@ module ADIWG
                      intScope[:scopeCode] = hScope['scopeCode']
                   end
                   if intScope[:scopeCode].nil? || intScope[:scopeCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson scope scopeCode is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: scope scopeCode is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

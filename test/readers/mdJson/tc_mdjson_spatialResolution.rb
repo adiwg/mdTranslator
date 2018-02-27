@@ -164,7 +164,7 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial resolution did not have an object of supported type'
+                      'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
 
    end
 
@@ -185,7 +185,7 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson spatial resolution did not have an object of supported type'
+                      'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
 
    end
 

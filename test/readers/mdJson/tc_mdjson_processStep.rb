@@ -54,7 +54,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson process step description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: process step description is missing'
 
    end
 
@@ -69,7 +69,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson process step description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: process step description is missing'
 
    end
 

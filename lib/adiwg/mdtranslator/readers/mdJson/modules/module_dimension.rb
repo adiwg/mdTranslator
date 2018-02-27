@@ -33,7 +33,7 @@ module ADIWG
                      end
                   end
                   if intDimension[:dimensionType].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson spatial representation dimension type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial representation dimension type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -45,7 +45,7 @@ module ADIWG
                      end
                   end
                   if intDimension[:dimensionSize].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson spatial representation dimension size is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial representation dimension size is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

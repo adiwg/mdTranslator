@@ -29,7 +29,7 @@ module ADIWG
                      intIdentifier[:identifier] = hIdentifier['identifier']
                   end
                   if intIdentifier[:identifier].nil? || intIdentifier[:identifier] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GML Identifier identifier is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GML Identifier identifier is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +39,7 @@ module ADIWG
                      intIdentifier[:namespace] = hIdentifier['namespace']
                   end
                   if intIdentifier[:namespace].nil? || intIdentifier[:namespace] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GML Identifier namespace is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GML Identifier namespace is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

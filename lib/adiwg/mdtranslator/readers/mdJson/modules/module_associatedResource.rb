@@ -49,7 +49,7 @@ module ADIWG
                      end
                   end
                   if intAssocRes[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson associated resource resource type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource resource type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -59,7 +59,7 @@ module ADIWG
                      intAssocRes[:associationType] = hAssocRes['associationType']
                   end
                   if intAssocRes[:associationType].nil? || intAssocRes[:associationType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson associated resource association type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource association type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -82,7 +82,7 @@ module ADIWG
                      end
                   end
                   if intAssocRes[:resourceCitation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson associated resource citation is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource citation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

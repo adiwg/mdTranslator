@@ -53,7 +53,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain ID is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain ID is missing'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain ID is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain ID is missing'
 
    end
 
@@ -81,7 +81,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain code is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain code is missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain code is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain code is missing'
 
    end
 
@@ -109,7 +109,8 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain description is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain description is missing'
 
    end
 
@@ -123,7 +124,8 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson data dictionary domain description is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain description is missing'
 
    end
 
@@ -165,7 +167,8 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: data dictionary domain object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: data dictionary domain object is empty'
 
    end
 

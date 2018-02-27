@@ -24,7 +24,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hMetadata.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -44,7 +44,7 @@ module ADIWG
                      end
                   end
                   if intMetadata[:metadataInfo].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata metadata-info object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata metadata-info object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -60,7 +60,7 @@ module ADIWG
                      end
                   end
                   if intMetadata[:resourceInfo].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson metadata resource info object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata resource info object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

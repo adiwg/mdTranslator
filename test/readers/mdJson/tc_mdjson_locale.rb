@@ -47,7 +47,7 @@ class TestReaderMdJsonLocale < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson locale language code is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: locale language code is missing'
 
    end
 
@@ -62,7 +62,7 @@ class TestReaderMdJsonLocale < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson locale language code is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: locale language code is missing'
 
    end
 
@@ -77,7 +77,7 @@ class TestReaderMdJsonLocale < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson locale character set code is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: locale character set code is missing'
 
    end
 
@@ -92,7 +92,7 @@ class TestReaderMdJsonLocale < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson locale character set code is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: locale character set code is missing'
 
    end
 

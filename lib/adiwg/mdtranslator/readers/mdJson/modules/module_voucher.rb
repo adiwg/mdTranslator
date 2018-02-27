@@ -31,7 +31,7 @@ module ADIWG
                      intVoucher[:specimen] = hVoucher['specimen']
                   end
                   if intVoucher[:specimen].nil? || intVoucher[:specimen] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson voucher specimen is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: voucher specimen is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -47,7 +47,7 @@ module ADIWG
                      end
                   end
                   if intVoucher[:repository].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson voucher repository is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: voucher repository is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -38,7 +38,7 @@ module ADIWG
                      intDomain[:domainId] = hDomain['domainId']
                   end
                   if intDomain[:domainId].nil? || intDomain[:domainId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain ID is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain ID is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -55,7 +55,7 @@ module ADIWG
                      intDomain[:domainCode] = hDomain['codeName']
                   end
                   if intDomain[:domainCode].nil? || intDomain[:domainCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain code is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain code is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -65,7 +65,7 @@ module ADIWG
                      intDomain[:domainDescription] = hDomain['description']
                   end
                   if intDomain[:domainDescription].nil? || intDomain[:domainDescription] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary domain description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

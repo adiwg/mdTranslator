@@ -36,7 +36,7 @@ module ADIWG
                   end
                   if intFKey[:fkLocalAttributes].empty?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson data entity foreign key local attribute code name is missing'
+                        'ERROR: mdJson reader: data entity foreign key local attribute code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -48,7 +48,7 @@ module ADIWG
                   end
                   if intFKey[:fkReferencedEntity].nil? || intFKey[:fkReferencedEntity] == ''
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson data entity foreign key referenced entity name is missing'
+                        'ERROR: mdJson reader: data entity foreign key referenced entity name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -60,7 +60,7 @@ module ADIWG
                   end
                   if intFKey[:fkReferencedAttributes].empty?
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson data entity foreign key referenced attribute name is missing'
+                        'ERROR: mdJson reader: data entity foreign key referenced attribute name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

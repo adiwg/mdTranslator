@@ -47,7 +47,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent minimum value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent minimum value is missing'
 
    end
 
@@ -61,7 +62,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent minimum value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent minimum value is missing'
 
    end
 
@@ -75,7 +77,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent maximum value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent maximum value is missing'
 
    end
 
@@ -89,7 +92,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent maximum value is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent maximum value is missing'
 
    end
 
@@ -103,7 +107,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent CRS identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent CRS identifier is missing'
 
    end
 
@@ -117,7 +122,8 @@ class TestReaderMdJsonVerticalExtent < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson vertical extent CRS identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: vertical extent CRS identifier is missing'
 
    end
 

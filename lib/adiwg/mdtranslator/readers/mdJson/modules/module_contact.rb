@@ -22,7 +22,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hContact.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson contact object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -36,7 +36,7 @@ module ADIWG
                      intContact[:contactId] = hContact['contactId']
                   end
                   if intContact[:contactId].nil? || intContact[:contactId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson contact id is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact id is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -65,12 +65,12 @@ module ADIWG
                   end
                   if intContact[:name].nil? || intContact[:name] == ''
                      if intContact[:isOrganization] === true
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson organization contact name is missing'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: organization contact name is missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
                      if intContact[:positionName].nil? || intContact[:positionName] == ''
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson individual contact name and/or position are missing'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: individual contact name and/or position are missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end

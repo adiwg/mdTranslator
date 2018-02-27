@@ -46,7 +46,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson keyword keyword list is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: keyword keyword list is missing'
 
    end
 
@@ -60,7 +60,7 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson keyword keyword list is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: keyword keyword list is missing'
 
    end
 

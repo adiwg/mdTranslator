@@ -53,7 +53,7 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson budget allocation amount is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation amount is missing'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson budget allocation amount is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation amount is missing'
 
    end
 
@@ -81,7 +81,7 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson budget allocation currency is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation currency is missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson budget allocation currency is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation currency is missing'
 
    end
 

@@ -94,7 +94,7 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson transfer option must have an online or offline option'
+                      'ERROR: mdJson reader: transfer option must have an online or offline option'
 
    end
 
@@ -110,7 +110,7 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson transfer option must have an online or offline option'
+                      'ERROR: mdJson reader: transfer option must have an online or offline option'
 
    end
 
@@ -122,7 +122,8 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: distributor transfer option object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: distributor transfer option object is empty'
 
    end
 

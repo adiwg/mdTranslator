@@ -51,7 +51,7 @@ class TestReaderMdJsonGeologicAge < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson geologic age time scale is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: geologic age time scale is missing'
 
    end
 
@@ -65,7 +65,7 @@ class TestReaderMdJsonGeologicAge < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson geologic age time scale is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: geologic age time scale is missing'
 
    end
 
@@ -79,7 +79,7 @@ class TestReaderMdJsonGeologicAge < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson geologic age age-estimate is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: geologic age age-estimate is missing'
 
    end
 
@@ -93,7 +93,7 @@ class TestReaderMdJsonGeologicAge < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson geologic age age-estimate is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: geologic age age-estimate is missing'
 
    end
 

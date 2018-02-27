@@ -60,7 +60,7 @@ module ADIWG
                   # error messages
                   unless haveRelease
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson releasability must have at least one addressee or statement'
+                        'ERROR: mdJson reader: releasability must have at least one addressee or statement'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

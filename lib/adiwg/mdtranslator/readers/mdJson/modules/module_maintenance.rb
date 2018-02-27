@@ -33,7 +33,7 @@ module ADIWG
                      intMaint[:frequency] = hMaint['frequency']
                   end
                   if intMaint[:frequency].nil? || intMaint[:frequency] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource maintenance frequency is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource maintenance frequency is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

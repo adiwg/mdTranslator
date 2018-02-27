@@ -55,7 +55,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary citation is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary citation is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -70,7 +70,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:subjects].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary subject is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary subject is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -107,7 +107,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:responsibleParty].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary responsible party is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary responsible party is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

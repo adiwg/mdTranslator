@@ -64,7 +64,7 @@ module ADIWG
 
                   # error messages
                   unless haveLegal
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson legal constraint was not defined'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: legal constraint was not defined'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

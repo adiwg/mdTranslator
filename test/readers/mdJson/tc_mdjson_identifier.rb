@@ -48,7 +48,7 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson identifier object identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: identifier object identifier is missing'
 
    end
 
@@ -62,7 +62,7 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson identifier object identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: identifier object identifier is missing'
 
    end
 

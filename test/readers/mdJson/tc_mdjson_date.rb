@@ -39,7 +39,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson date string is invalid'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is invalid'
 
    end
 
@@ -53,7 +53,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson date string is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is missing'
 
    end
 
@@ -67,7 +67,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson date string is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is missing'
 
    end
 
@@ -81,7 +81,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson date type is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date type is missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonDate < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson date type is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date type is missing'
 
    end
 

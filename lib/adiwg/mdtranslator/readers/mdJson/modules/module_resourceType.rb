@@ -31,7 +31,7 @@ module ADIWG
                      end
                   end
                   if intType[:type].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson resource type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

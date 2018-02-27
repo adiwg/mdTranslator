@@ -41,7 +41,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:taxonSystem].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomy taxonomic classification system object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy taxonomic classification system object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -66,7 +66,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:idReferences].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomy identification reference object is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy identification reference object is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -89,7 +89,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:idProcedure].nil? || intTaxonomy[:idProcedure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomy identification procedure is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy identification procedure is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -123,7 +123,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:taxonClass].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson taxonomic classification is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic classification is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

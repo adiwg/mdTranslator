@@ -36,14 +36,14 @@ module ADIWG
                         if hFeature['type'] == 'Feature'
                            intFeature[:type] = hFeature['type']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry feature type must be Feature'
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature type must be Feature'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intFeature[:type].nil? || intFeature[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry feature type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -76,7 +76,7 @@ module ADIWG
                         end
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson GeoJSON geometry feature geometry is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature geometry is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

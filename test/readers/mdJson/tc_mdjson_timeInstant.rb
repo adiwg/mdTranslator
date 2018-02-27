@@ -55,7 +55,8 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time instant must have dateTime or geologic age'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time instant must have dateTime or geologic age'
 
    end
 
@@ -70,7 +71,8 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time instant must have dateTime or geologic age'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time instant must have dateTime or geologic age'
 
    end
 

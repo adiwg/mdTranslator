@@ -56,7 +56,7 @@ module ADIWG
                      intEntity[:entityCode] = hEntity['codeName']
                   end
                   if intEntity[:entityCode].nil? || intEntity[:entityCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -75,7 +75,7 @@ module ADIWG
                      intEntity[:entityDefinition] = hEntity['definition']
                   end
                   if intEntity[:entityDefinition].nil? || intEntity[:entityDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson data dictionary entity definition is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity definition is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

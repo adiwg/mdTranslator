@@ -67,7 +67,7 @@ class TestReaderMdJsonTemporalExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson temporal extent must have a time period or time instant'
+                      'ERROR: mdJson reader: temporal extent must have a time period or time instant'
 
    end
 
@@ -83,7 +83,7 @@ class TestReaderMdJsonTemporalExtent < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson temporal extent must have a time period or time instant'
+                      'ERROR: mdJson reader: temporal extent must have a time period or time instant'
 
    end
 

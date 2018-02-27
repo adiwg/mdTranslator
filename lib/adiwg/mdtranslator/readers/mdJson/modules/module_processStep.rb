@@ -46,7 +46,7 @@ module ADIWG
                      intProcStep[:description] = hProcStep['description']
                   end
                   if intProcStep[:description].nil? || intProcStep[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson process step description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: process step description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

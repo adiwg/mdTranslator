@@ -80,7 +80,7 @@ module ADIWG
 
                      # error handling
                      if contactType.nil?
-                        hResponseObj[:readerExecutionMessages] << 'ERROR: FGDC contact is neither person or organization'
+                        hResponseObj[:readerExecutionMessages] << 'ERROR: FGDC reader: contact is neither person or organization'
                         return nil
                      end
                      if contactType == 'person' && personName == ''

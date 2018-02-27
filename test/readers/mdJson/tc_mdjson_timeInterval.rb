@@ -59,7 +59,7 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval must be a number'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: time interval must be a number'
 
    end
 
@@ -73,7 +73,7 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: time interval is missing'
 
    end
 
@@ -87,7 +87,7 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: time interval is missing'
 
    end
 
@@ -101,7 +101,8 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval units are missing or invalid'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time interval units are missing or invalid'
 
    end
 
@@ -115,7 +116,8 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval units are missing or invalid'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time interval units are missing or invalid'
 
    end
 
@@ -129,7 +131,8 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson time interval units are missing or invalid'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time interval units are missing or invalid'
 
    end
 

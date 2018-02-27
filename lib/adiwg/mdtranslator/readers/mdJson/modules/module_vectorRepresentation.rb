@@ -50,7 +50,7 @@ module ADIWG
                   # error messages
                   unless haveVector
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson vector representation must have a topology level or vector object'
+                        'ERROR: mdJson reader: vector representation must have a topology level or vector object'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

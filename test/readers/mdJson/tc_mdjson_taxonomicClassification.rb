@@ -57,7 +57,8 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic classification rank is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: taxonomic classification rank is missing'
 
    end
 
@@ -71,7 +72,8 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic classification rank is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: taxonomic classification rank is missing'
 
    end
 
@@ -85,7 +87,8 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic classification latin name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: taxonomic classification latin name is missing'
 
    end
 
@@ -99,7 +102,8 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson taxonomic classification latin name is missing'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: taxonomic classification latin name is missing'
 
    end
 
@@ -145,7 +149,8 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: taxonomic classification object is empty'
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: mdJson reader: taxonomic classification object is empty'
 
    end
 

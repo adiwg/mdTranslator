@@ -47,7 +47,7 @@ module ADIWG
                      intSource[:description] = hSource['description']
                   end
                   if intSource[:description].nil? || intSource[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson source description is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: source description is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

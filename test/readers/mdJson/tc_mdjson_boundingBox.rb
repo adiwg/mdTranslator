@@ -52,7 +52,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box west boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box west boundary is missing'
 
    end
 
@@ -66,7 +66,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box east boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box east boundary is missing'
 
    end
 
@@ -80,7 +80,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box south boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box south boundary is missing'
 
    end
 
@@ -94,7 +94,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box north boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box north boundary is missing'
 
    end
 
@@ -108,7 +108,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box west boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box west boundary is missing'
 
    end
 
@@ -122,7 +122,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box east boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box east boundary is missing'
 
    end
 
@@ -136,7 +136,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box south boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box south boundary is missing'
 
    end
 
@@ -150,7 +150,7 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box north boundary is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: bounding box north boundary is missing'
 
    end
 
@@ -164,7 +164,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box longitude must be between -180 and +180'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box longitude must be between -180 and +180'
 
    end
 
@@ -178,7 +179,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box longitude must be between -180 and +180'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box longitude must be between -180 and +180'
 
    end
 
@@ -192,7 +194,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box latitude must be between -90 and +90'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box latitude must be between -90 and +90'
 
    end
 
@@ -206,7 +209,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box latitude must be between -90 and +90'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box latitude must be between -90 and +90'
 
    end
 
@@ -220,7 +224,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box altitude units of measure are missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box altitude units of measure are missing'
 
    end
 
@@ -234,7 +239,8 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson bounding box altitude units of measure are missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: bounding box altitude units of measure are missing'
 
    end
 

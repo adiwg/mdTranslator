@@ -51,7 +51,7 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson resource lineage must have at least one statement, process step, or source'
+                      'ERROR: mdJson reader: resource lineage must have at least one statement, process step, or source'
 
    end
 
@@ -68,7 +68,7 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson resource lineage must have at least one statement, process step, or source'
+                      'ERROR: mdJson reader: resource lineage must have at least one statement, process step, or source'
 
    end
 

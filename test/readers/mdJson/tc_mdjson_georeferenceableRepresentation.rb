@@ -50,7 +50,7 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georeferenceable spatial representation grid representation is missing'
+                      'ERROR: mdJson reader: georeferenceable spatial representation grid representation is missing'
 
    end
 
@@ -65,7 +65,7 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georeferenceable spatial representation grid representation is missing'
+                      'ERROR: mdJson reader: georeferenceable spatial representation grid representation is missing'
 
    end
 
@@ -80,7 +80,7 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georeferenceable spatial representation georeferenced parameters are missing'
+                      'ERROR: mdJson reader: georeferenceable spatial representation georeferenced parameters are missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonGeoreferenceableRepresentation < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson georeferenceable spatial representation georeferenced parameters are missing'
+                      'ERROR: mdJson reader: georeferenceable spatial representation georeferenced parameters are missing'
 
    end
 

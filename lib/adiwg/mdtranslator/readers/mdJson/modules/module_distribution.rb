@@ -58,7 +58,7 @@ module ADIWG
 
                   # error messages
                   unless haveDist
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson distribution must have description or distributor'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: distribution must have description or distributor'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

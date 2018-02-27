@@ -55,7 +55,7 @@ module ADIWG
                   # error messages
                   unless haveOne
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson temporal extent must have a time period or time instant'
+                        'ERROR: mdJson reader: temporal extent must have a time period or time instant'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

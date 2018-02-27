@@ -38,7 +38,7 @@ module ADIWG
                      intIdent[:identifier] = hIdentifier['identifier']
                   end
                   if intIdent[:identifier].nil? || intIdent[:identifier] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson identifier object identifier is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: identifier object identifier is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

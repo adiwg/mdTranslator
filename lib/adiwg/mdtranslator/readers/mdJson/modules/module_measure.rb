@@ -32,14 +32,14 @@ module ADIWG
                            intMeasure[:type] = hMeasure['type']
                         else
                            responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson measure type must be distance, length, vertical, or angle'
+                              'ERROR: mdJson reader: measure type must be distance, length, vertical, or angle'
                            responseObj[:readerExecutionPass] = false
                            return nil
                         end
                      end
                   end
                   if intMeasure[:type].nil? || intMeasure[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson measure type is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +49,7 @@ module ADIWG
                      intMeasure[:value] = hMeasure['value']
                   end
                   if intMeasure[:value].nil? || intMeasure[:value] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson measure value is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure value is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -59,7 +59,7 @@ module ADIWG
                      intMeasure[:unitOfMeasure] = hMeasure['unitOfMeasure']
                   end
                   if intMeasure[:unitOfMeasure].nil? || intMeasure[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson measure unit-of-measure is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure unit-of-measure is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

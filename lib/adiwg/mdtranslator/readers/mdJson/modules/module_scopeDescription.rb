@@ -61,7 +61,7 @@ module ADIWG
                   # error messages
                   unless haveScope
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson scope description needs at least one dataset, attribute, feature, or other'
+                        'ERROR: mdJson reader: scope description needs at least one dataset, attribute, feature, or other'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
