@@ -31,8 +31,7 @@ module ADIWG
                      if paramCount == 2
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'alaska modified stereographic projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Alaska Modified Stereographic projection is missing one or more parameters'
                      end
                   end
 

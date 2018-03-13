@@ -45,7 +45,9 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
 
    end
 
@@ -58,7 +60,9 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
 
    end
 
@@ -71,7 +75,9 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
 
    end
 
@@ -84,7 +90,9 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
 
    end
 
@@ -94,8 +102,10 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: spatial reference oblique line-point object is empty'
 
    end
 

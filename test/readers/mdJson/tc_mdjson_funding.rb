@@ -41,58 +41,57 @@ class TestReaderMdJsonFunding < TestReaderMdJsonParent
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['description'] = ''
-      hIn['allocation'] = []
-      hIn['timePeriod'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata[:description]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_missing_funding_elements
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['nonElement'] = ''
       hIn.delete('description')
-      hIn.delete('allocation')
-      hIn.delete('timePeriod')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata[:description]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_empty_funding_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['timePeriod'] = {}
+      hIn['allocation'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: funding must have either allocation or timePeriod'
 
    end
 
-   def test_missing_funding_allocation
+   def test_missing_funding_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('timePeriod')
       hIn.delete('allocation')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_empty metadata[:allocations]
-      refute_empty metadata[:timePeriod]
-      assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
-
-   end
-
-   def test_missing_funding_timePeriod
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('timePeriod')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      refute_empty metadata[:allocations]
-      assert_empty metadata[:timePeriod]
-      assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: funding must have either allocation or timePeriod'
 
    end
 
@@ -102,8 +101,9 @@ class TestReaderMdJsonFunding < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: funding object is empty'
 
    end
 

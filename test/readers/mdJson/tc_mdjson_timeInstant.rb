@@ -44,7 +44,7 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
 
    end
 
-   def test_timeInstant_empty_dateAndGeo
+   def test_timeInstant_empty_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['dateTime'] = ''
@@ -54,11 +54,13 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time instant must have dateTime or geologic age'
 
    end
 
-   def test_timeInstant_missing_dateAndGeo
+   def test_timeInstant_missing_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('dateTime')
@@ -68,7 +70,9 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'ERROR: mdJson reader: time instant must have dateTime or geologic age'
 
    end
 
@@ -120,8 +124,9 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: time instant object is empty'
 
    end
 

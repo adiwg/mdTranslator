@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-08-30 refactored for mdJson schema 2.3
 #  Stan Smith 2016-10-30 original script
 
@@ -19,8 +20,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hFunding.empty?
-                     responseObj[:readerExecutionMessages] << 'Funding object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: funding object is empty'
                      return nil
                   end
 
@@ -30,10 +30,12 @@ module ADIWG
 
                   # funding - description
                   if hFunding.has_key?('description')
-                     intFunding[:description] = hFunding['description']
+                     unless hFunding['description'] == ''
+                        intFunding[:description] = hFunding['description']
+                     end
                   end
 
-                  # funding - timePeriod
+                  # funding - timePeriod (required if)
                   if hFunding.has_key?('timePeriod')
                      hObject = hFunding['timePeriod']
                      unless hObject.empty?
@@ -44,7 +46,7 @@ module ADIWG
                      end
                   end
 
-                  # funding - allocation []
+                  # funding - allocation [] (required if)
                   if hFunding.has_key?('allocation')
                      aItems = hFunding['allocation']
                      aItems.each do |item|
@@ -55,8 +57,9 @@ module ADIWG
                      end
                   end
 
+                  # error messages
                   if intFunding[:allocations].empty? && intFunding[:timePeriod].empty?
-                     responseObj[:readerExecutionMessages] << 'Funding must have either an allocation or timePeriod'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: funding must have either allocation or timePeriod'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

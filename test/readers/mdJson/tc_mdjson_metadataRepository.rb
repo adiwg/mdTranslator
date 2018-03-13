@@ -13,14 +13,14 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
    aIn = TestReaderMdJsonParent.getJson('metadataRepository.json')
    @@hIn = aIn['metadataRepository'][0]
 
-   def test_metadataRepository_schema
+   def test_repository_schema
 
       errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadataRepository.json')
       assert_empty errors
 
    end
 
-   def test_complete_metadataRepository_object
+   def test_complete_repository_object
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -34,7 +34,7 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
 
    end
 
-   def test_empty_metadataRepository_repository
+   def test_empty_repository_repository
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['repository'] = ''
@@ -43,11 +43,12 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata repository name is missing'
 
    end
 
-   def test_missing_metadataRepository_repository
+   def test_missing_repository_repository
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('repository')
@@ -56,12 +57,12 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata repository name is missing'
 
    end
 
-
-   def test_empty_metadataDistribution_elements
+   def test_empty_repository_elements
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['metadataStandard'] = ''
@@ -77,7 +78,7 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
 
    end
 
-   def test_missing_metadataDistribution_elements
+   def test_missing_repository_elements
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('metadataStandard')
@@ -93,14 +94,15 @@ class TestReaderMetadataRepository < TestReaderMdJsonParent
 
    end
 
-   def test_empty_metadataDistribution_object
+   def test_empty_repository_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: metadata repository object is empty'
 
    end
 

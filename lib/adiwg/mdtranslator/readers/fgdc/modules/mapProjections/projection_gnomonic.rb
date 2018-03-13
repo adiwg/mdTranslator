@@ -37,8 +37,7 @@ module ADIWG
                      if paramCount == 4
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'gnomonic projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: Gnomonic projection is missing one or more parameters'
                      end
                   end
 

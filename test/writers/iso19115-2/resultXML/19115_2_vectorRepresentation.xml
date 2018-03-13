@@ -50,7 +50,9 @@
 
   <gmd:spatialRepresentationInfo>
     <gmd:MD_VectorSpatialRepresentation>
-      <gmd:topologyLevel/>
+      <gmd:topologyLevel>
+        <gmd:MD_TopologyLevelCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_TopologyLevelCode" codeListValue="topology level" codeSpace="userCode"/>
+      </gmd:topologyLevel>
       <gmd:geometricObjects/>
     </gmd:MD_VectorSpatialRepresentation>
   </gmd:spatialRepresentationInfo>

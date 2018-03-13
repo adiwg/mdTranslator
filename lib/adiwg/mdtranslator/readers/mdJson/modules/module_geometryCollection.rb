@@ -2,86 +2,86 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-11-11 added computedBbox computation
-#   Stan Smith 2016-10-25 original script
+#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2016-11-11 added computedBbox computation
+#  Stan Smith 2016-10-25 original script
 
 require_relative 'module_geoJson'
 require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG
-    module Mdtranslator
-        module Readers
-            module MdJson
+   module Mdtranslator
+      module Readers
+         module MdJson
 
-                module GeometryCollection
+            module GeometryCollection
 
-                    def self.unpack(hGeoCol, responseObj)
+               def self.unpack(hGeoCol, responseObj)
 
-                        # return nil object if input is empty
-                        if hGeoCol.empty?
-                            responseObj[:readerExecutionMessages] << 'Geometry Collection object is empty'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
+                  # return nil object if input is empty
+                  if hGeoCol.empty?
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJSON geometry collection object is empty'
+                     return nil
+                  end
 
-                        # instance classes needed in script
-                        intMetadataClass = InternalMetadata.new
-                        intGeoCol = intMetadataClass.newGeometryCollection
+                  # instance classes needed in script
+                  intMetadataClass = InternalMetadata.new
+                  intGeoCol = intMetadataClass.newGeometryCollection
 
-                        # geometry collection - type (required)
-                        if hGeoCol.has_key?('type')
-                            if hGeoCol['type'] != ''
-                                if hGeoCol['type'] == 'GeometryCollection'
-                                    intGeoCol[:type] = hGeoCol['type']
-                                else
-                                    responseObj[:readerExecutionMessages] << 'Geometry Collection type must be GeometryCollection'
-                                    responseObj[:readerExecutionPass] = false
-                                    return nil
-                                end
-                            end
-                        end
-                        if intGeoCol[:type].nil? || intGeoCol[:type] == ''
-                            responseObj[:readerExecutionMessages] << 'Geometry Collection is missing type'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
-                        end
-
-                        # geometry collection - bounding box
-                        if hGeoCol.has_key?('bbox')
-                            unless hGeoCol['bbox'].empty?
-                                intGeoCol[:bbox] = hGeoCol['bbox']
-                            end
-                        end
-
-                        # geometry collection - geometries (required, but can be empty)
-                        if hGeoCol.has_key?('geometries')
-                            hGeoCol['geometries'].each do |hGeometry|
-                                hReturn = GeoJson.unpack(hGeometry, responseObj)
-                                unless hReturn.nil?
-                                    intGeoCol[:geometryObjects] << hReturn
-                                end
-                            end
+                  # geometry collection - type (required)
+                  if hGeoCol.has_key?('type')
+                     if hGeoCol['type'] != ''
+                        if hGeoCol['type'] == 'GeometryCollection'
+                           intGeoCol[:type] = hGeoCol['type']
                         else
-                            responseObj[:readerExecutionMessages] << 'Geometry Collection is missing geometries'
-                            responseObj[:readerExecutionPass] = false
-                            return nil
+                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection type must be GeometryCollection'
+                           responseObj[:readerExecutionPass] = false
+                           return nil
                         end
+                     end
+                  end
+                  if intGeoCol[:type].nil? || intGeoCol[:type] == ''
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection type is missing'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
 
-                        # geometry collection - compute bbox for geometry collection
-                        unless intGeoCol[:geometryObjects].empty?
-                            intGeoCol[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoCol[:geometryObjects])
+                  # geometry collection - bounding box
+                  if hGeoCol.has_key?('bbox')
+                     unless hGeoCol['bbox'].empty?
+                        intGeoCol[:bbox] = hGeoCol['bbox']
+                     end
+                  end
+
+                  # geometry collection - geometries (required, but can be empty)
+                  if hGeoCol.has_key?('geometries')
+                     hGeoCol['geometries'].each do |hGeometry|
+                        hReturn = GeoJson.unpack(hGeometry, responseObj)
+                        unless hReturn.nil?
+                           intGeoCol[:geometryObjects] << hReturn
                         end
+                     end
+                  else
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry collection geometries are missing'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
+                  end
 
-                        # geometry collection - save GeoJSON for the collection
-                        intGeoCol[:nativeGeoJson] = hGeoCol
+                  # geometry collection - compute bbox for geometry collection
+                  unless intGeoCol[:geometryObjects].empty?
+                     intGeoCol[:computedBbox] = AdiwgCoordinates.computeBbox(intGeoCol[:geometryObjects])
+                  end
 
-                        return intGeoCol
+                  # geometry collection - save GeoJSON for the collection
+                  intGeoCol[:nativeGeoJson] = hGeoCol
 
-                    end
+                  return intGeoCol
 
-                end
+               end
 
             end
-        end
-    end
+
+         end
+      end
+   end
 end

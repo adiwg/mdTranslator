@@ -38,70 +38,73 @@ class TestReaderMdJsonKeyword < TestReaderMdJsonParent
 
    def test_keyword_empty_keyword
 
-       hIn = Marshal::load(Marshal.dump(@@hIn))
-       hIn['keyword'] = []
-       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['keyword'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-       assert_nil metadata
-       refute hResponse[:readerExecutionPass]
-       refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: keyword keyword list is missing'
 
    end
 
    def test_keyword_missing_keyword
 
-       hIn = Marshal::load(Marshal.dump(@@hIn))
-       hIn.delete('keyword')
-       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('keyword')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-       assert_nil metadata
-       refute hResponse[:readerExecutionPass]
-       refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: keyword keyword list is missing'
 
    end
 
    def test_keyword_empty_elements
 
-       hIn = Marshal::load(Marshal.dump(@@hIn))
-       hIn['keywordType'] = ''
-       hIn['thesaurus'] = {}
-       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['keywordType'] = ''
+      hIn['thesaurus'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-       refute_empty metadata[:keywords]
-       assert_nil metadata[:keywordType]
-       assert_empty metadata[:thesaurus]
-       assert hResponse[:readerExecutionPass]
-       assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:keywords]
+      assert_nil metadata[:keywordType]
+      assert_empty metadata[:thesaurus]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_keyword_missing_elements
 
-       hIn = Marshal::load(Marshal.dump(@@hIn))
-       hIn.delete('keywordType')
-       hIn.delete('thesaurus')
-       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('keywordType')
+      hIn.delete('thesaurus')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-       refute_empty metadata[:keywords]
-       assert_nil metadata[:keywordType]
-       assert_empty metadata[:thesaurus]
-       assert hResponse[:readerExecutionPass]
-       assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:keywords]
+      assert_nil metadata[:keywordType]
+      assert_empty metadata[:thesaurus]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
    def test_empty_keyword_object
 
-       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-       metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-       assert_nil metadata
-       refute hResponse[:readerExecutionPass]
-       refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: keyword object is empty'
 
    end
 

@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 # 	Stan Smith 2017-11-07 original script
 
 require_relative 'module_citation'
@@ -17,8 +18,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hGeoAge.empty?
-                     responseObj[:readerExecutionMessages] << 'Geologic Age object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geologic age object is empty'
                      return nil
                   end
 
@@ -31,7 +31,7 @@ module ADIWG
                      intGeoAge[:ageTimeScale] = hGeoAge['ageTimeScale']
                   end
                   if intGeoAge[:ageTimeScale].nil? || intGeoAge[:ageTimeScale] == ''
-                     responseObj[:readerExecutionMessages] << 'Geologic Age is missing time scale'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age time scale is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -41,21 +41,21 @@ module ADIWG
                      intGeoAge[:ageEstimate] = hGeoAge['ageEstimate']
                   end
                   if intGeoAge[:ageEstimate].nil? || intGeoAge[:ageEstimate] == ''
-                     responseObj[:readerExecutionMessages] << 'Geologic Age is missing age estimate'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age age-estimate is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # geologic age - age uncertainty
                   if hGeoAge.has_key?('ageUncertainty')
-                     if hGeoAge['ageUncertainty'] != ''
+                     unless hGeoAge['ageUncertainty'] == ''
                         intGeoAge[:ageUncertainty] = hGeoAge['ageUncertainty']
                      end
                   end
 
                   # geologic age - age explanation
                   if hGeoAge.has_key?('ageExplanation')
-                     if hGeoAge['ageExplanation'] != ''
+                     unless hGeoAge['ageExplanation'] == ''
                         intGeoAge[:ageExplanation] = hGeoAge['ageExplanation']
                      end
                   end

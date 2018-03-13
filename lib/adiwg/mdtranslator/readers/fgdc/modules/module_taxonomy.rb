@@ -23,13 +23,16 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hTaxonomy = intMetadataClass.newTaxonomy
 
-                  # taxonomy bio.1 (keywtax) - taxonomic keywords [] {keyword}
+                  # taxonomy bio.1 (keywtax) - taxonomic keywords [] {keyword} (required)
                   # -> resourceInfo.keywords
                   axKeywords = xTaxonomy.xpath('./keywtax')
                   unless axKeywords.empty?
                      axKeywords.each do |xKeyword|
                         Keyword.unpack(xKeyword, hResourceInfo, hResponseObj)
                      end
+                  end
+                  if axKeywords.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keywords are missing'
                   end
 
                   # taxonomy bio.2 (taxonsys) - taxonomic system
@@ -45,7 +48,7 @@ module ADIWG
                      hTaxonomy[:generalScope] = general
                   end
 
-                  # taxonomy bio.4 (taxoncl) - taxonomic classification
+                  # taxonomy bio.4 (taxoncl) - taxonomic classification (required)
                   # -> resourceInfo.taxonomy.taxonClass
                   xTaxClass = xTaxonomy.xpath('./taxoncl')
                   unless xTaxClass.empty?
@@ -53,6 +56,9 @@ module ADIWG
                      unless hTaxonClass.nil?
                         hTaxonomy[:taxonClass] = hTaxonClass
                      end
+                  end
+                  if xTaxClass.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy classification is missing'
                   end
 
                   return hTaxonomy

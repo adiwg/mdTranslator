@@ -22,7 +22,7 @@ module ADIWG
                   hResponsibility = nil
                   contactId = nil
 
-                  # publication information 8.2 (publish) - publisher {contact}
+                  # publication information 8.2 (publish) - publisher {contact} (required)
                   publisher = xPublication.xpath('./publish').text
                   unless publisher.empty?
                      contactId = Fgdc.find_contact_by_name(publisher)
@@ -31,8 +31,11 @@ module ADIWG
                      end
                      hResponsibility = Responsibility.unpack([contactId], 'publisher', hResponseObj)
                   end
+                  if publisher.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation publisher contact is missing'
+                  end
 
-                  # publication information 8.1 (pubplace) - place of publication
+                  # publication information 8.1 (pubplace) - place of publication (required)
                   place = xPublication.xpath('./pubplace').text
                   unless place.empty?
                      unless contactId.nil?
@@ -49,6 +52,9 @@ module ADIWG
                            Fgdc.set_contact(hContact)
                         end
                      end
+                  end
+                  if place.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: citation publication place is missing'
                   end
 
                   return hResponsibility

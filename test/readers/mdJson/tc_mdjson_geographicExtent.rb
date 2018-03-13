@@ -81,7 +81,7 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    end
 
-   def test_geographicExtent_empty_elements
+   def test_geographicExtent_empty_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -93,14 +93,17 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
 
    end
 
-   def test_geographicExtent_missing_elements
+   def test_geographicExtent_missing_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      hIn['nonElement'] = ''
       hIn.delete('description')
       hIn.delete('identifier')
       hIn.delete('boundingBox')
@@ -109,7 +112,9 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
 
    end
 
@@ -119,8 +124,9 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: geographic extent object is empty'
 
    end
 

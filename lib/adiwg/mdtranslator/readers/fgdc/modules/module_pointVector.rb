@@ -27,11 +27,14 @@ module ADIWG
                      axSDTSterm.each do |xTerm|
                         hVectorObj = intMetadataClass.newVectorObject
 
-                        # SDTS term 3.3.1.1 (sdtstype) - point and vector object type
+                        # SDTS term 3.3.1.1 (sdtstype) - point and vector object type (required)
                         # -> spatialRepresentation.vectorInfo.vectorObject.objectType
                         sdtsType = xTerm.xpath('./sdtstype').text
                         unless sdtsType.empty?
                            hVectorObj[:objectType] = sdtsType
+                        end
+                        if sdtsType.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data SDTS object type is missing'
                         end
 
                         # SDTS term 3.3.1.2 (ptvctcnt) - point and vector object count
@@ -54,24 +57,30 @@ module ADIWG
                   unless xVPFterm.empty?
                      hVectorInfo = intMetadataClass.newVectorInfo
 
-                     # VPF term 3.3.2.1 (vpflevel) - VPF topology level
+                     # VPF term 3.3.2.1 (vpflevel) - VPF topology level (required)
                      # -> spatialRepresentation.vectorInfo.topologyLevel
                      level = xVPFterm.xpath('vpflevel').text
                      unless level.empty?
                         hVectorInfo[:topologyLevel] = level.to_i
                      end
+                     if level.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF topology level is missing'
+                     end
 
-                     # VPF term 3.3.2.2 (vpfinfo) - VPF point and vector object information []
+                     # VPF term 3.3.2.2 (vpfinfo) - VPF point and vector object information [] (required)
                      axVPFInfo = xVPFterm.xpath('./vpfinfo')
                      unless axVPFInfo.empty?
                         axVPFInfo.each do |xInfo|
                            hVectorObj = intMetadataClass.newVectorObject
 
-                           # VPF point and object 3.3.2.2.1 (vpftype) - VPF point and vector object type
+                           # VPF point and object 3.3.2.2.1 (vpftype) - VPF point and vector object type (required)
                            # -> spatialRepresentation.vectorInfo.vectorObject.objectType
                            vpfType = xInfo.xpath('./vpftype').text
                            unless vpfType.empty?
                               hVectorObj[:objectType] = vpfType
+                           end
+                           if vpfType.empty?
+                              hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF object type is missing'
                            end
 
                            # VPF point and object 3.3.2.2.2 (ptvctcnt) - VPF point and vector object count
@@ -88,7 +97,15 @@ module ADIWG
                         hSpatialRepresentation[:vectorRepresentation] = hVectorInfo
                         hResourceInfo[:spatialRepresentations] << hSpatialRepresentation
                      end
+                     if axVPFInfo.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data VPF object information is missing'
+                     end
 
+                  end
+
+                  # error message
+                  if axSDTSterm.empty? && xVPFterm.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial data point-vector terms are missing'
                   end
 
                   return hResourceInfo

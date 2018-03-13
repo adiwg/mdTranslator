@@ -31,13 +31,16 @@ module ADIWG
                      hFormat[:technicalPrerequisite] = techPre
                   end
 
-                  # distribution 6.4.2.1.1 (formname) - format name
+                  # distribution 6.4.2.1.1 (formname) - format name (required)
                   # -> transferOption.distributionFormat.formatSpecification.title
                   # -> transferOption.distributionFormat.formatSpecification.identifier[].identifier
                   formName = xTranInfo.xpath('./formname').text
                   unless formName.empty?
                      hSpecification[:title] = formName
                      hSpecification[:identifiers][0][:identifier] = formName
+                  end
+                  if formName.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution transfer format name is missing'
                   end
 
                   # distribution 6.4.2.1.2 (formvern) - format version number

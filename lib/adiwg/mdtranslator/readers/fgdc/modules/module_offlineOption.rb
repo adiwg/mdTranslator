@@ -23,7 +23,7 @@ module ADIWG
                   aDensity = []
                   aOfflines = []
 
-                  # distribution 6.4.2.2.2.1 (offmedia) - offline media
+                  # distribution 6.4.2.2.2.1 (offmedia) - offline media (required)
                   # -> distribution.distributor.offlineOption.mediumSpecification.title
                   title = xOffline.xpath('./offmedia').text
                   unless title.empty?
@@ -31,12 +31,15 @@ module ADIWG
                      hSpecification[:title] = title
                      hOffline[:mediumSpecification] = hSpecification
                   end
+                  if title.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer media type is missing'
+                  end
 
                   # distribution 6.4.2.2.2.2 (reccap) - recording capacity
                   xCapacity = xOffline.xpath('./reccap')
                   unless xCapacity.empty?
 
-                     # distribution 6.4.2.2.2.2.1 (recden) - recording density []
+                     # distribution 6.4.2.2.2.2.1 (recden) - recording density [] (required)
                      # -> distribution.distributor.offlineOption.density
                      axDensity = xCapacity.xpath('./recden')
                      unless axDensity.empty?
@@ -47,17 +50,23 @@ module ADIWG
                            end
                         end
                      end
+                     if axDensity.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording density is missing'
+                     end
 
-                     # distribution 6.4.2.2.2.2.2 (recdenu) - recording density units
+                     # distribution 6.4.2.2.2.2.2 (recdenu) - recording density units (required)
                      # -> distribution.distributor.offlineOption.units
                      units = xCapacity.xpath('./recdenu').text
                      unless units.empty?
                         hOffline[:units] = units
                      end
+                     if units.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording density units are missing'
+                     end
 
                   end
 
-                  # distribution 6.4.2.2.2.3 (recfmt) - recording format []
+                  # distribution 6.4.2.2.2.3 (recfmt) - recording format [] (required)
                   # -> distribution.distributor.offlineOption.mediumFormat
                   axFormat = xOffline.xpath('./recfmt')
                   unless axFormat.empty?
@@ -67,6 +76,9 @@ module ADIWG
                            hOffline[:mediumFormat] << format
                         end
                      end
+                  end
+                  if axFormat.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: offline transfer recording format is missing'
                   end
 
                   # distribution 6.4.2.2.2.4 (compat) - compatibility information

@@ -22,18 +22,24 @@ module ADIWG
                   hProjection[:projection] = 'localPlanar'
                   hProjection[:projectionName] = 'local planar coordinate system'
 
-                  # local planar 4.1.2.3.1 (localpd) - local planar description
+                  # local planar 4.1.2.3.1 (localpd) - local planar description (required)
                   # -> ReferenceSystemParameters.projection.localPlanarDescription
                   description = xMapLocal.xpath('./localpd').text
                   unless description.empty?
                      hProjection[:localPlanarDescription] = description
                   end
+                  if description.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: local planar coordinate system description is missing'
+                  end
 
-                  # local planar 4.1.2.3.2 (localpgi) - local planar georeference information
+                  # local planar 4.1.2.3.2 (localpgi) - local planar georeference information (required)
                   # -> ReferenceSystemParameters.projection.localPlanarGeoreference
                   georeference = xMapLocal.xpath('./localpgi').text
                   unless georeference.empty?
                      hProjection[:localPlanarGeoreference] = georeference
+                  end
+                  if georeference.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: local planar coordinate system georeference information is missing'
                   end
 
                   return hProjection

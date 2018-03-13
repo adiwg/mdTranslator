@@ -22,11 +22,14 @@ module ADIWG
 
                   hDatum[:isDepthSystem] = false
 
-                  # altitude datum 4.2.1.1 (altdatum) - altitude datum name
+                  # altitude datum 4.2.1.1 (altdatum) - altitude datum name (required)
                   # -> referenceSystemParameters.verticalDatum.datumName
                   datumName = xAltSys.xpath('./altdatum').text
                   unless datumName.empty?
                      hDatum[:datumName] = datumName
+                  end
+                  if datumName.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude datum name is missing'
                   end
 
                   # altitude datum 4.2.1.2 (altres) - altitude resolution []
@@ -36,18 +39,24 @@ module ADIWG
                      hDatum[:verticalResolution] = altRes.to_f
                   end
 
-                  # altitude datum 4.2.1.3 (altunits) -  altitude distance units
+                  # altitude datum 4.2.1.3 (altunits) -  altitude distance units (required)
                   # -> referenceSystemParameters.verticalDatum.unitOfMeasure
                   altUnits = xAltSys.xpath('./altunits').text
                   unless altUnits.empty?
                      hDatum[:unitOfMeasure] = altUnits
                   end
+                  if altUnits.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude distance units are missing'
+                  end
 
-                  # altitude datum 4.2.1.4 (altenc) - altitude encoding method
+                  # altitude datum 4.2.1.4 (altenc) - altitude encoding method (required)
                   # -> referenceSystemParameters.verticalDatum.encodingMethod
                   altEncode = xAltSys.xpath('./altenc').text
                   unless altEncode.empty?
                      hDatum[:encodingMethod] = altEncode
+                  end
+                  if altEncode.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical altitude encoding method is missing'
                   end
 
                   hParamSet = intMetadataClass.newReferenceSystemParameterSet

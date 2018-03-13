@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-11-07 add geologic age
 # 	Stan Smith 2016-10-24 original script
 
@@ -20,8 +21,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hInstant.empty?
-                     responseObj[:readerExecutionMessages] << 'Time Instant object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: time instant object is empty'
                      return nil
                   end
 
@@ -31,14 +31,14 @@ module ADIWG
 
                   # time instant - id
                   if hInstant.has_key?('id')
-                     if hInstant['id'] != ''
+                     unless hInstant['id'] == ''
                         intInstant[:timeId] = hInstant['id']
                      end
                   end
 
                   # time instant - description
                   if hInstant.has_key?('description')
-                     if hInstant['description'] != ''
+                     unless hInstant['description'] == ''
                         intInstant[:description] = hInstant['description']
                      end
                   end
@@ -56,7 +56,7 @@ module ADIWG
                   # time instant - instant names []
                   if hInstant.has_key?('instantName')
                      hInstant['instantName'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intInstant[:instantNames] << item
                         end
                      end
@@ -64,7 +64,7 @@ module ADIWG
 
                   # time instant - datetime
                   if hInstant.has_key?('dateTime')
-                     if hInstant['dateTime'] != ''
+                     unless hInstant['dateTime'] == ''
                         hDate = DateTime.unpack(hInstant['dateTime'], responseObj)
                         unless hDate.nil?
                            intInstant[:timeInstant] = hDate
@@ -81,9 +81,9 @@ module ADIWG
                      end
                   end
 
-                  # time instant must have either a time instant or geologic age
+                  # time instant must have either a timeInstant or geologicAge
                   if intInstant[:timeInstant].empty? && intInstant[:geologicAge].empty?
-                     responseObj[:readerExecutionMessages] << 'Time Instant is missing dateTime or geologic age'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time instant must have dateTime or geologic age'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

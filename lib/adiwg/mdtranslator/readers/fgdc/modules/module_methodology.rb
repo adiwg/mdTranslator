@@ -34,10 +34,13 @@ module ADIWG
                         end
                      end
 
-                     # methodology bio (methdesc) - method description
+                     # methodology bio (methdesc) - method description (required)
                      description = xMethod.xpath('./methdesc').text
                      unless description.empty?
                         statement += description + '; '
+                     end
+                     if description.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO lineage methodology description is missing'
                      end
 
                      # methodology bio (methcite) - method citation [] {citation}

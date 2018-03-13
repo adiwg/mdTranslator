@@ -39,6 +39,9 @@ module ADIWG
                               hKeyword[:keywordType] = 'isoTopicCategory'
                            end
                         end
+                        if thesaurus.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: theme keyword thesaurus is missing'
+                        end
 
                         # theme keyword 1.6.1.2 (themekey) - theme keyword keyword {keywordObject}
                         axKeywords = xTheme.xpath('./themekey')
@@ -51,6 +54,9 @@ module ADIWG
                                  hKeyword[:keywords] << hKeywordObj
                               end
                            end
+                        end
+                        if axKeywords.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: theme keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -72,6 +78,9 @@ module ADIWG
                            hCitation[:title] = thesaurus
                            hKeyword[:thesaurus] = hCitation
                         end
+                        if thesaurus.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: place keyword thesaurus is missing'
+                        end
 
                         # theme keyword 1.6.2.2 (placekey) - place keyword keyword {keywordObject}
                         axKeywords = xPlace.xpath('./placekey')
@@ -84,6 +93,9 @@ module ADIWG
                                  hKeyword[:keywords] << hKeywordObj
                               end
                            end
+                        end
+                        if axKeywords.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: place keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -105,6 +117,9 @@ module ADIWG
                            hCitation[:title] = thesaurus
                            hKeyword[:thesaurus] = hCitation
                         end
+                        if thesaurus.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: stratum keyword thesaurus is missing'
+                        end
 
                         # theme keyword 1.6.3.2 (stratkey) - stratum keyword keyword {keywordObject}
                         axKeywords = xStratum.xpath('./stratkey')
@@ -117,6 +132,9 @@ module ADIWG
                                  hKeyword[:keywords] << hKeywordObj
                               end
                            end
+                        end
+                        if axKeywords.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: stratum keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -138,6 +156,9 @@ module ADIWG
                            hCitation[:title] = thesaurus
                            hKeyword[:thesaurus] = hCitation
                         end
+                        if thesaurus.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: temporal keyword thesaurus is missing'
+                        end
 
                         # theme keyword 1.6.4.2 (tempkey) - temporal keyword keyword {keywordObject}
                         axKeywords = xTemporal.xpath('./tempkey')
@@ -150,6 +171,9 @@ module ADIWG
                                  hKeyword[:keywords] << hKeywordObj
                               end
                            end
+                        end
+                        if axKeywords.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: temporal keyword is missing'
                         end
 
                         aKeywords << hKeyword
@@ -170,6 +194,9 @@ module ADIWG
                         hCitation[:title] = thesaurus
                         hKeyword[:thesaurus] = hCitation
                      end
+                     if thesaurus.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keyword thesaurus is missing'
+                     end
 
                      # theme keyword bio.1.2 (taxonkey) - taxonomy keyword keywords {keywordObject}
                      axKeywords = xKeywords.xpath('./taxonkey')
@@ -182,6 +209,9 @@ module ADIWG
                               hKeyword[:keywords] << hKeywordObj
                            end
                         end
+                     end
+                     if axKeywords.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy keyword is missing'
                      end
 
                      aKeywords << hKeyword
@@ -201,6 +231,9 @@ module ADIWG
                         hCitation[:title] = thesaurus
                         hKeyword[:thesaurus] = hCitation
                      end
+                     if thesaurus.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword thesaurus is missing'
+                     end
 
                      # theme keyword bio.1.2 (methkey) - lineage method keywords {keywordObject}
                      axKeywords = xKeywords.xpath('./methkey')
@@ -213,6 +246,9 @@ module ADIWG
                               hKeyword[:keywords] << hKeywordObj
                            end
                         end
+                     end
+                     if axKeywords.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO method keyword is missing'
                      end
 
                      aKeywords << hKeyword

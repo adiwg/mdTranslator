@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-10-19 add geographic resolution
 #  Stan Smith 2017-10-19 add bearingDistance resolution
 #  Stan Smith 2017-10-19 add coordinate resolution
@@ -27,21 +28,18 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hResolution.empty?
-                     responseObj[:readerExecutionMessages] << 'Spatial Resolution object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial resolution object is empty'
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intResolution = intMetadataClass.newSpatialResolution
-                  foundOne = false
                   haveOne = false
 
                   # spatial resolution - scale factor (required if not others)
                   if hResolution.has_key?('scaleFactor')
-                     foundOne = true
-                     if hResolution['scaleFactor'] != ''
+                     unless hResolution['scaleFactor'] == ''
                         intResolution[:scaleFactor] = hResolution['scaleFactor']
                         haveOne = true
                      end
@@ -49,7 +47,6 @@ module ADIWG
 
                   # spatial resolution - measure (required if not others)
                   if hResolution.has_key?('measure')
-                     foundOne = true
                      hMeasure = hResolution['measure']
                      unless hMeasure.empty?
                         hObject = Measure.unpack(hMeasure, responseObj)
@@ -62,7 +59,6 @@ module ADIWG
 
                   # spatial resolution - coordinate resolution (required if not others)
                   if hResolution.has_key?('coordinateResolution')
-                     foundOne = true
                      hCoordRes = hResolution['coordinateResolution']
                      unless hCoordRes.empty?
                         hReturn = CoordinateResolution.unpack(hCoordRes, responseObj)
@@ -75,7 +71,6 @@ module ADIWG
 
                   # spatial resolution - bearing distance resolution (required if not others)
                   if hResolution.has_key?('bearingDistanceResolution')
-                     foundOne = true
                      hBearRes = hResolution['bearingDistanceResolution']
                      unless hBearRes.empty?
                         hReturn = BearingDistanceResolution.unpack(hBearRes, responseObj)
@@ -88,7 +83,6 @@ module ADIWG
 
                   # spatial resolution - geographic resolution (required if not others)
                   if hResolution.has_key?('geographicResolution')
-                     foundOne = true
                      hGeoRes = hResolution['geographicResolution']
                      unless hGeoRes.empty?
                         hReturn = GeographicResolution.unpack(hGeoRes, responseObj)
@@ -101,20 +95,20 @@ module ADIWG
 
                   # spatial resolution - level of detail (required if not others)
                   if hResolution.has_key?('levelOfDetail')
-                     foundOne = true
-                     if hResolution['levelOfDetail'] != ''
+                     unless hResolution['levelOfDetail'] == ''
                         intResolution[:levelOfDetail] = hResolution['levelOfDetail']
                         haveOne = true
                      end
                   end
 
-                  unless foundOne
-                     responseObj[:readerExecutionMessages] << 'Spatial Resolution did not have an object of supported type'
+                  # error messages
+                  unless haveOne
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
-                  return nil unless haveOne
                   return intResolution
 
                end

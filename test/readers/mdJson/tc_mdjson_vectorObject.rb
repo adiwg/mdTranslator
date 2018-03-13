@@ -22,7 +22,7 @@ class TestReaderMdJsonVectorObject < TestReaderMdJsonParent
 
     end
 
-    def test_complete_vectorObject_object
+    def test_complete_vectorObject
 
         hIn = Marshal::load(Marshal.dump(@@hIn))
         hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -44,7 +44,8 @@ class TestReaderMdJsonVectorObject < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: vector object type is missing'
 
     end
 
@@ -57,7 +58,8 @@ class TestReaderMdJsonVectorObject < TestReaderMdJsonParent
 
         assert_nil metadata
         refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: vector object type is missing'
 
     end
 
@@ -95,8 +97,9 @@ class TestReaderMdJsonVectorObject < TestReaderMdJsonParent
         metadata = @@NameSpace.unpack({}, hResponse)
 
         assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+        assert hResponse[:readerExecutionPass]
+        assert_equal 1, hResponse[:readerExecutionMessages].length
+        assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: vector object is empty'
 
     end
 

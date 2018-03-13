@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 module ADIWG
@@ -15,8 +16,8 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hLinePt.empty?
-                     responseObj[:readerExecutionMessages] << 'Oblique Line Point object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] <<
+                        'WARNING: mdJson reader: spatial reference oblique line-point object is empty'
                      return nil
                   end
 
@@ -29,7 +30,8 @@ module ADIWG
                      intLinePoint[:azimuthLineLatitude] = hLinePt['azimuthLineLatitude']
                   end
                   if intLinePoint[:azimuthLineLatitude].nil? || intLinePoint[:azimuthLineLatitude] == ''
-                     responseObj[:readerExecutionMessages] << 'Azimuth line point latitude is missing'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -39,7 +41,8 @@ module ADIWG
                      intLinePoint[:azimuthLineLongitude] = hLinePt['azimuthLineLongitude']
                   end
                   if intLinePoint[:azimuthLineLongitude].nil? || intLinePoint[:azimuthLineLongitude] == ''
-                     responseObj[:readerExecutionMessages] << 'Azimuth line point latitude is missing'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

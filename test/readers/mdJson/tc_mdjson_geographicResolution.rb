@@ -5,7 +5,7 @@
 #   Stan Smith 2017-10-19 original script
 
 require_relative 'mdjson_test_parent'
-require 'adiwg/mdtranslator/readers/mdJson/modules/module_coordinateResolution'
+require 'adiwg/mdtranslator/readers/mdJson/modules/module_geographicResolution'
 
 class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
@@ -22,7 +22,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
    #
    # end
 
-   def test_complete_geographicResolution
+   def test_complete_geoRes
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -36,7 +36,7 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
    end
 
-   def test_complete_geographicResolution_empty_latitudeResolution
+   def test_complete_geoRes_empty_latitudeResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['latitudeResolution'] = ''
@@ -45,11 +45,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
 
    end
 
-   def test_complete_geographicResolution_missing_latitudeResolution
+   def test_complete_geoRes_missing_latitudeResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('latitudeResolution')
@@ -58,11 +60,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
 
    end
 
-   def test_complete_geographicResolution_empty_longitudeResolution
+   def test_complete_geoRes_empty_longitudeResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['longitudeResolution'] = ''
@@ -71,11 +75,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
 
    end
 
-   def test_complete_geographicResolution_missing_longitudeResolution
+   def test_complete_geoRes_missing_longitudeResolution
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('longitudeResolution')
@@ -84,11 +90,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
 
    end
 
-   def test_complete_geographicResolution_empty_unitOfMeasure
+   def test_complete_geoRes_empty_unitOfMeasure
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['unitOfMeasure'] = ''
@@ -97,11 +105,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution units are missing'
 
    end
 
-   def test_complete_geographicResolution_missing_unitOfMeasure
+   def test_complete_geoRes_missing_unitOfMeasure
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('unitOfMeasure')
@@ -110,18 +120,22 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution units are missing'
 
    end
 
-   def test_empty_coordinateResolution_object
+   def test_empty_geoRes_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic spatial resolution object is empty'
 
    end
 

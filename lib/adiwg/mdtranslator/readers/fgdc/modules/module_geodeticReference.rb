@@ -14,7 +14,7 @@ module ADIWG
 
             module GeodeticReference
 
-               def self.unpack(xHorizontalRef)
+               def self.unpack(xHorizontalRef, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -29,18 +29,24 @@ module ADIWG
                      hGeodetic[:datumName] = datumName
                   end
 
-                  # geodetic model 4.1.4.2 (ellips) - ellipsoid name
+                  # geodetic model 4.1.4.2 (ellips) - ellipsoid name (required)
                   # -> referenceSystemParameters.geodetic.ellipsoidName
                   ellipsoidName = xGeodetic.xpath('./ellips').text
                   unless ellipsoidName.empty?
                      hGeodetic[:ellipsoidName] = ellipsoidName
                   end
+                  if ellipsoidName.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference ellipsoid name is missing'
+                  end
 
-                  # geodetic model 4.1.4.3 (semiaxis) - semi-major axis
+                  # geodetic model 4.1.4.3 (semiaxis) - semi-major axis (required)
                   # -> referenceSystemParameters.geodetic.semiMajorAxis
                   semiAxis = xGeodetic.xpath('./semiaxis').text
                   unless semiAxis.empty?
                      hGeodetic[:semiMajorAxis] = semiAxis.to_f
+                  end
+                  if semiAxis.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference semi-major axis is missing'
                   end
 
                   # geodetic model 4.1.2.4.4 (plandu) - distance units
@@ -58,11 +64,14 @@ module ADIWG
                      end
                   end
 
-                  # geodetic model 4.1.4.4 (denflat) - denominator of flattening ratio
+                  # geodetic model 4.1.4.4 (denflat) - denominator of flattening ratio (required)
                   # -> referenceSystemParameters.geodetic.denominatorOfFlatteningRatio
                   flattening = xGeodetic.xpath('./denflat').text
                   unless flattening.empty?
                      hGeodetic[:denominatorOfFlatteningRatio] = flattening.to_f
+                  end
+                  if flattening.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference flattening ratio is missing'
                   end
 
                   hReferenceSystem = intMetadataClass.newSpatialReferenceSystem

@@ -73,13 +73,13 @@
                   },
                   "checkPointAvailable": true,
                   "checkPointDescription": "checkPointDescription",
+                  "centerPoint": [0.5, 0.5],
                   "cornerPoints": [
                      [0.0, 0.0],
                      [0.0, 1.0],
                      [1.0, 1.0],
                      [1.0, 0.0]
                   ],
-                  "centerPoint": [0.5, 0.5],
                   "pointInPixel": "pointInPixel",
                   "transformationDimensionDescription": "transformationDimensionDescription",
                   "transformationDimensionMapping": "transformationDimensionMapping"
@@ -103,6 +103,7 @@
                      "transformationParameterAvailable": true
                   },
                   "checkPointAvailable": true,
+                  "centerPoint": [0.0, 0.0],
                   "cornerPoints": [
                      [0.0, 0.0],
                      [0.0, 1.0],

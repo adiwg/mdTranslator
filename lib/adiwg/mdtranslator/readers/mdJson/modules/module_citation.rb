@@ -2,16 +2,17 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-10-13 refactored for mdJson 2.0
-#   Stan Smith 2015-08-28 added alternate title
-#   Stan Smith 2015-07-14 refactored to remove global namespace constants
-#   Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
-#   Stan Smith 2014-12-30 refactored
-#   Stan Smith 2014-12-19 refactored to return nil when hCitation is empty
-#   Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
-#   Stan Smith 2014-08-18 changed additionalIdentifier section to identifier schema 0.6.0
-#   Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
-#   Stan Smith 2014-04-25 modified to support json schema 0.3.0
+#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2016-10-13 refactored for mdJson 2.0
+#  Stan Smith 2015-08-28 added alternate title
+#  Stan Smith 2015-07-14 refactored to remove global namespace constants
+#  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
+#  Stan Smith 2014-12-30 refactored
+#  Stan Smith 2014-12-19 refactored to return nil when hCitation is empty
+#  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
+#  Stan Smith 2014-08-18 changed additionalIdentifier section to identifier schema 0.6.0
+#  Stan Smith 2014-07-03 resolve require statements using Mdtranslator.reader_module
+#  Stan Smith 2014-04-25 modified to support json schema 0.3.0
 # 	Stan Smith 2013-08-26 original script
 
 require_relative 'module_date'
@@ -33,8 +34,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hCitation.empty?
-                     responseObj[:readerExecutionMessages] << 'Citation object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: citation object is empty'
                      return nil
                   end
 
@@ -47,7 +47,7 @@ module ADIWG
                      intCitation[:title] = hCitation['title']
                   end
                   if intCitation[:title].nil? || intCitation[:title] == ''
-                     responseObj[:readerExecutionMessages] << 'Citation attribute title is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: citation title is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -55,7 +55,7 @@ module ADIWG
                   # citation - alternate title []
                   if hCitation.has_key?('alternateTitle')
                      hCitation['alternateTitle'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intCitation[:alternateTitles] << item
                         end
                      end
@@ -74,7 +74,7 @@ module ADIWG
 
                   # citation - edition
                   if hCitation.has_key?('edition')
-                     if hCitation['edition'] != ''
+                     unless hCitation['edition'] == ''
                         intCitation[:edition] = hCitation['edition']
                      end
                   end
@@ -93,7 +93,7 @@ module ADIWG
                   # citation - presentation form []
                   if hCitation.has_key?('presentationForm')
                      hCitation['presentationForm'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intCitation[:presentationForms] << item
                         end
                      end
@@ -124,7 +124,7 @@ module ADIWG
                   # citation - other details
                   if hCitation.has_key?('otherCitationDetails')
                      hCitation['otherCitationDetails'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intCitation[:otherDetails] << item
                         end
                      end

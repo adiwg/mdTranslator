@@ -2,7 +2,8 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#   Stan Smith 2016-10-23 original script
+#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2016-10-23 original script
 
 require_relative 'module_onlineResource'
 require_relative 'module_phone'
@@ -21,7 +22,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hContact.empty?
-                     responseObj[:readerExecutionMessages] << 'Contact object is empty'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact object is empty'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -35,7 +36,7 @@ module ADIWG
                      intContact[:contactId] = hContact['contactId']
                   end
                   if intContact[:contactId].nil? || intContact[:contactId] == ''
-                     responseObj[:readerExecutionMessages] << 'Contact is missing contactId'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact id is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -49,7 +50,7 @@ module ADIWG
 
                   # contact - position name
                   if hContact.has_key?('positionName')
-                     if hContact['positionName'] != ''
+                     unless hContact['positionName'] == ''
                         intContact[:positionName] = hContact['positionName']
                      end
                   end
@@ -58,18 +59,18 @@ module ADIWG
                   # ... isOrganization = true
                   # ... isOrganization = false && positionName = nil
                   if hContact.has_key?('name')
-                     if hContact['name'] != ''
+                     unless hContact['name'] == ''
                         intContact[:name] = hContact['name']
                      end
                   end
                   if intContact[:name].nil? || intContact[:name] == ''
                      if intContact[:isOrganization] === true
-                        responseObj[:readerExecutionMessages] << 'Organization contact is missing name'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: organization contact name is missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
                      if intContact[:positionName].nil? || intContact[:positionName] == ''
-                        responseObj[:readerExecutionMessages] << 'Individual contact is missing name and position'
+                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: individual contact name and/or position are missing'
                         responseObj[:readerExecutionPass] = false
                         return nil
                      end
@@ -78,7 +79,7 @@ module ADIWG
                   # contact - member of organization []
                   if hContact.has_key?('memberOfOrganization')
                      hContact['memberOfOrganization'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intContact[:memberOfOrgs] << item
                         end
                      end
@@ -120,7 +121,7 @@ module ADIWG
                   # contact - electronic mail addresses []
                   if hContact.has_key?('electronicMailAddress')
                      hContact['electronicMailAddress'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intContact[:eMailList] << item
                         end
                      end
@@ -140,7 +141,7 @@ module ADIWG
                   # contact - hours of service []
                   if hContact.has_key?('hoursOfService')
                      hContact['hoursOfService'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intContact[:hoursOfService] << item
                         end
                      end
@@ -148,14 +149,14 @@ module ADIWG
 
                   # contact - contact instructions
                   if hContact.has_key?('contactInstructions')
-                     if hContact['contactInstructions'] != ''
+                     unless hContact['contactInstructions'] == ''
                         intContact[:contactInstructions] = hContact['contactInstructions']
                      end
                   end
 
                   # contact - contact type
                   if hContact.has_key?('contactType')
-                     if hContact['contactType'] != ''
+                     unless hContact['contactType'] == ''
                         intContact[:contactType] = hContact['contactType']
                      end
                   end

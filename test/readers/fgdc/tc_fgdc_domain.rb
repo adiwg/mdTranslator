@@ -61,7 +61,8 @@ class TestReaderFgdcDomain < TestReaderFGDCParent
       assert_empty hDomain2[:domainItems]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: entity type definition source is missing'
 
    end
 

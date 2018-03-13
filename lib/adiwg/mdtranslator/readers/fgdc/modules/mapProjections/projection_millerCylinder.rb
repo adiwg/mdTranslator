@@ -34,8 +34,7 @@ module ADIWG
                      if paramCount == 3
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'miller cylindrical projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Miller Cylindrical projection is missing one or more parameters'
                      end
                   end
 

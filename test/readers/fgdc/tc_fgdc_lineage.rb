@@ -74,7 +74,9 @@ class TestReaderFgdcLineage < TestReaderFGDCParent
       refute_empty hTimePeriod[:endDateTime]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact address is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact voice phone is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: lineage procedure date is missing'
 
    end
 

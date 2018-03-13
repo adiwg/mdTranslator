@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2018-01-10 added reference system WKT
 #  Stan Smith 2017-10-23 added reference system parameter set
 #  Stan Smith 2016-10-16 refactored for mdJson 2.0
@@ -24,8 +25,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hSpatialRef.empty?
-                     responseObj[:readerExecutionMessages] << 'Spatial Reference System object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial reference system object is empty'
                      return nil
                   end
 
@@ -37,7 +37,7 @@ module ADIWG
 
                   # spatial reference system - type
                   if hSpatialRef.has_key?('referenceSystemType')
-                     if hSpatialRef['referenceSystemType'] != ''
+                     unless hSpatialRef['referenceSystemType'] == ''
                         intSpatialRef[:systemType] = hSpatialRef['referenceSystemType']
                         haveSystem = true
                      end
@@ -57,7 +57,7 @@ module ADIWG
 
                   # spatial reference system - wkt
                   if hSpatialRef.has_key?('referenceSystemWKT')
-                     if hSpatialRef['referenceSystemWKT'] != ''
+                     unless hSpatialRef['referenceSystemWKT'] == ''
                         intSpatialRef[:systemWKT] = hSpatialRef['referenceSystemWKT']
                         haveSystem = true
                      end
@@ -76,7 +76,8 @@ module ADIWG
                   end
 
                   unless haveSystem
-                     responseObj[:readerExecutionMessages] << 'Spatial Reference System must declare reference system type, identifier, WKT, or parameter set'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: spatial reference system must declare reference system type, identifier, WKT, or parameter set'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -24,13 +24,16 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hTransfer = intMetadataClass.newTransferOption
 
-                  # distribution 6.4.2.1 (digtinfo) - digital transfer information
+                  # distribution 6.4.2.1 (digtinfo) - digital transfer information (required)
                   xTranInfo = xDigiForm.xpath('./digtinfo')
                   unless xTranInfo.empty?
                      TransferInfo.unpack(xTranInfo, hTransfer, techPre, hResponseObj)
                   end
+                  if xTranInfo.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: order process transfer info is missing'
+                  end
 
-                  # distribution 6.4.2.2 (digtopt) - digital transfer option
+                  # distribution 6.4.2.2 (digtopt) - digital transfer option (required)
                   xDigiOption = xDigiForm.xpath('./digtopt')
                   unless xDigiOption.empty?
 
@@ -56,6 +59,9 @@ module ADIWG
                         end
                      end
 
+                  end
+                  if xDigiOption.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: order process transfer option is missing'
                   end
 
                   return hTransfer

@@ -65,38 +65,59 @@ module ADIWG
                   hIntExtent[:geographicExtents] << hIntGeoExtent
                   hIntExtent[:description] = 'FGDC spatial domain'
 
-                  # spatial domain bio (descgeog) - geographic description
+                  # spatial domain bio (descgeog) - geographic description (required)
                   description = xDomain.xpath('./descgeog').text
                   unless description.empty?
                      hIntGeoExtent[:description] = description
                   end
+                  if description.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO geographic description is missing'
+                  end
 
-                  # spatial domain 1.5.1 (bounding) - bounding box
+                  # spatial domain 1.5.1 (bounding) - bounding box (required)
                   xBbox = xDomain.xpath('./bounding')
                   unless xBbox.empty?
                      hBbox = intMetadataClass.newBoundingBox
 
-                     # bounding box 1.5.1.1 (westbc) - west coordinate
+                     # bounding box 1.5.1.1 (westbc) - west coordinate (required)
                      hBbox[:westLongitude] = xBbox.xpath('./westbc').text.to_f
+                     if hBbox[:westLongitude].nil?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bounding box west boundary is missing'
+                     end
 
-                     # bounding box 1.5.1.2 (eastbc) - east coordinate
+                     # bounding box 1.5.1.2 (eastbc) - east coordinate (required)
                      hBbox[:eastLongitude] = xBbox.xpath('./eastbc').text.to_f
+                     if hBbox[:eastLongitude].nil?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bounding box east boundary is missing'
+                     end
 
-                     # bounding box 1.5.1.3 (northbc) - north coordinate
+                     # bounding box 1.5.1.3 (northbc) - north coordinate (required)
                      hBbox[:northLatitude] = xBbox.xpath('./northbc').text.to_f
+                     if hBbox[:northLatitude].nil?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bounding box north boundary is missing'
+                     end
 
-                     # bounding box 1.5.1.4 (southbc) - south coordinate
+                     # bounding box 1.5.1.4 (southbc) - south coordinate (required)
                      hBbox[:southLatitude] = xBbox.xpath('./southbc').text.to_f
+                     if hBbox[:southLatitude].nil?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bounding box south boundary is missing'
+                     end
 
                      # bounding box bio (boundalt) - altitude
                      xAltitude = xBbox.xpath('./boundalt')
                      unless xAltitude.empty?
 
-                        # bounding box bio (altmin) - minimum altitude
+                        # bounding box bio (altmin) - minimum altitude (required)
                         hBbox[:minimumAltitude] = xAltitude.xpath('./altmin').text.to_f
+                        if hBbox[:minimumAltitude].nil?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO bounding box minimum altitude is missing'
+                        end
 
-                        # bounding box bio (altmax) - maximum altitude
+                        # bounding box bio (altmax) - maximum altitude (required)
                         hBbox[:maximumAltitude] = xAltitude.xpath('./altmax').text.to_f
+                        if hBbox[:maximumAltitude].nil?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO bounding box maximum altitude is missing'
+                        end
 
                         # bounding box bio (altunit) - altitude unit of measure
                         hBbox[:unitsOfAltitude] = xAltitude.xpath('./altunit').text
@@ -104,6 +125,9 @@ module ADIWG
                      end
 
                      hIntGeoExtent[:boundingBox] = hBbox
+                  end
+                  if xBbox.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: bounding box is missing'
                   end
 
                   # spatial domain 1.5.2 (dsgpoly) - data set geographic polygon []

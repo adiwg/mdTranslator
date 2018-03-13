@@ -22,7 +22,7 @@ module ADIWG
                   # horizontal reference 4.1.1 (geograph) - geographic resolution
                   xGeographic = xHorizontalRef.xpath('./geograph')
                   unless xGeographic.empty?
-                     hResolution = GeographicResolution.unpack(xGeographic)
+                     hResolution = GeographicResolution.unpack(xGeographic, hResponseObj)
                      unless hResolution.nil?
                         hResourceInfo[:spatialResolutions] << hResolution
                      end
@@ -39,7 +39,7 @@ module ADIWG
                   # horizontal reference 4.1.3 (local) - local coordinate system
                   xLocal = xHorizontalRef.xpath('./local')
                   unless xLocal.empty?
-                     hReferenceSystem = LocalSystem.unpack(xLocal)
+                     hReferenceSystem = LocalSystem.unpack(xLocal, hResponseObj)
                      unless hReferenceSystem.nil?
                         hResourceInfo[:spatialReferenceSystems] << hReferenceSystem
                      end
@@ -48,7 +48,7 @@ module ADIWG
                   # horizontal reference 4.1.4 (geodetic) - parameters for shape of earth
                   xGeodetic = xHorizontalRef.xpath('./geodetic')
                   unless xGeodetic.empty?
-                     hReferenceSystem = GeodeticReference.unpack(xHorizontalRef)
+                     hReferenceSystem = GeodeticReference.unpack(xHorizontalRef, hResponseObj)
                      unless hReferenceSystem.nil?
                         hResourceInfo[:spatialReferenceSystems] << hReferenceSystem
                      end

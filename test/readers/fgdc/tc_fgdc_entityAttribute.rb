@@ -25,8 +25,10 @@ class TestReaderFgdcEntityAttribute < TestReaderFGDCParent
       assert_equal 'FGDC EntityAttribute Section 5', hDictionary[:citation][:title]
       assert_equal 3, hDictionary[:domains].length
       assert_equal 4, hDictionary[:entities].length
+
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 
+                      'WARNING: FGDC reader: entity type definition source is missing'
 
    end
 

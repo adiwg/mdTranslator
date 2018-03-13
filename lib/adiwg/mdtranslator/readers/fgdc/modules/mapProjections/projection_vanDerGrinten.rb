@@ -32,8 +32,7 @@ module ADIWG
                      if paramCount == 3
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'van der grinten projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Van Der Grinten projection is missing one or more parameters'
                      end
                   end
 

@@ -2,6 +2,7 @@
 # Reader - mdJson to internal data structure
 
 # History:
+#  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-11-01 added entityReference, fieldSeparator, headerLines, quoteCharacter
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-24 added error reporting of missing items
@@ -27,8 +28,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hEntity.empty?
-                     responseObj[:readerExecutionMessages] << 'Entity object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity object is empty'
                      return nil
                   end
 
@@ -46,7 +46,7 @@ module ADIWG
 
                   # entity - name
                   if hEntity.has_key?('commonName')
-                     if hEntity['commonName'] != ''
+                     unless hEntity['commonName'] == ''
                         intEntity[:entityName] = hEntity['commonName']
                      end
                   end
@@ -56,7 +56,7 @@ module ADIWG
                      intEntity[:entityCode] = hEntity['codeName']
                   end
                   if intEntity[:entityCode].nil? || intEntity[:entityCode] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary entity code name is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity code name is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -64,7 +64,7 @@ module ADIWG
                   # entity - alias []
                   if hEntity.has_key?('alias')
                      hEntity['alias'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intEntity[:entityAlias] << item
                         end
                      end
@@ -75,7 +75,7 @@ module ADIWG
                      intEntity[:entityDefinition] = hEntity['definition']
                   end
                   if intEntity[:entityDefinition].nil? || intEntity[:entityDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'Data Dictionary entity definition is missing'
+                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity definition is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
@@ -95,7 +95,7 @@ module ADIWG
                   # data entity - primary key (NOT required)
                   if hEntity.has_key?('primaryKeyAttributeCodeName')
                      hEntity['primaryKeyAttributeCodeName'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intEntity[:primaryKey] << item
                         end
                      end
@@ -139,21 +139,21 @@ module ADIWG
 
                   # entity - field separator
                   if hEntity.has_key?('fieldSeparatorCharacter')
-                     if hEntity['fieldSeparatorCharacter'] != ''
+                     unless hEntity['fieldSeparatorCharacter'] == ''
                         intEntity[:fieldSeparatorCharacter] = hEntity['fieldSeparatorCharacter']
                      end
                   end
 
                   # entity - number of header lines
                   if hEntity.has_key?('numberOfHeaderLines')
-                     if hEntity['numberOfHeaderLines'] != ''
+                     unless hEntity['numberOfHeaderLines'] == ''
                         intEntity[:numberOfHeaderLines] = hEntity['numberOfHeaderLines'].to_i
                      end
                   end
 
                   # entity - quote character
                   if hEntity.has_key?('quoteCharacter')
-                     if hEntity['quoteCharacter'] != ''
+                     unless hEntity['quoteCharacter'] == ''
                         intEntity[:quoteCharacter] = hEntity['quoteCharacter']
                      end
                   end

@@ -401,7 +401,7 @@ class FgdcWriterTD
          attributeReference: {},
          dataType: 'data type',
          allowNull: false,
-         allowMany: false,
+         mustBeUnique: false,
          units: 'units of measure',
          unitsResolution: 1.0,
          isCaseSensitive: false,

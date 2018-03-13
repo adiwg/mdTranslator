@@ -61,6 +61,11 @@
                   }
                }
             ],
+            "identificationReference": [
+               {
+                  "identifier": "taxonomic identification reference identifier"
+               }
+            ],
             "identificationProcedure": "identificationProcedure",
             "voucher": [
                {

@@ -40,14 +40,143 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
 
    end
 
+   def test_empty_verticalDatum_name
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn['datumName'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_missing_verticalDatum_name
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn.delete('datumName')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_empty_verticalDatum_encoding
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn['encodingMethod'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_missing_verticalDatum_encoding
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn.delete('encodingMethod')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_empty_verticalDatum_resolution
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn['verticalResolution'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_missing_verticalDatum_resolution
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn.delete('verticalResolution')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_empty_verticalDatum_units
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn['unitOfMeasure'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
+   def test_missing_verticalDatum_units
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['datumIdentifier'] = {}
+      hIn.delete('unitOfMeasure')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
+
+   end
+
    def test_empty_verticalDatum_object
 
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: vertical datum object is empty'
 
    end
 

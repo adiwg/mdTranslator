@@ -21,7 +21,7 @@ module ADIWG
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
 
-                  # taxonomy bio.2.1 (classsys) - taxonomic classification authority []
+                  # taxonomy bio.2.1 (classsys) - taxonomic classification authority [] (required)
                   # -> resourceInfo.taxonomy.taxonSystem
                   axTaxClass = xSystem.xpath('./classsys')
                   unless axTaxClass.empty?
@@ -29,7 +29,7 @@ module ADIWG
 
                         hTaxonSystem = intMetadataClass.newTaxonSystem
 
-                        # taxonomy bio.2.1.1 (classcit) - taxonomic classification citation {citation}
+                        # taxonomy bio.2.1.1 (classcit) - taxonomic classification citation {citation} (required)
                         # -> resourceInfo.taxonomy.taxonSystem.citation
                         xCitation = xTaxClass.xpath('./classcit')
                         unless xCitation.empty?
@@ -37,6 +37,9 @@ module ADIWG
                            unless hCitation.nil?
                               hTaxonSystem[:citation] = hCitation
                            end
+                        end
+                        if xCitation.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy classification system citation missing'
                         end
 
                         # taxonomy bio.2.1.2 (classmod) - taxonomic classification modifications
@@ -49,6 +52,9 @@ module ADIWG
                         hTaxonomy[:taxonSystem] << hTaxonSystem
 
                      end
+                  end
+                  if axTaxClass.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy classification system is missing'
                   end
 
                   # taxonomy bio.2.2 (idref) - taxonomic identification reference [] {identifier}
@@ -79,11 +85,14 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy bio.2.4 (taxonpro) - taxonomic procedures
+                  # taxonomy bio.2.4 (taxonpro) - taxonomic procedures (required)
                   # -> resourceInfo.taxonomy.idProcedure
                   procedures = xSystem.xpath('./taxonpro').text
                   unless procedures.empty?
                      hTaxonomy[:idProcedure] = procedures
+                  end
+                  if procedures.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy classification procedures are missing'
                   end
 
                   # taxonomy bio.2.5 (taxoncom) - taxonomic completeness
@@ -101,14 +110,17 @@ module ADIWG
 
                         hVoucher = intMetadataClass.newTaxonVoucher
 
-                        # taxonomy bio.2.6.1 (specimen) - specimen
+                        # taxonomy bio.2.6.1 (specimen) - specimen (required)
                         # -> resourceInfo.taxonomy.vouchers.specimen
                         specimen = xVoucher.xpath('./specimen').text
                         unless specimen.empty?
                            hVoucher[:specimen] = specimen
                         end
+                        if procedures.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy voucher specimen is missing'
+                        end
 
-                        # taxonomy bio.2.6.2 (reposit) - repository {contact}
+                        # taxonomy bio.2.6.2 (reposit) - repository {contact} (required)
                         # -> resourceInfo.taxonomy.vouchers.repository
                         xRepository = xVoucher.xpath('./reposit')
                         unless xRepository.empty?
@@ -117,6 +129,9 @@ module ADIWG
                               hResponsibility[:roleName] = 'custodian'
                               hVoucher[:repository] = hResponsibility
                            end
+                        end
+                        if xRepository.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxonomy voucher repository is missing'
                         end
 
                         hTaxonomy[:vouchers] << hVoucher

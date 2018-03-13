@@ -40,8 +40,7 @@ module ADIWG
                      if paramCount == 6
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'equidistant conic projection is missing one or more parameters'
-                        return nil
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: Equidistant Conic projection is missing one or more parameters'
                      end
                   end
 

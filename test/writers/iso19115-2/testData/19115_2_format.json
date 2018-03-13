@@ -68,6 +68,11 @@
                   },
                   "transferOption": [
                      {
+                        "onlineOption": [
+                           {
+                              "uri": "http://ISO.uri/adiwg/0"
+                           }
+                        ],
                         "distributionFormat": [
                            {
                               "formatSpecification": {

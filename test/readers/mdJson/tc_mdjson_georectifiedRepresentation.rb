@@ -10,209 +10,227 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_georectifiedRepresenta
 
 class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeorectifiedRepresentation
-    aIn = TestReaderMdJsonParent.getJson('georectified.json')
-    @@hIn = aIn['georectifiedRepresentation'][0]
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeorectifiedRepresentation
+   aIn = TestReaderMdJsonParent.getJson('georectified.json')
+   @@hIn = aIn['georectifiedRepresentation'][0]
 
-    def test_georectifiedRepresentation_schema
+   def test_geoRecRep_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'georectifiedRepresentation.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'georectifiedRepresentation.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_georectifiedRepresentation_object
+   def test_complete_geoRecRep_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:gridRepresentation]
-        assert metadata[:checkPointAvailable]
-        assert_equal 'checkPointDescription', metadata[:checkPointDescription]
-        assert_equal 4, metadata[:cornerPoints].length
-        assert_equal 2, metadata[:centerPoint].length
-        assert_equal 'pointInPixel', metadata[:pointInPixel]
-        assert_equal 'transformationDimensionDescription', metadata[:transformationDimensionDescription]
-        assert_equal 'transformationDimensionMapping', metadata[:transformationDimensionMapping]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:gridRepresentation]
+      assert metadata[:checkPointAvailable]
+      assert_equal 'checkPointDescription', metadata[:checkPointDescription]
+      assert_equal 4, metadata[:cornerPoints].length
+      assert_equal 2, metadata[:centerPoint].length
+      assert_equal 'pointInPixel', metadata[:pointInPixel]
+      assert_equal 'transformationDimensionDescription', metadata[:transformationDimensionDescription]
+      assert_equal 'transformationDimensionMapping', metadata[:transformationDimensionMapping]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_georectifiedRepresentation_empty_grid
+   def test_geoRecRep_empty_grid
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['gridRepresentation'] = {}
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['gridRepresentation'] = {}
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_missing_grid
+   def test_geoRecRep_missing_grid
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('gridRepresentation')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('gridRepresentation')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_empty_checkPoint
+   def test_geoRecRep_empty_cornerPoint
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['checkPointAvailable'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['cornerPoints'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:checkPointAvailable]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_missing_checkPoint
+   def test_geoRecRep_missing_cornerPoint
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('checkPointAvailable')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('cornerPoints')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute metadata[:checkPointAvailable]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_empty_cornerPoint
+   def test_geoRecRep_invalid_centerPoint
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['cornerPoints'] = []
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['centerPoint'] = [0.0]
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_missing_cornerPoint
+   def test_geoRecRep_missing_centerPoint
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('cornerPoints')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('centerPoint')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation center point is missing'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_invalid_cornerPoint
+   def test_geoRecRep_invalid_cornerPoint
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['cornerPoints'] = [ [0.0, 0.0] ]
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['cornerPoints'] = [[0.0, 0.0]]
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_empty_pointPxiel
+   def test_geoRecRep_empty_pointInPxiel
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['pointInPixel'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['pointInPixel'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_missing_pointPxiel
+   def test_geoRecRep_missing_pointInPxiel
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('pointInPixel')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('pointInPixel')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
 
-    end
+   end
 
-    def test_georectifiedRepresentation_empty_elements
+   def test_geoRecRep_empty_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['checkPointDescription'] = ''
-        hIn['centerPoint'] = []
-        hIn['transformationDimensionDescription'] = ''
-        hIn['transformationDimensionMapping'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['checkPointDescription'] = ''
+      hIn['transformationDimensionDescription'] = ''
+      hIn['transformationDimensionMapping'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:gridRepresentation]
-        assert metadata[:checkPointAvailable]
-        assert_nil metadata[:checkPointDescription]
-        assert_equal 4, metadata[:cornerPoints].length
-        assert_empty metadata[:centerPoint]
-        assert_equal 'pointInPixel', metadata[:pointInPixel]
-        assert_nil metadata[:transformationDimensionDescription]
-        assert_nil metadata[:transformationDimensionMapping]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:gridRepresentation]
+      assert metadata[:checkPointAvailable]
+      assert_nil metadata[:checkPointDescription]
+      assert_equal 4, metadata[:cornerPoints].length
+      refute_empty metadata[:centerPoint]
+      assert_equal 'pointInPixel', metadata[:pointInPixel]
+      assert_nil metadata[:transformationDimensionDescription]
+      assert_nil metadata[:transformationDimensionMapping]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_georectifiedRepresentation_missing_elements
+   def test_geoRecRep_missing_elements
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('checkPointDescription')
-        hIn.delete('centerPoint')
-        hIn.delete('transformationDimensionDescription')
-        hIn.delete('transformationDimensionMapping')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('checkPointDescription')
+      hIn.delete('transformationDimensionDescription')
+      hIn.delete('transformationDimensionMapping')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        refute_empty metadata[:gridRepresentation]
-        assert metadata[:checkPointAvailable]
-        assert_nil metadata[:checkPointDescription]
-        assert_equal 4, metadata[:cornerPoints].length
-        assert_empty metadata[:centerPoint]
-        assert_equal 'pointInPixel', metadata[:pointInPixel]
-        assert_nil metadata[:transformationDimensionDescription]
-        assert_nil metadata[:transformationDimensionMapping]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      refute_empty metadata[:gridRepresentation]
+      assert metadata[:checkPointAvailable]
+      assert_nil metadata[:checkPointDescription]
+      assert_equal 4, metadata[:cornerPoints].length
+      refute_empty metadata[:centerPoint]
+      assert_equal 'pointInPixel', metadata[:pointInPixel]
+      assert_nil metadata[:transformationDimensionDescription]
+      assert_nil metadata[:transformationDimensionMapping]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_georectifiedRepresentation_object
+   def test_empty_geoRecRep_object
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: georectified spatial representation object is empty'
 
-    end
+   end
 
 end

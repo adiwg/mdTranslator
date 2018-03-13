@@ -71,19 +71,6 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
    end
 
-   def test_projectionParameters_missing_projection
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('projection')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
-
-   end
-
    def test_projectionParameters_empty_projection
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -93,7 +80,22 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'spatial reference projection is missing'
+
+   end
+
+   def test_projectionParameters_missing_projection
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('projection')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'spatial reference projection is missing'
 
    end
 
@@ -103,8 +105,10 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: reference system projection parameters object is empty'
 
    end
 

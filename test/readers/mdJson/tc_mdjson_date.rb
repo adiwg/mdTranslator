@@ -10,118 +10,137 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_date'
 
 class TestReaderMdJsonDate < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Date
-    aIn = TestReaderMdJsonParent.getJson('date.json')
-    @@hIn = aIn['date'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Date
+   aIn = TestReaderMdJsonParent.getJson('date.json')
+   @@hIn = aIn['date'][0]
 
-    def test_complete_date_object
+   def test_complete_date_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
-        assert_kind_of Date, metadata[:date]
-        assert_equal 'YMD', metadata[:dateResolution]
-        assert_equal 'dateType', metadata[:dateType]
-        assert_equal 'description', metadata[:description]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+      assert_kind_of Date, metadata[:date]
+      assert_equal 'YMD', metadata[:dateResolution]
+      assert_equal 'dateType', metadata[:dateType]
+      assert_equal 'description', metadata[:description]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_date_element
+   def test_empty_date_invalid
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['date'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['date'] = '2018-02-30'
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is invalid'
 
-    end
+   end
 
-    def test_missing_date_element
+   def test_empty_date_element
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('date')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['date'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is missing'
 
-    end
+   end
 
-    def test_empty_dateType_element
+   def test_missing_date_element
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['dateType'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('date')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date string is missing'
 
-    end
+   end
 
-    def test_missing_dateType_element
+   def test_empty_dateType_element
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('dateType')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['dateType'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date type is missing'
 
-    end
+   end
 
-    def test_empty_description_element
+   def test_missing_dateType_element
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn['description'] = ''
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('dateType')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_kind_of Date, metadata[:date]
-        assert_equal 'YMD', metadata[:dateResolution]
-        assert_equal 'dateType', metadata[:dateType]
-        assert_nil metadata[:description]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: date type is missing'
 
-    end
+   end
 
-    def test_missing_description_element
+   def test_empty_description_element
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hIn.delete('description')
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['description'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_kind_of Date, metadata[:date]
-        assert_equal 'YMD', metadata[:dateResolution]
-        assert_equal 'dateType', metadata[:dateType]
-        assert_nil metadata[:description]
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_kind_of Date, metadata[:date]
+      assert_equal 'YMD', metadata[:dateResolution]
+      assert_equal 'dateType', metadata[:dateType]
+      assert_nil metadata[:description]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_date_object
+   def test_missing_description_element
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('description')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_kind_of Date, metadata[:date]
+      assert_equal 'YMD', metadata[:dateResolution]
+      assert_equal 'dateType', metadata[:dateType]
+      assert_nil metadata[:description]
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
+
+   def test_empty_date_object
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
+
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: date object is empty'
+
+   end
 
 end

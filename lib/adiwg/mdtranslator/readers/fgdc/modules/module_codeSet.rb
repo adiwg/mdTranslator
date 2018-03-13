@@ -32,20 +32,26 @@ module ADIWG
                         hDomain[:domainDescription] = 'FGDC codeSet domain'
 
 
-                        # entity attribute 5.1.2.4.3.1 (codesetn) - codeset name
+                        # entity attribute 5.1.2.4.3.1 (codesetn) - codeset name (required)
                         # -> dataDictionary.domains.commonName
                         name = xCodeSet.xpath('./codesetn').text
                         unless name.empty?
                            hDomain[:domainName] = name
                         end
+                        if name.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: codeset domain name is missing'
+                        end
 
-                        # entity attribute 5.1.2.4.3.2 (codesets) - codeset source {citation}
+                        # entity attribute 5.1.2.4.3.2 (codesets) - codeset source name (required)
                         # -> dataDictionary.domains.domainReference.title
                         hCitation = intMetadataClass.newCitation
                         title = xCodeSet.xpath('./codesets').text
                         unless title.empty?
                            hCitation[:title] = title
                            hDomain[:domainReference] = hCitation
+                        end
+                        if title.empty?
+                           hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: codeset domain source is missing'
                         end
 
                         aDomains << hDomain

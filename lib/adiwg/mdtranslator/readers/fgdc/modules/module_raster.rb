@@ -21,7 +21,7 @@ module ADIWG
                   hSpatialRepresentation = intMetadataClass.newSpatialRepresentation
                   hGridInfo = intMetadataClass.newGridInfo
 
-                  # raster object 3.4.1 (rasttype) - raster object type
+                  # raster object 3.4.1 (rasttype) - raster object type (require)
                   # -> spatialRepresentation.gridInfo.numberOfDimensions per NOAA
                   # -> FGDC and ISO definitions do not match on this element
                   # -> however elements do match on  spatialRepresentation.gridInfo.cellGeometry
@@ -29,14 +29,18 @@ module ADIWG
                   unless cellGeometry.empty?
                      hGridInfo[:cellGeometry] = cellGeometry.downcase
                   end
+                  if cellGeometry.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster type is missing'
+                  end
 
                   # -> compute number of dimensions from total occurrence of 3.4.2-4
                   hGridInfo[:numberOfDimensions] = 0
+                  rows = xRaster.xpath('./rowcount').text
+                  columns = xRaster.xpath('./colcount').text
 
                   # raster object 3.4.2 (rowcount) - row count
                   # -> spatialRepresentation.gridInfo.dimension.dimensionSize
                   # -> spatialRepresentation.gridInfo.dimension.dimensionType = row
-                  rows = xRaster.xpath('./rowcount').text
                   unless rows.empty?
                      hDimension = intMetadataClass.newDimension
                      hDimension[:dimensionType] = 'row'
@@ -44,17 +48,22 @@ module ADIWG
                      hGridInfo[:dimension] << hDimension
                      hGridInfo[:numberOfDimensions] += 1
                   end
+                  if rows.empty? && !columns.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster row count is missing'
+                  end
 
                   # raster object 3.4.3 (colcount) - column count
                   # -> spatialRepresentation.gridInfo.dimension.dimensionSize
                   # -> spatialRepresentation.gridInfo.dimension.dimensionType = column
-                  columns = xRaster.xpath('./colcount').text
                   unless columns.empty?
                      hDimension = intMetadataClass.newDimension
                      hDimension[:dimensionType] = 'column'
                      hDimension[:dimensionSize] = columns.to_i
                      hGridInfo[:dimension] << hDimension
                      hGridInfo[:numberOfDimensions] += 1
+                  end
+                  if columns.empty? && !rows.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: spatial domain raster column count is missing'
                   end
 
                   # raster object 3.4.4 (vrtcount) - vertical count

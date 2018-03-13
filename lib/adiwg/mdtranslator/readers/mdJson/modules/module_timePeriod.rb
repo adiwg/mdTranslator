@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-11-07 add geologic age
 # 	Stan Smith 2016-10-14 original script
 
@@ -22,8 +23,7 @@ module ADIWG
 
                   # return nil object if input is empty
                   if hTimePeriod.empty?
-                     responseObj[:readerExecutionMessages] << 'Time Period object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: time period object is empty'
                      return nil
                   end
 
@@ -31,16 +31,18 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intTimePer = intMetadataClass.newTimePeriod
 
+                  haveTime = false
+
                   # time period - id
                   if hTimePeriod.has_key?('id')
-                     if hTimePeriod['id'] != ''
+                     unless hTimePeriod['id'] == ''
                         intTimePer[:timeId] = hTimePeriod['id']
                      end
                   end
 
                   # time period - description
                   if hTimePeriod.has_key?('description')
-                     if hTimePeriod['description'] != ''
+                     unless hTimePeriod['description'] == ''
                         intTimePer[:description] = hTimePeriod['description']
                      end
                   end
@@ -58,55 +60,60 @@ module ADIWG
                   # time period - period names []
                   if hTimePeriod.has_key?('periodName')
                      hTimePeriod['periodName'].each do |item|
-                        if item != ''
+                        unless item == ''
                            intTimePer[:periodNames] << item
                         end
                      end
                   end
 
-                  # time period - start datetime
+                  # time period - start datetime (required if)
                   if hTimePeriod.has_key?('startDateTime')
-                     if hTimePeriod['startDateTime'] != ''
+                     unless hTimePeriod['startDateTime'] == ''
                         hReturn = DateTime.unpack(hTimePeriod['startDateTime'], responseObj)
                         unless hReturn.nil?
                            intTimePer[:startDateTime] = hReturn
+                           haveTime = true
                         end
                      end
                   end
 
-                  # time period - end datetime
+                  # time period - end datetime (required if)
                   if hTimePeriod.has_key?('endDateTime')
-                     if hTimePeriod['endDateTime'] != ''
+                     unless hTimePeriod['endDateTime'] == ''
                         hReturn = DateTime.unpack(hTimePeriod['endDateTime'], responseObj)
                         unless hReturn.nil?
                            intTimePer[:endDateTime] = hReturn
+                           haveTime = true
                         end
                      end
                   end
 
-                  # time period - start geologic age
+                  # time period - start geologic age (required if)
                   if hTimePeriod.has_key?('startGeologicAge')
                      unless hTimePeriod['startGeologicAge'].empty?
                         hReturn = GeologicAge.unpack(hTimePeriod['startGeologicAge'], responseObj)
                         unless hReturn.nil?
                            intTimePer[:startGeologicAge] = hReturn
+                           haveTime = true
                         end
                      end
                   end
 
-                  # time period - end geologic age
+                  # time period - end geologic age (required if)
                   if hTimePeriod.has_key?('endGeologicAge')
                      unless hTimePeriod['endGeologicAge'].empty?
                         hReturn = GeologicAge.unpack(hTimePeriod['endGeologicAge'], responseObj)
                         unless hReturn.nil?
                            intTimePer[:endGeologicAge] = hReturn
+                           haveTime = true
                         end
                      end
                   end
 
-                  if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty? &&
-                     intTimePer[:startGeologicAge].empty? && intTimePer[:endGeologicAge].empty?
-                     responseObj[:readerExecutionMessages] << 'Time Period is missing a starting or ending time or geologic age'
+                  # error messages
+                  unless haveTime
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

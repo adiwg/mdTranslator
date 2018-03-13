@@ -59,7 +59,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary citation is missing'
 
    end
 
@@ -73,7 +74,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary citation is missing'
 
    end
 
@@ -87,7 +89,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary subject is missing'
 
    end
 
@@ -101,7 +104,8 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: data dictionary subject is missing'
 
    end
 
@@ -115,7 +119,9 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary responsible party is missing'
 
    end
 
@@ -129,7 +135,9 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary responsible party is missing'
 
    end
 
@@ -193,7 +201,7 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
 
    end
 
-   def test_deprecated_elements
+   def test_deprecated_dictionaryFormat
 
       TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
@@ -203,12 +211,11 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-
-      refute_empty metadata[:responsibleParty]
-
       assert_equal 'deprecated', metadata[:dictionaryFunctionalLanguage]
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
 
    end
 
@@ -218,8 +225,9 @@ class TestReaderMdJsonDataDictionary < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      refute_empty hResponse[:readerExecutionMessages]
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: data dictionary object is empty'
 
    end
 

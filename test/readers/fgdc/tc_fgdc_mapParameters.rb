@@ -70,7 +70,10 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
       assert_equal 'other projection description', hProjection[:otherProjectionDescription]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: FGDC reader: planar coordinate encoding method is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: FGDC reader: planar coordinate representation is missing'
 
    end
 

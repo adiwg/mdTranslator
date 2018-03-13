@@ -54,7 +54,9 @@ class TestReaderFgdcProcess < TestReaderFGDCParent
       assert_equal 'my source 2 contribution', hProduct[:description]
 
       assert hResponse[:readerExecutionPass]
-      assert_empty hResponse[:readerExecutionMessages]
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact address is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact voice phone is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: lineage procedure date is missing'
 
    end
 

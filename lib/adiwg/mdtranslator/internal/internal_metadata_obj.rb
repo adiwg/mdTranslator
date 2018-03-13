@@ -463,7 +463,7 @@ class InternalMetadata
          attributeReference: {},
          dataType: nil,
          allowNull: false,
-         allowMany: false,
+         mustBeUnique: false,
          unitOfMeasure: nil,
          measureResolution: nil,
          isCaseSensitive: false,
@@ -477,18 +477,18 @@ class InternalMetadata
       }
    end
 
-   def newValueRange
-      {
-         minRangeValue: nil,
-         maxRangeValue: nil
-      }
-   end
-
    def newEntityForeignKey
       {
          fkLocalAttributes: [],
          fkReferencedEntity: nil,
          fkReferencedAttributes: []
+      }
+   end
+
+   def newValueRange
+      {
+         minRangeValue: nil,
+         maxRangeValue: nil
       }
    end
 

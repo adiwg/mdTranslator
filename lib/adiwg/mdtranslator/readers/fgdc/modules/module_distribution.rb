@@ -25,7 +25,7 @@ module ADIWG
                   hDistribution = intMetadataClass.newDistribution
                   hDistributor = intMetadataClass.newDistributor
 
-                  # distribution 6.1 (distrib) - distributor {contact}
+                  # distribution 6.1 (distrib) - distributor {contact} (required)
                   # -> distribution.distributor.contact.responsibility(distributor)
                   xContact = xDistribution.xpath('./distrib')
                   unless xContact.empty?
@@ -35,6 +35,9 @@ module ADIWG
                         hDistributor[:contact] = hResponsibility
                      end
                   end
+                  if xContact.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution distributor is missing'
+                  end
 
                   # distribution 6.2 (resdesc) - resource description
                   # -> distribution.description
@@ -43,11 +46,14 @@ module ADIWG
                      hDistribution[:description] = description
                   end
 
-                  # distribution 6.3 (distliab) - distribution liability
+                  # distribution 6.3 (distliab) - distribution liability (required)
                   # -> distribution.liabilityStatement
                   liability = xDistribution.xpath('./distliab').text
                   unless liability.empty?
                      hDistribution[:liabilityStatement] = liability
+                  end
+                  if liability.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: distribution liability is missing'
                   end
 
                   # distribution 6.6 (techpreq) - technical prerequisites

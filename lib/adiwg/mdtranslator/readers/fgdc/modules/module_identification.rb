@@ -37,36 +37,54 @@ module ADIWG
                      hCitation = Citation.unpack(xCitation, hResponseObj)
                      hResourceInfo[:citation] = hCitation unless hCitation.nil?
                   end
+                  if xCitation.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section citation is missing'
+                  end
 
                   # identification information 1.2 (descript) - description (required)
                   xDescription = xIdInfo.xpath('./descript')
                   unless xDescription.empty?
 
-                     # description 1.2.1 (abstract) - abstract
+                     # description 1.2.1 (abstract) - abstract (required)
                      abstract = xDescription.xpath('./abstract').text
                      hResourceInfo[:abstract] = abstract unless abstract.empty?
+                     if abstract.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section abstract is missing'
+                     end
 
-                     # description 1.2.2 (purpose) - purpose
+                     # description 1.2.2 (purpose) - purpose (required)
                      purpose = xDescription.xpath('./purpose').text
                      hResourceInfo[:purpose] = purpose unless purpose.empty?
+                     if purpose.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section purpose is missing'
+                     end
 
                      # description 1.2.3 (supplinf) - supplemental information
                      supplemental = xDescription.xpath('./supplinf').text
                      hResourceInfo[:supplementalInfo] = supplemental unless supplemental.empty?
 
                   end
+                  if xDescription.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section description is missing'
+                  end
 
-                  # identification information 1.3 (timeperd) - time period of content
+
+                  # identification information 1.3 (timeperd) - time period of content (required)
+                  haveTimePeriod = false
                   xTimePeriod = xIdInfo.xpath('./timeperd')
                   unless xTimePeriod.empty?
 
-                     # timeInfo currentness
+                     # timeInfo currentness (required)
                      current = xTimePeriod.xpath('./current').text
+                     if current.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section time period currentness is missing'
+                     end
 
                      # time period for single date, multi-date, and date range {resource timePeriod}
                      hTimePeriod = TimePeriod.unpack(xTimePeriod, hResponseObj)
                      hResourceInfo[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
                      hResourceInfo[:timePeriod][:description] = current
+                     haveTimePeriod = true unless hTimePeriod.nil?
 
                      # time period multi-date also placed in temporalExtent
                      axMultiple = xTimePeriod.xpath('./timeinfo/mdattim/sngdate')
@@ -80,42 +98,64 @@ module ADIWG
                               hInstant[:description] = current
                               hTempExtent[:timeInstant] = hInstant
                               hExtent[:temporalExtents] << hTempExtent
-                           end
+                              haveTimePeriod = true end
                         end
                         hResourceInfo[:extents] << hExtent unless hExtent[:temporalExtents].empty?
                      end
 
                   end
+                  unless haveTimePeriod
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification section time period is missing'
+                  end
 
-                  # identification information 1.4 (status) - status and maintenance
+                  # identification information 1.4 (status) - status and maintenance (required)
                   xStatus = xIdInfo.xpath('./status')
                   unless xStatus.empty?
 
-                     # status 1.4.1 (progress) - state of resource
+                     # status 1.4.1 (progress) - state of resource (required)
                      progress = xStatus.xpath('./progress').text
                      hResourceInfo[:status] << progress unless progress.empty?
+                     if progress.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification progress is missing'
+                     end
 
-                     # status 1.4.2 (update) - maintenance frequency
+                     # status 1.4.2 (update) - maintenance frequency (required)
                      update = xStatus.xpath('./update').text
                      unless update.empty?
                         hMaintenance = intMetadataClass.newMaintenance
                         hMaintenance[:frequency] = update
                         hResourceInfo[:resourceMaintenance] << hMaintenance
                      end
+                     if update.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification update frequency is missing'
+                     end
 
                   end
+                  if xStatus.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification status is missing'
+                  end
 
-                  # identification information 1.5 (spdom) - spatial domain
+                  # identification information 1.5 (spdom) - spatial domain (required)
                   xDomain = xIdInfo.xpath('./spdom')
                   unless xDomain.empty?
                      hExtent = SpatialDomain.unpack(xDomain, hResponseObj)
                      hResourceInfo[:extents] << hExtent unless hExtent.nil?
                   end
+                  if xDomain.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification spatial domain section is missing'
+                  end
 
-                  # identification information 1.6 (keywords) - keywords
+                  # identification information 1.6 (keywords) - keywords (required)
                   xKeywords = xIdInfo.xpath('./keywords')
                   unless xKeywords.empty?
                      Keyword.unpack(xKeywords, hResourceInfo, hResponseObj)
+                     xTheme = xKeywords.xpath('./theme')
+                     if xTheme.empty?
+                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification keyword section is missing theme keywords'
+                     end
+                  end
+                  if xKeywords.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification keyword section is missing'
                   end
 
                   # identification information bio (taxonomy) - taxonomic information
@@ -127,8 +167,8 @@ module ADIWG
                      end
                   end
 
-                  # identification information 1.7 (accconst) - access constraints
-                  # identification information 1.8 (useconst) - use constraints
+                  # identification information 1.7 (accconst) - access constraints (required)
+                  # identification information 1.8 (useconst) - use constraints (required)
                   accessCon = xIdInfo.xpath('./accconst').text
                   useCon = xIdInfo.xpath('./useconst').text
                   hConstraint = intMetadataClass.newConstraint
@@ -142,6 +182,12 @@ module ADIWG
                   unless hLegal[:otherCons].empty?
                      hConstraint[:legalConstraint] = hLegal
                      hResourceInfo[:constraints] << hConstraint
+                  end
+                  if accessCon.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification access constraint is missing'
+                  end
+                  if useCon.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification use constraint is missing'
                   end
 
                   # identification information 1.9 (ptcontac) - point of contact {contact}

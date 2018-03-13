@@ -10,42 +10,80 @@ require 'adiwg/mdtranslator/readers/mdJson/modules/module_extent'
 
 class TestReaderMdJsonExtent < TestReaderMdJsonParent
 
-    # set constants and variables
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Extent
-    aIn = TestReaderMdJsonParent.getJson('extent.json')
-    @@hIn = aIn['extent'][0]
+   # set constants and variables
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Extent
+   aIn = TestReaderMdJsonParent.getJson('extent.json')
+   @@hIn = aIn['extent'][0]
 
-    def test_extent_schema
+   def test_extent_schema
 
-        errors = TestReaderMdJsonParent.testSchema(@@hIn, 'extent.json')
-        assert_empty errors
+      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'extent.json')
+      assert_empty errors
 
-    end
+   end
 
-    def test_complete_extent_object
+   def test_complete_extent_object
 
-        hIn = Marshal::load(Marshal.dump(@@hIn))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(hIn, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_equal 'description0', metadata[:description]
-        assert_equal 2, metadata[:geographicExtents].length
-        assert_equal 2, metadata[:temporalExtents].length
-        assert_equal 2, metadata[:verticalExtents].length
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+      assert_equal 'description0', metadata[:description]
+      assert_equal 2, metadata[:geographicExtents].length
+      assert_equal 2, metadata[:temporalExtents].length
+      assert_equal 2, metadata[:verticalExtents].length
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-    end
+   end
 
-    def test_empty_extent_object
+   def test_empty_extent_required
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['description'] = ''
+      hIn['geographicExtent'] = []
+      hIn['temporalExtent'] = []
+      hIn['verticalExtent'] = []
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        assert_nil metadata
-        refute hResponse[:readerExecutionPass]
-        refute_empty hResponse[:readerExecutionMessages]
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
 
-    end
+   end
+
+   def test_missing_extent_required
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['nonElement'] = ''
+      hIn.delete('description')
+      hIn.delete('geographicExtent')
+      hIn.delete('temporalExtent')
+      hIn.delete('verticalExtent')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
+
+   end
+
+   def test_empty_extent_object
+
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
+
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: extent object is empty'
+
+   end
 
 end

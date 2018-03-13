@@ -26,11 +26,17 @@ module ADIWG
                   unless scale.empty?
                      intGeoAge[:ageTimeScale] = scale
                   end
+                  if scale.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO geologic age time scale is missing'
+                  end
 
                   # geologic age bio (geolest) - age estimate (required)
                   estimate = xGeoAge.xpath('./geolest').text
                   unless estimate.empty?
                      intGeoAge[:ageEstimate] = estimate
+                  end
+                  if estimate.empty?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO geologic age estimate is missing'
                   end
 
                   # geologic age bio (geolun) - age estimate uncertainty
