@@ -40,7 +40,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_empty_schema
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['schema'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -55,7 +54,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_missing_schema
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('schema')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -70,7 +68,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_empty_contact
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['contact'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -85,7 +82,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_missing_contact
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('contact')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -98,9 +94,22 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    end
 
+   def test_mdJson_missing_memberOrg
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn['contact'][0]['memberOfOrganization'] << 'fakeId'
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: contact CID001 organization contact ID fakeId not found'
+
+   end
+
    def test_mdJson_empty_metadata
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['metadata'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -115,7 +124,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_missing_metadata
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('metadata')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -130,7 +138,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_empty_elements
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['dataDictionary'] = []
       hIn['metadataRepository'] = []
@@ -149,7 +156,6 @@ class TestReaderMdJsonMdJson < TestReaderMdJsonParent
 
    def test_mdJson_missing_elements
 
-      TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('dataDictionary')
       hIn.delete('metadataRepository')
