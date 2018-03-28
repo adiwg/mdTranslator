@@ -1,12 +1,40 @@
 # Change Log
 
-## [v2.9.1](https://github.com/adiwg/mdTranslator/tree/v2.9.1)
+## [v2.10.0](https://github.com/adiwg/mdTranslator/tree/v2.10.0)
 
-[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.8.0...v2.9.1)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.9.2...v2.10.0)
 
 **Merged pull requests:**
 
+- Refactor reader messaging [\#186](https://github.com/adiwg/mdTranslator/pull/186) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.9.2](https://github.com/adiwg/mdTranslator/tree/v2.9.2) (2018-02-21)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.9.1...v2.9.2)
+
+**Fixed bugs:**
+
+- Need to load stamen over https [\#185](https://github.com/adiwg/mdTranslator/issues/185)
+
+**Closed issues:**
+
+- fgdc bio geologic age [\#144](https://github.com/adiwg/mdTranslator/issues/144)
+- sbJson itemLink to/from ADIwg [\#106](https://github.com/adiwg/mdTranslator/issues/106)
+- sbJson projectStatus to/from ADIwg [\#105](https://github.com/adiwg/mdTranslator/issues/105)
+- sbJson dateType to/from ADIwg [\#104](https://github.com/adiwg/mdTranslator/issues/104)
+- sbJson browseCategory to/from ADIwg [\#103](https://github.com/adiwg/mdTranslator/issues/103)
+- sbJson webLinkType to/from ADIwg [\#102](https://github.com/adiwg/mdTranslator/issues/102)
+- sbJson contactType to/from ADIwg [\#101](https://github.com/adiwg/mdTranslator/issues/101)
+
+**Merged pull requests:**
+
+- Minor bug fixes [\#182](https://github.com/adiwg/mdTranslator/pull/182) ([stansmith907](https://github.com/stansmith907))
 - mdTranslator version 2.9.0 [\#181](https://github.com/adiwg/mdTranslator/pull/181) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.9.1](https://github.com/adiwg/mdTranslator/tree/v2.9.1) (2018-02-03)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.9.0...v2.9.1)
+
+## [v2.9.0](https://github.com/adiwg/mdTranslator/tree/v2.9.0) (2018-02-03)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.8.0...v2.9.0)
 
 ## [v2.8.0](https://github.com/adiwg/mdTranslator/tree/v2.8.0) (2018-01-24)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.7.0...v2.8.0)
