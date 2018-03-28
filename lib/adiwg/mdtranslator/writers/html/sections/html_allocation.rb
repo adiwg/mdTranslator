@@ -5,6 +5,7 @@
 #  Stan Smith 2017-08-31 refactored for mdJson 2.3 schema update
 #  Stan Smith 2017-04-04 original script
 
+require_relative 'html_responsibility'
 require_relative 'html_onlineResource'
 
 module ADIWG
@@ -21,6 +22,7 @@ module ADIWG
                def writeHtml(hAllocation)
 
                   # classes used
+                  responsibilityClass = Html_Responsibility.new(@html)
                   onlineClass = Html_OnlineResource.new(@html)
 
                   # allocation - id
@@ -75,7 +77,17 @@ module ADIWG
                      @html.br
                   end
 
-                  # allocation - online resource []
+                  # allocation - responsible parties [] {responsibleParty}
+                  hAllocation[:responsibleParties].each do |hResponsibility|
+                     @html.details do
+                        @html.summary(hResponsibility[:roleName], 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           responsibilityClass.writeHtml(hResponsibility)
+                        end
+                     end
+                  end
+
+                  # allocation - online resource [] {onlineResource}
                   hAllocation[:onlineResources].each do |hOnline|
                      @html.details do
                         @html.summary('Online Resource', {'class' => 'h5'})

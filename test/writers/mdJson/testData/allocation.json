@@ -13,6 +13,11 @@
          "contactId": "CID002",
          "isOrganization": false,
          "name": "Person 2"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": true,
+         "name": "Organization 1"
       }
    ],
    "metadata": {
@@ -67,6 +72,24 @@
                   "currency": "currency",
                   "sourceId": "sourceId",
                   "recipientId": "recipientId",
+                  "responsibleParty": [
+                     {
+                        "role": "partyRole1",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           }
+                        ]
+                     },
+                     {
+                        "role": "partyRole2",
+                        "party": [
+                           {
+                              "contactId": "CID003"
+                           }
+                        ]
+                     }
+                  ],
                   "matching": true,
                   "onlineResource": [
                      {
