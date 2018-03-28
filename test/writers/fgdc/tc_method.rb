@@ -86,24 +86,47 @@ class TestWriterFgdcMethod < TestWriterFGDCParent
 
    @@mdHash = mdHash
 
-   def test_process_missing_type
+   def test_process_type
 
+      # empty process type
       # from lineage statement
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:statement] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Method is missing type and/or description'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage method type is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage method description is missing'
+
+      # missing process type
+      # from lineage statement
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0].delete(:statement)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage method type is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage method description is missing'
 
    end
 
-   def test_process_missing_keywords
+   def test_process_keywords
 
-      # from lineage statement
+      # missing lineage method keywords
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceInfo][:keyword].each do |hKeySet|
          if hKeySet[:keywordType] == 'method'
@@ -112,37 +135,46 @@ class TestWriterFgdcMethod < TestWriterFGDCParent
       end
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Method is missing keyword set'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage method keyword set is missing'
 
    end
 
    def test_process_missing_citation
 
-      # empty
+      # empty citation
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:citation] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Method is missing citation'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage method citation is missing'
 
-      # missing
+      # missing citation
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0].delete(:citation)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Lineage Method is missing citation'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage method citation is missing'
 
    end
 

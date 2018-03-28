@@ -20,7 +20,8 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
 
                   hProjection = intMetadataClass.newProjection
-                  hProjection[:projectionName] = 'local'
+                  hProjection[:projection] = 'localSystem'
+                  hProjection[:projectionName] = 'local coordinate system'
 
                   # local planar 4.1.3.1 (localdes) - local description
                   # -> referenceSystemParameters.projection.localPlanarDescription

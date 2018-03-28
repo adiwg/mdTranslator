@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2018-01-24 original script
 
 require_relative '../fgdc_writer'
@@ -16,12 +17,11 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(domainId)
-
-                  # classes used
-
+               def writeXML(domainId, inContext = nil)
+                  
                   # get the domain
                   hIntObj = ADIWG::Mdtranslator::Writers::Fgdc.get_intObj
                   hDictionary = hIntObj[:dataDictionaries][0]
@@ -32,13 +32,15 @@ module ADIWG
                      end
                   end
                   if hDomain.empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << "Dictionary Domain #{domainId} not found"
-                     return
+                     @NameSpace.issueError(70, domainId)
                   end
+
+                  outContext = domainId
+                  haveDomain = false
 
                   # attribute 5.1.2.4.1 (edom) - enumerated domain
                   hDomain[:domainItems].each do |hItem|
+                     haveDomain = true
                      @xml.tag!('attrdomv') do
                         @xml.tag!('edom') do
 
@@ -47,8 +49,7 @@ module ADIWG
                               @xml.tag!('edomv', hItem[:itemValue])
                            end
                            if hItem[:itemValue].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Enumerated Domain Value missing value'
+                              @NameSpace.issueWarning(71,'edomv', outContext)
                            end
 
                            # definition 5.1.2.4.1.2 (edomvd) - enumerated value definition (required)
@@ -56,8 +57,7 @@ module ADIWG
                               @xml.tag!('edomvd', hItem[:itemDefinition])
                            end
                            if hItem[:itemDefinition].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Enumerated Domain Value missing definition'
+                              @NameSpace.issueWarning(72,'edomvd', outContext)
                            end
 
                            # source 5.1.2.4.1.3 (edomvds) - enumerated value definition source (default='author defined')
@@ -65,15 +65,17 @@ module ADIWG
                               @xml.tag!('edomvds', hItem[:itemReference][:title])
                            end
                            if hItem[:itemReference].empty?
-                              @xml.tag!('edomvds', 'author defined')
+                              @NameSpace.issueWarning(76, 'edomvds', outContext)
                            end
 
                         end
                      end
                   end
+                  return if haveDomain
 
                   # attribute 5.1.2.4.3 (codesetd) - codeset domain
                   unless hDomain[:domainReference].empty?
+                     haveDomain = true
                      @xml.tag!('attrdomv') do
                         @xml.tag!('codesetd') do
 
@@ -83,8 +85,7 @@ module ADIWG
                               @xml.tag!('codesetn', hDomain[:domainName])
                            end
                            if hDomain[:domainName].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Codeset Domain missing domain name'
+                              @NameSpace.issueWarning(74, 'codesetn', outContext)
                            end
 
                            # codeset 5.1.2.4.3.2 (codesets) - codeset source (required)
@@ -92,15 +93,14 @@ module ADIWG
                            unless hDomain[:domainReference][:title].nil?
                               @xml.tag!('codesets', hDomain[:domainReference][:title])
                            end
-                           unless hDomain[:domainReference][:title].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Codeset Domain missing domain reference citation title'
+                           if hDomain[:domainReference][:title].nil?
+                              @NameSpace.issueWarning(75,'codesets', outContext)
                            end
 
                         end
                      end
                   end
-
+                  return if haveDomain
 
                   # attribute 5.1.2.4.4 (4dom) - unrepresented domain
                   if hDomain[:domainItems].empty?

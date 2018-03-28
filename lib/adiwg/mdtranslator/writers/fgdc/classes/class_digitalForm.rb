@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2018-01-31 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_transferInfo'
 require_relative 'class_onlineOption'
 require_relative 'class_offlineOption'
@@ -18,10 +20,11 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hTransOpt)
-
+               def writeXML(hTransOpt, inContext)
+                  
                   # classes used
                   transClass = TransferInformation.new(@xml, @hResponseObj)
                   onClass = OnlineOption.new(@xml, @hResponseObj)
@@ -42,7 +45,7 @@ module ADIWG
                         aOnline.each do |hOnline|
                            unless hOnline.empty?
                               @xml.tag!('onlinopt') do
-                                 onClass.writeXML(hOnline)
+                                 onClass.writeXML(hOnline, inContext)
                               end
                            end
                         end
@@ -62,7 +65,7 @@ module ADIWG
                               isNonDig = false unless hOffline[:identifier].empty?
                               unless isNonDig
                                  @xml.tag!('offoptn') do
-                                    offClass.writeXML(hOffline)
+                                    offClass.writeXML(hOffline, inContext)
                                  end
                               end
 

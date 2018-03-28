@@ -6,17 +6,23 @@
         <planci>
           <plance>planar coordinate encoding method</plance>
           <coordrep>
-            <absres>9.9</absres>
-            <ordres>99.9</ordres>
+            <absres>9.99</absres>
+            <ordres>9.99</ordres>
           </coordrep>
+          <plandu>unit of measure</plandu>
+        </planci>
+      </planar>
+      <planar>
+        <planci>
+          <plance>planar coordinate encoding method</plance>
           <distbrep>
-            <distres>99.99</distres>
+            <distres>9.99</distres>
             <bearres>9.99</bearres>
             <bearunit>bearing units</bearunit>
             <bearrefd>bearing direction</bearrefd>
             <bearrefm>bearing meridian</bearrefm>
           </distbrep>
-          <plandu>feet</plandu>
+          <plandu>unit of measure</plandu>
         </planci>
       </planar>
     </horizsys>

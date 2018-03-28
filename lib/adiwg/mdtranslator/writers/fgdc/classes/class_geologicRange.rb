@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-24 original script
+#  Stan Smith 2018-03-19 refactored error and warning messaging
+#  Stan Smith 2017-11-24 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_geologicAge'
 
 module ADIWG
@@ -16,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hAgeStart, hAgeEnd)
@@ -30,8 +33,7 @@ module ADIWG
                      end
                   end
                   if hAgeStart.empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geologic Age Range is missing starting age'
+                     @NameSpace.issueWarning(172, nil)
                   end
 
                   # geologic age range (endgeol) - ending geologic age (required)
@@ -41,8 +43,7 @@ module ADIWG
                      end
                   end
                   if hAgeEnd.empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geologic Age Range is missing ending age'
+                     @NameSpace.issueWarning(173, nil)
                   end
 
                end # writeXML

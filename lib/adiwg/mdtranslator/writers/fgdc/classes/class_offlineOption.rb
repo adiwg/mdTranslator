@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2018-01-31 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,9 +17,10 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hOffline)
+               def writeXML(hOffline, inContext)
 
                   # offline option 6.4.2.2.2.1 (offmedia) - offline media name (required)
                   # <- hOffline.mediaSpecification.title
@@ -28,8 +32,7 @@ module ADIWG
                      end
                   end
                   unless haveTitle
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Offline Option is missing media name'
+                     @NameSpace.issueWarning(120,'offmedia', inContext)
                   end
 
                   # offline option 6.4.2.2.2.2 (reccap) - recording capacity (compound)
@@ -38,26 +41,28 @@ module ADIWG
                   haveCapacity = true unless hOffline[:density].nil?
                   haveCapacity = true unless hOffline[:units].nil?
                   if haveCapacity
+                     @xml.tag!('reccap') do
 
-                     # recording capacity 6.4.2.2.2.2.1 (recden) - recording density
-                     unless hOffline[:density].nil?
-                        @xml.tag!('recden', hOffline[:density])
-                     end
-                     if hOffline[:density].nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('recden')
-                     end
+                        # recording capacity 6.4.2.2.2.2.1 (recden) - recording density (required)
+                        unless hOffline[:density].nil?
+                           @xml.tag!('recden', hOffline[:density])
+                        end
+                        if hOffline[:density].nil?
+                           @NameSpace.issueWarning(121,'recden', inContext)
+                        end
 
-                     # recording capacity 6.4.2.2.2.2.2 (recdenu) - recording density units
-                     unless hOffline[:units].nil?
-                        @xml.tag!('recdenu', hOffline[:units])
-                     end
-                     if hOffline[:units].nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('recdenu')
-                     end
+                        # recording capacity 6.4.2.2.2.2.2 (recdenu) - recording density units (required)
+                        unless hOffline[:units].nil?
+                           @xml.tag!('recdenu', hOffline[:units])
+                        end
+                        if hOffline[:units].nil?
+                           @NameSpace.issueWarning(122,'recdenu', inContext)
+                        end
 
+                     end
                   end
 
-                  # offline option 6.4.2.2.2.3 (recfmt) - recording format []
+                  # offline option 6.4.2.2.2.3 (recfmt) - recording format [] (required)
                   # <- hOffline.mediumFormat[]
                   hOffline[:mediumFormat].each do |format|
                      unless format == ''
@@ -65,7 +70,7 @@ module ADIWG
                      end
                   end
                   if hOffline[:mediumFormat].empty?
-                     @xml.tag!('recfmt')
+                     @NameSpace.issueWarning(123,'recfmt', inContext)
                   end
 
                   # offline option 6.4.2.2.2.4 (compat) - compatibility information

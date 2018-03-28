@@ -86,19 +86,36 @@ class TestWriterFgdcProcess < TestWriterFGDCParent
 
    @@mdHash = mdHash
 
-   def test_process_missing_timePeriod
+   def test_process_processDate
 
-      # endDateTime
+      # empty process date
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0][:processStep][0][:timePeriod] = {}
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage process step process date is missing'
+
+      # missing process date
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:processStep][0].delete(:timePeriod)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Process Step is missing process date'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage process step process date is missing'
 
    end
-   
+
 end

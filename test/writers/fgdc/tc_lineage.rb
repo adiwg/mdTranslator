@@ -78,6 +78,43 @@ class TestWriterFgdcLineage < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'lineage', './metadata/dataqual/lineage')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+
+   end
+
+   def test_lineage_processStep
+
+      # empty process steps
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0][:processStep] = []
+      hIn[:metadata][:resourceLineage][0][:source][0][:sourceProcessStep] = []
+      hIn[:metadata][:resourceLineage][0][:source][1][:sourceProcessStep] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage source process steps are missing'
+
+      # missing process steps
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0].delete(:processStep)
+      hIn[:metadata][:resourceLineage][0][:source][0].delete(:sourceProcessStep)
+      hIn[:metadata][:resourceLineage][0][:source][1].delete(:sourceProcessStep)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage source process steps are missing'
 
    end
 

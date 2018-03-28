@@ -74,24 +74,44 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'taxonomy', './metadata/idinfo/taxonomy')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_taxonomy_missing_keywords
+   def test_taxonomy_keywords
 
+      # taxonomy keywords missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceInfo][:keyword].delete_at(1)
       hIn[:metadata][:resourceInfo][:keyword].delete_at(1)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Taxonomy is missing keyword set'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: taxonomy keyword set is missing'
+
+   end
+
+   def test_taxonomy_keywordThesaurus
+
+      # taxonomy keyword thesaurus missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:keyword][1].delete(:thesaurus)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: taxonomy keyword set thesaurus is missing'
 
    end
 

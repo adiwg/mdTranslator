@@ -34,6 +34,7 @@ class TestWriterFgdcGeologicAge < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'geologicAge', './metadata/idinfo/timeperd')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -49,7 +50,6 @@ class TestWriterFgdcGeologicAge < TestWriterFGDCParent
       hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageExplanation)
       hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
 
-      # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
@@ -75,7 +75,6 @@ class TestWriterFgdcGeologicAge < TestWriterFGDCParent
       hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
       hIn[:metadata][:resourceInfo][:timePeriod].delete(:endGeologicAge)
 
-      # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
@@ -97,7 +96,6 @@ class TestWriterFgdcGeologicAge < TestWriterFGDCParent
       hIn[:metadata][:resourceInfo][:timePeriod][:endGeologicAge].delete(:ageReference)
       hIn[:metadata][:resourceInfo][:timePeriod].delete(:startGeologicAge)
 
-      # TODO validate 'normal' after schema udpdate
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )

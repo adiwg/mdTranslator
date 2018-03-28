@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2017-11-27 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_address'
 require_relative 'class_phone'
 
@@ -17,6 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hContact)
@@ -24,6 +27,9 @@ module ADIWG
                   # classes used
                   addressClass = Address.new(@xml, @hResponseObj)
                   phoneClass = Phone.new(@xml, @hResponseObj)
+
+                  # address outContext
+                  outContext = 'contactId ' + hContact[:contactId]
 
                   # set contact type and names
                   contactType = nil
@@ -33,15 +39,13 @@ module ADIWG
                      contactType = 'organization'
                      orgName = hContact[:name]
                      if orgName.nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Organization Contact is missing name'
+                        @NameSpace.issueWarning(50, 'cntorgp', outContext)
                      end
                   else
                      contactType = 'person'
                      personName = hContact[:name]
                      if personName.nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Person Contact is missing name'
+                        @NameSpace.issueWarning('51', 'cntperp', outContext)
                      end
                      unless hContact[:memberOfOrgs].empty?
                         hOrgContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(hContact[:memberOfOrgs][0])
@@ -51,8 +55,7 @@ module ADIWG
                      end
                   end
                   if contactType.nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Contact is missing contact type'
+                     @NameSpace.issueError(52, outContext)
                   end
 
                   # contact 10 (cntinfo) - contact information
@@ -67,8 +70,7 @@ module ADIWG
                               @xml.tag!('cntper', personName)
                            end
                            if personName == ''
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Person Contact is missing name'
+                              @NameSpace.issueWarning(53,'cntper', outContext)
                            end
 
                            # contact 10.1.1 (cntorg) - contact organization name
@@ -96,8 +98,7 @@ module ADIWG
                               @xml.tag!('cntorg', orgName)
                            end
                            if orgName.nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Organization Contact is missing name'
+                              @NameSpace.issueWarning(54, 'cntorg', outContext)
                            end
 
                         end
@@ -115,18 +116,17 @@ module ADIWG
                      hContact[:addresses].each do |hAddress|
                         unless hAddress.empty?
                            @xml.tag!('cntaddr') do
-                              addressClass.writeXML(hAddress)
+                              addressClass.writeXML(hAddress, outContext)
                            end
                         end
                      end
                      if hContact[:addresses].empty?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Contact is missing address'
+                        @NameSpace.issueWarning(55, nil, outContext)
                      end
 
                      # contact 10.5..7 - phone (voice phone required)
                      # requirement testing is done in phoneClass
-                     phoneClass.writeXML(hContact[:phones])
+                     phoneClass.writeXML(hContact[:phones], outContext)
 
                      # contact 10.8 - email addresses []
                      hContact[:eMailList].each do |email|

@@ -57,7 +57,8 @@ module ADIWG
                      intProjection[:projection] = hProjection['projection']
                   end
                   if intProjection[:projection].nil? || intProjection[:projection] == ''
-                     responseObj[:readerExecutionMessages] << 'spatial reference projection is missing'
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: spatial reference projection type is missing'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<metadata>
+  <dataqual>
+    <attracc>Not Reported</attracc>
+    <logic>Not Reported</logic>
+    <complete>Not Reported</complete>
+    <position>Not Reported</position>
+    <lineage>
+      <method>
+        <methtype>statement</methtype>
+        <methdesc>statement</methdesc>
+      </method>
+      <srcinfo/>
+      <procstep>missing</procstep>
+    </lineage>
+    <cloud>Not Reported</cloud>
+  </dataqual>
+</metadata>

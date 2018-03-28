@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2018-01-31 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_digitalForm'
 
 module ADIWG
@@ -16,9 +18,10 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hDistributor)
+               def writeXML(hDistributor, inContext)
 
                   # classes used
                   digiClass = DigitalFormat.new(@xml, @hResponseObj)
@@ -60,19 +63,19 @@ module ADIWG
                   # handles transferOptions for online and offline options
                   aTransfer.each do |hTransOpt|
                      @xml.tag!('digform') do
-                        digiClass.writeXML(hTransOpt)
+                        digiClass.writeXML(hTransOpt, inContext)
                      end
                   end
                   if aTransfer.empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('digform')
                   end
 
-                  # order process 6.4.3 (fees) - fees
+                  # order process 6.4.3 (fees) - fees (required)
                   unless hOrder[:fees].nil?
                      @xml.tag!('fees', hOrder[:fees])
                   end
-                  if hOrder[:fees].nil? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('fees')
+                  if hOrder[:fees].nil?
+                     @NameSpace.issueWarning(140,'fees', 'distribution')
                   end
 
                   # order process 6.4.4 (ordering) - order instructions

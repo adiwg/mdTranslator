@@ -39,18 +39,103 @@ class TestWriterFgdcIdentifier < TestWriterFGDCParent
    # the following sections have their own test modules
    # citation, description, timePeriod, spatialDomain, keyword, taxonomy, constraint, contact, browse, security
 
-   def test_missing_identification_timePeriod
+   def test_identification_timePeriod
+
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:timePeriod] = {}
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: time period is missing: CONTEXT is identification section'
 
       # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceInfo].delete(:timePeriod)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Identification section is missing time period'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: time period is missing: CONTEXT is identification section'
+
+   end
+
+   def test_identification_keywords
+
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:keyword] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: keywords are missing: CONTEXT is identification section'
+
+      # missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo].delete(:keyword)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: keywords are missing: CONTEXT is identification section'
+
+   end
+
+   def test_identification_constraint
+
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:constraint] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: access constraint is missing: CONTEXT is identification section'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: use constraint is missing: CONTEXT is identification section'
+
+      # missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo].delete(:constraint)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: access constraint is missing: CONTEXT is identification section'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: use constraint is missing: CONTEXT is identification section'
 
    end
 

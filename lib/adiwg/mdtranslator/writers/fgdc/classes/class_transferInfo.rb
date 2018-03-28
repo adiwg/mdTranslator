@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-27 refactored error and warning messaging
 #  Stan Smith 2018-01-31 original script
 
+require_relative '../fgdc_writer'
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
 module ADIWG
@@ -16,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hTransOpt)
@@ -46,8 +49,7 @@ module ADIWG
                      end
                   end
                   unless haveId
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Distribution Format is missing format name'
+                     @NameSpace.issueWarning(450, 'formname')
                   end
 
                   # transfer information 6.4.2.1.2 (formvern) - format version number

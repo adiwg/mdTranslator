@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2017-12-12 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,17 +17,17 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hGraphic)
+               def writeXML(hGraphic, inContext = nil)
 
                   # browse 1.10.1 (browsen) - browse name (required)
                   unless hGraphic[:graphicName].nil?
                      @xml.tag!('browsen', hGraphic[:graphicName])
                   end
                   if hGraphic[:graphicName].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Browse Graphic is missing name'
+                     @NameSpace.issueWarning(20, 'browsen', inContext)
                   end
 
                   # browse 1.10.2 (browsed) - browse description (required)
@@ -32,8 +35,7 @@ module ADIWG
                      @xml.tag!('browsed', hGraphic[:graphicDescription])
                   end
                   if hGraphic[:graphicDescription].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Browse Graphic is missing description'
+                     @NameSpace.issueWarning(21, 'browsed', inContext)
                   end
 
                   # browse 1.10.3 (browset) - browse type (required)
@@ -41,8 +43,7 @@ module ADIWG
                      @xml.tag!('browset', hGraphic[:graphicType])
                   end
                   if hGraphic[:graphicType].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Browse Graphic is missing file type'
+                     @NameSpace.issueWarning(22, 'browset', inContext)
                   end
 
                end # writeXML

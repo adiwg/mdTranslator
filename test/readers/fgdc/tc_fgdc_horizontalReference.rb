@@ -53,7 +53,7 @@ class TestReaderFgdcHorizontalReference < TestReaderFGDCParent
 
       hLocalProjection = hLocalParams[:projection]
       assert_empty hLocalProjection[:projectionIdentifier]
-      assert_equal 'local', hLocalProjection[:projectionName]
+      assert_equal 'local coordinate system', hLocalProjection[:projectionName]
       assert_equal 'local description', hLocalProjection[:localPlanarDescription]
       assert_equal 'local georeference information', hLocalProjection[:localPlanarGeoreference]
 

@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-23 refactored error and warning messaging
 #  Stan Smith 2018-01-26 original script
 
 require_relative '../fgdc_writer'
@@ -17,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hMetadataInfo)
@@ -44,8 +46,7 @@ module ADIWG
                      end
                   end
                   unless haveCreation
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Metadata Information section is missing creation date'
+                     @NameSpace.issueWarning(320, nil, 'metadata information section')
                   end
 
                   # metadata information 7.2 (metrd) - metadata review date
@@ -98,9 +99,9 @@ module ADIWG
                   # <- metadataInfo.metadataContacts[] role = 'pointOfContact'
                   unless hMetadataInfo[:metadataContacts].empty?
                      aRParties = hMetadataInfo[:metadataContacts]
-                     aParties = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'pointOfContact')
+                     aParties = @NameSpace.find_responsibility(aRParties, 'pointOfContact')
                      unless aParties.empty?
-                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(aParties[0])
+                        hContact = @NameSpace.get_contact(aParties[0])
                         unless hContact.empty?
                            @xml.tag!('metc') do
                               contactClass.writeXML(hContact)
@@ -109,8 +110,7 @@ module ADIWG
                      end
                   end
                   if hMetadataInfo[:metadataContacts].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Metadata Information section is missing metadata contact'
+                     @NameSpace.issueWarning(321, nil, 'metadata information section')
                   end
 
                   # metadata information 7.5 (metstdn) - metadata standard name (required)
@@ -174,8 +174,7 @@ module ADIWG
                                  @xml.tag!('metscs', hSecurity[:classSystem])
                               end
                               if hSecurity[:classSystem].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing classification system'
+                                 @NameSpace.issueWarning(340, 'metscs', 'metadata information section')
                               end
 
                               # security information 10.7.2 (metsc) - metadata security classification (required)
@@ -184,8 +183,7 @@ module ADIWG
                                  @xml.tag!('metsc', hSecurity[:classCode])
                               end
                               if hSecurity[:classCode].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing classification'
+                                 @NameSpace.issueWarning(341, 'metsc', 'metadata information section')
                               end
 
                               # security information 10.7.3 (metshd) - metadata security classification (required)
@@ -194,8 +192,7 @@ module ADIWG
                                  @xml.tag!('metshd', hSecurity[:handling])
                               end
                               if hSecurity[:handling].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Metadata Security Information section is missing handling instructions'
+                                 @NameSpace.issueWarning(342, 'metshd', 'metadata information section')
                               end
 
                            end

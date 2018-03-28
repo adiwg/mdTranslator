@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-22 original script
+#  Stan Smith 2018-03-16 refactored error and warning messaging
+#  Stan Smith 2017-11-22 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,14 +17,18 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hResourceInfo)
-
+                  
                   # description 1.2.1 (abstract) - abstract (required)
                   # <- hResourceInfo[:abstract] (required)
                   unless hResourceInfo[:abstract].nil?
                      @xml.tag!('abstract', hResourceInfo[:abstract])
+                  end
+                  if hResourceInfo[:abstract].nil?
+                     @NameSpace.issueWarning(60,'abstract', 'identification section')
                   end
 
                   # description 1.2.2 (purpose) - purpose (required)
@@ -30,8 +37,7 @@ module ADIWG
                      @xml.tag!('purpose', hResourceInfo[:purpose])
                   end
                   if hResourceInfo[:purpose].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Description is missing purpose'
+                     @NameSpace.issueWarning(61,'purpose', 'identification section')
                   end
 
                   # description 1.2.3 (supplinf) - supplemental information

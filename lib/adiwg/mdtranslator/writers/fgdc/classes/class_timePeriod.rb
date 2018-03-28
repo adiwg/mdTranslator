@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-22 original script
+#  Stan Smith 2018-03-27 refactored error and warning messaging
+#  Stan Smith 2017-11-22 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_dateSingle'
 require_relative 'class_dateRange'
 require_relative 'class_geologicAge'
@@ -19,6 +21,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hTimePeriod, currentTag)
@@ -43,13 +46,13 @@ module ADIWG
                   ageCount += 1 unless hEndGeoAge.empty?
 
                   if dateCount + ageCount == 0
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Time Period missing date item'
+                     @NameSpace.issueWarning(440, nil)
                   end
 
                   if dateCount > 0 && ageCount > 0
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Time Period must be either conventional or geologic time, not both'
+                     @NameSpace.issueWarning(441, nil)
+                     @NameSpace.issueWarning(442, nil)
+                     ageCount = 0
                   end
 
                   @xml.tag!('timeinfo') do
@@ -96,8 +99,7 @@ module ADIWG
                         @xml.tag!(currentTag, current)
                      end
                      if current.nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Time Info is missing time currentness'
+                        @NameSpace.issueWarning(443, currentTag)
                      end
                   end
 

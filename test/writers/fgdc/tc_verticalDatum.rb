@@ -13,35 +13,121 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   hSpaceRef = TDClass.spatialReferenceSystem
+   TDClass.add_verticalDatum(hSpaceRef, isDepth = false)
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   hSpaceRef = TDClass.spatialReferenceSystem
+
+   TDClass.add_verticalDatum(hSpaceRef, isDepth = true)
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+
+   @@mdHash = mdHash
+
    def test_verticalDatum_complete
 
-      path = './metadata/spref/vertdef'
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'verticalDatum', './metadata/spref/vertdef')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      xFile = TestWriterFGDCParent.get_xml('verticalDatum')
-      xExpect = xFile.xpath(path)
-      expect = xExpect.to_s.squeeze(' ')
+   end
 
-      mdHash = TDClass.base
-      hSpaceRef = TDClass.spatialReferenceSystem
-      TDClass.add_verticalDatum(hSpaceRef, isDepth = false)
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-      hSpaceRef = TDClass.spatialReferenceSystem
-      TDClass.add_verticalDatum(hSpaceRef, isDepth = true)
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   def test_verticalDatum_elements
 
-      # TODO validate 'normal' after schema update
+      # altitude elements empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:datumName] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:encodingMethod] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:verticalResolution] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:unitOfMeasure] = ''
+
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath(path)
-      got = xGot.to_s.squeeze(' ')
-
-      assert_equal expect, got
+      refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude datum name is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude resolution is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude units of measure is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude encoding method is missing'
+
+      # altitude elements missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:datumName)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:encodingMethod)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:verticalResolution)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:unitOfMeasure)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude datum name is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude resolution is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude units of measure is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical altitude encoding method is missing'
+
+      # depth elements empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:datumName] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:encodingMethod] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:verticalResolution] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:unitOfMeasure] = ''
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth datum name is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth resolution is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth units of measure is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth encoding method is missing'
+
+      # depth elements missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:datumName)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:encodingMethod)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:verticalResolution)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:unitOfMeasure)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth datum name is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth resolution is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth units of measure is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: vertical depth encoding method is missing'
 
    end
 

@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-11-25 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hResourceInfo)
@@ -23,7 +27,7 @@ module ADIWG
                   frequency = nil
                   frequency = hResourceInfo[:resourceMaintenance][0][:frequency] unless hResourceInfo[:resourceMaintenance].empty?
 
-                  # status 1.4 (status) - resource status
+                  # status 1.4 (status) - resource status (required)
                   unless status.nil? && frequency.nil?
                      @xml.tag!('status') do
 
@@ -33,8 +37,7 @@ module ADIWG
                            @xml.tag!('progress', status)
                         end
                         if status.nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Status section missing progress'
+                           @NameSpace.issueWarning(390, 'progress', 'status section')
                         end
 
                         # status 1.4.2 (update) - maintenance and update frequency (required)
@@ -43,15 +46,13 @@ module ADIWG
                            @xml.tag!('update', frequency)
                         end
                         if frequency.nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Status section missing maintenance frequency'
+                           @NameSpace.issueWarning(391, 'update', 'status section')
                         end
 
                      end
                   end
                   if status.nil? && frequency.nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section missing status section'
+                     @NameSpace.issueError(392, 'identification section')
                   end
 
                end # writeXML

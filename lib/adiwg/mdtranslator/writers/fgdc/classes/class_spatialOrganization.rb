@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-21 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hResourceInfo)
@@ -131,8 +135,7 @@ module ADIWG
                                  @xml.tag!('rasttype', hGridRep[:cellGeometry])
                               end
                               if hGridRep[:cellGeometry].empty?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Raster Spatial Organization is missing raster type'
+                                 @NameSpace.issueWarning(380, 'rasttype')
                               end
 
                               # spatial organization raster 3.4.2 (rowcount) - row count

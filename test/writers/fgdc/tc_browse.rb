@@ -28,6 +28,7 @@ class TestWriterFgdcBrowse < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'browse', './metadata/idinfo/browse')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -40,8 +41,10 @@ class TestWriterFgdcBrowse < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Browse Graphic is missing description'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: browse graphic description is missing'
 
    end
 
@@ -54,8 +57,10 @@ class TestWriterFgdcBrowse < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Browse Graphic is missing file type'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: browse graphic file type is missing'
 
    end
 

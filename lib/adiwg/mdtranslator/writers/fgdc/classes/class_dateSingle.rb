@@ -2,10 +2,12 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2018-01-19 convert ISO date formats to FGDC
 #  Stan Smith 2017-11-23 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -17,6 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hDate)
@@ -35,8 +38,8 @@ module ADIWG
                         @xml.tag!('caldate', sDate)
                      end
                      if sDate == 'ERROR'
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'single date is missing or invalid'
+                        @NameSpace.issueError('single date is invalid',
+                                              'multi date/time time period')
                      end
 
                      # single date 9.1.2 (time) - time

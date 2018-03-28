@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-13 original script
 
 require_relative '../fgdc_writer'
@@ -18,6 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hTaxonomy)
@@ -37,8 +39,7 @@ module ADIWG
                            end
                         end
                         if hSystem[:citation].empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Taxonomic Classification System is missing citation'
+                           @NameSpace.issueWarning(430, nil)
                         end
 
                         # taxonomic system (classmod) - system modifications
@@ -52,8 +53,7 @@ module ADIWG
                      end
                   end
                   if hTaxonomy[:taxonSystem].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomic System is missing classification system'
+                     @NameSpace.issueWarning(431, nil)
                   end
 
                   # taxonomic system (idref) - identification reference [] {identifier}
@@ -70,9 +70,9 @@ module ADIWG
                   # <- hTaxonomy[:observers] role = 'observer'
                   haveObserver = false
                   aRParties = hTaxonomy[:observers]
-                  aObservers = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'observer')
+                  aObservers = @NameSpace.find_responsibility(aRParties, 'observer')
                   aObservers.each do |contactId|
-                     hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                     hContact = @NameSpace.get_contact(contactId)
                      unless hContact.empty?
                         @xml.tag!('ider') do
                            contactClass.writeXML(hContact)
@@ -89,8 +89,7 @@ module ADIWG
                      @xml.tag!('taxonpro', hTaxonomy[:idProcedure])
                   end
                   if hTaxonomy[:idProcedure].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomy is missing taxonomic procedure'
+                     @NameSpace.issueWarning(432, 'taxonpro')
                   end
 
                   # taxonomic system (taxoncom) - taxonomic identification completeness
@@ -110,8 +109,7 @@ module ADIWG
                            @xml.tag!('specimen', hVoucher[:specimen])
                         end
                         if hVoucher[:specimen].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Taxonomic Voucher is missing specimen'
+                           @NameSpace.issueWarning(433, 'specimen')
                         end
 
                         # voucher (repository) - repository (required)
@@ -119,20 +117,18 @@ module ADIWG
                         unless hVoucher[:repository].empty?
                            aRParties = hVoucher[:repository][:parties]
                            contactId = aRParties[0][:contactId]
-                           hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                           hContact = @NameSpace.get_contact(contactId)
                            unless hContact.empty?
                               @xml.tag!('repository') do
                                  contactClass.writeXML(hContact)
                               end
                            end
                            if hContact.empty?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Taxonomic Voucher is missing repository'
+                              @NameSpace.issueWarning(434, nil)
                            end
                         end
                         if hVoucher[:repository].empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Taxonomic Voucher is missing repository'
+                           @NameSpace.issueWarning(434, nil)
                         end
 
                      end

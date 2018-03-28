@@ -24,6 +24,7 @@ class TestWriterFgdcSeries < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'series', './metadata/idinfo/citation/citeinfo/serinfo')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -37,11 +38,11 @@ class TestWriterFgdcSeries < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Series is missing name'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: series name is missing'
 
       # name missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -51,11 +52,11 @@ class TestWriterFgdcSeries < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Series is missing name'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: series name is missing'
 
    end
 
@@ -69,11 +70,11 @@ class TestWriterFgdcSeries < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Series is missing issue'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: series issue is missing'
 
       # issue missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -83,11 +84,11 @@ class TestWriterFgdcSeries < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Series is missing issue'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: series issue is missing'
 
    end
 

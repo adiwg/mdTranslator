@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2018-01-31 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,10 +17,11 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hOnline)
-
+               def writeXML(hOnline, inContext)
+                  
                   # online option 6.4.2.2.1.1 (computer) - computer contact information (compound)
                   @xml.tag!('computer') do
 
@@ -30,8 +34,7 @@ module ADIWG
                            @xml.tag!('networkr', hOnline[:olResURI])
                         end
                         if hOnline[:olResURI].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Online Option is missing network address'
+                           @NameSpace.issueWarning(130,'networkr', 'distribution')
                         end
 
                      end

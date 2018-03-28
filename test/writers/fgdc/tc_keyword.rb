@@ -53,6 +53,7 @@ class TestWriterFgdcKeyword < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'keyword', './metadata/idinfo/keywords')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -63,28 +64,28 @@ class TestWriterFgdcKeyword < TestWriterFGDCParent
       hIn[:metadata][:resourceInfo][:keyword] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Identification section is missing keywords'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: keywords are missing: CONTEXT is identification section'
 
       # missing keyword array
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceInfo].delete(:keyword)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Identification section is missing keywords'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: keywords are missing: CONTEXT is identification section'
 
    end
 
@@ -92,23 +93,29 @@ class TestWriterFgdcKeyword < TestWriterFGDCParent
 
       # missing keyword thesaurus
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
-      hIn[:metadata][:resourceInfo][:keyword].delete_at(0)
       hIn[:metadata][:resourceInfo][:keyword][0].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][1].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][2].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][3].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][4].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][5].delete(:thesaurus)
+      hIn[:metadata][:resourceInfo][:keyword][6].delete(:thesaurus)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Keyword Set is missing thesaurus'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: keyword set thesaurus is missing: CONTEXT is thematic keywords'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: keyword set thesaurus is missing: CONTEXT is place keywords'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: keyword set thesaurus is missing: CONTEXT is stratigraphic keywords'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: keyword set thesaurus is missing: CONTEXT is temporal keywords'
 
    end
 

@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2017-11-27 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,20 +17,20 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hAddress)
+               def writeXML(hAddress, inContext = nil)
 
                   # contact 10.4 (cntaddr) - address information
 
-                  # contact 10.4.1 (addrtype) - contact type
+                  # contact 10.4.1 (addrtype) - address type (required)
                   # <- hAddress[:addressTypes][0]
                   unless hAddress[:addressTypes].empty?
                      @xml.tag!('addrtype', hAddress[:addressTypes][0])
                   end
                   if hAddress[:addressTypes].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Address is missing type'
+                     @NameSpace.issueWarning(1, 'addrtype', inContext)
                   end
 
                   # contact 10.4.2 (address) - address lines
@@ -45,8 +48,7 @@ module ADIWG
                      @xml.tag!('city', hAddress[:city])
                   end
                   if hAddress[:city].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Address is missing city'
+                     @NameSpace.issueWarning(2, 'city', inContext)
                   end
 
                   # contact 10.4.4 (state) - state (required)
@@ -55,8 +57,7 @@ module ADIWG
                      @xml.tag!('state', hAddress[:adminArea])
                   end
                   if hAddress[:adminArea].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Address is missing state'
+                     @NameSpace.issueWarning(3, 'state', inContext)
                   end
 
                   # contact 10.4.5 (postal) - postal code (required)
@@ -65,8 +66,7 @@ module ADIWG
                      @xml.tag!('postal', hAddress[:postalCode])
                   end
                   if hAddress[:postalCode].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Address is missing postal code'
+                     @NameSpace.issueWarning(4, 'postal', inContext)
                   end
 
                   # contact 10.4.6 (country) - country

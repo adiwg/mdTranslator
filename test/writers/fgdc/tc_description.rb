@@ -27,6 +27,7 @@ class TestWriterFgdcDescription < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'description', './metadata/idinfo/descript')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -40,11 +41,11 @@ class TestWriterFgdcDescription < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Identification section is missing purpose'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: description purpose is missing: CONTEXT is identification section'
 
       # purpose missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -54,11 +55,11 @@ class TestWriterFgdcDescription < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Identification section is missing purpose'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: description purpose is missing: CONTEXT is identification section'
 
    end
 

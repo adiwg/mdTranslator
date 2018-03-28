@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-12-18 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_citation'
 require_relative 'class_timePeriod'
 
@@ -17,18 +19,18 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hSource, aSourceCollection)
-
+                  
                   # skip if this source is already identified
                   unless hSource[:sourceId].nil?
                      return if aSourceCollection.include?(hSource[:sourceId])
                      aSourceCollection << hSource[:sourceId]
                   end
                   if hSource[:sourceId].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Source is missing source abbreviation (source id)'
+                     @NameSpace.issueError(230)
                   end
 
                   @xml.tag!('srcinfo') do
@@ -45,8 +47,7 @@ module ADIWG
                         end
                      end
                      if hSource[:sourceCitation].empty?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Source is missing citation'
+                        @NameSpace.issueWarning(231, nil, "source ID #{hSource[:sourceId]}")
                      end
 
                      # source 2.5.1.2 (srcscale) - source scale denominator
@@ -68,8 +69,7 @@ module ADIWG
                         @xml.tag!('typesrc', hSource[:description])
                      end
                      if hSource[:description].nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Source is missing media type (description)'
+                        @NameSpace.issueWarning(232, 'typesrc', "source ID #{hSource[:sourceId]}")
                      end
 
                      # source 2.5.1.4 (srctime) - source time period (required)
@@ -89,8 +89,7 @@ module ADIWG
                         end
                      end
                      unless haveTime
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Source is missing time period'
+                        @NameSpace.issueWarning(233, nil, "source ID #{hSource[:sourceId]}")
                      end
 
                      # source 2.5.1.5 (srccitea) - source citation abbreviation (required)
@@ -99,8 +98,7 @@ module ADIWG
                         @xml.tag!('srccitea', hSource[:sourceId])
                      end
                      if hSource[:sourceId].nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Source is missing citation abbreviation (id)'
+                        @NameSpace.issueWarning(234, 'srccitea', "source ID #{hSource[:sourceId]}")
                      end
 
                      # source 2.5.1.6 (srccontr) - source contribution (required)
@@ -108,9 +106,8 @@ module ADIWG
                      unless hSource[:description].nil?
                         @xml.tag!('srccontr', hSource[:description])
                      end
-                     if hSource[:sourceId].nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Source is missing contribution (description)'
+                     if hSource[:description].nil?
+                        @NameSpace.issueWarning(235, 'srccontr', "source ID #{hSource[:sourceId]}")
                      end
 
                   end

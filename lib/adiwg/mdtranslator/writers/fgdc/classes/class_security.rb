@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-23 refactored error and warning messaging
 #  Stan Smith 2017-12-12 original script
 
 module ADIWG
@@ -14,6 +15,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aConstraints)
@@ -31,8 +33,7 @@ module ADIWG
                               @xml.tag!('secsys', hSecurity[:classSystem])
                            end
                            if hSecurity[:classSystem].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Security is missing classification system'
+                              @NameSpace.issueWarning(340, 'secsys', 'identification information section')
                            end
 
                            # security 1.12.2 (secclass) - security classification (required)
@@ -40,8 +41,7 @@ module ADIWG
                               @xml.tag!('secclass', hSecurity[:classCode])
                            end
                            if hSecurity[:classCode].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Security is missing classification'
+                              @NameSpace.issueWarning(341, 'secclass', 'identification information section')
                            end
 
                            # security 1.12.3 (sechandl) - security classification (required)
@@ -49,8 +49,7 @@ module ADIWG
                               @xml.tag!('sechandl', hSecurity[:handling])
                            end
                            if hSecurity[:handling].nil?
-                              @hResponseObj[:writerPass] = false
-                              @hResponseObj[:writerMessages] << 'Security is missing handling instructions'
+                              @NameSpace.issueWarning(342, 'sechandl', 'identification information section')
                            end
 
                         end
