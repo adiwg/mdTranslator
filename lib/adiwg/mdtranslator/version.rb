@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.11.0 2018-03-28 add 'responsibleParties' to budget allocation
+# 2.11.0 2018-03-27 refactor messaging for fgdc writer
 # 2.10.0 2018-02-26 add 'forceValid' parameter to mdTranslator.translate
 # 2.9.3 2018-02-24 add messaging to mdJson reader
 # 2.9.3 2018-02-20 add data and time format validation to module_dateTomeFun
@@ -71,7 +73,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.10.0"
+      VERSION = "2.11.0"
    end
 end
 
