@@ -2,18 +2,22 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-20 refactored error and warning messaging
 #  Stan Smith 2018-01-02 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
       module Writers
          module Fgdc
 
-            class MapProjection
+            class MapProjectionTags
 
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                # map projection 4.1.2.1.1 (mapprojn) - projection name (required)
@@ -22,8 +26,7 @@ module ADIWG
                      @xml.tag!('mapprojn', projectionName)
                   end
                   if projectionName.nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing projection name'
+                     @NameSpace.issueWarning(280, 'mapprojn')
                   end
                end
 
@@ -44,15 +47,13 @@ module ADIWG
                      @xml.tag!('feast', hProjection[:falseEasting].to_s)
                   end
                   if hProjection[:falseEasting].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing false easting'
+                     @NameSpace.issueError(281, "#{hProjection[:projectionName]} projection")
                   end
                   unless hProjection[:falseNorthing].nil?
                      @xml.tag!('fnorth', hProjection[:falseNorthing].to_s)
                   end
                   if hProjection[:falseNorthing].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing false northing'
+                     @NameSpace.issueError(282, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -68,8 +69,7 @@ module ADIWG
                      haveParallel = true
                   end
                   unless haveParallel
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing standard parallel'
+                     @NameSpace.issueError(283, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -79,8 +79,7 @@ module ADIWG
                      @xml.tag!('longcm', hProjection[:longitudeOfCentralMeridian].to_s)
                   end
                   if hProjection[:longitudeOfCentralMeridian].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing longitude of central meridian'
+                     @NameSpace.issueError(284, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -90,8 +89,7 @@ module ADIWG
                      @xml.tag!('latprjo', hProjection[:latitudeOfProjectionOrigin].to_s)
                   end
                   if hProjection[:latitudeOfProjectionOrigin].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing latitude of projection origin'
+                     @NameSpace.issueError(285, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -101,8 +99,7 @@ module ADIWG
                      @xml.tag!('heightpt', hProjection[:heightOfProspectivePointAboveSurface].to_s)
                   end
                   if hProjection[:heightOfProspectivePointAboveSurface].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing height of perspective point above surface'
+                     @NameSpace.issueError(286, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -112,8 +109,7 @@ module ADIWG
                      @xml.tag!('longpc', hProjection[:longitudeOfProjectionCenter].to_s)
                   end
                   if hProjection[:longitudeOfProjectionCenter].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing longitude of projection center'
+                     @NameSpace.issueError(287, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -123,8 +119,7 @@ module ADIWG
                      @xml.tag!('latprjc', hProjection[:latitudeOfProjectionCenter].to_s)
                   end
                   if hProjection[:latitudeOfProjectionCenter].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing latitude of projection center'
+                     @NameSpace.issueError(288, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -134,8 +129,7 @@ module ADIWG
                      @xml.tag!('sfequat', hProjection[:scaleFactorAtEquator].to_s)
                   end
                   if hProjection[:scaleFactorAtEquator].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing scale factor at equator'
+                     @NameSpace.issueError(289, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -145,8 +139,7 @@ module ADIWG
                      @xml.tag!('sfctrlin', hProjection[:scaleFactorAtCenterLine].to_s)
                   end
                   if hProjection[:scaleFactorAtCenterLine].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing scale factor at center line'
+                     @NameSpace.issueError(290, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -156,8 +149,7 @@ module ADIWG
                      @xml.tag!('sfprjorg', hProjection[:scaleFactorAtProjectionOrigin].to_s)
                   end
                   if hProjection[:scaleFactorAtProjectionOrigin].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing scale factor at projection origin'
+                     @NameSpace.issueError(291, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -167,8 +159,7 @@ module ADIWG
                      @xml.tag!('sfctrmer', hProjection[:scaleFactorAtCentralMeridian].to_s)
                   end
                   if hProjection[:scaleFactorAtCentralMeridian].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing scale factor at central meridian'
+                     @NameSpace.issueError(292, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -183,21 +174,18 @@ module ADIWG
                            @xml.tag!('azimangl', hProjection[:azimuthAngle].to_s)
                         end
                         if hProjection[:azimuthAngle].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Map Projection is missing oblique line azimuth angle'
+                           @NameSpace.issueError(293, "#{hProjection[:projectionName]} projection")
                         end
                         unless hProjection[:azimuthMeasurePointLongitude].nil?
                            @xml.tag!('azimptl', hProjection[:azimuthMeasurePointLongitude].to_s)
                         end
                         if hProjection[:azimuthMeasurePointLongitude].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Map Projection is missing oblique line measure point longitude'
+                           @NameSpace.issueError(294, "#{hProjection[:projectionName]} projection")
                         end
                      end
                   end
                   unless haveLA
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing oblique line azimuth information'
+                     @NameSpace.issueError(295, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -207,15 +195,13 @@ module ADIWG
                      @xml.tag!('obqllat', hLinePt[:azimuthLineLatitude])
                   end
                   if hLinePt[:azimuthLineLatitude].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing oblique line point latitude'
+                     @NameSpace.issueError(296, 'oblique line-point projection')
                   end
                   unless hLinePt[:azimuthLineLongitude].nil?
                      @xml.tag!('obqllong', hLinePt[:azimuthLineLongitude])
                   end
                   if hLinePt[:azimuthLineLongitude].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing oblique line point longitude'
+                     @NameSpace.issueError(297, 'oblique line-point projection')
                   end
                end
 
@@ -225,8 +211,7 @@ module ADIWG
                      @xml.tag!('svlong', hProjection[:straightVerticalLongitudeFromPole].to_s)
                   end
                   if hProjection[:straightVerticalLongitudeFromPole].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing straight vertical longitude from pole'
+                     @NameSpace.issueError(298, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -236,8 +221,7 @@ module ADIWG
                      @xml.tag!('landsat', hProjection[:landsatNumber].to_s)
                   end
                   if hProjection[:landsatNumber].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing Landsat number'
+                     @NameSpace.issueError(299, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -247,8 +231,7 @@ module ADIWG
                      @xml.tag!('pathnum', hProjection[:landsatPath].to_s)
                   end
                   if hProjection[:landsatPath].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing Landsat path number'
+                     @NameSpace.issueError(300, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -258,8 +241,7 @@ module ADIWG
                      @xml.tag!('otherprj', hProjection[:otherProjectionDescription])
                   end
                   if hProjection[:otherProjectionDescription].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Map Projection is missing other projection description'
+                     @NameSpace.issueError(301, "#{hProjection[:projectionName]} projection")
                   end
                end
 
@@ -306,8 +288,7 @@ module ADIWG
                      @xml.tag!('utmzone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'UTM Projection is missing zone number'
+                     @NameSpace.issueError(310, 'grid system')
                   end
                end
 
@@ -317,8 +298,7 @@ module ADIWG
                      @xml.tag!('upszone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'UPS Projection is missing zone number'
+                     @NameSpace.issueError(311, 'grid system')
                   end
                end
 
@@ -328,8 +308,7 @@ module ADIWG
                      @xml.tag!('spcszone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'State Plane Coordinate System is missing zone number'
+                     @NameSpace.issueError(312, 'grid system')
                   end
                end
 
@@ -339,8 +318,7 @@ module ADIWG
                      @xml.tag!('arczone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Equal arc-second Coordinate System is missing zone number'
+                     @NameSpace.issueError(313, 'grid system')
                   end
                end
 
@@ -350,8 +328,7 @@ module ADIWG
                      @xml.tag!('localpd', hProjection[:localPlanarDescription])
                   end
                   if hProjection[:localPlanarDescription].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Local Planar Coordinate System is missing description'
+                     @NameSpace.issueError(302, "#{hProjection[:projectionName]}")
                   end
                end
 
@@ -361,8 +338,7 @@ module ADIWG
                      @xml.tag!('localpgi', hProjection[:localPlanarGeoreference])
                   end
                   if hProjection[:localPlanarGeoreference].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Local Planar Coordinate System is missing georeference information'
+                     @NameSpace.issueError(303, "#{hProjection[:projectionName]}")
                   end
                end
 

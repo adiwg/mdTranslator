@@ -3,26 +3,26 @@
   <eainfo>
     <detailed>
       <enttype>
-        <enttypl>entity 1 label</enttypl>
+        <enttypl>EID001</enttypl>
         <enttypd>entity 1 definition</enttypd>
-        <enttypds>entity 1 source</enttypds>
+        <enttypds>entity 001 source</enttypds>
       </enttype>
       <attr>
-        <attrlabl>attribute 1 label</attrlabl>
-        <attrdef>attribute 1 definition</attrdef>
-        <attrdefs>attribute 1 source</attrdefs>
+        <attrlabl>ATT001</attrlabl>
+        <attrdef>attribute 001 definition</attrdef>
+        <attrdefs>attribute 001 source</attrdefs>
         <attrdomv>
           <edom>
-            <edomv>domain 1 enum value 1</edomv>
-            <edomvd>domain 1 enum value 1 definition</edomvd>
+            <edomv>enumerated value 1</edomv>
+            <edomvd>enumerated value 1 definition</edomvd>
             <edomvds>domain item reference title</edomvds>
           </edom>
         </attrdomv>
         <attrdomv>
           <edom>
-            <edomv>domain 1 enum value 2</edomv>
-            <edomvd>domain 1 enum value 2 definition</edomvd>
-            <edomvds>author defined</edomvds>
+            <edomv>enumerated value 2</edomv>
+            <edomvd>enumerated value 2 definition</edomvd>
+            <edomvds>domain item reference title</edomvds>
           </edom>
         </attrdomv>
         <begdatea>20170401</begdatea>
@@ -31,9 +31,9 @@
         <enddatea>20171031</enddatea>
       </attr>
       <attr>
-        <attrlabl>attribute 2 label</attrlabl>
-        <attrdef>attribute 2 definition</attrdef>
-        <attrdefs>attribute 2 source</attrdefs>
+        <attrlabl>ATT002</attrlabl>
+        <attrdef>attribute 002 definition</attrdef>
+        <attrdefs>attribute 002 source</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>0</rdommin>
@@ -52,9 +52,9 @@
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>attribute 3 label</attrlabl>
-        <attrdef>attribute 3 definition</attrdef>
-        <attrdefs>attribute 3 source</attrdefs>
+        <attrlabl>ATT003</attrlabl>
+        <attrdef>attribute 003 definition</attrdef>
+        <attrdefs>attribute 003 source</attrdefs>
         <attrdomv>
           <codesetd>
             <codesetn>codeset name</codesetn>
@@ -63,17 +63,17 @@
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>attribute 4 label</attrlabl>
-        <attrdef>attribute 4 definition</attrdef>
-        <attrdefs>attribute 4 source</attrdefs>
+        <attrlabl>ATT004</attrlabl>
+        <attrdef>attribute 004 definition</attrdef>
+        <attrdefs>attribute 004 source</attrdefs>
         <attrdomv>
           <udom>unrepresented domain description</udom>
         </attrdomv>
       </attr>
       <attr>
-        <attrlabl>attribute 5 label</attrlabl>
-        <attrdef>attribute 5 definition</attrdef>
-        <attrdefs>attribute 5 source</attrdefs>
+        <attrlabl>ATT005</attrlabl>
+        <attrdef>attribute 005 definition</attrdef>
+        <attrdefs>attribute 005 source</attrdefs>
         <attrdomv>
           <rdom>
             <rdommin>A</rdommin>
@@ -94,19 +94,19 @@
     </detailed>
     <detailed>
       <enttype>
-        <enttypl>entity 2 label</enttypl>
+        <enttypl>EID002</enttypl>
         <enttypd>entity 2 definition</enttypd>
-        <enttypds>entity 2 source</enttypds>
+        <enttypds>entity 002 source</enttypds>
       </enttype>
     </detailed>
     <overview>
       <eaover>ea overview 1</eaover>
-      <eadetcit>ea overview 1 citation 1</eadetcit>
-      <eadetcit>ea overview 1 citation 2</eadetcit>
+      <eadetcit>entity 003 overview 1</eadetcit>
+      <eadetcit>entity 003 overview 2</eadetcit>
     </overview>
     <overview>
       <eaover>ea overview 2</eaover>
-      <eadetcit>ea overview 2 citation 1</eadetcit>
+      <eadetcit>entity 004 overview 3</eadetcit>
     </overview>
   </eainfo>
   <metainfo>

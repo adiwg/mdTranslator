@@ -25,34 +25,56 @@ class TestWriterFgdcSecurity < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'security', './metadata/idinfo/secinfo')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_missing_security_className
+   def test_securityConstrain_security
 
+      # missing resource security
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:constraint][1][:security].delete(:classificationSystem)
+      hIn[:metadata][:resourceInfo][:constraint] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Security is missing classification system'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: access constraint is missing: CONTEXT is identification section'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: use constraint is missing: CONTEXT is identification section'
 
-   end
-
-   def test_missing_security_handling
-
+      # missing resource security
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:constraint][1][:security].delete(:handlingDescription)
+      hIn[:metadata][:resourceInfo][:constraint].delete_at(1)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Security is missing handling instructions'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_empty  hResponseObj[:writerMessages]
+
+      # missing resource security elements
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:constraint][1][:security][:classificationSystem] = ''
+      hIn[:metadata][:resourceInfo][:constraint][1][:security][:handlingDescription] = ''
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: security classification system is missing: CONTEXT is identification information section'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: security handling instructions are missing: CONTEXT is identification information section'
 
    end
 

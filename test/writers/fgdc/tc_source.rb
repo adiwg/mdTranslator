@@ -86,58 +86,105 @@ class TestWriterFgdcSource < TestWriterFGDCParent
 
    @@mdHash = mdHash
 
-   def test_source_missing_id
+   def test_source_id
 
       # empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:source][0][:sourceId] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Source is missing source abbreviation (source id)'
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source abbreviation code (source id) is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage source citation abbreviation (id) is missing: CONTEXT is source ID '
 
       # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:source][0].delete(:sourceId)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Source is missing source abbreviation (source id)'
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source abbreviation code (source id) is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: lineage source citation abbreviation (id) is missing: CONTEXT is source ID '
 
    end
 
-   def test_source_missing_citation
+   def test_source_citation
 
+      # empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0][:source][0][:sourceCitation] = {}
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source citation is missing: CONTEXT is source ID 1'
+
+      # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:source][0].delete(:sourceCitation)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Source is missing citation'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source citation is missing: CONTEXT is source ID 1'
 
    end
 
-   def test_source_missing_timePeriod
+   def test_source_timePeriod
 
-      # remove timePeriod at scope level
+      # empty timePeriod
+      # removed at scope level
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceLineage][0][:source][0][:scope] = {}
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source time period is missing: CONTEXT is source ID 1'
+
+      # missing timePeriod
+      # removed at scope level
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceLineage][0][:source][0].delete(:scope)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Source is missing time period'
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: lineage source time period is missing: CONTEXT is source ID 1'
 
    end
 

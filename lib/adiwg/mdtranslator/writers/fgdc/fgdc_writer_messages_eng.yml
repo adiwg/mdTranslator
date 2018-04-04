@@ -1,0 +1,213 @@
+# Writer - internal data structure to FGDC CSDGM FGDC-STD-001-1998
+
+# History:
+#  Stan Smith 2018-03-17 original script
+
+messageList:
+   - {id: 1, message: "contact address type is missing"}
+   - {id: 2, message: "contact address city is missing"}
+   - {id: 3, message: "contact address state is missing"}
+   - {id: 4, message: "contact address postal code is missing"}
+   - {id: 5, message: "contact voice phone is missing"}
+
+   - {id: 10, message: "attribute label is missing"}
+   - {id: 11, message: "attribute definition is missing"}
+   - {id: 12, message: "attribute definition source is missing"}
+   - {id: 13, message: "attribute range value minimum is missing"}
+   - {id: 14, message: "attribute range value maximum is missing"}
+   - {id: 15, message: "attribute date range beginning date is missing"}
+   - {id: 16, message: "attribute date range ending date is missing"}
+
+   - {id: 20, message: "browse graphic name is missing"}
+   - {id: 21, message: "browse graphic description is missing"}
+   - {id: 22, message: "browse graphic file type is missing"}
+
+   - {id: 30, message: "citation originator role is missing"}
+   - {id: 31, message: "citation publication date is missing"}
+   - {id: 32, message: "citation title is missing"}
+
+   - {id: 40, message: "access constraint is missing"}
+   - {id: 41, message: "use constraint is missing"}
+
+   - {id: 50, message: "organization contact name is missing"}
+   - {id: 51, message: "individual contact name is missing"}
+   - {id: 52, message: "contact type is missing"}
+   - {id: 53, message: "individual contact name is missing"}
+   - {id: 54, message: "organization contact name is missing"}
+   - {id: 55, message: "contact address is missing"}
+
+   - {id: 60, message: "description abstract is missing"}
+   - {id: 61, message: "description purpose is missing"}
+
+   - {id: 70, message: "dictionary domain ID was not found"}
+   - {id: 71, message: "enumerated domain value is missing"}
+   - {id: 72, message: "enumerated domain value definition is missing"}
+   - {id: 73, message: "enumerated domain value source is missing"}
+   - {id: 74, message: "codeset domain name is missing"}
+   - {id: 75, message: "codeset domain reference is missing"}
+   - {id: 76, message: "enumerated domain value source is missing"}
+
+   - {id: 80, message: "data dictionary requires at least one detail or overview entity"}
+
+   - {id: 90, message: "entity type label is missing"}
+   - {id: 91, message: "entity type definition is missing"}
+   - {id: 92, message: "entity type definition source is missing"}
+
+   - {id: 100, message: "entity overview definition is missing"}
+
+   - {id: 110, message: "distributor contact is missing"}
+   - {id: 111, message: "distributor liability statement is missing"}
+
+   - {id: 120, message: "offline option media name is missing"}
+   - {id: 121, message: "offline option recording density is missing"}
+   - {id: 122, message: "offline option recording density units are missing"}
+   - {id: 123, message: "offline option recording format is missing"}
+
+   - {id: 130, message: "online option network address is missing"}
+
+   - {id: 140, message: "standard order process fees is missing"}
+
+   - {id: 150, message: "geodetic coordinate system ellipsoid name is missing"}
+   - {id: 151, message: "geodetic coordinate system semi-major axis is missing"}
+   - {id: 152, message: "geodetic coordinate system denominator of flattening ratio is missing"}
+
+   - {id: 160, message: "geographic resolution latitude resolution is missing"}
+   - {id: 161, message: "geographic resolution longitude resolution is missing"}
+   - {id: 162, message: "geographic resolution unit of measure is missing"}
+
+   - {id: 170, message: "geologic age time scale is missing"}
+   - {id: 171, message: "geologic age estimate is missing"}
+   - {id: 172, message: "geologic age range starting age is missing"}
+   - {id: 173, message: "geologic age range ending age is missing"}
+
+   - {id: 180, message: "main resource citation is missing"}
+   - {id: 181, message: "description is missing"}
+   - {id: 182, message: "time period is missing"}
+   - {id: 183, message: "keywords are missing"}
+   - {id: 184, message: "access constraint is missing"}
+   - {id: 185, message: "use constraint is missing"}
+
+   - {id: 190, message: "keyword set thesaurus is missing"}
+
+   - {id: 200, message: "lineage source process steps are missing"}
+
+   - {id: 210, message: "lineage method type is missing"}
+   - {id: 211, message: "lineage method description is missing"}
+   - {id: 212, message: "lineage method citation is missing"}
+
+   - {id: 220, message: "lineage method keyword set is missing"}
+   - {id: 221, message: "lineage method keyword set thesaurus is missing"}
+
+   - {id: 230, message: "lineage source abbreviation code (source id) is missing"}
+   - {id: 231, message: "lineage source citation is missing"}
+   - {id: 232, message: "lineage source media type (description) is missing"}
+   - {id: 233, message: "lineage source time period is missing"}
+   - {id: 234, message: "lineage source citation abbreviation (id) is missing"}
+   - {id: 235, message: "lineage source contribution (description) is missing"}
+
+   - {id: 240, message: "lineage process step description is missing"}
+   - {id: 241, message: "lineage process step process date is missing"}
+
+   - {id: 250, message: "local coordinate system description is missing"}
+   - {id: 251, message: "local coordinate system georeference information is missing"}
+
+   - {id: 260, message: "planar coordinate information encoding method is missing"}
+   - {id: 261, message: "coordinate representation abscissa resolution is missing"}
+   - {id: 262, message: "coordinate representation ordinate resolution is missing"}
+   - {id: 263, message: "coordinate representation planar distance units are missing"}
+   - {id: 264, message: "bearing-distance representation distance resolution is missing"}
+   - {id: 265, message: "bearing-distance representation bearing resolution is missing"}
+   - {id: 266, message: "bearing-distance representation bearing units are missing"}
+   - {id: 267, message: "bearing-distance representation bearing reference direction is missing"}
+   - {id: 268, message: "bearing-distance representation bearing reference meridian is missing"}
+   - {id: 269, message: "bearing-distance representation planar distance units are missing"}
+   - {id: 270, message: "planar coordinate information section is missing"}
+
+   - {id: 280, message: "map projection name is missing projection type"}
+   - {id: 281, message: "map projection false easting is missing"}
+   - {id: 282, message: "map projection false northing is missing"}
+   - {id: 283, message: "map projection standard parallel is missing"}
+   - {id: 284, message: "map projection longitude of central meridian is missing"}
+   - {id: 285, message: "map projection latitude of projection origin is missing"}
+   - {id: 286, message: "map projection height of perspective point above surface is missing"}
+   - {id: 287, message: "map projection longitude of projection center is missing"}
+   - {id: 288, message: "map projection latitude of projection center is missing"}
+   - {id: 289, message: "map projection scale factor at equator is missing"}
+   - {id: 290, message: "map projection scale factor at center line is missing"}
+   - {id: 291, message: "map projection scale factor at projection origin is missing"}
+   - {id: 292, message: "map projection scale factor at central meridian is missing"}
+   - {id: 293, message: "map projection oblique line azimuth angle is missing"}
+   - {id: 294, message: "map projection oblique line measure point longitude is missing"}
+   - {id: 295, message: "map projection oblique line azimuth information is missing"}
+   - {id: 296, message: "map projection oblique line point latitude is missing"}
+   - {id: 297, message: "map projection oblique line point longitude is missing"}
+   - {id: 298, message: "map projection straight vertical longitude from pole is missing"}
+   - {id: 299, message: "map projection landsat number is missing"}
+   - {id: 300, message: "map projection landsat path is missing"}
+   - {id: 301, message: "map projection other projection description is missing"}
+   - {id: 302, message: "map projection local planar description is missing"}
+   - {id: 303, message: "map projection local planar georeference information is missing"}
+
+   - {id: 310, message: "map grid universal transverse mercator zone is missing"}
+   - {id: 311, message: "map grid universal polar stereographic zone is missing"}
+   - {id: 312, message: "map grid state plane coordinate system zone is missing"}
+   - {id: 313, message: "map grid equal arc-second coordinate system zone is missing"}
+
+   - {id: 320, message: "metadata creation date is missing"}
+   - {id: 321, message: "metadata contact is missing"}
+
+   - {id: 330, message: "publication place is missing"}
+   - {id: 331, message: "publication name is missing"}
+
+   - {id: 340, message: "security classification system is missing"}
+   - {id: 341, message: "security classification is missing"}
+   - {id: 342, message: "security handling instructions are missing"}
+
+   - {id: 350, message: "lineage section is missing"}
+
+   - {id: 360, message: "series name is missing"}
+   - {id: 361, message: "series issue is missing"}
+
+   - {id: 370, message: "spatial domain geographic description is missing"}
+   - {id: 371, message: "altitude bounding box minimum altitude is missing"}
+   - {id: 372, message: "altitude bounding box maximum altitude is missing"}
+   - {id: 373, message: "spatial domain bounding box is missing"}
+
+   - {id: 380, message: "raster spatial organization raster type is missing"}
+
+   - {id: 390, message: "progress is missing"}
+   - {id: 391, message: "maintenance frequency is missing"}
+   - {id: 392, message: "status section is missing"}
+
+   - {id: 400, message: "taxonomic classification is missing"}
+
+   - {id: 410, message: "taxonomic classification taxon rank is missing"}
+   - {id: 411, message: "taxonomic classification taxon value (latin name) is missing"}
+
+   - {id: 420, message: "taxonomy keyword set thesaurus is missing"}
+   - {id: 421, message: "taxonomy keyword set must have at least one keyword"}
+   - {id: 422, message: "taxonomy keyword set is missing"}
+
+   - {id: 430, message: "taxonomic classification system citation is missing"}
+   - {id: 431, message: "taxonomic classification system is missing"}
+   - {id: 432, message: "taxonomic procedures are missing"}
+   - {id: 433, message: "taxonomic voucher specimen is missing"}
+   - {id: 434, message: "taxonomic voucher repository is missing"}
+
+   - {id: 440, message: "time period age and date items are missing"}
+   - {id: 441, message: "time period must be either geologic age or conventional dates, not both"}
+   - {id: 442, message: "time period will default to conventional date"}
+   - {id: 443, message: "time info currentness is missing"}
+
+   - {id: 450, message: "distribution format name is missing"}
+
+   - {id: 460, message: "vertical depth datum name is missing"}
+   - {id: 461, message: "vertical depth resolution is missing"}
+   - {id: 462, message: "vertical depth units of measure is missing"}
+   - {id: 463, message: "vertical depth encoding method is missing"}
+   - {id: 464, message: "vertical altitude datum name is missing"}
+   - {id: 465, message: "vertical altitude resolution is missing"}
+   - {id: 466, message: "vertical altitude units of measure is missing"}
+   - {id: 467, message: "vertical altitude encoding method is missing"}
+
+

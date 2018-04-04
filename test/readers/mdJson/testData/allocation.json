@@ -6,15 +6,33 @@
          "currency": "currency",
          "sourceId": "sourceId",
          "recipientId": "recipientId",
+         "responsibleParty": [
+            {
+               "role": "partyRole1",
+               "party": [
+                  {
+                     "contactId": "individualId0"
+                  }
+               ]
+            },
+            {
+               "role": "partyRole2",
+               "party": [
+                  {
+                     "contactId": "organizationId0"
+                  }
+               ]
+            }
+         ],
          "matching": true,
          "onlineResource": [
             {
                "uri": "http://ISO.uri/adiwg/1",
-               "description": "allocation online resource 1"
+               "description": "online1"
             },
             {
                "uri": "http://ISO.uri/adiwg/2",
-               "description": "allocation online resource 2"
+               "description": "online2"
             }
          ],
          "comment": "comment"

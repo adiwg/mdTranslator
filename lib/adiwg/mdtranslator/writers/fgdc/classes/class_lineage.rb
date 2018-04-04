@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-12-15 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_method'
 require_relative 'class_source'
 require_relative 'class_process'
@@ -18,6 +20,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aLineage)
@@ -76,8 +79,7 @@ module ADIWG
                      end
                   end
                   unless haveStep
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Lineage Source is missing process steps'
+                     @NameSpace.issueWarning(200, 'procstep')
                   end
 
                   # the search for process steps is circular, I'm stopping here.

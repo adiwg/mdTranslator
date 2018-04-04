@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-12-18 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
@@ -18,6 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hStep)
@@ -31,8 +33,7 @@ module ADIWG
                      @xml.tag!('procdesc', hStep[:description] )
                   end
                   if hStep[:description].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Lineage Source is missing description'
+                     @NameSpace.issueWarning(240, 'procdesc')
                   end
 
                   # process 2.5.2.2 (srcused) - source used citation abbreviation []
@@ -73,8 +74,7 @@ module ADIWG
                      end
                   end
                   unless haveProcDate
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Process Step is missing process date'
+                     @NameSpace.issueWarning(241, 'procdate')
                   end
                   if !haveProcTime && @hResponseObj[:writerShowTags]
                      @xml.tag!('proctime')
@@ -96,9 +96,9 @@ module ADIWG
                   # process 2.5.2.6 (proccont) - process contact {contact} first
                   haveProcessor = false
                   aRParties = hStep[:processors]
-                  aProcessors = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'processor')
+                  aProcessors = @NameSpace.find_responsibility(aRParties, 'processor')
                   aProcessors.each do |contactId|
-                     hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                     hContact = @NameSpace.get_contact(contactId)
                      unless hContact.empty?
                         @xml.tag!('proccont') do
                            contactClass.writeXML(hContact)

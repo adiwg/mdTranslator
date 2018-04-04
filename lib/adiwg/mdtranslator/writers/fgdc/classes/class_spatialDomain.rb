@@ -2,8 +2,11 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2018-02-05 fixed typo in variable name 'aBPoly'
 #  Stan Smith 2017-11-25 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -15,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aExtents)
@@ -90,8 +94,7 @@ module ADIWG
                            @xml.tag!('descgeog', geoDescription)
                         end
                         if geoDescription.empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Spatial Domain is missing geographic description'
+                           @NameSpace.issueWarning(370, 'descgeog')
                         end
 
                         # spatial domain 1.5.1 (bounding) - bounding box (required)
@@ -119,8 +122,7 @@ module ADIWG
                                        @xml.tag!('altmin', hBBox[:minimumAltitude])
                                     end
                                     if hBBox[:minimumAltitude].nil?
-                                       @hResponseObj[:writerPass] = false
-                                       @hResponseObj[:writerMessages] << 'Altitude Bounding Box missing minimum altitude'
+                                       @NameSpace.issueWarning(371, 'altmin')
                                     end
 
                                     # altitude bounding (altmax) - maximum altitude (required)
@@ -128,8 +130,7 @@ module ADIWG
                                        @xml.tag!('altmax', hBBox[:minimumAltitude])
                                     end
                                     if hBBox[:maximumAltitude].nil?
-                                       @hResponseObj[:writerPass] = false
-                                       @hResponseObj[:writerMessages] << 'Altitude Bounding Box missing maximum altitude'
+                                       @NameSpace.issueWarning(372, 'altmax')
                                     end
 
                                     # altitude bounding (altunit) - units of altitude
@@ -149,8 +150,7 @@ module ADIWG
                            end
                         end
                         if hBBox.empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Spatial Domain is missing bounding box'
+                           @NameSpace.issueWarning(373, nil)
                         end
 
                         # spatial domain 1.5.2 (dsgpoly) - bounding polygon [] (required)

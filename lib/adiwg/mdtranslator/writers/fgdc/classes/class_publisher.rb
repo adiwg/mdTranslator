@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-23 refactored error and warning messaging
 #  Stan Smith 2017-11-21 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hContact)
@@ -43,8 +47,7 @@ module ADIWG
                      end
                   end
                   if place == ''
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Publisher is missing place of publication'
+                     @NameSpace.issueWarning(330, 'pubplace', 'identification information citation')
                   end
 
                   # publication 8.8.2 (publish) - publisher name
@@ -54,8 +57,7 @@ module ADIWG
                      @xml.tag!('publish', name)
                   end
                   if name.nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Publisher is missing name of publisher'
+                     @NameSpace.issueWarning(331, 'publish', 'identification information citation')
                   end
 
                end # writeXML

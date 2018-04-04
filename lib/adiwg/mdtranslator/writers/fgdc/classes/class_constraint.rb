@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2017-12-12 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aConstraints)
@@ -28,8 +32,7 @@ module ADIWG
                            @xml.tag!('accconst', hLegal[:accessCodes][0])
                         end
                         if hLegal[:accessCodes].empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Identification section is missing access constraint'
+                           @NameSpace.issueWarning(40, 'accconst', 'identification section')
                         end
 
                         # identification information 1.8 (useconst) - use constraint (required)
@@ -37,8 +40,7 @@ module ADIWG
                            @xml.tag!('useconst', hLegal[:useCodes][0])
                         end
                         if hLegal[:useCodes].empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Identification section is missing use constraint'
+                           @NameSpace.issueWarning(41,'useconst', 'identification section')
                         end
 
                      end

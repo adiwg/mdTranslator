@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-17 refactored error and warning messaging
 #  Stan Smith 2018-01-22 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_attribute'
 
 module ADIWG
@@ -16,34 +18,37 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hEntity)
-
+               def writeXML(hEntity, inContext = nil)
+                  
                   # classes used
                   attrClass = Attribute.new(@xml, @hResponseObj)
+
+                  # set context
+                  outContext = hEntity[:entityCode]
+                  outContext = 'entity code ' + outContext unless outContext.nil?
 
                   # entity detail 5.1.1 (enttype) - entity type
                   @xml.tag!('enttype') do
 
                      # entity type 5.1.1.1 (enttypl) - entity type label (required)
                      # <- entity.entityCode
-                  unless hEntity[:entityCode].nil?
+                     unless hEntity[:entityCode].nil?
                         @xml.tag!('enttypl', hEntity[:entityCode])
                      end
                      if hEntity[:entityCode].nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Entity Attribute Detail missing entity type label'
+                        @NameSpace.issueWarning(90, 'enttypl', inContext)
                      end
 
                      # entity type 5.1.1.2 (enttypd) - entity type definition (required)
                      # <- entity.entityDefinition
-                  unless hEntity[:entityDefinition].nil?
+                     unless hEntity[:entityDefinition].nil?
                         @xml.tag!('enttypd', hEntity[:entityDefinition])
                      end
                      if hEntity[:entityDefinition].nil?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Entity Attribute Detail missing entity definition'
+                        @NameSpace.issueWarning(91, 'enttypd', inContext)
                      end
 
                      # entity type 5.1.1.3 (enttypds) - entity definition source (required)
@@ -54,8 +59,7 @@ module ADIWG
                         end
                      end
                      if hEntity[:entityReferences].empty?
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Entity Attribute Detail missing entity definition citation'
+                        @NameSpace.issueWarning(92, 'enttypds', inContext)
                      end
 
                   end
@@ -64,7 +68,7 @@ module ADIWG
                   hEntity[:attributes].each do |hAttribute|
                      unless hAttribute.empty?
                         @xml.tag!('attr') do
-                           attrClass.writeXML(hAttribute)
+                           attrClass.writeXML(hAttribute, outContext)
                         end
                      end
                   end

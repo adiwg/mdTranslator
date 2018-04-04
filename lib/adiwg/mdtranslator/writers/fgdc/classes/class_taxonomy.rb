@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-12 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_taxonomyKeywords'
 require_relative 'class_taxonomySystem'
 require_relative 'class_taxonomyClassification'
@@ -18,6 +20,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hTaxonomy, aKeywords)
@@ -57,8 +60,7 @@ module ADIWG
                      end
                   end
                   if hTaxonomy[:taxonClass].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomy is missing taxonomic classification'
+                     @NameSpace.issueWarning(400, 'taxoncl')
                   end
 
                end # writeXML

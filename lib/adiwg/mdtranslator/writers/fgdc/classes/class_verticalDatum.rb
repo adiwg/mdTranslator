@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-27 refactored error and warning messaging
 #  Stan Smith 2018-01-16 original script
 
 module ADIWG
@@ -14,6 +15,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aSpaceRefs)
@@ -32,8 +34,7 @@ module ADIWG
                                     @xml.tag!('depthdn', hVDatum[:datumName])
                                  end
                                  if hVDatum[:datumName].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Depth Datum is missing datum name'
+                                    @NameSpace.issueWarning(460, 'depthdn')
                                  end
 
                                  # vertical datum 4.2.1.2 (depthres) - depth units resolution (required)
@@ -41,8 +42,7 @@ module ADIWG
                                     @xml.tag!('depthres', hVDatum[:verticalResolution])
                                  end
                                  if hVDatum[:verticalResolution].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Depth Datum is missing depth units resolution'
+                                    @NameSpace.issueWarning(461, 'depthres')
                                  end
 
                                  # vertical datum 4.2.1.3 (depthdu) - depth units (required)
@@ -50,17 +50,15 @@ module ADIWG
                                     @xml.tag!('depthdu', hVDatum[:unitOfMeasure])
                                  end
                                  if hVDatum[:unitOfMeasure].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Depth Datum is missing depth units'
+                                    @NameSpace.issueWarning(462, 'depthdu')
                                  end
 
-                                 # vertical datum 4.2.1.4 (depthem) - depth units (required)
+                                 # vertical datum 4.2.1.4 (depthem) - encoding method (required)
                                  unless hVDatum[:encodingMethod].nil?
                                     @xml.tag!('depthem', hVDatum[:encodingMethod])
                                  end
                                  if hVDatum[:encodingMethod].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Depth Datum is missing depth encoding method'
+                                    @NameSpace.issueWarning(463, 'depthem')
                                  end
 
                               end
@@ -73,8 +71,7 @@ module ADIWG
                                     @xml.tag!('altdatum', hVDatum[:datumName])
                                  end
                                  if hVDatum[:datumName].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Altitude Datum is missing datum name'
+                                    @NameSpace.issueWarning(464, 'altdatum')
                                  end
 
                                  # altitude datum 4.2.2.2 (altres) - altitude units resolution (required)
@@ -82,8 +79,7 @@ module ADIWG
                                     @xml.tag!('altres', hVDatum[:verticalResolution])
                                  end
                                  if hVDatum[:verticalResolution].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Altitude Datum is missing depth units resolution'
+                                    @NameSpace.issueWarning(465, 'altres')
                                  end
 
                                  # altitude datum 4.2.2.3 (altunits) - altitude units (required)
@@ -91,8 +87,7 @@ module ADIWG
                                     @xml.tag!('altunits', hVDatum[:unitOfMeasure])
                                  end
                                  if hVDatum[:unitOfMeasure].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Altitude Datum is missing depth units'
+                                    @NameSpace.issueWarning(466, 'altunits')
                                  end
 
                                  # altitude datum 4.2.2.4 (altenc) - altitude units (required)
@@ -100,8 +95,7 @@ module ADIWG
                                     @xml.tag!('altenc', hVDatum[:encodingMethod])
                                  end
                                  if hVDatum[:encodingMethod].nil?
-                                    @hResponseObj[:writerPass] = false
-                                    @hResponseObj[:writerMessages] << 'Vertical Altitude Datum is missing depth encoding method'
+                                    @NameSpace.issueWarning(467, 'altenc')
                                  end
 
                               end

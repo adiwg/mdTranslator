@@ -21,10 +21,11 @@ class TestWriterFgdcStatus < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'status', './metadata/idinfo/status')
       assert_equal hReturn[0], hReturn[1]
+      hReturn[2]
 
    end
 
-   def test_status_update
+   def test_status_maintenance
 
       # maintenance frequency empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -34,11 +35,11 @@ class TestWriterFgdcStatus < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Status section missing maintenance frequency'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: maintenance frequency is missing: CONTEXT is status section'
 
       # maintenance frequency missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -48,11 +49,11 @@ class TestWriterFgdcStatus < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Status section missing maintenance frequency'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: maintenance frequency is missing: CONTEXT is status section'
 
    end
 

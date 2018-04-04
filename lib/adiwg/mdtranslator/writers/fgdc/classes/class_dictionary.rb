@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2018-01-21 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_entityDetail'
 require_relative 'class_entityOverview'
 
@@ -17,15 +19,15 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hDictionary)
+               def writeXML(hDictionary, inContext = nil)
 
                   # classes used
                   detailClass = EntityDetail.new(@xml, @hResponseObj)
                   overviewClass = EntityOverview.new(@xml, @hResponseObj)
 
-                  haveDescription = false
                   hDictionary[:entities].each do |hEntity|
                      unless hEntity.empty?
 
@@ -35,7 +37,6 @@ module ADIWG
                            @xml.tag!('detailed') do
                               detailClass.writeXML(hEntity)
                            end
-                           haveDescription = true
                         end
 
                         # dictionary 5.2 (overview) - overview description
@@ -44,17 +45,14 @@ module ADIWG
                            @xml.tag!('overview') do
                               overviewClass.writeXML(hEntity)
                            end
-                           haveDescription = true
                         end
 
                      end
-
                   end
 
-                  # must have at least on detailed description or overview description
-                  unless haveDescription
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Data Dictionary requires at least one detail or overview description'
+                  # error message
+                  if hDictionary[:entities].empty?
+                     @NameSpace.issueWarning(80,nil, inContext)
                   end
 
                end # writeXML

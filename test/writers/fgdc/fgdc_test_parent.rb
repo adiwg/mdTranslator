@@ -9,7 +9,6 @@ require 'json'
 require 'json-schema'
 require 'nokogiri'
 require 'rubygems'
-require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator'
 
 class TestWriterFGDCParent < MiniTest::Test
@@ -55,15 +54,20 @@ class TestWriterFGDCParent < MiniTest::Test
       xExpect = xFile.xpath(path)
       expect = xExpect.to_s.squeeze(' ')
 
+      # TODO reinstate after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
+      pass = hResponseObj[:writerPass] &&
+         hResponseObj[:readerStructurePass] &&
+         hResponseObj[:readerValidationPass] &&
+         hResponseObj[:readerExecutionPass]
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath(path)
       got = xGot.to_s.squeeze(' ')
 
-      return expect, got
+      return expect, got, pass
 
    end
 

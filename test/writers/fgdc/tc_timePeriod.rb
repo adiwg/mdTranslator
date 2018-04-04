@@ -29,12 +29,13 @@ class TestWriterFgdcTimePeriod < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'timePeriod', './metadata/idinfo/timeperd')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_timePeriod_missing_time
+   def test_timePeriod_conventional
 
-      # start/end date only
+      # startDate and endDate
       expect = @@axExpect[1].to_s.squeeze(' ')
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -66,7 +67,7 @@ class TestWriterFgdcTimePeriod < TestWriterFGDCParent
 
       assert_equal expect, got
 
-      # start date only
+      # startDate only
       expect = @@axExpect[3].to_s.squeeze(' ')
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -98,7 +99,7 @@ class TestWriterFgdcTimePeriod < TestWriterFGDCParent
 
       assert_equal expect, got
 
-      # end date only
+      # endDate only
       expect = @@axExpect[5].to_s.squeeze(' ')
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -113,6 +114,28 @@ class TestWriterFgdcTimePeriod < TestWriterFGDCParent
       got = xGot.xpath('./metadata/idinfo/timeperd').to_s.squeeze(' ')
 
       assert_equal expect, got
+
+   end
+
+   def test_timePeriod_elements
+
+      # both geologic age and conventional dates
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge] = TDClass.build_geologicAge
+      hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge][:ageReference] <<
+         TDClass.build_citation('start geologic age reference one', 'CID001')
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: time period must be either geologic age or conventional dates, not both'
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: time period will default to conventional date'
 
    end
 

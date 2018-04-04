@@ -8,6 +8,7 @@
          "contactId": "CID001",
          "isOrganization": false,
          "name": "address - all keys with singe array elements",
+         "memberOfOrganization": ["CID003"],
          "address": [
             {
                "addressType": [
@@ -31,6 +32,7 @@
          "contactId": "CID002",
          "isOrganization": false,
          "name": "address - all keys with multiple array elements",
+         "memberOfOrganization": ["CID003", "CID004"],
          "address": [
             {
                "addressType": [
@@ -57,6 +59,7 @@
          "contactId": "CID003",
          "isOrganization": false,
          "name": "address - all keys with empty values",
+         "memberOfOrganization": [],
          "address": [
             {
                "addressType": [

@@ -161,10 +161,10 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
+                      'WARNING: mdJson reader: spatial resolution did not have an object of supported type'
 
    end
 
@@ -182,10 +182,10 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: spatial resolution did not have an object of supported type'
+                      'WARNING: mdJson reader: spatial resolution did not have an object of supported type'
 
    end
 

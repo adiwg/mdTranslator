@@ -13,34 +13,104 @@ class TestWriterFgdcMetadataInfo < TestWriterFGDCParent
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
+   # build mdJson in hash
+   mdHash = TDClass.base
+
+   hLegal = TDClass.build_legalConstraint
+   TDClass.add_accessConstraint(hLegal, 'metadata access constraint')
+   TDClass.add_useConstraint(hLegal, 'metadata use constraint')
+   mdHash[:metadata][:metadataInfo][:metadataConstraint] = []
+   mdHash[:metadata][:metadataInfo][:metadataConstraint] << hLegal
+
+   hSecurity = TDClass.build_securityConstraint('security classification',
+                                                'security classification system',
+                                                'security handling instructions')
+   mdHash[:metadata][:metadataInfo][:metadataConstraint] << hSecurity
+
+   @@mdHash = mdHash
+
    def test_metadataInfo_complete
 
-      # read the fgdc reference file
-      xFile = TestWriterFGDCParent.get_xml('metadataInfo')
-      expect = xFile.xpath('./metadata/metainfo').to_s.squeeze(' ')
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'metadataInfo', './metadata/metainfo')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      # build mdJson in hash
-      mdHash = TDClass.base
+   end
 
-      hLegal = TDClass.build_legalConstraint
-      TDClass.add_accessConstraint(hLegal, 'metadata access constraint')
-      TDClass.add_useConstraint(hLegal, 'metadata use constraint')
-      mdHash[:metadata][:metadataInfo][:metadataConstraint] = []
-      mdHash[:metadata][:metadataInfo][:metadataConstraint] << hLegal
+   def test_metadataInfo_creationDate
 
-      hSecurity = TDClass.build_securityConstraint('security classification',
-                                                   'security classification system',
-                                                   'security handling instructions')
-      mdHash[:metadata][:metadataInfo][:metadataConstraint] << hSecurity
+      # empty metadata dates
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataDate] = []
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      got = xMetadata.xpath('./metadata/metainfo').to_s.squeeze(' ')
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: metadata creation date is missing: CONTEXT is metadata information section'
 
-      assert_equal expect, got
+      # missing creation date
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataDate][0][:dateType] = 'notCreation'
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: metadata creation date is missing: CONTEXT is metadata information section'
+
+   end
+
+   def test_metadataInfo_security
+
+      # missing metadata security
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataConstraint] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_empty  hResponseObj[:writerMessages]
+
+      # missing metadata security
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataConstraint].delete_at(1)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_empty  hResponseObj[:writerMessages]
+
+      # missing metadata security elements
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataConstraint][1][:security][:classificationSystem] = ''
+      hIn[:metadata][:metadataInfo][:metadataConstraint][1][:security][:handlingDescription] = ''
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: security classification system is missing: CONTEXT is metadata information section'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: security handling instructions are missing: CONTEXT is metadata information section'
 
    end
 

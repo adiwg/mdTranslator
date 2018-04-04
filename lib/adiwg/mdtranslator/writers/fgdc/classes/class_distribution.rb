@@ -2,9 +2,11 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2018-01-28 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../fgdc_writer'
 require_relative 'class_contact'
 require_relative 'class_orderProcess'
 require_relative 'class_timePeriod'
@@ -19,6 +21,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hDistribution)
@@ -36,6 +39,8 @@ module ADIWG
 
                   hDistribution[:distributor].each do |hDistributor|
 
+                     outContext = nil
+
                      @xml.tag!('distinfo') do
 
                         # distribution 6.1 (distrib) - distributor {contact} (required)
@@ -49,13 +54,13 @@ module ADIWG
                                  @xml.tag!('distrib') do
                                     contactClass.writeXML(hContact)
                                  end
+                                 outContext = 'distributor ' + hContact[:name]
                                  haveContact = true
                               end
                            end
                         end
                         unless haveContact
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Distributor is missing contact information'
+                           @NameSpace.issueWarning(110,nil)
                         end
 
                         # distribution 6.2 (resdesc) - resource description
@@ -73,8 +78,7 @@ module ADIWG
                            @xml.tag!('distliab', hDistribution[:liabilityStatement])
                         end
                         if hDistribution[:liabilityStatement].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Distributor is missing liability statement'
+                           @NameSpace.issueWarning(111,'distliab')
                         end
 
                         # distribution 6.4 (stdorder) - standard order [] {standardOrder}
@@ -85,7 +89,7 @@ module ADIWG
                         unless hDistributor.empty?
                            unless hDistributor[:orderProcess].empty?
                               @xml.tag!('stdorder') do
-                                 orderClass.writeXML(hDistributor)
+                                 orderClass.writeXML(hDistributor, outContext)
                               end
                               haveOrder = true
                            end

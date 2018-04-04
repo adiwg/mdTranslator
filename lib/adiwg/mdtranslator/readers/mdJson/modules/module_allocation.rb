@@ -2,10 +2,12 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-03-28 add responsible party array
 #  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-08-30 refactored for mdJson schema 2.3
 #  Stan Smith 2016-10-30 original script
 
+require_relative 'module_responsibleParty'
 require_relative 'module_onlineResource'
 
 module ADIWG
@@ -65,6 +67,17 @@ module ADIWG
                   if hAlloc.has_key?('recipientId')
                      unless hAlloc['recipientId'] == ''
                         intAlloc[:recipientId] = hAlloc['recipientId']
+                     end
+                  end
+
+                  # allocation - responsible party [] {responsibility}
+                  if hAlloc.has_key?('responsibleParty')
+                     aRParties = hAlloc['responsibleParty']
+                     aRParties.each do |hRParty|
+                        hReturn = ResponsibleParty.unpack(hRParty, responseObj)
+                        unless hReturn.nil?
+                           intAlloc[:responsibleParties] << hReturn
+                        end
                      end
                   end
 

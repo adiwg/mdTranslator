@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-11-17 original script
 
 require_relative '../fgdc_writer'
@@ -27,6 +28,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(intObj)
@@ -47,33 +49,33 @@ module ADIWG
                   hResourceInfo = intObj[:metadata][:resourceInfo]
                   aAssocResource = intObj[:metadata][:associatedResources]
 
+                  outContext = 'identification section'
+
                   # identification information 1.1 (citation) - citation (required)
                   # <- hResourceInfo[:citation]
                   hCitation = hResourceInfo[:citation]
                   unless hCitation.empty?
                      @xml.tag!('citation') do
-                        citationClass.writeXML(hCitation, aAssocResource)
+                        citationClass.writeXML(hCitation, aAssocResource, 'main resource citation')
                      end
                   end
                   if hCitation.empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing citation'
+                     @NameSpace.issueWarning(180, nil, outContext)
                   end
 
                   # identification information 1.2 (descript) - description (required)
                   # <- hResourceInfo[:abstract,:purpose,:supplementalInfo] (required)
-                  unless hResourceInfo[:abstract].nil? && hResourceInfo[:purpose].nil? && hResourceInfo[:supplementalInfo].nil?
+                  haveDescription = false
+                  haveDescription = true unless hResourceInfo[:abstract].nil?
+                  haveDescription = true unless hResourceInfo[:purpose].nil?
+                  haveDescription = true unless hResourceInfo[:supplementalInfo].nil?
+                  if haveDescription
                      @xml.tag!('descript') do
                         descriptionClass.writeXML(hResourceInfo)
                      end
                   end
-                  if hResourceInfo[:abstract].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing abstract'
-                  end
-                  if hResourceInfo[:purpose].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing purpose'
+                  unless haveDescription
+                     @NameSpace.issueWarning(181, nil, outContext)
                   end
 
                   # identification information 1.3 (timeperd) - time period of content (required)
@@ -84,8 +86,7 @@ module ADIWG
                      end
                   end
                   if hResourceInfo[:timePeriod].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing time period'
+                     @NameSpace.issueWarning(182, nil, outContext)
                   end
 
                   # identification information 1.4 (status) - status
@@ -104,8 +105,7 @@ module ADIWG
                      end
                   end
                   if hResourceInfo[:keywords].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing keywords'
+                     @NameSpace.issueWarning(183, nil, outContext)
                   end
 
                   # identification information bio (taxonomy) - taxonomy
@@ -124,8 +124,8 @@ module ADIWG
                      constraintClass.writeXML(hResourceInfo[:constraints])
                   end
                   if hResourceInfo[:constraints].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Identification section is missing access and use constraints'
+                     @NameSpace.issueWarning(184,'accconst', outContext)
+                     @NameSpace.issueWarning(185,'useconst', outContext)
                   end
 
                   # identification information 1.9 (ptcontac) - point of contact

@@ -81,7 +81,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'spatial reference projection is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: spatial reference projection type is missing'
 
    end
 
@@ -95,7 +95,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'spatial reference projection is missing'
+      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: spatial reference projection type is missing'
 
    end
 

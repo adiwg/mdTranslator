@@ -38,6 +38,7 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'citation', './metadata/idinfo/citation')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -51,8 +52,10 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Citation is missing originator'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: citation originator role is missing: CONTEXT is main resource citation'
 
       # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -62,8 +65,10 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Citation is missing originator'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: citation originator role is missing: CONTEXT is main resource citation'
 
    end
 
@@ -126,8 +131,10 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Citation is missing publication date'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: citation publication date is missing: CONTEXT is main resource citation'
 
       # missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -137,8 +144,10 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Citation is missing publication date'
+      assert hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: citation publication date is missing: CONTEXT is main resource citation'
 
    end
 

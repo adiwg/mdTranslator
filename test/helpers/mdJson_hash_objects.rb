@@ -1,5 +1,6 @@
 class FgdcWriterTD
 
+   # base -----------------------------------
    def base
       {
          schema: {
@@ -156,6 +157,8 @@ class FgdcWriterTD
       }
    end
 
+
+   # contacts--------------------------------
    def address
       {
          addressType: [],
@@ -171,49 +174,37 @@ class FgdcWriterTD
       }
    end
 
-   def associatedResource
+   def organization
       {
-         resourceType: [
-            {
-               type: 'resource type',
-               name: 'resource name'
-            }
-         ],
-         associationType: 'association type',
-         initiativeType: 'initiative type',
-         resourceCitation: {
-            title: 'citation title',
-            date: [
-               {
-                  'date': '2017-11-22',
-                  'dateType': 'publication'
-               }
-            ],
-            responsibleParty: [
-               {
-                  role: 'originator',
-                  party: [
-                     {
-                        contactId: 'CID001'
-                     }
-                  ]
-               }
-            ]
-         }
+         contactId: nil,
+         isOrganization: true,
+         name: 'organization name',
+         phone: [],
+         address: []
       }
    end
 
-   def bearingDistanceResolution
+   def person
       {
-         destanceResolution: 99.9,
-         distanceUnitOfMeasure: 'distance unit',
-         bearingResolution: 9.9,
-         bearingUnitOfMeasure: 'bearing unit',
-         bearingReferenceDirection: 'north',
-         bearingReferenceMeridian: 'magnetic'
+         contactId: nil,
+         isOrganization: false,
+         name: 'person name',
+         positionName: 'position name',
+         phone: [],
+         address: []
       }
    end
 
+   def phone
+      {
+         phoneName: 'phone name',
+         phoneNumber: nil,
+         service: []
+      }
+   end
+
+
+   # common ---------------------------------
    def citation
       {
          title: 'citation title',
@@ -277,6 +268,46 @@ class FgdcWriterTD
       }
    end
 
+   def graphic
+      {
+         fileName: nil,
+         fileDescription: 'graphic description',
+         fileType: 'graphic type',
+         fileConstraint: [],
+         fileUri: []
+      }
+   end
+
+   def identifier
+      {
+         identifier: 'identifier',
+         namespace: 'namespace',
+         version: 'version',
+         description: 'description',
+         authority: citation
+      }
+   end
+
+   def onlineResource
+      {
+         uri: nil,
+         name: 'online resource name',
+         protocol: 'protocol',
+         description: 'online resource description',
+         function: 'online description function'
+      }
+   end
+
+   def series
+      {
+         seriesName: 'series name',
+         seriesIssue: 'series issue',
+         issuePage: 'issue page'
+      }
+   end
+
+
+   # constraint -----------------------------
    def constraint
       {
          type: nil,
@@ -285,14 +316,11 @@ class FgdcWriterTD
       }
    end
 
-   def coordinateResolution
-      {
-         abscissaResolutionX: 999.9,
-         ordinateResolutionY: 99.9,
-         unitOfMeasure: 'units'
-      }
-   end
 
+   # coverage description -------------------
+
+
+   # data dictionary ------------------------
    def dataDictionary
       {
          citation: {
@@ -319,13 +347,6 @@ class FgdcWriterTD
       }
    end
 
-   def date
-      {
-         date: nil,
-         dateType: nil
-      }
-   end
-
    def dictionaryDomain
       {
          domainId: 'DOM001',
@@ -334,32 +355,6 @@ class FgdcWriterTD
          description: 'domain description',
          domainItem: [],
          domainReference: {}
-      }
-   end
-
-   def dimension
-      {
-         dimensionType: 'dimension type',
-         dimensionSize: 9,
-         resolution: {},
-         dimensionTitle: 'dimension title',
-         dimensionDescription: 'dimension description'
-      }
-   end
-
-   def distribution
-      {
-         description: 'distribution description',
-         liabilityStatement: 'distribution liability statement',
-         distributor: []
-      }
-   end
-
-   def distributor
-      {
-         contact: {},
-         orderProcess: [],
-         transferOption: []
       }
    end
 
@@ -376,7 +371,7 @@ class FgdcWriterTD
 
    def entity
       {
-         entityId: 'EID001',
+         entityId: 'entity ID',
          commonName: 'entity common name',
          codeName: 'entity code name',
          alias: ['alias one', 'alias two'],
@@ -405,122 +400,56 @@ class FgdcWriterTD
          units: 'units of measure',
          unitsResolution: 1.0,
          isCaseSensitive: false,
-         fieldWidth: nil,
-         missingValue: nil,
-         domainId: nil,
-         minValue: nil,
-         maxValue: nil,
+         fieldWidth: 1,
+         missingValue: '',
+         domainId: '',
+         minValue: '100',
+         maxValue: '999',
          valueRange: [],
          timePeriod: []
       }
    end
 
-   def extent
+   def valueRange
       {
-         description: 'description',
-         geographicExtent: [],
-         verticalExtent: [],
-         temporalExtent: []
+         minRangeValue: nil,
+         maxRangeValue: nil
       }
    end
 
-   def feature
+
+   # date-time ------------------------------
+   def date
       {
-         type: 'Feature',
-         id: nil,
-         geometry: {},
-         properties: {}
+         date: nil,
+         dateType: nil
       }
    end
 
-   def featureCollection
+
+   # distribution ---------------------------
+   def distribution
       {
-         type: 'FeatureCollection',
-         features: []
+         description: 'distribution description',
+         liabilityStatement: 'distribution liability statement',
+         distributor: []
       }
    end
 
-   def geodetic
+   def distributor
       {
-         datumIdentifier: {},
-         datumName: 'datum name',
-         ellipsoidIdentifier: {},
-         ellipsoidName: 'ellipsoid name',
-         semiMajorAxis: 9999.9,
-         axisUnits: 'axis units',
-         denominatorOfFlatteningRatio: 999.9
+         contact: {},
+         orderProcess: [],
+         transferOption: []
       }
    end
 
-   def geographicResolution
+   def orderProcess
       {
-         latitudeResolution: 99.9,
-         longitudeResolution: 9.9,
-         unitOfMeasure: 'unit'
-      }
-   end
-
-   def geologicAge
-      {
-         ageTimeScale: 'geologic age time scale',
-         ageEstimate: 'geologic age estimate',
-         ageUncertainty: 'geologic age uncertainty',
-         ageExplanation: 'geologic age explanation',
-         ageReference: []
-
-      }
-   end
-
-   def graphic
-      {
-         fileName: nil,
-         fileDescription: 'graphic description',
-         fileType: 'graphic type',
-         fileConstraint: [],
-         fileUri: []
-      }
-   end
-
-   def gridRepresentation
-      {
-         numberOfDimensions: 9,
-         dimension: [],
-         cellGeometry: 'point',
-         transformationParameterAvailable: false
-      }
-   end
-
-   def identifier
-      {
-         identifier: 'identifier',
-         namespace: 'namespace',
-         version: 'version',
-         description: 'description',
-         authority: citation
-      }
-   end
-
-   def keyword
-      {
-         keyword: nil,
-         keywordId: nil
-      }
-   end
-
-   def keywords
-      {
-         keyword: [],
-         keywordType: 'theme',
-         thesaurus: citation
-      }
-   end
-
-   def lineage
-      {
-         statement: 'statement',
-         citation: [],
-         processStep: [],
-         source: []
+         fees: 'no charge',
+         plannedAvailability: '2018-02-05T00:00:00',
+         orderingInstructions: 'ordering instructions',
+         turnaround: 'one week turnaround'
       }
    end
 
@@ -543,64 +472,70 @@ class FgdcWriterTD
       }
    end
 
-   def obliqueLinePoint
+   def resourceFormat
       {
-         azimuthLineLatitude: 99.9,
-         azimuthLineLongitude: 99.9
+         formatSpecification: {
+            title: 'format specification',
+            edition: 'format edition',
+            date: [
+               date: '2018-02-01',
+               dateType: 'revision'
+            ],
+            identifier: [
+               {
+                  identifier: 'format identifier'
+               }
+            ],
+            otherCitationDetails: [
+               'format information content'
+            ]
+         },
+         amendmentNumber: 'amendment number',
+         compressionMethod: 'compression method',
+         technicalPrerequisite: 'format technical prerequisite'
       }
    end
 
-   def onlineResource
+   def transferOption
       {
-         uri: nil,
-         name: 'online resource name',
-         protocol: 'protocol',
-         description: 'online resource description',
-         function: 'online description function'
+         transferSize: 999,
+         unitsOfDistribution: 'MB',
+         onlineOption: [],
+         offlineOption: [],
+         transferFrequency: {
+            months: 9
+         },
+         distributionFormat: []
       }
    end
 
-   def orderProcess
+
+   # funding --------------------------------
+
+
+   # graphic extent --------------------------
+   def extent
       {
-         fees: 'no charge',
-         plannedAvailability: '2018-02-05T00:00:00',
-         orderingInstructions: 'ordering instructions',
-         turnaround: 'one week turnaround'
+         description: 'description',
+         geographicExtent: [],
+         verticalExtent: [],
+         temporalExtent: []
       }
    end
 
-   def organization
+   def feature
       {
-         contactId: nil,
-         isOrganization: true,
-         name: 'organization name',
-         phone: [],
-         address: []
+         type: 'Feature',
+         id: nil,
+         geometry: {},
+         properties: {}
       }
    end
 
-   def party
+   def featureCollection
       {
-         contactId: nil
-      }
-   end
-
-   def person
-      {
-         contactId: nil,
-         isOrganization: false,
-         name: 'person name',
-         positionName: 'position name',
-         phone: [],
-         address: []
-      }
-   end
-
-   def phone
-      {
-         phoneName: 'phone name',
-         phoneNumber: nil,
-         service: []
+         type: 'FeatureCollection',
+         features: []
       }
    end
 
@@ -633,6 +568,34 @@ class FgdcWriterTD
       }
    end
 
+
+   # keyword --------------------------------
+   def keyword
+      {
+         keyword: nil,
+         keywordId: nil
+      }
+   end
+
+   def keywords
+      {
+         keyword: [],
+         keywordType: 'theme',
+         thesaurus: citation
+      }
+   end
+
+
+   # lineage --------------------------------
+   def lineage
+      {
+         statement: 'statement',
+         citation: [],
+         processStep: [],
+         source: []
+      }
+   end
+
    def processStep
       {
          stepId: nil,
@@ -645,29 +608,19 @@ class FgdcWriterTD
       }
    end
 
-   def resourceFormat
+   def source
       {
-         formatSpecification: {
-            title: 'format specification',
-            edition: 'format edition',
-            date: [
-               date: '2018-02-01',
-               dateType: 'revision'
-            ],
-            identifier: [
-               {
-                  identifier: 'format identifier'
-               }
-            ],
-            otherCitationDetails: [
-               'format information content'
-            ]
-         },
-         amendmentNumber: 'amendment number',
-         compressionMethod: 'compression method',
-         technicalPrerequisite: 'format technical prerequisite'
+         sourceId: nil,
+         description: 'description',
+         sourceProcessStep: []
       }
    end
+
+
+   # identification info --------------------------
+
+
+   # responsibility -------------------------
 
    def responsibleParty
       {
@@ -677,6 +630,14 @@ class FgdcWriterTD
       }
    end
 
+   def party
+      {
+         contactId: nil
+      }
+   end
+
+
+   # scope ----------------------------------
    def scope
       {
          scopeCode: 'code',
@@ -685,19 +646,12 @@ class FgdcWriterTD
       }
    end
 
-   def series
-      {
-         seriesName: 'series name',
-         seriesIssue: 'series issue',
-         issuePage: 'issue page'
-      }
-   end
 
-   def source
+   # spatial reference ----------------------
+   def obliqueLinePoint
       {
-         sourceId: nil,
-         description: 'description',
-         sourceProcessStep: []
+         azimuthLineLatitude: 99.9,
+         azimuthLineLongitude: 99.9
       }
    end
 
@@ -715,6 +669,96 @@ class FgdcWriterTD
       }
    end
 
+   def geodetic
+      {
+         datumIdentifier: {},
+         datumName: 'datum name',
+         ellipsoidIdentifier: {},
+         ellipsoidName: 'ellipsoid name',
+         semiMajorAxis: 9999.9,
+         axisUnits: 'axis units',
+         denominatorOfFlatteningRatio: 999.9
+      }
+   end
+
+   def verticalDatum
+      {
+         datumIdentifier: {},
+         datumName: 'datum name',
+         encodingMethod: 'encoding method',
+         isDepthSystem: false,
+         verticalResolution: 9.99,
+         unitOfMeasure: 'unit of measure'
+      }
+   end
+
+
+   # spatial representation -----------------
+   def dimension
+      {
+         dimensionType: 'dimension type',
+         dimensionSize: 9,
+         resolution: {},
+         dimensionTitle: 'dimension title',
+         dimensionDescription: 'dimension description'
+      }
+   end
+
+   def gridRepresentation
+      {
+         numberOfDimensions: 9,
+         dimension: [],
+         cellGeometry: 'point',
+         transformationParameterAvailable: false
+      }
+   end
+
+   def vectorObject
+      {
+         objectType: 'object type code',
+         objectCount: 9
+      }
+   end
+
+   def vectorRepresentation
+      {
+         topologyLevel: 'topology level',
+         vectorObject: []
+      }
+   end
+
+
+
+   # spatial resolution ----------------------
+   def bearingDistanceResolution
+      {
+         destanceResolution: 99.9,
+         distanceUnitOfMeasure: 'distance unit',
+         bearingResolution: 9.9,
+         bearingUnitOfMeasure: 'bearing unit',
+         bearingReferenceDirection: 'north',
+         bearingReferenceMeridian: 'magnetic'
+      }
+   end
+
+   def coordinateResolution
+      {
+         abscissaResolutionX: 999.9,
+         ordinateResolutionY: 99.9,
+         unitOfMeasure: 'units'
+      }
+   end
+
+   def geographicResolution
+      {
+         latitudeResolution: 99.9,
+         longitudeResolution: 9.9,
+         unitOfMeasure: 'unit'
+      }
+   end
+
+
+   # taxonomy -------------------------------
    def taxonomy
       {
          taxonomicSystem: [
@@ -756,6 +800,8 @@ class FgdcWriterTD
       }
    end
 
+
+   # temporal extent ------------------------
    def timePeriod
       {
          id: nil,
@@ -766,48 +812,51 @@ class FgdcWriterTD
       }
    end
 
-   def transferOption
+   def geologicAge
       {
-         transferSize: 999,
-         unitsOfDistribution: 'MB',
-         onlineOption: [],
-         offlineOption: [],
-         transferFrequency: {
-            months: 9
-         },
-         distributionFormat: []
+         ageTimeScale: 'geologic age time scale',
+         ageEstimate: 'geologic age estimate',
+         ageUncertainty: 'geologic age uncertainty',
+         ageExplanation: 'geologic age explanation',
+         ageReference: []
+
       }
    end
 
-   def valueRange
-      {
-         minRangeValue: nil,
-         maxRangeValue: nil
-      }
-   end
 
-   def vectorObject
-      {
-         objectType: 'object type code',
-         objectCount: 9
-      }
-   end
+   # vertical extent ------------------------
 
-   def vectorRepresentation
-      {
-         topologyLevel: 'topology level',
-         vectorObject: []
-      }
-   end
 
-   def verticalDatum
+   # miscellaneous---------------------------
+   def associatedResource
       {
-         datumIdentifier: {},
-         datumName: 'datum name',
-         encodingMethod: 'encoding method',
-         isDepthSystem: false,
-         verticalResolution: 9.99,
-         unitOfMeasure: 'unit of measure'
+         resourceType: [
+            {
+               type: 'resource type',
+               name: 'resource name'
+            }
+         ],
+         associationType: 'association type',
+         initiativeType: 'initiative type',
+         resourceCitation: {
+            title: 'citation title',
+            date: [
+               {
+                  'date': '2017-11-22',
+                  'dateType': 'publication'
+               }
+            ],
+            responsibleParty: [
+               {
+                  role: 'originator',
+                  party: [
+                     {
+                        contactId: 'CID001'
+                     }
+                  ]
+               }
+            ]
+         }
       }
    end
 

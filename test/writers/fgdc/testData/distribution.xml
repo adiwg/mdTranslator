@@ -59,16 +59,20 @@
           </onlinopt>
           <offoptn>
             <offmedia>medium specification</offmedia>
-            <recden>99.9</recden>
-            <recdenu>units of density</recdenu>
+            <reccap>
+              <recden>99.9</recden>
+              <recdenu>units of density</recdenu>
+            </reccap>
             <recfmt>medium format one</recfmt>
             <recfmt>medium format two</recfmt>
             <compat>medium note</compat>
           </offoptn>
           <offoptn>
             <offmedia>medium specification</offmedia>
-            <recden>99.9</recden>
-            <recdenu>units of density</recdenu>
+            <reccap>
+              <recden>99.9</recden>
+              <recdenu>units of density</recdenu>
+            </reccap>
             <recfmt>medium format one</recfmt>
             <recfmt>medium format two</recfmt>
             <compat>medium note</compat>

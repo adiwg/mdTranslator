@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-23 refactored error and warning messaging
 #  Stan Smith 2017-12-15 original script
 
 require_relative 'class_lineage'
@@ -16,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(intObj)
@@ -46,8 +48,7 @@ module ADIWG
                      end
                   end
                   if intObj[:metadata][:lineageInfo].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Data Quality is missing lineage section'
+                     @NameSpace.issueWarning(350, nil, 'data quality section')
                   end
 
                   # data quality 2.6 (cloud) - cloud cover (not implemented)

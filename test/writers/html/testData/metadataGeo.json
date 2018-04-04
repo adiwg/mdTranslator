@@ -1,7 +1,7 @@
 {
    "schema": {
       "name": "mdJson",
-      "version": "2.0.0"
+      "version": "2.4.5"
    },
    "contact": [
       {
@@ -3094,6 +3094,24 @@
                   "currency": "USD",
                   "sourceId": "CID005",
                   "recipientId": "CID006",
+                  "responsibleParty": [
+                     {
+                        "role": "use",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     },
+                     {
+                        "role": "audit",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           }
+                        ]
+                     }
+                  ],
                   "matching": true,
                   "onlineResource": [
                      {

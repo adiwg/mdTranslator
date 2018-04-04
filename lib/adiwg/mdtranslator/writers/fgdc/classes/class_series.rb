@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-23 refactored error and warning messaging
 #  Stan Smith 2017-11-21 original script
 
 module ADIWG
@@ -14,6 +15,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hSeries)
@@ -24,8 +26,7 @@ module ADIWG
                      @xml.tag!('sername', hSeries[:seriesName])
                   end
                   if hSeries[:seriesName].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Series is missing name'
+                     @NameSpace.issueWarning(360, 'sername')
                   end
 
                   # series 8.7.2 (issue) - series issue
@@ -34,8 +35,7 @@ module ADIWG
                      @xml.tag!('issue', hSeries[:seriesIssue])
                   end
                   if hSeries[:seriesIssue].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Series is missing issue'
+                     @NameSpace.issueWarning(361, 'issue')
                   end
 
                end # writeXML

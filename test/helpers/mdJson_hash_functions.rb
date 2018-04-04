@@ -652,8 +652,8 @@ class FgdcWriterTD
 
    def add_valueRange(hAttribute, min, max)
       hRange = valueRange
-      hRange[:minRangeValue] = min
-      hRange[:maxRangeValue] = max
+      hRange[:minRangeValue] = min.to_s
+      hRange[:maxRangeValue] = max.to_s
       hAttribute[:valueRange] << hRange
       return hAttribute
    end

@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-18 refactored error and warning messaging
 #  Stan Smith 2018-01-15 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hGeodetic)
@@ -31,8 +35,7 @@ module ADIWG
                      @xml.tag!('ellips', hGeodetic[:ellipsoidName])
                   end
                   if hGeodetic[:ellipsoidName].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geodetic Coordinate System is missing ellipsoid name'
+                     @NameSpace.issueWarning(150, 'ellips')
                   end
 
                   # geodetic reference system 4.1.4.3 (semiaxis) - ellipsoid semi-major axis (required)
@@ -40,8 +43,7 @@ module ADIWG
                      @xml.tag!('semiaxis', hGeodetic[:semiMajorAxis])
                   end
                   if hGeodetic[:semiMajorAxis].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geodetic Coordinate System is missing semi-major axis'
+                     @NameSpace.issueWarning(151, 'semiaxis')
                   end
 
                   # geodetic reference system 4.1.4.4 (denflat) - ellipsoid denominator of flattening ratio (required)
@@ -49,8 +51,7 @@ module ADIWG
                      @xml.tag!('denflat', hGeodetic[:denominatorOfFlatteningRatio])
                   end
                   if hGeodetic[:denominatorOfFlatteningRatio].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geodetic Coordinate System is missing denominator of flattening ratio'
+                     @NameSpace.issueWarning(152, 'denflat')
                   end
 
                end # writeXML

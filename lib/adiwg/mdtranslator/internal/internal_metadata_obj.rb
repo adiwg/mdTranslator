@@ -528,12 +528,33 @@ class InternalMetadata
       }
    end
 
+   def newMedium
+      {
+         mediumSpecification: {},
+         density: nil,
+         units: nil,
+         numberOfVolumes: nil,
+         mediumFormat: [],
+         note: nil,
+         identifier: {}
+      }
+   end
+
    def newOrderProcess
       {
          fees: nil,
          plannedAvailability: {},
          orderingInstructions: nil,
          turnaround: nil
+      }
+   end
+
+   def newResourceFormat
+      {
+         formatSpecification: {},
+         amendmentNumber: nil,
+         compressionMethod: nil,
+         technicalPrerequisite: nil
       }
    end
 
@@ -548,27 +569,6 @@ class InternalMetadata
       }
    end
 
-   def newMedium
-      {
-         mediumSpecification: {},
-         density: nil,
-         units: nil,
-         numberOfVolumes: nil,
-         mediumFormat: [],
-         note: nil,
-         identifier: {}
-      }
-   end
-
-   def newResourceFormat
-      {
-         formatSpecification: {},
-         amendmentNumber: nil,
-         compressionMethod: nil,
-         technicalPrerequisite: nil
-      }
-   end
-
 
    # funding --------------------------------
    def newAllocation
@@ -578,6 +578,7 @@ class InternalMetadata
          currency: nil,
          sourceId: nil,
          recipientId: nil,
+         responsibleParties: [],
          matching: false,
          onlineResources: [],
          comment: nil
@@ -1025,8 +1026,6 @@ class InternalMetadata
       }
    end
 
-
-   # taxonomy -------------------------------
    def newTaxonomy
       {
          taxonSystem: [],

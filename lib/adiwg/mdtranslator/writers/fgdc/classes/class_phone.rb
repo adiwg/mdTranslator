@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-16 refactored error and warning messaging
 #  Stan Smith 2017-11-28 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,9 +17,10 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(aPhones)
+               def writeXML(aPhones, context = nil)
 
                   # phone 10.5 (cntvoice) - voice phone [] (required)
                   # <- hPhone[:phoneNumber] where hPhone[:phoneServiceTypes] = 'voice'
@@ -30,8 +34,7 @@ module ADIWG
                      end
                   end
                   unless haveVoice
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Contact is missing voice phone'
+                     @NameSpace.issueWarning(5, 'cntvoice', context)
                   end
 
                   # phone 10.6 (cnttdd) - tty phone []

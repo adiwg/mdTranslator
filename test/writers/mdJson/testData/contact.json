@@ -10,8 +10,8 @@
          "name": "name",
          "positionName": "positionName",
          "memberOfOrganization": [
-            "memberOfOrganization0",
-            "memberOfOrganization1"
+            "CID002",
+            "CID003"
          ],
          "logoGraphic": [
             {
@@ -59,6 +59,16 @@
          ],
          "contactInstructions": "contactInstructions",
          "contactType": "contactType"
+      },
+      {
+         "contactId": "CID002",
+         "isOrganization": true,
+         "name": "name 002"
+      },
+      {
+         "contactId": "CID003",
+         "isOrganization": true,
+         "name": "name 003"
       }
    ],
    "metadata": {

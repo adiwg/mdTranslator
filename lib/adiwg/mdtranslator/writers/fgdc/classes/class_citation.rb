@@ -2,7 +2,8 @@
 # FGDC CSDGM writer output in XML
 
 # History:
-#   Stan Smith 2017-11-17 original script
+#  Stan Smith 2018-02-26 refactored error and warning messaging
+#  Stan Smith 2017-11-17 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative '../fgdc_writer'
@@ -20,10 +21,12 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hCitation, aAssocResource)
-
+               def writeXML(hCitation, aAssocResource, inContext = nil)
+                  
+                  # classes used
                   seriesClass = Series.new(@xml, @hResponseObj)
                   pubClass = Publisher.new(@xml, @hResponseObj)
                   citationClass = Citation.new(@xml, @hResponseObj)
@@ -34,9 +37,9 @@ module ADIWG
                      # <- hCitation[:responsibleParties] role = 'originator'
                      haveOriginator = false
                      aRParties = hCitation[:responsibleParties]
-                     aOriginators = ADIWG::Mdtranslator::Writers::Fgdc.find_responsibility(aRParties, 'originator')
+                     aOriginators = @NameSpace.find_responsibility(aRParties, 'originator')
                      aOriginators.each do |contactId|
-                        hContact = ADIWG::Mdtranslator::Writers::Fgdc.get_contact(contactId)
+                        hContact = @NameSpace.get_contact(contactId)
                         unless hContact.empty?
                            name = hContact[:name]
                            unless name.nil?
@@ -46,8 +49,7 @@ module ADIWG
                         end
                      end
                      unless haveOriginator
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Citation is missing originator'
+                        @NameSpace.issueWarning(30,'origin', inContext)
                      end
 
                      # citation 8.2 (pubdate) - publication date (required)
@@ -76,8 +78,7 @@ module ADIWG
                         end
                      end
                      unless havePubDate
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Citation is missing publication date'
+                        @NameSpace.issueWarning(31,'pubdate', inContext)
                      end
                      if !havePubTime && @hResponseObj[:writerShowTags]
                         @xml.tag!('pubtime')
@@ -89,8 +90,7 @@ module ADIWG
                         @xml.tag!('title', hCitation[:title])
                      end
                      if hCitation[:title].nil? || hCitation[:title] == ''
-                        @hResponseObj[:writerPass] = false
-                        @hResponseObj[:writerMessages] << 'Citation is missing title'
+                        @NameSpace.issueWarning(32,'title', inContext)
                      end
 
                      # citation 8.5 (edition) - edition

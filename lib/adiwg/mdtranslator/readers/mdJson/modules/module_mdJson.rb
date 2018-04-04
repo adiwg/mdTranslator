@@ -8,6 +8,7 @@
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_schema'
 require_relative 'module_contact'
+require_relative 'module_contactPostprocess'
 require_relative 'module_metadata'
 require_relative 'module_dataDictionary'
 require_relative 'module_metadataRepository'
@@ -57,6 +58,10 @@ module ADIWG
                            intObj[:contacts] << hReturn
                            @contacts = intObj[:contacts]
                         end
+                     end
+                     ContactPost.examine(@contacts, responseObj)
+                     unless responseObj[:readerExecutionPass]
+                        return nil
                      end
                   end
                   if intObj[:contacts].empty?

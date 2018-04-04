@@ -8,39 +8,93 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcLocalSystem < TestWriterFGDCParent
+class TestWriterFgdcLocalPlanar < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = FgdcWriterTD.new
 
-   def test_map_localSystem
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-      path = './metadata/spref/horizsys/local'
+   hSpaceRef = TDClass.spatialReferenceSystem
+   TDClass.add_projection(hSpaceRef, 'localSystem')
+   TDClass.add_localDesc(hSpaceRef, 'local description')
+   TDClass.add_localGeoInfo(hSpaceRef, 'local georeference information')
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
 
-      xFile = TestWriterFGDCParent.get_xml('localSystem')
-      xExpect = xFile.xpath(path)
-      expect = xExpect.to_s.squeeze(' ')
+   @@mdHash = mdHash
 
-      mdHash = TDClass.base
-      hSpaceRef = TDClass.spatialReferenceSystem
-      TDClass.add_projection(hSpaceRef, 'local')
-      TDClass.add_localDesc(hSpaceRef, 'local description')
-      TDClass.add_localGeoInfo(hSpaceRef, 'local georeference information')
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   def test_localPlanar_complete
 
-      # TODO validate 'normal' after schema update
+      hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'localSystem',
+                                                  './metadata/spref/horizsys/local')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+
+   end
+
+   def test_localPlanar_description
+
+      # empty description
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:localPlanarDescription] = ''
+
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath(path)
-      got = xGot.to_s.squeeze(' ')
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is local coordinate system not aligned with surface of earth'
 
-      assert_equal expect, got
-      assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
+      # missing description
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection].delete(:localPlanarDescription)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is local coordinate system not aligned with surface of earth'
+
+   end
+
+   def test_localPlanar_georeference
+
+      # empty georeference
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:localPlanarGeoreference] = ''
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is local coordinate system not aligned with surface of earth'
+
+      # missing georeference
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection].delete(:localPlanarGeoreference)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is local coordinate system not aligned with surface of earth'
 
    end
 

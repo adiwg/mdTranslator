@@ -2,9 +2,11 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-02-26 refactored error and warning messaging
 #  Stan Smith 2018-01-24 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
+require_relative '../fgdc_writer'
 require_relative 'class_dataDomain'
 
 module ADIWG
@@ -17,10 +19,11 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hAttribute)
-
+               def writeXML(hAttribute, inContext = nil)
+                  
                   # classes used
                   domainClass = DataDomain.new(@xml, @hResponseObj)
 
@@ -30,8 +33,7 @@ module ADIWG
                      @xml.tag!('attrlabl', hAttribute[:attributeCode])
                   end
                   if hAttribute[:attributeCode].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Attribute Detail missing label'
+                     @NameSpace.issueWarning(10, 'attrlabl', inContext)
                   end
 
                   # attribute 5.1.2.2 (attrdef) - attribute definition (required)
@@ -40,8 +42,7 @@ module ADIWG
                      @xml.tag!('attrdef', hAttribute[:attributeDefinition])
                   end
                   if hAttribute[:attributeDefinition].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Attribute missing definition'
+                     @NameSpace.issueWarning(11, 'attrdef', inContext)
                   end
 
                   # attribute 5.1.2.3 (attrdefs) - attribute definition source (required)
@@ -52,8 +53,16 @@ module ADIWG
                      end
                   end
                   if hAttribute[:attributeReference].empty?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Attribute missing definition citation'
+                     @NameSpace.issueWarning(12, 'attrdefs', inContext)
+                  end
+
+                  # set attribute context
+                  outContext = nil
+                  unless hAttribute[:attributeCode].nil?
+                     outContext = 'attribute code ' + hAttribute[:attributeCode]
+                     unless inContext.nil?
+                        outContext = inContext + ' ' + outContext
+                     end
                   end
 
                   # attribute 5.1.2.4 (attrdomv) - attribute domain value
@@ -78,8 +87,7 @@ module ADIWG
                                  @xml.tag!('rdommin', hRange[:minRangeValue])
                               end
                               if hRange[:minRangeValue].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Attribute Range Value missing minimum'
+                                 @NameSpace.issueWarning(13,'rdommin', outContext)
                               end
 
                               # value range 5.1.2.4.2.2 (rdommax) - range maximum (required)
@@ -88,8 +96,7 @@ module ADIWG
                                  @xml.tag!('rdommax', hRange[:maxRangeValue])
                               end
                               if hRange[:maxRangeValue].nil?
-                                 @hResponseObj[:writerPass] = false
-                                 @hResponseObj[:writerMessages] << 'Attribute Range Value missing maximum'
+                                 @NameSpace.issueWarning(14,'rdommax', outContext)
                               end
 
                               # value range 5.1.2.4.2.3 (attrunit) - unit of measure
@@ -129,8 +136,7 @@ module ADIWG
                            @xml.tag!('begdatea', begDate)
                         end
                         if begDate == 'ERROR'
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Attribute Beginning Range Date error'
+                           @NameSpace.issueWarning(15,nil, outContext)
                         end
                      end
                      if hTimePeriod[:startDateTime].empty? && @hResponseObj[:writerShowTags]
@@ -147,8 +153,7 @@ module ADIWG
                            @xml.tag!('enddatea', endDate)
                         end
                         if endDate == 'ERROR'
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Attribute Ending Range Date error'
+                           @NameSpace.issueWarning(16,nil, outContext)
                         end
                      end
                      if hTimePeriod[:endDateTime].empty? && @hResponseObj[:writerShowTags]

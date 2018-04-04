@@ -2,7 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-13 original script
+
+require_relative '../fgdc_writer'
 
 module ADIWG
    module Mdtranslator
@@ -14,6 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(aKeywords)
@@ -23,27 +27,30 @@ module ADIWG
                   aKeywords.each do |hKeySet|
                      type = hKeySet[:keywordType]
                      if type == 'taxon'
-                        aKeywords = hKeySet[:keywords]
-                        thesaurus = hKeySet[:thesaurus]
-                        if thesaurus.empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Taxonomy Keyword Set is missing thesaurus'
-                        end
+                        haveTaxon = true
                         @xml.tag!('keywtax') do
-                           @xml.tag!('taxonkt', thesaurus[:title])
+                           aKeywords = hKeySet[:keywords]
+                           thesaurus = hKeySet[:thesaurus]
+                           unless thesaurus.empty?
+                              @xml.tag!('taxonkt', thesaurus[:title])
+                           end
+                           if thesaurus.empty?
+                              @NameSpace.issueWarning(420, 'taxonkt')
+                           end
                            aKeywords.each do |hKeyword|
                               keyword = hKeyword[:keyword]
                               unless keyword.nil?
                                  @xml.tag!('taxonkey', keyword)
-                                 haveTaxon = true
                               end
+                           end
+                           if aKeywords.empty?
+                              @NameSpace.issueWarning(421, 'taxonkey')
                            end
                         end
                      end
                   end
                   unless haveTaxon
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomy is missing keyword set'
+                     @NameSpace.issueError(422)
                   end
 
                end # writeXML

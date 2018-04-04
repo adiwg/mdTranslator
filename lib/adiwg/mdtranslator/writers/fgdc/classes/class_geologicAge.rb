@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-11-24 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_citation'
 
 module ADIWG
@@ -16,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hGeoAge)
@@ -28,8 +31,7 @@ module ADIWG
                      @xml.tag!('geolscal', hGeoAge[:ageTimeScale])
                   end
                   if hGeoAge[:ageTimeScale].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geologic Age is missing time scale'
+                     @NameSpace.issueWarning(170, 'geolscal')
                   end
 
                   # geologic age (geolest) - age estimate (required)
@@ -37,8 +39,7 @@ module ADIWG
                      @xml.tag!('geolest', hGeoAge[:ageEstimate])
                   end
                   if hGeoAge[:ageEstimate].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Geologic Age is missing age estimate'
+                     @NameSpace.issueWarning(171, 'geolest')
                   end
 
                   # geologic age (geolun) - age uncertainty

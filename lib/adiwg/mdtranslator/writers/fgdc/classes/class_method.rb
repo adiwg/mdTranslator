@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-12-20 original script
 
 require_relative '../fgdc_writer'
@@ -18,15 +19,16 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hLineage)
-
+                  
                   # classes used
                   keywordClass = MethodKeyword.new(@xml, @hResponseObj)
                   citationClass = Citation.new(@xml, @hResponseObj)
 
-                  hIntObj = ADIWG::Mdtranslator::Writers::Fgdc.get_intObj
+                  hIntObj = @NameSpace.get_intObj
                   haveMethod = false
                   haveMethod = true unless hLineage[:statement].nil?
                   haveMethod = true unless hLineage[:lineageCitation].empty?
@@ -46,8 +48,7 @@ module ADIWG
                            @xml.tag!('methtype', hLineage[:statement])
                         end
                         if hLineage[:statement].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Lineage Method is missing type and/or description'
+                           @NameSpace.issueWarning(210, 'methtype')
                         end
 
                         # methodology bio (methodid) - method id [] {keywords} (required)
@@ -60,8 +61,7 @@ module ADIWG
                            @xml.tag!('methdesc', hLineage[:statement])
                         end
                         if hLineage[:statement].nil?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Lineage Method is missing type and/or description'
+                           @NameSpace.issueWarning(211, 'methdesc')
                         end
 
                         # methodology bio (methcite) - method citation [] (required)
@@ -74,8 +74,7 @@ module ADIWG
                            end
                         end
                         if hLineage[:lineageCitation].empty?
-                           @hResponseObj[:writerPass] = false
-                           @hResponseObj[:writerMessages] << 'Lineage Method is missing citation'
+                           @NameSpace.issueWarning(212, nil)
                         end
 
                      end

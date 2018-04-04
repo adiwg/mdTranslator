@@ -2,8 +2,10 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-13 original script
 
+require_relative '../fgdc_writer'
 require_relative 'class_taxonomyClassification'
 
 module ADIWG
@@ -16,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
                def writeXML(hClass)
@@ -28,8 +31,7 @@ module ADIWG
                      @xml.tag!('taxonrn', hClass[:taxonRank])
                   end
                   if hClass[:taxonRank].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomic Classification is missing taxon rank'
+                     @NameSpace.issueWarning(410, 'taxonrn')
                   end
 
                   # taxonomy bio (taxonrv) - taxon value (required)
@@ -37,8 +39,7 @@ module ADIWG
                      @xml.tag!('taxonrv', hClass[:taxonValue])
                   end
                   if hClass[:taxonValue].nil?
-                     @hResponseObj[:writerPass] = false
-                     @hResponseObj[:writerMessages] << 'Taxonomic Classification is missing latin name'
+                     @NameSpace.issueWarning(411, 'taxonrv')
                   end
 
                   # taxonomy bio (common) - taxon value common names []

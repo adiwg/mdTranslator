@@ -25,6 +25,7 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'publisher', './metadata/idinfo/citation/citeinfo/pubinfo')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
@@ -38,11 +39,13 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
+      refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Publisher is missing place of publication'
+      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: publication place is missing: CONTEXT is identification information citation'
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
 
       # no country
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -55,6 +58,9 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
       assert_equal 'city, administrative area', got
 
       # no admin area
@@ -69,6 +75,11 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
       assert_equal 'city', got
 
       # no city
@@ -84,6 +95,13 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       got = xMetadata.xpath('./metadata/idinfo/citation/citeinfo/pubinfo/pubplace').text
 
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
       assert_equal 'address description', got
 
       # no description
@@ -97,11 +115,15 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-
-      refute_empty xMetadata.to_s
-      refute hResponseObj[:writerPass]
-      assert_includes hResponseObj[:writerMessages], 'Publisher is missing place of publication'
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: publication place is missing: CONTEXT is identification information citation'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
 
    end
 

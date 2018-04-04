@@ -43,7 +43,7 @@ module ADIWG
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
                   @xml.comment!('FGDC METADATA (FGDC-STD-001-1998)')
-                  @xml.comment!('This file conforms to the Biological Data Profile (FGDC-STD-001.1-1999)')
+                  @xml.comment!('This metadata record conforms to the Biological Data Profile (FGDC-STD-001.1-1999)')
                   @xml.comment!('The following metadata file was constructed using the ADIwg mdTranslator, http://mdtranslator.adiwg.org')
                   @xml.comment!('mdTranslator software is an open-source project of the Alaska Data Integration working group (ADIwg)')
                   @xml.comment!('mdTranslator and other metadata tools are available at https://github.com/adiwg')

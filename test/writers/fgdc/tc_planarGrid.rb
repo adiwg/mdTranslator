@@ -20,7 +20,6 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    def run_test(mdHash, path, expect)
 
-      # TODO validate 'normal' after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
@@ -30,8 +29,10 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       got = xGot.to_s.squeeze(' ')
 
       assert_equal expect, got
-      assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: FGDC writer: planar coordinate information section is missing'
 
    end
 
