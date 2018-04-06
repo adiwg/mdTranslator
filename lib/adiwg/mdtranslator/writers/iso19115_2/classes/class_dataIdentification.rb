@@ -265,6 +265,10 @@ module ADIWG
                      if hData[:taxonomy].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:taxonomy')
                      end
+                     if hData[:taxonomy].length > 1
+                        # - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
+                        # - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
+                     end
 
                      # data identification - spatial representation type []
                      aSpatialType = hData[:spatialRepresentationTypes]

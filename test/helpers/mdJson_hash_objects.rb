@@ -811,8 +811,8 @@ class MdJsonHashWriter
    def taxonClass
       {
          taxonomicSystemId: 'taxon id',
-         taxonomicRank: 'taxon rank',
-         latinName: 'latin name',
+         taxonomicLevel: 'taxon rank',
+         taxonomicName: 'latin name',
          commonName: [],
          subClassification: []
       }

@@ -30,16 +30,16 @@ module ADIWG
                      @html.br
                   end
 
-                  # taxonomic classification - rank
+                  # taxonomic classification - level
                   unless hTaxon[:taxonRank].nil?
-                     @html.em('Taxonomic Rank: ')
+                     @html.em('Taxonomic Level: ')
                      @html.text!(hTaxon[:taxonRank])
                      @html.br
                   end
 
-                  # taxonomic classification - value
+                  # taxonomic classification - name
                   unless hTaxon[:taxonValue].nil?
-                     @html.em('Taxonomic Value: ')
+                     @html.em('Taxonomic Name: ')
                      @html.text!(hTaxon[:taxonValue])
                      @html.br
                   end

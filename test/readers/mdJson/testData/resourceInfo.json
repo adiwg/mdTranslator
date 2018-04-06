@@ -156,8 +156,8 @@
                ],
                "identificationProcedure": "identificationProcedure",
                "taxonomicClassification": {
-                  "taxonomicRank": "taxonomic level",
-                  "latinName": "taxonomic name"
+                  "taxonomicLevel": "taxonomic level",
+                  "taxonomicName": "taxonomic name"
                }
             },
             {
@@ -191,8 +191,8 @@
                ],
                "identificationProcedure": "identificationProcedure",
                "taxonomicClassification": {
-                  "taxonomicRank": "taxonomic level",
-                  "latinName": "taxonomic name"
+                  "taxonomicLevel": "taxonomic level",
+                  "taxonomicName": "taxonomic name"
                }
             }
          ],

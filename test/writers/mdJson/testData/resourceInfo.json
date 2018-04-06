@@ -180,8 +180,8 @@
                ],
                "identificationProcedure": "identificationProcedure",
                "taxonomicClassification": {
-                  "taxonomicRank": "taxonomicRank",
-                  "latinName": "latinName"
+                  "taxonomicLevel": "taxonomicLevel",
+                  "taxonomicName": "taxonomicName"
                }
             }
          ] ,

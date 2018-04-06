@@ -669,13 +669,13 @@ class MdJsonHashWriter
       return hSpaceRef
    end
 
-   def add_taxonClass(hObject, rank, name, aCommon = [], id = nil)
+   def add_taxonClass(hObject, level, name, aCommon = [], id = nil)
       hTaxClass = taxonClass
       unless id.nil?
          hTaxClass[:taxonomicSystemId] = id
       end
-      hTaxClass[:taxonomicRank] = rank
-      hTaxClass[:latinName] = name
+      hTaxClass[:taxonomicLevel] = level
+      hTaxClass[:taxonomicName] = name
       unless aCommon.empty?
          hTaxClass[:commonName] = aCommon
       end
