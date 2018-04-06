@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.12.0 2018-04-05 refactored messaging for ISO19110
 # 2.11.0 2018-03-28 add 'responsibleParties' to budget allocation
 # 2.11.0 2018-03-27 refactor messaging for fgdc writer
 # 2.10.0 2018-02-26 add 'forceValid' parameter to mdTranslator.translate
@@ -73,7 +74,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.11.0"
+      VERSION = "2.12.0"
    end
 end
 
