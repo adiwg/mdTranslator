@@ -52,51 +52,53 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title"
+                     },
+                     "modifications": "modifications"
                   },
-                  "modifications": "modifications"
-               },
-               {
-                  "citation": {
-                     "title": "title"
+                  {
+                     "citation": {
+                        "title": "title"
+                     },
+                     "modifications": ""
                   },
-                  "modifications": ""
-               },
-               {
-                  "citation": {
-                     "title": "title"
+                  {
+                     "citation": {
+                        "title": "title"
+                     }
                   }
-               }
-            ],
-            "generalScope": "generalScope",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "description0",
-                  "authority": {
-                     "title": "title0"
+               ],
+               "generalScope": "generalScope",
+               "identificationReference": [
+                  {
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "description0",
+                     "authority": {
+                        "title": "title0"
+                     }
                   }
+               ],
+               "observer": [],
+               "identificationProcedure": "identificationProcedure",
+               "identificationCompleteness": "identificationCompleteness",
+               "voucher": [],
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName",
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ]
                }
-            ],
-            "observer": [],
-            "identificationProcedure": "identificationProcedure",
-            "identificationCompleteness": "identificationCompleteness",
-            "voucher": [],
-            "taxonomicClassification": {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName",
-               "commonName": [
-                  "commonName0",
-                  "commonName1"
-               ]
             }
-         }
+         ]
       }
    }
 }

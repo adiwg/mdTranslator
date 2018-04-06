@@ -53,36 +53,23 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title"
-                  }
-               }
-            ],
-            "generalScope": "generalScope",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0"
-               }
-            ],
-            "observer": [
-               {
-                  "role": "role",
-                  "party": [
-                     {
-                        "contactId": "CID001"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title"
                      }
-                  ]
-               }
-            ],
-            "identificationProcedure": "identificationProcedure",
-            "identificationCompleteness": "identificationCompleteness",
-            "voucher": [
-               {
-                  "specimen": "specimen",
-                  "repository": {
+                  }
+               ],
+               "generalScope": "generalScope",
+               "identificationReference": [
+                  {
+                     "identifier": "identifier0"
+                  }
+               ],
+               "observer": [
+                  {
                      "role": "role",
                      "party": [
                         {
@@ -90,17 +77,32 @@
                         }
                      ]
                   }
-               }
-            ],
-            "taxonomicClassification": {
-               "commonName": [
-                  "commonName0",
-                  "commonName1"
                ],
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName0"
+               "identificationProcedure": "identificationProcedure",
+               "identificationCompleteness": "identificationCompleteness",
+               "voucher": [
+                  {
+                     "specimen": "specimen",
+                     "repository": {
+                        "role": "role",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "taxonomicClassification": {
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ],
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName0"
+               }
             }
-         }
+         ]
       }
    }
 }

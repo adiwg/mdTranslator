@@ -773,7 +773,7 @@ class InternalMetadata
          temporalResolutions: [],
          extents: [],
          coverageDescriptions: [],
-         taxonomy: {},
+         taxonomy: [],
          graphicOverviews: [],
          resourceFormats: [],
          keywords: [],

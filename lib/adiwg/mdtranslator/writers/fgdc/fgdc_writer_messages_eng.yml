@@ -86,6 +86,8 @@ messageList:
    - {id: 183, message: "keywords are missing"}
    - {id: 184, message: "access constraint is missing"}
    - {id: 185, message: "use constraint is missing"}
+   - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
+   - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
 
    - {id: 190, message: "keyword set thesaurus is missing"}
 

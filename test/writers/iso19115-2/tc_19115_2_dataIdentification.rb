@@ -23,7 +23,7 @@ class TestWriter191152DataIdentification < TestWriter191152Parent
       axExpect = @@xFile.xpath('//gmd:identificationInfo')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, validate: 'none'
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])

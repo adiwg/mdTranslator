@@ -20,7 +20,6 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
 
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
-      hIntObj = TestReaderFGDCParent.get_intObj
       xIn = @@xDoc.xpath('./metadata/idinfo/taxonomy')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hTaxonomy = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)

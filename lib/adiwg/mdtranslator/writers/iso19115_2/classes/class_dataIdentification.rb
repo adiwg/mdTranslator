@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-04-06 changed taxonomy to an array
 #  Stan Smith 2018-01-05 deprecated topicCategory[]
 #  Stan Smith 2018-01-05 get topics from keywords where type='isoTopicCategory'
 #  Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
@@ -252,14 +253,16 @@ module ADIWG
                         @xml.tag!('gmd:aggregationInfo')
                      end
 
-                     # data identification - taxonomy
-                     hTaxonomy = hData[:taxonomy]
-                     unless hTaxonomy.empty?
-                        @xml.tag!('gmd:taxonomy') do
-                           taxClass.writeXML(hTaxonomy)
+                     # data identification - taxonomy (first)
+                     unless hData[:taxonomy].empty?
+                        hTaxonomy = hData[:taxonomy][0]
+                        unless hTaxonomy.empty?
+                           @xml.tag!('gmd:taxonomy') do
+                              taxClass.writeXML(hTaxonomy)
+                           end
                         end
                      end
-                     if hTaxonomy.empty? && @hResponseObj[:writerShowTags]
+                     if hData[:taxonomy].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:taxonomy')
                      end
 

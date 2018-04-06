@@ -1459,162 +1459,233 @@
                "keywordType": "isoTopicCategory"
             }
          ],
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "ITIS - Integrated Taxonomic Information System",
-                     "alternateTitle": [
-                        "Citation for ITIS"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "ITIS - Integrated Taxonomic Information System",
+                        "alternateTitle": [
+                           "Citation for ITIS"
+                        ]
+                     },
+                     "modifications": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                  },
+                  {
+                     "citation": {
+                        "title": "Some OTHER Taxonomic System"
+                     }
+                  }
+               ],
+               "generalScope": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "identificationReference": [
+                  {
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "authority": {
+                        "title": "title0"
+                     }
+                  },
+                  {
+                     "identifier": "identifier1",
+                     "namespace": "namespace1",
+                     "version": "version1",
+                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "authority": {
+                        "title": "title1"
+                     }
+                  }
+               ],
+               "observer": [
+                  {
+                     "role": "coPrincipalInvestigator",
+                     "party": [
+                        {
+                           "contactId": "CID006"
+                        },
+                        {
+                           "contactId": "CID004"
+                        }
                      ]
                   },
-                  "modifications": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-               },
-               {
-                  "citation": {
-                     "title": "Some OTHER Taxonomic System"
+                  {
+                     "role": "editor",
+                     "party": [
+                        {
+                           "contactId": "CID001"
+                        }
+                     ]
                   }
-               }
-            ],
-            "generalScope": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                  "authority": {
-                     "title": "title0"
+               ],
+               "identificationProcedure": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "identificationCompleteness": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "voucher": [
+                  {
+                     "specimen": "bear claw",
+                     "repository": {
+                        "role": "custodian",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "specimen": "moose tooth",
+                     "repository": {
+                        "role": "custodian",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           }
+                        ]
+                     }
                   }
-               },
-               {
-                  "identifier": "identifier1",
-                  "namespace": "namespace1",
-                  "version": "version1",
-                  "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                  "authority": {
-                     "title": "title1"
-                  }
-               }
-            ],
-            "observer": [
-               {
-                  "role": "coPrincipalInvestigator",
-                  "party": [
+               ],
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName",
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ],
+                  "subClassification": [
                      {
-                        "contactId": "CID006"
+                        "taxonomicSystemId": "taxonomicSystemId00",
+                        "taxonomicRank": "taxonomicRank00",
+                        "latinName": "latinName",
+                        "commonName": [
+                           "commonName0",
+                           "commonName1"
+                        ],
+                        "subClassification": [
+                           {
+                              "taxonomicRank": "taxonomicRank000",
+                              "latinName": "latinName",
+                              "commonName": [
+                                 "commonName0",
+                                 "commonName1"
+                              ],
+                              "subClassification": [
+                                 {
+                                    "taxonomicSystemId": "taxonomicSystemId0000.1",
+                                    "taxonomicRank": "taxonomicRank0000.1",
+                                    "latinName": "latinName",
+                                    "commonName": [
+                                       "commonName0",
+                                       "commonName1"
+                                    ],
+                                    "subClassification": []
+                                 },
+                                 {
+                                    "taxonomicSystemId": "taxonomicSystemId0000.2",
+                                    "taxonomicRank": "taxonomicRank0000.2",
+                                    "latinName": "latinName",
+                                    "commonName": [
+                                       "commonName0",
+                                       "commonName1"
+                                    ],
+                                    "subClassification": []
+                                 }
+                              ]
+                           }
+                        ]
                      },
                      {
-                        "contactId": "CID004"
-                     }
-                  ]
-               },
-               {
-                  "role": "editor",
-                  "party": [
-                     {
-                        "contactId": "CID001"
+                        "taxonomicRank": "taxonomicRank01",
+                        "latinName": "latinName",
+                        "commonName": [
+                           "commonName0",
+                           "commonName1"
+                        ],
+                        "subClassification": [
+                           {
+                              "taxonomicRank": "taxonomicRank010",
+                              "latinName": "latinName",
+                              "commonName": [
+                                 "commonName0",
+                                 "commonName1"
+                              ],
+                              "subClassification": []
+                           }
+                        ]
                      }
                   ]
                }
-            ],
-            "identificationProcedure": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "identificationCompleteness": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "voucher": [
-               {
-                  "specimen": "bear claw",
-                  "repository": {
-                     "role": "custodian",
-                     "party": [
-                        {
-                           "contactId": "CID002"
-                        }
-                     ]
+            },
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "NCBI - National Center for Biotechnology Information",
+                        "alternateTitle": [
+                           "Citation for NCBI"
+                        ]
+                     }
                   }
-               },
-               {
-                  "specimen": "moose tooth",
-                  "repository": {
-                     "role": "custodian",
-                     "party": [
-                        {
-                           "contactId": "CID002"
-                        }
-                     ]
-                  }
-               }
-            ],
-            "taxonomicClassification": {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName",
-               "commonName": [
-                  "commonName0",
-                  "commonName1"
                ],
-               "subClassification": [
+               "generalScope": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "identificationReference": [
                   {
-                     "taxonomicSystemId": "taxonomicSystemId00",
-                     "taxonomicRank": "taxonomicRank00",
-                     "latinName": "latinName",
-                     "commonName": [
-                        "commonName0",
-                        "commonName1"
-                     ],
-                     "subClassification": [
-                        {
-                           "taxonomicRank": "taxonomicRank000",
-                           "latinName": "latinName",
-                           "commonName": [
-                              "commonName0",
-                              "commonName1"
-                           ],
-                           "subClassification": [
-                              {
-                                 "taxonomicSystemId": "taxonomicSystemId0000.1",
-                                 "taxonomicRank": "taxonomicRank0000.1",
-                                 "latinName": "latinName",
-                                 "commonName": [
-                                    "commonName0",
-                                    "commonName1"
-                                 ],
-                                 "subClassification": []
-                              },
-                              {
-                                 "taxonomicSystemId": "taxonomicSystemId0000.2",
-                                 "taxonomicRank": "taxonomicRank0000.2",
-                                 "latinName": "latinName",
-                                 "commonName": [
-                                    "commonName0",
-                                    "commonName1"
-                                 ],
-                                 "subClassification": []
-                              }
-                           ]
-                        }
-                     ]
-                  },
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                     "authority": {
+                        "title": "title0"
+                     }
+                  }
+               ],
+               "observer": [
                   {
-                     "taxonomicRank": "taxonomicRank01",
-                     "latinName": "latinName",
-                     "commonName": [
-                        "commonName0",
-                        "commonName1"
-                     ],
-                     "subClassification": [
+                     "role": "coPrincipalInvestigator",
+                     "party": [
                         {
-                           "taxonomicRank": "taxonomicRank010",
-                           "latinName": "latinName",
-                           "commonName": [
-                              "commonName0",
-                              "commonName1"
-                           ],
-                           "subClassification": []
+                           "contactId": "CID006"
                         }
                      ]
                   }
-               ]
+               ],
+               "identificationProcedure": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "identificationCompleteness": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+               "voucher": [
+                  {
+                     "specimen": "bear claw",
+                     "repository": {
+                        "role": "custodian",
+                        "party": [
+                           {
+                              "contactId": "CID002"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName",
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ],
+                  "subClassification": [
+                     {
+                        "taxonomicSystemId": "taxonomicSystemId00",
+                        "taxonomicRank": "taxonomicRank00",
+                        "latinName": "latinName",
+                        "commonName": [
+                           "commonName0",
+                           "commonName1"
+                        ],
+                        "subClassification": []
+                     }
+                  ]
+               }
             }
-         },
+         ],
          "graphicOverview": [
             {
                "fileName": "fileName 0",

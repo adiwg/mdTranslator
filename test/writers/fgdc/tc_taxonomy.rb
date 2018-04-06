@@ -16,7 +16,9 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   mdHash[:metadata][:resourceInfo][:taxonomy] = TDClass.taxonomy
+   mdHash[:metadata][:resourceInfo][:taxonomy] = []
+   mdHash[:metadata][:resourceInfo][:taxonomy] << TDClass.taxonomy
+   mdHash[:metadata][:resourceInfo][:taxonomy] << TDClass.taxonomy
 
    # contacts
    mdHash[:contact] << TDClass.build_person('CID002', 'person name two')
@@ -35,7 +37,7 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
    mdHash[:metadata][:resourceInfo][:keyword] << hKeyword3
 
    # taxonomy
-   hTaxonomy = mdHash[:metadata][:resourceInfo][:taxonomy]
+   hTaxonomy = mdHash[:metadata][:resourceInfo][:taxonomy][0]
    hTaxonomy[:taxonomicSystem] << TDClass.build_taxonSystem('taxonomic system two', 'CID001', 'modifications two')
    hTaxonomy[:identificationReference] = []
    hIdentifier1 = TDClass.build_identifier('identification reference')
@@ -91,9 +93,13 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       refute hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'ERROR: FGDC writer: taxonomy keyword set is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'NOTICE: FGDC writer: multiple taxonomic structures were specified, CSDGM allows for only one'
+      assert_includes hResponseObj[:writerMessages],
+                      'NOTICE: FGDC writer: the first taxonomic structure was written to the metadata record'
 
    end
 
@@ -109,9 +115,13 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: taxonomy keyword set thesaurus is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'NOTICE: FGDC writer: multiple taxonomic structures were specified, CSDGM allows for only one'
+      assert_includes hResponseObj[:writerMessages],
+                      'NOTICE: FGDC writer: the first taxonomic structure was written to the metadata record'
 
    end
 

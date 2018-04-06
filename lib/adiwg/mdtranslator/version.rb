@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.12.0 2018-04-06 changed resourceInfo taxonomy from object to array
 # 2.12.0 2018-04-05 refactored messaging for ISO19110
 # 2.11.0 2018-03-28 add 'responsibleParties' to budget allocation
 # 2.11.0 2018-03-27 refactor messaging for fgdc writer

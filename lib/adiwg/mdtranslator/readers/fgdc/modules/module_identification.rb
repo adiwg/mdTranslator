@@ -2,6 +2,7 @@
 # unpack fgdc metadata identification
 
 # History:
+#  Stan Smith 2018-04-06 change mdJson taxonomy to an array
 #  Stan Smith 2017-08-15 original script
 
 require 'nokogiri'
@@ -163,7 +164,7 @@ module ADIWG
                   unless xTaxonomy.empty?
                      hTaxonomy = Taxonomy.unpack(xTaxonomy, hResourceInfo, hResponseObj)
                      unless hTaxonomy.nil?
-                        hResourceInfo[:taxonomy] = hTaxonomy
+                        hResourceInfo[:taxonomy] << hTaxonomy
                      end
                   end
 

@@ -53,52 +53,54 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title"
+                     }
                   }
-               }
-            ],
-            "identificationReference": [
-               {
-                  "identifier": "taxonomic identification reference identifier"
-               }
-            ],
-            "identificationProcedure": "identificationProcedure",
-            "voucher": [
-               {
-                  "specimen": "specimen0",
-                  "repository": {
-                     "role": "role0",
-                     "party": [
-                        {
-                           "contactId": "CID001"
-                        }
-                     ]
-                  }
-               },
-               {
-                  "specimen": "specimen1",
-                  "repository": {
-                     "role": "role1",
-                     "party": [
-                        {
-                           "contactId": "CID001"
-                        }
-                     ]
-                  }
-               }
-            ],
-            "taxonomicClassification": {
-               "commonName": [
-                  "commonName0"
                ],
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName0"
+               "identificationReference": [
+                  {
+                     "identifier": "taxonomic identification reference identifier"
+                  }
+               ],
+               "identificationProcedure": "identificationProcedure",
+               "voucher": [
+                  {
+                     "specimen": "specimen0",
+                     "repository": {
+                        "role": "role0",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "specimen": "specimen1",
+                     "repository": {
+                        "role": "role1",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "taxonomicClassification": {
+                  "commonName": [
+                     "commonName0"
+                  ],
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName0"
+               }
             }
-         }
+         ]
       }
    }
 }

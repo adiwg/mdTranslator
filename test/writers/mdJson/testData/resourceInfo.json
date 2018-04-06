@@ -148,41 +148,43 @@
                "coverageDescription": "coverageDescription1"
             }
          ],
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title"
+                     },
+                     "modifications": "modifications"
+                  }
+               ],
+               "identificationReference": [
+                  {
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "description0",
+                     "authority": {
+                        "title": "title0"
+                     }
                   },
-                  "modifications": "modifications"
-               }
-            ],
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "description0",
-                  "authority": {
-                     "title": "title0"
+                  {
+                     "identifier": "identifier1",
+                     "namespace": "namespace1",
+                     "version": "version1",
+                     "description": "description1",
+                     "authority": {
+                        "title": "title1"
+                     }
                   }
-               },
-               {
-                  "identifier": "identifier1",
-                  "namespace": "namespace1",
-                  "version": "version1",
-                  "description": "description1",
-                  "authority": {
-                     "title": "title1"
-                  }
+               ],
+               "identificationProcedure": "identificationProcedure",
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank",
+                  "latinName": "latinName"
                }
-            ],
-            "identificationProcedure": "identificationProcedure",
-            "taxonomicClassification": {
-               "taxonomicRank": "taxonomicRank",
-               "latinName": "latinName"
             }
-         },
+         ] ,
          "graphicOverview": [
             {
                "fileName": "fileName0"

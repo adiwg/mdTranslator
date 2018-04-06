@@ -19,8 +19,7 @@ class TestHtmlDocument < MiniTest::Test
 
       # TODO validate 'normal' after schema update
       metadata = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', validate: 'none',
-         writer: 'html', showAllTags: false)
+         file: @@mdJson, reader: 'mdJson', validate: 'none', writer: 'html', showAllTags: false)
 
       got = metadata[:writerOutput]
 
