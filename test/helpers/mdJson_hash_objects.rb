@@ -1,4 +1,4 @@
-class FgdcWriterTD
+class MdJsonHashWriter
 
    # base -----------------------------------
    def base
@@ -294,7 +294,7 @@ class FgdcWriterTD
          name: 'online resource name',
          protocol: 'protocol',
          description: 'online resource description',
-         function: 'online description function'
+         function: 'online resource function'
       }
    end
 
@@ -324,7 +324,15 @@ class FgdcWriterTD
    def dataDictionary
       {
          citation: {
-            title: 'dictionary title'
+            title: 'dictionary title',
+            date: [
+               {
+                  date: '2018-04-05',
+                  dateType: 'creation',
+                  description: 'dictionary date description'
+               }
+            ],
+            edition: 'version 1.0.0'
          },
          description: 'dictionary description',
          subject: ['subject one', 'subject two'],
@@ -396,17 +404,33 @@ class FgdcWriterTD
          attributeReference: {},
          dataType: 'data type',
          allowNull: false,
-         mustBeUnique: false,
+         mustBeUnique: true,
          units: 'units of measure',
          unitsResolution: 1.0,
          isCaseSensitive: false,
          fieldWidth: 1,
-         missingValue: '',
+         missingValue: '-1',
          domainId: '',
          minValue: '100',
          maxValue: '999',
          valueRange: [],
          timePeriod: []
+      }
+   end
+
+   def foreignKey
+      {
+         localAttributeCodeName: ['local attribute code name one'],
+         referencedEntityCodeName: 'referenced entity code name',
+         referencedAttributeCodeName: ['referenced attribute code name one']
+      }
+   end
+
+   def index
+      {
+         codeName: 'index code name',
+         allowDuplicates: false,
+         attributeCodeName: ['attribute code name one']
       }
    end
 
@@ -423,6 +447,14 @@ class FgdcWriterTD
       {
          date: nil,
          dateType: nil
+      }
+   end
+
+   def locale
+      {
+         language: 'eng',
+         characterSet: 'UTF-8',
+         country: 'USA'
       }
    end
 

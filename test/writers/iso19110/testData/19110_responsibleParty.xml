@@ -17,14 +17,14 @@
   <gfc:producer>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
-        <gco:CharacterString>contact - individual</gco:CharacterString>
+        <gco:CharacterString>person name</gco:CharacterString>
       </gmd:individualName>
       <gmd:positionName>
-        <gco:CharacterString>positionName</gco:CharacterString>
+        <gco:CharacterString>position name</gco:CharacterString>
       </gmd:positionName>
       <gmd:contactInfo/>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="dictionary role" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gfc:producer>
@@ -32,11 +32,11 @@
   <gfc:producer>
     <gmd:CI_ResponsibleParty>
       <gmd:organisationName>
-        <gco:CharacterString>contact - organization</gco:CharacterString>
+        <gco:CharacterString>organization name</gco:CharacterString>
       </gmd:organisationName>
       <gmd:contactInfo/>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="dictionary role" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gfc:producer>
@@ -44,12 +44,12 @@
   <gfc:producer>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
-        <gco:CharacterString>contact - missing elements</gco:CharacterString>
+        <gco:CharacterString>person name</gco:CharacterString>
       </gmd:individualName>
       <gmd:positionName/>
       <gmd:contactInfo/>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="dictionary role" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gfc:producer>

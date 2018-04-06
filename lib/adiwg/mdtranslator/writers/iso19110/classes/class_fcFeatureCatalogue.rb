@@ -2,6 +2,7 @@
 # writer output in XML
 
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 #  Stan Smith 2017-01-20 refactored for mdJson/mdTranslator 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
@@ -10,6 +11,7 @@
 #  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 # 	Stan Smith 2013-12-01 original script
 
+require_relative '../iso19110_writer'
 require_relative 'class_locale'
 require_relative 'class_responsibleParty'
 require_relative 'class_featureType'
@@ -24,6 +26,7 @@ module ADIWG
                def initialize(xml, responseObj)
                   @xml = xml
                   @hResponseObj = responseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
                def writeXML(intObj)
@@ -85,7 +88,7 @@ module ADIWG
                         end
                      end
                      if name.nil?
-                        @xml.tag!('gmx:name', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(40, 'gmx:name')
                      end
 
                      # feature catalogue - scope (required) []
@@ -95,8 +98,8 @@ module ADIWG
                            @xml.tag!('gco:CharacterString', scope)
                         end
                      end
-                     if aScopes.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmx:scope', {'gco:nilReason' => 'missing'})
+                     if aScopes.empty?
+                        @NameSpace.issueWarning(41, 'gmx:scope')
                      end
 
                      # feature catalogue - field of application []
@@ -117,7 +120,7 @@ module ADIWG
                         end
                      end
                      if version.nil?
-                        @xml.tag!('gmx:versionNumber', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(42, 'gmx:versionNumber')
                      end
 
                      # feature catalogue - version date (required)
@@ -135,7 +138,7 @@ module ADIWG
                         end
                      end
                      if sDate.nil?
-                        @xml.tag!('gmx:versionDate', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(43, 'gmx:versionDate')
                      end
 
                      # feature catalogue - locale []
@@ -163,8 +166,8 @@ module ADIWG
                            end
                         end
                      end
-                     if hParty.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gfc:producer')
+                     if hParty.empty?
+                        @NameSpace.issueWarning(44, 'gfc:producer')
                      end
 
                      # feature catalogue - functional language
@@ -178,7 +181,7 @@ module ADIWG
                         @xml.tag!('gfc:functionalLanguage')
                      end
 
-                     # feature catalogue - feature type (required)
+                     # feature catalogue - feature type [] (required)
                      # use feature type to represent date entities
                      unless aEntities.empty?
                         aEntities.each do |hEntity|
@@ -188,7 +191,7 @@ module ADIWG
                         end
                      end
                      if aEntities.empty?
-                        @xml.tag!('gfc:featureType', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(45, 'gfc:featureType')
                      end
 
                      return metadata

@@ -25,8 +25,8 @@ class TestWriterMdJsonEntity < TestWriterMdJsonParent
    def test_complete_entity
 
       metadata = ADIWG::Mdtranslator.translate(
-         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
-         writer: 'mdJson', showAllTags: false)
+         file: @@jsonIn, reader: 'mdJson', validate: 'normal', writer: 'mdJson', showAllTags: false
+      )
 
       expect = JSON.parse(@@jsonIn)
       expect = expect['dataDictionary'][0]['entity']

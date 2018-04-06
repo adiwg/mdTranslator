@@ -463,7 +463,7 @@ class InternalMetadata
          attributeReference: {},
          dataType: nil,
          allowNull: false,
-         mustBeUnique: false,
+         mustBeUnique: true,
          unitOfMeasure: nil,
          measureResolution: nil,
          isCaseSensitive: false,

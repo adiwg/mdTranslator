@@ -17,19 +17,19 @@
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
       <gmd:linkage>
-        <gmd:URL>http://ISO.uri/adiwg/0</gmd:URL>
+        <gmd:URL>http://adiwg/uri/1</gmd:URL>
       </gmd:linkage>
       <gmd:protocol>
         <gco:CharacterString>protocol</gco:CharacterString>
       </gmd:protocol>
       <gmd:name>
-        <gco:CharacterString>name</gco:CharacterString>
+        <gco:CharacterString>online resource name</gco:CharacterString>
       </gmd:name>
       <gmd:description>
-        <gco:CharacterString>description</gco:CharacterString>
+        <gco:CharacterString>online resource description</gco:CharacterString>
       </gmd:description>
       <gmd:function>
-        <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="function" codeSpace="userCode"/>
+        <gmd:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="online resource function" codeSpace="userCode"/>
       </gmd:function>
     </gmd:CI_OnlineResource>
   </gmd:onlineResource>
@@ -37,19 +37,7 @@
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
       <gmd:linkage>
-        <gmd:URL>http://ISO.uri/adiwg/1</gmd:URL>
-      </gmd:linkage>
-      <gmd:protocol/>
-      <gmd:name/>
-      <gmd:description/>
-      <gmd:function/>
-    </gmd:CI_OnlineResource>
-  </gmd:onlineResource>
-
-  <gmd:onlineResource>
-    <gmd:CI_OnlineResource>
-      <gmd:linkage>
-        <gmd:URL>http://ISO.uri/adiwg/2</gmd:URL>
+        <gmd:URL>http://adiwg/uri/1</gmd:URL>
       </gmd:linkage>
       <gmd:protocol/>
       <gmd:name/>

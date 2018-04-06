@@ -104,7 +104,7 @@ module ADIWG
                   # attribute - require value to be unique (required)
                   # ... allowMany deprecated
                   if hAttribute.has_key?('allowMany')
-                     if hAttribute['allowMany'] === true
+                     if hAttribute['allowMany'] === false
                         intAttribute[:mustBeUnique] = hAttribute['allowMany']
                         responseObj[:readerExecutionMessages] <<
                            'WARNING: mdJson reader: data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
@@ -112,7 +112,7 @@ module ADIWG
                      end
                   end
                   if hAttribute.has_key?('mustBeUnique')
-                     if hAttribute['mustBeUnique'] === true
+                     if hAttribute['mustBeUnique'] === false
                         intAttribute[:mustBeUnique] = hAttribute['mustBeUnique']
                      end
                   end

@@ -2,36 +2,39 @@
 # writers / iso19110 / class_locale
 
 # History:
+#  Stan Smith 2018-04-02 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-01-31 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriter19110Locale < TestWriter19110Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter19110Parent.get_xml('19110_locale.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_locale.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19110_locale
+   # dictionary 1
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
 
-      axExpect = @@xFile.xpath('//gmx:locale')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+   def test_locale_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmx:locale')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:dataDictionary][0][:locale] << TDClass.locale
+      hIn[:dataDictionary][0][:locale] << TDClass.build_locale('swe', 'UTF-16', nil)
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_locale',
+                                                   '//gmx:locale', '//gmx:locale')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 

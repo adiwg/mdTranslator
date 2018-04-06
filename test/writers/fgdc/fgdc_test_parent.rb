@@ -50,7 +50,7 @@ class TestWriterFGDCParent < MiniTest::Test
    def self.get_complete(hIn, expectFile, path)
 
       # read the fgdc reference file
-      xFile = TestWriterFGDCParent.get_xml(expectFile)
+      xFile = get_xml(expectFile)
       xExpect = xFile.xpath(path)
       expect = xExpect.to_s.squeeze(' ')
 

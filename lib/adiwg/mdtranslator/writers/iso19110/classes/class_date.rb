@@ -2,8 +2,10 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 # 	Stan Smith 2017-11-02 original script
 
+require_relative '../iso19110_writer'
 require_relative 'class_codelist'
 require_relative 'class_gcoDateTime'
 
@@ -17,6 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
                def writeXML(hDate)
@@ -37,7 +40,7 @@ module ADIWG
                         end
                      end
                      if date.nil?
-                        @xml.tag!('gmd:date', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueError(30)
                      end
 
                      # date - date type (required)
@@ -47,7 +50,7 @@ module ADIWG
                         end
                      end
                      if dateType.nil?
-                        @xml.tag!('gmd:dateType', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(31, 'gmd:dateType')
                      end
 
                   end # CI_Date tag

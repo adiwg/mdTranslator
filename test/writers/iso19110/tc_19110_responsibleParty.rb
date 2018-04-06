@@ -2,79 +2,70 @@
 # writers / iso19110 / class_responsibleParty
 
 # History:
+#  Stan Smith 2018-04-03 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-01-23 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriter19110ResponsibleParty < TestWriter19110Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter19110Parent.get_xml('19110_responsibleParty.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_responsibleParty.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19110_responsibleParty_individual
+   # dictionary 1
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
 
-      xExpect = @@xFile.xpath('//gfc:producer[1]')
+   @@mdHash = mdHash
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      jsonIn = hJson.to_json
+   def test_responsibleParty_individual
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+                                                   '//gfc:producer[1]', '//gfc:producer')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
-
-   end
-
-   def test_19110_responsibleParty_organization
-
-      xExpect = @@xFile.xpath('//gfc:producer[2]')
-
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_responsibleParty_missing_elements
+   def test_responsibleParty_organization
 
-      xExpect = @@xFile.xpath('//gfc:producer[3]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:isOrganization] = true
+      hIn[:contact][0][:name] = 'organization name'
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+                                                   '//gfc:producer[2]', '//gfc:producer')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
+   end
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+   def test_responsibleParty_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:positionName] = ''
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
+
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+                                                   '//gfc:producer[3]', '//gfc:producer')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 

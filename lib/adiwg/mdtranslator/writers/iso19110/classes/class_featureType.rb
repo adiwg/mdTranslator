@@ -2,6 +2,7 @@
 # writer output in XML
 
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 #  Stan Smith 2017-11-02 add entity reference
 #  Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -11,6 +12,7 @@
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-12-02 original script
 
+require_relative '../iso19110_writer'
 require_relative 'class_featureConstraint'
 require_relative 'class_featureAttribute'
 require_relative 'class_definitionReference'
@@ -25,6 +27,7 @@ module ADIWG
                def initialize(xml, responseObj)
                   @xml = xml
                   @hResponseObj = responseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
                def writeXML(hEntity)
@@ -45,6 +48,8 @@ module ADIWG
 
                   @xml.tag!('gfc:FC_FeatureType', {'id' => entityId}) do
 
+                     outContext = hEntity[:entityCode]
+
                      # feature type - type name (required)
                      # used for entity common name
                      s = hEntity[:entityName]
@@ -54,7 +59,7 @@ module ADIWG
                         end
                      end
                      if s.nil?
-                        @xml.tag!('gfc:typeName', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(60, 'gfc:typeName', outContext)
                      end
 
                      # feature type - definition
@@ -96,8 +101,8 @@ module ADIWG
 
                      # feature type - feature catalogue (required)
                      # 'role that links this feature type to the feature catalogue that contains it'
-                     # confusing, allows definition of another feature catalogue here
-                     # just set to nilReason = 'inapplicable' (as recommended by NOAA)
+                     # confusing?, allows definition of another feature catalogue here
+                     # just set nilReason = 'inapplicable' (as recommended by NOAA)
                      @xml.tag!('gfc:featureCatalogue', {'gco:nilReason' => 'inapplicable'})
 
                      # feature type - constrained by

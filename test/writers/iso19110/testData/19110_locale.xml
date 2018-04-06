@@ -17,25 +17,24 @@
   <gmx:locale>
     <gmd:PT_Locale>
       <gmd:languageCode>
-        <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="language0" codeSpace="userCode"/>
+        <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="eng" codeSpace="123"/>
       </gmd:languageCode>
       <gmd:country>
-        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="country0" codeSpace="userCode"/>
+        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="USA" codeSpace="840"/>
       </gmd:country>
       <gmd:characterEncoding>
-        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="characterSet0" codeSpace="userCode"/>
+        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-8" codeSpace="106"/>
       </gmd:characterEncoding>
     </gmd:PT_Locale>
   </gmx:locale>
-
   <gmx:locale>
     <gmd:PT_Locale>
       <gmd:languageCode>
-        <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="language1" codeSpace="userCode"/>
+        <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="swe" codeSpace="413"/>
       </gmd:languageCode>
       <gmd:country/>
       <gmd:characterEncoding>
-        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="characterSet1" codeSpace="userCode"/>
+        <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-16" codeSpace="1015"/>
       </gmd:characterEncoding>
     </gmd:PT_Locale>
   </gmx:locale>

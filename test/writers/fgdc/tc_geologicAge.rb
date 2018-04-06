@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_functions'
 class TestWriterFgdcGeologicAge < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
    
    # get expected results
    xExpect = TestWriterFGDCParent.get_xml('geologicAgeResults')

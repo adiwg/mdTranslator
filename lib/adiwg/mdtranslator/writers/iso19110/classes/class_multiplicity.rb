@@ -37,8 +37,23 @@ module ADIWG
                def writeXML(hAttribute)
 
                   # xml for iso classes Multiplicity and MultiplicityRange
+                  # in 19110 cardinality is expressed as multiplicity, a min/max range
+                  # Multiplicity is not defined in the documentation, only inferred from the XSD
+                  # max cardinality -----------------
                   # ISO 19110-2 rule
                   # ... "If this is an attribute or operation, the default cardinality is 1"
+                  # there is no hint if this refers to min or max of the range, I chose max
+                  # I assume this means the attribute can occur only once in the entity
+                  # I set the internal object mustBeUnique = true as default
+                  # I assume false would describe something like a repeating tag in an XML file
+                  # min cardinality -----------------
+                  # mdJson allows setting flag to allow nulls as attribute values
+                  # I set this into minimum cardinality
+                  # issue ---------------------------
+                  # min cardinality refers to the attribute values
+                  # max cardinality refers to the attribute instantiation
+                  # perhaps one of these should not be carried in ISO19110
+
                   minCard = 1
                   maxCard = 9
                   if hAttribute[:allowNull]

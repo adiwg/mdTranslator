@@ -1,0 +1,40 @@
+# Writer - messages for ISO 19110:2005
+
+# History:
+#  Stan Smith 2018-03-30 original script
+
+messageList:
+   - {id: 1, message: "citation title is missing"}
+   - {id: 2, message: "citation date is missing"}
+
+   - {id: 10, message: "online resource uri is missing"}
+
+   - {id: 20, message: "responsible party role is missing"}
+   - {id: 21, message: "responsible party organization name is missing"}
+   - {id: 22, message: "responsible party individual name is missing"}
+
+   - {id: 30, message: "date is missing or invalid"}
+   - {id: 31, message: "date type is missing"}
+
+   - {id: 40, message: "feature catalogue name is missing"}
+   - {id: 41, message: "feature catalogue scope is missing"}
+   - {id: 42, message: "feature catalogue version number is missing"}
+   - {id: 43, message: "feature catalogue version date is missing"}
+   - {id: 44, message: "feature catalogue producer (responsible party) is missing"}
+   - {id: 45, message: "feature catalogue feature type is missing"}
+
+   - {id: 50, message: "attribute common name is missing"}
+
+   - {id: 60, message: "entity common name is missing"}
+
+   - {id: 70, message: "domain item name is missing"}
+
+   - {id: 80, message: "locale language code is missing"}
+   - {id: 81, message: "locale character encoding method is missing"}
+
+   - {id: 90, message: "identifier code (identifier) is missing"}
+
+   - {id: 100, message: "codeset domain name is missing"}
+   - {id: 101, message: "unrepresented domain name is missing"}
+
+   - {id: 110, message: " is missing"}

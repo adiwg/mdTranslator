@@ -1,4 +1,4 @@
-# Writer - internal data structure to FGDC CSDGM FGDC-STD-001-1998
+# Writer - messages for FGDC CSDGM FGDC-STD-001-1998
 
 # History:
 #  Stan Smith 2018-03-17 original script
@@ -209,5 +209,3 @@ messageList:
    - {id: 465, message: "vertical altitude resolution is missing"}
    - {id: 466, message: "vertical altitude units of measure is missing"}
    - {id: 467, message: "vertical altitude encoding method is missing"}
-
-

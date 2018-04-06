@@ -2,8 +2,10 @@
 # 19115-2 output for ISO 19115-2 XML
 
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 # 	Stan Smith 2017-11-02 original script
 
+require_relative '../iso19110_writer'
 require_relative 'class_citation'
 
 module ADIWG
@@ -16,6 +18,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
                def writeXML(hIdentifier)
@@ -39,7 +42,7 @@ module ADIWG
                      # identifier - code (required)
                      s = hIdentifier[:identifier]
                      if s.nil?
-                        @xml.tag!('gmd:code', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(90, 'gmd:code')
                      else
                         @xml.tag!('gmd:code') do
                            @xml.tag!('gco:CharacterString', s)

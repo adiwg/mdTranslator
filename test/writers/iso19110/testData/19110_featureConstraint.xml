@@ -17,7 +17,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>PRIMARY KEY ["codeName0", "codeName1"]</gco:CharacterString>
+        <gco:CharacterString>PRIMARY KEY ["ATT001", "ATT002"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -25,7 +25,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>UNIQUE INDEX ui_codeName1 ON ["codeName0", "codeName1"]</gco:CharacterString>
+        <gco:CharacterString>UNIQUE INDEX UIX001 ON ["ATT002", "ATT003"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -33,7 +33,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>DUPLICATE INDEX di_codeName2 ON ["codeName2"]</gco:CharacterString>
+        <gco:CharacterString>DUPLICATE INDEX DIX002 ON ["ATT003"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -41,7 +41,7 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>FK_codeName0_codeName1 FOREIGN KEY ["codeName0", "codeName1"] REFERENCES entityId1["codeName10", "codeName11"]</gco:CharacterString>
+        <gco:CharacterString>PRIMARY KEY ["ATT004"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
@@ -49,7 +49,15 @@
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
       <gfc:description>
-        <gco:CharacterString>FK_codeName2 FOREIGN KEY ["codeName2"] REFERENCES entityId1["codeName12"]</gco:CharacterString>
+        <gco:CharacterString>FK_ATT004 FOREIGN KEY ["ATT004"] REFERENCES EID001["ATT001"]</gco:CharacterString>
+      </gfc:description>
+    </gfc:FC_Constraint>
+  </gfc:constrainedBy>
+
+  <gfc:constrainedBy>
+    <gfc:FC_Constraint>
+      <gfc:description>
+        <gco:CharacterString>FK_ATT004_ATT005 FOREIGN KEY ["ATT004", "ATT005"] REFERENCES EID001["ATT001", "ATT002"]</gco:CharacterString>
       </gfc:description>
     </gfc:FC_Constraint>
   </gfc:constrainedBy>

@@ -19,10 +19,13 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd">
   <gmx:name>
-    <gco:CharacterString>title</gco:CharacterString>
+    <gco:CharacterString>dictionary title</gco:CharacterString>
   </gmx:name>
   <gmx:scope>
-    <gco:CharacterString>subject2</gco:CharacterString>
+    <gco:CharacterString>subject one</gco:CharacterString>
+  </gmx:scope>
+  <gmx:scope>
+    <gco:CharacterString>subject two</gco:CharacterString>
   </gmx:scope>
   <gmx:fieldOfApplication/>
   <gmx:versionNumber gco:nilReason="missing"/>
@@ -31,17 +34,42 @@
   <gfc:producer>
     <gmd:CI_ResponsibleParty>
       <gmd:individualName>
-        <gco:CharacterString>dictionary contact</gco:CharacterString>
+        <gco:CharacterString>person name</gco:CharacterString>
       </gmd:individualName>
-      <gmd:positionName/>
+      <gmd:positionName>
+        <gco:CharacterString>position name</gco:CharacterString>
+      </gmd:positionName>
       <gmd:contactInfo>
         <gmd:CI_Contact>
-          <gmd:phone/>
+          <gmd:phone>
+            <gmd:CI_Telephone>
+              <gmd:voice>
+                <gco:CharacterString>phone name: 111-111-1111</gco:CharacterString>
+              </gmd:voice>
+              <gmd:facsimile/>
+            </gmd:CI_Telephone>
+          </gmd:phone>
           <gmd:address>
             <gmd:CI_Address>
-              <gmd:electronicMailAddress>
-                <gco:CharacterString>e.mail@address.com0</gco:CharacterString>
-              </gmd:electronicMailAddress>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>address line 1</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:deliveryPoint>
+                <gco:CharacterString>address line 2</gco:CharacterString>
+              </gmd:deliveryPoint>
+              <gmd:city>
+                <gco:CharacterString>city</gco:CharacterString>
+              </gmd:city>
+              <gmd:administrativeArea>
+                <gco:CharacterString>administrative area</gco:CharacterString>
+              </gmd:administrativeArea>
+              <gmd:postalCode>
+                <gco:CharacterString>postal code</gco:CharacterString>
+              </gmd:postalCode>
+              <gmd:country>
+                <gco:CharacterString>country</gco:CharacterString>
+              </gmd:country>
+              <gmd:electronicMailAddress/>
             </gmd:CI_Address>
           </gmd:address>
           <gmd:onlineResource/>
@@ -50,7 +78,7 @@
         </gmd:CI_Contact>
       </gmd:contactInfo>
       <gmd:role>
-        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="role" codeSpace="userCode"/>
+        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="dictionary role" codeSpace="userCode"/>
       </gmd:role>
     </gmd:CI_ResponsibleParty>
   </gfc:producer>

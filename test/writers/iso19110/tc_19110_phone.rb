@@ -2,79 +2,90 @@
 # writers / iso19110 / class_phone
 
 # History:
+#  Stan Smith 2018-04-02 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-02-01 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriter19110Phone < TestWriter19110Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter19110Parent.get_xml('19110_phone.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_phone.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19110_phone_single
+   # dictionary 1
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
 
-      xExpect = @@xFile.xpath('//gmd:phone[1]')
+   @@mdHash = mdHash
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      jsonIn = hJson.to_json
+   def test_phone_single
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_phone',
+                                                   '//gmd:phone[1]', '//gmd:phone')
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:phone')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_phone_multiple
+   def test_phone_multiple
 
-      xExpect = @@xFile.xpath('//gmd:phone[2]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      TDClass.add_phone(hIn[:contact][0], '222-222-2222', 'voice')
+      TDClass.add_phone(hIn[:contact][0], '333-333-3333', 'fax')
+      TDClass.add_phone(hIn[:contact][0], '444-444-4444', 'facsimile')
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+                                                   '//gmd:phone[2]', '//gmd:phone')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:phone')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_phone_unknown
+   def test_phone_unknown
 
-      xExpect = @@xFile.xpath('//gmd:phone[3]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:phone] = []
+      TDClass.add_phone(hIn[:contact][0], '111-111-1111', 'mobile')
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+                                                   '//gmd:phone[3]', '//gmd:phone')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:phone')
+   end
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+   def test_phone_empty
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:phone] = []
+
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+                                                   '//gmd:phone[4]', '//gmd:phone')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+
+   end
+
+   def test_phone_missing
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0].delete(:phone)
+
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+                                                   '//gmd:phone[4]', '//gmd:phone')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
