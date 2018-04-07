@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.12.0 2018-04-07 add 'fgdc' option to reader and writer enum list
 # 2.12.0 2018-04-06 rename taxonomicRank to taxonomicLevel
 # 2.12.0 2018-04-06 rename latinName to taxonomicNamel
 # 2.12.0 2018-04-06 changed resourceInfo taxonomy from object to array
