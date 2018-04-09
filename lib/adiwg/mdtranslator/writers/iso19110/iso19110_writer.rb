@@ -30,20 +30,27 @@ module ADIWG
                   return nil
                end
 
-               # make contacts and domains available to the instance
+               # make objects available to the instance
+               @intObj = intObj
                @contacts = intObj[:contacts]
+               @hResponseObj = responseObj
                dictionary = intObj[:dataDictionaries][whichDict]
                @domains = dictionary[:domains]
+
+               # load error message array
+               file = File.join(File.dirname(__FILE__), 'iso19110_writer_messages_eng') + '.yml'
+               hMessageList = YAML.load_file(file)
+               @aMessagesList = hMessageList['messageList']
 
                # set the format of the output file based on the writer specified
                responseObj[:writerOutputFormat] = 'xml'
                responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
 
                # create new XML document
-               xml = Builder::XmlMarkup.new(indent: 3)
+               @xml = Builder::XmlMarkup.new(indent: 3)
 
                # start writing the ISO 19110 XML record
-               metadataWriter = FC_FeatureCatalogue.new(xml, responseObj)
+               metadataWriter = FC_FeatureCatalogue.new(@xml, responseObj)
                metadata = metadataWriter.writeXML(intObj)
 
                return metadata
@@ -52,26 +59,57 @@ module ADIWG
 
             # find contact in contact array and return the contact hash
             def self.getContact(contactId)
-
                @contacts.each do |contact|
                   if contact[:contactId] == contactId
                      return contact
                   end
                end
                return {}
-
             end
 
             # find domain in domain array and return the domain hash
             def self.getDomain(domainId)
-
                @domains.each do |domain|
                   if domain[:domainId] == domainId
                      return domain
                   end
                end
                return {}
+            end
 
+            def self.findMessage(messageId)
+               @aMessagesList.each do |hMessage|
+                  if hMessage['id'] == messageId
+                     return hMessage['message']
+                  end
+               end
+               return nil
+            end
+
+            def self.issueError(messageId, context = nil)
+               message = findMessage(messageId)
+               unless message.nil?
+                  message += ': CONTEXT is ' + context unless context.nil?
+                  @hResponseObj[:writerMessages] << 'ERROR: ISO-19110 writer: ' + message
+                  @hResponseObj[:writerPass] = false
+               end
+            end
+
+            def self.issueWarning(messageId, tag = nil, context = nil)
+               message = findMessage(messageId)
+               unless message.nil?
+                  message += ': CONTEXT is ' + context unless context.nil?
+                  if @hResponseObj[:writerForceValid]
+                     if tag.nil?
+                        issueError(messageId, context)
+                     else
+                        @xml.tag!(tag, {'gco:nilReason' => 'missing'})
+                        @hResponseObj[:writerMessages] << 'WARNING: ISO-19110 writer: ' + message
+                     end
+                  else
+                     @hResponseObj[:writerMessages] << 'WARNING: ISO-19110 writer: ' + message
+                  end
+               end
             end
 
          end

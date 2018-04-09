@@ -53,34 +53,36 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title0"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title0"
+                     },
+                     "modifications": "modifications"
                   },
-                  "modifications": "modifications"
-               },
-               {
-                  "citation": {
-                     "title": "title1"
+                  {
+                     "citation": {
+                        "title": "title1"
+                     }
                   }
-               }
-            ],
-            "identificationReference": [
-               {
-                  "identifier": "taxonomic reference identifier"
-               }
-            ],
-            "identificationProcedure": "identificationProcedure",
-            "taxonomicClassification": {
-               "commonName": [
-                  "commonName0"
                ],
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName0"
+               "identificationReference": [
+                  {
+                     "identifier": "taxonomic reference identifier"
+                  }
+               ],
+               "identificationProcedure": "identificationProcedure",
+               "taxonomicClassification": {
+                  "commonName": [
+                     "commonName0"
+                  ],
+                  "taxonomicLevel": "taxonomicLevel0",
+                  "taxonomicName": "taxonomicName0"
+               }
             }
-         }
+         ]
       }
    }
 }

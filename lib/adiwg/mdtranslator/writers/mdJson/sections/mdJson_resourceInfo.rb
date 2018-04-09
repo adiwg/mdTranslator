@@ -1,9 +1,10 @@
 # mdJson 2.0 writer - resource information
 
 # History:
-#   Stan Smith 2017-05-16 deprecated topicCategory
-#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2018-04-06 changed taxonomy to an array
+#  Stan Smith 2017-05-16 deprecated topicCategory
+#  Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 require_relative 'mdJson_resourceType'
@@ -52,7 +53,7 @@ module ADIWG
                      json.temporalResolution @Namespace.json_map(hResInfo[:temporalResolutions], Duration)
                      json.extent @Namespace.json_map(hResInfo[:extents], Extent)
                      json.coverageDescription @Namespace.json_map(hResInfo[:coverageDescriptions], CoverageDescription)
-                     json.taxonomy Taxonomy.build(hResInfo[:taxonomy]) unless hResInfo[:taxonomy].empty?
+                     json.taxonomy @Namespace.json_map(hResInfo[:taxonomy], Taxonomy)
                      json.graphicOverview @Namespace.json_map(hResInfo[:graphicOverviews], GraphicOverview)
                      json.resourceFormat @Namespace.json_map(hResInfo[:resourceFormats], Format)
                      json.keyword @Namespace.json_map(hResInfo[:keywords], Keyword)

@@ -12,7 +12,7 @@ class TestWriterFgdcForceValid < TestWriterFGDCParent
 
    # instance classes needed in script
    @@NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
    mdHash = TDClass.base

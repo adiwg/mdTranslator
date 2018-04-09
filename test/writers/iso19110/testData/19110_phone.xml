@@ -17,7 +17,7 @@
   <gmd:phone>
     <gmd:CI_Telephone>
       <gmd:voice>
-        <gco:CharacterString>single phone: 000-000-0000</gco:CharacterString>
+        <gco:CharacterString>phone name: 111-111-1111</gco:CharacterString>
       </gmd:voice>
       <gmd:facsimile/>
     </gmd:CI_Telephone>
@@ -26,16 +26,16 @@
   <gmd:phone>
     <gmd:CI_Telephone>
       <gmd:voice>
-        <gco:CharacterString>first phone: 111-111-1111</gco:CharacterString>
+        <gco:CharacterString>phone name: 111-111-1111</gco:CharacterString>
       </gmd:voice>
       <gmd:voice>
-        <gco:CharacterString>third phone: 333-333-3333</gco:CharacterString>
+        <gco:CharacterString>phone name: 222-222-2222</gco:CharacterString>
       </gmd:voice>
       <gmd:facsimile>
-        <gco:CharacterString>first phone: 111-111-1111</gco:CharacterString>
+        <gco:CharacterString>phone name: 333-333-3333</gco:CharacterString>
       </gmd:facsimile>
       <gmd:facsimile>
-        <gco:CharacterString>second phone: 222-222-2222</gco:CharacterString>
+        <gco:CharacterString>phone name: 444-444-4444</gco:CharacterString>
       </gmd:facsimile>
     </gmd:CI_Telephone>
   </gmd:phone>
@@ -46,5 +46,7 @@
       <gmd:facsimile/>
     </gmd:CI_Telephone>
   </gmd:phone>
+
+  <gmd:phone/>
 
 </gmi:MI_Metadata>

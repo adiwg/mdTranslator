@@ -102,6 +102,14 @@ module ADIWG
                end
             end
 
+            def self.issueNotice(messageId, context = nil)
+               message = findMessage(messageId)
+               unless message.nil?
+                  message += ': CONTEXT is ' + context unless context.nil?
+                  @hResponseObj[:writerMessages] << 'NOTICE: FGDC writer: ' + message
+               end
+            end
+
          end
       end
    end

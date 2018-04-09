@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_functions'
 class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    # read the fgdc reference file
    @@path = './metadata/spref/horizsys/planar/gridsys'

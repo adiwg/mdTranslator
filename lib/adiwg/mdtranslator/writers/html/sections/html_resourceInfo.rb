@@ -2,6 +2,7 @@
 # resource information
 
 # History:
+#  Stan Smith 2018-04-06 changed taxonomy to an array
 #  Stan Smith 2017-05-19 removed iso topicCategory (now presented as keywords)
 #  Stan Smith 2017-03-25 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
@@ -337,7 +338,16 @@ module ADIWG
                      @html.details do
                         @html.summary('Taxonomy', {'id' => 'resourceInfo-taxonomy', 'class' => 'h3'})
                         @html.section(:class => 'block') do
-                           taxonomyClass.writeHtml(hResource[:taxonomy])
+                           counter = 0
+                           hResource[:taxonomy].each do |hTaxonomy|
+                              counter += 1
+                              @html.details do
+                                 @html.summary('Taxonomic Structure '+counter.to_s, 'class' => 'h5')
+                                 @html.section(:class => 'block') do
+                                    taxonomyClass.writeHtml(hTaxonomy)
+                                 end
+                              end
+                           end
                         end
                      end
                   end

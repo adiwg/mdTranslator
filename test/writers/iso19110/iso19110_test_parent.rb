@@ -9,6 +9,7 @@ require 'json'
 require 'json-schema'
 require 'nokogiri'
 require 'adiwg-mdjson_schemas'
+require 'adiwg/mdtranslator'
 
 class TestWriter19110Parent < MiniTest::Test
 
@@ -19,29 +20,25 @@ class TestWriter19110Parent < MiniTest::Test
 
    # get json for tests from testData folder
    def self.get_json(fileName)
-
       file = File.join(File.dirname(__FILE__), 'testData', fileName)
       file = File.open(file, 'r')
       jsonFile = file.read
       file.close
       return jsonFile
-
    end
 
    # get hash from json file for tests from testData folder
    def self.get_hash(fileName)
-
       file = File.join(File.dirname(__FILE__), 'testData', fileName)
       file = File.open(file, 'r')
       jsonFile = file.read
       file.close
       return JSON.parse(jsonFile)
-
    end
 
    # get fgdc XML for test reference from resultXML folder
    def self.get_xml(fileName)
-      file = File.join(File.dirname(__FILE__), 'resultXML', fileName)
+      file = File.join(File.dirname(__FILE__), 'testData', fileName) + '.xml'
       xDoc = Nokogiri::XML(File.read(file))
       return xDoc
    end
@@ -68,6 +65,30 @@ class TestWriter19110Parent < MiniTest::Test
 
       # scan
       return JSON::Validator.fully_validate(strictSchema, mdJson, :fragment => fragmentPath)
+
+   end
+
+   def self.get_complete(hIn, expectFile, expectPath, gotPath)
+
+      # read the fgdc reference file
+      xFile = get_xml(expectFile)
+      xExpect = xFile.xpath(expectPath)
+      expect = xExpect.to_s.squeeze(' ')
+
+      # TODO reinstate after schema update
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
+      )
+      pass = hResponseObj[:writerPass] &&
+         hResponseObj[:readerStructurePass] &&
+         hResponseObj[:readerValidationPass] &&
+         hResponseObj[:readerExecutionPass]
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(gotPath)
+      got = xGot.to_s.squeeze(' ')
+
+      return expect, got, pass
 
    end
 

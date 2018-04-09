@@ -1,7 +1,7 @@
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
-class FgdcWriterTD
+class MdJsonHashWriter
 
    def build_associatedResource(associationType, title = nil)
       hAssocRes = associatedResource
@@ -25,10 +25,12 @@ class FgdcWriterTD
       return hResolution
    end
 
-   def build_citation(title, contactId)
+   def build_citation(title, contactId = nil)
       hCitation = citation
       hCitation[:title] = title
-      hCitation[:responsibleParty][0][:party][0][:contactId] = contactId
+      unless contactId.nil?
+         hCitation[:responsibleParty][0][:party][0][:contactId] = contactId
+      end
       return hCitation
    end
 
@@ -167,6 +169,14 @@ class FgdcWriterTD
          otherConstraint: []
       }
       return hCon
+   end
+
+   def build_locale(language = nil, character = nil, country = nil)
+      hLocale = locale
+      hLocale[:language] = language unless language.nil?
+      hLocale[:characterSet] = character unless character.nil?
+      hLocale[:country] = country
+      return hLocale
    end
 
    def build_onlineResource(uri)
@@ -350,6 +360,19 @@ class FgdcWriterTD
       return hBbox
    end
 
+   def add_dataIndex(hEntity, code = nil, duplicate = false, attCode = nil)
+      hIndex = index
+      hIndex[:codeName] = code unless code.nil?
+      hIndex[:allowDuplicates] = duplicate
+      if attCode.nil?
+         hIndex[:attributeCodeName] = []
+      else
+         hIndex[:attributeCodeName] = attCode
+      end
+      hEntity[:index] << hIndex
+      return hEntity
+   end
+
    def add_dimension(hObj, type, size, title = nil, description = nil)
       hDimension = dimension
       hDimension[:dimensionType] = type
@@ -378,6 +401,12 @@ class FgdcWriterTD
       return hDomain
    end
 
+   def add_email(hContact, email)
+      hContact[:electronicMailAddress] = [] unless hContact[:electronicMailAddress]
+      hContact[:electronicMailAddress] << email
+      return hContact
+   end
+
    def add_falseNE(hSpaceRef, northing = nil, easting = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:falseEasting] = 9.9
@@ -394,6 +423,15 @@ class FgdcWriterTD
    def add_featureCollection(hGeoElement)
       hGeoElement << featureCollection
       return hGeoElement
+   end
+
+   def add_foreignKey(hEntity, localAtt = nil, refEnt = false, refAtt = nil)
+      hFKey = foreignKey
+      hFKey[:localAttributeCodeName] = localAtt unless localAtt.nil?
+      hFKey[:referencedEntityCodeName] = refEnt unless refEnt.nil?
+      hFKey[:referencedAttributeCodeName] = refAtt unless refAtt.nil?
+      hEntity[:foreignKey] << hFKey
+      return hEntity
    end
 
    def add_geodetic(hSpaceRef, datum = nil, ellipse = nil)
@@ -423,7 +461,7 @@ class FgdcWriterTD
       end
       return hSpaceRef
    end
-
+   
    def add_keyword(hKeywords, keyword, id = nil)
       hKeyword = {}
       hKeyword[:keyword] = keyword
@@ -631,13 +669,13 @@ class FgdcWriterTD
       return hSpaceRef
    end
 
-   def add_taxonClass(hObject, rank, name, aCommon = [], id = nil)
+   def add_taxonClass(hObject, level, name, aCommon = [], id = nil)
       hTaxClass = taxonClass
       unless id.nil?
          hTaxClass[:taxonomicSystemId] = id
       end
-      hTaxClass[:taxonomicRank] = rank
-      hTaxClass[:latinName] = name
+      hTaxClass[:taxonomicLevel] = level
+      hTaxClass[:taxonomicName] = name
       unless aCommon.empty?
          hTaxClass[:commonName] = aCommon
       end

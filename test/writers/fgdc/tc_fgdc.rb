@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_objects'
 class TestWriterFgdcFgdc < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    def test_minimum_fgdc
 

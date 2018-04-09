@@ -2,9 +2,8 @@
 # writer output in XML
 # to define the domain of an attribute
 
-require_relative 'class_definitionReference'
-
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 #  Stan Smith 2018-01-25 add support for domain itemReference
 #  Stan Smith 2017-02-03 refactored for mdJson/mdTranslator 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -12,6 +11,9 @@ require_relative 'class_definitionReference'
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-12-02 original script
+
+require_relative '../iso19110_writer'
+require_relative 'class_definitionReference'
 
 module ADIWG
    module Mdtranslator
@@ -23,9 +25,10 @@ module ADIWG
                def initialize(xml, responseObj)
                   @xml = xml
                   @hResponseObj = responseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
-               def writeXML(hItem)
+               def writeXML(hItem, inContext)
 
                   # classes used
                   defRefClass = FC_DefinitionReference.new(@xml, @hResponseObj)
@@ -41,7 +44,7 @@ module ADIWG
                         end
                      end
                      if s.nil?
-                        @xml.tag!('gfc:label', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(70, 'gfc:label', inContext)
                      end
 
                      # listed value - code

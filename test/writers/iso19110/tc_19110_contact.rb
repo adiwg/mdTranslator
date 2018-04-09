@@ -2,157 +2,113 @@
 # writers / iso19110 / class_contact
 
 # History:
+#  Stan Smith 2018-04-02 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-01-23 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriter19110Contact < TestWriter19110Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter19110Parent.get_xml('19110_contact.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_contact.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19110_contact_individual_complete
+   # dictionary 1
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
 
-      xExpect = @@xFile.xpath('//gfc:producer[1]')
+   @@mdHash = mdHash
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      jsonIn = hJson.to_json
+   def test_contact_individual_complete
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:hoursOfService] = []
+      hIn[:contact][0][:hoursOfService] << 'hours of service'
+      hIn[:contact][0][:contactInstructions] = 'contact instructions'
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+                                                   '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
-
-   end
-
-   def test_19110_contact_organization_complete
-
-      xExpect = @@xFile.xpath('//gfc:producer[2]')
-
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_contact_multiple_elements
+   def test_contact_organization_complete
 
-      xExpect = @@xFile.xpath('//gfc:producer[3]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:isOrganization] = true
+      hIn[:contact][0][:hoursOfService] = []
+      hIn[:contact][0][:hoursOfService] << 'hours of service'
+      hIn[:contact][0][:contactInstructions] = 'contact instructions'
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+                                                   '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_contact_email_only
+   def test_contact_multi_elements
 
-      xExpect = @@xFile.xpath('//gfc:producer[4]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
+      hIn[:contact][0][:hoursOfService] = []
+      hIn[:contact][0][:hoursOfService] << 'hours of service'
+      hIn[:contact][0][:hoursOfService] << 'hours of service 2'
+      hIn[:contact][0][:contactInstructions] = 'contact instructions'
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+                                                   '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_contact_empty_elements
+   def test_contact_empty_elements
 
-      xExpect = @@xFile.xpath('//gfc:producer[5]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:phone] = []
+      hIn[:contact][0][:address] = []
+      hIn[:contact][0][:electronicMailAddress] = []
+      hIn[:contact][0][:onlineResource] = []
+      hIn[:contact][0][:hoursOfService] = []
+      hIn[:contact][0][:contactInstructions] = ''
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+                                                   '//gmd:contactInfo[3]', '//gmd:contactInfo')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19110_contact_missing_elements
+   def test_contact_missing_elements
 
-      xExpect = @@xFile.xpath('//gfc:producer[6]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0].delete(:phone)
+      hIn[:contact][0].delete(:address)
+      hIn[:contact][0].delete(:onlineResource)
+      hIn[:contact][0].delete(:hoursOfService)
+      hIn[:contact][0].delete(:contactInstructions)
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+                                                   '//gmd:contactInfo[3]', '//gmd:contactInfo')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:producer')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 

@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_functions'
 class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    mdHash = TDClass.base
    hSpaceRef = TDClass.spatialReferenceSystem

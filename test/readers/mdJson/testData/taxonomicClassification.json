@@ -1,22 +1,22 @@
 {
    "taxonomicClassification": [
       {
-         "taxonomicRank": "taxonomicRank0",
-         "latinName": "latinName",
+         "taxonomicLevel": "taxonomicLevel0",
+         "taxonomicName": "taxonomicName",
          "commonName": ["commonName0", "commonName1"],
          "subClassification": [
             {
                "taxonomicSystemId": "taxonomicSystemId00",
-               "taxonomicRank": "taxonomicRank00",
-               "latinName": "latinName",
+               "taxonomicLevel": "taxonomicLevel00",
+               "taxonomicName": "taxonomicName",
                "commonName": [
                   "commonName0",
                   "commonName1"
                ],
                "subClassification": [
                   {
-                     "taxonomicRank": "taxonomicRank000",
-                     "latinName": "latinName",
+                     "taxonomicLevel": "taxonomicLevel000",
+                     "taxonomicName": "taxonomicName",
                      "commonName": [
                         "commonName0",
                         "commonName1"
@@ -24,8 +24,8 @@
                      "subClassification": [
                         {
                            "taxonomicSystemId": "taxonomicSystemId0000.1",
-                           "taxonomicRank": "taxonomicRank0000.1",
-                           "latinName": "latinName",
+                           "taxonomicLevel": "taxonomicLevel0000.1",
+                           "taxonomicName": "taxonomicName",
                            "commonName": [
                               "commonName0",
                               "commonName1"
@@ -34,8 +34,8 @@
                         },
                         {
                            "taxonomicSystemId": "taxonomicSystemId0000.2",
-                           "taxonomicRank": "taxonomicRank0000.2",
-                           "latinName": "latinName",
+                           "taxonomicLevel": "taxonomicLevel0000.2",
+                           "taxonomicName": "taxonomicName",
                            "commonName": [
                               "commonName0",
                               "commonName1"
@@ -47,16 +47,16 @@
                ]
             },
             {
-               "taxonomicRank": "taxonomicRank01",
-               "latinName": "latinName",
+               "taxonomicLevel": "taxonomicLevel01",
+               "taxonomicName": "taxonomicName",
                "commonName": [
                   "commonName0",
                   "commonName1"
                ],
                "subClassification": [
                   {
-                     "taxonomicRank": "taxonomicRank010",
-                     "latinName": "latinName",
+                     "taxonomicLevel": "taxonomicLevel010",
+                     "taxonomicName": "taxonomicName",
                      "commonName": [
                         "commonName0",
                         "commonName1"

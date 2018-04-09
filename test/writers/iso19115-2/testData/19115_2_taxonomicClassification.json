@@ -52,91 +52,93 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title"
-                  },
-                  "modifications": "modifications"
-               }
-            ],
-            "generalScope": "generalScope",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "description0",
-                  "authority": {
-                     "title": "title0"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title"
+                     },
+                     "modifications": "modifications"
                   }
-               }
-            ],
-            "observer": [],
-            "identificationProcedure": "identificationProcedure",
-            "identificationCompleteness": "identificationCompleteness",
-            "voucher": [],
-            "taxonomicClassification": {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName",
-               "commonName": [
-                  "commonName0",
-                  "commonName1"
                ],
-               "subClassification": [
+               "generalScope": "generalScope",
+               "identificationReference": [
                   {
-                     "taxonomicRank": "taxonomicRank00",
-                     "latinName": "latinName",
-                     "subClassification": [
-                        {
-                           "taxonomicRank": "taxonomicRank000",
-                           "latinName": "latinName",
-                           "commonName": [],
-                           "subClassification": [
-                              {
-                                 "taxonomicRank": "taxonomicRank0000.1",
-                                 "latinName": "latinName",
-                                 "commonName": [
-                                    "commonName0"
-                                 ],
-                                 "subClassification": []
-                              },
-                              {
-                                 "taxonomicRank": "taxonomicRank0000.2",
-                                 "latinName": "latinName",
-                                 "commonName": [
-                                    "commonName0",
-                                    "commonName1"
-                                 ]
-                              }
-                           ]
-                        }
-                     ]
-                  },
-                  {
-                     "taxonomicRank": "taxonomicRank01",
-                     "latinName": "latinName",
-                     "commonName": [
-                        "commonName0",
-                        "commonName1",
-                        "commonName2"
-                     ],
-                     "subClassification": [
-                        {
-                           "taxonomicRank": "taxonomicRank010",
-                           "latinName": "latinName",
-                           "commonName": [
-                              "commonName0",
-                              "commonName1"
-                           ],
-                           "subClassification": []
-                        }
-                     ]
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "description0",
+                     "authority": {
+                        "title": "title0"
+                     }
                   }
-               ]
+               ],
+               "observer": [],
+               "identificationProcedure": "identificationProcedure",
+               "identificationCompleteness": "identificationCompleteness",
+               "voucher": [],
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName",
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ],
+                  "subClassification": [
+                     {
+                        "taxonomicRank": "taxonomicRank00",
+                        "latinName": "latinName",
+                        "subClassification": [
+                           {
+                              "taxonomicRank": "taxonomicRank000",
+                              "latinName": "latinName",
+                              "commonName": [],
+                              "subClassification": [
+                                 {
+                                    "taxonomicRank": "taxonomicRank0000.1",
+                                    "latinName": "latinName",
+                                    "commonName": [
+                                       "commonName0"
+                                    ],
+                                    "subClassification": []
+                                 },
+                                 {
+                                    "taxonomicRank": "taxonomicRank0000.2",
+                                    "latinName": "latinName",
+                                    "commonName": [
+                                       "commonName0",
+                                       "commonName1"
+                                    ]
+                                 }
+                              ]
+                           }
+                        ]
+                     },
+                     {
+                        "taxonomicRank": "taxonomicRank01",
+                        "latinName": "latinName",
+                        "commonName": [
+                           "commonName0",
+                           "commonName1",
+                           "commonName2"
+                        ],
+                        "subClassification": [
+                           {
+                              "taxonomicRank": "taxonomicRank010",
+                              "latinName": "latinName",
+                              "commonName": [
+                                 "commonName0",
+                                 "commonName1"
+                              ],
+                              "subClassification": []
+                           }
+                        ]
+                     }
+                  ]
+               }
             }
-         }
+         ]
       }
    }
 }

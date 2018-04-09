@@ -17,31 +17,14 @@
   <gmd:contactInfo>
     <gmd:CI_Contact>
       <gmd:phone/>
-      <gmd:address>
-        <gmd:CI_Address>
-          <gmd:deliveryPoint>
-            <gco:CharacterString>address line 1</gco:CharacterString>
-          </gmd:deliveryPoint>
-          <gmd:city>
-            <gco:CharacterString>city</gco:CharacterString>
-          </gmd:city>
-          <gmd:administrativeArea>
-            <gco:CharacterString>state</gco:CharacterString>
-          </gmd:administrativeArea>
-          <gmd:postalCode>
-            <gco:CharacterString>zip</gco:CharacterString>
-          </gmd:postalCode>
-          <gmd:country>
-            <gco:CharacterString>country</gco:CharacterString>
-          </gmd:country>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>e.mail@address.com0</gco:CharacterString>
-          </gmd:electronicMailAddress>
-        </gmd:CI_Address>
-      </gmd:address>
+      <gmd:address/>
       <gmd:onlineResource/>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions/>
+      <gmd:hoursOfService>
+        <gco:CharacterString>hours of service</gco:CharacterString>
+      </gmd:hoursOfService>
+      <gmd:contactInstructions>
+        <gco:CharacterString>contact instructions</gco:CharacterString>
+      </gmd:contactInstructions>
     </gmd:CI_Contact>
   </gmd:contactInfo>
 
@@ -60,38 +43,14 @@
             <gco:CharacterString>city</gco:CharacterString>
           </gmd:city>
           <gmd:administrativeArea>
-            <gco:CharacterString>state</gco:CharacterString>
+            <gco:CharacterString>administrative area</gco:CharacterString>
           </gmd:administrativeArea>
           <gmd:postalCode>
-            <gco:CharacterString>zip</gco:CharacterString>
+            <gco:CharacterString>postal code</gco:CharacterString>
           </gmd:postalCode>
           <gmd:country>
             <gco:CharacterString>country</gco:CharacterString>
           </gmd:country>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>e.mail@address.com1</gco:CharacterString>
-          </gmd:electronicMailAddress>
-          <gmd:electronicMailAddress>
-            <gco:CharacterString>e.mail@address.com2</gco:CharacterString>
-          </gmd:electronicMailAddress>
-        </gmd:CI_Address>
-      </gmd:address>
-      <gmd:onlineResource/>
-      <gmd:hoursOfService/>
-      <gmd:contactInstructions/>
-    </gmd:CI_Contact>
-  </gmd:contactInfo>
-
-  <gmd:contactInfo>
-    <gmd:CI_Contact>
-      <gmd:phone/>
-      <gmd:address>
-        <gmd:CI_Address>
-          <gmd:deliveryPoint/>
-          <gmd:city/>
-          <gmd:administrativeArea/>
-          <gmd:postalCode/>
-          <gmd:country/>
           <gmd:electronicMailAddress/>
         </gmd:CI_Address>
       </gmd:address>

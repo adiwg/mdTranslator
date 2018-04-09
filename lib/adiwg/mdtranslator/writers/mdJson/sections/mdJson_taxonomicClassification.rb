@@ -1,8 +1,10 @@
 # mdJson 2.0 writer - taxonomic classification
 
 # History:
-#   Stan Smith 2017-03-17 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2018-04-06 renamed taxonomicRank to taxonomicLevel
+#  Stan Smith 2018-04-06 renamed latinName to taxonomicName
+#  Stan Smith 2017-03-17 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 require_relative 'mdJson_taxonomicClassification'
@@ -20,8 +22,8 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.taxonomicSystemId hTaxon[:taxonId]
-                     json.taxonomicRank hTaxon[:taxonRank]
-                     json.latinName hTaxon[:taxonValue]
+                     json.taxonomicLevel hTaxon[:taxonRank]
+                     json.taxonomicName hTaxon[:taxonValue]
                      json.commonName hTaxon[:commonNames] unless hTaxon[:commonNames].empty?
                      json.subClassification @Namespace.json_map(hTaxon[:subClasses], TaxonomicClassification)
                   end

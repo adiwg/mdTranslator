@@ -45,7 +45,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_equal 2, metadata[:temporalResolutions].length
       assert_equal 2, metadata[:extents].length
       assert_equal 2, metadata[:coverageDescriptions].length
-      refute_empty metadata[:taxonomy]
+      assert_equal 2, metadata[:taxonomy].length
       assert_equal 2, metadata[:graphicOverviews].length
       assert_equal 2, metadata[:resourceFormats].length
       assert_equal 5, metadata[:keywords].length
@@ -58,7 +58,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_equal 'supplementalInfo', metadata[:supplementalInfo]
       assert hResponse[:readerExecutionPass]
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
+                      'NOTICE: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
 
    end
 
@@ -266,7 +266,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       hIn['temporalResolution'] = []
       hIn['extent'] = []
       hIn['coverageDescription'] = []
-      hIn['taxonomy'] = {}
+      hIn['taxonomy'] = []
       hIn['graphicOverview'] = []
       hIn['resourceFormat'] = []
       hIn['keyword'] = []
@@ -367,6 +367,24 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_nil metadata[:supplementalInfo]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_taxonomy_object_deprecated
+
+      TestReaderMdJsonParent.setContacts
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hTaxonomy = hIn['taxonomy'][0]
+      hIn['taxonomy'] = {}
+      hIn['taxonomy'] = hTaxonomy
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'NOTICE: mdJson reader: taxonomy is an array, use of a single taxonomy object was deprecated'
 
    end
 

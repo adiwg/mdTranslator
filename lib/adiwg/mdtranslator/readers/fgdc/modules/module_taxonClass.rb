@@ -28,7 +28,8 @@ module ADIWG
                      hTaxonClass[:taxonRank] = rankName
                   end
                   if rankName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxon classification rank name is missing'
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: BIO taxon classification rank name is missing'
                   end
 
                   # taxonomy bio.4.2 (taxonrv) - taxon rank value (required)
@@ -38,7 +39,8 @@ module ADIWG
                      hTaxonClass[:taxonValue] = rankValue
                   end
                   if rankValue.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: BIO taxon classification rank value is missing'
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: BIO taxon classification rank value is missing'
                   end
 
                   # taxonomy bio.4.3 (common) - taxon common name []

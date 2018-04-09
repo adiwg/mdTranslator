@@ -38,6 +38,16 @@ module ADIWG
                      end
                   end
 
+                  # taxonomy - taxonomic class
+                  unless hTaxonomy[:taxonClass].empty?
+                     @html.details do
+                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           taxonomicClass.writeHtml(hTaxonomy[:taxonClass])
+                        end
+                     end
+                  end
+
                   # taxonomy - identification procedures
                   unless hTaxonomy[:idProcedure].nil?
                      @html.em('Identification Procedures: ')
@@ -76,16 +86,6 @@ module ADIWG
                               end
                            end
 
-                        end
-                     end
-                  end
-
-                  # taxonomy - taxonomic class
-                  unless hTaxonomy[:taxonClass].empty?
-                     @html.details do
-                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           taxonomicClass.writeHtml(hTaxonomy[:taxonClass])
                         end
                      end
                   end

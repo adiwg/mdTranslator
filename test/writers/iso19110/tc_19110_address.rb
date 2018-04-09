@@ -2,164 +2,145 @@
 # writers / iso19110 / class_address
 
 # History:
+#  Stan Smith 2018-04-02 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-01-23 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
+
 
 class TestWriter19110Address < TestWriter19110Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter19110Parent.get_xml('19110_address.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_address.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   # test all keys with single elements
-   def test_19110_address
+   # dictionary 1
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
+   TDClass.add_email(mdHash[:contact][0], 'e1.mail@address.org')
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[1]')
+   @@mdHash = mdHash
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(1)
-      jsonIn = hJson.to_json
+   def test_contact_address_complete_single
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:deliveryPoint].delete_at(1)
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[1]', '//gmd:address')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   # test all keys with multiple array elements
-   def test_19110_address_2
+   def test_contact_complete_multi
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[2]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      TDClass.add_email(hIn[:contact][0], 'e2.mail@address.org')
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(2)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[2]', '//gmd:address')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   # test all keys with empty values where allowed
-   def test_19110_address_3
+   def test_address_multi
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[3]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      TDClass.add_address(hIn[:contact][0], ['physical'])
+      hIn[:contact][0][:address][0][:deliveryPoint].delete_at(1)
+      hIn[:contact][0][:phone] = []
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(3)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[1]', '//gmd:address')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   # test minimal address
-   def test_19110_address_4
+   def test_address_empty_elements
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[3]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:deliveryPoint] = []
+      hIn[:contact][0][:address][0][:city] = ''
+      hIn[:contact][0][:address][0][:administrativeArea] = ''
+      hIn[:contact][0][:address][0][:postalCode] = ''
+      hIn[:contact][0][:address][0][:country] = ''
+      hIn[:contact][0][:electronicMailAddress] = []
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(4)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[3]', '//gmd:address')
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   # test empty address array
-   def test_19110_address_5
+   def test_address_missing_elements
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[4]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0].delete(:deliveryPoint)
+      hIn[:contact][0][:address][0].delete(:city)
+      hIn[:contact][0][:address][0].delete(:administrativeArea)
+      hIn[:contact][0][:address][0].delete(:postalCode)
+      hIn[:contact][0][:address][0].delete(:country)
+      hIn[:contact][0].delete(:electronicMailAddress)
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(5)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[3]', '//gmd:address')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   # test missing array
-   def test_19110_address_6
+   def test_address_empty
 
-      xExpect = @@xFile.xpath('//gmd:contactInfo[4]')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address] = []
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      hJson['dataDictionary'][0]['responsibleParty']['party'].delete_at(0)
-      jsonIn = hJson.to_json
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[4]', '//gmd:address')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:contactInfo')
+   end
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+   def test_address_missing
 
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0].delete(:address)
+
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[4]', '//gmd:address')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+
+   end
+
+   def test_address_email_empty
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address] = []
+      hIn[:contact][0][:electronicMailAddress] = []
+
+      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_address',
+                                                   '//gmd:address[5]', '//gmd:address')
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
    end
 
 end

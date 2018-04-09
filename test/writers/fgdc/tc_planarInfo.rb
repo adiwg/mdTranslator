@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_functions'
 class TestWriterFgdcMapCoordinateInfo < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    # expect file
    @@path = './metadata/spref/horizsys/planar/planci'

@@ -111,8 +111,12 @@ module ADIWG
                   # identification information bio (taxonomy) - taxonomy
                   unless hResourceInfo[:taxonomy].empty?
                      @xml.tag!('taxonomy') do
-                        taxonomyClass.writeXML(hResourceInfo[:taxonomy], hResourceInfo[:keywords])
+                        taxonomyClass.writeXML(hResourceInfo[:taxonomy][0], hResourceInfo[:keywords])
                      end
+                  end
+                  if hResourceInfo[:taxonomy].length > 1
+                     @NameSpace.issueNotice(186)
+                     @NameSpace.issueNotice(187)
                   end
                   if hResourceInfo[:taxonomy].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('taxonomy')

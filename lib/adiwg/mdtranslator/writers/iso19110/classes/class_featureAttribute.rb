@@ -3,6 +3,7 @@
 # create attributes for entities
 
 # History:
+#  Stan Smith 2018-04-03 refactored error and warning messaging
 #  Stan Smith 2017-11-02 split out domain from attribute
 #  Stan Smith 2017-02-02 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -11,6 +12,7 @@
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 # 	Stan Smith 2014-12-02 original script
 
+require_relative '../iso19110_writer'
 require_relative 'class_multiplicity'
 require_relative 'class_unitsOfMeasure'
 require_relative 'class_definitionReference'
@@ -26,6 +28,7 @@ module ADIWG
                def initialize(xml, responseObj)
                   @xml = xml
                   @hResponseObj = responseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
                def writeXML(hAttribute)
@@ -38,6 +41,8 @@ module ADIWG
 
                   @xml.tag!('gfc:FC_FeatureAttribute') do
 
+                     outContext = hAttribute[:attributeCode]
+
                      # feature attribute - member name (required)
                      # used for attribute common name
                      s = hAttribute[:attributeName]
@@ -47,7 +52,7 @@ module ADIWG
                         end
                      end
                      if s.nil?
-                        @xml.tag!('gfc:memberName', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(50, 'gfc:memberName', outContext)
                      end
 
                      # feature attribute - definition
@@ -63,6 +68,7 @@ module ADIWG
                      end
 
                      # feature attribute - cardinality (required)
+                     # no test required, values come from Boolean values
                      @xml.tag!('gfc:cardinality') do
                         multiClass.writeXML(hAttribute)
                      end
@@ -100,7 +106,7 @@ module ADIWG
                         @xml.tag!('gfc:valueMeasurementUnit')
                      end
 
-                     # feature attribute - value type (datatype)
+                     # feature attribute - value type {datatype}
                      s = hAttribute[:dataType]
                      unless s.nil?
                         @xml.tag!('gfc:valueType') do
@@ -121,7 +127,7 @@ module ADIWG
                         # find domain in domain array
                         hDomain = ADIWG::Mdtranslator::Writers::Iso19110.getDomain(domainID)
                         unless hDomain.empty?
-                           domainClass.writeXML(hDomain)
+                           domainClass.writeXML(hDomain, outContext)
                         end
                      end
 

@@ -52,108 +52,110 @@
             "country": "USA",
             "characterSet": "UTF-8"
          },
-         "taxonomy": {
-            "taxonomicSystem": [
-               {
-                  "citation": {
-                     "title": "title0"
+         "taxonomy": [
+            {
+               "taxonomicSystem": [
+                  {
+                     "citation": {
+                        "title": "title0"
+                     },
+                     "modifications": "modifications0"
                   },
-                  "modifications": "modifications0"
-               },
-               {
-                  "citation": {
-                     "title": "title1"
+                  {
+                     "citation": {
+                        "title": "title1"
+                     },
+                     "modifications": "modifications1"
+                  }
+               ],
+               "generalScope": "generalScope",
+               "identificationReference": [
+                  {
+                     "identifier": "identifier0",
+                     "namespace": "namespace0",
+                     "version": "version0",
+                     "description": "description0",
+                     "authority": {
+                        "title": "title0"
+                     }
                   },
-                  "modifications": "modifications1"
-               }
-            ],
-            "generalScope": "generalScope",
-            "identificationReference": [
-               {
-                  "identifier": "identifier0",
-                  "namespace": "namespace0",
-                  "version": "version0",
-                  "description": "description0",
-                  "authority": {
-                     "title": "title0"
-                  }
-               },
-               {
-                  "identifier": "identifier1",
-                  "namespace": "namespace1",
-                  "version": "version1",
-                  "description": "description1",
-                  "authority": {
-                     "title": "title1"
-                  }
-               }
-            ],
-            "observer": [
-               {
-                  "role": "role0",
-                  "party": [
-                     {
-                        "contactId": "CID001"
+                  {
+                     "identifier": "identifier1",
+                     "namespace": "namespace1",
+                     "version": "version1",
+                     "description": "description1",
+                     "authority": {
+                        "title": "title1"
                      }
-                  ]
-               },
-               {
-                  "role": "role1",
-                  "party": [
-                     {
-                        "contactId": "CID001"
-                     }
-                  ]
-               }
-            ],
-            "identificationProcedure": "identificationProcedure",
-            "identificationCompleteness": "identificationCompleteness",
-            "voucher": [
-               {
-                  "specimen": "specimen0",
-                  "repository": {
+                  }
+               ],
+               "observer": [
+                  {
                      "role": "role0",
                      "party": [
                         {
                            "contactId": "CID001"
                         }
                      ]
-                  }
-               },
-               {
-                  "specimen": "specimen1",
-                  "repository": {
+                  },
+                  {
                      "role": "role1",
-                     "roleExtent": [
-                        {
-                           "description": "description",
-                           "temporalExtent": [
-                              {
-                                 "type": "period",
-                                 "timePeriod": {
-                                    "startDateTime": "2016-10-14"
-                                 }
-                              }
-                           ]
-                        }
-                     ],
                      "party": [
                         {
                            "contactId": "CID001"
                         }
                      ]
                   }
+               ],
+               "identificationProcedure": "identificationProcedure",
+               "identificationCompleteness": "identificationCompleteness",
+               "voucher": [
+                  {
+                     "specimen": "specimen0",
+                     "repository": {
+                        "role": "role0",
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  },
+                  {
+                     "specimen": "specimen1",
+                     "repository": {
+                        "role": "role1",
+                        "roleExtent": [
+                           {
+                              "description": "description",
+                              "temporalExtent": [
+                                 {
+                                    "type": "period",
+                                    "timePeriod": {
+                                       "startDateTime": "2016-10-14"
+                                    }
+                                 }
+                              ]
+                           }
+                        ],
+                        "party": [
+                           {
+                              "contactId": "CID001"
+                           }
+                        ]
+                     }
+                  }
+               ],
+               "taxonomicClassification": {
+                  "taxonomicRank": "taxonomicRank0",
+                  "latinName": "latinName",
+                  "commonName": [
+                     "commonName0",
+                     "commonName1"
+                  ]
                }
-            ],
-            "taxonomicClassification": {
-               "taxonomicRank": "taxonomicRank0",
-               "latinName": "latinName",
-               "commonName": [
-                  "commonName0",
-                  "commonName1"
-               ]
             }
-         }
+         ]
       }
    }
 }

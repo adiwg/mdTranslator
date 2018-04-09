@@ -11,7 +11,7 @@ require_relative '../../helpers/mdJson_hash_functions'
 class TestWriterFgdcConstraint < TestWriterFGDCParent
 
    # instance classes needed in script
-   TDClass = FgdcWriterTD.new
+   TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
    # constraint is in base

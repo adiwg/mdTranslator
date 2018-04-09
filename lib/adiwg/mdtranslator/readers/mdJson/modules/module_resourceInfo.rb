@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-04-06 change taxonomy to an array
 #  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-05-16 deprecated topic category
 #   ... topic category is now handled as keyword list
@@ -155,7 +156,7 @@ module ADIWG
                            intResInfo[:keywords] << hReturn[0]
                         end
                         responseObj[:readerExecutionMessages] <<
-                           'WARNING: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
+                           'NOTICE: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
                      end
                   end
 
@@ -250,14 +251,24 @@ module ADIWG
                      end
                   end
 
-                  # resource information - taxonomy {taxonomy}
+                  # resource information - taxonomy [] {taxonomy}
+                  # support deprecated taxonomy{}
                   if hResInfo.has_key?('taxonomy')
-                     hObject = hResInfo['taxonomy']
-                     unless hObject.empty?
-                        hReturn = Taxonomy.unpack(hObject, responseObj)
-                        unless hReturn.nil?
-                           intResInfo[:taxonomy] = hReturn
+                     aTaxonomy = hResInfo['taxonomy']
+                     if aTaxonomy.is_a?(Array)
+                        aTaxonomy.each do |hTaxonomy|
+                           hReturn = Taxonomy.unpack(hTaxonomy, responseObj)
+                           unless hReturn.nil?
+                              intResInfo[:taxonomy] << hReturn
+                           end
                         end
+                     else
+                        hReturn = Taxonomy.unpack(aTaxonomy, responseObj)
+                        unless hReturn.nil?
+                           intResInfo[:taxonomy] << hReturn
+                        end
+                        responseObj[:readerExecutionMessages] <<
+                           'NOTICE: mdJson reader: taxonomy is an array, use of a single taxonomy object was deprecated'
                      end
                   end
 

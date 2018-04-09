@@ -2,46 +2,46 @@
 # writers / iso19110 / class_fcFeatureCatalogue
 
 # History:
+#  Stan Smith 2018-04-05 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2017-01-23 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'rubygems'
-require 'adiwg/mdtranslator'
-require 'adiwg/mdtranslator/writers/iso19110/version'
 require_relative 'iso19110_test_parent'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestWriter19110FeatureCatalogue < TestWriter19110Parent
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter19110Parent.get_json('19110_fcFeatureCatalogue.json')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   def test_19110_featureCatalogue
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-      # read the ISO 19110 complete reference file
-      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue0.xml')
-      xExpect = xFile.xpath('//gfc:FC_FeatureCatalogue')
+   # dictionary
+   hDictionary = TDClass.build_dataDictionary
+   mdHash[:dataDictionary] << hDictionary
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'].delete_at(1)
-      hJson['dataDictionary'].delete_at(1)
-      jsonIn = hJson.to_json
+   @@mdHash = mdHash
+
+   def test_featureCatalogue_complete
+
+      # locale, responsibleParty, domain and entity tested elsewhere
+      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue0')
+      expect = xFile.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+         file: @@mdHash.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true
       )
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      got = xMetadata.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
 
       translatorVersion = ADIWG::Mdtranslator::VERSION
       writerVersion = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
-      schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
 
-      assert_equal 'mdJson', hResponseObj[:readerRequested]
-      assert_equal '2.0.0', hResponseObj[:readerVersionRequested]
-      assert_equal schemaVersion, hResponseObj[:readerVersionUsed]
       assert hResponseObj[:readerStructurePass]
       assert_empty hResponseObj[:readerStructureMessages]
-      assert_equal 'normal', hResponseObj[:readerValidationLevel]
       assert hResponseObj[:readerValidationPass]
       assert_empty hResponseObj[:readerValidationMessages]
       assert hResponseObj[:readerExecutionPass]
@@ -50,59 +50,74 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
       assert_equal writerVersion, hResponseObj[:writerVersion]
       assert hResponseObj[:writerPass]
       assert_equal 'xml', hResponseObj[:writerOutputFormat]
-      assert hResponseObj[:writerShowTags]
-      assert_nil hResponseObj[:writerCSSlink]
-      assert_equal '_000', hResponseObj[:writerMissingIdCount]
       assert_equal translatorVersion, hResponseObj[:translatorVersion]
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
-
-   end
-
-   def test_19110_featureCatalogue_empty_elements
-
-      # read the ISO 19110 complete reference file
-      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue1.xml')
-      xExpect = xFile.xpath('//gfc:FC_FeatureCatalogue')
-
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'].delete_at(2)
-      hJson['dataDictionary'].delete_at(0)
-      jsonIn = hJson.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
-
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal expect, got
 
    end
 
-   def test_19110_featureCatalogue_missing_elements
+   def test_featureCatalogue_elements
 
-      # read the ISO 19110 complete reference file
-      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue2.xml')
-      xExpect = xFile.xpath('//gfc:FC_FeatureCatalogue')
+      # elements empty
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:dataDictionary][0][:citation][:date] = []
+      hIn[:dataDictionary][0][:citation][:edition] = ''
+      hIn[:dataDictionary][0][:description] = ''
+      hIn[:dataDictionary][0][:recommendedUse] = []
+      hIn[:dataDictionary][0][:dictionaryFunctionalLanguage] = ''
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['dataDictionary'].delete_at(0)
-      hJson['dataDictionary'].delete_at(0)
-      jsonIn = hJson.to_json
+      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue1')
+      expect = xFile.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19110', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gfc:FC_FeatureCatalogue')
+      got = xMetadata.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue version number is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue version date is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
+
+      assert_equal expect, got
+
+      # elements missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:dataDictionary][0][:citation].delete(:date)
+      hIn[:dataDictionary][0][:citation].delete(:edition)
+      hIn[:dataDictionary][0].delete(:description)
+      hIn[:dataDictionary][0].delete(:recommendedUse)
+      hIn[:dataDictionary][0].delete(:dictionaryFormat)
+      hIn[:dataDictionary][0].delete(:dictionaryFunctionalLanguage)
+
+      xFile = TestWriter19110Parent.get_xml('19110_fcFeatureCatalogue1')
+      expect = xFile.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
+      )
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      got = xMetadata.xpath('gfc:FC_FeatureCatalogue').to_s.squeeze(' ')
+
+      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue version number is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue version date is missing'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
+
+      assert_equal expect, got
 
    end
 
