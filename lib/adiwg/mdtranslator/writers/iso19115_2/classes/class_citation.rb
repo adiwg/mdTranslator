@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2016-11-29 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-08-28 added alternate title
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -18,6 +19,7 @@
 # 	Stan Smith 2013-12-30 added ISBN, ISSN
 # 	Stan Smith 2013-08-26 original script
 
+require_relative '../iso19115_2_writer'
 require_relative 'class_codelist'
 require_relative 'class_responsibleParty'
 require_relative 'class_date'
@@ -34,9 +36,10 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
                end
 
-               def writeXML(hCitation)
+               def writeXML(hCitation, inContext = nil)
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
@@ -45,12 +48,15 @@ module ADIWG
                   idClass = MD_Identifier.new(@xml, @hResponseObj)
                   seriesClass = CI_Series.new(@xml, @hResponseObj)
 
+                  outContext = 'citation'
+                  outContext = inContext + ' citation' unless inContext.nil?
+
                   @xml.tag!('gmd:CI_Citation') do
 
                      # citation - title (required)
                      s = hCitation[:title]
                      if s.nil?
-                        @xml.tag!('gmd:title', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(30, 'gmd:title', inContext)
                      else
                         @xml.tag!('gmd:title') do
                            @xml.tag!('gco:CharacterString', s)
@@ -72,11 +78,11 @@ module ADIWG
                      aDate = hCitation[:dates]
                      aDate.each do |hDate|
                         @xml.tag!('gmd:date') do
-                           dateClass.writeXML(hDate)
+                           dateClass.writeXML(hDate, outContext)
                         end
                      end
                      if aDate.empty?
-                        @xml.tag!('gmd:date', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(31, 'gmd:date', outContext)
                      end
 
                      # citation - edition
@@ -106,7 +112,7 @@ module ADIWG
                         end
                         if issn == '' && isbn == ''
                            @xml.tag!('gmd:identifier') do
-                              idClass.writeXML(hIdentifier)
+                              idClass.writeXML(hIdentifier, outContext)
                            end
                         end
                      end
@@ -123,7 +129,7 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:citedResponsibleParty') do
-                              rPartyClass.writeXML(role, hParty)
+                              rPartyClass.writeXML(role, hParty, outContext)
                            end
                         end
                      end

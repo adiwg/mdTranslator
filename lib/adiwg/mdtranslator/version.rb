@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.0 2018-04-09 refactored messaging for ISO19115-2
 # 2.12.0 2018-04-07 add 'fgdc' option to reader and writer enum list
 # 2.12.0 2018-04-06 rename taxonomicRank to taxonomicLevel
 # 2.12.0 2018-04-06 rename latinName to taxonomicNamel

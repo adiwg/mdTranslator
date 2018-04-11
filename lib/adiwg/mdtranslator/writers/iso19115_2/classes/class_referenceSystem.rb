@@ -45,7 +45,7 @@ module ADIWG
                      hIdentifier = hSystem[:systemIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:referenceSystemIdentifier') do
-                           idClass.writeXML(hIdentifier)
+                           idClass.writeXML(hIdentifier, 'spatial reference system')
                         end
                      end
                      if hIdentifier.empty? && @hResponseObj[:writerShowTags]

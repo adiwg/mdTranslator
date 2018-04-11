@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML.
 
 # History:
+#  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2018-01-27 add metadata constraints
 #  Stan Smith 2016-11-15 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-08-27 added support for content information
@@ -37,6 +38,7 @@
 
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../iso19115_2_writer'
 require_relative 'class_codelist'
 require_relative 'class_hierarchy'
 require_relative 'class_responsibleParty'
@@ -64,6 +66,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
                end
 
                def writeXML(intObj)
@@ -184,12 +187,12 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:contact') do
-                              partyClass.writeXML(role, hParty)
+                              partyClass.writeXML(role, hParty, 'metadata contact')
                            end
                         end
                      end
                      if aRParties.empty?
-                        @xml.tag!('gmd:contact', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(240, 'gmd:contact')
                      end
 
                      # metadata information - date stamp (required) {default: now()}
@@ -236,7 +239,7 @@ module ADIWG
                      end
                      aLocales.each do |hLocale|
                         @xml.tag!('gmd:locale') do
-                           localeClass.writeXML(hLocale)
+                           localeClass.writeXML(hLocale, 'metadata information locale')
                         end
                      end
                      if aLocales.empty? && @hResponseObj[:writerShowTags]
@@ -299,7 +302,7 @@ module ADIWG
                         end
                      end
                      if hResInfo.empty?
-                        @xml.tag!('gmd:identificationInfo', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(241, 'gmd:identificationInfo')
                      end
 
                      # ###################### End Data Identification #######################
@@ -363,7 +366,7 @@ module ADIWG
                      hMaintenance = hMetaInfo[:metadataMaintenance]
                      unless hMaintenance.empty?
                         @xml.tag!('gmd:metadataMaintenance') do
-                           maintenanceClass.writeXML(hMaintenance)
+                           maintenanceClass.writeXML(hMaintenance, 'metadata maintenance')
                         end
                      end
                      if hMaintenance.empty? && @hResponseObj[:writerShowTags]
