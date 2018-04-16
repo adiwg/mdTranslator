@@ -70,8 +70,7 @@
             },
             {
                "vectorRepresentation": {
-                  "topologyLevel": "topology level",
-                  "vectorObject": []
+                  "topologyLevel": "topology level"
                }
             }
          ]
