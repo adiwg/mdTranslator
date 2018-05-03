@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML.
 
 # History:
+#  Stan Smith 2018-05-03 add variable for changing XSD location
 #  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2018-01-27 add metadata constraints
 #  Stan Smith 2016-11-15 refactored for mdTranslator/mdJson 2.0
