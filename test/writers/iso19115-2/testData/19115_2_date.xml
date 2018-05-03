@@ -18,7 +18,7 @@
                  xmlns:xlink="http://www.w3.org/1999/xlink"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
-                 C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
+                 ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
 
   <gmd:date>
     <gmd:CI_Date>

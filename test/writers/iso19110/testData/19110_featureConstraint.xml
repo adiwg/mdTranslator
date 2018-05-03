@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmi:MI_Metadata
+<gfc:FC_FeatureCatalogue
         xmlns:gmi="http://www.isotc211.org/2005/gmi"
         xmlns:gmd="http://www.isotc211.org/2005/gmd"
         xmlns:gco="http://www.isotc211.org/2005/gco"
@@ -9,10 +9,9 @@
         xmlns:gst="http://www.isotc211.org/2005/gst"
         xmlns:gmx="http://www.isotc211.org/2005/gmx"
         xmlns:gfc="http://www.isotc211.org/2005/gfc"
-        xmlns:srv="http://www.isotc211.org/2005/srv"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.isotc211.org/2005/gmi C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
+        xsi:schemaLocation="http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd">
 
   <gfc:constrainedBy>
     <gfc:FC_Constraint>
@@ -62,4 +61,4 @@
     </gfc:FC_Constraint>
   </gfc:constrainedBy>
 
-</gmi:MI_Metadata>
+</gfc:FC_FeatureCatalogue>
