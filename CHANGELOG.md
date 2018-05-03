@@ -1,7 +1,26 @@
 # Change Log
 
-## [v2.10.0](https://github.com/adiwg/mdTranslator/tree/v2.10.0)
+## [v2.12.0.pre](https://github.com/adiwg/mdTranslator/tree/v2.12.0.pre)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.10.0...v2.12.0.pre)
+
+**Implemented enhancements:**
+
+- Issue warning when contact is not found [\#187](https://github.com/adiwg/mdTranslator/issues/187)
+- Divide user messages into warning and error [\#183](https://github.com/adiwg/mdTranslator/issues/183)
+- Add error messaging to ISO writers [\#178](https://github.com/adiwg/mdTranslator/issues/178)
+- Allow mutiple taxonomic definitions [\#14](https://github.com/adiwg/mdTranslator/issues/14)
+
+**Fixed bugs:**
+
+- Missing FGDC writer option in CLI [\#192](https://github.com/adiwg/mdTranslator/issues/192)
+
+**Merged pull requests:**
+
+- Refactor taxonomy as an array [\#190](https://github.com/adiwg/mdTranslator/pull/190) ([stansmith907](https://github.com/stansmith907))
+- Refactor FGDC writer messaging [\#189](https://github.com/adiwg/mdTranslator/pull/189) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.10.0](https://github.com/adiwg/mdTranslator/tree/v2.10.0) (2018-03-13)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.9.2...v2.10.0)
 
 **Merged pull requests:**
