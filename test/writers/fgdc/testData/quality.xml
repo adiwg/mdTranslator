@@ -9,6 +9,21 @@
       <method>
         <methtype>statement</methtype>
         <methdesc>statement</methdesc>
+        <methcite>
+          <citeinfo>
+            <origin>person name three</origin>
+            <pubdate>20171122</pubdate>
+            <pubtime/>
+            <title>citation title</title>
+            <edition/>
+            <geoform/>
+            <serinfo/>
+            <pubinfo/>
+            <othercit/>
+            <onlink/>
+            <lworkcit/>
+          </citeinfo>
+        </methcite>
       </method>
       <srcinfo/>
       <procstep>missing</procstep>

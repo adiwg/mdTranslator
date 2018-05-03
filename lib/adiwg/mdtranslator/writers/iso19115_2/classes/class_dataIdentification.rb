@@ -15,7 +15,7 @@
 #  Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#  Stan Smith 2014-10-29 add resource time period as a extent temporal element
+#  Stan Smith 2014-10-29 add resource time period as a temporalExtent element
 #  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #  Stan Smith 2014-05-21 added aggregate information section
 #  Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
@@ -28,6 +28,7 @@
 # 	Stan Smith 2013-09-18 add descriptive keywords
 # 	Stan Smith 2013-08-26 original script
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative '../iso19115_2_writer'
 require_relative 'class_codelist'
 require_relative 'class_enumerationList'
@@ -62,6 +63,7 @@ module ADIWG
                def writeXML(hData, aAssocRes, aDistInfo)
 
                   # classes used
+                  intMetadataClass = InternalMetadata.new
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   enumerationClass = MD_EnumerationList.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
@@ -113,6 +115,16 @@ module ADIWG
                      end
                      if s.nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:purpose')
+                     end
+
+                     # data identification - time period {timePeriod}
+                     # package as a temporal extent
+                     unless hData[:timePeriod].empty?
+                        hExtent = intMetadataClass.newExtent
+                        hTempExtent = intMetadataClass.newTemporalExtent
+                        hTempExtent[:timePeriod] = hData[:timePeriod]
+                        hExtent[:temporalExtents] << hTempExtent
+                        hData[:extents] << hExtent
                      end
 
                      # data identification - credit []

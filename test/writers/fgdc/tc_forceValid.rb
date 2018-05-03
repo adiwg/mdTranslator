@@ -32,9 +32,6 @@ class TestWriterFgdcForceValid < TestWriterFGDCParent
    hContact1[:contactInstructions] = 'contact instructions'
    hContact1[:contactType] = 'contact type'
 
-   hContact2 = TDClass.build_organization('CID002', 'organization name')
-   mdHash[:contact] << hContact2
-
    @@mdHash = mdHash
 
    def test_writeValid

@@ -2,36 +2,57 @@
 # writers / iso19115_2 / class_distribution
 
 # History:
+#  Stan Smith 2018-04-19 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-12-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Distribution < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_distribution.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_distribution.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_distribution
+   hDistributor = TDClass.build_distributor('CID003')
+   hDistribution = TDClass.build_distribution
+   hDistribution[:distributor] << hDistributor
+   hDistribution[:distributor] << hDistributor
+   mdHash[:metadata][:resourceDistribution] = []
+   mdHash[:metadata][:resourceDistribution] << hDistribution
 
-      axExpect = @@xFile.xpath('//gmd:distributionInfo')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_distribution_single
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:distributionInfo')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceDistribution][0][:distributor].delete_at(0)
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_distribution',
+                                                '//gmd:distributionInfo[1]',
+                                                '//gmd:distributionInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_distribution_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_distribution',
+                                                '//gmd:distributionInfo[2]',
+                                                '//gmd:distributionInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

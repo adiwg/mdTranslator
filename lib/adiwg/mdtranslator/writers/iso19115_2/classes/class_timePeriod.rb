@@ -68,7 +68,8 @@ module ADIWG
                      end
 
                      # time period - begin position
-                     # tag required, however value may be empty
+                     # tag always required, however value may be empty
+                     # if empty add indeterminatePosition="unknown"
                      unless hPeriod[:startDateTime].empty?
                         hDateTime = hPeriod[:startDateTime]
                         dateTime = hDateTime[:dateTime]
@@ -77,11 +78,12 @@ module ADIWG
                         @xml.tag!('gml:beginPosition', dateStr)
                      end
                      if hPeriod[:startDateTime].empty?
-                        @xml.tag!('gml:beginPosition')
+                        @xml.tag!('gml:beginPosition', {indeterminatePosition: 'unknown'})
                      end
 
                      # time period - begin position
-                     # tag required, however value may be empty
+                     # tag always required, however value may be empty
+                     # if empty add indeterminatePosition="unknown"
                      unless hPeriod[:endDateTime].empty?
                         hDateTime = hPeriod[:endDateTime]
                         dateTime = hDateTime[:dateTime]
@@ -90,7 +92,7 @@ module ADIWG
                         @xml.tag!('gml:endPosition', dateStr)
                      end
                      if hPeriod[:endDateTime].empty?
-                        @xml.tag!('gml:endPosition')
+                        @xml.tag!('gml:endPosition', {indeterminatePosition: 'unknown'})
                      end
 
                      # time period - time interval

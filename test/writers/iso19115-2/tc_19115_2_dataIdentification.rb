@@ -2,36 +2,57 @@
 # writers / iso19115_2 / class_dataIdentification
 
 # History:
+#  Stan Smith 2018-04-18 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-12-20 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152DataIdentification < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_dataIdentification.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_dataIdentification.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_dataIdentification
+   @@mdHash = mdHash
 
-      axExpect = @@xFile.xpath('//gmd:identificationInfo')
+   def test_dataIdentification_missing_elements
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, validate: 'none'
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:identificationInfo')
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataIdentification',
+                                                '//gmd:identificationInfo[1]',
+                                                '//gmd:identificationInfo', 0)
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_dataIdentification_complete
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hIn[:metadata][:resourceInfo][:keyword] = []
+      hIn[:metadata][:resourceInfo][:topicCategory] = %w(biota health)
+      hIn[:metadata][:resourceInfo][:shortAbstract] = 'short abstract'
+      hIn[:metadata][:resourceInfo][:credit] = ['credit one', 'credit two']
+      hIn[:metadata][:resourceInfo][:environmentDescription] = 'environment description'
+      hIn[:metadata][:resourceInfo][:supplementalInfo] = 'supplemental information'
+      hIn[:metadata][:resourceInfo][:spatialRepresentationType] = %w(grid vector)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataIdentification',
+                                                '//gmd:identificationInfo[2]',
+                                                '//gmd:identificationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

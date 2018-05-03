@@ -97,8 +97,8 @@ module ADIWG
                      end
 
                      # citation - resource identifier []
-                     # do not process ISBN and ISSN as MD_identifier(s)
-                     # ... these are written separately in ISO 19115-x
+                     # process ISBN and ISSN as MD_identifier(s)
+                     # ... then also write separately in ISBN or ISSN tag
                      isbn = ''
                      issn = ''
                      aIds = hCitation[:identifiers]
@@ -110,10 +110,8 @@ module ADIWG
                               issn = hIdentifier[:identifier]
                            end
                         end
-                        if issn == '' && isbn == ''
-                           @xml.tag!('gmd:identifier') do
-                              idClass.writeXML(hIdentifier, outContext)
-                           end
+                        @xml.tag!('gmd:identifier') do
+                           idClass.writeXML(hIdentifier, outContext)
                         end
                      end
                      if aIds.empty? && @hResponseObj[:writerShowTags]
@@ -123,17 +121,23 @@ module ADIWG
                      # citation - cited responsible party [{CI_ResponsibleParty}]
                      # contacts are grouped by role in the internal object
                      # output a separate <gmd:contact> for each role:contact pairing
+                     # check for duplicates and eliminate
+                     aRoleParty = []
                      aRParties = hCitation[:responsibleParties]
                      aRParties.each do |hRParty|
                         role = hRParty[:roleName]
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
-                           @xml.tag!('gmd:citedResponsibleParty') do
-                              rPartyClass.writeXML(role, hParty, outContext)
-                           end
+                           aRoleParty << {role: role, hParty: hParty}
                         end
                      end
-                     if aRParties.empty? && @hResponseObj[:writerShowTags]
+                     aRoleParty.uniq!
+                     aRoleParty.each do |hRoleParty|
+                        @xml.tag!('gmd:citedResponsibleParty') do
+                           rPartyClass.writeXML(hRoleParty[:role], hRoleParty[:hParty], outContext)
+                        end
+                     end
+                     if aRoleParty.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:citedResponsibleParty')
                      end
 

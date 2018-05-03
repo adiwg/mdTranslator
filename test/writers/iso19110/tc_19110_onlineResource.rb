@@ -31,7 +31,7 @@ class TestWriter19110OnlineResource < TestWriter19110Parent
       hIn[:contact][0][:onlineResource] = []
       hIn[:contact][0][:onlineResource] << hOLRes1
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_onlineResource',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_onlineResource',
                                                    '//gmd:onlineResource[1]', '//gmd:onlineResource')
 
       assert_equal hReturn[0], hReturn[1]
@@ -48,7 +48,7 @@ class TestWriter19110OnlineResource < TestWriter19110Parent
       hIn[:contact][0][:onlineResource] << hOLRes1
       hIn[:contact][0][:onlineResource] << hOLRes2
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_onlineResource',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_onlineResource',
                                                    '//gmd:onlineResource[1]', '//gmd:onlineResource')
 
       assert_equal hReturn[0], hReturn[1]
@@ -67,7 +67,7 @@ class TestWriter19110OnlineResource < TestWriter19110Parent
       hIn[:contact][0][:onlineResource] = []
       hIn[:contact][0][:onlineResource] << hOLRes1
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_onlineResource',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_onlineResource',
                                                    '//gmd:onlineResource[2]', '//gmd:onlineResource')
 
       assert_equal hReturn[0], hReturn[1]
@@ -86,7 +86,7 @@ class TestWriter19110OnlineResource < TestWriter19110Parent
       hIn[:contact][0][:onlineResource] = []
       hIn[:contact][0][:onlineResource] << hOLRes1
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_onlineResource',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_onlineResource',
                                                    '//gmd:onlineResource[2]', '//gmd:onlineResource')
 
       assert_equal hReturn[0], hReturn[1]

@@ -2,36 +2,58 @@
 # writers / iso19115_2 / class_onlineResource
 
 # History:
+#  Stan Smith 2018-04-26 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2016-11-21 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152OnlineResource < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_onlineResource.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_onlineResource.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_onlineResource
+   mdHash[:metadata][:metadataInfo][:metadataContact][0][:party][0] = { contactId: 'CID003' }
+   mdHash[:contact][2][:onlineResource] = []
+   mdHash[:contact][2][:onlineResource][0] = TDClass.build_onlineResource('http://online.adiwg.org/1')
 
-      axExpect = @@xFile.xpath('//gmd:CI_Contact')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_onlineResource_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:CI_Contact')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_onlineResource',
+                                                '//gmd:onlineResource[1]',
+                                                '//gmd:onlineResource', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_onlineResource_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hOLRes = hIn[:contact][2][:onlineResource][0]
+      hOLRes.delete(:name)
+      hOLRes.delete(:protocol)
+      hOLRes.delete(:description)
+      hOLRes.delete(:function)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_onlineResource',
+                                                '//gmd:onlineResource[2]',
+                                                '//gmd:onlineResource', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

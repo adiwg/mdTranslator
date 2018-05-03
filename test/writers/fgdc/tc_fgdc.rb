@@ -31,7 +31,7 @@ class TestWriterFgdcFgdc < TestWriterFGDCParent
       schemaVersion = Gem::Specification.find_by_name('adiwg-mdjson_schemas').version.to_s
 
       assert_equal 'mdJson', hResponseObj[:readerRequested]
-      assert_equal '2.3.0', hResponseObj[:readerVersionRequested]
+      assert_equal '2.4.0', hResponseObj[:readerVersionRequested]
       assert_equal schemaVersion, hResponseObj[:readerVersionUsed]
       assert hResponseObj[:readerStructurePass]
       assert_empty hResponseObj[:readerStructureMessages]

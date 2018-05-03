@@ -20,9 +20,6 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
    mdHash[:metadata][:resourceInfo][:taxonomy] << TDClass.taxonomy
    mdHash[:metadata][:resourceInfo][:taxonomy] << TDClass.taxonomy
 
-   # contacts
-   mdHash[:contact] << TDClass.build_person('CID002', 'person name two')
-
    # taxon keywords
    hKeyword2 = TDClass.build_keywords('fgdc taxonomy keywords','taxon')
    TDClass.add_keyword(hKeyword2, 'animals')
@@ -53,8 +50,8 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
    # taxonomic classification
    hLevel0 = hTaxonomy[:taxonomicClassification]
    hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
-   hLevel0[:taxonomicRank] = 'kingdom'
-   hLevel0[:latinName] = 'animalia'
+   hLevel0[:taxonomicLevel] = 'kingdom'
+   hLevel0[:taxonomicName] = 'animalia'
    hLevel0[:commonName] = ['animals']
    TDClass.add_taxonClass(hLevel0, 'subkingdom', 'bilateria')
 

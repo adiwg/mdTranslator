@@ -19,7 +19,7 @@
           </endgeol>
         </rngdates>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -33,7 +33,7 @@
           </geolage>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -47,7 +47,7 @@
           </geolage>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
   </idinfo>
 </metadata>

@@ -9,7 +9,7 @@
           <endtime>17:19:58</endtime>
         </rngdates>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -20,7 +20,7 @@
           <endtime/>
         </rngdates>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -29,7 +29,7 @@
           <time>10:45:14.666</time>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -38,7 +38,7 @@
           <time/>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -47,7 +47,7 @@
           <time>10:48:17</time>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <timeperd>
       <timeinfo>
@@ -56,7 +56,7 @@
           <time/>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
   </idinfo>
 </metadata>

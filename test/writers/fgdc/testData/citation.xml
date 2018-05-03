@@ -3,11 +3,11 @@
     <citation>
       <citeinfo>
         <origin>person name three</origin>
-        <origin>person name two</origin>
-        <origin>person name four</origin>
+        <origin>organization name</origin>
+        <origin>organization name four</origin>
         <pubdate>20171202</pubdate>
         <pubtime>13:41:13</pubtime>
-        <title>citation title</title>
+        <title>full citation title</title>
         <edition>edition</edition>
         <geoform>form one</geoform>
         <serinfo>
@@ -23,7 +23,7 @@
         <onlink>https://adiwg.mdtranslator/2</onlink>
         <lworkcit>
           <citeinfo>
-            <origin>person name</origin>
+            <origin>person name three</origin>
             <pubdate>20171122</pubdate>
             <pubtime/>
             <title>citation title</title>

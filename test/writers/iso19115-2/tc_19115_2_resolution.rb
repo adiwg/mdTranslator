@@ -2,37 +2,76 @@
 # writers / iso19115_2 / class_resolution
 
 # History:
+#  Stan Smith 2018-04-27 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-02 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Resolution < TestWriter191152Parent
 
-    # read the ISO 19110 reference file
-    @@xFile = TestWriter191152Parent.get_xml('19115_2_resolution.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-    # read the mdJson 2.0 file
-    @@mdJson = TestWriter191152Parent.get_json('19115_2_resolution.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-    def test_19115_2_resolution
+   @@mdHash = mdHash
 
-        axExpect = @@xFile.xpath('//gmd:spatialResolution')
+   # coordinate resolution not supported in ISO 19115-2
+   # bearing-distance resolution not supported in ISO 19115-2
+   # geographic resolution not supported in ISO 19115-2
+   # levelOfDetail resolution not supported in ISO 19115-2
 
-        hResponseObj = ADIWG::Mdtranslator.translate(
-            file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-        )
+   def test_spatialResolution_scaleFactor
 
-        xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-        axGot = xMetadata.xpath('//gmd:spatialResolution')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialResolution] = []
+      hIn[:metadata][:resourceInfo][:spatialResolution] << { scaleFactor: 9999 }
 
-        axExpect.length.times {|i|
-            assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-        }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_resolution',
+                                                '//gmd:spatialResolution[1]',
+                                                '//gmd:spatialResolution', 0)
 
-    end
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_spatialResolution_distance
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialResolution] = []
+      hIn[:metadata][:resourceInfo][:spatialResolution] << { measure: TDClass.measure }
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_resolution',
+                                                '//gmd:spatialResolution[2]',
+                                                '//gmd:spatialResolution', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_spatialResolution_unsupported_measure
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialResolution] = []
+      hIn[:metadata][:resourceInfo][:spatialResolution] << { measure: TDClass.measure }
+      hIn[:metadata][:resourceInfo][:spatialResolution][0][:measure][:type] = 'angle'
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_resolution',
+                                                '//gmd:spatialResolution[3]',
+                                                '//gmd:spatialResolution', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
 
 end

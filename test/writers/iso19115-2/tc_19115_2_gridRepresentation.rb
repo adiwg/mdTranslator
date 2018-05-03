@@ -2,36 +2,56 @@
 # writers / iso19115_2 / class_gridRepresentation
 
 # History:
+#  Stan Smith 2018-04-24 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-03 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152GridRepresentation < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_gridRepresentation.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_gridRepresentation.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_grid
+   hGrid = TDClass.build_gridRepresentation()
+   TDClass.add_dimension(hGrid)
+   hSpaceRep = TDClass.build_spatialRepresentation('grid', hGrid)
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
-      axExpect = @@xFile.xpath('//gmd:spatialRepresentationInfo')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_gridRepresentation_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:spatialRepresentationInfo')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_gridRepresentation',
+                                                '//gmd:spatialRepresentationInfo[1]',
+                                                '//gmd:spatialRepresentationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_gridRepresentation_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:gridRepresentation].delete(:transformationParameterAvailable)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_gridRepresentation',
+                                                '//gmd:spatialRepresentationInfo[1]',
+                                                '//gmd:spatialRepresentationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

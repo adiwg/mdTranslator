@@ -29,6 +29,9 @@ module ADIWG
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   measureClass = Measure.new(@xml, @hResponseObj)
 
+                  outContext = 'dimension'
+                  outContext = inContext + ' dimension' unless inContext.nil?
+
                   @xml.tag!('gmd:MD_Dimension') do
 
                      # dimension information - dimension type code (required)
@@ -57,7 +60,7 @@ module ADIWG
                      hMeasure = hDim[:resolution]
                      unless hMeasure.empty?
                         @xml.tag!('gmd:resolution') do
-                           measureClass.writeXML(hMeasure)
+                           measureClass.writeXML(hMeasure, outContext)
                         end
                      end
                      if hMeasure.empty? && @hResponseObj[:writerShowTags]

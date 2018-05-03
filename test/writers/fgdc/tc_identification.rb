@@ -33,6 +33,7 @@ class TestWriterFgdcIdentifier < TestWriterFGDCParent
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'identification', './metadata/idinfo')
       assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 

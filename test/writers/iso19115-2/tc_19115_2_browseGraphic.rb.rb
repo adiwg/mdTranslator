@@ -2,36 +2,78 @@
 # writers / iso19115_2 / class_browseGraphic
 
 # History:
+#  Stan Smith 2018-04-17 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2016-12-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152BrowseGraphic < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_browseGraphic.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_browseGraphic.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_browseGraphic
+   graph1 = TDClass.build_graphic('browse graphic one')
+   mdHash[:metadata][:resourceInfo][:graphicOverview] = []
+   mdHash[:metadata][:resourceInfo][:graphicOverview] << graph1
 
-      axExpect = @@xFile.xpath('//gmd:graphicOverview')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_graphic_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:graphicOverview')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_browseGraphic',
+                                                '//gmd:graphicOverview[1]',
+                                                '//gmd:graphicOverview', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_graphic_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      graph2 = TDClass.build_graphic('browse graphic two')
+      hIn[:metadata][:resourceInfo][:graphicOverview] << graph2
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_browseGraphic',
+                                                '//gmd:graphicOverview[2]',
+                                                '//gmd:graphicOverview', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_browseGraphic',
+                                                '//gmd:graphicOverview[3]',
+                                                '//gmd:graphicOverview', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_graphic_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:graphicOverview][0].delete(:fileDescription)
+      hIn[:metadata][:resourceInfo][:graphicOverview][0].delete(:fileType)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_browseGraphic',
+                                                '//gmd:graphicOverview[4]',
+                                                '//gmd:graphicOverview', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

@@ -35,7 +35,14 @@ module ADIWG
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
                   stepClass = LI_ProcessStep.new(@xml, @hResponseObj)
 
-                  @xml.tag!('gmd:LI_Source') do
+                  # source - id
+                  attributes = {}
+                  s = hSource[:sourceId]
+                  unless s.nil?
+                     attributes = { id: s.gsub(/[^0-9A-Za-z]/,'') }
+                  end
+
+                  @xml.tag!('gmd:LI_Source', attributes) do
 
                      # source - description
                      s = hSource[:description]

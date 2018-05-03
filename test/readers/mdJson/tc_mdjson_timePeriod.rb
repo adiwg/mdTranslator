@@ -49,7 +49,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
    end
 
-   def test_timePeriod_empty_dateAgeAge_required
+   def test_timePeriod_empty_dateAndAge_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['startDateTime'] = ''
@@ -63,11 +63,11 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
+                      'ERROR: mdJson reader: time period must have a start and/or end dateTime, or geologic age'
 
    end
 
-   def test_timePeriod_missing_dateAgeAge_required
+   def test_timePeriod_missing_dateAndAge_required
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('startDateTime')
@@ -81,7 +81,7 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
+                      'ERROR: mdJson reader: time period must have a start and/or end dateTime, or geologic age'
 
    end
 
@@ -128,6 +128,40 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
       assert_empty metadata[:duration]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_timeInterval
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('startDateTime')
+      hIn.delete('endDateTime')
+      hIn.delete('duration')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: time interval must be accompanied by a start and/or end dateTime'
+
+   end
+
+   def test_duration
+
+      hIn = Marshal::load(Marshal.dump(@@hIn))
+      hIn.delete('startDateTime')
+      hIn.delete('endDateTime')
+      hIn.delete('timeInterval')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      assert_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: duration must be accompanied by a start and/or end dateTime'
 
    end
 

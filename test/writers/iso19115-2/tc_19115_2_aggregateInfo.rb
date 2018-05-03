@@ -2,36 +2,88 @@
 # writers / iso19115_2 / class_aggregateInformation
 
 # History:
+#  Stan Smith 2018-04-12 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2016-11-21 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152AggregateInfo < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_aggregateInfo.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_aggregateInfo.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_aggregateInfo
+   hAssRes1 = TDClass.build_associatedResource('largerWorkCitation', 'associated resource title 1')
+   mdHash[:metadata][:associatedResource] = []
+   mdHash[:metadata][:associatedResource] << hAssRes1
 
-      axExpect = @@xFile.xpath('//gmd:aggregationInfo')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_aggregateInfo_complete_first
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:aggregationInfo')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_aggregateInfo', '//gmd:aggregationInfo[1]',
+                                                '//gmd:aggregationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_aggregateInfo_complete_second
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hAssRes2 = TDClass.build_associatedResource('product', 'associated resource title 2')
+      hIn[:metadata][:associatedResource] << hAssRes2
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_aggregateInfo', '//gmd:aggregationInfo[2]',
+                                                '//gmd:aggregationInfo', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_aggregateInfo_elements_empty
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hIn[:metadata][:associatedResource][0][:initiativeType] = ''
+      hIn[:metadata][:associatedResource][0][:metadataCitation] = {}
+      hIn[:metadata][:associatedResource][0][:resourceCitation][:responsibleParty] = []
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_aggregateInfo', '//gmd:aggregationInfo[3]',
+                                                '//gmd:aggregationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_aggregateInfo_elements_missing
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hIn[:metadata][:associatedResource][0].delete(:initiativeType)
+      hIn[:metadata][:associatedResource][0].delete(:metadataCitation)
+      hIn[:metadata][:associatedResource][0][:resourceCitation].delete(:responsibleParty)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_aggregateInfo', '//gmd:aggregationInfo[3]',
+                                                '//gmd:aggregationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

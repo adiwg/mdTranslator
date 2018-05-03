@@ -24,7 +24,7 @@ module ADIWG
                   gridClass = Grid.new(@xml, @hResponseObj)
 
                   @xml.tag!('gmd:MD_GridSpatialRepresentation') do
-                     gridClass.writeXML(hGrid)
+                     gridClass.writeXML(hGrid, 'grid representation')
                   end
 
                end # writeXML

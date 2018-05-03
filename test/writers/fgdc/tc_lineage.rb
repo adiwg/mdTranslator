@@ -41,6 +41,7 @@ class TestWriterFgdcLineage < TestWriterFGDCParent
 
    hCitation1 = TDClass.build_citation('method citation one', 'CID001')
    hCitation2 = TDClass.build_citation('method citation two', 'CID001')
+   hLineage[:citation] = []
    hLineage[:citation] << hCitation1
    hLineage[:citation] << hCitation2
 

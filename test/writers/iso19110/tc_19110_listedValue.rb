@@ -68,7 +68,7 @@ class TestWriter19110ListedValue < TestWriter19110Parent
 
    def test_listedValue_complete
 
-      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_listedValue',
+      hReturn = TestWriter19110Parent.run_test(@@mdHash, '19110_listedValue',
                                                    '//gfc:listedValue',
                                                    '//gfc:listedValue')
 

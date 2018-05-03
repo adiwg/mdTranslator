@@ -43,11 +43,12 @@ module ADIWG
                         @NameSpace.issueWarning(280, 'gmd:level', inContext)
                      end
 
-                     # scope - extent [] {EX_Extent}
+                     # scope - extent [0] {EX_Extent}
+                     # ... only one extent allowed in ISO 19115-2
                      aExtents = hScope[:extents]
-                     aExtents.each do |hExtent|
+                     unless aExtents.empty?
                         @xml.tag!('gmd:extent') do
-                           extentClass.writeXML(hExtent)
+                           extentClass.writeXML(aExtents[0])
                         end
                      end
                      if aExtents.empty? && @hResponseObj[:writerShowTags]

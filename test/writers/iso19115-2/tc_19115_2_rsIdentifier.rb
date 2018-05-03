@@ -2,36 +2,58 @@
 # writers / iso19115_2 / class_rsIdentifier
 
 # History:
+#  Stan Smith 2018-04-30 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-09 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152RSIdentifier < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_rsIdentifier.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_rsIdentifier.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_rsIdentifier
+   hIdentifier = TDClass.build_identifier('rsIdentifier', 'ISO 19115-2',
+                                          'version', 'spatial reference system identifier')
+   hRefSystem = TDClass.build_spatialReference(nil, hIdentifier)
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
+   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hRefSystem
 
-      axExpect = @@xFile.xpath('//gmd:referenceSystemIdentifier')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_rsIdentifier_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:referenceSystemIdentifier')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_rsIdentifier',
+                                                '//gmd:referenceSystemIdentifier[1]',
+                                                '//gmd:referenceSystemIdentifier', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is spatial reference system authority citation'
+   end
+
+   def test_rsIdentifier_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hRefSystem = TDClass.build_spatialReference(nil, { identifier: 'rsIdentifier' })
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem] = []
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem] << hRefSystem
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_rsIdentifier',
+                                                '//gmd:referenceSystemIdentifier[2]',
+                                                '//gmd:referenceSystemIdentifier', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

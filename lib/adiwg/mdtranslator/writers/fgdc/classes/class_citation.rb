@@ -172,7 +172,7 @@ module ADIWG
                         if hResource[:associationType] == 'largerWorkCitation'
                            unless hResource[:resourceCitation].empty?
                               @xml.tag!('lworkcit') do
-                                 citationClass.writeXML(hResource[:resourceCitation], [])
+                                 citationClass.writeXML(hResource[:resourceCitation], [], inContext + ' larger work citation')
                                  haveLarger = true
                               end
                               break

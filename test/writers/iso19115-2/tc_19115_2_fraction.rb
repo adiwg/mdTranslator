@@ -2,36 +2,38 @@
 # writers / iso19115_2 / class_fraction
 
 # History:
+#  Stan Smith 2018-04-23 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-02 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Fraction < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_fraction.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_fraction.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_aggregateInfo
+   mdHash[:metadata][:resourceInfo][:spatialResolution] = []
+   mdHash[:metadata][:resourceInfo][:spatialResolution] << { scaleFactor: 99999 }
 
-      axExpect = @@xFile.xpath('//gmd:equivalentScale')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_spatialResolution_scaleFactor
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:equivalentScale')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_fraction',
+                                                '//gmd:equivalentScale[1]',
+                                                '//gmd:equivalentScale', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

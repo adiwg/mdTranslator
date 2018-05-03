@@ -2,36 +2,37 @@
 # writers / iso19115_2 / class_useConstraint
 
 # History:
+#  Stan Smith 2018-05-03 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-14 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152UseConstraint < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_useConstraint.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_useConstraint.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_useConstraint
+   mdHash[:metadata][:resourceInfo][:constraint] << TDClass.build_useConstraint
 
-      axExpect = @@xFile.xpath('//gmd:resourceConstraints')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_useConstraint_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resourceConstraints')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_useConstraint',
+                                                '//gmd:resourceConstraints[1]',
+                                                '//gmd:resourceConstraints', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

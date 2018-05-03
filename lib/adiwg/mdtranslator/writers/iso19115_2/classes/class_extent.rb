@@ -30,7 +30,7 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hExtent)
+               def writeXML(hExtent, inContext = nil)
 
                   # classes used
                   tempExtClass = EX_TemporalExtent.new(@xml, @hResponseObj)

@@ -20,8 +20,9 @@ class TestWriterFgdcSpatialDomain < TestWriterFGDCParent
    TDClass.add_altitudeBB(hGeoExtent[:boundingBox])
 
    hGeoExtent[:geographicElement] = []
-   TDClass.add_featureCollection(hGeoExtent[:geographicElement])
-   hGeoExtent[:geographicElement][0][:features] << TDClass.build_feature('id001', 'polygon', 'FGDC bounding polygon')
+   hFeatureCol = TDClass.build_featureCollection
+   hFeatureCol[:features] << TDClass.build_feature('id001', 'polygon', 'FGDC bounding polygon')
+   hGeoExtent[:geographicElement] << hFeatureCol
 
    @@mdHash = mdHash
 

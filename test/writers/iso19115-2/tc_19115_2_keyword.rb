@@ -2,54 +2,73 @@
 # writers / iso19115_2 / class_keyword
 
 # History:
+#  Stan Smith 2018-04-24 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-05-16 added isoTopicCategory to keyword
 #  Stan Smith 2017-01-04 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Keyword < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_keyword.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_keyword.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_keyword
+   hKeywords1 = TDClass.build_keywords
+   TDClass.add_keyword(hKeywords1,'keyword one')
+   TDClass.add_keyword(hKeywords1,'keyword two', 'KWID001')
+   mdHash[:metadata][:resourceInfo][:keyword] << hKeywords1
 
-      axExpect = @@xFile.xpath('//gmd:descriptiveKeywords')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_image_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:descriptiveKeywords')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
+                                                '//gmd:descriptiveKeywords[1]',
+                                                '//gmd:descriptiveKeywords', 0)
 
-   end
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
 
-   def test_19115_2_topicCategory
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
+                                                '//gmd:descriptiveKeywords[2]',
+                                                '//gmd:descriptiveKeywords', 1)
 
-      axExpect = @@xFile.xpath('//gmd:topicCategory')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
+                                                '//gmd:topicCategory[1]',
+                                                '//gmd:topicCategory', 0)
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:topicCategory')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
+                                                '//gmd:topicCategory[2]',
+                                                '//gmd:topicCategory', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
 
    end
 

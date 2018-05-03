@@ -68,7 +68,7 @@ class TestWriter19110FeatureType < TestWriter19110Parent
    
    def test_featureType_complete
 
-      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_featureType',
+      hReturn = TestWriter19110Parent.run_test(@@mdHash, '19110_featureType',
                                                    '//gfc:featureType', '//gfc:featureType')
 
       assert_equal hReturn[0], hReturn[1]

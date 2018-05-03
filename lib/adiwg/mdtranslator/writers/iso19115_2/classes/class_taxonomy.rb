@@ -88,8 +88,8 @@ module ADIWG
                            end
                         end
                      end
-                     if aObservers.empty?
-                        @NameSpace.issueWarning(312, 'gmd:obs')
+                     if aObservers.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gmd:obs')
                      end
 
                      # taxon system - taxon identification procedures (required)

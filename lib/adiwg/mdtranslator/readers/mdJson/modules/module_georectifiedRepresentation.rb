@@ -72,22 +72,17 @@ module ADIWG
                      return nil
                   end
 
-                  # georectified representation - center points (required)
+                  # georectified representation - center points
                   if hGeoRec.has_key?('centerPoint')
                      unless hGeoRec['centerPoint'].empty?
                         intGeoRec[:centerPoint] = hGeoRec['centerPoint']
                      end
-                  end
-                  if intGeoRec[:centerPoint].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: georectified spatial representation center point is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-                  unless intGeoRec[:centerPoint].length == 2
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     unless intGeoRec[:centerPoint].length == 2
+                        responseObj[:readerExecutionMessages] <<
+                           'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
+                        responseObj[:readerExecutionPass] = false
+                        return nil
+                     end
                   end
 
                   # georectified representation - point in pixel (required)

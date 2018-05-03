@@ -27,7 +27,7 @@
           <time/>
         </sngdate>
       </timeinfo>
-      <current>time info currentness</current>
+      <current>resource time period</current>
     </timeperd>
     <status>
       <progress>status 1</progress>
@@ -83,7 +83,7 @@
     <native>environment description</native>
     <crossref>
       <citeinfo>
-        <origin>person name</origin>
+        <origin>person name three</origin>
         <pubdate>20171122</pubdate>
         <pubtime/>
         <title>cross reference one</title>
@@ -98,7 +98,7 @@
     </crossref>
     <crossref>
       <citeinfo>
-        <origin>person name</origin>
+        <origin>person name three</origin>
         <pubdate>20171122</pubdate>
         <pubtime/>
         <title>cross reference two</title>

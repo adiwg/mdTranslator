@@ -30,7 +30,7 @@ class TestWriter19110Locale < TestWriter19110Parent
       hIn[:dataDictionary][0][:locale] << TDClass.locale
       hIn[:dataDictionary][0][:locale] << TDClass.build_locale('swe', 'UTF-16', nil)
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_locale',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_locale',
                                                    '//gmx:locale', '//gmx:locale')
 
       assert_equal hReturn[0], hReturn[1]

@@ -2,71 +2,39 @@
 # writers / iso19115_2 / class_mdIdentifier
 
 # History:
+#  Stan Smith 2018-04-25 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-09 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152MDIdentifier < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_mdIdentifier.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_mdIdentifier.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_mdIdentifier
+   mdHash[:metadata][:resourceInfo][:citation][:identifier] = []
+   mdHash[:metadata][:resourceInfo][:citation][:identifier] << TDClass.build_identifier('citation identifier one')
 
-      axExpect = @@xFile.xpath('//gmd:identifier')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_identifier_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:identifier')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_mdIdentifier',
+                                                '//gmd:MD_Identifier[1]',
+                                                '//gmd:MD_Identifier', 0)
 
-   end
-
-   def test_19115_2_ISBN
-
-      axExpect = @@xFile.xpath('//gmd:ISBN')
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:ISBN')
-
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
-
-   end
-
-   def test_19115_2_ISSN
-
-      axExpect = @@xFile.xpath('//gmd:ISSN')
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:ISSN')
-
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
-
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+         'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is main resource citation citation authority citation'
    end
 
 end

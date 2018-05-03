@@ -16,17 +16,7 @@ class TestWriterFgdcCitation < TestWriterFGDCParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   mdHash[:contact] << TDClass.build_person('CID002', 'person name two')
-   mdHash[:contact] << TDClass.build_person('CID003', 'person name three')
-   mdHash[:contact] << TDClass.build_person('CID004', 'person name four')
-
-   hCitation = TDClass.citation_full
-   hCitation[:date] << TDClass.build_date('2017-12-01T16:32:36', 'revision')
-   hCitation[:date] << TDClass.build_date('2017-12-01T16:32:36', 'publication')
-   hCitation[:responsibleParty] << TDClass.build_responsibleParty('originator', ['CID003', 'CID002'])
-   hCitation[:responsibleParty] << TDClass.build_responsibleParty('publisher', ['CID001', 'CID002'])
-   hCitation[:responsibleParty] << TDClass.build_responsibleParty('originator', ['CID004', 'CID002'])
-   mdHash[:metadata][:resourceInfo][:citation] = hCitation
+   mdHash[:metadata][:resourceInfo][:citation] = TDClass.citation_full
 
    mdHash[:metadata][:associatedResource] = []
    mdHash[:metadata][:associatedResource] << TDClass.build_associatedResource('decoy')

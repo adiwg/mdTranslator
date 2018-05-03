@@ -2,36 +2,83 @@
 # writers / iso19115_2 / class_maintenance
 
 # History:
+#  Stan Smith 2018-04-25 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-05 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Maintenance < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_maintenance.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_maintenance.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_maintenance
+   hMaintenance = TDClass.build_maintenance
 
-      axExpect = @@xFile.xpath('//gmd:MD_MaintenanceInformation')
+   hMaintenance[:date] << TDClass.build_date('2018-05-25','lastUpdate')
+   hMaintenance[:date] << TDClass.build_date('2019-04','nextUpdate')
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   hMaintenance[:scope] << TDClass.scope
+   hMaintenance[:scope] << TDClass.scope
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:MD_MaintenanceInformation')
+   hMaintenance[:contact] << TDClass.build_responsibleParty('custodian',['CID003'])
+   hMaintenance[:contact] << TDClass.build_responsibleParty('rightHolder',['CID004'])
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+   mdHash[:metadata][:metadataInfo][:metadataMaintenance] = hMaintenance
+
+   @@mdHash = mdHash
+
+   def test_maintenance_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_maintenance',
+                                                '//gmd:metadataMaintenance[1]',
+                                                '//gmd:metadataMaintenance', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_maintenance_single
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:date].delete_at(1)
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:scope].delete_at(1)
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:contact].delete_at(1)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_maintenance',
+                                                '//gmd:metadataMaintenance[2]',
+                                                '//gmd:metadataMaintenance', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_maintenance_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:date] = []
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:scope] = []
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:note] = []
+      hIn[:metadata][:metadataInfo][:metadataMaintenance][:contact] = []
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_maintenance',
+                                                '//gmd:metadataMaintenance[3]',
+                                                '//gmd:metadataMaintenance', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

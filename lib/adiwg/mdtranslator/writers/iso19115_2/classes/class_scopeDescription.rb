@@ -18,6 +18,12 @@ module ADIWG
 
                def writeXML(hScopeDesc)
 
+                  # these scope description types not implemented -----------------------------
+                  # attributes (ISO 19115-2 XSD type is set to 'empty')
+                  # features (ISO 19115-2 XSD type is set to 'empty')
+                  # featureInstances (not supported in mdJson)
+                  # attributeInstances (not supported in mdJson)
+
                   # scope description - dataset
                   sData = hScopeDesc[:dataset]
                   unless sData.nil?
@@ -41,9 +47,6 @@ module ADIWG
                         end
                      end
                   end
-
-                  # scope description - feature instances (not supported in ISO 19115-2)
-                  # scope description - attribute instances (not supported  in ISO 19115-2)
 
                end # writeXML
             end # MD_ScopeDescription class

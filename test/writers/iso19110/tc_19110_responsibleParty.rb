@@ -30,7 +30,7 @@ class TestWriter19110ResponsibleParty < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       hIn[:contact][0][:address] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_responsibleParty',
                                                    '//gfc:producer[1]', '//gfc:producer')
 
       assert_equal hReturn[0], hReturn[1]
@@ -46,7 +46,7 @@ class TestWriter19110ResponsibleParty < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       hIn[:contact][0][:address] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_responsibleParty',
                                                    '//gfc:producer[2]', '//gfc:producer')
 
       assert_equal hReturn[0], hReturn[1]
@@ -61,7 +61,7 @@ class TestWriter19110ResponsibleParty < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       hIn[:contact][0][:address] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_responsibleParty',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_responsibleParty',
                                                    '//gfc:producer[3]', '//gfc:producer')
 
       assert_equal hReturn[0], hReturn[1]

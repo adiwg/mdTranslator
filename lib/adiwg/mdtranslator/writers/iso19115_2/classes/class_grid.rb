@@ -43,7 +43,7 @@ module ADIWG
                   aDims = hGrid[:dimension]
                   aDims.each do |hDimension|
                      @xml.tag!('gmd:axisDimensionProperties') do
-                        dimClass.writeXML(hDimension)
+                        dimClass.writeXML(hDimension, inContext)
                      end
                   end
                   if aDims.empty?

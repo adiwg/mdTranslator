@@ -2,37 +2,95 @@
 # writers / iso19115_2 / class_attributeGroup
 
 # History:
+#  Stan Smith 2018-04-17 refactored for error messaging
 #  Stan Smith 2017-11-18 replace REXML with Nokogiri
 #  Stan Smith 2016-12-16 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152AttributeGroup < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_attributeGroup.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_attributeGroup.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   # read the ISO 19115-2 reference file
-   def test_19115_2_attributeGroup
+   hCoverage1 = TDClass.build_coverageDescription
 
-      axExpect = @@xFile.xpath('//gmi:MI_CoverageDescription')
+   mdHash[:metadata][:resourceInfo][:coverageDescription] = []
+   mdHash[:metadata][:resourceInfo][:coverageDescription] << hCoverage1
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   @@mdHash = mdHash
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmi:MI_CoverageDescription')
+   def test_attributeGroup_range
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash2(hAttGroup, 'range')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
+                                                '//gmd:contentInfo[1]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_attributeGroup_mdBand
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash2(hAttGroup, 'mdBand')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
+                                                '//gmd:contentInfo[2]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_attributeGroup_miBand
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash2(hAttGroup, 'miBand')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
+                                                '//gmd:contentInfo[3]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_attributeGroup_multi
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash2(hAttGroup, 'range')
+      TDClass.add_attribute_dash2(hAttGroup, 'range')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
+                                                '//gmd:contentInfo[4]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

@@ -2,36 +2,92 @@
 # writers / iso19115_2 / class_format
 
 # History:
+#  Stan Smith 2018-04-23 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-02 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Format < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_format.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_format.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_format
+   hDistributor = TDClass.build_distributor('CID003')
 
-      axExpect = @@xFile.xpath('//gmd:distributorFormat')
+   hTransfer = TDClass.build_transferOption
+   TDClass.add_resourceFormat(hTransfer)
+   TDClass.add_resourceFormat(hTransfer)
+   hDistributor[:transferOption] << hTransfer
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   hDistribution = TDClass.build_distribution
+   hDistribution[:distributor] << hDistributor
+   mdHash[:metadata][:resourceDistribution] = []
+   mdHash[:metadata][:resourceDistribution] << hDistribution
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:distributorFormat')
+   @@mdHash = mdHash
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+   def test_distributionFormat_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_format',
+                                                '//gmd:distributorFormat[1]',
+                                                '//gmd:distributorFormat', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_format',
+                                                '//gmd:distributorFormat[1]',
+                                                '//gmd:distributorFormat', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_distributionFormat_single
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceDistribution][0][:distributor][0][:transferOption][0][:distributionFormat].delete_at(1)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_format',
+                                                '//gmd:distributorFormat[1]',
+                                                '//gmd:distributorFormat', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_distributionFormat_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceDistribution][0][:distributor][0][:transferOption][0][:distributionFormat].delete_at(1)
+      hFormat = hIn[:metadata][:resourceDistribution][0][:distributor][0][:transferOption][0][:distributionFormat][0]
+      hFormat.delete(:amendmentNumber)
+      hFormat.delete(:compressionMethod)
+      hFormat.delete(:technicalPrerequisite)
+      hFormat[:formatSpecification].delete(:edition)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_format',
+                                                '//gmd:distributorFormat[2]',
+                                                '//gmd:distributorFormat', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: format version is missing'
 
    end
 

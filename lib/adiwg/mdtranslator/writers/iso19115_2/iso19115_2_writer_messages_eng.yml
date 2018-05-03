@@ -102,3 +102,8 @@ messageList:
 
    - {id: 340, message: "taxonomic voucher specimen is missing"}
    - {id: 341, message: "taxonomic voucher repository is missing"}
+
+   - {id: 350, message: "attribute sequence identifier is missing"}
+   - {id: 351, message: "attribute sequence identifier type is missing"}
+
+   - {id: 360, message: "measure type is invalid; must be one of [distance, length, angle, measure, scale]"}

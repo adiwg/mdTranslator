@@ -3,13 +3,16 @@ require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
 class MdJsonHashWriter
 
-   def build_associatedResource(associationType, title = nil)
+   def build_associatedResource(associationType = nil, title = nil)
       hAssocRes = associatedResource
-      hAssocRes[:associationType] = associationType
-      unless title.nil?
-         hAssocRes[:resourceCitation][:title] = title
-      end
+      hAssocRes[:associationType] = associationType unless associationType.nil?
+      hAssocRes[:resourceCitation][:title] = title unless title.nil?
       return hAssocRes
+   end
+
+   def build_attributeGroup
+      hAttGroup = attributeGroup
+      return hAttGroup
    end
 
    def build_bearingResolution(distRes = nil, distUnit = nil, bearRes = nil, bearUnit = nil, direct = nil, meridian = nil)
@@ -44,12 +47,17 @@ class MdJsonHashWriter
       return hResolution
    end
 
+   def build_coverageDescription
+      hCoverage = coverageDescription
+      return hCoverage
+   end
+   
    def build_dataDictionary
       hDictionary = dataDictionary
       return hDictionary
    end
 
-   def build_date(dateTime, type)
+   def build_date(dateTime, type = 'none')
       hDate = date
       hDate[:date] = dateTime
       hDate[:dateType] = type
@@ -96,21 +104,37 @@ class MdJsonHashWriter
       return hAttribute
    end
 
+   def build_extent(description = nil)
+      hExtent = extent
+      hExtent[:description] = description unless description.nil?
+      return hExtent
+   end
+
    def build_feature(id, geometry, description = nil)
       hFeature = feature
       hFeature[:id] = id
-      if geometry == 'polygon'
-         hFeature[:geometry] = polygon
-      end
-      unless description.nil?
-         hFeature[:properties][:description] = description
-      end
+      hFeature[:geometry] = point if geometry == 'point'
+      hFeature[:geometry] = lineString if geometry == 'line'
+      hFeature[:geometry] = polygon if geometry == 'polygon'
+      hFeature[:geometry] = multiPoint if geometry == 'multiPoint'
+      hFeature[:geometry] = multiLineString if geometry == 'multiLine'
+      hFeature[:geometry] = multiPolygon if geometry == 'multiPolygon'
+      hFeature[:properties][:description] = description unless description.nil?
       return hFeature
+   end
+
+   def build_featureCollection
+      return featureCollection
    end
 
    def build_geologicAge
       hGeologicAge = geologicAge
       return hGeologicAge
+   end
+
+   def build_geometryCollection
+      hCollection = geometryCollection
+      return hCollection
    end
 
    def build_graphic(name, description = nil, type = nil)
@@ -125,49 +149,60 @@ class MdJsonHashWriter
       return hGraphic
    end
 
+   def build_geographicExtent
+      return geographicExtent
+   end
+
    def build_geographicResolution
       hResolution = {}
       hResolution[:geographicResolution] = geographicResolution
       return hResolution
    end
 
-   def build_gridRepresentation(dimensions, geometry)
+   def build_georectifiedRepresentation
+      hGeoRec = georectified
+      hGrid = build_gridRepresentation
+      add_dimension(hGrid)
+      hGeoRec[:gridRepresentation] = hGrid
+      return hGeoRec
+   end
+
+   def build_georeferenceableRepresentation
+      hGeoRef = georeferenceable
+      hGrid = build_gridRepresentation
+      add_dimension(hGrid)
+      hGeoRef[:gridRepresentation] = hGrid
+      return hGeoRef
+   end
+
+   def build_gridRepresentation(dimensions = nil, geometry = nil)
       hGrid = gridRepresentation
-      hGrid[:numberOfDimensions] = dimensions
-      hGrid[:cellGeometry] = geometry
+      hGrid[:numberOfDimensions] = dimensions unless dimensions.nil?
+      hGrid[:cellGeometry] = geometry unless geometry.nil?
       return hGrid
    end
 
    def build_identifier(id, namespace = nil, version = nil, description = nil)
       hIdentifier = identifier
       hIdentifier[:identifier] = id
-      unless namespace.nil?
-         hIdentifier[:namespace] = namespace
-      end
-      unless version.nil?
-         hIdentifier[:version] = version
-      end
-      unless description.nil?
-         hIdentifier[:description] = description
-      end
+      hIdentifier[:namespace] = namespace unless namespace.nil?
+      hIdentifier[:version] = version unless version.nil?
+      hIdentifier[:description] = description unless description.nil?
       return hIdentifier
    end
 
-   def build_keywords(title, theme)
+   def build_keywords(title = 'thesaurus title', theme = 'theme')
       hKeywords = keywords
       hKeywords[:keywordType] = theme
       hKeywords[:thesaurus][:title] = title
       return hKeywords
    end
 
-   def build_legalConstraint
-      hCon = constraint
-      hCon[:type] = 'legal'
-      hCon[:legal] = {
-         accessConstraint: [],
-         useConstraint: [],
-         otherConstraint: []
-      }
+   def build_legalConstraint(aAccess = [], aUse = [], aOther = [])
+      hCon = legalConstraint
+      hCon[:legal][:accessConstraint] = aAccess unless aAccess.empty?
+      hCon[:legal][:useConstraint] = aUse unless aUse.empty?
+      hCon[:legal][:otherConstraint] = aOther unless aOther.empty?
       return hCon
    end
 
@@ -179,40 +214,58 @@ class MdJsonHashWriter
       return hLocale
    end
 
+   def build_maintenance
+      hMaintenance = maintenance
+      return hMaintenance
+   end
+
    def build_onlineResource(uri)
       hResource = onlineResource
       hResource[:uri] = uri
       return hResource
    end
 
-   def build_organization(contactId, name)
-      hContact = organization
-      hContact[:contactId] = contactId
-      hContact[:name] = name
-      add_address(hContact, ['physical'])
-      add_phone(hContact, '111-111-1111', ['voice'])
+   def build_organization_full(contactId = nil, name = nil)
+      hContact = organization_full
+      hContact[:contactId] = contactId unless contactId.nil?
+      hContact[:name] = name unless name.nil?
       return hContact
    end
 
-   def build_person(contactId, name)
-      hContact = person
-      hContact[:contactId] = contactId
-      hContact[:name] = name
-      add_address(hContact, ['mailing'])
-      add_phone(hContact, '111-111-1111', ['voice'])
+   def build_parameterSet(addProj = false, addGeo = false, addVert = false)
+      hParamSet = referenceSystemParameterSet
+      hParamSet[:projection] = projection if addProj
+      hParamSet[:geodetic] = geodetic if addGeo
+      hParamSet[:verticalDatum] = verticalDatum if addVert
+      hParamSet.delete(:projection) unless addProj
+      hParamSet.delete(:geodetic) unless addGeo
+      hParamSet.delete(:verticalDatum) unless addVert
+      return hParamSet
+   end
+
+   def build_person_full(contactId = nil, name = nil)
+      hContact = person_full
+      hContact[:contactId] = contactId unless contactId.nil?
+      hContact[:name] = name unless name.nil?
       return hContact
    end
 
    def build_processStep(id, description = nil, hTimePeriod = nil)
       hStep = processStep
       hStep[:stepId] = id
-      unless description.nil?
-         hStep[:description] = description
-      end
-      unless hTimePeriod.nil?
-         hStep[:timePeriod] = hTimePeriod
-      end
+      hStep[:description] = description unless description.nil?
+      hStep[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
       return hStep
+   end
+
+   def build_resourceUsage(usage = nil, startDT = '2018-05-02', endDT = nil, aContacts = ['CID004'])
+      hUsage = resourceUsage
+      hUsage[:specificUsage] = usage unless usage.nil?
+      hTimePeriod = build_timePeriod('TP001', 'usage one', startDT, endDT)
+      hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
+      hRParty = build_responsibleParty('pointOfContact', aContacts)
+      hUsage[:userContactInfo] << hRParty
+      return hUsage
    end
 
    def build_responsibleParty(role, aParties)
@@ -226,21 +279,12 @@ class MdJsonHashWriter
       return hResponsibleParty
    end
 
-   def build_securityConstraint(classification, system = nil, handling = nil, note = nil)
-      hCon = constraint
-      hCon[:type] = 'security'
-      hCon[:security] = {
-         classification: classification
-      }
-      unless system.nil?
-         hCon[:security][:classificationSystem] = system
-      end
-      unless handling.nil?
-         hCon[:security][:handlingDescription] = handling
-      end
-      unless note.nil?
-         hCon[:security][:userNote] = note
-      end
+   def build_securityConstraint(classification = nil, system = nil, handling = nil, note = nil)
+      hCon = securityConstraint
+      hCon[:security][:classification] = classification unless classification.nil?
+      hCon[:security][:classificationSystem] = system unless system.nil?
+      hCon[:security][:handlingDescription] = handling unless handling.nil?
+      hCon[:security][:userNote] = note unless note.nil?
       return hCon
    end
 
@@ -248,48 +292,33 @@ class MdJsonHashWriter
       hSource = source
       hSource[:sourceId] = id
       hSource[:sourceCitation] =  citation
-      unless description.nil?
-         hSource[:description] = description
-      end
+      hSource[:description] = description unless description.nil?
       unless resolution.nil?
          hResolution = {}
          hResolution[:scaleFactor] = resolution
          hSource[:spatialResolution] = hResolution
       end
-      unless hScope.nil?
-         hSource[:scope] = hScope
-      end
+      hSource[:scope] = hScope unless hScope.nil?
       return hSource
    end
 
-   def build_spatialReference(type = nil, hIdentifier = nil, hParameters = nil)
-      hSpatialRef = spatialReference
-      if type.nil?
-         hSpatialRef.delete(:referenceSystemType)
-      else
-         hSpatialRef[:referenceSystemType] = type
-      end
-      if hIdentifier.nil?
-         hSpatialRef.delete(:referenceSystemIdentifier)
-      else
-         hSpatialRef[:referenceSystemIdentifier] = hIdentifier
-      end
-      if hParameters.nil?
-         hSpatialRef.delete(:systemParameterSet)
-      else
-         hSpatialRef[:systemParameterSet] = hParameters
-      end
+   def build_spatialReference(type = nil, hIdentifier = {}, hParameters = {}, wkt = nil)
+      hSpatialRef = spatialReferenceSystem
+      hSpatialRef[:referenceSystemType] = type unless type.nil?
+      hSpatialRef[:referenceSystemWKT] = wkt unless wkt.nil?
+      hSpatialRef[:referenceSystemIdentifier] = hIdentifier
+      hSpatialRef[:referenceSystemParameterSet] = hParameters
+      hSpatialRef.delete(:referenceSystemIdentifier) if hIdentifier.empty?
+      hSpatialRef.delete(:referenceSystemParameterSet) if hParameters.empty?
       return hSpatialRef
    end
 
    def build_spatialRepresentation(type, hObj)
       hSpaceRep = {}
-      if type == 'grid'
-         hSpaceRep[:gridRepresentation] = hObj
-      end
-      if type == 'vector'
-         hSpaceRep[:vectorRepresentation] = hObj
-      end
+      hSpaceRep[:gridRepresentation] = hObj if type == 'grid'
+      hSpaceRep[:vectorRepresentation] = hObj if type == 'vector'
+      hSpaceRep[:georectifiedRepresentation] = hObj if type == 'georectified'
+      hSpaceRep[:georeferenceableRepresentation] = hObj if type == 'georeferenceable'
       return hSpaceRep
    end
 
@@ -310,23 +339,30 @@ class MdJsonHashWriter
       return hVoucher
    end
 
+   def build_timeInstant(id, description = nil, startDT = nil)
+      hTimePeriod = timeInstant
+      hTimePeriod[:id] = id
+      hTimePeriod[:description] = description unless description.nil?
+      hTimePeriod[:dateTime] = startDT unless startDT.nil?
+      return hTimePeriod
+   end
+
    def build_timePeriod(id, description = nil, startDT = nil, endDT = nil)
       hTimePeriod = timePeriod
       hTimePeriod[:id] = id
-      unless description.nil?
-         hTimePeriod[:description] = description
-      end
-      unless startDT.nil?
-         hTimePeriod[:startDateTime] = startDT
-      end
-      unless endDT.nil?
-         hTimePeriod[:endDateTime] = endDT
-      end
+      hTimePeriod[:description] = description unless description.nil?
+      hTimePeriod[:startDateTime] = startDT unless startDT.nil?
+      hTimePeriod[:endDateTime] = endDT unless endDT.nil?
       return hTimePeriod
    end
 
    def build_transferOption
       return transferOption
+   end
+
+   def build_useConstraint
+      hCon = useConstraint
+      return hCon
    end
 
    def build_vectorRepresentation(level = nil)
@@ -340,11 +376,6 @@ class MdJsonHashWriter
    end
 
    # ---------------------------------------------------------------------------------
-
-   def add_accessConstraint(hObj, constraint)
-      hObj[:legal][:accessConstraint] << constraint
-      return hObj
-   end
 
    def add_address(hContact, aAddType)
       hAddress = address
@@ -360,6 +391,38 @@ class MdJsonHashWriter
       return hBbox
    end
 
+   def add_attribute_dash2(hAttGroup, type)
+      # types for ISO 19115-2 [ range | mdBand | miBand ]
+      # remove non-ISO-2 elements
+      hAttribute = attribute
+      hAttribute[:attributeIdentifier] = []
+      hAttribute[:meanValue] = ''
+      hAttribute[:numberOfValues] = ''
+      hAttribute[:standardDeviation] = ''
+      hAttribute[:boundMin] = ''
+      hAttribute[:boundMax] = ''
+      hAttribute[:boundUnits] = ''
+      unless type == 'miBand'
+         hAttribute[:bandBoundaryDefinition] = ''
+         hAttribute[:nominalSpatialResolution] = ''
+         hAttribute[:transferFunctionType] = ''
+         hAttribute[:transmittedPolarization] = ''
+         hAttribute[:detectedPolarization] = ''
+      end
+      unless type == 'miBand' || type == 'mdBand'
+         hAttribute[:maxValue] = ''
+         hAttribute[:minValue] = ''
+         hAttribute[:units] = ''
+         hAttribute[:peakResponse] = ''
+         hAttribute[:bitsPerValue] = ''
+         hAttribute[:toneGradations] = ''
+         hAttribute[:scaleFactor] = ''
+         hAttribute[:offset] = ''
+      end
+      hAttGroup[:attribute] << hAttribute
+      return hAttGroup
+   end
+
    def add_dataIndex(hEntity, code = nil, duplicate = false, attCode = nil)
       hIndex = index
       hIndex[:codeName] = code unless code.nil?
@@ -373,21 +436,10 @@ class MdJsonHashWriter
       return hEntity
    end
 
-   def add_dimension(hObj, type, size, title = nil, description = nil)
+   def add_dimension(hObj, type = nil, size = nil)
       hDimension = dimension
-      hDimension[:dimensionType] = type
-      hDimension[:dimensionSize] = size
-      hDimension.delete(:resolution)
-      if title.nil?
-         hDimension.delete(:dimensionTitle)
-      else
-         hDimension[:dimensionTitle] = title
-      end
-      if description.nil?
-         hDimension.delete(:dimensionDescription)
-      else
-         hDimension[:dimensionDescription] = description
-      end
+      hDimension[:dimensionType] = type unless type.nil?
+      hDimension[:dimensionSize] = size unless size.nil?
       hObj[:dimension] << hDimension
       return hObj
    end
@@ -401,6 +453,18 @@ class MdJsonHashWriter
       return hDomain
    end
 
+   def add_duration(hTimePeriod, year, mon, day, hour, min, sec)
+      hDuration = duration
+      hDuration[:years] = year
+      hDuration[:months] = mon
+      hDuration[:days] = day
+      hDuration[:hours] = hour
+      hDuration[:minutes] = min
+      hDuration[:seconds] = sec
+      hTimePeriod[:duration] = hDuration
+      return hTimePeriod
+   end
+
    def add_email(hContact, email)
       hContact[:electronicMailAddress] = [] unless hContact[:electronicMailAddress]
       hContact[:electronicMailAddress] << email
@@ -411,18 +475,9 @@ class MdJsonHashWriter
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:falseEasting] = 9.9
       hParamSet[:falseNorthing] = 9.9
-      unless easting.nil?
-         hParamSet[:falseEasting] = easting
-      end
-      unless northing.nil?
-         hParamSet[:falseNorthing] = northing
-      end
+      hParamSet[:falseEasting] = easting unless easting.nil?
+      hParamSet[:falseNorthing] = northing unless northing.nil?
       return hSpaceRef
-   end
-
-   def add_featureCollection(hGeoElement)
-      hGeoElement << featureCollection
-      return hGeoElement
    end
 
    def add_foreignKey(hEntity, localAtt = nil, refEnt = false, refAtt = nil)
@@ -449,25 +504,26 @@ class MdJsonHashWriter
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:gridSystem] = grid
       hParamSet[:gridSystemName] = name unless name.nil?
-      hParamSet[:gridZone] = zone  unless zone.nil?
+      hParamSet[:gridZone] = zone unless zone.nil?
       return hSpaceRef
    end
 
    def add_heightPP(hSpaceRef, height = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:heightOfProspectivePointAboveSurface] = 99.9
-      unless height.nil?
-         hParamSet[:heightOfProspectivePointAboveSurface] = height
-      end
+      hParamSet[:heightOfProspectivePointAboveSurface] = height unless height.nil?
       return hSpaceRef
+   end
+   
+   def add_imageDescription(hCoverage)
+      hCoverage[:imageDescription] = imageDescription
+      return hCoverage
    end
    
    def add_keyword(hKeywords, keyword, id = nil)
       hKeyword = {}
       hKeyword[:keyword] = keyword
-      unless id.nil?
-         hKeyword[:keywordId] = id
-      end
+      hKeyword[:keywordId] = id  unless id.nil?
       hKeywords[:keyword] << hKeyword
       return hKeywords
    end
@@ -489,18 +545,14 @@ class MdJsonHashWriter
    def add_latPC(hSpaceRef, latPC = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:latitudeOfProjectionCenter] = 99.9
-      unless latPC.nil?
-         hParamSet[:latitudeOfProjectionCenter] = latPC
-      end
+      hParamSet[:latitudeOfProjectionCenter] = latPC unless latPC.nil?
       return hSpaceRef
    end
 
    def add_latPO(hSpaceRef, latPO = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:latitudeOfProjectionOrigin] = 99.9
-      unless latPO.nil?
-         hParamSet[:latitudeOfProjectionOrigin] = latPO
-      end
+      hParamSet[:latitudeOfProjectionOrigin] = latPO unless latPO.nil?
       return hSpaceRef
    end
 
@@ -521,18 +573,14 @@ class MdJsonHashWriter
    def add_longCM(hSpaceRef, longCM = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:longitudeOfCentralMeridian] = 99.9
-      unless longCM.nil?
-         hParamSet[:longitudeOfCentralMeridian] = longCM
-      end
+      hParamSet[:longitudeOfCentralMeridian] = longCM unless longCM.nil?
       return hSpaceRef
    end
 
    def add_longPC(hSpaceRef, longPC = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:longitudeOfProjectionCenter] = 99.9
-      unless longPC.nil?
-         hParamSet[:longitudeOfProjectionCenter] = longPC
-      end
+      hParamSet[:longitudeOfProjectionCenter] = longPC  unless longPC.nil?
       return hSpaceRef
    end
 
@@ -555,9 +603,9 @@ class MdJsonHashWriter
       return hSpaceRef
    end
 
-   def add_offlineOption(hTranOpt, noteOnly = false)
+   def add_offlineOption(hTranOpt, reqOnly = false)
       hMedium = medium
-      if noteOnly
+      if reqOnly
          hMedium.delete(:mediumSpecification)
          hMedium.delete(:density)
          hMedium.delete(:units)
@@ -569,8 +617,14 @@ class MdJsonHashWriter
       return hTranOpt
    end
 
-   def add_onlineOption(hTranOpt, uri)
+   def add_onlineOption(hTranOpt, uri, reqOnly = false)
       hOnlineRes = build_onlineResource(uri)
+      if reqOnly
+         hOnlineRes.delete(:name)
+         hOnlineRes.delete(:protocol)
+         hOnlineRes.delete(:description)
+         hOnlineRes.delete(:function)
+      end
       hTranOpt[:onlineOption] << hOnlineRes
       return hTranOpt
    end
@@ -578,11 +632,6 @@ class MdJsonHashWriter
    def add_orderProcess(hDistributor)
       hDistributor[:orderProcess] << orderProcess
       return hDistributor
-   end
-
-   def add_otherConstraint(hObj, constraint)
-      hObj[:legal][:otherConstraint] << constraint
-      return hObj
    end
 
    def add_otherProjection(hSpaceRef, other = nil)
@@ -605,10 +654,13 @@ class MdJsonHashWriter
       hSpaceRef[:referenceSystemParameterSet][:projection] = {}
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:projection] = projection
-      unless name.nil?
-         hParamSet[:projectionName] = name
-      end
+      hParamSet[:projectionName] = name unless name.nil?
       return hSpaceRef
+   end
+
+   def add_properties(hFeature)
+      hFeature[:properties] = properties
+      return hFeature
    end
 
    def add_resourceFormat(hTransOpt, title = nil, prereq = nil)
@@ -650,14 +702,10 @@ class MdJsonHashWriter
    def add_standardParallel(hSpaceRef, num = 1, parallel1 = nil, parallel2 = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hParamSet[:standardParallel1] = 99.9
-      unless parallel1.nil?
-         hParamSet[:standardParallel1] = parallel1
-      end
+      hParamSet[:standardParallel1] = parallel1 unless parallel1.nil?
       if num == 2
          hParamSet[:standardParallel2] = 99.9
-         unless parallel2.nil?
-            hParamSet[:standardParallel2] = parallel2
-         end
+         hParamSet[:standardParallel2] = parallel2 unless parallel2.nil?
       end
       return hSpaceRef
    end
@@ -683,9 +731,29 @@ class MdJsonHashWriter
       return hObject
    end
 
-   def add_useConstraint(hObj, constraint)
-      hObj[:legal][:useConstraint] << constraint
-      return hObj
+   def add_temporalExtent(hExtent, id, type, dateTime = nil)
+      if type == 'instant'
+         hTempTime = build_timeInstant(id,nil, dateTime)
+         hExtent[:temporalExtent] << {timeInstant: hTempTime}
+      end
+      if type == 'period'
+         hTempTime = build_timePeriod(id,nil, dateTime)
+         hExtent[:temporalExtent] << {timePeriod: hTempTime}
+      end
+      return hExtent
+   end
+
+   def add_timeInterval(hTimePeriod, interval = nil, units = nil)
+      hInterval = timeInterval
+      hInterval[:interval] = interval unless interval.nil?
+      hInterval[:units] = units unless units.nil?
+      hTimePeriod[:timeInterval] = hInterval
+      return hTimePeriod
+   end
+
+   def add_useLimitation(hConstraint, limitation)
+      hConstraint[:useLimitation] << limitation
+      return hConstraint
    end
 
    def add_valueRange(hAttribute, min, max)
@@ -699,9 +767,7 @@ class MdJsonHashWriter
    def add_vectorObject(hVecRep, type, count = nil)
       hVecObj = {}
       hVecObj[:objectType] = type
-      unless count.nil?
-         hVecObj[:objectCount] = count
-      end
+      hVecObj[:objectCount] = count unless count.nil?
       hVecRep[:vectorObject] << hVecObj
       return hVecRep
    end
@@ -718,6 +784,15 @@ class MdJsonHashWriter
          hDatum[:datumName] = 'altitude datum name'
       end
       return hSpaceRef
+   end
+
+   def add_verticalExtent(hExtent, description = nil, min = nil, max = nil)
+      hVertExt = verticalExtent
+      hVertExt[:description] = description unless description.nil?
+      hVertExt[:minValue] = min unless min.nil?
+      hVertExt[:maxValue] = max unless max.nil?
+      hExtent[:verticalExtent] << hVertExt
+      return hExtent
    end
 
 end

@@ -42,7 +42,7 @@ module ADIWG
                   attributes = {}
                   s = hStep[:stepId]
                   unless s.nil?
-                     attributes['id' => s]
+                     attributes = { id: s.gsub(/[^0-9A-Za-z]/,'') }
                   end
 
                   @xml.tag!('gmd:LI_ProcessStep', attributes) do
