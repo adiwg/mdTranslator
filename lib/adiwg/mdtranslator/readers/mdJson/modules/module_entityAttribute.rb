@@ -107,7 +107,7 @@ module ADIWG
                      if hAttribute['allowMany'] === false
                         intAttribute[:mustBeUnique] = hAttribute['allowMany']
                         responseObj[:readerExecutionMessages] <<
-                           'WARNING: mdJson reader: data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
+                           'NOTICE: mdJson reader: data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
                         return nil
                      end
                   end

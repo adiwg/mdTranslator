@@ -1,6 +1,7 @@
 # fgdc reader
 
 # History:
+#  Stan Smith 2018-05-04 add reader version to response object
 #  Stan Smith 2017-08-10 original script
 
 require 'nokogiri'
@@ -13,6 +14,9 @@ module ADIWG
          module Fgdc
 
             def self.readFile(file, hResponseObj)
+
+               # add FGDC reader version
+               hResponseObj[:readerVersionUsed] = ADIWG::Mdtranslator::Readers::Fgdc::VERSION
 
                # receive XML file
                if file.nil? || file == ''

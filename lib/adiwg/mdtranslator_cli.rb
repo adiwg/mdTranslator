@@ -2,6 +2,7 @@
 # ADIwg mdTranslator - Thor CLI for mdtranslator
 
 # History:
+#  Stan Smith 2018-05-04 add support for reader execution messages
 #  Stan Smith 2018-04-07 add 'fgdc' option to reader and writer enum list
 #  Stan Smith 2018-02-26 add 'forceValid' parameter
 #  Stan Smith 2017-04-21 removed inline CSS option
@@ -71,6 +72,7 @@ and to choose the level of validation for mdJson input files.
       # puts 'writer: ' + options[:writer]
       # puts 'validation level: ' + options[:validate]
       # puts 'showAllTags: ' + options[:showAllTags].to_s
+      # puts 'forceValid: ' + options[:forceValid].to_s
       # puts 'message format: ' + options[:messages]
       # puts 'return object: ' + options[:returnObject].to_s
       # puts 'css link: ' + options[:cssLink]
@@ -87,7 +89,7 @@ and to choose the level of validation for mdJson input files.
          cssLink: options[:cssLink])
 
       # determine return content and type of return ...
-      if mdReturn[:readerStructurePass] && mdReturn[:readerValidationPass]
+      if mdReturn[:readerStructurePass] && mdReturn[:readerValidationPass] && mdReturn[:readerExecutionPass]
 
          # no problem was found with the input file
          if options[:writer].nil?
@@ -124,7 +126,7 @@ and to choose the level of validation for mdJson input files.
                   # build a string with messages issues from parser and validator
                   s = ''
                   s += "Failed\n"
-                  s += "Writer failed to generate output or issued significant warnings\n"
+                  s += "Writer failed to generate output or issued ERROR OR WARNING messages \n"
                   s += "See following messages for further information\n"
 
                   # post structure messages
@@ -153,10 +155,10 @@ and to choose the level of validation for mdJson input files.
             $stdout.write mdReturn.to_json
             return
          else
-            # build a string with messages issues from parser and validator
+            # build a string with messages issues from parser, validator, or reader
             s = ''
             s += "Failed\n"
-            s += "Input failed to pass either file structure validation or content does not match schema\n"
+            s += "Input failed to pass either file structure, validation, or content requirements\n"
             s += "See following messages for further information\n"
 
             # post structure messages
@@ -180,6 +182,21 @@ and to choose the level of validation for mdJson input files.
                   s += "Fail - Input content did not pass schema validation - see following message(s):\n"
                   i = 0
                   mdReturn[:readerValidationMessages].each do |message|
+                     i += 1
+                     s += "\nMessage: #{i}\n"
+                     s += message.to_s + "\n"
+                  end
+               end
+            end
+
+            # post reader execution messages
+            unless mdReturn[:readerExecutionPass].nil?
+               if mdReturn[:readerExecutionPass]
+                  s += "Success - Reader execution successful\n"
+               else
+                  s += "Fail - Reader execution failed - see following message(s):\n"
+                  i = 0
+                  mdReturn[:readerExecutionMessages].each do |message|
                      i += 1
                      s += "\nMessage: #{i}\n"
                      s += message.to_s + "\n"
