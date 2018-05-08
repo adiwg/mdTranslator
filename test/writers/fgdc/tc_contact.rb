@@ -100,7 +100,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
+                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contact person name (CID001)'
 
       # address missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -114,7 +114,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
+                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contact person name (CID001)'
 
    end
 
@@ -135,7 +135,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact voice phone is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact voice phone is missing: CONTEXT is contact person name (CID001)'
 
    end
 
@@ -153,7 +153,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contact person name (CID001)'
 
       # address city missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -167,7 +167,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contact person name (CID001)'
 
       # address state empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -181,7 +181,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contact person name (CID001)'
 
       # address state missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -195,7 +195,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contact person name (CID001)'
 
       # address postal code empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -209,7 +209,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address postal code is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address postal code is missing: CONTEXT is contact person name (CID001)'
 
       # address postal code missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -223,7 +223,7 @@ class TestWriterFgdcContact < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address postal code is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address postal code is missing: CONTEXT is contact person name (CID001)'
 
    end
 

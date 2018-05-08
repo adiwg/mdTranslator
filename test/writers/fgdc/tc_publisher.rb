@@ -45,7 +45,7 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: publication place is missing: CONTEXT is identification information citation'
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
+                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contact person name (CID001)'
 
       # no country
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -79,7 +79,7 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contact person name (CID001)'
       assert_equal 'city', got
 
       # no city
@@ -99,9 +99,9 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 4, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contact person name (CID001)'
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contact person name (CID001)'
       assert_equal 'address description', got
 
       # no description
@@ -121,9 +121,9 @@ class TestWriterFgdcPublisher < TestWriterFGDCParent
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: publication place is missing: CONTEXT is identification information citation'
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address city is missing: CONTEXT is contact person name (CID001)'
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address state is missing: CONTEXT is contact person name (CID001)'
 
    end
 

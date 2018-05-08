@@ -35,10 +35,10 @@ module ADIWG
                   addClass = CI_Address.new(@xml, @hResponseObj)
                   resourceClass = CI_OnlineResource.new(@xml, @hResponseObj)
 
+                  # outContext
                   outContext = 'contact information'
-                  unless hContact[:contactId].nil?
-                     outContext = 'contact ' + hContact[:name] + ' (' + hContact[:contactId] + ')'
-                  end
+                  outContext +=  ' ' + hContact[:name] unless hContact[:name].nil?
+                  outContext += ' (' + hContact[:contactId] + ')' unless hContact[:contactId].nil?
 
                   @xml.tag!('gmd:CI_Contact') do
 

@@ -68,7 +68,7 @@ class TestWriterFgdcForceValid < TestWriterFGDCParent
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
+                      'ERROR: FGDC writer: contact address is missing: CONTEXT is contact person name (CID001)'
 
       xWriterOutput = Nokogiri::XML(hResponseObj[:writerOutput])
       xOutput = xWriterOutput.xpath('./metadata/idinfo/ptcontac/cntinfo/cntaddr')
@@ -106,7 +106,7 @@ class TestWriterFgdcForceValid < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: contact address is missing: CONTEXT is contactId CID001'
+                      'WARNING: FGDC writer: contact address is missing: CONTEXT is contact person name (CID001)'
 
       xWriterOutput = Nokogiri::XML(hResponseObj[:writerOutput])
       xOutput = xWriterOutput.xpath('./metadata/idinfo/ptcontac/cntinfo/cntaddr')
