@@ -28,8 +28,10 @@ module ADIWG
                   addressClass = Address.new(@xml, @hResponseObj)
                   phoneClass = Phone.new(@xml, @hResponseObj)
 
-                  # address outContext
-                  outContext = 'contactId ' + hContact[:contactId]
+                  # outContext
+                  outContext = 'contact'
+                  outContext +=  ' ' + hContact[:name] unless hContact[:name].nil?
+                  outContext += ' (' + hContact[:contactId] + ')' unless hContact[:contactId].nil?
 
                   # set contact type and names
                   contactType = nil

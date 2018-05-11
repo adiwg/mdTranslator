@@ -2,118 +2,106 @@
 # writers / iso19115_2 / class_measure
 
 # History:
+#  Stan Smith 2018-04-26 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-11-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Measure < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_measure.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_measure.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_measure_distance
+   hGrid = TDClass.build_gridRepresentation()
+   TDClass.add_dimension(hGrid)
+   hSpaceRep = TDClass.build_spatialRepresentation('grid', hGrid)
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
-      axExpect = @@xFile.xpath('//gmd:resolution')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_measure_distance
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resolution')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      assert_equal axExpect[0].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_measure',
+                                                '//gmd:resolution[1]',
+                                                '//gmd:resolution', 0)
 
-   end
-
-   def test_19115_2_measure_length
-
-      axExpect = @@xFile.xpath('//gmd:resolution')
-
-      hJson = JSON.parse(@@mdJson)
-      hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-      hResolution['type'] = 'length'
-      hResolution['unitOfMeasure'] = 'length'
-      jsonIn = hJson.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resolution')
-
-      assert_equal axExpect[1].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 
-   def test_19115_2_measure_angle
+   def test_measure_length
 
-      axExpect = @@xFile.xpath('//gmd:resolution')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hMeasure = hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:gridRepresentation][:dimension][0][:resolution]
+      hMeasure[:type] = 'length'
+      hMeasure[:unitOfMeasure] = 'lengthuom'
 
-      hJson = JSON.parse(@@mdJson)
-      hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-      hResolution['type'] = 'angle'
-      hResolution['unitOfMeasure'] = 'angle'
-      jsonIn = hJson.to_json
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_measure',
+                                                '//gmd:resolution[2]',
+                                                '//gmd:resolution', 0)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resolution')
-
-      assert_equal axExpect[2].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 
-   def test_19115_2_measure_measure
+   def test_measure_angle
 
-      axExpect = @@xFile.xpath('//gmd:resolution')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hMeasure = hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:gridRepresentation][:dimension][0][:resolution]
+      hMeasure[:type] = 'angle'
+      hMeasure[:unitOfMeasure] = 'angleuom'
 
-      hJson = JSON.parse(@@mdJson)
-      hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-      hResolution['type'] = 'measure'
-      hResolution['unitOfMeasure'] = 'measure'
-      jsonIn = hJson.to_json
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_measure',
+                                                '//gmd:resolution[3]',
+                                                '//gmd:resolution', 0)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resolution')
-
-      assert_equal axExpect[3].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 
-   def test_19115_2_measure_scale
+   def test_measure_measure
 
-      axExpect = @@xFile.xpath('//gmd:resolution')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hMeasure = hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:gridRepresentation][:dimension][0][:resolution]
+      hMeasure[:type] = 'measure'
+      hMeasure[:unitOfMeasure] = 'measureuom'
 
-      hJson = JSON.parse(@@mdJson)
-      hResolution = hJson['metadata']['resourceInfo']['spatialRepresentation'][0]['gridRepresentation']['dimension'][0]['resolution']
-      hResolution['type'] = 'scale'
-      hResolution['unitOfMeasure'] = 'scale'
-      jsonIn = hJson.to_json
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_measure',
+                                                '//gmd:resolution[4]',
+                                                '//gmd:resolution', 0)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resolution')
+   end
 
-      assert_equal axExpect[4].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+   def test_measure_scale
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hMeasure = hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:gridRepresentation][:dimension][0][:resolution]
+      hMeasure[:type] = 'scale'
+      hMeasure[:unitOfMeasure] = 'scaleuom'
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_measure',
+                                                '//gmd:resolution[5]',
+                                                '//gmd:resolution', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
 
    end
 

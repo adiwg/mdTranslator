@@ -43,31 +43,33 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    end
 
-   def test_source_description_empty
+   def test_source_descriptionScope_empty
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['description'] = ''
+      hIn['scope'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source requires a description or scope'
 
    end
 
-   def test_source_description_missing
+   def test_source_descriptionScope_missing
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('description')
+      hIn.delete('scope')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source description is missing'
+      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source requires a description or scope'
 
    end
 

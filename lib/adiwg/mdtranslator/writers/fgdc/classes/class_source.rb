@@ -43,7 +43,7 @@ module ADIWG
                      # <- resourceLineage.source.sourceCitation
                      unless hSource[:sourceCitation].empty?
                         @xml.tag!('srccite') do
-                           citationClass.writeXML(hSource[:sourceCitation], [])
+                           citationClass.writeXML(hSource[:sourceCitation], [], 'lineage source')
                         end
                      end
                      if hSource[:sourceCitation].empty?

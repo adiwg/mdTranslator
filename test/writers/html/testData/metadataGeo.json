@@ -2244,14 +2244,7 @@
                         "periodName": [
                            "periodName0",
                            "periodName1"
-                        ],
-                        "timeInterval": {
-                           "interval": 9.9,
-                           "units": "year"
-                        },
-                        "duration": {
-                           "months": 9
-                        }
+                        ]
                      }
                   }
                ],

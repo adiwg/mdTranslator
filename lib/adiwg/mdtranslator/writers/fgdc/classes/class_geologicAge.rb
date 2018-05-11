@@ -62,7 +62,7 @@ module ADIWG
                   hGeoAge[:ageReferences].each do |hCitation|
                      unless hCitation.empty?
                         @xml.tag!('geolcit') do
-                           citationClass.writeXML(hCitation, {})
+                           citationClass.writeXML(hCitation, [], 'geologic age')
                         end
                      end
                   end

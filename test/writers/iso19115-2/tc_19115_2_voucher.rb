@@ -2,34 +2,43 @@
 # writers / iso19115_2 / class_voucher
 
 # History:
+#  Stan Smith 2018-05-03 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-13 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Voucher < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_voucher.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_voucher.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_voucher
+   hVoucher = TDClass.build_taxonVoucher('specimen one', ['CID003'])
+   hTaxonomy = TDClass.taxonomy
+   hTaxonomy[:voucher] << hVoucher
+   mdHash[:metadata][:resourceInfo][:taxonomy] = []
+   mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
 
-      xExpect = @@xFile.xpath('//gmd:voucher')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, validate: 'none'
-      )
+   def test_voucher_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:voucher')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      assert_equal xExpect.to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_voucher',
+                                                '//gmd:voucher[1]',
+                                                '//gmd:voucher', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
 
    end
 

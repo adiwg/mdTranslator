@@ -1,11 +1,11 @@
 class MdJsonHashWriter
 
-   # base -----------------------------------
+   # base ------------------------------------
    def base
       {
          schema: {
             name: 'mdJson',
-            version: '2.3.0'
+            version: '2.4.0'
          },
          contact: [
             {
@@ -36,6 +36,44 @@ class MdJsonHashWriter
                      country: 'country'
                   }
                ]
+            },
+            {
+               contactId: 'CID002',
+               isOrganization: true,
+               name: 'organization name',
+               phone: [
+                  {
+                     phoneName: 'phone name',
+                     phoneNumber: '222-222-2222',
+                     service: ['voice']
+                  }
+               ],
+               address: [
+                  {
+                     addressType: [
+                        'mailing'
+                     ],
+                     description: 'address description',
+                     deliveryPoint: [
+                        'address line 1',
+                        'address line 2'
+                     ],
+                     city: 'city',
+                     administrativeArea: 'administrative area',
+                     postalCode: 'postal code',
+                     country: 'country'
+                  }
+               ]
+            },
+            {
+               contactId: 'CID003',
+               isOrganization: false,
+               name: 'person name three'
+            },
+            {
+               contactId: 'CID004',
+               isOrganization: true,
+               name: 'organization name four'
             }
          ],
          metadata: {
@@ -86,7 +124,7 @@ class MdJsonHashWriter
                abstract: 'abstract',
                purpose: 'purpose',
                timePeriod: {
-                  description: 'time info currentness',
+                  description: 'resource time period',
                   startDateTime: '2017-12-01'
                },
                status: [
@@ -126,7 +164,13 @@ class MdJsonHashWriter
                      ],
                      'keywordType': 'isoTopicCategory',
                      'thesaurus': {
-                        'title': 'ISO 19115 Topic Category'
+                        'title': 'ISO 19115 Topic Category',
+                        date: [
+                           {
+                              'date': '2017-11-22',
+                              'dateType': 'publication'
+                           }
+                        ]
                      }
                   }
                ],
@@ -145,9 +189,9 @@ class MdJsonHashWriter
                   country: 'USA',
                   characterSet: 'UTF-8'
                },
-               'resourceMaintenance': [
+               resourceMaintenance: [
                   {
-                     'frequency': 'resource maintenance frequency'
+                     frequency: 'resource maintenance frequency'
                   }
                ]
             }
@@ -158,7 +202,41 @@ class MdJsonHashWriter
    end
 
 
-   # contacts--------------------------------
+   # associated resource----------------------
+   def associatedResource
+      {
+         resourceType: [
+            {
+               type: 'resource type',
+               name: 'resource name'
+            }
+         ],
+         associationType: 'association type',
+         initiativeType: 'initiative type',
+         resourceCitation: {
+            title: 'citation title',
+            date: [
+               {
+                  'date': '2017-11-22',
+                  'dateType': 'publication'
+               }
+            ],
+            responsibleParty: [
+               {
+                  role: 'originator',
+                  party: [
+                     {
+                        contactId: 'CID003'
+                     }
+                  ]
+               }
+            ]
+         }
+      }
+   end
+
+
+   # contacts---------------------------------
    def address
       {
          addressType: [],
@@ -174,24 +252,138 @@ class MdJsonHashWriter
       }
    end
 
-   def organization
+   def organization_full
       {
-         contactId: nil,
+         contactId: 'CID006',
          isOrganization: true,
-         name: 'organization name',
-         phone: [],
-         address: []
+         name: 'organization name six',
+         memberOfOrganization: %w(CID004),
+         logoGraphic: [
+            {
+               fileName: 'logo graphic file name one'
+            },
+            {
+               fileName: 'logo graphic file name two'
+            }
+         ],
+         phone: [
+            {
+               phoneName: 'phone one',
+               phoneNumber: '111-111-1111',
+               service: ['voice']
+            },
+            {
+               phoneName: 'phone two',
+               phoneNumber: '222-222-2222',
+               service: ['fax']
+            }
+         ],
+         address: [
+            {
+               addressType: ['mailing'],
+               description: 'address description one',
+               deliveryPoint: [
+                  'address line 1',
+                  'address line 2'
+               ],
+               city: 'city',
+               administrativeArea: 'administrative area',
+               postalCode: 'postal code',
+               country: 'country'
+            },
+            {
+               addressType: ['physical'],
+               description: 'address description two',
+               deliveryPoint: [
+                  'address line 1',
+                  'address line 2'
+               ],
+               city: 'city',
+               administrativeArea: 'administrative area',
+               postalCode: 'postal code',
+               country: 'country'
+            }
+         ],
+         electronicMailAddress: %w(name1@adiwg.org name2@adiwg.org),
+         onlineResource: [
+            {
+               'uri': 'https://adiwg.mdtranslator/1'
+            },
+            {
+               'uri': 'https://adiwg.mdtranslator/2'
+            }
+         ],
+         hoursOfService: ['hours one', 'hours two'],
+         contactInstructions: 'contact instructions',
+         contactType: 'contact type'
       }
    end
 
-   def person
+   def person_full
       {
-         contactId: nil,
+         contactId: 'CID005',
          isOrganization: false,
-         name: 'person name',
-         positionName: 'position name',
-         phone: [],
-         address: []
+         name: 'person name five',
+         positionName: 'position name five',
+         memberOfOrganization: ['CID002', 'CID004'],
+         logoGraphic: [
+            {
+               fileName: 'logo graphic file name one'
+            },
+            {
+               fileName: 'logo graphic file name two'
+            }
+         ],
+         phone: [
+            {
+               phoneName: 'phone one',
+               phoneNumber: '111-111-1111',
+               service: ['voice']
+            },
+            {
+               phoneName: 'phone two',
+               phoneNumber: '222-222-2222',
+               service: ['fax']
+            }
+         ],
+         address: [
+            {
+               addressType: ['mailing'],
+               description: 'address description one',
+               deliveryPoint: [
+                  'address line 1',
+                  'address line 2'
+               ],
+               city: 'city',
+               administrativeArea: 'administrative area',
+               postalCode: 'postal code',
+               country: 'country'
+            },
+            {
+               addressType: ['physical'],
+               description: 'address description two',
+               deliveryPoint: [
+                  'address line 1',
+                  'address line 2'
+               ],
+               city: 'city',
+               administrativeArea: 'administrative area',
+               postalCode: 'postal code',
+               country: 'country'
+            }
+         ],
+         electronicMailAddress: %w(name1@adiwg.org name2@adiwg.org),
+         onlineResource: [
+         {
+            'uri': 'https://adiwg.mdtranslator/1'
+         },
+         {
+            'uri': 'https://adiwg.mdtranslator/2'
+         }
+      ],
+         hoursOfService: ['hours one', 'hours two'],
+         contactInstructions: 'contact instructions',
+         contactType: 'contact type'
       }
    end
 
@@ -204,7 +396,7 @@ class MdJsonHashWriter
    end
 
 
-   # common ---------------------------------
+   # common ----------------------------------
    def citation
       {
          title: 'citation title',
@@ -219,7 +411,7 @@ class MdJsonHashWriter
                role: 'originator',
                party: [
                   {
-                     contactId: 'CID001'
+                     contactId: 'CID003'
                   }
                ]
             }
@@ -229,7 +421,7 @@ class MdJsonHashWriter
 
    def citation_full
       {
-         title: 'citation title',
+         title: 'full citation title',
          alternateTitle: [
             'alt title one',
             'alt title two'
@@ -238,20 +430,69 @@ class MdJsonHashWriter
             {
                'date': '2017-12-02T13:41:13',
                'dateType': 'publication'
+            },
+            {
+               'date': '2018-04-18',
+               'dateType': 'revision'
             }
          ],
          edition: 'edition',
-         responsibleParty: [],
+         responsibleParty: [
+            {
+               role: 'originator',
+               roleExtent: [],
+               party: [
+                  {
+                     contactId: 'CID003'
+                  },
+                  {
+                     contactId: 'CID002'
+                  }
+               ]
+            },
+            {
+               role: 'publisher',
+               roleExtent: [],
+               party: [
+                  {
+                     contactId: 'CID001'
+                  },
+                  {
+                     contactId: 'CID002'
+                  }
+               ]
+            },
+            {
+               role: 'originator',
+               roleExtent: [],
+               party: [
+                  {
+                     contactId: 'CID004'
+                  },
+                  {
+                     contactId: 'CID002'
+                  }
+               ]
+            }
+         ],
          presentationForm: [
             'form one',
             'form two'
          ],
-         identifier: [],
-         series: {
-            seriesName: 'series name',
-            seriesIssue: 'series issue',
-            issuePage: 'issue page'
-         },
+         identifier: [
+            {
+               identifier: 'full citation identifier one'
+            },
+            {
+               identifier: 'full citation identifier two',
+               namespace: 'ISBN'
+            },
+            {
+               identifier: 'full citation identifier three',
+               namespace: 'ISSN'
+            }
+         ],
+         series: series,
          otherCitationDetails: [
             'other detail one',
             'other detail two'
@@ -264,17 +505,27 @@ class MdJsonHashWriter
                'uri': 'https://adiwg.mdtranslator/2'
             }
          ],
-         browseGraphic: []
+         browseGraphic: [
+            {
+               fileName: 'full citation browse graphic one'
+            },
+            {
+               fileName: 'full citation browse graphic two'
+            }
+         ]
       }
    end
 
-   def graphic
+   def citation_title
       {
-         fileName: nil,
-         fileDescription: 'graphic description',
-         fileType: 'graphic type',
-         fileConstraint: [],
-         fileUri: []
+         title: 'title only citation'
+      }
+   end
+
+   def date
+      {
+         date: nil,
+         dateType: nil
       }
    end
 
@@ -284,7 +535,15 @@ class MdJsonHashWriter
          namespace: 'namespace',
          version: 'version',
          description: 'description',
-         authority: citation
+         authority: citation_title
+      }
+   end
+
+   def locale
+      {
+         language: 'eng',
+         characterSet: 'UTF-8',
+         country: 'USA'
       }
    end
 
@@ -298,6 +557,14 @@ class MdJsonHashWriter
       }
    end
 
+   def scope
+      {
+         scopeCode: 'scope code',
+         scopeDescription: [],
+         scopeExtent: []
+      }
+   end
+
    def series
       {
          seriesName: 'series name',
@@ -307,20 +574,134 @@ class MdJsonHashWriter
    end
 
 
-   # constraint -----------------------------
+   # constraint ------------------------------
    def constraint
       {
          type: nil,
          useLimitation: [],
+         graphic: [],
+         reference: [],
+         responsibleParty: []
+      }
+   end
+
+   def legalConstraint
+      {
+         type: 'legal',
+         useLimitation: [],
+         graphic: [],
+         reference: [],
+         responsibleParty: [],
+         legal: {
+            assessConstraint: [],
+            useConstraint: [],
+            otherConstraint: []
+         }
+      }
+   end
+
+   def securityConstraint
+      {
+         type: 'security',
+         useLimitation: [],
+         graphic: [],
+         reference: [],
+         responsibleParty: [],
+         security: {
+            classification: 'classification',
+            userNote: 'user note',
+            classificationSystem: 'classification system',
+            handlingDescription: 'handling instructions'
+         }
+      }
+   end
+
+   def useConstraint
+      {
+         type: 'use',
+         useLimitation: ['limitation one', 'limitation two'],
+         graphic: [],
+         reference: [],
          responsibleParty: []
       }
    end
 
 
-   # coverage description -------------------
+   # coverage description --------------------
+   def coverageDescription
+      {
+         coverageName: 'coverage name',
+         coverageDescription: 'coverage description',
+         processingLevelCode: {
+            identifier: 'process level identifier'
+         },
+         attributeGroup: [],
+         imageDescription: {}
+      }
+   end
+
+   def attributeGroup
+      {
+         attributeContentType: ['attribute content type', 'modelResult'],
+         attribute: []
+      }
+   end
+
+   def attribute
+      {
+         sequenceIdentifier: 'sequence identifier name',
+         sequenceIdentifierType: 'sequence identifier type',
+         attributeDescription: 'attribute description',
+         attributeIdentifier: [
+            {
+               identifier: 'attribute identifier one'
+            },
+            {
+               identifier: 'attribute identifier two'
+            }
+         ],
+         minValue: 0,
+         maxValue: 9,
+         units: 'min/max units',
+         scaleFactor: 99.9,
+         offset: 1.0,
+         meanValue: 50.0,
+         numberOfValues: 9,
+         standardDeviation: 9.9,
+         bitsPerValue: 9,
+         boundMin: 100,
+         boundMax: 999,
+         boundUnits: 'bound min/max units',
+         peakResponse: 99.9,
+         toneGradations: 9,
+         bandBoundaryDefinition: 'oneOverE',
+         nominalSpatialResolution: 99,
+         transferFunctionType: 'linear',
+         transmittedPolarization: 'leftCircular',
+         detectedPolarization: 'rightCircular'
+      }
+   end
+
+   def imageDescription
+      {
+         illuminationElevationAngle: 60.0,
+         illuminationAzimuthAngle: 40.0,
+         imagingCondition: 'image condition code',
+         imageQualityCode: {
+            identifier: 'image quality identifier'
+         },
+         cloudCoverPercent: 90,
+         compressionQuantity: 9,
+         triangulationIndicator: false,
+         radiometricCalibrationAvailable: false,
+         cameraCalibrationAvailable: false,
+         filmDistortionAvailable: false,
+         lensDistortionAvailable: false
+      }
+   end
 
 
-   # data dictionary ------------------------
+   # data dictionary -------------------------
    def dataDictionary
       {
          citation: {
@@ -442,24 +823,40 @@ class MdJsonHashWriter
    end
 
 
-   # date-time ------------------------------
-   def date
+   # data quality --------------------------------
+   def lineage
       {
-         date: nil,
-         dateType: nil
+         statement: 'statement',
+         scope: scope,
+         citation: [citation],
+         processStep: [],
+         source: []
       }
    end
 
-   def locale
+   def processStep
       {
-         language: 'eng',
-         characterSet: 'UTF-8',
-         country: 'USA'
+         stepId: nil,
+         description: 'description',
+         rationale: 'rationale',
+         processor: [],
+         stepSource: [],
+         stepProduct: [],
+         reference: []
+      }
+   end
+
+   def source
+      {
+         sourceId: nil,
+         description: 'description',
+         metadataCitation: [],
+         sourceProcessStep: []
       }
    end
 
 
-   # distribution ---------------------------
+   # distribution ----------------------------
    def distribution
       {
          description: 'distribution description',
@@ -491,7 +888,7 @@ class MdJsonHashWriter
             title: 'medium specification'
          },
          density: 99.9,
-         units: 'units of density',
+         units: 'density units',
          numberOfVolumes: 9,
          mediumFormat: [
             'medium format one',
@@ -542,7 +939,19 @@ class MdJsonHashWriter
    end
 
 
-   # funding --------------------------------
+   # funding ---------------------------------
+
+
+   # graphic ---------------------------------
+   def graphic
+      {
+         fileName: nil,
+         fileDescription: 'graphic description',
+         fileType: 'graphic type',
+         fileConstraint: [],
+         fileUri: []
+      }
+   end
 
 
    # graphic extent --------------------------
@@ -552,6 +961,26 @@ class MdJsonHashWriter
          geographicExtent: [],
          verticalExtent: [],
          temporalExtent: []
+      }
+   end
+
+   def geographicExtent
+      {
+         containsData: true,
+         indentifer: {
+            identifier: 'geographic extent identifier'
+         },
+         boundingBox: boundingBox,
+         geographicElement: []
+      }
+   end
+
+   def boundingBox
+      {
+         westLongitude: -170.0,
+         eastLongitude: -70.0,
+         southLatitude: 40.0,
+         northLatitude: 60.0
       }
    end
 
@@ -568,6 +997,89 @@ class MdJsonHashWriter
       {
          type: 'FeatureCollection',
          features: []
+      }
+   end
+
+   def geometryCollection
+      {
+         type: 'GeometryCollection',
+         geometries: []
+      }
+   end
+
+   def lineString
+      {
+         type: 'LineString',
+         coordinates: [
+            [100.0, 10.0],
+            [101.0, 11.0]
+         ]
+      }
+   end
+
+   def multiLineString
+      {
+         type: 'MultiLineString',
+         coordinates: [
+            [
+               [100.0, 10.0],
+               [101.0, 11.0]
+            ],
+            [
+               [102.0, 12.0],
+               [103.0, 13.0]
+            ],
+         ]
+      }
+   end
+
+   def multiPoint
+      {
+         type: 'MultiPoint',
+         coordinates: [
+            [100.0, 10.0],
+            [101.0, 11.0]
+         ]
+      }
+   end
+
+   def multiPolygon
+      {
+         type: 'MultiPolygon',
+         coordinates: [
+            [
+               [
+                  [100.0, 10.0],
+                  [101.0, 10.0],
+                  [101.0, 11.0],
+                  [100.0, 11.0],
+                  [100.0, 10.0]
+               ]
+            ],
+            [
+               [
+                  [110.8, 10.8],
+                  [110.8, 10.2],
+                  [110.2, 10.2],
+                  [110.2, 10.8],
+                  [110.8, 10.8]
+               ],
+               [
+                  [120.8, 10.8],
+                  [120.8, 10.2],
+                  [120.2, 10.2],
+                  [120.2, 10.8],
+                  [120.8, 10.8]
+               ]
+            ]
+         ]
+      }
+   end
+
+   def point
+      {
+         type: 'Point',
+         coordinates: [100.0, 10.0]
       }
    end
 
@@ -600,6 +1112,20 @@ class MdJsonHashWriter
       }
    end
 
+   def properties
+      {
+         description: 'description',
+         featureName: ['feature name one', 'feature name two'],
+         identifier: [
+            {
+               identifier: 'geoJson properties identifier'
+            }
+         ],
+         featureScope: 'feature scope',
+         acquisitionMethod: 'acquisition method'
+      }
+   end
+
 
    # keyword --------------------------------
    def keyword
@@ -613,47 +1139,26 @@ class MdJsonHashWriter
       {
          keyword: [],
          keywordType: 'theme',
-         thesaurus: citation
+         thesaurus: {
+            title: 'thesaurus title'
+         }
       }
    end
 
 
-   # lineage --------------------------------
-   def lineage
+   # maintenance ----------------------------
+   def maintenance
       {
-         statement: 'statement',
-         citation: [],
-         processStep: [],
-         source: []
+         frequency: 'maintenance frequency',
+         date: [],
+         scope: [],
+         note: ['note one', 'note two'],
+         contact: []
       }
    end
-
-   def processStep
-      {
-         stepId: nil,
-         description: 'description',
-         rationale: 'rationale',
-         processor: [],
-         stepSource: [],
-         stepProduct: [],
-         reference: []
-      }
-   end
-
-   def source
-      {
-         sourceId: nil,
-         description: 'description',
-         sourceProcessStep: []
-      }
-   end
-
-
-   # identification info --------------------------
 
 
    # responsibility -------------------------
-
    def responsibleParty
       {
          role: nil,
@@ -669,38 +1174,7 @@ class MdJsonHashWriter
    end
 
 
-   # scope ----------------------------------
-   def scope
-      {
-         scopeCode: 'code',
-         scopeDescription: [],
-         scopeExtent: []
-      }
-   end
-
-
    # spatial reference ----------------------
-   def obliqueLinePoint
-      {
-         azimuthLineLatitude: 99.9,
-         azimuthLineLongitude: 99.9
-      }
-   end
-
-   def spatialReference
-      {
-         referenceSystemType: nil,
-         referenceSystemIdentifier: {},
-         systemParameterSet: {}
-      }
-   end
-
-   def spatialReferenceSystem
-      {
-         referenceSystemType: 'reference system type'
-      }
-   end
-
    def geodetic
       {
          datumIdentifier: {},
@@ -710,6 +1184,65 @@ class MdJsonHashWriter
          semiMajorAxis: 9999.9,
          axisUnits: 'axis units',
          denominatorOfFlatteningRatio: 999.9
+      }
+   end
+
+   def obliqueLinePoint
+      {
+         azimuthLineLatitude: 99.9,
+         azimuthLineLongitude: 99.9
+      }
+   end
+
+   def projection
+      {
+         projectionIdentifier: { identifier: 'projection identifier' },
+         gridSystem: 'grid system',
+         gridSystemName: 'grid system name',
+         gridZone: 'zone 4',
+         projection: 'projection code',
+         projectionName: 'projection name',
+         standardParallel1: 9.9,
+         standardParallel2: 9.9,
+         longitudeOfCentralMeridian: 9.9,
+         latitudeOfProjectionOrigin: 9.9,
+         falseEasting: 9.9,
+         falseNorthing: 9.9,
+         falseEastingNorthingUnits: 'false units',
+         scaleFactorAtEquator: 9.9,
+         heightOfProspectivePointAboveSurface: 9.9,
+         longitudeOfProjectionCenter: 9.9,
+         latitudeOfProjectionCenter: 9.9,
+         scaleFactorAtCenterLine: 9.9,
+         scaleFactorAtCentralMeridian: 9.9,
+         straightVerticalLongitudeFromPole: 9.9,
+         scaleFactorAtProjectionOrigin: 9.9,
+         azimuthAngle: 9.9,
+         azimuthMeasurePointLongitude: 9.9,
+         obliqueLinePoint: [],
+         landsatNumber: 9,
+         landsatPath: 9,
+         localPlanarDescription: 'local planar description',
+         localPlanarGeoreference: 'local planar georeference',
+         otherGridDescription: 'other grid description',
+         otherProjectionDescription: 'other projection description'
+      }
+   end
+ 
+   def referenceSystemParameterSet
+      {
+         projection: {},
+         geodetic: {},
+         verticalDatum: {}
+      }
+   end
+
+   def spatialReferenceSystem
+      {
+         referenceSystemType: 'spatial reference system type',
+         referenceSystemIdentifier: {},
+         referenceSystemWKT: 'WKT',
+         referenceSystemParameterSet: {}
       }
    end
 
@@ -730,9 +1263,43 @@ class MdJsonHashWriter
       {
          dimensionType: 'dimension type',
          dimensionSize: 9,
-         resolution: {},
+         resolution: measure,
          dimensionTitle: 'dimension title',
          dimensionDescription: 'dimension description'
+      }
+   end
+
+   def georectified
+      {
+         gridRepresentation: gridRepresentation,
+         checkPointAvailability: false,
+         checkPointDescription: 'check point description',
+         cornerPoints: [
+            [100.0, 50.0],
+            [25.0, 25.0]
+         ],
+         centerPoint: [62.0, 37.0],
+         pointInPixel: 'upperRight',
+         transformationDimensionDescription: 'transformation dimension description',
+         transformationDimensionMapping: 'transformation dimension mapping'
+      }
+   end
+
+   def georeferenceable
+      {
+         gridRepresentation: gridRepresentation,
+         controlPointAvailable: false,
+         orientationParameterAvailable: false,
+         orientationParameterDescription: 'orientation parameter description',
+         georeferencedParameter: 'georeferenced parameter',
+         parameterCitation: [
+            {
+               title: 'parameter citation title one'
+            },
+            {
+               title: 'parameter citation title two'
+            },
+         ]
       }
    end
 
@@ -742,6 +1309,14 @@ class MdJsonHashWriter
          dimension: [],
          cellGeometry: 'point',
          transformationParameterAvailable: false
+      }
+   end
+
+   def measure
+      {
+         type: 'distance',
+         value: 99,
+         unitOfMeasure: 'distance uom'
       }
    end
 
@@ -758,7 +1333,6 @@ class MdJsonHashWriter
          vectorObject: []
       }
    end
-
 
 
    # spatial resolution ----------------------
@@ -834,13 +1408,46 @@ class MdJsonHashWriter
 
 
    # temporal extent ------------------------
+   def duration
+      {
+         years: 1,
+         months: 2,
+         days: 3,
+         hours: 4,
+         minutes: 5,
+         seconds: 6
+      }
+   end
+
+   def timeInterval
+      {
+         interval: 1,
+         units: 'year'
+      }
+   end
+
+   def timeInstant
+      {
+         id: 'TIID001',
+         description: 'description',
+         identifier: {
+            identifier: 'time instant identifier'
+         },
+         instantName: ['instant name one', 'instant name two'],
+         dateTime: ''
+      }
+   end
+
    def timePeriod
       {
-         id: nil,
+         id: 'TPID001',
          description: 'description',
-         periodName: [],
-         startDateTime: nil,
-         endDateTime: nil,
+         identifier: {
+            identifier: 'time period identifier'
+         },
+         periodName: ['period name one', 'period name two'],
+         startDateTime: '',
+         endDateTime: '',
       }
    end
 
@@ -856,39 +1463,33 @@ class MdJsonHashWriter
    end
 
 
-   # vertical extent ------------------------
-
-
-   # miscellaneous---------------------------
-   def associatedResource
+   # resource specific usage ----------------
+   def resourceUsage
       {
-         resourceType: [
+         specificUsage: 'specific usage',
+         temporalExtent: [],
+         userDeterminedLimitation: 'user determined limitation',
+         limitationResponse: ['response one', 'response two'],
+         documentedIssue: citation_title,
+         additionalDocumentation: [ citation_title ],
+         userContactInfo: []
+      }
+   end
+
+
+   # vertical extent ------------------------
+   def verticalExtent
+      {
+         description: 'description',
+         minValue: 0,
+         maxValue: 999,
+         crsId:
             {
-               type: 'resource type',
-               name: 'resource name'
+               referenceSystemType: 'reference system type',
+               referenceSystemIdentifier: {
+                  identifier: 'reference system identifier'
+               }
             }
-         ],
-         associationType: 'association type',
-         initiativeType: 'initiative type',
-         resourceCitation: {
-            title: 'citation title',
-            date: [
-               {
-                  'date': '2017-11-22',
-                  'dateType': 'publication'
-               }
-            ],
-            responsibleParty: [
-               {
-                  role: 'originator',
-                  party: [
-                     {
-                        contactId: 'CID001'
-                     }
-                  ]
-               }
-            ]
-         }
       }
    end
 

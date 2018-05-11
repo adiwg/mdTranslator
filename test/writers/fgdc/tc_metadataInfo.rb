@@ -16,9 +16,7 @@ class TestWriterFgdcMetadataInfo < TestWriterFGDCParent
    # build mdJson in hash
    mdHash = TDClass.base
 
-   hLegal = TDClass.build_legalConstraint
-   TDClass.add_accessConstraint(hLegal, 'metadata access constraint')
-   TDClass.add_useConstraint(hLegal, 'metadata use constraint')
+   hLegal = TDClass.build_legalConstraint(['metadata access constraint'], ['metadata use constraint'])
    mdHash[:metadata][:metadataInfo][:metadataConstraint] = []
    mdHash[:metadata][:metadataInfo][:metadataConstraint] << hLegal
 

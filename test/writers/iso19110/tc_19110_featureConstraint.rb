@@ -52,7 +52,7 @@ class TestWriter19110FeatureConstraint < TestWriter19110Parent
 
    def test_constraint_complete
 
-      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_featureConstraint',
+      hReturn = TestWriter19110Parent.run_test(@@mdHash, '19110_featureConstraint',
                                                    '//gfc:constrainedBy', '//gfc:constrainedBy')
 
       assert_equal hReturn[0], hReturn[1]

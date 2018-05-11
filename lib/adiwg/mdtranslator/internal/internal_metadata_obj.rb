@@ -1026,6 +1026,8 @@ class InternalMetadata
       }
    end
 
+
+   # taxonomy --------------------------------
    def newTaxonomy
       {
          taxonSystem: [],

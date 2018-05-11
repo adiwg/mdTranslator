@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmi:MI_Metadata xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
+                 xmlns:gss="http://www.isotc211.org/2005/gss"
+                 xmlns:gst="http://www.isotc211.org/2005/gst"
+                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                 xmlns:gfc="http://www.isotc211.org/2005/gfc"
+                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmi
+                 ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
+
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="resource type" codeSpace="userCode"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName>
+    <gco:CharacterString>resource name</gco:CharacterString>
+  </gmd:hierarchyLevelName>
+
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="resource type" codeSpace="userCode"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="resource type two" codeSpace="userCode"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName>
+    <gco:CharacterString>resource name</gco:CharacterString>
+  </gmd:hierarchyLevelName>
+  <gmd:hierarchyLevelName>
+    <gco:CharacterString>resource name two</gco:CharacterString>
+  </gmd:hierarchyLevelName>
+
+  <gmd:hierarchyLevel>
+    <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="resource type" codeSpace="userCode"/>
+  </gmd:hierarchyLevel>
+  <gmd:hierarchyLevelName/>
+
+</gmi:MI_Metadata>

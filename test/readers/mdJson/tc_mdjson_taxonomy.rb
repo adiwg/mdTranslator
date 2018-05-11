@@ -75,38 +75,6 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
    end
 
-   def test_taxonomy_empty_idReference
-
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn['identificationReference'] = []
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: taxonomy identification reference object is missing'
-
-   end
-
-   def test_taxonomy_missing_idReference
-
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('identificationReference')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: taxonomy identification reference object is missing'
-
-   end
-
    def test_taxonomy_empty_idProcedure
 
       TestReaderMdJsonParent.setContacts
@@ -176,6 +144,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['generalScope'] = ''
+      hIn['identificationReference'] = []
       hIn['observer'] = []
       hIn['identificationCompleteness'] = ''
       hIn['voucher'] = []
@@ -184,7 +153,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
       refute_empty metadata[:taxonSystem]
       assert_nil metadata[:generalScope]
-      refute_empty metadata[:idReferences]
+      assert_empty metadata[:idReferences]
       assert_empty metadata[:observers]
       assert_equal 'identificationProcedure', metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]
@@ -200,6 +169,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       TestReaderMdJsonParent.setContacts
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('generalScope')
+      hIn.delete('identificationReference')
       hIn.delete('observer')
       hIn.delete('identificationCompleteness')
       hIn.delete('voucher')
@@ -208,7 +178,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
       refute_empty metadata[:taxonSystem]
       assert_nil metadata[:generalScope]
-      refute_empty metadata[:idReferences]
+      assert_empty metadata[:idReferences]
       assert_empty metadata[:observers]
       assert_equal 'identificationProcedure', metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]

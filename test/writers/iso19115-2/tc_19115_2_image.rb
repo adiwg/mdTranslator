@@ -2,36 +2,55 @@
 # writers / iso19115_2 / class_image
 
 # History:
+#  Stan Smith 2018-04-24 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-04 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Image < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_image.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_image.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_image
+   hCoverage = TDClass.build_coverageDescription
+   TDClass.add_imageDescription(hCoverage)
+   mdHash[:metadata][:resourceInfo][:coverageDescription] = []
+   mdHash[:metadata][:resourceInfo][:coverageDescription] << hCoverage
 
-      axExpect = @@xFile.xpath('//gmd:contentInfo')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_image_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:contentInfo')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_image',
+                                                '//gmd:contentInfo[1]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_image_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:imageDescription] = { nonElement: 'nonValue' }
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_image',
+                                                '//gmd:contentInfo[2]',
+                                                '//gmd:contentInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

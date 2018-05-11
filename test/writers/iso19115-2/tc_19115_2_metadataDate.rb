@@ -2,52 +2,52 @@
 # writers / iso19115_2 / class_miMetadata
 
 # History:
+#  Stan Smith 2018-04-26 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-02-01 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'date'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152MetadataDate < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_metadataDate.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_metadataDate.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_metadataDate
+   @@mdHash = mdHash
 
-      axExpect = @@xFile.xpath('//gmd:dateStamp')
+   def test_metadataDate
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:dateStamp')
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_metadataDate',
+                                                '//gmd:dateStamp[1]',
+                                                '//gmd:dateStamp', 0)
 
-      assert_equal axExpect[0].to_s.squeeze(' '), axGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 
-   def test_19115_2_metadataDate_missing_create
+   def test_metadataDate_missing_create
 
-      hJson = JSON.parse(@@mdJson)
-      hJson['metadata']['metadataInfo']['metadataDate'].delete_at(1)
-      jsonIn = hJson.to_json
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:metadataInfo][:metadataDate] = []
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:dateStamp').text.gsub("\n",'').strip
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_metadataDate',
+                                                '//gmd:dateStamp[1]',
+                                                '//gmd:dateStamp', 0)
+
       today = Time.now.strftime("%Y-%m-%d")
-
-      assert_equal today.to_s, axGot
+      expect = "<gmd:dateStamp>\n <gco:Date>#{today.to_s}</gco:Date>\n </gmd:dateStamp>"
+      assert_equal expect, hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

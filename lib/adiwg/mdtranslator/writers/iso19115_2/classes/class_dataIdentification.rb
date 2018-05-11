@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2018-04-06 changed taxonomy to an array
 #  Stan Smith 2018-01-05 deprecated topicCategory[]
 #  Stan Smith 2018-01-05 get topics from keywords where type='isoTopicCategory'
@@ -14,7 +15,7 @@
 #  Stan Smith 2015-06-11 change all codelists to use 'class_codelist' method
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
 #  Stan Smith 2014-12-12 refactored to handle namespacing readers and writers
-#  Stan Smith 2014-10-29 add resource time period as a extent temporal element
+#  Stan Smith 2014-10-29 add resource time period as a temporalExtent element
 #  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 #  Stan Smith 2014-05-21 added aggregate information section
 #  Stan Smith 2014-05-15 modify to support JSON schema version 0.4.0
@@ -27,6 +28,8 @@
 # 	Stan Smith 2013-09-18 add descriptive keywords
 # 	Stan Smith 2013-08-26 original script
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative '../iso19115_2_writer'
 require_relative 'class_codelist'
 require_relative 'class_enumerationList'
 require_relative 'class_citation'
@@ -54,11 +57,13 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
                end
 
                def writeXML(hData, aAssocRes, aDistInfo)
 
                   # classes used
+                  intMetadataClass = InternalMetadata.new
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   enumerationClass = MD_EnumerationList.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
@@ -83,11 +88,11 @@ module ADIWG
                      hCitation = hData[:citation]
                      unless hCitation.empty?
                         @xml.tag!('gmd:citation') do
-                           citationClass.writeXML(hCitation)
+                           citationClass.writeXML(hCitation, 'main resource citation')
                         end
                      end
                      if hCitation.empty?
-                        @xml.tag!('gmd:citation', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(50, 'gmd:citation')
                      end
 
                      # data identification - abstract (required)
@@ -98,7 +103,7 @@ module ADIWG
                         end
                      end
                      if s.nil?
-                        @xml.tag!('gmd:abstract', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(51, 'gmd:abstract')
                      end
 
                      # data identification - purpose
@@ -110,6 +115,16 @@ module ADIWG
                      end
                      if s.nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:purpose')
+                     end
+
+                     # data identification - time period {timePeriod}
+                     # package as a temporal extent
+                     unless hData[:timePeriod].empty?
+                        hExtent = intMetadataClass.newExtent
+                        hTempExtent = intMetadataClass.newTemporalExtent
+                        hTempExtent[:timePeriod] = hData[:timePeriod]
+                        hExtent[:temporalExtents] << hTempExtent
+                        hData[:extents] << hExtent
                      end
 
                      # data identification - credit []
@@ -141,19 +156,19 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:pointOfContact') do
-                              rPartyClass.writeXML(role, hParty)
+                              rPartyClass.writeXML(role, hParty, 'data resource point of contact')
                            end
                         end
                      end
                      if aRParties.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:pointOfContact', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(52, 'gmd:pointOfContact')
                      end
 
                      # data identification - resource maintenance []
                      aMaint = hData[:resourceMaintenance]
                      aMaint.each do |hMaint|
                         @xml.tag!('gmd:resourceMaintenance') do
-                           mInfoClass.writeXML(hMaint)
+                           mInfoClass.writeXML(hMaint, 'data resource')
                         end
                      end
                      if aMaint.empty? && @hResponseObj[:writerShowTags]
@@ -164,7 +179,7 @@ module ADIWG
                      aGraphics = hData[:graphicOverviews]
                      aGraphics.each do |hGraphic|
                         @xml.tag!('gmd:graphicOverview') do
-                           bGraphicClass.writeXML(hGraphic)
+                           bGraphicClass.writeXML(hGraphic, 'data resource')
                         end
                      end
                      if aGraphics.empty? && @hResponseObj[:writerShowTags]

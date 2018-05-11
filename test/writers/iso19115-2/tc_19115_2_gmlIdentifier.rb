@@ -2,36 +2,45 @@
 # writers / iso19115_2 / class_gmlIdentifier
 
 # History:
+#  Stan Smith 2018-04-24 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-01-03 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152GmlIdentifier < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_gmlIdentifier.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_gmlIdentifier.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_featureProperties
+   hFeature = TDClass.build_feature('id001', 'point')
+   TDClass.add_properties(hFeature)
+   hFeature[:properties][:identifier][0][:namespace] = 'identifier namespace one'
+   hFeature[:properties][:identifier] << { identifier: 'geoJson properties identifier two'}
+   hFeature[:properties][:identifier][1][:namespace] = 'identifier namespace two'
 
-      axExpect = @@xFile.xpath('//gmd:geographicElement')
+   hGeoExtent = mdHash[:metadata][:resourceInfo][:extent][0][:geographicExtent][0]
+   hGeoExtent[:geographicElement] = []
+   hGeoExtent[:geographicElement] << hFeature
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   @@mdHash = mdHash
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:geographicElement')
+   def test_gmlIdentifier_complete
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_gmlIdentifier',
+                                                '//gmd:geographicElement[1]',
+                                                '//gmd:geographicElement', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

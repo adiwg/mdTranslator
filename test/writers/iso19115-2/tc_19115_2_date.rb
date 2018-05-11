@@ -2,28 +2,56 @@
 # writers / iso19115_2 / class_date
 
 # History:
+#  Stan Smith 2018-04-19 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-12-22 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Date < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_date.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_date.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_date
+   aDates = []
+   aDates << TDClass.build_date('2018')
+   aDates << TDClass.build_date('2018-04')
+   aDates << TDClass.build_date('2018-04-19')
+   aDates << TDClass.build_date('2018-04-19T12')
+   aDates << TDClass.build_date('2018-04-19T12:49')
+   aDates << TDClass.build_date('2018-04-19T12:49:17')
+   aDates << TDClass.build_date('2018-04-19T12:49:17.123')
+   aDates << TDClass.build_date('2018-04-19T12Z')
+   aDates << TDClass.build_date('2018-04-19T12:49Z')
+   aDates << TDClass.build_date('2018-04-19T12:49:17Z')
+   aDates << TDClass.build_date('2018-04-19T12:49:17.123Z')
+   aDates << TDClass.build_date('2018-04-19T12-09')
+   aDates << TDClass.build_date('2018-04-19T12:49-09')
+   aDates << TDClass.build_date('2018-04-19T12:49:17-09')
+   aDates << TDClass.build_date('2018-04-19T12:49:17.123-09')
+   aDates << TDClass.build_date('2018-04-19T12+06:15')
+   aDates << TDClass.build_date('2018-04-19T12:49+06:15')
+   aDates << TDClass.build_date('2018-04-19T12:49:17+06:15')
+   aDates << TDClass.build_date('2018-04-19T12:49:17.123+06:15')
 
-      axExpect = @@xFile.xpath('//gmd:date')
+   mdHash[:metadata][:resourceInfo][:citation][:date] = aDates
+
+   @@mdHash = mdHash
+
+   def test_date_complete
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      xFile = TestWriter191152Parent.get_xml('19115_2_date')
+      axExpect = xFile.xpath('//gmd:date')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, validate: 'none'
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])

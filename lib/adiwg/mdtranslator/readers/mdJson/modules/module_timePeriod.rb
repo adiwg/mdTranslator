@@ -113,12 +113,13 @@ module ADIWG
                   # error messages
                   unless haveTime
                      responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: time period must have a starting time, ending time, or geologic age'
+                        'ERROR: mdJson reader: time period must have a start and/or end dateTime, or geologic age'
                      responseObj[:readerExecutionPass] = false
                      return nil
                   end
 
                   # time period - time interval
+                  # time interval must have a start and/or end time
                   if hTimePeriod.has_key?('timeInterval')
                      unless hTimePeriod['timeInterval'].empty?
                         hReturn = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj)
@@ -126,15 +127,28 @@ module ADIWG
                            intTimePer[:timeInterval] = hReturn
                         end
                      end
+                     if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
+                        responseObj[:readerExecutionMessages] <<
+                           'ERROR: mdJson reader: time interval must be accompanied by a start and/or end dateTime'
+                        responseObj[:readerExecutionPass] = false
+                        return nil
+                     end
                   end
 
                   # time period - time duration
+                  # duration must have a start and/or end time
                   if hTimePeriod.has_key?('duration')
                      unless hTimePeriod['duration'].empty?
                         hReturn = Duration.unpack(hTimePeriod['duration'], responseObj)
                         unless hReturn.nil?
                            intTimePer[:duration] = hReturn
                         end
+                     end
+                     if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
+                        responseObj[:readerExecutionMessages] <<
+                           'ERROR: mdJson reader: duration must be accompanied by a start and/or end dateTime'
+                        responseObj[:readerExecutionPass] = false
+                        return nil
                      end
                   end
 

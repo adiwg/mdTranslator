@@ -5,7 +5,7 @@
 #  Stan Smith 2018-04-06 change taxonomy to an array
 #  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-05-16 deprecated topic category
-#   ... topic category is now handled as keyword list
+#  ... topic category is now handled as keyword list
 #  Stan Smith 2016-11-01 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
@@ -105,22 +105,23 @@ module ADIWG
                      end
                   end
 
+                  # resource information - resource time period {timePeriod}
+                  if hResInfo.has_key?('timePeriod')
+                     hObject = hResInfo['timePeriod']
+                     unless hObject.empty?
+                        hObject[:description] = 'resource time period' if hObject[:description].nil?
+                        hReturn = TimePeriod.unpack(hObject, responseObj)
+                        unless hReturn.nil?
+                           intResInfo[:timePeriod] = hReturn
+                        end
+                     end
+                  end
+
                   # resource information - credits []
                   if hResInfo.has_key?('credit')
                      hResInfo['credit'].each do |item|
                         unless item == ''
                            intResInfo[:credits] << item
-                        end
-                     end
-                  end
-
-                  # resource information - resource time period {timePeriod}
-                  if hResInfo.has_key?('timePeriod')
-                     hObject = hResInfo['timePeriod']
-                     unless hObject.empty?
-                        hReturn = TimePeriod.unpack(hObject, responseObj)
-                        unless hReturn.nil?
-                           intResInfo[:timePeriod] = hReturn
                         end
                      end
                   end
@@ -153,7 +154,7 @@ module ADIWG
                         end
                         hReturn = Keyword.unpack(hKeyword, responseObj)
                         unless hReturn.nil?
-                           intResInfo[:keywords] << hReturn[0]
+                           intResInfo[:keywords] << hReturn
                         end
                         responseObj[:readerExecutionMessages] <<
                            'NOTICE: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'

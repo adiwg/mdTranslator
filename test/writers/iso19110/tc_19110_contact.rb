@@ -33,7 +33,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       hIn[:contact][0][:address] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_contact',
                                                    '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
       assert_equal hReturn[0], hReturn[1]
@@ -51,7 +51,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       hIn[:contact][0][:address] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_contact',
                                                    '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
       assert_equal hReturn[0], hReturn[1]
@@ -69,7 +69,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       hIn[:contact][0][:hoursOfService] << 'hours of service 2'
       hIn[:contact][0][:contactInstructions] = 'contact instructions'
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_contact',
                                                    '//gmd:contactInfo[1]', '//gmd:contactInfo')
 
       assert_equal hReturn[0], hReturn[1]
@@ -87,7 +87,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       hIn[:contact][0][:hoursOfService] = []
       hIn[:contact][0][:contactInstructions] = ''
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_contact',
                                                    '//gmd:contactInfo[3]', '//gmd:contactInfo')
 
       assert_equal hReturn[0], hReturn[1]
@@ -104,7 +104,7 @@ class TestWriter19110Contact < TestWriter19110Parent
       hIn[:contact][0].delete(:hoursOfService)
       hIn[:contact][0].delete(:contactInstructions)
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_contact',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_contact',
                                                    '//gmd:contactInfo[3]', '//gmd:contactInfo')
 
       assert_equal hReturn[0], hReturn[1]

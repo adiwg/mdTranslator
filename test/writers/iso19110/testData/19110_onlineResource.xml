@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gmi:MI_Metadata xmlns:gmi="http://www.isotc211.org/2005/gmi"
-                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
-                 xmlns:gco="http://www.isotc211.org/2005/gco"
-                 xmlns:gml="http://www.opengis.net/gml/3.2"
-                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
-                 xmlns:gss="http://www.isotc211.org/2005/gss"
-                 xmlns:gst="http://www.isotc211.org/2005/gst"
-                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
-                 xmlns:gfc="http://www.isotc211.org/2005/gfc"
-                 xmlns:srv="http://www.isotc211.org/2005/srv"
-                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://www.isotc211.org/2005/gmi
-                 C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd">
+<gfc:FC_FeatureCatalogue
+        xmlns:gmi="http://www.isotc211.org/2005/gmi"
+        xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        xmlns:gco="http://www.isotc211.org/2005/gco"
+        xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:gsr="http://www.isotc211.org/2005/gsr"
+        xmlns:gss="http://www.isotc211.org/2005/gss"
+        xmlns:gst="http://www.isotc211.org/2005/gst"
+        xmlns:gmx="http://www.isotc211.org/2005/gmx"
+        xmlns:gfc="http://www.isotc211.org/2005/gfc"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.isotc211.org/2005/gfc ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd">
 
   <gmd:onlineResource>
     <gmd:CI_OnlineResource>
@@ -46,4 +45,4 @@
     </gmd:CI_OnlineResource>
   </gmd:onlineResource>
 
-</gmi:MI_Metadata>
+</gfc:FC_FeatureCatalogue>

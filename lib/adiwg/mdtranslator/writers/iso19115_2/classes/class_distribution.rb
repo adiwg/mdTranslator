@@ -31,7 +31,7 @@ module ADIWG
 
                   @xml.tag!('gmd:MD_Distribution') do
 
-                     # distribution - distributor (required)
+                     # distribution - distributor
                      aDistributors = hDistribution[:distributor]
                      unless aDistributors.empty?
                         aDistributors.each do |hDistributor|

@@ -10,34 +10,26 @@ class TestFgdcWriterDebug < TestDebugParent
    def test_fgdc_writer
 
       # read the json input file
-      mdJson = TestDebugParent.get_json('schemaExample')
+      mdJson = TestDebugParent.get_json('dennis01')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true
+         file: mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true, forceValid: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       got = xMetadata.xpath('./metadata')
 
       puts 'Structure Messages:'
-      unless hResponseObj[:readerStructurePass]
-         puts hResponseObj[:readerStructureMessages]
-      end
+      puts hResponseObj[:readerStructureMessages]
 
       puts 'Validation Messages:'
-      unless hResponseObj[:readerValidationPass]
-         puts hResponseObj[:readerValidationMessages]
-      end
+      puts hResponseObj[:readerValidationMessages]
 
       puts 'Reader Messages:'
-      unless hResponseObj[:readerExecutionPass]
-         puts hResponseObj[:readerExecutionMessages]
-      end
+      puts hResponseObj[:readerExecutionMessages]
 
       puts 'Writer Messages:'
-      unless hResponseObj[:writerPass]
-         puts hResponseObj[:writerMessages]
-      end
+      puts hResponseObj[:writerMessages]
 
       refute_nil got
 

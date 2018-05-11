@@ -61,7 +61,7 @@
             <offmedia>medium specification</offmedia>
             <reccap>
               <recden>99.9</recden>
-              <recdenu>units of density</recdenu>
+              <recdenu>density units</recdenu>
             </reccap>
             <recfmt>medium format one</recfmt>
             <recfmt>medium format two</recfmt>
@@ -71,7 +71,7 @@
             <offmedia>medium specification</offmedia>
             <reccap>
               <recden>99.9</recden>
-              <recdenu>units of density</recdenu>
+              <recdenu>density units</recdenu>
             </reccap>
             <recfmt>medium format one</recfmt>
             <recfmt>medium format two</recfmt>

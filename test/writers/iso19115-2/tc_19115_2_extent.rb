@@ -2,36 +2,79 @@
 # writers / iso19115_2 / class_extent
 
 # History:
+#  Stan Smith 2018-04-19 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-12-22 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Extent < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_extent.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_extent.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_extent
+   hExtent = TDClass.build_extent
+   mdHash[:metadata][:resourceInfo][:extent] << hExtent
 
-      axExpect = @@xFile.xpath('//gmd:EX_Extent')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_extent_complete_minimal
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:EX_Extent')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_extent',
+                                                '//gmd:EX_Extent[1]',
+                                                '//gmd:EX_Extent', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_extent_complete_single
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hExtent = hIn[:metadata][:resourceInfo][:extent][1]
+      hGeoExtent = TDClass.build_geographicExtent
+      hExtent[:geographicExtent] << hGeoExtent
+      TDClass.add_temporalExtent(hExtent,'TI001','instant','2018-04-20T16:46')
+      TDClass.add_verticalExtent(hExtent)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_extent',
+                                                '//gmd:EX_Extent[2]',
+                                                '//gmd:EX_Extent', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_extent_complete_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hExtent = hIn[:metadata][:resourceInfo][:extent][1]
+      hGeoExtent = TDClass.build_geographicExtent
+      hExtent[:geographicExtent] << hGeoExtent
+      hExtent[:geographicExtent] << hGeoExtent
+      TDClass.add_temporalExtent(hExtent,'TI001','instant','2018-04-20T16:46')
+      TDClass.add_temporalExtent(hExtent,'TP001','period','2018-04-20T16:46')
+      TDClass.add_verticalExtent(hExtent)
+      TDClass.add_verticalExtent(hExtent)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_extent',
+                                                '//gmd:EX_Extent[3]',
+                                                '//gmd:EX_Extent', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

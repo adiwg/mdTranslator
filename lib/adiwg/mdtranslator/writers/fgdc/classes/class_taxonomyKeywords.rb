@@ -23,11 +23,11 @@ module ADIWG
                def writeXML(aKeywords)
 
                   # taxonomy bio (keywtax) - taxonomic keywords (required)
-                  haveTaxon = false
+                  haveTaxKeyword = false
                   aKeywords.each do |hKeySet|
                      type = hKeySet[:keywordType]
                      if type == 'taxon'
-                        haveTaxon = true
+                        haveTaxKeyword = true
                         @xml.tag!('keywtax') do
                            aKeywords = hKeySet[:keywords]
                            thesaurus = hKeySet[:thesaurus]
@@ -49,8 +49,8 @@ module ADIWG
                         end
                      end
                   end
-                  unless haveTaxon
-                     @NameSpace.issueError(422)
+                  unless haveTaxKeyword
+                     @NameSpace.issueWarning(422)
                   end
 
                end # writeXML

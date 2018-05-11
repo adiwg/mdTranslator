@@ -69,7 +69,7 @@ module ADIWG
                         hLineage[:lineageCitation].each do |hCitation|
                            unless hCitation.empty?
                               @xml.tag!('methcite') do
-                                 citationClass.writeXML(hCitation, [])
+                                 citationClass.writeXML(hCitation, [], 'lineage method')
                               end
                            end
                         end

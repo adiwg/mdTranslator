@@ -1,6 +1,7 @@
 # Writer - internal data structure to ISO 19110:2003
 
 # History:
+#  Stan Smith 2018-03-30 add error/warning/notice message methods
 #  Stan Smith 2017-05-26 allow choice of which dictionary to translate
 #                    ... fix bug when no dictionary is provided in mdJson
 #  Stan Smith 2017-01-20 refactor for mdJson/mdTranslator 2.0
@@ -20,7 +21,7 @@ module ADIWG
       module Writers
          module Iso19110
 
-            def self.startWriter(intObj, responseObj, whichDict: 0)
+            def self.startWriter(intObj, hResponseObj, whichDict: 0)
 
                # Iso19110 can only output one dictionary at a time
                # test if requested dictionary is in input file
@@ -33,7 +34,7 @@ module ADIWG
                # make objects available to the instance
                @intObj = intObj
                @contacts = intObj[:contacts]
-               @hResponseObj = responseObj
+               @hResponseObj = hResponseObj
                dictionary = intObj[:dataDictionaries][whichDict]
                @domains = dictionary[:domains]
 
@@ -43,14 +44,14 @@ module ADIWG
                @aMessagesList = hMessageList['messageList']
 
                # set the format of the output file based on the writer specified
-               responseObj[:writerOutputFormat] = 'xml'
-               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
+               hResponseObj[:writerOutputFormat] = 'xml'
+               hResponseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Iso19110::VERSION
 
                # create new XML document
                @xml = Builder::XmlMarkup.new(indent: 3)
 
                # start writing the ISO 19110 XML record
-               metadataWriter = FC_FeatureCatalogue.new(@xml, responseObj)
+               metadataWriter = FC_FeatureCatalogue.new(@xml, hResponseObj)
                metadata = metadataWriter.writeXML(intObj)
 
                return metadata

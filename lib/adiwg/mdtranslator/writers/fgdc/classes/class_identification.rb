@@ -196,7 +196,7 @@ module ADIWG
                      if hAssocRes[:associationType] == 'crossReference'
                         haveXRef = true
                         @xml.tag!('crossref') do
-                           citationClass.writeXML(hAssocRes[:resourceCitation], [])
+                           citationClass.writeXML(hAssocRes[:resourceCitation], [], 'identification section cross reference')
                         end
                      end
                   end

@@ -33,7 +33,7 @@ module ADIWG
                      hIdentifier = hParamSet[:projection][:projectionIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:projection') do
-                           idClass.writeXML(hIdentifier)
+                           idClass.writeXML(hIdentifier, 'CRS projection')
                         end
                      end
                   end
@@ -46,7 +46,7 @@ module ADIWG
                      hIdentifier = hParamSet[:geodetic][:ellipsoidIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:ellipsoid') do
-                           idClass.writeXML(hIdentifier)
+                           idClass.writeXML(hIdentifier, 'CRS geodetic ellipsoid')
                         end
                      end
                   end
@@ -60,7 +60,7 @@ module ADIWG
                      hIdentifier = hParamSet[:geodetic][:datumIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:datum') do
-                           idClass.writeXML(hIdentifier)
+                           idClass.writeXML(hIdentifier, 'CRS geodetic datum')
                            haveDatum = true
                         end
                      end
@@ -71,7 +71,7 @@ module ADIWG
                      hIdentifier = hParamSet[:verticalDatum][:datumIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:datum') do
-                           idClass.writeXML(hIdentifier)
+                           idClass.writeXML(hIdentifier, 'CRS vertical datum')
                            haveDatum = true
                         end
                      end

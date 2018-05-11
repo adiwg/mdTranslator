@@ -35,6 +35,8 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intSource = intMetadataClass.newDataSource
 
+                  haveRequired = false
+
                   # source - source ID
                   if hSource.has_key?('sourceId')
                      unless hSource['sourceId'] == ''
@@ -42,14 +44,12 @@ module ADIWG
                      end
                   end
 
-                  # source - description (required)
+                  # source - description (required if)
                   if hSource.has_key?('description')
-                     intSource[:description] = hSource['description']
-                  end
-                  if intSource[:description].nil? || intSource[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: source description is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     unless hSource['description'] == ''
+                        intSource[:description] = hSource['description']
+                        haveRequired = true
+                     end
                   end
 
                   # source - source citation
@@ -114,8 +114,16 @@ module ADIWG
                         hReturn = Scope.unpack(hObject, responseObj)
                         unless hReturn.nil?
                            intSource[:scope] = hReturn
+                           haveRequired = true
                         end
                      end
+                  end
+
+                  unless haveRequired
+                     responseObj[:readerExecutionMessages] <<
+                        'ERROR: mdJson reader: source requires a description or scope'
+                     responseObj[:readerExecutionPass] = false
+                     return nil
                   end
 
                   return intSource

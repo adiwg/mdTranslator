@@ -2,115 +2,95 @@
 # writers / iso19115_2 / class_citation
 
 # History:
+#  Stan Smith 2018-04-17 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2016-12-19 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Citation < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_citation.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_citation.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_citation
+   mdHash[:metadata][:resourceInfo][:citation] = TDClass.citation_full
 
-      axExpect = @@xFile.xpath('//gmd:citation')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_citation_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:citation')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      assert_equal axExpect[0].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_citation',
+                                                '//gmd:citation[1]',
+                                                '//gmd:citation', 0)
 
-   end
-
-   def test_19115_2_citation_no_dash_1_elements
-
-      axExpect = @@xFile.xpath('//gmd:citation')
-
-      hJson = JSON.parse(@@mdJson)
-      hCitation = hJson['metadata']['resourceInfo']['citation']
-      hCitation.delete('onlineResource')
-      hCitation.delete('graphic')
-      jsonIn = hJson.to_json
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
-
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:citation')
-
-      assert_equal axExpect[0].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 
-   def test_19115_2_citation_empty_elements
+   def test_citation_empty_elements
 
-      axExpect = @@xFile.xpath('//gmd:citation')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hJson = JSON.parse(@@mdJson)
-      hCitation = hJson['metadata']['resourceInfo']['citation']
-      hCitation['alternateTitle'] = []
-      hCitation['date'] = []
-      hCitation['onlineResource'] = []
-      hCitation['edition'] = ''
-      hCitation['responsibleParty'] = []
-      hCitation['presentationForm'] = []
-      hCitation['identifier'] = []
-      hCitation['series'] = {}
-      hCitation['otherCitationDetails'] = []
-      hCitation['onlineResource'] = []
-      hCitation['graphic'] = []
-      jsonIn = hJson.to_json
+      hCitation = hIn[:metadata][:resourceInfo][:citation]
+      hCitation[:alternateTitle] = []
+      hCitation[:date] = []
+      hCitation[:onlineResource] = []
+      hCitation[:edition] = ''
+      hCitation[:responsibleParty] = []
+      hCitation[:presentationForm] = []
+      hCitation[:identifier] = []
+      hCitation[:series] = {}
+      hCitation[:otherCitationDetails] = []
+      hCitation[:onlineResource] = []
+      hCitation[:graphic] = []
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_citation',
+                                                '//gmd:citation[2]',
+                                                '//gmd:citation', 0)
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:citation')
-
-      assert_equal axExpect[1].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is main resource citation citation'
 
    end
 
-   def test_19115_2_citation_missing_elements
+   def test_citation_missing_elements
 
-      axExpect = @@xFile.xpath('//gmd:citation')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hJson = JSON.parse(@@mdJson)
-      hCitation = hJson['metadata']['resourceInfo']['citation']
-      hCitation.delete('alternateTitle')
-      hCitation.delete('date')
-      hCitation.delete('onlineResource')
-      hCitation.delete('edition')
-      hCitation.delete('responsibleParty')
-      hCitation.delete('presentationForm')
-      hCitation.delete('identifier')
-      hCitation.delete('series')
-      hCitation.delete('otherCitationDetails')
-      hCitation.delete('onlineResource')
-      hCitation.delete('graphic')
-      jsonIn = hJson.to_json
+      hCitation = hIn[:metadata][:resourceInfo][:citation]
+      hCitation.delete(:alternateTitle)
+      hCitation.delete(:date)
+      hCitation.delete(:onlineResource)
+      hCitation.delete(:edition)
+      hCitation.delete(:responsibleParty)
+      hCitation.delete(:presentationForm)
+      hCitation.delete(:identifier)
+      hCitation.delete(:series)
+      hCitation.delete(:otherCitationDetails)
+      hCitation.delete(:onlineResource)
+      hCitation.delete(:graphic)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: jsonIn, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_citation',
+                                                '//gmd:citation[2]',
+                                                '//gmd:citation', 0)
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath('//gmd:citation')
-
-      assert_equal axExpect[1].to_s.squeeze(' '), xGot.to_s.squeeze(' ')
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is main resource citation citation'
 
    end
 

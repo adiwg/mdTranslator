@@ -53,7 +53,7 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - identification reference (required) [{identifier}]
+                  # taxonomy - identification reference [{identifier}]
                   if hTaxonomy.has_key?('identificationReference')
                      aItems = hTaxonomy['identificationReference']
                      aItems.each do |hItem|
@@ -64,11 +64,6 @@ module ADIWG
                            end
                         end
                      end
-                  end
-                  if intTaxonomy[:idReferences].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy identification reference object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
                   end
 
                   # taxonomy - observer [responsibleParty]

@@ -82,7 +82,7 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
 
    end
 
-   def test_transferOption_empty_required
+   def test_transferOption_empty_options
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn['onlineOption'] = []
@@ -90,15 +90,15 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: transfer option must have an online or offline option'
+                      'WARNING: mdJson reader: transfer option did not provide an online or offline option'
 
    end
 
-   def test_transferOption_missing_required
+   def test_transferOption_missing_options
 
       hIn = Marshal::load(Marshal.dump(@@hIn))
       hIn.delete('onlineOption')
@@ -106,11 +106,11 @@ class TestReaderMdJsonTransferOption < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: transfer option must have an online or offline option'
+                      'WARNING: mdJson reader: transfer option did not provide an online or offline option'
 
    end
 

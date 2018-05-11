@@ -26,7 +26,7 @@ class TestWriter19110Phone < TestWriter19110Parent
 
    def test_phone_single
 
-      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_phone',
+      hReturn = TestWriter19110Parent.run_test(@@mdHash, '19110_phone',
                                                    '//gmd:phone[1]', '//gmd:phone')
 
       assert_equal hReturn[0], hReturn[1]
@@ -41,7 +41,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       TDClass.add_phone(hIn[:contact][0], '333-333-3333', 'fax')
       TDClass.add_phone(hIn[:contact][0], '444-444-4444', 'facsimile')
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_phone',
                                                    '//gmd:phone[2]', '//gmd:phone')
 
       assert_equal hReturn[0], hReturn[1]
@@ -55,7 +55,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       hIn[:contact][0][:phone] = []
       TDClass.add_phone(hIn[:contact][0], '111-111-1111', 'mobile')
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_phone',
                                                    '//gmd:phone[3]', '//gmd:phone')
 
       assert_equal hReturn[0], hReturn[1]
@@ -68,7 +68,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:contact][0][:phone] = []
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_phone',
                                                    '//gmd:phone[4]', '//gmd:phone')
 
       assert_equal hReturn[0], hReturn[1]
@@ -81,7 +81,7 @@ class TestWriter19110Phone < TestWriter19110Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:contact][0].delete(:phone)
 
-      hReturn = TestWriter19110Parent.get_complete(hIn, '19110_phone',
+      hReturn = TestWriter19110Parent.run_test(hIn, '19110_phone',
                                                    '//gmd:phone[4]', '//gmd:phone')
 
       assert_equal hReturn[0], hReturn[1]

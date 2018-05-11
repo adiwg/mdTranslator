@@ -2,36 +2,59 @@
 # writers / iso19115_2 / class_usage
 
 # History:
+#  Stan Smith 2018-05-02 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-13 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152Usage < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_usage.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_usage.json')
+   mdHash = TDClass.base
 
-   def test_19115_2_usage
+   hUsage1 = TDClass.build_resourceUsage('usage one')
+   mdHash[:metadata][:resourceInfo][:resourceUsage] = []
+   mdHash[:metadata][:resourceInfo][:resourceUsage] << hUsage1
 
-      axExpect = @@xFile.xpath('//gmd:resourceSpecificUsage')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_resourceUsage_complete_single
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:resourceSpecificUsage')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_usage',
+                                                '//gmd:resourceSpecificUsage[1]',
+                                                '//gmd:resourceSpecificUsage', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_resourceUsage_complete_multiple
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      aUsage = hIn[:metadata][:resourceInfo][:resourceUsage]
+      hUsage2 = TDClass.build_resourceUsage('usage two')
+      hTimePeriod = TDClass.build_timePeriod('TP002', 'usage two', '2018-05-02T15:12')
+      hUsage2[:temporalExtent] << { timePeriod: hTimePeriod }
+      hUsage2[:additionalDocumentation] << TDClass.citation
+      hUsage2[:userContactInfo] << TDClass.build_responsibleParty('auditor',['CID003'])
+      aUsage << hUsage2
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_usage',
+                                                '//gmd:resourceSpecificUsage[2]',
+                                                '//gmd:resourceSpecificUsage', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2017-08-30 added support for step sources
 #  Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -11,6 +12,7 @@
 #  Stan Smith 2014-07-09 modify require statements to function in RubyGem structure
 # 	Stan Smith 2013-11-20 original script.
 
+require_relative '../iso19115_2_writer'
 require_relative 'class_responsibleParty'
 require_relative 'class_source'
 
@@ -24,6 +26,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
                end
 
                def writeXML(hStep)
@@ -32,11 +35,14 @@ module ADIWG
                   partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
                   sourceClass = LI_Source.new(@xml, @hResponseObj)
 
+                  outContext = 'process step'
+                  outContext = 'process step ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
+
                   # process step - id
                   attributes = {}
                   s = hStep[:stepId]
                   unless s.nil?
-                     attributes['id' => s]
+                     attributes = { id: s.gsub(/[^0-9A-Za-z]/,'') }
                   end
 
                   @xml.tag!('gmd:LI_ProcessStep', attributes) do
@@ -49,7 +55,7 @@ module ADIWG
                         end
                      end
                      if s.nil?
-                        @xml.tag!('gmd:description', {'gco:nilReason' => 'missing'})
+                        @NameSpace.issueWarning(260, 'gmd:description')
                      end
 
                      # process step - rationale
@@ -90,7 +96,7 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:processor') do
-                              partyClass.writeXML(role, hParty)
+                              partyClass.writeXML(role, hParty, outContext)
                            end
                         end
                      end

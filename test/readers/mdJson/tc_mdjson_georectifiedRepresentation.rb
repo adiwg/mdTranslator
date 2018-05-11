@@ -116,21 +116,6 @@ class TestReaderMdJsonGeorectifiedRepresentation < TestReaderMdJsonParent
 
    end
 
-   def test_geoRecRep_missing_centerPoint
-
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hIn.delete('centerPoint')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      assert_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: georectified spatial representation center point is missing'
-
-   end
-
    def test_geoRecRep_invalid_cornerPoint
 
       hIn = Marshal::load(Marshal.dump(@@hIn))

@@ -7,30 +7,30 @@
 require_relative 'class_grid'
 
 module ADIWG
-    module Mdtranslator
-        module Writers
-            module Iso19115_2
+   module Mdtranslator
+      module Writers
+         module Iso19115_2
 
-                class MD_GridSpatialRepresentation
+            class MD_GridSpatialRepresentation
 
-                    def initialize(xml, hResponseObj)
-                        @xml = xml
-                        @hResponseObj = hResponseObj
-                    end
+               def initialize(xml, hResponseObj)
+                  @xml = xml
+                  @hResponseObj = hResponseObj
+               end
 
-                    def writeXML(hGrid)
+               def writeXML(hGrid)
 
-                        # classes used
-                        gridClass = Grid.new(@xml, @hResponseObj)
+                  # classes used
+                  gridClass = Grid.new(@xml, @hResponseObj)
 
-                        @xml.tag!('gmd:MD_GridSpatialRepresentation') do
-                            gridClass.writeXML(hGrid)
-                        end
+                  @xml.tag!('gmd:MD_GridSpatialRepresentation') do
+                     gridClass.writeXML(hGrid, 'grid representation')
+                  end
 
-                    end # writeXML
-                end # MD_GridRepresentation class
+               end # writeXML
+            end # MD_GridRepresentation class
 
-            end
-        end
-    end
+         end
+      end
+   end
 end

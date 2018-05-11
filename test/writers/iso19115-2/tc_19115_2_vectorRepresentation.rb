@@ -2,36 +2,71 @@
 # writers / iso19115_2 / class_vectorRepresentation
 
 # History:
+#  Stan Smith 2018-05-03 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-14 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152VectorRepresentation < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_vectorRepresentation.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_vectorRepresentation.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_vector
+   hSpaceRef = TDClass.build_vectorRepresentation('level one')
+   TDClass.add_vectorObject(hSpaceRef,'type one', 1)
+   TDClass.add_vectorObject(hSpaceRef,'type two', 2)
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] << { vectorRepresentation: hSpaceRef }
 
-      axExpect = @@xFile.xpath('//gmd:spatialRepresentationInfo')
+   @@mdHash = mdHash
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true
-      )
+   def test_vectorRepresentation_complete
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:spatialRepresentationInfo')
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_vectorRepresentation',
+                                                '//gmd:spatialRepresentationInfo[1]',
+                                                '//gmd:spatialRepresentationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_vectorRepresentation_level
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:vectorRepresentation].delete(:vectorObject)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_vectorRepresentation',
+                                                '//gmd:spatialRepresentationInfo[2]',
+                                                '//gmd:spatialRepresentationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_vectorRepresentation_objects
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:vectorRepresentation].delete(:topologyLevel)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_vectorRepresentation',
+                                                '//gmd:spatialRepresentationInfo[3]',
+                                                '//gmd:spatialRepresentationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 

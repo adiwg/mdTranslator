@@ -2,36 +2,68 @@
 # writers / iso19115_2 / class_taxonomicSystem
 
 # History:
+#  Stan Smith 2018-05-01 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-13 original script
 
-require 'minitest/autorun'
-require 'json'
-require 'adiwg/mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
 class TestWriter191152TaxonomicSystem < TestWriter191152Parent
 
-   # read the ISO 19110 reference file
-   @@xFile = TestWriter191152Parent.get_xml('19115_2_taxonomicSystem.xml')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # read the mdJson 2.0 file
-   @@mdJson = TestWriter191152Parent.get_json('19115_2_taxonomicSystem.json')
+   # build mdJson test file in hash
+   mdHash = TDClass.base
 
-   def test_19115_2_taxonomicSystem
+   hTaxonomy = TDClass.taxonomy
+   hTaxonomy.delete(:generalScope)
+   hTaxonomy.delete(:identificationReference)
+   hTaxonomy.delete(:observer)
+   hTaxonomy.delete(:identificationCompleteness)
+   hTaxonomy.delete(:voucher)
 
-      axExpect = @@xFile.xpath('//gmd:classSys')
+   hLevel0 = hTaxonomy[:taxonomicClassification]
+   hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
+   hLevel0[:taxonomicLevel] = 'kingdom'
+   hLevel0[:taxonomicName] = 'animalia'
+   hLevel0[:commonName] = ['animals']
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: @@mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, validate: 'none'
-      )
+   mdHash[:metadata][:resourceInfo][:taxonomy] = []
+   mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      axGot = xMetadata.xpath('//gmd:classSys')
+   @@mdHash = mdHash
 
-      axExpect.length.times {|i|
-         assert_equal axExpect[i].to_s.squeeze(' '), axGot[i].to_s.squeeze(' ')
-      }
+   def test_taxonomicSystem_complete
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_taxonomicSystem',
+                                                '//gmd:classSys[1]',
+                                                '//gmd:classSys', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_equal hReturn[3][0], 'WARNING: ISO-19115-2 writer: taxonomic identification reference is missing'
+
+   end
+
+   def test_taxonomicSystem_missing_elements
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:taxonomy][0][:taxonomicSystem][0].delete(:modifications)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_taxonomicSystem',
+                                                '//gmd:classSys[2]',
+                                                '//gmd:classSys', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_equal 1, hReturn[3].length
+      assert_equal hReturn[3][0], 'WARNING: ISO-19115-2 writer: taxonomic identification reference is missing'
 
    end
 

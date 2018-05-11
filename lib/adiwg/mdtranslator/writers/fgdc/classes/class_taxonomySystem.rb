@@ -35,7 +35,7 @@ module ADIWG
                         # taxonomic system (classcit) - system citation (required) {citation}
                         unless hSystem[:citation].empty?
                            @xml.tag!('classcit') do
-                              citationClass.writeXML(hSystem[:citation], [])
+                              citationClass.writeXML(hSystem[:citation], [], 'taxonomic classification system')
                            end
                         end
                         if hSystem[:citation].empty?

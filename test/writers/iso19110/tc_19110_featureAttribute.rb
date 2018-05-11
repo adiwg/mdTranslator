@@ -64,7 +64,7 @@ class TestWriter19110FeatureAttribute < TestWriter19110Parent
 
    def test_attribute_complete
 
-      hReturn = TestWriter19110Parent.get_complete(@@mdHash, '19110_featureAttribute',
+      hReturn = TestWriter19110Parent.run_test(@@mdHash, '19110_featureAttribute',
                                                    '//gfc:carrierOfCharacteristics',
                                                    '//gfc:carrierOfCharacteristics')
 

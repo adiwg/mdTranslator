@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmi:MI_Metadata xmlns:gmi="http://www.isotc211.org/2005/gmi"
+                 xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:gml="http://www.opengis.net/gml/3.2"
+                 xmlns:gsr="http://www.isotc211.org/2005/gsr"
+                 xmlns:gss="http://www.isotc211.org/2005/gss"
+                 xmlns:gst="http://www.isotc211.org/2005/gst"
+                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                 xmlns:gfc="http://www.isotc211.org/2005/gfc"
+                 xmlns:srv="http://www.isotc211.org/2005/srv"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmi
+                 ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
+
+  <gmd:resolution>
+    <gco:Distance uom="distanceuom">99</gco:Distance>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Length uom="lengthuom">99</gco:Length>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Angle uom="angleuom">99</gco:Angle>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Measure uom="measureuom">99</gco:Measure>
+  </gmd:resolution>
+
+  <gmd:resolution>
+    <gco:Scale uom="scaleuom">99</gco:Scale>
+  </gmd:resolution>
+
+</gmi:MI_Metadata>
