@@ -56,4 +56,21 @@ class TestWriter191152DataIdentification < TestWriter191152Parent
 
    end
 
+   def test_dataIdentification_nonCompliantTopicCategory
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+
+      hIn[:metadata][:resourceInfo][:keyword] = []
+      hIn[:metadata][:resourceInfo][:topicCategory] = %w(biota extraTerrestrial)
+
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataIdentification',
+                                                '//gmd:identificationInfo[3]',
+                                                '//gmd:identificationInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
 end
