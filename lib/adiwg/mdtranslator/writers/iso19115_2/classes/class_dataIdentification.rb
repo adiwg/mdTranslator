@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-05-25 block non-ISO19115-2 topic categories
 #  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2018-04-06 changed taxonomy to an array
 #  Stan Smith 2018-01-05 deprecated topicCategory[]
@@ -353,9 +354,16 @@ module ADIWG
                            end
                         end
                      end
+                     # only allow valid ISO 19115-2 topic categories to be written
+                     aAcceptable = %w(farming biota boundaries climatologyMeteorologyAtmosphere economy
+                                       elevation environment geoscientificInformation health imageryBaseMapsEarthCover
+                                       intelligenceMilitary inlandWaters location oceans planningCadastre society
+                                       structure transportation utilitiesCommunication)
                      aTopics.each do |topic|
-                        @xml.tag!('gmd:topicCategory') do
-                           enumerationClass.writeXML('iso_topicCategory', topic)
+                        if aAcceptable.include?(topic)
+                           @xml.tag!('gmd:topicCategory') do
+                              enumerationClass.writeXML('iso_topicCategory', topic)
+                           end
                         end
                      end
                      if aTopics.empty? && @hResponseObj[:writerShowTags]
