@@ -1,7 +1,21 @@
 # Change Log
 
-## [v2.12.0.pre](https://github.com/adiwg/mdTranslator/tree/v2.12.0.pre)
+## [v2.13.0](https://github.com/adiwg/mdTranslator/tree/v2.13.0)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.12.0...v2.13.0)
+
+**Closed issues:**
+
+- Replace local XSD reference in XML expected result files [\#194](https://github.com/adiwg/mdTranslator/issues/194)
+
+**Merged pull requests:**
+
+- Refactor ISO 19115-2 writer to use mdJson writer helpers [\#195](https://github.com/adiwg/mdTranslator/pull/195) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.12.0](https://github.com/adiwg/mdTranslator/tree/v2.12.0) (2018-04-16)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.12.0.pre...v2.12.0)
+
+## [v2.12.0.pre](https://github.com/adiwg/mdTranslator/tree/v2.12.0.pre) (2018-04-12)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.10.0...v2.12.0.pre)
 
 **Implemented enhancements:**
