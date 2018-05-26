@@ -1,7 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
-# 2.13.1 2018-05-25 block ISO 19115-3 topic categories in ISO 19115-2 writer
+# 2.13.1 2018-05-25 filter ISO 19115-3 topic categories from ISO 19115-2 writer
 # 2.13.0 2018-05-08 add contact name in addition to ID in outContext messaging
 # 2.13.0 2018-05-30 changed local schema reference in ISO writer tests to remote
 # 2.13.0 2018-05-03 refactor ISO19115-2 test mdJson to use mdJson generation helpers
