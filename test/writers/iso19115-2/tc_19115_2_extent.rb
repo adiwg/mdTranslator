@@ -41,8 +41,7 @@ class TestWriter191152Extent < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hExtent = hIn[:metadata][:resourceInfo][:extent][1]
-      hGeoExtent = TDClass.build_geographicExtent
-      hExtent[:geographicExtent] << hGeoExtent
+      TDClass.add_geographicExtent(hExtent)
       TDClass.add_temporalExtent(hExtent,'TI001','instant','2018-04-20T16:46')
       TDClass.add_verticalExtent(hExtent)
 
@@ -60,9 +59,8 @@ class TestWriter191152Extent < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hExtent = hIn[:metadata][:resourceInfo][:extent][1]
-      hGeoExtent = TDClass.build_geographicExtent
-      hExtent[:geographicExtent] << hGeoExtent
-      hExtent[:geographicExtent] << hGeoExtent
+      TDClass.add_geographicExtent(hExtent)
+      TDClass.add_geographicExtent(hExtent)
       TDClass.add_temporalExtent(hExtent,'TI001','instant','2018-04-20T16:46')
       TDClass.add_temporalExtent(hExtent,'TP001','period','2018-04-20T16:46')
       TDClass.add_verticalExtent(hExtent)

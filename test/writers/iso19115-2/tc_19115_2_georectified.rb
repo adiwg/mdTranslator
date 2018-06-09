@@ -18,7 +18,7 @@ class TestWriter191152Georectified < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hGeoRep = TDClass.build_georectifiedRepresentation()
+   hGeoRep = TDClass.build_georectifiedRepresentation
    hSpaceRep = TDClass.build_spatialRepresentation('georectified', hGeoRep)
    mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
    mdHash[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep

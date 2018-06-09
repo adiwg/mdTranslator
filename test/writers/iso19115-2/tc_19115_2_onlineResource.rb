@@ -20,7 +20,7 @@ class TestWriter191152OnlineResource < TestWriter191152Parent
 
    mdHash[:metadata][:metadataInfo][:metadataContact][0][:party][0] = { contactId: 'CID003' }
    mdHash[:contact][2][:onlineResource] = []
-   mdHash[:contact][2][:onlineResource][0] = TDClass.build_onlineResource('http://online.adiwg.org/1')
+   mdHash[:contact][2][:onlineResource] << TDClass.build_onlineResource('http://online.adiwg.org/1')
 
    @@mdHash = mdHash
 

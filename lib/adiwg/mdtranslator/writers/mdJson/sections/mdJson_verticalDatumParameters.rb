@@ -17,6 +17,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.datumIdentifier Identifier.build(hDatum[:datumIdentifier]) unless hDatum[:datumIdentifier].empty?
+                     json.datumName hDatum[:datumName]
                      json.encodingMethod hDatum[:encodingMethod]
                      json.isDepthSystem hDatum[:isDepthSystem]
                      json.verticalResolution hDatum[:verticalResolution]

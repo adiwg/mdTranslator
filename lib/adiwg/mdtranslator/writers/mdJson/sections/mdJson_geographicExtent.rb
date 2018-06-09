@@ -23,7 +23,7 @@ module ADIWG
                      json.containsData hGeographic[:containsData]
                      json.identifier Identifier.build(hGeographic[:identifier]) unless hGeographic[:identifier].empty?
                      json.boundingBox BoundingBox.build(hGeographic[:boundingBox]) unless hGeographic[:boundingBox].empty?
-                     json.geographicElement hGeographic[:nativeGeoJson]
+                     json.geographicElement hGeographic[:nativeGeoJson] unless hGeographic[:nativeGeoJson].empty?
                   end
 
                end # build

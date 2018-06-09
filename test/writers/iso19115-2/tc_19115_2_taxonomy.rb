@@ -18,7 +18,7 @@ class TestWriter191152Taxonomy < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hTaxonomy = TDClass.taxonomy
+   hTaxonomy = TDClass.build_taxonomy
    hTaxonomy[:taxonomicSystem] << TDClass.build_taxonSystem('taxonomic system two',
                                                             'CID003', 'modifications two')
    hTaxonomy[:identificationReference] << TDClass.build_identifier('TID001')

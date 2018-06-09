@@ -53,19 +53,19 @@ class TestWriterFgdcTaxonomy < TestWriterFGDCParent
    hLevel0[:taxonomicLevel] = 'kingdom'
    hLevel0[:taxonomicName] = 'animalia'
    hLevel0[:commonName] = ['animals']
-   TDClass.add_taxonClass(hLevel0, 'subkingdom', 'bilateria')
+   TDClass.add_taxonClass(hLevel0, 'subkingdom', 'bilateria',[])
 
    hLevel1 = hLevel0[:subClassification][0]
-   TDClass.add_taxonClass(hLevel1, 'subfamily', 'anserinae')
+   TDClass.add_taxonClass(hLevel1, 'subfamily', 'anserinae',[])
 
    hLevel2 = hLevel1[:subClassification][0]
-   TDClass.add_taxonClass(hLevel2, 'genus', 'branta')
+   TDClass.add_taxonClass(hLevel2, 'genus', 'branta',[])
    TDClass.add_taxonClass(hLevel2, 'genus', 'anser', ['brent geese'])
 
    hLevel20 = hLevel2[:subClassification][0]
    hLevel21 = hLevel2[:subClassification][1]
    TDClass.add_taxonClass(hLevel20, 'species', 'branta bernicla', ['brant goose','ganso de collar'])
-   TDClass.add_taxonClass(hLevel21, 'species', 'albifrons')
+   TDClass.add_taxonClass(hLevel21, 'species', 'albifrons',[])
 
    @@mdHash = mdHash
 

@@ -19,11 +19,6 @@ class TestWriter191152TaxonomicClassification < TestWriter191152Parent
    mdHash = TDClass.base
 
    hTaxonomy = TDClass.taxonomy
-   hTaxonomy.delete(:generalScope)
-   hTaxonomy.delete(:identificationReference)
-   hTaxonomy.delete(:observer)
-   hTaxonomy.delete(:identificationCompleteness)
-   hTaxonomy.delete(:voucher)
 
    hLevel0 = hTaxonomy[:taxonomicClassification]
    hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
@@ -47,6 +42,8 @@ class TestWriter191152TaxonomicClassification < TestWriter191152Parent
    mdHash[:metadata][:resourceInfo][:taxonomy] = []
    mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
 
+   TDClass.removeEmptyObjects(mdHash)
+
    @@mdHash = mdHash
 
    def test_taxonomicClassification_complete
@@ -60,7 +57,8 @@ class TestWriter191152TaxonomicClassification < TestWriter191152Parent
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
-      assert_equal hReturn[3][0], 'WARNING: ISO-19115-2 writer: taxonomic identification reference is missing'
+      assert_includes hReturn[3],
+         'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
 
    end
 

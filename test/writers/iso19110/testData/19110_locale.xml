@@ -31,7 +31,9 @@
       <gmd:languageCode>
         <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="swe" codeSpace="413"/>
       </gmd:languageCode>
-      <gmd:country/>
+      <gmd:country>
+        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="USA" codeSpace="840"/>
+      </gmd:country>
       <gmd:characterEncoding>
         <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-16" codeSpace="1015"/>
       </gmd:characterEncoding>

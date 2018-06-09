@@ -1,38 +1,77 @@
 # mdJson 2.0 writer tests - contact
 
 # History:
-#   Stan Smith 2017-03-12 original script
+#  Stan Smith 2018-06-01 refactor to use mdJson construction helpers
+#  Stan Smith 2017-03-12 original script
 
-require 'minitest/autorun'
-require 'json'
 require 'adiwg-mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
 class TestWriterMdJsonContact < TestWriterMdJsonParent
 
-   # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('contact.json')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   mdHash[:contact] << TDClass.person_full
+   mdHash[:contact] << TDClass.organization_full
+
+   @@mdHash = mdHash
 
    def test_schema_contact
 
-      hIn = JSON.parse(@@jsonIn)
-      hTest = hIn['contact'][0]
+      hTest = @@mdHash[:contact][4]
       errors = TestWriterMdJsonParent.testSchema(hTest, 'contact.json')
       assert_empty errors
 
    end
 
-   def test_complete_contact
+   def test_person_contact
 
       metadata = ADIWG::Mdtranslator.translate(
-         file: @@jsonIn, reader: 'mdJson', validate: 'normal',
+         file: @@mdHash.to_json, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
-      expect = JSON.parse(@@jsonIn)
-      expect = expect['contact'][0]
+      expect = JSON.parse(@@mdHash.to_json)
+      expect = expect['contact'][4]
       got = JSON.parse(metadata[:writerOutput])
-      got = got['contact'][0]
+      got = got['contact'][4]
 
+      assert metadata[:writerPass]
+      assert metadata[:readerStructurePass]
+      assert metadata[:readerValidationPass]
+      assert metadata[:readerExecutionPass]
+      assert_empty metadata[:writerMessages]
+      assert_empty metadata[:readerStructureMessages]
+      assert_empty metadata[:readerValidationMessages]
+      assert_empty metadata[:readerExecutionMessages]
+      assert_equal expect, got
+
+   end
+
+   def test_organization_contact
+
+      metadata = ADIWG::Mdtranslator.translate(
+         file: @@mdHash.to_json, reader: 'mdJson', validate: 'normal',
+         writer: 'mdJson', showAllTags: false)
+
+      expect = JSON.parse(@@mdHash.to_json)
+      expect = expect['contact'][5]
+      got = JSON.parse(metadata[:writerOutput])
+      got = got['contact'][5]
+
+      assert metadata[:writerPass]
+      assert metadata[:readerStructurePass]
+      assert metadata[:readerValidationPass]
+      assert metadata[:readerExecutionPass]
+      assert_empty metadata[:writerMessages]
+      assert_empty metadata[:readerStructureMessages]
+      assert_empty metadata[:readerValidationMessages]
+      assert_empty metadata[:readerExecutionMessages]
       assert_equal expect, got
 
    end

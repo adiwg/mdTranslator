@@ -18,7 +18,7 @@ class TestWriter191152Measure < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hGrid = TDClass.build_gridRepresentation()
+   hGrid = TDClass.build_gridRepresentation
    TDClass.add_dimension(hGrid)
    hSpaceRep = TDClass.build_spatialRepresentation('grid', hGrid)
    mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []

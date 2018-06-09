@@ -18,6 +18,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.date(AdiwgDateTimeFun.stringDateTimeFromDateObject(hDate))
                      json.dateType hDate[:dateType]
+                     json.description hDate[:description]
                   end
 
                end # build
