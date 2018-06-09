@@ -1,10 +1,11 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.1 2018-06-08 refactor mdJson test to use mdJson generation helpers
 # 2.13.1 2018-05-25 filter ISO 19115-3 topic categories from ISO 19115-2 writer
 # 2.13.0 2018-05-08 add contact name in addition to ID in outContext messaging
 # 2.13.0 2018-05-30 changed local schema reference in ISO writer tests to remote
-# 2.13.0 2018-05-03 refactor ISO19115-2 test mdJson to use mdJson generation helpers
+# 2.13.0 2018-05-03 refactor ISO19115-2 tests to use mdJson generation helpers
 # 2.13.0 2018-04-09 refactored messaging for ISO19115-2
 # 2.12.0 2018-04-07 add 'fgdc' option to reader and writer enum list
 # 2.12.0 2018-04-06 rename taxonomicRank to taxonomicLevel
