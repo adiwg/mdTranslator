@@ -49,9 +49,9 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal 2, hAttribute0[:timePeriod].length
       assert_equal 'attribute date range', hAttribute0[:timePeriod][0][:description]
       assert_kind_of DateTime, hAttribute0[:timePeriod][0][:startDateTime][:dateTime]
-      assert_equal 'YMDhmsZ', hAttribute0[:timePeriod][0][:startDateTime][:dateResolution]
+      assert_equal 'YMD', hAttribute0[:timePeriod][0][:startDateTime][:dateResolution]
       assert_kind_of DateTime, hAttribute0[:timePeriod][0][:endDateTime][:dateTime]
-      assert_equal 'YMDhmsZ', hAttribute0[:timePeriod][0][:endDateTime][:dateResolution]
+      assert_equal 'YMD', hAttribute0[:timePeriod][0][:endDateTime][:dateResolution]
 
       hAttribute1 = hEntity0[:attributes][1]
       refute_empty hAttribute1

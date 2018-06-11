@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.1 2018-06-11 fix bug #179 remove 0 time value from date string when time not present
 # 2.13.1 2018-06-08 refactor mdJson test to use mdJson generation helpers
 # 2.13.1 2018-05-25 filter ISO 19115-3 topic categories from ISO 19115-2 writer
 # 2.13.0 2018-05-08 add contact name in addition to ID in outContext messaging

@@ -36,7 +36,7 @@ class TestReaderFgdcMetadataInfo < TestReaderFGDCParent
 
       hDate0 = hMetadataInfo[:metadataDates][0]
       assert_kind_of DateTime, hDate0[:date]
-      assert_equal 'YMDhmsZ', hDate0[:dateResolution]
+      assert_equal 'YMD', hDate0[:dateResolution]
       assert_equal 'creation', hDate0[:dateType]
 
       hDate1 = hMetadataInfo[:metadataDates][1]
