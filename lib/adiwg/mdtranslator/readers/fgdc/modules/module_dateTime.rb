@@ -56,32 +56,29 @@ module ADIWG
                      end
                   end
 
-                  # if have full date
+                  # if have full date and some time expression
                   # add time element to date string
-                  if time != '' && haveFullDate
-                     aScan = time.scan(/:/)
-                     if aScan.empty?
-                        hour = time.byteslice(0,2)
-                        minute = time.byteslice(2,2)
-                        second = time.byteslice(4,2)
-                     else
-                        aTime = time.split(':')
-                        hour = aTime[0]
-                        minute = aTime[1]
-                        second = aTime[2]
-                     end
-                     tmIn = ''
-                     unless hour.nil? || hour == ''
-                        tmIn += 'T' + hour
-                        unless minute.nil? || minute == ''
-                           tmIn += ':' + minute
-                           unless second.nil? || second == ''
-                              tmIn += ':' + second
-                           end
+                  if haveFullDate
+                     unless time == ''
+                        aScan = time.scan(/:/)
+                        if aScan.empty?
+                           hour = time.byteslice(0,2)
+                           minute = time.byteslice(2,2)
+                           second = time.byteslice(4,2)
+                        else
+                           aTime = time.split(':')
+                           hour = aTime[0]
+                           minute = aTime[1]
+                           second = aTime[2]
                         end
-                     end
 
-                     unless tmIn == ''
+                        # all times must include timezone
+                        # timezone format requires hours, minutes, and seconds
+                        hour = '00' if hour.nil? || hour == ''
+                        minute = '00' if minute.nil? || minute == ''
+                        second = '00' if second.nil? || second == ''
+                        tmIn = 'T' + hour + ':' + minute + ':' + second
+
                         dtIn += tmIn
 
                         # add offset to date/time string
@@ -111,7 +108,7 @@ module ADIWG
                      return nil
                   end
 
-                  # output in 'universal time' 
+                  # always output 'universal time'
                   if zoneFlag == 'universal time'
                      utc = aDateTimeReturn[0]
                   else

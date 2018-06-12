@@ -1,0 +1,7 @@
+# Writer - messages for mdJson 2.x reader
+
+# History:
+#  Stan Smith 2018-05-12 original script
+
+messageList:
+   - {id: 1, message: "contact address type is missing"}

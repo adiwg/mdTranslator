@@ -1,6 +1,7 @@
 # mdJson reader - process and direct mdJson ingest to internal data structure
 
 # History:
+#  Stan Smith 2018-06-12 refactor messaging support
 #  Stan Smith 2016-11-12 refactor for mdTranslator 2.0
 #  Stan Smith 2016-10-09 modify 'findContact' to also return contact index and type
 #  Stan Smith 2016-10-07 refactored 'readerModule' to remove mdJson version checking
@@ -112,6 +113,45 @@ module ADIWG
                   validate(hMdJson, hResponseObj)
                   unless hResponseObj[:readerValidationPass]
                      return {}
+                  end
+               end
+
+               # load error message array
+               errorFile = File.join(File.dirname(__FILE__), 'mdJson_reader_messages_eng') + '.yml'
+               hMessageList = YAML.load_file(errorFile)
+               @aMessagesList = hMessageList['messageList']
+
+               def self.findMessage(messageId)
+                  @aMessagesList.each do |hMessage|
+                     if hMessage['id'] == messageId
+                        return hMessage['message']
+                     end
+                  end
+                  return nil
+               end
+
+               def self.issueError(messageId, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     @hResponseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: ' + message
+                     @hResponseObj[:readerExecutionPass] = false
+                  end
+               end
+
+               def self.issueWarning(messageId, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     @hResponseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: ' + message
+                  end
+               end
+
+               def self.issueNotice(messageId, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     @hResponseObj[:readerExecutionMessages] << 'NOTICE: mdJson reader: ' + message
                   end
                end
 

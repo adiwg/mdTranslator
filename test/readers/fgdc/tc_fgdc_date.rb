@@ -191,7 +191,7 @@ class TestReaderFgdcDate < TestReaderFGDCParent
       hDate = @@NameSpace.unpack('20170816', '14', 'test', hResponse)
 
       refute_empty hDate
-      assert_equal 'YMDhZ', hDate[:dateResolution]
+      assert_equal 'YMDhmsZ', hDate[:dateResolution]
       day = hDate[:date].day
       year = hDate[:date].year
       month = hDate[:date].month
@@ -216,7 +216,7 @@ class TestReaderFgdcDate < TestReaderFGDCParent
       hDate = @@NameSpace.unpack('20170816', '14:08', 'test', hResponse)
 
       refute_empty hDate
-      assert_equal 'YMDhmZ', hDate[:dateResolution]
+      assert_equal 'YMDhmsZ', hDate[:dateResolution]
       day = hDate[:date].day
       year = hDate[:date].year
       month = hDate[:date].month
@@ -241,7 +241,7 @@ class TestReaderFgdcDate < TestReaderFGDCParent
       hDate = @@NameSpace.unpack('20170816', '1408', 'test', hResponse)
 
       refute_empty hDate
-      assert_equal 'YMDhmZ', hDate[:dateResolution]
+      assert_equal 'YMDhmsZ', hDate[:dateResolution]
       day = hDate[:date].day
       year = hDate[:date].year
       month = hDate[:date].month
