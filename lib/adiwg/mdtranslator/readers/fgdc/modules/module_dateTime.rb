@@ -2,6 +2,7 @@
 # unpack fgdc metadata date
 
 # History:
+#  Stan Smith 2018-06-12 change default time zone to UTC
 #  Stan Smith 2017-08-15 original script
 
 require 'date'
@@ -36,6 +37,10 @@ module ADIWG
                      time = ''
                   end
 
+                  # determine if date/time is universal (default) or local
+                  zoneFlag = Fgdc.get_metadata_time_convention
+                  zoneFlag = 'universal time' if zoneFlag.nil? || zoneFlag == ''
+
                   # convert date from fgdc to iso format
                   year = date.byteslice(0,4)
                   month = date.byteslice(4,2)
@@ -53,7 +58,7 @@ module ADIWG
 
                   # if have full date
                   # add time element to date string
-                  if haveFullDate
+                  if time != '' && haveFullDate
                      aScan = time.scan(/:/)
                      if aScan.empty?
                         hour = time.byteslice(0,2)
@@ -75,13 +80,9 @@ module ADIWG
                            end
                         end
                      end
+
                      unless tmIn == ''
                         dtIn += tmIn
-
-                        # determine if date/time is 'universal time' or other
-                        # default to other (local time)
-                        zoneFlag = Fgdc.get_metadata_time_convention
-                        zoneFlag = 'local time' if zoneFlag.nil? || zoneFlag == ''
 
                         # add offset to date/time string
                         if zoneFlag == 'universal time'
@@ -111,11 +112,10 @@ module ADIWG
                   end
 
                   # output in 'universal time' 
-                  dateTimeReturn = aDateTimeReturn[0]
                   if zoneFlag == 'universal time'
-                     utc = dateTimeReturn
+                     utc = aDateTimeReturn[0]
                   else
-                     utc = dateTimeReturn.new_offset(Rational(0,24))
+                     utc = aDateTimeReturn[0].new_offset(Rational(0,24))
                   end
 
                   # build internal dateTime object
