@@ -19,8 +19,7 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
    mdHash = TDClass.base
 
    # dictionary
-   hDictionary = TDClass.build_dataDictionary
-   mdHash[:dataDictionary] << hDictionary
+   mdHash[:dataDictionary] << TDClass.build_dataDictionary
 
    @@mdHash = mdHash
 
@@ -118,6 +117,59 @@ class TestWriter19110FeatureCatalogue < TestWriter19110Parent
                       'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
 
       assert_equal expect, got
+
+   end
+
+   def test_featureCatalogue_empty_dictionary
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:dataDictionary] = []
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
+      )
+
+      assert_nil hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: ISO-19110 writer: data dictionary is empty'
+
+   end
+
+   def test_featureCatalogue_missing_dictionary
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:dataDictionary)
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
+      )
+
+      assert_nil hResponseObj[:writerOutput]
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'ERROR: ISO-19110 writer: data dictionary is empty'
+
+   end
+
+   def test_featureCatalogue_multiple_dictionary
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:dataDictionary] << TDClass.build_dataDictionary
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
+      )
+
+      refute_nil hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+      assert_equal 2, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages],
+                      'NOTICE: ISO-19110 writer: multiple data dictionaries found, using first'
+      assert_includes hResponseObj[:writerMessages],
+                      'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
 
    end
 
