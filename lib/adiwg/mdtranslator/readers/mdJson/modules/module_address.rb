@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-13 refactored error and warning messaging
 #  Stan Smith 2016-10-03 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -19,11 +19,13 @@ module ADIWG
 
             module Address
 
-               def self.unpack(hAddress, responseObj)
+               def self.unpack(hAddress, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hAddress.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: address object is empty'
+                     @MessagePath.issueWarning(10, responseObj, inContext)
                      return nil
                   end
 
@@ -40,9 +42,7 @@ module ADIWG
                      end
                   end
                   if intAdd[:addressTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: address type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(11, responseObj, inContext)
                   end
 
                   # address - description

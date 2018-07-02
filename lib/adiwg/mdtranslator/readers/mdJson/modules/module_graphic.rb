@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 #  Stan Smith 2016-10-12 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -23,11 +23,13 @@ module ADIWG
 
             module Graphic
 
-               def self.unpack(hGraphic, responseObj)
+               def self.unpack(hGraphic, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hGraphic.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: graphic overview object is empty'
+                     @MessagePath.issueWarning(430, responseObj, inContext)
                      return nil
                   end
 
@@ -40,9 +42,7 @@ module ADIWG
                      intGraphic[:graphicName] = hGraphic['fileName']
                   end
                   if intGraphic[:graphicName].nil? || intGraphic[:graphicName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: graphic overview file name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(431, responseObj, inContext)
                   end
 
                   # graphic - file description

@@ -2,8 +2,9 @@
 # reader / mdJson / module_resourceUsage
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-11 original script
+#  Stan Smith 2018-06-24 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-11 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_resourceUsage'
@@ -12,29 +13,36 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ResourceUsage
-   aIn = TestReaderMdJsonParent.getJson('usage.json')
-   @@hIn = aIn['resourceUsage'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_resourceUsage_full
+
+   @@mdHash = mdHash
 
    def test_resourceUsage_schema
 
-      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'usage.json')
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'usage.json')
       assert_empty errors
 
    end
 
    def test_complete_resourceUsage_object
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'specificUsage', metadata[:specificUsage]
+      assert_equal 'specific usage', metadata[:specificUsage]
       assert_equal 2, metadata[:temporalExtents].length
-      assert_equal 'userDeterminedLimitation', metadata[:userLimitation]
+      assert_equal 'user determined limitation', metadata[:userLimitation]
       assert_equal 2, metadata[:limitationResponses].length
-      assert_equal 'limitationResponse0', metadata[:limitationResponses][0]
-      assert_equal 'limitationResponse1', metadata[:limitationResponses][1]
+      assert_equal 'response one', metadata[:limitationResponses][0]
+      assert_equal 'response two', metadata[:limitationResponses][1]
       refute_empty metadata[:identifiedIssue]
       assert_equal 2, metadata[:additionalDocumentation].length
       assert_equal 2, metadata[:userContacts].length
@@ -45,40 +53,43 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
    def test_resourceUsage_empty_specificUsage
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['specificUsage'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: resource usage specific usage is missing'
+                      'ERROR: mdJson reader: resource specific usage is missing'
 
    end
 
    def test_resourceUsage_missing_specificUsage
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('specificUsage')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'ERROR: mdJson reader: resource usage specific usage is missing'
+                      'ERROR: mdJson reader: resource specific usage is missing'
 
    end
 
    def test_resourceUsage_empty_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['temporalExtent'] = []
       hIn['userDeterminedLimitation'] = ''
       hIn['limitationResponse'] = []
@@ -88,7 +99,7 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'specificUsage', metadata[:specificUsage]
+      assert_equal 'specific usage', metadata[:specificUsage]
       assert_empty metadata[:temporalExtents]
       assert_nil metadata[:userLimitation]
       assert_empty metadata[:limitationResponses]
@@ -102,8 +113,9 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
    def test_resourceUsage_missing_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('temporalExtent')
       hIn.delete('userDeterminedLimitation')
       hIn.delete('limitationResponse')
@@ -113,7 +125,7 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'specificUsage', metadata[:specificUsage]
+      assert_equal 'specific usage', metadata[:specificUsage]
       assert_empty metadata[:temporalExtents]
       assert_nil metadata[:userLimitation]
       assert_empty metadata[:limitationResponses]
@@ -127,13 +139,15 @@ class TestReaderMdJsonResourceUsage < TestReaderMdJsonParent
 
    def test_empty_resourceUsage_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: resource usage object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: resource usage object is empty'
 
    end
 

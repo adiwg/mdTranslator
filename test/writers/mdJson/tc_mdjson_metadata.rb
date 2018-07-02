@@ -33,7 +33,7 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:associatedResource] << TDClass.build_associatedResource
 
    # additional documentation []
-   mdHash[:metadata][:additionalDocumentation] = [TDClass.build_additionalDocumentation]
+   mdHash[:metadata][:additionalDocumentation] = []
    mdHash[:metadata][:additionalDocumentation] << TDClass.build_additionalDocumentation
    mdHash[:metadata][:additionalDocumentation] << TDClass.build_additionalDocumentation
 

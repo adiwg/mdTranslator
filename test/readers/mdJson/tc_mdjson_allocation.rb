@@ -2,6 +2,7 @@
 # reader / mdJson / module_allocation
 
 # History:
+#  Stan Smith 2018-06-15 refactored to use mdJson construction helpers
 #  Stan Smith 2017-08-30 refactored for mdJson schema 2.3
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-30 original script
@@ -14,33 +15,40 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
    # set variables for test
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Allocation
 
-   aIn = TestReaderMdJsonParent.getJson('allocation.json')
-   @@hIn = aIn['allocation'][0]
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-   # TODO reinstate after schema update
-   # def test_allocation_schema
-   #
-   #    errors = TestReaderMdJsonParent.testSchema(@@hIn, 'funding.json', fragment: 'allocation')
-   #    assert_empty errors
-   #
-   # end
+   # build mdJson test file in hash
+   mdHash = TDClass.allocation
+   mdHash[:responsibleParty] << TDClass.build_responsibleParty('funder', ['CID004'])
+   mdHash[:onlineResource] << TDClass.build_onlineResource('http://online.adiwg.org/2')
+
+   @@mdHash = mdHash
+
+   def test_allocation_schema
+
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'funding.json', fragment: 'allocation')
+      assert_empty errors
+
+   end
 
    def test_complete_allocation_object
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'allocationId', metadata[:id]
-      assert_equal 9.9, metadata[:amount]
-      assert_equal 'currency', metadata[:currency]
-      assert_equal 'sourceId', metadata[:sourceId]
-      assert_equal 'recipientId', metadata[:recipientId]
+      assert_equal 'SAID001', metadata[:id]
+      assert_equal 50000, metadata[:amount]
+      assert_equal 'USD', metadata[:currency]
+      assert_equal 'CID004', metadata[:sourceId]
+      assert_equal 'CID003', metadata[:recipientId]
       assert_equal 2, metadata[:responsibleParties].length
       assert metadata[:matching]
       assert_equal 2, metadata[:onlineResources].length
-      assert_equal 'comment', metadata[:comment]
+      assert_equal 'allocation comment', metadata[:comment]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -48,63 +56,77 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
 
    def test_empty_allocation_amount
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['amount'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation amount is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: budget allocation amount is missing'
 
    end
 
    def test_missing_allocation_amount
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('amount')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation amount is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: budget allocation amount is missing'
 
    end
 
    def test_empty_allocation_currency
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['currency'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation currency is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: budget allocation currency type is missing'
 
    end
 
    def test_missing_allocation_currency
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('currency')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: budget allocation currency is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: budget allocation currency type is missing'
 
    end
 
    def test_empty_allocation_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['sourceAllocationId'] = ''
       hIn['sourceId'] = ''
       hIn['recipientId'] = ''
@@ -115,8 +137,8 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata[:id]
-      assert_equal 9.9, metadata[:amount]
-      assert_equal 'currency', metadata[:currency]
+      assert_equal 50000, metadata[:amount]
+      assert_equal 'USD', metadata[:currency]
       assert_nil metadata[:source]
       assert_nil metadata[:recipient]
       assert_empty metadata[:responsibleParties]
@@ -129,7 +151,9 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
 
    def test_missing_allocation_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('sourceAllocationId')
       hIn.delete('sourceId')
       hIn.delete('recipientId')
@@ -140,8 +164,8 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_nil metadata[:id]
-      assert_equal 9.9, metadata[:amount]
-      assert_equal 'currency', metadata[:currency]
+      assert_equal 50000, metadata[:amount]
+      assert_equal 'USD', metadata[:currency]
       assert_nil metadata[:source]
       assert_nil metadata[:recipient]
       assert_empty metadata[:responsibleParties]
@@ -154,13 +178,15 @@ class TestReaderMdJsonAllocation < TestReaderMdJsonParent
 
    def test_empty_allocation_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: budget allocation object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: budget allocation object is empty'
 
    end
 

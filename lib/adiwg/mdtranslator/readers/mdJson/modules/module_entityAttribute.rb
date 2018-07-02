@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2018-02-14 rename allowMany to mustBeUnique
 #  Stan Smith 2017-11-01 added new elements to support fgdc and flat files
 #  Stan Smith 2016-10-05 refactored for mdJson 2.0
@@ -12,7 +12,6 @@
 #  Stan Smith 2015-02-17 added support for attribute aliases
 #  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 # 	Stan Smith 2013-12-01 original script
-
 
 require_relative 'module_citation'
 require_relative 'module_valueRange'
@@ -25,17 +24,21 @@ module ADIWG
 
             module EntityAttribute
 
-               def self.unpack(hAttribute, responseObj)
+               def self.unpack(hAttribute, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hAttribute.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity attribute object is empty'
+                     @MessagePath.issueWarning(240, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intAttribute = intMetadataClass.newEntityAttribute
+
+                  outContext = nil
 
                   # attribute - common name
                   if hAttribute.has_key?('commonName')
@@ -49,9 +52,13 @@ module ADIWG
                      intAttribute[:attributeCode] = hAttribute['codeName']
                   end
                   if intAttribute[:attributeCode].nil? || intAttribute[:attributeCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute code name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(241, responseObj, inContext)
+                  else
+                     if inContext.nil?
+                        outContext = 'attribute code name ' + hAttribute['codeName']
+                     else
+                        outContext = inContext + ' attribute code name ' + hAttribute['codeName']
+                     end
                   end
 
                   # attribute - alias []
@@ -68,16 +75,14 @@ module ADIWG
                      intAttribute[:attributeDefinition] = hAttribute['definition']
                   end
                   if intAttribute[:attributeDefinition].nil? || intAttribute[:attributeDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(242, responseObj, outContext)
                   end
 
                   # attribute - attribute reference
                   if hAttribute.has_key?('attributeReference')
                      hCitation = hAttribute['attributeReference']
                      unless hCitation.empty?
-                        hReturn = Citation.unpack(hCitation, responseObj)
+                        hReturn = Citation.unpack(hCitation, responseObj, outContext)
                         unless hReturn.nil?
                            intAttribute[:attributeReference] = hReturn
                         end
@@ -89,9 +94,7 @@ module ADIWG
                      intAttribute[:dataType] = hAttribute['dataType']
                   end
                   if intAttribute[:dataType].nil? || intAttribute[:dataType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(243, responseObj, outContext)
                   end
 
                   # attribute - allow nulls (required)
@@ -106,9 +109,7 @@ module ADIWG
                   if hAttribute.has_key?('allowMany')
                      if hAttribute['allowMany'] === false
                         intAttribute[:mustBeUnique] = hAttribute['allowMany']
-                        responseObj[:readerExecutionMessages] <<
-                           'NOTICE: mdJson reader: data dictionary entity attribute "allowMany" is deprecated, use "mustBeUnique"'
-                        return nil
+                        @MessagePath.issueNotice(244, responseObj, outContext)
                      end
                   end
                   if hAttribute.has_key?('mustBeUnique')
@@ -178,7 +179,7 @@ module ADIWG
                      aValueRange = hAttribute['valueRange']
                      aValueRange.each do |hRange|
                         unless hRange.empty?
-                           hReturn = ValueRange.unpack(hRange, responseObj)
+                           hReturn = ValueRange.unpack(hRange, responseObj, outContext)
                            unless hReturn.nil?
                               intAttribute[:valueRange] << hReturn
                            end
@@ -191,7 +192,7 @@ module ADIWG
                      aTimePeriods = hAttribute['timePeriod']
                      aTimePeriods.each do |hTimePeriod|
                         unless hTimePeriod.empty?
-                           hReturn = TimePeriod.unpack(hTimePeriod, responseObj)
+                           hReturn = TimePeriod.unpack(hTimePeriod, responseObj, outContext)
                            unless hReturn.nil?
                               intAttribute[:timePeriod] << hReturn
                            end

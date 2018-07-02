@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-24 added error reporting of missing items
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -17,11 +17,13 @@ module ADIWG
 
             module EntityIndex
 
-               def self.unpack(hIndex, responseObj)
+               def self.unpack(hIndex, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hIndex.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity index object is empty'
+                     @MessagePath.issueWarning(260, responseObj, inContext)
                      return nil
                   end
 
@@ -35,9 +37,7 @@ module ADIWG
                      intIndex[:indexCode] = hIndex['codeName']
                   end
                   if intIndex[:indexCode].nil? || intIndex[:indexCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity index code name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(261, responseObj, inContext)
                   end
 
                   # entity index - allow duplicates (required)
@@ -53,10 +53,7 @@ module ADIWG
                      intIndex[:attributeNames] = hIndex['attributeCodeName']
                   end
                   if intIndex[:attributeNames].empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: data dictionary entity index attribute list is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(262, responseObj, inContext)
                   end
 
                   return intIndex

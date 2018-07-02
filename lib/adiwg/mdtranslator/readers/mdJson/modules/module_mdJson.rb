@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2016-11-07 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
@@ -22,10 +22,14 @@ module ADIWG
 
                def self.unpack(hMdJson, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
+                  # load error messages
+                  loadMessages
+
                   # return nil object if input is empty
                   if hMdJson.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueError(530, responseObj)
                      return nil
                   end
 
@@ -44,9 +48,7 @@ module ADIWG
                      end
                   end
                   if intObj[:schema].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(531, responseObj)
                   end
 
                   # mdJson - contact [] {contact} (required)
@@ -65,12 +67,10 @@ module ADIWG
                      end
                   end
                   if intObj[:contacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(532, responseObj)
                   end
 
-                  # mdJson - metadata {metadata} (required)
+                  # mdJson - metadata {metadata}
                   if hMdJson.has_key?('metadata')
                      hObject = hMdJson['metadata']
                      unless hObject.empty?
@@ -81,9 +81,7 @@ module ADIWG
                      end
                   end
                   if intObj[:metadata].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueNotice(533, responseObj)
                   end
 
                   # mdJson - data dictionary [] {dataDictionary}
@@ -112,11 +110,18 @@ module ADIWG
 
                end
 
+               # helper methods
+               # set contacts array for reader test modules
+               def self.setContacts(contacts)
+                  @contacts = contacts
+               end
+
                # find the array pointer and type for a contact
                def self.findContact(contactId)
 
                   contactIndex = nil
                   contactType = nil
+                  contactName = nil
                   @contacts.each_with_index do |contact, i|
                      if contact[:contactId] == contactId
                         contactIndex = i
@@ -125,15 +130,52 @@ module ADIWG
                         else
                            contactType = 'individual'
                         end
+                        contactName = contact[:name]
                      end
                   end
-                  return contactIndex, contactType
+                  return contactIndex, contactType, contactName
 
                end
 
-               # set contacts array for reader test modules
-               def self.setContacts(contacts)
-                  @contacts = contacts
+               # load error message array
+               def self.loadMessages
+                  messageFile = File.join(File.dirname(__FILE__), '../mdJson_reader_messages_eng') + '.yml'
+                  hMessageList = YAML.load_file(messageFile)
+                  @messages = hMessageList['messageList']
+               end
+
+               def self.findMessage(messageId)
+                  @messages.each do |hMessage|
+                     if hMessage['id'] == messageId
+                        return hMessage['message']
+                     end
+                  end
+                  return nil
+               end
+
+               def self.issueError(messageId, hResponseObj, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     hResponseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: ' + message
+                     hResponseObj[:readerExecutionPass] = false
+                  end
+               end
+
+               def self.issueWarning(messageId, hResponseObj, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     hResponseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: ' + message
+                  end
+               end
+
+               def self.issueNotice(messageId, hResponseObj, context = nil)
+                  message = findMessage(messageId)
+                  unless message.nil?
+                     message += ': CONTEXT is ' + context unless context.nil?
+                     hResponseObj[:readerExecutionMessages] << 'NOTICE: mdJson reader: ' + message
+                  end
                end
 
             end

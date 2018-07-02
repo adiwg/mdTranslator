@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-24 refactored error and warning messaging
 #  Stan Smith 2017-02-15 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module ResourceType
 
-               def self.unpack(hType, responseObj)
+               def self.unpack(hType, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hType.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: resource type object is empty'
+                     @MessagePath.issueWarning(690, responseObj, inContext)
                      return nil
                   end
 
@@ -31,9 +33,7 @@ module ADIWG
                      end
                   end
                   if intType[:type].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(691, responseObj, inContext)
                   end
 
                   # resource type - name

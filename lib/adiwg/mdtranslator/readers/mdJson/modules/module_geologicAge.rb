@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 # 	Stan Smith 2017-11-07 original script
 
 require_relative 'module_citation'
@@ -14,11 +14,13 @@ module ADIWG
 
             module GeologicAge
 
-               def self.unpack(hGeoAge, responseObj)
+               def self.unpack(hGeoAge, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hGeoAge.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geologic age object is empty'
+                     @MessagePath.issueWarning(350, responseObj, inContext)
                      return nil
                   end
 
@@ -26,14 +28,15 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intGeoAge = intMetadataClass.newGeologicAge
 
+                  outContext = 'geologic age'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # geologic age - time scale (required)
                   if hGeoAge.has_key?('ageTimeScale')
                      intGeoAge[:ageTimeScale] = hGeoAge['ageTimeScale']
                   end
                   if intGeoAge[:ageTimeScale].nil? || intGeoAge[:ageTimeScale] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age time scale is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(351, responseObj, inContext)
                   end
 
                   # geologic age - age estimate (required)
@@ -41,9 +44,7 @@ module ADIWG
                      intGeoAge[:ageEstimate] = hGeoAge['ageEstimate']
                   end
                   if intGeoAge[:ageEstimate].nil? || intGeoAge[:ageEstimate] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: geologic age age-estimate is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(352, responseObj, inContext)
                   end
 
                   # geologic age - age uncertainty
@@ -64,7 +65,7 @@ module ADIWG
                   if hGeoAge.has_key?('ageReference')
                      hGeoAge['ageReference'].each do |hCitation|
                         unless hCitation.empty?
-                           hReturn = Citation.unpack(hCitation, responseObj)
+                           hReturn = Citation.unpack(hCitation, responseObj, outContext)
                            unless hReturn.nil?
                               intGeoAge[:ageReferences] << hReturn
                            end

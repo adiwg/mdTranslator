@@ -26,9 +26,10 @@ class TestWriterMdJsonDictionary < TestWriterMdJsonParent
    hDictionary[:entity] << TDClass.build_entity('ENT002')
    mdHash[:dataDictionary] << hDictionary
 
+   TDClass.removeEmptyObjects(mdHash)
+
    @@mdHash = mdHash
 
-   TDClass.removeEmptyObjects(@@mdHash)
 
    def test_schema_dictionary
 

@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2016-11-02 original script
 
 require_relative 'module_metadataInfo'
@@ -22,10 +22,11 @@ module ADIWG
 
                def self.unpack(hMetadata, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hMetadata.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueWarning(560, responseObj)
                      return nil
                   end
 
@@ -44,9 +45,7 @@ module ADIWG
                      end
                   end
                   if intMetadata[:metadataInfo].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata metadata-info object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(561, responseObj)
                   end
 
                   # metadata - resource info {resourceInfo} (required)
@@ -60,9 +59,7 @@ module ADIWG
                      end
                   end
                   if intMetadata[:resourceInfo].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata resource info object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(562, responseObj)
                   end
 
                   # metadata - resource lineage [] {lineage}

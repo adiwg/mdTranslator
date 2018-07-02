@@ -35,6 +35,8 @@ class TestWriterMdJsonEntityAttribute < TestWriterMdJsonParent
    hDictionary[:entity] << hEntity
    mdHash[:dataDictionary] << hDictionary
 
+   TDClass.removeEmptyObjects(mdHash)
+
    @@mdHash = mdHash
 
    # TODO reinstate after schema update

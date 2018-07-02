@@ -116,45 +116,6 @@ module ADIWG
                   end
                end
 
-               # load error message array
-               errorFile = File.join(File.dirname(__FILE__), 'mdJson_reader_messages_eng') + '.yml'
-               hMessageList = YAML.load_file(errorFile)
-               @aMessagesList = hMessageList['messageList']
-
-               def self.findMessage(messageId)
-                  @aMessagesList.each do |hMessage|
-                     if hMessage['id'] == messageId
-                        return hMessage['message']
-                     end
-                  end
-                  return nil
-               end
-
-               def self.issueError(messageId, context = nil)
-                  message = findMessage(messageId)
-                  unless message.nil?
-                     message += ': CONTEXT is ' + context unless context.nil?
-                     @hResponseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: ' + message
-                     @hResponseObj[:readerExecutionPass] = false
-                  end
-               end
-
-               def self.issueWarning(messageId, context = nil)
-                  message = findMessage(messageId)
-                  unless message.nil?
-                     message += ': CONTEXT is ' + context unless context.nil?
-                     @hResponseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: ' + message
-                  end
-               end
-
-               def self.issueNotice(messageId, context = nil)
-                  message = findMessage(messageId)
-                  unless message.nil?
-                     message += ': CONTEXT is ' + context unless context.nil?
-                     @hResponseObj[:readerExecutionMessages] << 'NOTICE: mdJson reader: ' + message
-                  end
-               end
-
                # unpack the mdJson into the internal object
                return MdJson.unpack(hMdJson, hResponseObj)
 

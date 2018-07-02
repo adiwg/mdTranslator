@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2017-11-01 added domainReference
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-23 added error reporting of missing items
@@ -23,9 +23,11 @@ module ADIWG
 
                def self.unpack(hDomain, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hDomain.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary domain object is empty'
+                     @MessagePath.issueWarning(200, responseObj)
                      return nil
                   end
 
@@ -33,14 +35,16 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intDomain = intMetadataClass.newDictionaryDomain
 
+                  outContext = nil
+
                   # data dictionary domain - id (required)
                   if hDomain.has_key?('domainId')
                      intDomain[:domainId] = hDomain['domainId']
                   end
                   if intDomain[:domainId].nil? || intDomain[:domainId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain ID is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(201, responseObj)
+                  else
+                     outContext = 'domain ID ' + hDomain['domainId']
                   end
 
                   # data dictionary domain - name
@@ -55,9 +59,7 @@ module ADIWG
                      intDomain[:domainCode] = hDomain['codeName']
                   end
                   if intDomain[:domainCode].nil? || intDomain[:domainCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain code is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(202, responseObj, outContext)
                   end
 
                   # data dictionary domain - description (required)
@@ -65,9 +67,7 @@ module ADIWG
                      intDomain[:domainDescription] = hDomain['description']
                   end
                   if intDomain[:domainDescription].nil? || intDomain[:domainDescription] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain description is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(203, responseObj, outContext)
                   end
 
                   # data dictionary domain - domain reference {citation}
@@ -84,7 +84,7 @@ module ADIWG
                   # data dictionary domain - items []
                   if hDomain.has_key?('domainItem')
                      hDomain['domainItem'].each do |item|
-                        hDom = DomainItem.unpack(item, responseObj)
+                        hDom = DomainItem.unpack(item, responseObj, outContext)
                         unless hDom.nil?
                            intDomain[:domainItems] << hDom
                         end

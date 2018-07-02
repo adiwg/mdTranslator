@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2016-10-20 original script
 
 require_relative 'module_citation'
@@ -15,13 +15,18 @@ module ADIWG
 
             module Medium
 
-               def self.unpack(hMedium, responseObj)
+               def self.unpack(hMedium, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hMedium.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: offline distribution medium object is empty'
+                     @MessagePath.issueWarning(550, responseObj, inContext)
                      return nil
                   end
+
+                  outContext = 'offline option'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -31,7 +36,7 @@ module ADIWG
                   if hMedium.has_key?('mediumSpecification')
                      hObject = hMedium['mediumSpecification']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMedium[:mediumSpecification] = hReturn
                         end
@@ -86,7 +91,7 @@ module ADIWG
                   if hMedium.has_key?('identifier')
                      hObject = hMedium['identifier']
                      unless hObject.empty?
-                        hReturn = Identifier.unpack(hObject, responseObj)
+                        hReturn = Identifier.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMedium[:identifier] = hReturn
                         end

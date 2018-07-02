@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 module ADIWG
@@ -12,12 +12,13 @@ module ADIWG
 
             module ObliqueLinePoint
 
-               def self.unpack(hLinePt, responseObj)
+               def self.unpack(hLinePt, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hLinePt.empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: spatial reference oblique line-point object is empty'
+                     @MessagePath.issueWarning(590, responseObj, inContext)
                      return nil
                   end
 
@@ -30,10 +31,7 @@ module ADIWG
                      intLinePoint[:azimuthLineLatitude] = hLinePt['azimuthLineLatitude']
                   end
                   if intLinePoint[:azimuthLineLatitude].nil? || intLinePoint[:azimuthLineLatitude] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: spatial reference oblique line-point latitude is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(591, responseObj, inContext)
                   end
 
                   # oblique line point - azimuth line longitude (required)
@@ -41,10 +39,7 @@ module ADIWG
                      intLinePoint[:azimuthLineLongitude] = hLinePt['azimuthLineLongitude']
                   end
                   if intLinePoint[:azimuthLineLongitude].nil? || intLinePoint[:azimuthLineLongitude] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: spatial reference oblique line-point longitude is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(592, responseObj, inContext)
                   end
 
                   return intLinePoint

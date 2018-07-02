@@ -46,6 +46,7 @@ class TestWriter191152Georeferenceable < TestWriter191152Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hGeoRef = hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:georeferenceableRepresentation]
       hGeoRef[:parameterCitation].delete_at(1)
+      hGeoRef[:parameterCitation].delete_at(1)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_georeferenceable',
                                                 '//gmd:spatialRepresentationInfo[2]',

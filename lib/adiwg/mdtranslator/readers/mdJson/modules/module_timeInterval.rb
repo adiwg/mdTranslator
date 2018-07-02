@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 # 	Stan Smith 2016-10-14 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module TimeInterval
 
-               def self.unpack(hTimeInt, responseObj)
+               def self.unpack(hTimeInt, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hTimeInt.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: time interval object is empty'
+                     @MessagePath.issueWarning(860, responseObj, inContext)
                      return nil
                   end
 
@@ -28,19 +30,15 @@ module ADIWG
                   if hTimeInt.has_key?('interval')
                      interval = hTimeInt['interval']
                      unless interval == ''
-                        if interval.is_a?(Integer) || interval.is_a?(Float)
+                        if interval.is_a?(Integer)
                            intTime[:interval] = hTimeInt['interval']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval must be a number'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(861, responseObj, inContext)
                         end
                      end
                   end
                   if intTime[:interval].nil? || intTime[:interval] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(862, responseObj, inContext)
                   end
 
                   # time interval - units (required) {enum}
@@ -53,9 +51,7 @@ module ADIWG
                      end
                   end
                   if intTime[:units].nil? || intTime[:units] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time interval units are missing or invalid'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(863, responseObj, inContext)
                   end
 
                   return intTime

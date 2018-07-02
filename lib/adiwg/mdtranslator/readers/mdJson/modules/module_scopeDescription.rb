@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 # 	Stan Smith 2016-10-13 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module ScopeDescription
 
-               def self.unpack(hScopeDes, responseObj)
+               def self.unpack(hScopeDes, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hScopeDes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: scope description object is empty'
+                     @MessagePath.issueWarning(740, responseObj, inContext)
                      return nil
                   end
 
@@ -60,10 +62,7 @@ module ADIWG
 
                   # error messages
                   unless haveScope
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: scope description needs at least one dataset, attribute, feature, or other'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(741, responseObj, inContext)
                   end
 
                   return intScopeDes

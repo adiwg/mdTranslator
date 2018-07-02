@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_identifier'
@@ -15,12 +15,13 @@ module ADIWG
 
             module ProjectionParameters
 
-               def self.unpack(hProjection, responseObj)
+               def self.unpack(hProjection, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hProjection.empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: reference system projection parameters object is empty'
+                     @MessagePath.issueWarning(650, responseObj, inContext)
                      return nil
                   end
 
@@ -28,10 +29,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intProjection = intMetadataClass.newProjection
 
+                  outContext = 'projection parameters'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # projection parameters - projection identifier {identifier}
                   if hProjection.has_key?('projectionIdentifier')
                      unless hProjection['projectionIdentifier'].empty?
-                        hReturn = Identifier.unpack(hProjection['projectionIdentifier'], responseObj)
+                        hReturn = Identifier.unpack(hProjection['projectionIdentifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intProjection[:projectionIdentifier] = hReturn
                         end
@@ -57,10 +61,7 @@ module ADIWG
                      intProjection[:projection] = hProjection['projection']
                   end
                   if intProjection[:projection].nil? || intProjection[:projection] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: spatial reference projection type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(651, responseObj, inContext)
                   end
 
                   # projection parameters - projection name
@@ -200,7 +201,7 @@ module ADIWG
                   if hProjection.has_key?('obliqueLinePoint')
                      aItems = hProjection['obliqueLinePoint']
                      aItems.each do |item|
-                        hReturn = ObliqueLinePoint.unpack(item, responseObj)
+                        hReturn = ObliqueLinePoint.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intProjection[:obliqueLinePoints] << hReturn
                         end

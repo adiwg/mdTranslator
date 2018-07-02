@@ -2207,7 +2207,7 @@
                            "periodName1"
                         ],
                         "timeInterval": {
-                           "interval": 9.9,
+                           "interval": 9,
                            "units": "year"
                         },
                         "duration": {
@@ -2897,7 +2897,7 @@
                         "periodName1"
                      ],
                      "timeInterval": {
-                        "interval": 9.9,
+                        "interval": 7,
                         "units": "year"
                      },
                      "duration": {
@@ -3207,7 +3207,7 @@
                   "periodName1"
                ],
                "timeInterval": {
-                  "interval": 9.9,
+                  "interval": 5,
                   "units": "year"
                },
                "duration": {

@@ -21,8 +21,11 @@ class TestWriterMdJsonTimeInstant < TestWriterMdJsonParent
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] = []
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] << { timeInstant: hTimeI }
 
+   TDClass.removeEmptyObjects(mdHash)
+
    @@mdHash = mdHash
 
+   # TODO add tests for geologic time after schema update
    # TODO reinstate after schema update
    # def test_schema_timeInstant
    #

@@ -157,6 +157,32 @@ class MdJsonHashWriter
       hFunding[:description] = description unless description.nil?
       return hFunding
    end
+   
+   def build_geoJson
+      aGeoJson = []
+      aGeoJson << point
+      aGeoJson << lineString
+      aGeoJson << polygon
+      aGeoJson << multiPoint
+      aGeoJson << multiLineString
+      aGeoJson << multiPolygon
+      hGeoCollection = geometryCollection
+      hGeoCollection[:geometries] << point
+      hGeoCollection[:geometries] << point
+      aGeoJson << hGeoCollection
+      hFeature = feature
+      hFeature[:id] = 'FID001'
+      hFeature[:bbox] = [1, 2, 3, 4]
+      hFeature[:geometry] = point
+      hFeature[:properties] = properties
+      aGeoJson << hFeature
+      hFeatCollection = featureCollection
+      hFeatCollection[:bbox] = [1, 2, 3, 4]
+      hFeatCollection[:features] << hFeature
+      hFeatCollection[:features] << hFeature
+      aGeoJson << hFeatCollection
+      return aGeoJson
+   end
 
    def build_geologicAge
       hGeologicAge = geologicAge
@@ -185,7 +211,6 @@ class MdJsonHashWriter
    def build_georectifiedRepresentation
       hGeoRec = georectified
       hGrid = build_gridRepresentation
-      add_dimension(hGrid)
       hGeoRec[:gridRepresentation] = hGrid
       return hGeoRec
    end
@@ -193,7 +218,6 @@ class MdJsonHashWriter
    def build_georeferenceableRepresentation
       hGeoRef = georeferenceable
       hGrid = build_gridRepresentation
-      add_dimension(hGrid)
       hGeoRef[:gridRepresentation] = hGrid
       return hGeoRef
    end
@@ -202,6 +226,8 @@ class MdJsonHashWriter
       hGrid = gridRepresentation
       hGrid[:numberOfDimensions] = dimensions unless dimensions.nil?
       hGrid[:cellGeometry] = geometry unless geometry.nil?
+      hGrid[:dimension] << dimension
+      hGrid[:dimension] << dimension
       return hGrid
    end
 
@@ -221,6 +247,13 @@ class MdJsonHashWriter
       return hKeywords
    end
 
+   def build_keywords_full
+      hKeywords = keywords
+      add_keyword(hKeywords, 'keyword one', 'KEYID001')
+      add_keyword(hKeywords, 'keyword two')
+      return hKeywords
+   end
+
    def build_legalConstraint(aAccess = [], aUse = [], aOther = [])
       hCon = legalConstraint
       hCon[:legal][:accessConstraint] = aAccess unless aAccess.empty?
@@ -231,6 +264,15 @@ class MdJsonHashWriter
 
    def build_lineage
       hLineage = lineage
+      return hLineage
+   end
+
+   def build_lineage_full
+      hLineage = lineage
+      hLineage[:processStep] << build_processStep('step one', 'lineage step one')
+      hLineage[:processStep] << build_processStep('step two', 'lineage step two')
+      hLineage[:source] << build_source('source one', 'lineage source one')
+      hLineage[:source] << build_source('source two', 'lineage source two')
       return hLineage
    end
 
@@ -245,6 +287,45 @@ class MdJsonHashWriter
    def build_maintenance
       hMaintenance = maintenance
       return hMaintenance
+   end
+   
+   def build_metadata_full
+      hMetadata = metadata
+      hMetadata[:metadataInfo] = build_metadataInfo_full
+      hMetadata[:resourceInfo] = build_resourceInfo_full
+      hMetadata[:resourceLineage] << build_lineage
+      hMetadata[:resourceLineage] << build_lineage
+      hMetadata[:resourceDistribution] << build_distribution
+      hMetadata[:resourceDistribution] << build_distribution
+      hMetadata[:associatedResource] << build_associatedResource
+      hMetadata[:associatedResource] << build_associatedResource
+      hMetadata[:additionalDocumentation] << build_additionalDocumentation
+      hMetadata[:additionalDocumentation] << build_additionalDocumentation
+      hMetadata[:funding] << build_funding
+      hMetadata[:funding] << build_funding
+      removeEmptyObjects(hMetadata)
+      return hMetadata
+   end
+
+   def build_metadataInfo_full
+      hMetadataInfo = metadataInfo
+      hMetadataInfo[:metadataIdentifier] = build_identifier('metadata info identifier')
+      hMetadataInfo[:parentMetadata] = build_citation('parent metadata title')
+      hMetadataInfo[:defaultMetadataLocale] = locale
+      hMetadataInfo[:otherMetadataLocale] << locale
+      hMetadataInfo[:otherMetadataLocale] << locale
+      hMetadataInfo[:metadataContact] << build_responsibleParty('metadata contact one', ['CID001'])
+      hMetadataInfo[:metadataContact] << build_responsibleParty('metadata contact two', ['CID002'])
+      hMetadataInfo[:metadataDate] << build_date('2018-06-21', 'metadata date one')
+      hMetadataInfo[:metadataDate] << build_date('2018-06-21', 'metadata date two')
+      hMetadataInfo[:metadataOnlineResource] << build_onlineResource('https://adiwg.ord/1')
+      hMetadataInfo[:metadataOnlineResource] << build_onlineResource('https://adiwg.ord/2')
+      hMetadataInfo[:metadataConstraint] << build_useConstraint
+      hMetadataInfo[:metadataConstraint] << build_legalConstraint
+      hMetadataInfo[:alternateMetadataReference] << build_citation('alternate metadata title one')
+      hMetadataInfo[:alternateMetadataReference] << build_citation('alternate metadata title two')
+      hMetadataInfo[:metadataMaintenance] = build_maintenance
+      return hMetadataInfo
    end
 
    def build_metadataRepository(repo = nil, standard = nil)
@@ -293,6 +374,21 @@ class MdJsonHashWriter
       return hStep
    end
 
+   def build_processStep_full
+      hProcess = processStep
+      hProcess[:timePeriod] = build_timePeriod('TP001', 'process time', '2018-06-22')
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:stepSource] << build_source('SRC001')
+      hProcess[:stepSource] << build_source('SRC002')
+      hProcess[:stepProduct] << build_source('SRC003')
+      hProcess[:stepProduct] << build_source('SRC004')
+      hProcess[:reference] << citation_title
+      hProcess[:reference] << citation_title
+      hProcess[:scope] = scope
+      return hProcess
+   end
+
    def build_resourceFormat(title = nil, amendment = nil, compMethod = nil, prereq = nil)
       hFormat = resourceFormat
       hFormat[:formatSpecification][:title] = title unless title.nil?
@@ -302,13 +398,64 @@ class MdJsonHashWriter
       return hFormat
    end
 
+   def build_resourceInfo_full
+      hResourceInfo = resourceInfo
+      hResourceInfo[:resourceType] << resourceType
+      hResourceInfo[:resourceType] << resourceType
+      hResourceInfo[:citation] = build_citation('resource info citation title')
+      hResourceInfo[:timePeriod] = build_timePeriod('TID001', 'resource time period', '2018-06-21')
+      hResourceInfo[:pointOfContact] << build_responsibleParty('pointOfContact', ['CID001'])
+      hResourceInfo[:pointOfContact] << build_responsibleParty('pointOfContact', ['CID002'])
+      hResourceInfo[:spatialReferenceSystem] << build_spatialReference('wkt')
+      hResourceInfo[:spatialReferenceSystem] << build_spatialReference('wkt')
+      hResourceInfo[:spatialRepresentation] << build_spatialRepresentation('grid', build_gridRepresentation)
+      hResourceInfo[:spatialRepresentation] << build_spatialRepresentation('grid', build_gridRepresentation)
+      hResourceInfo[:spatialResolution] << build_spatialResolution('scale')
+      hResourceInfo[:spatialResolution] << build_spatialResolution('scale')
+      hResourceInfo[:temporalResolution] << duration
+      hResourceInfo[:temporalResolution] << duration
+      hResourceInfo[:extent] << build_extent('extent one')
+      hResourceInfo[:extent] << build_extent('extent two')
+      hResourceInfo[:coverageDescription] << build_coverageDescription
+      hResourceInfo[:coverageDescription] << build_coverageDescription
+      hResourceInfo[:taxonomy] << taxonomy
+      hResourceInfo[:taxonomy] << taxonomy
+      hResourceInfo[:graphicOverview] << build_graphic('graphic one')
+      hResourceInfo[:graphicOverview] << build_graphic('graphic two')
+      hResourceInfo[:resourceFormat] << build_resourceFormat('resource format one')
+      hResourceInfo[:resourceFormat] << build_resourceFormat('resource format two')
+      hResourceInfo[:keyword] << build_keywords('keywords one', 'theme one')
+      add_keyword(hResourceInfo[:keyword][0], 'keyword one', 'KWID001')
+      hResourceInfo[:keyword] << build_keywords('keywords two', 'theme two')
+      add_keyword(hResourceInfo[:keyword][1], 'keyword two', 'KWID002')
+      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage one')
+      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage two')
+      hResourceInfo[:constraint] << build_useConstraint
+      hResourceInfo[:constraint] << build_legalConstraint
+      hResourceInfo[:otherResourceLocale] << locale
+      hResourceInfo[:otherResourceLocale] << locale
+      hResourceInfo[:resourceMaintenance] << maintenance
+      hResourceInfo[:resourceMaintenance] << maintenance
+      return hResourceInfo
+   end
+
    def build_resourceUsage(usage = nil, startDT = '2018-05-02', endDT = nil, aContacts = ['CID004'])
       hUsage = resourceUsage
       hUsage[:specificUsage] = usage unless usage.nil?
       hTimePeriod = build_timePeriod('TP001', 'usage one', startDT, endDT)
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
-      hRParty = build_responsibleParty('pointOfContact', aContacts)
-      hUsage[:userContactInfo] << hRParty
+      hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', aContacts)
+      return hUsage
+   end
+
+   def build_resourceUsage_full
+      hUsage = resourceUsage
+      hTimePeriod = build_timePeriod('TP001', 'usage time', '2018-06-24')
+      hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
+      hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
+      hUsage[:additionalDocumentation] << citation_title
+      hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', ['CID001'])
+      hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', ['CID003'])
       return hUsage
    end
 
@@ -326,6 +473,15 @@ class MdJsonHashWriter
    def build_scope(scopeCode = nil)
       hScope = scope
       hScope[:scopeCode] = scopeCode unless scopeCode.nil?
+      return hScope
+   end
+
+   def build_scope_full
+      hScope = scope
+      hScope[:scopeDescription] << scopeDescription
+      hScope[:scopeDescription] << scopeDescription
+      hScope[:scopeExtent] << extent
+      hScope[:scopeExtent] << extent
       return hScope
    end
 
@@ -352,6 +508,15 @@ class MdJsonHashWriter
       return hSource
    end
 
+   def build_source_full
+      hSource = source
+      hSource[:metadataCitation] << citation_title
+      hSource[:metadataCitation] << citation_title
+      hSource[:sourceProcessStep] << build_processStep('PS001', 'process step one')
+      hSource[:sourceProcessStep] << build_processStep('PS002', 'process step two')
+      return hSource
+   end
+
    def build_spatialReference(type = nil, hIdentifier = nil, hParameters = nil, wkt = nil)
       hSpatialRef = spatialReferenceSystem
       hSpatialRef[:referenceSystemType] = type unless type.nil?
@@ -364,12 +529,30 @@ class MdJsonHashWriter
       return hSpatialRef
    end
 
+   def build_spatialReference_full
+      hSpaceRef = spatialReferenceSystem
+      hSpaceRef[:referenceSystemIdentifier] = identifier
+      hSpaceRef[:referenceSystemParameterSet] = build_parameterSet(true, true, true)
+      return hSpaceRef
+   end
+
    def build_spatialRepresentation(type, hObj)
       hSpaceRep = {}
       hSpaceRep[:gridRepresentation] = hObj if type == 'grid'
       hSpaceRep[:vectorRepresentation] = hObj if type == 'vector'
       hSpaceRep[:georectifiedRepresentation] = hObj if type == 'georectified'
       hSpaceRep[:georeferenceableRepresentation] = hObj if type == 'georeferenceable'
+      return hSpaceRep
+   end
+
+   def build_spatialRepresentation_full
+      hSpaceRep = []
+      hSpaceRep << {gridRepresentation: build_gridRepresentation}
+      hSpaceRep << {vectorRepresentation: build_vectorRepresentation}
+      hSpaceRep[1][:vectorRepresentation][:vectorObject] << vectorObject
+      hSpaceRep[1][:vectorRepresentation][:vectorObject] << vectorObject
+      hSpaceRep << {georectifiedRepresentation: build_georectifiedRepresentation}
+      hSpaceRep << {georeferenceableRepresentation: build_georeferenceableRepresentation}
       return hSpaceRep
    end
 
@@ -384,9 +567,48 @@ class MdJsonHashWriter
       return hResolution
    end
 
+   def build_spatialResolution_full
+      aResolution = []
+      aResolution << build_spatialResolution('scale')
+      aResolution << build_spatialResolution('measure')
+      aResolution << build_spatialResolution('detail')
+      aResolution << build_spatialResolution('coordinate')
+      aResolution << build_spatialResolution('bearing')
+      aResolution << build_spatialResolution('geographic')
+      return aResolution
+   end
+
    def build_taxonomy
       hTaxonomy = taxonomy
       return hTaxonomy
+   end
+
+   def build_taxonomy_full
+      hTaxonomy = taxonomy
+      hTaxonomy[:taxonomicSystem] << taxonSystem
+      hTaxonomy[:identificationReference] << identifier
+      hTaxonomy[:observer] << build_responsibleParty('observer', ['CID001'])
+      hTaxonomy[:observer] << build_responsibleParty('observer', ['CID001'])
+      hTaxonomy[:voucher] << build_taxonVoucher
+      hTaxonomy[:voucher] << build_taxonVoucher
+      return hTaxonomy
+
+   end
+   
+   def build_taxonomyClassification_full
+      hTaxClass = taxonClass
+      add_taxonClass(hTaxClass, 'level two', 'name two')
+      hLevel2 = hTaxClass[:subClassification][0]
+      add_taxonClass(hLevel2, 'level three', 'name three')
+      hLevel3 = hLevel2[:subClassification][0]
+      add_taxonClass(hLevel3, 'level four 1', 'name four 1')
+      add_taxonClass(hLevel3, 'level four 2', 'name four 2', ['common four 2A'])
+      hLevel40 = hLevel3[:subClassification][0]
+      hLevel41 = hLevel3[:subClassification][1]
+      add_taxonClass(hLevel40, 'level five 1', 'name five 1', ['common five 1A','common five 1B'])
+      add_taxonClass(hLevel41, 'level five 2', 'name five 2')
+      removeEmptyObjects(hTaxClass)
+      return hTaxClass
    end
 
    def build_taxonSystem(title, contactId, modifications = nil)
@@ -397,19 +619,27 @@ class MdJsonHashWriter
       return hTaxSystem
    end
 
-   def build_taxonVoucher(specimen, aContacts)
+   def build_taxonVoucher(specimen = nil, aContacts = nil)
       hVoucher = taxonVoucher
-      hVoucher[:specimen] = specimen
+      hVoucher[:specimen] = specimen unless specimen.nil?
+      aContacts = ['CID001'] if aContacts.nil?
       hVoucher[:repository] = build_responsibleParty('custodian', aContacts)
       return hVoucher
    end
 
    def build_timeInstant(id = nil, description = nil, startDT = nil)
-      hTimePeriod = timeInstant
-      hTimePeriod[:id] = id unless id.nil?
-      hTimePeriod[:description] = description unless description.nil?
-      hTimePeriod[:dateTime] = startDT unless startDT.nil?
-      return hTimePeriod
+      hTimeInstant = timeInstant
+      hTimeInstant[:id] = id unless id.nil?
+      hTimeInstant[:description] = description unless description.nil?
+      hTimeInstant[:dateTime] = startDT unless startDT.nil?
+      return hTimeInstant
+   end
+   
+   def build_timeInstant_full
+      hTimeInstant = build_timeInstant
+      hTimeInstant[:geologicAge] = geologicAge
+      hTimeInstant[:geologicAge][:ageReference] << citation_title
+      return hTimeInstant
    end
 
    def build_timePeriod(id = nil, description = nil, startDT = nil, endDT = nil)
@@ -421,8 +651,28 @@ class MdJsonHashWriter
       return hTimePeriod
    end
 
+   def build_timePeriod_full
+      hTimePeriod = build_timePeriod
+      hTimePeriod[:startGeologicAge] = geologicAge
+      hTimePeriod[:endGeologicAge] = geologicAge
+      hTimePeriod[:timeInterval] = timeInterval
+      hTimePeriod[:duration] = duration
+      return hTimePeriod
+   end
+
    def build_transferOption
       return transferOption
+   end
+
+   def build_transferOption_full
+      hTranOption = build_transferOption
+      hTranOption[:onlineOption] << build_onlineResource('https://adiwg.org/1')
+      hTranOption[:onlineOption] << build_onlineResource('https://adiwg.org/2')
+      hTranOption[:offlineOption] << medium
+      hTranOption[:offlineOption] << medium
+      hTranOption[:distributionFormat] << resourceFormat
+      hTranOption[:distributionFormat] << resourceFormat
+      return hTranOption
    end
 
    def build_useConstraint
@@ -432,12 +682,16 @@ class MdJsonHashWriter
 
    def build_vectorRepresentation(level = nil)
       hVector = vectorRepresentation
-      if level.nil?
-         hVector.delete(:topologyLevel)
-      else
-         hVector[:topologyLevel] = level
-      end
+      hVector[:topologyLevel] = level unless level.nil?
       return hVector
+   end
+
+   def build_vectorRepresentation_full
+      hVector = vectorRepresentation
+      hVector[:vectorObject] << vectorObject
+      hVector[:vectorObject] << vectorObject
+      return hVector
+
    end
 
    # ---------------------------------------------------------------------------------
@@ -496,6 +750,16 @@ class MdJsonHashWriter
       end
       hAttGroup[:attribute] << hAttribute
       return hAttGroup
+   end
+
+   def add_bbox(hObj, north = nil, south = nil, west = nil, east = nil)
+      hBbox = [60, 40, -160, -140]
+      hBbox[0] = north unless north.nil?
+      hBbox[1] = south unless south.nil?
+      hBbox[2] = west unless west.nil?
+      hBbox[3] = east unless east.nil?
+      hObj[:bbox] = hBbox
+      return hObj
    end
 
    def add_dataIndex(hEntity, code = nil, duplicate = false, attCode = nil)
@@ -594,7 +858,8 @@ class MdJsonHashWriter
    def add_keyword(hKeywords, keyword, id = nil)
       hKeyword = {}
       hKeyword[:keyword] = keyword
-      hKeyword[:keywordId] = id  unless id.nil?
+      hKeyword[:keywordId] = id
+      hKeyword.delete(:keywordId) if hKeyword[:keywordId].nil?
       hKeywords[:keyword] << hKeyword
       return hKeywords
    end

@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 #  Stan Smith 2018-01-10 added reference system WKT
 #  Stan Smith 2017-10-23 added reference system parameter set
 #  Stan Smith 2016-10-16 refactored for mdJson 2.0
@@ -21,17 +21,21 @@ module ADIWG
 
             module SpatialReferenceSystem
 
-               def self.unpack(hSpatialRef, responseObj)
+               def self.unpack(hSpatialRef, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hSpatialRef.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial reference system object is empty'
+                     @MessagePath.issueWarning(780, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intSpatialRef = intMetadataClass.newSpatialReferenceSystem
+
+                  outContext = 'spatial reference system'
 
                   haveSystem = false
 
@@ -47,7 +51,7 @@ module ADIWG
                   if hSpatialRef.has_key?('referenceSystemIdentifier')
                      hObject = hSpatialRef['referenceSystemIdentifier']
                      unless hObject.empty?
-                        hReturn = Identifier.unpack(hObject, responseObj)
+                        hReturn = Identifier.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSpatialRef[:systemIdentifier] = hReturn
                            haveSystem = true
@@ -67,7 +71,7 @@ module ADIWG
                   if hSpatialRef.has_key?('referenceSystemParameterSet')
                      hObject = hSpatialRef['referenceSystemParameterSet']
                      unless hObject.empty?
-                        hReturn = ReferenceSystemParameters.unpack(hObject, responseObj)
+                        hReturn = ReferenceSystemParameters.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSpatialRef[:systemParameterSet] = hReturn
                            haveSystem = true
@@ -76,10 +80,7 @@ module ADIWG
                   end
 
                   unless haveSystem
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: spatial reference system must declare reference system type, identifier, WKT, or parameter set'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(781, responseObj, inContext)
                   end
 
                   return intSpatialRef

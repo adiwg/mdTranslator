@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 #  Stan Smith 2017-11-07 add geologic age
 # 	Stan Smith 2016-10-24 original script
 
@@ -17,17 +17,22 @@ module ADIWG
 
             module TimeInstant
 
-               def self.unpack(hInstant, responseObj)
+               def self.unpack(hInstant, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hInstant.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: time instant object is empty'
+                     @MessagePath.issueWarning(850, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intInstant = intMetadataClass.newTimeInstant
+
+                  outContext = 'time instant'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # time instant - id
                   if hInstant.has_key?('id')
@@ -46,7 +51,7 @@ module ADIWG
                   # time instant - identifier {Identifier}
                   if hInstant.has_key?('identifier')
                      unless hInstant['identifier'].empty?
-                        hReturn = Identifier.unpack(hInstant['identifier'], responseObj)
+                        hReturn = Identifier.unpack(hInstant['identifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intInstant[:identifier] = hReturn
                         end
@@ -65,7 +70,7 @@ module ADIWG
                   # time instant - datetime
                   if hInstant.has_key?('dateTime')
                      unless hInstant['dateTime'] == ''
-                        hDate = DateTime.unpack(hInstant['dateTime'], responseObj)
+                        hDate = DateTime.unpack(hInstant['dateTime'], responseObj, outContext)
                         unless hDate.nil?
                            intInstant[:timeInstant] = hDate
                         end
@@ -74,7 +79,7 @@ module ADIWG
                   # time instant - geologic age
                   if hInstant.has_key?('geologicAge')
                      unless hInstant['geologicAge'].empty?
-                        hGeoAge = GeologicAge.unpack(hInstant['geologicAge'], responseObj)
+                        hGeoAge = GeologicAge.unpack(hInstant['geologicAge'], responseObj, outContext)
                         unless hGeoAge.nil?
                            intInstant[:geologicAge] = hGeoAge
                         end
@@ -83,9 +88,7 @@ module ADIWG
 
                   # time instant must have either a timeInstant or geologicAge
                   if intInstant[:timeInstant].empty? && intInstant[:geologicAge].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: time instant must have dateTime or geologic age'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(851, responseObj, inContext)
                   end
 
                   return intInstant

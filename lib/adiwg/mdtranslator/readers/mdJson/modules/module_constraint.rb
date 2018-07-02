@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-16 refactored error and warning messaging
 # 	Stan Smith 2016-10-15 original script
 
 require_relative 'module_scope'
@@ -20,11 +20,13 @@ module ADIWG
 
             module Constraint
 
-               def self.unpack(hConstraint, responseObj)
+               def self.unpack(hConstraint, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hConstraint.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: constraint object is empty'
+                     @MessagePath.issueWarning(90, responseObj, inContext)
                      return nil
                   end
 
@@ -40,17 +42,17 @@ module ADIWG
                         if %w{ use legal security }.one? {|word| word == type}
                            intConstraint[:type] = hConstraint['type']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: constraint type must be use, legal, or security'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(91, responseObj, inContext)
                         end
                      end
                   end
                   if intConstraint[:type].nil? || intConstraint[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: constraint type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(92, responseObj, inContext)
                   end
+
+                  outContext = 'constraint'
+                  outContext = intConstraint[:type] + ' constraint' unless intConstraint[:type].nil?
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # constraint - use limitation [] (required if type='use')
                   if hConstraint.has_key?('useLimitation')
@@ -65,7 +67,7 @@ module ADIWG
                   if hConstraint.has_key?('scope')
                      hObject = hConstraint['scope']
                      unless hObject.empty?
-                        hReturn = Scope.unpack(hObject, responseObj)
+                        hReturn = Scope.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intConstraint[:scope] = hReturn
                         end
@@ -76,7 +78,7 @@ module ADIWG
                   if hConstraint.has_key?('graphic')
                      aGraphic = hConstraint['graphic']
                      aGraphic.each do |item|
-                        hGraphic = Graphic.unpack(item, responseObj)
+                        hGraphic = Graphic.unpack(item, responseObj, outContext)
                         unless hGraphic.nil?
                            intConstraint[:graphic] << hGraphic
                         end
@@ -87,7 +89,7 @@ module ADIWG
                   if hConstraint.has_key?('reference')
                      aReference = hConstraint['reference']
                      aReference.each do |item|
-                        hReference = Citation.unpack(item, responseObj)
+                        hReference = Citation.unpack(item, responseObj, outContext)
                         unless hReference.nil?
                            intConstraint[:reference] << hReference
                         end
@@ -98,7 +100,7 @@ module ADIWG
                   if hConstraint.has_key?('releasability')
                      hObject = hConstraint['releasability']
                      unless hObject.empty?
-                        hReturn = Releasability.unpack(hObject, responseObj)
+                        hReturn = Releasability.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intConstraint[:releasability] = hReturn
                         end
@@ -109,7 +111,7 @@ module ADIWG
                   if hConstraint.has_key?('responsibleParty')
                      aRParty = hConstraint['responsibleParty']
                      aRParty.each do |item|
-                        hParty = ResponsibleParty.unpack(item, responseObj)
+                        hParty = ResponsibleParty.unpack(item, responseObj, outContext)
                         unless hParty.nil?
                            intConstraint[:responsibleParty] << hParty
                         end
@@ -120,7 +122,7 @@ module ADIWG
                      if hConstraint.has_key?('legal')
                         hObject = hConstraint['legal']
                         unless hObject.empty?
-                           hReturn = LegalConstraint.unpack(hObject, responseObj)
+                           hReturn = LegalConstraint.unpack(hObject, responseObj, inContext)
                            unless hReturn.nil?
                               intConstraint[:legalConstraint] = hReturn
                            end
@@ -129,14 +131,10 @@ module ADIWG
                            end
                         end
                         if hObject.empty?
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: legal constraint object is missing'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(93, responseObj, inContext)
                         end
                      else
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: legal constraint object is missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(93, responseObj, inContext)
                      end
                   end
 
@@ -144,7 +142,7 @@ module ADIWG
                      if hConstraint.has_key?('security')
                         hObject = hConstraint['security']
                         unless hObject.empty?
-                           hReturn = SecurityConstraint.unpack(hObject, responseObj)
+                           hReturn = SecurityConstraint.unpack(hObject, responseObj, inContext)
                            unless hReturn.nil?
                               intConstraint[:securityConstraint] = hReturn
                            end
@@ -153,14 +151,10 @@ module ADIWG
                            end
                         end
                         if hObject.empty?
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: security constraint object is missing'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(94, responseObj, inContext)
                         end
                      else
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: security constraint object is missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(94, responseObj, inContext)
                      end
                   end
 

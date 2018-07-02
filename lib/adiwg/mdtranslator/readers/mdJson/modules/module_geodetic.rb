@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-19 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_identifier'
@@ -14,11 +14,13 @@ module ADIWG
 
             module Geodetic
 
-               def self.unpack(hGeodetic, responseObj)
+               def self.unpack(hGeodetic, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hGeodetic.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial reference geodetic object is empty'
+                     @MessagePath.issueWarning(310, responseObj, inContext)
                      return nil
                   end
 
@@ -26,10 +28,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intGeodetic = intMetadataClass.newGeodetic
 
+                  outContext = 'geodetic parameters'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # geodetic - datum identifier {identifier}
                   if hGeodetic.has_key?('datumIdentifier')
                      unless hGeodetic['datumIdentifier'].empty?
-                        hReturn = Identifier.unpack(hGeodetic['datumIdentifier'], responseObj)
+                        hReturn = Identifier.unpack(hGeodetic['datumIdentifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intGeodetic[:datumIdentifier] = hReturn
                         end
@@ -46,7 +51,7 @@ module ADIWG
                   # geodetic - ellipsoid identifier {identifier}
                   if hGeodetic.has_key?('ellipsoidIdentifier')
                      unless hGeodetic['ellipsoidIdentifier'].empty?
-                        hReturn = Identifier.unpack(hGeodetic['ellipsoidIdentifier'], responseObj)
+                        hReturn = Identifier.unpack(hGeodetic['ellipsoidIdentifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intGeodetic[:ellipsoidIdentifier] = hReturn
                         end
@@ -58,9 +63,7 @@ module ADIWG
                      intGeodetic[:ellipsoidName] = hGeodetic['ellipsoidName']
                   end
                   if intGeodetic[:ellipsoidName].nil? || intGeodetic[:ellipsoidName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial reference geodetic ellipsoid name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(311, responseObj, inContext)
                   end
 
                   # geodetic - semi-major axis

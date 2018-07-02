@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 #  Stan Smith 2016-10-21 original script
 
 require_relative 'module_dateTime'
@@ -14,11 +14,13 @@ module ADIWG
 
             module OrderProcess
 
-               def self.unpack(hOrder, responseObj)
+               def self.unpack(hOrder, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hOrder.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distribution order process object is empty'
+                     @MessagePath.issueWarning(610, responseObj, inContext)
                      return nil
                   end
 

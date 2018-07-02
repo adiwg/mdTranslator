@@ -2,160 +2,182 @@
 # reader / mdJson / module_geoJson
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-26 original script
+#  Stan Smith 2018-06-19 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-26 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_geoJson'
 
 class TestReaderMdJsonGeoJson < TestReaderMdJsonParent
 
-    # set variables for test
-    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeoJson
-    aIn = TestReaderMdJsonParent.getJson('geoJson.json')
-    @@aIn = aIn['geographicElement']
+   # set variables for test
+   @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeoJson
 
-    def test_geoJson_schema
+   # instance classes needed in script
+   TestReaderMdJsonParent.loadEssential
+   TDClass = MdJsonHashWriter.new
 
-        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+   # build mdJson test file in hash
+   mdHash = TDClass.build_geoJson
 
-        @@aIn.each do |hGeo|
-            errors = JSON::Validator.fully_validate('geojson.json', hGeo)
-            assert_empty errors
-        end
+   @@mdHash = mdHash
 
-    end
+   def test_geoJson_schema
 
-    def test_complete_geoJson_Point
+      ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[0]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+      @@mdHash.each do |hGeo|
+         errors = JSON::Validator.fully_validate('geojson.json', hGeo)
+         assert_empty errors
+      end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   end
 
-    end
+   def test_complete_geoJson_Point
 
-    def test_complete_geoJson_LingString
+      hIn = Marshal::load(Marshal.dump(@@mdHash[0]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[1]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   end
 
-    end
+   def test_complete_geoJson_LineString
 
-    def test_complete_geoJson_Polygon
+      hIn = Marshal::load(Marshal.dump(@@mdHash[1]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[2]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   end
 
-    end
+   def test_complete_geoJson_Polygon
 
-    def test_complete_geoJson_Polygon_interior
+      hIn = Marshal::load(Marshal.dump(@@mdHash[2]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[3]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   end
+   
+   def test_complete_geoJson_MultiPoint
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[3]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_MultiPoint
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[4]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_MultiLineString
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[4]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_MultiLineString
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[5]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_MultiPolygon
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[5]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_MultiPolygon
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[6]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_GeometryCollection
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[6]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_GeometryCollection
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[7]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_Feature
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[7]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_Feature
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[8]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_FeatureCollection
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[8]))
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_complete_geoJson_FeatureCollection
+      refute_empty metadata
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
-        aIn = Marshal::load(Marshal.dump(@@aIn[9]))
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack(aIn, hResponse)
+   end
 
-        refute_empty metadata
-        assert hResponse[:readerExecutionPass]
-        assert_empty hResponse[:readerExecutionMessages]
+   def test_complete_geoJson_unknownType
 
-    end
+      hIn = Marshal::load(Marshal.dump(@@mdHash[0]))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['type'] = 'unknown'
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
 
-    def test_empty_geoJson_object
+      assert_empty metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: GeoJSON object type not recognized'
 
-        hResponse = Marshal::load(Marshal.dump(@@responseObj))
-        metadata = @@NameSpace.unpack({}, hResponse)
+   end
 
-        assert_nil metadata
-        assert hResponse[:readerExecutionPass]
-        assert_equal 1, hResponse[:readerExecutionMessages].length
-        assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: GeoJSON object is empty'
+   def test_empty_geoJson_object
 
-    end
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack({}, hResponse)
+
+      assert_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: GeoJSON object is empty'
+
+   end
 
 end

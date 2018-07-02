@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 # 	Stan Smith 2016-10-05 refactored for mdJson 2.0
 # 	Stan Smith 2015-07-28 original script
 
@@ -13,11 +13,13 @@ module ADIWG
 
             module Locale
 
-               def self.unpack(hLocale, responseObj)
+               def self.unpack(hLocale, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hLocale.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: locale object is empty'
+                     @MessagePath.issueWarning(510, responseObj, inContext)
                      return nil
                   end
 
@@ -31,9 +33,7 @@ module ADIWG
                      intLocale[:languageCode] = hLocale['language']
                   end
                   if intLocale[:languageCode].nil? || intLocale[:languageCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: locale language code is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(511, responseObj, inContext)
                   end
 
                   # locale - country
@@ -49,9 +49,7 @@ module ADIWG
                      intLocale[:characterEncoding] = hLocale['characterSet']
                   end
                   if intLocale[:characterEncoding].nil? || intLocale[:characterEncoding] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: locale character set code is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(512, responseObj, inContext)
                   end
 
                   return intLocale

@@ -97,7 +97,7 @@
         <gco:RecordType>coverage name; coverage description</gco:RecordType>
       </gmd:attributeDescription>
       <gmd:contentType>
-        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type" codeSpace="userCode"/>
+        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
       </gmd:contentType>
       <gmd:dimension/>
     </gmi:MI_CoverageDescription>
@@ -109,7 +109,7 @@
         <gco:RecordType>coverage name; coverage description</gco:RecordType>
       </gmd:attributeDescription>
       <gmd:contentType>
-        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type" codeSpace="userCode"/>
+        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
       </gmd:contentType>
       <gmd:dimension/>
     </gmi:MI_CoverageDescription>
@@ -120,7 +120,7 @@
         <gco:RecordType>coverage name; coverage description</gco:RecordType>
       </gmd:attributeDescription>
       <gmd:contentType>
-        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type" codeSpace="userCode"/>
+        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
       </gmd:contentType>
       <gmd:dimension/>
     </gmi:MI_CoverageDescription>
@@ -192,7 +192,7 @@
         <gco:RecordType>coverage name; coverage description</gco:RecordType>
       </gmd:attributeDescription>
       <gmd:contentType>
-        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type" codeSpace="userCode"/>
+        <gmd:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
       </gmd:contentType>
       <gmd:dimension/>
     </gmi:MI_CoverageDescription>

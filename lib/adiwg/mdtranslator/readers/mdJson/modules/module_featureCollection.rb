@@ -2,12 +2,12 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-19 refactored error and warning messaging
 #  Stan Smith 2016-11-10 added computedBbox computation
 #  Stan Smith 2016-10-25 original script
 
-require_relative 'module_geoJson'
 require 'adiwg/mdtranslator/internal/module_coordinates'
+require_relative 'module_geoJson'
 
 module ADIWG
    module Mdtranslator
@@ -18,9 +18,11 @@ module ADIWG
 
                def self.unpack(hFeatCol, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hFeatCol.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJson feature collection object is empty'
+                     @MessagePath.issueWarning(280, responseObj)
                      return nil
                   end
 
@@ -34,17 +36,12 @@ module ADIWG
                         if hFeatCol['type'] == 'FeatureCollection'
                            intFeatCol[:type] = hFeatCol['type']
                         else
-                           responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson reader: GeoJson feature collection type must be FeatureCollection'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(281, responseObj)
                         end
                      end
                   end
                   if intFeatCol[:type].nil? || intFeatCol[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJson feature collection type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(282, responseObj)
                   end
 
                   # feature collection - bounding box
@@ -63,9 +60,7 @@ module ADIWG
                         end
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJson feature collection features are missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(283, responseObj)
                   end
 
                   # geometry feature - computed bounding box for extent

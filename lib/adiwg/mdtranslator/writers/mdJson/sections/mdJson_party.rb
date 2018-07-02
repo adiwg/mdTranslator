@@ -16,11 +16,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.contactId hParty[:contactId]
-                     aOrgs = []
-                     hParty[:organizationMembers].each do |hOrg|
-                        aOrgs << hOrg[:contactId]
-                     end
-                     json.organizationMembers aOrgs unless aOrgs.empty?
+                     json.organizationMembers hParty[:organizationMembers] unless hParty[:organizationMembers].empty?
                   end
 
                end # build

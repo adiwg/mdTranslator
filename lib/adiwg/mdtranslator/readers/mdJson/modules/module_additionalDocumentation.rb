@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-13 refactored error and warning messaging
 #  Stan Smith 2016-10-17 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -23,9 +23,11 @@ module ADIWG
 
                def self.unpack(hAddDoc, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hAddDoc.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: additional documentation object is empty'
+                     @MessagePath.issueWarning(1, responseObj)
                      return nil
                   end
 
@@ -45,9 +47,7 @@ module ADIWG
                      end
                   end
                   if intAddDoc[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: additional documentation is missing resource type'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(2, responseObj)
                   end
 
                   # additional documentation - citation [] (required)
@@ -60,9 +60,7 @@ module ADIWG
                      end
                   end
                   if intAddDoc[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: additional documentation is missing citation'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(3, responseObj)
                   end
 
                   return intAddDoc

@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 #  Stan Smith 2016-10-17 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -23,17 +23,22 @@ module ADIWG
 
             module Source
 
-               def self.unpack(hSource, responseObj)
+               def self.unpack(hSource, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hSource.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: source object is empty'
+                     @MessagePath.issueWarning(770, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intSource = intMetadataClass.newDataSource
+
+                  outContext = 'source'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   haveRequired = false
 
@@ -56,7 +61,7 @@ module ADIWG
                   if hSource.has_key?('sourceCitation')
                      hObject = hSource['sourceCitation']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSource[:sourceCitation] = hReturn
                         end
@@ -67,7 +72,7 @@ module ADIWG
                   if hSource.has_key?('metadataCitation')
                      aCitation = hSource['metadataCitation']
                      aCitation.each do |item|
-                        hCitation = Citation.unpack(item, responseObj)
+                        hCitation = Citation.unpack(item, responseObj, outContext)
                         unless hCitation.nil?
                            intSource[:metadataCitation] << hCitation
                         end
@@ -78,7 +83,7 @@ module ADIWG
                   if hSource.has_key?('spatialResolution')
                      hObject = hSource['spatialResolution']
                      unless hObject.empty?
-                        hReturn = SpatialResolution.unpack(hObject, responseObj)
+                        hReturn = SpatialResolution.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSource[:spatialResolution] = hReturn
                         end
@@ -89,7 +94,7 @@ module ADIWG
                   if hSource.has_key?('referenceSystem')
                      hObject = hSource['referenceSystem']
                      unless hObject.empty?
-                        hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
+                        hReturn = SpatialReferenceSystem.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSource[:referenceSystem] = hReturn
                         end
@@ -100,7 +105,7 @@ module ADIWG
                   if hSource.has_key?('sourceProcessStep')
                      aSteps = hSource['sourceProcessStep']
                      aSteps.each do |item|
-                        hStep = ProcessStep.unpack(item, responseObj)
+                        hStep = ProcessStep.unpack(item, responseObj, outContext)
                         unless hStep.nil?
                            intSource[:sourceSteps] << hStep
                         end
@@ -111,7 +116,7 @@ module ADIWG
                   if hSource.has_key?('scope')
                      hObject = hSource['scope']
                      unless hObject.empty?
-                        hReturn = Scope.unpack(hObject, responseObj)
+                        hReturn = Scope.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intSource[:scope] = hReturn
                            haveRequired = true
@@ -120,10 +125,7 @@ module ADIWG
                   end
 
                   unless haveRequired
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: source requires a description or scope'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(771, responseObj, inContext)
                   end
 
                   return intSource

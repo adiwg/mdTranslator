@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 #  Stan Smith 2016-10-24 original script
 
 require_relative 'module_geometryCollection'
@@ -16,9 +16,11 @@ module ADIWG
 
                def self.unpack(hGeoObject, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hGeoObject.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJSON geometry object is empty'
+                     @MessagePath.issueWarning(380, responseObj)
                      return nil
                   end
 
@@ -33,17 +35,12 @@ module ADIWG
                         if %w{ Point LineString Polygon MultiPoint MultiLineString MultiPolygon }.one? {|word| word == type}
                            intGeoObject[:type] = hGeoObject['type']
                         else
-                           responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson reader: GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(381, responseObj)
                         end
                      end
                   end
                   if intGeoObject[:type].nil? || intGeoObject[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry object type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(382, responseObj)
                   end
 
                   # geometry object - coordinates (required)
@@ -51,9 +48,7 @@ module ADIWG
                      intGeoObject[:coordinates] = hGeoObject['coordinates']
                   end
                   if intGeoObject[:coordinates].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry object coordinates are missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(383, responseObj)
                   end
 
                   # geometry object - save native GeoJSON

@@ -2,8 +2,9 @@
 # reader / mdJson / module_resourceInfo
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-11-01 original script
+#  Stan Smith 2018-06-24 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-11-01 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_resourceInfo'
@@ -12,27 +13,34 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::ResourceInfo
-   aIn = TestReaderMdJsonParent.getJson('resourceInfo.json')
-   @@hIn = aIn['resourceInfo'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_resourceInfo_full
+
+   @@mdHash = mdHash
 
    # def test_resourceInfo_schema
    #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'resourceInfo.json')
+   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'resourceInfo.json')
    #     assert_empty errors
    #
    # end
 
    def test_complete_resourceInfo
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
       assert_equal 2, metadata[:resourceTypes].length
       refute_empty metadata[:citation]
       assert_equal 'abstract', metadata[:abstract]
-      assert_equal 'shortAbstract', metadata[:shortAbstract]
+      assert_equal 'short abstract', metadata[:shortAbstract]
       assert_equal 'purpose', metadata[:purpose]
       assert_equal 2, metadata[:credits].length
       refute_empty metadata[:timePeriod]
@@ -48,212 +56,231 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       assert_equal 2, metadata[:taxonomy].length
       assert_equal 2, metadata[:graphicOverviews].length
       assert_equal 2, metadata[:resourceFormats].length
-      assert_equal 5, metadata[:keywords].length
+      assert_equal 2, metadata[:keywords].length
       assert_equal 2, metadata[:resourceUsages].length
       assert_equal 2, metadata[:constraints].length
       refute_empty metadata[:defaultResourceLocale]
       assert_equal 2, metadata[:otherResourceLocales].length
       assert_equal 2, metadata[:resourceMaintenance].length
-      assert_equal 'environmentDescription', metadata[:environmentDescription]
-      assert_equal 'supplementalInfo', metadata[:supplementalInfo]
+      assert_equal 'environment description', metadata[:environmentDescription]
+      assert_equal 'supplemental information', metadata[:supplementalInfo]
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages],
-                      'NOTICE: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
-
+      assert_empty hResponse[:readerExecutionMessages]
    end
 
    def test_empty_resourceInfo_type
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['resourceType'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource type is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_type
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('resourceType')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info resource type is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource type is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_citation
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['citation'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info citation is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource citation is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_citation
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('citation')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info citation is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource citation is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_abstract
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['abstract'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info abstract is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource abstract is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_abstract
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('abstract')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info abstract is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource abstract is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_contact
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('topicCategory')
       hIn['pointOfContact'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: resource info point-of-contact is missing'
+                      'ERROR: mdJson reader: resource point-of-contact is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_contact
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('topicCategory')
       hIn.delete('pointOfContact')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: resource info point-of-contact is missing'
+                      'ERROR: mdJson reader: resource point-of-contact is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_locale
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('topicCategory')
       hIn['defaultResourceLocale'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: resource info default locale is missing'
+                      'ERROR: mdJson reader: resource default locale is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_locale
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('topicCategory')
       hIn.delete('defaultResourceLocale')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: resource info default locale is missing'
+                      'ERROR: mdJson reader: resource default locale is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_status
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['status'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info status is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource status is missing: CONTEXT is resource information'
 
    end
 
    def test_missing_resourceInfo_status
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('status')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info status is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource status is missing: CONTEXT is resource information'
 
    end
 
    def test_empty_resourceInfo_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['shortAbstract'] = ''
       hIn['purpose'] = ''
       hIn['timePeriod'] = {}
@@ -312,8 +339,9 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
    def test_missing_resourceInfo_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('shortAbstract')
       hIn.delete('purpose')
       hIn.delete('timePeriod')
@@ -372,8 +400,9 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
    def test_taxonomy_object_deprecated
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hTaxonomy = hIn['taxonomy'][0]
       hIn['taxonomy'] = {}
       hIn['taxonomy'] = hTaxonomy
@@ -382,21 +411,39 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
 
       refute_nil metadata
       assert hResponse[:readerExecutionPass]
-      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'NOTICE: mdJson reader: taxonomy is an array, use of a single taxonomy object was deprecated'
+         'NOTICE: mdJson reader: taxonomy is now an array, the single taxonomy object was deprecated: CONTEXT is resource information'
 
+   end
+
+   def test_topicCategory_deprecated
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['topicCategory'] = ['topic category one', 'topic category two']
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         "NOTICE: mdJson reader: topicCategory is deprecated, items were moved to keywords, keywordType 'isoTopicCategory': CONTEXT is resource information"
    end
 
    def test_empty_resourceInfo_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: resource info object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: resource info object is empty'
 
    end
 

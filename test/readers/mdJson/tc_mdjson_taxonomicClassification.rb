@@ -2,6 +2,7 @@
 # reader / mdJson / module_taxonomicClassification
 
 # History:
+#  Stan Smith 2018-06-25 refactored to use mdJson construction helpers
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-22 original script
 
@@ -12,14 +13,20 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::TaxonomicClassification
-   aIn = TestReaderMdJsonParent.getJson('taxonomicClassification.json')
-   @@hIn = aIn['taxonomicClassification'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_taxonomyClassification_full
+
+   @@mdHash = mdHash
 
    # TODO reinstate after schema update
    # def test_taxClass_schema
    #
-   #    hIn = Marshal::load(Marshal.dump(@@hIn))
-   #    hIn = hIn['subClassification'][0]['subClassification'][0]['subClassification'][0]
+   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
+   #    hIn = hIn[:subClassification][0]
    #    errors = TestReaderMdJsonParent.testSchema(hIn, 'taxonomy.json', :fragment => 'taxonomicClassification')
    #    assert_empty errors
    #
@@ -27,22 +34,25 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_complete_taxClass_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'taxonomicLevel0', metadata[:taxonRank]
-      assert_nil metadata[:taxonId]
-      assert_equal 'taxonomicName', metadata[:taxonValue]
+      assert_equal 'taxon rank', metadata[:taxonRank]
+      assert_equal 'taxon id', metadata[:taxonId]
+      assert_equal 'taxon name', metadata[:taxonValue]
       assert_equal 2, metadata[:commonNames].length
-      assert_equal 'commonName0', metadata[:commonNames][0]
-      assert_equal 'commonName1', metadata[:commonNames][1]
-      assert_equal 2, metadata[:subClasses].length
-      assert_equal 'taxonomicLevel00', metadata[:subClasses][0][:taxonRank]
-      assert_equal 'taxonomicSystemId00', metadata[:subClasses][0][:taxonId]
-      assert_equal 'taxonomicLevel01', metadata[:subClasses][1][:taxonRank]
-      assert_equal 'taxonomicLevel0000.1', metadata[:subClasses][0][:subClasses][0][:subClasses][0][:taxonRank]
-      assert_equal 'taxonomicSystemId0000.1', metadata[:subClasses][0][:subClasses][0][:subClasses][0][:taxonId]
+      assert_equal 'common one', metadata[:commonNames][0]
+      assert_equal 'common two', metadata[:commonNames][1]
+      assert_equal 1, metadata[:subClasses].length
+      assert_equal 'level two', metadata[:subClasses][0][:taxonRank]
+      assert_equal 'name two', metadata[:subClasses][0][:taxonValue]
+      assert_equal 1, metadata[:subClasses][0][:subClasses].length
+      assert_equal 2, metadata[:subClasses][0][:subClasses][0][:subClasses].length
+      assert_equal 1, metadata[:subClasses][0][:subClasses][0][:subClasses][0][:subClasses].length
+      assert_equal 1, metadata[:subClasses][0][:subClasses][0][:subClasses][1][:subClasses].length
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -50,27 +60,31 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_taxClass_empty_taxLevel
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['taxonomicLevel'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: taxonomic classification level is missing'
 
    end
 
    def test_taxClass_missing_taxLevel
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('taxonomicLevel')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
@@ -80,7 +94,9 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_taxClass_taxRank_deprecated
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['taxonomicRank'] = hIn['taxonomicLevel']
       hIn.delete('taxonomicLevel')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -96,37 +112,43 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_taxClass_empty_taxName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['taxonomicName'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: taxonomic classification name is missing'
 
    end
 
    def test_taxClass_missing_taxName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('taxonomicName')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: taxonomic classification name is missing'
 
    end
 
    def test_taxClass_latinName_deprecated
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['latinName'] = hIn['taxonomicName']
       hIn.delete('taxonomicName')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -142,14 +164,16 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_taxClass_empty_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['commonName'] = []
       hIn['subClassification'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'taxonomicLevel0', metadata[:taxonRank]
-      assert_equal 'taxonomicName', metadata[:taxonValue]
+      assert_equal 'taxon rank', metadata[:taxonRank]
+      assert_equal 'taxon name', metadata[:taxonValue]
       assert_empty metadata[:commonNames]
       assert_empty metadata[:subClasses]
       assert hResponse[:readerExecutionPass]
@@ -159,14 +183,16 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_taxClass_missing_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('commonName')
       hIn.delete('subClassification')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'taxonomicLevel0', metadata[:taxonRank]
-      assert_equal 'taxonomicName', metadata[:taxonValue]
+      assert_equal 'taxon rank', metadata[:taxonRank]
+      assert_equal 'taxon name', metadata[:taxonValue]
       assert_empty metadata[:commonNames]
       assert_empty metadata[:subClasses]
       assert hResponse[:readerExecutionPass]
@@ -176,6 +202,7 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    def test_empty_taxClass_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 

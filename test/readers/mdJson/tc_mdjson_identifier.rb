@@ -2,6 +2,7 @@
 # reader / mdJson / module_identifier
 
 # History:
+#  Stan Smith 2018-06-20 refactored to use mdJson construction helpers
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-13 original script
 
@@ -12,19 +13,27 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Identifier
-   aIn = TestReaderMdJsonParent.getJson('identifier.json')
-   @@hIn = aIn['identifier'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.identifier
+
+   @@mdHash = mdHash
 
    def test_identifier_schema
 
-      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'identifier.json')
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'identifier.json')
       assert_empty errors
 
    end
 
    def test_complete_identifier_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -40,35 +49,43 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
 
    def test_empty_identifier_identifier
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['identifier'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: identifier object identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: identifier object identifier is missing'
 
    end
 
    def test_missing_identifier_identifier
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('identifier')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: identifier object identifier is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: identifier object identifier is missing'
 
    end
 
    def test_empty_identifier_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['namespace'] = ''
       hIn['version'] = ''
       hIn['description'] = ''
@@ -87,7 +104,9 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
 
    def test_missing_identifier_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('namespace')
       hIn.delete('version')
       hIn.delete('description')
@@ -106,13 +125,15 @@ class TestReaderMdJsonIdentifier < TestReaderMdJsonParent
 
    def test_empty_identifier_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: identifier object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: identifier object is empty'
 
    end
 

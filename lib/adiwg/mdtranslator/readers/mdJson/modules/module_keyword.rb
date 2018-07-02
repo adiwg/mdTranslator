@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2016-10-23 refactored for mdJson 2.0
 #  Stan Smith 2015-08-24 added return if input hash is empty
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -26,15 +26,19 @@ module ADIWG
 
                def self.unpack(hKeyword, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hKeyword.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: keyword object is empty'
+                     @MessagePath.issueWarning(470, responseObj)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intKeyword = intMetadataClass.newKeyword
+
+                  outContext = 'keywords'
 
                   # keyword - keyword [] (required)
                   if hKeyword.has_key?('keyword')
@@ -48,9 +52,7 @@ module ADIWG
                      end
                   end
                   if intKeyword[:keywords].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: keyword keyword list is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(471, responseObj)
                   end
 
                   # keyword - keyType
@@ -64,7 +66,7 @@ module ADIWG
                   if hKeyword.has_key?('thesaurus')
                      hObject = hKeyword['thesaurus']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intKeyword[:thesaurus] = hReturn
                         end

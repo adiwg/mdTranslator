@@ -17,18 +17,12 @@ class TestWriterMdJsonLineageInfo < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hLineage = TDClass.build_lineage
-
-   hLineage[:citation] << TDClass.build_citation('lineage citation two', 'CID003')
-
-   hLineage[:processStep] << TDClass.build_processStep('PST001','process step one')
-   hLineage[:processStep] << TDClass.build_processStep('PST002','process step two')
-
-   hLineage[:source] << TDClass.build_source('SRC001','source one')
-   hLineage[:source] << TDClass.build_source('SRC002','source two')
+   hLineage = TDClass.build_lineage_full
 
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
+
+   TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
 

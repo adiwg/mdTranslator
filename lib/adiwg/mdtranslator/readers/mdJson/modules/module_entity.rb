@@ -2,7 +2,7 @@
 # Reader - mdJson to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2017-11-01 added entityReference, fieldSeparator, headerLines, quoteCharacter
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-24 added error reporting of missing items
@@ -26,15 +26,19 @@ module ADIWG
 
                def self.unpack(hEntity, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hEntity.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary entity object is empty'
+                     @MessagePath.issueWarning(230, responseObj)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intEntity = intMetadataClass.newEntity
+
+                  outContext = nil
 
                   # entity - id
                   if hEntity.has_key?('entityId')
@@ -56,9 +60,9 @@ module ADIWG
                      intEntity[:entityCode] = hEntity['codeName']
                   end
                   if intEntity[:entityCode].nil? || intEntity[:entityCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity code name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(231, responseObj)
+                  else
+                     outContext = 'entity code name ' + hEntity['codeName']
                   end
 
                   # entity - alias []
@@ -75,16 +79,14 @@ module ADIWG
                      intEntity[:entityDefinition] = hEntity['definition']
                   end
                   if intEntity[:entityDefinition].nil? || intEntity[:entityDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary entity definition is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(232, responseObj, outContext)
                   end
 
                   # entity - entity reference [] {citation}
                   if hEntity.has_key?('entityReference')
                      hEntity['entityReference'].each do |hCitation|
                         unless hCitation.empty?
-                           hReturn = Citation.unpack(hCitation, responseObj)
+                           hReturn = Citation.unpack(hCitation, responseObj, outContext)
                            unless hReturn.nil?
                               intEntity[:entityReferences] << hReturn
                            end
@@ -105,7 +107,7 @@ module ADIWG
                   if hEntity.has_key?('index')
                      hEntity['index'].each do |hIndex|
                         unless hIndex.empty?
-                           index = EntityIndex.unpack(hIndex, responseObj)
+                           index = EntityIndex.unpack(hIndex, responseObj, outContext)
                            unless index.nil?
                               intEntity[:indexes] << index
                            end
@@ -117,7 +119,7 @@ module ADIWG
                   if hEntity.has_key?('attribute')
                      hEntity['attribute'].each do |hAttribute|
                         unless hAttribute.empty?
-                           attribute = EntityAttribute.unpack(hAttribute, responseObj)
+                           attribute = EntityAttribute.unpack(hAttribute, responseObj, outContext)
                            unless attribute.nil?
                               intEntity[:attributes] << attribute
                            end
@@ -129,7 +131,7 @@ module ADIWG
                   if hEntity.has_key?('foreignKey')
                      hEntity['foreignKey'].each do |hFKey|
                         unless hFKey.empty?
-                           fKey = EntityForeignKey.unpack(hFKey, responseObj)
+                           fKey = EntityForeignKey.unpack(hFKey, responseObj, outContext)
                            unless fKey.nil?
                               intEntity[:foreignKeys] << fKey
                            end

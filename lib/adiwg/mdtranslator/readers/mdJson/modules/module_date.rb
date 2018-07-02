@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-12 original script
 
 require 'adiwg/mdtranslator/internal/module_dateTimeFun'
@@ -14,11 +14,13 @@ module ADIWG
 
             module Date
 
-               def self.unpack(hDate, responseObj)
+               def self.unpack(hDate, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hDate.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: date object is empty'
+                     @MessagePath.issueWarning(150, responseObj, inContext)
                      return nil
                   end
 
@@ -31,17 +33,13 @@ module ADIWG
                   if hDate.has_key?('date') && hDate['date'] != ''
                      aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(hDate['date'])
                      if aDateTimeReturn[1] == 'ERROR'
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date string is invalid'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(151, responseObj, inContext)
                      else
                         intDate[:date] = aDateTimeReturn[0]
                         intDate[:dateResolution] = aDateTimeReturn[1]
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date string is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(152, responseObj, inContext)
                   end
 
                   # date - date type (required)
@@ -49,9 +47,7 @@ module ADIWG
                      intDate[:dateType] = hDate['dateType']
                   end
                   if intDate[:dateType].nil? || intDate[:dateType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: date type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(153, responseObj, inContext)
                   end
 
                   # date - description

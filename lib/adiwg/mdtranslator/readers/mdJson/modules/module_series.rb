@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 # 	Stan Smith 2016-10-12 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module Series
 
-               def self.unpack(hSeries, responseObj)
+               def self.unpack(hSeries, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hSeries.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: citation series object is empty'
+                     @MessagePath.issueWarning(760, responseObj, inContext)
                      return nil
                   end
 

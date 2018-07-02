@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2016-12-09 original script
 
 require_relative 'module_citation'
@@ -16,9 +16,11 @@ module ADIWG
 
                def self.unpack(hSystem, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hSystem.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: taxonomic system object is empty'
+                     @MessagePath.issueWarning(820, responseObj)
                      return nil
                   end
 
@@ -37,9 +39,7 @@ module ADIWG
                      end
                   end
                   if intSystem[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic system citation is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(821, responseObj)
                   end
 
                   # taxonomy system - modifications

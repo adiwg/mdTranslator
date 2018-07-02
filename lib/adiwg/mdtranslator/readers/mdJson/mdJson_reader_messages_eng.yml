@@ -4,4 +4,374 @@
 #  Stan Smith 2018-05-12 original script
 
 messageList:
-   - {id: 1, message: "contact address type is missing"}
+   - {id: 1, message: "additional documentation object is empty"}
+   - {id: 2, message: "additional documentation resource type is missing"}
+   - {id: 3, message: "additional documentation citation is missing"}
+
+   - {id: 10, message: "address object is empty"}
+   - {id: 11, message: "address type is missing"}
+
+   - {id: 20, message: "budget allocation object is empty"}
+   - {id: 21, message: "budget allocation amount is missing"}
+   - {id: 22, message: "budget allocation currency type is missing"}
+
+   - {id: 30, message: "associated resource object is empty"}
+   - {id: 31, message: "associated resource resource type is missing"}
+   - {id: 32, message: "associated resource association type is missing"}
+   - {id: 33, message: "associated resource citation is missing"}
+
+   - {id: 40, message: "attribute object is empty"}
+   - {id: 41, message: "attribute sequence identifierType is missing"}
+   - {id: 42, message: "attribute units are missing"}
+   - {id: 43, message: "attribute bounds units are missing"}
+
+   - {id: 50, message: "attribute group object is empty"}
+   - {id: 51, message: "attribute group attribute content type is missing"}
+
+   - {id: 60, message: "bearing distance resolution object is empty"}
+   - {id: 61, message: "bearing distance resolution distance resolution is missing"}
+   - {id: 62, message: "bearing distance resolution distance units are missing"}
+   - {id: 63, message: "bearing distance resolution bearing resolution is missing"}
+   - {id: 64, message: "bearing distance resolution bearing units are missing"}
+   - {id: 65, message: "bearing distance resolution bearing direction is missing"}
+   - {id: 66, message: "bearing distance resolution bearing meridian is missing"}
+
+   - {id: 70, message: "bounding box object is empty"}
+   - {id: 71, message: "bounding box west boundary is missing"}
+   - {id: 72, message: "bounding box longitude must be between -180 and +180"}
+   - {id: 73, message: "bounding box east boundary is missing"}
+   - {id: 74, message: "bounding box south boundary is missing"}
+   - {id: 75, message: "bounding box latitude must be between -90 and +90"}
+   - {id: 76, message: "bounding box north boundary is missing"}
+   - {id: 77, message: "bounding box altitude units of measure are missing"}
+
+   - {id: 80, message: "citation object is empty"}
+   - {id: 81, message: "citation title is missing"}
+
+   - {id: 90, message: "constraint object is empty"}
+   - {id: 91, message: "constraint type must be use, legal, or security"}
+   - {id: 92, message: "constraint type is missing"}
+   - {id: 93, message: "legal constraint object is missing"}
+   - {id: 94, message: "security constraint object is missing"}
+
+   - {id: 100, message: "contact object is empty"}
+   - {id: 101, message: "contact id is missing"}
+   - {id: 102, message: "organization name is missing"}
+   - {id: 103, message: "individual name and/or position are missing"}
+
+   - {id: 110, message: "contact membership organization not found"}
+
+   - {id: 120, message: "coordinate resolution object is empty"}
+   - {id: 121, message: "coordinate resolution abscissa resolution is missing"}
+   - {id: 122, message: "coordinate resolution ordinate resolution is missing"}
+   - {id: 123, message: "coordinate resolution units are missing"}
+
+   - {id: 130, message: "coverage description object is empty"}
+   - {id: 131, message: "coverage description name is missing"}
+   - {id: 132, message: "coverage description description is missing"}
+
+   - {id: 140, message: "data dictionary object is empty"}
+   - {id: 141, message: "data dictionary citation is missing"}
+   - {id: 142, message: "data dictionary subject is missing"}
+   - {id: 143, message: "data dictionary responsible party is missing"}
+   - {id: 144, message: "data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage"}
+
+   - {id: 150, message: "date object is empty"}
+   - {id: 151, message: "date string is invalid"}
+   - {id: 152, message: "date string is missing"}
+   - {id: 153, message: "date type is missing"}
+
+   - {id: 160, message: "dateTime string is empty"}
+   - {id: 161, message: "dateTime string is invalid"}
+
+   - {id: 170, message: "dimension object is empty"}
+   - {id: 171, message: "dimension type is missing"}
+   - {id: 172, message: "dimension size is missing"}
+
+   - {id: 180, message: "distribution object is empty"}
+   - {id: 181, message: "distribution must have a description or distributor"}
+
+   - {id: 190, message: "distributor object is empty"}
+   - {id: 191, message: "distributor contact is missing"}
+
+   - {id: 200, message: "data dictionary domain object is empty"}
+   - {id: 201, message: "data dictionary domain ID is missing"}
+   - {id: 202, message: "data dictionary domain code is missing"}
+   - {id: 203, message: "data dictionary domain description is missing"}
+
+   - {id: 210, message: "domain item object is empty"}
+   - {id: 211, message: "domain item name is missing"}
+   - {id: 212, message: "domain item value is missing"}
+   - {id: 213, message: "domain item definition is missing"}
+
+   - {id: 220, message: "duration object is empty"}
+   - {id: 221, message: "duration was not specified"}
+
+   - {id: 230, message: "data dictionary entity object is empty"}
+   - {id: 231, message: "data dictionary entity code name is missing"}
+   - {id: 232, message: "data dictionary entity definition is missing"}
+
+   - {id: 240, message: "data dictionary entity attribute object is empty"}
+   - {id: 241, message: "data dictionary entity attribute code name is missing"}
+   - {id: 242, message: "data dictionary entity attribute definition is missing"}
+   - {id: 243, message: "data dictionary entity attribute data type is missing"}
+   - {id: 244, message: "data dictionary entity attribute 'allowMany' is deprecated, use 'mustBeUnique'"}
+
+   - {id: 250, message: "data dictionary entity foreign key object is empty"}
+   - {id: 251, message: "data dictionary entity foreign key local attribute code name is missing"}
+   - {id: 252, message: "data dictionary entity foreign key referenced entity name is missing"}
+   - {id: 253, message: "data dictionary entity foreign key referenced attribute name is missing"}
+
+   - {id: 260, message: "data dictionary entity index object is empty"}
+   - {id: 261, message: "data dictionary entity index code name is missing"}
+   - {id: 262, message: "data dictionary entity index attribute list is missing"}
+
+   - {id: 270, message: "extent object is empty"}
+   - {id: 271, message: "extent must have description or at least one geographic, temporal, or vertical extent"}
+
+   - {id: 280, message: "GeoJSON feature collection object is empty"}
+   - {id: 281, message: "GeoJSON feature collection type must be FeatureCollection"}
+   - {id: 282, message: "GeoJSON feature collection type is missing"}
+   - {id: 283, message: "GeoJSON feature collection features are missing"}
+
+   - {id: 290, message: "distribution format object is empty"}
+   - {id: 291, message: "distribution format specification is missing"}
+
+   - {id: 300, message: "funding object is empty"}
+   - {id: 301, message: "funding must have either an allocation or timePeriod"}
+
+   - {id: 310, message: "geodetic object is empty"}
+   - {id: 311, message: "geodetic ellipsoid name is missing"}
+
+   - {id: 320, message: "geographic extent object is empty"}
+   - {id: 321, message: "geographic extent must have at least one description, identifier, bounding box, or geographic element"}
+
+   - {id: 330, message: "geographic resolution object is empty"}
+   - {id: 331, message: "geographic resolution latitude resolution is missing"}
+   - {id: 332, message: "geographic resolution longitude resolution is missing"}
+   - {id: 333, message: "geographic resolution units are missing"}
+
+   - {id: 340, message: "GeoJSON object is empty"}
+   - {id: 341, message: "GeoJSON object type not recognized"}
+
+   - {id: 350, message: "geologic age object is empty"}
+   - {id: 351, message: "geologic age time scale is missing"}
+   - {id: 352, message: "geologic age age-estimate is missing"}
+
+   - {id: 360, message: "GeoJSON geometry collection object is empty"}
+   - {id: 361, message: "GeoJSON geometry collection type must be GeometryCollection"}
+   - {id: 362, message: "GeoJSON geometry collection type is missing"}
+   - {id: 363, message: "GeoJSON geometry collection geometries are missing"}
+
+   - {id: 370, message: "GeoJSON feature object is empty"}
+   - {id: 371, message: "GeoJSON feature type must be Feature"}
+   - {id: 372, message: "GeoJSON feature type is missing"}
+   - {id: 373, message: "GeoJSON feature geometry is missing"}
+
+   - {id: 380, message: "GeoJSON geometry object is empty"}
+   - {id: 381, message: "GeoJSON geometry object type must be Point, LineString, Polygon, MultiPoint, MultiLineString, or MultiPolygon"}
+   - {id: 382, message: "GeoJSON geometry object type is missing"}
+   - {id: 383, message: "GeoJSON geometry object coordinates are missing"}
+
+   - {id: 390, message: "GeoJSON properties object is empty"}
+
+   - {id: 400, message: "georectified representation object is empty"}
+   - {id: 401, message: "georectified representation grid representation is missing"}
+   - {id: 402, message: "georectified representation must have either 2 or 4 corner points"}
+   - {id: 403, message: "georectified representation center point must be single 2D coordinate"}
+   - {id: 404, message: "georectified representation point-in-pixel is missing"}
+
+   - {id: 410, message: "georeferenceable representation object is empty"}
+   - {id: 411, message: "georeferenceable representation grid representation is missing"}
+   - {id: 412, message: "georeferenceable representation georeferenced parameters are missing"}
+
+   - {id: 420, message: "GML Identifier object is empty"}
+   - {id: 421, message: "GML Identifier identifier is missing"}
+   - {id: 422, message: "GML Identifier namespace is missing"}
+
+   - {id: 430, message: "graphic overview object is empty"}
+   - {id: 431, message: "graphic overview file name is missing"}
+
+   - {id: 440, message: "grid representation object is empty"}
+   - {id: 441, message: "grid representation number-of-dimensions is missing"}
+   - {id: 442, message: "grid representation dimensions are missing"}
+   - {id: 443, message: "grid representation cell geometry is missing"}
+
+   - {id: 450, message: "identifier object is empty"}
+   - {id: 451, message: "identifier object identifier is missing"}
+
+   - {id: 460, message: "image description object is empty"}
+
+   - {id: 470, message: "keyword object is empty"}
+   - {id: 471, message: "keyword list is missing"}
+
+   - {id: 480, message: "keyword object is empty"}
+   - {id: 481, message: "keyword object is missing keyword"}
+
+   - {id: 490, message: "legal constraint object is empty"}
+   - {id: 491, message: "legal constraint was not defined"}
+
+   - {id: 500, message: "resource lineage object is empty"}
+   - {id: 501, message: "resource lineage must have at least one statement, process step, or source"}
+
+   - {id: 510, message: "locale object is empty"}
+   - {id: 511, message: "locale language code is missing"}
+   - {id: 512, message: "locale character set code is missing"}
+
+   - {id: 520, message: "maintenance object is empty"}
+   - {id: 521, message: "maintenance frequency is missing"}
+
+   - {id: 530, message: "mdJSON object is empty"}
+   - {id: 531, message: "mdJSON schema object is missing"}
+   - {id: 532, message: "mdJSON contact object is missing"}
+   - {id: 533, message: "mdJSON metadata object is missing"}
+
+   - {id: 540, message: "measure object is empty"}
+   - {id: 541, message: "measure type must be distance, length, vertical, or angle"}
+   - {id: 542, message: "measure type is missing"}
+   - {id: 543, message: "measure value is missing"}
+   - {id: 544, message: "measure unit-of-measure is missing"}
+
+   - {id: 550, message: "offline option (medium) is empty"}
+
+   - {id: 560, message: "metadata object is empty"}
+   - {id: 561, message: "metadata-info object is missing"}
+   - {id: 562, message: "resource-info object is missing"}
+
+   - {id: 570, message: "metadata-info object is empty"}
+   - {id: 571, message: "metadata contact is missing"}
+
+   - {id: 580, message: "metadata repository object is empty"}
+   - {id: 581, message: "metadata repository name is missing"}
+
+   - {id: 590, message: "oblique line-point object is empty"}
+   - {id: 591, message: "oblique line-point latitude is missing"}
+   - {id: 592, message: "oblique line-point longitude is missing"}
+
+   - {id: 600, message: "online resource object is empty"}
+   - {id: 601, message: "online resource URI is missing"}
+
+   - {id: 610, message: "order process object is empty"}
+
+   - {id: 620, message: "party object is empty"}
+   - {id: 621, message: "party contact ID is missing"}
+   - {id: 622, message: "party contact not in contacts list"}
+   - {id: 623, message: "party organization member contact not in contacts list"}
+
+   - {id: 630, message: "phone object is empty"}
+   - {id: 631, message: "phone number is missing"}
+   - {id: 632, message: "phone service type is missing"}
+
+   - {id: 640, message: "process step object is empty"}
+   - {id: 641, message: "process step description is missing"}
+
+   - {id: 650, message: "projection parameters object is empty"}
+   - {id: 651, message: "projection parameters projection code is missing"}
+
+   - {id: 660, message: "reference system parameter set is empty"}
+   - {id: 661, message: "reference system parameter set must have at least one projection, geodetic, or vertical datum"}
+
+   - {id: 670, message: "releasability object is empty"}
+   - {id: 671, message: "releasability must have at least one addressee or statement"}
+
+   - {id: 680, message: "resource info object is empty"}
+   - {id: 681, message: "resource type is missing"}
+   - {id: 682, message: "resource citation is missing"}
+   - {id: 683, message: "resource abstract is missing"}
+   - {id: 684, message: "resource status is missing"}
+   - {id: 685, message: "topicCategory is deprecated, items were moved to keywords, keywordType 'isoTopicCategory'"}
+   - {id: 686, message: "resource point-of-contact is missing"}
+   - {id: 687, message: "taxonomy is now an array, the single taxonomy object was deprecated"}
+   - {id: 688, message: "resource default locale is missing"}
+
+   - {id: 690, message: "resource type object is empty"}
+   - {id: 691, message: "resource type is missing"}
+
+   - {id: 700, message: "resource usage object is empty"}
+   - {id: 701, message: "resource specific usage is missing"}
+
+   - {id: 710, message: "responsible party object is empty"}
+   - {id: 711, message: "responsible party role is missing"}
+   - {id: 712, message: "responsible party must have at least one party"}
+
+   - {id: 720, message: "schema object is empty"}
+   - {id: 721, message: "schema name is missing"}
+   - {id: 722, message: "schema version is missing"}
+
+   - {id: 730, message: "scope object is empty"}
+   - {id: 731, message: "scope code is missing"}
+
+   - {id: 740, message: "scope description object is empty"}
+   - {id: 741, message: "scope description needs at least one dataset, attribute, feature, or other"}
+
+   - {id: 750, message: "security constraint object is empty"}
+   - {id: 751, message: "security constraint classification is missing"}
+
+   - {id: 760, message: "series object is empty"}
+
+   - {id: 770, message: "source object is empty"}
+   - {id: 771, message: "source requires a description or scope"}
+
+   - {id: 780, message: "spatial reference system object is empty"}
+   - {id: 781, message: "spatial reference system must provide a reference system type, identifier, WKT, or parameter set"}
+
+   - {id: 790, message: "spatial representation object is empty"}
+   - {id: 791, message: "spatial representation did not have an object of supported type"}
+
+   - {id: 800, message: "spatial resolution object is empty"}
+   - {id: 801, message: "spatial resolution did not have an object of supported type"}
+
+   - {id: 810, message: "taxonomic classification object is empty"}
+   - {id: 811, message: "taxonomic classification taxonomicRank is deprecated, use taxonomicLevel"}
+   - {id: 812, message: "taxonomic classification level is missing"}
+   - {id: 813, message: "taxonomic classification latinName is deprecated, use taxonomicName"}
+   - {id: 814, message: "taxonomic classification name is missing"}
+
+   - {id: 820, message: "taxonomic system object is empty"}
+   - {id: 821, message: "taxonomic system citation is missing"}
+
+   - {id: 830, message: "taxonomy object is empty"}
+   - {id: 831, message: "taxonomic classification system object is missing"}
+   - {id: 832, message: "taxonomic identification procedure is missing"}
+   - {id: 833, message: "taxonomic classification is missing"}
+
+   - {id: 840, message: "temporal extent object is empty"}
+   - {id: 841, message: "temporal extent must have a time period or time instant"}
+
+   - {id: 850, message: "time instant object is empty"}
+   - {id: 851, message: "time instant must have dateTime or geologic age"}
+
+   - {id: 860, message: "time interval object is empty"}
+   - {id: 861, message: "time interval must be an integer"}
+   - {id: 862, message: "time interval is missing"}
+   - {id: 863, message: "time interval units are missing or invalid"}
+
+   - {id: 870, message: "time period object is empty"}
+   - {id: 871, message: "time period must have a start and/or end dateTime, or geologic age"}
+   - {id: 872, message: "time interval must be accompanied by a start and/or end dateTime"}
+   - {id: 873, message: "duration must be accompanied by a start and/or end dateTime"}
+
+   - {id: 880, message: "transfer option object is empty"}
+   - {id: 881, message: "transfer option did not provide an online or offline option"}
+
+   - {id: 890, message: "value range object is empty"}
+   - {id: 891, message: "value range minimum is missing"}
+   - {id: 892, message: "value range maximum is missing"}
+
+   - {id: 900, message: "vector object is empty"}
+   - {id: 901, message: "vector object type is missing"}
+
+   - {id: 910, message: "vector representation object is empty"}
+   - {id: 911, message: "vector representation must have a topology level or vector object"}
+
+   - {id: 920, message: "vertical datum object is empty"}
+   - {id: 921, message: "vertical datum must have an identifier or all other elements"}
+
+   - {id: 930, message: "vertical extent object is empty"}
+   - {id: 931, message: "vertical extent minimum value is missing"}
+   - {id: 932, message: "vertical extent maximum value is missing"}
+   - {id: 933, message: "vertical extent CRS identifier is missing"}
+
+   - {id: 940, message: "voucher object is empty"}
+   - {id: 941, message: "voucher specimen is missing"}
+   - {id: 942, message: "voucher repository is missing"}

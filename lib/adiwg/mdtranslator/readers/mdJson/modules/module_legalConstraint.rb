@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 # 	Stan Smith 2016-10-15 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -18,11 +18,13 @@ module ADIWG
 
             module LegalConstraint
 
-               def self.unpack(hLegalCon, responseObj)
+               def self.unpack(hLegalCon, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hLegalCon.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: legal constraint object is empty'
+                     @MessagePath.issueWarning(490, responseObj, inContext)
                      return nil
                   end
 
@@ -64,9 +66,7 @@ module ADIWG
 
                   # error messages
                   unless haveLegal
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: legal constraint was not defined'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(491, responseObj, inContext)
                   end
 
                   return intLegalCon

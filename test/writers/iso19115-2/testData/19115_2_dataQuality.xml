@@ -36,29 +36,6 @@
           <gmd:statement>
             <gco:CharacterString>statement</gco:CharacterString>
           </gmd:statement>
-          <gmd:processStep/>
-          <gmd:source/>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
-
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
           <gmd:processStep>
             <gmd:LI_ProcessStep id="stepone">
               <gmd:description>
@@ -90,8 +67,18 @@
               <gmd:description>
                 <gco:CharacterString>lineage source one</gco:CharacterString>
               </gmd:description>
-              <gmd:scaleDenominator/>
-              <gmd:sourceReferenceSystem/>
+              <gmd:scaleDenominator>
+                <gmd:MD_RepresentativeFraction>
+                  <gmd:denominator>
+                    <gco:Integer>9999</gco:Integer>
+                  </gmd:denominator>
+                </gmd:MD_RepresentativeFraction>
+              </gmd:scaleDenominator>
+              <gmd:sourceReferenceSystem>
+                <gmd:MD_ReferenceSystem>
+                  <gmd:referenceSystemIdentifier/>
+                </gmd:MD_ReferenceSystem>
+              </gmd:sourceReferenceSystem>
               <gmd:sourceCitation>
                 <gmd:CI_Citation>
                   <gmd:title>
@@ -137,8 +124,18 @@
               <gmd:description>
                 <gco:CharacterString>lineage source two</gco:CharacterString>
               </gmd:description>
-              <gmd:scaleDenominator/>
-              <gmd:sourceReferenceSystem/>
+              <gmd:scaleDenominator>
+                <gmd:MD_RepresentativeFraction>
+                  <gmd:denominator>
+                    <gco:Integer>9999</gco:Integer>
+                  </gmd:denominator>
+                </gmd:MD_RepresentativeFraction>
+              </gmd:scaleDenominator>
+              <gmd:sourceReferenceSystem>
+                <gmd:MD_ReferenceSystem>
+                  <gmd:referenceSystemIdentifier/>
+                </gmd:MD_ReferenceSystem>
+              </gmd:sourceReferenceSystem>
               <gmd:sourceCitation>
                 <gmd:CI_Citation>
                   <gmd:title>
@@ -179,6 +176,29 @@
               <gmd:sourceStep/>
             </gmd:LI_Source>
           </gmd:source>
+        </gmd:LI_Lineage>
+      </gmd:lineage>
+    </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+
+  <gmd:dataQualityInfo>
+    <gmd:DQ_DataQuality>
+      <gmd:scope>
+        <gmd:DQ_Scope>
+          <gmd:level>
+            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
+          </gmd:level>
+          <gmd:extent/>
+          <gmd:levelDescription/>
+        </gmd:DQ_Scope>
+      </gmd:scope>
+      <gmd:lineage>
+        <gmd:LI_Lineage>
+          <gmd:statement>
+            <gco:CharacterString>statement</gco:CharacterString>
+          </gmd:statement>
+          <gmd:processStep/>
+          <gmd:source/>
         </gmd:LI_Lineage>
       </gmd:lineage>
     </gmd:DQ_DataQuality>

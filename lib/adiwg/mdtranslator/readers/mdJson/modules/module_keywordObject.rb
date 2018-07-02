@@ -2,8 +2,9 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2016-12-09 original script
+
 
 module ADIWG
    module Mdtranslator
@@ -14,9 +15,11 @@ module ADIWG
 
                def self.unpack(hKeyObj, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hKeyObj.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: keyword object is empty'
+                     @MessagePath.issueWarning(480, responseObj)
                      return nil
                   end
 
@@ -31,9 +34,7 @@ module ADIWG
                      end
                   end
                   if intKeyObj[:keyword].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: keyword object is missing keyword'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(481, responseObj)
                   end
 
                   # keyword object - keyword id

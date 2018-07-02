@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2018-01-25 rename dictionaryFormat to dictionaryFunctionalLanguage
 #  Stan Smith 2017-11-09 add dictionary description
 #  Stan Smith 2017-01-20 refactored for mdJson/mdTranslator 2.0
@@ -26,9 +26,11 @@ module ADIWG
 
                def self.unpack(hDictionary, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hDictionary.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary object is empty'
+                     @MessagePath.issueWarning(140, responseObj)
                      return nil
                   end
 
@@ -55,9 +57,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary citation is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(141, responseObj)
                   end
 
                   # dictionary - subject [] (required)
@@ -70,9 +70,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:subjects].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary subject is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(142, responseObj)
                   end
 
                   # dictionary - recommended use []
@@ -107,9 +105,7 @@ module ADIWG
                      end
                   end
                   if intDictionary[:responsibleParty].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary responsible party is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(143, responseObj)
                   end
 
                   # dictionary - dictionary format
@@ -119,8 +115,7 @@ module ADIWG
                      s = hDictionary['dictionaryFunctionalLanguage']
                   elsif hDictionary.has_key?('dictionaryFormat')
                      s = hDictionary['dictionaryFormat']
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: data dictionary dictionaryFormat is deprecated, use dictionaryFunctionalLanguage'
+                     @MessagePath.issueWarning(144, responseObj)
                   end
                   unless s.nil? || s == ''
                      intDictionary[:dictionaryFunctionalLanguage] = s

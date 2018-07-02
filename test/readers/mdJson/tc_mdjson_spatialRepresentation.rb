@@ -2,8 +2,9 @@
 # reader / mdJson / module_spatialRepresentation
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-19 original script
+#  Stan Smith 2018-06-25 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-19 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_spatialRepresentation'
@@ -12,36 +13,44 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::SpatialRepresentation
-   aIn = TestReaderMdJsonParent.getJson('spatialRepresentation.json')
-   @@hIn = aIn['spatialRepresentation']
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_spatialRepresentation_full
+
+   @@mdHash = mdHash
 
    def test_spatialRepresentation_schema
 
       ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
       # test grid representation
-      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[0])
+      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@mdHash[0])
       assert_empty errors
 
       # test vector representation
-      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[1])
+      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@mdHash[1])
       assert_empty errors
 
       # test georectified representation
-      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[2])
+      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@mdHash[2])
       assert_empty errors
 
       # test grid georeferenceable
-      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@hIn[3])
+      errors = JSON::Validator.fully_validate('spatialRepresentation.json', @@mdHash[3])
       assert_empty errors
 
    end
 
    def test_spatialRepresentation_grid
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[0]))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:gridRepresentation]
       assert_empty metadata[:vectorRepresentation]
@@ -54,9 +63,11 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
    def test_spatialRepresentation_vector
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[1]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[1]))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_empty metadata[:gridRepresentation]
       refute_empty metadata[:vectorRepresentation]
@@ -69,9 +80,11 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
    def test_spatialRepresentation_georectified
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[2]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[2]))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_empty metadata[:gridRepresentation]
       assert_empty metadata[:vectorRepresentation]
@@ -84,9 +97,11 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
    def test_spatialRepresentation_georeferenceable
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[3]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[3]))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_empty metadata[:gridRepresentation]
       assert_empty metadata[:vectorRepresentation]
@@ -99,51 +114,56 @@ class TestReaderMdJsonSpatialRepresentation < TestReaderMdJsonParent
 
    def test_spatialRepresentation_empty_required
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[0]))
+      hIn = JSON.parse(hIn.to_json)
       hIn['gridRepresentation'] = {}
       hIn['vectorRepresentation'] = {}
       hIn['georectifiedRepresentation'] = {}
       hIn['georeferenceableRepresentation'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: spatial representation did not have an object of supported type'
+         'ERROR: mdJson reader: spatial representation did not have an object of supported type: CONTEXT is testing'
 
    end
 
    def test_spatialRepresentation_missing_required
 
-      hIn = Marshal::load(Marshal.dump(@@hIn[0]))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash[0]))
+      hIn = JSON.parse(hIn.to_json)
       hIn['nonElement'] = ''
       hIn.delete('gridRepresentation')
       hIn.delete('vectorRepresentation')
       hIn.delete('georectifiedRepresentation')
       hIn.delete('georeferenceableRepresentation')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: spatial representation did not have an object of supported type'
+         'ERROR: mdJson reader: spatial representation did not have an object of supported type: CONTEXT is testing'
 
    end
 
    def test_empty_spatialRepresentation_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack({}, hResponse)
+      metadata = @@NameSpace.unpack({}, hResponse, 'testing')
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'WARNING: mdJson reader: spatial representation object is empty'
+                      'WARNING: mdJson reader: spatial representation object is empty: CONTEXT is testing'
 
    end
 

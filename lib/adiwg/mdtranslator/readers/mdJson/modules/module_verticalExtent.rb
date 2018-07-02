@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 #  Stan Smith 2016-10-24 original script
 
 require_relative 'module_spatialReference'
@@ -14,17 +14,22 @@ module ADIWG
 
             module VerticalExtent
 
-               def self.unpack(hVertical, responseObj)
+               def self.unpack(hVertical, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hVertical.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: vertical extent object is empty'
+                     @MessagePath.issueWarning(930, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intVertical = intMetadataClass.newVerticalExtent
+
+                  outContext = 'vertical extent'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # vertical extent - description
                   if hVertical.has_key?('description')
@@ -38,9 +43,7 @@ module ADIWG
                      intVertical[:minValue] = hVertical['minValue']
                   end
                   if intVertical[:minValue].nil? || intVertical[:minValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent minimum value is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(931, responseObj, inContext)
                   end
 
                   # vertical extent - max value (required)
@@ -48,25 +51,21 @@ module ADIWG
                      intVertical[:maxValue] = hVertical['maxValue']
                   end
                   if intVertical[:maxValue].nil? || intVertical[:maxValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent maximum value is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(932, responseObj, inContext)
                   end
 
                   # vertical extent - crs ID {spatialReference} (required)
                   if hVertical.has_key?('crsId')
                      hObject = hVertical['crsId']
                      unless hObject.empty?
-                        hReturn = SpatialReferenceSystem.unpack(hObject, responseObj)
+                        hReturn = SpatialReferenceSystem.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intVertical[:crsId] = hReturn
                         end
                      end
                   end
                   if intVertical[:crsId].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vertical extent CRS identifier is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(933, responseObj, inContext)
                   end
 
                   return intVertical

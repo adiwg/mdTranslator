@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 #  Stan Smith 2016-10-25 original script
 
 require_relative 'module_identifier'
@@ -16,9 +16,11 @@ module ADIWG
 
                def self.unpack(hGeoProp, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hGeoProp.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJSON geometry properties object is empty'
+                     @MessagePath.issueWarning(390, responseObj)
                      return nil
                   end
 

@@ -1,5 +1,14 @@
 class MdJsonHashWriter
 
+   # rules -----------------------------------
+   # >> base will have meet all requirements for a valid ISO and FGDC metadata record
+   # >> ruby hash objects will equal their mdJson counterparts
+   # >> all string elements will be loaded with values
+   # >> required objects will be loaded with corresponding object, e.g.  { citation: citation }
+   # >> non-required objects will be empty
+   # >> required arrays will be loaded with 1 elements
+   # >> non-required arrays will be empty
+
    # base ------------------------------------
    def base
       {
@@ -349,7 +358,7 @@ class MdJsonHashWriter
          isOrganization: false,
          name: 'person name five',
          positionName: 'position name five',
-         memberOfOrganization: ['CID002', 'CID004'],
+         memberOfOrganization: %w(CID002 CID004),
          logoGraphic: [
             {
                fileName: 'logo graphic file name one'
@@ -414,8 +423,8 @@ class MdJsonHashWriter
    def phone
       {
          phoneName: 'phone name',
-         phoneNumber: nil,
-         service: []
+         phoneNumber: '111-111-1111',
+         service: ['service one', 'service two']
       }
    end
 
@@ -549,7 +558,8 @@ class MdJsonHashWriter
    def date
       {
          date: nil,
-         dateType: nil
+         dateType: nil,
+         description: 'date description'
       }
    end
 
@@ -581,11 +591,27 @@ class MdJsonHashWriter
       }
    end
 
+   def resourceType
+      {
+         type: 'resource type',
+         name: 'resource type name'
+      }
+   end
+
    def scope
       {
          scopeCode: 'scope code',
          scopeDescription: [],
          scopeExtent: []
+      }
+   end
+
+   def scopeDescription
+      {
+         dataset: 'dataset',
+         attributes: 'attributes',
+         features: 'features',
+         other: 'other'
       }
    end
 
@@ -697,7 +723,7 @@ class MdJsonHashWriter
 
    def attributeGroup
       {
-         attributeContentType: ['attribute content type', 'modelResult'],
+         attributeContentType: ['attribute content type one', 'attribute content type two'],
          attribute: []
       }
    end
@@ -858,9 +884,9 @@ class MdJsonHashWriter
 
    def foreignKey
       {
-         localAttributeCodeName: ['local attribute code name one'],
+         localAttributeCodeName: ['local attribute code name one', 'local attribute code name two'],
          referencedEntityCodeName: 'referenced entity code name',
-         referencedAttributeCodeName: ['referenced attribute code name one']
+         referencedAttributeCodeName: ['referenced attribute code name one', 'referenced attribute code name two']
       }
    end
 
@@ -868,14 +894,14 @@ class MdJsonHashWriter
       {
          codeName: 'index code name',
          allowDuplicates: false,
-         attributeCodeName: ['attribute code name one']
+         attributeCodeName: ['attribute code name one', 'attribute code name two']
       }
    end
 
    def valueRange
       {
-         minRangeValue: nil,
-         maxRangeValue: nil
+         minRangeValue: '0',
+         maxRangeValue: '9'
       }
    end
 
@@ -1022,6 +1048,7 @@ class MdJsonHashWriter
    # graphic extent --------------------------
    def geographicExtent
       {
+         description: 'geographic extent description',
          containsData: true,
          identifier: {
             identifier: 'geographic extent identifier'
@@ -1044,6 +1071,7 @@ class MdJsonHashWriter
       {
          type: 'Feature',
          id: nil,
+         bbox: [],
          geometry: {},
          properties: {}
       }
@@ -1052,6 +1080,7 @@ class MdJsonHashWriter
    def featureCollection
       {
          type: 'FeatureCollection',
+         bbox: [],
          features: []
       }
    end
@@ -1186,8 +1215,8 @@ class MdJsonHashWriter
    # keyword --------------------------------
    def keyword
       {
-         keyword: nil,
-         keywordId: nil
+         keyword: 'keyword',
+         keywordId: 'keyword id'
       }
    end
 
@@ -1215,7 +1244,7 @@ class MdJsonHashWriter
 
    def processStep
       {
-         stepId: nil,
+         stepId: 'PS001',
          description: 'description',
          rationale: 'rationale',
          processor: [],
@@ -1227,10 +1256,14 @@ class MdJsonHashWriter
 
    def source
       {
-         sourceId: nil,
+         sourceId: 'SRC001',
          description: 'description',
+         sourceCitation: citation_title,
          metadataCitation: [],
-         sourceProcessStep: []
+         spatialResolution: {scaleFactor: 9999},
+         referenceSystem: spatialReferenceSystem,
+         sourceProcessStep: [],
+         scope: scope
       }
    end
 
@@ -1243,6 +1276,75 @@ class MdJsonHashWriter
          scope: [],
          note: ['note one', 'note two'],
          contact: []
+      }
+   end
+
+
+   # metadata -------------------------------
+   def metadata
+      {
+         metadataInfo: {},
+         resourceInfo: {},
+         resourceLineage: [],
+         resourceDistribution: [],
+         associatedResource: [],
+         additionalDocumentation: [],
+         funding: []
+      }
+   end
+
+   def metadataInfo
+      {
+         metadataIdentifier: {},
+         parentMetadata: {},
+         defaultMetadataLocale: {},
+         otherMetadataLocale: [],
+         metadataContact: [],
+         metadataDate: [],
+         metadataOnlineResource: [],
+         metadataConstraint: [],
+         alternateMetadataReference: [],
+         metadataStatus: 'metadata status',
+         metadataMaintenance: {}
+      }
+   end
+
+   def resourceInfo
+      {
+         resourceType: [],
+         citation: {},
+         abstract: 'abstract',
+         shortAbstract: 'short abstract',
+         purpose: 'purpose',
+         credit: ['credit one', 'credit two'],
+         timePeriod: {},
+         status: ['status one', 'status two'],
+         pointOfContact: [],
+         spatialReferenceSystem: [],
+         spatialRepresentationType: ['space reference type one', 'space reference type two'],
+         spatialRepresentation: [],
+         spatialResolution: [],
+         temporalResolution: [],
+         extent: [],
+         coverageDescription: [],
+         taxonomy: [],
+         graphicOverview: [],
+         resourceFormat: [],
+         keyword: [],
+         resourceUsage: [],
+         constraint: [],
+         defaultResourceLocale: locale,
+         otherResourceLocale: [],
+         resourceMaintenance: [],
+         environmentDescription: 'environment description',
+         supplementalInfo: 'supplemental information'
+      }
+   end
+
+   def schema
+      {
+         name: 'mdJson',
+         version: '2.4.0'
       }
    end
 
@@ -1274,7 +1376,7 @@ class MdJsonHashWriter
    # responsibility -------------------------
    def responsibleParty
       {
-         role: nil,
+         role: 'party role',
          roleExtent: [],
          party: []
       }
@@ -1282,7 +1384,8 @@ class MdJsonHashWriter
 
    def party
       {
-         contactId: nil
+         contactId: nil,
+         organizationMembers: []
       }
    end
 
@@ -1515,7 +1618,7 @@ class MdJsonHashWriter
    def taxonVoucher
       {
          specimen: 'specimen',
-         repository: responsibleParty
+         repository: build_responsibleParty('curator', ['CID002'])
       }
    end
 
@@ -1546,7 +1649,9 @@ class MdJsonHashWriter
          identifier: {
             identifier: 'time instant identifier'
          },
-         instantName: ['instant name one', 'instant name two']
+         instantName: ['instant name one', 'instant name two'],
+         dateTime: '2016-10-24T10:25:00',
+         geologicAge: {}
       }
    end
 
@@ -1557,7 +1662,13 @@ class MdJsonHashWriter
          identifier: {
             identifier: 'time period identifier'
          },
-         periodName: ['period name one', 'period name two']
+         periodName: ['period name one', 'period name two'],
+         startDateTime: '2016-10-14T11:10:15.2-10:00',
+         endDateTime: '2016-12-31',
+         startGeologicAge: {},
+         endGeologicAge: {},
+         timeInterval: timeInterval,
+         duration: duration
       }
    end
 
@@ -1568,7 +1679,6 @@ class MdJsonHashWriter
          ageUncertainty: 'geologic age uncertainty',
          ageExplanation: 'geologic age explanation',
          ageReference: []
-
       }
    end
 

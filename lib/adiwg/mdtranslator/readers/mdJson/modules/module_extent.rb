@@ -2,7 +2,7 @@
 # Reader - mdJson to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-30 original script
 
 require_relative 'module_geographicExtent'
@@ -16,17 +16,22 @@ module ADIWG
 
             module Extent
 
-               def self.unpack(hExtent, responseObj)
+               def self.unpack(hExtent, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hExtent.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: extent object is empty'
+                     @MessagePath.issueWarning(270, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intExtent = intMetadataClass.newExtent
+
+                  outContext = 'extent'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   haveExtent = false
 
@@ -42,7 +47,7 @@ module ADIWG
                   if hExtent.has_key?('geographicExtent')
                      hExtent['geographicExtent'].each do |item|
                         unless item.empty?
-                           hReturn = GeographicExtent.unpack(item, responseObj)
+                           hReturn = GeographicExtent.unpack(item, responseObj, outContext)
                            unless hReturn.nil?
                               intExtent[:geographicExtents] << hReturn
                               haveExtent = true
@@ -55,7 +60,7 @@ module ADIWG
                   if hExtent.has_key?('temporalExtent')
                      hExtent['temporalExtent'].each do |item|
                         unless item.empty?
-                           hReturn = TemporalExtent.unpack(item, responseObj)
+                           hReturn = TemporalExtent.unpack(item, responseObj, outContext)
                            unless hReturn.nil?
                               intExtent[:temporalExtents] << hReturn
                               haveExtent = true
@@ -68,7 +73,7 @@ module ADIWG
                   if hExtent.has_key?('verticalExtent')
                      hExtent['verticalExtent'].each do |item|
                         unless item.empty?
-                           hReturn = VerticalExtent.unpack(item, responseObj)
+                           hReturn = VerticalExtent.unpack(item, responseObj, outContext)
                            unless hReturn.nil?
                               intExtent[:verticalExtents] << hReturn
                               haveExtent = true
@@ -79,10 +84,7 @@ module ADIWG
 
                   # error messages
                   unless haveExtent
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: extent must have description or at least one geographic, temporal, or vertical extent'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(271, responseObj, inContext)
                   end
 
                   return intExtent

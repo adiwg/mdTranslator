@@ -64,8 +64,7 @@ class TestWriterMdJsonDistributor < TestWriterMdJsonParent
       assert_empty metadata[:readerValidationMessages]
       assert_equal 2, metadata[:readerExecutionMessages].length
       assert_includes metadata[:readerExecutionMessages],
-                      'WARNING: mdJson reader: transfer option did not provide an online or offline option'
-      assert_equal expect, got
+         'WARNING: mdJson reader: transfer option did not provide an online or offline option: CONTEXT is distributor > person name three'
 
    end
 

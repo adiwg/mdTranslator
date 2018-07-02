@@ -46,9 +46,6 @@ class TestWriterMdJsonAdditionalDocumentation < TestWriterMdJsonParent
       got = JSON.parse(metadata[:writerOutput])
       got = got['metadata']['additionalDocumentation']
 
-      pass = metadata[:writerPass] && metadata[:readerStructurePass] &&
-         metadata[:readerValidationPass] && metadata[:readerExecutionPass]
-
       assert metadata[:writerPass]
       assert metadata[:readerStructurePass]
       assert metadata[:readerValidationPass]

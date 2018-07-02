@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-24 refactored error and warning messaging
 #  Stan Smith 2016-10-11 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -25,9 +25,11 @@ module ADIWG
 
                def self.unpack(hUsage, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hUsage.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: resource usage object is empty'
+                     @MessagePath.issueWarning(700, responseObj)
                      return nil
                   end
 
@@ -40,9 +42,7 @@ module ADIWG
                      intUsage[:specificUsage] = hUsage['specificUsage']
                   end
                   if intUsage[:specificUsage].nil? || intUsage[:specificUsage] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource usage specific usage is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(701, responseObj)
                   end
 
                   # resource usage - temporal extent []

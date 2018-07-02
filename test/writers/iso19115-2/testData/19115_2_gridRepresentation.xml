@@ -38,6 +38,19 @@
           </gmd:resolution>
         </gmd:MD_Dimension>
       </gmd:axisDimensionProperties>
+      <gmd:axisDimensionProperties>
+        <gmd:MD_Dimension>
+          <gmd:dimensionName>
+            <gmd:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </gmd:dimensionName>
+          <gmd:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </gmd:dimensionSize>
+          <gmd:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </gmd:resolution>
+        </gmd:MD_Dimension>
+      </gmd:axisDimensionProperties>
       <gmd:cellGeometry>
         <gmd:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="point" codeSpace="001"/>
       </gmd:cellGeometry>

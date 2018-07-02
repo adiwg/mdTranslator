@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-26 refactored error and warning messaging
 # 	Stan Smith 2016-10-24 original script
 
 require_relative 'module_timeInstant'
@@ -15,24 +15,30 @@ module ADIWG
 
             module TemporalExtent
 
-               def self.unpack(hTemporal, responseObj)
+               def self.unpack(hTemporal, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hTemporal.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: temporal extent object is empty'
+                     @MessagePath.issueWarning(840, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intTemporal = intMetadataClass.newTemporalExtent
+
+                  outContext = 'temporal extent'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   haveOne = false
 
                   # temporal extent - time instant (required if not others)
                   if hTemporal.has_key?('timeInstant')
                      hTime = hTemporal['timeInstant']
                      unless hTime.empty?
-                        hObject = TimeInstant.unpack(hTime, responseObj)
+                        hObject = TimeInstant.unpack(hTime, responseObj, outContext)
                         unless hObject.nil?
                            intTemporal[:timeInstant] = hObject
                            haveOne = true
@@ -44,7 +50,7 @@ module ADIWG
                   if hTemporal.has_key?('timePeriod')
                      hTime = hTemporal['timePeriod']
                      unless hTime.empty?
-                        hObject = TimePeriod.unpack(hTime, responseObj)
+                        hObject = TimePeriod.unpack(hTime, responseObj, outContext)
                         unless hObject.nil?
                            intTemporal[:timePeriod] = hObject
                            haveOne = true
@@ -54,10 +60,7 @@ module ADIWG
 
                   # error messages
                   unless haveOne
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: temporal extent must have a time period or time instant'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(841, responseObj, inContext)
                   end
 
                   return intTemporal

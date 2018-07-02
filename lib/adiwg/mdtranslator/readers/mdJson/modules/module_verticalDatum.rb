@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_identifier'
@@ -14,11 +14,13 @@ module ADIWG
 
             module VerticalDatum
 
-               def self.unpack(hDatum, responseObj)
+               def self.unpack(hDatum, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hDatum.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: vertical datum object is empty'
+                     @MessagePath.issueWarning(920, responseObj, inContext)
                      return nil
                   end
 
@@ -26,10 +28,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intDatum = intMetadataClass.newVerticalDatum
 
+                  outContext = 'vertical datum'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # vertical datum - identifier {identifier}
                   if hDatum.has_key?('datumIdentifier')
                      unless hDatum['datumIdentifier'].empty?
-                        hReturn = Identifier.unpack(hDatum['datumIdentifier'], responseObj)
+                        hReturn = Identifier.unpack(hDatum['datumIdentifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intDatum[:datumIdentifier] = hReturn
                         end
@@ -79,10 +84,7 @@ module ADIWG
 
                   # error messages
                   if intDatum[:datumIdentifier].empty? && haveOthers != 4
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: vertical datum must have an identifier or all other elements'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(921, responseObj, inContext)
                   end
 
                   return intDatum

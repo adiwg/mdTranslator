@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 #  Stan Smith 2017-08-30 added support for process step sources
 #  Stan Smith 2016-10-15 refactored for mdJson 2.0
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -22,17 +22,22 @@ module ADIWG
 
             module ProcessStep
 
-               def self.unpack(hProcStep, responseObj)
+               def self.unpack(hProcStep, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hProcStep.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: process step object is empty'
+                     @MessagePath.issueWarning(640, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intProcStep = intMetadataClass.newProcessStep
+
+                  outContext = 'process step'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # process step - step ID
                   if hProcStep.has_key?('stepId')
@@ -46,9 +51,7 @@ module ADIWG
                      intProcStep[:description] = hProcStep['description']
                   end
                   if intProcStep[:description].nil? || intProcStep[:description] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: process step description is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(641, responseObj, inContext)
                   end
 
                   # process step - rationale
@@ -62,7 +65,7 @@ module ADIWG
                   if hProcStep.has_key?('timePeriod')
                      hObject = hProcStep['timePeriod']
                      unless hObject.empty?
-                        hReturn = TimePeriod.unpack(hObject, responseObj)
+                        hReturn = TimePeriod.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intProcStep[:timePeriod] = hReturn
                         end
@@ -73,7 +76,7 @@ module ADIWG
                   if hProcStep.has_key?('processor')
                      aProc = hProcStep['processor']
                      aProc.each do |item|
-                        hParty = ResponsibleParty.unpack(item, responseObj)
+                        hParty = ResponsibleParty.unpack(item, responseObj, outContext)
                         unless hParty.nil?
                            intProcStep[:processors] << hParty
                         end
@@ -84,7 +87,7 @@ module ADIWG
                   if hProcStep.has_key?('reference')
                      aReference = hProcStep['reference']
                      aReference.each do |item|
-                        hReference = Citation.unpack(item, responseObj)
+                        hReference = Citation.unpack(item, responseObj, outContext)
                         unless hReference.nil?
                            intProcStep[:references] << hReference
                         end
@@ -95,7 +98,7 @@ module ADIWG
                   if hProcStep.has_key?('stepSource')
                      aSources = hProcStep['stepSource']
                      aSources.each do |item|
-                        hSource = Source.unpack(item, responseObj)
+                        hSource = Source.unpack(item, responseObj, outContext)
                         unless hSource.nil?
                            intProcStep[:stepSources] << hSource
                         end
@@ -106,7 +109,7 @@ module ADIWG
                   if hProcStep.has_key?('stepProduct')
                      aSources = hProcStep['stepProduct']
                      aSources.each do |item|
-                        hSource = Source.unpack(item, responseObj)
+                        hSource = Source.unpack(item, responseObj, outContext)
                         unless hSource.nil?
                            intProcStep[:stepProducts] << hSource
                         end
@@ -117,7 +120,7 @@ module ADIWG
                   if hProcStep.has_key?('scope')
                      hObject = hProcStep['scope']
                      unless hObject.empty?
-                        hReturn = Scope.unpack(hObject, responseObj)
+                        hReturn = Scope.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intProcStep[:scope] = hReturn
                         end

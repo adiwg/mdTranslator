@@ -22,22 +22,12 @@
 
   <gmd:LI_Source id="SRC001">
     <gmd:description>
-      <gco:CharacterString>source one</gco:CharacterString>
-    </gmd:description>
-    <gmd:scaleDenominator/>
-    <gmd:sourceReferenceSystem/>
-    <gmd:sourceCitation/>
-    <gmd:sourceStep/>
-  </gmd:LI_Source>
-
-  <gmd:LI_Source id="SRC002">
-    <gmd:description>
-      <gco:CharacterString>source two</gco:CharacterString>
+      <gco:CharacterString>description</gco:CharacterString>
     </gmd:description>
     <gmd:scaleDenominator>
       <gmd:MD_RepresentativeFraction>
         <gmd:denominator>
-          <gco:Integer>25000</gco:Integer>
+          <gco:Integer>9999</gco:Integer>
         </gmd:denominator>
       </gmd:MD_RepresentativeFraction>
     </gmd:scaleDenominator>
@@ -64,9 +54,9 @@
       </gmd:CI_Citation>
     </gmd:sourceCitation>
     <gmd:sourceStep>
-      <gmd:LI_ProcessStep id="SPS001">
+      <gmd:LI_ProcessStep id="PS001">
         <gmd:description>
-          <gco:CharacterString>description</gco:CharacterString>
+          <gco:CharacterString>process step one</gco:CharacterString>
         </gmd:description>
         <gmd:rationale>
           <gco:CharacterString>rationale</gco:CharacterString>
@@ -77,9 +67,9 @@
       </gmd:LI_ProcessStep>
     </gmd:sourceStep>
     <gmd:sourceStep>
-      <gmd:LI_ProcessStep id="SPS002">
+      <gmd:LI_ProcessStep id="PS002">
         <gmd:description>
-          <gco:CharacterString>description</gco:CharacterString>
+          <gco:CharacterString>process step two</gco:CharacterString>
         </gmd:description>
         <gmd:rationale>
           <gco:CharacterString>rationale</gco:CharacterString>
@@ -89,6 +79,16 @@
         <gmd:source/>
       </gmd:LI_ProcessStep>
     </gmd:sourceStep>
+  </gmd:LI_Source>
+
+  <gmd:LI_Source id="SRC002">
+    <gmd:description>
+      <gco:CharacterString>source two</gco:CharacterString>
+    </gmd:description>
+    <gmd:scaleDenominator/>
+    <gmd:sourceReferenceSystem/>
+    <gmd:sourceCitation/>
+    <gmd:sourceStep/>
   </gmd:LI_Source>
 
 </gmi:MI_Metadata>
