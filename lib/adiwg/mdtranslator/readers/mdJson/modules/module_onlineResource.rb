@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2016-10-03 original script
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -20,11 +20,13 @@ module ADIWG
 
             module OnlineResource
 
-               def self.unpack(hOnlineRes, responseObj)
+               def self.unpack(hOnlineRes, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hOnlineRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: online resource object is empty'
+                     @MessagePath.issueWarning(600, responseObj, inContext)
                      return nil
                   end
 
@@ -37,9 +39,7 @@ module ADIWG
                      intOLRes[:olResURI] = hOnlineRes['uri']
                   end
                   if intOLRes[:olResURI].nil? || intOLRes[:olResURI] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: online resource URI is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(601, responseObj, inContext)
                   end
 
                   # resource - web link protocol

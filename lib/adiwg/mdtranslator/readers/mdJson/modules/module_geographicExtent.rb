@@ -3,7 +3,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-19 refactored error and warning messaging
 #  Stan Smith 2017-09-28 added description element to support fgdc
 #  Stan Smith 2016-12-01 original script
 
@@ -18,17 +18,22 @@ module ADIWG
 
             module GeographicExtent
 
-               def self.unpack(hGeoExt, responseObj)
+               def self.unpack(hGeoExt, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hGeoExt.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic extent object is empty'
+                     @MessagePath.issueWarning(320, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intGeoExt = intMetadataClass.newGeographicExtent
+
+                  outContext = 'geographic extent'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   haveGExtent = false
 
@@ -50,7 +55,7 @@ module ADIWG
                   # geographic extent - identifier
                   if hGeoExt.has_key?('identifier')
                      unless hGeoExt['identifier'].empty?
-                        hReturn = Identifier.unpack(hGeoExt['identifier'], responseObj)
+                        hReturn = Identifier.unpack(hGeoExt['identifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intGeoExt[:identifier] = hReturn
                         end
@@ -61,7 +66,7 @@ module ADIWG
                   # geographic extent - bounding box
                   if hGeoExt.has_key?('boundingBox')
                      unless hGeoExt['boundingBox'].empty?
-                        hReturn = BoundingBox.unpack(hGeoExt['boundingBox'], responseObj)
+                        hReturn = BoundingBox.unpack(hGeoExt['boundingBox'], responseObj, outContext)
                         unless hReturn.nil?
                            intGeoExt[:boundingBox] = hReturn
                            haveGExtent = true
@@ -72,7 +77,7 @@ module ADIWG
                   # geographic extent - geographic elements
                   if hGeoExt.has_key?('geographicElement')
                      hGeoExt['geographicElement'].each do |hElement|
-                        hReturn = GeoJson.unpack(hElement, responseObj)
+                        hReturn = GeoJson.unpack(hElement, responseObj, outContext)
                         unless hReturn.nil?
                            intGeoExt[:geographicElements] << hReturn
                            haveGExtent = true
@@ -94,10 +99,7 @@ module ADIWG
 
                   # error messages
                   unless haveGExtent
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(321, responseObj, inContext)
                   end
 
                   return intGeoExt

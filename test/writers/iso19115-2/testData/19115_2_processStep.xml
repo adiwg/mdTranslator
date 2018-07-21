@@ -21,15 +21,15 @@
                  ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
 
   <gmd:processStep>
-    <gmd:LI_ProcessStep id="PST001">
+    <gmd:LI_ProcessStep id="PS001">
       <gmd:description>
-        <gco:CharacterString>process step one</gco:CharacterString>
+        <gco:CharacterString>description</gco:CharacterString>
       </gmd:description>
       <gmd:rationale>
         <gco:CharacterString>rationale</gco:CharacterString>
       </gmd:rationale>
       <gmd:dateTime>
-        <gco:DateTime>2018-04-26T00:00:00</gco:DateTime>
+        <gco:DateTime>2018-06-22T00:00:00</gco:DateTime>
       </gmd:dateTime>
       <gmd:processor>
         <gmd:CI_ResponsibleParty>
@@ -45,22 +45,33 @@
       </gmd:processor>
       <gmd:processor>
         <gmd:CI_ResponsibleParty>
-          <gmd:organisationName>
-            <gco:CharacterString>organization name four</gco:CharacterString>
-          </gmd:organisationName>
+          <gmd:individualName>
+            <gco:CharacterString>person name three</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:positionName/>
           <gmd:contactInfo/>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="007"/>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="processor" codeSpace="009"/>
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:processor>
       <gmd:source>
         <gmd:LI_Source id="SRC001">
           <gmd:description>
-            <gco:CharacterString>step source one</gco:CharacterString>
+            <gco:CharacterString>description</gco:CharacterString>
           </gmd:description>
-          <gmd:scaleDenominator/>
-          <gmd:sourceReferenceSystem/>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
           <gmd:sourceCitation>
             <gmd:CI_Citation>
               <gmd:title>
@@ -104,10 +115,20 @@
       <gmd:source>
         <gmd:LI_Source id="SRC002">
           <gmd:description>
-            <gco:CharacterString>step source two</gco:CharacterString>
+            <gco:CharacterString>description</gco:CharacterString>
           </gmd:description>
-          <gmd:scaleDenominator/>
-          <gmd:sourceReferenceSystem/>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
           <gmd:sourceCitation>
             <gmd:CI_Citation>
               <gmd:title>
@@ -152,15 +173,15 @@
   </gmd:processStep>
 
   <gmd:processStep>
-    <gmd:LI_ProcessStep id="PST001">
+    <gmd:LI_ProcessStep id="PS001">
       <gmd:description>
-        <gco:CharacterString>process step one</gco:CharacterString>
+        <gco:CharacterString>description</gco:CharacterString>
       </gmd:description>
       <gmd:rationale>
         <gco:CharacterString>rationale</gco:CharacterString>
       </gmd:rationale>
       <gmd:dateTime>
-        <gco:DateTime>2018-04-26T00:00:00</gco:DateTime>
+        <gco:DateTime>2018-06-22T00:00:00</gco:DateTime>
       </gmd:dateTime>
       <gmd:processor>
         <gmd:CI_ResponsibleParty>
@@ -177,10 +198,20 @@
       <gmd:source>
         <gmd:LI_Source id="SRC001">
           <gmd:description>
-            <gco:CharacterString>step source one</gco:CharacterString>
+            <gco:CharacterString>description</gco:CharacterString>
           </gmd:description>
-          <gmd:scaleDenominator/>
-          <gmd:sourceReferenceSystem/>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
           <gmd:sourceCitation>
             <gmd:CI_Citation>
               <gmd:title>
@@ -227,7 +258,7 @@
   <gmd:processStep>
     <gmd:LI_ProcessStep>
       <gmd:description>
-        <gco:CharacterString>process step one</gco:CharacterString>
+        <gco:CharacterString>description</gco:CharacterString>
       </gmd:description>
       <gmd:rationale/>
       <gmd:dateTime/>

@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 #  Stan Smith 2018-03-28 add responsible party array
 #  Stan Smith 2018-02-18 refactored error and warning messaging
 #  Stan Smith 2017-08-30 refactored for mdJson schema 2.3
@@ -19,9 +20,11 @@ module ADIWG
 
                def self.unpack(hAlloc, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hAlloc.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: budget allocation object is empty'
+                     @MessagePath.issueWarning(20, responseObj)
                      return nil
                   end
 
@@ -41,9 +44,7 @@ module ADIWG
                      intAlloc[:amount] = hAlloc['amount']
                   end
                   if intAlloc[:amount].nil? || intAlloc[:amount] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: budget allocation amount is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(21, responseObj)
                   end
 
                   # allocation - currency (required)
@@ -51,9 +52,7 @@ module ADIWG
                      intAlloc[:currency] = hAlloc['currency']
                   end
                   if intAlloc[:currency].nil? || intAlloc[:currency] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: budget allocation currency is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(22, responseObj)
                   end
 
                   # allocation - source ID {contactId}

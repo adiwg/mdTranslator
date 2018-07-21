@@ -175,6 +175,31 @@
       <gfc:definition>
         <gco:CharacterString>unrepresented domain description</gco:CharacterString>
       </gfc:definition>
+      <gfc:definitionReference>
+        <gfc:FC_DefinitionReference>
+          <gfc:definitionSource>
+            <gfc:FC_DefinitionSource>
+              <gfc:source>
+                <gmd:CI_Citation>
+                  <gmd:title>
+                    <gco:CharacterString>domain reference title</gco:CharacterString>
+                  </gmd:title>
+                  <gmd:alternateTitle/>
+                  <gmd:date gco:nilReason="missing"/>
+                  <gmd:edition/>
+                  <gmd:identifier/>
+                  <gmd:citedResponsibleParty/>
+                  <gmd:presentationForm/>
+                  <gmd:series/>
+                  <gmd:otherCitationDetails/>
+                  <gmd:ISBN/>
+                  <gmd:ISSN/>
+                </gmd:CI_Citation>
+              </gfc:source>
+            </gfc:FC_DefinitionSource>
+          </gfc:definitionSource>
+        </gfc:FC_DefinitionReference>
+      </gfc:definitionReference>
     </gfc:FC_ListedValue>
   </gfc:listedValue>
 

@@ -2,6 +2,7 @@
 # reader / mdJson / module_domain
 
 # History:
+#  Stan Smith 2018-06-18 refactored to use mdJson construction helpers
 #  Stan Smith 2017-11-01 added domainReference
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
@@ -15,26 +16,36 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Domain
-   aIn = TestReaderMdJsonParent.getJson('domain.json')
-   @@hIn = aIn['domain'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.dictionaryDomain
+   mdHash[:domainItem] << TDClass.domainItem
+   mdHash[:domainItem] << TDClass.domainItem
+
+   @@mdHash = mdHash
 
    def test_domain_schema
 
-      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'domain.json')
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'domain.json')
       assert_empty errors
 
    end
 
    def test_complete_domain_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'domainId', metadata[:domainId]
-      assert_equal 'commonName', metadata[:domainName]
-      assert_equal 'codeName', metadata[:domainCode]
-      assert_equal 'description', metadata[:domainDescription]
+      assert_equal 'DOM001', metadata[:domainId]
+      assert_equal 'domain common name', metadata[:domainName]
+      assert_equal 'domain code name', metadata[:domainCode]
+      assert_equal 'domain description', metadata[:domainDescription]
       refute_empty metadata[:domainReference]
       assert_equal 'domain reference title', metadata[:domainReference][:title]
       assert_equal 2, metadata[:domainItems].length
@@ -45,93 +56,111 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    def test_empty_domainId
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['domainId'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain ID is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain ID is missing'
 
    end
 
    def test_missing_domainId
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('domainId')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain ID is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain ID is missing'
 
    end
 
    def test_empty_domain_codeName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['codeName'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain code is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain code is missing: CONTEXT is domain ID DOM001'
 
    end
 
    def test_missing_domain_codeName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('codeName')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: data dictionary domain code is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: data dictionary domain code is missing: CONTEXT is domain ID DOM001'
 
    end
 
    def test_empty_domain_description
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['description'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary domain description is missing'
+         'ERROR: mdJson reader: data dictionary domain description is missing: CONTEXT is domain ID DOM001'
 
    end
 
    def test_missing_domain_description
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('description')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary domain description is missing'
+         'ERROR: mdJson reader: data dictionary domain description is missing: CONTEXT is domain ID DOM001'
 
    end
 
    def test_empty_domain_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['commonName'] = ''
       hIn['domainReference'] = {}
       hIn['domainItems'] = []
@@ -146,7 +175,9 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    def test_missing_domain_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('commonName')
       hIn.delete('domainReference')
       hIn.delete('domainItems')
@@ -161,6 +192,7 @@ class TestReaderMdJsonDomain < TestReaderMdJsonParent
 
    def test_empty_domain_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 

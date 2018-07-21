@@ -1,6 +1,7 @@
 # mdJson reader - process and direct mdJson ingest to internal data structure
 
 # History:
+#  Stan Smith 2018-06-12 refactor messaging support
 #  Stan Smith 2016-11-12 refactor for mdTranslator 2.0
 #  Stan Smith 2016-10-09 modify 'findContact' to also return contact index and type
 #  Stan Smith 2016-10-07 refactored 'readerModule' to remove mdJson version checking

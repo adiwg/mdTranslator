@@ -269,4 +269,7 @@
       </toolacc>
     </tool>
   </idinfo>
+  <metainfo>
+    <mettc>local time</mettc>
+  </metainfo>
 </metadata>

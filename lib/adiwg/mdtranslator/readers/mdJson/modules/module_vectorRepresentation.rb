@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 # 	Stan Smith 2016-10-19 original script
 
 require_relative 'module_vectorObject'
@@ -14,19 +14,24 @@ module ADIWG
 
             module VectorRepresentation
 
-               def self.unpack(hVector, responseObj)
+               def self.unpack(hVector, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hVector.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: vector representation object is empty'
+                     @MessagePath.issueWarning(910, responseObj, inContext)
                      return nil
                   end
-
-                  haveVector = false
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intVector = intMetadataClass.newVectorInfo
+
+                  outContext = 'vector representation'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
+                  haveVector = false
 
                   # vector representation - topology level
                   if hVector.has_key?('topologyLevel')
@@ -39,7 +44,7 @@ module ADIWG
                   # vector representation - vector object []
                   if hVector.has_key?('vectorObject')
                      hVector['vectorObject'].each do |item|
-                        hVec = VectorObject.unpack(item, responseObj)
+                        hVec = VectorObject.unpack(item, responseObj, outContext)
                         unless hVec.nil?
                            intVector[:vectorObject] << hVec
                            haveVector = true
@@ -49,10 +54,7 @@ module ADIWG
 
                   # error messages
                   unless haveVector
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: vector representation must have a topology level or vector object'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(911, responseObj, inContext)
                   end
 
                   return intVector

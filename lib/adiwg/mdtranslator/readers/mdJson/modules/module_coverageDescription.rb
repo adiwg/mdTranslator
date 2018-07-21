@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_identifier'
@@ -18,9 +18,11 @@ module ADIWG
 
                def self.unpack(hContent, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hContent.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: coverage description object is empty'
+                     @MessagePath.issueWarning(130, responseObj)
                      return nil
                   end
 
@@ -35,9 +37,7 @@ module ADIWG
                      end
                   end
                   if intContent[:coverageName].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(131, responseObj)
                   end
 
                   # content information - coverage description (required)
@@ -47,9 +47,7 @@ module ADIWG
                      end
                   end
                   if intContent[:coverageDescription].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description description is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(132, responseObj)
                   end
 
                   # content information - processing level code

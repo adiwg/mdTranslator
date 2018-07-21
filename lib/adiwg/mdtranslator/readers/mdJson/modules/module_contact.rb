@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-17 refactored error and warning messaging
 #  Stan Smith 2016-10-23 original script
 
 require_relative 'module_onlineResource'
@@ -19,11 +19,11 @@ module ADIWG
 
                def self.unpack(hContact, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hContact.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueWarning(100, responseObj)
                      return nil
                   end
 
@@ -31,14 +31,15 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intContact = intMetadataClass.newContact
 
+                  outContext = nil
+
                   # contact - contact id (required)
                   if hContact.has_key?('contactId')
                      intContact[:contactId] = hContact['contactId']
+                     outContext = 'contact ID ' + hContact['contactId']
                   end
                   if intContact[:contactId].nil? || intContact[:contactId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: contact id is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(101, responseObj)
                   end
 
                   # contact - is organization (required)
@@ -65,14 +66,11 @@ module ADIWG
                   end
                   if intContact[:name].nil? || intContact[:name] == ''
                      if intContact[:isOrganization] === true
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: organization contact name is missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
-                     end
-                     if intContact[:positionName].nil? || intContact[:positionName] == ''
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: individual contact name and/or position are missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(102, responseObj, outContext)
+                     else
+                        if intContact[:positionName].nil? || intContact[:positionName] == ''
+                           @MessagePath.issueError(103, responseObj, outContext)
+                        end
                      end
                   end
 
@@ -89,7 +87,7 @@ module ADIWG
                   if hContact.has_key?('logoGraphic')
                      aItems = hContact['logoGraphic']
                      aItems.each do |item|
-                        hReturn = Graphic.unpack(item, responseObj)
+                        hReturn = Graphic.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intContact[:logos] << hReturn
                         end
@@ -100,18 +98,19 @@ module ADIWG
                   if hContact.has_key?('phone')
                      aItems = hContact['phone']
                      aItems.each do |item|
-                        hReturn = Phone.unpack(item, responseObj)
+                        hReturn = Phone.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intContact[:phones] << hReturn
                         end
                      end
                   end
 
+                  # TODO need outContext
                   # contact - address [address]
                   if hContact.has_key?('address')
                      aItems = hContact['address']
                      aItems.each do |item|
-                        hReturn = Address.unpack(item, responseObj)
+                        hReturn = Address.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intContact[:addresses] << hReturn
                         end
@@ -131,7 +130,7 @@ module ADIWG
                   if hContact.has_key?('onlineResource')
                      aItems = hContact['onlineResource']
                      aItems.each do |item|
-                        hReturn = OnlineResource.unpack(item, responseObj)
+                        hReturn = OnlineResource.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intContact[:onlineResources] << hReturn
                         end

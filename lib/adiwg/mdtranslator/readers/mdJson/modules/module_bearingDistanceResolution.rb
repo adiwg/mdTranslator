@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 # 	Stan Smith 2017-10-19 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module BearingDistanceResolution
 
-               def self.unpack(hBearRes, responseObj)
+               def self.unpack(hBearRes, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hBearRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: bearing distance resolution object is empty'
+                     @MessagePath.issueWarning(60, responseObj, inContext)
                      return nil
                   end
 
@@ -29,9 +31,7 @@ module ADIWG
                      intBearRes[:distanceResolution] = hBearRes['distanceResolution']
                   end
                   if intBearRes[:distanceResolution].nil? || intBearRes[:distanceResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution is missing distance resolution'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(61, responseObj, inContext)
                   end
 
                   # bearing distance resolution - distance unit of measure (required)
@@ -39,9 +39,7 @@ module ADIWG
                      intBearRes[:distanceUnitOfMeasure] = hBearRes['distanceUnitOfMeasure']
                   end
                   if intBearRes[:distanceUnitOfMeasure].nil? || intBearRes[:distanceUnitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution distance units are missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(62, responseObj, inContext)
                   end
 
                   # bearing distance resolution - bearing resolution (required)
@@ -49,9 +47,7 @@ module ADIWG
                      intBearRes[:bearingResolution] = hBearRes['bearingResolution']
                   end
                   if intBearRes[:bearingResolution].nil? || intBearRes[:bearingResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing resolution is missing '
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(63, responseObj, inContext)
                   end
 
                   # bearing distance resolution - bearing unit of measure (required)
@@ -59,9 +55,7 @@ module ADIWG
                      intBearRes[:bearingUnitOfMeasure] = hBearRes['bearingUnitOfMeasure']
                   end
                   if intBearRes[:bearingUnitOfMeasure].nil? || intBearRes[:bearingUnitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing units is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(64, responseObj, inContext)
                   end
 
                   # bearing distance resolution - bearing reference direction (required)
@@ -69,9 +63,7 @@ module ADIWG
                      intBearRes[:bearingReferenceDirection] = hBearRes['bearingReferenceDirection']
                   end
                   if intBearRes[:bearingReferenceDirection].nil? || intBearRes[:bearingReferenceDirection] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing direction is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(65, responseObj, inContext)
                   end
 
                   # bearing distance resolution - bearing reference meridian (required)
@@ -79,9 +71,7 @@ module ADIWG
                      intBearRes[:bearingReferenceMeridian] = hBearRes['bearingReferenceMeridian']
                   end
                   if intBearRes[:bearingReferenceMeridian].nil? || intBearRes[:bearingReferenceMeridian] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bearing distance resolution bearing meridian is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(66, responseObj, inContext)
                   end
 
                   return intBearRes

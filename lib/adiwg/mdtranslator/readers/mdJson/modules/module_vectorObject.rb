@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 # 	Stan Smith 2016-10-19 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module VectorObject
 
-               def self.unpack(hVecObj, responseObj)
+               def self.unpack(hVecObj, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hVecObj.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: vector object is empty'
+                     @MessagePath.issueWarning(900, responseObj, inContext)
                      return nil
                   end
 
@@ -31,9 +33,7 @@ module ADIWG
                      end
                   end
                   if intVecObj[:objectType].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: vector object type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(901, responseObj, inContext)
                   end
 
                   # vector object - object count

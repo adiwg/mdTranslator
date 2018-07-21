@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 #  Stan Smith 2016-10-18 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -27,9 +27,11 @@ module ADIWG
 
                def self.unpack(hAssocRes, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hAssocRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: associated resource object is empty'
+                     @MessagePath.issueWarning(30, responseObj)
                      return nil
                   end
 
@@ -49,9 +51,7 @@ module ADIWG
                      end
                   end
                   if intAssocRes[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource resource type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(31, responseObj)
                   end
 
                   # associated resource - association type (required)
@@ -59,9 +59,7 @@ module ADIWG
                      intAssocRes[:associationType] = hAssocRes['associationType']
                   end
                   if intAssocRes[:associationType].nil? || intAssocRes[:associationType] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource association type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(32, responseObj)
                   end
 
                   # associated resource - initiative type
@@ -82,9 +80,7 @@ module ADIWG
                      end
                   end
                   if intAssocRes[:resourceCitation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: associated resource citation is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(33, responseObj)
                   end
 
                   # associated resource - metadata citation

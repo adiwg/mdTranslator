@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 # 	Stan Smith 2016-10-03 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module Duration
 
-               def self.unpack(hDuration, responseObj)
+               def self.unpack(hDuration, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hDuration.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: duration object is empty'
+                     @MessagePath.issueWarning(220, responseObj, inContext)
                      return nil
                   end
 
@@ -98,9 +100,7 @@ module ADIWG
                      intDuration[:minutes] +
                      intDuration[:seconds]
                   unless totalDuration > 0
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: duration not specified'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(221, responseObj, inContext)
                   end
 
                   return intDuration

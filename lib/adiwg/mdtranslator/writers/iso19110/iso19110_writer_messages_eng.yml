@@ -37,4 +37,5 @@ messageList:
    - {id: 100, message: "codeset domain name is missing"}
    - {id: 101, message: "unrepresented domain name is missing"}
 
-   - {id: 110, message: " is missing"}
+   - {id: 110, message: "data dictionary is empty"}
+   - {id: 111, message: "multiple data dictionaries found, using first"}

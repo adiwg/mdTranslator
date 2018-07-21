@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-04-06 renamed taxonomicRank to taxonomicLevel
+#  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2018-04-06 renamed latinName to taxonomicName
 #  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-01-31 added taxonomicSystemId
@@ -19,10 +19,11 @@ module ADIWG
 
                def self.unpack(hTaxClass, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hTaxClass.empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: taxonomic classification object is empty'
+                     @MessagePath.issueWarning(810, responseObj)
                      return nil
                   end
 
@@ -45,14 +46,10 @@ module ADIWG
                   # support deprecation until schema version 3.0
                   if hTaxClass.has_key?('taxonomicRank')
                      intTaxClass[:taxonRank] = hTaxClass['taxonomicRank']
-                     responseObj[:readerExecutionMessages] <<
-                        'NOTICE: mdJson reader: taxonomic classification taxonomicRank is deprecated, use taxonomicLevel'
+                     @MessagePath.issueNotice(811, responseObj)
                   end
                   if intTaxClass[:taxonRank].nil? || intTaxClass[:taxonRank] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: taxonomic classification level is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(812, responseObj)
                   end
 
                   # taxonomic classification - taxonomic name (required)
@@ -63,14 +60,10 @@ module ADIWG
                   # support deprecation until schema version 3.0
                   if hTaxClass.has_key?('latinName')
                      intTaxClass[:taxonValue] = hTaxClass['latinName']
-                     responseObj[:readerExecutionMessages] <<
-                        'NOTICE: mdJson reader: taxonomic classification latinName is deprecated, use taxonomicName'
+                     @MessagePath.issueNotice(813, responseObj)
                   end
                   if intTaxClass[:taxonValue].nil? || intTaxClass[:taxonValue] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: taxonomic classification name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(814, responseObj)
                   end
 
                   # taxonomic classification - common name []

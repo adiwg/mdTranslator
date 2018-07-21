@@ -2,10 +2,8 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2016-10-09 original script
-
-require_relative 'module_mdJson'
 
 module ADIWG
    module Mdtranslator
@@ -14,11 +12,13 @@ module ADIWG
 
             module Party
 
-               def self.unpack(hParty, responseObj)
+               def self.unpack(hParty, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hParty.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: responsibility party object is empty'
+                     @MessagePath.issueWarning(620, responseObj, inContext)
                      return nil
                   end
 
@@ -27,25 +27,25 @@ module ADIWG
                   intParty = intMetadataClass.newParty
 
                   # party - contact ID (required)
+                  # load party with contact index, contact type, and name
+                  # return nil if contact ID does not exist in contact array
                   if hParty.has_key?('contactId')
                      intParty[:contactId] = hParty['contactId']
+                     unless intParty[:contactId].nil? || intParty[:contactId] == ''
+                        hContact = @MessagePath.findContact(hParty['contactId'])
+                        if hContact[0].nil?
+                           outContext = 'contact ID ' + intParty[:contactId]
+                           outContext = inContext + ' > ' + outContext unless inContext.nil?
+                           @MessagePath.issueError(622, responseObj, outContext)
+                        else
+                           intParty[:contactIndex] = hContact[0]
+                           intParty[:contactType] = hContact[1]
+                           intParty[:contactName] = hContact[2]
+                        end
+                     end
                   end
                   if intParty[:contactId].nil? || intParty[:contactId] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsibility party contact ID is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-
-                  # party - contact index, contact type (computed)
-                  # return nil if contact ID does not exist in contact array
-                  hContact = MdJson.findContact(hParty['contactId'])
-                  if hContact[0].nil?
-                     responseObj[:readerExecutionMessages] << "ERROR: mdJson reader: responsibility party contact ID #{hParty['contactId']} not found"
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  else
-                     intParty[:contactIndex] = hContact[0]
-                     intParty[:contactType] = hContact[1]
+                     @MessagePath.issueError(621, responseObj, inContext)
                   end
 
                   # party - organization members []
@@ -53,15 +53,12 @@ module ADIWG
                   if intParty[:contactType] == 'organization'
                      if hParty.has_key?('organizationMembers')
                         hParty['organizationMembers'].each do |contactId|
-                           hContact = MdJson.findContact(contactId)
+                           intParty[:organizationMembers] << contactId
+                           hContact = @MessagePath.findContact(contactId)
                            if hContact[0].nil?
-                              responseObj[:readerExecutionMessages] << "WARNING: mdJson reader: responsibility party organization member contact ID #{contactId} not found"
-                           else
-                              newParty = intMetadataClass.newParty
-                              newParty[:contactId] = contactId
-                              newParty[:contactIndex] = hContact[0]
-                              newParty[:contactType] = hContact[1]
-                              intParty[:organizationMembers] << newParty
+                              outContext = 'contact ID ' + contactId
+                              outContext = inContext + ' > ' + outContext unless inContext.nil?
+                              @MessagePath.issueWarning(623, responseObj, outContext)
                            end
                         end
                      end

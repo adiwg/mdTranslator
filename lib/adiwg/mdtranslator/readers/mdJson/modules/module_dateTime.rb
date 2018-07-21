@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-05 refactored for mdJson 2.0
 #  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -18,11 +18,13 @@ module ADIWG
 
             module DateTime
 
-               def self.unpack(sDateTime, responseObj)
+               def self.unpack(sDateTime, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if sDateTime == ''
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: dateTime string is empty'
+                     @MessagePath.issueWarning(160, responseObj, inContext)
                      return nil
                   end
 
@@ -34,9 +36,7 @@ module ADIWG
                   # if dateTimeFromString fails, [0] = nil; [1] = 'ERROR'
                   aDateTimeReturn = AdiwgDateTimeFun.dateTimeFromString(sDateTime)
                   if aDateTimeReturn[1] == 'ERROR'
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: dateTime string is invalid'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(161, responseObj, inContext)
                   else
                      intDateTime[:dateTime] = aDateTimeReturn[0]
                      intDateTime[:dateResolution] = aDateTimeReturn[1]

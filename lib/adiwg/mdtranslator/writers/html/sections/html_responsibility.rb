@@ -43,10 +43,10 @@ module ADIWG
                            end
 
                            if hContact[:isOrganization]
-                              hParty[:organizationMembers].each do |hMember|
-                                 hMemberContact = Html_Document.getContact(hMember[:contactId])
+                              hParty[:organizationMembers].each do |memberId|
+                                 hMemberContact = Html_Document.getContact(memberId)
                                  @html.em('has Member: ')
-                                 @html.a(hMemberContact[:name], 'href' => '#CID_'+hMember[:contactId])
+                                 @html.a(hMemberContact[:name], 'href' => '#CID_'+ memberId)
                                  @html.br
                               end
                            else

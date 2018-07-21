@@ -2,10 +2,8 @@
 # Reader - ADIwg JSON to internal dimension
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 # 	Stan Smith 2016-10-18 original script
-
-require_relative 'module_measure'
 
 module ADIWG
    module Mdtranslator
@@ -14,11 +12,13 @@ module ADIWG
 
             module Dimension
 
-               def self.unpack(hDimension, responseObj)
+               def self.unpack(hDimension, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hDimension.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial representation dimension object is empty'
+                     @MessagePath.issueWarning(170, responseObj, inContext)
                      return nil
                   end
 
@@ -33,9 +33,7 @@ module ADIWG
                      end
                   end
                   if intDimension[:dimensionType].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial representation dimension type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(171, responseObj, inContext)
                   end
 
                   # dimension - dimension size (required)
@@ -45,9 +43,7 @@ module ADIWG
                      end
                   end
                   if intDimension[:dimensionSize].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: spatial representation dimension size is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(172, responseObj, inContext)
                   end
 
                   # dimension - resolution {measure}

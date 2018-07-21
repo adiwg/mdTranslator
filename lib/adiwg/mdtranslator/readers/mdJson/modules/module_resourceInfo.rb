@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-04-06 change taxonomy to an array
+#  Stan Smith 2018-06-24 refactored error and warning messaging
 #  Stan Smith 2018-02-19 refactored error and warning messaging
 #  Stan Smith 2017-05-16 deprecated topic category
 #  ... topic category is now handled as keyword list
@@ -37,10 +37,11 @@ module ADIWG
 
                def self.unpack(hResInfo, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hResInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueError(680, responseObj)
                      return nil
                   end
 
@@ -48,11 +49,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intResInfo = intMetadataClass.newResourceInfo
 
+                  outContext = 'resource information'
+
                   # resource information - resource type [] (required) {resourceType}
                   if hResInfo.has_key?('resourceType')
                      hResInfo['resourceType'].each do |item|
                         unless item.empty?
-                           hReturn = ResourceType.unpack(item, responseObj)
+                           hReturn = ResourceType.unpack(item, responseObj, outContext)
                            unless hReturn.nil?
                               intResInfo[:resourceTypes] << hReturn
                            end
@@ -60,25 +63,21 @@ module ADIWG
                      end
                   end
                   if intResInfo[:resourceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info resource type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(681, responseObj, outContext)
                   end
 
                   # resource information - citation {citation} (required)
                   if hResInfo.has_key?('citation')
                      hObject = hResInfo['citation']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:citation] = hReturn
                         end
                      end
                   end
                   if intResInfo[:citation].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info citation is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(682, responseObj, outContext)
                   end
 
                   # resource information - abstract (required)
@@ -86,9 +85,7 @@ module ADIWG
                      intResInfo[:abstract] = hResInfo['abstract']
                   end
                   if intResInfo[:abstract].nil? || intResInfo[:abstract] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info abstract is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(683, responseObj, outContext)
                   end
 
                   # resource information - short abstract
@@ -110,7 +107,7 @@ module ADIWG
                      hObject = hResInfo['timePeriod']
                      unless hObject.empty?
                         hObject[:description] = 'resource time period' if hObject[:description].nil?
-                        hReturn = TimePeriod.unpack(hObject, responseObj)
+                        hReturn = TimePeriod.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:timePeriod] = hReturn
                         end
@@ -135,9 +132,7 @@ module ADIWG
                      end
                   end
                   if intResInfo[:status].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info status is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(684, responseObj, outContext)
                   end
 
                   # resource information - topic category (deprecated)
@@ -156,8 +151,7 @@ module ADIWG
                         unless hReturn.nil?
                            intResInfo[:keywords] << hReturn
                         end
-                        responseObj[:readerExecutionMessages] <<
-                           'NOTICE: mdJson reader: TopicCategory is deprecated, items were moved to keywords "isoTopicCategory"'
+                        @MessagePath.issueNotice(685, responseObj, outContext)
                      end
                   end
 
@@ -165,23 +159,21 @@ module ADIWG
                   if hResInfo.has_key?('pointOfContact')
                      aItems = hResInfo['pointOfContact']
                      aItems.each do |item|
-                        hReturn = ResponsibleParty.unpack(item, responseObj)
+                        hReturn = ResponsibleParty.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:pointOfContacts] << hReturn
                         end
                      end
                   end
                   if intResInfo[:pointOfContacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info point-of-contact is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(686, responseObj, outContext)
                   end
 
                   # resource information - spatial reference system [] {spatialReference}
                   if hResInfo.has_key?('spatialReferenceSystem')
                      aItems = hResInfo['spatialReferenceSystem']
                      aItems.each do |item|
-                        hReturn = SpatialReferenceSystem.unpack(item, responseObj)
+                        hReturn = SpatialReferenceSystem.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:spatialReferenceSystems] << hReturn
                         end
@@ -201,7 +193,7 @@ module ADIWG
                   if hResInfo.has_key?('spatialRepresentation')
                      aItems = hResInfo['spatialRepresentation']
                      aItems.each do |item|
-                        hReturn = SpatialRepresentation.unpack(item, responseObj)
+                        hReturn = SpatialRepresentation.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:spatialRepresentations] << hReturn
                         end
@@ -212,7 +204,7 @@ module ADIWG
                   if hResInfo.has_key?('spatialResolution')
                      aItems = hResInfo['spatialResolution']
                      aItems.each do |item|
-                        hReturn = SpatialResolution.unpack(item, responseObj)
+                        hReturn = SpatialResolution.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:spatialResolutions] << hReturn
                         end
@@ -223,7 +215,7 @@ module ADIWG
                   if hResInfo.has_key?('temporalResolution')
                      aItems = hResInfo['temporalResolution']
                      aItems.each do |item|
-                        hReturn = Duration.unpack(item, responseObj)
+                        hReturn = Duration.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:temporalResolutions] << hReturn
                         end
@@ -234,7 +226,7 @@ module ADIWG
                   if hResInfo.has_key?('extent')
                      aItems = hResInfo['extent']
                      aItems.each do |item|
-                        hReturn = Extent.unpack(item, responseObj)
+                        hReturn = Extent.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:extents] << hReturn
                         end
@@ -268,8 +260,7 @@ module ADIWG
                         unless hReturn.nil?
                            intResInfo[:taxonomy] << hReturn
                         end
-                        responseObj[:readerExecutionMessages] <<
-                           'NOTICE: mdJson reader: taxonomy is an array, use of a single taxonomy object was deprecated'
+                        @MessagePath.issueNotice(687, responseObj, outContext)
                      end
                   end
 
@@ -277,7 +268,7 @@ module ADIWG
                   if hResInfo.has_key?('graphicOverview')
                      aItems = hResInfo['graphicOverview']
                      aItems.each do |item|
-                        hReturn = Graphic.unpack(item, responseObj)
+                        hReturn = Graphic.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:graphicOverviews] << hReturn
                         end
@@ -288,7 +279,7 @@ module ADIWG
                   if hResInfo.has_key?('resourceFormat')
                      aItems = hResInfo['resourceFormat']
                      aItems.each do |item|
-                        hReturn = Format.unpack(item, responseObj)
+                        hReturn = Format.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:resourceFormats] << hReturn
                         end
@@ -321,7 +312,7 @@ module ADIWG
                   if hResInfo.has_key?('constraint')
                      aCons = hResInfo['constraint']
                      aCons.each do |hItem|
-                        hReturn = Constraint.unpack(hItem, responseObj)
+                        hReturn = Constraint.unpack(hItem, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:constraints] << hReturn
                         end
@@ -332,23 +323,21 @@ module ADIWG
                   if hResInfo.has_key?('defaultResourceLocale')
                      hObject = hResInfo['defaultResourceLocale']
                      unless hObject.empty?
-                        hReturn = Locale.unpack(hObject, responseObj)
+                        hReturn = Locale.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:defaultResourceLocale] = hReturn
                         end
                      end
                   end
                   if intResInfo[:defaultResourceLocale].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: resource info default locale is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(688, responseObj, outContext)
                   end
 
                   # resource information - other resource locale [] {locale}
                   if hResInfo.has_key?('otherResourceLocale')
                      aItems = hResInfo['otherResourceLocale']
                      aItems.each do |item|
-                        hReturn = Locale.unpack(item, responseObj)
+                        hReturn = Locale.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:otherResourceLocales] << hReturn
                         end
@@ -359,7 +348,7 @@ module ADIWG
                   if hResInfo.has_key?('resourceMaintenance')
                      aItems = hResInfo['resourceMaintenance']
                      aItems.each do |item|
-                        hReturn = Maintenance.unpack(item, responseObj)
+                        hReturn = Maintenance.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intResInfo[:resourceMaintenance] << hReturn
                         end

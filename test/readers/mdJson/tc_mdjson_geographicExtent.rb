@@ -2,6 +2,7 @@
 # reader / mdJson / module_geographicExtent
 
 # History:
+#  Stan Smith 2018-06-19 refactored to use mdJson construction helpers
 #  Stan Smith 2017-09-28 add description for fgdc support
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-11-10 added computedBbox
@@ -14,25 +15,35 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    # set variables for test
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::GeographicExtent
-   aIn = TestReaderMdJsonParent.getJson('geographicExtent.json')
-   @@hIn = aIn['geographicExtent'][0]
 
-   # TODO remove after schema update
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.geographicExtent
+   mdHash[:geographicElement] << TDClass.point
+   mdHash[:geographicElement] << TDClass.lineString
+
+   @@mdHash = mdHash
+
+   # TODO reinstate after schema update
    # def test_geographicExtent_schema
    #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json')
+   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geographicExtent.json')
    #     assert_empty errors
    #
    # end
 
    def test_complete_geographicExtent
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_equal 'geographic extent description', metadata[:description]
-      refute metadata[:containsData]
+      assert metadata[:containsData]
       refute_empty metadata[:identifier]
       refute_empty metadata[:boundingBox]
       assert_equal 2, metadata[:geographicElements].length
@@ -45,10 +56,12 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    def test_geographicExtent_empty_containsData
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['containsData'] = ''
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_equal 'geographic extent description', metadata[:description]
       assert metadata[:containsData]
@@ -64,10 +77,12 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    def test_geographicExtent_missing_containsData
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('containsData')
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_equal 'geographic extent description', metadata[:description]
       assert metadata[:containsData]
@@ -83,50 +98,56 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    def test_geographicExtent_empty_required
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['description'] = ''
       hIn['identifier'] = {}
       hIn['boundingBox'] = {}
       hIn['geographicElement'] = []
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
+         'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element: CONTEXT is testing'
 
    end
 
    def test_geographicExtent_missing_required
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['nonElement'] = ''
       hIn.delete('description')
       hIn.delete('identifier')
       hIn.delete('boundingBox')
       hIn.delete('geographicElement')
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element'
+         'ERROR: mdJson reader: geographic extent must have at least one description, identifier, bounding box, or geographic element: CONTEXT is testing'
 
    end
 
    def test_empty_geographicExtent
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack({}, hResponse)
+      metadata = @@NameSpace.unpack({}, hResponse, 'testing')
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: geographic extent object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: geographic extent object is empty: CONTEXT is testing'
 
    end
 

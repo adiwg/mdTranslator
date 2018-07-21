@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 # 	Stan Smith 2016-10-17 original script
 
 module ADIWG
@@ -12,11 +12,13 @@ module ADIWG
 
             module Measure
 
-               def self.unpack(hMeasure, responseObj)
+               def self.unpack(hMeasure, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hMeasure.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: measure object is empty'
+                     @MessagePath.issueWarning(540, responseObj, inContext)
                      return nil
                   end
 
@@ -31,17 +33,12 @@ module ADIWG
                         if %w{ distance length vertical angle measure scale }.one? {|word| word == type}
                            intMeasure[:type] = hMeasure['type']
                         else
-                           responseObj[:readerExecutionMessages] <<
-                              'ERROR: mdJson reader: measure type must be distance, length, vertical, or angle'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(541, responseObj, inContext)
                         end
                      end
                   end
                   if intMeasure[:type].nil? || intMeasure[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(542, responseObj, inContext)
                   end
 
                   # measure - value (required)
@@ -49,9 +46,7 @@ module ADIWG
                      intMeasure[:value] = hMeasure['value']
                   end
                   if intMeasure[:value].nil? || intMeasure[:value] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure value is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(543, responseObj, inContext)
                   end
 
                   # measure - unit of measure (required)
@@ -59,9 +54,7 @@ module ADIWG
                      intMeasure[:unitOfMeasure] = hMeasure['unitOfMeasure']
                   end
                   if intMeasure[:unitOfMeasure].nil? || intMeasure[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: measure unit-of-measure is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(544, responseObj, inContext)
                   end
 
                   return intMeasure

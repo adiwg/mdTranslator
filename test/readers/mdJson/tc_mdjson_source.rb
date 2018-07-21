@@ -2,9 +2,10 @@
 # reader / mdJson / module_source
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-17 refactored for mdJson 2.0
-#   Stan Smith 2015-09-22 original script
+#  Stan Smith 2018-06-25 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-17 refactored for mdJson 2.0
+#  Stan Smith 2015-09-22 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_source'
@@ -13,24 +14,32 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Source
-   aIn = TestReaderMdJsonParent.getJson('source.json')
-   @@hIn = aIn['source'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_source_full
+
+   @@mdHash = mdHash
 
    # TODO reinstate after schema update
    # def test_source_schema
    #
-   #    errors = TestReaderMdJsonParent.testSchema(@@hIn, 'lineage.json', :fragment => 'source')
+   #    errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'lineage.json', :fragment => 'source')
    #    assert_empty errors
    #
    # end
 
    def test_complete_source_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_equal 'source ID', metadata[:sourceId]
+      assert_equal 'SRC001', metadata[:sourceId]
       assert_equal 'description', metadata[:description]
       refute_empty metadata[:sourceCitation]
       assert_equal 2, metadata[:metadataCitation].length
@@ -45,37 +54,45 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    def test_source_descriptionScope_empty
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['description'] = ''
       hIn['scope'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source requires a description or scope'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: source requires a description or scope: CONTEXT is testing'
 
    end
 
    def test_source_descriptionScope_missing
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('description')
       hIn.delete('scope')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: source requires a description or scope'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: source requires a description or scope: CONTEXT is testing'
 
    end
 
    def test_source_elements_empty
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['sourceId'] = ''
       hIn['sourceCitation'] = {}
       hIn['metadataCitation'] = []
@@ -84,7 +101,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
       hIn['sourceProcessStep'] = []
       hIn['scope'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_nil metadata[:sourceId]
       assert_equal 'description', metadata[:description]
@@ -101,7 +118,9 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    def test_source_elements_missing
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('sourceId')
       hIn.delete('sourceCitation')
       hIn.delete('metadataCitation')
@@ -110,7 +129,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
       hIn.delete('sourceProcessStep')
       hIn.delete('scope')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_nil metadata[:sourceId]
       assert_equal 'description', metadata[:description]
@@ -127,13 +146,15 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    def test_empty_source_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack({}, hResponse)
+      metadata = @@NameSpace.unpack({}, hResponse, 'testing')
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: mdJson reader: source object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: source object is empty: CONTEXT is testing'
 
    end
 

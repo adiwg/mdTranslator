@@ -18,19 +18,9 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
+
+   hStep = TDClass.build_processStep_full
    hLineage = TDClass.lineage
-
-   hStep = TDClass.build_processStep('PST001','process step one')
-   hStep[:timePeriod] = TDClass.build_timePeriod('TP001','step time period', nil, '2018-04-26')
-   hStep[:processor] << TDClass.build_responsibleParty('processor',%w(CID003))
-   hStep[:processor] << TDClass.build_responsibleParty('pointOfContact',%w(CID004))
-   hStep[:stepSource] << TDClass.build_source('SRC001','step source one')
-   hStep[:stepSource] << TDClass.build_source('SRC002','step source two')
-   hStep[:stepProduct] << TDClass.build_source('SRC003','product source one')
-   hStep[:stepProduct] << TDClass.build_source('SRC004','product source two')
-   hStep[:reference] << TDClass.build_citation('step reference one')
-   hStep[:reference] << TDClass.build_citation('step reference two')
-
    hLineage[:processStep] << hStep
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage

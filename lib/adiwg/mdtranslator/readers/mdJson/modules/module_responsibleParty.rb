@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-24 refactored error and warning messaging
 #  Stan Smith 2017-01-19 changed timePeriod to extent []
 #  Stan Smith 2016-10-09 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -25,11 +25,13 @@ module ADIWG
 
             module ResponsibleParty
 
-               def self.unpack(hRParty, responseObj)
+               def self.unpack(hRParty, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hRParty.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: responsible party object is empty'
+                     @MessagePath.issueWarning(710, responseObj, inContext)
                      return nil
                   end
 
@@ -39,14 +41,15 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intResParty = intMetadataClass.newResponsibility
 
+                  outContext = 'responsible party'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # responsible party - role - (required)
                   if hRParty.has_key?('role')
                      intResParty[:roleName] = hRParty['role']
                   end
                   if intResParty[:roleName].nil? || intResParty[:roleName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsible party role is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(711, responseObj, inContext)
                   end
 
                   # responsible party - role extent
@@ -54,7 +57,7 @@ module ADIWG
                      aExtent = hRParty['roleExtent']
                      aExtent.each do |hItem|
                         unless hItem.empty?
-                           hTimeExtent = Extent.unpack(hItem, responseObj)
+                           hTimeExtent = Extent.unpack(hItem, responseObj, outContext)
                            unless hTimeExtent.nil?
                               intResParty[:roleExtents] << hTimeExtent
                            end
@@ -66,7 +69,7 @@ module ADIWG
                   if hRParty.has_key?('party')
                      hRParty['party'].each do |hParty|
                         unless hParty.empty?
-                           party = Party.unpack(hParty, responseObj)
+                           party = Party.unpack(hParty, responseObj, outContext)
                            unless party.nil?
                               intResParty[:parties] << party
                            end
@@ -74,9 +77,7 @@ module ADIWG
                      end
                   end
                   if intResParty[:parties].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: responsible party must have at least one party'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(712, responseObj, inContext)
                   end
 
                   return intResParty

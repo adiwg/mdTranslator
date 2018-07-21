@@ -3,7 +3,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 # 	Stan Smith 2016-10-19 original script
 
 require_relative 'module_gridRepresentation'
@@ -15,12 +15,13 @@ module ADIWG
 
             module GeorectifiedRepresentation
 
-               def self.unpack(hGeoRec, responseObj)
+               def self.unpack(hGeoRec, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hGeoRec.empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: georectified spatial representation object is empty'
+                     @MessagePath.issueWarning(400, responseObj, inContext)
                      return nil
                   end
 
@@ -28,21 +29,21 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intGeoRec = intMetadataClass.newGeorectifiedInfo
 
+                  outContext = 'georectified representation'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # georectified representation - grid representation (required)
                   if hGeoRec.has_key?('gridRepresentation')
                      hObject = hGeoRec['gridRepresentation']
                      unless hObject.empty?
-                        hReturn = GridRepresentation.unpack(hObject, responseObj)
+                        hReturn = GridRepresentation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intGeoRec[:gridRepresentation] = hReturn
                         end
                      end
                   end
                   if intGeoRec[:gridRepresentation].empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: georectified spatial representation grid representation is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(401, responseObj, inContext)
                   end
 
                   # georectified representation - check point availability (required)
@@ -66,10 +67,7 @@ module ADIWG
                      end
                   end
                   unless intGeoRec[:cornerPoints].length == 2 || intGeoRec[:cornerPoints].length == 4
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: georectified spatial representation must have either 2 or 4 corner points'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(402, responseObj, inContext)
                   end
 
                   # georectified representation - center points
@@ -78,10 +76,7 @@ module ADIWG
                         intGeoRec[:centerPoint] = hGeoRec['centerPoint']
                      end
                      unless intGeoRec[:centerPoint].length == 2
-                        responseObj[:readerExecutionMessages] <<
-                           'ERROR: mdJson reader: georectified spatial representation center point must be single 2D coordinate'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(403, responseObj, inContext)
                      end
                   end
 
@@ -92,9 +87,7 @@ module ADIWG
                      end
                   end
                   if intGeoRec[:pointInPixel].nil?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: georectified spatial representation point-in-pixel is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(404, responseObj, inContext)
                   end
 
                   # georectified representation - transformation dimension description

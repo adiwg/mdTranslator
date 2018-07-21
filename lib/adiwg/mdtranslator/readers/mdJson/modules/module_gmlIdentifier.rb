@@ -2,8 +2,10 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 # 	Stan Smith 2016-11-30 original script
+
+# TODO verify this method is not used
 
 module ADIWG
    module Mdtranslator
@@ -14,9 +16,11 @@ module ADIWG
 
                def self.unpack(hIdentifier, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hIdentifier.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GML Identifier object is empty'
+                     @MessagePath.issueWarning(420, responseObj)
                      return nil
                   end
 
@@ -29,9 +33,7 @@ module ADIWG
                      intIdentifier[:identifier] = hIdentifier['identifier']
                   end
                   if intIdentifier[:identifier].nil? || intIdentifier[:identifier] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GML Identifier identifier is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(421, responseObj)
                   end
 
                   # gml identifier - namespace (required)
@@ -39,9 +41,7 @@ module ADIWG
                      intIdentifier[:namespace] = hIdentifier['namespace']
                   end
                   if intIdentifier[:namespace].nil? || intIdentifier[:namespace] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GML Identifier namespace is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(422, responseObj)
                   end
 
                   return intIdentifier

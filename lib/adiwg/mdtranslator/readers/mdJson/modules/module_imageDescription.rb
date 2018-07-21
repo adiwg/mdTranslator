@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_identifier'
@@ -16,15 +16,21 @@ module ADIWG
 
                def self.unpack(hImageInfo, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
+                  inContext = 'coverage description'
+
                   # return nil object if input is empty
                   if hImageInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: image description object is empty'
+                     @MessagePath.issueWarning(460, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   hImage = intMetadataClass.newImageDescription
+
+                  outContext = inContext + ' image description'
 
                   # image description - elevation angle of illumination
                   if hImageInfo.has_key?('illuminationElevationAngle')
@@ -51,7 +57,7 @@ module ADIWG
                   if hImageInfo.has_key?('imageQualityCode')
                      hObject = hImageInfo['imageQualityCode']
                      unless hObject.empty?
-                        hReturn = Identifier.unpack(hObject, responseObj)
+                        hReturn = Identifier.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            hImage[:imageQualityCode] = hReturn
                         end

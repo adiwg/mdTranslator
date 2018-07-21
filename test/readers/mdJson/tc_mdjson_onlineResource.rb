@@ -2,8 +2,9 @@
 # reader / mdJson / module_onlineResource
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-03 original script
+#  Stan Smith 2018-06-22 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-03 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_onlineResource'
@@ -12,27 +13,35 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::OnlineResource
-   aIn = TestReaderMdJsonParent.getJson('onlineResource.json')
-   @@hIn = aIn['onlineResource'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_onlineResource('https://adiwg.org/1')
+
+   @@mdHash = mdHash
 
    def test_onlineResource_schema
 
-      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'onlineResource.json')
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'onlineResource.json')
       assert_empty errors
 
    end
 
    def test_complete_onlineResource_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_equal 'http://ISO.uri/adiwg/0', metadata[:olResURI]
+      assert_equal 'https://adiwg.org/1', metadata[:olResURI]
       assert_equal 'protocol', metadata[:olResProtocol]
-      assert_equal 'name', metadata[:olResName]
-      assert_equal 'description', metadata[:olResDesc]
-      assert_equal 'function', metadata[:olResFunction]
+      assert_equal 'online resource name', metadata[:olResName]
+      assert_equal 'online resource description', metadata[:olResDesc]
+      assert_equal 'online resource function', metadata[:olResFunction]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -41,41 +50,49 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
 
    def test_empty_onlineResource_uri
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['uri'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: online resource URI is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: online resource URI is missing: CONTEXT is testing'
 
    end
 
    def test_missing_onlineResource_uri
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('uri')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'ERROR: mdJson reader: online resource URI is missing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'ERROR: mdJson reader: online resource URI is missing: CONTEXT is testing'
 
    end
 
    def test_empty_onlineResource_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['protocol'] = ''
       hIn['name'] = ''
       hIn['description'] = ''
       hIn['function'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_nil metadata[:olResProtocol]
       assert_nil metadata[:olResName]
@@ -88,13 +105,15 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
 
    def test_missing_onlineResource_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('protocol')
       hIn.delete('name')
       hIn.delete('description')
       hIn.delete('function')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_nil metadata[:olResProtocol]
       assert_nil metadata[:olResName]
@@ -107,13 +126,15 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
 
    def test_empty_onlineResource_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack({}, hResponse)
+      metadata = @@NameSpace.unpack({}, hResponse, 'testing')
 
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],'WARNING: mdJson reader: online resource object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: online resource object is empty: CONTEXT is testing'
 
    end
 

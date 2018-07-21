@@ -2,8 +2,9 @@
 # reader / mdJson / module_metadata
 
 # History:
-#   Stan Smith 2017-01-16 added parent class to run successfully within rake
-#   Stan Smith 2016-10-21 original script
+#  Stan Smith 2018-06-20 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-16 added parent class to run successfully within rake
+#  Stan Smith 2016-10-21 original script
 
 require_relative 'mdjson_test_parent'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_metadata'
@@ -12,20 +13,27 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
 
    # set variables for test
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::Metadata
-   aIn = TestReaderMdJsonParent.getJson('metadata.json')
-   @@hIn = aIn['metadata'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.build_metadata_full
+
+   @@mdHash = mdHash
 
    def test_metadata_schema
 
-      errors = TestReaderMdJsonParent.testSchema(@@hIn, 'metadata.json')
+      errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'metadata.json')
       assert_empty errors
 
    end
 
    def test_complete_metadata_object
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -43,72 +51,77 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
 
    def test_metadata_empty_metadataInfo
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['metadataInfo'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'ERROR: mdJson reader: metadata metadata-info object is missing'
+                      'ERROR: mdJson reader: metadata-info object is missing'
 
    end
 
    def test_metadata_missing_metadataInfo
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('metadataInfo')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'ERROR: mdJson reader: metadata metadata-info object is missing'
+                      'ERROR: mdJson reader: metadata-info object is missing'
 
    end
 
    def test_metadata_empty_resourceInfo
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['resourceInfo'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'ERROR: mdJson reader: metadata resource info object is missing'
+                      'ERROR: mdJson reader: resource-info object is missing'
 
    end
 
    def test_metadata_missing_resourceInfo
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('resourceInfo')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages], 
-                      'ERROR: mdJson reader: metadata resource info object is missing'
+                      'ERROR: mdJson reader: resource-info object is missing'
 
    end
 
    def test_metadata_empty_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['resourceLineage'] = []
       hIn['resourceDistribution'] = []
       hIn['associatedResource'] = []
@@ -131,8 +144,9 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
 
    def test_metadata_missing_elements
 
-      TestReaderMdJsonParent.setContacts
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('resourceLineage')
       hIn.delete('resourceDistribution')
       hIn.delete('associatedResource')
@@ -155,13 +169,15 @@ class TestReaderMdJsonMetadata < TestReaderMdJsonParent
 
    def test_empty_metadata_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 
       assert_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 'ERROR: mdJson reader: metadata object is empty'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: metadata object is empty'
 
    end
 

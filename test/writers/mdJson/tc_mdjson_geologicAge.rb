@@ -1,23 +1,36 @@
 # mdJson 2.0 writer tests - geologic age
 
 # History:
+#  Stan Smith 2018-06-05 refactor to use mdJson construction helpers
 #  Stan Smith 2017-11-08 original script
 
-require 'minitest/autorun'
-require 'json'
 require 'adiwg-mdtranslator'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
 class TestWriterMdJsonGeologicAge < TestWriterMdJsonParent
 
-   # get input JSON for test
-   @@jsonIn = TestWriterMdJsonParent.getJson('geologicAge.json')
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.base
+
+   hTimePeriod = mdHash[:metadata][:resourceInfo][:timePeriod]
+   hTimePeriod.delete(:startDateTime)
+   hTimePeriod[:startGeologicAge] = TDClass.build_geologicAge
+   hTimePeriod[:startGeologicAge][:ageReference] << TDClass.build_citation('start geologic age reference one', 'CID001')
+   hTimePeriod[:startGeologicAge][:ageReference] << TDClass.build_citation('start geologic age reference two', 'CID001')
+   hTimePeriod[:endGeologicAge] = TDClass.build_geologicAge
+   hTimePeriod[:endGeologicAge][:ageReference] << TDClass.build_citation('end geologic age reference one', 'CID001')
+
+   @@mdHash = mdHash
 
    # TODO complete after schema update
    # def test_schema_geologicAge
    #
-   #    hIn = JSON.parse(@@jsonIn)
-   #    hTest = hIn['metadata']['resourceInfo']['citation']['series']
+   #    hTest = @@mdHash[:metadata][:resourceInfo][:citation][:series]
    #    errors = TestWriterMdJsonParent.testSchema(hTest, 'citation.json', :fragment=>'series')
    #    assert_empty errors
    #
@@ -27,14 +40,22 @@ class TestWriterMdJsonGeologicAge < TestWriterMdJsonParent
 
       # TODO reinstate 'normal' after schema update
       metadata = ADIWG::Mdtranslator.translate(
-         file: @@jsonIn, reader: 'mdJson', validate: 'none',
+         file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)
 
-      expect = JSON.parse(@@jsonIn)
-      expect = expect['metadata']['resourceInfo']['extent'][0]['temporalExtent'][0]['timePeriod']
+      expect = JSON.parse(@@mdHash.to_json)
+      expect = expect['metadata']['resourceInfo']['timePeriod']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['resourceInfo']['extent'][0]['temporalExtent'][0]['timePeriod']
+      got = got['metadata']['resourceInfo']['timePeriod']
 
+      assert metadata[:writerPass]
+      assert metadata[:readerStructurePass]
+      assert metadata[:readerValidationPass]
+      assert metadata[:readerExecutionPass]
+      assert_empty metadata[:writerMessages]
+      assert_empty metadata[:readerStructureMessages]
+      assert_empty metadata[:readerValidationMessages]
+      assert_empty metadata[:readerExecutionMessages]
       assert_equal expect, got
 
    end

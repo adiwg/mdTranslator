@@ -34,14 +34,14 @@ module ADIWG
                      # mdJson - metadata (required)
                      json.metadata Metadata.build(intObj[:metadata])
 
-                     # mdJson - dataDictionaries []
-                     unless intObj[:dataDictionaries].empty?
-                        json.dataDictionary intObj[:dataDictionaries].map { |obj| Dictionary.build(obj).attributes! }
-                     end
-
                      # mdJson - metadataRepositories []
                      unless intObj[:metadataRepositories].empty?
                         json.metadataRepository intObj[:metadataRepositories].map { |obj| Repository.build(obj).attributes! }
+                     end
+
+                     # mdJson - dataDictionaries []
+                     unless intObj[:dataDictionaries].empty?
+                        json.dataDictionary intObj[:dataDictionaries].map { |obj| Dictionary.build(obj).attributes! }
                      end
 
                   end

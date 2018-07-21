@@ -2,10 +2,11 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2018-01-29 add liabilityStatement
 #  Stan Smith 2016-10-21 original script
 
+require_relative '../mdJson_reader'
 require_relative 'module_distributor'
 
 module ADIWG
@@ -17,9 +18,11 @@ module ADIWG
 
                def self.unpack(hDistribution, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hDistribution.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: distribution object is empty'
+                     @MessagePath.issueWarning(180, responseObj)
                      return nil
                   end
 
@@ -58,9 +61,7 @@ module ADIWG
 
                   # error messages
                   unless haveDist
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: distribution must have description or distributor'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(181, responseObj)
                   end
 
                   return intDistribution

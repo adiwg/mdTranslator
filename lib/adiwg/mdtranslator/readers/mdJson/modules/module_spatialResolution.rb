@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 #  Stan Smith 2017-10-19 add geographic resolution
 #  Stan Smith 2017-10-19 add bearingDistance resolution
 #  Stan Smith 2017-10-19 add coordinate resolution
@@ -24,17 +24,23 @@ module ADIWG
 
             module SpatialResolution
 
-               def self.unpack(hResolution, responseObj)
+               def self.unpack(hResolution, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hResolution.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: spatial resolution object is empty'
+                     @MessagePath.issueWarning(800, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intResolution = intMetadataClass.newSpatialResolution
+
+                  outContext = 'spatial resolution'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   haveOne = false
 
                   # spatial resolution - scale factor (required if not others)
@@ -49,7 +55,7 @@ module ADIWG
                   if hResolution.has_key?('measure')
                      hMeasure = hResolution['measure']
                      unless hMeasure.empty?
-                        hObject = Measure.unpack(hMeasure, responseObj)
+                        hObject = Measure.unpack(hMeasure, responseObj, outContext)
                         unless hObject.nil?
                            intResolution[:measure] = hObject
                            haveOne = true
@@ -61,7 +67,7 @@ module ADIWG
                   if hResolution.has_key?('coordinateResolution')
                      hCoordRes = hResolution['coordinateResolution']
                      unless hCoordRes.empty?
-                        hReturn = CoordinateResolution.unpack(hCoordRes, responseObj)
+                        hReturn = CoordinateResolution.unpack(hCoordRes, responseObj, outContext)
                         unless hReturn.nil?
                            intResolution[:coordinateResolution] = hReturn
                            haveOne = true
@@ -73,7 +79,7 @@ module ADIWG
                   if hResolution.has_key?('bearingDistanceResolution')
                      hBearRes = hResolution['bearingDistanceResolution']
                      unless hBearRes.empty?
-                        hReturn = BearingDistanceResolution.unpack(hBearRes, responseObj)
+                        hReturn = BearingDistanceResolution.unpack(hBearRes, responseObj, outContext)
                         unless hReturn.nil?
                            intResolution[:bearingDistanceResolution] = hReturn
                            haveOne = true
@@ -85,7 +91,7 @@ module ADIWG
                   if hResolution.has_key?('geographicResolution')
                      hGeoRes = hResolution['geographicResolution']
                      unless hGeoRes.empty?
-                        hReturn = GeographicResolution.unpack(hGeoRes, responseObj)
+                        hReturn = GeographicResolution.unpack(hGeoRes, responseObj, outContext)
                         unless hReturn.nil?
                            intResolution[:geographicResolution] = hReturn
                            haveOne = true
@@ -103,9 +109,7 @@ module ADIWG
 
                   # error messages
                   unless haveOne
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: spatial resolution did not have an object of supported type'
-                     return nil
+                     @MessagePath.issueError(801, responseObj, inContext)
                   end
 
                   return intResolution

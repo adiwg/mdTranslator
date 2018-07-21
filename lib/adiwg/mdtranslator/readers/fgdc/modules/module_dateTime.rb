@@ -2,6 +2,7 @@
 # unpack fgdc metadata date
 
 # History:
+#  Stan Smith 2018-06-12 change default time zone to UTC
 #  Stan Smith 2017-08-15 original script
 
 require 'date'
@@ -36,52 +37,67 @@ module ADIWG
                      time = ''
                   end
 
+                  # determine if date/time is universal (default) or local
+                  zoneFlag = Fgdc.get_metadata_time_convention
+                  zoneFlag = 'universal time' if zoneFlag.nil? || zoneFlag == ''
+
                   # convert date from fgdc to iso format
                   year = date.byteslice(0,4)
                   month = date.byteslice(4,2)
                   day = date.byteslice(6,2)
-                  month = '01' if month.nil? || month == ''
-                  day = '01' if day.nil? || day == ''
-                  dtIn = year + '-' + month + '-' + day
 
-                  # add time element to date string
-                  if time.empty?
-                     dtIn = dtIn + 'T' + '00:00:00'
-                  else
-                     aScan = time.scan(/:/)
-                     if aScan.empty?
-                        hour = time.byteslice(0,2)
-                        minute = time.byteslice(2,2)
-                        second = time.byteslice(4,2)
-                     else
-                        aTime = time.split(':')
-                        hour = aTime[0]
-                        minute = aTime[1]
-                        second = aTime[2]
+                  haveFullDate = false
+                  dtIn = year
+                  unless month.nil? || month == ''
+                     dtIn += '-' + month
+                     unless day.nil? || day == ''
+                        dtIn += '-' + day
+                        haveFullDate = true
                      end
-                     minute = '00' if minute.nil? || minute == ''
-                     second = '00' if second.nil? || second == ''
-                     dtIn = dtIn + 'T' + hour + ':' + minute + ':' + second
                   end
 
-                  # determine if date/time is 'universal time' or other
-                  timeFlag = Fgdc.get_metadata_time_convention
-                  timeFlag = 'local time' if timeFlag.nil? || timeFlag == ''
+                  # if have full date and some time expression
+                  # add time element to date string
+                  if haveFullDate
+                     unless time == ''
+                        aScan = time.scan(/:/)
+                        if aScan.empty?
+                           hour = time.byteslice(0,2)
+                           minute = time.byteslice(2,2)
+                           second = time.byteslice(4,2)
+                        else
+                           aTime = time.split(':')
+                           hour = aTime[0]
+                           minute = aTime[1]
+                           second = aTime[2]
+                        end
 
-                  # add offset to date/time string
-                  if timeFlag == 'universal time'
-                     dtIn = dtIn + '+00:00'
-                  else
-                     timeOffset = Time.now.gmt_offset
-                     aOffset = timeOffset.divmod(3600)
-                     hourOff = aOffset[0]
-                     minOff = aOffset[1] * 60
-                     if hourOff >= 0
-                        zone = '+' + '%02d' % hourOff + ':' + '%02d' % minOff
-                     else
-                        zone = '%03d' % hourOff + ':' + '%02d' % minOff
+                        # all times must include timezone
+                        # timezone format requires hours, minutes, and seconds
+                        hour = '00' if hour.nil? || hour == ''
+                        minute = '00' if minute.nil? || minute == ''
+                        second = '00' if second.nil? || second == ''
+                        tmIn = 'T' + hour + ':' + minute + ':' + second
+
+                        dtIn += tmIn
+
+                        # add offset to date/time string
+                        if zoneFlag == 'universal time'
+                           dtIn = dtIn + '+00:00'
+                        else
+                           timeOffset = Time.now.gmt_offset
+                           aOffset = timeOffset.divmod(3600)
+                           hourOff = aOffset[0]
+                           minOff = aOffset[1] * 60
+                           if hourOff >= 0
+                              zone = '+' + '%02d' % hourOff + ':' + '%02d' % minOff
+                           else
+                              zone = '%03d' % hourOff + ':' + '%02d' % minOff
+                           end
+                           dtIn = dtIn + zone
+                        end
+
                      end
-                     dtIn = dtIn + zone
                   end
 
                   # if dateTimeFromString fails, [0] = nil; [1] = 'ERROR'
@@ -92,12 +108,11 @@ module ADIWG
                      return nil
                   end
 
-                  # if not 'universal time' change the offset to utc
-                  dateTimeReturn = aDateTimeReturn[0]
-                  if timeFlag == 'universal time'
-                     utc = dateTimeReturn
+                  # always output 'universal time'
+                  if zoneFlag == 'universal time'
+                     utc = aDateTimeReturn[0]
                   else
-                     utc = dateTimeReturn.new_offset(Rational(0,24))
+                     utc = aDateTimeReturn[0].new_offset(Rational(0,24))
                   end
 
                   # build internal dateTime object

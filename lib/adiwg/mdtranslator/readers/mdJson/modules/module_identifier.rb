@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 #  Stan Smith 2016-10-13 refactored for mdJson 2.0
 #  Stan Smith 2015-07-31 added support for fields added by ISO 19115-1 (RS_Identifier)
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -21,13 +21,18 @@ module ADIWG
 
             module Identifier
 
-               def self.unpack(hIdentifier, responseObj)
+               def self.unpack(hIdentifier, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hIdentifier.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: identifier object is empty'
+                     @MessagePath.issueWarning(450, responseObj, inContext)
                      return nil
                   end
+
+                  outContext = 'identifier'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
@@ -38,9 +43,7 @@ module ADIWG
                      intIdent[:identifier] = hIdentifier['identifier']
                   end
                   if intIdent[:identifier].nil? || intIdent[:identifier] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: identifier object identifier is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(451, responseObj, inContext)
                   end
 
                   # identifier - namespace
@@ -68,7 +71,7 @@ module ADIWG
                   if hIdentifier.has_key?('authority')
                      hObject = hIdentifier['authority']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intIdent[:citation] = hReturn
                         end

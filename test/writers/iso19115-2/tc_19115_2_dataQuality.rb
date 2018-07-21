@@ -18,13 +18,13 @@ class TestWriter191152DataQuality < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hLineage = TDClass.lineage
    mdHash[:metadata][:resourceLineage] = []
-   mdHash[:metadata][:resourceLineage] << hLineage
+   mdHash[:metadata][:resourceLineage] << TDClass.build_lineage_full
+   mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
 
    @@mdHash = mdHash
 
-   def test_dataQuality_minimal
+   def test_dataQuality_complete
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
@@ -38,28 +38,13 @@ class TestWriter191152DataQuality < TestWriter191152Parent
 
    end
 
-   def test_dataQuality_complete
+   def test_dataQuality_minimal
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hLineage = hIn[:metadata][:resourceLineage][0]
-      # add citation
-      hLineage[:citation] << TDClass.citation
-
-      # add processStep
-      hProcStep1 = TDClass.build_processStep('step one', 'lineage step one')
-      hProcStep2 = TDClass.build_processStep('step two', 'lineage step two')
-      hLineage[:processStep] << hProcStep1
-      hLineage[:processStep] << hProcStep2
-
-      # add source
-      hSource1 = TDClass.build_source('source one', 'lineage source one')
-      hSource2 = TDClass.build_source('source two', 'lineage source two')
-      hLineage[:source] << hSource1
-      hLineage[:source] << hSource2
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataQuality',
                                                 '//gmd:dataQualityInfo[2]',
-                                                '//gmd:dataQualityInfo', 0)
+                                                '//gmd:dataQualityInfo', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]

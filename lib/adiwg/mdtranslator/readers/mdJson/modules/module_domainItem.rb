@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2018-01-24 add domain item reference
 #  Stan Smith 2016-10-07 refactored for mdJson 2.0
 #  Stan Smith 2015-07-23 added error reporting of missing items
@@ -20,11 +20,13 @@ module ADIWG
 
             module DomainItem
 
-               def self.unpack(hDomItem, responseObj)
+               def self.unpack(hDomItem, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hDomItem.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data dictionary domain item object is empty'
+                     @MessagePath.issueWarning(210, responseObj, inContext)
                      return nil
                   end
 
@@ -37,9 +39,7 @@ module ADIWG
                      intItem[:itemName] = hDomItem['name']
                   end
                   if intItem[:itemName].nil? || intItem[:itemName] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain item name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(211, responseObj, inContext)
                   end
 
                   # data dictionary domain item - value (required)
@@ -47,9 +47,7 @@ module ADIWG
                      intItem[:itemValue] = hDomItem['value']
                   end
                   if intItem[:itemValue].nil? || intItem[:itemValue] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain item value is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(212, responseObj, inContext)
                   end
 
                   # data dictionary domain item - definition (required)
@@ -57,16 +55,14 @@ module ADIWG
                      intItem[:itemDefinition] = hDomItem['definition']
                   end
                   if intItem[:itemDefinition].nil? || intItem[:itemDefinition] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: data dictionary domain item definition is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(213, responseObj, inContext)
                   end
 
                   # data dictionary domain item - reference {citation}
                   if hDomItem.has_key?('reference')
                      hCitation = hDomItem['reference']
                      unless hCitation.empty?
-                        hReturn = Citation.unpack(hCitation, responseObj)
+                        hReturn = Citation.unpack(hCitation, responseObj, inContext)
                         unless hReturn.nil?
                            intItem[:itemReference] = hReturn
                         end

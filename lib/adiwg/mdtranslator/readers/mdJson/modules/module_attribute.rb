@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_identifier'
@@ -14,17 +14,22 @@ module ADIWG
 
             module Attribute
 
-               def self.unpack(hAttribute, responseObj)
+               def self.unpack(hAttribute, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hAttribute.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: coverage description attribute object is empty'
+                     @MessagePath.issueWarning(40, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intAttGroup = intMetadataClass.newAttribute
+
+                  outContext = 'attribute'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   # attribute group - sequence identifier
                   if hAttribute.has_key?('sequenceIdentifier')
@@ -41,9 +46,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:sequenceIdentifierType].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute sequence identifierType is missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(41, responseObj, inContext)
                      end
                   end
 
@@ -58,7 +61,7 @@ module ADIWG
                   if hAttribute.has_key?('attributeIdentifier')
                      aItems = hAttribute['attributeIdentifier']
                      aItems.each do |item|
-                        hReturn = Identifier.unpack(item, responseObj)
+                        hReturn = Identifier.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAttGroup[:attributeIdentifiers] << hReturn
                         end
@@ -87,9 +90,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:units].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute units are missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(42, responseObj, inContext)
                      end
                   end
 
@@ -157,9 +158,7 @@ module ADIWG
                         end
                      end
                      if intAttGroup[:boundUnits].nil?
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute bound units are missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(43, responseObj, inContext)
                      end
                   end
 

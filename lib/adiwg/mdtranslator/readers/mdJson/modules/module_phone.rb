@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 #  Stan Smith 2016-10-02 phone service is now an array rather than creating individual phone records per service
 #  Stan Smith 2016-10-02 refactored for mdJson 2.0.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -19,14 +19,16 @@ module ADIWG
 
             module Phone
 
-               def self.unpack(hPhone, responseObj)
+               def self.unpack(hPhone, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intPhone = intMetadataClass.newPhone
 
                   if hPhone.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: phone object is empty'
+                     @MessagePath.issueWarning(630, responseObj, inContext)
                      return nil
                   end
 
@@ -36,9 +38,7 @@ module ADIWG
                      intPhone[:phoneNumber] = hPhone['phoneNumber']
                   end
                   if hPhone['phoneNumber'].nil? || hPhone['phoneNumber'] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: phone number is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(631, responseObj, inContext)
                   end
 
                   # phone - phoneName
@@ -53,7 +53,7 @@ module ADIWG
                      intPhone[:phoneServiceTypes] = hPhone['service']
                   end
                   if intPhone[:phoneServiceTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: phone service type is missing'
+                     @MessagePath.issueWarning(632, responseObj, inContext)
                   end
 
                   return intPhone

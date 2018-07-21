@@ -37,9 +37,9 @@
             <gco:CharacterString>statement</gco:CharacterString>
           </gmd:statement>
           <gmd:processStep>
-            <gmd:LI_ProcessStep id="PST001">
+            <gmd:LI_ProcessStep id="stepone">
               <gmd:description>
-                <gco:CharacterString>process step one</gco:CharacterString>
+                <gco:CharacterString>lineage step one</gco:CharacterString>
               </gmd:description>
               <gmd:rationale>
                 <gco:CharacterString>rationale</gco:CharacterString>
@@ -50,9 +50,9 @@
             </gmd:LI_ProcessStep>
           </gmd:processStep>
           <gmd:processStep>
-            <gmd:LI_ProcessStep id="PST002">
+            <gmd:LI_ProcessStep id="steptwo">
               <gmd:description>
-                <gco:CharacterString>process step two</gco:CharacterString>
+                <gco:CharacterString>lineage step two</gco:CharacterString>
               </gmd:description>
               <gmd:rationale>
                 <gco:CharacterString>rationale</gco:CharacterString>
@@ -63,12 +63,22 @@
             </gmd:LI_ProcessStep>
           </gmd:processStep>
           <gmd:source>
-            <gmd:LI_Source id="SRC001">
+            <gmd:LI_Source id="sourceone">
               <gmd:description>
-                <gco:CharacterString>source one</gco:CharacterString>
+                <gco:CharacterString>lineage source one</gco:CharacterString>
               </gmd:description>
-              <gmd:scaleDenominator/>
-              <gmd:sourceReferenceSystem/>
+              <gmd:scaleDenominator>
+                <gmd:MD_RepresentativeFraction>
+                  <gmd:denominator>
+                    <gco:Integer>9999</gco:Integer>
+                  </gmd:denominator>
+                </gmd:MD_RepresentativeFraction>
+              </gmd:scaleDenominator>
+              <gmd:sourceReferenceSystem>
+                <gmd:MD_ReferenceSystem>
+                  <gmd:referenceSystemIdentifier/>
+                </gmd:MD_ReferenceSystem>
+              </gmd:sourceReferenceSystem>
               <gmd:sourceCitation>
                 <gmd:CI_Citation>
                   <gmd:title>
@@ -110,12 +120,22 @@
             </gmd:LI_Source>
           </gmd:source>
           <gmd:source>
-            <gmd:LI_Source id="SRC002">
+            <gmd:LI_Source id="sourcetwo">
               <gmd:description>
-                <gco:CharacterString>source two</gco:CharacterString>
+                <gco:CharacterString>lineage source two</gco:CharacterString>
               </gmd:description>
-              <gmd:scaleDenominator/>
-              <gmd:sourceReferenceSystem/>
+              <gmd:scaleDenominator>
+                <gmd:MD_RepresentativeFraction>
+                  <gmd:denominator>
+                    <gco:Integer>9999</gco:Integer>
+                  </gmd:denominator>
+                </gmd:MD_RepresentativeFraction>
+              </gmd:scaleDenominator>
+              <gmd:sourceReferenceSystem>
+                <gmd:MD_ReferenceSystem>
+                  <gmd:referenceSystemIdentifier/>
+                </gmd:MD_ReferenceSystem>
+              </gmd:sourceReferenceSystem>
               <gmd:sourceCitation>
                 <gmd:CI_Citation>
                   <gmd:title>
@@ -178,9 +198,9 @@
             <gco:CharacterString>statement</gco:CharacterString>
           </gmd:statement>
           <gmd:processStep>
-            <gmd:LI_ProcessStep id="PST001">
+            <gmd:LI_ProcessStep id="stepone">
               <gmd:description>
-                <gco:CharacterString>process step one</gco:CharacterString>
+                <gco:CharacterString>lineage step one</gco:CharacterString>
               </gmd:description>
               <gmd:rationale>
                 <gco:CharacterString>rationale</gco:CharacterString>
@@ -191,12 +211,22 @@
             </gmd:LI_ProcessStep>
           </gmd:processStep>
           <gmd:source>
-            <gmd:LI_Source id="SRC001">
+            <gmd:LI_Source id="sourceone">
               <gmd:description>
-                <gco:CharacterString>source one</gco:CharacterString>
+                <gco:CharacterString>lineage source one</gco:CharacterString>
               </gmd:description>
-              <gmd:scaleDenominator/>
-              <gmd:sourceReferenceSystem/>
+              <gmd:scaleDenominator>
+                <gmd:MD_RepresentativeFraction>
+                  <gmd:denominator>
+                    <gco:Integer>9999</gco:Integer>
+                  </gmd:denominator>
+                </gmd:MD_RepresentativeFraction>
+              </gmd:scaleDenominator>
+              <gmd:sourceReferenceSystem>
+                <gmd:MD_ReferenceSystem>
+                  <gmd:referenceSystemIdentifier/>
+                </gmd:MD_ReferenceSystem>
+              </gmd:sourceReferenceSystem>
               <gmd:sourceCitation>
                 <gmd:CI_Citation>
                   <gmd:title>

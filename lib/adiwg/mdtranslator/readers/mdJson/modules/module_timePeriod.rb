@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-27 refactored error and warning messaging
 #  Stan Smith 2017-11-07 add geologic age
 # 	Stan Smith 2016-10-14 original script
 
@@ -19,17 +19,22 @@ module ADIWG
 
             module TimePeriod
 
-               def self.unpack(hTimePeriod, responseObj)
+               def self.unpack(hTimePeriod, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hTimePeriod.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: time period object is empty'
+                     @MessagePath.issueWarning(870, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intTimePer = intMetadataClass.newTimePeriod
+
+                  outContext = 'time period'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
 
                   haveTime = false
 
@@ -50,7 +55,7 @@ module ADIWG
                   # time period - identifier {Identifier}
                   if hTimePeriod.has_key?('identifier')
                      unless hTimePeriod['identifier'].empty?
-                        hReturn = Identifier.unpack(hTimePeriod['identifier'], responseObj)
+                        hReturn = Identifier.unpack(hTimePeriod['identifier'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:identifier] = hReturn
                         end
@@ -69,7 +74,7 @@ module ADIWG
                   # time period - start datetime (required if)
                   if hTimePeriod.has_key?('startDateTime')
                      unless hTimePeriod['startDateTime'] == ''
-                        hReturn = DateTime.unpack(hTimePeriod['startDateTime'], responseObj)
+                        hReturn = DateTime.unpack(hTimePeriod['startDateTime'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:startDateTime] = hReturn
                            haveTime = true
@@ -80,7 +85,7 @@ module ADIWG
                   # time period - end datetime (required if)
                   if hTimePeriod.has_key?('endDateTime')
                      unless hTimePeriod['endDateTime'] == ''
-                        hReturn = DateTime.unpack(hTimePeriod['endDateTime'], responseObj)
+                        hReturn = DateTime.unpack(hTimePeriod['endDateTime'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:endDateTime] = hReturn
                            haveTime = true
@@ -91,7 +96,7 @@ module ADIWG
                   # time period - start geologic age (required if)
                   if hTimePeriod.has_key?('startGeologicAge')
                      unless hTimePeriod['startGeologicAge'].empty?
-                        hReturn = GeologicAge.unpack(hTimePeriod['startGeologicAge'], responseObj)
+                        hReturn = GeologicAge.unpack(hTimePeriod['startGeologicAge'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:startGeologicAge] = hReturn
                            haveTime = true
@@ -102,7 +107,7 @@ module ADIWG
                   # time period - end geologic age (required if)
                   if hTimePeriod.has_key?('endGeologicAge')
                      unless hTimePeriod['endGeologicAge'].empty?
-                        hReturn = GeologicAge.unpack(hTimePeriod['endGeologicAge'], responseObj)
+                        hReturn = GeologicAge.unpack(hTimePeriod['endGeologicAge'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:endGeologicAge] = hReturn
                            haveTime = true
@@ -112,26 +117,20 @@ module ADIWG
 
                   # error messages
                   unless haveTime
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: time period must have a start and/or end dateTime, or geologic age'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(871, responseObj, inContext)
                   end
 
                   # time period - time interval
                   # time interval must have a start and/or end time
                   if hTimePeriod.has_key?('timeInterval')
                      unless hTimePeriod['timeInterval'].empty?
-                        hReturn = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj)
+                        hReturn = TimeInterval.unpack(hTimePeriod['timeInterval'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:timeInterval] = hReturn
                         end
-                     end
-                     if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
-                        responseObj[:readerExecutionMessages] <<
-                           'ERROR: mdJson reader: time interval must be accompanied by a start and/or end dateTime'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
+                           @MessagePath.issueError(872, responseObj, inContext)
+                        end
                      end
                   end
 
@@ -139,16 +138,13 @@ module ADIWG
                   # duration must have a start and/or end time
                   if hTimePeriod.has_key?('duration')
                      unless hTimePeriod['duration'].empty?
-                        hReturn = Duration.unpack(hTimePeriod['duration'], responseObj)
+                        hReturn = Duration.unpack(hTimePeriod['duration'], responseObj, outContext)
                         unless hReturn.nil?
                            intTimePer[:duration] = hReturn
                         end
-                     end
-                     if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
-                        responseObj[:readerExecutionMessages] <<
-                           'ERROR: mdJson reader: duration must be accompanied by a start and/or end dateTime'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        if intTimePer[:startDateTime].empty? && intTimePer[:endDateTime].empty?
+                           @MessagePath.issueError(873, responseObj, inContext)
+                        end
                      end
                   end
 

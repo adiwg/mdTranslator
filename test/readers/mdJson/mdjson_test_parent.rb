@@ -2,81 +2,71 @@
 # parent class for all tc_mdjson tests
 
 # History:
-# Stan Smith 2017-01-15 original script
+#  Stan Smith 2018-06-14 refactored to use mdJson construction helpers
+#  Stan Smith 2017-01-15 original script
 
 require 'minitest/autorun'
 require 'json'
 require 'json-schema'
 require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_mdJson'
+require_relative '../../helpers/mdJson_hash_objects'
+require_relative '../../helpers/mdJson_hash_functions'
 
 class TestReaderMdJsonParent < MiniTest::Test
 
-    @@responseObj = {
-        readerExecutionPass: true,
-        readerExecutionMessages: []
-    }
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
 
-    # get json file for tests from examples folder
-    def self.getJson(fileName)
+   #set up response object, contacts, and messages required for tests
+   @@responseObj = {
+      readerExecutionPass: true,
+      readerExecutionMessages: []
+   }
 
-        file = File.join(File.dirname(__FILE__), 'testData', fileName)
-        file = File.open(file, 'r')
-        jsonFile = file.read
-        file.close
-        return JSON.parse(jsonFile)
+   # load contacts and messages for testing
+   def self.loadEssential
 
-    end
+      aContacts = TDClass.base[:contact]
+      ADIWG::Mdtranslator::Readers::MdJson::MdJson.loadMessages
+      ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(aContacts)
 
-    # set contact list for test modules
-    def self.setContacts
+   end
 
-        # create new internal metadata container for the reader
-        intMetadataClass = InternalMetadata.new
-        intObj = intMetadataClass.newBase
+   # get json file for tests from examples folder
+   def self.getJson(fileName)
 
-        # first contact
-        intObj[:contacts] << intMetadataClass.newContact
-        intObj[:contacts][0][:contactId] = 'individualId0'
-        intObj[:contacts][0][:isOrganization] = false
+      file = File.join(File.dirname(__FILE__), 'testData', fileName)
+      file = File.open(file, 'r')
+      jsonFile = file.read
+      file.close
+      return JSON.parse(jsonFile)
 
-        # second contact
-        intObj[:contacts] << intMetadataClass.newContact
-        intObj[:contacts][1][:contactId] = 'individualId1'
-        intObj[:contacts][1][:isOrganization] = false
+   end
 
-        # third contact
-        intObj[:contacts] << intMetadataClass.newContact
-        intObj[:contacts][2][:contactId] = 'organizationId0'
-        intObj[:contacts][2][:isOrganization] = true
+   # test schema for reader modules
+   def self.testSchema(mdJson, schema, fragment: nil, remove: [])
 
-        ADIWG::Mdtranslator::Readers::MdJson::MdJson.setContacts(intObj[:contacts])
+      # load all schemas with 'true' to prohibit additional parameters
+      ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
-    end
+      # load schema segment and make all elements required and prevent additional parameters
+      strictSchema = ADIWG::MdjsonSchemas::Utils.load_strict(schema)
 
-    # test schema for reader modules
-    def self.testSchema(mdJson, schema, fragment: nil, remove: [])
+      # remove unwanted parameters from the required array
+      unless remove.empty?
+         strictSchema['required'] = strictSchema['required'] - remove
+      end
 
-        # load all schemas with 'true' to prohibit additional parameters
-        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
+      # build relative path to schema fragment
+      fragmentPath = nil
+      if fragment
+         fragmentPath = '#/definitions/' + fragment
+      end
 
-        # load schema segment and make all elements required and prevent additional parameters
-        strictSchema = ADIWG::MdjsonSchemas::Utils.load_strict(schema)
+      # scan
+      return JSON::Validator.fully_validate(strictSchema, mdJson, :fragment => fragmentPath)
 
-        # remove unwanted parameters from the required array
-        unless remove.empty?
-            strictSchema['required'] = strictSchema['required'] - remove
-        end
-
-        # build relative path to schema fragment
-        fragmentPath = nil
-        if fragment
-            fragmentPath = '#/definitions/' + fragment
-        end
-
-        # scan
-        return JSON::Validator.fully_validate(strictSchema, mdJson, :fragment=>fragmentPath)
-
-    end
+   end
 
 end

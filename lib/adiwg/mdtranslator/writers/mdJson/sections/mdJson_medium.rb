@@ -1,7 +1,7 @@
 # mdJson 2.0 writer - medium
 
 # History:
-#   Stan Smith 2017-03-20 original script
+#  Stan Smith 2017-03-20 original script
 
 require 'jbuilder'
 require_relative 'mdJson_citation'

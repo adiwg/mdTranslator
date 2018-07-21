@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 #  Stan Smith 2016-10-13 refactored for mdJson 2.0
 #  Stan Smith 2015-08-28 added alternate title
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -29,12 +29,13 @@ module ADIWG
 
             module Citation
 
-               def self.unpack(hCitation, responseObj)
+               def self.unpack(hCitation, responseObj, inContext = nil)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hCitation.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: citation object is empty'
+                     @MessagePath.issueWarning(80, responseObj, inContext)
                      return nil
                   end
 
@@ -42,14 +43,15 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intCitation = intMetadataClass.newCitation
 
+                  outContext = 'citation'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # citation - title (required)
                   if hCitation.has_key?('title')
                      intCitation[:title] = hCitation['title']
                   end
                   if intCitation[:title].nil? || intCitation[:title] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: citation title is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(81, responseObj, inContext)
                   end
 
                   # citation - alternate title []
@@ -114,7 +116,7 @@ module ADIWG
                   if hCitation.has_key?('series')
                      hObject = hCitation['series']
                      unless hObject.empty?
-                        hReturn = Series.unpack(hObject, responseObj)
+                        hReturn = Series.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intCitation[:series] = hReturn
                         end
@@ -145,7 +147,7 @@ module ADIWG
                   if hCitation.has_key?('graphic')
                      aItems = hCitation['graphic']
                      aItems.each do |item|
-                        hReturn = Graphic.unpack(item, responseObj)
+                        hReturn = Graphic.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intCitation[:browseGraphics] << hReturn
                         end

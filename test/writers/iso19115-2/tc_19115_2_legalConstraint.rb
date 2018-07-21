@@ -55,7 +55,7 @@ class TestWriter191152LegalConstraint < TestWriter191152Parent
    def test_legalConstraint_second
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hCon = TDClass.build_legalConstraint(['access constraint'])
+      hCon = TDClass.build_legalConstraint
       hIn[:metadata][:resourceInfo][:constraint] << hCon
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_legalConstraint',

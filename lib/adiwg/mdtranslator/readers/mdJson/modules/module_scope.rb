@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 # 	Stan Smith 2016-10-14 original script
 
 require_relative 'module_scopeDescription'
@@ -16,11 +16,13 @@ module ADIWG
 
             module Scope
 
-               def self.unpack(hScope, responseObj)
+               def self.unpack(hScope, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hScope.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: mdJson scope object is empty'
+                     @MessagePath.issueWarning(730, responseObj, inContext)
                      return nil
                   end
 
@@ -28,21 +30,22 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intScope = intMetadataClass.newScope
 
+                  outContext = 'scope'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   # scope - scope code (required)
                   if hScope.has_key?('scopeCode')
                      intScope[:scopeCode] = hScope['scopeCode']
                   end
                   if intScope[:scopeCode].nil? || intScope[:scopeCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: scope scopeCode is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(731, responseObj, inContext)
                   end
 
                   # scope - scope description [] {MD_ScopeDescription}
                   if hScope.has_key?('scopeDescription')
                      aScopeDes = hScope['scopeDescription']
                      aScopeDes.each do |item|
-                        hScopeDes = ScopeDescription.unpack(item, responseObj)
+                        hScopeDes = ScopeDescription.unpack(item, responseObj, outContext)
                         unless hScopeDes.nil?
                            intScope[:scopeDescriptions] << hScopeDes
                         end
@@ -53,7 +56,7 @@ module ADIWG
                   if hScope.has_key?('scopeExtent')
                      aExtents = hScope['scopeExtent']
                      aExtents.each do |item|
-                        hExtent = Extent.unpack(item, responseObj)
+                        hExtent = Extent.unpack(item, responseObj, outContext)
                         unless hExtent.nil?
                            intScope[:extents] << hExtent
                         end

@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2016-10-22 original script
 
 require_relative 'module_taxonomicSystem'
@@ -20,9 +20,11 @@ module ADIWG
 
                def self.unpack(hTaxonomy, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hTaxonomy.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: taxonomy object is empty'
+                     @MessagePath.issueWarning(830, responseObj)
                      return nil
                   end
 
@@ -41,9 +43,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:taxonSystem].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy taxonomic classification system object is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(831, responseObj)
                   end
 
                   # taxonomy - general taxonomic scope
@@ -84,9 +84,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:idProcedure].nil? || intTaxonomy[:idProcedure] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomy identification procedure is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(832, responseObj)
                   end
 
                   # taxonomy - identification completeness
@@ -118,9 +116,7 @@ module ADIWG
                      end
                   end
                   if intTaxonomy[:taxonClass].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: taxonomic classification is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(833, responseObj)
                   end
 
                   return intTaxonomy

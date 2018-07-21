@@ -2,6 +2,7 @@
 # reader / mdJson / module_entityAttribute
 
 # History:
+#  Stan Smith 2018-06-18 refactored to use mdJson construction helpers
 #  Stan Smith 2017-11-01 added new elements to support fgdc
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2015-07-24 original script
@@ -13,40 +14,54 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    # set constants and variables
    @@NameSpace = ADIWG::Mdtranslator::Readers::MdJson::EntityAttribute
-   aIn = TestReaderMdJsonParent.getJson('entityAttribute.json')
-   @@hIn = aIn['attribute'][0]
+
+   # instance classes needed in script
+   TDClass = MdJsonHashWriter.new
+
+   # build mdJson test file in hash
+   mdHash = TDClass.entityAttribute
+   mdHash[:attributeReference] = TDClass.citation_title
+   TDClass.add_valueRange(mdHash, 0, 9)
+   TDClass.add_valueRange(mdHash, 'A', 'Z')
+   mdHash[:timePeriod] << TDClass.build_timePeriod('TPID001', 'time period one', '2018-06-18')
+   mdHash[:timePeriod] << TDClass.build_timePeriod('TPID002', 'time period two', nil, '2018-06-18')
+
+   @@mdHash = mdHash
 
    # TODO reinstate after schema update
    # def test_entityAttribute_schema
    #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'entityAttribute.json')
+   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'entityAttribute.json')
    #     assert_empty errors
    #
    # end
 
    def test_complete_entityAttribute_object
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'commonName', metadata[:attributeName]
-      assert_equal 'codeName', metadata[:attributeCode]
-      assert_equal 'alias0', metadata[:attributeAlias][0]
-      assert_equal 'alias1', metadata[:attributeAlias][1]
-      assert_equal 'definition', metadata[:attributeDefinition]
+      assert_equal 'attribute common name', metadata[:attributeName]
+      assert_equal 'attribute code name', metadata[:attributeCode]
+      assert_equal 'alias one', metadata[:attributeAlias][0]
+      assert_equal 'alias two', metadata[:attributeAlias][1]
+      assert_equal 'attribute definition', metadata[:attributeDefinition]
       refute_empty metadata[:attributeReference]
-      assert_equal 'attribute reference title', metadata[:attributeReference][:title]
-      assert metadata[:allowNull]
-      refute metadata[:mustBeUnique]
-      assert_equal 'units', metadata[:unitOfMeasure]
-      assert_equal 9.9, metadata[:measureResolution]
-      assert metadata[:isCaseSensitive]
-      assert_equal 4, metadata[:fieldWidth]
-      assert_equal '-', metadata[:missingValue]
-      assert_equal 'domainId', metadata[:domainId]
-      assert_equal 'minValue', metadata[:minValue]
-      assert_equal 'maxValue', metadata[:maxValue]
+      assert_equal 'title only citation', metadata[:attributeReference][:title]
+      assert_equal 'data type', metadata[:dataType]
+      refute metadata[:allowNull]
+      assert metadata[:mustBeUnique]
+      assert_equal 'units of measure', metadata[:unitOfMeasure]
+      assert_equal 1.0, metadata[:measureResolution]
+      refute metadata[:isCaseSensitive]
+      assert_equal 1, metadata[:fieldWidth]
+      assert_equal '-1', metadata[:missingValue]
+      assert_equal 'DOM001', metadata[:domainId]
+      assert_equal '100', metadata[:minValue]
+      assert_equal '999', metadata[:maxValue]
       assert_equal 2, metadata[:valueRange].length
       assert_equal 2, metadata[:timePeriod].length
 
@@ -57,12 +72,14 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_empty_entityAttribute_codeName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['codeName'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
@@ -72,12 +89,14 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_missing_entityAttribute_codeName
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('codeName')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
@@ -87,83 +106,84 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_empty_entityAttribute_definition
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['definition'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
+         'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
    def test_missing_entityAttribute_definition
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('definition')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing'
+         'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
    def test_empty_entityAttribute_dataType
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['dataType'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
+         'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
    def test_missing_entityAttribute_dataType
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('dataType')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_nil metadata
+      refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing'
+         'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
    def test_empty_entityAttribute_cardinality
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['allowNull'] = ''
       hIn['mustBeUnique'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'commonName', metadata[:attributeName]
-      assert_equal 'codeName', metadata[:attributeCode]
-      assert_equal 'alias0', metadata[:attributeAlias][0]
-      assert_equal 'alias1', metadata[:attributeAlias][1]
-      assert_equal 'definition', metadata[:attributeDefinition]
       refute metadata[:allowNull]
       assert metadata[:mustBeUnique]
-      assert_equal 'units', metadata[:unitOfMeasure]
-      assert_equal 'domainId', metadata[:domainId]
-      assert_equal 'minValue', metadata[:minValue]
-      assert_equal 'maxValue', metadata[:maxValue]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -172,23 +192,16 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_missing_entityAttribute_cardinality
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('allowNull')
       hIn.delete('mustBeUnique')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
-      assert_equal 'commonName', metadata[:attributeName]
-      assert_equal 'codeName', metadata[:attributeCode]
-      assert_equal 'alias0', metadata[:attributeAlias][0]
-      assert_equal 'alias1', metadata[:attributeAlias][1]
-      assert_equal 'definition', metadata[:attributeDefinition]
       refute metadata[:allowNull]
       assert metadata[:mustBeUnique]
-      assert_equal 'units', metadata[:unitOfMeasure]
-      assert_equal 'domainId', metadata[:domainId]
-      assert_equal 'minValue', metadata[:minValue]
-      assert_equal 'maxValue', metadata[:maxValue]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -197,7 +210,9 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_empty_entityAttribute_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn['commonName'] = ''
       hIn['alias'] = []
       hIn['attributeReference'] = {}
@@ -236,7 +251,9 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_missing_entityAttribute_elements
 
-      hIn = Marshal::load(Marshal.dump(@@hIn))
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
       hIn.delete('commonName')
       hIn.delete('alias')
       hIn.delete('attributeReference')
@@ -274,6 +291,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    def test_empty_entityAttribute_object
 
+      TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack({}, hResponse)
 

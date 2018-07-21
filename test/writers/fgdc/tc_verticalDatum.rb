@@ -16,12 +16,14 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
+   # elevation
    hSpaceRef = TDClass.spatialReferenceSystem
    TDClass.add_verticalDatum(hSpaceRef, isDepth = false)
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   hSpaceRef = TDClass.spatialReferenceSystem
 
+   # depth
+   hSpaceRef = TDClass.spatialReferenceSystem
    TDClass.add_verticalDatum(hSpaceRef, isDepth = true)
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
 

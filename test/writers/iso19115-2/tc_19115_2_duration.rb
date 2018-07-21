@@ -40,7 +40,7 @@ class TestWriter191152Duration < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hTimePeriod = hIn[:metadata][:resourceInfo][:timePeriod]
-      TDClass.add_duration(hTimePeriod,1,nil,nil,nil,nil,nil)
+      TDClass.add_duration(hTimePeriod,1)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_duration',
                                                 '//gmd:temporalElement[2]',
@@ -56,7 +56,7 @@ class TestWriter191152Duration < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hTimePeriod = hIn[:metadata][:resourceInfo][:timePeriod]
-      TDClass.add_duration(hTimePeriod,1,2,3,nil,nil,nil)
+      TDClass.add_duration(hTimePeriod,1,2,3)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_duration',
                                                 '//gmd:temporalElement[3]',
@@ -76,22 +76,6 @@ class TestWriter191152Duration < TestWriter191152Parent
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_duration',
                                                 '//gmd:temporalElement[4]',
-                                                '//gmd:temporalElement', 1)
-
-      assert_equal hReturn[0], hReturn[1]
-      assert hReturn[2]
-      assert_empty hReturn[3]
-
-   end
-
-   def test_duration_seconds
-
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hTimePeriod = hIn[:metadata][:resourceInfo][:timePeriod]
-      TDClass.add_duration(hTimePeriod,nil,nil,nil,nil,nil,6.789)
-
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_duration',
-                                                '//gmd:temporalElement[5]',
                                                 '//gmd:temporalElement', 1)
 
       assert_equal hReturn[0], hReturn[1]

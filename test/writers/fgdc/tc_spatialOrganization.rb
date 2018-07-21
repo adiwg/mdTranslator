@@ -22,6 +22,24 @@ class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hRefSystem
 
+   # add spatial representation type
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'point'
+
+   # add spatial representation
+   mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
+   hSpaceRep = mdHash[:metadata][:resourceInfo][:spatialRepresentation]
+   hSpaceRep << { vectorRepresentation: TDClass.build_vectorRepresentation_full }
+   hSpaceRep << { gridRepresentation: TDClass.build_gridRepresentation }
+   hSpaceRep << { vectorRepresentation: TDClass.build_vectorRepresentation_full }
+   hSpaceRep << { georeferenceableRepresentation: TDClass.build_georeferenceableRepresentation }
+
+   # set dimension type
+   hSpaceRep = mdHash[:metadata][:resourceInfo][:spatialRepresentation]
+   hSpaceRep[1][:gridRepresentation][:dimension][0][:dimensionType] = 'row'
+   hSpaceRep[1][:gridRepresentation][:dimension][1][:dimensionType] = 'column'
+   TDClass.add_dimension(hSpaceRep[1][:gridRepresentation], 'vertical', 9)
+
    @@mdHash = mdHash
 
    def test_spatialOrganization_indirect
@@ -46,10 +64,6 @@ class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      # add spatial representation type
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] << 'point'
-
       xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/direct')
       expect = axExpect[0].to_s.squeeze(' ')
@@ -66,25 +80,12 @@ class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
 
    end
 
+   # vector representation w/o topology level
    def test_spatialOrganization_vector_sdts
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-
-      # point/vector representation
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] << 'vector'
-
-      hVectorRep = TDClass.build_vectorRepresentation
-      TDClass.add_vectorObject(hVectorRep, 'sdts type one', 9)
-      TDClass.add_vectorObject(hVectorRep, 'sdts type two')
-      hSpaceRep = TDClass.build_spatialRepresentation('vector', hVectorRep)
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
-
-      hVectorRep2 = TDClass.build_vectorRepresentation
-      TDClass.add_vectorObject(hVectorRep2, 'sdts type three', 9)
-      hSpaceRep2 = TDClass.build_spatialRepresentation('vector', hVectorRep2)
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep2
+      hIn[:metadata][:resourceInfo][:spatialRepresentation][0][:vectorRepresentation].delete(:topologyLevel)
+      hIn[:metadata][:resourceInfo][:spatialRepresentation][2][:vectorRepresentation].delete(:topologyLevel)
 
       xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/ptvctinf')
@@ -102,21 +103,10 @@ class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
 
    end
 
+   # vector representation w/ topology level
    def test_spatialOrganization_vector_vpt
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-
-      # point/vector representation
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] << 'vector'
-
-      # grid representation
-      hVectorRep = TDClass.build_vectorRepresentation('2')
-      TDClass.add_vectorObject(hVectorRep, 'vpf type one', 999)
-      TDClass.add_vectorObject(hVectorRep, 'vpf type two')
-      hSpaceRep = TDClass.build_spatialRepresentation('vector', hVectorRep)
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
       xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/ptvctinf')
@@ -137,19 +127,6 @@ class TestWriterFgdcSpatialOrganization < TestWriterFGDCParent
    def test_spatialOrganization_raster
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-
-      # point/vector representation
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentationType] << 'grid'
-
-      # grid representation
-      hGridRep = TDClass.build_gridRepresentation(3, 'raster type')
-      TDClass.add_dimension(hGridRep, 'row', 999)
-      TDClass.add_dimension(hGridRep, 'column', 99)
-      TDClass.add_dimension(hGridRep, 'vertical', 9)
-      hSpaceRep = TDClass.build_spatialRepresentation('grid', hGridRep)
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] = []
-      hIn[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep
 
       xDoc = TestWriterFGDCParent.get_xml('spatialOrganization')
       axExpect = xDoc.xpath('./metadata/spdoinfo/rastinfo')

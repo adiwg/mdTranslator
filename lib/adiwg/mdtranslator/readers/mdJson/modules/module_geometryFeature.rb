@@ -2,14 +2,14 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-20 refactored error and warning messaging
 #  Stan Smith 2016-11-10 added computedBbox computation
 #  Stan Smith 2016-10-25 original script
 
+require 'adiwg/mdtranslator/internal/module_coordinates'
 require_relative 'module_geometryObject'
 require_relative 'module_geometryProperties'
 require_relative 'module_geometryCollection'
-require 'adiwg/mdtranslator/internal/module_coordinates'
 
 module ADIWG
    module Mdtranslator
@@ -20,9 +20,11 @@ module ADIWG
 
                def self.unpack(hFeature, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hFeature.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: GeoJSON geometry feature object is empty'
+                     @MessagePath.issueWarning(370, responseObj)
                      return nil
                   end
 
@@ -36,16 +38,12 @@ module ADIWG
                         if hFeature['type'] == 'Feature'
                            intFeature[:type] = hFeature['type']
                         else
-                           responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature type must be Feature'
-                           responseObj[:readerExecutionPass] = false
-                           return nil
+                           @MessagePath.issueError(371, responseObj)
                         end
                      end
                   end
                   if intFeature[:type].nil? || intFeature[:type] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(372, responseObj)
                   end
 
                   # geometry feature - id
@@ -76,9 +74,7 @@ module ADIWG
                         end
                      end
                   else
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: GeoJSON geometry feature geometry is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(373, responseObj)
                   end
 
                   # geometry feature - properties

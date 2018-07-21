@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-06 refactored for mdJson 2.0
 #  Stan Smith 2014-12-15 refactored to handle namespacing readers and writers
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -17,11 +17,13 @@ module ADIWG
 
             module EntityForeignKey
 
-               def self.unpack(hFKey, responseObj)
+               def self.unpack(hFKey, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hFKey.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: data entity foreign key object is empty'
+                     @MessagePath.issueWarning(250, responseObj, inContext)
                      return nil
                   end
 
@@ -35,10 +37,7 @@ module ADIWG
                      intFKey[:fkLocalAttributes] = hFKey['localAttributeCodeName']
                   end
                   if intFKey[:fkLocalAttributes].empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: data entity foreign key local attribute code name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(251, responseObj, inContext)
                   end
 
                   # entity foreign key - referenced entity code name (required)
@@ -47,10 +46,7 @@ module ADIWG
                      intFKey[:fkReferencedEntity] = hFKey['referencedEntityCodeName']
                   end
                   if intFKey[:fkReferencedEntity].nil? || intFKey[:fkReferencedEntity] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: data entity foreign key referenced entity name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(252, responseObj, inContext)
                   end
 
                   # entity foreign key - referenced attribute code name [] (required)
@@ -59,10 +55,7 @@ module ADIWG
                      intFKey[:fkReferencedAttributes] = hFKey['referencedAttributeCodeName']
                   end
                   if intFKey[:fkReferencedAttributes].empty?
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: data entity foreign key referenced attribute name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(253, responseObj, inContext)
                   end
 
                   return intFKey

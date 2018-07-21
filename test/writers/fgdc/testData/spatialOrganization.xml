@@ -5,12 +5,12 @@
     <direct>Point</direct>
     <ptvctinf>
       <sdtsterm>
-        <sdtstype>sdts type one</sdtstype>
+        <sdtstype>object type code</sdtstype>
         <ptvctcnt>9</ptvctcnt>
       </sdtsterm>
       <sdtsterm>
-        <sdtstype>sdts type two</sdtstype>
-        <ptvctcnt/>
+        <sdtstype>object type code</sdtstype>
+        <ptvctcnt>9</ptvctcnt>
       </sdtsterm>
     </ptvctinf>
   </spdoinfo>
@@ -19,14 +19,14 @@
     <direct>Point</direct>
     <ptvctinf>
       <vpfterm>
-        <vpflevel>2</vpflevel>
+        <vpflevel>topology level</vpflevel>
         <vpfinfo>
-          <vpftype>vpf type one</vpftype>
-          <ptvctcnt>999</ptvctcnt>
+          <vpftype>object type code</vpftype>
+          <ptvctcnt>9</ptvctcnt>
         </vpfinfo>
         <vpfinfo>
-          <vpftype>vpf type two</vpftype>
-          <ptvctcnt/>
+          <vpftype>object type code</vpftype>
+          <ptvctcnt>9</ptvctcnt>
         </vpfinfo>
       </vpfterm>
     </ptvctinf>
@@ -35,9 +35,9 @@
     <indspref>indirect reference</indspref>
     <direct>Point</direct>
     <rastinfo>
-      <rasttype>raster type</rasttype>
-      <rowcount>999</rowcount>
-      <colcount>99</colcount>
+      <rasttype>point</rasttype>
+      <rowcount>9</rowcount>
+      <colcount>9</colcount>
       <vrtcount>9</vrtcount>
     </rastinfo>
   </spdoinfo>

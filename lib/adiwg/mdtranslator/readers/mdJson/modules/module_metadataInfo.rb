@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-21 refactored error and warning messaging
 #  Stan Smith 2018-01-27 add metadataConstraints
 #  Stan Smith 2017-01-31 remove metadataCreationDate
 #  Stan Smith 2016-10-31 original script
@@ -25,11 +25,11 @@ module ADIWG
 
                def self.unpack(hMetaInfo, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hMetaInfo.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata info object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueError(570, responseObj)
                      return nil
                   end
 
@@ -37,11 +37,13 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intMetaInfo = intMetadataClass.newMetadataInfo
 
+                  outContext = 'metadata-info'
+
                   # metadata information - metadata identifier {identifier}
                   if hMetaInfo.has_key?('metadataIdentifier')
                      hObject = hMetaInfo['metadataIdentifier']
                      unless hObject.empty?
-                        hReturn = Identifier.unpack(hObject, responseObj)
+                        hReturn = Identifier.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataIdentifier] = hReturn
                         end
@@ -52,7 +54,7 @@ module ADIWG
                   if hMetaInfo.has_key?('parentMetadata')
                      hObject = hMetaInfo['parentMetadata']
                      unless hObject.empty?
-                        hReturn = Citation.unpack(hObject, responseObj)
+                        hReturn = Citation.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:parentMetadata] = hReturn
                         end
@@ -63,7 +65,7 @@ module ADIWG
                   if hMetaInfo.has_key?('defaultMetadataLocale')
                      hObject = hMetaInfo['defaultMetadataLocale']
                      unless hObject.empty?
-                        hReturn = Locale.unpack(hObject, responseObj)
+                        hReturn = Locale.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:defaultMetadataLocale] = hReturn
                         end
@@ -74,7 +76,7 @@ module ADIWG
                   if hMetaInfo.has_key?('otherMetadataLocale')
                      aItems = hMetaInfo['otherMetadataLocale']
                      aItems.each do |item|
-                        hReturn = Locale.unpack(item, responseObj)
+                        hReturn = Locale.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:otherMetadataLocales] << hReturn
                         end
@@ -85,23 +87,21 @@ module ADIWG
                   if hMetaInfo.has_key?('metadataContact')
                      aItems = hMetaInfo['metadataContact']
                      aItems.each do |item|
-                        hReturn = ResponsibleParty.unpack(item, responseObj)
+                        hReturn = ResponsibleParty.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataContacts] << hReturn
                         end
                      end
                   end
                   if intMetaInfo[:metadataContacts].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: metadata info contact is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(571, responseObj, outContext)
                   end
 
                   # metadata information - metadata dates [] {date}
                   if hMetaInfo.has_key?('metadataDate')
                      aItems = hMetaInfo['metadataDate']
                      aItems.each do |item|
-                        hReturn = Date.unpack(item, responseObj)
+                        hReturn = Date.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataDates] << hReturn
                         end
@@ -112,7 +112,7 @@ module ADIWG
                   if hMetaInfo.has_key?('metadataOnlineResource')
                      aItems = hMetaInfo['metadataOnlineResource']
                      aItems.each do |item|
-                        hReturn = OnlineResource.unpack(item, responseObj)
+                        hReturn = OnlineResource.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataLinkages] << hReturn
                         end
@@ -122,7 +122,7 @@ module ADIWG
                   # metadata information - metadata constraint [] {constraint}
                   if hMetaInfo.has_key?('metadataConstraint')
                      hMetaInfo['metadataConstraint'].each do |hItem|
-                        hReturn = Constraint.unpack(hItem, responseObj)
+                        hReturn = Constraint.unpack(hItem, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataConstraints] << hReturn
                         end
@@ -133,7 +133,7 @@ module ADIWG
                   if hMetaInfo.has_key?('metadataMaintenance')
                      hObject = hMetaInfo['metadataMaintenance']
                      unless hObject.empty?
-                        hReturn = Maintenance.unpack(hObject, responseObj)
+                        hReturn = Maintenance.unpack(hObject, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:metadataMaintenance] = hReturn
                         end
@@ -144,7 +144,7 @@ module ADIWG
                   if hMetaInfo.has_key?('alternateMetadataReference')
                      aItems = hMetaInfo['alternateMetadataReference']
                      aItems.each do |item|
-                        hReturn = Citation.unpack(item, responseObj)
+                        hReturn = Citation.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intMetaInfo[:alternateMetadataReferences] << hReturn
                         end

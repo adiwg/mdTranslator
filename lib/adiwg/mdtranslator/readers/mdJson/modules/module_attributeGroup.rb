@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_attribute'
@@ -16,15 +16,21 @@ module ADIWG
 
                def self.unpack(hAttGroup, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
+                  inContext = 'coverage description'
+
                   # return nil object if input is empty
                   if hAttGroup.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: coverage description attribute group object is empty'
+                     @MessagePath.issueWarning(50, responseObj, inContext)
                      return nil
                   end
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   intAttGroup = intMetadataClass.newAttributeGroup
+
+                  outContext = inContext + ' attribute group'
 
                   # attribute group - attribute content type [] (required)
                   if hAttGroup.has_key?('attributeContentType')
@@ -35,16 +41,14 @@ module ADIWG
                      end
                   end
                   if intAttGroup[:attributeContentTypes].empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: coverage description attribute group attribute content type is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(51, responseObj, inContext)
                   end
 
                   # attribute group - attribute []
                   if hAttGroup.has_key?('attribute')
                      aItems = hAttGroup['attribute']
                      aItems.each do |item|
-                        hReturn = Attribute.unpack(item, responseObj)
+                        hReturn = Attribute.unpack(item, responseObj, outContext)
                         unless hReturn.nil?
                            intAttGroup[:attributes] << hReturn
                         end

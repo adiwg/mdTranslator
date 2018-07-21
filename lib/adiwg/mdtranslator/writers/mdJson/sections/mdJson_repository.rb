@@ -1,10 +1,11 @@
 # mdJson 2.0 writer - metadataRepository
 
 # History:
-#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
+require_relative 'mdJson_citation'
 
 module ADIWG
    module Mdtranslator
@@ -18,6 +19,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.repository hRepository[:repository]
                      json.metadataStandard hRepository[:metadataStandard]
+                     json.citation Citation.build(hRepository[:citation]) unless hRepository[:citation].empty?
                   end
 
                end # build

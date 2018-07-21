@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 # 	Stan Smith 2016-10-15 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (responseObj)
@@ -17,11 +17,13 @@ module ADIWG
 
             module SecurityConstraint
 
-               def self.unpack(hSecurityCon, responseObj)
+               def self.unpack(hSecurityCon, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hSecurityCon.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: security constraint object is empty'
+                     @MessagePath.issueWarning(750, responseObj, inContext)
                      return nil
                   end
 
@@ -34,9 +36,7 @@ module ADIWG
                      intSecCon[:classCode] = hSecurityCon['classification']
                   end
                   if intSecCon[:classCode].nil? || intSecCon[:classCode] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: security constraint classification is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(751, responseObj, inContext)
                   end
 
                   # security constraint - user note

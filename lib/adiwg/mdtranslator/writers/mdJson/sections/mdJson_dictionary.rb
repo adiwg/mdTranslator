@@ -24,9 +24,9 @@ module ADIWG
                def self.build(hDictionary)
 
                   Jbuilder.new do |json|
+                     json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
                      json.description hDictionary[:description]
                      json.subject hDictionary[:subjects] unless hDictionary[:subjects].empty?
-                     json.citation Citation.build(hDictionary[:citation]) unless hDictionary[:citation].empty?
                      json.recommendedUse hDictionary[:recommendedUses] unless hDictionary[:recommendedUses].empty?
                      json.locale @Namespace.json_map(hDictionary[:locales], Locale)
                      json.responsibleParty ResponsibleParty.build(hDictionary[:responsibleParty])

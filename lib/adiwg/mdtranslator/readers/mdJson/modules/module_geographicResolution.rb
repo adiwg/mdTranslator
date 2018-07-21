@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-19 refactored error and warning messaging
 # 	Stan Smith 2017-10-19 original script
 
 module ADIWG
@@ -12,11 +12,15 @@ module ADIWG
 
             module GeographicResolution
 
-               def self.unpack(hGeoRes, responseObj)
+               def self.unpack(hGeoRes, responseObj, outContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
+                  outContext = 'spatial resolution'
 
                   # return nil object if input is empty
                   if hGeoRes.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution object is empty'
+                     @MessagePath.issueWarning(330, responseObj, outContext)
                      return nil
                   end
 
@@ -29,10 +33,7 @@ module ADIWG
                      intGeoRes[:latitudeResolution] = hGeoRes['latitudeResolution']
                   end
                   if intGeoRes[:latitudeResolution].nil? || intGeoRes[:latitudeResolution] == ''
-                     responseObj[:readerExecutionMessages] <<
-                        'WARNING: mdJson reader: geographic spatial resolution latitude resolution is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(331, responseObj, outContext)
                   end
 
                   # geographic resolution - longitude resolution (required)
@@ -40,9 +41,7 @@ module ADIWG
                      intGeoRes[:longitudeResolution] = hGeoRes['longitudeResolution']
                   end
                   if intGeoRes[:longitudeResolution].nil? || intGeoRes[:longitudeResolution] == ''
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution longitude resolution is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(332, responseObj, outContext)
                   end
 
                   # geographic resolution - unit of measure (required)
@@ -50,9 +49,7 @@ module ADIWG
                      intGeoRes[:unitOfMeasure] = hGeoRes['unitOfMeasure']
                   end
                   if intGeoRes[:unitOfMeasure].nil? || intGeoRes[:unitOfMeasure] == ''
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: geographic spatial resolution units are missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(333, responseObj, outContext)
                   end
 
                   return intGeoRes

@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-18 refactored error and warning messaging
+#  Stan Smith 2018-06-15 refactored error and warning messaging
 #  Stan Smith 2017-09-28 add altitude to support fgdc
 #  Stan Smith 2016-12-01 original script
 
@@ -13,11 +13,13 @@ module ADIWG
 
             module BoundingBox
 
-               def self.unpack(hBBox, responseObj)
+               def self.unpack(hBBox, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hBBox.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: bounding box object is empty'
+                     @MessagePath.issueWarning(70, responseObj, inContext)
                      return nil
                   end
 
@@ -30,14 +32,9 @@ module ADIWG
                      intBBox[:westLongitude] = hBBox['westLongitude']
                   end
                   if intBBox[:westLongitude].nil? || intBBox[:westLongitude] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box west boundary is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-                  if intBBox[:westLongitude].abs > 180
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box longitude must be between -180 and +180'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(71, responseObj, inContext)
+                  elsif intBBox[:westLongitude].abs > 180
+                     @MessagePath.issueError(72, responseObj, inContext)
                   end
 
                   # bounding box - east longitude (required)
@@ -45,14 +42,9 @@ module ADIWG
                      intBBox[:eastLongitude] = hBBox['eastLongitude']
                   end
                   if intBBox[:eastLongitude].nil? || intBBox[:eastLongitude] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box east boundary is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-                  if intBBox[:eastLongitude].abs > 180
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box longitude must be between -180 and +180'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(73, responseObj, inContext)
+                  elsif intBBox[:eastLongitude].abs > 180
+                     @MessagePath.issueError(72, responseObj, inContext)
                   end
 
                   # bounding box - south latitude (required)
@@ -60,14 +52,9 @@ module ADIWG
                      intBBox[:southLatitude] = hBBox['southLatitude']
                   end
                   if intBBox[:southLatitude].nil? || intBBox[:southLatitude] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box south boundary is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-                  if intBBox[:southLatitude].abs > 90
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box latitude must be between -90 and +90'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(74, responseObj, inContext)
+                  elsif intBBox[:southLatitude].abs > 90
+                     @MessagePath.issueError(75, responseObj, inContext)
                   end
 
                   # bounding box - north latitude (required)
@@ -75,14 +62,9 @@ module ADIWG
                      intBBox[:northLatitude] = hBBox['northLatitude']
                   end
                   if intBBox[:northLatitude].nil? || intBBox[:northLatitude] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box north boundary is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
-                  end
-                  if intBBox[:northLatitude].abs > 90
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box latitude must be between -90 and +90'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(76, responseObj, inContext)
+                  elsif intBBox[:northLatitude].abs > 90
+                     @MessagePath.issueError(75, responseObj, inContext)
                   end
 
                   # bounding box - minimum altitude
@@ -107,9 +89,7 @@ module ADIWG
                   end
                   unless intBBox[:minimumAltitude].nil? && intBBox[:maximumAltitude].nil?
                      if intBBox[:unitsOfAltitude].nil? || intBBox[:unitsOfAltitude] == ''
-                        responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: bounding box altitude units of measure are missing'
-                        responseObj[:readerExecutionPass] = false
-                        return nil
+                        @MessagePath.issueError(77, responseObj, inContext)
                      end
                   end
 

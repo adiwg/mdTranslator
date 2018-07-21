@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-25 refactored error and warning messaging
 # 	Stan Smith 2016-11-02 original script
 
 module ADIWG
@@ -14,10 +14,11 @@ module ADIWG
 
                def self.unpack(hSchema, responseObj)
 
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
+
                   # return nil object if input is empty
                   if hSchema.empty?
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema object is empty'
-                     responseObj[:readerExecutionPass] = false
+                     @MessagePath.issueError(720, responseObj)
                      return nil
                   end
 
@@ -30,9 +31,7 @@ module ADIWG
                      intSchema[:name] = hSchema['name']
                   end
                   if intSchema[:name].nil? || intSchema[:name] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema name is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(721, responseObj)
                   end
 
                   # schema - version (required)
@@ -40,9 +39,7 @@ module ADIWG
                      intSchema[:version] = hSchema['version']
                   end
                   if intSchema[:version].nil? || intSchema[:version] == ''
-                     responseObj[:readerExecutionMessages] << 'ERROR: mdJson reader: schema version is missing'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueWarning(722, responseObj)
                   end
 
                   return intSchema

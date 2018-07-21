@@ -2,7 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
-#  Stan Smith 2018-02-19 refactored error and warning messaging
+#  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2016-10-15 original script
 
 require_relative 'module_responsibleParty'
@@ -14,11 +14,13 @@ module ADIWG
 
             module Releasability
 
-               def self.unpack(hRelease, responseObj)
+               def self.unpack(hRelease, responseObj, inContext = nil)
+
+                  @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
                   # return nil object if input is empty
                   if hRelease.empty?
-                     responseObj[:readerExecutionMessages] << 'WARNING: mdJson reader: releasability object is empty'
+                     @MessagePath.issueWarning(670, responseObj, inContext)
                      return nil
                   end
 
@@ -26,13 +28,16 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   intRelease = intMetadataClass.newRelease
 
+                  outContext = 'releasability'
+                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+
                   haveRelease = false
 
                   # releasability - addressee [responsibleParty]
                   if hRelease.has_key?('addressee')
                      aRParty = hRelease['addressee']
                      aRParty.each do |item|
-                        hParty = ResponsibleParty.unpack(item, responseObj)
+                        hParty = ResponsibleParty.unpack(item, responseObj, outContext)
                         unless hParty.nil?
                            intRelease[:addressee] << hParty
                            haveRelease = true
@@ -59,10 +64,7 @@ module ADIWG
 
                   # error messages
                   unless haveRelease
-                     responseObj[:readerExecutionMessages] <<
-                        'ERROR: mdJson reader: releasability must have at least one addressee or statement'
-                     responseObj[:readerExecutionPass] = false
-                     return nil
+                     @MessagePath.issueError(671, responseObj, inContext)
                   end
 
                   return intRelease

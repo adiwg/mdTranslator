@@ -39,7 +39,7 @@ class TestWriterFgdcDictionary < TestWriterFGDCParent
    hTimePeriod2 = TDClass.build_timePeriod('TP002', 'attribute time range',
                                            '2017-10-01', '2017-10-31')
 
-   # attribute ATT001 (time range)
+   # attribute ATT001 (enumerated & time range)
    hAttribute1 = TDClass.build_entityAttribute(nil, 'ATT001', 'attribute 001 definition')
    hAttrRef1 = TDClass.build_citation('attribute 001 source', 'CID001')
    hAttribute1[:attributeReference] = hAttrRef1
@@ -47,31 +47,33 @@ class TestWriterFgdcDictionary < TestWriterFGDCParent
    hAttribute1[:timePeriod] << hTimePeriod1
    hAttribute1[:timePeriod] << hTimePeriod2
 
-   # attribute ATT002 (value range)
+   # attribute ATT002 (value range numeric (no domain))
    hAttribute2 = TDClass.build_entityAttribute(nil, 'ATT002', 'attribute 002 definition')
    hAttrRef2 = TDClass.build_citation('attribute 002 source', 'CID001')
    hAttribute2[:attributeReference] = hAttrRef2
+   hAttribute2.delete(:domainId)
    TDClass.add_valueRange(hAttribute2, 0, 9)
    TDClass.add_valueRange(hAttribute2, 20, 40)
 
-   # attribute ATT003
+   # attribute ATT003 (codeset domain)
    hAttribute3 = TDClass.build_entityAttribute(nil, 'ATT003', 'attribute 003 definition')
    hAttrRef3 = TDClass.build_citation('attribute 003 source', 'CID001')
    hAttribute3[:attributeReference] = hAttrRef3
    hAttribute3[:domainId] = 'DOM002'
 
-   # attribute ATT004
+   # attribute ATT004 (unrepresented domain)
    hAttribute4 = TDClass.build_entityAttribute(nil, 'ATT004', 'attribute 004 definition')
    hAttrRef4 = TDClass.build_citation('attribute 004 source', 'CID001')
    hAttribute4[:attributeReference] = hAttrRef4
    hAttribute4[:domainId] = 'DOM003'
 
-   # attribute ATT005 (value range)
+   # attribute ATT005 (value range alpha (no domain))
    hAttribute5 = TDClass.build_entityAttribute(nil, 'ATT005', 'attribute 005 definition')
    hAttrRef5 = TDClass.build_citation('attribute 005 source', 'CID001')
    hAttribute5[:units] = 'grades'
    hAttribute5[:unitsResolution] = 'one letter'
    hAttribute5[:attributeReference] = hAttrRef5
+   hAttribute5.delete(:domainId)
    TDClass.add_valueRange(hAttribute5, 'A', 'F')
    TDClass.add_valueRange(hAttribute5, 'X', 'Z')
 

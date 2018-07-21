@@ -1,13 +1,18 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.1 2018-07-02 fix bug in ISO 19110 writer when dictionary empty
+# 2.13.1 2018-06-12 change default time stamps from 'local' to UTC
+# 2.13.1 2018-06-11 fix bug #179 remove 0 time value from date string when time not present
+# 2.13.1 2018-06-08 refactor mdJson test to use mdJson generation helpers
+# 2.13.1 2018-05-25 filter ISO 19115-3 topic categories from ISO 19115-2 writer
 # 2.13.0 2018-05-08 add contact name in addition to ID in outContext messaging
 # 2.13.0 2018-05-30 changed local schema reference in ISO writer tests to remote
-# 2.13.0 2018-05-03 refactor ISO19115-2 test mdJson to use mdJson generation helpers
+# 2.13.0 2018-05-03 refactor ISO19115-2 tests to use mdJson generation helpers
 # 2.13.0 2018-04-09 refactored messaging for ISO19115-2
 # 2.12.0 2018-04-07 add 'fgdc' option to reader and writer enum list
 # 2.12.0 2018-04-06 rename taxonomicRank to taxonomicLevel
-# 2.12.0 2018-04-06 rename latinName to taxonomicNamel
+# 2.12.0 2018-04-06 rename latinName to taxonomicName
 # 2.12.0 2018-04-06 changed resourceInfo taxonomy from object to array
 # 2.12.0 2018-04-05 refactored messaging for ISO19110
 # 2.11.0 2018-03-28 add 'responsibleParties' to budget allocation
@@ -82,7 +87,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.13.0"
+      VERSION = "2.13.1"
    end
 end
 

@@ -1,7 +1,7 @@
 # Writer - internal data structure to ISO 19110:2003
 
 # History:
-#  Stan Smith 2018-03-30 add error/warning/notice message methods
+#  Stan Smith 2018-07-02 fix bug with handling of empty or missing dictionary
 #  Stan Smith 2017-05-26 allow choice of which dictionary to translate
 #                    ... fix bug when no dictionary is provided in mdJson
 #  Stan Smith 2017-01-20 refactor for mdJson/mdTranslator 2.0
@@ -21,27 +21,28 @@ module ADIWG
       module Writers
          module Iso19110
 
-            def self.startWriter(intObj, hResponseObj, whichDict: 0)
-
-               # Iso19110 can only output one dictionary at a time
-               # test if requested dictionary is in input file
-               if intObj[:dataDictionaries][whichDict].nil?
-                  responseObj[:writerMessages] << 'Dictionary is missing'
-                  responseObj[:writerPass] = false
-                  return nil
-               end
-
-               # make objects available to the instance
-               @intObj = intObj
-               @contacts = intObj[:contacts]
-               @hResponseObj = hResponseObj
-               dictionary = intObj[:dataDictionaries][whichDict]
-               @domains = dictionary[:domains]
+            def self.startWriter(intObj, hResponseObj, whichDict = 0)
 
                # load error message array
                file = File.join(File.dirname(__FILE__), 'iso19110_writer_messages_eng') + '.yml'
                hMessageList = YAML.load_file(file)
                @aMessagesList = hMessageList['messageList']
+
+               # make objects available to the instance
+               @intObj = intObj
+               @contacts = intObj[:contacts]
+               @hResponseObj = hResponseObj
+
+               if intObj[:dataDictionaries].empty?
+                  issueError(110)
+                  return nil
+               end
+               if intObj[:dataDictionaries].length > 1
+                  issueNotice(111)
+               end
+
+               dictionary = intObj[:dataDictionaries][whichDict]
+               @domains = dictionary[:domains]
 
                # set the format of the output file based on the writer specified
                hResponseObj[:writerOutputFormat] = 'xml'
@@ -110,6 +111,14 @@ module ADIWG
                   else
                      @hResponseObj[:writerMessages] << 'WARNING: ISO-19110 writer: ' + message
                   end
+               end
+            end
+
+            def self.issueNotice(messageId, context = nil)
+               message = findMessage(messageId)
+               unless message.nil?
+                  message += ': CONTEXT is ' + context unless context.nil?
+                  @hResponseObj[:writerMessages] << 'NOTICE: ISO-19110 writer: ' + message
                end
             end
 

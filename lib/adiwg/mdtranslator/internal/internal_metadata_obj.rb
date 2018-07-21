@@ -802,6 +802,7 @@ class InternalMetadata
          contactId: nil,
          contactIndex: nil,
          contactType: nil,
+         contactName: nil,
          organizationMembers: []
       }
    end
