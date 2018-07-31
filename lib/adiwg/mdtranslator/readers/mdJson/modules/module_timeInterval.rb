@@ -30,7 +30,7 @@ module ADIWG
                   if hTimeInt.has_key?('interval')
                      interval = hTimeInt['interval']
                      unless interval == ''
-                        if interval.is_a?(Integer)
+                        if interval.is_a?(Numeric)
                            intTime[:interval] = hTimeInt['interval']
                         else
                            @MessagePath.issueError(861, responseObj, inContext)

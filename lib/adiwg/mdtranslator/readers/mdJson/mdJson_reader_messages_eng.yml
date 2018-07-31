@@ -342,7 +342,7 @@ messageList:
    - {id: 851, message: "time instant must have dateTime or geologic age"}
 
    - {id: 860, message: "time interval object is empty"}
-   - {id: 861, message: "time interval must be an integer"}
+   - {id: 861, message: "time interval must be integer or real"}
    - {id: 862, message: "time interval is missing"}
    - {id: 863, message: "time interval units are missing or invalid"}
 

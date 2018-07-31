@@ -1637,7 +1637,7 @@ class MdJsonHashWriter
 
    def timeInterval
       {
-         interval: 1,
+         interval: 1.1,
          units: 'year'
       }
    end
