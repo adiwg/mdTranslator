@@ -37,29 +37,25 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_equal 1, metadata[:interval]
+      assert_equal 1.1, metadata[:interval]
       assert_equal 'year', metadata[:units]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_real_timeInterval
+   def test_integer_timeInterval
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['interval'] = 9.9
+      hIn['interval'] = 9
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 2, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: time interval must be an integer: CONTEXT is testing'
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: time interval is missing: CONTEXT is testing'
+      assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
 
    end
 
@@ -76,7 +72,7 @@ class TestReaderMdJsonTimeInterval < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 2, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: time interval must be an integer: CONTEXT is testing'
+                      'ERROR: mdJson reader: time interval must be integer or real: CONTEXT is testing'
       assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: time interval is missing: CONTEXT is testing'
 

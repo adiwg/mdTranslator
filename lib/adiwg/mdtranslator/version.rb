@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.2 2018-07-31 fix timeInterval check to allow real and integer
+# 2.13.2 2018-07-31 add minitest for adiwg-mdJson_schema example
 # 2.13.1 2018-07-02 fix bug in ISO 19110 writer when dictionary empty
 # 2.13.1 2018-06-12 change default time stamps from 'local' to UTC
 # 2.13.1 2018-06-11 fix bug #179 remove 0 time value from date string when time not present
@@ -87,7 +89,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.13.1"
+      VERSION = "2.13.2"
    end
 end
 
