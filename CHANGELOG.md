@@ -1,7 +1,29 @@
 # Change Log
 
-## [v2.13.0](https://github.com/adiwg/mdTranslator/tree/v2.13.0)
+## [v2.13.2](https://github.com/adiwg/mdTranslator/tree/v2.13.2)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.1...v2.13.2)
+
+**Merged pull requests:**
+
+- Fix mdJson reader timeInterval to allow real and integer [\#200](https://github.com/adiwg/mdTranslator/pull/200) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.13.1](https://github.com/adiwg/mdTranslator/tree/v2.13.1) (2018-07-21)
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.0...v2.13.1)
+
+**Fixed bugs:**
+
+- Make sure topicCategories are compatible with ISO version [\#196](https://github.com/adiwg/mdTranslator/issues/196)
+
+**Closed issues:**
+
+- Issue with YearMonth format date translation from CSDGM to mdJSON [\#197](https://github.com/adiwg/mdTranslator/issues/197)
+
+**Merged pull requests:**
+
+- Refactor mdJson writer to use mdJson construction helpers [\#198](https://github.com/adiwg/mdTranslator/pull/198) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.13.0](https://github.com/adiwg/mdTranslator/tree/v2.13.0) (2018-05-11)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.12.0...v2.13.0)
 
 **Closed issues:**
