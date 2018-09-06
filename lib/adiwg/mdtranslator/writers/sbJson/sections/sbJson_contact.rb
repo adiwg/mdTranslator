@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2018-09-05 skip responsibility objects in associatedResource
 #  Stan Smith 2017-05-25 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
 
@@ -20,7 +21,8 @@ module ADIWG
                def self.get_contact_list(intObj)
 
                   # gather all responsibility objects in intObj
-                  aResponsibility = @Namespace.nested_objs_by_element(intObj, 'roleName')
+                  # skip those in associatedResources[]
+                  aResponsibility = @Namespace.nested_objs_by_element(intObj, 'roleName', ['associatedResources'])
 
                   # set an additional 'Material Request Contact' for each distributor contact
                   aMRContacts = @Namespace.nested_objs_by_element(intObj[:metadata][:distributorInfo], 'roleName')
