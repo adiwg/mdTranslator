@@ -89,7 +89,7 @@ module ADIWG
                      hCitation = hData[:citation]
                      unless hCitation.empty?
                         @xml.tag!('gmd:citation') do
-                           citationClass.writeXML(hCitation, 'main resource citation')
+                           citationClass.writeXML(hCitation, 'main resource')
                         end
                      end
                      if hCitation.empty?
@@ -157,7 +157,7 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:pointOfContact') do
-                              rPartyClass.writeXML(role, hParty, 'data resource point of contact')
+                              rPartyClass.writeXML(role, hParty, 'main resource point of contact')
                            end
                         end
                      end
@@ -169,7 +169,7 @@ module ADIWG
                      aMaint = hData[:resourceMaintenance]
                      aMaint.each do |hMaint|
                         @xml.tag!('gmd:resourceMaintenance') do
-                           mInfoClass.writeXML(hMaint, 'data resource')
+                           mInfoClass.writeXML(hMaint, 'main resource')
                         end
                      end
                      if aMaint.empty? && @hResponseObj[:writerShowTags]
@@ -180,7 +180,7 @@ module ADIWG
                      aGraphics = hData[:graphicOverviews]
                      aGraphics.each do |hGraphic|
                         @xml.tag!('gmd:graphicOverview') do
-                           bGraphicClass.writeXML(hGraphic, 'data resource')
+                           bGraphicClass.writeXML(hGraphic, 'main resource')
                         end
                      end
                      if aGraphics.empty? && @hResponseObj[:writerShowTags]
