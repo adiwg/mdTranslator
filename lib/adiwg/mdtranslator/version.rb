@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.3 2018-09-06 bug fix #201 change crossReference processing to an array
+# 2.13.3 2018-09-05 bug fix #202 skip responsibility contacts in associatedResource for sbJson
 # 2.13.2 2018-07-31 fix timeInterval check to allow real and integer
 # 2.13.2 2018-07-31 add minitest for adiwg-mdJson_schema example
 # 2.13.1 2018-07-02 fix bug in ISO 19110 writer when dictionary empty
@@ -89,7 +91,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.13.2"
+      VERSION = "2.13.3"
    end
 end
 

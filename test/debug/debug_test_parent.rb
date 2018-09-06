@@ -44,8 +44,10 @@ class TestDebugParent < MiniTest::Test
    # get fgdc XML for test reference from resultXML folder
    def self.get_xml(fileName)
       file = File.join(File.dirname(__FILE__), 'userFiles', fileName) + '.xml'
-      xDoc = Nokogiri::XML(File.read(file))
-      return xDoc
+      file = File.open(file, 'r')
+      xmlFile = file.read
+      file.close
+      return xmlFile
    end
 
    def self.get_complete(hIn, expectFile, path)

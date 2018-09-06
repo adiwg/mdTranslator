@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2018-09-05 allow nested_obj_by_element to skip specified objects
 #  Stan Smith 2017-05-12 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
 
@@ -62,18 +63,25 @@ module ADIWG
             end
 
             # find all nested objects in 'obj' that contain the element 'ele'
-            def self.nested_objs_by_element(obj, ele)
+            def self.nested_objs_by_element(obj, ele, excludeList = [])
                aCollected = []
                obj.each do |key, value|
+                  skipThisOne = false
+                  excludeList.each do |exclude|
+                     if key == exclude.to_sym
+                        skipThisOne = true
+                     end
+                  end
+                  next if skipThisOne
                   if key == ele.to_sym
                      aCollected << obj
                   elsif obj.is_a?(Array)
                      if key.respond_to?(:each)
-                        aReturn = nested_objs_by_element(key, ele)
+                        aReturn = nested_objs_by_element(key, ele, excludeList)
                         aCollected = aCollected.concat(aReturn) unless aReturn.empty?
                      end
                   elsif obj[key].respond_to?(:each)
-                     aReturn = nested_objs_by_element(value, ele)
+                     aReturn = nested_objs_by_element(value, ele, excludeList)
                      aCollected = aCollected.concat(aReturn) unless aReturn.empty?
                   end
                end

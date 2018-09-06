@@ -1,0 +1,322 @@
+
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Daniel McGrath (ORCID: 0000-0002-9462-6842)</origin>
+        <origin>Christopher J. McNeil (ORCID: 0000-0003-4170-0428)</origin>
+        <origin>Louis C. Sass (ORCID: 0000-0003-4677-029X)</origin>
+        <origin>Esther L. Babcock (ORCID: 0000-0001-7665-7795)</origin>
+        <origin>Emily H. Baker (ORCID: 0000-0002-0938-3496)</origin>
+        <origin>Salvatore G. Candela</origin>
+        <origin>Shad O'Neel (ORCID: 0000-0002-9185-0144)</origin>
+        <pubdate>201809</pubdate>
+        <title>Raw Ground Penetrating Radar Data, Gulkana Glacier, Alaska</title>
+        <geoform>tabular digital data</geoform>
+        <pubinfo>
+          <pubplace>Anchorage, AK</pubplace>
+          <publish>U.S. Geological Survey, Alaska Science Center</publish>
+        </pubinfo>
+        <othercit>Suggested Citation: McGrath D., et. al 2018, Raw Ground Penetrating Radar Data, Gulkana Glacier, Alaska, ver. 2.1, September 2018: U.S. Geological Survey data release, https://doi.org/10.5066/F7M043G7.</othercit>
+        <onlink>https://doi.org/10.5066/F7M043G7</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Shad O'Neel (ORCID: 0000-0002-9185-0144)</origin>
+            <pubdate>2018</pubdate>
+            <title>Ground Penetrating Radar Data on North American Glaciers</title>
+            <geoform>website</geoform>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>U.S. Geological Survey, Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=384</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>U.S. Geological Survey researchers conducted time-series ground-penetrating radar (GPR) surveys with a Sensors and Software 500-MHz Pulse Ekko Pro system. We collected common-offset data from the ground, towed behind a researcher using a snowmobile, and from the air, strapped underneath a helicopter. We also collected common-midpoint data at specific glacier locations. All the profiles are linked to coincident GPS observations. Coincident in-situ data may provide calibration information, and may be composed of any of the following: snow pits and/or snow-pit/snow-core combinations, probe profiles, and ablation stakes. This supplemental information may provide estimates of snow properties to calibrate radar velocity.</abstract>
+      <purpose>We obtained data to estimate snow thickness on Alaska Glaciers to complement U.S. Geological Survey research efforts including local and regional scale mass-balance modeling. The purpose of this body of work is to monitor glacier change over time and to provide insights into glacier systems.</purpose>
+      <supplinf>Collection parameters varied within data set. Additional information regarding parameters and settings included with these data (.HD files).</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20130101</begdate>
+          <enddate>20171231</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>Irregular</update>
+    </status>
+    <spdom>
+      <descgeog>Gulkana Glacier, Alaska</descgeog>
+      <bounding>
+        <westbc>-145.49708</westbc>
+        <eastbc>-145.3556</eastbc>
+        <northbc>63.30483</northbc>
+        <southbc>63.24758</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>Electromagnetic Data</themekey>
+        <themekey>GPR</themekey>
+        <themekey>geophysics</themekey>
+        <themekey>Glaciology</themekey>
+        <themekey>GPR</themekey>
+        <themekey>ground-penetrating radar</themekey>
+      </theme>
+      <theme>
+        <themekt>NASA Earth Science Thesaurus</themekt>
+        <themekey>Cryosphere</themekey>
+        <themekey>Glaciers/Ice Sheets</themekey>
+        <themekey>Glaciers</themekey>
+        <themekey>Ablation Zones/Accumulation Zones</themekey>
+        <themekey>Spectral/Engineering</themekey>
+        <themekey>Radar</themekey>
+        <themekey>Radar Imagery</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS CSA Biocomplexity Thesaurus</themekt>
+        <themekey>Glaciology</themekey>
+        <themekey>Geomorphology</themekey>
+        <themekey>Geology</themekey>
+        <themekey>Remote Sensing</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <place>
+        <placekt>USGS Geographic Names Information System</placekt>
+        <placekey>Gulkana Glacier</placekey>
+      </place>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>Glaciology</themekey>
+        <themekey>Snow and ice cover</themekey>
+        <themekey>Glaciation</themekey>
+        <themekey>Metamorphism (geological)</themekey>
+        <themekey>Geophysics</themekey>
+        <themekey>Radar imaging</themekey>
+      </theme>
+    </keywords>
+    <accconst>none</accconst>
+    <useconst>Please cite U.S. Geological Survey/listed authors and give credit for the data. When appropriate, please consider co-authorship with the owners of the database. These data are the result of efforts by many of government and non-government participants in the field, including USGS and various researchers and managers. All publications based on these data should acknowledge all of these efforts. If a publication is based solely on the analysis of this data, we suggest that you involve the authors of this data with the writing and/or review of the manuscript. We would also appreciate receiving a reprint or copy of any publications or reports that make use of the data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing</addrtype>
+          <address>4210 University Dr.</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508-4626</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(907) 786-7000</cntvoice>
+        <cntfax>(907) 786-7020</cntfax>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>University of Alaska Fairbanks, Alaska Division of Geological and Geophysical Surveys</datacred>
+    <native>We used  pulseEKKO Pro system software and sensors for data capture. Other software, such as Python, R or Octave, is publicly available for data visualization.</native>
+    <crossref>
+      <citeinfo>
+        <origin>Unknown</origin>
+        <pubdate>Unknown</pubdate>
+        <title>U.S. Geological Survey Glaciers and Climate Project</title>
+        <geoform>web site</geoform>
+        <pubinfo>
+          <pubplace>Online</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <othercit>USGS glaciers program web site</othercit>
+        <onlink>https://www2.usgs.gov/climate_landuse/clu_rd/glacierstudies/default.asp</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Shad O'Neel (ORCID: 0000-0002-9185-0144)</origin>
+        <origin>Daniel McGrath (ORCID: 0000-0002-9462-6842)</origin>
+        <origin>Gabriel J. Wolken</origin>
+        <origin>Salvatore G. Candela</origin>
+        <origin>Louis C. Sass (ORCID: 0000-0003-4677-029X)</origin>
+        <origin>Christopher J. McNeil (ORCID: 0000-0003-4170-0428)</origin>
+        <origin>Emily H. Baker (ORCID: 0000-0002-0938-3496)</origin>
+        <origin>Erich H. Peitzsch (ORCID: 0000-0001-7624-0455)</origin>
+        <origin>Daniel B. Fagre (ORCID: 0000-0001-8552-9461)</origin>
+        <origin>Adam M. Clark (ORCID:0000-0002-8863-1434)</origin>
+        <origin>Caitlyn E. Florentine (ORCID: 0000-0002-7028-0963)</origin>
+        <origin>Zachary S. Miller (ORCID:0000-0002-6876-6710)</origin>
+        <origin>Esther L. Babcock (ORCID: 0000-0001-7665-7795)</origin>
+        <origin>Michael G. Loso</origin>
+        <origin>Anthony A. Arendt</origin>
+        <origin>Erin N. Whorton (ORCID: 0000-0002-1395-3084)</origin>
+        <origin>Evan W. Burgess</origin>
+        <origin>Alessio Gusmeroli</origin>
+        <pubdate>201809</pubdate>
+        <title>Raw Ground Penetrating Radar Data on North American Glaciers</title>
+        <geoform>collection</geoform>
+        <serinfo>
+          <sername>Raw Ground Penetrating Radar Data on North American Glaciers</sername>
+          <issue>Ver 2.1, September 2018</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Anchorage, Alaska</pubplace>
+          <publish>U.S. Geological Survey, Alaska Science Center</publish>
+        </pubinfo>
+        <othercit>Suggested Citation: O'Neel, S., McGrath, D., Wolken, G. J., Candela, S. G., Sass, L. C., McNeil, C. J., Baker, E. H., Babcock, E. L., Loso, M. G., Arendt, A. A., Whorton, E. N., Burgess, E. W., Gusmeroli, A., 2018, Ground Penetrating Radar Data on North America Glaciers, ver 2.1, September 2018: U.S. Geological Survey data release, https://doi.org/10.5066/F7M043G7.</othercit>
+        <onlink>https://doi.org/10.5066/F7M043G7</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Shad O'Neel (ORCID: 0000-0002-9185-0144)</origin>
+            <pubdate>2018</pubdate>
+            <title>Ground Penetrating Radar Data on North American Glaciers</title>
+            <geoform>web site</geoform>
+            <pubinfo>
+              <pubplace>Anchorage, AK</pubplace>
+              <publish>U.S. Geological Survey, Alaska Science Center</publish>
+            </pubinfo>
+            <onlink>https://alaska.usgs.gov/portal/project.php?project_id=384</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>We did not conduct any formal attribute accuracy tests. Quality of ground-penetrating radar data depends on signal-to-noise ratio, number of bad traces, and other data attributes. The user must assess these attributes on a case-by-case basis.</attraccr>
+    </attracc>
+    <logic>We did not conduct any formal attribute accuracy tests. All of the profiles are linked to coincident GPS observations. Coincident in-situ data is provided for calibration, and may be composed of any of the following: snow pits and/or snow-pit/snow-core combinations, probe profiles, and ablation stakes. This supplemental information may provide snow property estimates for radar velocity calibration.</logic>
+    <complete>Data set is considered complete for the information presented, as described in the abstract. We include all of the collected data even though some of the data may not be interpretable depending on intended use.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>We did not conduct any formal positional accuracy tests. Qualitatively, the positional accuracy is +/- 1 meter horizontally and +/- 3 meters vertically. Vertical GPS position for airborne data references the helicopter position not the ground surface.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>We conducted ground-penetrating radar (GPR) surveys with a 500-MHz Pulse Ekko Pro sensors and software system. We collected common-offset data from the ground, towed behind a researcher using a snowmobile, and from the air, strapped underneath a helicopter. We also collected common-midpoint data at specific glacier locations. All the profiles are linked to coincident GPS observations. Coincident in-situ data may provide calibration information, and may be composed of any of the following: snow pits and/or snow-pit/snow-core combinations, probe profiles, and ablation stakes. This supplemental information may provide estimates of snow properties to calibrate radar velocity.</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Coincident in-situ data was collected for calibration and may be composed of any of the following: snow pits and/or snow-pit/snow-core combinations, probe profiles, and ablation stakes. This supplemental information provides estimates of snow properties to calibrate radar velocity.</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Point</direct>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>0.0000001</latres>
+        <longres>0.0000001</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>World Geodetic System of 1984</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+    </horizsys>
+    <vertdef>
+      <altsys>
+        <altdatum>WGS84</altdatum>
+        <altres>1.0</altres>
+        <altunits>meters</altunits>
+        <altenc>Explicit elevation coordinate included with horizontal coordinates</altenc>
+      </altsys>
+    </vertdef>
+  </spref>
+  <eainfo>
+    <overview>
+      <eaover>.GPS files contain NMEA strings. See the following link for more information: http://www.gpsinformation.org/dale/nmea.htm
+
+.HD files contain header information. See sensors and software manual (http://www.sensoft.ca/ or http://www-rohan.sdsu.edu/~geology/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf),
+
+.ASC files contain trace data in ASCII format with traces in columns and samples in rows.</eaover>
+      <eadetcit>Annan AP and Sensors and Software Inc. (1993) Practical Processing of GPR Data. Proceedings of the Second Government Workshop on Ground Penetrating Radar. Columbus, Ohio http://www.ees.nmt.edu/outside/courses/Geop446/Docs/GPR_data_process.pdf</eadetcit>
+    </overview>
+    <overview>
+      <eaover>Overview Map</eaover>
+      <eadetcit>This map displays location of GPR data collected, along with select metadata which may include the directory number, line number, and/or direction of travel during collection.</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Dr.</address>
+          <city>Anchorage</city>
+          <state>AK</state>
+          <postal>99508-4626</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(907) 786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>Authoritative source for data.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>ZIP</formname>
+          <formvern>19</formvern>
+          <formcont>Data package contains GPR data as DT1, GPS, HD and ASC (ASCII) formats. In situ data is provided in CSV format. A summary map is included in PDF format. Metadata is provided in XML and HTML formats.</formcont>
+          <filedec>Winzip legacy compression applied</filedec>
+          <transize>43600</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.5066/F7M043G7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>none</fees>
+    </stdorder>
+    <techpreq>Proprietary files are hosted here for compactness, but can be viewed and processed using a number of freely available applications. These include Matlab GPR, available at http://users.uoa.gr/~atzanis/matgpr/matgpr.html and GPRSoft viewer, available at http://www.geoscanners.com/downloads.htm. Python, R, Octave, or other publicly available data software can be used to display the data visually.</techpreq>
+  </distinfo>
+  <metainfo>
+    <metd>201809</metd>
+    <metrd>201809</metrd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey, Alaska Science Center</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>4210 University Dr.</address>
+          <city>Anchorage</city>
+          <state>Alaska</state>
+          <postal>99508-4626</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>(907) 786-7000</cntvoice>
+        <cntemail>ascweb@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>

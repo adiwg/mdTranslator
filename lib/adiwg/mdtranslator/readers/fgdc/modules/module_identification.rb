@@ -2,6 +2,7 @@
 # unpack fgdc metadata identification
 
 # History:
+#  Stan Smith 2018-09-06 bug fix - change crossReference processing to an array
 #  Stan Smith 2018-04-06 change mdJson taxonomy to an array
 #  Stan Smith 2017-08-15 original script
 
@@ -235,15 +236,17 @@ module ADIWG
                      hResourceInfo[:environmentDescription] = native
                   end
 
-                  # identification information 1.14 (crossref) - cross reference {associatedResource}
-                  xCitation = xIdInfo.xpath('./crossref')
-                  unless xCitation.empty?
-                     hCitation = Citation.unpack(xCitation, hResponseObj)
-                     unless hCitation.empty?
-                        hAssociatedResource = intMetadataClass.newAssociatedResource
-                        hAssociatedResource[:associationType] = 'crossReference'
-                        hAssociatedResource[:resourceCitation] = hCitation
-                        hMetadata[:associatedResources] << hAssociatedResource
+                  # identification information 1.14 (crossref) - cross reference [] {associatedResource}
+                  axCitation = xIdInfo.xpath('./crossref')
+                  unless axCitation.empty?
+                     axCitation.each do |xCitation|
+                        hCitation = Citation.unpack(xCitation, hResponseObj)
+                        unless hCitation.empty?
+                           hAssociatedResource = intMetadataClass.newAssociatedResource
+                           hAssociatedResource[:associationType] = 'crossReference'
+                           hAssociatedResource[:resourceCitation] = hCitation
+                           hMetadata[:associatedResources] << hAssociatedResource
+                        end
                      end
                   end
 

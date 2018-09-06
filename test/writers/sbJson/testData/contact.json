@@ -96,7 +96,18 @@
          "contactId": "CID005",
          "isOrganization": true,
          "name": "Organization 1"
+      },
+      {
+         "contactId": "CID006",
+         "isOrganization": false,
+         "name": "Person 6"
+      },
+      {
+         "contactId": "CID007",
+         "isOrganization": false,
+         "name": "Person 7"
       }
+
    ],
    "metadata": {
       "metadataInfo": {
@@ -235,6 +246,47 @@
                   }
                }
             ]
+         }
+      ],
+      "associatedResource": [
+         {
+            "associationType": "crossReference",
+            "initiativeType": "task",
+            "resourceType": [
+               {
+                  "type": "webService",
+                  "name": "ADIwg API"
+               }
+            ],
+            "resourceCitation": {
+               "title": "assocResource resourceCitation",
+               "responsibleParty": [
+                  {
+                     "role": "assocResourceTrap",
+                     "party": [
+                        {
+                           "contactId": "CID006"
+                        },
+                        {
+                           "contactId": "CID007"
+                        }
+                     ]
+                  }
+               ]
+            },
+            "metadataCitation": {
+               "title": "assocResource metadataCitation",
+               "responsibleParty": [
+                  {
+                     "role": "userProvided",
+                     "party": [
+                        {
+                           "contactId": "CID003"
+                        }
+                     ]
+                  }
+               ]
+            }
          }
       ]
    }
