@@ -1123,12 +1123,11 @@ class MdJsonHashWriter
       hSpaceRef[:referenceSystemParameterSet] = {}
       hSpaceRef[:referenceSystemParameterSet][:verticalDatum] = verticalDatum
       hDatum = hSpaceRef[:referenceSystemParameterSet][:verticalDatum]
-      hDatum[:datumIdentifier][:identifier] = 'identifier'
       hDatum[:isDepthSystem] = isDepth
       if isDepth
-         hDatum[:datumName] = 'depth datum name'
+         hDatum[:datumIdentifier][:identifier] = 'depth datum name'
       else
-         hDatum[:datumName] = 'altitude datum name'
+         hDatum[:datumIdentifier][:identifier] = 'altitude datum name'
       end
       return hSpaceRef
    end

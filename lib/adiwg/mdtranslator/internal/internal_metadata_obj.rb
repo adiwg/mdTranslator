@@ -902,7 +902,6 @@ class InternalMetadata
    def newVerticalDatum
       {
          datumIdentifier: {},
-         datumName: nil,
          isDepthSystem: false,
          encodingMethod: nil,
          verticalResolution: nil,

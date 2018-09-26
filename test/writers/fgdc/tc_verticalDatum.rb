@@ -41,7 +41,6 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       # altitude elements empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:datumName] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:encodingMethod] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:verticalResolution] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum][:unitOfMeasure] = ''
@@ -52,9 +51,7 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 4, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: vertical altitude datum name is missing'
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: vertical altitude resolution is missing'
       assert_includes hResponseObj[:writerMessages],
@@ -64,7 +61,6 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       # altitude elements missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:datumName)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:encodingMethod)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:verticalResolution)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum].delete(:unitOfMeasure)
@@ -75,9 +71,7 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 4, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: vertical altitude datum name is missing'
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: vertical altitude resolution is missing'
       assert_includes hResponseObj[:writerMessages],
@@ -87,7 +81,6 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       # depth elements empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:datumName] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:encodingMethod] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:verticalResolution] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum][:unitOfMeasure] = ''
@@ -98,9 +91,7 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 4, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: vertical depth datum name is missing'
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: vertical depth resolution is missing'
       assert_includes hResponseObj[:writerMessages],
@@ -110,7 +101,6 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       # depth elements missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:datumName)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:encodingMethod)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:verticalResolution)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet][:verticalDatum].delete(:unitOfMeasure)
@@ -121,9 +111,7 @@ class TestWriterFgdcVerticalDatum < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 4, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: vertical depth datum name is missing'
+      assert_equal 3, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
                       'WARNING: FGDC writer: vertical depth resolution is missing'
       assert_includes hResponseObj[:writerMessages],

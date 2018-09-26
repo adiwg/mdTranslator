@@ -1465,7 +1465,6 @@ class MdJsonHashWriter
    def verticalDatum
       {
          datumIdentifier: { identifier: 'vertical datum identifier' },
-         datumName: 'datum name',
          encodingMethod: 'encoding method',
          isDepthSystem: false,
          verticalResolution: 9.99,

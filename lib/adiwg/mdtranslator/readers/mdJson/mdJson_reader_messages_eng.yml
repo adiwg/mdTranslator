@@ -365,7 +365,11 @@ messageList:
    - {id: 911, message: "vector representation must have a topology level or vector object"}
 
    - {id: 920, message: "vertical datum object is empty"}
-   - {id: 921, message: "vertical datum must have an identifier or all other elements"}
+   - {id: 921, message: "vertical datum must have a datumIdentifier"}
+   - {id: 922, message: "vertical datumName is deprecated, use datumIdentifier.identifier"}
+   - {id: 923, message: "vertical datumName was moved to datumIdentifier.identifier"}
+   - {id: 924, message: "vertical datum must have an identifier or all elements"}
+   - {id: 925, message: "vertical datum added new datumIdentifier object"}
 
    - {id: 930, message: "vertical extent object is empty"}
    - {id: 931, message: "vertical extent minimum value is missing"}

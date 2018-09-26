@@ -1181,7 +1181,7 @@
                   },
                   "verticalDatum": {
                      "datumIdentifier": {
-                        "identifier": "vertical datum identifier"
+                        "identifier": "altitude datum identifier"
                      },
                      "datumName": "vertical datum name",
                      "encodingMethod": "attribute values",

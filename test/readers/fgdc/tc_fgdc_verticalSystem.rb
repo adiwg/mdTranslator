@@ -1,8 +1,10 @@
 # MdTranslator - minitest of
+# readers / fgdc / module_verticalAltitude
 # readers / fgdc / module_verticalDepth
 
 # History:
-#   Stan Smith 2017-10-19 original script
+#  Stan Smith 2018-09-26 move altitude datum name to datumIdentifier
+#  Stan Smith 2017-10-19 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
@@ -39,8 +41,8 @@ class TestReaderFgdcVerticalSystem < TestReaderFGDCParent
       refute_empty hAltParams[:verticalDatum]
 
       hAltDatum = hAltParams[:verticalDatum]
-      assert_empty hAltDatum[:datumIdentifier]
-      assert_equal 'altitude datum name', hAltDatum[:datumName]
+      refute_empty hAltDatum[:datumIdentifier]
+      assert_equal 'altitude datum name', hAltDatum[:datumIdentifier][:identifier]
       refute hAltDatum[:isDepthSystem]
       assert_equal 'attribute values', hAltDatum[:encodingMethod]
       assert_equal 0.9, hAltDatum[:verticalResolution]
@@ -58,8 +60,8 @@ class TestReaderFgdcVerticalSystem < TestReaderFGDCParent
       refute_empty hDepthParams[:verticalDatum]
 
       hDepthDatum = hDepthParams[:verticalDatum]
-      assert_empty hDepthDatum[:datumIdentifier]
-      assert_equal 'depth datum name', hDepthDatum[:datumName]
+      refute_empty hDepthDatum[:datumIdentifier]
+      assert_equal 'depth datum name', hDepthDatum[:datumIdentifier][:identifier]
       assert hDepthDatum[:isDepthSystem]
       assert_equal 'explicit depth coordinate', hDepthDatum[:encodingMethod]
       assert_equal 1.0, hDepthDatum[:verticalResolution]

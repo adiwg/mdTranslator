@@ -2,6 +2,7 @@
 # spatial reference system vertical datum parameters
 
 # History:
+#  Stan Smith 2018-09-26 deprecated verticalDatum.datumName
 #  Stan Smith 2017-10-24 original script
 
 require_relative 'html_identifier'
@@ -30,11 +31,14 @@ module ADIWG
                   end
                   @html.br
 
-                  # vertical datum - datum name
-                  unless hDatum[:datumName].nil?
-                     @html.em('Datum Name: ')
-                     @html.text!(hDatum[:datumName])
-                     @html.br
+                  # vertical datum parameters - vertical datum identifier
+                  unless hDatum[:datumIdentifier].empty?
+                     @html.details do
+                        @html.summary('Vertical Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hDatum[:datumIdentifier])
+                        end
+                     end
                   end
 
                   # vertical datum - encoding method
@@ -55,16 +59,6 @@ module ADIWG
                   unless hDatum[:unitOfMeasure].nil?
                      @html.em('Unit of Measure: ')
                      @html.text!(hDatum[:unitOfMeasure])
-                  end
-
-                  # vertical datum parameters - vertical datum identifier
-                  unless hDatum[:datumIdentifier].empty?
-                     @html.details do
-                        @html.summary('Vertical Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hDatum[:datumIdentifier])
-                        end
-                     end
                   end
 
                end # writeHtml
