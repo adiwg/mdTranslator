@@ -27,18 +27,18 @@ module ADIWG
                   intLinePoint = intMetadataClass.newObliqueLinePoint
 
                   # oblique line point - azimuth line latitude (required)
-                  if hLinePt.has_key?('azimuthLineLatitude')
-                     intLinePoint[:azimuthLineLatitude] = hLinePt['azimuthLineLatitude']
+                  if hLinePt.has_key?('obliqueLineLatitude')
+                     intLinePoint[:obliqueLineLatitude] = hLinePt['obliqueLineLatitude']
                   end
-                  if intLinePoint[:azimuthLineLatitude].nil? || intLinePoint[:azimuthLineLatitude] == ''
+                  if intLinePoint[:obliqueLineLatitude].nil? || intLinePoint[:obliqueLineLatitude] == ''
                      @MessagePath.issueError(591, responseObj, inContext)
                   end
 
                   # oblique line point - azimuth line longitude (required)
-                  if hLinePt.has_key?('azimuthLineLongitude')
-                     intLinePoint[:azimuthLineLongitude] = hLinePt['azimuthLineLongitude']
+                  if hLinePt.has_key?('obliqueLineLongitude')
+                     intLinePoint[:obliqueLineLongitude] = hLinePt['obliqueLineLongitude']
                   end
-                  if intLinePoint[:azimuthLineLongitude].nil? || intLinePoint[:azimuthLineLongitude] == ''
+                  if intLinePoint[:obliqueLineLongitude].nil? || intLinePoint[:obliqueLineLongitude] == ''
                      @MessagePath.issueError(592, responseObj, inContext)
                   end
 

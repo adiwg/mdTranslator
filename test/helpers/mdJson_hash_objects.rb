@@ -1405,8 +1405,8 @@ class MdJsonHashWriter
 
    def obliqueLinePoint
       {
-         azimuthLineLatitude: 99.9,
-         azimuthLineLongitude: 99.9
+         obliqueLineLatitude: 99.9,
+         obliqueLineLongitude: 99.9
       }
    end
 

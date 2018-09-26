@@ -15,8 +15,8 @@ module ADIWG
                def self.build(hLinePoint)
 
                   Jbuilder.new do |json|
-                     json.azimuthLineLatitude hLinePoint[:azimuthLineLatitude]
-                     json.azimuthLineLongitude hLinePoint[:azimuthLineLongitude]
+                     json.obliqueLineLatitude hLinePoint[:obliqueLineLatitude]
+                     json.obliqueLineLongitude hLinePoint[:obliqueLineLongitude]
                   end
 
                end # build

@@ -37,20 +37,20 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_equal 99.9, metadata[:azimuthLineLatitude]
-      assert_equal 99.9, metadata[:azimuthLineLongitude]
+      assert_equal 99.9, metadata[:obliqueLineLatitude]
+      assert_equal 99.9, metadata[:obliqueLineLongitude]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
    end
 
-   def test_obliqueLinePoint_empty_azimuthLineLatitude
+   def test_obliqueLinePoint_empty_obliqueLineLatitude
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['azimuthLineLatitude'] = ''
+      hIn['obliqueLineLatitude'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -62,12 +62,12 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
    end
 
-   def test_obliqueLinePoint_missing_azimuthLineLatitude
+   def test_obliqueLinePoint_missing_obliqueLineLatitude
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn.delete('azimuthLineLatitude')
+      hIn.delete('obliqueLineLatitude')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -79,12 +79,12 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
    end
 
-   def test_obliqueLinePoint_empty_azimuthLineLongitude
+   def test_obliqueLinePoint_empty_obliqueLineLongitude
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['azimuthLineLongitude'] = ''
+      hIn['obliqueLineLongitude'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -96,12 +96,12 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
    end
 
-   def test_obliqueLinePoint_missing_azimuthLineLongitude
+   def test_obliqueLinePoint_missing_obliqueLineLongitude
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn.delete('azimuthLineLongitude')
+      hIn.delete('obliqueLineLongitude')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 

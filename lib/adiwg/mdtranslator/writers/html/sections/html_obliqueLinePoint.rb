@@ -17,13 +17,13 @@ module ADIWG
                   lat = 'missing'
 
                   # oblique line point - point latitude
-                  unless hLinePoint[:azimuthLineLatitude].nil?
-                     long = hLinePoint[:azimuthLineLatitude].to_s
+                  unless hLinePoint[:obliqueLineLatitude].nil?
+                     long = hLinePoint[:obliqueLineLatitude].to_s
                   end
 
                   # oblique line point - point longitude
-                  unless hLinePoint[:azimuthLineLongitude].nil?
-                     lat = hLinePoint[:azimuthLineLongitude].to_s
+                  unless hLinePoint[:obliqueLineLongitude].nil?
+                     lat = hLinePoint[:obliqueLineLongitude].to_s
                   end
 
                   return '( Longitude: ' + long + ', Latitude: ' + lat + ' )'

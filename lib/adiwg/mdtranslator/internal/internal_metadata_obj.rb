@@ -882,8 +882,8 @@ class InternalMetadata
 
    def newObliqueLinePoint
       {
-         azimuthLineLatitude: nil,
-         azimuthLineLongitude: nil
+         obliqueLineLatitude: nil,
+         obliqueLineLongitude: nil
       }
    end
 
@@ -908,7 +908,6 @@ class InternalMetadata
          verticalResolution: nil,
          unitOfMeasure: nil
       }
-
    end
 
 

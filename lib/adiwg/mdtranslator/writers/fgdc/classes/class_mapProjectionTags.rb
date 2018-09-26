@@ -191,16 +191,16 @@ module ADIWG
 
                # map projection (obqlpt) - oblique line point (required)
                def write_obliqueLinePoint(hLinePt)
-                  unless hLinePt[:azimuthLineLatitude].nil?
-                     @xml.tag!('obqllat', hLinePt[:azimuthLineLatitude])
+                  unless hLinePt[:obliqueLineLatitude].nil?
+                     @xml.tag!('obqllat', hLinePt[:obliqueLineLatitude])
                   end
-                  if hLinePt[:azimuthLineLatitude].nil?
+                  if hLinePt[:obliqueLineLatitude].nil?
                      @NameSpace.issueError(296, 'oblique line-point projection')
                   end
-                  unless hLinePt[:azimuthLineLongitude].nil?
-                     @xml.tag!('obqllong', hLinePt[:azimuthLineLongitude])
+                  unless hLinePt[:obliqueLineLongitude].nil?
+                     @xml.tag!('obqllong', hLinePt[:obliqueLineLongitude])
                   end
-                  if hLinePt[:azimuthLineLongitude].nil?
+                  if hLinePt[:obliqueLineLongitude].nil?
                      @NameSpace.issueError(297, 'oblique line-point projection')
                   end
                end

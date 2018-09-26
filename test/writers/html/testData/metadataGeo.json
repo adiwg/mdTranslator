@@ -1151,12 +1151,12 @@
                      "azimuthMeasurePointLongitude": -99.0,
                      "obliqueLinePoint": [
                         {
-                           "azimuthLineLatitude": 9.99999,
-                           "azimuthLineLongitude": -9.99999
+                           "obliqueLineLatitude": 9.99999,
+                           "obliqueLineLongitude": -9.99999
                         },
                         {
-                           "azimuthLineLatitude": 19.99999,
-                           "azimuthLineLongitude": -19.99999
+                           "obliqueLineLatitude": 19.99999,
+                           "obliqueLineLongitude": -19.99999
                         }
                      ],
                      "landsatNumber": 9,

@@ -65,10 +65,10 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       assert_equal 9.9, metadata[:azimuthMeasurePointLongitude]
 
       assert_equal 2, metadata[:obliqueLinePoints].length
-      assert_equal 99.9, metadata[:obliqueLinePoints][0][:azimuthLineLatitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][0][:azimuthLineLongitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][1][:azimuthLineLatitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][1][:azimuthLineLongitude]
+      assert_equal 99.9, metadata[:obliqueLinePoints][0][:obliqueLineLatitude]
+      assert_equal 99.9, metadata[:obliqueLinePoints][0][:obliqueLineLongitude]
+      assert_equal 99.9, metadata[:obliqueLinePoints][1][:obliqueLineLatitude]
+      assert_equal 99.9, metadata[:obliqueLinePoints][1][:obliqueLineLongitude]
 
       assert_equal 9, metadata[:landsatNumber]
       assert_equal 9, metadata[:landsatPath]

@@ -174,23 +174,23 @@ module ADIWG
 
                      lat1 = xObliqueLP.xpath('./obqllat[1]').text
                      unless lat1.empty?
-                        hPoint1[:azimuthLineLatitude] = lat1.to_f
+                        hPoint1[:obliqueLineLatitude] = lat1.to_f
                         paramCount += 1
                      end
                      long1 = xObliqueLP.xpath('./obqllong[1]').text
                      unless long1.empty?
-                        hPoint1[:azimuthLineLongitude] = long1.to_f
+                        hPoint1[:obliqueLineLongitude] = long1.to_f
                         paramCount += 1
                      end
 
                      lat2 = xObliqueLP.xpath('./obqllat[2]').text
                      unless lat2.empty?
-                        hPoint2[:azimuthLineLatitude] = lat2.to_f
+                        hPoint2[:obliqueLineLatitude] = lat2.to_f
                         paramCount += 1
                      end
                      long2 = xObliqueLP.xpath('./obqllong[2]').text
                      unless long2.empty?
-                        hPoint2[:azimuthLineLongitude] = long2.to_f
+                        hPoint2[:obliqueLineLongitude] = long2.to_f
                         paramCount += 1
                      end
 

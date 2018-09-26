@@ -932,8 +932,8 @@ class MdJsonHashWriter
    def add_obliqueLinePoint(hSpaceRef, latitude = nil, longitude = nil)
       hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
       hLinePoint = obliqueLinePoint
-      hLinePoint[:azimuthLineLatitude] = latitude unless latitude.nil?
-      hLinePoint[:azimuthLineLongitude] = longitude unless longitude.nil?
+      hLinePoint[:obliqueLineLatitude] = latitude unless latitude.nil?
+      hLinePoint[:obliqueLineLongitude] = longitude unless longitude.nil?
       hParamSet[:obliqueLinePoint] = [] unless hParamSet[:obliqueLinePoint]
       hParamSet[:obliqueLinePoint] << hLinePoint
       return hSpaceRef

@@ -22,25 +22,25 @@ module ADIWG
                   @xml.tag!('gmd:MD_ObliqueLinePoint') do
 
                      # oblique line point - azimuth line latitude {integer}
-                     r = hLinePoint[:azimuthLineLatitude]
+                     r = hLinePoint[:obliqueLineLatitude]
                      unless r.nil?
-                        @xml.tag!('gmd:azimuthLineLatitude') do
+                        @xml.tag!('gmd:obliqueLineLatitude') do
                            @xml.tag!('gco:real', r.to_s)
                         end
                      end
                      if r.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:azimuthLineLatitude')
+                        @xml.tag!('gmd:obliqueLineLatitude')
                      end
 
                      # oblique line point - azimuth line longitude {real}
-                     r = hLinePoint[:azimuthLineLongitude]
+                     r = hLinePoint[:obliqueLineLongitude]
                      unless r.nil?
-                        @xml.tag!('gmd:azimuthLineLongitude') do
+                        @xml.tag!('gmd:obliqueLineLongitude') do
                            @xml.tag!('gco:real', r.to_s)
                         end
                      end
                      if r.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:azimuthLineLongitude')
+                        @xml.tag!('gmd:obliqueLineLongitude')
                      end
 
                   end # gmd:MD_ObliqueLinePoint

@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.14.4 2018-09-26 change azimuthLineLongitude to obliqueLineLongitude
+# 2.14.4 2018-09-26 change azimuthLineLatitude to obliqueLineLatitude
 # 2.13.3 2018-09-06 bug fix #201 change crossReference processing to an array
 # 2.13.3 2018-09-05 bug fix #202 skip responsibility contacts in associatedResource for sbJson
 # 2.13.2 2018-07-31 fix timeInterval check to allow real and integer
