@@ -102,7 +102,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -119,7 +119,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -136,7 +136,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -153,7 +153,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -170,7 +170,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -187,7 +187,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 

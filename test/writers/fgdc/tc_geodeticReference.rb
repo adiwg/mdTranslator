@@ -16,12 +16,14 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
    mdHash = TDClass.base
    hSpaceRef = TDClass.spatialReferenceSystem
    TDClass.add_geodetic(hSpaceRef)
+   hSpaceRef[:referenceSystemParameterSet][:geodetic][:datumIdentifier] = TDClass.build_identifier('datum name')
+   hSpaceRef[:referenceSystemParameterSet][:geodetic][:ellipsoidIdentifier] = TDClass.build_identifier('ellipsoid name')
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
 
    @@mdHash = mdHash
 
-   def test_distribution_complete
+   def test_geodetic_complete
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'geodeticReference',
                                                   './metadata/spref/horizsys/geodetic')
@@ -30,11 +32,11 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
    end
 
-   def test_map_geodeticReference_semiMajorAxis
+   def test_geodetic_datumIdentifier
 
-      # semi-major axis empty
+      # datum identifier empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:semiMajorAxis] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:datumIdentifier] = {}
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
@@ -42,13 +44,10 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: geodetic coordinate system semi-major axis is missing'
 
-      # semi-major axis missing
+      # datum identifier missing
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:semiMajorAxis)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:datumIdentifier)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
@@ -56,16 +55,15 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: geodetic coordinate system semi-major axis is missing'
 
    end
 
-   def test_map_geodeticReference_denominator
+   def test_geodetic_ellipsoidIdentifier
 
-      # denominator of flattening ration empty
+      # ellipsoid identifier only
       hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:semiMajorAxis] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:axisUnits] = ''
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:denominatorOfFlatteningRatio] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -74,12 +72,30 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: geodetic coordinate system denominator of flattening ratio is missing'
 
-      # denominator of flattening ration missing
+   end
+
+   def test_geodetic_ellipsoid
+
+      # ellipsoid elements empty
       hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:ellipsoidIdentifier] = {}
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:semiMajorAxis] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:axisUnits] = ''
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic][:denominatorOfFlatteningRatio] = ''
+
+      hResponseObj = ADIWG::Mdtranslator.translate(
+         file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
+      )
+
+      refute_empty hResponseObj[:writerOutput]
+      assert hResponseObj[:writerPass]
+
+      # ellipsoid elements missing
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:ellipsoidIdentifier)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:semiMajorAxis)
+      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:axisUnits)
       hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:geodetic].delete(:denominatorOfFlatteningRatio)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
@@ -88,9 +104,6 @@ class TestWriterFgdcGeodeticSystem < TestWriterFGDCParent
 
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
-      assert_equal 1, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: geodetic coordinate system denominator of flattening ratio is missing'
 
    end
 

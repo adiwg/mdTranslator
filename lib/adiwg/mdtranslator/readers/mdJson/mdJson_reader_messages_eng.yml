@@ -141,7 +141,13 @@ messageList:
    - {id: 301, message: "funding must have either an allocation or timePeriod"}
 
    - {id: 310, message: "geodetic object is empty"}
-   - {id: 311, message: "geodetic ellipsoid name is missing"}
+   - {id: 311, message: "geodetic datum name is deprecated, use datumIdentifier.identifier"}
+   - {id: 312, message: "geodetic ellipsoid name is deprecated, use ellipsoidIdentifier.identifier"}
+   - {id: 313, message: "geodetic datum added new datumIdentifier object"}
+   - {id: 314, message: "geodetic ellipsoid added new ellipsoidIdentifier object"}
+   - {id: 315, message: "geodetic datum name was moved to datumIdentifier.identifier"}
+   - {id: 316, message: "geodetic ellipsoid name was moved to ellipsoidIdentifier.identifier"}
+   - {id: 317, message: "geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements"}
 
    - {id: 320, message: "geographic extent object is empty"}
    - {id: 321, message: "geographic extent must have at least one description, identifier, bounding box, or geographic element"}
@@ -368,7 +374,7 @@ messageList:
    - {id: 921, message: "vertical datum must have a datumIdentifier"}
    - {id: 922, message: "vertical datumName is deprecated, use datumIdentifier.identifier"}
    - {id: 923, message: "vertical datumName was moved to datumIdentifier.identifier"}
-   - {id: 924, message: "vertical datum must have an identifier or all elements"}
+   - {id: 924, message: "vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements"}
    - {id: 925, message: "vertical datum added new datumIdentifier object"}
 
    - {id: 930, message: "vertical extent object is empty"}

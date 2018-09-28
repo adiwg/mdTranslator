@@ -1,6 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.13.4 2018-09-26 deprecated ellipsoidName from geodetic, use ellipsoidIdentifier
+# 2.13.4 2018-09-26 deprecated datumName from geodetic, use datumIdentifier
 # 2.13.4 2018-09-26 deprecated datumName from verticalDatum object, use datumIdentifier
 # 2.13.4 2018-09-26 change azimuthLineLongitude to obliqueLineLongitude
 # 2.13.4 2018-09-26 change azimuthLineLatitude to obliqueLineLatitude

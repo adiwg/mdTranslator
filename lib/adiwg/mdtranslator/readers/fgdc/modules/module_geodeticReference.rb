@@ -2,6 +2,7 @@
 # unpack fgdc horizontal data geodetic reference
 
 # History:
+#  Stan Smith 2018-09-26 deprecate datumName and ellipsoidName from mdJSON
 #  Stan Smith 2017-12-29 original script
 
 require 'nokogiri'
@@ -23,17 +24,19 @@ module ADIWG
                   xGeodetic = xHorizontalRef.xpath('./geodetic')
 
                   # geodetic model 4.1.4.1 (horizdn) - horizontal datum name
-                  # -> referenceSystemParameters.geodetic.datumName
+                  # -> referenceSystemParameters.geodetic.datumIdentifier.identifier
                   datumName = xGeodetic.xpath('./horizdn').text
                   unless datumName.empty?
-                     hGeodetic[:datumName] = datumName
+                     hGeodetic[:datumIdentifier] = intMetadataClass.newIdentifier
+                     hGeodetic[:datumIdentifier][:identifier] = datumName
                   end
 
                   # geodetic model 4.1.4.2 (ellips) - ellipsoid name (required)
-                  # -> referenceSystemParameters.geodetic.ellipsoidName
+                  # -> referenceSystemParameters.geodetic.ellipsoidIdentifier.identifier
                   ellipsoidName = xGeodetic.xpath('./ellips').text
                   unless ellipsoidName.empty?
-                     hGeodetic[:ellipsoidName] = ellipsoidName
+                     hGeodetic[:ellipsoidIdentifier] = intMetadataClass.newIdentifier
+                     hGeodetic[:ellipsoidIdentifier][:identifier] = ellipsoidName
                   end
                   if ellipsoidName.empty?
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference ellipsoid name is missing'

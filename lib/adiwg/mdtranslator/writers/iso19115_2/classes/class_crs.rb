@@ -39,6 +39,8 @@ module ADIWG
                   end
                   if hParamSet[:projection].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:projection')
+                  elsif hParamSet[:projection][:projectionIdentifier].empty? && @hResponseObj[:writerShowTags]
+                     @xml.tag!('gmd:projection')
                   end
 
                   # geodetic ellipsoid identifier {rsIdentifier}
@@ -52,31 +54,22 @@ module ADIWG
                   end
                   if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:ellipsoid')
+                  elsif hParamSet[:geodetic][:ellipsoidIdentifier].empty? && @hResponseObj[:writerShowTags]
+                     @xml.tag!('gmd:ellipsoid')
                   end
 
-                  haveDatum = false
-                  # geodetic datum identifier {rsIdentifier}
+                  # geodetic datum identifier (horizontal) {rsIdentifier}
                   unless hParamSet[:geodetic].empty?
                      hIdentifier = hParamSet[:geodetic][:datumIdentifier]
                      unless hIdentifier.empty?
                         @xml.tag!('gmd:datum') do
                            idClass.writeXML(hIdentifier, 'CRS geodetic datum')
-                           haveDatum = true
                         end
                      end
                   end
-
-                  # vertical datum identifier {rsIdentifier}
-                  unless hParamSet[:verticalDatum].empty?
-                     hIdentifier = hParamSet[:verticalDatum][:datumIdentifier]
-                     unless hIdentifier.empty?
-                        @xml.tag!('gmd:datum') do
-                           idClass.writeXML(hIdentifier, 'CRS vertical datum')
-                           haveDatum = true
-                        end
-                     end
-                  end
-                  if !haveDatum && @hResponseObj[:writerShowTags]
+                  if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
+                     @xml.tag!('gmd:datum')
+                  elsif hParamSet[:geodetic][:datumIdentifier].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:datum')
                   end
 
@@ -99,6 +92,9 @@ module ADIWG
                   if hParamSet[:projection].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('gmd:projectionParameters')
                   end
+
+                  # vertical datum identifier {rsIdentifier}
+                  # the mdJSON referenceSystemParameterSet includes 'verticalDatum' which is not used by ISO
 
                end # writeXML
             end # MD_CRS class

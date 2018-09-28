@@ -135,7 +135,26 @@
     <gmd:MD_CRS>
       <gmd:referenceSystemIdentifier/>
       <gmd:projection/>
-      <gmd:datum/>
+      <gmd:ellipsoid>
+        <gmd:RS_Identifier>
+          <gmd:authority/>
+          <gmd:code>
+            <gco:CharacterString>ellipsoid name</gco:CharacterString>
+          </gmd:code>
+          <gmd:codeSpace/>
+          <gmd:version/>
+        </gmd:RS_Identifier>
+      </gmd:ellipsoid>
+      <gmd:datum>
+        <gmd:RS_Identifier>
+          <gmd:authority/>
+          <gmd:code>
+            <gco:CharacterString>datum name</gco:CharacterString>
+          </gmd:code>
+          <gmd:codeSpace/>
+          <gmd:version/>
+        </gmd:RS_Identifier>
+      </gmd:datum>
       <gmd:ellipsoidParameters>
         <gmd:MD_EllipsoidParameters>
           <gmd:semiMajorAxis>

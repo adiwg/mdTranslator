@@ -890,9 +890,7 @@ class InternalMetadata
    def newGeodetic
       {
          datumIdentifier: {},
-         datumName: nil,
          ellipsoidIdentifier: {},
-         ellipsoidName: nil,
          semiMajorAxis: nil,
          axisUnits: nil,
          denominatorOfFlatteningRatio: nil

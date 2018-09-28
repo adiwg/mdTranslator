@@ -1393,10 +1393,8 @@ class MdJsonHashWriter
    # spatial reference ----------------------
    def geodetic
       {
-         datumIdentifier: {},
-         datumName: 'datum name',
-         ellipsoidIdentifier: {},
-         ellipsoidName: 'ellipsoid name',
+         datumIdentifier: {identifier: 'datum name'},
+         ellipsoidIdentifier: {identifier: 'ellipsoid name'},
          semiMajorAxis: 9999.9,
          axisUnits: 'axis units',
          denominatorOfFlatteningRatio: 999.9

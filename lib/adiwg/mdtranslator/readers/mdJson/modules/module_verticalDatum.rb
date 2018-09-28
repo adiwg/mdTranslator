@@ -47,7 +47,7 @@ module ADIWG
 
                   # TODO remove when mdJson version 3
                   # vertical datum - datum name (deprecated), move to datumIdentifier
-                  # skip dataName if identifier is already present
+                  # skip datumName if identifier is already present
                   if hDatum.has_key?('datumName')
                      unless hDatum['datumName'] == ''
                         @MessagePath.issueWarning(922, responseObj, inContext)

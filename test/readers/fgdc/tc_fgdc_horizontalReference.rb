@@ -2,7 +2,8 @@
 # readers / fgdc / module_horizontalReference
 
 # History:
-#   Stan Smith 2017-10-04 original script
+#  Stan Smith 2018-09-26 deprecate datumName and ellipsoidName from mdJSON
+#  Stan Smith 2017-10-04 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
@@ -68,10 +69,10 @@ class TestReaderFgdcHorizontalReference < TestReaderFGDCParent
       assert_empty hGeodeticParams[:verticalDatum]
 
       hGeodeticRef = hGeodeticParams[:geodetic]
-      assert_empty hGeodeticRef[:datumIdentifier]
-      assert_empty hGeodeticRef[:ellipsoidIdentifier]
-      assert_equal 'World Geodetic System of 1984 identifier', hGeodeticRef[:datumName]
-      assert_equal 'World Geodetic System of 1984', hGeodeticRef[:ellipsoidName]
+      refute_empty hGeodeticRef[:datumIdentifier]
+      refute_empty hGeodeticRef[:ellipsoidIdentifier]
+      assert_equal 'World Geodetic System of 1984 identifier', hGeodeticRef[:datumIdentifier][:identifier]
+      assert_equal 'World Geodetic System of 1984', hGeodeticRef[:ellipsoidIdentifier][:identifier]
       assert_equal 6378137.0, hGeodeticRef[:semiMajorAxis]
       assert_equal 'feet', hGeodeticRef[:axisUnits]
       assert_equal 298.257223563, hGeodeticRef[:denominatorOfFlatteningRatio]
