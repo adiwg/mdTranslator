@@ -2,6 +2,7 @@
 # unpack fgdc map projection - transverse mercator
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-04 original script
 
 require 'nokogiri'
@@ -19,26 +20,25 @@ module ADIWG
                   # map projection 4.1.2.1.21 (transmer) - Transverse Mercator
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projection] = 'transverseMercator'
-                     hProjection[:projectionName] = 'Transverse Mercator'
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCentralMeridian
-                     paramCount += ProjectionCommon.unpackSFCM(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackSFCM(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
-                     paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.latitudeOfProjectionOrigin
-                     paramCount += ProjectionCommon.unpackLatPO(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLatPO(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      if paramCount == 5
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Transverse Mercator projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] <<
+                           'WARNING: FGDC reader: Transverse Mercator projection is missing one or more parameters'
                      end
                   end
 

@@ -11,7 +11,7 @@
 
       <planar>
         <mapproj>
-          <mapprojn>albers projection</mapprojn>
+          <mapprojn>Albers Conical Equal Area</mapprojn>
           <albers>
             <stdparll>9.0</stdparll>
             <stdparll>19.0</stdparll>
@@ -22,12 +22,17 @@
           </albers>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>azimuth equidistant projection</mapprojn>
+          <mapprojn>Azimuthal Equidistant</mapprojn>
           <azimequi>
             <longcm>-150.0</longcm>
             <latprjo>48.0</latprjo>
@@ -36,12 +41,17 @@
           </azimequi>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>equidistant conic projection</mapprojn>
+          <mapprojn>Equidistant Conic</mapprojn>
           <equicon>
             <stdparll>9.0</stdparll>
             <stdparll>70.0</stdparll>
@@ -52,12 +62,17 @@
           </equicon>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>equirectangular projection</mapprojn>
+          <mapprojn>Equirectangular</mapprojn>
           <equirect>
             <stdparll>9.0</stdparll>
             <longcm>-150.0</longcm>
@@ -66,12 +81,17 @@
           </equirect>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>general vertical near-side perspective projection</mapprojn>
+          <mapprojn>General Vertical Near-sided Perspective</mapprojn>
           <gvnsp>
             <heightpt>1000.0</heightpt>
             <longpc>-100.0</longpc>
@@ -81,12 +101,17 @@
           </gvnsp>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>gnomonic</mapprojn>
+          <mapprojn>Gnomonic</mapprojn>
           <gnomonic>
             <longpc>-110.0</longpc>
             <latprjc>-25.0</latprjc>
@@ -95,12 +120,17 @@
           </gnomonic>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>lambert azimuthal equal area projection</mapprojn>
+          <mapprojn>Lambert Azimuthal Equal Area</mapprojn>
           <lamberta>
             <longpc>-120.0</longpc>
             <latprjc>50.0</latprjc>
@@ -109,12 +139,17 @@
           </lamberta>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>lambert conformal conic projection</mapprojn>
+          <mapprojn>Lambert Conformal Conic</mapprojn>
           <lambertc>
             <stdparll>20.0</stdparll>
             <stdparll>40.0</stdparll>
@@ -125,12 +160,17 @@
           </lambertc>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>mercator projection standard parallel</mapprojn>
+          <mapprojn>Mercator Standard Parallel</mapprojn>
           <mercator>
             <stdparll>55.0</stdparll>
             <longcm>-120.0</longcm>
@@ -139,12 +179,17 @@
           </mercator>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>mercator projection scale factor at equator</mapprojn>
+          <mapprojn>Mercator Scale Factor at Equator</mapprojn>
           <mercator>
             <sfequat>101.5</sfequat>
             <longcm>-120.0</longcm>
@@ -153,24 +198,34 @@
           </mercator>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>modified stereographic projection for alaska</mapprojn>
+          <mapprojn>Modified Stereographic for Alaska</mapprojn>
           <modsak>
             <feast>1000000.0</feast>
             <fnorth>490000.0</fnorth>
           </modsak>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>miller cylindrical projection</mapprojn>
+          <mapprojn>Miller Cylindrical</mapprojn>
           <miller>
             <longcm>-160.0</longcm>
             <feast>1000000.0</feast>
@@ -178,12 +233,17 @@
           </miller>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>oblique mercator projection</mapprojn>
+          <mapprojn>Oblique Mercator Line Azimuth</mapprojn>
           <obqmerc>
             <sfctrlin>103.5</sfctrlin>
             <obqlazim>
@@ -196,12 +256,17 @@
           </obqmerc>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>oblique mercator projection</mapprojn>
+          <mapprojn>Oblique Mercator Line Point</mapprojn>
           <obqmerc>
             <sfctrlin>103.5</sfctrlin>
             <obqlpt>
@@ -216,12 +281,17 @@
           </obqmerc>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>orthographic projection</mapprojn>
+          <mapprojn>Orthographic</mapprojn>
           <orthogr>
             <longpc>-125.0</longpc>
             <latprjc>70.0</latprjc>
@@ -230,12 +300,17 @@
           </orthogr>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>polar stereographic projection</mapprojn>
+          <mapprojn>Polar Stereographic Standard Parallel</mapprojn>
           <polarst>
             <svlong>-90.0</svlong>
             <stdparll>50.0</stdparll>
@@ -244,12 +319,17 @@
           </polarst>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>polar stereographic projection</mapprojn>
+          <mapprojn>Polar Stereographic Scale Factor Origin</mapprojn>
           <polarst>
             <svlong>-90.0</svlong>
             <sfprjorg>78.5</sfprjorg>
@@ -258,12 +338,17 @@
           </polarst>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>polyconic projection</mapprojn>
+          <mapprojn>Polyconic</mapprojn>
           <polycon>
             <longcm>-160</longcm>
             <latprjo>65.0</latprjo>
@@ -272,12 +357,17 @@
           </polycon>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>robinson projection</mapprojn>
+          <mapprojn>Robinson</mapprojn>
           <robinson>
             <longpc>20.0</longpc>
             <feast>1000000.0</feast>
@@ -285,12 +375,17 @@
           </robinson>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>sinusoidal projection</mapprojn>
+          <mapprojn>Sinusoidal</mapprojn>
           <sinusoid>
             <longcm>30.0</longcm>
             <feast>1000000.0</feast>
@@ -298,12 +393,17 @@
           </sinusoid>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>space oblique mercator projection</mapprojn>
+          <mapprojn>Space Oblique Mercator (Landsat)</mapprojn>
           <spaceobq>
             <landsat>7</landsat>
             <pathnum>1234</pathnum>
@@ -312,12 +412,17 @@
           </spaceobq>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>stereographic projection</mapprojn>
+          <mapprojn>Stereographic</mapprojn>
           <stereo>
             <longpc>50.0</longpc>
             <latprjc>-50.0</latprjc>
@@ -326,12 +431,17 @@
           </stereo>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>transverse mercator projection</mapprojn>
+          <mapprojn>Transverse Mercator</mapprojn>
           <transmer>
             <sfctrmer>49.25</sfctrmer>
             <longcm>-165.0</longcm>
@@ -341,12 +451,17 @@
           </transmer>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>van der grinten projection</mapprojn>
+          <mapprojn>Van Der Grinten</mapprojn>
           <vdgrin>
             <longcm>170.0</longcm>
             <feast>1000000.0</feast>
@@ -354,12 +469,17 @@
           </vdgrin>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>feet</plandu>
         </planci>
       </planar>
       <planar>
         <mapproj>
-          <mapprojn>projection parameters</mapprojn>
+          <mapprojn>Projection Parameters</mapprojn>
           <mapprojp>
             <stdparll>1.0</stdparll>
             <stdparll>2.0</stdparll>
@@ -391,13 +511,18 @@
           </mapprojp>
         </mapproj>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
 
       <planar>
         <gridsys>
-          <gridsysn>universal transverse mercator UTM grid system</gridsysn>
+          <gridsysn>Universal Transverse Mercator</gridsysn>
           <utm>
             <utmzone>9</utmzone>
             <transmer>

@@ -2,6 +2,7 @@
 # unpack fgdc map projection - parameter set
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-18 original script
 
 require 'nokogiri'
@@ -18,63 +19,61 @@ module ADIWG
 
                   # map projection 4.1.2.1.23 (mapprojp) - projection parameter set
                   unless xParams.empty?
-                     hProjection[:projection] = 'parameters'
-                     hProjection[:projectionName] = 'Projection Parameter Set'
 
                      # -> ReferenceSystemParameters.projection.standardParallel1
                      # -> ReferenceSystemParameters.projection.standardParallel2
-                     ProjectionCommon.unpackStandParallel(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackStandParallel(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
-                     ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLongCM(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.latitudeOfProjectionOrigin
-                     ProjectionCommon.unpackLatPO(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLatPO(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.heightOfProspectivePointAboveSurface
-                     ProjectionCommon.unpackHeightAS(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackHeightAS(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
-                     ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLongPC(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.latitudeOfProjectionCenter
-                     ProjectionCommon.unpackLatPC(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLatPC(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtEquator
-                     ProjectionCommon.unpackSFEquator(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackSFEquator(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCenterLine
-                     ProjectionCommon.unpackSFCenter(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackSFCenter(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCentralMeridian
-                     ProjectionCommon.unpackSFCM(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackSFCM(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtProjectionOrigin
-                     ProjectionCommon.unpackSFPO(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackSFPO(xParams, hProjection)
 
                      # -> oblique line azimuth ( azimuthAngle && azimuthMeasurePointLongitude )
                      # -> ReferenceSystemParameters.projection.azimuthAngle
                      # -> ReferenceSystemParameters.projection.azimuthMeasurePointLongitude
-                     ProjectionCommon.unpackObliqueLA(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackObliqueLA(xParams, hProjection)
 
                      # -> oblique line point 2( obliqueLinePoint{} )
-                     ProjectionCommon.unpackObliqueLP(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackObliqueLP(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.straightVerticalLongitudeFromPole
-                     ProjectionCommon.unpackVSLong(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackVSLong(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.landsatNumber
-                     ProjectionCommon.unpackLandSat(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLandSat(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.landsatPath
-                     ProjectionCommon.unpackLandSatPath(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackLandSatPath(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.otherProjectionDescription
-                     ProjectionCommon.unpackOtherProjection(xParams, hProjection, hResponseObj)
+                     ProjectionCommon.unpackOtherProjection(xParams, hProjection)
 
                      return hProjection
 

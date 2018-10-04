@@ -2,7 +2,8 @@
 # readers / fgdc / module_horizontalPlanar / projection parameters
 
 # History:
-#   Stan Smith 2017-10-18 original script
+#  Stan Smith 2018-10-03 refactor mdJson projection object
+#  Stan Smith 2017-10-18 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
@@ -13,7 +14,7 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
    @@xDoc = TestReaderFGDCParent.get_XML('spatialReference.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::PlanarReference
 
-   def test_horizontalPlanar_projectionParameters
+   def test_planar_projectionParameters
 
       intMetadataClass = InternalMetadata.new
       hResourceInfo = intMetadataClass.newResourceInfo
@@ -30,19 +31,18 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][0]
       assert_nil hReferenceSystem[:systemType]
       assert_empty hReferenceSystem[:systemIdentifier]
+      assert_nil hReferenceSystem[:systemWKT]
       refute_empty hReferenceSystem[:systemParameterSet]
 
       hParameterSet = hReferenceSystem[:systemParameterSet]
       refute_empty hParameterSet[:projection]
       assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
+      assert_empty hParameterSet[:local]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_nil hProjection[:gridSystem]
-      assert_nil hProjection[:gridSystemName]
-      assert_equal 'parameters', hProjection[:projection]
-      assert_equal 'Projection Parameter Set', hProjection[:projectionName]
+      assert_empty hProjection[:gridSystemIdentifier]
       assert_equal 1.0, hProjection[:standardParallel1]
       assert_equal 2.0, hProjection[:standardParallel2]
       assert_equal 3.0, hProjection[:longitudeOfCentralMeridian]
@@ -69,11 +69,28 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
       assert_equal 22.0, hProjection[:scaleFactorAtCentralMeridian]
       assert_equal 'other projection description', hProjection[:otherProjectionDescription]
 
+      hProjectionId = hProjection[:projectionIdentifier]
+      assert_equal 'parameters', hProjectionId[:identifier]
+      assert_equal 'Projection Parameters', hProjectionId[:name]
+
       assert hResponse[:readerExecutionPass]
+      assert_empty hResponse[:readerExecutionMessages]
+
+      # missing projection name
+      xIn.search('mapprojn').remove
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+
+      hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
+      hParameterSet = hReferenceSystem[:systemParameterSet]
+      hProjection = hParameterSet[:projection]
+      hProjectionId = hProjection[:projectionIdentifier]
+      assert_equal 'Projection Parameters', hProjectionId[:name]
+
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: FGDC reader: planar coordinate encoding method is missing'
-      assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: FGDC reader: planar coordinate representation is missing'
+                      'WARNING: FGDC reader: map projection name is missing'
 
    end
 

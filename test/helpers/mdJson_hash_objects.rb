@@ -1411,11 +1411,8 @@ class MdJsonHashWriter
    def projection
       {
          projectionIdentifier: { identifier: 'projection identifier' },
-         gridSystem: 'grid system',
-         gridSystemName: 'grid system name',
+         gridSystemIdentifier: { identifier: 'grid system identifier' },
          gridZone: 'zone 4',
-         projection: 'projection code',
-         projectionName: 'projection name',
          standardParallel1: 9.9,
          standardParallel2: 9.9,
          longitudeOfCentralMeridian: 9.9,
@@ -1436,10 +1433,6 @@ class MdJsonHashWriter
          obliqueLinePoint: [],
          landsatNumber: 9,
          landsatPath: 9,
-         localPlanarDescription: 'local planar description',
-         localPlanarGeoreference: 'local planar georeference',
-         otherGridDescription: 'other grid description',
-         otherProjectionDescription: 'other projection description'
       }
    end
  
@@ -1447,7 +1440,8 @@ class MdJsonHashWriter
       {
          projection: {},
          geodetic: {},
-         verticalDatum: {}
+         verticalDatum: {},
+         local: {}
       }
    end
 
@@ -1467,6 +1461,14 @@ class MdJsonHashWriter
          isDepthSystem: false,
          verticalResolution: 9.99,
          unitOfMeasure: 'unit of measure'
+      }
+   end
+
+   def local
+      {
+         description: 'local description',
+         georeference: 'local georeference',
+         fixedToEarth: false
       }
    end
 
