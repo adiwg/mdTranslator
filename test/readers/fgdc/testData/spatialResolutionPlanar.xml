@@ -3,13 +3,6 @@
   <spref>
     <horizsys>
 
-      <geodetic>
-        <horizdn>World Geodetic System of 1984</horizdn>
-        <ellips>World Geodetic System of 1984</ellips>
-        <semiaxis>6378137.0</semiaxis>
-        <denflat>298.257223563</denflat>
-      </geodetic>
-
       <planar>
         <planci>
           <plance>planar coordinate encoding method</plance>
@@ -17,6 +10,13 @@
             <absres>9.9</absres>
             <ordres>99.9</ordres>
           </coordrep>
+          <distbrep>
+            <distres>99.99</distres>
+            <bearres>9.99</bearres>
+            <bearunit>bearing units</bearunit>
+            <bearrefd>bearing direction</bearrefd>
+            <bearrefm>bearing meridian</bearrefm>
+          </distbrep>
           <plandu>feet</plandu>
         </planci>
       </planar>

@@ -10,7 +10,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_mapProjection'
 require_relative 'module_mapGridSystem'
 require_relative 'module_localPlanar'
-require_relative 'module_mapCoordinateInfo'
+require_relative 'module_planarCoordinateInfo'
 
 module ADIWG
    module Mdtranslator

@@ -8,7 +8,7 @@ require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
-class TestReaderFgdcPlanarLocal < TestReaderFGDCParent
+class TestReaderFgdcLocalSystem < TestReaderFGDCParent
 
    @@xDoc = TestReaderFGDCParent.get_XML('spatialReferenceLocal.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::HorizontalReference

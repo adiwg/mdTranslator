@@ -11,7 +11,7 @@ require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcPlanarLambertConic < TestReaderFGDCParent
 
-   @@xDoc = TestReaderFGDCParent.get_XML('spatialReference.xml')
+   @@xDoc = TestReaderFGDCParent.get_XML('spatialReferencePlanar.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::PlanarReference
 
    def test_planar_lambertConformalConic

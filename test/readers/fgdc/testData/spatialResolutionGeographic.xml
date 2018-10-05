@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+
+      <geograph>
+        <latres>0.00009</latres>
+        <longres>0.00004</longres>
+        <geogunit>decimal degrees</geogunit>
+      </geograph>
+
+    </horizsys>
+  </spref>
+</metadata>

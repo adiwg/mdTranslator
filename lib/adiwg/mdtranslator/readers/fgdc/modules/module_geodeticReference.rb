@@ -29,6 +29,7 @@ module ADIWG
                   unless datumName.empty?
                      hGeodetic[:datumIdentifier] = intMetadataClass.newIdentifier
                      hGeodetic[:datumIdentifier][:identifier] = datumName
+                     hGeodetic[:datumIdentifier][:name] = datumName
                   end
 
                   # geodetic model 4.1.4.2 (ellips) - ellipsoid name (required)
@@ -37,9 +38,11 @@ module ADIWG
                   unless ellipsoidName.empty?
                      hGeodetic[:ellipsoidIdentifier] = intMetadataClass.newIdentifier
                      hGeodetic[:ellipsoidIdentifier][:identifier] = ellipsoidName
+                     hGeodetic[:ellipsoidIdentifier][:name] = ellipsoidName
                   end
                   if ellipsoidName.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference ellipsoid name is missing'
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: geodetic reference ellipsoid name is missing'
                   end
 
                   # geodetic model 4.1.4.3 (semiaxis) - semi-major axis (required)
@@ -49,7 +52,8 @@ module ADIWG
                      hGeodetic[:semiMajorAxis] = semiAxis.to_f
                   end
                   if semiAxis.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference semi-major axis is missing'
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: geodetic reference radius of semi-major axis is missing'
                   end
 
                   # geodetic model 4.1.2.4.4 (plandu) - distance units
@@ -74,7 +78,8 @@ module ADIWG
                      hGeodetic[:denominatorOfFlatteningRatio] = flattening.to_f
                   end
                   if flattening.empty?
-                     hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: geodetic reference flattening ratio is missing'
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: geodetic reference denominator flattening ratio is missing'
                   end
 
                   hReferenceSystem = intMetadataClass.newSpatialReferenceSystem

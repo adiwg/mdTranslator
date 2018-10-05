@@ -3,12 +3,6 @@
   <spref>
     <horizsys>
 
-      <geograph>
-        <latres>0.00009</latres>
-        <longres>0.00004</longres>
-        <geogunit>decimal degrees</geogunit>
-      </geograph>
-
       <planar>
         <mapproj>
           <mapprojn>Albers Conical Equal Area</mapprojn>
@@ -781,24 +775,6 @@
             <ordres>99.9</ordres>
           </coordrep>
           <plandu>meters</plandu>
-        </planci>
-      </planar>
-
-      <planar>
-        <planci>
-          <plance>planar coordinate encoding method</plance>
-          <coordrep>
-            <absres>9.9</absres>
-            <ordres>99.9</ordres>
-          </coordrep>
-          <distbrep>
-            <distres>99.99</distres>
-            <bearres>9.99</bearres>
-            <bearunit>bearing units</bearunit>
-            <bearrefd>bearing direction</bearrefd>
-            <bearrefm>bearing meridian</bearrefm>
-          </distbrep>
-          <plandu>feet</plandu>
         </planci>
       </planar>
 
