@@ -1,27 +1,26 @@
 # MdTranslator - minitest of
-# readers / fgdc / module_horizontalPlanar / space oblique projection
+# readers / fgdc / module_horizontalPlanar / local system
 
 # History:
-#  Stan Smith 2018-10-03 refactor mdJson projection object
-#  Stan Smith 2017-10-18 original script
+#  Stan Smith 2018-10-05 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
-class TestReaderFgdcSpaceOblique < TestReaderFGDCParent
+class TestReaderFgdcPlanarLocal < TestReaderFGDCParent
 
-   @@xDoc = TestReaderFGDCParent.get_XML('spatialReference.xml')
-   @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::PlanarReference
+   @@xDoc = TestReaderFGDCParent.get_XML('spatialReferenceLocal.xml')
+   @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::HorizontalReference
 
-   def test_planar_spaceOblique
+   def test_planar_localSystem
 
       intMetadataClass = InternalMetadata.new
       hResourceInfo = intMetadataClass.newResourceInfo
 
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
-      xIn = @@xDoc.xpath('./metadata/spref/horizsys/planar[21]')
+      xIn = @@xDoc.xpath('./metadata/spref/horizsys')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
@@ -42,34 +41,51 @@ class TestReaderFgdcSpaceOblique < TestReaderFGDCParent
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
       assert_empty hProjection[:gridSystemIdentifier]
-      assert_equal 7, hProjection[:landsatNumber]
-      assert_equal 1234, hProjection[:landsatPath]
-      assert_equal 1000000.0, hProjection[:falseEasting]
-      assert_equal 950000.0, hProjection[:falseNorthing]
-      assert_equal 'feet', hProjection[:falseEastingNorthingUnits]
+      refute_empty hProjection[:local]
 
       hProjectionId = hProjection[:projectionIdentifier]
-      assert_equal 'spaceOblique', hProjectionId[:identifier]
-      assert_equal 'Space Oblique Mercator (Landsat)', hProjectionId[:name]
+      assert_equal 'localSystem', hProjectionId[:identifier]
+      assert_equal 'Local Coordinate System', hProjectionId[:name]
+
+      hLocal = hProjection[:local]
+      refute hLocal[:fixedToEarth]
+      assert_equal 'local description', hLocal[:description]
+      assert_equal 'local georeference', hLocal[:georeference]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
-      # missing projection name
-      xIn.search('mapprojn').remove
+      # missing local georeference information
+      xIn.search('localgeo').remove
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hProjectionId = hProjection[:projectionIdentifier]
-      assert_equal 'Space Oblique Mercator (Landsat)', hProjectionId[:name]
+      hLocal = hProjection[:local]
+      assert_nil hLocal[:georeference]
 
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: FGDC reader: map projection name is missing'
+                      'WARNING: FGDC reader: local coordinate system georeference information is missing'
+
+      # missing local description
+      xIn.search('localdes').remove
+      hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
+      hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
+
+      hReferenceSystem = hPlanar[:spatialReferenceSystems][2]
+      hParameterSet = hReferenceSystem[:systemParameterSet]
+      hProjection = hParameterSet[:projection]
+      hLocal = hProjection[:local]
+      assert_nil hLocal[:description]
+
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: FGDC reader: local coordinate system description is missing'
 
    end
 

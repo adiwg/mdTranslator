@@ -772,7 +772,7 @@
       <planar>
         <localp>
           <localpd>local planar description</localpd>
-          <localpgi>local planar georeference information</localpgi>
+          <localpgi>local planar georeference</localpgi>
         </localp>
         <planci>
           <plance>planar coordinate encoding method</plance>
@@ -801,18 +801,6 @@
           <plandu>feet</plandu>
         </planci>
       </planar>
-
-      <local>
-        <localdes>local description</localdes>
-        <localgeo>local georeference information</localgeo>
-      </local>
-
-      <geodetic>
-        <horizdn>World Geodetic System of 1984 identifier</horizdn>
-        <ellips>World Geodetic System of 1984</ellips>
-        <semiaxis>6378137.0</semiaxis>
-        <denflat>298.257223563</denflat>
-      </geodetic>
 
     </horizsys>
   </spref>

@@ -38,7 +38,6 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
       refute_empty hParameterSet[:projection]
       assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
-      assert_empty hParameterSet[:local]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
@@ -100,7 +99,6 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
       refute_empty hParameterSet[:projection]
       assert_empty hParameterSet[:geodetic]
       assert_empty hParameterSet[:verticalDatum]
-      assert_empty hParameterSet[:local]
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]

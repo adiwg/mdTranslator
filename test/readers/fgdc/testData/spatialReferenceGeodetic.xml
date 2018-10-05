@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+
+      <geodetic>
+        <horizdn>World Geodetic System of 1984 identifier</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+
+    </horizsys>
+  </spref>
+</metadata>

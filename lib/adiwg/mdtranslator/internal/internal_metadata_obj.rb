@@ -844,8 +844,7 @@ class InternalMetadata
       {
          projection: {},
          geodetic: {},
-         verticalDatum: {},
-         local: {}
+         verticalDatum: {}
       }
    end
 
@@ -873,7 +872,8 @@ class InternalMetadata
          azimuthMeasurePointLongitude: nil,
          obliqueLinePoints: [],
          landsatNumber: nil,
-         landsatPath: nil
+         landsatPath: nil,
+         local: {}
       }
    end
 
