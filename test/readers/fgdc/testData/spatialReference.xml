@@ -535,12 +535,17 @@
           </utm>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>universal polar stereographic UPS grid system</gridsysn>
+          <gridsysn>Universal Polar Stereographic</gridsysn>
           <ups>
             <upszone>B</upszone>
             <polarst>
@@ -552,12 +557,17 @@
           </ups>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>universal polar stereographic UPS grid system</gridsysn>
+          <gridsysn>Universal Polar Stereographic</gridsysn>
           <ups>
             <upszone>B</upszone>
             <polarst>
@@ -569,12 +579,17 @@
           </ups>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>state plane grid system</gridsysn>
+          <gridsysn>State Plane Coordinate System</gridsysn>
           <spcs>
             <spcszone>alaska zone 9</spcszone>
             <lambertc>
@@ -588,12 +603,17 @@
           </spcs>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>state plane grid system</gridsysn>
+          <gridsysn>State Plane Coordinate System</gridsysn>
           <spcs>
             <spcszone>alaska zone 8</spcszone>
             <transmer>
@@ -606,12 +626,17 @@
           </spcs>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>state plane grid system</gridsysn>
+          <gridsysn>State Plane Coordinate System</gridsysn>
           <spcs>
             <spcszone>alaska zone 7</spcszone>
             <obqmerc>
@@ -627,12 +652,17 @@
           </spcs>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>state plane grid system</gridsysn>
+          <gridsysn>State Plane Coordinate System</gridsysn>
           <spcs>
             <spcszone>alaska zone 6</spcszone>
             <obqmerc>
@@ -650,12 +680,17 @@
           </spcs>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>state plane grid system</gridsysn>
+          <gridsysn>State Plane Coordinate System</gridsysn>
           <spcs>
             <spcszone>alaska zone 5</spcszone>
             <polycon>
@@ -667,12 +702,17 @@
           </spcs>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>equal arc-second grid coordinate system</gridsysn>
+          <gridsysn>Equal Arc-Second Coordinate System</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <equirect>
@@ -684,12 +724,17 @@
           </arcsys>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>equal arc-second grid coordinate system</gridsysn>
+          <gridsysn>Equal Arc-Second Coordinate System</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <azimequi>
@@ -701,15 +746,25 @@
           </arcsys>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>other grid system name</gridsysn>
+          <gridsysn>other grid coordinate system</gridsysn>
           <othergrd>other grid description</othergrd>
         </gridsys>
         <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
           <plandu>meters</plandu>
         </planci>
       </planar>
@@ -720,7 +775,12 @@
           <localpgi>local planar georeference information</localpgi>
         </localp>
         <planci>
-          <plandu>feet</plandu>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
+          <plandu>meters</plandu>
         </planci>
       </planar>
 
