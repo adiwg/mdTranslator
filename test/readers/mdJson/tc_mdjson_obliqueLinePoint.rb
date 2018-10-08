@@ -37,8 +37,8 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_equal 99.9, metadata[:obliqueLineLatitude]
-      assert_equal 99.9, metadata[:obliqueLineLongitude]
+      assert_equal 11.1, metadata[:obliqueLineLatitude]
+      assert_equal 22.2, metadata[:obliqueLineLongitude]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]

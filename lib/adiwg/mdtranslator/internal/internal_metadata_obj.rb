@@ -229,7 +229,6 @@ class InternalMetadata
          identifier: nil,
          namespace: nil,
          version: nil,
-         name: nil,
          description: nil,
          citation: {}
       }

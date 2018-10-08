@@ -18,8 +18,6 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
    # build mdJson test file in hash
    mdHash = TDClass.projection
-   mdHash[:obliqueLinePoint] << TDClass.obliqueLinePoint
-   mdHash[:obliqueLinePoint] << TDClass.obliqueLinePoint
 
    @@mdHash = mdHash
 
@@ -40,12 +38,8 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:projectionIdentifier]
-      assert_equal 'projection identifier', metadata[:projectionIdentifier][:identifier]
-      assert_equal 'grid system', metadata[:gridSystem]
-      assert_equal 'grid system name', metadata[:gridSystemName]
+      refute_empty metadata[:gridSystemIdentifier]
       assert_equal 'zone 4', metadata[:gridZone]
-      assert_equal 'projection code', metadata[:projection]
-      assert_equal 'projection name', metadata[:projectionName]
       assert_equal 9.9, metadata[:standardParallel1]
       assert_equal 9.9, metadata[:standardParallel2]
       assert_equal 9.9, metadata[:longitudeOfCentralMeridian]
@@ -63,19 +57,21 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       assert_equal 9.9, metadata[:scaleFactorAtProjectionOrigin]
       assert_equal 9.9, metadata[:azimuthAngle]
       assert_equal 9.9, metadata[:azimuthMeasurePointLongitude]
-
-      assert_equal 2, metadata[:obliqueLinePoints].length
-      assert_equal 99.9, metadata[:obliqueLinePoints][0][:obliqueLineLatitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][0][:obliqueLineLongitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][1][:obliqueLineLatitude]
-      assert_equal 99.9, metadata[:obliqueLinePoints][1][:obliqueLineLongitude]
-
       assert_equal 9, metadata[:landsatNumber]
       assert_equal 9, metadata[:landsatPath]
-      assert_equal 'local planar description', metadata[:localPlanarDescription]
-      assert_equal 'local planar georeference', metadata[:localPlanarGeoreference]
-      assert_equal 'other projection description', metadata[:otherProjectionDescription]
-      assert_equal 'other grid description', metadata[:otherGridDescription]
+      assert_equal 2, metadata[:obliqueLinePoints].length
+      refute_empty metadata[:local]
+
+      aOblique = metadata[:obliqueLinePoints]
+      assert_equal 11.1, aOblique[0][:obliqueLineLatitude]
+      assert_equal 22.2, aOblique[0][:obliqueLineLongitude]
+      assert_equal 11.1, aOblique[1][:obliqueLineLatitude]
+      assert_equal 22.2, aOblique[1][:obliqueLineLongitude]
+
+      hLocal = metadata[:local]
+      refute hLocal[:fixedToEarth]
+      assert_equal 'local description', hLocal[:description]
+      assert_equal 'local georeference', hLocal[:georeference]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
@@ -87,7 +83,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['projection'] = ''
+      hIn['projectionIdentifier'] = {}
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -95,7 +91,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: projection parameters projection code is missing: CONTEXT is testing'
+                      'ERROR: mdJson reader: projection identifier is missing: CONTEXT is testing'
 
    end
 
@@ -104,7 +100,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn.delete('projection')
+      hIn.delete('projectionIdentifier')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -112,7 +108,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: projection parameters projection code is missing: CONTEXT is testing'
+                      'ERROR: mdJson reader: projection identifier is missing: CONTEXT is testing'
 
    end
 

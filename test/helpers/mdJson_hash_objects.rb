@@ -1403,15 +1403,15 @@ class MdJsonHashWriter
 
    def obliqueLinePoint
       {
-         obliqueLineLatitude: 99.9,
-         obliqueLineLongitude: 99.9
+         obliqueLineLatitude: 11.1,
+         obliqueLineLongitude: 22.2
       }
    end
 
    def projection
       {
-         projectionIdentifier: { identifier: 'projection identifier' },
-         gridSystemIdentifier: { identifier: 'grid system identifier' },
+         projectionIdentifier: { identifier: 'projection identifier', name: 'projection name' },
+         gridSystemIdentifier: { identifier: 'grid system identifier', name: 'grid system name' },
          gridZone: 'zone 4',
          standardParallel1: 9.9,
          standardParallel2: 9.9,
@@ -1430,9 +1430,10 @@ class MdJsonHashWriter
          scaleFactorAtProjectionOrigin: 9.9,
          azimuthAngle: 9.9,
          azimuthMeasurePointLongitude: 9.9,
-         obliqueLinePoint: [],
+         obliqueLinePoint: [obliqueLinePoint, obliqueLinePoint],
          landsatNumber: 9,
          landsatPath: 9,
+         local: local
       }
    end
  
@@ -1440,8 +1441,7 @@ class MdJsonHashWriter
       {
          projection: {},
          geodetic: {},
-         verticalDatum: {},
-         local: {}
+         verticalDatum: {}
       }
    end
 

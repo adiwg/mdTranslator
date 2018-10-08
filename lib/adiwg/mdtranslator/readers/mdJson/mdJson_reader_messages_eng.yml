@@ -272,7 +272,7 @@ messageList:
    - {id: 641, message: "process step description is missing"}
 
    - {id: 650, message: "projection parameters object is empty"}
-   - {id: 651, message: "projection parameters projection code is missing"}
+   - {id: 651, message: "projection identifier is missing"}
 
    - {id: 660, message: "reference system parameter set is empty"}
    - {id: 661, message: "reference system parameter set must have at least one projection, geodetic, or vertical datum"}
@@ -385,3 +385,5 @@ messageList:
    - {id: 940, message: "voucher object is empty"}
    - {id: 941, message: "voucher specimen is missing"}
    - {id: 942, message: "voucher repository is missing"}
+
+   - {id: 950, message: "local projection object is empty"}

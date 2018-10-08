@@ -2,11 +2,13 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-10-08 refactor mdJson projection object
 #  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
 require_relative 'module_identifier'
 require_relative 'module_obliqueLinePoint'
+require_relative 'module_localProjection'
 
 module ADIWG
    module Mdtranslator
@@ -32,42 +34,40 @@ module ADIWG
                   outContext = 'projection parameters'
                   outContext = inContext + ' > ' + outContext unless inContext.nil?
 
-                  # projection parameters - projection identifier {identifier}
+                  # projection parameters - projection identifier {identifier} (required)
+                  # add name to identifier object
                   if hProjection.has_key?('projectionIdentifier')
                      unless hProjection['projectionIdentifier'].empty?
-                        hReturn = Identifier.unpack(hProjection['projectionIdentifier'], responseObj, outContext)
+                        hProjectionId = hProjection['projectionIdentifier']
+                        hReturn = Identifier.unpack(hProjectionId, responseObj, outContext)
                         unless hReturn.nil?
+                           if hProjectionId.has_key?('name')
+                              unless hProjectionId['name'] == ''
+                                 hReturn[:name] = hProjectionId['name']
+                              end
+                           end
                            intProjection[:projectionIdentifier] = hReturn
                         end
                      end
                   end
-
-                  # projection parameters - grid system
-                  if hProjection.has_key?('gridSystem')
-                     unless hProjection['gridSystem'] == ''
-                        intProjection[:gridSystem] = hProjection['gridSystem']
-                     end
-                  end
-
-                  # projection parameters - grid system name
-                  if hProjection.has_key?('gridSystemName')
-                     unless hProjection['gridSystemName'] == ''
-                        intProjection[:gridSystemName] = hProjection['gridSystemName']
-                     end
-                  end
-
-                  # projection parameters - projection (required)
-                  if hProjection.has_key?('projection')
-                     intProjection[:projection] = hProjection['projection']
-                  end
-                  if intProjection[:projection].nil? || intProjection[:projection] == ''
+                  if intProjection[:projectionIdentifier].empty?
                      @MessagePath.issueError(651, responseObj, inContext)
                   end
 
-                  # projection parameters - projection name
-                  if hProjection.has_key?('projectionName')
-                     unless hProjection['projectionName'] == ''
-                        intProjection[:projectionName] = hProjection['projectionName']
+                  # projection parameters - grid system identifier {identifier}
+                  # add name to identifier object
+                  if hProjection.has_key?('gridSystemIdentifier')
+                     unless hProjection['gridSystemIdentifier'].empty?
+                        hGridSystemId = hProjection['gridSystemIdentifier']
+                        hReturn = Identifier.unpack(hProjection['gridSystemIdentifier'], responseObj, outContext)
+                        unless hReturn.nil?
+                           if hGridSystemId.has_key?('name')
+                              unless hGridSystemId['name'] == ''
+                                 hReturn[:name] = hGridSystemId['name']
+                              end
+                           end
+                           intProjection[:gridSystemIdentifier] = hReturn
+                        end
                      end
                   end
 
@@ -222,31 +222,13 @@ module ADIWG
                      end
                   end
 
-                  # projection parameters - local planar description
-                  if hProjection.has_key?('localPlanarDescription')
-                     unless hProjection['localPlanarDescription'] == ''
-                        intProjection[:localPlanarDescription] = hProjection['localPlanarDescription']
-                     end
-                  end
-
-                  # projection parameters - local planar georeference
-                  if hProjection.has_key?('localPlanarGeoreference')
-                     unless hProjection['localPlanarGeoreference'] == ''
-                        intProjection[:localPlanarGeoreference] = hProjection['localPlanarGeoreference']
-                     end
-                  end
-
-                  # projection parameters - other projection description
-                  if hProjection.has_key?('otherProjectionDescription')
-                     unless hProjection['otherProjectionDescription'] == ''
-                        intProjection[:otherProjectionDescription] = hProjection['otherProjectionDescription']
-                     end
-                  end
-
-                  # projection parameters - other grid description
-                  if hProjection.has_key?('otherGridDescription')
-                     unless hProjection['otherGridDescription'] == ''
-                        intProjection[:otherGridDescription] = hProjection['otherGridDescription']
+                  # projection parameters - local projection [] {local}
+                  if hProjection.has_key?('local')
+                     unless hProjection['local'].empty?
+                        hReturn = LocalProjection.unpack(hProjection['local'], responseObj, outContext)
+                        unless hReturn.nil?
+                           intProjection[:local] = hReturn
+                        end
                      end
                   end
 
