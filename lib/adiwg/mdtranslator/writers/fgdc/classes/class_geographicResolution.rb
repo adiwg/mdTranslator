@@ -20,7 +20,7 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hGeoRes)
+               def writeXML(hGeoRes, inContext = nil)
                   
                   # horizontal reference 4.1.1 (geograph) - geographic resolution
 

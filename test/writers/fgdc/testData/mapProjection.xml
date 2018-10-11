@@ -4,7 +4,7 @@
     <horizsys>
       <planar>
         <mapproj>
-          <mapprojn>Modified Stereographic for Alaska</mapprojn>
+          <mapprojn>Alaska Modified Stereographic</mapprojn>
           <modsak>
             <feast>9.9</feast>
             <fnorth>9.9</fnorth>
@@ -260,7 +260,6 @@
             <svlong>99.9</svlong>
             <landsat>9</landsat>
             <pathnum>9999</pathnum>
-            <otherprj>other projection description</otherprj>
           </mapprojp>
         </mapproj>
       </planar>

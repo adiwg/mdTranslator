@@ -147,8 +147,6 @@ messageList:
    - {id: 299, message: "map projection landsat number is missing"}
    - {id: 300, message: "map projection landsat path is missing"}
    - {id: 301, message: "map projection other projection description is missing"}
-   - {id: 302, message: "map projection local planar description is missing"}
-   - {id: 303, message: "map projection local planar georeference information is missing"}
 
    - {id: 310, message: "map grid universal transverse mercator zone is missing"}
    - {id: 311, message: "map grid universal polar stereographic zone is missing"}
@@ -211,3 +209,7 @@ messageList:
    - {id: 465, message: "vertical altitude resolution is missing"}
    - {id: 466, message: "vertical altitude units of measure is missing"}
    - {id: 467, message: "vertical altitude encoding method is missing"}
+
+   - {id: 470, message: "map projection local object is empty"}
+   - {id: 471, message: "map projection local planar description is missing"}
+   - {id: 472, message: "map projection local planar georeference information is missing"}

@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-10-09 refactor mdJson projection object
 #  Stan Smith 2017-12-29 original script
 
 require_relative '../fgdc_writer'
@@ -36,6 +37,8 @@ module ADIWG
                   geodeticClass = GeodeticReference.new(@xml, @hResponseObj)
                   vDatumClass = VerticalDatum.new(@xml, @hResponseObj)
 
+                  outContext = 'spatial reference'
+
                   # spatial reference 4.1 (horizsys) - horizontal coordinate reference system (required)
                   # oneOf [geograph | planar | local]
                   @xml.tag!('horizsys') do
@@ -47,7 +50,7 @@ module ADIWG
                            if hSpaceRes[:geographicResolution]
                               unless hSpaceRes[:geographicResolution].empty?
                                  @xml.tag!('geograph') do
-                                    geoResClass.writeXML(hSpaceRes[:geographicResolution])
+                                    geoResClass.writeXML(hSpaceRes[:geographicResolution], outContext)
                                  end
                                  break
                               end
@@ -64,12 +67,10 @@ module ADIWG
                      havePlanar = true unless aRepTypes.empty?
                      aSpaceRefs.each do |hSpaceRef|
                         unless hSpaceRef[:systemParameterSet].empty?
-                           if hSpaceRef[:systemParameterSet][:projection]
+                           unless hSpaceRef[:systemParameterSet][:projection].empty?
                               hProjection = hSpaceRef[:systemParameterSet][:projection]
-                              unless hProjection.empty?
-                                 unless hProjection[:projection] == 'localSystem'
-                                    havePlanar = true
-                                 end
+                              unless hProjection[:projectionIdentifier][:identifier] == 'localSystem'
+                                 havePlanar = true
                               end
                            end
                         end
@@ -80,7 +81,7 @@ module ADIWG
                      end
                      if havePlanar
                         @xml.tag!('planar') do
-                           planarClass.writeXML(aSpaceRefs, aRepTypes, aResolutions)
+                           planarClass.writeXML(aSpaceRefs, aRepTypes, aResolutions, outContext)
                         end
                      end
 
@@ -95,9 +96,9 @@ module ADIWG
                            if hSpaceRef[:systemParameterSet][:projection]
                               hProjection = hSpaceRef[:systemParameterSet][:projection]
                               unless hProjection.empty?
-                                 if hProjection[:projection] == 'localSystem'
+                                 if hProjection[:projectionIdentifier][:identifier] == 'localSystem'
                                     @xml.tag!('local') do
-                                       localClass.writeXML(hProjection)
+                                       localClass.writeXML(hProjection, outContext)
                                     end
                                  end
                               end
@@ -113,7 +114,7 @@ module ADIWG
                               hGeodetic = hSpaceRef[:systemParameterSet][:geodetic]
                               unless hGeodetic.empty?
                                  @xml.tag!('geodetic') do
-                                    geodeticClass.writeXML(hGeodetic)
+                                    geodeticClass.writeXML(hGeodetic, outContext)
                                  end
                               end
                            end
@@ -136,7 +137,7 @@ module ADIWG
                   end
                   if haveVertical
                      @xml.tag!('vertdef') do
-                        vDatumClass.writeXML(aSpaceRefs)
+                        vDatumClass.writeXML(aSpaceRefs, outContext)
                      end
                   end
 

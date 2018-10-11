@@ -2,6 +2,7 @@
 # writers / fgdc / class_spatialReference
 
 # History:
+#  Stan Smith 2018-10-09 refactor mdJson projection object
 #  Stan Smith 2018-01-08 original script
 
 require_relative 'fgdc_test_parent'
@@ -15,21 +16,25 @@ class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
 
    # build mdJson input file
    mdHash = TDClass.base
+
+   hProjection = TDClass.build_projection('localPlanar', 'Local Planar Coordinate System')
+   TDClass.add_localPlanar(hProjection)
+
    hSpaceRef = TDClass.spatialReferenceSystem
-   TDClass.add_projection(hSpaceRef, 'localPlanar')
-   TDClass.add_localDesc(hSpaceRef)
-   TDClass.add_localGeoInfo(hSpaceRef)
+   hSpaceRef[:referenceSystemParameterSet][:projection] = hProjection
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'spatial representation type'
 
    @@mdHash = mdHash
 
-   def test_map_localPlanar
+   def test_map_localPlanar_complete
 
       hReturn = TestWriterFGDCParent.get_complete(@@mdHash, 'mapLocal',
                                                   './metadata/spref/horizsys/planar/localp')
       assert_equal hReturn[0], hReturn[1]
-      refute hReturn[2]
+      assert hReturn[2]
 
    end
 
@@ -37,39 +42,35 @@ class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
 
       # empty elements
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:localPlanarDescription] = ''
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:localPlanarGeoreference] = ''
+      hLocal = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:local]
+      hLocal[:description] = ''
+      hLocal[:georeference] = ''
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       refute hResponseObj[:writerPass]
-      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is local right-handed planar coordinate system'
+         'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar projection parameter'
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is local right-handed planar coordinate system'
-      assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: planar coordinate information section is missing'
+         'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar projection parameter'
 
       # missing elements
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection].delete(:localPlanarDescription)
-      hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection].delete(:localPlanarGeoreference)
+      hLocal.delete(:description)
+      hLocal.delete(:georeference)
 
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
       refute hResponseObj[:writerPass]
-      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_equal 2, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is local right-handed planar coordinate system'
+         'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar projection parameter'
       assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is local right-handed planar coordinate system'
-      assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: planar coordinate information section is missing'
+         'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar projection parameter'
 
    end
 

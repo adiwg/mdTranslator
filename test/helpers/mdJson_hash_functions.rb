@@ -389,6 +389,20 @@ class MdJsonHashWriter
       return hProcess
    end
 
+   def build_projection(id, name = nil, description = nil, complete = false)
+      if complete
+         hProjection = projection
+         return hProjection
+      end
+      hProjection = {}
+      hProjectionId = {}
+      hProjection[:projectionIdentifier] =  hProjectionId
+      hProjectionId[:identifier] = id
+      hProjectionId[:name] = name unless name.nil?
+      hProjectionId[:description] = description unless description.nil?
+      return hProjection
+   end
+
    def build_resourceFormat(title = nil, amendment = nil, compMethod = nil, prereq = nil)
       hFormat = resourceFormat
       hFormat[:formatSpecification][:title] = title unless title.nil?
@@ -410,8 +424,8 @@ class MdJsonHashWriter
       hResourceInfo[:spatialReferenceSystem] << build_spatialReference('wkt')
       hResourceInfo[:spatialRepresentation] << build_spatialRepresentation('grid', build_gridRepresentation)
       hResourceInfo[:spatialRepresentation] << build_spatialRepresentation('grid', build_gridRepresentation)
-      hResourceInfo[:spatialResolution] << build_spatialResolution('scale')
-      hResourceInfo[:spatialResolution] << build_spatialResolution('scale')
+      hResourceInfo[:spatialResolution] << build_spatialResolution('factor')
+      hResourceInfo[:spatialResolution] << build_spatialResolution('factor')
       hResourceInfo[:temporalResolution] << duration
       hResourceInfo[:temporalResolution] << duration
       hResourceInfo[:extent] << build_extent('extent one')
@@ -558,7 +572,7 @@ class MdJsonHashWriter
 
    def build_spatialResolution(type)
       hResolution = {}
-      hResolution[:scaleFactor] = 9999 if type == 'scale'
+      hResolution[:scaleFactor] = 9999 if type == 'factor'
       hResolution[:levelOfDetail] = 'level of detail' if type == 'detail'
       hResolution[:measure] = measure if type == 'measure'
       hResolution[:coordinateResolution] = coordinateResolution if type == 'coordinate'
@@ -569,7 +583,7 @@ class MdJsonHashWriter
 
    def build_spatialResolution_full
       aResolution = []
-      aResolution << build_spatialResolution('scale')
+      aResolution << build_spatialResolution('factor')
       aResolution << build_spatialResolution('measure')
       aResolution << build_spatialResolution('detail')
       aResolution << build_spatialResolution('coordinate')
@@ -800,13 +814,12 @@ class MdJsonHashWriter
       return hContact
    end
 
-   def add_falseNE(hSpaceRef, northing = nil, easting = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:falseEasting] = 9.9
-      hParamSet[:falseNorthing] = 9.9
-      hParamSet[:falseEasting] = easting unless easting.nil?
-      hParamSet[:falseNorthing] = northing unless northing.nil?
-      return hSpaceRef
+   def add_falseNE(hProjection, northing = nil, easting = nil)
+      hProjection[:falseEasting] = 9.9
+      hProjection[:falseNorthing] = 9.9
+      hProjection[:falseEasting] = easting unless easting.nil?
+      hProjection[:falseNorthing] = northing unless northing.nil?
+      return hProjection
    end
 
    def add_foreignKey(hEntity, aLocalAtt = nil, refEnt = nil, aRefAtt = nil)
@@ -835,19 +848,20 @@ class MdJsonHashWriter
       return hExtent
    end
 
-   def add_grid(hSpaceRef, grid, name = nil, zone = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:gridSystem] = grid
-      hParamSet[:gridSystemName] = name unless name.nil?
-      hParamSet[:gridZone] = zone unless zone.nil?
-      return hSpaceRef
+   def add_grid(hProjection, grid, zone = nil, name = nil, description = nil)
+      hGridId = {}
+      hGridId[:identifier] = grid
+      hGridId[:name] = name unless name.nil?
+      hGridId[:description] = description unless description.nil?
+      hProjection[:gridSystemIdentifier] = hGridId
+      hProjection[:gridZone] = zone unless zone.nil?
+      return hProjection
    end
 
-   def add_heightPP(hSpaceRef, height = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:heightOfProspectivePointAboveSurface] = 99.9
-      hParamSet[:heightOfProspectivePointAboveSurface] = height unless height.nil?
-      return hSpaceRef
+   def add_heightPP(hProjection, height = nil)
+      hProjection[:heightOfProspectivePointAboveSurface] = 99.9
+      hProjection[:heightOfProspectivePointAboveSurface] = height unless height.nil?
+      return hProjection
    end
    
    def add_imageDescription(hCoverage)
@@ -864,79 +878,69 @@ class MdJsonHashWriter
       return hKeywords
    end
 
-   def add_landsat(hSpaceRef, number = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:landsatNumber] = 9
-      hParamSet[:landsatNumber] = number unless number.nil?
-      return hSpaceRef
+   def add_landsat(hProjection, number = nil)
+      hProjection[:landsatNumber] = 9
+      hProjection[:landsatNumber] = number unless number.nil?
+      return hProjection
    end
 
-   def add_landsatPath(hSpaceRef, number = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:landsatPath] = 9999
-      hParamSet[:landsatPath] = number unless number.nil?
-      return hSpaceRef
+   def add_landsatPath(hProjection, number = nil)
+      hProjection[:landsatPath] = 9999
+      hProjection[:landsatPath] = number unless number.nil?
+      return hProjection
    end
 
-   def add_latPC(hSpaceRef, latPC = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:latitudeOfProjectionCenter] = 99.9
-      hParamSet[:latitudeOfProjectionCenter] = latPC unless latPC.nil?
-      return hSpaceRef
+   def add_latPC(hProjection, latPC = nil)
+      hProjection[:latitudeOfProjectionCenter] = 99.9
+      hProjection[:latitudeOfProjectionCenter] = latPC unless latPC.nil?
+      return hProjection
    end
 
-   def add_latPO(hSpaceRef, latPO = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:latitudeOfProjectionOrigin] = 99.9
-      hParamSet[:latitudeOfProjectionOrigin] = latPO unless latPO.nil?
-      return hSpaceRef
+   def add_latPO(hProjection, latPO = nil)
+      hProjection[:latitudeOfProjectionOrigin] = 99.9
+      hProjection[:latitudeOfProjectionOrigin] = latPO unless latPO.nil?
+      return hProjection
    end
 
-   def add_localDesc(hSpaceRef, description = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:localPlanarDescription] = 'local planar description'
-      hParamSet[:localPlanarDescription] = description unless description.nil?
-      return hSpaceRef
+   def add_localPlanar(hProjection)
+      hProjection[:local] = local
+      hProjection[:local][:fixedToEarth] = true
+      return hProjection
    end
 
-   def add_localGeoInfo(hSpaceRef, geoRef = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:localPlanarGeoreference] = 'local planar georeference information'
-      hParamSet[:localPlanarGeoreference] = geoRef unless geoRef.nil?
-      return hSpaceRef
+   def add_localSystem(hProjection)
+      hProjection[:local] = local
+      hProjection[:local][:fixedToEarth] = false
+      return hProjection
    end
 
-   def add_longCM(hSpaceRef, longCM = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:longitudeOfCentralMeridian] = 99.9
-      hParamSet[:longitudeOfCentralMeridian] = longCM unless longCM.nil?
-      return hSpaceRef
+   def add_longCM(hProjection, longCM = nil)
+      hProjection[:longitudeOfCentralMeridian] = 99.9
+      hProjection[:longitudeOfCentralMeridian] = longCM unless longCM.nil?
+      return hProjection
    end
 
-   def add_longPC(hSpaceRef, longPC = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:longitudeOfProjectionCenter] = 99.9
-      hParamSet[:longitudeOfProjectionCenter] = longPC  unless longPC.nil?
-      return hSpaceRef
+   def add_longPC(hProjection, longPC = nil)
+      hProjection[:longitudeOfProjectionCenter] = 99.9
+      hProjection[:longitudeOfProjectionCenter] = longPC  unless longPC.nil?
+      return hProjection
    end
 
-   def add_obliqueLineAzimuth(hSpaceRef, angle = nil, longitude = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:azimuthAngle] = 99.9
-      hParamSet[:azimuthMeasurePointLongitude] = 99.9
-      hParamSet[:azimuthAngle] = angle unless angle.nil?
-      hParamSet[:azimuthMeasurePointLongitude] = longitude unless longitude.nil?
-      return hSpaceRef
+   def add_obliqueLineAzimuth(hProjection, angle = nil, longitude = nil)
+      hProjection[:azimuthAngle] = 99.9
+      hProjection[:azimuthMeasurePointLongitude] = 99.9
+      hProjection[:azimuthAngle] = angle unless angle.nil?
+      hProjection[:azimuthMeasurePointLongitude] = longitude unless longitude.nil?
+      return hProjection
    end
 
-   def add_obliqueLinePoint(hSpaceRef, latitude = nil, longitude = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
+   def add_obliqueLinePoint(hProjection, latitude = nil, longitude = nil)
       hLinePoint = obliqueLinePoint
       hLinePoint[:obliqueLineLatitude] = latitude unless latitude.nil?
       hLinePoint[:obliqueLineLongitude] = longitude unless longitude.nil?
-      hParamSet[:obliqueLinePoint] = [] unless hParamSet[:obliqueLinePoint]
-      hParamSet[:obliqueLinePoint] << hLinePoint
-      return hSpaceRef
+      hProjection[:obliqueLinePoint] = [] unless hProjection[:obliqueLinePoint]
+      hProjection[:obliqueLinePoint] << hLinePoint
+      return hProjection
    end
 
    def add_offlineOption(hTranOpt, reqOnly = false)
@@ -985,15 +989,6 @@ class MdJsonHashWriter
       return hContact
    end
 
-   def add_projection(hSpaceRef, projection, name = nil)
-      hSpaceRef[:referenceSystemParameterSet] = {}
-      hSpaceRef[:referenceSystemParameterSet][:projection] = {}
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:projection] = projection
-      hParamSet[:projectionName] = name unless name.nil?
-      return hSpaceRef
-   end
-
    def add_properties(hFeature)
       hFeature[:properties] = properties
       return hFeature
@@ -1013,32 +1008,28 @@ class MdJsonHashWriter
       return hTransOpt
    end
 
-   def add_scaleFactorCL(hSpaceRef, scale = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:scaleFactorAtCenterLine] = 9.99
-      hParamSet[:scaleFactorAtCenterLine] = scale unless scale.nil?
-      return hSpaceRef
+   def add_scaleFactorCL(hProjection, scale = nil)
+      hProjection[:scaleFactorAtCenterLine] = 9.99
+      hProjection[:scaleFactorAtCenterLine] = scale unless scale.nil?
+      return hProjection
    end
 
-   def add_scaleFactorCM(hSpaceRef, scale = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:scaleFactorAtCentralMeridian] = 9.99
-      hParamSet[:scaleFactorAtCentralMeridian] = scale unless scale.nil?
-      return hSpaceRef
+   def add_scaleFactorCM(hProjection, factor = nil)
+      hProjection[:scaleFactorAtCentralMeridian] = 9.99
+      hProjection[:scaleFactorAtCentralMeridian] = factor unless factor.nil?
+      return hProjection
    end
 
-   def add_scaleFactorE(hSpaceRef, scale = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:scaleFactorAtEquator] = 9.99
-      hParamSet[:scaleFactorAtEquator] = scale unless scale.nil?
-      return hSpaceRef
+   def add_scaleFactorE(hProjection, factor = nil)
+      hProjection[:scaleFactorAtEquator] = 9.99
+      hProjection[:scaleFactorAtEquator] = factor unless factor.nil?
+      return hProjection
    end
 
-   def add_scaleFactorPO(hSpaceRef, scale = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:scaleFactorAtProjectionOrigin] = 9.99
-      hParamSet[:scaleFactorAtProjectionOrigin] = scale unless scale.nil?
-      return hSpaceRef
+   def add_scaleFactorPO(hProjection, factor = nil)
+      hProjection[:scaleFactorAtProjectionOrigin] = 9.99
+      hProjection[:scaleFactorAtProjectionOrigin] = factor unless factor.nil?
+      return hProjection
    end
 
    def add_series(hCitation, name = nil, issue = nil, page = nil)
@@ -1050,22 +1041,20 @@ class MdJsonHashWriter
       return hCitation
    end
 
-   def add_standardParallel(hSpaceRef, num = 1, parallel1 = nil, parallel2 = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:standardParallel1] = 99.9
-      hParamSet[:standardParallel1] = parallel1 unless parallel1.nil?
+   def add_standardParallel(hProjection, num = 1, parallel1 = nil, parallel2 = nil)
+      hProjection[:standardParallel1] = 99.9
+      hProjection[:standardParallel1] = parallel1 unless parallel1.nil?
       if num == 2
-         hParamSet[:standardParallel2] = 99.9
-         hParamSet[:standardParallel2] = parallel2 unless parallel2.nil?
+         hProjection[:standardParallel2] = 99.9
+         hProjection[:standardParallel2] = parallel2 unless parallel2.nil?
       end
-      return hSpaceRef
+      return hProjection
    end
 
-   def add_straightFromPole(hSpaceRef, longitude = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:straightVerticalLongitudeFromPole] = 99.9
-      hParamSet[:straightVerticalLongitudeFromPole] = longitude unless longitude.nil?
-      return hSpaceRef
+   def add_straightFromPole(hProjection, longitude = nil)
+      hProjection[:straightVerticalLongitudeFromPole] = 99.9
+      hProjection[:straightVerticalLongitudeFromPole] = longitude unless longitude.nil?
+      return hProjection
    end
 
    def add_taxonClass(hObject, level = nil, name = nil, aCommon = nil, id = nil)

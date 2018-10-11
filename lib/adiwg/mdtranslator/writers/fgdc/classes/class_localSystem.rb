@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-10-09 refactor mdJson projection object
 #  Stan Smith 2018-03-20 refactored error and warning messaging
 #  Stan Smith 2018-01-15 original script
 
@@ -14,37 +15,48 @@ module ADIWG
 
             class LocalSystem
 
-               def initialize(xml, hResponseObj)
+               def initialize(xml, hResponseObj, inContext = nil)
                   @xml = xml
                   @hResponseObj = hResponseObj
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hProjection)
+               def writeXML(hProjection, inContext = nil)
 
                   # localSYSTEM is not the same as localPLANAR in fgdc
-                  # however the same projection parameters are used in mdJson to save info
-                  # local system sets projection = 'localSystem'
-                  # local planar sets projection = 'localPlanar'
+                  # however they use the same 'local' object
+                  # local system sets projectionIdentifier.identifier = 'localSystem'
+                  # local planar sets projectionIdentifier.identifier = 'localPlanar'
 
-                  if hProjection[:projectionName].nil?
-                     hProjection[:projectionName] = 'local coordinate system not aligned with surface of earth'
+                  hProjectionId = hProjection[:projectionIdentifier]
+                  hLocal = hProjection[:local]
+
+                  if hLocal.empty?
+                     @NameSpace.issueError(470, inContext)
+                     return
+                  end
+
+                  if hProjectionId[:identifier] == 'localSystem'
+                     hProjectionId[:name] = nil unless hProjectionId.has_key?(:name)
+                     if hProjectionId[:name].nil?
+                        hProjectionId[:name] = 'Local Coordinate System'
+                     end
                   end
 
                   # local system 4.1.3.1 (localdes) - local coordinate system description (required)
-                  unless hProjection[:localPlanarDescription].nil?
-                     @xml.tag!('localdes', hProjection[:localPlanarDescription])
+                  unless hLocal[:description].nil?
+                     @xml.tag!('localdes', hLocal[:description])
                   end
-                  if hProjection[:localPlanarDescription].nil?
-                     @NameSpace.issueError(250, hProjection[:projectionName])
+                  if hLocal[:description].nil?
+                     @NameSpace.issueError(250, inContext)
                   end
 
                   # local system 4.1.3.2 (localgeo) - local coordinate system georeference information (required)
-                  unless hProjection[:localPlanarGeoreference].nil?
-                     @xml.tag!('localgeo', hProjection[:localPlanarGeoreference])
+                  unless hLocal[:georeference].nil?
+                     @xml.tag!('localgeo', hLocal[:georeference])
                   end
-                  if hProjection[:localPlanarGeoreference].nil?
-                     @NameSpace.issueError(251, hProjection[:projectionName])
+                  if hLocal[:georeference].nil?
+                     @NameSpace.issueError(251, inContext)
                   end
 
                end # writeXML

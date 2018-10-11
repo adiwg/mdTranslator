@@ -4,8 +4,8 @@
     <horizsys>
       <planar>
         <localp>
-          <localpd>local planar description</localpd>
-          <localpgi>local planar georeference information</localpgi>
+          <localpd>local description</localpd>
+          <localpgi>local georeference</localpgi>
         </localp>
         <planci>
           <plandu>feet</plandu>

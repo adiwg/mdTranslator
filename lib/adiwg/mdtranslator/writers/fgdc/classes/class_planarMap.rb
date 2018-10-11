@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-10-10 refactor mdJson projection object
 #  Stan Smith 2018-03-21 original script
 
 require_relative 'class_mapProjectionTags'
@@ -18,34 +19,39 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hProjection)
+               def writeXML(hProjection, inContext = nil)
 
                   # classes used
                   classTags = MapProjectionTags.new(@xml, @hResponseObj)
 
+                  outContext = 'map projection'
+                  outContext = inContext + ' ' + outContext unless inContext.nil?
+
                   # planar 4.1.2.1 (mapproj) - map projection
                   # <- hProjection.projectionName = oneOf ...
-                  projection = hProjection[:projection]
+                  projection = hProjection[:projectionIdentifier][:identifier]
+                  projectionName = nil
+                  if hProjection.key?(:name)
+                     projectionName = hProjection[:name]
+                  end
                   case projection
                      when 'alaska'
                         @xml.tag!('mapproj') do
-                           projectionName = 'Modified Stereographic for Alaska'
-                           hProjection[:projectionName] = projectionName if hProjection[:projectionName].nil?
+                           projectionName = 'Alaska Modified Stereographic' if projectionName.nil?
                            classTags.write_name(projectionName)
                            @xml.tag!('modsak') do
-                              classTags.write_falseNE(hProjection)
+                              classTags.write_falseNE(hProjection, outContext)
                            end
                         end
                      when 'albers'
                         @xml.tag!('mapproj') do
                            projectionName = 'Albers Conical Equal Area'
-                           hProjection[:projectionName] = projectionName if hProjection[:projectionName].nil?
                            classTags.write_name(projectionName)
                            @xml.tag!('albers') do
-                              classTags.write_standParallel(hProjection)
-                              classTags.write_longCM(hProjection)
-                              classTags.write_latPO(hProjection)
-                              classTags.write_falseNE(hProjection)
+                              classTags.write_standParallel(hProjection, outContext)
+                              classTags.write_longCM(hProjection, outContext)
+                              classTags.write_latPO(hProjection, outContext)
+                              classTags.write_falseNE(hProjection, outContext)
                            end
                         end
                      when 'azimuthalEquidistant'

@@ -21,7 +21,7 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hGeodetic)
+               def writeXML(hGeodetic, inContext = nil)
 
                   # geodetic reference system 4.1.4.1 (horizdn) - horizontal datum name
                   unless hGeodetic[:datumIdentifier].empty?

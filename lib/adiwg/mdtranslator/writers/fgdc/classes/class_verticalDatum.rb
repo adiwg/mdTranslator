@@ -19,7 +19,7 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(aSpaceRefs)
+               def writeXML(aSpaceRefs, inContext = nil)
 
                   aSpaceRefs.each do |hSpaceRef|
                      unless hSpaceRef[:systemParameterSet].empty?

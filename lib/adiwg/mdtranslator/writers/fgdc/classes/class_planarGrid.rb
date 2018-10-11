@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-10-09 refactor mdJson projection object
 #  Stan Smith 2018-03-21 original script
 
 require_relative 'class_mapProjectionTags'
@@ -18,21 +19,29 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hProjection)
+               def writeXML(hProjection, inContext = nil)
 
                   # classes used
                   classTags = MapProjectionTags.new(@xml, @hResponseObj)
 
+                  outContext = 'grid system'
+                  outContext = inContext + ' ' + outContext unless inContext.nil?
+
                   # planar 4.1.2.2 (gridsys) - grid coordinate system
-                  # <- hProjection.projectionName = oneOf ...
-                  gridSystem = hProjection[:gridSystem]
+                  # <- hProjection.gridSystemIdentifier.identifier = oneOf ...
+                  hGridId = hProjection[:gridSystemIdentifier]
+                  gridSystem = hGridId[:identifier]
+                  gridName = nil
+                  if hGridId.key?(:name)
+                     gridName = hGridId[:name]
+                  end
                   case gridSystem
                      when 'utm'
                         @xml.tag!('gridsys') do
-                           if hProjection[:gridSystemName].nil?
-                              classTags.write_gridName('Universal Transverse Mercator (UTM)')
+                           if gridName.nil?
+                              classTags.write_gridName('Universal Transverse Mercator')
                            else
-                              classTags.write_gridName(hProjection[:gridSystemName])
+                              classTags.write_gridName(gridName)
                            end
                            @xml.tag!('utm') do
                               classTags.write_utmZone(hProjection)
@@ -46,10 +55,10 @@ module ADIWG
                         end
                      when 'ups'
                         @xml.tag!('gridsys') do
-                           if hProjection[:gridSystemName].nil?
-                              classTags.write_gridName('Universal Polar Stereographic (UPS)')
+                           if gridName.nil?
+                              classTags.write_gridName('Universal Polar Stereographic')
                            else
-                              classTags.write_gridName(hProjection[:gridSystemName])
+                              classTags.write_gridName(gridName)
                            end
                            @xml.tag!('ups') do
                               classTags.write_upsZone(hProjection)
@@ -66,10 +75,10 @@ module ADIWG
                         end
                      when 'spcs'
                         @xml.tag!('gridsys') do
-                           if hProjection[:gridSystemName].nil?
+                           if gridName.nil?
                               classTags.write_gridName('State Plane Coordinate System')
                            else
-                              classTags.write_gridName(hProjection[:gridSystemName])
+                              classTags.write_gridName(gridName)
                            end
                            @xml.tag!('spcs') do
                               classTags.write_spcsZone(hProjection)
@@ -113,10 +122,10 @@ module ADIWG
                         end
                      when 'arcsys'
                         @xml.tag!('gridsys') do
-                           if hProjection[:gridSystemName].nil?
+                           if gridName.nil?
                               classTags.write_gridName('Equal Arc-second Coordinate System')
                            else
-                              classTags.write_gridName(hProjection[:gridSystemName])
+                              classTags.write_gridName(gridName)
                            end
                            @xml.tag!('arcsys') do
                               classTags.write_arcZone(hProjection)
