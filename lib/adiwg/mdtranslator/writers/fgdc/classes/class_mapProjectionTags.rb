@@ -22,12 +22,11 @@ module ADIWG
                end
 
                 def outContext(inContext, hIdentifier = {})
-                   outContext = nil
-                   unless hIdentifier.empty?
-                      outContext = hIdentifier[:projectionIdentifier][:identifier]
-                   end
-                   outContext = inContext + ' ' + outContext unless inContext.nil?
-                   return outContext
+                   outContext = hIdentifier.empty? ? nil : hIdentifier[:projectionIdentifier][:identifier]
+                   return nil if inContext.nil? && outContext.nil?
+                   return inContext if outContext.nil?
+                   return outContext if inContext.nil?
+                   return inContext + ' ' + outContext
                 end
 
                # map projection 4.1.2.1.1 (mapprojn) - projection name (required)
@@ -109,7 +108,7 @@ module ADIWG
                      @xml.tag!('heightpt', hProjection[:heightOfProspectivePointAboveSurface].to_s)
                   end
                   if hProjection[:heightOfProspectivePointAboveSurface].nil?
-                     @NameSpace.issueError(286, outContext(inContext))
+                     @NameSpace.issueError(286, outContext(inContext, hProjection))
                   end
                end
 
@@ -119,7 +118,7 @@ module ADIWG
                      @xml.tag!('longpc', hProjection[:longitudeOfProjectionCenter].to_s)
                   end
                   if hProjection[:longitudeOfProjectionCenter].nil?
-                     @NameSpace.issueError(287, outContext(inContext))
+                     @NameSpace.issueError(287, outContext(inContext, hProjection))
                   end
                end
 
@@ -129,7 +128,7 @@ module ADIWG
                      @xml.tag!('latprjc', hProjection[:latitudeOfProjectionCenter].to_s)
                   end
                   if hProjection[:latitudeOfProjectionCenter].nil?
-                     @NameSpace.issueError(288, outContext(inContext))
+                     @NameSpace.issueError(288, outContext(inContext, hProjection))
                   end
                end
 
@@ -139,7 +138,7 @@ module ADIWG
                      @xml.tag!('sfequat', hProjection[:scaleFactorAtEquator].to_s)
                   end
                   if hProjection[:scaleFactorAtEquator].nil?
-                     @NameSpace.issueError(289, outContext(inContext))
+                     @NameSpace.issueError(289, outContext(inContext, hProjection))
                   end
                end
 
@@ -149,7 +148,7 @@ module ADIWG
                      @xml.tag!('sfctrlin', hProjection[:scaleFactorAtCenterLine].to_s)
                   end
                   if hProjection[:scaleFactorAtCenterLine].nil?
-                     @NameSpace.issueError(290, outContext(inContext))
+                     @NameSpace.issueError(290, outContext(inContext, hProjection))
                   end
                end
 
@@ -159,7 +158,7 @@ module ADIWG
                      @xml.tag!('sfprjorg', hProjection[:scaleFactorAtProjectionOrigin].to_s)
                   end
                   if hProjection[:scaleFactorAtProjectionOrigin].nil?
-                     @NameSpace.issueError(291, outContext(inContext))
+                     @NameSpace.issueError(291, outContext(inContext, hProjection))
                   end
                end
 
@@ -169,7 +168,7 @@ module ADIWG
                      @xml.tag!('sfctrmer', hProjection[:scaleFactorAtCentralMeridian].to_s)
                   end
                   if hProjection[:scaleFactorAtCentralMeridian].nil?
-                     @NameSpace.issueError(292, outContext(inContext))
+                     @NameSpace.issueError(292, outContext(inContext, hProjection))
                   end
                end
 
@@ -184,18 +183,18 @@ module ADIWG
                            @xml.tag!('azimangl', hProjection[:azimuthAngle].to_s)
                         end
                         if hProjection[:azimuthAngle].nil?
-                           @NameSpace.issueError(293, outContext(inContext))
+                           @NameSpace.issueError(293, outContext(inContext, hProjection))
                         end
                         unless hProjection[:azimuthMeasurePointLongitude].nil?
                            @xml.tag!('azimptl', hProjection[:azimuthMeasurePointLongitude].to_s)
                         end
                         if hProjection[:azimuthMeasurePointLongitude].nil?
-                           @NameSpace.issueError(294, outContext(inContext))
+                           @NameSpace.issueError(294, outContext(inContext, hProjection))
                         end
                      end
                   end
                   unless haveLA
-                     @NameSpace.issueError(295, outContext(inContext))
+                     @NameSpace.issueError(295, outContext(inContext, hProjection))
                   end
                end
 
@@ -205,13 +204,13 @@ module ADIWG
                      @xml.tag!('obqllat', hLinePt[:obliqueLineLatitude])
                   end
                   if hLinePt[:obliqueLineLatitude].nil?
-                     @NameSpace.issueError(296, outContext(inContext))
+                     @NameSpace.issueError(296, outContext(inContext, hProjection))
                   end
                   unless hLinePt[:obliqueLineLongitude].nil?
                      @xml.tag!('obqllong', hLinePt[:obliqueLineLongitude])
                   end
                   if hLinePt[:obliqueLineLongitude].nil?
-                     @NameSpace.issueError(297, outContext(inContext))
+                     @NameSpace.issueError(297, outContext(inContext, hProjection))
                   end
                end
 
@@ -221,7 +220,7 @@ module ADIWG
                      @xml.tag!('svlong', hProjection[:straightVerticalLongitudeFromPole].to_s)
                   end
                   if hProjection[:straightVerticalLongitudeFromPole].nil?
-                     @NameSpace.issueError(298, outContext(inContext))
+                     @NameSpace.issueError(298, outContext(inContext, hProjection))
                   end
                end
 
@@ -231,7 +230,7 @@ module ADIWG
                      @xml.tag!('landsat', hProjection[:landsatNumber].to_s)
                   end
                   if hProjection[:landsatNumber].nil?
-                     @NameSpace.issueError(299, outContext(inContext))
+                     @NameSpace.issueError(299, outContext(inContext, hProjection))
                   end
                end
 
@@ -241,7 +240,7 @@ module ADIWG
                      @xml.tag!('pathnum', hProjection[:landsatPath].to_s)
                   end
                   if hProjection[:landsatPath].nil?
-                     @NameSpace.issueError(300, outContext(inContext))
+                     @NameSpace.issueError(300, outContext(inContext, hProjection))
                   end
                end
 
@@ -251,7 +250,7 @@ module ADIWG
                      @xml.tag!('otherprj', hProjection[:otherProjectionDescription])
                   end
                   if hProjection[:otherProjectionDescription].nil?
-                     @NameSpace.issueError(301, outContext(inContext))
+                     @NameSpace.issueError(301, outContext(inContext, hProjection))
                   end
                end
 
@@ -368,7 +367,7 @@ module ADIWG
                      @xml.tag!('localpd', hLocal[:description])
                   end
                   if hLocal[:description].nil?
-                     @NameSpace.issueError(471, outContext(inContext))
+                     @NameSpace.issueError(471, outContext(inContext, hProjection))
                   end
                end
 
@@ -378,7 +377,7 @@ module ADIWG
                      @xml.tag!('localpgi', hLocal[:georeference])
                   end
                   if hLocal[:georeference].nil?
-                     @NameSpace.issueError(472, outContext(inContext))
+                     @NameSpace.issueError(472, outContext(inContext, hProjection))
                   end
                end
 

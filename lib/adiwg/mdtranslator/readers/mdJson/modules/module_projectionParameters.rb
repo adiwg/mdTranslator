@@ -137,7 +137,8 @@ module ADIWG
                   # projection parameters - height of prospective point above surface
                   if hProjection.has_key?('heightOfProspectivePointAboveSurface')
                      unless hProjection['heightOfProspectivePointAboveSurface'] == ''
-                        intProjection[:heightOfProspectivePointAboveSurface] = hProjection['heightOfProspectivePointAboveSurface'].to_f
+                        intProjection[:heightOfProspectivePointAboveSurface] =
+                           hProjection['heightOfProspectivePointAboveSurface']
                      end
                   end
 

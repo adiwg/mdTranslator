@@ -18,12 +18,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
    xFile = TestWriterFGDCParent.get_xml('mapProjection')
    @@axExpect = xFile.xpath(@@path)
 
-   def test_mapProjection_alaska
-
-      expect = @@axExpect[0].to_s.squeeze(' ')
-
-      hProjection = TDClass.build_projection('alaska', 'Alaska Modified Stereographic')
-      TDClass.add_falseNE(hProjection)
+   def get_response(hProjection)
 
       mdHash = TDClass.base
       hSpaceRef = TDClass.spatialReferenceSystem
@@ -37,6 +32,19 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
          file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
+      return hResponseObj
+
+   end
+
+   def test_mapProjection_alaska
+
+      expect = @@axExpect[0].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('alaska', 'Alaska Modified Stereographic')
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath(@@path)
       got = xGot.to_s.squeeze(' ')
@@ -49,9 +57,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
       hProjection[:falseNorthing] = nil
       hProjection[:falseEasting] = nil
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-      )
+      hResponseObj = get_response(hProjection)
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
@@ -62,9 +68,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
       hProjection.delete(:falseNorthing)
       hProjection.delete(:falseEasting)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-      )
+      hResponseObj = get_response(hProjection)
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
@@ -84,17 +88,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      mdHash = TDClass.base
-      hSpaceRef = TDClass.spatialReferenceSystem
-      hSpaceRef[:referenceSystemParameterSet][:projection] = hProjection
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-      mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-      mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
-      mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'spatial representation type'
-
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-      )
+      hResponseObj = get_response(hProjection)
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
       xGot = xMetadata.xpath(@@path)
@@ -112,9 +106,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
       hProjection[:longitudeOfCentralMeridian] = nil
       hProjection[:latitudeOfProjectionOrigin] = nil
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-      )
+      hResponseObj = get_response(hProjection)
 
       refute hResponseObj[:writerPass]
       assert_equal 5, hResponseObj[:writerMessages].length
@@ -132,9 +124,7 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
       hProjection.delete(:longitudeOfCentralMeridian)
       hProjection.delete(:latitudeOfProjectionOrigin)
 
-      hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-      )
+      hResponseObj = get_response(hProjection)
 
       refute hResponseObj[:writerPass]
       assert_equal 5, hResponseObj[:writerMessages].length
@@ -146,434 +136,548 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
 
    end
 
+   # map projections - azimuthal equidistant
+   def test_mapProjection_azimuthalEquidistant
 
-   # # map projections - azimuthal equidistant
-   # def test_mapProjection_azimuthalEquidistant
-   #
-   #    expect = @@axExpect[2].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'azimuthalEquidistant')
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_latPO(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_azimuthalEquidistant
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'azimuthalEquidistant')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 5, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Azimuthal Equidistant projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is Azimuthal Equidistant projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Azimuthal Equidistant projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Azimuthal Equidistant projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - equidistant conic
-   # def test_mapProjection_equidistantConic
-   #
-   #    expect = @@axExpect[3].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'equidistantConic')
-   #    TDClass.add_standardParallel(hSpaceRef, 2)
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_latPO(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_equidistantConic
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'equidistantConic')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 6, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is Equidistant Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Equidistant Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is Equidistant Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Equidistant Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Equidistant Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - equirectangular
-   # def test_mapProjection_equirectangular
-   #
-   #    expect = @@axExpect[4].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'equirectangular')
-   #    TDClass.add_standardParallel(hSpaceRef)
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_equirectangular
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'equirectangular')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 5, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is Equirectangular projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Equirectangular projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Equirectangular projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Equirectangular projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - general vertical near-side perspective
-   # def test_mapProjection_generalVertical
-   #
-   #    expect = @@axExpect[5].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'generalVertical')
-   #    TDClass.add_heightPP(hSpaceRef)
-   #    TDClass.add_longPC(hSpaceRef)
-   #    TDClass.add_latPC(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_generalVertical
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'generalVertical')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 6, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection height of perspective point above surface is missing: CONTEXT is General Vertical Near-sided Perspective projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is General Vertical Near-sided Perspective projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is General Vertical Near-sided Perspective projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is General Vertical Near-sided Perspective projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is General Vertical Near-sided Perspective projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - gnomonic
-   # def test_mapProjection_gnomonic
-   #
-   #    expect = @@axExpect[6].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'gnomonic')
-   #    TDClass.add_longPC(hSpaceRef)
-   #    TDClass.add_latPC(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_gnomonic
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'gnomonic')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 5, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is Gnomonic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is Gnomonic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Gnomonic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Gnomonic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - lambert azimuthal equal area
-   # def test_mapProjection_lambertAzimuthal
-   #
-   #    expect = @@axExpect[7].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'lambertEqualArea')
-   #    TDClass.add_longPC(hSpaceRef)
-   #    TDClass.add_latPC(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_lambertAzimuthal
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'lambertEqualArea')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 5, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is Lambert Azimuthal Equal Area projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is Lambert Azimuthal Equal Area projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Lambert Azimuthal Equal Area projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Lambert Azimuthal Equal Area projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - lambert conformal conic
-   # def test_mapProjection_lambertConformal
-   #
-   #    expect = @@axExpect[8].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'lambertConic')
-   #    TDClass.add_standardParallel(hSpaceRef, 2)
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_latPO(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_lambertConic
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'lambertConic')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 6, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is Lambert Conformal Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Lambert Conformal Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is Lambert Conformal Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Lambert Conformal Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Lambert Conformal Conic projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - mercator (standard parallel)
-   # def test_mapProjection_mercatorSP
-   #
-   #    expect = @@axExpect[9].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'mercator')
-   #    TDClass.add_standardParallel(hSpaceRef, 1)
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # # map projections - mercator (scale factor)
-   # def test_mapProjection_mercatorSF
-   #
-   #    expect = @@axExpect[10].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'mercator')
-   #    TDClass.add_scaleFactorE(hSpaceRef)
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
+      expect = @@axExpect[2].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('azimuthalEquidistant', 'Azimuthal Equidistant')
+      TDClass.add_longCM(hProjection)
+      TDClass.add_latPO(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+      hProjection[:latitudeOfProjectionOrigin] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:longitudeOfCentralMeridian)
+      hProjection.delete(:latitudeOfProjectionOrigin)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection azimuthalEquidistant'
+
+   end
+
+   # map projections - equidistant conic
+   def test_mapProjection_equidistantConic
+
+      expect = @@axExpect[3].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('equidistantConic', 'Equidistant Conic')
+      TDClass.add_standardParallel(hProjection, 2)
+      TDClass.add_longCM(hProjection)
+      TDClass.add_latPO(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:standardParallel1] = nil
+      hProjection[:standardParallel2] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+      hProjection[:latitudeOfProjectionOrigin] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:standardParallel1)
+      hProjection.delete(:standardParallel2)
+      hProjection.delete(:longitudeOfCentralMeridian)
+      hProjection.delete(:latitudeOfProjectionOrigin)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection equidistantConic'
+
+   end
+
+   # map projections - equirectangular
+   def test_mapProjection_equirectangular
+
+      expect = @@axExpect[4].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('equirectangular', 'Equirectangular')
+      TDClass.add_standardParallel(hProjection, 1)
+      TDClass.add_longCM(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:standardParallel1] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:standardParallel1)
+      hProjection.delete(:longitudeOfCentralMeridian)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection equirectangular'
+
+   end
+
+   # map projections - general vertical near-side perspective
+   def test_mapProjection_generalVertical
+
+      expect = @@axExpect[5].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('generalVertical', 'General Vertical Near-sided Perspective')
+      TDClass.add_heightPP(hProjection)
+      TDClass.add_longPC(hProjection)
+      TDClass.add_latPC(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:heightOfProspectivePointAboveSurface] = nil
+      hProjection[:longitudeOfProjectionCenter] = nil
+      hProjection[:latitudeOfProjectionCenter] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection height of perspective point above surface is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:heightOfProspectivePointAboveSurface)
+      hProjection.delete(:longitudeOfProjectionCenter)
+      hProjection.delete(:latitudeOfProjectionCenter)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection height of perspective point above surface is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection generalVertical'
+
+   end
+
+   # map projections - gnomonic perspective
+   def test_mapProjection_gnomonic
+
+      expect = @@axExpect[6].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('gnomonic', 'Gnomonic')
+      TDClass.add_longPC(hProjection)
+      TDClass.add_latPC(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:longitudeOfProjectionCenter] = nil
+      hProjection[:latitudeOfProjectionCenter] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:longitudeOfProjectionCenter)
+      hProjection.delete(:latitudeOfProjectionCenter)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection gnomonic'
+
+   end
+
+   # map projections - lambert azimuthal equal area
+   def test_mapProjection_lambertEqualArea
+
+      expect = @@axExpect[7].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('lambertEqualArea', 'Lambert Azimuthal Equal Area')
+      TDClass.add_longPC(hProjection)
+      TDClass.add_latPC(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:longitudeOfProjectionCenter] = nil
+      hProjection[:latitudeOfProjectionCenter] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:longitudeOfProjectionCenter)
+      hProjection.delete(:latitudeOfProjectionCenter)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection center is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection lambertEqualArea'
+
+   end
+
+   # map projections - lambert conformal conic
+   def test_mapProjection_lambertConic
+
+      expect = @@axExpect[8].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('lambertConic', 'Lambert Conformal Conic')
+      TDClass.add_standardParallel(hProjection, 2)
+      TDClass.add_longCM(hProjection)
+      TDClass.add_latPO(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:standardParallel1] = nil
+      hProjection[:standardParallel2] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+      hProjection[:latitudeOfProjectionOrigin] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:standardParallel1)
+      hProjection.delete(:standardParallel2)
+      hProjection.delete(:longitudeOfCentralMeridian)
+      hProjection.delete(:latitudeOfProjectionOrigin)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 5, hResponseObj[:writerMessages].length
+
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection latitude of projection origin is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection lambertConic'
+
+   end
+
+   # map projections - mercator (standard parallel)
+   def test_mapProjection_mercatorSP
+
+      expect = @@axExpect[9].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('mercator', 'Mercator')
+      TDClass.add_standardParallel(hProjection, 1)
+      TDClass.add_longCM(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:standardParallel1] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:standardParallel1)
+      hProjection.delete(:longitudeOfCentralMeridian)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+
+   end
+
    # def test_mapProjection_elements_mercator_SF
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'mercator')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 4, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Mercator projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Mercator projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Mercator projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
-   # # map projections - miller cylindrical
-   # def test_mapProjection_miller
-   #
-   #    expect = @@axExpect[11].to_s.squeeze(' ')
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'miller')
-   #    TDClass.add_longCM(hSpaceRef)
-   #    TDClass.add_falseNE(hSpaceRef)
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    run_test(mdHash, @@path, expect)
-   #
-   # end
-   #
-   # def test_mapProjection_elements_miller
-   #
-   #    mdHash = TDClass.base
-   #    hSpaceRef = TDClass.spatialReferenceSystem
-   #    TDClass.add_projection(hSpaceRef, 'miller')
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   #    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
-   #
-   #    hResponseObj = ADIWG::Mdtranslator.translate(
-   #       file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
-   #    )
-   #
-   #    refute hResponseObj[:writerPass]
-   #    assert_equal 4, hResponseObj[:writerMessages].length
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is Miller Cylindrical projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is Miller Cylindrical projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is Miller Cylindrical projection'
-   #    assert_includes hResponseObj[:writerMessages],
-   #                    'ERROR: FGDC writer: planar coordinate information section is missing'
-   #
-   # end
-   #
+   def test_mapProjection_mercatorSF
+
+      expect = @@axExpect[10].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('mercator', 'Mercator')
+      TDClass.add_scaleFactorE(hProjection)
+      TDClass.add_longCM(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:scaleFactorAtEquator] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:scaleFactorAtEquator)
+      hProjection.delete(:longitudeOfCentralMeridian)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 4, hResponseObj[:writerMessages].length
+
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection standard parallel is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection mercator'
+
+   end
+
+   # map projections - miller cylindrical
+   def test_mapProjection_miller
+
+      expect = @@axExpect[11].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('miller', 'Miller Cylindrical')
+      TDClass.add_longCM(hProjection)
+      TDClass.add_falseNE(hProjection)
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:falseNorthing] = nil
+      hProjection[:falseEasting] = nil
+      hProjection[:longitudeOfCentralMeridian] = nil
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+
+      # test missing elements
+      hProjection.delete(:falseNorthing)
+      hProjection.delete(:falseEasting)
+      hProjection.delete(:longitudeOfCentralMeridian)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 3, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection longitude of central meridian is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false easting is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection false northing is missing: CONTEXT is spatial reference horizontal planar map projection miller'
+
+   end
+
+
+
+
+
+  
    # # map projections - oblique mercator (line azimuth)
    # def test_mapProjection_obliqueMercatorLA
    #
