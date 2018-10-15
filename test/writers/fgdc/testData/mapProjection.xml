@@ -133,10 +133,10 @@
           <obqmerc>
             <sfctrlin>9.99</sfctrlin>
             <obqlpt>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
             </obqlpt>
             <latprjo>99.9</latprjo>
             <feast>9.9</feast>
@@ -252,10 +252,10 @@
               <azimptl>99.9</azimptl>
             </obqlazim>
             <obqlpt>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
             </obqlpt>
             <svlong>99.9</svlong>
             <landsat>9</landsat>

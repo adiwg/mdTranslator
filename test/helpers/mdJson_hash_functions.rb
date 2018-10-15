@@ -974,11 +974,9 @@ class MdJsonHashWriter
       return hDistributor
    end
 
-   def add_otherProjection(hSpaceRef, other = nil)
-      hParamSet = hSpaceRef[:referenceSystemParameterSet][:projection]
-      hParamSet[:otherProjectionDescription] = 'other projection description'
-      hParamSet[:otherProjectionDescription] = other unless other.nil?
-      return hSpaceRef
+   def add_otherProjection(hProjection)
+      hParamSet = hProjection[:referenceSystemParameterSet][:projection]
+      return hProjection
    end
 
    def add_phone(hContact, phoneNumber, aService)

@@ -155,15 +155,11 @@ module ADIWG
                            projectionName = 'Oblique Mercator'
                            classTags.write_name(projectionName)
                            @xml.tag!('obqmerc') do
-                              classTags.write_scaleFactorCL(hProjection)
+                              classTags.write_scaleFactorCL(hProjection, outContext)
                               if hProjection[:obliqueLinePoints].empty?
                                  classTags.write_obliqueLineAzimuth(hProjection, outContext)
                               else
-                                 @xml.tag!('obqlpt') do
-                                    hProjection[:obliqueLinePoints].each do |hLinePt|
-                                       classTags.write_obliqueLinePoint(hLinePt, outContext)
-                                    end
-                                 end
+                                 classTags.write_obliqueLinePoint(hProjection, outContext)
                               end
                               classTags.write_latPO(hProjection, outContext)
                               classTags.write_falseNE(hProjection, outContext)
@@ -187,7 +183,7 @@ module ADIWG
                               classTags.write_straightFromPole(hProjection, outContext)
                               if hProjection[:standardParallel1] || hProjection[:standardParallel2]
                                  classTags.write_standParallel(hProjection, outContext)
-                              elsif hProjection[:scaleFactorAtProjectionOrigin]
+                              else hProjection[:scaleFactorAtProjectionOrigin]
                                  classTags.write_scaleFactorPO(hProjection, outContext)
                               end
                               classTags.write_falseNE(hProjection, outContext)

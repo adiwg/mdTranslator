@@ -31,8 +31,11 @@ module ADIWG
                   hProjectionId = hProjection[:projectionIdentifier]
                   hLocal = hProjection[:local]
 
+                  outContext = 'local system'
+                  outContext = inContext + ' '  + outContext unless inContext.nil?
+
                   if hLocal.empty?
-                     @NameSpace.issueError(470, inContext)
+                     @NameSpace.issueError(250, outContext)
                      return
                   end
 
@@ -48,7 +51,7 @@ module ADIWG
                      @xml.tag!('localdes', hLocal[:description])
                   end
                   if hLocal[:description].nil?
-                     @NameSpace.issueError(250, inContext)
+                     @NameSpace.issueError(251, outContext)
                   end
 
                   # local system 4.1.3.2 (localgeo) - local coordinate system georeference information (required)
@@ -56,7 +59,7 @@ module ADIWG
                      @xml.tag!('localgeo', hLocal[:georeference])
                   end
                   if hLocal[:georeference].nil?
-                     @NameSpace.issueError(251, inContext)
+                     @NameSpace.issueError(252, outContext)
                   end
 
                end # writeXML

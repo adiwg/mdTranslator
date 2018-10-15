@@ -7,7 +7,7 @@
 
 require_relative 'class_planarMap'
 require_relative 'class_planarGrid'
-require_relative 'class_planarLocal'
+require_relative 'class_localPlanar'
 require_relative 'class_planarInfo'
 
 module ADIWG

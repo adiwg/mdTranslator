@@ -38,108 +38,92 @@ module ADIWG
                   case gridSystem
                      when 'utm'
                         @xml.tag!('gridsys') do
-                           if gridName.nil?
-                              classTags.write_gridName('Universal Transverse Mercator')
-                           else
-                              classTags.write_gridName(gridName)
-                           end
+                           gridName = 'Universal Transverse Mercator' if gridName.nil?
+                           classTags.write_gridName(gridName)
                            @xml.tag!('utm') do
-                              classTags.write_utmZone(hProjection)
+                              classTags.write_utmZone(hProjection, outContext)
                               @xml.tag!('transmer') do
-                                 classTags.write_scaleFactorCM(hProjection)
-                                 classTags.write_longCM(hProjection)
-                                 classTags.write_latPO(hProjection)
-                                 classTags.write_falseNE(hProjection)
+                                 classTags.write_scaleFactorCM(hProjection, outContext)
+                                 classTags.write_longCM(hProjection, outContext)
+                                 classTags.write_latPO(hProjection, outContext)
+                                 classTags.write_falseNE(hProjection, outContext)
                               end
                            end
                         end
                      when 'ups'
                         @xml.tag!('gridsys') do
-                           if gridName.nil?
-                              classTags.write_gridName('Universal Polar Stereographic')
-                           else
-                              classTags.write_gridName(gridName)
-                           end
+                           gridName = 'Universal Polar Stereographic' if gridName.nil?
+                           classTags.write_gridName(gridName)
                            @xml.tag!('ups') do
-                              classTags.write_upsZone(hProjection)
+                              classTags.write_upsZone(hProjection, outContext)
                               @xml.tag!('polarst') do
-                                 classTags.write_straightFromPole(hProjection)
+                                 classTags.write_straightFromPole(hProjection, outContext)
                                  if hProjection[:standardParallel1] || hProjection[:standardParallel2]
-                                    classTags.write_standParallel(hProjection)
+                                    classTags.write_standParallel(hProjection, outContext)
                                  elsif hProjection[:scaleFactorAtProjectionOrigin]
-                                    classTags.write_scaleFactorPO(hProjection)
+                                    classTags.write_scaleFactorPO(hProjection, outContext)
                                  end
-                                 classTags.write_falseNE(hProjection)
+                                 classTags.write_falseNE(hProjection, outContext)
                               end
                            end
                         end
                      when 'spcs'
                         @xml.tag!('gridsys') do
-                           if gridName.nil?
-                              classTags.write_gridName('State Plane Coordinate System')
-                           else
-                              classTags.write_gridName(gridName)
-                           end
+                           gridName = 'State Plane Coordinate System' if gridName.nil?
+                           classTags.write_gridName(gridName)
                            @xml.tag!('spcs') do
-                              classTags.write_spcsZone(hProjection)
+                              classTags.write_spcsZone(hProjection, outContext)
                               if hProjection[:standardParallel1] || hProjection[:standardParallel2]
                                  @xml.tag!('lambertc') do
-                                    classTags.write_standParallel(hProjection)
-                                    classTags.write_longCM(hProjection)
-                                    classTags.write_latPO(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_standParallel(hProjection, outContext)
+                                    classTags.write_longCM(hProjection, outContext)
+                                    classTags.write_latPO(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               elsif hProjection[:scaleFactorAtCenterLine]
                                  @xml.tag!('obqmerc') do
-                                    classTags.write_scaleFactorCL(hProjection)
+                                    classTags.write_scaleFactorCL(hProjection, outContext)
                                     if hProjection[:obliqueLinePoints].empty?
-                                       classTags.write_obliqueLineAzimuth(hProjection)
+                                       classTags.write_obliqueLineAzimuth(hProjection, outContext)
                                     else
-                                       @xml.tag!('obqlpt') do
-                                          hProjection[:obliqueLinePoints].each do |hLinePt|
-                                             classTags.write_obliqueLinePoint(hLinePt)
-                                          end
-                                       end
+                                       classTags.write_obliqueLinePoint(hProjection, outContext)
                                     end
-                                    classTags.write_latPO(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_latPO(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               elsif hProjection[:scaleFactorAtCentralMeridian]
                                  @xml.tag!('transmer') do
-                                    classTags.write_scaleFactorCM(hProjection)
-                                    classTags.write_longCM(hProjection)
-                                    classTags.write_latPO(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_scaleFactorCM(hProjection, outContext)
+                                    classTags.write_longCM(hProjection, outContext)
+                                    classTags.write_latPO(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               else
                                  @xml.tag!('polycon') do
-                                    classTags.write_longCM(hProjection)
-                                    classTags.write_latPO(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_longCM(hProjection, outContext)
+                                    classTags.write_latPO(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               end
                            end
                         end
                      when 'arcsys'
                         @xml.tag!('gridsys') do
-                           if gridName.nil?
-                              classTags.write_gridName('Equal Arc-second Coordinate System')
-                           else
-                              classTags.write_gridName(gridName)
-                           end
+                           gridName = 'Equal Arc-second Coordinate System' if gridName.nil?
+                           classTags.write_gridName(gridName)
                            @xml.tag!('arcsys') do
-                              classTags.write_arcZone(hProjection)
+                              classTags.write_arcZone(hProjection, outContext)
                               if hProjection[:standardParallel1] || hProjection[:standardParallel2]
                                  @xml.tag!('equirect') do
-                                    classTags.write_standParallel(hProjection)
-                                    classTags.write_longCM(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_standParallel(hProjection, outContext)
+                                    classTags.write_longCM(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               elsif hProjection[:latitudeOfProjectionOrigin]
                                  @xml.tag!('azimequi') do
-                                    classTags.write_longCM(hProjection)
-                                    classTags.write_latPO(hProjection)
-                                    classTags.write_falseNE(hProjection)
+                                    classTags.write_longCM(hProjection, outContext)
+                                    classTags.write_latPO(hProjection, outContext)
+                                    classTags.write_falseNE(hProjection, outContext)
                                  end
                               end
                            end

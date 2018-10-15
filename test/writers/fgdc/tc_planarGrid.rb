@@ -19,7 +19,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
    xFile = TestWriterFGDCParent.get_xml('mapGridSystem')
    @@axExpect = xFile.xpath(@@path)
 
-   def run_test(hProjection, path, expect)
+   def get_response(hProjection)
 
       mdHash = TDClass.base
       hSpaceRef = TDClass.spatialReferenceSystem
@@ -33,13 +33,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
          file: mdHash.to_json, reader: 'mdJson', writer: 'fgdc', showAllTags: true, validate: 'none'
       )
 
-      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      xGot = xMetadata.xpath(path)
-      got = xGot.to_s.squeeze(' ')
-
-      assert_equal expect, got
-      assert hResponseObj[:writerPass]
-      assert_empty hResponseObj[:writerMessages]
+      return hResponseObj
 
    end
 
@@ -55,7 +49,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal transverse mercator zone is missing: CONTEXT is spatial reference horizontal planar grid system utm'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal transverse mercator zone is missing: CONTEXT is spatial reference horizontal planar grid system utm'
 
    end
 
@@ -70,7 +90,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_standardParallel(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal polar stereographic zone is missing: CONTEXT is spatial reference horizontal planar grid system ups'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal polar stereographic zone is missing: CONTEXT is spatial reference horizontal planar grid system ups'
 
    end
 
@@ -85,7 +131,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_scaleFactorPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal polar stereographic zone is missing: CONTEXT is spatial reference horizontal planar grid system ups'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid universal polar stereographic zone is missing: CONTEXT is spatial reference horizontal planar grid system ups'
 
    end
 
@@ -101,7 +173,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
 
    end
 
@@ -117,7 +215,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
 
    end
 
@@ -133,7 +257,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
 
    end
 
@@ -150,7 +300,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
 
    end
 
@@ -165,7 +341,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid state plane coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system spcs'
 
    end
 
@@ -181,7 +383,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid equal arc-second coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system arcsys'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid equal arc-second coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system arcsys'
 
    end
 
@@ -196,7 +424,33 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       TDClass.add_latPO(hProjection)
       TDClass.add_falseNE(hProjection)
 
-      run_test(hProjection, @@path, expect)
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty Zone
+      hProjection[:gridZone] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid equal arc-second coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system arcsys'
+
+      # test missing Zone
+      hProjection.delete(:gridZone)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid equal arc-second coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system arcsys'
 
    end
 

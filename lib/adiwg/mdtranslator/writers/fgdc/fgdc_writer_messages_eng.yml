@@ -110,8 +110,9 @@ messageList:
    - {id: 240, message: "lineage process step description is missing"}
    - {id: 241, message: "lineage process step process date is missing"}
 
-   - {id: 250, message: "local coordinate system description is missing"}
-   - {id: 251, message: "local coordinate system georeference information is missing"}
+   - {id: 250, message: "local coordinate system object is empty"}
+   - {id: 251, message: "local coordinate system description is missing"}
+   - {id: 252, message: "local coordinate system georeference information is missing"}
 
    - {id: 260, message: "planar coordinate information encoding method is missing"}
    - {id: 261, message: "coordinate representation abscissa resolution is missing"}
@@ -147,6 +148,7 @@ messageList:
    - {id: 299, message: "map projection landsat number is missing"}
    - {id: 300, message: "map projection landsat path is missing"}
    - {id: 301, message: "map projection other projection description is missing"}
+   - {id: 302, message: "map projection oblique line point must have two points"}
 
    - {id: 310, message: "map grid universal transverse mercator zone is missing"}
    - {id: 311, message: "map grid universal polar stereographic zone is missing"}

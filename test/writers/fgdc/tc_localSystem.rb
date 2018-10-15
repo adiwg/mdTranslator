@@ -9,7 +9,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcLocalPlanar < TestWriterFGDCParent
+class TestWriterFgdcLocalSystem < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -52,10 +52,8 @@ class TestWriterFgdcLocalPlanar < TestWriterFGDCParent
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is spatial reference'
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is spatial reference'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is spatial reference local system'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is spatial reference local system'
 
       # missing elements
       hLocal.delete(:description)
@@ -67,10 +65,8 @@ class TestWriterFgdcLocalPlanar < TestWriterFGDCParent
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is spatial reference'
-      assert_includes hResponseObj[:writerMessages],
-                      'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is spatial reference'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: local coordinate system description is missing: CONTEXT is spatial reference local system'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: local coordinate system georeference information is missing: CONTEXT is spatial reference local system'
 
    end
 

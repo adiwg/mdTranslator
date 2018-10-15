@@ -21,13 +21,21 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-                def outContext(inContext, hIdentifier = {})
-                   outContext = hIdentifier.empty? ? nil : hIdentifier[:projectionIdentifier][:identifier]
-                   return nil if inContext.nil? && outContext.nil?
-                   return inContext if outContext.nil?
-                   return outContext if inContext.nil?
-                   return inContext + ' ' + outContext
-                end
+               def outContext(inContext, hIdentifier = {})
+                  outContext = hIdentifier.empty? ? nil : hIdentifier[:projectionIdentifier][:identifier]
+                  return nil if inContext.nil? && outContext.nil?
+                  return inContext if outContext.nil?
+                  return outContext if inContext.nil?
+                  return inContext + ' ' + outContext
+               end
+
+               def outContextGrid(inContext, hIdentifier = {})
+                  outContext = hIdentifier.empty? ? nil : hIdentifier[:gridSystemIdentifier][:identifier]
+                  return nil if inContext.nil? && outContext.nil?
+                  return inContext if outContext.nil?
+                  return outContext if inContext.nil?
+                  return inContext + ' ' + outContext
+               end
 
                # map projection 4.1.2.1.1 (mapprojn) - projection name (required)
                def write_name(projectionName, inContext = nil)
@@ -174,9 +182,9 @@ module ADIWG
 
                # map projection (obqlazim) - oblique line azimuth (required)
                def write_obliqueLineAzimuth(hProjection, inContext = nil)
-                  haveLA = true
-                  haveLA = false if hProjection[:azimuthAngle].nil?
-                  haveLA = false if hProjection[:azimuthMeasurePointLongitude].nil?
+                  haveLA = false
+                  haveLA = true unless hProjection[:azimuthAngle].nil?
+                  haveLA = true unless hProjection[:azimuthMeasurePointLongitude].nil?
                   if haveLA
                      @xml.tag!('obqlazim') do
                         unless hProjection[:azimuthAngle].nil?
@@ -199,18 +207,26 @@ module ADIWG
                end
 
                # map projection (obqlpt) - oblique line point (required)
-               def write_obliqueLinePoint(hLinePt, inContext = nil)
-                  unless hLinePt[:obliqueLineLatitude].nil?
-                     @xml.tag!('obqllat', hLinePt[:obliqueLineLatitude])
+               def write_obliqueLinePoint(hProjection, inContext = nil)
+                  aLinePoint = hProjection[:obliqueLinePoints]
+                  @xml.tag!('obqlpt') do
+                     aLinePoint.each do |hLinePt|
+                        unless hLinePt[:obliqueLineLatitude].nil?
+                           @xml.tag!('obqllat', hLinePt[:obliqueLineLatitude])
+                        end
+                        if hLinePt[:obliqueLineLatitude].nil?
+                           @NameSpace.issueError(296, outContext(inContext, hProjection))
+                        end
+                        unless hLinePt[:obliqueLineLongitude].nil?
+                           @xml.tag!('obqllong', hLinePt[:obliqueLineLongitude])
+                        end
+                        if hLinePt[:obliqueLineLongitude].nil?
+                           @NameSpace.issueError(297, outContext(inContext, hProjection))
+                        end
+                     end
                   end
-                  if hLinePt[:obliqueLineLatitude].nil?
-                     @NameSpace.issueError(296, outContext(inContext, hProjection))
-                  end
-                  unless hLinePt[:obliqueLineLongitude].nil?
-                     @xml.tag!('obqllong', hLinePt[:obliqueLineLongitude])
-                  end
-                  if hLinePt[:obliqueLineLongitude].nil?
-                     @NameSpace.issueError(297, outContext(inContext, hProjection))
+                  unless aLinePoint.length == 2
+                     @NameSpace.issueError(302, outContext(inContext, hProjection))
                   end
                end
 
@@ -256,9 +272,6 @@ module ADIWG
 
                # map projection (mapprojp) - other projection description (required)
                def write_allParams(hProjection, inContext)
-                  # save current writer error state
-                  writerPass = @hResponseObj[:writerPass]
-                  writerMessages = @hResponseObj[:writerMessages]
 
                   # write all parameters
                   unless hProjection[:falseNorthing].nil?
@@ -298,11 +311,7 @@ module ADIWG
                      write_obliqueLineAzimuth(hProjection, inContext)
                   end
                   unless hProjection[:obliqueLinePoints].empty?
-                     @xml.tag!('obqlpt') do
-                        hProjection[:obliqueLinePoints].each do |hLinePt|
-                           write_obliqueLinePoint(hLinePt, inContext)
-                        end
-                     end
+                     write_obliqueLinePoint(hProjection, inContext)
                   end
                   unless hProjection[:straightVerticalLongitudeFromPole].nil?
                      write_straightFromPole(hProjection, inContext)
@@ -313,71 +322,68 @@ module ADIWG
                   unless hProjection[:landsatPath].nil?
                      write_landsatPath(hProjection, inContext)
                   end
-                  write_otherProjection(hProjection, inContext)
-
-                  # restore writer error state
-                  @hResponseObj[:writerPass] = writerPass
-                  @hResponseObj[:writerMessages] = writerMessages
 
                end
 
                # grid coordinate system (utmzone) - universal transverse mercator zone (required)
-               def write_utmZone(hProjection)
+               def write_utmZone(hProjection, inContext)
                   unless hProjection[:gridZone].nil?
                      @xml.tag!('utmzone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @NameSpace.issueError(310, 'grid system')
+                     @NameSpace.issueError(310, outContextGrid(inContext, hProjection))
                   end
                end
 
                # grid coordinate system (upszone) - universal polar stereographic zone (required)
-               def write_upsZone(hProjection)
+               def write_upsZone(hProjection, inContext)
                   unless hProjection[:gridZone].nil?
                      @xml.tag!('upszone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @NameSpace.issueError(311, 'grid system')
+                     @NameSpace.issueError(311, outContextGrid(inContext, hProjection))
                   end
                end
 
                # grid coordinate system (spcszone) - state plane coordinate system zone (required)
-               def write_spcsZone(hProjection)
+               def write_spcsZone(hProjection, inContext)
                   unless hProjection[:gridZone].nil?
                      @xml.tag!('spcszone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @NameSpace.issueError(312, 'grid system')
+                     @NameSpace.issueError(312, outContextGrid(inContext, hProjection))
                   end
                end
 
                # grid coordinate system (arczone) - equal arc-second coordinate system zone (required)
-               def write_arcZone(hProjection)
+               def write_arcZone(hProjection, inContext)
                   unless hProjection[:gridZone].nil?
                      @xml.tag!('arczone', hProjection[:gridZone])
                   end
                   if hProjection[:gridZone].nil?
-                     @NameSpace.issueError(313, 'grid system')
+                     @NameSpace.issueError(313, outContextGrid(inContext, hProjection))
                   end
                end
 
                # grid coordinate system (localpd) - local planar description (required)
-               def write_localDesc(hLocal, inContext)
+               def write_localDesc(hProjection, inContext)
+                  hLocal = hProjection[:local]
                   unless hLocal.empty?
                      @xml.tag!('localpd', hLocal[:description])
                   end
                   if hLocal[:description].nil?
-                     @NameSpace.issueError(471, outContext(inContext, hProjection))
+                     @NameSpace.issueError(471, outContext(inContext))
                   end
                end
 
                # grid coordinate system (localpgi) - local planar georeference information (required)
-               def write_localGeoInfo(hLocal, inContext)
+               def write_localGeoInfo(hProjection, inContext)
+                  hLocal = hProjection[:local]
                   unless hLocal.empty?
                      @xml.tag!('localpgi', hLocal[:georeference])
                   end
                   if hLocal[:georeference].nil?
-                     @NameSpace.issueError(472, outContext(inContext, hProjection))
+                     @NameSpace.issueError(472, outContext(inContext))
                   end
                end
 

@@ -31,11 +31,14 @@ module ADIWG
                   # classes used
                   classTags = MapProjectionTags.new(@xml, @hResponseObj)
 
+                  outContext = 'local planar'
+                  outContext = inContext + ' '  + outContext unless inContext.nil?
+
                   hProjectionId = hProjection[:projectionIdentifier]
                   hLocal = hProjection[:local]
 
                   if hLocal.empty?
-                     @NameSpace.issueError(470, inContext)
+                     @NameSpace.issueError(470, outContext)
                      return
                   end
 
@@ -46,8 +49,8 @@ module ADIWG
                         hProjectionId[:name] = 'Local Planar Coordinate System Fixed to Earth'
                      end
                      @xml.tag!('localp') do
-                        classTags.write_localDesc(hLocal, inContext)
-                        classTags.write_localGeoInfo(hLocal, inContext)
+                        classTags.write_localDesc(hProjection, outContext)
+                        classTags.write_localGeoInfo(hProjection, outContext)
                      end
                   end
 

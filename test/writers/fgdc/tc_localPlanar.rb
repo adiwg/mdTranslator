@@ -9,7 +9,7 @@ require_relative 'fgdc_test_parent'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 
-class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
+class TestWriterFgdcLocalPlanar < TestWriterFGDCParent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -52,10 +52,8 @@ class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar projection parameter'
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar projection parameter'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar local planar'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar local planar'
 
       # missing elements
       hLocal.delete(:description)
@@ -67,10 +65,8 @@ class TestWriterFgdcMapLocalPlanar < TestWriterFGDCParent
 
       refute hResponseObj[:writerPass]
       assert_equal 2, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar projection parameter'
-      assert_includes hResponseObj[:writerMessages],
-         'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar projection parameter'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection local planar description is missing: CONTEXT is spatial reference horizontal planar local planar'
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection local planar georeference information is missing: CONTEXT is spatial reference horizontal planar local planar'
 
    end
 
