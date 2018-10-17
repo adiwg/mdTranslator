@@ -1040,98 +1040,22 @@
                   "identifier": "spatial reference system identifier",
                   "namespace": "namespace",
                   "version": "version",
-                  "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                  "authority": {
-                     "title": "title",
-                     "alternateTitle": [
-                        "alternateTitle0",
-                        "alternateTitle1"
-                     ],
-                     "date": [
-                        {
-                           "date": "2016-10-13",
-                           "dateType": "dateType0"
-                        },
-                        {
-                           "date": "2016-10-22T16:15:14",
-                           "dateType": "dateType1"
-                        }
-                     ],
-                     "edition": "edition",
-                     "responsibleParty": [
-                        {
-                           "role": "principalInvestigator",
-                           "party": [
-                              {
-                                 "contactId": "CID001"
-                              },
-                              {
-                                 "contactId": "CID004"
-                              }
-                           ]
-                        },
-                        {
-                           "role": "funder",
-                           "party": [
-                              {
-                                 "contactId": "CID003",
-                                 "organizationMembers": [
-                                    "CID004",
-                                    "CID001"
-                                 ]
-                              }
-                           ]
-                        }
-                     ],
-                     "presentationForm": [
-                        "presentationForm0",
-                        "presentationForm1"
-                     ],
-                     "identifier": [
-                        {
-                           "identifier": "identifier0"
-                        },
-                        {
-                           "identifier": "identifier1"
-                        }
-                     ],
-                     "series": {
-                        "seriesName": "seriesName",
-                        "seriesIssue": "seriesIssue",
-                        "issuePage": "issuePage"
-                     },
-                     "otherCitationDetails": [
-                        "otherCitationDetails0",
-                        "otherCitationDetails1"
-                     ],
-                     "onlineResource": [
-                        {
-                           "uri": "http://ISO.uri/adiwg/0"
-                        },
-                        {
-                           "uri": "http://ISO.uri/adiwg/1"
-                        }
-                     ],
-                     "graphic": [
-                        {
-                           "fileName": "fileName"
-                        },
-                        {
-                           "fileName": "fileName"
-                        }
-                     ]
-                  }
+                  "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                },
+               "referenceSystemWKT": "POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10),(20 30, 35 35, 30 20, 20 30))",
                "referenceSystemParameterSet": {
                   "projection": {
                      "projectionIdentifier": {
-                        "identifier": "identifier"
+                        "identifier": "transverseMercator",
+                        "name": "Transverse Mercator",
+                        "description": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
                      },
-                     "gridSystem": "spcs",
-                     "gridSystemName": "Alaska State Plane Coordinate System",
-                     "gridZone": "zone 8",
-                     "projection": "transverseMercator",
-                     "projectionName": "Transverse Mercator",
+                     "gridSystemIdentifier": {
+                        "identifier": "spcs",
+                        "name": "Alaska State Plane Coordinate System",
+                        "description": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                     },
+                     "gridZone": "9",
                      "standardParallel1": 9.0,
                      "standardParallel2": 99.0,
                      "longitudeOfCentralMeridian": -9.0,
@@ -1161,10 +1085,11 @@
                      ],
                      "landsatNumber": 9,
                      "landsatPath": 9999,
-                     "localPlanarDescription": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "localPlanarGeoreference": "Ut local planar georeference enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "otherProjectionDescription": "Ut other projection enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
-                     "otherGridDescription": "Ut other grid enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident"
+                     "local": {
+                        "fixedToEarth": true,
+                        "description": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident",
+                        "georeference": "Ut local planar georeference enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident"
+                     }
                   },
                   "geodetic": {
                      "datumIdentifier": {
@@ -1192,26 +1117,86 @@
                }
             },
             {
-               "referenceSystemType": "referenceSystemType1"
+               "referenceSystemType": "geodeticGeocentric"
             },
             {
                "referenceSystemIdentifier": {
-                  "identifier": "identifier2"
+                  "identifier": "NGS84",
+                  "namespace": "epsg",
+                  "description": "WGS84 (World Geodetic System of 1984) uses WGS84 ellipsoid where as NAD83 (North American 1983 Datum) uses the Geodetic Reference System (GRS80) ellipsoid. 2. WGS84 has 0.21mm longer ellipsoid than NAD83.."
+               }
+            },
+            {
+               "referenceSystemWKT": "POLYGON ((35 10, 45 45, 15 40, 10 20, 35 10),(20 30, 35 35, 30 20, 20 30))"
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionIdentifier": {
+                        "identifier": "transverseMercator",
+                        "name": "Transverse Mercator"
+                     },
+                     "scaleFactorAtCentralMeridian": 9.9,
+                     "longitudeOfCentralMeridian": -9.0,
+                     "latitudeOfProjectionOrigin": 9.0,
+                     "falseEasting": 99999.0,
+                     "falseNorthing": 999999.0
+                  }
                }
             },
             {
                "referenceSystemParameterSet": {
                   "projection": {
                      "projectionIdentifier": {
-                        "identifier": "projection identifier"
+                        "identifier": "obliqueMercator",
+                        "name": "Oblique Mercator"
                      },
-                     "projection": "transverseMercator",
-                     "longitudeOfCentralMeridian": -9.0,
+                     "gridSystemIdentifier": {
+                        "identifier": "spcs",
+                        "name": "Alaska State Plane Coordinate System"
+                     },
+                     "gridZone": "1",
+                     "scaleFactorAtCentralLine": 9.9,
+                     "obliqueLinePoint": [
+                        {
+                           "obliqueLineLatitude": 9.99999,
+                           "obliqueLineLongitude": -9.99999
+                        },
+                        {
+                           "obliqueLineLatitude": 19.99999,
+                           "obliqueLineLongitude": -19.99999
+                        }
+                     ],
                      "latitudeOfProjectionOrigin": 9.0,
                      "falseEasting": 99999.0,
-                     "falseNorthing": 999999.0,
-                     "falseEastingNorthingUnits": "feet",
-                     "scaleFactorAtCentralMeridian": 9.9
+                     "falseNorthing": 999999.0
+                  }
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionIdentifier": {
+                        "identifier": "other",
+                        "name": "custom coordinate projection system",
+                        "description": "My projection is... Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                     }
+                  }
+               }
+            },
+            {
+               "referenceSystemParameterSet": {
+                  "projection": {
+                     "projectionIdentifier": {
+                        "identifier": "other",
+                        "name": "custom coordinate projection system",
+                        "description": "My projection is... Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                     },
+                     "gridSystemIdentifier": {
+                        "identifier": "other",
+                        "name": "custom grid system",
+                        "description": "My grid is... Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+                     }
                   }
                }
             }

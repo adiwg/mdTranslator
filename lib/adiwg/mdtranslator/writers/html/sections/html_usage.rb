@@ -30,9 +30,9 @@ module ADIWG
 
                   # resource usage - use
                   @html.em('Usage: ')
-                  @html.br
-                  @html.text!(hUsage[:specificUsage])
-                  @html.br
+                  @html.section(:class => 'block') do
+                     @html.text!(hUsage[:specificUsage])
+                  end
 
                   # resource usage - temporal extent
                   unless hUsage[:temporalExtents].empty?

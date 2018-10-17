@@ -2,6 +2,7 @@
 # identifier
 
 # History:
+#  Stan Smith 2018-10-17 added 'name' to support projection identifiers
 #  Stan Smith 2017-03-23 refactor for mdTranslator 2.0
 #  Stan Smith 2015-08-21 expanded to handle RS_Identifier
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
@@ -43,6 +44,13 @@ module ADIWG
                   unless hIdentifier[:version].nil?
                      @html.em(' Version:')
                      @html.text!(hIdentifier[:version])
+                     @html.br
+                  end
+
+                  # identifier - name (only in spatial reference system projection)
+                  unless hIdentifier[:name].nil?
+                     @html.em(' Name:')
+                     @html.text!(hIdentifier[:name])
                      @html.br
                   end
 

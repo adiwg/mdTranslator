@@ -2,6 +2,7 @@
 # resource information
 
 # History:
+#  Stan Smith 2018-10-17 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-04-06 changed taxonomy to an array
 #  Stan Smith 2017-05-19 removed iso topicCategory (now presented as keywords)
 #  Stan Smith 2017-03-25 refactored for mdTranslator 2.0
@@ -91,17 +92,20 @@ module ADIWG
                            # short abstract
                            unless hResource[:shortAbstract].nil?
                               @html.em('Short Abstract:')
-                              @html.br
-                              @html.text!(hResource[:shortAbstract])
-                              @html.br
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:shortAbstract])
+                              end
                               @html.br
                            end
 
                            # full abstract
                            unless hResource[:abstract].nil?
                               @html.em('Full Abstract:')
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:abstract])
+                              end
                               @html.br
-                              @html.text!(hResource[:abstract])
+
                            end
 
                         end
@@ -117,8 +121,9 @@ module ADIWG
                            # purpose
                            unless hResource[:purpose].nil?
                               @html.em('Purpose:')
-                              @html.br
-                              @html.text!(hResource[:purpose])
+                              @html.section(:class => 'block') do
+                                 @html.text!(hResource[:purpose])
+                              end
                               @html.br
                            end
 

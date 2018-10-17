@@ -2,6 +2,7 @@
 # spatial reference system
 
 # History:
+#  Stan Smith 2018-10-17 refactor for mdJson schema 2.6.0
 #  Stan Smith 2017-10-24 add reference system parameter set
 #  Stan Smith 2017-03-27 original script
 
@@ -30,6 +31,14 @@ module ADIWG
                      @html.em('Reference System Type: ')
                      @html.text!(hSpaceRef[:systemType])
                      @html.br
+                  end
+
+                  # spatial reference - WKT
+                  unless hSpaceRef[:systemWKT].nil?
+                     @html.em('System Well Know Text (WKT)')
+                     @html.section(:class => 'block') do
+                        @html.text!(hSpaceRef[:systemWKT])
+                     end
                   end
 
                   # spatial reference - identifier {identifier}
