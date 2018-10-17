@@ -67,7 +67,6 @@ module ADIWG
                   # -> ReferenceSystemParameters.projection.gridSystemIdentifier.description
                   otherG = xMapGrid.xpath('./othergrd').text
                   unless otherG.empty?
-                     hProjection[:projectionIdentifier] = {}
                      return MapGridOther.unpack(otherG, hProjection)
                   end
 

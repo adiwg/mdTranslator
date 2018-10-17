@@ -19,11 +19,16 @@ module ADIWG
                   # grid system 4.1.2.2.6 (othergrd) - other coordinate system {text}
                   # -> ReferenceSystemParameters.projection.gridSystemIdentifier.description
 
+                  hProjectionId = hProjection[:projectionIdentifier]
                   hGridSystemId = hProjection[:gridSystemIdentifier]
 
                   hGridSystemId[:identifier] = 'other'
-                  hGridSystemId[:name] = 'other grid coordinate system' if hGridSystemId[:name].nil?
+                  hGridSystemId[:name] = 'Other Grid Coordinate System' if hGridSystemId[:name].nil?
                   hGridSystemId[:description] = other
+
+                  hProjectionId[:identifier] = 'other'
+                  hProjectionId[:name] = 'Other Projection'
+                  hProjectionId[:description] = 'for description see grid system description'
 
                   return hProjection
 

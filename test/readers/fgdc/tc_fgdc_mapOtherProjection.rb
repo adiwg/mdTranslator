@@ -2,26 +2,25 @@
 # readers / fgdc / module_horizontalPlanar / other grid
 
 # History:
-#  Stan Smith 2018-10-04 original script
-#  Stan Smith 2017-10-18 original script
+#  Stan Smith 2018-10-15 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
 
-class TestReaderFgdcOtherGrid < TestReaderFGDCParent
+class TestReaderFgdcOtherProjection < TestReaderFGDCParent
 
    @@xDoc = TestReaderFGDCParent.get_XML('spatialReferencePlanar.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::PlanarReference
 
-   def test_planar_otherGrid
+   def test_planar_otherProjection
 
       intMetadataClass = InternalMetadata.new
       hResourceInfo = intMetadataClass.newResourceInfo
 
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
-      xIn = @@xDoc.xpath('./metadata/spref/horizsys/planar[36]')
+      xIn = @@xDoc.xpath('./metadata/spref/horizsys/planar[38]')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
@@ -41,37 +40,32 @@ class TestReaderFgdcOtherGrid < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
-      assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
+      assert_empty hProjection[:gridSystemIdentifier]
+      assert_equal 'feet', hProjection[:falseEastingNorthingUnits]
 
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'other', hProjectionId[:identifier]
-      assert_equal 'Other Projection', hProjectionId[:name]
-      assert_equal 'for description see grid system description', hProjectionId[:description]
-
-      hGridSystemId = hProjection[:gridSystemIdentifier]
-      assert_equal 'other', hGridSystemId[:identifier]
-      assert_equal 'Other Grid Coordinate System', hGridSystemId[:name]
-      assert_equal 'other grid description', hGridSystemId[:description]
+      assert_equal 'Other Projection Description', hProjectionId[:name]
+      assert_equal 'other projection description', hProjectionId[:description]
 
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
-      # missing grid system name
-      xIn.search('gridsysn').remove
+      # missing projection name
+      xIn.search('mapprojn').remove
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
-      assert_equal 'Other Grid Coordinate System', hGridSystemId[:name]
+      hProjectionId = hProjection[:projectionIdentifier]
+      assert_equal 'Other Projection Parameter Description', hProjectionId[:name]
 
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-                      'WARNING: FGDC reader: grid system name is missing'
+                      'WARNING: FGDC reader: map projection name is missing'
 
    end
 

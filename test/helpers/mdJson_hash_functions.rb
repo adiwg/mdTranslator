@@ -974,8 +974,21 @@ class MdJsonHashWriter
       return hDistributor
    end
 
-   def add_otherProjection(hProjection)
-      hParamSet = hProjection[:referenceSystemParameterSet][:projection]
+   def add_otherGrid(hProjection, description = nil)
+      if description.nil?
+         hProjection[:gridSystemIdentifier][:description] = 'Other Grid Coordinate System Description'
+      else
+         hProjection[:gridSystemIdentifier][:description] = description
+      end
+      return hProjection
+   end
+
+   def add_otherProjection(hProjection, description = nil)
+      if description.nil?
+         hProjection[:projectionIdentifier][:description] = 'Other Projection Description'
+      else
+         hProjection[:projectionIdentifier][:description] = description
+      end
       return hProjection
    end
 

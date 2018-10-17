@@ -154,6 +154,7 @@ messageList:
    - {id: 311, message: "map grid universal polar stereographic zone is missing"}
    - {id: 312, message: "map grid state plane coordinate system zone is missing"}
    - {id: 313, message: "map grid equal arc-second coordinate system zone is missing"}
+   - {id: 314, message: "map grid description is missing"}
 
    - {id: 320, message: "metadata creation date is missing"}
    - {id: 321, message: "metadata contact is missing"}

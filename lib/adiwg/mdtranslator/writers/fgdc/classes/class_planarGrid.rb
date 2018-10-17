@@ -128,6 +128,12 @@ module ADIWG
                               end
                            end
                         end
+                     when 'other'
+                        @xml.tag!('gridsys') do
+                           gridName = 'Other Grid Coordinate System' if gridName.nil?
+                           classTags.write_gridName(gridName)
+                           classTags.write_otherGrid(hProjection, outContext)
+                        end
                   end
 
                end # writeXML

@@ -37,7 +37,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - utm
+   # grid system - utm
    def test_mapGrid_utm
 
       expect = @@axExpect[0].to_s.squeeze(' ')
@@ -79,7 +79,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - ups (standard parallel)
+   # grid system - ups (standard parallel)
    def test_mapGrid_upsSP
 
       expect = @@axExpect[1].to_s.squeeze(' ')
@@ -120,7 +120,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - ups (scale factor)
+   # grid system - ups (scale factor)
    def test_mapGrid_upsSF
 
       expect = @@axExpect[2].to_s.squeeze(' ')
@@ -161,7 +161,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - state plane coordinate system (lambert conformal conic)
+   # grid system - state plane coordinate system (lambert conformal conic)
    def test_mapGrid_spcs_lambert
 
       expect = @@axExpect[3].to_s.squeeze(' ')
@@ -203,7 +203,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - state plane coordinate system (transverse mercator)
+   # grid system - state plane coordinate system (transverse mercator)
    def test_mapGrid_spcs_transMercator
 
       expect = @@axExpect[4].to_s.squeeze(' ')
@@ -245,7 +245,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - state plane coordinate system (oblique mercator - line azimuth)
+   # grid system - state plane coordinate system (oblique mercator - line azimuth)
    def test_mapGrid_spcs_obliqueMercatorLA
 
       expect = @@axExpect[5].to_s.squeeze(' ')
@@ -287,7 +287,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - state plane coordinate system (oblique mercator - line point)
+   # grid system - state plane coordinate system (oblique mercator - line point)
    def test_mapGrid_spcs_obliqueMercatorLP
 
       expect = @@axExpect[6].to_s.squeeze(' ')
@@ -330,7 +330,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - state plane coordinate system (polyconic)
+   # grid system - state plane coordinate system (polyconic)
    def test_mapGrid_spcs_polyconic
 
       expect = @@axExpect[7].to_s.squeeze(' ')
@@ -371,7 +371,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - equal arc-second coordinate system (equirectangular)
+   # grid system - equal arc-second coordinate system (equirectangular)
    def test_mapGrid_arcsys_equirectangular
 
       expect = @@axExpect[8].to_s.squeeze(' ')
@@ -413,7 +413,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
    end
 
-   # map projections - equal arc-second coordinate system (azimuthal equidistant)
+   # grid system - equal arc-second coordinate system (azimuthal equidistant)
    def test_mapGrid_arcsys_azimuthalEquidistant
 
       expect = @@axExpect[9].to_s.squeeze(' ')
@@ -451,6 +451,65 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
       refute hResponseObj[:writerPass]
       assert_equal 1, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid equal arc-second coordinate system zone is missing: CONTEXT is spatial reference horizontal planar grid system arcsys'
+
+   end
+
+   # grid system - other grid system
+   def test_mapGrid_other
+
+      expect = @@axExpect[10].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('other', 'Other Projection', 'see grid identifier description')
+      TDClass.add_grid(hProjection, 'other', nil, 'Other Grid Coordinate System', 'other grid description')
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty definitions
+      hProjection[:projectionIdentifier][:description] = ''
+      hProjection[:gridSystemIdentifier][:description] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid description is missing: CONTEXT is spatial reference horizontal planar grid system other'
+
+      # test missing definitions
+      hProjection[:projectionIdentifier].delete(:description)
+      hProjection[:gridSystemIdentifier].delete(:description)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map grid description is missing: CONTEXT is spatial reference horizontal planar grid system other'
+
+      # test empty projection
+      hProjection[:projectionIdentifier] = {}
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:readerExecutionPass]
+      assert_equal 1, hResponseObj[:readerExecutionMessages].length
+      assert_includes hResponseObj[:readerExecutionMessages], 'ERROR: mdJson reader: projection identifier is missing: CONTEXT is spatial reference system reference system parameter set'
+
+      # test missing projection
+      hProjection[:projectionIdentifier].delete(:description)
+      hProjection[:gridSystemIdentifier].delete(:description)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:readerExecutionPass]
+      assert_equal 1, hResponseObj[:readerExecutionMessages].length
+      assert_includes hResponseObj[:readerExecutionMessages], 'ERROR: mdJson reader: projection identifier is missing: CONTEXT is spatial reference system reference system parameter set'
 
    end
 

@@ -265,6 +265,12 @@ module ADIWG
                               classTags.write_allParams(hProjection, outContext)
                            end
                         end
+                     when 'other'
+                        @xml.tag!('mapproj') do
+                           projectionName = 'Other Projection Description'
+                           classTags.write_name(projectionName)
+                           classTags.write_otherProjection(hProjection, outContext)
+                        end
                   end
 
                end # writeXML

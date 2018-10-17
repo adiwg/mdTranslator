@@ -29,6 +29,7 @@ require_relative 'mapProjections/projection_stereographic'
 require_relative 'mapProjections/projection_transverseMercator'
 require_relative 'mapProjections/projection_vanDerGrinten'
 require_relative 'mapProjections/projection_parameters'
+require_relative 'mapProjections/projection_other'
 
 module ADIWG
    module Mdtranslator
@@ -187,7 +188,7 @@ module ADIWG
                   xSinu = xMapProjection.xpath('./sinusoid')
                   unless xSinu.empty?
                      hIdentifier[:identifier] = 'sinusoidal'
-                     hIdentifier[:name] = 'Sinusoidal'
+                     hIdentifier[:name] = 'Sinusoidal' if name.empty?
                      return SinusoidalProjection.unpack(xSinu, hProjection, hResponseObj)
                   end
 
@@ -195,7 +196,7 @@ module ADIWG
                   xSpaceO = xMapProjection.xpath('./spaceobq')
                   unless xSpaceO.empty?
                      hIdentifier[:identifier] = 'spaceOblique'
-                     hIdentifier[:name] = 'Space Oblique Mercator (Landsat)'
+                     hIdentifier[:name] = 'Space Oblique Mercator (Landsat)' if name.empty?
                      return SpaceObliqueProjection.unpack(xSpaceO, hProjection, hResponseObj)
                   end
 
@@ -203,7 +204,7 @@ module ADIWG
                   xStereo = xMapProjection.xpath('./stereo')
                   unless xStereo.empty?
                      hIdentifier[:identifier] = 'stereographic'
-                     hIdentifier[:name] = 'Stereographic'
+                     hIdentifier[:name] = 'Stereographic' if name.empty?
                      return StereographicProjection.unpack(xStereo, hProjection, hResponseObj)
                   end
 
@@ -211,7 +212,7 @@ module ADIWG
                   xTransMer = xMapProjection.xpath('./transmer')
                   unless xTransMer.empty?
                      hIdentifier[:identifier] = 'transverseMercator'
-                     hIdentifier[:name] = 'Transverse Mercator'
+                     hIdentifier[:name] = 'Transverse Mercator' if name.empty?
                      return TransverseMercatorProjection.unpack(xTransMer, hProjection, hResponseObj)
                   end
 
@@ -219,7 +220,7 @@ module ADIWG
                   xVanDerG = xMapProjection.xpath('./vdgrin')
                   unless xVanDerG.empty?
                      hIdentifier[:identifier] = 'grinten'
-                     hIdentifier[:name] = 'Van Der Grinten'
+                     hIdentifier[:name] = 'Van Der Grinten' if name.empty?
                      return VanDerGrintenProjection.unpack(xVanDerG, hProjection, hResponseObj)
                   end
 
@@ -227,8 +228,16 @@ module ADIWG
                   xParamSet = xMapProjection.xpath('./mapprojp')
                   unless xParamSet.empty?
                      hIdentifier[:identifier] = 'parameters'
-                     hIdentifier[:name] = 'Projection Parameters'
+                     hIdentifier[:name] = 'Projection Parameters' if name.empty?
                      return ProjectionParameters.unpack(xParamSet, hProjection, hResponseObj)
+                  end
+
+                  # map projection 4.1.2.1.(24) (otherprj) - other projection parameter set
+                  xParamSet = xMapProjection.xpath('./otherprj')
+                  unless xParamSet.empty?
+                     hIdentifier[:identifier] = 'other'
+                     hIdentifier[:name] = 'Other Projection Parameter Description' if name.empty?
+                     return ProjectionOther.unpack(xParamSet, hProjection, hResponseObj)
                   end
 
                   return nil

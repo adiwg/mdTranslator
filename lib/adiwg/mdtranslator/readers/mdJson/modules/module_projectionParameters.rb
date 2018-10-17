@@ -32,7 +32,7 @@ module ADIWG
                   intProjection = intMetadataClass.newProjection
 
                   outContext = 'projection parameters'
-                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+                  outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   # projection parameters - projection identifier {identifier} (required)
                   # add name to identifier object

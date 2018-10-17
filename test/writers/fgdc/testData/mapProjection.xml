@@ -262,6 +262,10 @@
             <pathnum>9999</pathnum>
           </mapprojp>
         </mapproj>
+        <mapproj>
+          <mapprojn>Other Projection Description</mapprojn>
+          <otherprj>other projection description description</otherprj>
+        </mapproj>
       </planar>
     </horizsys>
   </spref>

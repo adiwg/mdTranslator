@@ -260,12 +260,34 @@ module ADIWG
                   end
                end
 
+               # grid coordinate system (localpd) - local planar description (required)
+               def write_localDesc(hProjection, inContext)
+                  hLocal = hProjection[:local]
+                  unless hLocal.empty?
+                     @xml.tag!('localpd', hLocal[:description])
+                  end
+                  if hLocal[:description].nil?
+                     @NameSpace.issueError(471, outContext(inContext))
+                  end
+               end
+
+               # grid coordinate system (localpgi) - local planar georeference information (required)
+               def write_localGeoInfo(hProjection, inContext)
+                  hLocal = hProjection[:local]
+                  unless hLocal.empty?
+                     @xml.tag!('localpgi', hLocal[:georeference])
+                  end
+                  if hLocal[:georeference].nil?
+                     @NameSpace.issueError(472, outContext(inContext))
+                  end
+               end
+
                # map projection (otherprj) - other projection description (required)
                def write_otherProjection(hProjection, inContext = nil)
-                  unless hProjection[:otherProjectionDescription].nil?
-                     @xml.tag!('otherprj', hProjection[:otherProjectionDescription])
+                  unless hProjection[:projectionIdentifier][:description].nil?
+                     @xml.tag!('otherprj', hProjection[:projectionIdentifier][:description])
                   end
-                  if hProjection[:otherProjectionDescription].nil?
+                  if hProjection[:projectionIdentifier][:description].nil?
                      @NameSpace.issueError(301, outContext(inContext, hProjection))
                   end
                end
@@ -365,25 +387,13 @@ module ADIWG
                   end
                end
 
-               # grid coordinate system (localpd) - local planar description (required)
-               def write_localDesc(hProjection, inContext)
-                  hLocal = hProjection[:local]
-                  unless hLocal.empty?
-                     @xml.tag!('localpd', hLocal[:description])
+               # map projection (othergrd) - other grid description (required)
+               def write_otherGrid(hProjection, inContext = nil)
+                  unless hProjection[:gridSystemIdentifier][:description].nil?
+                     @xml.tag!('othergrd', hProjection[:gridSystemIdentifier][:description])
                   end
-                  if hLocal[:description].nil?
-                     @NameSpace.issueError(471, outContext(inContext))
-                  end
-               end
-
-               # grid coordinate system (localpgi) - local planar georeference information (required)
-               def write_localGeoInfo(hProjection, inContext)
-                  hLocal = hProjection[:local]
-                  unless hLocal.empty?
-                     @xml.tag!('localpgi', hLocal[:georeference])
-                  end
-                  if hLocal[:georeference].nil?
-                     @NameSpace.issueError(472, outContext(inContext))
+                  if hProjection[:gridSystemIdentifier][:description].nil?
+                     @NameSpace.issueError(314, outContext(inContext, hProjection))
                   end
                end
 

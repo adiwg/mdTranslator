@@ -1326,4 +1326,41 @@ class TestWriterFgdcMapProjection < TestWriterFGDCParent
 
    end
 
+   # map projections - van der grinten
+   def test_mapProjection_other
+
+      expect = @@axExpect[25].to_s.squeeze(' ')
+
+      hProjection = TDClass.build_projection('other', 'Other Projection Description', 'other projection description description')
+
+      hResponseObj = get_response(hProjection)
+
+      xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
+      xGot = xMetadata.xpath(@@path)
+      got = xGot.to_s.squeeze(' ')
+
+      assert_equal expect, got
+      assert hResponseObj[:writerPass]
+      assert_empty hResponseObj[:writerMessages]
+
+      # test empty elements
+      hProjection[:projectionIdentifier][:description] = ''
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection other projection description is missing: CONTEXT is spatial reference horizontal planar map projection other'
+
+      # test missing elements
+      hProjection[:projectionIdentifier].delete(:description)
+
+      hResponseObj = get_response(hProjection)
+
+      refute hResponseObj[:writerPass]
+      assert_equal 1, hResponseObj[:writerMessages].length
+      assert_includes hResponseObj[:writerMessages], 'ERROR: FGDC writer: map projection other projection description is missing: CONTEXT is spatial reference horizontal planar map projection other'
+
+   end
+
 end
