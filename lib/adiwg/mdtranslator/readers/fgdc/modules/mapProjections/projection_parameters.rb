@@ -7,6 +7,7 @@
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require_relative 'projection_common'
 
 module ADIWG
    module Mdtranslator
@@ -72,7 +73,7 @@ module ADIWG
                      # -> ReferenceSystemParameters.projection.landsatPath
                      ProjectionCommon.unpackLandSatPath(xParams, hProjection)
 
-                     # -> ReferenceSystemParameters.projection.otherProjectionDescription
+                     # -> ReferenceSystemParameters.projection.projectionIdentifier.description
                      ProjectionCommon.unpackOtherProjection(xParams, hProjection)
 
                      return hProjection

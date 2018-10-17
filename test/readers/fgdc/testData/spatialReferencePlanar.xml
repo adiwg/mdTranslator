@@ -501,7 +501,6 @@
             <landsat>20</landsat>
             <pathnum>21</pathnum>
             <sfctrmer>22.0</sfctrmer>
-            <otherprj>other projection description</otherprj>
           </mapprojp>
         </mapproj>
         <planci>
@@ -781,7 +780,9 @@
       <planar>
         <mapproj>
           <mapprojn>Other Projection Description</mapprojn>
-          <otherprj>other projection description</otherprj>
+          <mapprojp>
+            <otherprj>other projection description</otherprj>
+          </mapprojp>
         </mapproj>
         <planci>
           <plance>planar coordinate encoding method</plance>

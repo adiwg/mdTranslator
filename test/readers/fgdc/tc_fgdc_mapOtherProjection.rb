@@ -60,7 +60,7 @@ class TestReaderFgdcOtherProjection < TestReaderFGDCParent
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
       hProjectionId = hProjection[:projectionIdentifier]
-      assert_equal 'Other Projection Parameter Description', hProjectionId[:name]
+      assert_equal 'Projection Parameters', hProjectionId[:name]
 
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length

@@ -29,7 +29,6 @@ require_relative 'mapProjections/projection_stereographic'
 require_relative 'mapProjections/projection_transverseMercator'
 require_relative 'mapProjections/projection_vanDerGrinten'
 require_relative 'mapProjections/projection_parameters'
-require_relative 'mapProjections/projection_other'
 
 module ADIWG
    module Mdtranslator
@@ -230,14 +229,6 @@ module ADIWG
                      hIdentifier[:identifier] = 'parameters'
                      hIdentifier[:name] = 'Projection Parameters' if name.empty?
                      return ProjectionParameters.unpack(xParamSet, hProjection, hResponseObj)
-                  end
-
-                  # map projection 4.1.2.1.(24) (otherprj) - other projection parameter set
-                  xParamSet = xMapProjection.xpath('./otherprj')
-                  unless xParamSet.empty?
-                     hIdentifier[:identifier] = 'other'
-                     hIdentifier[:name] = 'Other Projection Parameter Description' if name.empty?
-                     return ProjectionOther.unpack(xParamSet, hProjection, hResponseObj)
                   end
 
                   return nil

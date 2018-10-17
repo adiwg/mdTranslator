@@ -236,8 +236,9 @@ module ADIWG
 
                # other projection
                def self.unpackOtherProjection(xParams, hProjection)
-                  other = xParams.text
+                  other = xParams.xpath('./otherprj').text
                   unless other.empty?
+                     hProjection[:projectionIdentifier][:identifier] = 'other'
                      hProjection[:projectionIdentifier][:description] = other
                      return 1
                   end

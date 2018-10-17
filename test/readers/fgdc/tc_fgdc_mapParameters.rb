@@ -66,7 +66,6 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
       assert_equal 20, hProjection[:landsatNumber]
       assert_equal 21, hProjection[:landsatPath]
       assert_equal 22.0, hProjection[:scaleFactorAtCentralMeridian]
-      assert_equal 'other projection description', hProjection[:otherProjectionDescription]
 
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'parameters', hProjectionId[:identifier]
