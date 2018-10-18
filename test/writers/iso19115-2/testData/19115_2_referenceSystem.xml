@@ -125,7 +125,26 @@
               </gmd:azimuthMeasurePointLongitude>
             </gmd:MD_ObliqueLineAzimuth>
           </gmd:obliqueLineAzimuthParameter>
-          <gmd:obliqueLinePointParameter/>
+          <gmd:obliqueLinePointParameter>
+            <gmd:MD_ObliqueLinePoint>
+              <gmd:obliqueLineLatitude>
+                <gco:real>11.1</gco:real>
+              </gmd:obliqueLineLatitude>
+              <gmd:obliqueLineLongitude>
+                <gco:real>22.2</gco:real>
+              </gmd:obliqueLineLongitude>
+            </gmd:MD_ObliqueLinePoint>
+          </gmd:obliqueLinePointParameter>
+          <gmd:obliqueLinePointParameter>
+            <gmd:MD_ObliqueLinePoint>
+              <gmd:obliqueLineLatitude>
+                <gco:real>11.1</gco:real>
+              </gmd:obliqueLineLatitude>
+              <gmd:obliqueLineLongitude>
+                <gco:real>22.2</gco:real>
+              </gmd:obliqueLineLongitude>
+            </gmd:MD_ObliqueLinePoint>
+          </gmd:obliqueLinePointParameter>
         </gmd:MD_ProjectionParameters>
       </gmd:projectionParameters>
     </gmd:MD_CRS>

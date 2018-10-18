@@ -3,6 +3,7 @@
 # 19115-2 output for ISO 19115-2 XML
 
 # History:
+#  Stan Smith 2018-10-17 refactor to support schema 2.6.0 changes to projection
 # 	Stan Smith 2017-10-26 original script
 
 require_relative 'class_rsIdentifier'
@@ -94,7 +95,7 @@ module ADIWG
                   end
 
                   # vertical datum identifier {rsIdentifier}
-                  # the mdJSON referenceSystemParameterSet includes 'verticalDatum' which is not used by ISO
+                  # mdJSON referenceSystemParameterSet 'verticalDatum' is not used by ISO 19115-2
 
                end # writeXML
             end # MD_CRS class

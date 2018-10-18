@@ -3,6 +3,7 @@
 # 19115-2 output for ISO 19115-2 XML
 
 # History:
+#  Stan Smith 2018-10-17 refactor to support schema 2.6.0 changes to projection
 #  Stan Smith 2017-10-26 added crs class
 #  Stan Smith 2016-12-07 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-08-28 convert referenceSystem to resourceId and pass to RS_Identifier
@@ -53,7 +54,7 @@ module ADIWG
                      end
 
                      # CRS identifiers and parameters
-                     if refClass == 'gmd:MD_CRS'
+                     unless hSystem[:systemParameterSet].empty?
                         crsClass.writeXML(hSystem[:systemParameterSet])
                      end
 

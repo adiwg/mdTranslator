@@ -2,6 +2,7 @@
 # writers / iso19115_2 / class_referenceSystem
 
 # History:
+#  Stan Smith 2018-10-17 refactor to support schema 2.6.0 changes to projection
 #  Stan Smith 2018-04-27 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-09 original script
@@ -26,9 +27,9 @@ class TestWriter191152ReferenceSystem < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   # referenceSystem_type not used in 19115-2
-   # referenceSystem_wkt not used in 19115-2
-   # referenceSystem_verticalDatum not used in 19115-2
+   # referenceSystem.systemType not used in 19115-2
+   # referenceSystem.systemWKT not used in 19115-2
+   # referenceSystem.systemParameterSet.verticalDatum not used in 19115-2
 
    def test_referenceSystem_identifier
 
