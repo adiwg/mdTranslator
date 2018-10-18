@@ -1,11 +1,13 @@
 # mdJson 2.0 writer - spatial reference system projection parameters
 
 # History:
-#   Stan Smith 2017-10-24 original script
+#  Stan Smith 2018 10-18 refactor for mdJson schema 2.6.0
+#  Stan Smith 2017-10-24 original script
 
 require 'jbuilder'
 require_relative 'mdJson_identifier'
 require_relative 'mdJson_obliqueLinePoint'
+require_relative 'mdJson_localProjection'
 
 module ADIWG
    module Mdtranslator
@@ -20,11 +22,8 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.projectionIdentifier Identifier.build(hProjection[:projectionIdentifier]) unless hProjection[:projectionIdentifier].empty?
-                     json.gridSystem hProjection[:gridSystem]
-                     json.gridSystemName hProjection[:gridSystemName]
+                     json.gridSystemIdentifier Identifier.build(hProjection[:gridSystemIdentifier]) unless hProjection[:gridSystemIdentifier].empty?
                      json.gridZone hProjection[:gridZone]
-                     json.projection hProjection[:projection]
-                     json.projectionName hProjection[:projectionName]
                      json.standardParallel1 hProjection[:standardParallel1]
                      json.standardParallel2 hProjection[:standardParallel2]
                      json.longitudeOfCentralMeridian hProjection[:longitudeOfCentralMeridian]
@@ -45,10 +44,7 @@ module ADIWG
                      json.obliqueLinePoint @Namespace.json_map(hProjection[:obliqueLinePoints], ObliqueLinePoint)
                      json.landsatNumber hProjection[:landsatNumber]
                      json.landsatPath hProjection[:landsatPath]
-                     json.localPlanarDescription hProjection[:localPlanarDescription]
-                     json.localPlanarGeoreference hProjection[:localPlanarGeoreference]
-                     json.otherGridDescription hProjection[:otherGridDescription]
-                     json.otherProjectionDescription hProjection[:otherProjectionDescription]
+                     json.local LocalProjection.build(hProjection[:local]) unless hProjection[:local].empty?
                   end
 
                end # build

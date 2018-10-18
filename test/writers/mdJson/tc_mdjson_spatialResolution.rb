@@ -20,7 +20,7 @@ class TestWriterMdJsonSpatialResolution < TestWriterMdJsonParent
    mdHash[:metadata][:resourceInfo][:spatialResolution] = []
 
    # scale factor
-   hRes1 = TDClass.build_spatialResolution('scale')
+   hRes1 = TDClass.build_spatialResolution('factor')
    mdHash[:metadata][:resourceInfo][:spatialResolution] << hRes1
 
    # measure
