@@ -25,13 +25,33 @@
       <gmd:authority>
         <gmd:CI_Citation>
           <gmd:title>
-            <gco:CharacterString>title only citation</gco:CharacterString>
+            <gco:CharacterString>citation title</gco:CharacterString>
           </gmd:title>
           <gmd:alternateTitle/>
-          <gmd:date gco:nilReason="missing"/>
+          <gmd:date>
+            <gmd:CI_Date>
+              <gmd:date>
+                <gco:Date>2017-11-22</gco:Date>
+              </gmd:date>
+              <gmd:dateType>
+                <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+              </gmd:dateType>
+            </gmd:CI_Date>
+          </gmd:date>
           <gmd:edition/>
           <gmd:identifier/>
-          <gmd:citedResponsibleParty/>
+          <gmd:citedResponsibleParty>
+            <gmd:CI_ResponsibleParty>
+              <gmd:individualName>
+                <gco:CharacterString>person name three</gco:CharacterString>
+              </gmd:individualName>
+              <gmd:positionName/>
+              <gmd:contactInfo/>
+              <gmd:role>
+                <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:citedResponsibleParty>
           <gmd:presentationForm/>
           <gmd:series/>
           <gmd:otherCitationDetails/>

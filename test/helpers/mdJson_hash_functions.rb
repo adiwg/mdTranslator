@@ -597,14 +597,15 @@ class MdJsonHashWriter
       return hTaxonomy
    end
 
-   def build_taxonomy_full
+   def build_taxonomy_full(withAddress = false)
       hTaxonomy = taxonomy
       hTaxonomy[:taxonomicSystem] << taxonSystem
       hTaxonomy[:identificationReference] << identifier
-      hTaxonomy[:observer] << build_responsibleParty('observer', ['CID001'])
-      hTaxonomy[:observer] << build_responsibleParty('observer', ['CID001'])
+      hTaxonomy[:observer] << build_responsibleParty('observer', ['CID004'])
       hTaxonomy[:voucher] << build_taxonVoucher
-      hTaxonomy[:voucher] << build_taxonVoucher
+      hTaxonomy[:taxonomicClassification] << taxonClass
+      useContactAddress(hTaxonomy) if withAddress
+      removeEmptyObjects(hTaxonomy)
       return hTaxonomy
 
    end
@@ -636,7 +637,7 @@ class MdJsonHashWriter
    def build_taxonVoucher(specimen = nil, aContacts = nil)
       hVoucher = taxonVoucher
       hVoucher[:specimen] = specimen unless specimen.nil?
-      aContacts = ['CID001'] if aContacts.nil?
+      aContacts = ['CID004'] if aContacts.nil?
       hVoucher[:repository] = build_responsibleParty('custodian', aContacts)
       return hVoucher
    end
@@ -1176,6 +1177,50 @@ class MdJsonHashWriter
                   obj.delete_at(index)
                else
                   removeEmptyObjects(item)
+               end
+            end
+         end
+      end
+      return obj
+   end
+
+   def useContactAddress(obj)
+      if obj.kind_of?(Hash)
+         obj.each_pair do |key, value|
+            if key == 'contactId'.to_sym
+               obj[:contactId] = 'CID001' if value == 'CID003'
+               obj[:contactId] = 'CID002' if value == 'CID004'
+            end
+            if value.kind_of?(Array)
+               if value.empty?
+                  obj.delete(key)
+               else
+                  useContactAddress(value)
+               end
+            end
+            if value.kind_of?(Hash)
+               if value.empty?
+                  obj.delete(key)
+               else
+                  useContactAddress(value)
+               end
+            end
+         end
+      end
+      if obj.kind_of?(Array)
+         obj.each_with_index do |item, index|
+            if item.kind_of?(Array)
+               if item.empty?
+                  obj.delete_at(index)
+               else
+                  useContactAddress(item)
+               end
+            end
+            if item.kind_of?(Hash)
+               if item.empty?
+                  obj.delete_at(index)
+               else
+                  useContactAddress(item)
                end
             end
          end

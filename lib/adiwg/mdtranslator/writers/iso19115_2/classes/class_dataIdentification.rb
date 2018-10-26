@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-10-26 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-05-25 block non-ISO19115-2 topic categories
 #  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2018-04-06 changed taxonomy to an array
@@ -277,13 +278,13 @@ module ADIWG
                               taxClass.writeXML(hTaxonomy)
                            end
                         end
+                        if hData[:taxonomy].length > 1
+                           @NameSpace.issueNotice(53, 'main resource')
+                           @NameSpace.issueNotice(54, 'main resource')
+                        end
                      end
                      if hData[:taxonomy].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:taxonomy')
-                     end
-                     if hData[:taxonomy].length > 1
-                        # - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
-                        # - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
                      end
 
                      # data identification - spatial representation type []

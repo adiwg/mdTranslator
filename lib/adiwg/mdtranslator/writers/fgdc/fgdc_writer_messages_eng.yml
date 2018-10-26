@@ -86,8 +86,8 @@ messageList:
    - {id: 183, message: "keywords are missing"}
    - {id: 184, message: "access constraint is missing"}
    - {id: 185, message: "use constraint is missing"}
-   - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
-   - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
+   - {id: 186, message: "multiple taxonomies were specified, CSDGM allows only one"}
+   - {id: 187, message: "the first taxonomy was written to the metadata record"}
 
    - {id: 190, message: "keyword set thesaurus is missing"}
 
@@ -183,6 +183,8 @@ messageList:
    - {id: 392, message: "status section is missing"}
 
    - {id: 400, message: "taxonomic classification is missing"}
+   - {id: 401, message: "multiple taxonomic classifications were specified, CSDGM supports only one"}
+   - {id: 402, message: "the first taxonomic classification was written to the metadata record"}
 
    - {id: 410, message: "taxonomic classification taxon rank is missing"}
    - {id: 411, message: "taxonomic classification taxon value (latin name) is missing"}

@@ -412,8 +412,7 @@ class TestReaderMdJsonResourceInfo < TestReaderMdJsonParent
       refute_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-         'NOTICE: mdJson reader: taxonomy is now an array, the single taxonomy object was deprecated: CONTEXT is resource information'
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomy is an array, use of taxonomy object has been deprecated: CONTEXT is resource information'
 
    end
 

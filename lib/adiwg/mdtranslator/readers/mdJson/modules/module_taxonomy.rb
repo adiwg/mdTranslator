@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-10-19 refactor taxonomic classification as array
 #  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2016-10-22 original script
 
@@ -105,17 +106,26 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - taxonomic classification {taxonomicClassification} (required)
+                  # taxonomy - taxonomic classification [] {taxonomicClassification} (required)
+                  # support deprecated taxonomicClassification{}
                   if hTaxonomy.has_key?('taxonomicClassification')
-                     item = hTaxonomy['taxonomicClassification']
-                     unless item.empty?
-                        hReturn = TaxonomicClassification.unpack(item, responseObj)
-                        unless hReturn.nil?
-                           intTaxonomy[:taxonClass] = hReturn
+                     aItems = hTaxonomy['taxonomicClassification']
+                     if aItems.is_a?(Array)
+                        aItems.each do |item|
+                           hReturn = TaxonomicClassification.unpack(item, responseObj)
+                           unless hReturn.nil?
+                              intTaxonomy[:taxonClasses] << hReturn
+                           end
                         end
+                     else
+                        hReturn = TaxonomicClassification.unpack(aItems, responseObj)
+                        unless hReturn.nil?
+                           intTaxonomy[:taxonClasses] << hReturn
+                        end
+                        @MessagePath.issueNotice(834, responseObj)
                      end
                   end
-                  if intTaxonomy[:taxonClass].empty?
+                  if intTaxonomy[:taxonClasses].empty?
                      @MessagePath.issueError(833, responseObj)
                   end
 

@@ -2,6 +2,7 @@
 # reader / mdJson / module_taxonomy
 
 # History:
+#  Stan Smith 2018-10-19 refactored for mdJson 2.6.0 schema
 #  Stan Smith 2018-06-26 refactored to use mdJson construction helpers
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-22 original script
@@ -44,7 +45,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_equal 'procedures', metadata[:idProcedure]
       assert_equal 'completeness', metadata[:idCompleteness]
       assert_equal 2, metadata[:vouchers].length
-      refute_empty metadata[:taxonClass]
+      assert_equal 2, metadata[:taxonClasses].length
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -123,7 +124,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['taxonomicClassification'] = {}
+      hIn['taxonomicClassification'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -152,6 +153,22 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
    end
 
+   def test_taxonomy_deprecated_taxClass_object
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['taxonomicClassification'] = hIn['taxonomicClassification'][0]
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic classification is an array, use of taxonomic classification object is deprecated'
+
+   end
+
    def test_taxonomy_empty_elements
 
       TestReaderMdJsonParent.loadEssential
@@ -172,7 +189,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_equal 'procedures', metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]
       assert_empty metadata[:vouchers]
-      refute_empty metadata[:taxonClass]
+      refute_empty metadata[:taxonClasses]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -198,7 +215,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_equal 'procedures', metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]
       assert_empty metadata[:vouchers]
-      refute_empty metadata[:taxonClass]
+      refute_empty metadata[:taxonClasses]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

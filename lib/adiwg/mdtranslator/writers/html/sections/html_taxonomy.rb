@@ -2,7 +2,8 @@
 # taxonomy
 
 # History:
-#  Stan Smith 2015-03-30 refactored for mdTranslator 2.0
+#  Stan Smith 2018-10-19 refactored for mdJson schema 2.6.0
+#  Stan Smith 2017-03-30 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-25 original script
 
@@ -38,16 +39,6 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - taxonomic class
-                  unless hTaxonomy[:taxonClass].empty?
-                     @html.details do
-                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           taxonomicClass.writeHtml(hTaxonomy[:taxonClass])
-                        end
-                     end
-                  end
-
                   # taxonomy - identification procedures
                   unless hTaxonomy[:idProcedure].nil?
                      @html.em('Identification Procedures: ')
@@ -61,6 +52,16 @@ module ADIWG
                      @html.em('Identification Completeness Statement: ')
                      @html.section(:class => 'block') do
                         @html.text!(hTaxonomy[:idCompleteness])
+                     end
+                  end
+
+                  # taxonomy - taxonomic classification []
+                  hTaxonomy[:taxonClasses].each do |hClassification|
+                     @html.details do
+                        @html.summary('Taxonomic Classification', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           taxonomicClass.writeHtml(hClassification)
+                        end
                      end
                   end
 

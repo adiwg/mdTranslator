@@ -1038,7 +1038,7 @@ class InternalMetadata
          idProcedure: nil,
          idCompleteness: nil,
          vouchers: [],
-         taxonClass: {}
+         taxonClasses: []
       }
    end
 

@@ -1,8 +1,9 @@
 # mdJson 2.0 writer - taxonomy
 
 # History:
-#   Stan Smith 2017-03-17 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2018-10-26 refactor for mdJson schema 2.6.0
+#  Stan Smith 2017-03-17 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 require_relative 'mdJson_taxonomicSystem'
@@ -30,7 +31,7 @@ module ADIWG
                      json.identificationProcedure hTaxonomy[:idProcedure]
                      json.identificationCompleteness hTaxonomy[:idCompleteness]
                      json.voucher @Namespace.json_map(hTaxonomy[:vouchers], Voucher)
-                     json.taxonomicClassification TaxonomicClassification.build(hTaxonomy[:taxonClass]) unless hTaxonomy[:taxonClass].empty?
+                     json.taxonomicClassification @Namespace.json_map(hTaxonomy[:taxonClasses], TaxonomicClassification)
                   end
 
                end # build

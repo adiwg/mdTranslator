@@ -20,12 +20,6 @@ class TestWriter191152TaxonomicSystem < TestWriter191152Parent
 
    hTaxonomy = TDClass.taxonomy
 
-   hLevel0 = hTaxonomy[:taxonomicClassification]
-   hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
-   hLevel0[:taxonomicLevel] = 'kingdom'
-   hLevel0[:taxonomicName] = 'animalia'
-   hLevel0[:commonName] = ['animals']
-
    mdHash[:metadata][:resourceInfo][:taxonomy] = []
    mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
 
@@ -43,9 +37,7 @@ class TestWriter191152TaxonomicSystem < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-         'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
+      assert_empty hReturn[3]
 
    end
 
@@ -60,9 +52,7 @@ class TestWriter191152TaxonomicSystem < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-         'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
+      assert_empty hReturn[3]
 
    end
 

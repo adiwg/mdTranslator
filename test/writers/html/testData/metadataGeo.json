@@ -1530,76 +1530,132 @@
                      }
                   }
                ],
-               "taxonomicClassification": {
-                  "taxonomicRank": "taxonomicRank0",
-                  "latinName": "latinName",
-                  "commonName": [
-                     "commonName0",
-                     "commonName1"
-                  ],
-                  "subClassification": [
-                     {
-                        "taxonomicSystemId": "taxonomicSystemId00",
-                        "taxonomicRank": "taxonomicRank00",
-                        "latinName": "latinName",
-                        "commonName": [
-                           "commonName0",
-                           "commonName1"
-                        ],
-                        "subClassification": [
-                           {
-                              "taxonomicRank": "taxonomicRank000",
-                              "latinName": "latinName",
-                              "commonName": [
-                                 "commonName0",
-                                 "commonName1"
-                              ],
-                              "subClassification": [
-                                 {
-                                    "taxonomicSystemId": "taxonomicSystemId0000.1",
-                                    "taxonomicRank": "taxonomicRank0000.1",
-                                    "latinName": "latinName",
-                                    "commonName": [
-                                       "commonName0",
-                                       "commonName1"
-                                    ],
-                                    "subClassification": []
-                                 },
-                                 {
-                                    "taxonomicSystemId": "taxonomicSystemId0000.2",
-                                    "taxonomicRank": "taxonomicRank0000.2",
-                                    "latinName": "latinName",
-                                    "commonName": [
-                                       "commonName0",
-                                       "commonName1"
-                                    ],
-                                    "subClassification": []
-                                 }
-                              ]
-                           }
-                        ]
-                     },
-                     {
-                        "taxonomicRank": "taxonomicRank01",
-                        "latinName": "latinName",
-                        "commonName": [
-                           "commonName0",
-                           "commonName1"
-                        ],
-                        "subClassification": [
-                           {
-                              "taxonomicRank": "taxonomicRank010",
-                              "latinName": "latinName",
-                              "commonName": [
-                                 "commonName0",
-                                 "commonName1"
-                              ],
-                              "subClassification": []
-                           }
-                        ]
-                     }
-                  ]
-               }
+               "taxonomicClassification": [
+                  {
+                     "taxonomicSystemId": "taxon id",
+                     "taxonomicLevel": "taxon rank",
+                     "taxonomicName": "taxon name",
+                     "commonName": ["common one", "common two"],
+                     "subClassification": [
+                        {
+                           "taxonomicSystemId": "taxon id",
+                           "taxonomicLevel": "level two",
+                           "taxonomicName": "name two",
+                           "commonName": ["common one", "common two"],
+                           "subClassification": [
+                              {
+                                 "taxonomicSystemId": "taxon id",
+                                 "taxonomicLevel": "level three",
+                                 "taxonomicName": "name three",
+                                 "commonName": ["common one", "common two"],
+                                 "subClassification": [
+                                    {
+                                       "taxonomicSystemId": "taxon id",
+                                       "taxonomicLevel": "level four 1",
+                                       "taxonomicName": "name four 1",
+                                       "commonName": ["common one", "common two"],
+                                       "subClassification": [
+                                          {
+                                             "taxonomicSystemId": "taxon id",
+                                             "taxonomicLevel": "level five 1",
+                                             "taxonomicName": "name five 1",
+                                             "commonName": ["common five 1A", "common five 1B"]
+                                          }
+                                       ]
+                                    },
+                                    {
+                                       "taxonomicSystemId": "taxon id",
+                                       "taxonomicLevel": "level four 2",
+                                       "taxonomicName": "name four 2",
+                                       "commonName": ["common four 2A"],
+                                       "subClassification": [
+                                          {
+                                             "taxonomicSystemId": "taxon id",
+                                             "taxonomicLevel": "level five 2",
+                                             "taxonomicName": "name five 2",
+                                             "commonName": ["common one", "common two"]
+                                          }
+                                       ]
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+                  },
+                  {
+                     "taxonomicSystemId": "taxon id",
+                     "taxonomicLevel": "taxon rank",
+                     "taxonomicName": "taxon name",
+                     "commonName": [
+                        "common one",
+                        "common two"
+                     ],
+                     "subClassification": [
+                        {
+                           "taxonomicSystemId": "taxon id",
+                           "taxonomicLevel": "level two",
+                           "taxonomicName": "name two",
+                           "commonName": [
+                              "common one",
+                              "common two"
+                           ],
+                           "subClassification": [
+                              {
+                                 "taxonomicSystemId": "taxon id",
+                                 "taxonomicLevel": "level three",
+                                 "taxonomicName": "name three",
+                                 "commonName": [
+                                    "common one",
+                                    "common two"
+                                 ],
+                                 "subClassification": [
+                                    {
+                                       "taxonomicSystemId": "taxon id",
+                                       "taxonomicLevel": "level four 1",
+                                       "taxonomicName": "name four 1",
+                                       "commonName": [
+                                          "common one",
+                                          "common two"
+                                       ],
+                                       "subClassification": [
+                                          {
+                                             "taxonomicSystemId": "taxon id",
+                                             "taxonomicLevel": "level five 1",
+                                             "taxonomicName": "name five 1",
+                                             "commonName": [
+                                                "common five 1A",
+                                                "common five 1B"
+                                             ]
+                                          }
+                                       ]
+                                    },
+                                    {
+                                       "taxonomicSystemId": "taxon id",
+                                       "taxonomicLevel": "level four 2",
+                                       "taxonomicName": "name four 2",
+                                       "commonName": [
+                                          "common four 2A"
+                                       ],
+                                       "subClassification": [
+                                          {
+                                             "taxonomicSystemId": "taxon id",
+                                             "taxonomicLevel": "level five 2",
+                                             "taxonomicName": "name five 2",
+                                             "commonName": [
+                                                "common one",
+                                                "common two"
+                                             ]
+                                          }
+                                       ]
+                                    }
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+                  }
+               ]
             },
             {
                "taxonomicSystem": [

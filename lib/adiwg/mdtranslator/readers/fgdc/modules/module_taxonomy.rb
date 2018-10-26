@@ -54,7 +54,7 @@ module ADIWG
                   unless xTaxClass.empty?
                      hTaxonClass = TaxonClass.unpack(xTaxClass, hResponseObj)
                      unless hTaxonClass.nil?
-                        hTaxonomy[:taxonClass] = hTaxonClass
+                        hTaxonomy[:taxonClasses] << hTaxonClass
                      end
                   end
                   if xTaxClass.empty?

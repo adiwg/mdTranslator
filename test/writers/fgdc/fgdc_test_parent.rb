@@ -67,7 +67,7 @@ class TestWriterFGDCParent < MiniTest::Test
       xGot = xMetadata.xpath(path)
       got = xGot.to_s.squeeze(' ')
 
-      return expect, got, pass
+      return expect, got, pass, hResponseObj[:writerMessages]
 
    end
 

@@ -41,9 +41,8 @@ class TestWriter191152ReferenceSystem < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is spatial reference system authority citation'
+      assert_empty hReturn[3]
+
    end
 
    def test_referenceSystem_parameterSet

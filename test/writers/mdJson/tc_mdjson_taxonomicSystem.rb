@@ -1,6 +1,7 @@
 # mdJson 2.0 writer tests - taxonomic system
 
 # History:
+#  Stan Smith 2018-10-27 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-06-08 refactor to use mdJson construction helpers
 #  Stan Smith 2017-03-17 original script
 
@@ -17,15 +18,10 @@ class TestWriterMdJsonTaxonomicSystem < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hTaxonomy = TDClass.taxonomy
+   hTaxonomy = TDClass.build_taxonomy_full
 
    mdHash[:metadata][:resourceInfo][:taxonomy] = []
    mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
-
-   TDClass.add_taxonClass(hTaxonomy[:taxonomicClassification])
-   TDClass.add_taxonClass(hTaxonomy[:taxonomicClassification],'taxon level two','taxon name two')
-
-   TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
 

@@ -45,7 +45,7 @@ class TestReaderFgdcTaxonomy < TestReaderFGDCParent
       assert_equal 'identification procedure', hTaxonomy[:idProcedure]
       assert_equal 'taxonomy completeness', hTaxonomy[:idCompleteness]
       assert_equal 2, hTaxonomy[:vouchers].length
-      refute_empty hTaxonomy[:taxonClass]
+      assert_equal 1, hTaxonomy[:taxonClasses].length
 
       hTaxonSystem = hTaxonomy[:taxonSystem][0]
       refute_empty hTaxonSystem[:citation]

@@ -65,7 +65,7 @@
       <gmd:classSys>
         <gmd:CI_Citation>
           <gmd:title>
-            <gco:CharacterString>taxonomic system two</gco:CharacterString>
+            <gco:CharacterString>citation title</gco:CharacterString>
           </gmd:title>
           <gmd:alternateTitle/>
           <gmd:date>
@@ -99,7 +99,7 @@
           <gmd:ISSN/>
         </gmd:CI_Citation>
         <gmd:classmod>
-          <gco:CharacterString>modifications two</gco:CharacterString>
+          <gco:CharacterString>modifications</gco:CharacterString>
         </gmd:classmod>
       </gmd:classSys>
       <gmd:taxongen>
@@ -110,13 +110,33 @@
           <gmd:authority>
             <gmd:CI_Citation>
               <gmd:title>
-                <gco:CharacterString>title only citation</gco:CharacterString>
+                <gco:CharacterString>citation title</gco:CharacterString>
               </gmd:title>
               <gmd:alternateTitle/>
-              <gmd:date gco:nilReason="missing"/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
               <gmd:edition/>
               <gmd:identifier/>
-              <gmd:citedResponsibleParty/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
               <gmd:presentationForm/>
               <gmd:series/>
               <gmd:otherCitationDetails/>
@@ -140,13 +160,33 @@
           <gmd:authority>
             <gmd:CI_Citation>
               <gmd:title>
-                <gco:CharacterString>title only citation</gco:CharacterString>
+                <gco:CharacterString>citation title</gco:CharacterString>
               </gmd:title>
               <gmd:alternateTitle/>
-              <gmd:date gco:nilReason="missing"/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
               <gmd:edition/>
               <gmd:identifier/>
-              <gmd:citedResponsibleParty/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
               <gmd:presentationForm/>
               <gmd:series/>
               <gmd:otherCitationDetails/>
@@ -155,7 +195,7 @@
             </gmd:CI_Citation>
           </gmd:authority>
           <gmd:code>
-            <gco:CharacterString>TID001</gco:CharacterString>
+            <gco:CharacterString>identifier</gco:CharacterString>
           </gmd:code>
           <gmd:codeSpace>
             <gco:CharacterString>namespace</gco:CharacterString>
@@ -173,7 +213,7 @@
           <gmd:positionName/>
           <gmd:contactInfo/>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer one" codeSpace="userCode"/>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer" codeSpace="adiwg005"/>
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:obs>
@@ -184,19 +224,7 @@
           </gmd:organisationName>
           <gmd:contactInfo/>
           <gmd:role>
-            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer one" codeSpace="userCode"/>
-          </gmd:role>
-        </gmd:CI_ResponsibleParty>
-      </gmd:obs>
-      <gmd:obs>
-        <gmd:CI_ResponsibleParty>
-          <gmd:individualName>
-            <gco:CharacterString>person name three</gco:CharacterString>
-          </gmd:individualName>
-          <gmd:positionName/>
-          <gmd:contactInfo/>
-          <gmd:role>
-            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer two" codeSpace="userCode"/>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer" codeSpace="adiwg005"/>
           </gmd:role>
         </gmd:CI_ResponsibleParty>
       </gmd:obs>
@@ -209,14 +237,13 @@
       <gmd:voucher>
         <gmd:MD_Vouchers>
           <gmd:specimen>
-            <gco:CharacterString>specimen one</gco:CharacterString>
+            <gco:CharacterString>specimen</gco:CharacterString>
           </gmd:specimen>
           <gmd:reposit>
             <gmd:CI_ResponsibleParty>
-              <gmd:individualName>
-                <gco:CharacterString>person name three</gco:CharacterString>
-              </gmd:individualName>
-              <gmd:positionName/>
+              <gmd:organisationName>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </gmd:organisationName>
               <gmd:contactInfo/>
               <gmd:role>
                 <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
@@ -228,13 +255,16 @@
       <gmd:taxonCl>
         <gmd:MD_TaxonCl>
           <gmd:common>
-            <gco:CharacterString>animals</gco:CharacterString>
+            <gco:CharacterString>common one</gco:CharacterString>
+          </gmd:common>
+          <gmd:common>
+            <gco:CharacterString>common two</gco:CharacterString>
           </gmd:common>
           <gmd:taxonrn>
-            <gco:CharacterString>kingdom</gco:CharacterString>
+            <gco:CharacterString>taxon rank</gco:CharacterString>
           </gmd:taxonrn>
           <gmd:taxonrv>
-            <gco:CharacterString>animalia</gco:CharacterString>
+            <gco:CharacterString>taxon name</gco:CharacterString>
           </gmd:taxonrv>
         </gmd:MD_TaxonCl>
       </gmd:taxonCl>
@@ -294,13 +324,16 @@
       <gmd:taxonCl>
         <gmd:MD_TaxonCl>
           <gmd:common>
-            <gco:CharacterString>animals</gco:CharacterString>
+            <gco:CharacterString>common one</gco:CharacterString>
+          </gmd:common>
+          <gmd:common>
+            <gco:CharacterString>common two</gco:CharacterString>
           </gmd:common>
           <gmd:taxonrn>
-            <gco:CharacterString>kingdom</gco:CharacterString>
+            <gco:CharacterString>taxon rank</gco:CharacterString>
           </gmd:taxonrn>
           <gmd:taxonrv>
-            <gco:CharacterString>animalia</gco:CharacterString>
+            <gco:CharacterString>taxon name</gco:CharacterString>
           </gmd:taxonrv>
         </gmd:MD_TaxonCl>
       </gmd:taxonCl>

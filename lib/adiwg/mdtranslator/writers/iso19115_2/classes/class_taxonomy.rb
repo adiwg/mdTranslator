@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-10-19 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2016-12-09 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -126,14 +127,18 @@ module ADIWG
                         @xml.tag!('gmd:voucher')
                      end
 
-                     # taxon system - taxonomy classification [] (required)
-                     hTaxClass = hSystem[:taxonClass]
-                     unless hTaxClass.empty?
+                     # taxon system - taxonomy classification [0] (required)
+                     aTaxClass = hSystem[:taxonClasses]
+                     unless aTaxClass.empty?
                         @xml.tag!('gmd:taxonCl') do
-                           taxonClass.writeXML(hTaxClass)
+                           taxonClass.writeXML(aTaxClass[0])
+                        end
+                        if aTaxClass.length > 1
+                           @NameSpace.issueNotice(315, 'taxonomy')
+                           @NameSpace.issueNotice(316, 'taxonomy')
                         end
                      end
-                     if hTaxClass.empty?
+                     if aTaxClass.empty?
                         @NameSpace.issueWarning(314, 'gmd:taxonCl')
                      end
 

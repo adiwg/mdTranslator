@@ -569,7 +569,7 @@ class MdJsonHashWriter
          namespace: 'namespace',
          version: 'version',
          description: 'description',
-         authority: citation_title
+         authority: citation
       }
    end
 
@@ -1225,7 +1225,13 @@ class MdJsonHashWriter
          keyword: [],
          keywordType: 'theme',
          thesaurus: {
-            title: 'thesaurus title'
+            title: 'thesaurus title',
+            date: [
+               {
+                  'date': '2017-11-22',
+                  'dateType': 'publication'
+               }
+            ]
          }
       }
    end
@@ -1582,18 +1588,14 @@ class MdJsonHashWriter
    # taxonomy -------------------------------
    def taxonomy
       {
-         taxonomicSystem: [
-            taxonSystem
-         ],
+         taxonomicSystem: [taxonSystem],
          generalScope: 'general scope',
-         identificationReference: [
-            identifier
-         ],
-         observer: [],
+         identificationReference: [identifier],
+         observer: [build_responsibleParty('observer', ['CID003'])],
          identificationProcedure: 'procedures',
          identificationCompleteness: 'completeness',
-         voucher: [],
-         taxonomicClassification: taxonClass
+         voucher: [build_taxonVoucher],
+         taxonomicClassification: [taxonClass]
       }
    end
 
@@ -1617,7 +1619,7 @@ class MdJsonHashWriter
    def taxonVoucher
       {
          specimen: 'specimen',
-         repository: build_responsibleParty('curator', ['CID002'])
+         repository: build_responsibleParty('curator', ['CID004'])
       }
    end
 
@@ -1649,8 +1651,7 @@ class MdJsonHashWriter
             identifier: 'time instant identifier'
          },
          instantName: ['instant name one', 'instant name two'],
-         dateTime: '2016-10-24T10:25:00',
-         geologicAge: {}
+         dateTime: '2016-10-24T10:25:00'
       }
    end
 

@@ -23,14 +23,13 @@
   <gmd:voucher>
     <gmd:MD_Vouchers>
       <gmd:specimen>
-        <gco:CharacterString>specimen one</gco:CharacterString>
+        <gco:CharacterString>specimen</gco:CharacterString>
       </gmd:specimen>
       <gmd:reposit>
         <gmd:CI_ResponsibleParty>
-          <gmd:individualName>
-            <gco:CharacterString>person name three</gco:CharacterString>
-          </gmd:individualName>
-          <gmd:positionName/>
+          <gmd:organisationName>
+            <gco:CharacterString>organization name four</gco:CharacterString>
+          </gmd:organisationName>
           <gmd:contactInfo/>
           <gmd:role>
             <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>

@@ -287,7 +287,7 @@ messageList:
    - {id: 684, message: "resource status is missing"}
    - {id: 685, message: "topicCategory is deprecated, items were moved to keywords, keywordType 'isoTopicCategory'"}
    - {id: 686, message: "resource point-of-contact is missing"}
-   - {id: 687, message: "taxonomy is now an array, the single taxonomy object was deprecated"}
+   - {id: 687, message: "taxonomy is an array, use of taxonomy object has been deprecated"}
    - {id: 688, message: "resource default locale is missing"}
 
    - {id: 690, message: "resource type object is empty"}
@@ -340,6 +340,7 @@ messageList:
    - {id: 831, message: "taxonomic classification system object is missing"}
    - {id: 832, message: "taxonomic identification procedure is missing"}
    - {id: 833, message: "taxonomic classification is missing"}
+   - {id: 834, message: "taxonomic classification is an array, use of taxonomic classification object is deprecated"}
 
    - {id: 840, message: "temporal extent object is empty"}
    - {id: 841, message: "temporal extent must have a time period or time instant"}
