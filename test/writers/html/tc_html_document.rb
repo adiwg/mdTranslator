@@ -22,8 +22,6 @@ class TestHtmlDocument < MiniTest::Test
          file: @@mdJson, reader: 'mdJson', validate: 'none', writer: 'html', showAllTags: false)
 
       got = metadata[:writerOutput]
-      File.write('/mnt/hgfs/ShareDrive/writeOut.html', got)
-
 
       refute_empty got
 

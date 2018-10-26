@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-10-27 identification procedure no longer required
 #  Stan Smith 2018-10-19 refactor taxonomic classification as array
 #  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2016-10-22 original script
@@ -78,14 +79,11 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - identification procedure (required)
+                  # taxonomy - identification procedure
                   if hTaxonomy.has_key?('identificationProcedure')
                      unless hTaxonomy['identificationProcedure'] == ''
                         intTaxonomy[:idProcedure] = hTaxonomy['identificationProcedure']
                      end
-                  end
-                  if intTaxonomy[:idProcedure].nil? || intTaxonomy[:idProcedure] == ''
-                     @MessagePath.issueError(832, responseObj)
                   end
 
                   # taxonomy - identification completeness
