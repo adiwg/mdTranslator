@@ -1,7 +1,22 @@
 # Change Log
 
-## [v2.13.2](https://github.com/adiwg/mdTranslator/tree/v2.13.2)
+## [v2.13.3](https://github.com/adiwg/mdTranslator/tree/v2.13.3)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.2...v2.13.3)
+
+**Fixed bugs:**
+
+- sbJSON contacts inherited from associated records [\#202](https://github.com/adiwg/mdTranslator/issues/202)
+
+**Closed issues:**
+
+- Errors Translating FGDC to HTML [\#201](https://github.com/adiwg/mdTranslator/issues/201)
+
+**Merged pull requests:**
+
+- Fix issues with sbJson writer and fgdc reader [\#203](https://github.com/adiwg/mdTranslator/pull/203) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.13.2](https://github.com/adiwg/mdTranslator/tree/v2.13.2) (2018-08-01)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.1...v2.13.2)
 
 **Merged pull requests:**
