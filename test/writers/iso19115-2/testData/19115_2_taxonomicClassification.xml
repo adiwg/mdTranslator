@@ -105,14 +105,10 @@
             </gmd:CI_Citation>
           </gmd:authority>
           <gmd:code>
-            <gco:CharacterString>identifier</gco:CharacterString>
+            <gco:CharacterString>missing</gco:CharacterString>
           </gmd:code>
-          <gmd:codeSpace>
-            <gco:CharacterString>namespace</gco:CharacterString>
-          </gmd:codeSpace>
-          <gmd:version>
-            <gco:CharacterString>version</gco:CharacterString>
-          </gmd:version>
+          <gmd:codeSpace/>
+          <gmd:version/>
         </gmd:RS_Identifier>
       </gmd:idref>
       <gmd:obs>

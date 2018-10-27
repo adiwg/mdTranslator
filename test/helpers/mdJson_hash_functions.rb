@@ -600,7 +600,7 @@ class MdJsonHashWriter
    def build_taxonomy_full(withAddress = false)
       hTaxonomy = taxonomy
       hTaxonomy[:taxonomicSystem] << taxonSystem
-      hTaxonomy[:identificationReference] << identifier
+      hTaxonomy[:identificationReference] << citation
       hTaxonomy[:observer] << build_responsibleParty('observer', ['CID004'])
       hTaxonomy[:voucher] << build_taxonVoucher
       hTaxonomy[:taxonomicClassification] << taxonClass

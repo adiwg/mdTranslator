@@ -340,6 +340,9 @@ messageList:
    - {id: 831, message: "taxonomic classification system object is missing"}
    - {id: 833, message: "taxonomic classification is missing"}
    - {id: 834, message: "taxonomic classification is an array, use of taxonomic classification object is deprecated"}
+   - {id: 835, message: "taxonomic identification reference as an identifier is deprecated, use citation"}
+   - {id: 836, message: "taxonomic identification reference authority was substituted for citation"}
+   - {id: 837, message: "taxonomic identification reference authority is empty or missing"}
 
    - {id: 840, message: "temporal extent object is empty"}
    - {id: 841, message: "temporal extent must have a time period or time instant"}

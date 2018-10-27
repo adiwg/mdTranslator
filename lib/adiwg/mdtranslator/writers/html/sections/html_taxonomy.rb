@@ -96,7 +96,7 @@ module ADIWG
                      @html.details do
                         @html.summary('Non-Authoritative Reference', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hReference)
+                           citationClass.writeHtml(hReference)
                         end
                      end
                   end

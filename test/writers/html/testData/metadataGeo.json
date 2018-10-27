@@ -1465,22 +1465,23 @@
                "generalScope": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "identificationReference": [
                   {
-                     "identifier": "identifier0",
-                     "namespace": "namespace0",
-                     "version": "version0",
-                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                     "authority": {
-                        "title": "title0"
-                     }
+                     "title": "Non-Authoritative reference one",
+                     "date": [
+                        {
+                           "date": "2015-02-14",
+                           "dateType": "revision"
+                        }
+                     ],
+                     "edition": "3rd Edition"
                   },
                   {
-                     "identifier": "identifier1",
-                     "namespace": "namespace1",
-                     "version": "version1",
-                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                     "authority": {
-                        "title": "title1"
-                     }
+                     "title": "Non-Authoritative reference two",
+                     "date": [
+                        {
+                           "date": "1927-10-23",
+                           "dateType": "publication"
+                        }
+                     ]
                   }
                ],
                "observer": [
@@ -1671,13 +1672,13 @@
                "generalScope": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                "identificationReference": [
                   {
-                     "identifier": "identifier0",
-                     "namespace": "namespace0",
-                     "version": "version0",
-                     "description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-                     "authority": {
-                        "title": "title0"
-                     }
+                     "title": "Non-Authoritative reference three",
+                     "date": [
+                        {
+                           "date": "1984-01-15",
+                           "dateType": "publication"
+                        }
+                     ]
                   }
                ],
                "observer": [

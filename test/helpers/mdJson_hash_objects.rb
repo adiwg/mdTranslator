@@ -1590,7 +1590,7 @@ class MdJsonHashWriter
       {
          taxonomicSystem: [taxonSystem],
          generalScope: 'general scope',
-         identificationReference: [identifier],
+         identificationReference: [citation],
          observer: [build_responsibleParty('observer', ['CID003'])],
          identificationProcedure: 'procedures',
          identificationCompleteness: 'completeness',

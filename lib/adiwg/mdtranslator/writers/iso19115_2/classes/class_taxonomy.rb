@@ -12,6 +12,7 @@
 #  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 # 	Stan Smith 2013-11-19 original script.
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative '../iso19115_2_writer'
 require_relative 'class_taxonomicSystem'
 require_relative 'class_rsIdentifier'
@@ -35,6 +36,7 @@ module ADIWG
                def writeXML(hSystem)
 
                   # classes used
+                  intMetadataClass = InternalMetadata.new
                   taxonomicClass = TaxonomicSystem.new(@xml, @hResponseObj)
                   identifierClass = RS_Identifier.new(@xml, @hResponseObj)
                   partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
@@ -65,16 +67,20 @@ module ADIWG
                         @xml.tag!('gmd:taxongen')
                      end
 
-                     # taxon system - identification reference (required) [{RS_Identifier}]
-                     aIdentifier = hSystem[:idReferences]
-                     aIdentifier.each do |hIdentifier|
-                        unless hIdentifier.empty?
+                     # taxon system - identification reference (required) [{citation}]
+                     # convert to RS_Identifier
+                     aCitations = hSystem[:idReferences]
+                     aCitations.each do |hCitation|
+                        unless hCitation.empty?
+                           hIdentifier = intMetadataClass.newIdentifier
+                           hIdentifier[:identifier] = 'missing'
+                           hIdentifier[:citation] = hCitation
                            @xml.tag!('gmd:idref') do
                               identifierClass.writeXML(hIdentifier, 'taxon identification reference')
                            end
                         end
                      end
-                     if aIdentifier.empty?
+                     if aCitations.empty?
                         @NameSpace.issueWarning(311, 'gmd:idref')
                      end
 

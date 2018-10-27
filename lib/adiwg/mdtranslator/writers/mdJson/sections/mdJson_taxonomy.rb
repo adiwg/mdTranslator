@@ -7,7 +7,7 @@
 
 require 'jbuilder'
 require_relative 'mdJson_taxonomicSystem'
-require_relative 'mdJson_identifier'
+require_relative 'mdJson_citation'
 require_relative 'mdJson_responsibleParty'
 require_relative 'mdJson_voucher'
 require_relative 'mdJson_taxonomicClassification'
@@ -26,7 +26,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.taxonomicSystem @Namespace.json_map(hTaxonomy[:taxonSystem], TaxonomicSystem)
                      json.generalScope hTaxonomy[:generalScope]
-                     json.identificationReference @Namespace.json_map(hTaxonomy[:idReferences], Identifier)
+                     json.identificationReference @Namespace.json_map(hTaxonomy[:idReferences], Citation)
                      json.observer @Namespace.json_map(hTaxonomy[:observers], ResponsibleParty)
                      json.identificationProcedure hTaxonomy[:idProcedure]
                      json.identificationCompleteness hTaxonomy[:idCompleteness]

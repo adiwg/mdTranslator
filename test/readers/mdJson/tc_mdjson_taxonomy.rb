@@ -189,6 +189,41 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
    end
 
+   def test_taxonomy_deprecated_idReference_identifier
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:identificationReference][1] = TDClass.identifier
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference as an identifier is deprecated, use citation'
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference authority was substituted for citation'
+
+   end
+
+   def test_taxonomy_deprecated_idReference_identifier_no_authority
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:identificationReference][1] = TDClass.identifier
+      hIn[:identificationReference][1].delete(:authority)
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference as an identifier is deprecated, use citation'
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference authority is empty or missing'
+
+   end
+
    def test_empty_taxonomy_object
 
       TestReaderMdJsonParent.loadEssential
