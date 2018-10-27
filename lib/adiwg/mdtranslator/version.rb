@@ -1,6 +1,10 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.14.0 2018-10-27 refactor taxonomy for multiple taxonomic classifications
+# 2.14.0 2018-10-27 refactor taxonomy for identification reference as citation
+# 2.14.0 2018-10-27 refactor taxonomy for identification procedures not required
+# 2.14.0 2018-10-27 refactor spatial reference for reorganized parameter set
 # 2.13.4 2018-09-28 add budget sourceId and recipientId to sbJSON contacts list
 # 2.13.4 2018-09-26 deprecated ellipsoidName from geodetic, use ellipsoidIdentifier
 # 2.13.4 2018-09-26 deprecated datumName from geodetic, use datumIdentifier
@@ -97,7 +101,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.13.4"
+      VERSION = "2.14.0"
    end
 end
 
