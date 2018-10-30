@@ -56,17 +56,17 @@ module ADIWG
 
                   # projection parameters - grid system identifier {identifier}
                   # add name to identifier object
-                  if hProjection.has_key?('gridSystemIdentifier')
-                     unless hProjection['gridSystemIdentifier'].empty?
-                        hGridSystemId = hProjection['gridSystemIdentifier']
-                        hReturn = Identifier.unpack(hProjection['gridSystemIdentifier'], responseObj, outContext)
+                  if hProjection.has_key?('gridIdentifier')
+                     unless hProjection['gridIdentifier'].empty?
+                        hGridSystemId = hProjection['gridIdentifier']
+                        hReturn = Identifier.unpack(hProjection['gridIdentifier'], responseObj, outContext)
                         unless hReturn.nil?
                            if hGridSystemId.has_key?('name')
                               unless hGridSystemId['name'] == ''
                                  hReturn[:name] = hGridSystemId['name']
                               end
                            end
-                           intProjection[:gridSystemIdentifier] = hReturn
+                           intProjection[:gridIdentifier] = hReturn
                         end
                      end
                   end

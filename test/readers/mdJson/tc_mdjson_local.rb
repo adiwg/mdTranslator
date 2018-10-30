@@ -20,13 +20,12 @@ class TestReaderMdJsonLocalProjection < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_localCoordinate_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'projection.json', fragment: 'local')
+       assert_empty errors
+
+   end
 
    def test_complete_obliqueLinePoint_object
 

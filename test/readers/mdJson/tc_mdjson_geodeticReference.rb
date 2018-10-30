@@ -23,13 +23,12 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_geodetic_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geodetic.json')
+       assert_empty errors
+
+   end
 
    def test_complete_geodetic_object
 

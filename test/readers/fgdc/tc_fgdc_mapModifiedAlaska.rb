@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarModifiedAlaska < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 1000000.0, hProjection[:falseEasting]
       assert_equal 490000.0, hProjection[:falseNorthing]
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]

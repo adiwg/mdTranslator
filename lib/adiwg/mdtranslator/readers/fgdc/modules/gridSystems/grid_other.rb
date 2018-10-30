@@ -17,10 +17,10 @@ module ADIWG
                def self.unpack(other, hProjection)
 
                   # grid system 4.1.2.2.6 (othergrd) - other coordinate system {text}
-                  # -> ReferenceSystemParameters.projection.gridSystemIdentifier.description
+                  # -> ReferenceSystemParameters.projection.gridIdentifier.description
 
                   hProjectionId = hProjection[:projectionIdentifier]
-                  hGridSystemId = hProjection[:gridSystemIdentifier]
+                  hGridSystemId = hProjection[:gridIdentifier]
 
                   hGridSystemId[:identifier] = 'other'
                   hGridSystemId[:name] = 'Other Grid Coordinate System' if hGridSystemId[:name].nil?

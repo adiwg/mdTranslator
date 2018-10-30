@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarAzimuthEqui < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -150.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 48.0, hProjection[:latitudeOfProjectionOrigin]
       assert_equal 1000000, hProjection[:falseEasting]

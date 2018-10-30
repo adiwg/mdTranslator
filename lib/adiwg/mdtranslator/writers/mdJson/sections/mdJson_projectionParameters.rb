@@ -22,7 +22,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.projectionIdentifier Identifier.build(hProjection[:projectionIdentifier]) unless hProjection[:projectionIdentifier].empty?
-                     json.gridSystemIdentifier Identifier.build(hProjection[:gridSystemIdentifier]) unless hProjection[:gridSystemIdentifier].empty?
+                     json.gridIdentifier Identifier.build(hProjection[:gridIdentifier]) unless hProjection[:gridIdentifier].empty?
                      json.gridZone hProjection[:gridZone]
                      json.standardParallel1 hProjection[:standardParallel1]
                      json.standardParallel2 hProjection[:standardParallel2]

@@ -18,7 +18,7 @@ module ADIWG
 
                   # grid system 4.1.2.2.2 (utm) - universal transverse mercator
 
-                  hGridSystemId = hProjection[:gridSystemIdentifier]
+                  hGridSystemId = hProjection[:gridIdentifier]
                   hProjectionId = hProjection[:projectionIdentifier]
 
                   hGridSystemId[:identifier] = 'utm'

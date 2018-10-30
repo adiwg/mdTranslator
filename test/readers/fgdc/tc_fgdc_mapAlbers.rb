@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarAlbers < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 9.0, hProjection[:standardParallel1]
       assert_equal 19.0, hProjection[:standardParallel2]
       assert_equal -150.0, hProjection[:longitudeOfCentralMeridian]

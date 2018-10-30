@@ -21,13 +21,12 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_verticalDatum_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'verticalDatum.json')
+       assert_empty errors
+
+   end
 
    def test_complete_verticalDatum_object
 

@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -90.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_equal 50.0, hProjection[:standardParallel1]
       assert_nil hProjection[:standardParallel2]
@@ -102,7 +102,7 @@ class TestReaderFgdcPlanarPolarStereographic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -90.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_nil hProjection[:standardParallel1]
       assert_nil hProjection[:standardParallel2]

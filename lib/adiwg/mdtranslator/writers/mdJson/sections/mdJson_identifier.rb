@@ -1,7 +1,7 @@
 # mdJson 2.0 writer tests - identifier
 
 # History:
-#  Stan Smith 2018-10-18 added 'name' for projectionIdentifier & gridSystemIdentifier
+#  Stan Smith 2018-10-18 added 'name' for projectionIdentifier & gridIdentifier
 #  Stan Smith 2017-03-13 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
 

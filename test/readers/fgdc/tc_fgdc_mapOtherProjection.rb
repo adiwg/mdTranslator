@@ -40,7 +40,7 @@ class TestReaderFgdcOtherProjection < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 'feet', hProjection[:falseEastingNorthingUnits]
 
       hProjectionId = hProjection[:projectionIdentifier]

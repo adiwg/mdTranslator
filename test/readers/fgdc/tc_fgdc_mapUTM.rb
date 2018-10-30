@@ -41,7 +41,7 @@ class TestReaderFgdcUTM < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal '9', hProjection[:gridZone]
       assert_equal 9.9, hProjection[:scaleFactorAtCentralMeridian]
       assert_equal -99.0, hProjection[:longitudeOfCentralMeridian]
@@ -50,7 +50,7 @@ class TestReaderFgdcUTM < TestReaderFGDCParent
       assert_equal 750000.0, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'utm', hGridSystemId[:identifier]
       assert_equal 'Universal Transverse Mercator', hGridSystemId[:name]
@@ -68,7 +68,7 @@ class TestReaderFgdcUTM < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Universal Transverse Mercator', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]

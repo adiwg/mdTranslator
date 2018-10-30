@@ -22,15 +22,16 @@ class TestReaderMdJsonTaxonomicClassification < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_taxClass_schema
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hIn = hIn[:subClassification][0]
-   #    errors = TestReaderMdJsonParent.testSchema(hIn, 'taxonomy.json', :fragment => 'taxonomicClassification')
-   #    assert_empty errors
-   #
-   # end
+   def test_taxClass_schema
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = hIn[:subClassification][0]
+      hIn[:latinName] = 'deprecated'
+      hIn[:taxonomicRank] = 'deprecated'
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'taxonomy.json', :fragment => 'taxonomicClassification')
+      assert_empty errors
+
+   end
 
    def test_complete_taxClass_object
 

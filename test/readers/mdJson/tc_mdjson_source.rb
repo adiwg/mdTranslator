@@ -23,13 +23,14 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_source_schema
-   #
-   #    errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'lineage.json', :fragment => 'source')
-   #    assert_empty errors
-   #
-   # end
+   def test_source_schema
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      TDClass.removeEmptyObjects(hIn)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'lineage.json', :fragment => 'source')
+      assert_empty errors
+
+   end
 
    def test_complete_source_object
 

@@ -21,13 +21,13 @@ class TestReaderMdJsonGeographicResolution < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_geographicResolution_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'measure.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_geographicResolution_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialResolution.json',
+                                                  fragment: 'geographicResolution')
+       assert_empty errors
+
+   end
 
    def test_complete_geoRes
 

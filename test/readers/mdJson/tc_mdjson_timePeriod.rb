@@ -23,13 +23,23 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_timePeriod_schema
-   #
-   #    errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'timePeriod.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_timePeriod_schema
+
+      # oneOf startDateTime/endDateTime
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:startDateTime)
+      hIn.delete(:endDateTime)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['startDateTime, endDateTime'])
+      assert_empty errors
+
+      # oneOf startGeologicAge/endGeologicAge
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:startGeologicAge)
+      hIn.delete(:endGeologicAge)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['startGeologicAge, endGeologicAge'])
+      assert_empty errors
+
+   end
 
    def test_complete_timePeriod_object
 

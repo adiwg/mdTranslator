@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 103.5, hProjection[:scaleFactorAtCenterLine]
       assert_equal 60.0, hProjection[:azimuthAngle]
       assert_equal -110.0, hProjection[:azimuthMeasurePointLongitude]
@@ -102,7 +102,7 @@ class TestReaderFgdcPlanarObliqueMercator < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 103.5, hProjection[:scaleFactorAtCenterLine]
       assert_equal 2, hProjection[:obliqueLinePoints].length
       assert_equal 20.0, hProjection[:obliqueLinePoints][0][:obliqueLineLatitude]

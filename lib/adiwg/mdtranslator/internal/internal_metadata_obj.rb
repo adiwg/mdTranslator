@@ -850,7 +850,7 @@ class InternalMetadata
    def newProjection
       {
          projectionIdentifier: {},
-         gridSystemIdentifier: {},
+         gridIdentifier: {},
          gridZone: nil,
          standardParallel1: nil,
          standardParallel2: nil,

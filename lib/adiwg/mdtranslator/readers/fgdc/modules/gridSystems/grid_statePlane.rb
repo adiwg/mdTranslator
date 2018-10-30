@@ -21,7 +21,7 @@ module ADIWG
 
                   # grid system 4.1.2.2.4 (spcs) - state plane coordinate system
 
-                  hGridSystemId = hProjection[:gridSystemIdentifier]
+                  hGridSystemId = hProjection[:gridIdentifier]
                   hProjectionId = hProjection[:projectionIdentifier]
 
                   hGridSystemId[:identifier] = 'spcs'

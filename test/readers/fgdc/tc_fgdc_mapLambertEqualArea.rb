@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarLambertEqualArea < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -120.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 50.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000, hProjection[:falseEasting]

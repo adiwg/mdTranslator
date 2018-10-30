@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarOrthographic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -125.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 70.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000.0, hProjection[:falseEasting]

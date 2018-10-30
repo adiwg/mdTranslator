@@ -41,7 +41,7 @@ class TestReaderFgdcOtherGrid < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
       hProjectionId = hProjection[:projectionIdentifier]
@@ -49,7 +49,7 @@ class TestReaderFgdcOtherGrid < TestReaderFGDCParent
       assert_equal 'Other Projection', hProjectionId[:name]
       assert_equal 'for description see grid system description', hProjectionId[:description]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'other', hGridSystemId[:identifier]
       assert_equal 'Other Grid Coordinate System', hGridSystemId[:name]
       assert_equal 'other grid description', hGridSystemId[:description]
@@ -65,7 +65,7 @@ class TestReaderFgdcOtherGrid < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Other Grid Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]

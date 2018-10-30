@@ -41,7 +41,7 @@ class TestReaderFgdcSinusoidal < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 30.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 1000000.0, hProjection[:falseEasting]
       assert_equal 650000.0, hProjection[:falseNorthing]

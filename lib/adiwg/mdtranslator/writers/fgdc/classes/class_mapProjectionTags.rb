@@ -30,7 +30,7 @@ module ADIWG
                end
 
                def outContextGrid(inContext, hIdentifier = {})
-                  outContext = hIdentifier.empty? ? nil : hIdentifier[:gridSystemIdentifier][:identifier]
+                  outContext = hIdentifier.empty? ? nil : hIdentifier[:gridIdentifier][:identifier]
                   return nil if inContext.nil? && outContext.nil?
                   return inContext if outContext.nil?
                   return outContext if inContext.nil?
@@ -389,10 +389,10 @@ module ADIWG
 
                # map projection (othergrd) - other grid description (required)
                def write_otherGrid(hProjection, inContext = nil)
-                  unless hProjection[:gridSystemIdentifier][:description].nil?
-                     @xml.tag!('othergrd', hProjection[:gridSystemIdentifier][:description])
+                  unless hProjection[:gridIdentifier][:description].nil?
+                     @xml.tag!('othergrd', hProjection[:gridIdentifier][:description])
                   end
-                  if hProjection[:gridSystemIdentifier][:description].nil?
+                  if hProjection[:gridIdentifier][:description].nil?
                      @NameSpace.issueError(314, outContext(inContext, hProjection))
                   end
                end

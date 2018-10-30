@@ -1050,7 +1050,7 @@
                         "name": "Transverse Mercator",
                         "description": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
                      },
-                     "gridSystemIdentifier": {
+                     "gridIdentifier": {
                         "identifier": "spcs",
                         "name": "Alaska State Plane Coordinate System",
                         "description": "Ut local planar enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
@@ -1151,7 +1151,7 @@
                         "identifier": "obliqueMercator",
                         "name": "Oblique Mercator"
                      },
-                     "gridSystemIdentifier": {
+                     "gridIdentifier": {
                         "identifier": "spcs",
                         "name": "Alaska State Plane Coordinate System"
                      },
@@ -1192,7 +1192,7 @@
                         "name": "custom coordinate projection system",
                         "description": "My projection is... Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                      },
-                     "gridSystemIdentifier": {
+                     "gridIdentifier": {
                         "identifier": "other",
                         "name": "custom grid system",
                         "description": "My grid is... Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."

@@ -21,15 +21,32 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_referenceSystemParameterSet_schema
 
-   def test_complete_referenceSystemParameter_object
+      # oneOf projection
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:geodetic)
+      hIn.delete(:verticalDatum)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'referenceSystemParameterSet.json', :remove => %w(geodetic verticalDatum))
+      assert_empty errors
+
+      # oneOf geodetic
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:projection)
+      hIn.delete(:verticalDatum)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'referenceSystemParameterSet.json', :remove => %w(projection verticalDatum))
+      assert_empty errors
+
+      # oneOf verticalDatum
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:projection)
+      hIn.delete(:geodetic)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'referenceSystemParameterSet.json', :remove => %w(projection geodetic))
+      assert_empty errors
+
+   end
+
+   def test_complete_referenceSystemParameterSet_object
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -45,7 +62,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
 
    end
 
-   def test_empty_referenceSystemParameter_required
+   def test_empty_referenceSystemParameterSet_required
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -64,7 +81,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
 
    end
 
-   def test_missing_referenceSystemParameter_required
+   def test_missing_referenceSystemParameterSet_required
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -84,7 +101,7 @@ class TestReaderMdJsonReferenceSystemParameters < TestReaderMdJsonParent
 
    end
 
-   def test_empty_referenceSystemParameter_object
+   def test_empty_referenceSystemParameterSet_object
 
       TestReaderMdJsonParent.loadEssential
       hResponse = Marshal::load(Marshal.dump(@@responseObj))

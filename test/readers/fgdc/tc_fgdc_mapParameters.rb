@@ -41,7 +41,7 @@ class TestReaderFgdcProjectionParameters < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 1.0, hProjection[:standardParallel1]
       assert_equal 2.0, hProjection[:standardParallel2]
       assert_equal 3.0, hProjection[:longitudeOfCentralMeridian]

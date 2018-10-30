@@ -28,8 +28,8 @@ module ADIWG
                   outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   # planar 4.1.2.2 (gridsys) - grid coordinate system
-                  # <- hProjection.gridSystemIdentifier.identifier = oneOf ...
-                  hGridId = hProjection[:gridSystemIdentifier]
+                  # <- hProjection.gridIdentifier.identifier = oneOf ...
+                  hGridId = hProjection[:gridIdentifier]
                   gridSystem = hGridId[:identifier]
                   gridName = nil
                   if hGridId.key?(:name)

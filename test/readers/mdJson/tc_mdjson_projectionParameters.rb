@@ -21,13 +21,12 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_projectionParameters_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'projection.json')
+       assert_empty errors
+
+   end
 
    def test_complete_projectionParameters_object
 
@@ -38,7 +37,7 @@ class TestReaderMdJsonProjectionParameters < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:projectionIdentifier]
-      refute_empty metadata[:gridSystemIdentifier]
+      refute_empty metadata[:gridIdentifier]
       assert_equal 'zone 4', metadata[:gridZone]
       assert_equal 9.9, metadata[:standardParallel1]
       assert_equal 9.9, metadata[:standardParallel2]

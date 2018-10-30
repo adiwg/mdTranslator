@@ -41,7 +41,7 @@ class TestReaderFgdcPolyconic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -160.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 65.0, hProjection[:latitudeOfProjectionOrigin]
       assert_equal 1000000.0, hProjection[:falseEasting]

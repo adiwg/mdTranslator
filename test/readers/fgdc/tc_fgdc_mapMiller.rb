@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarMillerCylinder < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -160.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 1000000, hProjection[:falseEasting]
       assert_equal 400000, hProjection[:falseNorthing]

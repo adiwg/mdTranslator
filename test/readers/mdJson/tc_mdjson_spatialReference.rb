@@ -18,17 +18,19 @@ class TestReaderMdJsonSpatialReference < TestReaderMdJsonParent
    TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
-   mdHash = TDClass.build_spatialReference_full
+   mdHash = TDClass.spatialReferenceSystem
+   mdHash[:referenceSystemIdentifier] = TDClass.identifier
+   mdHash[:referenceSystemParameterSet] = TDClass.build_parameterSet(false, false, true)
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_spatialReference_schema
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'spatialReference.json')
+      assert_empty errors
+
+   end
 
    def test_complete_referenceSystem_object
 

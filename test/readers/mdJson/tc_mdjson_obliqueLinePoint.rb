@@ -21,13 +21,14 @@ class TestReaderMdJsonObliqueLinePoint < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_obliqueLinePoint_schema
+
+      hPoint = Marshal::load(Marshal.dump(@@mdHash))
+      aIn = [ hPoint, hPoint ]
+      errors = TestReaderMdJsonParent.testSchema(aIn, 'projection.json', fragment: 'obliqueLinePoint')
+      assert_empty errors
+
+   end
 
    def test_complete_obliqueLinePoint_object
 

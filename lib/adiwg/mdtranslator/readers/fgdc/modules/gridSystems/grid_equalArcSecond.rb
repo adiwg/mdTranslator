@@ -19,7 +19,7 @@ module ADIWG
 
                   # grid system 4.1.2.2.5 (arcsys) - equal arc-second coordinate system
 
-                  hGridSystemId = hProjection[:gridSystemIdentifier]
+                  hGridSystemId = hProjection[:gridIdentifier]
                   hProjectionId = hProjection[:projectionIdentifier]
 
                   hGridSystemId[:identifier] = 'arcsys'

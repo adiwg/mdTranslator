@@ -18,7 +18,7 @@ module ADIWG
 
                   # grid system 4.1.2.2.3 (ups) - universal polar stereographic
 
-                  hGridSystemId = hProjection[:gridSystemIdentifier]
+                  hGridSystemId = hProjection[:gridIdentifier]
                   hProjectionId = hProjection[:projectionIdentifier]
 
                   hGridSystemId[:identifier] = 'ups'

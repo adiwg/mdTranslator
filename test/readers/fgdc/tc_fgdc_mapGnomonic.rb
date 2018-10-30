@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarGnomonic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal -110.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal -25.0, hProjection[:latitudeOfProjectionCenter]
       assert_equal 1000000, hProjection[:falseEasting]

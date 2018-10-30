@@ -41,7 +41,7 @@ class TestReaderFgdcTransverseMercator < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 49.25, hProjection[:scaleFactorAtCentralMeridian]
       assert_equal -165.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 65.0, hProjection[:latitudeOfProjectionOrigin]

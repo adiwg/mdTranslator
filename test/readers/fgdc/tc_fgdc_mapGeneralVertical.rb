@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarGeneralVertical < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 1000.0, hProjection[:heightOfProspectivePointAboveSurface]
       assert_equal -100.0, hProjection[:longitudeOfProjectionCenter]
       assert_equal 30.0, hProjection[:latitudeOfProjectionCenter]

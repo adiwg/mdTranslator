@@ -474,7 +474,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
       # test empty definitions
       hProjection[:projectionIdentifier][:description] = ''
-      hProjection[:gridSystemIdentifier][:description] = ''
+      hProjection[:gridIdentifier][:description] = ''
 
       hResponseObj = get_response(hProjection)
 
@@ -484,7 +484,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
       # test missing definitions
       hProjection[:projectionIdentifier].delete(:description)
-      hProjection[:gridSystemIdentifier].delete(:description)
+      hProjection[:gridIdentifier].delete(:description)
 
       hResponseObj = get_response(hProjection)
 
@@ -503,7 +503,7 @@ class TestWriterFgdcMapGridSystem < TestWriterFGDCParent
 
       # test missing projection
       hProjection[:projectionIdentifier].delete(:description)
-      hProjection[:gridSystemIdentifier].delete(:description)
+      hProjection[:gridIdentifier].delete(:description)
 
       hResponseObj = get_response(hProjection)
 

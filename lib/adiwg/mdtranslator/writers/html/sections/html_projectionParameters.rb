@@ -36,11 +36,11 @@ module ADIWG
                   end
 
                   # projection parameters - grid system identifier
-                  unless hProjection[:gridSystemIdentifier].empty?
+                  unless hProjection[:gridIdentifier].empty?
                      @html.details do
                         @html.summary('Grid System Identifier', {'id' => 'grid-system-identifier', 'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hProjection[:gridSystemIdentifier])
+                           identifierClass.writeHtml(hProjection[:gridIdentifier])
                         end
                      end
                   end

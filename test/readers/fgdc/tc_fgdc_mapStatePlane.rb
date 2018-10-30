@@ -41,7 +41,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'alaska zone 9', hProjection[:gridZone]
       assert_equal 50.0, hProjection[:standardParallel1]
       assert_equal 55.0, hProjection[:standardParallel2]
@@ -51,7 +51,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       assert_equal 500000, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'spcs', hGridSystemId[:identifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
@@ -69,7 +69,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -106,7 +106,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'alaska zone 8', hProjection[:gridZone]
       assert_equal 0.45, hProjection[:scaleFactorAtCentralMeridian]
       assert_equal -160.0, hProjection[:longitudeOfCentralMeridian]
@@ -115,7 +115,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       assert_equal 600000.0, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'spcs', hGridSystemId[:identifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
@@ -133,7 +133,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -170,7 +170,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'alaska zone 7', hProjection[:gridZone]
       assert_equal 0.55, hProjection[:scaleFactorAtCenterLine]
       assert_equal 15.0, hProjection[:azimuthAngle]
@@ -180,7 +180,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       assert_equal 400000, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'spcs', hGridSystemId[:identifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
@@ -198,7 +198,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -235,7 +235,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'alaska zone 6', hProjection[:gridZone]
       assert_equal 0.55, hProjection[:scaleFactorAtCenterLine]
       assert_equal 2, hProjection[:obliqueLinePoints].length
@@ -248,7 +248,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       assert_equal 400000, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'spcs', hGridSystemId[:identifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
@@ -266,7 +266,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -303,7 +303,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'alaska zone 5', hProjection[:gridZone]
       assert_equal -155.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 61.0, hProjection[:latitudeOfProjectionOrigin]
@@ -311,7 +311,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       assert_equal 450000.0, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'spcs', hGridSystemId[:identifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
@@ -329,7 +329,7 @@ class TestReaderFgdcStatePlane < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'State Plane Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]

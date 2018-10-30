@@ -854,7 +854,7 @@ class MdJsonHashWriter
       hGridId[:identifier] = grid
       hGridId[:name] = name unless name.nil?
       hGridId[:description] = description unless description.nil?
-      hProjection[:gridSystemIdentifier] = hGridId
+      hProjection[:gridIdentifier] = hGridId
       hProjection[:gridZone] = zone unless zone.nil?
       return hProjection
    end
@@ -977,9 +977,9 @@ class MdJsonHashWriter
 
    def add_otherGrid(hProjection, description = nil)
       if description.nil?
-         hProjection[:gridSystemIdentifier][:description] = 'Other Grid Coordinate System Description'
+         hProjection[:gridIdentifier][:description] = 'Other Grid Coordinate System Description'
       else
-         hProjection[:gridSystemIdentifier][:description] = description
+         hProjection[:gridIdentifier][:description] = description
       end
       return hProjection
    end

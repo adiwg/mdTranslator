@@ -41,7 +41,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'B', hProjection[:gridZone]
       assert_equal 102.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_equal 52.0, hProjection[:standardParallel1]
@@ -51,7 +51,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       assert_equal 300000.0, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'ups', hGridSystemId[:identifier]
       assert_equal 'Universal Polar Stereographic', hGridSystemId[:name]
@@ -69,7 +69,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Universal Polar Stereographic', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -106,7 +106,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal 'B', hProjection[:gridZone]
       assert_equal 102.0, hProjection[:straightVerticalLongitudeFromPole]
       assert_nil hProjection[:standardParallel1]
@@ -116,7 +116,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       assert_equal 300000.0, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'ups', hGridSystemId[:identifier]
       assert_equal 'Universal Polar Stereographic', hGridSystemId[:name]
@@ -134,7 +134,7 @@ class TestReaderFgdcUPS < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Universal Polar Stereographic', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]

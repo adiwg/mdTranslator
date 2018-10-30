@@ -1417,7 +1417,7 @@ class MdJsonHashWriter
    def projection
       {
          projectionIdentifier: { identifier: 'projection identifier', name: 'projection name' },
-         gridSystemIdentifier: { identifier: 'grid system identifier', name: 'grid system name' },
+         gridIdentifier: { identifier: 'grid system identifier', name: 'grid system name' },
          gridZone: 'zone 4',
          standardParallel1: 9.9,
          standardParallel2: 9.9,

@@ -41,7 +41,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal '10', hProjection[:gridZone]
       assert_equal 60.0, hProjection[:standardParallel1]
       assert_equal -140.0, hProjection[:longitudeOfCentralMeridian]
@@ -49,7 +49,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
       assert_equal 400000, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'arcsys', hGridSystemId[:identifier]
       assert_equal 'Equal Arc-Second Coordinate System', hGridSystemId[:name]
@@ -67,7 +67,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Equal Arc-Second Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]
@@ -104,7 +104,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      refute_empty hProjection[:gridSystemIdentifier]
+      refute_empty hProjection[:gridIdentifier]
       assert_equal '10', hProjection[:gridZone]
       assert_equal -140.0, hProjection[:longitudeOfCentralMeridian]
       assert_equal 60.0, hProjection[:latitudeOfProjectionOrigin]
@@ -112,7 +112,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
       assert_equal 400000, hProjection[:falseNorthing]
       assert_equal 'meters', hProjection[:falseEastingNorthingUnits]
 
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       hProjectionId = hProjection[:projectionIdentifier]
       assert_equal 'arcsys', hGridSystemId[:identifier]
       assert_equal 'Equal Arc-Second Coordinate System', hGridSystemId[:name]
@@ -130,7 +130,7 @@ class TestReaderFgdcArc < TestReaderFGDCParent
       hReferenceSystem = hPlanar[:spatialReferenceSystems][1]
       hParameterSet = hReferenceSystem[:systemParameterSet]
       hProjection = hParameterSet[:projection]
-      hGridSystemId = hProjection[:gridSystemIdentifier]
+      hGridSystemId = hProjection[:gridIdentifier]
       assert_equal 'Equal Arc-Second Coordinate System', hGridSystemId[:name]
 
       assert hResponse[:readerExecutionPass]

@@ -41,7 +41,7 @@ module ADIWG
                      unless hSpaceRef[:systemParameterSet].empty?
                         unless hSpaceRef[:systemParameterSet][:projection].empty?
                            hProjection = hSpaceRef[:systemParameterSet][:projection]
-                           unless hProjection[:gridSystemIdentifier].empty?
+                           unless hProjection[:gridIdentifier].empty?
                               classGrid.writeXML(hProjection, outContext)
                               break
                            end

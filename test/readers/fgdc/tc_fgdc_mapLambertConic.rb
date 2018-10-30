@@ -41,7 +41,7 @@ class TestReaderFgdcPlanarLambertConic < TestReaderFGDCParent
 
       hProjection = hParameterSet[:projection]
       refute_empty hProjection[:projectionIdentifier]
-      assert_empty hProjection[:gridSystemIdentifier]
+      assert_empty hProjection[:gridIdentifier]
       assert_equal 20.0, hProjection[:standardParallel1]
       assert_equal 40.0, hProjection[:standardParallel2]
       assert_equal -100.0, hProjection[:longitudeOfCentralMeridian]

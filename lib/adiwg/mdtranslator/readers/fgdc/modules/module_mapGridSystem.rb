@@ -26,7 +26,7 @@ module ADIWG
                   hProjection = intMetadataClass.newProjection
                   hGridSystemId = intMetadataClass.newIdentifier
                   hProjectionId = intMetadataClass.newIdentifier
-                  hProjection[:gridSystemIdentifier] = hGridSystemId
+                  hProjection[:gridIdentifier] = hGridSystemId
                   hProjection[:projectionIdentifier] = hProjectionId
 
                   # grid system 4.1.2.2.1 (gridsysn) - grid coordinate system name (required)
@@ -64,7 +64,7 @@ module ADIWG
                   end
 
                   # grid system 4.1.2.2.6 (othergrd) - other coordinate system {text}
-                  # -> ReferenceSystemParameters.projection.gridSystemIdentifier.description
+                  # -> ReferenceSystemParameters.projection.gridIdentifier.description
                   otherG = xMapGrid.xpath('./othergrd').text
                   unless otherG.empty?
                      return MapGridOther.unpack(otherG, hProjection)
