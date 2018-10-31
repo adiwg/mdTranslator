@@ -25,13 +25,11 @@ class TestWriterMdJsonLocalProjection < TestWriterMdJsonParent
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
       mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'spatial representation type'
 
-      @@mdHash = mdHash
-
       metadata = ADIWG::Mdtranslator.translate(
-         file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
+         file: mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)
 
-      expect = JSON.parse(@@mdHash.to_json)
+      expect = JSON.parse(mdHash.to_json)
       expect = expect['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['projection']
       got = JSON.parse(metadata[:writerOutput])
       got = got['metadata']['resourceInfo']['spatialReferenceSystem'][0]['referenceSystemParameterSet']['projection']
@@ -50,8 +48,9 @@ class TestWriterMdJsonLocalProjection < TestWriterMdJsonParent
 
    def test_schema_localProjection
 
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:local]
+      hProjection = TDClass.build_projection('localPlanar', 'schema test')
+      TDClass.add_localPlanar(hProjection)
+      hTest = hProjection[:local]
       errors = TestWriterMdJsonParent.testSchema(hTest, 'projection.json', fragment: 'local')
       assert_empty errors
 
