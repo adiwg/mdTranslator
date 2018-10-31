@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-10-19 refactored for mdJson schema 2.6.0
 #  Stan Smith 2018-03-26 refactored error and warning messaging
 #  Stan Smith 2017-12-12 original script
 
@@ -53,13 +54,17 @@ module ADIWG
                      @xml.tag!('taxongen')
                   end
 
-                  # taxonomy bio (taxoncl) - taxonomic classification {required}
-                  unless hTaxonomy[:taxonClass].empty?
+                  # taxonomy bio (taxoncl) - taxonomic classification [0] {required}
+                  unless hTaxonomy[:taxonClasses].empty?
                      @xml.tag!('taxoncl') do
-                        taxClassClass.writeXML(hTaxonomy[:taxonClass])
+                        taxClassClass.writeXML(hTaxonomy[:taxonClasses][0])
                      end
                   end
-                  if hTaxonomy[:taxonClass].empty?
+                  if hTaxonomy[:taxonClasses].length > 1
+                     @NameSpace.issueNotice(401)
+                     @NameSpace.issueNotice(402)
+                  end
+                  if hTaxonomy[:taxonClasses].empty?
                      @NameSpace.issueWarning(400, 'taxoncl')
                   end
 

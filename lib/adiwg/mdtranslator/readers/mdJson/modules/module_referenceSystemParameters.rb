@@ -31,7 +31,7 @@ module ADIWG
                   intParamSet = intMetadataClass.newReferenceSystemParameterSet
 
                   outContext = 'reference system parameter set'
-                  outContext = inContext + ' > ' + outContext unless inContext.nil?
+                  outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   haveParams = false
 

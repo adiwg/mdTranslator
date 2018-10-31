@@ -2,6 +2,7 @@
 # spatial reference system projection parameters
 
 # History:
+#  Stan Smith 2018-10-17 refactor for mdJson schema 2.6.0
 #  Stan Smith 2017-10-24 original script
 
 require_relative 'html_identifier'
@@ -24,38 +25,30 @@ module ADIWG
                   identifierClass = Html_Identifier.new(@html)
                   linePointClass = Html_ObliqueLinePoint.new()
 
-                  # projection parameters - grid system
-                  unless hProjection[:gridSystem].nil?
-                     @html.em('Grid System: ')
-                     @html.text!(hProjection[:gridSystem])
-                     @html.br
+                  # projection parameters - projection identifier
+                  unless hProjection[:projectionIdentifier].empty?
+                     @html.details do
+                        @html.summary('Projection Identifier', {'id' => 'projection-identifier', 'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hProjection[:projectionIdentifier])
+                        end
+                     end
                   end
 
-                  # projection parameters - grid system name
-                  unless hProjection[:gridSystemName].nil?
-                     @html.em('Grid System Name: ')
-                     @html.text!(hProjection[:gridSystemName])
-                     @html.br
+                  # projection parameters - grid system identifier
+                  unless hProjection[:gridIdentifier].empty?
+                     @html.details do
+                        @html.summary('Grid System Identifier', {'id' => 'grid-system-identifier', 'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hProjection[:gridIdentifier])
+                        end
+                     end
                   end
 
                   # projection parameters - zone
                   unless hProjection[:gridZone].nil?
                      @html.em('Grid System Zone: ')
                      @html.text!(hProjection[:gridZone])
-                     @html.br
-                  end
-
-                  # projection parameters - projection
-                  unless hProjection[:projection].nil?
-                     @html.em('Projection: ')
-                     @html.text!(hProjection[:projection])
-                     @html.br
-                  end
-
-                  # projection parameters - projection name
-                  unless hProjection[:projectionName].nil?
-                     @html.em('Projection Name: ')
-                     @html.text!(hProjection[:projectionName])
                      @html.br
                   end
 
@@ -199,47 +192,65 @@ module ADIWG
                      @html.br
                   end
 
-                  # projection parameters - local planar description
-                  unless hProjection[:localPlanarDescription].nil?
-                     @html.em('Local Planar Description: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(hProjection[:localPlanarDescription])
-                     end
-                  end
+                  # projection parameters - local
+                  unless hProjection[:local].empty?
+                     hLocal = hProjection[:local]
 
-                  # projection parameters - local planar georeference
-                  unless hProjection[:localPlanarGeoreference].nil?
-                     @html.em('Local Planar Georeference: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(hProjection[:localPlanarGeoreference])
-                     end
-                  end
+                     # local fixed to earth
+                     @html.em('Local Coordinate System Fixed to Earth: ')
+                     @html.text!(hLocal[:fixedToEarth].to_s)
+                     @html.br
 
-                  # projection parameters - other grid description
-                  unless hProjection[:otherGridDescription].nil?
-                     @html.em('Other Grid Description: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(hProjection[:otherGridDescription])
-                     end
-                  end
-
-                  # projection parameters - other projection description
-                  unless hProjection[:otherProjectionDescription].nil?
-                     @html.em('Other Projection Description: ')
-                     @html.section(:class => 'block') do
-                        @html.text!(hProjection[:otherProjectionDescription])
-                     end
-                  end
-
-                  # projection parameters - projection identifier
-                  unless hProjection[:projectionIdentifier].empty?
-                     @html.details do
-                        @html.summary('Projection Identifier', {'id' => 'projection-identifier', 'class' => 'h5'})
+                     # local description
+                     unless hLocal[:description].nil?
+                        @html.em('Local Coordinate System Description: ')
                         @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hProjection[:projectionIdentifier])
+                           @html.text!(hLocal[:description])
                         end
                      end
+
+                     # local georeference
+                     unless hLocal[:georeference].nil?
+                        @html.em('Local Coordinate System Georeference: ')
+                        @html.section(:class => 'block') do
+                           @html.text!(hLocal[:georeference])
+                        end
+                     end
+
                   end
+
+
+               # # projection parameters - local planar description
+                  # unless hProjection[:localPlanarDescription].nil?
+                  #    @html.em('Local Planar Description: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(hProjection[:localPlanarDescription])
+                  #    end
+                  # end
+                  #
+                  # # projection parameters - local planar georeference
+                  # unless hProjection[:localPlanarGeoreference].nil?
+                  #    @html.em('Local Planar Georeference: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(hProjection[:localPlanarGeoreference])
+                  #    end
+                  # end
+                  #
+                  # # projection parameters - other grid description
+                  # unless hProjection[:otherGridDescription].nil?
+                  #    @html.em('Other Grid Description: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(hProjection[:otherGridDescription])
+                  #    end
+                  # end
+                  #
+                  # # projection parameters - other projection description
+                  # unless hProjection[:otherProjectionDescription].nil?
+                  #    @html.em('Other Projection Description: ')
+                  #    @html.section(:class => 'block') do
+                  #       @html.text!(hProjection[:otherProjectionDescription])
+                  #    end
+                  # end
 
                end # writeHtml
             end # Html_ProjectionParameters

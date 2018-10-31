@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-09-26 datumName is deprecated, use datumIdentifier.identifier
 #  Stan Smith 2018-06-27 refactored error and warning messaging
 # 	Stan Smith 2017-10-23 original script
 
@@ -31,7 +32,7 @@ module ADIWG
                   outContext = 'vertical datum'
                   outContext = inContext + ' > ' + outContext unless inContext.nil?
 
-                  # vertical datum - identifier {identifier}
+                  # vertical datum - identifier {identifier} (required)
                   if hDatum.has_key?('datumIdentifier')
                      unless hDatum['datumIdentifier'].empty?
                         hReturn = Identifier.unpack(hDatum['datumIdentifier'], responseObj, outContext)
@@ -40,16 +41,26 @@ module ADIWG
                         end
                      end
                   end
+                  if intDatum[:datumIdentifier].empty?
+                     @MessagePath.issueError(921, responseObj, inContext)
+                  end
 
-                  haveOthers  = 0
-
-                  # vertical datum - datum name
+                  # TODO remove when mdJson version 3
+                  # vertical datum - datum name (deprecated), move to datumIdentifier
+                  # skip datumName if identifier is already present
                   if hDatum.has_key?('datumName')
                      unless hDatum['datumName'] == ''
-                        intDatum[:datumName] = hDatum['datumName']
-                        haveOthers += 1
+                        @MessagePath.issueWarning(922, responseObj, inContext)
+                        if intDatum[:datumIdentifier].empty?
+                           intDatum[:datumIdentifier] = intMetadataClass.newIdentifier
+                           intDatum[:datumIdentifier][:identifier] = hDatum['datumName']
+                           @MessagePath.issueNotice(925, responseObj, inContext)
+                           @MessagePath.issueNotice(923, responseObj, inContext)
+                        end
                      end
                   end
+
+                  haveOthers  = 0
 
                   # vertical datum - encoding method
                   if hDatum.has_key?('encodingMethod')
@@ -83,11 +94,12 @@ module ADIWG
                   end
 
                   # error messages
-                  if intDatum[:datumIdentifier].empty? && haveOthers != 4
-                     @MessagePath.issueError(921, responseObj, inContext)
+                  unless haveOthers == 0 || haveOthers == 3
+                     @MessagePath.issueError(924, responseObj, inContext)
                   end
 
                   return intDatum
+
                end
 
             end

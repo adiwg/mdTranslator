@@ -1,6 +1,7 @@
 # sbJson 1 writer tests - contact
 
 # History:
+#  Stan Smith 2018-09-28 add budget sourceId and recipientId to contacts list
 #  Stan Smith 2017-05-25 original script
 
 require 'minitest/autorun'
@@ -137,6 +138,16 @@ class TestWriterSbJsonContact < TestWriterSbJsonParent
             'name' => 'Person 4',
             'contactType' => 'person',
             'type' => 'Material Request Contact'
+         },
+         {
+            'name' => 'Person 4',
+            'contactType' => 'person',
+            'type' => 'funder'
+         },
+         {
+            'name' => 'Organization 1',
+            'contactType' => 'organization',
+            'type' => ''
          }
       ]
 

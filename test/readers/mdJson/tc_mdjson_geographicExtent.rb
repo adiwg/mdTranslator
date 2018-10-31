@@ -26,13 +26,12 @@ class TestReaderMdJsonGeographicExtent < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_geographicExtent_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geographicExtent.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_geographicExtent_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geographicExtent.json')
+       assert_empty errors
+
+   end
 
    def test_complete_geographicExtent
 

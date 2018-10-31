@@ -18,31 +18,11 @@ class TestWriter191152TaxonomicClassification < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hTaxonomy = TDClass.taxonomy
+   hTaxonomy1 = TDClass.build_taxonomy
+   hTaxonomy1[:taxonomicClassification].insert(0, TDClass.build_taxonomyClassification_full)
+   hTaxonomy2 = TDClass.build_taxonomy
+   mdHash[:metadata][:resourceInfo][:taxonomy] = [hTaxonomy1, hTaxonomy2]
 
-   hLevel0 = hTaxonomy[:taxonomicClassification]
-   hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
-   hLevel0[:taxonomicLevel] = 'kingdom'
-   hLevel0[:taxonomicName] = 'animalia'
-   hLevel0[:commonName] = ['animals']
-   TDClass.add_taxonClass(hLevel0, 'subkingdom', 'bilateria')
-
-   hLevel1 = hLevel0[:subClassification][0]
-   TDClass.add_taxonClass(hLevel1, 'subfamily', 'anserinae')
-
-   hLevel2 = hLevel1[:subClassification][0]
-   TDClass.add_taxonClass(hLevel2, 'genus', 'branta')
-   TDClass.add_taxonClass(hLevel2, 'genus', 'anser', ['brent geese'])
-
-   hLevel20 = hLevel2[:subClassification][0]
-   hLevel21 = hLevel2[:subClassification][1]
-   TDClass.add_taxonClass(hLevel20, 'species', 'branta bernicla', ['brant goose','ganso de collar'])
-   TDClass.add_taxonClass(hLevel21, 'species', 'albifrons')
-
-   mdHash[:metadata][:resourceInfo][:taxonomy] = []
-   mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
-
-   TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
 
@@ -56,9 +36,11 @@ class TestWriter191152TaxonomicClassification < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-         'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
+      assert_equal 4, hReturn[3].length
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: multiple taxonomic classifications were specified, ISO 19115-2 supports only one: CONTEXT is taxonomy'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: the first taxonomic classification was written to the metadata record: CONTEXT is taxonomy'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: multiple taxonomies were provided, ISO 19115-2 allows only one: CONTEXT is main resource'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: the first taxonomy was written to the metadata record: CONTEXT is main resource'
 
    end
 

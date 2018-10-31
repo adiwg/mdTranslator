@@ -2,6 +2,7 @@
 # unpack fgdc map projection - robinson
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-18 original script
 
 require 'nokogiri'
@@ -20,21 +21,20 @@ module ADIWG
                   # map projection 4.1.2.1.17 (robinson) - Robinson
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projection] = 'robinson'
-                     hProjection[:projectionName] = 'Robinson'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfProjectionCenter
-                     paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLongPC(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      # verify parameter count
                      if paramCount == 3
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Robinson projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] <<
+                           'WARNING: FGDC reader: Robinson projection is missing one or more parameters'
                      end
                   end
 

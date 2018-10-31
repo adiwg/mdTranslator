@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-10-26 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-05-25 block non-ISO19115-2 topic categories
 #  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2018-04-06 changed taxonomy to an array
@@ -89,7 +90,7 @@ module ADIWG
                      hCitation = hData[:citation]
                      unless hCitation.empty?
                         @xml.tag!('gmd:citation') do
-                           citationClass.writeXML(hCitation, 'main resource citation')
+                           citationClass.writeXML(hCitation, 'main resource')
                         end
                      end
                      if hCitation.empty?
@@ -157,7 +158,7 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:pointOfContact') do
-                              rPartyClass.writeXML(role, hParty, 'data resource point of contact')
+                              rPartyClass.writeXML(role, hParty, 'main resource point of contact')
                            end
                         end
                      end
@@ -169,7 +170,7 @@ module ADIWG
                      aMaint = hData[:resourceMaintenance]
                      aMaint.each do |hMaint|
                         @xml.tag!('gmd:resourceMaintenance') do
-                           mInfoClass.writeXML(hMaint, 'data resource')
+                           mInfoClass.writeXML(hMaint, 'main resource')
                         end
                      end
                      if aMaint.empty? && @hResponseObj[:writerShowTags]
@@ -180,7 +181,7 @@ module ADIWG
                      aGraphics = hData[:graphicOverviews]
                      aGraphics.each do |hGraphic|
                         @xml.tag!('gmd:graphicOverview') do
-                           bGraphicClass.writeXML(hGraphic, 'data resource')
+                           bGraphicClass.writeXML(hGraphic, 'main resource')
                         end
                      end
                      if aGraphics.empty? && @hResponseObj[:writerShowTags]
@@ -277,13 +278,13 @@ module ADIWG
                               taxClass.writeXML(hTaxonomy)
                            end
                         end
+                        if hData[:taxonomy].length > 1
+                           @NameSpace.issueNotice(53, 'main resource')
+                           @NameSpace.issueNotice(54, 'main resource')
+                        end
                      end
                      if hData[:taxonomy].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:taxonomy')
-                     end
-                     if hData[:taxonomy].length > 1
-                        # - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
-                        # - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
                      end
 
                      # data identification - spatial representation type []

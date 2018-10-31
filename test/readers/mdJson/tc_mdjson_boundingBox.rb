@@ -24,13 +24,12 @@ class TestReaderMdJsonBoundingBox < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_boundingBox_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'geographicExtent.json', :fragment=>'boundingBox')
-   #     assert_empty errors
-   #
-   # end
+   def test_boundingBox_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geographicExtent.json', :fragment=>'boundingBox')
+       assert_empty errors
+
+   end
 
    def test_complete_boundingBox
 

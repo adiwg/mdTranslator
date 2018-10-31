@@ -70,13 +70,33 @@
           <gmd:authority>
             <gmd:CI_Citation>
               <gmd:title>
-                <gco:CharacterString>title only citation</gco:CharacterString>
+                <gco:CharacterString>citation title</gco:CharacterString>
               </gmd:title>
               <gmd:alternateTitle/>
-              <gmd:date gco:nilReason="missing"/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
               <gmd:edition/>
               <gmd:identifier/>
-              <gmd:citedResponsibleParty/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
               <gmd:presentationForm/>
               <gmd:series/>
               <gmd:otherCitationDetails/>
@@ -85,34 +105,61 @@
             </gmd:CI_Citation>
           </gmd:authority>
           <gmd:code>
-            <gco:CharacterString>identifier</gco:CharacterString>
+            <gco:CharacterString>missing</gco:CharacterString>
           </gmd:code>
-          <gmd:codeSpace>
-            <gco:CharacterString>namespace</gco:CharacterString>
-          </gmd:codeSpace>
-          <gmd:version>
-            <gco:CharacterString>version</gco:CharacterString>
-          </gmd:version>
+          <gmd:codeSpace/>
+          <gmd:version/>
         </gmd:RS_Identifier>
       </gmd:idref>
-      <gmd:obs/>
+      <gmd:obs>
+        <gmd:CI_ResponsibleParty>
+          <gmd:individualName>
+            <gco:CharacterString>person name three</gco:CharacterString>
+          </gmd:individualName>
+          <gmd:positionName/>
+          <gmd:contactInfo/>
+          <gmd:role>
+            <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="observer" codeSpace="adiwg005"/>
+          </gmd:role>
+        </gmd:CI_ResponsibleParty>
+      </gmd:obs>
       <gmd:taxonpro>
         <gco:CharacterString>procedures</gco:CharacterString>
       </gmd:taxonpro>
       <gmd:taxoncom>
         <gco:CharacterString>completeness</gco:CharacterString>
       </gmd:taxoncom>
-      <gmd:voucher/>
+      <gmd:voucher>
+        <gmd:MD_Vouchers>
+          <gmd:specimen>
+            <gco:CharacterString>specimen</gco:CharacterString>
+          </gmd:specimen>
+          <gmd:reposit>
+            <gmd:CI_ResponsibleParty>
+              <gmd:organisationName>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </gmd:organisationName>
+              <gmd:contactInfo/>
+              <gmd:role>
+                <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="custodian" codeSpace="002"/>
+              </gmd:role>
+            </gmd:CI_ResponsibleParty>
+          </gmd:reposit>
+        </gmd:MD_Vouchers>
+      </gmd:voucher>
       <gmd:taxonCl>
         <gmd:MD_TaxonCl>
           <gmd:common>
-            <gco:CharacterString>animals</gco:CharacterString>
+            <gco:CharacterString>common one</gco:CharacterString>
+          </gmd:common>
+          <gmd:common>
+            <gco:CharacterString>common two</gco:CharacterString>
           </gmd:common>
           <gmd:taxonrn>
-            <gco:CharacterString>kingdom</gco:CharacterString>
+            <gco:CharacterString>taxon rank</gco:CharacterString>
           </gmd:taxonrn>
           <gmd:taxonrv>
-            <gco:CharacterString>animalia</gco:CharacterString>
+            <gco:CharacterString>taxon name</gco:CharacterString>
           </gmd:taxonrv>
           <gmd:taxonCl>
             <gmd:MD_TaxonCl>
@@ -123,10 +170,10 @@
                 <gco:CharacterString>common two</gco:CharacterString>
               </gmd:common>
               <gmd:taxonrn>
-                <gco:CharacterString>subkingdom</gco:CharacterString>
+                <gco:CharacterString>level two</gco:CharacterString>
               </gmd:taxonrn>
               <gmd:taxonrv>
-                <gco:CharacterString>bilateria</gco:CharacterString>
+                <gco:CharacterString>name two</gco:CharacterString>
               </gmd:taxonrv>
               <gmd:taxonCl>
                 <gmd:MD_TaxonCl>
@@ -137,10 +184,10 @@
                     <gco:CharacterString>common two</gco:CharacterString>
                   </gmd:common>
                   <gmd:taxonrn>
-                    <gco:CharacterString>subfamily</gco:CharacterString>
+                    <gco:CharacterString>level three</gco:CharacterString>
                   </gmd:taxonrn>
                   <gmd:taxonrv>
-                    <gco:CharacterString>anserinae</gco:CharacterString>
+                    <gco:CharacterString>name three</gco:CharacterString>
                   </gmd:taxonrv>
                   <gmd:taxonCl>
                     <gmd:MD_TaxonCl>
@@ -151,24 +198,24 @@
                         <gco:CharacterString>common two</gco:CharacterString>
                       </gmd:common>
                       <gmd:taxonrn>
-                        <gco:CharacterString>genus</gco:CharacterString>
+                        <gco:CharacterString>level four 1</gco:CharacterString>
                       </gmd:taxonrn>
                       <gmd:taxonrv>
-                        <gco:CharacterString>branta</gco:CharacterString>
+                        <gco:CharacterString>name four 1</gco:CharacterString>
                       </gmd:taxonrv>
                       <gmd:taxonCl>
                         <gmd:MD_TaxonCl>
                           <gmd:common>
-                            <gco:CharacterString>brant goose</gco:CharacterString>
+                            <gco:CharacterString>common five 1A</gco:CharacterString>
                           </gmd:common>
                           <gmd:common>
-                            <gco:CharacterString>ganso de collar</gco:CharacterString>
+                            <gco:CharacterString>common five 1B</gco:CharacterString>
                           </gmd:common>
                           <gmd:taxonrn>
-                            <gco:CharacterString>species</gco:CharacterString>
+                            <gco:CharacterString>level five 1</gco:CharacterString>
                           </gmd:taxonrn>
                           <gmd:taxonrv>
-                            <gco:CharacterString>branta bernicla</gco:CharacterString>
+                            <gco:CharacterString>name five 1</gco:CharacterString>
                           </gmd:taxonrv>
                         </gmd:MD_TaxonCl>
                       </gmd:taxonCl>
@@ -177,13 +224,13 @@
                   <gmd:taxonCl>
                     <gmd:MD_TaxonCl>
                       <gmd:common>
-                        <gco:CharacterString>brent geese</gco:CharacterString>
+                        <gco:CharacterString>common four 2A</gco:CharacterString>
                       </gmd:common>
                       <gmd:taxonrn>
-                        <gco:CharacterString>genus</gco:CharacterString>
+                        <gco:CharacterString>level four 2</gco:CharacterString>
                       </gmd:taxonrn>
                       <gmd:taxonrv>
-                        <gco:CharacterString>anser</gco:CharacterString>
+                        <gco:CharacterString>name four 2</gco:CharacterString>
                       </gmd:taxonrv>
                       <gmd:taxonCl>
                         <gmd:MD_TaxonCl>
@@ -194,10 +241,10 @@
                             <gco:CharacterString>common two</gco:CharacterString>
                           </gmd:common>
                           <gmd:taxonrn>
-                            <gco:CharacterString>species</gco:CharacterString>
+                            <gco:CharacterString>level five 2</gco:CharacterString>
                           </gmd:taxonrn>
                           <gmd:taxonrv>
-                            <gco:CharacterString>albifrons</gco:CharacterString>
+                            <gco:CharacterString>name five 2</gco:CharacterString>
                           </gmd:taxonrv>
                         </gmd:MD_TaxonCl>
                       </gmd:taxonCl>

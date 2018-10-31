@@ -28,13 +28,15 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_entityAttribute_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'entityAttribute.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_entityAttribute_schema
+
+      # allowMany is deprecated
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:allowMany] = false
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'entityAttribute.json')
+      assert_empty errors
+
+   end
 
    def test_complete_entityAttribute_object
 
@@ -117,7 +119,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
+                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
@@ -134,7 +136,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
+                      'ERROR: mdJson reader: data dictionary entity attribute definition is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
@@ -151,7 +153,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
+                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
 
    end
 
@@ -168,7 +170,7 @@ class TestReaderMdJsonEntityAttribute < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
+                      'ERROR: mdJson reader: data dictionary entity attribute data type is missing: CONTEXT is attribute code name attribute code name'
 
    end
 

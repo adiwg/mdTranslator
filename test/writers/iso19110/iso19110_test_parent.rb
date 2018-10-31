@@ -57,7 +57,6 @@ class TestWriter19110Parent < MiniTest::Test
       xExpect = xFile.xpath(expectPath)
       expect = xExpect.to_s.squeeze(' ')
 
-      # TODO reinstate after schema update
       hResponseObj = ADIWG::Mdtranslator.translate(
          file: hIn.to_json, reader: 'mdJson', writer: 'iso19110', showAllTags: true, validate: 'none'
       )

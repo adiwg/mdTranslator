@@ -22,6 +22,8 @@ messageList:
    - {id: 50, message: "resource citation is missing"}
    - {id: 51, message: "resource abstract is missing"}
    - {id: 52, message: "resource point of contact is missing"}
+   - {id: 53, message: "multiple taxonomies were provided, ISO 19115-2 allows only one"}
+   - {id: 54, message: "the first taxonomy was written to the metadata record"}
 
    - {id: 60, message: "data quality scope is missing"}
 
@@ -92,6 +94,8 @@ messageList:
    - {id: 312, message: "taxonomic observer is missing"}
    - {id: 313, message: "taxonomic procedures are missing"}
    - {id: 314, message: "taxonomic classification is missing"}
+   - {id: 315, message: "multiple taxonomic classifications were specified, ISO 19115-2 supports only one"}
+   - {id: 316, message: "the first taxonomic classification was written to the metadata record"}
 
    - {id: 320, message: "resource specific usage is missing"}
    - {id: 321, message: "resource specific usage contact is missing"}

@@ -211,6 +211,33 @@
             "characterSet": "UTF-8"
          }
       },
+      "funding": [
+         {
+            "allocation": [
+               {
+                  "sourceAllocationId": "123-456",
+                  "amount": 9.00,
+                  "currency": "myCurrency",
+                  "sourceId": "CID004",
+                  "recipientId": "CID005",
+                  "matching": true,
+                  "comment": "myComment"
+               }
+            ]
+         },
+         {
+            "allocation": [
+               {
+                  "sourceAllocationId": "123-789",
+                  "amount": 900.00,
+                  "currency": "myNextCurrency",
+                  "recipientId": "CID005",
+                  "matching": true,
+                  "comment": "myNextComment"
+               }
+            ]
+         }
+      ],
       "resourceDistribution": [
          {
             "description": "description",

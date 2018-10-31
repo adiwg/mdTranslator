@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2018-10-19 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2016-12-09 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -11,6 +12,7 @@
 #  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 # 	Stan Smith 2013-11-19 original script.
 
+require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative '../iso19115_2_writer'
 require_relative 'class_taxonomicSystem'
 require_relative 'class_rsIdentifier'
@@ -34,6 +36,7 @@ module ADIWG
                def writeXML(hSystem)
 
                   # classes used
+                  intMetadataClass = InternalMetadata.new
                   taxonomicClass = TaxonomicSystem.new(@xml, @hResponseObj)
                   identifierClass = RS_Identifier.new(@xml, @hResponseObj)
                   partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
@@ -64,16 +67,20 @@ module ADIWG
                         @xml.tag!('gmd:taxongen')
                      end
 
-                     # taxon system - identification reference (required) [{RS_Identifier}]
-                     aIdentifier = hSystem[:idReferences]
-                     aIdentifier.each do |hIdentifier|
-                        unless hIdentifier.empty?
+                     # taxon system - identification reference (required) [{citation}]
+                     # convert to RS_Identifier
+                     aCitations = hSystem[:idReferences]
+                     aCitations.each do |hCitation|
+                        unless hCitation.empty?
+                           hIdentifier = intMetadataClass.newIdentifier
+                           hIdentifier[:identifier] = 'missing'
+                           hIdentifier[:citation] = hCitation
                            @xml.tag!('gmd:idref') do
                               identifierClass.writeXML(hIdentifier, 'taxon identification reference')
                            end
                         end
                      end
-                     if aIdentifier.empty?
+                     if aCitations.empty?
                         @NameSpace.issueWarning(311, 'gmd:idref')
                      end
 
@@ -126,14 +133,18 @@ module ADIWG
                         @xml.tag!('gmd:voucher')
                      end
 
-                     # taxon system - taxonomy classification [] (required)
-                     hTaxClass = hSystem[:taxonClass]
-                     unless hTaxClass.empty?
+                     # taxon system - taxonomy classification [0] (required)
+                     aTaxClass = hSystem[:taxonClasses]
+                     unless aTaxClass.empty?
                         @xml.tag!('gmd:taxonCl') do
-                           taxonClass.writeXML(hTaxClass)
+                           taxonClass.writeXML(aTaxClass[0])
+                        end
+                        if aTaxClass.length > 1
+                           @NameSpace.issueNotice(315, 'taxonomy')
+                           @NameSpace.issueNotice(316, 'taxonomy')
                         end
                      end
-                     if hTaxClass.empty?
+                     if aTaxClass.empty?
                         @NameSpace.issueWarning(314, 'gmd:taxonCl')
                      end
 

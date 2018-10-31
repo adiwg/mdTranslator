@@ -111,18 +111,21 @@ class TestWriterMdJsonResourceInfo < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_resourceInfo
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'resourceInfo.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_resourceInfo
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo]
+      hTest[:resourceFormat].delete_at(0)
+      hTest[:keyword].delete_at(0)
+      hTest[:resourceUsage].delete_at(0)
+      hTest[:topicCategory] = ['deprecated']
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'resourceInfo.json')
+      assert_empty errors
+
+   end
 
    def test_complete_resourceInfo
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

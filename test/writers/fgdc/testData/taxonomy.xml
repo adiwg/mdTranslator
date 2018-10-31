@@ -17,7 +17,7 @@
         <classsys>
           <classcit>
             <citeinfo>
-              <origin>person name three</origin>
+              <origin>person name</origin>
               <pubdate>20171122</pubdate>
               <pubtime/>
               <title>citation title</title>
@@ -38,7 +38,7 @@
               <origin>person name</origin>
               <pubdate>20171122</pubdate>
               <pubtime/>
-              <title>taxonomic system two</title>
+              <title>citation title</title>
               <edition/>
               <geoform/>
               <serinfo/>
@@ -48,14 +48,14 @@
               <lworkcit/>
             </citeinfo>
           </classcit>
-          <classmod>modifications two</classmod>
+          <classmod>modifications</classmod>
         </classsys>
         <idref>
           <citeinfo>
             <origin>person name</origin>
             <pubdate>20171122</pubdate>
             <pubtime/>
-            <title>taxonomic identification reference</title>
+            <title>citation title</title>
             <edition/>
             <geoform/>
             <serinfo/>
@@ -70,7 +70,7 @@
             <origin>person name</origin>
             <pubdate>20171122</pubdate>
             <pubtime/>
-            <title>taxonomic identification reference two</title>
+            <title>citation title</title>
             <edition/>
             <geoform/>
             <serinfo/>
@@ -130,14 +130,13 @@
         <taxonpro>procedures</taxonpro>
         <taxoncom>completeness</taxoncom>
         <vouchers>
-          <specimen>specimen one</specimen>
+          <specimen>specimen</specimen>
           <repository>
             <cntinfo>
-              <cntperp>
-                <cntper>person name</cntper>
-                <cntorg/>
-              </cntperp>
-              <cntpos>position name</cntpos>
+              <cntorgp>
+                <cntorg>organization name</cntorg>
+              </cntorgp>
+              <cntpos/>
               <cntaddr>
                 <addrtype>mailing</addrtype>
                 <address>address line 1</address>
@@ -147,7 +146,7 @@
                 <postal>postal code</postal>
                 <country>country</country>
               </cntaddr>
-              <cntvoice>111-111-1111</cntvoice>
+              <cntvoice>222-222-2222</cntvoice>
               <cnttdd/>
               <cntfax/>
               <cntemail/>
@@ -157,7 +156,7 @@
           </repository>
         </vouchers>
         <vouchers>
-          <specimen>specimen two</specimen>
+          <specimen>specimen</specimen>
           <repository>
             <cntinfo>
               <cntorgp>
@@ -185,40 +184,10 @@
       </taxonsys>
       <taxongen>general scope</taxongen>
       <taxoncl>
-        <taxonrn>kingdom</taxonrn>
-        <taxonrv>animalia</taxonrv>
-        <common>animals</common>
-        <taxoncl>
-          <taxonrn>subkingdom</taxonrn>
-          <taxonrv>bilateria</taxonrv>
-          <common/>
-          <taxoncl>
-            <taxonrn>subfamily</taxonrn>
-            <taxonrv>anserinae</taxonrv>
-            <common/>
-            <taxoncl>
-              <taxonrn>genus</taxonrn>
-              <taxonrv>branta</taxonrv>
-              <common/>
-              <taxoncl>
-                <taxonrn>species</taxonrn>
-                <taxonrv>branta bernicla</taxonrv>
-                <common>brant goose</common>
-                <common>ganso de collar</common>
-              </taxoncl>
-            </taxoncl>
-            <taxoncl>
-              <taxonrn>genus</taxonrn>
-              <taxonrv>anser</taxonrv>
-              <common>brent geese</common>
-              <taxoncl>
-                <taxonrn>species</taxonrn>
-                <taxonrv>albifrons</taxonrv>
-                <common/>
-              </taxoncl>
-            </taxoncl>
-          </taxoncl>
-        </taxoncl>
+        <taxonrn>taxon rank</taxonrn>
+        <taxonrv>taxon name</taxonrv>
+        <common>common one</common>
+        <common>common two</common>
       </taxoncl>
     </taxonomy>
   </idinfo>

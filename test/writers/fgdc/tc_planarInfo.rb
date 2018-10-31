@@ -90,7 +90,7 @@ class TestWriterFgdcMapCoordinateInfo < TestWriterFGDCParent
       assert hResponseObj[:writerPass]
       assert_equal 1, hResponseObj[:writerMessages].length
       assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: planar coordinate information encoding method is missing'
+         'WARNING: FGDC writer: planar coordinate information encoding method is missing: CONTEXT is spatial reference horizontal planar'
 
       # missing encoding method
       hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -105,8 +105,7 @@ class TestWriterFgdcMapCoordinateInfo < TestWriterFGDCParent
       refute_empty hResponseObj[:writerOutput]
       assert hResponseObj[:writerPass]
       assert_equal 1, hResponseObj[:writerMessages].length
-      assert_includes hResponseObj[:writerMessages],
-                      'WARNING: FGDC writer: planar coordinate information encoding method is missing'
+      'WARNING: FGDC writer: planar coordinate information encoding method is missing: CONTEXT is spatial reference horizontal planar'
 
    end
 

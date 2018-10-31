@@ -2,6 +2,7 @@
 # reader / mdJson / module_taxonomy
 
 # History:
+#  Stan Smith 2018-10-19 refactored for mdJson 2.6.0 schema
 #  Stan Smith 2018-06-26 refactored to use mdJson construction helpers
 #  Stan Smith 2017-01-16 added parent class to run successfully within rake
 #  Stan Smith 2016-10-22 original script
@@ -44,7 +45,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_equal 'procedures', metadata[:idProcedure]
       assert_equal 'completeness', metadata[:idCompleteness]
       assert_equal 2, metadata[:vouchers].length
-      refute_empty metadata[:taxonClass]
+      assert_equal 2, metadata[:taxonClasses].length
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -84,46 +85,12 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
    end
 
-   def test_taxonomy_empty_idProcedure
-
-      TestReaderMdJsonParent.loadEssential
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn = JSON.parse(hIn.to_json)
-      hIn['identificationProcedure'] = ''
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      refute_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: taxonomic identification procedure is missing'
-
-   end
-
-   def test_taxonomy_missing_idProcedure
-
-      TestReaderMdJsonParent.loadEssential
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn = JSON.parse(hIn.to_json)
-      hIn.delete('identificationProcedure')
-      hResponse = Marshal::load(Marshal.dump(@@responseObj))
-      metadata = @@NameSpace.unpack(hIn, hResponse)
-
-      refute_nil metadata
-      refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages],
-                      'ERROR: mdJson reader: taxonomic identification procedure is missing'
-
-   end
-
    def test_taxonomy_empty_taxClass
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['taxonomicClassification'] = {}
+      hIn['taxonomicClassification'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse)
 
@@ -152,6 +119,22 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
 
    end
 
+   def test_taxonomy_deprecated_taxClass_object
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['taxonomicClassification'] = hIn['taxonomicClassification'][0]
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic classification is an array, use of taxonomic classification object is deprecated'
+
+   end
+
    def test_taxonomy_empty_elements
 
       TestReaderMdJsonParent.loadEssential
@@ -160,6 +143,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       hIn['generalScope'] = ''
       hIn['identificationReference'] = []
       hIn['observer'] = []
+      hIn['identificationProcedure'] = ''
       hIn['identificationCompleteness'] = ''
       hIn['voucher'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -169,10 +153,10 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_nil metadata[:generalScope]
       assert_empty metadata[:idReferences]
       assert_empty metadata[:observers]
-      assert_equal 'procedures', metadata[:idProcedure]
+      assert_nil metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]
       assert_empty metadata[:vouchers]
-      refute_empty metadata[:taxonClass]
+      refute_empty metadata[:taxonClasses]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -186,6 +170,7 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       hIn.delete('generalScope')
       hIn.delete('identificationReference')
       hIn.delete('observer')
+      hIn.delete('identificationProcedure')
       hIn.delete('identificationCompleteness')
       hIn.delete('voucher')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -195,12 +180,47 @@ class TestReaderMdJsonTaxonomy < TestReaderMdJsonParent
       assert_nil metadata[:generalScope]
       assert_empty metadata[:idReferences]
       assert_empty metadata[:observers]
-      assert_equal 'procedures', metadata[:idProcedure]
+      assert_nil metadata[:idProcedure]
       assert_nil metadata[:idCompleteness]
       assert_empty metadata[:vouchers]
-      refute_empty metadata[:taxonClass]
+      refute_empty metadata[:taxonClasses]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
+
+   end
+
+   def test_taxonomy_deprecated_idReference_identifier
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:identificationReference][1] = TDClass.identifier
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference as an identifier is deprecated, use citation'
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference authority was substituted for citation'
+
+   end
+
+   def test_taxonomy_deprecated_idReference_identifier_no_authority
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:identificationReference][1] = TDClass.identifier
+      hIn[:identificationReference][1].delete(:authority)
+      hIn = JSON.parse(hIn.to_json)
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse)
+
+      refute_nil metadata
+      assert hResponse[:readerExecutionPass]
+      assert_equal 2, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference as an identifier is deprecated, use citation'
+      assert_includes hResponse[:readerExecutionMessages], 'NOTICE: mdJson reader: taxonomic identification reference authority is empty or missing'
 
    end
 

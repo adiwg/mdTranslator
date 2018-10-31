@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-09-26 deprecate datumName use datumIdentifier.identifier
 #  Stan Smith 2018-03-27 refactored error and warning messaging
 #  Stan Smith 2018-01-16 original script
 
@@ -18,7 +19,7 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(aSpaceRefs)
+               def writeXML(aSpaceRefs, inContext = nil)
 
                   aSpaceRefs.each do |hSpaceRef|
                      unless hSpaceRef[:systemParameterSet].empty?
@@ -30,10 +31,10 @@ module ADIWG
                               @xml.tag!('depthsys') do
 
                                  # vertical datum 4.2.1.1 (depthdn) - depth datum name (required)
-                                 unless hVDatum[:datumName].nil?
-                                    @xml.tag!('depthdn', hVDatum[:datumName])
+                                 unless hVDatum[:datumIdentifier].empty?
+                                    @xml.tag!('depthdn', hVDatum[:datumIdentifier][:identifier])
                                  end
-                                 if hVDatum[:datumName].nil?
+                                 if hVDatum[:datumIdentifier].empty?
                                     @NameSpace.issueWarning(460, 'depthdn')
                                  end
 
@@ -67,10 +68,10 @@ module ADIWG
                               @xml.tag!('altsys') do
 
                                  # altitude datum 4.2.2.1 (altdatum) - altitude datum name (required)
-                                 unless hVDatum[:datumName].nil?
-                                    @xml.tag!('altdatum', hVDatum[:datumName])
+                                 unless hVDatum[:datumIdentifier].empty?
+                                    @xml.tag!('altdatum', hVDatum[:datumIdentifier][:identifier])
                                  end
-                                 if hVDatum[:datumName].nil?
+                                 if hVDatum[:datumIdentifier].empty?
                                     @NameSpace.issueWarning(464, 'altdatum')
                                  end
 

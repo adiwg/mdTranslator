@@ -53,6 +53,16 @@ module ADIWG
                {}
             end
 
+            # find contact in contact array and return the contact index
+            def self.get_contact_index_by_id(contactId)
+               @contacts.each_with_index do |hContact, index|
+                  if hContact[:contactId] == contactId
+                     return index
+                  end
+               end
+               {}
+            end
+
             # ignore jBuilder object mapping when array is empty
             def self.json_map(collection = [], _class)
                if collection.nil? || collection.empty?

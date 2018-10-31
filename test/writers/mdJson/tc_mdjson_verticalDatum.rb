@@ -9,7 +9,7 @@ require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
-class TestWriterMdJsonVerticalDatumParameters < TestWriterMdJsonParent
+class TestWriterMdJsonVerticalDatum < TestWriterMdJsonParent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -24,18 +24,17 @@ class TestWriterMdJsonVerticalDatumParameters < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_verticalDatumParameters
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_verticalDatum
 
-   def test_complete_verticalDatumParameters
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:verticalDatum]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'verticalDatum.json')
+      assert_empty errors
 
-      # TODO validate normal after schema update
+   end
+
+   def test_complete_verticalDatum
+
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

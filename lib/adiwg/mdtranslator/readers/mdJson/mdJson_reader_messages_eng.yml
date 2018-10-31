@@ -141,7 +141,13 @@ messageList:
    - {id: 301, message: "funding must have either an allocation or timePeriod"}
 
    - {id: 310, message: "geodetic object is empty"}
-   - {id: 311, message: "geodetic ellipsoid name is missing"}
+   - {id: 311, message: "geodetic datum name is deprecated, use datumIdentifier.identifier"}
+   - {id: 312, message: "geodetic ellipsoid name is deprecated, use ellipsoidIdentifier.identifier"}
+   - {id: 313, message: "geodetic datum added new datumIdentifier object"}
+   - {id: 314, message: "geodetic ellipsoid added new ellipsoidIdentifier object"}
+   - {id: 315, message: "geodetic datum name was moved to datumIdentifier.identifier"}
+   - {id: 316, message: "geodetic ellipsoid name was moved to ellipsoidIdentifier.identifier"}
+   - {id: 317, message: "geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements"}
 
    - {id: 320, message: "geographic extent object is empty"}
    - {id: 321, message: "geographic extent must have at least one description, identifier, bounding box, or geographic element"}
@@ -266,7 +272,7 @@ messageList:
    - {id: 641, message: "process step description is missing"}
 
    - {id: 650, message: "projection parameters object is empty"}
-   - {id: 651, message: "projection parameters projection code is missing"}
+   - {id: 651, message: "projection identifier is missing"}
 
    - {id: 660, message: "reference system parameter set is empty"}
    - {id: 661, message: "reference system parameter set must have at least one projection, geodetic, or vertical datum"}
@@ -281,7 +287,7 @@ messageList:
    - {id: 684, message: "resource status is missing"}
    - {id: 685, message: "topicCategory is deprecated, items were moved to keywords, keywordType 'isoTopicCategory'"}
    - {id: 686, message: "resource point-of-contact is missing"}
-   - {id: 687, message: "taxonomy is now an array, the single taxonomy object was deprecated"}
+   - {id: 687, message: "taxonomy is an array, use of taxonomy object has been deprecated"}
    - {id: 688, message: "resource default locale is missing"}
 
    - {id: 690, message: "resource type object is empty"}
@@ -332,8 +338,11 @@ messageList:
 
    - {id: 830, message: "taxonomy object is empty"}
    - {id: 831, message: "taxonomic classification system object is missing"}
-   - {id: 832, message: "taxonomic identification procedure is missing"}
    - {id: 833, message: "taxonomic classification is missing"}
+   - {id: 834, message: "taxonomic classification is an array, use of taxonomic classification object is deprecated"}
+   - {id: 835, message: "taxonomic identification reference as an identifier is deprecated, use citation"}
+   - {id: 836, message: "taxonomic identification reference authority was substituted for citation"}
+   - {id: 837, message: "taxonomic identification reference authority is empty or missing"}
 
    - {id: 840, message: "temporal extent object is empty"}
    - {id: 841, message: "temporal extent must have a time period or time instant"}
@@ -365,7 +374,11 @@ messageList:
    - {id: 911, message: "vector representation must have a topology level or vector object"}
 
    - {id: 920, message: "vertical datum object is empty"}
-   - {id: 921, message: "vertical datum must have an identifier or all other elements"}
+   - {id: 921, message: "vertical datum must have a datumIdentifier"}
+   - {id: 922, message: "vertical datumName is deprecated, use datumIdentifier.identifier"}
+   - {id: 923, message: "vertical datumName was moved to datumIdentifier.identifier"}
+   - {id: 924, message: "vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements"}
+   - {id: 925, message: "vertical datum added new datumIdentifier object"}
 
    - {id: 930, message: "vertical extent object is empty"}
    - {id: 931, message: "vertical extent minimum value is missing"}
@@ -375,3 +388,5 @@ messageList:
    - {id: 940, message: "voucher object is empty"}
    - {id: 941, message: "voucher specimen is missing"}
    - {id: 942, message: "voucher repository is missing"}
+
+   - {id: 950, message: "local projection object is empty"}

@@ -2,11 +2,14 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2018-10-27 change identification reference to citation
+#  Stan Smith 2018-10-27 identification procedure no longer required
+#  Stan Smith 2018-10-19 refactor taxonomic classification as array
 #  Stan Smith 2018-06-26 refactored error and warning messaging
 #  Stan Smith 2016-10-22 original script
 
 require_relative 'module_taxonomicSystem'
-require_relative 'module_identifier'
+require_relative 'module_citation'
 require_relative 'module_responsibleParty'
 require_relative 'module_voucher'
 require_relative 'module_taxonomicClassification'
@@ -53,12 +56,29 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - identification reference [{identifier}]
+                  # taxonomy - identification reference [{citation}]
+                  # identification reference as an identifier is now deprecated
                   if hTaxonomy.has_key?('identificationReference')
                      aItems = hTaxonomy['identificationReference']
                      aItems.each do |hItem|
                         unless hItem.empty?
-                           hReturn = Identifier.unpack(hItem, responseObj)
+                           if hItem.has_key?('identifier')
+                              @MessagePath.issueNotice(835, responseObj)
+                              if hItem.has_key?('authority')
+                                 hCitation = hItem['authority']
+                                 @MessagePath.issueNotice(836, responseObj)
+                                 if hCitation.empty?
+                                    @MessagePath.issueNotice(837, responseObj)
+                                    break
+                                 end
+                              else
+                                 @MessagePath.issueNotice(837, responseObj)
+                                 break
+                              end
+                           else
+                              hCitation = hItem
+                           end
+                           hReturn = Citation.unpack(hCitation, responseObj)
                            unless hReturn.nil?
                               intTaxonomy[:idReferences] << hReturn
                            end
@@ -77,14 +97,11 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - identification procedure (required)
+                  # taxonomy - identification procedure
                   if hTaxonomy.has_key?('identificationProcedure')
                      unless hTaxonomy['identificationProcedure'] == ''
                         intTaxonomy[:idProcedure] = hTaxonomy['identificationProcedure']
                      end
-                  end
-                  if intTaxonomy[:idProcedure].nil? || intTaxonomy[:idProcedure] == ''
-                     @MessagePath.issueError(832, responseObj)
                   end
 
                   # taxonomy - identification completeness
@@ -105,17 +122,26 @@ module ADIWG
                      end
                   end
 
-                  # taxonomy - taxonomic classification {taxonomicClassification} (required)
+                  # taxonomy - taxonomic classification [] {taxonomicClassification} (required)
+                  # support deprecated taxonomicClassification{}
                   if hTaxonomy.has_key?('taxonomicClassification')
-                     item = hTaxonomy['taxonomicClassification']
-                     unless item.empty?
-                        hReturn = TaxonomicClassification.unpack(item, responseObj)
-                        unless hReturn.nil?
-                           intTaxonomy[:taxonClass] = hReturn
+                     aItems = hTaxonomy['taxonomicClassification']
+                     if aItems.is_a?(Array)
+                        aItems.each do |item|
+                           hReturn = TaxonomicClassification.unpack(item, responseObj)
+                           unless hReturn.nil?
+                              intTaxonomy[:taxonClasses] << hReturn
+                           end
                         end
+                     else
+                        hReturn = TaxonomicClassification.unpack(aItems, responseObj)
+                        unless hReturn.nil?
+                           intTaxonomy[:taxonClasses] << hReturn
+                        end
+                        @MessagePath.issueNotice(834, responseObj)
                      end
                   end
-                  if intTaxonomy[:taxonClass].empty?
+                  if intTaxonomy[:taxonClasses].empty?
                      @MessagePath.issueError(833, responseObj)
                   end
 

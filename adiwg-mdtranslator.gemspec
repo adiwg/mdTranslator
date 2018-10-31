@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
    spec.test_files = spec.files.grep(%r{^(tc|test|spec|features)/})
    spec.require_paths = ["lib"]
 
-   spec.required_ruby_version = '>= 2.2'
+   spec.required_ruby_version = '>= 2.3'
 
    spec.add_development_dependency "bundler", "~> 1"
    spec.add_development_dependency "rake", "~> 10"
@@ -33,8 +33,8 @@ Gem::Specification.new do |spec|
    spec.add_runtime_dependency "thor", "~> 0.19"
    spec.add_runtime_dependency "uuidtools", "~> 2.1"
    spec.add_runtime_dependency "json-schema", "~> 2.7"
-   spec.add_runtime_dependency "adiwg-mdjson_schemas", ">= 2.4.9"
-   spec.add_runtime_dependency "adiwg-mdcodes", "~> 2.6.3"
+   spec.add_runtime_dependency "adiwg-mdjson_schemas", ">= 2.6"
+   spec.add_runtime_dependency "adiwg-mdcodes", "~> 2.7"
    spec.add_runtime_dependency "jbuilder", "~> 2.5"
    spec.add_runtime_dependency "kramdown", "~> 1.13"
    spec.add_runtime_dependency "coderay", "~> 1.1"

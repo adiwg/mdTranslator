@@ -17,21 +17,20 @@ class TestWriterMdJsonGeographicExtent < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hSpaceRef = TDClass.build_spatialReference('geodetic', TDClass.build_identifier('geoID one'))
-   TDClass.add_geodetic(hSpaceRef)
-   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
-   mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   hExtent = TDClass.geographicExtent
+   hExtent[:geographicElement] << TDClass.point
+   mdHash[:metadata][:resourceInfo][:extent][0][:geographicExtent][0] = hExtent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_geographicExtent
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:extent][0][:geographicExtent][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'geographicExtent.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_geographicExtent
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:extent][0][:geographicExtent][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'geographicExtent.json')
+      assert_empty errors
+
+   end
 
    def test_complete_geographicExtent
 

@@ -1,6 +1,7 @@
 # mdJson 2.0 writer tests - oblique line point
 
 # History:
+#  Stan Smith 2018-10-18 refactor for mdJson schema 2.6.0
 #  Stan Smith 2018-06-06 refactor to use mdJson construction helpers
 #  Stan Smith 2017-10-24 original script
 
@@ -17,30 +18,34 @@ class TestWriterMdJsonObliqueLinePoint < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
+   hProjection = TDClass.build_projection('obliqueMercator', 'Oblique Mercator')
+   TDClass.add_scaleFactorCL(hProjection)
+   TDClass.add_obliqueLinePoint(hProjection)
+   TDClass.add_obliqueLinePoint(hProjection)
+   TDClass.add_latPO(hProjection)
+   TDClass.add_falseNE(hProjection)
+
    hSpaceRef = TDClass.spatialReferenceSystem
-   TDClass.add_projection(hSpaceRef, 'obliqueMercator')
-   TDClass.add_scaleFactorCL(hSpaceRef)
-   TDClass.add_obliqueLinePoint(hSpaceRef)
-   TDClass.add_obliqueLinePoint(hSpaceRef)
-   TDClass.add_latPO(hSpaceRef)
-   TDClass.add_falseNE(hSpaceRef)
+   hSpaceRef[:referenceSystemParameterSet][:projection] = hProjection
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] = []
+   mdHash[:metadata][:resourceInfo][:spatialRepresentationType] << 'spatial representation type'
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_obliqueLinePoint
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_obliqueLinePoint
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hParameterSet = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet]
+      hTest = hParameterSet[:projection][:obliqueLinePoint]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'projection.json', fragment: 'obliqueLinePoint')
+      assert_empty errors
+
+   end
 
    def test_complete_obliqueLinePoint
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

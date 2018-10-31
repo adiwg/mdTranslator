@@ -2,6 +2,7 @@
 # unpack fgdc horizontal data local reference
 
 # History:
+#  Stan Smith 2018-10-05 refactor mdJson projection object
 #  Stan Smith 2017-12-29 original script
 
 require 'nokogiri'
@@ -12,31 +13,45 @@ module ADIWG
       module Readers
          module Fgdc
 
-            module LocalSystem
+            module MapLocalSystem
 
                def self.unpack(xLocal, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-
                   hProjection = intMetadataClass.newProjection
-                  hProjection[:projection] = 'localSystem'
-                  hProjection[:projectionName] = 'local coordinate system'
+                  hIdentifier = intMetadataClass.newIdentifier
+                  hLocal = intMetadataClass.newLocal
+                  hProjection[:projectionIdentifier] = hIdentifier
+                  hProjection[:local] = hLocal
+
+                  hIdentifier[:identifier] = 'localSystem'
+                  hIdentifier[:name] = 'Local Coordinate System'
+                  hLocal[:fixedToEarth] = false
 
                   # local planar 4.1.3.1 (localdes) - local description
-                  # -> referenceSystemParameters.projection.localPlanarDescription
+                  # -> ReferenceSystemParameters.projection.local.description
                   description = xLocal.xpath('./localdes').text
                   unless description.empty?
-                     hProjection[:localPlanarDescription] = description
+                     hLocal[:description] = description
+                  end
+                  if description.empty?
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: local coordinate system description is missing'
                   end
 
                   # local planar 4.1.3.2 (localgeo) - local georeference information
-                  # -> referenceSystemParameters.projection.localPlanarGeoreference
+                  # -> ReferenceSystemParameters.projection.local.georeference
                   georeference = xLocal.xpath('./localgeo').text
                   unless georeference.empty?
-                     hProjection[:localPlanarGeoreference] = georeference
+                     hLocal[:georeference] = georeference
+                  end
+                  if georeference.empty?
+                     hResponseObj[:readerExecutionMessages] <<
+                        'WARNING: FGDC reader: local coordinate system georeference information is missing'
                   end
 
+                  # packing
                   hReferenceSystem = intMetadataClass.newSpatialReferenceSystem
                   hSystemParameters = intMetadataClass.newReferenceSystemParameterSet
                   hSystemParameters[:projection] = hProjection

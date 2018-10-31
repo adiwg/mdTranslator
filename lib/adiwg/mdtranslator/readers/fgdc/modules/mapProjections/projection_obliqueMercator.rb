@@ -2,6 +2,7 @@
 # unpack fgdc map projection - oblique mercator
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-17 original script
 
 require 'nokogiri'
@@ -20,32 +21,31 @@ module ADIWG
                   # map projection 4.1.2.1.13 (obqmerc) - Oblique Mercator
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projection] = 'obliqueMercator'
-                     hProjection[:projectionName] = 'Oblique Mercator'
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtCenterLine
-                     paramCount += ProjectionCommon.unpackSFCenter(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackSFCenter(xParams, hProjection)
 
                      # -> oblique line azimuth ( azimuthAngle && azimuthMeasurePointLongitude )
                      # -> ReferenceSystemParameters.projection.azimuthAngle
                      # -> ReferenceSystemParameters.projection.azimuthMeasurePointLongitude
-                     paramCount += ProjectionCommon.unpackObliqueLA(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackObliqueLA(xParams, hProjection)
 
                      # -> oblique line point 2( obliqueLinePoint{} )
-                     paramCount += ProjectionCommon.unpackObliqueLP(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackObliqueLP(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.latitudeOfProjectionOrigin
-                     paramCount += ProjectionCommon.unpackLatPO(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLatPO(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      # verify parameter count
                      if paramCount == 6
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Oblique Mercator projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] <<
+                           'WARNING: FGDC reader: Oblique Mercator projection is missing one or more parameters'
                      end
                   end
 

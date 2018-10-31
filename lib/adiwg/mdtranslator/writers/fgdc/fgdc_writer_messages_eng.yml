@@ -86,8 +86,8 @@ messageList:
    - {id: 183, message: "keywords are missing"}
    - {id: 184, message: "access constraint is missing"}
    - {id: 185, message: "use constraint is missing"}
-   - {id: 186, message: "multiple taxonomic structures were specified, CSDGM allows for only one"}
-   - {id: 187, message: "the first taxonomic structure was written to the metadata record"}
+   - {id: 186, message: "multiple taxonomies were specified, CSDGM allows only one"}
+   - {id: 187, message: "the first taxonomy was written to the metadata record"}
 
    - {id: 190, message: "keyword set thesaurus is missing"}
 
@@ -110,8 +110,9 @@ messageList:
    - {id: 240, message: "lineage process step description is missing"}
    - {id: 241, message: "lineage process step process date is missing"}
 
-   - {id: 250, message: "local coordinate system description is missing"}
-   - {id: 251, message: "local coordinate system georeference information is missing"}
+   - {id: 250, message: "local coordinate system object is empty"}
+   - {id: 251, message: "local coordinate system description is missing"}
+   - {id: 252, message: "local coordinate system georeference information is missing"}
 
    - {id: 260, message: "planar coordinate information encoding method is missing"}
    - {id: 261, message: "coordinate representation abscissa resolution is missing"}
@@ -147,13 +148,13 @@ messageList:
    - {id: 299, message: "map projection landsat number is missing"}
    - {id: 300, message: "map projection landsat path is missing"}
    - {id: 301, message: "map projection other projection description is missing"}
-   - {id: 302, message: "map projection local planar description is missing"}
-   - {id: 303, message: "map projection local planar georeference information is missing"}
+   - {id: 302, message: "map projection oblique line point must have two points"}
 
    - {id: 310, message: "map grid universal transverse mercator zone is missing"}
    - {id: 311, message: "map grid universal polar stereographic zone is missing"}
    - {id: 312, message: "map grid state plane coordinate system zone is missing"}
    - {id: 313, message: "map grid equal arc-second coordinate system zone is missing"}
+   - {id: 314, message: "map grid description is missing"}
 
    - {id: 320, message: "metadata creation date is missing"}
    - {id: 321, message: "metadata contact is missing"}
@@ -182,6 +183,8 @@ messageList:
    - {id: 392, message: "status section is missing"}
 
    - {id: 400, message: "taxonomic classification is missing"}
+   - {id: 401, message: "multiple taxonomic classifications were specified, CSDGM supports only one"}
+   - {id: 402, message: "the first taxonomic classification was written to the metadata record"}
 
    - {id: 410, message: "taxonomic classification taxon rank is missing"}
    - {id: 411, message: "taxonomic classification taxon value (latin name) is missing"}
@@ -211,3 +214,7 @@ messageList:
    - {id: 465, message: "vertical altitude resolution is missing"}
    - {id: 466, message: "vertical altitude units of measure is missing"}
    - {id: 467, message: "vertical altitude encoding method is missing"}
+
+   - {id: 470, message: "map projection local object is empty"}
+   - {id: 471, message: "map projection local planar description is missing"}
+   - {id: 472, message: "map projection local planar georeference information is missing"}

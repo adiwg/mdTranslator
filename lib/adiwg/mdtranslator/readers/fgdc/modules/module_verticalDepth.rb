@@ -2,6 +2,7 @@
 # unpack fgdc vertical depth reference
 
 # History:
+#  Stan Smith 2018-09-26 move altitude datum name to datumIdentifier
 #  Stan Smith 2017-10-19 original script
 
 require 'nokogiri'
@@ -19,13 +20,16 @@ module ADIWG
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   hDatum = intMetadataClass.newVerticalDatum
+                  hDatumIdentifier = intMetadataClass.newIdentifier
+
                   hDatum[:isDepthSystem] = true
 
                   # depth datum 4.2.2.1 (depthdn) - depth datum name
-                  # -> referenceSystemParameters.verticalDatum.datumName
+                  # -> referenceSystemParameters.verticalDatum.datumIdentifier.identifier
                   datumName = xDepthSys.xpath('./depthdn').text
                   unless datumName.empty?
-                     hDatum[:datumName] = datumName
+                     hDatumIdentifier[:identifier] = datumName
+                     hDatum[:datumIdentifier] = hDatumIdentifier
                   end
                   if datumName.empty?
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: vertical depth datum name is missing'

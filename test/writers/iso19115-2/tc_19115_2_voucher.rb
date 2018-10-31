@@ -2,6 +2,7 @@
 # writers / iso19115_2 / class_voucher
 
 # History:
+#  Stan Smith 2018-10-25 refactor to support schema 2.6.0 changes to projection
 #  Stan Smith 2018-05-03 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-13 original script
@@ -36,9 +37,7 @@ class TestWriter191152Voucher < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
+      assert_empty hReturn[3]
 
    end
 

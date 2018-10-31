@@ -22,7 +22,6 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
    def test_spatialResolution_schema
 
        ADIWG::MdjsonSchemas::Utils.load_schemas(false)
@@ -39,17 +38,17 @@ class TestReaderMdJsonSpatialResolution < TestReaderMdJsonParent
        errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[2])
        assert_empty errors
 
-   #     # test coordinate resolution
-   #     errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[3])
-   #     assert_empty errors
-   #
-   #     # test bearing distance resolution
-   #     errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[4])
-   #     assert_empty errors
-   #
-   #     # test geographic resolution
-   #     errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[5])
-   #     assert_empty errors
+       # test coordinate resolution
+       errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[3])
+       assert_empty errors
+
+       # test bearing distance resolution
+       errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[4])
+       assert_empty errors
+
+       # test geographic resolution
+       errors = JSON::Validator.fully_validate('spatialResolution.json', @@mdHash[5])
+       assert_empty errors
 
    end
 

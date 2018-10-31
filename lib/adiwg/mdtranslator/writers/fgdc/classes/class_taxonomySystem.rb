@@ -56,9 +56,8 @@ module ADIWG
                      @NameSpace.issueWarning(431, nil)
                   end
 
-                  # taxonomic system (idref) - identification reference [] {identifier}
-                  hTaxonomy[:idReferences].each do |hReference|
-                     hCitation = hReference[:citation]
+                  # taxonomic system (idref) - identification reference [] {citation}
+                  hTaxonomy[:idReferences].each do |hCitation|
                      unless hCitation.empty?
                         @xml.tag!('idref') do
                            citationClass.writeXML(hCitation, [])

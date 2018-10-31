@@ -20,28 +20,31 @@ class TestWriterMdJsonTimeInstant < TestWriterMdJsonParent
    hTimeI = TDClass.build_timeInstant('TIID001',nil,'2018-05-02T08:48:00-00:09')
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] = []
    mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] << { timeInstant: hTimeI }
+   mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent] << { timeInstant: TDClass.build_timeInstant_full }
 
    TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
 
-   # TODO add tests for geologic time after schema update
-   # TODO reinstate after schema update
-   # def test_schema_timeInstant
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:extent][0][:temporalExtent][0]
-   #
-   #    ADIWG::MdjsonSchemas::Utils.load_schemas(false)
-   #
-   #    # test timeInstant
-   #    errors = JSON::Validator.fully_validate('temporalExtent.json', hTest)
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_timeInstant
+
+      # oneOf dateTime
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:extent][0][:temporalExtent][0][:timeInstant]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'timeInstant.json', :remove => ['geologicAge'])
+      assert_empty errors
+
+      # oneOf geologicAge
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:extent][0][:temporalExtent][1][:timeInstant]
+      hTest.delete(:dateTime)
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'timeInstant.json', :remove => ['dateTime'])
+      assert_empty errors
+
+   end
 
    def test_complete_timeInstant
 
-      # TODO validate 'normal' after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

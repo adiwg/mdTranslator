@@ -4,7 +4,7 @@
     <horizsys>
       <planar>
         <mapproj>
-          <mapprojn>Modified Stereographic for Alaska</mapprojn>
+          <mapprojn>Alaska Modified Stereographic</mapprojn>
           <modsak>
             <feast>9.9</feast>
             <fnorth>9.9</fnorth>
@@ -133,10 +133,10 @@
           <obqmerc>
             <sfctrlin>9.99</sfctrlin>
             <obqlpt>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
             </obqlpt>
             <latprjo>99.9</latprjo>
             <feast>9.9</feast>
@@ -252,16 +252,19 @@
               <azimptl>99.9</azimptl>
             </obqlazim>
             <obqlpt>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
-              <obqllat>99.9</obqllat>
-              <obqllong>99.9</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
+              <obqllat>11.1</obqllat>
+              <obqllong>22.2</obqllong>
             </obqlpt>
             <svlong>99.9</svlong>
             <landsat>9</landsat>
             <pathnum>9999</pathnum>
-            <otherprj>other projection description</otherprj>
           </mapprojp>
+        </mapproj>
+        <mapproj>
+          <mapprojn>Other Projection Description</mapprojn>
+          <otherprj>other projection description description</otherprj>
         </mapproj>
       </planar>
     </horizsys>

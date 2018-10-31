@@ -21,13 +21,12 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_verticalDatum_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'verticalDatum.json')
+       assert_empty errors
+
+   end
 
    def test_complete_verticalDatum_object
 
@@ -38,7 +37,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:datumIdentifier]
-      assert_equal 'datum name', metadata[:datumName]
       assert_equal 'encoding method', metadata[:encodingMethod]
       refute metadata[:isDepthSystem]
       assert_equal 9.99, metadata[:verticalResolution]
@@ -49,39 +47,44 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
 
    end
 
-   def test_empty_verticalDatum_name
+   def test_move_verticalDatum_datumName_to_datumIdentifier
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
       hIn['datumIdentifier'] = {}
-      hIn['datumName'] = ''
+      hIn['datumName'] = 'deprecated name'
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_nil metadata
       refute hResponse[:readerExecutionPass]
-      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_equal 4, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+                      'ERROR: mdJson reader: vertical datum must have a datumIdentifier: CONTEXT is testing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'WARNING: mdJson reader: vertical datumName is deprecated, use datumIdentifier.identifier: CONTEXT is testing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'NOTICE: mdJson reader: vertical datum added new datumIdentifier object: CONTEXT is testing'
+      assert_includes hResponse[:readerExecutionMessages],
+                      'NOTICE: mdJson reader: vertical datumName was moved to datumIdentifier.identifier: CONTEXT is testing'
 
    end
 
-   def test_missing_verticalDatum_name
+   def test_deprecated_verticalDatum_datumName
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
-      hIn.delete('datumName')
+      hIn['datumName'] = 'deprecated'
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_nil metadata
-      refute hResponse[:readerExecutionPass]
+      assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'WARNING: mdJson reader: vertical datumName is deprecated, use datumIdentifier.identifier: CONTEXT is testing'
 
    end
 
@@ -90,7 +93,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn['encodingMethod'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -99,7 +101,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -108,7 +110,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn.delete('encodingMethod')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -117,7 +118,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -126,7 +127,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn['verticalResolution'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -135,7 +135,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -144,7 +144,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn.delete('verticalResolution')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -153,7 +152,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -162,7 +161,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn['unitOfMeasure'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -171,7 +169,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -180,7 +178,6 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['datumIdentifier'] = {}
       hIn.delete('unitOfMeasure')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
@@ -189,7 +186,7 @@ class TestReaderMdJsonVerticalDatum < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: vertical datum must have an identifier or all other elements: CONTEXT is testing'
+         'ERROR: mdJson reader: vertical datum must have a datumIdentifier or a datumIdentifier plus all other elements: CONTEXT is testing'
 
    end
 

@@ -2,7 +2,7 @@
 # readers / fgdc / module_horizontalPlanar / coordinate information
 
 # History:
-#   Stan Smith 2017-10-19 original script
+#  Stan Smith 2017-10-19 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
@@ -10,7 +10,7 @@ require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcCoordinateInfo < TestReaderFGDCParent
 
-   @@xDoc = TestReaderFGDCParent.get_XML('spatialReference.xml')
+   @@xDoc = TestReaderFGDCParent.get_XML('spatialResolutionPlanar.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::PlanarReference
 
    def test_horizontalPlanar_coordinateInfo
@@ -20,7 +20,7 @@ class TestReaderFgdcCoordinateInfo < TestReaderFGDCParent
 
       TestReaderFGDCParent.set_xDoc(@@xDoc)
       TestReaderFGDCParent.set_intObj
-      xIn = @@xDoc.xpath('./metadata/spref/horizsys/planar[38]')
+      xIn = @@xDoc.xpath('./metadata/spref/horizsys/planar')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       hPlanar = @@NameSpace.unpack(xIn, hResourceInfo, hResponse)
 

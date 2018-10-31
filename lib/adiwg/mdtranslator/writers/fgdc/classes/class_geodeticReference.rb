@@ -2,6 +2,7 @@
 # FGDC CSDGM writer output in XML
 
 # History:
+#  Stan Smith 2018-09-27 deprecated datumName and ellipsoidName
 #  Stan Smith 2018-03-18 refactored error and warning messaging
 #  Stan Smith 2018-01-15 original script
 
@@ -20,21 +21,21 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(hGeodetic)
+               def writeXML(hGeodetic, inContext = nil)
 
                   # geodetic reference system 4.1.4.1 (horizdn) - horizontal datum name
-                  unless hGeodetic[:datumName].nil?
-                     @xml.tag!('horizdn', hGeodetic[:datumName])
+                  unless hGeodetic[:datumIdentifier].empty?
+                     @xml.tag!('horizdn', hGeodetic[:datumIdentifier][:identifier])
                   end
-                  if hGeodetic[:datumName].nil? && @hResponseObj[:writerShowTags]
+                  if hGeodetic[:datumIdentifier].empty? && @hResponseObj[:writerShowTags]
                      @xml.tag!('horizdn')
                   end
 
                   # geodetic reference system 4.1.4.2 (ellips) - ellipsoid name (required)
-                  unless hGeodetic[:ellipsoidName].nil?
-                     @xml.tag!('ellips', hGeodetic[:ellipsoidName])
+                  unless hGeodetic[:ellipsoidIdentifier].empty?
+                     @xml.tag!('ellips', hGeodetic[:ellipsoidIdentifier][:identifier])
                   end
-                  if hGeodetic[:ellipsoidName].nil?
+                  if hGeodetic[:ellipsoidIdentifier].nil?
                      @NameSpace.issueWarning(150, 'ellips')
                   end
 

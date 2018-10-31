@@ -27,18 +27,17 @@ class TestWriterMdJsonGeologicAge < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_geologicAge
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:citation][:series]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'citation.json', :fragment=>'series')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_geologicAge
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:timePeriod][:startGeologicAge]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'geologicAge.json')
+      assert_empty errors
+
+   end
 
    def test_complete_geologicAge
 
-      # TODO reinstate 'normal' after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+
+      <geodetic>
+        <horizdn>World Geodetic System of 1984</horizdn>
+        <ellips>World Geodetic System of 1984</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257223563</denflat>
+      </geodetic>
+
+      <planar>
+        <planci>
+          <plance>planar coordinate encoding method</plance>
+          <coordrep>
+            <absres>9.9</absres>
+            <ordres>99.9</ordres>
+          </coordrep>
+          <plandu>feet</plandu>
+        </planci>
+      </planar>
+
+    </horizsys>
+  </spref>
+</metadata>

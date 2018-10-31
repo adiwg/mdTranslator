@@ -17,25 +17,24 @@ class TestWriterMdJsonGeodeticParameters < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hSpaceRef = TDClass.build_spatialReference('geodetic', TDClass.build_identifier('geoId one'))
+   hSpaceRef = TDClass.build_spatialReference('geodetic', TDClass.build_identifier('geoId one'), nil, 'WKT')
    TDClass.add_geodetic(hSpaceRef)
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] = []
    mdHash[:metadata][:resourceInfo][:spatialReferenceSystem] << hSpaceRef
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_spatialReferenceParameters
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_spatialReferenceParameters
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
+      assert_empty errors
+
+   end
 
    def test_complete_geodeticParameters
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

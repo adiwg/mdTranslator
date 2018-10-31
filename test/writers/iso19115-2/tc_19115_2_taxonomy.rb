@@ -2,6 +2,7 @@
 # writers / iso19115_2 / class_taxonomy
 
 # History:
+#  Stan Smith 2018-10-19 refactored for mdJson schema 2.6.0
 #  Stan Smith 2018-05-01 refactored for error messaging
 #  Stan Smith 2017-11-20 replace REXML with Nokogiri
 #  Stan Smith 2017-01-13 original script
@@ -18,23 +19,23 @@ class TestWriter191152Taxonomy < TestWriter191152Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hTaxonomy = TDClass.build_taxonomy
-   hTaxonomy[:taxonomicSystem] << TDClass.build_taxonSystem('taxonomic system two',
-                                                            'CID003', 'modifications two')
-   hTaxonomy[:identificationReference] << TDClass.build_identifier('TID001')
-   hTaxonomy[:observer] << TDClass.build_responsibleParty('observer one', %w(CID003 CID004))
-   hTaxonomy[:observer] << TDClass.build_responsibleParty('observer two', %w(CID003))
-   hTaxonomy[:voucher] << TDClass.build_taxonVoucher('specimen one', %w(CID003))
-   hTaxonomy[:voucher] << TDClass.build_taxonVoucher('specimen two', %w(CID004))
+   aTaxonomy = []
+   aTaxonomy << TDClass.build_taxonomy_full
+   aTaxonomy << TDClass.build_taxonomy_full
+   mdHash[:metadata][:resourceInfo][:taxonomy] = aTaxonomy
 
-   hLevel0 = hTaxonomy[:taxonomicClassification]
-   hLevel0[:taxonomicSystemId] = 'ITIS-1234-1234-abcd'
-   hLevel0[:taxonomicLevel] = 'kingdom'
-   hLevel0[:taxonomicName] = 'animalia'
-   hLevel0[:commonName] = ['animals']
+   # taxon keywords
+   hKeyword2 = TDClass.build_keywords('fgdc taxonomy keywords','taxon')
+   TDClass.add_keyword(hKeyword2, 'animals')
+   TDClass.add_keyword(hKeyword2, 'vertebrates')
+   TDClass.add_keyword(hKeyword2, 'birds')
+   mdHash[:metadata][:resourceInfo][:keyword] << hKeyword2
 
-   mdHash[:metadata][:resourceInfo][:taxonomy] = []
-   mdHash[:metadata][:resourceInfo][:taxonomy] << hTaxonomy
+   hKeyword3 = TDClass.build_keywords('fgdc taxonomy keywords two','taxon')
+   TDClass.add_keyword(hKeyword3, 'plants')
+   TDClass.add_keyword(hKeyword3, 'grasses')
+   TDClass.add_keyword(hKeyword3, 'bamboo')
+   mdHash[:metadata][:resourceInfo][:keyword] << hKeyword3
 
    @@mdHash = mdHash
 
@@ -48,15 +49,18 @@ class TestWriter191152Taxonomy < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 2, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is taxon identification reference authority citation'
+      assert_equal 4, hReturn[3].length
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: multiple taxonomic classifications were specified, ISO 19115-2 supports only one: CONTEXT is taxonomy'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: the first taxonomic classification was written to the metadata record: CONTEXT is taxonomy'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: multiple taxonomies were provided, ISO 19115-2 allows only one: CONTEXT is main resource'
+      assert_includes hReturn[3], 'NOTICE: ISO-19115-2 writer: the first taxonomy was written to the metadata record: CONTEXT is main resource'
 
    end
 
    def test_taxonomicSystem_missing_elements
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:metadata][:resourceInfo][:taxonomy].delete_at(1)
       hTaxonomy = hIn[:metadata][:resourceInfo][:taxonomy][0]
       hTaxonomy[:taxonomicSystem].delete_at(1)
       hTaxonomy.delete(:generalScope)
@@ -64,6 +68,7 @@ class TestWriter191152Taxonomy < TestWriter191152Parent
       hTaxonomy.delete(:observer)
       hTaxonomy.delete(:identificationCompleteness)
       hTaxonomy.delete(:voucher)
+      hTaxonomy[:taxonomicClassification].delete_at(1)
 
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_taxonomy',

@@ -21,13 +21,13 @@ class TestReaderMdJsonBearingDistanceResolution < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_coordinateResolution_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'measure.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_bearingDistanceResolution_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialResolution.json',
+                                                  fragment: 'bearingDistanceResolution')
+       assert_empty errors
+
+   end
 
    def test_complete_bearDistRes
 

@@ -1,6 +1,7 @@
 # sbJson 1.0 writer
 
 # History:
+#  Stan Smith 2018-09-28 add budget sourceId and recipientId to contacts list
 #  Stan Smith 2018-09-05 skip responsibility objects in associatedResource
 #  Stan Smith 2017-05-25 refactored for mdJson/mdTranslator 2.0
 #  Josh Bradley original script
@@ -42,6 +43,26 @@ module ADIWG
                         aContactList << { :role => sbRole, :index => hParty[:contactIndex] }
                      end
                   end
+
+                  # add sourceId and recipientId contacts
+                  unless intObj[:metadata][:funding].empty?
+                     aFunding = intObj[:metadata][:funding]
+                     aFunding.each do |hFunding|
+                        hFunding[:allocations].each do |hAllocation|
+                           unless hAllocation[:sourceId].nil?
+                              contactId = hAllocation[:sourceId]
+                              sourceIndex = @Namespace.get_contact_index_by_id(contactId)
+                              aContactList << { :role => 'funder', :index => sourceIndex }
+                           end
+                           unless hAllocation[:recipientId].nil?
+                              contactId = hAllocation[:recipientId]
+                              recipientIndex = @Namespace.get_contact_index_by_id(contactId)
+                              aContactList << { :role => '', :index => recipientIndex }
+                           end
+                        end
+                     end
+                  end
+
                   aContactList = aContactList.uniq
 
                end

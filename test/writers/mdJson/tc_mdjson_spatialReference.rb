@@ -28,20 +28,19 @@ class TestWriterMdJsonSpatialReference < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_spatialReference
-   #
-   #    hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_spatialReference
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
+      assert_empty errors
+
+   end
 
    def test_complete_spatialReference
 
       TDClass.removeEmptyObjects(@@mdHash)
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

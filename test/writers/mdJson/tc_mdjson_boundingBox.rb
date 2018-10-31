@@ -22,15 +22,14 @@ class TestWriterMdJsonBoundingBox < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO remove after schema update
-   # def test_schema_boundingBox
-   #
-   #    hIn = JSON.parse(@@mdHash.to_json)
-   #    hTest = hIn['metadata']['resourceInfo']['extent'][0]['geographicExtent'][0]['boundingBox']
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'geographicExtent.json', :fragment=>'boundingBox')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_boundingBox
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:extent][0][:geographicExtent][0][:boundingBox]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'geographicExtent.json', :fragment=>'boundingBox')
+      assert_empty errors
+
+   end
 
    def test_complete_boundingBox
 

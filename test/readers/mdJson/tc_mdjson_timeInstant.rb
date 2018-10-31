@@ -22,13 +22,21 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_timeInstant_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'timeInstant.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_timeInstant_schema
+
+      # oneOf dateTime
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:geologicAge)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['geologicAge'])
+      assert_empty errors
+
+      # oneOf geologicAge
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:dateTime)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['dateTime'])
+      assert_empty errors
+
+   end
 
    def test_complete_timeInstant_object
 
@@ -66,7 +74,7 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
       refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: time instant must have dateTime or geologic age: CONTEXT is testing'
 
    end
@@ -84,7 +92,7 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
       refute_nil metadata
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'ERROR: mdJson reader: time instant must have dateTime or geologic age: CONTEXT is testing'
 
    end

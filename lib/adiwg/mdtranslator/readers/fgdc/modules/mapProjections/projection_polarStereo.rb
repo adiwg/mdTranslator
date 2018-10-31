@@ -2,6 +2,7 @@
 # unpack fgdc map projection - polar stereographic
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-17 original script
 
 require 'nokogiri'
@@ -20,31 +21,30 @@ module ADIWG
                   # map projection 4.1.2.1.15 (polarst) - Polar Stereographic
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projection] = 'polarStereo'
-                     hProjection[:projectionName] = 'Polar Stereographic'
 
                      # -> ReferenceSystemParameters.projection.straightVerticalLongitudeFromPole
-                     paramCount += ProjectionCommon.unpackVSLong(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackVSLong(xParams, hProjection)
 
                      # -> [ standardParallel1 | scaleFactorAtProjectionOrigin ]
                      # -> ReferenceSystemParameters.projection.standardParallel1
-                     paramCount += ProjectionCommon.unpackStandParallel(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackStandParallel(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.scaleFactorAtProjectionOrigin
-                     paramCount += ProjectionCommon.unpackSFPO(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackSFPO(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.latitudeOfProjectionCenter
-                     paramCount += ProjectionCommon.unpackLatPC(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLatPC(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      # verify parameter count
                      if paramCount == 4
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Polar Stereographic projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] <<
+                           'WARNING: FGDC reader: Polar Stereographic projection is missing one or more parameters'
                      end
                   end
 

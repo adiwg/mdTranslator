@@ -2,6 +2,8 @@
 
 # History:
 # version 2
+#  Stan Smith 2018-10-02 modified referenceSystemParameterSet
+#  Stan Smith 2018-10-02 added local reference system
 #  Stan Smith 2017-09-28 add altitude to bounding box for fgdc
 #  Stan Smith 2017-09-28 add description to geographicExtent for fgdc
 #  Stan Smith 2017-04-22 removed 'intObj = ' from new object definitions
@@ -848,11 +850,8 @@ class InternalMetadata
    def newProjection
       {
          projectionIdentifier: {},
-         gridSystem: nil,
-         gridSystemName: nil,
+         gridIdentifier: {},
          gridZone: nil,
-         projection: nil,
-         projectionName: nil,
          standardParallel1: nil,
          standardParallel2: nil,
          longitudeOfCentralMeridian: nil,
@@ -873,26 +872,21 @@ class InternalMetadata
          obliqueLinePoints: [],
          landsatNumber: nil,
          landsatPath: nil,
-         localPlanarDescription: nil,
-         localPlanarGeoreference: nil,
-         otherGridDescription: nil,
-         otherProjectionDescription: nil
+         local: {}
       }
    end
 
    def newObliqueLinePoint
       {
-         azimuthLineLatitude: nil,
-         azimuthLineLongitude: nil
+         obliqueLineLatitude: nil,
+         obliqueLineLongitude: nil
       }
    end
 
    def newGeodetic
       {
          datumIdentifier: {},
-         datumName: nil,
          ellipsoidIdentifier: {},
-         ellipsoidName: nil,
          semiMajorAxis: nil,
          axisUnits: nil,
          denominatorOfFlatteningRatio: nil
@@ -902,13 +896,19 @@ class InternalMetadata
    def newVerticalDatum
       {
          datumIdentifier: {},
-         datumName: nil,
          isDepthSystem: false,
          encodingMethod: nil,
          verticalResolution: nil,
          unitOfMeasure: nil
       }
+   end
 
+   def newLocal
+      {
+         description: nil,
+         georeference: nil,
+         fixedToEarth: true
+      }
    end
 
 
@@ -1038,7 +1038,7 @@ class InternalMetadata
          idProcedure: nil,
          idCompleteness: nil,
          vouchers: [],
-         taxonClass: {}
+         taxonClasses: []
       }
    end
 

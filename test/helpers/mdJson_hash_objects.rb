@@ -569,7 +569,7 @@ class MdJsonHashWriter
          namespace: 'namespace',
          version: 'version',
          description: 'description',
-         authority: citation_title
+         authority: citation
       }
    end
 
@@ -1045,7 +1045,7 @@ class MdJsonHashWriter
    end
 
 
-   # graphic extent --------------------------
+   # geographic extent --------------------------
    def geographicExtent
       {
          description: 'geographic extent description',
@@ -1225,7 +1225,13 @@ class MdJsonHashWriter
          keyword: [],
          keywordType: 'theme',
          thesaurus: {
-            title: 'thesaurus title'
+            title: 'thesaurus title',
+            date: [
+               {
+                  'date': '2017-11-22',
+                  'dateType': 'publication'
+               }
+            ]
          }
       }
    end
@@ -1393,10 +1399,8 @@ class MdJsonHashWriter
    # spatial reference ----------------------
    def geodetic
       {
-         datumIdentifier: {},
-         datumName: 'datum name',
-         ellipsoidIdentifier: {},
-         ellipsoidName: 'ellipsoid name',
+         datumIdentifier: {identifier: 'datum name'},
+         ellipsoidIdentifier: {identifier: 'ellipsoid name'},
          semiMajorAxis: 9999.9,
          axisUnits: 'axis units',
          denominatorOfFlatteningRatio: 999.9
@@ -1405,19 +1409,16 @@ class MdJsonHashWriter
 
    def obliqueLinePoint
       {
-         azimuthLineLatitude: 99.9,
-         azimuthLineLongitude: 99.9
+         obliqueLineLatitude: 11.1,
+         obliqueLineLongitude: 22.2
       }
    end
 
    def projection
       {
-         projectionIdentifier: { identifier: 'projection identifier' },
-         gridSystem: 'grid system',
-         gridSystemName: 'grid system name',
+         projectionIdentifier: { identifier: 'projection identifier', name: 'projection name' },
+         gridIdentifier: { identifier: 'grid system identifier', name: 'grid system name' },
          gridZone: 'zone 4',
-         projection: 'projection code',
-         projectionName: 'projection name',
          standardParallel1: 9.9,
          standardParallel2: 9.9,
          longitudeOfCentralMeridian: 9.9,
@@ -1435,13 +1436,10 @@ class MdJsonHashWriter
          scaleFactorAtProjectionOrigin: 9.9,
          azimuthAngle: 9.9,
          azimuthMeasurePointLongitude: 9.9,
-         obliqueLinePoint: [],
+         obliqueLinePoint: [obliqueLinePoint, obliqueLinePoint],
          landsatNumber: 9,
          landsatPath: 9,
-         localPlanarDescription: 'local planar description',
-         localPlanarGeoreference: 'local planar georeference',
-         otherGridDescription: 'other grid description',
-         otherProjectionDescription: 'other projection description'
+         local: local
       }
    end
  
@@ -1465,11 +1463,18 @@ class MdJsonHashWriter
    def verticalDatum
       {
          datumIdentifier: { identifier: 'vertical datum identifier' },
-         datumName: 'datum name',
          encodingMethod: 'encoding method',
          isDepthSystem: false,
          verticalResolution: 9.99,
          unitOfMeasure: 'unit of measure'
+      }
+   end
+
+   def local
+      {
+         description: 'local description',
+         georeference: 'local georeference',
+         fixedToEarth: false
       }
    end
 
@@ -1583,18 +1588,14 @@ class MdJsonHashWriter
    # taxonomy -------------------------------
    def taxonomy
       {
-         taxonomicSystem: [
-            taxonSystem
-         ],
+         taxonomicSystem: [taxonSystem],
          generalScope: 'general scope',
-         identificationReference: [
-            identifier
-         ],
-         observer: [],
+         identificationReference: [citation],
+         observer: [build_responsibleParty('observer', ['CID003'])],
          identificationProcedure: 'procedures',
          identificationCompleteness: 'completeness',
-         voucher: [],
-         taxonomicClassification: taxonClass
+         voucher: [build_taxonVoucher],
+         taxonomicClassification: [taxonClass]
       }
    end
 
@@ -1618,7 +1619,7 @@ class MdJsonHashWriter
    def taxonVoucher
       {
          specimen: 'specimen',
-         repository: build_responsibleParty('curator', ['CID002'])
+         repository: build_responsibleParty('curator', ['CID004'])
       }
    end
 
@@ -1650,8 +1651,7 @@ class MdJsonHashWriter
             identifier: 'time instant identifier'
          },
          instantName: ['instant name one', 'instant name two'],
-         dateTime: '2016-10-24T10:25:00',
-         geologicAge: {}
+         dateTime: '2016-10-24T10:25:00'
       }
    end
 
@@ -1663,7 +1663,7 @@ class MdJsonHashWriter
             identifier: 'time period identifier'
          },
          periodName: ['period name one', 'period name two'],
-         startDateTime: '2016-10-14T11:10:15.2-10:00',
+         startDateTime: '2016-10-14T11:10:15.200-10:00',
          endDateTime: '2016-12-31',
          startGeologicAge: {},
          endGeologicAge: {},

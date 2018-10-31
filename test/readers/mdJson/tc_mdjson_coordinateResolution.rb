@@ -21,13 +21,13 @@ class TestReaderMdJsonCoordinateResolution < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_coordinateResolution_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'measure.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_coordinateResolution_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'spatialResolution.json',
+                                                  fragment: 'coordinateResolution')
+       assert_empty errors
+
+   end
 
    def test_complete_coordinateResolution
 

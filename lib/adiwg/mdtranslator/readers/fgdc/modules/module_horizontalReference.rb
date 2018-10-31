@@ -39,7 +39,7 @@ module ADIWG
                   # horizontal reference 4.1.3 (local) - local coordinate system
                   xLocal = xHorizontalRef.xpath('./local')
                   unless xLocal.empty?
-                     hReferenceSystem = LocalSystem.unpack(xLocal, hResponseObj)
+                     hReferenceSystem = MapLocalSystem.unpack(xLocal, hResponseObj)
                      unless hReferenceSystem.nil?
                         hResourceInfo[:spatialReferenceSystems] << hReferenceSystem
                      end

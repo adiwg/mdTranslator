@@ -24,13 +24,12 @@ class TestReaderMdJsonGeologicAge < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_series_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'citation.json', :fragment=>'series')
-   #     assert_empty errors
-   #
-   # end
+   def test_geologicAge_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geologicAge.json')
+       assert_empty errors
+
+   end
 
    def test_complete_geologicAge_object
 

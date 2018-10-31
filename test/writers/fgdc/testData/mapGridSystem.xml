@@ -4,7 +4,7 @@
     <horizsys>
       <planar>
         <gridsys>
-          <gridsysn>Universal Transverse Mercator (UTM)</gridsysn>
+          <gridsysn>Universal Transverse Mercator</gridsysn>
           <utm>
             <utmzone>9</utmzone>
             <transmer>
@@ -19,7 +19,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>Universal Polar Stereographic (UPS)</gridsysn>
+          <gridsysn>Universal Polar Stereographic</gridsysn>
           <ups>
             <upszone>B</upszone>
             <polarst>
@@ -33,7 +33,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>Universal Polar Stereographic (UPS)</gridsysn>
+          <gridsysn>Universal Polar Stereographic</gridsysn>
           <ups>
             <upszone>B</upszone>
             <polarst>
@@ -102,10 +102,10 @@
             <obqmerc>
               <sfctrlin>9.99</sfctrlin>
               <obqlpt>
-                <obqllat>99.9</obqllat>
-                <obqllong>99.9</obqllong>
-                <obqllat>99.9</obqllat>
-                <obqllong>99.9</obqllong>
+                <obqllat>11.1</obqllat>
+                <obqllong>22.2</obqllong>
+                <obqllat>11.1</obqllat>
+                <obqllong>22.2</obqllong>
               </obqlpt>
               <latprjo>99.9</latprjo>
               <feast>9.9</feast>
@@ -130,7 +130,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>equal arc-second coordinate system</gridsysn>
+          <gridsysn>Equal Arc-Second Coordinate System</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <equirect>
@@ -144,7 +144,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>equal arc-second coordinate system</gridsysn>
+          <gridsysn>Equal Arc-Second Coordinate System</gridsysn>
           <arcsys>
             <arczone>10</arczone>
             <azimequi>
@@ -158,7 +158,7 @@
       </planar>
       <planar>
         <gridsys>
-          <gridsysn>other grid coordinate system</gridsysn>
+          <gridsysn>Other Grid Coordinate System</gridsysn>
           <othergrd>other grid description</othergrd>
         </gridsys>
       </planar>

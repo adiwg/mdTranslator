@@ -23,13 +23,12 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_spatialReference_schema
-   #
-   #     errors = TestReaderMdJsonParent.testSchema(@@hIn, 'spatialReference.json')
-   #     assert_empty errors
-   #
-   # end
+   def test_geodetic_schema
+
+       errors = TestReaderMdJsonParent.testSchema(@@mdHash, 'geodetic.json')
+       assert_empty errors
+
+   end
 
    def test_complete_geodetic_object
 
@@ -40,9 +39,7 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:datumIdentifier]
-      assert_equal 'datum name', metadata[:datumName]
       refute_empty metadata[:ellipsoidIdentifier]
-      assert_equal 'ellipsoid name', metadata[:ellipsoidName]
       assert_equal 9999.9, metadata[:semiMajorAxis]
       assert_equal 'axis units', metadata[:axisUnits]
       assert_equal 999.9, metadata[:denominatorOfFlatteningRatio]
@@ -53,12 +50,12 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
 
    end
 
-   def test_ellipsoid_empty_ellipsoidName
+   def test_ellipsoid_missing_ellipsoidIdentifier
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['ellipsoidName'] = ''
+      hIn.delete('ellipsoidIdentifier')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -66,16 +63,16 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: geodetic ellipsoid name is missing: CONTEXT is testing'
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
-   def test_ellipsoid_missing_ellipsoidName
+   def test_ellipsoid_empty_semiMajorAxis
 
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn.delete('ellipsoidName')
+      hIn['semiMajorAxis'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
@@ -83,7 +80,92 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
       refute hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
       assert_includes hResponse[:readerExecutionMessages],
-         'ERROR: mdJson reader: geodetic ellipsoid name is missing: CONTEXT is testing'
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
+
+   end
+
+   def test_ellipsoid_missing_semiMajorAxis
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn.delete('semiMajorAxis')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
+
+      refute_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
+
+   end
+
+   def test_ellipsoid_empty_axisUnits
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['axisUnits'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
+
+      refute_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
+
+   end
+
+   def test_ellipsoid_missing_axisUnits
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn.delete('axisUnits')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
+
+      refute_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
+
+   end
+
+   def test_ellipsoid_empty_denominatorOfFlatteningRatio
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn['denominatorOfFlatteningRatio'] = ''
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
+
+      refute_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
+
+   end
+
+   def test_ellipsoid_missing_denominatorOfFlatteningRatio
+
+      TestReaderMdJsonParent.loadEssential
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn = JSON.parse(hIn.to_json)
+      hIn.delete('denominatorOfFlatteningRatio')
+      hResponse = Marshal::load(Marshal.dump(@@responseObj))
+      metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
+
+      refute_nil metadata
+      refute hResponse[:readerExecutionPass]
+      assert_equal 1, hResponse[:readerExecutionMessages].length
+      assert_includes hResponse[:readerExecutionMessages],
+         'ERROR: mdJson reader: geodetic ellipsoid must have an ellipsoidIdentifier or an ellipsoidIdentifier plus all other elements: CONTEXT is testing'
 
    end
 
@@ -96,7 +178,7 @@ class TestReaderMdJsonGeodetic < TestReaderMdJsonParent
       assert_nil metadata
       assert hResponse[:readerExecutionPass]
       assert_equal 1, hResponse[:readerExecutionMessages].length
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
          'WARNING: mdJson reader: geodetic object is empty: CONTEXT is testing'
 
    end

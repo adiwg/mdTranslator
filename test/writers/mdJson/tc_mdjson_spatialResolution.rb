@@ -20,7 +20,7 @@ class TestWriterMdJsonSpatialResolution < TestWriterMdJsonParent
    mdHash[:metadata][:resourceInfo][:spatialResolution] = []
 
    # scale factor
-   hRes1 = TDClass.build_spatialResolution('scale')
+   hRes1 = TDClass.build_spatialResolution('factor')
    mdHash[:metadata][:resourceInfo][:spatialResolution] << hRes1
 
    # measure
@@ -45,10 +45,10 @@ class TestWriterMdJsonSpatialResolution < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
    def test_schema_spatialResolution
 
-      hTest = @@mdHash[:metadata][:resourceInfo][:spatialResolution]
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialResolution]
 
       ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
@@ -60,17 +60,17 @@ class TestWriterMdJsonSpatialResolution < TestWriterMdJsonParent
       errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[1])
       assert_empty errors
 
-      # # test coordinate resolution
-      # errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[2])
-      # assert_empty errors
+      # test coordinate resolution
+      errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[2])
+      assert_empty errors
 
-      # # test bearing distance resolution
-      # errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[3])
-      # assert_empty errors
+      # test bearing distance resolution
+      errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[3])
+      assert_empty errors
 
-      # # test geographic resolution
-      # errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[4])
-      # assert_empty errors
+      # test geographic resolution
+      errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[4])
+      assert_empty errors
 
       # test georectified levelOfDetail
       errors = JSON::Validator.fully_validate('spatialResolution.json', hTest[5])

@@ -2,14 +2,15 @@
 # unpack fgdc horizontal planar data reference
 
 # History:
+#  Stan Smith 2018-10-04 refactor mdJson projection object
 #  Stan Smith 2017-10-03 original script
 
 require 'nokogiri'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative 'module_mapProjection'
 require_relative 'module_mapGridSystem'
-require_relative 'module_mapLocalPlanar'
-require_relative 'module_mapCoordinateInfo'
+require_relative 'module_localPlanar'
+require_relative 'module_planarCoordinateInfo'
 
 module ADIWG
    module Mdtranslator
@@ -22,7 +23,9 @@ module ADIWG
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  hProjection = nil
+                  hReferenceSystem = intMetadataClass.newSpatialReferenceSystem
+                  hSystemParameters = intMetadataClass.newReferenceSystemParameterSet
+                  hProjection = {}
 
                   # get distance unit of measure for use in map projections and grid systems
                   distanceUnits = nil
@@ -52,9 +55,8 @@ module ADIWG
                      hProjection = MapLocalPlanar.unpack(xMapLocal, hResponseObj)
                   end
 
-                  unless hProjection.nil?
-                     hReferenceSystem = intMetadataClass.newSpatialReferenceSystem
-                     hSystemParameters = intMetadataClass.newReferenceSystemParameterSet
+                  # packing
+                  unless hProjection.empty?
                      unless distanceUnits.nil?
                         hProjection[:falseEastingNorthingUnits] = distanceUnits
                      end

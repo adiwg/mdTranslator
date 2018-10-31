@@ -2,6 +2,7 @@
 # writers / iso19115_2 / class_keyword
 
 # History:
+#  Stan Smith 2018-10-125refactor to support schema 2.6.0 changes to projection
 #  Stan Smith 2018-04-24 refactored for error messaging
 #  Stan Smith 2017-11-19 replace REXML with Nokogiri
 #  Stan Smith 2017-05-16 added isoTopicCategory to keyword
@@ -36,9 +37,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
+      assert_empty hReturn[3]
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
                                                 '//gmd:descriptiveKeywords[2]',
@@ -46,9 +45,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
+      assert_empty hReturn[3]
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
                                                 '//gmd:topicCategory[1]',
@@ -56,9 +53,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
+      assert_empty hReturn[3]
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_keyword',
                                                 '//gmd:topicCategory[2]',
@@ -66,9 +61,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is keyword thesaurus citation'
+      assert_empty hReturn[3]
 
    end
 

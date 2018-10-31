@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<metadata>
+  <spref>
+    <horizsys>
+
+      <local>
+        <localdes>local description</localdes>
+        <localgeo>local georeference</localgeo>
+      </local>
+
+    </horizsys>
+  </spref>
+</metadata>

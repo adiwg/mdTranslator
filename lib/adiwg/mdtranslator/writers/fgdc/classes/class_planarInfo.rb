@@ -20,7 +20,7 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Fgdc
                end
 
-               def writeXML(aRepTypes, aResolutions)
+               def writeXML(aRepTypes, aResolutions, inContext = nil)
 
                   # <- spatialReferencesTypes[] (encoding method) 4.1.2.4.1
                   # <- spatialResolution[].coordinateResolution (coordinate representation) 4.1.2.4.2
@@ -45,7 +45,7 @@ module ADIWG
                            @xml.tag!('plance', aRepTypes[0])
                         end
                         if aRepTypes.empty?
-                           @NameSpace.issueWarning(260, 'plance')
+                           @NameSpace.issueWarning(260, 'plance', inContext)
                         end
 
                         # <- spatialResolutions[] look for coordinateResolution or bearingDistanceResolution
@@ -62,7 +62,7 @@ module ADIWG
                                     @xml.tag!('absres', hCoordRes[:abscissaResolutionX].to_f)
                                  end
                                  if hCoordRes[:abscissaResolutionX].nil?
-                                    @NameSpace.issueWarning(261, 'absres')
+                                    @NameSpace.issueWarning(261, 'absres', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.2.2 (ordres) - ordinate resolution (required)
@@ -70,7 +70,7 @@ module ADIWG
                                     @xml.tag!('ordres', hCoordRes[:ordinateResolutionY].to_f)
                                  end
                                  if hCoordRes[:ordinateResolutionY].nil?
-                                    @NameSpace.issueWarning(262, 'ordres')
+                                    @NameSpace.issueWarning(262, 'ordres', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.4 (plandu) - distance unit of measure (required)
@@ -78,7 +78,7 @@ module ADIWG
                                     unitOfMeasure = hCoordRes[:unitOfMeasure]
                                  end
                                  if hCoordRes[:unitOfMeasure].nil?
-                                    @NameSpace.issueWarning(263, 'plandu')
+                                    @NameSpace.issueWarning(263, 'plandu', inContext)
                                  end
 
                               end
@@ -96,7 +96,7 @@ module ADIWG
                                     @xml.tag!('distres', hBearRes[:distanceResolution].to_f)
                                  end
                                  if hBearRes[:distanceResolution].nil?
-                                    @NameSpace.issueWarning(264, 'distres')
+                                    @NameSpace.issueWarning(264, 'distres', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.3.2 (bearres) - bearing resolution (required)
@@ -104,7 +104,7 @@ module ADIWG
                                     @xml.tag!('bearres', hBearRes[:bearingResolution])
                                  end
                                  if hBearRes[:bearingResolution].nil?
-                                    @NameSpace.issueWarning(265, 'bearres')
+                                    @NameSpace.issueWarning(265, 'bearres', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.3.3 (bearunit) - bearing units of measure (required)
@@ -112,7 +112,7 @@ module ADIWG
                                     @xml.tag!('bearunit', hBearRes[:bearingUnitOfMeasure])
                                  end
                                  if hBearRes[:bearingUnitOfMeasure].nil?
-                                    @NameSpace.issueWarning(266, 'bearunit')
+                                    @NameSpace.issueWarning(266, 'bearunit', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.3.4 (bearrefd) - bearing units of measure (required)
@@ -120,7 +120,7 @@ module ADIWG
                                     @xml.tag!('bearrefd', hBearRes[:bearingReferenceDirection])
                                  end
                                  if hBearRes[:bearingReferenceDirection].nil?
-                                    @NameSpace.issueWarning(267, 'bearrefd')
+                                    @NameSpace.issueWarning(267, 'bearrefd', inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.3.5 (bearrefm) - bearing reference meridian (required)
@@ -128,7 +128,7 @@ module ADIWG
                                     @xml.tag!('bearrefm', hBearRes[:bearingReferenceMeridian])
                                  end
                                  if hBearRes[:bearingReferenceMeridian].nil?
-                                    @NameSpace.issueWarning(268, 'bearrefm')
+                                    @NameSpace.issueWarning(268, 'bearrefm',inContext)
                                  end
 
                                  # coordinate information 4.1.2.4.4 (plandu) - distance unit of measure (required)
@@ -136,7 +136,7 @@ module ADIWG
                                     unitOfMeasure = hBearRes[:distanceUnitOfMeasure]
                                  end
                                  if hBearRes[:distanceUnitOfMeasure].nil?
-                                    @NameSpace.issueWarning(269, 'plandu')
+                                    @NameSpace.issueWarning(269, 'plandu', inContext)
                                  end
 
                               end
@@ -156,7 +156,7 @@ module ADIWG
 
                   # error message
                   unless haveCInfo
-                     @NameSpace.issueWarning(270, nil)
+                     @NameSpace.issueWarning(270, nil, inContext)
                   end
 
                end # writeXML

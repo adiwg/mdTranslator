@@ -1,7 +1,8 @@
 # mdJson 2.0 writer - spatial reference system vertical datum parameters
 
 # History:
-#   Stan Smith 2017-10-24 original script
+#  Stan Smith 2018-09-26 datumName is deprecated
+#  Stan Smith 2017-10-24 original script
 
 require 'jbuilder'
 require_relative 'mdJson_identifier'
@@ -17,7 +18,6 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.datumIdentifier Identifier.build(hDatum[:datumIdentifier]) unless hDatum[:datumIdentifier].empty?
-                     json.datumName hDatum[:datumName]
                      json.encodingMethod hDatum[:encodingMethod]
                      json.isDepthSystem hDatum[:isDepthSystem]
                      json.verticalResolution hDatum[:verticalResolution]

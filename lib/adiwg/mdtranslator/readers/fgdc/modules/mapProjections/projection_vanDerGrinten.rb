@@ -2,6 +2,7 @@
 # unpack fgdc map projection - van der grinten
 
 # History:
+#  Stan Smith 2018-10-03 refactor mdJson projection object
 #  Stan Smith 2017-10-18 original script
 
 require 'nokogiri'
@@ -19,20 +20,19 @@ module ADIWG
                   # map projection 4.1.2.1.22 (vdgrin) - van der Grinten
                   unless xParams.empty?
                      paramCount = 0
-                     hProjection[:projection] = 'grinten'
-                     hProjection[:projectionName] = 'van der Grinten'
 
                      # -> ReferenceSystemParameters.projection.longitudeOfCentralMeridian
-                     paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackLongCM(xParams, hProjection)
 
                      # -> ReferenceSystemParameters.projection.falseEasting
                      # -> ReferenceSystemParameters.projection.falseNorthing
-                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection, hResponseObj)
+                     paramCount += ProjectionCommon.unpackFalseNE(xParams, hProjection)
 
                      if paramCount == 3
                         return hProjection
                      else
-                        hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: Van Der Grinten projection is missing one or more parameters'
+                        hResponseObj[:readerExecutionMessages] <<
+                           'WARNING: FGDC reader: Van Der Grinten projection is missing one or more parameters'
                      end
                   end
 

@@ -22,18 +22,24 @@ module ADIWG
                   # classes used
                   identifierClass = Html_Identifier.new(@html)
 
-                  # geodetic parameters - datum name
-                  unless hGeodetic[:datumName].nil?
-                     @html.em('Datum Name: ')
-                     @html.text!(hGeodetic[:datumName])
-                     @html.br
+                  # geodetic parameters - datum identifier
+                  unless hGeodetic[:datumIdentifier].empty?
+                     @html.details do
+                        @html.summary('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hGeodetic[:datumIdentifier])
+                        end
+                     end
                   end
 
-                  # geodetic parameters - ellipsoid name
-                  unless hGeodetic[:ellipsoidName].nil?
-                     @html.em('Ellipsoid Name: ')
-                     @html.text!(hGeodetic[:ellipsoidName])
-                     @html.br
+                  # geodetic parameters - ellipsoid identifier
+                  unless hGeodetic[:ellipsoidIdentifier].empty?
+                     @html.details do
+                        @html.summary('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hGeodetic[:ellipsoidIdentifier])
+                        end
+                     end
                   end
 
                   # geodetic parameters - semi-major axis
@@ -54,26 +60,6 @@ module ADIWG
                   unless hGeodetic[:denominatorOfFlatteningRatio].nil?
                      @html.em('Denominator or Flattening Ratio: ')
                      @html.text!(hGeodetic[:denominatorOfFlatteningRatio].to_s)
-                  end
-
-                  # geodetic parameters - ellipsoid identifier
-                  unless hGeodetic[:ellipsoidIdentifier].empty?
-                     @html.details do
-                        @html.summary('Ellipsoid Identifier', {'id' => 'ellipsoid-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hGeodetic[:ellipsoidIdentifier])
-                        end
-                     end
-                  end
-
-                  # geodetic parameters - datum identifier
-                  unless hGeodetic[:datumIdentifier].empty?
-                     @html.details do
-                        @html.summary('Datum Identifier', {'id' => 'datum-identifier', 'class' => 'h5'})
-                        @html.section(:class => 'block') do
-                           identifierClass.writeHtml(hGeodetic[:datumIdentifier])
-                        end
-                     end
                   end
 
                end # writeHtml
