@@ -26,14 +26,14 @@ class TestReaderMdJsonTimeInstant < TestReaderMdJsonParent
 
       # oneOf dateTime
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn.delete(:dateTime)
-      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['dateTime'])
-      assert_empty errors
-
-      # oneOf dateTime
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn.delete(:geologicAge)
       errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['geologicAge'])
+      assert_empty errors
+
+      # oneOf geologicAge
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:dateTime)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['dateTime'])
       assert_empty errors
 
    end

@@ -36,14 +36,14 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_source
-   #
-   #    hTest = @@mdHash[:metadata][:resourceLineage][0][:source][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'lineage.json', :fragment=>'source')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_source
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceLineage][0][:source][0]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'lineage.json', :fragment=>'source')
+      assert_empty errors
+
+   end
 
    def test_complete_source
 

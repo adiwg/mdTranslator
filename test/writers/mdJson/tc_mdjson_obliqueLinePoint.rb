@@ -34,18 +34,18 @@ class TestWriterMdJsonObliqueLinePoint < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_obliqueLinePoint
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_obliqueLinePoint
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hParameterSet = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet]
+      hTest = hParameterSet[:projection][:obliqueLinePoint]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'projection.json', fragment: 'obliqueLinePoint')
+      assert_empty errors
+
+   end
 
    def test_complete_obliqueLinePoint
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

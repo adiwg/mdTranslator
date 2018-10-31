@@ -1045,7 +1045,7 @@ class MdJsonHashWriter
    end
 
 
-   # graphic extent --------------------------
+   # geographic extent --------------------------
    def geographicExtent
       {
          description: 'geographic extent description',
@@ -1663,7 +1663,7 @@ class MdJsonHashWriter
             identifier: 'time period identifier'
          },
          periodName: ['period name one', 'period name two'],
-         startDateTime: '2016-10-14T11:10:15.2-10:00',
+         startDateTime: '2016-10-14T11:10:15.200-10:00',
          endDateTime: '2016-12-31',
          startGeologicAge: {},
          endGeologicAge: {},

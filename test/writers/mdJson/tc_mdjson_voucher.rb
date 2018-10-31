@@ -25,10 +25,10 @@ class TestWriterMdJsonVoucher < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
    def test_schema_voucher
 
-      hTest = @@mdHash[:metadata][:resourceInfo][:taxonomy][0][:voucher][0]
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:taxonomy][0][:voucher][0]
       errors = TestWriterMdJsonParent.testSchema(hTest, 'taxonomy.json', :fragment=>'voucher')
       assert_empty errors
 

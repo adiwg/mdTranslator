@@ -2,7 +2,8 @@
 # parent class for all tc_mdjson tests
 
 # History:
-# Stan Smith 2017-03-11 original script
+#  Stan Smith 2018-10-30 add 'addParameters' to testSchema
+#  Stan Smith 2017-03-11 original script
 
 require 'minitest/autorun'
 require 'json'
@@ -23,7 +24,7 @@ class TestWriterMdJsonParent < MiniTest::Test
    end
 
    # test schema for writer modules
-   def self.testSchema(mdJson, schema, fragment: nil, remove: [])
+   def self.testSchema(mdJson, schema, fragment: nil, remove: [], addProperties: {})
 
       # load all schemas with 'true' to prohibit additional parameters
       ADIWG::MdjsonSchemas::Utils.load_schemas(false)
@@ -34,6 +35,11 @@ class TestWriterMdJsonParent < MiniTest::Test
       # remove unwanted parameters from the required array
       unless remove.empty?
          strictSchema['required'] = strictSchema['required'] - remove
+      end
+
+      # add additional properties for cases of oneOf objects
+      unless addProperties.empty?
+         strictSchema['properties'].merge!(addProperties)
       end
 
       # build relative path to schema fragment

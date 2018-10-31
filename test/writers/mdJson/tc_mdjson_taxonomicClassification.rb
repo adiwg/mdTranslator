@@ -26,18 +26,19 @@ class TestWriterMdJsonTaxonomicClassification < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_taxonomicClassification
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:taxonomy][0][:taxonomicClassification][1]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'taxonomy.json', :fragment=>'taxonomicClassification')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_taxonomicClassification
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:taxonomy][0][:taxonomicClassification][1]
+      hTest[:latinName] = 'deprecated'
+      hTest[:taxonomicRank] = 'deprecated'
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'taxonomy.json', :fragment=>'taxonomicClassification')
+      assert_empty errors
+
+   end
 
    def test_complete_taxonomicClassification
 
-      # TODO validate 'normal' after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

@@ -8,6 +8,9 @@
 #  Stan Smith 2016-10-08 original script
 
 require_relative 'mdjson_test_parent'
+require 'json'
+require 'json-schema'
+require 'adiwg-mdjson_schemas'
 require 'adiwg/mdtranslator/readers/mdJson/modules/module_timePeriod'
 
 class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
@@ -25,18 +28,30 @@ class TestReaderMdJsonTimePeriod < TestReaderMdJsonParent
 
    def test_timePeriod_schema
 
-      # oneOf startDateTime/endDateTime
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-      hIn.delete(:startDateTime)
-      hIn.delete(:endDateTime)
-      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['startDateTime, endDateTime'])
-      assert_empty errors
+      # load all schemas with 'true' to prohibit additional parameters
+      ADIWG::MdjsonSchemas::Utils.load_schemas(false)
 
-      # oneOf startGeologicAge/endGeologicAge
+      # load schema segment and make all elements required and prevent additional parameters
+      strictSchema = ADIWG::MdjsonSchemas::Utils.load_strict('timePeriod.json')
+
+      # oneOf startDateTime/endDateTime
+      hParameters = strictSchema['oneOf'][0]['properties']
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn.delete(:startGeologicAge)
       hIn.delete(:endGeologicAge)
-      errors = TestReaderMdJsonParent.testSchema(hIn, 'timeInstant.json', :remove => ['startGeologicAge, endGeologicAge'])
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timePeriod.json', :remove => ['startGeologicAge, endGeologicAge'],
+                                                 :addProperties => hParameters)
+      assert_empty errors
+
+      # oneOf startGeologicAge/endGeologicAge
+      hParameters = strictSchema['oneOf'][1]['properties']
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn.delete(:startDateTime)
+      hIn.delete(:endDateTime)
+      hIn.delete(:timeInterval)
+      hIn.delete(:duration)
+      errors = TestReaderMdJsonParent.testSchema(hIn, 'timePeriod.json', :remove => ['startDateTime, endDateTime'],
+                                                 :addProperties => hParameters)
       assert_empty errors
 
    end

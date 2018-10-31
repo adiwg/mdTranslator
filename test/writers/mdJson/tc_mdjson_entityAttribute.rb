@@ -39,14 +39,15 @@ class TestWriterMdJsonEntityAttribute < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO reinstate after schema update
-   # def test_schema_entityAttribute
-   #
-   #    hTest = @@mdHash[:dataDictionary][0][:entity][0][:attribute][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'entityAttribute.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_entityAttribute
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:dataDictionary][0][:entity][0][:attribute][0]
+      hTest[:allowMany] = false
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'entityAttribute.json')
+      assert_empty errors
+
+   end
 
    def test_complete_entityAttribute
 

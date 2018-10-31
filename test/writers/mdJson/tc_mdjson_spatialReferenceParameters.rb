@@ -41,21 +41,32 @@ class TestWriterMdJsonSpatialReferenceParameters < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   # TODO complete after schema update
-   # def test_schema_spatialReferenceParameters
-   #
-   #    hIn = JSON.parse(@@jsonIn)
-   #    hTest = hIn['metadata']['resourceInfo']['spatialReferenceSystem'][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_referenceSystemParameterSet
+
+      # oneOf projection
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][1][:referenceSystemParameterSet]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'referenceSystemParameterSet.json', :remove => %w(geodetic verticalDatum))
+      assert_empty errors
+
+      # oneOf geodetic
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][2][:referenceSystemParameterSet]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'referenceSystemParameterSet.json', :remove => %w(projection verticalDatum))
+      assert_empty errors
+
+      # oneOf vrticalDatum
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][3][:referenceSystemParameterSet]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'referenceSystemParameterSet.json', :remove => %w(projection geodetic))
+      assert_empty errors
+
+   end
 
    def test_complete_spatialReferenceParameters
 
       TDClass.removeEmptyObjects(@@mdHash)
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)

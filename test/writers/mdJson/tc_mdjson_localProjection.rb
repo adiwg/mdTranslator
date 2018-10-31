@@ -27,7 +27,6 @@ class TestWriterMdJsonLocalProjection < TestWriterMdJsonParent
 
       @@mdHash = mdHash
 
-      # TODO validate normal after schema update
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'none',
          writer: 'mdJson', showAllTags: false)
@@ -49,14 +48,14 @@ class TestWriterMdJsonLocalProjection < TestWriterMdJsonParent
 
    end
 
-   # TODO complete after schema update
-   # def test_schema_obliqueLinePoint
-   #
-   #    hTest = @@mdHash[:metadata][:resourceInfo][:spatialReferenceSystem][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'spatialReference.json')
-   #    assert_empty errors
-   #
-   # end
+   def test_schema_localProjection
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hTest = hIn[:metadata][:resourceInfo][:spatialReferenceSystem][0][:referenceSystemParameterSet][:projection][:local]
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'projection.json', fragment: 'local')
+      assert_empty errors
+
+   end
 
    def test_complete_localPlanar
 
