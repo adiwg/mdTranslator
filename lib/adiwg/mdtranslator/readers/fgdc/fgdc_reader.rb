@@ -20,7 +20,7 @@ module ADIWG
 
                # receive XML file
                if file.nil? || file == ''
-                  hResponseObj[:readerStructureMessages] << 'XML file is missing'
+                  hResponseObj[:readerStructureMessages] << 'ERROR: XML file is missing'
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
@@ -29,8 +29,8 @@ module ADIWG
                begin
                   xDoc = Nokogiri::XML(file) { |form| form.strict }
                rescue Nokogiri::XML::SyntaxError => err
-                  hResponseObj[:readerStructureMessages] << 'XML file is not well formed'
-                  hResponseObj[:readerStructureMessages] << err
+                  hResponseObj[:readerStructureMessages] << 'ERROR: XML file is not well formed'
+                  hResponseObj[:readerStructureMessages] << err.to_s
                   hResponseObj[:readerStructurePass] = false
                   return {}
                end
@@ -38,7 +38,7 @@ module ADIWG
                # file must contain an fgdc <metadata> tag
                xMetadata = xDoc.xpath('/metadata')
                if xMetadata.empty?
-                  hResponseObj[:readerValidationMessages] << 'FGDC file did not contain a <metadata> tag'
+                  hResponseObj[:readerValidationMessages] << 'ERROR: FGDC file did not contain a <metadata> tag'
                   hResponseObj[:readerValidationPass] = false
                   return {}
                end
