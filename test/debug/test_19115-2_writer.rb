@@ -18,8 +18,6 @@ class Test191152WriterDebug < TestDebugParent
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
 
-      File.write('/mnt/hgfs/ShareDrive/writeOut.xml', xMetadata)
-
       puts 'Structure Messages:'
       puts hResponseObj[:readerStructureMessages]
 

@@ -17,7 +17,6 @@ class TestFgdcReaderDebug < TestDebugParent
       )
 
       htmlOut = hResponseObj[:writerOutput]
-      File.write('/mnt/hgfs/ShareDrive/writeOut.html', htmlOut)
 
       puts 'Structure Messages:'
       puts hResponseObj[:readerStructureMessages]
