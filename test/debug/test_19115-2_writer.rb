@@ -1,23 +1,22 @@
 # MdTranslator - test example mdJson files with errors
 
 # History:
-#  Stan Smith 2017-11-16 original script
+#  Stan Smith 2018-10-31 original script
 
 require_relative 'debug_test_parent'
 
-class TestFgdcWriterDebug < TestDebugParent
+class Test191152WriterDebug < TestDebugParent
 
-   def test_fgdc_writer
+   def test_ISO191152_writer
 
       # read the json input file
       mdJson = TestDebugParent.get_json('josh01')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: mdJson, reader: 'mdJson', writer: 'fgdc', showAllTags: true, forceValid: true
+         file: mdJson, reader: 'mdJson', writer: 'iso19115_2', showAllTags: true, forceValid: true
       )
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      got = xMetadata.xpath('./metadata')
 
       puts 'Structure Messages:'
       puts hResponseObj[:readerStructureMessages]
@@ -31,7 +30,7 @@ class TestFgdcWriterDebug < TestDebugParent
       puts 'Writer Messages:'
       puts hResponseObj[:writerMessages]
 
-      refute_nil got
+      refute_nil xMetadata
 
    end
 
