@@ -1,7 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
-# 2.14.1 2018-10-31 add fix for empty verticalDatum in fgdc and iso writers
+# 2.14.1 2018-10-31 add fix for empty verticalDatum in fgdc and iso 19115_2 writers
 # 2.14.0 2018-10-27 refactor taxonomy for multiple taxonomic classifications
 # 2.14.0 2018-10-27 refactor taxonomy for identification reference as citation
 # 2.14.0 2018-10-27 refactor taxonomy for identification procedures not required
