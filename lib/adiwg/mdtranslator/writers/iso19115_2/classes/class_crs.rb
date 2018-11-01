@@ -3,6 +3,7 @@
 # 19115-2 output for ISO 19115-2 XML
 
 # History:
+#  Stan Smith 2018-10-31 fix error with 'writerShowTags'
 #  Stan Smith 2018-10-17 refactor to support schema 2.6.0 changes to projection
 # 	Stan Smith 2017-10-26 original script
 
@@ -38,10 +39,12 @@ module ADIWG
                         end
                      end
                   end
-                  if hParamSet[:projection].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:projection')
-                  elsif hParamSet[:projection][:projectionIdentifier].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:projection')
+                  if @hResponseObj[:writerShowTags]
+                     if hParamSet[:projection].empty?
+                        @xml.tag!('gmd:projection')
+                     elsif hParamSet[:projection][:projectionIdentifier].empty?
+                        @xml.tag!('gmd:projection')
+                     end
                   end
 
                   # geodetic ellipsoid identifier {rsIdentifier}
@@ -53,10 +56,12 @@ module ADIWG
                         end
                      end
                   end
-                  if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:ellipsoid')
-                  elsif hParamSet[:geodetic][:ellipsoidIdentifier].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:ellipsoid')
+                  if @hResponseObj[:writerShowTags]
+                     if hParamSet[:geodetic].empty?
+                        @xml.tag!('gmd:ellipsoid')
+                     elsif hParamSet[:geodetic][:ellipsoidIdentifier].empty?
+                        @xml.tag!('gmd:ellipsoid')
+                     end
                   end
 
                   # geodetic datum identifier (horizontal) {rsIdentifier}
@@ -68,10 +73,12 @@ module ADIWG
                         end
                      end
                   end
-                  if hParamSet[:geodetic].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:datum')
-                  elsif hParamSet[:geodetic][:datumIdentifier].empty? && @hResponseObj[:writerShowTags]
-                     @xml.tag!('gmd:datum')
+                  if @hResponseObj[:writerShowTags]
+                     if hParamSet[:geodetic].empty?
+                        @xml.tag!('gmd:datum')
+                     elsif hParamSet[:geodetic][:datumIdentifier].empty?
+                        @xml.tag!('gmd:datum')
+                     end
                   end
 
                   # ellipsoid parameters

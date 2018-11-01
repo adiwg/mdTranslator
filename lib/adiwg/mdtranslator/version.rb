@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.14.1 2018-10-31 add fix for empty verticalDatum
 # 2.14.0 2018-10-27 refactor taxonomy for multiple taxonomic classifications
 # 2.14.0 2018-10-27 refactor taxonomy for identification reference as citation
 # 2.14.0 2018-10-27 refactor taxonomy for identification procedures not required
@@ -101,7 +102,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.14.0"
+      VERSION = "2.14.1"
    end
 end
 
