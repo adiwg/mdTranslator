@@ -1,12 +1,19 @@
 # Change Log
 
-## [v2.13.3](https://github.com/adiwg/mdTranslator/tree/v2.13.3)
+## [v2.14.0](https://github.com/adiwg/mdTranslator/tree/v2.14.0)
 
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.3...v2.14.0)
+
+**Closed issues:**
+
+- Breaking change in timeInterval [\#199](https://github.com/adiwg/mdTranslator/issues/199)
+
+**Merged pull requests:**
+
+- Change error message text in ISO 19115-2 writer [\#204](https://github.com/adiwg/mdTranslator/pull/204) ([stansmith907](https://github.com/stansmith907))
+
+## [v2.13.3](https://github.com/adiwg/mdTranslator/tree/v2.13.3) (2018-09-06)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.2...v2.13.3)
-
-**Fixed bugs:**
-
-- sbJSON contacts inherited from associated records [\#202](https://github.com/adiwg/mdTranslator/issues/202)
 
 **Closed issues:**
 
