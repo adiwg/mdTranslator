@@ -1,6 +1,7 @@
 # fgdc reader
 
 # History:
+#  Josh Bradley 2018-11-1 format eror messages
 #  Stan Smith 2018-05-04 add reader version to response object
 #  Stan Smith 2017-08-10 original script
 
