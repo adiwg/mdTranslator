@@ -26,7 +26,7 @@ class TestReaderFgdcLineage < TestReaderFGDCParent
       aKeywords = hIntObj[:metadata][:resourceInfo][:keywords]
       assert_equal 3, aKeywords.length
       hKeyword = aKeywords[0]
-      assert_equal 'method', hKeyword[:keywordType]
+      assert_equal 'methodology', hKeyword[:keywordType]
       assert_equal 2, hKeyword[:keywords].length
       assert_equal 'method keyword thesaurus one', hKeyword[:thesaurus][:title]
       assert_equal 'one', hKeyword[:keywords][0][:keyword]

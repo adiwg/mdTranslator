@@ -22,7 +22,7 @@ class TestWriterFgdcLineage < TestWriterFGDCParent
    TDClass.add_keyword(hKeyword2, 'two')
    mdHash[:metadata][:resourceInfo][:keyword] << hKeyword2
 
-   hKeyword3 = TDClass.build_keywords('method keyword set two','method')
+   hKeyword3 = TDClass.build_keywords('method keyword set two','methodology')
    TDClass.add_keyword(hKeyword3, 'three')
    TDClass.add_keyword(hKeyword3, 'four')
    mdHash[:metadata][:resourceInfo][:keyword] << hKeyword3
