@@ -1,0 +1,112 @@
+# Writer - messages for ISO 19115-1:2014
+
+# History:
+#  Stan Smith 20189-03-12 original script
+
+messageList:
+   - {id: 1, message: "associated resource association type is missing"}
+
+   - {id: 10, message: "bounding box west longitude is missing"}
+   - {id: 11, message: "bounding box east longitude is missing"}
+   - {id: 12, message: "bounding box south latitude is missing"}
+   - {id: 13, message: "bounding box north latitude is missing"}
+
+   - {id: 20, message: "browse graphic file name is missing"}
+
+   - {id: 30, message: "citation title is missing"}
+
+   - {id: 40, message: "coverage attribute description is missing"}
+   - {id: 41, message: "coverage content type is missing"}
+
+   - {id: 50, message: "resource citation is missing"}
+   - {id: 51, message: "resource abstract is missing"}
+   - {id: 52, message: "resource point of contact is missing"}
+   - {id: 53, message: "multiple taxonomies were provided, ISO 19115-2 allows only one"}
+   - {id: 54, message: "the first taxonomy was written to the metadata record"}
+
+   - {id: 60, message: "data quality scope is missing"}
+
+   - {id: 70, message: "date is missing"}
+   - {id: 71, message: "date type is missing"}
+
+   - {id: 80, message: "dimension type is missing"}
+   - {id: 81, message: "dimension size is missing"}
+
+   - {id: 90, message: "distributor contact is missing"}
+
+   - {id: 100, message: "extension extended element name is missing"}
+   - {id: 101, message: "extension extended element definition is missing"}
+   - {id: 102, message: "extension extended element entity type is missing"}
+   - {id: 103, message: "extension extended element parent entity is missing"}
+   - {id: 104, message: "extension extended element rule is missing"}
+   - {id: 105, message: "extension extended element source is missing"}
+
+   - {id: 110, message: "GeoJSON geometry object type is not recognized"}
+
+   - {id: 120, message: "format name is missing"}
+   - {id: 121, message: "format version is missing"}
+
+   - {id: 130, message: "spatial resolution representative fraction denominator is missing"}
+
+   - {id: 140, message: "GeoJSON geometry is not supported by feature"}
+
+   - {id: 150, message: "vector object type is missing"}
+
+   - {id: 160, message: "GeoJSON geometry is not supported by geometry collection"}
+
+   - {id: 170, message: "georectified corner points are missing"}
+   - {id: 171, message: "georectified point in pixel is missing"}
+
+   - {id: 180, message: "georeferenced parameter is missing"}
+
+   - {id: 190, message: "grid representation number of dimensions is missing"}
+   - {id: 191, message: "grid representation dimensions are missing"}
+   - {id: 192, message: "grid representation cell geometry is missing"}
+
+   - {id: 200, message: "keyword section keywords are missing"}
+
+   - {id: 210, message: "locale language code is missing"}
+   - {id: 211, message: "locale character encoding is missing"}
+
+   - {id: 220, message: "maintenance update frequency is missing"}
+
+   - {id: 230, message: "identifier code is missing"}
+
+   - {id: 240, message: "metadata contacts are missing"}
+   - {id: 241, message: "data identification section (resourceInfo) missing"}
+
+   - {id: 250, message: "online resource URL is missing"}
+
+   - {id: 260, message: "process step description is missing"}
+
+   - {id: 270, message: "responsible party role is missing"}
+
+   - {id: 280, message: "scope level (code) is missing"}
+
+   - {id: 290, message: "security constraint classification is missing"}
+
+   - {id: 300, message: "taxonomic level is missing"}
+   - {id: 301, message: "taxonomic name is missing"}
+
+   - {id: 310, message: "taxonomic classification system is missing"}
+   - {id: 311, message: "taxonomic identification reference is missing"}
+   - {id: 312, message: "taxonomic observer is missing"}
+   - {id: 313, message: "taxonomic procedures are missing"}
+   - {id: 314, message: "taxonomic classification is missing"}
+   - {id: 315, message: "multiple taxonomic classifications were specified, ISO 19115-2 supports only one"}
+   - {id: 316, message: "the first taxonomic classification was written to the metadata record"}
+
+   - {id: 320, message: "resource specific usage is missing"}
+   - {id: 321, message: "resource specific usage contact is missing"}
+
+   - {id: 330, message: "vertical extent minimum is missing"}
+   - {id: 331, message: "vertical extent maximum is missing"}
+   - {id: 332, message: "vertical extent coordinate reference system is missing"}
+
+   - {id: 340, message: "taxonomic voucher specimen is missing"}
+   - {id: 341, message: "taxonomic voucher repository is missing"}
+
+   - {id: 350, message: "attribute sequence identifier is missing"}
+   - {id: 351, message: "attribute sequence identifier type is missing"}
+
+   - {id: 360, message: "measure type is invalid; must be one of [distance, length, angle, measure, scale]"}
