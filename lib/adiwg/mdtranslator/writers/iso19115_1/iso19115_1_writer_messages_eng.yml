@@ -80,6 +80,10 @@ messageList:
    - {id: 260, message: "process step description is missing"}
 
    - {id: 270, message: "responsible party role is missing"}
+   - {id: 271, message: "responsible party is missing"}
+   - {id: 272, message: "responsible party not found"}
+   - {id: 273, message: "responsible party logo is missing"}
+   - {id: 274, message: "responsible party organization member not found"}
 
    - {id: 280, message: "scope level (code) is missing"}
 

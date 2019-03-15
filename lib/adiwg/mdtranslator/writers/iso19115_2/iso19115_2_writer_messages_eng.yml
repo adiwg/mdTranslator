@@ -81,6 +81,7 @@ messageList:
    - {id: 260, message: "process step description is missing"}
 
    - {id: 270, message: "responsible party role is missing"}
+   - {id: 270, message: "responsible party is missing"}
 
    - {id: 280, message: "scope level (code) is missing"}
 

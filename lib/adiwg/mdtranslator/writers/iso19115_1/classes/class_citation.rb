@@ -6,10 +6,12 @@
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_codelist'
-require_relative 'class_responsibleParty'
+require_relative 'class_responsibility'
 require_relative 'class_date'
-require_relative 'class_mdIdentifier'
+require_relative 'class_identifier'
 require_relative 'class_series'
+require_relative 'class_onlineResource'
+require_relative 'class_browseGraphic'
 
 module ADIWG
    module Mdtranslator
@@ -28,10 +30,12 @@ module ADIWG
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
-                  rPartyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
+                  responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
                   dateClass = CI_Date.new(@xml, @hResponseObj)
                   idClass = MD_Identifier.new(@xml, @hResponseObj)
                   seriesClass = CI_Series.new(@xml, @hResponseObj)
+                  onlineClass = CI_OnlineResource.new(@xml, @hResponseObj)
+                  graphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
 
                   outContext = 'citation'
                   outContext = inContext + ' citation' unless inContext.nil?
@@ -81,7 +85,7 @@ module ADIWG
                         @xml.tag!('cit:edition')
                      end
 
-                     # citation - edition date {DateTime}
+                     # citation - edition date {DateTime} - not supported
 
                      # citation - resource identifier [] {MD_Identifier}
                      # process ISBN and ISSN as MD_identifier(s)
@@ -106,25 +110,13 @@ module ADIWG
                      end
 
                      # citation - cited responsible party [] {CI_Responsibility}
-                     # contacts are grouped by role in the internal object
-                     # output a separate <cit:contact> for each role:contact pairing
-                     # check for duplicates and eliminate
-                     aRoleParty = []
-                     aRParties = hCitation[:responsibleParties]
-                     aRParties.each do |hRParty|
-                        role = hRParty[:roleName]
-                        aParties = hRParty[:parties]
-                        aParties.each do |hParty|
-                           aRoleParty << {role: role, hParty: hParty}
-                        end
-                     end
-                     aRoleParty.uniq!
-                     aRoleParty.each do |hRoleParty|
+                     aResponsibility = hCitation[:responsibleParties]
+                     aResponsibility.each do |hResponsibility|
                         @xml.tag!('cit:citedResponsibleParty') do
-                           rPartyClass.writeXML(hRoleParty[:role], hRoleParty[:hParty], outContext)
+                           responsibilityClass.writeXML(hResponsibility, outContext)
                         end
                      end
-                     if aRoleParty.empty? && @hResponseObj[:writerShowTags]
+                     if aResponsibility.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('cit:citedResponsibleParty')
                      end
 
@@ -183,11 +175,28 @@ module ADIWG
                      end
 
                      # citation - online resources [] {CI_OnlineResource}
+                     aOnline = hCitation[:onlineResources]
+                     aOnline.each do |hOnline|
+                        @xml.tag!('cit:onlineResource') do
+                           onlineClass.writeXML(hOnline, outContext)
+                        end
+                     end
+                     if aOnline.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('cit:onlineResource')
+                     end
 
                      # citation - graphic [] {MD_BrowseGraphic}
+                     aGraphic = hCitation[:browseGraphics]
+                     aGraphic.each do |hGraphic|
+                        @xml.tag!('cit:graphic') do
+                           graphicClass.writeXML(hGraphic, outContext)
+                        end
+                     end
+                     if aGraphic.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('cit:graphic')
+                     end
 
                   end # CI_Citation tag
-
                end # writeXML
             end # CI_Citation class
 

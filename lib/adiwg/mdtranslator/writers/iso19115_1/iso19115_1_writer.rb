@@ -3,6 +3,11 @@
 # History:
 # 	Stan Smith 2019-03-12 original script
 
+# items not implemented in mdJson
+# online resource - applicationProfile (string)
+# online resource - protocol request (string)
+# party - multiple contactInfo{}
+
 require 'builder'
 require 'adiwg/mdtranslator/writers/iso19115_1/version'
 require_relative 'classes/class_mdMetadata'
@@ -41,9 +46,9 @@ module ADIWG
             # find contact in contact array and return the contact hash
             def self.getContact(contactId)
 
-               @contacts.each do |contact|
-                  if contact[:contactId] == contactId
-                     return contact
+               @contacts.each do |hContact|
+                  if hContact[:contactId] == contactId
+                     return hContact
                   end
                end
                return {}
