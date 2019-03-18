@@ -88,6 +88,8 @@ messageList:
    - {id: 280, message: "scope level (code) is missing"}
 
    - {id: 290, message: "security constraint classification is missing"}
+   - {id: 291, message: "legal constraint is missing when constraint type is 'legal'"}
+   - {id: 292, message: "security constraint is missing when constraint type is 'security'"}
 
    - {id: 300, message: "taxonomic level is missing"}
    - {id: 301, message: "taxonomic name is missing"}

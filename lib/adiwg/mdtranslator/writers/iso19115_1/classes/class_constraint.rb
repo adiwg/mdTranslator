@@ -4,16 +4,16 @@
 # History:
 # 	Stan Smith 2019-03-15 original script
 
-require_relative 'class_releasability'
-require_relative 'class_legalConstraint'
-require_relative 'class_securityConstraint'
+require_relative 'class_useConstraints'
+require_relative 'class_legalConstraints'
+require_relative 'class_securityConstraints'
 
 module ADIWG
    module Mdtranslator
       module Writers
          module Iso19115_1
 
-            class MD_Constraint
+            class ConstraintClass
 
                def initialize(xml, hResponseObj)
                   @xml = xml
@@ -23,16 +23,16 @@ module ADIWG
                def writeXML(hConstraint, inContext = nil)
 
                   # classes used
-                  releaseClass = MD_Releasability.new(@xml, @hResponseObj)
-                  legalClass = MD_Releasability.new(@xml, @hResponseObj)
-                  releaseClass = MD_Releasability.new(@xml, @hResponseObj)
+                  useConClass = MD_Constraints.new(@xml, @hResponseObj)
+                  legalConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
+                  securityConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
 
-                  @xml.tag!('mco:MD_Constraint') do
+                  useConClass.writeXML(hConstraint, inContext) if hConstraint[:type] == 'use'
+                  legalConClass.writeXML(hConstraint, inContext) if hConstraint[:type] == 'legal'
+                  securityConClass.writeXML(hConstraint, inContext) if hConstraint[:type] == 'security'
 
-
-                  end # gmd:EX_Extent tag
                end # writeXML
-            end # EX_Extent class
+            end # MD_Constraint class
 
          end
       end

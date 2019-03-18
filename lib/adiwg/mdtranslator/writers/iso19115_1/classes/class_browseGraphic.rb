@@ -25,55 +25,55 @@ module ADIWG
 
                   # classes used
                   onlineClass = CI_OnlineResource.new(@xml, @hResponseObj)
-                  constraintClass = MD_Constraint.new(@xml, @hResponseObj)
+                  constraintClass = ConstraintClass.new(@xml, @hResponseObj)
 
                   outContext = 'browse graphic'
                   outContext = inContext + ' browse graphic' unless inContext.nil?
 
-                  @xml.tag!('mc:MD_BrowseGraphic') do
+                  @xml.tag!('mcc:MD_BrowseGraphic') do
 
                      # browse graphic - file name (required)
                      s = hGraphic[:graphicName]
                      unless s.nil?
-                        @xml.tag!('mc:fileName') do
+                        @xml.tag!('mcc:fileName') do
                            @xml.tag!('gco:CharacterString', s)
                         end
                      end
                      if s.nil?
-                        @NameSpace.issueWarning(20, 'mc:fileName', outContext)
+                        @NameSpace.issueWarning(20, 'mcc:fileName', outContext)
                      end
 
                      # browse graphic - file description
                      s = hGraphic[:graphicDescription]
                      unless s.nil?
-                        @xml.tag!('mc:fileDescription') do
+                        @xml.tag!('mcc:fileDescription') do
                            @xml.tag!('gco:CharacterString', s)
                         end
                      end
                      if s.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mc:fileDescription')
+                        @xml.tag!('mcc:fileDescription')
                      end
 
                      # browse graphic - file type
                      s = hGraphic[:graphicType]
                      unless s.nil?
-                        @xml.tag!('mc:fileType') do
+                        @xml.tag!('mcc:fileType') do
                            @xml.tag!('gco:CharacterString', s)
                         end
                      end
                      if s.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mc:fileType')
+                        @xml.tag!('mcc:fileType')
                      end
 
-                     # browse graphic - image constraint [] {MD_Constraint}
+                     # browse graphic - image constraint [] {MD_Constraints}
                      aConstraint = hGraphic[:graphicURI]
                      aConstraint.each do |hCon|
-                        @xml.tag!('mcc:imageConstraint') do
+                        @xml.tag!('mcc:imageConstraints') do
                            constraintClass.writeXML(hCon, outContext)
                         end
                      end
                      if aConstraint.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mcc:imageConstraint')
+                        @xml.tag!('mcc:imageConstraints')
                      end
 
                      # browse graphic - linkage [] {CI_OnlineResource}

@@ -33,7 +33,7 @@ module ADIWG
                         end
                      end
                      if aCons.empty?
-                        @xml.tag!('gmd:useLimitation')
+                        @xml.tag!('gmd:useLimitation') && @hResponseObj[:writerShowTags]
                      end
 
                   end # gmd:MD_Constraints tag
