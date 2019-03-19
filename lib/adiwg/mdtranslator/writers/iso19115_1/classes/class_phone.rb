@@ -4,6 +4,8 @@
 # History:
 # 	Stan Smith 2019-03-18 original script.
 
+require_relative 'class_codelist'
+
 module ADIWG
    module Mdtranslator
       module Writers
@@ -14,59 +16,62 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
-               def writeXML(aPhones)
+               def writePhone(number, service, inContext)
 
-                  @xml.tag!('cit:CI_Telephone') do
+                  # classes used
+                  codelistClass = MD_Codelist.new(@xml, @hResponseObj)
 
-                     # voice phones
-                     voiceCount = 0
-                     aPhones.each do |hPhone|
-                        if hPhone[:phoneServiceTypes].empty?
-                           hPhone[:phoneServiceTypes] << 'voice'
-                        end
-                        if hPhone[:phoneServiceTypes].include?('voice')
-                           pName = hPhone[:phoneName]
-                           pNumber = hPhone[:phoneNumber]
-                           if pName.nil?
-                              s = pNumber
-                           else
-                              s = pName + ': ' + pNumber
-                           end
-                           @xml.tag!('cit:voice') do
-                              @xml.tag!('gco:CharacterString', s)
-                              voiceCount += 1
+                  @xml.tag!('cit:phone') do
+                     @xml.tag!('cit:CI_Telephone') do
+
+                        # phone - phone number (required)
+                        unless number.nil?
+                           @xml.tag!('cit:number') do
+                              @xml.tag!('gco:CharacterString', number)
                            end
                         end
-                     end
-                     if voiceCount == 0 && @hResponseObj[:writerShowTags]
-                        @xml.tag!('cit:voice')
-                     end
+                        if number.nil?
+                           @NameSpace.issueWarning(370, 'cit:number', inContext)
+                        end
 
-                     # fax phones
-                     faxCount = 0
-                     aPhones.each do |hPhone|
-                        if hPhone[:phoneServiceTypes].include?('fax') ||
-                           hPhone[:phoneServiceTypes].include?('facsimile')
-                           pName = hPhone[:phoneName]
-                           pNumber = hPhone[:phoneNumber]
-                           if pName.nil?
-                              s = pNumber
-                           else
-                              s = pName + ': ' + pNumber
-                           end
-                           @xml.tag!('cit:facsimile') do
-                              @xml.tag!('gco:CharacterString', s)
-                              faxCount += 1
+                        # phone - phone number type {CI_TelephoneTypeCode}
+                        unless service.nil?
+                           @xml.tag!('cit:numberType') do
+                              codelistClass.writeXML('cit', 'iso_telephone', service)
                            end
                         end
-                     end
-                     if faxCount == 0 && @hResponseObj[:writerShowTags]
-                        @xml.tag!('cit:facsimile')
-                     end
+                        if service.nil? && @hResponseObj[:writerShowTags]
+                           @xml.tag!('cit:numberType')
+                        end
 
-                  end # CI_Telephone tag
+                     end
+                  end
+               end
+
+               def writeXML(aPhones, inContext = nil)
+
+                  outContext = 'phone'
+                  outContext = inContext + ' phone' unless inContext.nil?
+
+                  aPhones.each do |hPhone|
+                     unless hPhone.empty?
+                        number = hPhone[:phoneNumber]
+                        aServices = hPhone[:phoneServiceTypes]
+
+                        if aServices.empty?
+                           writePhone(number, nil, outContext)
+                        else
+                           aServices.each do |service|
+                              writePhone(number, service, outContext)
+                           end
+                        end
+
+                     end
+                  end
+
                end # write XML
             end # CI_Telephone class
 

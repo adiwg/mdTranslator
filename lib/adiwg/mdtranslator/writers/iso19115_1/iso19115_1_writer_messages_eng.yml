@@ -116,3 +116,5 @@ messageList:
    - {id: 351, message: "attribute sequence identifier type is missing"}
 
    - {id: 360, message: "measure type is invalid; must be one of [distance, length, angle, measure, scale]"}
+
+   - {id: 370, message: "phone number is missing"}

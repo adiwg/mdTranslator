@@ -27,48 +27,52 @@ module ADIWG
                   vertExtClass = EX_VerticalExtent.new(@xml, @hResponseObj)
                   geoExtClass = GeographicExtent.new(@xml, @hResponseObj)
 
-                  @xml.tag!('gmd:EX_Extent') do
+                  outContext = 'extent'
+                  outContext = inContext + ' extent' unless inContext.nil?
+
+                  @xml.tag!('gex:EX_Extent') do
 
                      # extent - description
-                     s = hExtent[:description]
-                     unless s.nil?
-                        @xml.tag!('gmd:description') do
-                           @xml.tag!('gco:CharacterString', s)
+                     unless hExtent[:description].nil?
+                        @xml.tag!('gex:description') do
+                           @xml.tag!('gco:CharacterString', hExtent[:description])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:description')
+                     if hExtent[:description].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gex:description')
                      end
 
                      # extent - geographic extent []
+                     # {EX_GeographicDescription | EX_GeographicBoundingBox | EX_BoundingPolygon}
                      aGeoExtents = hExtent[:geographicExtents]
                      aGeoExtents.each do |hGeoExtent|
                         geoExtClass.writeXML(hGeoExtent)
                      end
                      if aGeoExtents.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:geographicElement')
+                        @xml.tag!('gex:geographicElement')
                      end
 
-                     # extent - temporal extent []
+                     # extent - temporal extent [] {EX_TemporalExtent}
+                     # EX_SpatialTemporalExtent not implemented
                      aTempElements = hExtent[:temporalExtents]
                      aTempElements.each do |hTempElement|
-                        @xml.tag!('gmd:temporalElement') do
+                        @xml.tag!('gex:temporalElement') do
                            tempExtClass.writeXML(hTempElement)
                         end
                      end
                      if aTempElements.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:temporalElement')
+                        @xml.tag!('gex:temporalElement')
                      end
 
-                     # extent - vertical extent []
+                     # extent - vertical extent [] {EX_VerticalExtent}
                      aVertElements = hExtent[:verticalExtents]
                      aVertElements.each do |hVertElement|
-                        @xml.tag!('gmd:verticalElement') do
+                        @xml.tag!('gex:verticalElement') do
                            vertExtClass.writeXML(hVertElement)
                         end
                      end
                      if aVertElements.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:verticalElement')
+                        @xml.tag!('gex:verticalElement')
                      end
 
                   end # gmd:EX_Extent tag

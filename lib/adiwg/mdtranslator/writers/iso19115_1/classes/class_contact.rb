@@ -36,14 +36,13 @@ module ADIWG
 
                   @xml.tag!('cit:CI_Contact') do
 
-                     # contact - phones [] {CI_Telephone} (pass all phones)
-                     aPhones = hContact[:phones]
-                     unless aPhones.empty?
-                        @xml.tag!('cit:phone') do
-                           phoneClass.writeXML(aPhones)
-                        end
+                     # contact - phones [] {CI_Telephone}
+                     # pass phone array to phoneClass
+                     # ... need to output separate phone tags for each service
+                     unless hContact[:phones].empty?
+                        phoneClass.writeXML(hContact[:phones], outContext)
                      end
-                     if aPhones.empty? && @hResponseObj[:writerShowTags]
+                     if hContact[:phones].empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('cit:phone')
                      end
 

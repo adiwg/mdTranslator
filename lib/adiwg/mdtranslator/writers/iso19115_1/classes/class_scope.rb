@@ -46,12 +46,12 @@ module ADIWG
                      # ... only one extent allowed in ISO 19115-2
                      aExtents = hScope[:extents]
                      unless aExtents.empty?
-                        @xml.tag!('gmd:extent') do
+                        @xml.tag!('gex:extent') do
                            extentClass.writeXML(aExtents[0])
                         end
                      end
                      if aExtents.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:extent')
+                        @xml.tag!('gex:extent')
                      end
 
                      # scope - level description [{MD_ScopeDescription}]
