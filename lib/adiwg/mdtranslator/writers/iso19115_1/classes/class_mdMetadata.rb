@@ -143,7 +143,7 @@ module ADIWG
 
 
 
-                     
+
                      # metadata information - contact [] {CI_ResponsibleParty} (required)
                      # metadata information - date info [] {CI_Date} (required)
                      # metadata information - metadata standard [] {CI_Citation} (auto fill)
