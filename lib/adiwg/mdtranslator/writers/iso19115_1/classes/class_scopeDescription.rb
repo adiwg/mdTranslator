@@ -19,30 +19,48 @@ module ADIWG
                def writeXML(hScopeDesc)
 
                   # these scope description types not implemented -----------------------------
-                  # attributes (ISO 19115-2 XSD type is set to 'empty')
-                  # features (ISO 19115-2 XSD type is set to 'empty')
                   # featureInstances (not supported in mdJson)
                   # attributeInstances (not supported in mdJson)
 
                   # scope description - dataset
-                  sData = hScopeDesc[:dataset]
-                  unless sData.nil?
-                     @xml.tag!('gmd:levelDescription') do
-                        @xml.tag!('gmd:MD_ScopeDescription') do
-                           @xml.tag!('gmd:dataset') do
-                              @xml.tag!('gco:CharacterString', sData)
+                  unless hScopeDesc[:dataset].nil?
+                     @xml.tag!('mcc:levelDescription') do
+                        @xml.tag!('mcc:MD_ScopeDescription') do
+                           @xml.tag!('mcc:dataset') do
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:dataset])
+                           end
+                        end
+                     end
+                  end
+
+                  # scope description - attributes
+                  unless hScopeDesc[:attributes].nil?
+                     @xml.tag!('mcc:levelDescription') do
+                        @xml.tag!('mcc:MD_ScopeDescription') do
+                           @xml.tag!('mcc:attributes') do
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:other])
+                           end
+                        end
+                     end
+                  end
+
+                  # scope description - features
+                  unless hScopeDesc[:features].nil?
+                     @xml.tag!('mcc:levelDescription') do
+                        @xml.tag!('mcc:MD_ScopeDescription') do
+                           @xml.tag!('mcc:features') do
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:other])
                            end
                         end
                      end
                   end
 
                   # scope description - other
-                  sOther = hScopeDesc[:other]
-                  unless sOther.nil?
-                     @xml.tag!('gmd:levelDescription') do
-                        @xml.tag!('gmd:MD_ScopeDescription') do
-                           @xml.tag!('gmd:other') do
-                              @xml.tag!('gco:CharacterString', sOther)
+                  unless hScopeDesc[:other].nil?
+                     @xml.tag!('mcc:levelDescription') do
+                        @xml.tag!('mcc:MD_ScopeDescription') do
+                           @xml.tag!('mcc:other') do
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:other])
                            end
                         end
                      end

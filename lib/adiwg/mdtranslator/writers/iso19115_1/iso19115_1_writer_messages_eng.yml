@@ -118,3 +118,6 @@ messageList:
    - {id: 360, message: "measure type is invalid; must be one of [distance, length, angle, measure, scale]"}
 
    - {id: 370, message: "phone number is missing"}
+
+   - {id: 380, message: "spatial reference system identifier is missing"}
+   - {id: 381, message: "spatial reference system type is missing"}

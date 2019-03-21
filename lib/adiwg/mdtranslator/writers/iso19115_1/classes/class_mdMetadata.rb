@@ -7,8 +7,9 @@
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
 require_relative '../iso19115_1_writer'
+require_relative 'class_codelist'
 require_relative 'class_identifier'
-# require_relative 'class_codelist'
+require_relative 'class_citation'
 # require_relative 'class_hierarchy'
 # require_relative 'class_responsibleParty'
 # require_relative 'class_locale'
@@ -42,7 +43,9 @@ module ADIWG
 
                   # classes used
                   intMetadataClass = InternalMetadata.new
-                  # codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                  codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                  identifierClass = MD_Identifier.new(@xml, @hResponseObj)
+                  citationClass = CI_Citation.new(@xml, @hResponseObj)
                   # partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
                   # hierarchyClass = Hierarchy.new(@xml, @hResponseObj)
                   # localeClass = PT_Locale.new(@xml, @hResponseObj)
@@ -66,6 +69,8 @@ module ADIWG
                   aAssocRes = hMetadata[:associatedResources]
                   aDistInfo = hMetadata[:distributorInfo]
                   version = @hResponseObj[:translatorVersion]
+
+                  outContext = 'Metadata'
 
                   # document head
                   metadata = @xml.instruct! :xml, encoding: 'UTF-8'
@@ -101,15 +106,44 @@ module ADIWG
                              }) do
 
                      # metadata information - metadata identifier {MD_Identifier} (default: UUID)
-                     metaID = hMetaInfo[:metadataIdentifier][:identifier]
-                     metaID = UUIDTools::UUID.random_create.to_s if metaID.nil?
+                     hMetadataId = hMetaInfo[:metadataIdentifier].empty?
+                     if hMetadataId.empty?
+                        hIdentifier = intMetadataClass.newIdentifier
+                        hIdentifier[:identifier] = UUIDTools::UUID.random_create.to_s
+                        hIdentifier[:namespace] = 'UUID'
+                     end
                      @xml.tag!('mdb:metadataIdentifier') do
-
+                        identifierClass.writeXML(hMetadataId, outContext)
                      end
 
                      # metadata information - default locale {PT_Locale} (default: USA, English, UTF-8)
+                     hDefLocale = hMetaInfo[:defaultMetadataLocale]
+                     if hDefLocale.empty?
+                        hDefLocale = intMetadataClass.newLocale
+                        hDefLocale[:languageCode] = 'eng'
+                        hDefLocale[:countryCode] = 'USA'
+                        hDefLocale[:characterEncoding] = 'UTF-8'
+                     end
+                     @xml.tag!('mdb:defaultLocale') do
+                        identifierClass.writeXML(hDefLocale, outContext)
+                     end
+
                      # metadata information - parent metadata {CI_Citation}
+                     unless hMetaInfo[:parentMetadata].empty?
+                        @xml.tag!('mdb:parentMetadata') do
+                           citationClass.writeXML(hMetaInfo[:parentMetadata], outContext)
+                        end
+                     end
+                     if hMetaInfo[:parentMetadata].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:parentMetadata')
+                     end
+
                      # metadata information - metadata scope [] {MD_Scope}
+                     # not implemented
+
+
+
+                     
                      # metadata information - contact [] {CI_ResponsibleParty} (required)
                      # metadata information - date info [] {CI_Date} (required)
                      # metadata information - metadata standard [] {CI_Citation} (auto fill)
@@ -117,36 +151,9 @@ module ADIWG
                      # metadata information - alternate metadata reference [] {CI_Citation} (auto fill)
                      # metadata information - other locale [] {PT_Locale}
                      # metadata information - metadata linkage [] {CI_OnlineResource}
-                     #
-                     #
-                     #
 
+                     ###################################################################################################
 
-                     # # metadata information - metadata language ('eng; USA')
-                     # @xml.tag!('gmd:language') do
-                     #    @xml.tag!('gco:CharacterString', 'eng; USA')
-                     # end
-                     #
-                     # # metadata information - metadata character ('utf-8')
-                     # @xml.tag!('gmd:characterSet') do
-                     #    codelistClass.writeXML('gmd', 'iso_characterSet', 'UTF-8')
-                     # end
-                     #
-                     # # metadata information - parent identifier
-                     # s = nil
-                     # hParent = hMetaInfo[:parentMetadata]
-                     # unless hParent.empty?
-                     #    s = hParent[:title]
-                     # end
-                     # unless s.nil?
-                     #    @xml.tag!('gmd:parentIdentifier') do
-                     #       @xml.tag!('gco:CharacterString', s)
-                     #    end
-                     # end
-                     # if s.nil? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:parentIdentifier')
-                     # end
-                     #
                      # # metadata information - hierarchy level [] {MD_scopeCode}
                      # # metadata information - hierarchy level Name [] {string}
                      # # hierarchy comes from resourceInfo < resourceType []

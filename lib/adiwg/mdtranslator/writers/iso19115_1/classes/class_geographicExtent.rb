@@ -39,9 +39,13 @@ module ADIWG
                   unless hBbox.empty?
                      @xml.tag!('gex:geographicElement') do
                         @xml.tag!('gex:EX_GeographicBoundingBox') do
+
+                           # geographic bounding box - extent type {Boolean}
                            @xml.tag!('gex:extentTypeCode') do
                               @xml.tag!('gco:Boolean', extType)
                            end
+
+                           # geographic bounding box - bounding box
                            bBoxClass.writeXML(hBbox)
                         end
                      end
@@ -51,12 +55,17 @@ module ADIWG
                   unless hGeoExtent[:identifier].empty?
                      @xml.tag!('gex:geographicElement') do
                         @xml.tag!('gex:EX_GeographicDescription') do
+
+                           # geographic description - extent type {Boolean}
                            @xml.tag!('gex:extentTypeCode') do
                               @xml.tag!('gco:Boolean', extType)
                            end
+
+                           # geographic description - geographic identifier {MD_Identifier}
                            @xml.tag!('gex:geographicIdentifier') do
                               idClass.writeXML(hGeoExtent[:identifier], 'geographic extent')
                            end
+
                         end
                      end
                   end
@@ -65,10 +74,15 @@ module ADIWG
                   unless hGeoExtent[:geographicElements].empty?
                      @xml.tag!('gex:geographicElement') do
                         @xml.tag!('gex:EX_BoundingPolygon') do
+
+                           # bounding polygon - extent type {Boolean}
                            @xml.tag!('gex:extentTypeCode') do
                               @xml.tag!('gco:Boolean', extType)
                            end
+
+                           # bounding polygon - geographic elements {GeoJSON}
                            geoEleClass.writeXML(hGeoExtent[:geographicElements])
+
                         end
                      end
                   end

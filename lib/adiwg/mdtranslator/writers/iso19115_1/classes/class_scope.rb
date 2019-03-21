@@ -29,42 +29,43 @@ module ADIWG
                   extentClass = EX_Extent.new(@xml, @hResponseObj)
                   descriptionClass = MD_ScopeDescription.new(@xml, @hResponseObj)
 
-                  @xml.tag!('gmd:DQ_Scope') do
+                  outContext = 'scope'
+                  outContext = inContext + ' scope' unless inContext.nil?
+
+                  @xml.tag!('mcc:DQ_Scope') do
 
                      # scope - level (required)
-                     s = hScope[:scopeCode]
-                     unless s.nil?
-                        @xml.tag!('gmd:level') do
-                           codelistClass.writeXML('gmd', 'iso_scope', s)
+                     unless hScope[:scopeCode].nil?
+                        @xml.tag!('mcc:level') do
+                           codelistClass.writeXML('mcc', 'iso_scope', hScope[:scopeCode])
                         end
                      end
-                     if s.nil?
-                        @NameSpace.issueWarning(280, 'gmd:level', inContext)
+                     if hScope[:scopeCode].nil?
+                        @NameSpace.issueWarning(280, 'mcc:level', inContext)
                      end
 
-                     # scope - extent [0] {EX_Extent}
-                     # ... only one extent allowed in ISO 19115-2
+                     # scope - extent [] {EX_Extent}
                      aExtents = hScope[:extents]
-                     unless aExtents.empty?
-                        @xml.tag!('gex:extent') do
-                           extentClass.writeXML(aExtents[0])
+                     aExtents.each do |hExtent|
+                        @xml.tag!('mcc:extent') do
+                           extentClass.writeXML(hExtent, outContext)
                         end
                      end
                      if aExtents.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gex:extent')
+                        @xml.tag!('mcc:extent')
                      end
 
                      # scope - level description [{MD_ScopeDescription}]
-                     # ... write gmd:levelDescription tag from class_scopeDescription
+                     # ... write mcc:levelDescription tag from class_scopeDescription
                      aDescription = hScope[:scopeDescriptions]
                      aDescription.each do |hDescription|
                         descriptionClass.writeXML(hDescription)
                      end
                      if aDescription.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:levelDescription')
+                        @xml.tag!('mcc:levelDescription')
                      end
 
-                  end # gmd:MD_Scope tag
+                  end # mcc:MD_Scope tag
                end # writeXML
             end # DQ_Scope class
 

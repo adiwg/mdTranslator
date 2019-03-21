@@ -16,52 +16,48 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
-                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
                def writeXML(hBBox)
 
                   # bounding box - west longitude (required)
-                  s = hBBox[:westLongitude]
-                  unless s.nil?
-                     @xml.tag!('gmd:westBoundLongitude') do
-                        @xml.tag!('gco:Decimal', s)
+                  unless hBBox[:westLongitude].nil?
+                     @xml.tag!('gex:westBoundLongitude') do
+                        @xml.tag!('gco:Decimal', hBBox[:westLongitude])
                      end
                   end
-                  if s.nil?
+                  if hBBox[:westLongitude].nil?
                      @NameSpace.issueError(10)
                   end
 
                   # bounding box - east longitude (required)
-                  s = hBBox[:eastLongitude]
-                  unless s.nil?
-                     @xml.tag!('gmd:eastBoundLongitude') do
-                        @xml.tag!('gco:Decimal', s)
+                  unless hBBox[:eastLongitude].nil?
+                     @xml.tag!('gex:eastBoundLongitude') do
+                        @xml.tag!('gco:Decimal', hBBox[:eastLongitude])
                      end
                   end
-                  if s.nil?
+                  if hBBox[:eastLongitude].nil?
                      @NameSpace.issueError(11)
                   end
 
                   # bounding box - south latitude (required)
-                  s = hBBox[:southLatitude]
-                  unless s.nil?
-                     @xml.tag!('gmd:southBoundLatitude') do
-                        @xml.tag!('gco:Decimal', s)
+                  unless hBBox[:southLatitude].nil?
+                     @xml.tag!('gex:southBoundLatitude') do
+                        @xml.tag!('gco:Decimal', hBBox[:southLatitude])
                      end
                   end
-                  if s.nil?
+                  if hBBox[:southLatitude].nil?
                      @NameSpace.issueError(12)
                   end
 
                   # bounding box - north latitude (required)
-                  s = hBBox[:northLatitude]
-                  unless s.nil?
-                     @xml.tag!('gmd:northBoundLatitude') do
-                        @xml.tag!('gco:Decimal', s)
+                  unless hBBox[:northLatitude].nil?
+                     @xml.tag!('gex:northBoundLatitude') do
+                        @xml.tag!('gco:Decimal', hBBox[:northLatitude])
                      end
                   end
-                  if s.nil?
+                  if hBBox[:northLatitude].nil?
                      @NameSpace.issueError(13)
                   end
 
