@@ -298,7 +298,7 @@ module ADIWG
                      # metadata information - identification info - required
                      unless hResInfo.empty?
                         @xml.tag!('gmd:identificationInfo') do
-                           dataIdClass.writeXML(hResInfo, aAssocRes, aDistInfo)
+                           dataIdClass.writeXML(hMetadata)
                         end
                      end
                      if hResInfo.empty?

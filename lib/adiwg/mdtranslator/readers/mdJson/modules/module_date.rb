@@ -5,8 +5,6 @@
 #  Stan Smith 2018-06-18 refactored error and warning messaging
 #  Stan Smith 2016-10-12 original script
 
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
-
 module ADIWG
    module Mdtranslator
       module Readers

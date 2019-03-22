@@ -6,7 +6,6 @@
 #  Stan Smith 2018-01-31 original script
 
 require_relative '../fgdc_writer'
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
 module ADIWG
    module Mdtranslator

@@ -26,6 +26,7 @@
 # 	Stan Smith 2014-07-02 original script
 
 # required by readers and writers
+require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require 'adiwg/mdtranslator/version'
 require 'adiwg/mdtranslator/readers/mdReaders'
 require 'adiwg/mdtranslator/writers/mdWriters'

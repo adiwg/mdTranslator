@@ -61,7 +61,7 @@ class TestWriter191152DataIdentification < TestWriter191152Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
       hIn[:metadata][:resourceInfo][:keyword] = []
-      hIn[:metadata][:resourceInfo][:topicCategory] = %w(biota extraTerrestrial)
+      hIn[:metadata][:resourceInfo][:topicCategory] = %w(biota invalid)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataIdentification',
                                                 '//gmd:identificationInfo[3]',
@@ -69,7 +69,9 @@ class TestWriter191152DataIdentification < TestWriter191152Parent
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_empty hReturn[3]
+      assert_equal 1, hReturn[3].length
+      assert_includes hReturn[3],
+                      'WARNING: ISO-19115-2 writer: invalid topic category: CONTEXT is invalid'
 
    end
 

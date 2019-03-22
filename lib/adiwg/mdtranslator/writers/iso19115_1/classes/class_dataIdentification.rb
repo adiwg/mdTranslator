@@ -5,15 +5,16 @@
 # 	Stan Smith 2019-03-21 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
+require 'adiwg/mdtranslator/internal/module_codelistFun'
 require_relative '../iso19115_1_writer'
 require_relative 'class_codelist'
-require_relative 'class_enumerationList'
 require_relative 'class_citation'
 require_relative 'class_responsibility'
 require_relative 'class_resolution'
-# require_relative 'class_maintenance'
-# require_relative 'class_browseGraphic'
-# require_relative 'class_format'
+require_relative 'class_extent'
+require_relative 'class_maintenance'
+require_relative 'class_browseGraphic'
+require_relative 'class_format'
 # require_relative 'class_keyword'
 # require_relative 'class_usage'
 # require_relative 'class_useConstraints'
@@ -22,7 +23,6 @@ require_relative 'class_resolution'
 # require_relative 'class_aggregateInformation'
 # require_relative 'class_taxonomy'
 # require_relative 'class_resolution'
-# require_relative 'class_extent'
 
 module ADIWG
    module Mdtranslator
@@ -37,19 +37,19 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
-               def writeXML(hData, aAssocRes, aDistInfo)
+               def writeXML(hMetadata)
 
                   # classes used
                   intMetadataClass = InternalMetadata.new
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
-                  enumerationClass = MD_EnumerationList.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
                   responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
                   resolutionClass = MD_Resolution.new(@xml, @hResponseObj)
-                  # mInfoClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
+                  extentClass = EX_Extent.new(@xml, @hResponseObj)
+                  maintClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
+                  graphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
+                  formatClass = MD_Format.new(@xml, @hResponseObj)
                   # aggInfoClass = MD_AggregateInformation.new(@xml, @hResponseObj)
-                  # bGraphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
-                  # rFormatClass = MD_Format.new(@xml, @hResponseObj)
                   # keywordClass = MD_Keywords.new(@xml, @hResponseObj)
                   # useClass = MD_Usage.new(@xml, @hResponseObj)
                   # uConClass = MD_Constraints.new(@xml, @hResponseObj)
@@ -57,13 +57,18 @@ module ADIWG
                   # sConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
                   # taxClass = MD_TaxonSys.new(@xml, @hResponseObj)
                   # resolutionClass = MD_Resolution.new(@xml, @hResponseObj)
-                  # extentClass = EX_Extent.new(@xml, @hResponseObj)
+
+                  # create shortcuts to sections of internal object
+                  hResource = hMetadata[:resourceInfo]
+                  aAssocRes = hMetadata[:associatedResources]
+                  aDocuments = hMetadata[:additionalDocuments]
+                  aDistInfo = hMetadata[:distributorInfo]
 
                   # data identification
                   @xml.tag!('mri:MD_DataIdentification') do
 
                      # data identification - citation {CI_Citation} (required)
-                     hCitation = hData[:citation]
+                     hCitation = hResource[:citation]
                      unless hCitation.empty?
                         @xml.tag!('mri:citation') do
                            citationClass.writeXML(hCitation, 'main resource')
@@ -74,27 +79,27 @@ module ADIWG
                      end
 
                      # data identification - abstract (required)
-                     unless hData[:abstract].nil?
+                     unless hResource[:abstract].nil?
                         @xml.tag!('mri:abstract') do
-                           @xml.tag!('gco:CharacterString', hData[:abstract])
+                           @xml.tag!('gco:CharacterString', hResource[:abstract])
                         end
                      end
-                     if hData[:abstract].nil?
+                     if hResource[:abstract].nil?
                         @NameSpace.issueWarning(51, 'mri:abstract')
                      end
 
                      # data identification - purpose
-                     unless hData[:purpose].nil?
+                     unless hResource[:purpose].nil?
                         @xml.tag!('mri:purpose') do
-                           @xml.tag!('gco:CharacterString', hData[:purpose])
+                           @xml.tag!('gco:CharacterString', hResource[:purpose])
                         end
                      end
-                     if hData[:purpose].nil? && @hResponseObj[:writerShowTags]
+                     if hResource[:purpose].nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mri:purpose')
                      end
 
                      # data identification - credit []
-                     aCredits = hData[:credits]
+                     aCredits = hResource[:credits]
                      aCredits.each do |credit|
                         @xml.tag!('mri:credit') do
                            @xml.tag!('gco:CharacterString', credit)
@@ -105,7 +110,7 @@ module ADIWG
                      end
 
                      # data identification - status [] {MD_ProgressCode}
-                     aStatus = hData[:status]
+                     aStatus = hResource[:status]
                      aStatus.each do |code|
                         @xml.tag!('mri:status') do
                            codelistClass.writeXML('mri', 'iso_progress', code)
@@ -116,7 +121,7 @@ module ADIWG
                      end
 
                      # data identification - point of contact [] {CI_Responsibility}
-                     aRParties = hData[:pointOfContacts]
+                     aRParties = hResource[:pointOfContacts]
                      aRParties.each do |hRParty|
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
@@ -130,7 +135,7 @@ module ADIWG
                      end
 
                      # data identification - spatial representation type [] {MD_SpatialRepresentationTypeCode}
-                     aSpatialTypes = hData[:spatialRepresentationTypes]
+                     aSpatialTypes = hResource[:spatialRepresentationTypes]
                      aSpatialTypes.each do |code|
                         @xml.tag!('mri:spatialRepresentationType') do
                            codelistClass.writeXML('mri', 'iso_spatialRepresentation', code)
@@ -141,72 +146,119 @@ module ADIWG
                      end
 
                      # data identification - spatial resolution [] {MD_Resolution}
-                     aResolutions = hData[:spatialResolutions]
-                     aResolutions.each do |hResolution|
-                        @xml.tag!('mri:MD_Resolution') do
+                     aSpatialRes = hResource[:spatialResolutions]
+                     aSpatialRes.each do |hResolution|
+                        @xml.tag!('mri:spatialResolution') do
                            resolutionClass.writeXML(hResolution, 'resource information')
                         end
                      end
-                     if aSpatialTypes.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mri:MD_Resolution')
+                     if aSpatialRes.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:spatialResolution')
                      end
 
+                     # data identification - temporal resolution [] {TM_PeriodDuration}
+                     aTemporalRes = hResource[:temporalResolutions]
+                     aTemporalRes.each do |hResolution|
+                        @xml.tag!('mri:temporalResolution') do
+                           duration = AdiwgDateTimeFun.writeDuration(hResolution)
+                           @xml.tag!('gco:TM_PeriodDuration', duration)
+                        end
+                     end
+                     if aTemporalRes.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gco:temporalResolution')
+                     end
 
+                     # data identification - topic category [] {MD_TopicCategoryCode}
+                     # get from hData.keywords where keywordType='isoTopicCategory'
+                     aTopics = []
+                     aKeywords = hResource[:keywords]
+                     aKeywords.each do |hKeyword|
+                        if hKeyword[:keywordType] == 'isoTopicCategory'
+                           hKeyword[:keywords].each do |hKeyObj|
+                              aTopics << hKeyObj[:keyword]
+                           end
+                        end
+                     end
+                     # only allow valid ISO 19115-1 topic categories to be written
+                     aTopics.each do |topic|
+                        if CodelistFun.validateItem('iso_topicCategory', topic)
+                           @xml.tag!('mri:topicCategory') do
+                              @xml.tag!('mri:MD_TopicCategoryCode', topic)
+                           end
+                        else
+                           @NameSpace.issueWarning(400, 'mri:topicCategory', "#{topic}")
+                        end
+                     end
+                     if aTopics.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:topicCategory')
+                     end
 
-                     # # data identification - time period {timePeriod}
-                     # # package as a temporal extent
-                     # unless hData[:timePeriod].empty?
-                     #    hExtent = intMetadataClass.newExtent
-                     #    hTempExtent = intMetadataClass.newTemporalExtent
-                     #    hTempExtent[:timePeriod] = hData[:timePeriod]
-                     #    hExtent[:temporalExtents] << hTempExtent
-                     #    hData[:extents] << hExtent
-                     # end
-                     #
-                     # # data identification - credit []
-                     # aCredits = hData[:credits]
-                     # aCredits.each do |credit|
-                     #    @xml.tag!('gmd:credit') do
-                     #       @xml.tag!('gco:CharacterString', credit)
-                     #    end
-                     # end
-                     # if aCredits.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:credit')
-                     # end
-                     #
-                     # # data identification - resource maintenance []
-                     # aMaint = hData[:resourceMaintenance]
-                     # aMaint.each do |hMaint|
-                     #    @xml.tag!('gmd:resourceMaintenance') do
-                     #       mInfoClass.writeXML(hMaint, 'main resource')
-                     #    end
-                     # end
-                     # if aMaint.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:resourceMaintenance')
-                     # end
-                     #
-                     # # data identification - graphic overview []
-                     # aGraphics = hData[:graphicOverviews]
-                     # aGraphics.each do |hGraphic|
-                     #    @xml.tag!('gmd:graphicOverview') do
-                     #       bGraphicClass.writeXML(hGraphic, 'main resource')
-                     #    end
-                     # end
-                     # if aGraphics.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:graphicOverview')
-                     # end
-                     #
-                     # # data identification - resource format []
-                     # aFormats = hData[:resourceFormats]
-                     # aFormats.each do |hResFormat|
-                     #    @xml.tag!('gmd:resourceFormat') do
-                     #       rFormatClass.writeXML(hResFormat)
-                     #    end
-                     # end
-                     # if aFormats.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:resourceFormat')
-                     # end
-                     #
+                     # package mdJson time period {timePeriod} as a temporal extent
+                     unless hResource[:timePeriod].empty?
+                        hExtent = intMetadataClass.newExtent
+                        hTempExtent = intMetadataClass.newTemporalExtent
+                        hTempExtent[:timePeriod] = hResource[:timePeriod]
+                        hExtent[:temporalExtents] << hTempExtent
+                        hResource[:extents] << hExtent
+                     end
+
+                     # data identification - extent [] {EX_Extent}
+                     aExtents = hResource[:extents]
+                     aExtents.each do |hExtent|
+                        @xml.tag!('mri:extent') do
+                           extentClass.writeXML(hExtent)
+                        end
+                     end
+                     if aExtents.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:extent')
+                     end
+
+                     # data identification - additional documentation [] {CI_Citation}
+                     aDocuments = hMetadata[:additionalDocuments]
+                     aDocuments.each do |hDoc|
+                        @xml.tag!('gmd:additionalDocumentation') do
+                           citationClass.writeXML(hDoc)
+                        end
+                     end
+                     if aDocuments.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gmd:additionalDocumentation')
+                     end
+
+                     # data identification - processing level {MD_Identifier} - not implemented
+
+                     # data identification - resource maintenance [] {MD_MaintenanceInformation}
+                     aMaint = hResource[:resourceMaintenance]
+                     aMaint.each do |hMaint|
+                        @xml.tag!('mri:resourceMaintenance') do
+                           maintClass.writeXML(hMaint, 'resource information')
+                        end
+                     end
+                     if aMaint.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('gmd:resourceMaintenance')
+                     end
+
+                     # data identification - graphic overview []
+                     aGraphics = hResource[:graphicOverviews]
+                     aGraphics.each do |hGraphic|
+                        @xml.tag!('mri:graphicOverview') do
+                           graphicClass.writeXML(hGraphic, 'resource information')
+                        end
+                     end
+                     if aGraphics.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:graphicOverview')
+                     end
+
+                     # data identification - resource format [] {MD_Format}
+                     aFormats = hResource[:resourceFormats]
+                     aFormats.each do |hFormat|
+                        @xml.tag!('mri:resourceFormat') do
+                           formatClass.writeXML(hFormat)
+                        end
+                     end
+                     if aFormats.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:resourceFormat')
+                     end
+
                      # # data identification - descriptive keywords []
                      # aKeywords = hData[:keywords]
                      # aKeywords.each do |hKeyword|
@@ -216,6 +268,19 @@ module ADIWG
                      # end
                      # if aKeywords.empty? && @hResponseObj[:writerShowTags]
                      #    @xml.tag!('gmd:descriptiveKeywords')
+                     # end
+                     #
+
+
+
+                     # # data identification - associated resource []
+                     # aAssocRes.each do |hAssocRes|
+                     #    @xml.tag!('gmd:aggregationInfo') do
+                     #       aggInfoClass.writeXML(hAssocRes)
+                     #    end
+                     # end
+                     # if aAssocRes.empty? && @hResponseObj[:writerShowTags]
+                     #    @xml.tag!('gmd:aggregationInfo')
                      # end
                      #
                      # # data identification - resource specific usage []
@@ -266,16 +331,6 @@ module ADIWG
                      #
                      # if !haveCon && @hResponseObj[:writerShowTags]
                      #    @xml.tag!('gmd:resourceConstraints')
-                     # end
-                     #
-                     # # data identification - aggregate information []
-                     # aAssocRes.each do |hAssocRes|
-                     #    @xml.tag!('gmd:aggregationInfo') do
-                     #       aggInfoClass.writeXML(hAssocRes)
-                     #    end
-                     # end
-                     # if aAssocRes.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:aggregationInfo')
                      # end
                      #
                      # # data identification - taxonomy (first)
@@ -388,17 +443,6 @@ module ADIWG
                      # end
                      # if s.nil? && @hResponseObj[:writerShowTags]
                      #    @xml.tag!('gmd:environmentDescription')
-                     # end
-                     #
-                     # # data identification - extent []
-                     # aExtents = hData[:extents]
-                     # aExtents.each do |hExtent|
-                     #    @xml.tag!('gmd:extent') do
-                     #       extentClass.writeXML(hExtent)
-                     #    end
-                     # end
-                     # if aExtents.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:extent')
                      # end
                      #
                      # # data identification - supplemental info

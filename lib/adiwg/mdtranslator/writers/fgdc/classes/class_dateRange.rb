@@ -6,7 +6,6 @@
 #  Stan Smith 2018-01-19 convert ISO date formats to FGDC
 #  Stan Smith 2017-11-23 original script
 
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative '../fgdc_writer'
 
 module ADIWG

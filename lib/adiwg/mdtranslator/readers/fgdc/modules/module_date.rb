@@ -6,7 +6,6 @@
 
 require 'date'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative 'module_fgdc'
 require_relative 'module_dateTime'
 

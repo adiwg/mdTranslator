@@ -9,8 +9,6 @@
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
 # 	Stan Smith 2013-12-11 original script
 
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
-
 module ADIWG
    module Mdtranslator
       module Readers

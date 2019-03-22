@@ -3,8 +3,8 @@
 
 # History:
 #  Stan Smith 2018-02-20 added tests for valid date and time formats
-# 	Stan Smith 2013-09-26 original script
 # 	Stan Smith 2013-12-06 added support for fractional seconds
+# 	Stan Smith 2013-09-26 original script
 
 require 'date'
 

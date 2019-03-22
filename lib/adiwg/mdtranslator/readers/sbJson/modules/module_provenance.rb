@@ -5,7 +5,6 @@
 #   Stan Smith 2016-06-20 original script
 
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 
 module ADIWG
    module Mdtranslator

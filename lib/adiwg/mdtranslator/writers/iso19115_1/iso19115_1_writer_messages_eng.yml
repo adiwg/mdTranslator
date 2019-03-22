@@ -43,7 +43,7 @@ messageList:
 
    - {id: 110, message: "GeoJSON geometry object type is not recognized"}
 
-   - {id: 120, message: "format name is missing"}
+   - {id: 120, message: "format specification citation is missing"}
    - {id: 121, message: "format version is missing"}
 
    - {id: 130, message: "spatial resolution representative fraction denominator is missing"}
@@ -123,3 +123,5 @@ messageList:
    - {id: 381, message: "spatial reference system type is missing"}
 
    - {id: 390, message: "resource type 'type' is missing"}
+
+   - {id: 400, message: "invalid topic category"}
