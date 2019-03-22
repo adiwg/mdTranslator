@@ -20,7 +20,7 @@ module ADIWG
                   intMetadataClass = InternalMetadata.new
                   hProjection = intMetadataClass.newProjection
                   hIdentifier = intMetadataClass.newIdentifier
-                  hLocal = intMetadataClass.newLocale
+                  hLocal = intMetadataClass.newLocal
                   hProjection[:projectionIdentifier] = hIdentifier
                   hProjection[:local] = hLocal
 

@@ -158,7 +158,7 @@ module ADIWG
                         aParties = hRParty[:parties]
                         aParties.each do |hParty|
                            @xml.tag!('gmd:pointOfContact') do
-                              rPartyClass.writeXML(role, hParty, 'main resource point of contact')
+                              rPartyClass.writeXML(role, hParty, 'resource point of contact')
                            end
                         end
                      end

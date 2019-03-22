@@ -23,7 +23,7 @@ module ADIWG
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
-                  intLocal = intMetadataClass.newLocale
+                  intLocal = intMetadataClass.newLocal
 
                   # local projection - fixed to earth (required) {boolean default = true}
                   if hLocal.has_key?('fixedToEarth')

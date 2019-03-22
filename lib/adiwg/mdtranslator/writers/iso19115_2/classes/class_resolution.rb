@@ -40,7 +40,7 @@ module ADIWG
                   end
 
                   # spatial resolution - distance (only if type='distance')
-                  unless hResolution[:measure].nil?
+                  unless hResolution[:measure].empty?
                      hMeasure = hResolution[:measure]
                      unless hMeasure.empty?
                         if hMeasure[:type] == 'distance'

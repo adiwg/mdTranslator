@@ -211,7 +211,7 @@ module ADIWG
 
                      # metadata information - metadata standard name (default)
                      @xml.tag!('gmd:metadataStandardName') do
-                        @xml.tag!('gco:CharacterString', 'ISO 19115-2')
+                        @xml.tag!('gco:CharacterString', 'ISO 19139')
                      end
 
                      # metadata information - metadata standard version (default)

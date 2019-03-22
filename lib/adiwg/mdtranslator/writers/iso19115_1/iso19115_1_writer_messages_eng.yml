@@ -73,7 +73,7 @@ messageList:
    - {id: 230, message: "identifier code is missing"}
 
    - {id: 240, message: "metadata contacts are missing"}
-   - {id: 241, message: "data identification section (resourceInfo) missing"}
+   - {id: 241, message: "data identification section (resourceInfo) is missing"}
 
    - {id: 250, message: "online resource URL is missing"}
 
@@ -121,3 +121,5 @@ messageList:
 
    - {id: 380, message: "spatial reference system identifier is missing"}
    - {id: 381, message: "spatial reference system type is missing"}
+
+   - {id: 390, message: "resource type 'type' is missing"}
