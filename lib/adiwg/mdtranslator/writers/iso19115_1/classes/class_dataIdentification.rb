@@ -15,13 +15,11 @@ require_relative 'class_extent'
 require_relative 'class_maintenance'
 require_relative 'class_browseGraphic'
 require_relative 'class_format'
-# require_relative 'class_keyword'
-# require_relative 'class_usage'
-# require_relative 'class_useConstraints'
-# require_relative 'class_legalConstraints'
-# require_relative 'class_securityConstraints'
-# require_relative 'class_aggregateInformation'
-# require_relative 'class_taxonomy'
+require_relative 'class_keyword'
+require_relative 'class_usage'
+require_relative 'class_constraint'
+require_relative 'class_associatedResource'
+require_relative 'class_locale'
 # require_relative 'class_resolution'
 
 module ADIWG
@@ -49,13 +47,11 @@ module ADIWG
                   maintClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
                   graphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
                   formatClass = MD_Format.new(@xml, @hResponseObj)
-                  # aggInfoClass = MD_AggregateInformation.new(@xml, @hResponseObj)
-                  # keywordClass = MD_Keywords.new(@xml, @hResponseObj)
-                  # useClass = MD_Usage.new(@xml, @hResponseObj)
-                  # uConClass = MD_Constraints.new(@xml, @hResponseObj)
-                  # lConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
-                  # sConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
-                  # taxClass = MD_TaxonSys.new(@xml, @hResponseObj)
+                  keywordClass = MD_Keywords.new(@xml, @hResponseObj)
+                  useClass = MD_Usage.new(@xml, @hResponseObj)
+                  constraintClass = Constraint.new(@xml, @hResponseObj)
+                  associatedClass = MD_AssociatedResource.new(@xml, @hResponseObj)
+                  localeClass = PT_Locale.new(@xml, @hResponseObj)
                   # resolutionClass = MD_Resolution.new(@xml, @hResponseObj)
 
                   # create shortcuts to sections of internal object
@@ -216,12 +212,12 @@ module ADIWG
                      # data identification - additional documentation [] {CI_Citation}
                      aDocuments = hMetadata[:additionalDocuments]
                      aDocuments.each do |hDoc|
-                        @xml.tag!('gmd:additionalDocumentation') do
+                        @xml.tag!('mri:additionalDocumentation') do
                            citationClass.writeXML(hDoc)
                         end
                      end
                      if aDocuments.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:additionalDocumentation')
+                        @xml.tag!('mri:additionalDocumentation')
                      end
 
                      # data identification - processing level {MD_Identifier} - not implemented
@@ -234,7 +230,7 @@ module ADIWG
                         end
                      end
                      if aMaint.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:resourceMaintenance')
+                        @xml.tag!('mri:resourceMaintenance')
                      end
 
                      # data identification - graphic overview []
@@ -259,204 +255,91 @@ module ADIWG
                         @xml.tag!('mri:resourceFormat')
                      end
 
-                     # # data identification - descriptive keywords []
-                     # aKeywords = hData[:keywords]
-                     # aKeywords.each do |hKeyword|
-                     #    @xml.tag!('gmd:descriptiveKeywords') do
-                     #       keywordClass.writeXML(hKeyword)
-                     #    end
-                     # end
-                     # if aKeywords.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:descriptiveKeywords')
-                     # end
-                     #
+                     # data identification - descriptive keywords [] {MD_Keywords}
+                     aKeywords = hResource[:keywords]
+                     aKeywords.each do |hKeyword|
+                        @xml.tag!('mri:descriptiveKeywords') do
+                           keywordClass.writeXML(hKeyword)
+                        end
+                     end
+                     if aKeywords.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mir:descriptiveKeywords')
+                     end
 
+                     # data identification - resource specific usage [] {MD_Usage}
+                     aUses = hResource[:resourceUsages]
+                     aUses.each do |hResUse|
+                        @xml.tag!('mri:resourceSpecificUsage') do
+                           useClass.writeXML(hResUse)
+                        end
+                     end
+                     if aUses.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:resourceSpecificUsage')
+                     end
 
+                     # data identification - resource constraints [] {MD_Constraints}
+                     aConstraint = hResource[:constraints]
+                     aConstraint.each do |hCon|
+                        @xml.tag!('mri:resourceConstraints') do
+                           constraintClass.writeXML(hCon, 'resource information')
+                        end
+                     end
+                     if aConstraint.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:resourceConstraints')
+                     end
 
-                     # # data identification - associated resource []
-                     # aAssocRes.each do |hAssocRes|
-                     #    @xml.tag!('gmd:aggregationInfo') do
-                     #       aggInfoClass.writeXML(hAssocRes)
-                     #    end
-                     # end
-                     # if aAssocRes.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:aggregationInfo')
-                     # end
-                     #
-                     # # data identification - resource specific usage []
-                     # aUses = hData[:resourceUsages]
-                     # aUses.each do |hResUse|
-                     #    @xml.tag!('gmd:resourceSpecificUsage') do
-                     #       useClass.writeXML(hResUse)
-                     #    end
-                     # end
-                     # if aUses.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:resourceSpecificUsage')
-                     # end
-                     #
-                     # # data identification - resource constraints {}
-                     # haveCon = false
-                     # aCons = hData[:constraints]
-                     # aCons.each do |hCon|
-                     #    @xml.tag!('gmd:resourceConstraints') do
-                     #       type = hCon[:type]
-                     #       if type == 'use'
-                     #          uConClass.writeXML(hCon)
-                     #       end
-                     #       if type == 'legal'
-                     #          lConClass.writeXML(hCon)
-                     #       end
-                     #       if type == 'security'
-                     #          sConClass.writeXML(hCon)
-                     #       end
-                     #       haveCon = true
-                     #    end
-                     # end
-                     #
-                     # # data identification - resource constraints {}  from distribution liability statement
-                     # aDistInfo.each do |hDistribution|
-                     #    unless hDistribution.empty?
-                     #       unless hDistribution[:liabilityStatement].nil?
-                     #          @xml.tag!('gmd:resourceConstraints') do
-                     #             @xml.tag!('gmd:MD_LegalConstraints') do
-                     #                @xml.tag!('gmd:otherConstraints') do
-                     #                   @xml.tag!('gco:CharacterString', hDistribution[:liabilityStatement])
-                     #                end
-                     #             end
-                     #          end
-                     #          haveCon = true
-                     #       end
-                     #    end
-                     # end
-                     #
-                     # if !haveCon && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:resourceConstraints')
-                     # end
-                     #
-                     # # data identification - taxonomy (first)
-                     # unless hData[:taxonomy].empty?
-                     #    hTaxonomy = hData[:taxonomy][0]
-                     #    unless hTaxonomy.empty?
-                     #       @xml.tag!('gmd:taxonomy') do
-                     #          taxClass.writeXML(hTaxonomy)
-                     #       end
-                     #    end
-                     #    if hData[:taxonomy].length > 1
-                     #       @NameSpace.issueNotice(53, 'main resource')
-                     #       @NameSpace.issueNotice(54, 'main resource')
-                     #    end
-                     # end
-                     # if hData[:taxonomy].empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:taxonomy')
-                     # end
-                     #
-                     # # data identification - spatial representation type []
-                     # aSpatialType = hData[:spatialRepresentationTypes]
-                     # aSpatialType.each do |spType|
-                     #    @xml.tag!('gmd:spatialRepresentationType') do
-                     #       codelistClass.writeXML('gmd', 'iso_spatialRepresentation', spType)
-                     #    end
-                     # end
-                     # if aSpatialType.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:spatialRepresentationType')
-                     # end
-                     #
-                     # # data identification - spatial resolution []
-                     # aSpatialRes = hData[:spatialResolutions]
-                     # aSpatialRes.each do |hSpRes|
-                     #    @xml.tag!('gmd:spatialResolution') do
-                     #       resolutionClass.writeXML(hSpRes)
-                     #    end
-                     # end
-                     # if aSpatialRes.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:spatialResolution')
-                     # end
-                     #
-                     # # data identification - language [] (required)
-                     # aLocale = hData[:otherResourceLocales]
-                     # aLocale.insert(0, hData[:defaultResourceLocale])
-                     # aLocale.each do |hLocale|
-                     #    s = hLocale[:languageCode]
-                     #    unless hLocale[:countryCode].nil?
-                     #       s += '; ' + hLocale[:countryCode]
-                     #    end
-                     #    @xml.tag!('gmd:language') do
-                     #       @xml.tag!('gco:CharacterString', s)
-                     #    end
-                     # end
-                     # if aLocale.empty?
-                     #    @xml.tag!('gmd:language') do
-                     #       @xml.tag!('gco:CharacterString', 'eng; USA')
-                     #    end
-                     # end
-                     #
-                     # # data identification - characterSet [] (default 'utf8')
-                     # charSets = 0
-                     # aLocale.each do |hLocale|
-                     #    s = hLocale[:characterEncoding]
-                     #    unless s.nil?
-                     #       @xml.tag!('gmd:characterSet') do
-                     #          codelistClass.writeXML('gmd', 'iso_characterSet', s)
-                     #          charSets += 1
-                     #       end
-                     #    end
-                     # end
-                     # if charSets == 0
-                     #    @xml.tag!('gmd:language') do
-                     #       @xml.tag!('gco:CharacterString', 'eng; USA')
-                     #    end
-                     # end
-                     #
-                     # # data identification - topic category []
-                     # # <- hData.keywords where keywordType='isoTopicCategory'
-                     # aTopics = []
-                     # aKeywords = hData[:keywords]
-                     # aKeywords.each do |hKeyword|
-                     #    if hKeyword[:keywordType] == 'isoTopicCategory'
-                     #       hKeyword[:keywords].each do |hKeyObj|
-                     #          aTopics << hKeyObj[:keyword]
-                     #       end
-                     #    end
-                     # end
-                     # # only allow valid ISO 19115-2 topic categories to be written
-                     # aAcceptable = %w(farming biota boundaries climatologyMeteorologyAtmosphere economy
-                     #                   elevation environment geoscientificInformation health imageryBaseMapsEarthCover
-                     #                   intelligenceMilitary inlandWaters location oceans planningCadastre society
-                     #                   structure transportation utilitiesCommunication)
-                     # aTopics.each do |topic|
-                     #    if aAcceptable.include?(topic)
-                     #       @xml.tag!('gmd:topicCategory') do
-                     #          enumerationClass.writeXML('iso_topicCategory', topic)
-                     #       end
-                     #    end
-                     # end
-                     # if aTopics.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:topicCategory')
-                     # end
-                     #
-                     # # data identification - environment description
-                     # s = hData[:environmentDescription]
-                     # unless s.nil?
-                     #    @xml.tag!('gmd:environmentDescription') do
-                     #       @xml.tag!('gco:CharacterString', s)
-                     #    end
-                     # end
-                     # if s.nil? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:environmentDescription')
-                     # end
-                     #
-                     # # data identification - supplemental info
-                     # s = hData[:supplementalInfo]
-                     # unless s.nil?
-                     #    @xml.tag!('gmd:supplementalInformation') do
-                     #       @xml.tag!('gco:CharacterString', s)
-                     #    end
-                     # end
-                     # if s.nil? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:supplementalInformation')
-                     # end
+                     # data identification - associated resource [] {MD_AssociatedResource}
+                     aAssocRes.each do |hAssocRes|
+                        @xml.tag!('mri:associatedResource') do
+                           associatedClass.writeXML(hAssocRes)
+                        end
+                     end
+                     if aAssocRes.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:associatedResource')
+                     end
 
-                  end # gmd:MD_DataIdentification tag
+                     # data identification - default locale {PT_Locale}
+                     unless hResource[:defaultResourceLocale].empty?
+                        @xml.tag!('mri:defaultLocale') do
+                          localeClass.writeXML(hResource[:defaultResourceLocale], 'resource information default')
+                        end
+                     end
+                     if hResource[:defaultResourceLocale].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:defaultLocale')
+                     end
+
+                     # data identification - other locales [] {PT_Locale}
+                     aLocales = hResource[:otherResourceLocales]
+                     aLocales.each do |hLocale|
+                        @xml.tag!('mri:otherLocale') do
+                           localeClass.writeXML(hLocale, 'resource information other')
+                        end
+                     end
+                     if aLocales.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:otherLocale')
+                     end
+
+                     # data identification - environment description
+                     unless hResource[:environmentDescription].nil?
+                        @xml.tag!('mri:environmentDescription') do
+                           @xml.tag!('gco:CharacterString', hResource[:environmentDescription])
+                        end
+                     end
+                     if hResource[:environmentDescription].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:environmentDescription')
+                     end
+
+                     # data identification - supplemental info
+                     unless hResource[:supplementalInfo].nil?
+                        @xml.tag!('mri:supplementalInformation') do
+                           @xml.tag!('gco:CharacterString', hResource[:supplementalInfo])
+                        end
+                     end
+                     if hResource[:supplementalInfo].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:supplementalInformation')
+                     end
+
+                  end # mri:MD_DataIdentification tag
                end # writeXML
             end # MD_DataIdentification class
 

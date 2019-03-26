@@ -25,7 +25,7 @@ module ADIWG
 
                   # classes used
                   onlineClass = CI_OnlineResource.new(@xml, @hResponseObj)
-                  constraintClass = ConstraintClass.new(@xml, @hResponseObj)
+                  constraintClass = Constraint.new(@xml, @hResponseObj)
 
                   outContext = 'browse graphic'
                   outContext = inContext + ' browse graphic' unless inContext.nil?
@@ -65,7 +65,7 @@ module ADIWG
                         @xml.tag!('mcc:fileType')
                      end
 
-                     # browse graphic - image constraint [] {MD_Constraints}
+                     # browse graphic - image constraint [] {MD_Constraints | MD_SecurityConstraints | MD_LegalConstraints}
                      aConstraint = hGraphic[:graphicURI]
                      aConstraint.each do |hCon|
                         @xml.tag!('mcc:imageConstraints') do

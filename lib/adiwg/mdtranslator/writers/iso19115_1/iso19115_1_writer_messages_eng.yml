@@ -125,3 +125,5 @@ messageList:
    - {id: 390, message: "resource type 'type' is missing"}
 
    - {id: 400, message: "invalid topic category"}
+
+   - {id: 410, message: "temporal extent must have a TimeInstant or TimePeriod"}

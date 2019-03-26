@@ -13,7 +13,7 @@ module ADIWG
       module Writers
          module Iso19115_1
 
-            class ConstraintClass
+            class Constraint
 
                def initialize(xml, hResponseObj)
                   @xml = xml
