@@ -21,48 +21,57 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
-               def writeXML(hAssocRes)
+               def writeXML(hAssocRes, inContext = nil)
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
 
-                  @xml.tag!('gmd:MD_AggregateInformation') do
+                  outContext = 'associated resource'
+                  outContext = inContext + ' associated resource' unless inContext.nil?
 
-                     # aggregate information - aggregate data set name {citation}
-                     hAssocCit = hAssocRes[:resourceCitation]
-                     unless hAssocCit.empty?
-                        @xml.tag!('gmd:aggregateDataSetName') do
-                           citationClass.writeXML(hAssocCit, 'associated resource')
+                  @xml.tag!('mri:MD_AssociatedResource') do
+
+                     # associated resource - name {CI_Citation}
+                     hResourceCitation = hAssocRes[:resourceCitation]
+                     unless hResourceCitation.empty?
+                        @xml.tag!('mri:name') do
+                           citationClass.writeXML(hResourceCitation, outContext)
                         end
                      end
-                     if hAssocCit.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:aggregateDataSetName')
+                     if hResourceCitation.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:name')
                      end
 
-                     # aggregate information - aggregate data set identifier (use citation > identifier)
-                     # data set identifier was dropped from 19115-1 and not carried in mdJson
-
-                     # aggregate information - association type (required)
-                     s = hAssocRes[:associationType]
-                     unless s.nil?
-                        @xml.tag!('gmd:associationType') do
-                           codelistClass.writeXML('gmd', 'iso_associationType', s)
+                     # associated resource - association type {DS_AssociationTypeCode} (required)
+                     unless hAssocRes[:associationType].nil?
+                        @xml.tag!('mri:associationType') do
+                           codelistClass.writeXML('mri', 'iso_associationType', hAssocRes[:associationType])
                         end
                      end
-                     if s.nil?
-                        @NameSpace.issueWarning(1, 'gmd:associationType')
+                     if hAssocRes[:associationType].nil?
+                        @NameSpace.issueWarning(1, 'mri:associationType')
                      end
 
-                     # aggregate information - initiative type
-                     s = hAssocRes[:initiativeType]
-                     unless s.nil?
-                        @xml.tag!('gmd:initiativeType') do
-                           codelistClass.writeXML('gmd', 'iso_initiativeType', s)
+                     # associated resource - initiative type {DS_InitiativeTypeCode}
+                     unless hAssocRes[:initiativeType].nil?
+                        @xml.tag!('mri:initiativeType') do
+                           codelistClass.writeXML('mri', 'iso_initiativeType', hAssocRes[:initiativeType])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:initiativeType')
+                     if hAssocRes[:initiativeType].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:initiativeType')
+                     end
+
+                     # associated resource - metadata reference {CI_Citation}
+                     hMetadataCitation = hAssocRes[:metadataCitation]
+                     unless hMetadataCitation.empty?
+                        @xml.tag!('mri:metadataReference') do
+                           citationClass.writeXML(hMetadataCitation, outContext)
+                        end
+                     end
+                     if hMetadataCitation.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mri:metadataReference')
                      end
 
                   end # MD_AssociatedResource tag

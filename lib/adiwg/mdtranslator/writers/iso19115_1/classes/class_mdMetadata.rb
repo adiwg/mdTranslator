@@ -14,11 +14,12 @@ require_relative 'class_responsibility'
 require_relative 'class_date'
 require_relative 'class_locale'
 require_relative 'class_onlineResource'
+require_relative 'class_coverageDescription'
+require_relative 'class_imageDescription'
 # require_relative 'class_spatialRepresentation'
 # require_relative 'class_referenceSystem'
 # require_relative 'class_extension'
 # require_relative 'class_dataIdentification'
-# require_relative 'class_coverageDescription'
 # require_relative 'class_distribution'
 # require_relative 'class_dataQuality'
 # require_relative 'class_useConstraints'
@@ -52,10 +53,11 @@ module ADIWG
                   localeClass = PT_Locale.new(@xml, @hResponseObj)
                   onlineClass = CI_OnlineResource.new(@xml, @hResponseObj)
                   dataIdClass = MD_DataIdentification.new(@xml, @hResponseObj)
+                  coverageClass = MD_CoverageDescription.new(@xml, @hResponseObj)
+                  imageClass = MD_ImageDescription.new(@xml, @hResponseObj)
                   # representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
                   # systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   # extensionClass = MD_MetadataExtensionInformation.new(@xml, @hResponseObj)
-                  # coverageClass = CoverageDescription.new(@xml, @hResponseObj)
                   # distClass = MD_Distribution.new(@xml, @hResponseObj)
                   # dqClass = DQ_DataQuality.new(@xml, @hResponseObj)
                   # uConClass = MD_Constraints.new(@xml, @hResponseObj)
@@ -249,52 +251,31 @@ module ADIWG
 
                      # ###################### End Data Identification #######################
 
+                     # metadata information - content information []
+                     # FC_FeatureCatalogue not implemented
+                     aCoverages = hResInfo[:coverageDescriptions]
+                     aCoverages.each do |hCoverage|
+                        unless hCoverage.empty?
+                           @xml.tag!('mdb:contentInfo') do
+                              haveImage = hCoverage[:imageDescription].empty?
+                              if haveImage
+                                 imageClass.writeXML(hCoverage)
+                              else
+                                 coverageClass.writeXML(hCoverage)
+                              end
+                           end
+                        end
+                     end
+                     if aCoverages.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:contentInfo')
+                     end
 
 
 
-                     # # metadata information - coverageDescription []
-                     # aItems = hResInfo[:coverageDescriptions]
-                     # aItems.each do |hCoverage|
-                     #
-                     #    # mdJson follows ISO 19115-1 for this section
-                     #    # in ISO 19115-1
-                     #    # coverageDescription << attributeGroup << attribute (rangeDimension)
-                     #    # in ISO 19115-2
-                     #    # coverageDescription << attribute (rangeDimension)
-                     #    # how to handle in ISO 19115-2 ...
-                     #    # break up attributeGroup, handle each in separate coverageDescription
-                     #    # handle image and attributeGroup in separate coverageDescriptions
-                     #    # also allow both attributeGroup and imageDescription to be empty
-                     #
-                     #    if hCoverage[:imageDescription].empty? && hCoverage[:attributeGroups].empty?
-                     #       @xml.tag!('gmd:contentInfo') do
-                     #          coverageClass.writeXML(hCoverage)
-                     #       end
-                     #    end
-                     #
-                     #    unless hCoverage[:imageDescription].empty?
-                     #       hInstance = Marshal::load(Marshal.dump(hCoverage))
-                     #       hInstance[:attributeGroups] = []
-                     #       @xml.tag!('gmd:contentInfo') do
-                     #          coverageClass.writeXML(hInstance)
-                     #       end
-                     #    end
-                     #
-                     #    hCoverage[:attributeGroups].each do |hGroup|
-                     #       hInstance = Marshal::load(Marshal.dump(hCoverage))
-                     #       hInstance[:imageDescription] = {}
-                     #       hInstance[:attributeGroups] = []
-                     #       hInstance[:attributeGroups] << hGroup
-                     #       @xml.tag!('gmd:contentInfo') do
-                     #          coverageClass.writeXML(hInstance)
-                     #       end
-                     #    end
-                     #
-                     # end
-                     # if aItems.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:contentInfo')
-                     # end
-                     #
+
+
+
+
                      # # metadata information - distribution info [0]
                      # unless aDistInfo.empty?
                      #    hDistInfo = aDistInfo[0]

@@ -291,7 +291,7 @@ module ADIWG
                      # data identification - associated resource [] {MD_AssociatedResource}
                      aAssocRes.each do |hAssocRes|
                         @xml.tag!('mri:associatedResource') do
-                           associatedClass.writeXML(hAssocRes)
+                           associatedClass.writeXML(hAssocRes, 'resource information')
                         end
                      end
                      if aAssocRes.empty? && @hResponseObj[:writerShowTags]
