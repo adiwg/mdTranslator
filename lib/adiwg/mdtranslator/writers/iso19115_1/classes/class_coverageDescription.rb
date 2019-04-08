@@ -4,8 +4,8 @@
 # History:
 # 	Stan Smith 2019-04-05 original script.
 
-require_relative 'class_attributeGroup'
 require_relative 'class_identifier'
+require_relative 'class_attributeGroup'
 
 module ADIWG
    module Mdtranslator
@@ -23,8 +23,10 @@ module ADIWG
                def writeXML(hCoverage)
 
                   # classes used
-                  groupClass = MD_AttributeGroup.new(@xml, @hResponseObj)
                   identifierClass = MD_Identifier.new(@xml, @hResponseObj)
+                  groupClass = MD_AttributeGroup.new(@xml, @hResponseObj)
+
+                  outContext = 'content coverage description'
 
                   unless hCoverage.empty?
                      @xml.tag!('mrc:MD_CoverageDescription') do
@@ -44,14 +46,13 @@ module ADIWG
                            end
                         end
                         if attDesc == ''
-                           @NameSpace.issueWarning(40, 'gmd:attributeDescription')
+                           @NameSpace.issueWarning(40, 'gmd:attributeDescription', outContext)
                         end
 
                         # coverage description - processing level code {MD_Identifier}
                         unless hCoverage[:processingLevelCode].empty?
                            @xml.tag!('mrc:processingLevelCode') do
-                              identifierClass.writeXML(hCoverage[:processingLevelCode],
-                                                       'coverage description processing level')
+                              identifierClass.writeXML(hCoverage[:processingLevelCode], outContext+' processing level')
                            end
                            if hCoverage[:processingLevelCode].empty? && @hResponseObj[:writerShowTags]
                               @xml.tag!('mrc:processingLevelCode')
@@ -63,7 +64,7 @@ module ADIWG
                         aGroups.each do |hGroup|
                            unless hGroup.empty?
                               @xml.tag!('mrc:attributeGroup') do
-                                 groupClass.writeXML(hGroup)
+                                 groupClass.writeXML(hGroup, outContext)
                               end
                            end
                         end
