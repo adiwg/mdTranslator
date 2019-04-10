@@ -39,46 +39,42 @@ module ADIWG
                         end
 
                         # address - city
-                        s = hAddress[:city]
-                        unless s.nil?
+                        unless hAddress[:city].nil?
                            @xml.tag!('cit:city') do
-                              @xml.tag!('gco:CharacterString', s)
+                              @xml.tag!('gco:CharacterString', hAddress[:city])
                            end
                         end
-                        if s.nil? && @hResponseObj[:writerShowTags]
+                        if hAddress[:city].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:city')
                         end
 
                         # address - administrative area
-                        s = hAddress[:adminArea]
-                        unless s.nil?
+                        unless hAddress[:adminArea].nil?
                            @xml.tag!('cit:administrativeArea') do
-                              @xml.tag!('gco:CharacterString', s)
+                              @xml.tag!('gco:CharacterString', hAddress[:adminArea])
                            end
                         end
-                        if s.nil? && @hResponseObj[:writerShowTags]
+                        if hAddress[:adminArea].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:administrativeArea')
                         end
 
                         # address - postal code
-                        s = hAddress[:postalCode]
-                        unless s.nil?
+                        unless hAddress[:postalCode].nil?
                            @xml.tag!('cit:postalCode') do
-                              @xml.tag!('gco:CharacterString', s)
+                              @xml.tag!('gco:CharacterString', hAddress[:postalCode])
                            end
                         end
-                        if s.nil? && @hResponseObj[:writerShowTags]
+                        if hAddress[:postalCode].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:postalCode')
                         end
 
                         # address - country
-                        s = hAddress[:country]
-                        unless s.nil?
+                        unless hAddress[:country].nil?
                            @xml.tag!('cit:country') do
-                              @xml.tag!('gco:CharacterString', s)
+                              @xml.tag!('gco:CharacterString', hAddress[:country])
                            end
                         end
-                        if s.nil? && @hResponseObj[:writerShowTags]
+                        if hAddress[:country].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:country')
                         end
 

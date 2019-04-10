@@ -82,13 +82,13 @@ module ADIWG
                            if attributeTag == 'mrc:MD_Band'
                               rangeClass.writeXML(hAttribute, outContext)
                               sampleClass.writeXML(hAttribute, outContext)
-                              mdBandClass.writeXML(hAttribute, outContext)
+                              mdBandClass.writeXML(hAttribute)
                            end
                            if attributeTag == 'mrc:MI_Band'
                               rangeClass.writeXML(hAttribute, outContext)
                               sampleClass.writeXML(hAttribute, outContext)
-                              mdBandClass.writeXML(hAttribute, outContext)
-                              miBandClass.writeXML(hAttribute, outContext)
+                              mdBandClass.writeXML(hAttribute)
+                              miBandClass.writeXML(hAttribute)
                            end
                         end
                      end

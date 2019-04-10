@@ -10,6 +10,7 @@
 
 require 'builder'
 require 'adiwg/mdtranslator/writers/iso19115_1/version'
+require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative 'classes/class_mdMetadata'
 
 module ADIWG

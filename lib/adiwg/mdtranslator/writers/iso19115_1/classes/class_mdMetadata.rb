@@ -16,11 +16,11 @@ require_relative 'class_locale'
 require_relative 'class_onlineResource'
 require_relative 'class_coverageDescription'
 require_relative 'class_imageDescription'
+require_relative 'class_distribution'
 # require_relative 'class_spatialRepresentation'
 # require_relative 'class_referenceSystem'
 # require_relative 'class_extension'
 # require_relative 'class_dataIdentification'
-# require_relative 'class_distribution'
 # require_relative 'class_dataQuality'
 # require_relative 'class_useConstraints'
 # require_relative 'class_legalConstraints'
@@ -55,10 +55,10 @@ module ADIWG
                   dataIdClass = MD_DataIdentification.new(@xml, @hResponseObj)
                   coverageClass = MD_CoverageDescription.new(@xml, @hResponseObj)
                   imageClass = MD_ImageDescription.new(@xml, @hResponseObj)
+                  distributionClass = MD_Distribution.new(@xml, @hResponseObj)
                   # representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
                   # systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   # extensionClass = MD_MetadataExtensionInformation.new(@xml, @hResponseObj)
-                  # distClass = MD_Distribution.new(@xml, @hResponseObj)
                   # dqClass = DQ_DataQuality.new(@xml, @hResponseObj)
                   # uConClass = MD_Constraints.new(@xml, @hResponseObj)
                   # lConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
@@ -71,7 +71,7 @@ module ADIWG
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
                   aAssocRes = hMetadata[:associatedResources]
-                  aDistInfo = hMetadata[:distributorInfo]
+                  aDistributions = hMetadata[:distributorInfo]
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -270,25 +270,22 @@ module ADIWG
                         @xml.tag!('mdb:contentInfo')
                      end
 
+                     # metadata information - distribution info [] {MD_Distribution}
+                     aDistributions.each do |hDistribution|
+                        unless hDistribution.empty?
+                           @xml.tag!('mrd:distributionInfo') do
+                              distributionClass.writeXML(hDistribution)
+                           end
+                        end
+                     end
+                     if aDistributions.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mrd:distributionInfo')
+                     end
 
 
 
 
 
-
-                     # # metadata information - distribution info [0]
-                     # unless aDistInfo.empty?
-                     #    hDistInfo = aDistInfo[0]
-                     #    unless hDistInfo.empty?
-                     #       @xml.tag!('gmd:distributionInfo') do
-                     #          distClass.writeXML(hDistInfo)
-                     #       end
-                     #    end
-                     # end
-                     # if aDistInfo.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:distributionInfo')
-                     # end
-                     #
                      # # metadata information - data quality info []
                      # aDQInfo = hMetadata[:lineageInfo]
                      # aDQInfo.each do |hDQInfo|
@@ -299,7 +296,11 @@ module ADIWG
                      # if aDQInfo.empty? && @hResponseObj[:writerShowTags]
                      #    @xml.tag!('gmd:dataQualityInfo')
                      # end
-                     #
+
+
+
+
+
                      # # metadata information - metadata constraints {}
                      # aCons = hMetaInfo[:metadataConstraints]
                      # aCons.each do |hCon|
@@ -319,7 +320,12 @@ module ADIWG
                      # if aCons.nil? && @hResponseObj[:writerShowTags]
                      #    @xml.tag!('gmd:metadataConstraints')
                      # end
-                     #
+
+
+
+
+
+
                      # # metadata information - metadata maintenance
                      # hMaintenance = hMetaInfo[:metadataMaintenance]
                      # unless hMaintenance.empty?

@@ -43,12 +43,11 @@ module ADIWG
                   @xml.tag!('cit:CI_Citation') do
 
                      # citation - title (required)
-                     s = hCitation[:title]
-                     if s.nil?
+                     if hCitation[:title].nil?
                         @NameSpace.issueWarning(30, 'cit:title', inContext)
                      else
                         @xml.tag!('cit:title') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hCitation[:title])
                         end
                      end
 
@@ -75,13 +74,12 @@ module ADIWG
                      end
 
                      # citation - edition
-                     s = hCitation[:edition]
-                     unless s.nil?
+                     unless hCitation[:edition].nil?
                         @xml.tag!('cit:edition') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hCitation[:edition])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
+                     if hCitation[:edition].nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('cit:edition')
                      end
 
