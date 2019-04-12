@@ -18,15 +18,9 @@ require_relative 'class_coverageDescription'
 require_relative 'class_imageDescription'
 require_relative 'class_distribution'
 require_relative 'class_lineage'
-# require_relative 'class_spatialRepresentation'
-# require_relative 'class_referenceSystem'
-# require_relative 'class_extension'
-# require_relative 'class_dataIdentification'
-# require_relative 'class_useConstraints'
-# require_relative 'class_legalConstraints'
-# require_relative 'class_securityConstraints'
-# require_relative 'class_maintenance'
-# require_relative 'class_gcoDateTime'
+require_relative 'class_constraint'
+require_relative 'class_dataIdentification'
+require_relative 'class_maintenance'
 
 module ADIWG
    module Mdtranslator
@@ -45,7 +39,6 @@ module ADIWG
 
                   # classes used
                   intMetadataClass = InternalMetadata.new
-                  codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   identifierClass = MD_Identifier.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
                   responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
@@ -57,21 +50,15 @@ module ADIWG
                   imageClass = MD_ImageDescription.new(@xml, @hResponseObj)
                   distributionClass = MD_Distribution.new(@xml, @hResponseObj)
                   lineageClass = LI_Lineage.new(@xml, @hResponseObj)
-                  # representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
-                  # systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
-                  # extensionClass = MD_MetadataExtensionInformation.new(@xml, @hResponseObj)
-                  # uConClass = MD_Constraints.new(@xml, @hResponseObj)
-                  # lConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
-                  # sConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
-                  # maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
-                  # dateTimeClass = GcoDateTime.new(@xml, @hResponseObj)
+                  constraintClass = Constraint.new(@xml, @hResponseObj)
+                  maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
 
                   # create shortcuts to sections of internal object
                   hMetadata = intObj[:metadata]
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
-                  aAssocRes = hMetadata[:associatedResources]
                   aDistributions = hMetadata[:distributorInfo]
+                  aLineage = hMetadata[:lineageInfo]
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -289,7 +276,6 @@ module ADIWG
                      end
 
                      # metadata information - resource lineage [] {LI_Lineage}
-                     aLineage = hMetadata[:lineageInfo]
                      aLineage.each do |hLineage|
                         @xml.tag!('mdb:resourceLineage') do
                            lineageClass.writeXML(hLineage)
@@ -299,41 +285,27 @@ module ADIWG
                         @xml.tag!('mdb:resourceLineage')
                      end
 
-                     # # metadata information - metadata constraints {}
-                     # aCons = hMetaInfo[:metadataConstraints]
-                     # aCons.each do |hCon|
-                     #    @xml.tag!('gmd:metadataConstraints') do
-                     #       type = hCon[:type]
-                     #       if type == 'use'
-                     #          uConClass.writeXML(hCon)
-                     #       end
-                     #       if type == 'legal'
-                     #          lConClass.writeXML(hCon)
-                     #       end
-                     #       if type == 'security'
-                     #          sConClass.writeXML(hCon)
-                     #       end
-                     #    end
-                     # end
-                     # if aCons.nil? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:metadataConstraints')
-                     # end
+                     # metadata information - metadata constraints {}
+                     aConstraint = hMetaInfo[:metadataConstraints]
+                     aConstraint.each do |hCon|
+                        @xml.tag!('mdb:metadataConstraints') do
+                           constraintClass.writeXML(hCon, 'metadata information')
+                        end
+                     end
+                     if aConstraint.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:metadataConstraints')
+                     end
 
-
-
-
-
-
-                     # # metadata information - metadata maintenance
-                     # hMaintenance = hMetaInfo[:metadataMaintenance]
-                     # unless hMaintenance.empty?
-                     #    @xml.tag!('gmd:metadataMaintenance') do
-                     #       maintenanceClass.writeXML(hMaintenance, 'metadata maintenance')
-                     #    end
-                     # end
-                     # if hMaintenance.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:metadataMaintenance')
-                     # end
+                     # metadata information - metadata maintenance
+                     hMaintenance = hMetaInfo[:metadataMaintenance]
+                     unless hMaintenance.empty?
+                        @xml.tag!('mdb:metadataMaintenance') do
+                           maintenanceClass.writeXML(hMaintenance, 'metadata maintenance')
+                        end
+                     end
+                     if hMaintenance.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:metadataMaintenance')
+                     end
 
                   end # mdb:MD_Metadata tag
 
