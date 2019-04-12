@@ -17,11 +17,11 @@ require_relative 'class_onlineResource'
 require_relative 'class_coverageDescription'
 require_relative 'class_imageDescription'
 require_relative 'class_distribution'
+require_relative 'class_lineage'
 # require_relative 'class_spatialRepresentation'
 # require_relative 'class_referenceSystem'
 # require_relative 'class_extension'
 # require_relative 'class_dataIdentification'
-# require_relative 'class_dataQuality'
 # require_relative 'class_useConstraints'
 # require_relative 'class_legalConstraints'
 # require_relative 'class_securityConstraints'
@@ -56,10 +56,10 @@ module ADIWG
                   coverageClass = MD_CoverageDescription.new(@xml, @hResponseObj)
                   imageClass = MD_ImageDescription.new(@xml, @hResponseObj)
                   distributionClass = MD_Distribution.new(@xml, @hResponseObj)
+                  lineageClass = LI_Lineage.new(@xml, @hResponseObj)
                   # representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
                   # systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   # extensionClass = MD_MetadataExtensionInformation.new(@xml, @hResponseObj)
-                  # dqClass = DQ_DataQuality.new(@xml, @hResponseObj)
                   # uConClass = MD_Constraints.new(@xml, @hResponseObj)
                   # lConClass = MD_LegalConstraints.new(@xml, @hResponseObj)
                   # sConClass = MD_SecurityConstraints.new(@xml, @hResponseObj)
@@ -237,6 +237,12 @@ module ADIWG
                         @xml.tag!('mdb:metadataLinkage')
                      end
 
+                     # metadata information - spatial representation []
+                     # {MD_GridSpatialRepresentation | MD_VectorSpatialRepresentation}
+                     # {MD_Georeferenceable | MD_Georectified }
+
+                     # metadata information - reference system info [] {MD_ReferenceSystem}
+
                      # ###################### Begin Data Identification #####################
 
                      # metadata information - data identification info - required
@@ -282,24 +288,16 @@ module ADIWG
                         @xml.tag!('mrd:distributionInfo')
                      end
 
-
-
-
-
-                     # # metadata information - data quality info []
-                     # aDQInfo = hMetadata[:lineageInfo]
-                     # aDQInfo.each do |hDQInfo|
-                     #    @xml.tag!('gmd:dataQualityInfo') do
-                     #       dqClass.writeXML(hDQInfo)
-                     #    end
-                     # end
-                     # if aDQInfo.empty? && @hResponseObj[:writerShowTags]
-                     #    @xml.tag!('gmd:dataQualityInfo')
-                     # end
-
-
-
-
+                     # metadata information - resource lineage [] {LI_Lineage}
+                     aLineage = hMetadata[:lineageInfo]
+                     aLineage.each do |hLineage|
+                        @xml.tag!('mdb:resourceLineage') do
+                           lineageClass.writeXML(hLineage)
+                        end
+                     end
+                     if aLineage.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:resourceLineage')
+                     end
 
                      # # metadata information - metadata constraints {}
                      # aCons = hMetaInfo[:metadataConstraints]
