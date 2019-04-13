@@ -2,6 +2,7 @@
 # ADIwg mdTranslator - Thor CLI for mdtranslator
 
 # History:
+#  Stan Smith 2019-04-11 add 'iso19115-1' option to writer enum list
 #  Stan Smith 2018-05-04 add support for reader execution messages
 #  Stan Smith 2018-04-07 add 'fgdc' option to reader and writer enum list
 #  Stan Smith 2018-02-26 add 'forceValid' parameter
@@ -38,7 +39,7 @@ and to choose the level of validation for mdJson input files.
                  :enum => %w{mdJson sbJson fgdc}, :required => true
    method_option :writer, :aliases => '-w',
                  :desc => 'Writer to create your output metadata file, leave blank to validate input only',
-                 :enum => %w{iso19115_2 iso19110 html mdJson sbJson fgdc}
+                 :enum => %w{fgdc html iso19110 iso19115_1 iso19115_2 mdJson sbJson }
    method_option :validate, :aliases => '-v', :desc => 'Specify level of validation to be performed',
                  :enum => %w{none normal strict}, :default => 'normal'
    method_option :forceValid, :aliases => '-f', :desc => 'Insert tags for required elements missing from input',

@@ -27,7 +27,7 @@ module ADIWG
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   dateClass = CI_Date.new(@xml, @hResponseObj)
-                  partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
+                  partyClass = CI_Responsibility.new(@xml, @hResponseObj)
                   scopeClass = MD_Scope.new(@xml, @hResponseObj)
 
                   outContext = 'maintenance information'

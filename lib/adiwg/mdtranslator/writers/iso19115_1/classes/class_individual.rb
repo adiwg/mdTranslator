@@ -41,16 +41,6 @@ module ADIWG
                            @xml.tag!('cit:name')
                         end
 
-                        # individual - position
-                        unless hContact[:position].nil?
-                           @xml.tag!('cit:positionName') do
-                              @xml.tag!('gco:CharacterString', hContact[:position])
-                           end
-                        end
-                        if hContact[:position].nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('cit:positionName')
-                        end
-
                         # individual - contact information [] (only one contactInfo in this implementation)
                         haveInfo = false
                         unless hContact[:phones].empty? &&
@@ -68,6 +58,16 @@ module ADIWG
                         end
                         if !haveInfo && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:contactInfo')
+                        end
+
+                        # individual - position
+                        unless hContact[:position].nil?
+                           @xml.tag!('cit:positionName') do
+                              @xml.tag!('gco:CharacterString', hContact[:position])
+                           end
+                        end
+                        if hContact[:position].nil? && @hResponseObj[:writerShowTags]
+                           @xml.tag!('cit:positionName')
                         end
 
                      end

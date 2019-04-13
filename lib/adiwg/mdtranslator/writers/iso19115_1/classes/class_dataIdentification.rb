@@ -20,7 +20,6 @@ require_relative 'class_usage'
 require_relative 'class_constraint'
 require_relative 'class_associatedResource'
 require_relative 'class_locale'
-# require_relative 'class_resolution'
 
 module ADIWG
    module Mdtranslator
@@ -57,8 +56,6 @@ module ADIWG
                   # create shortcuts to sections of internal object
                   hResource = hMetadata[:resourceInfo]
                   aAssocRes = hMetadata[:associatedResources]
-                  aDocuments = hMetadata[:additionalDocuments]
-                  aDistInfo = hMetadata[:distributorInfo]
 
                   # data identification
                   @xml.tag!('mri:MD_DataIdentification') do
@@ -117,16 +114,15 @@ module ADIWG
                      end
 
                      # data identification - point of contact [] {CI_Responsibility}
-                     aRParties = hResource[:pointOfContacts]
-                     aRParties.each do |hRParty|
-                        aParties = hRParty[:parties]
-                        aParties.each do |hParty|
-                           @xml.tag!('mri:pointOfContact') do
-                              responsibilityClass.writeXML(hParty, 'resource point of contact')
+                     aContacts = hResource[:pointOfContacts]
+                     aContacts.each do |hContact|
+                        unless hContact.empty?
+                           @xml.tag!('mdb:contact') do
+                              responsibilityClass.writeXML(hContact, 'metadata information')
                            end
                         end
                      end
-                     if aRParties.empty? && @hResponseObj[:writerShowTags]
+                     if aContacts.empty? && @hResponseObj[:writerShowTags]
                         @NameSpace.issueWarning(52, 'mri:pointOfContact')
                      end
 

@@ -29,7 +29,7 @@ module ADIWG
 
                      # locale - language (required)
                      unless hLocale[:languageCode].nil?
-                        @xml.tag!('lan:languageCode') do
+                        @xml.tag!('lan:language') do
                            codelistClass.writeXML('lan', 'iso_language', hLocale[:languageCode])
                         end
                      end
