@@ -18,7 +18,7 @@ module ADIWG
 
                def writeXML(aEmail)
 
-                  @xml.tag!('gmd:CI_Address') do
+                  @xml.tag!('cit:CI_Address') do
 
                      unless aEmail.empty?
 

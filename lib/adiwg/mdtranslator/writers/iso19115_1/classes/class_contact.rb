@@ -53,14 +53,19 @@ module ADIWG
                            addClass.writeXML(hAddress)
                         end
                      end
-                     if aAddress.nil? && @hResponseObj[:writerShowTags]
+                     if aAddress.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('cit:address')
                      end
 
                      # contact - email address [] {CI_Address}
                      # in 19115-1 email addresses are associated with mailing addresses
-                     # .. not in mdJson, so email addresses shown in separate address block
-                     emailClass.writeXML(hContact[:eMailList])
+                     # in mdJson email addresses are associated with the contact
+                     # so email addresses are written into a separate address block for the contact
+                     unless hContact[:eMailList].empty?
+                        @xml.tag!('cit:address') do
+                           emailClass.writeXML(hContact[:eMailList])
+                        end
+                     end
 
                      # contact - online resource [] {CI_OnlineResource}
                      aOlResources = hContact[:onlineResources]

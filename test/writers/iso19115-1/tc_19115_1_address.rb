@@ -136,8 +136,8 @@ class TestWriter191151Address < TestWriter191151Parent
       hIn[:contact][0][:address] = []
       hIn[:contact][0][:electronicMailAddress] = []
 
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//gmd:address[5]',
-                                                     '//gmd:address', 0)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//cit:address[5]',
+                                                     '//cit:address', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
