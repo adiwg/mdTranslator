@@ -25,12 +25,12 @@ module ADIWG
                   timeInstClass = TimeInstant.new(@xml, @hResponseObj)
                   timePeriodClass = TimePeriod.new(@xml, @hResponseObj)
 
-                  @xml.tag!('gmd:EX_TemporalExtent') do
+                  @xml.tag!('gex:EX_TemporalExtent') do
 
                      # temporal extent - time instant
                      hTimeInst = hTempEle[:timeInstant]
                      unless hTimeInst.empty?
-                        @xml.tag!('gmd:extent') do
+                        @xml.tag!('gex:extent') do
                            timeInstClass.writeXML(hTimeInst)
                         end
                      end
@@ -38,7 +38,7 @@ module ADIWG
                      # temporal extent - time period
                      hTimePeriod = hTempEle[:timePeriod]
                      unless hTimePeriod.empty?
-                        @xml.tag!('gmd:extent') do
+                        @xml.tag!('gex:extent') do
                            timePeriodClass.writeXML(hTimePeriod)
                         end
                      end

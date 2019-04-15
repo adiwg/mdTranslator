@@ -78,7 +78,7 @@ module ADIWG
 
                   # MD_Metadata
                   @xml.tag!('mdb:MD_Metadata',
-                            {'xmlns:gml' => 'www.opengis.net/gml.3.2',
+                            {'xmlns:gml' => 'http://www.opengis.net/gml/3.2',
                              'xmlns:mdb' => 'http://standards.iso.org/iso/19115/-3/mdb/1.0',
                              'xmlns:gco' => 'http://standards.iso.org/iso/19115/-3/gco/1.0',
                              'xmlns:mcc' => 'http://standards.iso.org/iso/19115/-3/mcc/1.0',
@@ -276,13 +276,13 @@ module ADIWG
                      # metadata information - distribution info [] {MD_Distribution}
                      aDistributions.each do |hDistribution|
                         unless hDistribution.empty?
-                           @xml.tag!('mrd:distributionInfo') do
+                           @xml.tag!('mdb:distributionInfo') do
                               distributionClass.writeXML(hDistribution)
                            end
                         end
                      end
                      if aDistributions.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mrd:distributionInfo')
+                        @xml.tag!('mdb:distributionInfo')
                      end
 
                      # metadata information - resource lineage [] {LI_Lineage}

@@ -6,6 +6,7 @@
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_codelist'
+require_relative 'class_constraintCommon'
 
 module ADIWG
    module Mdtranslator
@@ -24,6 +25,7 @@ module ADIWG
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
+                  commonClass = ConstraintCommon.new(@xml, @hResponseObj)
 
                   outContext = 'security constraint'
                   outContext = inContext + ' security constraint' unless inContext.nil?
@@ -32,8 +34,8 @@ module ADIWG
                   unless hSecurityCon.empty?
                      @xml.tag!('mco:MD_SecurityConstraints') do
 
-                        # security constraints - use constraint
-                        hSecurityCon.writeXML(hConstraint, outContext)
+                        # security constraints - use constraint elements
+                        commonClass.writeXML(hConstraint, outContext)
 
                         # security constraints - classification code (required)
                         s = hSecurityCon[:classCode]

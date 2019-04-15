@@ -6,6 +6,7 @@
 
 require_relative 'class_codelist'
 require_relative 'class_useConstraints'
+require_relative 'class_constraintCommon'
 
 module ADIWG
    module Mdtranslator
@@ -24,7 +25,7 @@ module ADIWG
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
-                  useConClass = MD_Constraints.new(@xml, @hResponseObj)
+                  commonClass = ConstraintCommon.new(@xml, @hResponseObj)
 
                   outContext = 'legal constraint'
                   outContext = inContext + ' legal constraint' unless inContext.nil?
@@ -34,8 +35,8 @@ module ADIWG
 
                      @xml.tag!('mco:MD_LegalConstraints') do
 
-                        # legal constraints - use constraint
-                        useConClass.writeXML(hConstraint, outContext)
+                        # legal constraints - use constraint elements
+                        commonClass.writeXML(hConstraint, outContext)
 
                         # legal constraints - access constraints
                         aAccess = hLegalCon[:accessCodes]

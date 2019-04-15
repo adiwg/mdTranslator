@@ -20,20 +20,27 @@ class TestWriter191151Address < TestWriter191151Parent
 
    @@mdHash = mdHash
 
-   # def test_contact_address_complete_single
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hIn[:contact][0][:address][0][:deliveryPoint].delete_at(1)
-   #
-   #    hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//gmd:address[1]',
-   #                                                   '//gmd:address', 0)
-   #
-   #    assert_equal hReturn[0], hReturn[1]
-   #    assert hReturn[2]
-   #    assert_empty hReturn[3]
-   #
-   # end
-   #
+   def test_contact_address_complete_single
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hIn[:contact][0][:address][0][:deliveryPoint].delete_at(1)
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//cit:address[1]',
+                                                '//cit:address', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//cit:address[2]',
+                                                '//cit:address', 1)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
    # def test_contact_complete_multi
    #
    #    hIn = Marshal::load(Marshal.dump(@@mdHash))
@@ -136,7 +143,7 @@ class TestWriter191151Address < TestWriter191151Parent
       hIn[:contact][0][:address] = []
       hIn[:contact][0][:electronicMailAddress] = []
 
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//cit:address[5]',
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_address', '//cit:address[6]',
                                                      '//cit:address', 0)
 
       assert_equal hReturn[0], hReturn[1]

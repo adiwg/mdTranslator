@@ -106,7 +106,7 @@ module ADIWG
                      aStatus = hResource[:status]
                      aStatus.each do |code|
                         @xml.tag!('mri:status') do
-                           codelistClass.writeXML('mri', 'iso_progress', code)
+                           codelistClass.writeXML('mcc', 'iso_progress', code)
                         end
                      end
                      if aStatus.empty? && @hResponseObj[:writerShowTags]
@@ -117,7 +117,7 @@ module ADIWG
                      aContacts = hResource[:pointOfContacts]
                      aContacts.each do |hContact|
                         unless hContact.empty?
-                           @xml.tag!('mdb:contact') do
+                           @xml.tag!('mri:pointOfContact') do
                               responsibilityClass.writeXML(hContact, 'metadata information')
                            end
                         end
@@ -157,7 +157,7 @@ module ADIWG
                         end
                      end
                      if aTemporalRes.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gco:temporalResolution')
+                        @xml.tag!('mri:temporalResolution')
                      end
 
                      # data identification - topic category [] {MD_TopicCategoryCode}

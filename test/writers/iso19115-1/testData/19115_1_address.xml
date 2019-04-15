@@ -40,6 +40,10 @@
       <cit:country>
         <gco:CharacterString>country</gco:CharacterString>
       </cit:country>
+    </cit:CI_Address>
+  </cit:address>
+  <cit:address>
+    <cit:CI_Address>
       <cit:electronicMailAddress>
         <gco:CharacterString>e1.mail@address.org</gco:CharacterString>
       </cit:electronicMailAddress>

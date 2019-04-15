@@ -37,12 +37,12 @@ module ADIWG
                   @xml.tag!('cit:CI_Responsibility') do
 
                      # responsibility - role (required)
-                     unless hResponsibility[:role].nil?
+                     unless hResponsibility[:roleName].nil?
                         @xml.tag!('cit:role') do
-                           codelistClass.writeXML('cit', 'iso_role', hResponsibility[:role])
+                           codelistClass.writeXML('cit', 'iso_role', hResponsibility[:roleName])
                         end
                      end
-                     if hResponsibility[:role].nil?
+                     if hResponsibility[:roleName].nil?
                         @NameSpace.issueWarning(270, 'cit:role', outContext)
                      end
 
