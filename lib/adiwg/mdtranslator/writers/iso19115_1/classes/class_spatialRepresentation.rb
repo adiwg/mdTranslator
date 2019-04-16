@@ -1,8 +1,8 @@
-# ISO <<Class>> MD_GridSpatialRepresentation
-# 19115-2 writer output in XML
+# ISO <<Class>> CI_Series
+# 19115-1 writer output in XML
 
 # History:
-#  Stan Smith 2016-12-14 original script
+#  Stan Smith 2019-04-16 original script
 
 require_relative 'class_gridRepresentation'
 require_relative 'class_vectorRepresentation'
@@ -12,7 +12,7 @@ require_relative 'class_georeferenceable'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Iso19115_2
+         module Iso19115_1
 
             class SpatialRepresentation
 
@@ -21,7 +21,7 @@ module ADIWG
                   @hResponseObj = hResponseObj
                end
 
-               def writeXML(hRepresentation)
+               def writeXML(hRepresentation, inContext = nil)
 
                   # classes used
                   gridClass = MD_GridSpatialRepresentation.new(@xml, @hResponseObj)
@@ -29,24 +29,27 @@ module ADIWG
                   rectifiedClass = MD_Georectified.new(@xml, @hResponseObj)
                   referenceClass = MD_Georeferenceable.new(@xml, @hResponseObj)
 
+                  outContext = 'spatial representation'
+                  outContext = inContext + ' spatial representation' unless inContext.nil?
+
                   # spatial representation - grid
                   unless hRepresentation[:gridRepresentation].empty?
-                     gridClass.writeXML(hRepresentation[:gridRepresentation])
+                     gridClass.writeXML(hRepresentation[:gridRepresentation], outContext)
                   end
 
                   # spatial representation - vector
                   unless hRepresentation[:vectorRepresentation].empty?
-                     vectorClass.writeXML(hRepresentation[:vectorRepresentation])
+                     vectorClass.writeXML(hRepresentation[:vectorRepresentation], outContext)
                   end
 
                   # spatial representation - georectified
                   unless hRepresentation[:georectifiedRepresentation].empty?
-                     rectifiedClass.writeXML(hRepresentation[:georectifiedRepresentation])
+                     rectifiedClass.writeXML(hRepresentation[:georectifiedRepresentation], outContext)
                   end
 
                   # spatial representation - georeferenceable
                   unless hRepresentation[:georeferenceableRepresentation].empty?
-                     referenceClass.writeXML(hRepresentation[:georeferenceableRepresentation])
+                     referenceClass.writeXML(hRepresentation[:georeferenceableRepresentation], outContext)
                   end
 
                end # writeXML

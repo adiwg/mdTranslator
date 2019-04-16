@@ -21,6 +21,7 @@ require_relative 'class_lineage'
 require_relative 'class_constraint'
 require_relative 'class_dataIdentification'
 require_relative 'class_maintenance'
+require_relative 'class_spatialRepresentation'
 
 module ADIWG
    module Mdtranslator
@@ -237,6 +238,17 @@ module ADIWG
                      # metadata information - spatial representation []
                      # {MD_GridSpatialRepresentation | MD_VectorSpatialRepresentation}
                      # {MD_Georeferenceable | MD_Georectified }
+                     aRepresentations = hResInfo[:spatialRepresentations]
+                     aRepresentations.each do |hRepresentation|
+                        unless hRepresentation.empty?
+                           @xml.tag!('mdb:spatialRepresentationInfo') do
+                              responsibilityClass.writeXML(hRepresentation, 'metadata spatial representation')
+                           end
+                        end
+                     end
+                     if aRepresentations.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:spatialRepresentationInfo')
+                     end
 
                      # metadata information - reference system info [] {MD_ReferenceSystem}
 
