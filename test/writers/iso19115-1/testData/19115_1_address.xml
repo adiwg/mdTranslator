@@ -70,6 +70,10 @@
       <cit:country>
         <gco:CharacterString>country</gco:CharacterString>
       </cit:country>
+    </cit:CI_Address>
+  </cit:address>
+  <cit:address>
+    <cit:CI_Address>
       <cit:electronicMailAddress>
         <gco:CharacterString>e1.mail@address.org</gco:CharacterString>
       </cit:electronicMailAddress>
@@ -81,15 +85,67 @@
 
   <cit:address>
     <cit:CI_Address>
+      <cit:deliveryPoint>
+        <gco:CharacterString>address line 1</gco:CharacterString>
+      </cit:deliveryPoint>
+      <cit:deliveryPoint>
+        <gco:CharacterString>address line 2</gco:CharacterString>
+      </cit:deliveryPoint>
+      <cit:city>
+        <gco:CharacterString>city</gco:CharacterString>
+      </cit:city>
+      <cit:administrativeArea>
+        <gco:CharacterString>administrative area</gco:CharacterString>
+      </cit:administrativeArea>
+      <cit:postalCode>
+        <gco:CharacterString>postal code</gco:CharacterString>
+      </cit:postalCode>
+      <cit:country>
+        <gco:CharacterString>country</gco:CharacterString>
+      </cit:country>
+    </cit:CI_Address>
+  </cit:address>
+  <cit:address>
+    <cit:CI_Address>
+      <cit:deliveryPoint>
+        <gco:CharacterString>address line 1</gco:CharacterString>
+      </cit:deliveryPoint>
+      <cit:deliveryPoint>
+        <gco:CharacterString>address line 2</gco:CharacterString>
+      </cit:deliveryPoint>
+      <cit:city>
+        <gco:CharacterString>city</gco:CharacterString>
+      </cit:city>
+      <cit:administrativeArea>
+        <gco:CharacterString>administrative area</gco:CharacterString>
+      </cit:administrativeArea>
+      <cit:postalCode>
+        <gco:CharacterString>postal code</gco:CharacterString>
+      </cit:postalCode>
+      <cit:country>
+        <gco:CharacterString>country</gco:CharacterString>
+      </cit:country>
+    </cit:CI_Address>
+  </cit:address>
+  <cit:address>
+    <cit:CI_Address>
+      <cit:electronicMailAddress>
+        <gco:CharacterString>e1.mail@address.org</gco:CharacterString>
+      </cit:electronicMailAddress>
+    </cit:CI_Address>
+  </cit:address>
+
+  <cit:address>
+    <cit:CI_Address>
       <cit:deliveryPoint/>
       <cit:city/>
       <cit:administrativeArea/>
       <cit:postalCode/>
       <cit:country/>
-      <cit:electronicMailAddress/>
     </cit:CI_Address>
   </cit:address>
 
+  <cit:address/>
   <cit:address>
     <cit:CI_Address>
       <cit:electronicMailAddress>

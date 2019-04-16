@@ -25,7 +25,7 @@ module ADIWG
 
                   # classes used
                   phoneClass = CI_Telephone.new(@xml, @hResponseObj)
-                  addClass = CI_Address.new(@xml, @hResponseObj)
+                  addressClass = CI_Address.new(@xml, @hResponseObj)
                   emailClass = Email.new(@xml, @hResponseObj)
                   resourceClass = CI_OnlineResource.new(@xml, @hResponseObj)
 
@@ -50,7 +50,7 @@ module ADIWG
                      aAddress = hContact[:addresses]
                      aAddress.each do |hAddress|
                         @xml.tag!('cit:address') do
-                           addClass.writeXML(hAddress)
+                           addressClass.writeXML(hAddress)
                         end
                      end
                      if aAddress.empty? && @hResponseObj[:writerShowTags]

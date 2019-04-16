@@ -27,7 +27,7 @@
         <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="eng" codeSpace="123"/>
       </gmd:languageCode>
       <gmd:country>
-        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="FJI" codeSpace="242"/>
+        <gmd:CountryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CountryCode" codeListValue="FJI" codeSpace="242"/>
       </gmd:country>
       <gmd:characterEncoding>
         <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-16" codeSpace="1015"/>
@@ -40,7 +40,7 @@
         <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="fre" codeSpace="137"/>
       </gmd:languageCode>
       <gmd:country>
-        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="COG" codeSpace="178"/>
+        <gmd:CountryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CountryCode" codeListValue="COG" codeSpace="178"/>
       </gmd:country>
       <gmd:characterEncoding>
         <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-16" codeSpace="1015"/>
@@ -53,7 +53,7 @@
         <gmd:LanguageCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#LanguageCode" codeListValue="spa" codeSpace="401"/>
       </gmd:languageCode>
       <gmd:country>
-        <gmd:Country codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#Country" codeListValue="CUB" codeSpace="192"/>
+        <gmd:CountryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CountryCode" codeListValue="CUB" codeSpace="192"/>
       </gmd:country>
       <gmd:characterEncoding>
         <gmd:MD_CharacterSetCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CharacterSetCode" codeListValue="UTF-16" codeSpace="1015"/>
