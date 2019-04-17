@@ -23,40 +23,38 @@ module ADIWG
 
                def writeXML(hGroup, inContext = nil)
 
-                  outContext = 'attribute group'
-                  outContext = inContext + ' attribute group' unless inContext.nil?
-
-                  unless hGroup.empty?
-
-                  end
-
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   attributeClass = Attribute.new(@xml, @hResponseObj)
 
+                  outContext = 'attribute group'
+                  outContext = inContext + ' attribute group' unless inContext.nil?
+
                   unless hGroup.empty?
+                     @xml.tag!('mrc:MD_AttributeGroup') do
 
-                     # attribute group - content type [] {MD_CoverageContentTypeCode} (required)
-                     aContentTypes = hGroup[:attributeContentTypes]
-                     aContentTypes.each do |item|
-                        @xml.tag!('mrc:contentType') do
-                           codelistClass.writeXML('mrc', 'iso_coverageContentType', item)
-                        end
-                     end
-                     if aContentTypes.empty?
-                        @NameSpace.issueWarning(41, 'mrc:contentType', outContext)
-                     end
-
-                     # attribute group - attribute [] (abstract)
-                     aAttributes = hGroup[:attributes]
-                     aAttributes.each do |hAttribute|
-                        unless hAttribute.empty?
-                           @xml.tag!('mrc:attribute') do
-                              attributeClass.writeXML(hAttribute, outContext)
+                        # attribute group - content type [] {MD_CoverageContentTypeCode} (required)
+                        aContentTypes = hGroup[:attributeContentTypes]
+                        aContentTypes.each do |item|
+                           @xml.tag!('mrc:contentType') do
+                              codelistClass.writeXML('mrc', 'iso_coverageContentType', item)
                            end
                         end
-                     end
+                        if aContentTypes.empty?
+                           @NameSpace.issueWarning(41, 'mrc:contentType', outContext)
+                        end
 
+                        # attribute group - attribute [] (abstract)
+                        aAttributes = hGroup[:attributes]
+                        aAttributes.each do |hAttribute|
+                           unless hAttribute.empty?
+                              @xml.tag!('mrc:attribute') do
+                                 attributeClass.writeXML(hAttribute, outContext)
+                              end
+                           end
+                        end
+
+                     end
                   end
 
                end # writeXML

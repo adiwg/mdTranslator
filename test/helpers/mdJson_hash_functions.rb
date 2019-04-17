@@ -735,10 +735,60 @@ class MdJsonHashWriter
       return hBbox
    end
 
+   def add_attribute_dash1(hAttGroup, type)
+      # types for ISO 19115-1 [ range | sample | mdBand | miBand ]
+      hAttribute = attribute
+
+      clear_sample = Proc.new {
+         hAttribute[:maxValue] = ''
+         hAttribute[:minValue] = ''
+         hAttribute[:units] = ''
+         hAttribute[:scaleFactor] = ''
+         hAttribute[:offset] = ''
+         hAttribute[:meanValue] = ''
+         hAttribute[:numberOfValues] = ''
+         hAttribute[:standardDeviation] = ''
+         hAttribute[:bitsPerValue] = ''
+      }
+      clear_mdBand = Proc.new {
+         hAttribute[:boundMin] = ''
+         hAttribute[:boundMax] = ''
+         hAttribute[:boundUnits] = ''
+         hAttribute[:peakResponse] = ''
+         hAttribute[:toneGradations] = ''
+      }
+      clear_miBand = Proc.new {
+         hAttribute[:bandBoundaryDefinition] = ''
+         hAttribute[:nominalSpatialResolution] = ''
+         hAttribute[:transferFunctionType] = ''
+         hAttribute[:transmittedPolarization] = ''
+         hAttribute[:detectedPolarization] = ''
+      }
+
+      if type == 'range'
+         clear_sample.call
+         clear_mdBand.call
+         clear_miBand.call
+      end
+
+      if type == 'sample'
+         clear_mdBand.call
+         clear_miBand.call
+      end
+
+      if type == 'mdBand'
+         clear_miBand.call
+      end
+
+      hAttGroup[:attribute] << hAttribute
+      return hAttGroup
+   end
+
    def add_attribute_dash2(hAttGroup, type)
       # types for ISO 19115-2 [ range | mdBand | miBand ]
-      # remove non-ISO-2 elements
       hAttribute = attribute
+
+      # remove non-ISO-2 elements
       hAttribute[:attributeIdentifier] = []
       hAttribute[:meanValue] = ''
       hAttribute[:numberOfValues] = ''
@@ -746,23 +796,34 @@ class MdJsonHashWriter
       hAttribute[:boundMin] = ''
       hAttribute[:boundMax] = ''
       hAttribute[:boundUnits] = ''
-      unless type == 'miBand'
+
+      clear_mdBand = Proc.new {
+         hAttribute[:peakResponse] = ''
+         hAttribute[:toneGradations] = ''
+         hAttribute[:maxValue] = ''
+         hAttribute[:minValue] = ''
+         hAttribute[:units] = ''
+         hAttribute[:bitsPerValue] = ''
+         hAttribute[:scaleFactor] = ''
+         hAttribute[:offset] = ''
+      }
+      clear_miBand = Proc.new {
          hAttribute[:bandBoundaryDefinition] = ''
          hAttribute[:nominalSpatialResolution] = ''
          hAttribute[:transferFunctionType] = ''
          hAttribute[:transmittedPolarization] = ''
          hAttribute[:detectedPolarization] = ''
+      }
+
+      if type == 'range'
+         clear_mdBand.call
+         clear_miBand.call
       end
-      unless type == 'miBand' || type == 'mdBand'
-         hAttribute[:maxValue] = ''
-         hAttribute[:minValue] = ''
-         hAttribute[:units] = ''
-         hAttribute[:peakResponse] = ''
-         hAttribute[:bitsPerValue] = ''
-         hAttribute[:toneGradations] = ''
-         hAttribute[:scaleFactor] = ''
-         hAttribute[:offset] = ''
+
+      if type == 'mdBand'
+         clear_miBand.call
       end
+
       hAttGroup[:attribute] << hAttribute
       return hAttGroup
    end
@@ -834,8 +895,6 @@ class MdJsonHashWriter
 
    def add_geodetic(hSpaceRef, datum = nil, ellipse = nil)
       hGeodetic = geodetic
-      hGeodetic[:datumIdentifier][:identifier] = 'identifier'
-      hGeodetic[:ellipsoidIdentifier][:identifier] = 'identifier'
       hGeodetic[:datumName] = datum unless datum.nil?
       hGeodetic[:ellipseName] = ellipse unless ellipse.nil?
       hSpaceRef[:referenceSystemParameterSet] = {}

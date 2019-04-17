@@ -1,5 +1,5 @@
 # ISO <<Class>> GridRepresentation
-# 19115-2 writer output in XML
+# 19115-1 writer output in XML
 
 # History:
 # 	Stan Smith 2019-04-16 original script.
@@ -17,7 +17,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
-                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
                def writeXML(hGrid, inContext = nil)

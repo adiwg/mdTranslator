@@ -23,74 +23,72 @@ class TestWriter191151Attribute < TestWriter191151Parent
 
    @@mdHash = mdHash
 
-   def test_attributeGroup_range
+   def test_attributeGroup_rangeDimension
 
-      # hIn = Marshal::load(Marshal.dump(@@mdHash))
-      # hAttGroup = TDClass.build_attributeGroup
-      # TDClass.add_attribute_dash2(hAttGroup, 'range')
-      # hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
-      #
-      # hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_attributeGroup',
-      #                                           '//gmd:contentInfo[1]',
-      #                                           '//gmd:contentInfo', 0)
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash1(hAttGroup, 'range')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
 
-      assert_equal 1,1
-      # assert_equal hReturn[0], hReturn[1]
-      # assert hReturn[2]
-      # assert_empty hReturn[3]
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_attribute',
+                                                '//mrc:attribute[1]',
+                                                '//mrc:attribute', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
 
    end
 
-   # def test_attributeGroup_mdBand
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hAttGroup = TDClass.build_attributeGroup
-   #    TDClass.add_attribute_dash2(hAttGroup, 'mdBand')
-   #    hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
-   #
-   #    hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
-   #                                              '//gmd:contentInfo[2]',
-   #                                              '//gmd:contentInfo', 0)
-   #
-   #    assert_equal hReturn[0], hReturn[1]
-   #    assert hReturn[2]
-   #    assert_empty hReturn[3]
-   #
-   # end
-   #
-   # def test_attributeGroup_miBand
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hAttGroup = TDClass.build_attributeGroup
-   #    TDClass.add_attribute_dash2(hAttGroup, 'miBand')
-   #    hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
-   #
-   #    hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
-   #                                              '//gmd:contentInfo[3]',
-   #                                              '//gmd:contentInfo', 0)
-   #
-   #    assert_equal hReturn[0], hReturn[1]
-   #    assert hReturn[2]
-   #    assert_empty hReturn[3]
-   #
-   # end
-   #
-   # def test_attributeGroup_multi
-   #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hAttGroup = TDClass.build_attributeGroup
-   #    TDClass.add_attribute_dash2(hAttGroup, 'range')
-   #    TDClass.add_attribute_dash2(hAttGroup, 'range')
-   #    hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
-   #
-   #    hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_attributeGroup',
-   #                                              '//gmd:contentInfo[4]',
-   #                                              '//gmd:contentInfo', 0)
-   #
-   #    assert_equal hReturn[0], hReturn[1]
-   #    assert hReturn[2]
-   #    assert_empty hReturn[3]
-   #
-   # end
+   def test_attributeGroup_sampleDimension
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash1(hAttGroup, 'sample')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_attribute',
+                                                '//mrc:attribute[2]',
+                                                '//mrc:attribute', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_attributeGroup_mdBand
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash1(hAttGroup, 'mdBand')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_attribute',
+                                                '//mrc:attribute[3]',
+                                                '//mrc:attribute', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
+
+   def test_attributeGroup_miBand
+
+      hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hAttGroup = TDClass.build_attributeGroup
+      TDClass.add_attribute_dash1(hAttGroup, 'miBand')
+      hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_attribute',
+                                                '//mrc:attribute[4]',
+                                                '//mrc:attribute', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
+   end
 
 end

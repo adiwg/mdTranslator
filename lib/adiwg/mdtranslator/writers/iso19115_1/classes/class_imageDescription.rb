@@ -24,7 +24,7 @@ module ADIWG
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
-                  identifierClass = RS_Identifier.new(@xml, @hResponseObj)
+                  identifierClass = MD_Identifier.new(@xml, @hResponseObj)
                   groupClass = MD_AttributeGroup.new(@xml, @hResponseObj)
 
                   outContext = 'content coverage image description'

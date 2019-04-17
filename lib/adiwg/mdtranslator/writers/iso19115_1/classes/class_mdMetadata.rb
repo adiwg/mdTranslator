@@ -22,6 +22,7 @@ require_relative 'class_constraint'
 require_relative 'class_dataIdentification'
 require_relative 'class_maintenance'
 require_relative 'class_spatialRepresentation'
+require_relative 'class_referenceSystem'
 
 module ADIWG
    module Mdtranslator
@@ -54,6 +55,8 @@ module ADIWG
                   lineageClass = LI_Lineage.new(@xml, @hResponseObj)
                   constraintClass = Constraint.new(@xml, @hResponseObj)
                   maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
+                  representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
+                  referenceSystemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
 
                   # create shortcuts to sections of internal object
                   hMetadata = intObj[:metadata]
@@ -242,7 +245,7 @@ module ADIWG
                      aRepresentations.each do |hRepresentation|
                         unless hRepresentation.empty?
                            @xml.tag!('mdb:spatialRepresentationInfo') do
-                              responsibilityClass.writeXML(hRepresentation, 'metadata spatial representation')
+                              representationClass.writeXML(hRepresentation, 'resource spatial representation')
                            end
                         end
                      end
@@ -251,6 +254,17 @@ module ADIWG
                      end
 
                      # metadata information - reference system info [] {MD_ReferenceSystem}
+                     aReferenceSystems = hResInfo[:spatialReferenceSystems]
+                     aReferenceSystems.each do |hSystem|
+                        unless hSystem.empty?
+                           @xml.tag!('mdb:referenceSystemInfo') do
+                              referenceSystemClass.writeXML(hSystem, 'resource spatial reference system')
+                           end
+                        end
+                     end
+                     if aReferenceSystems.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mdb:referenceSystemInfo')
+                     end
 
                      # ###################### Begin Data Identification #####################
 
@@ -272,7 +286,7 @@ module ADIWG
                      aCoverages.each do |hCoverage|
                         unless hCoverage.empty?
                            @xml.tag!('mdb:contentInfo') do
-                              haveImage = hCoverage[:imageDescription].empty?
+                              haveImage = !hCoverage[:imageDescription].empty?
                               if haveImage
                                  imageClass.writeXML(hCoverage)
                               else
