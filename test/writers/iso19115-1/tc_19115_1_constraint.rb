@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# writers / iso19115_1 / class_boundingBox
+# writers / iso19115_1 / class_constraint
 
 # History:
 #  Stan Smith 2019-04-18 original script

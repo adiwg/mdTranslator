@@ -56,7 +56,7 @@ module ADIWG
                   aGraphics = hConstraint[:graphic]
                   aGraphics.each do |hGraphic|
                      @xml.tag!('mco:graphic') do
-                        graphClass.writeXML(hGraphic, outContext)
+                        graphClass.writeXML(hGraphic, inContext)
                      end
                   end
                   if aGraphics.empty? && @hResponseObj[:writerShowTags]
@@ -64,7 +64,7 @@ module ADIWG
                   end
 
                   # use constraints - reference [] {CI_Citation}
-                  aReferences = hConstraint[:responsibleParty]
+                  aReferences = hConstraint[:reference]
                   aReferences.each do |hCitation|
                      @xml.tag!('mco:reference') do
                         citationClass.writeXML(hCitation, inContext)

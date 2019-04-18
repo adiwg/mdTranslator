@@ -32,7 +32,7 @@ module ADIWG
                   outContext = 'scope'
                   outContext = inContext + ' scope' unless inContext.nil?
 
-                  @xml.tag!('mcc:DQ_Scope') do
+                  @xml.tag!('mcc:MD_Scope') do
 
                      # scope - level (required)
                      unless hScope[:scopeCode].nil?

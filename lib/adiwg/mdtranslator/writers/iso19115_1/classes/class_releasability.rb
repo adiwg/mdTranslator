@@ -54,10 +54,10 @@ module ADIWG
                      aConstraint = hRelease[:disseminationConstraint]
                      aConstraint.each do |constraint|
                         @xml.tag!('mco:disseminationConstraints') do
-                           codelistClass.writeXML('mco', 'iso_dateType', constraint)
+                           codelistClass.writeXML('mco', 'iso_restriction', constraint)
                         end
                      end
-                     if aConstraint.empty && @hResponseObj[:writerShowTags]
+                     if aConstraint.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mco:disseminationConstraints')
                      end
 
