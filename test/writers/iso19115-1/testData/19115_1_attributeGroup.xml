@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mrc:attributeGroup>
+    <mrc:MD_AttributeGroup>
+      <mrc:contentType>
+        <mrc:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
+      </mrc:contentType>
+      <mrc:attribute>
+        <mrc:MD_RangeDimension>
+          <mrc:sequenceIdentifier>
+            <gco:MemberName>
+              <gco:aName>
+                <gco:CharacterString>sequence identifier name</gco:CharacterString>
+              </gco:aName>
+              <gco:attributeType>
+                <gco:TypeName>
+                  <gco:aName>
+                    <gco:CharacterString>sequence identifier type</gco:CharacterString>
+                  </gco:aName>
+                </gco:TypeName>
+              </gco:attributeType>
+            </gco:MemberName>
+          </mrc:sequenceIdentifier>
+          <mrc:description>
+            <gco:CharacterString>attribute description</gco:CharacterString>
+          </mrc:description>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier one</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier two</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+        </mrc:MD_RangeDimension>
+      </mrc:attribute>
+    </mrc:MD_AttributeGroup>
+  </mrc:attributeGroup>
+
+  <mrc:attributeGroup>
+    <mrc:MD_AttributeGroup>
+      <mrc:contentType>
+        <mrc:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
+      </mrc:contentType>
+      <mrc:contentType>
+        <mrc:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type two" codeSpace="userCode"/>
+      </mrc:contentType>
+      <mrc:attribute>
+        <mrc:MD_RangeDimension>
+          <mrc:sequenceIdentifier>
+            <gco:MemberName>
+              <gco:aName>
+                <gco:CharacterString>sequence identifier name</gco:CharacterString>
+              </gco:aName>
+              <gco:attributeType>
+                <gco:TypeName>
+                  <gco:aName>
+                    <gco:CharacterString>sequence identifier type</gco:CharacterString>
+                  </gco:aName>
+                </gco:TypeName>
+              </gco:attributeType>
+            </gco:MemberName>
+          </mrc:sequenceIdentifier>
+          <mrc:description>
+            <gco:CharacterString>attribute description</gco:CharacterString>
+          </mrc:description>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier one</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier two</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+        </mrc:MD_RangeDimension>
+      </mrc:attribute>
+      <mrc:attribute>
+        <mrc:MD_SampleDimension>
+          <mrc:sequenceIdentifier>
+            <gco:MemberName>
+              <gco:aName>
+                <gco:CharacterString>sequence identifier name</gco:CharacterString>
+              </gco:aName>
+              <gco:attributeType>
+                <gco:TypeName>
+                  <gco:aName>
+                    <gco:CharacterString>sequence identifier type</gco:CharacterString>
+                  </gco:aName>
+                </gco:TypeName>
+              </gco:attributeType>
+            </gco:MemberName>
+          </mrc:sequenceIdentifier>
+          <mrc:description>
+            <gco:CharacterString>attribute description</gco:CharacterString>
+          </mrc:description>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier one</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+          <mrc:name>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>attribute identifier two</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace/>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </mrc:name>
+          <mrc:maxValue>
+            <gco:Real>9</gco:Real>
+          </mrc:maxValue>
+          <mrc:minValue>
+            <gco:Real>0</gco:Real>
+          </mrc:minValue>
+          <mrc:units>
+            <gml:UnitDefinition gml:id="unit_002">
+              <gml:identifier codeSpace="">min/max units</gml:identifier>
+            </gml:UnitDefinition>
+          </mrc:units>
+          <mrc:scaleFactor>
+            <gco:Real>99.9</gco:Real>
+          </mrc:scaleFactor>
+          <mrc:offset>
+            <gco:Real>1.0</gco:Real>
+          </mrc:offset>
+          <mrc:meanValue>
+            <gco:Real>50.0</gco:Real>
+          </mrc:meanValue>
+          <mrc:numberOfValues>
+            <gco:Integer>9</gco:Integer>
+          </mrc:numberOfValues>
+          <mrc:standardDeviation>
+            <gco:Real>9.9</gco:Real>
+          </mrc:standardDeviation>
+          <mrc:bitsPerValue>
+            <gco:Integer>9</gco:Integer>
+          </mrc:bitsPerValue>
+        </mrc:MD_SampleDimension>
+      </mrc:attribute>
+    </mrc:MD_AttributeGroup>
+  </mrc:attributeGroup>
+
+  <mrc:attributeGroup>
+    <mrc:MD_AttributeGroup>
+      <mrc:contentType>
+        <mrc:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type one" codeSpace="userCode"/>
+      </mrc:contentType>
+      <mrc:contentType>
+        <mrc:MD_CoverageContentTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CoverageContentTypeCode" codeListValue="attribute content type two" codeSpace="userCode"/>
+      </mrc:contentType>
+      <mrc:attribute/>
+    </mrc:MD_AttributeGroup>
+  </mrc:attributeGroup>
+
+</mdb:MD_Metadata>

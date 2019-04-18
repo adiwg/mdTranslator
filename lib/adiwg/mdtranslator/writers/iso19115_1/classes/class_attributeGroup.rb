@@ -53,6 +53,9 @@ module ADIWG
                               end
                            end
                         end
+                        if aAttributes.empty? && @hResponseObj[:writerShowTags]
+                           @xml.tag!('mrc:attribute')
+                        end
 
                      end
                   end
