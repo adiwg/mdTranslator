@@ -83,7 +83,8 @@ module ADIWG
                         @xml.tag!('cit:edition')
                      end
 
-                     # citation - edition date {DateTime} - not supported
+                     # citation - edition date {DateTime} - not implemented
+                     # would need to add dateTypeCode = 'edition'
 
                      # citation - resource identifier [] {MD_Identifier}
                      # process ISBN and ISSN as MD_identifier(s)
@@ -122,7 +123,7 @@ module ADIWG
                      aPresForms = hCitation[:presentationForms]
                      aPresForms.each do |presForm|
                         @xml.tag!('cit:presentationForm') do
-                           codelistClass.writeXML('gmd', 'iso_presentationForm', presForm)
+                           codelistClass.writeXML('cit', 'iso_presentationForm', presForm)
                         end
                      end
                      if aPresForms.empty? && @hResponseObj[:writerShowTags]
