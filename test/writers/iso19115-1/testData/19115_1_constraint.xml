@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mri:resourceConstraints>
+    <mco:MD_Constraints>
+      <mco:useLimitation>
+        <gco:CharacterString>limitation one</gco:CharacterString>
+      </mco:useLimitation>
+      <mco:useLimitation>
+        <gco:CharacterString>limitation two</gco:CharacterString>
+      </mco:useLimitation>
+      <mco:constraintApplicationScope/>
+      <mco:graphic/>
+      <mco:reference/>
+      <mco:releasability/>
+      <mco:responsibleParty/>
+    </mco:MD_Constraints>
+  </mri:resourceConstraints>
+
+  <mri:resourceConstraints>
+    <mco:MD_LegalConstraints>
+      <mco:useLimitation/>
+      <mco:constraintApplicationScope/>
+      <mco:graphic/>
+      <mco:reference/>
+      <mco:releasability/>
+      <mco:responsibleParty/>
+      <mco:accessConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="access constraint" codeSpace="userCode"/>
+      </mco:accessConstraints>
+      <mco:useConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="use constraint" codeSpace="userCode"/>
+      </mco:useConstraints>
+      <mco:otherConstraints>
+        <gco:CharacterString>other constraint</gco:CharacterString>
+      </mco:otherConstraints>
+    </mco:MD_LegalConstraints>
+  </mri:resourceConstraints>
+
+  <mri:resourceConstraints>
+    <mco:MD_SecurityConstraints>
+      <mco:useLimitation/>
+      <mco:constraintApplicationScope/>
+      <mco:graphic/>
+      <mco:reference/>
+      <mco:releasability/>
+      <mco:responsibleParty/>
+      <mco:classification>
+        <mco:MD_ClassificationCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ClassificationCode" codeListValue="classification" codeSpace="userCode"/>
+      </mco:classification>
+      <mco:userNote>
+        <gco:CharacterString>user note</gco:CharacterString>
+      </mco:userNote>
+      <mco:classificationSystem>
+        <gco:CharacterString>classification system</gco:CharacterString>
+      </mco:classificationSystem>
+      <mco:handlingDescription>
+        <gco:CharacterString>handling instructions</gco:CharacterString>
+      </mco:handlingDescription>
+    </mco:MD_SecurityConstraints>
+  </mri:resourceConstraints>
+
+</mdb:MD_Metadata>
