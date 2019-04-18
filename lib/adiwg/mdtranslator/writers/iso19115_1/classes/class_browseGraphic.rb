@@ -33,40 +33,38 @@ module ADIWG
                   @xml.tag!('mcc:MD_BrowseGraphic') do
 
                      # browse graphic - file name (required)
-                     s = hGraphic[:graphicName]
-                     unless s.nil?
+                     unless hGraphic[:graphicName].nil?
                         @xml.tag!('mcc:fileName') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hGraphic[:graphicName])
                         end
                      end
-                     if s.nil?
+                     if hGraphic[:graphicName].nil?
                         @NameSpace.issueWarning(20, 'mcc:fileName', outContext)
                      end
 
                      # browse graphic - file description
-                     s = hGraphic[:graphicDescription]
-                     unless s.nil?
+                     unless hGraphic[:graphicDescription].nil?
                         @xml.tag!('mcc:fileDescription') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hGraphic[:graphicDescription])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
+                     if hGraphic[:graphicDescription].nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mcc:fileDescription')
                      end
 
                      # browse graphic - file type
-                     s = hGraphic[:graphicType]
-                     unless s.nil?
+                     unless hGraphic[:graphicType].nil?
                         @xml.tag!('mcc:fileType') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hGraphic[:graphicType])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
+                     if hGraphic[:graphicType].nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mcc:fileType')
                      end
 
-                     # browse graphic - image constraint [] {MD_Constraints | MD_SecurityConstraints | MD_LegalConstraints}
-                     aConstraint = hGraphic[:graphicURI]
+                     # browse graphic - image constraint []
+                     # {MD_Constraints | MD_SecurityConstraints | MD_LegalConstraints}
+                     aConstraint = hGraphic[:graphicConstraints]
                      aConstraint.each do |hCon|
                         @xml.tag!('mcc:imageConstraints') do
                            constraintClass.writeXML(hCon, outContext)
