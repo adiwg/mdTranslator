@@ -68,7 +68,9 @@ module ADIWG
                         aLogos = hContact[:logos]
                         aLogos.each do |hLogo|
                            unless hLogo.empty?
-                              graphicClass.writeXML(hLogo)
+                              @xml.tag!('cit:logo') do
+                                 graphicClass.writeXML(hLogo)
+                              end
                            end
                            if hLogo.empty?
                               @NameSpace.issueWarning(273, nil, outContext)
@@ -80,7 +82,9 @@ module ADIWG
                         aMembers.each do |memberId|
                            hMember = @NameSpace.getContact(memberId)
                            unless hMember.empty?
-                              individualClass.writeXML(hMember, outContext)
+                              @xml.tag!('cit:individual') do
+                                 individualClass.writeXML(hMember, outContext)
+                              end
                            end
                            if hMember.empty?
                               @NameSpace.issueWarning(274, nil, outContext)
