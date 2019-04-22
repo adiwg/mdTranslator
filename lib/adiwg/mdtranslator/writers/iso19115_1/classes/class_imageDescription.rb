@@ -47,7 +47,7 @@ module ADIWG
                            end
                         end
                         if attDesc == ''
-                           @NameSpace.issueWarning(40, 'gmd:attributeDescription')
+                           @NameSpace.issueWarning(40, 'mrc:attributeDescription')
                         end
 
                         # image description - processing level code {MD_Identifier}
@@ -73,105 +73,94 @@ module ADIWG
                            @xml.tag!('mrc:attributeGroup')
                         end
 
-                     end
+                        hImage = hCoverage[:imageDescription]
+                        unless hImage.empty?
 
-                     hImage = hCoverage[:imageDescription]
-                     unless hImage.empty?
-
-                        # image description - illumination elevation angle
-                        s = hImage[:illuminationElevationAngle]
-                        unless s.nil?
-                           @xml.tag!('gmd:illuminationElevationAngle') do
-                              @xml.tag!('gco:Real', s)
+                           # image description - illumination elevation angle
+                           unless hImage[:illuminationElevationAngle].nil?
+                              @xml.tag!('mrc:illuminationElevationAngle') do
+                                 @xml.tag!('gco:Real', hImage[:illuminationElevationAngle])
+                              end
                            end
-                        end
-                        if s.nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:illuminationElevationAngle')
-                        end
-
-                        # image description - illumination azimuth angle
-                        s = hImage[:illuminationAzimuthAngle]
-                        unless s.nil?
-                           @xml.tag!('gmd:illuminationAzimuthAngle') do
-                              @xml.tag!('gco:Real', s)
+                           if hImage[:illuminationElevationAngle].nil? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:illuminationElevationAngle')
                            end
-                        end
-                        if s.nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:illuminationAzimuthAngle')
-                        end
 
-                        # image description - image condition {MD_ImageConditionCode}
-                        s = hImage[:imagingCondition]
-                        unless s.nil?
-                           @xml.tag!('gmd:imagingCondition') do
-                              codelistClass.writeXML('gmd', 'iso_imageCondition', s)
+                           # image description - illumination azimuth angle
+                           unless hImage[:illuminationAzimuthAngle].nil?
+                              @xml.tag!('mrc:illuminationAzimuthAngle') do
+                                 @xml.tag!('gco:Real', hImage[:illuminationAzimuthAngle])
+                              end
                            end
-                        end
-                        if s.nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:imagingCondition')
-                        end
-
-                        # image description - image quality code {MD_Identifier}
-                        resId = hImage[:imageQualityCode]
-                        unless resId.empty?
-                           @xml.tag!('gmd:imageQualityCode') do
-                              identifierClass.writeXML(resId, 'image quality code')
+                           if hImage[:illuminationAzimuthAngle].nil? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:illuminationAzimuthAngle')
                            end
-                        end
-                        if resId.empty? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:imageQualityCode')
-                        end
 
-                        # image description - cloud cover percentage
-                        s = hImage[:cloudCoverPercent]
-                        unless s.nil?
-                           @xml.tag!('gmd:cloudCoverPercentage') do
-                              @xml.tag!('gco:Real', s)
+                           # image description - image condition {MD_ImageConditionCode}
+                           unless hImage[:imagingCondition].nil?
+                              @xml.tag!('mrc:imagingCondition') do
+                                 codelistClass.writeXML('mrc', 'iso_imageCondition', hImage[:imagingCondition])
+                              end
                            end
-                        end
-                        if s.nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:cloudCoverPercentage')
-                        end
-
-                        # image description - compression generation quality
-                        s = hImage[:compressionQuantity]
-                        unless s.nil?
-                           @xml.tag!('gmd:compressionGenerationQuantity') do
-                              @xml.tag!('gco:Integer', s)
+                           if hImage[:imagingCondition].nil? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:imagingCondition')
                            end
-                        end
-                        if s.nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('gmd:compressionGenerationQuantity')
-                        end
 
-                        # image description - triangulation indicator
-                        s = hImage[:triangulationIndicator]
-                        @xml.tag!('gmd:triangulationIndicator') do
-                           @xml.tag!('gco:Boolean', s)
-                        end
+                           # image description - image quality code {MD_Identifier}
+                           unless hImage[:imageQualityCode].empty?
+                              @xml.tag!('mrc:imageQualityCode') do
+                                 identifierClass.writeXML(hImage[:imageQualityCode], 'image quality code')
+                              end
+                           end
+                           if hImage[:imageQualityCode].empty? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:imageQualityCode')
+                           end
 
-                        # image description - radiometric calibration data availability
-                        s = hImage[:radiometricCalibrationAvailable]
-                        @xml.tag!('gmd:radiometricCalibrationDataAvailability') do
-                           @xml.tag!('gco:Boolean', s)
-                        end
+                           # image description - cloud cover percentage
+                           unless hImage[:cloudCoverPercent].nil?
+                              @xml.tag!('mrc:cloudCoverPercentage') do
+                                 @xml.tag!('gco:Real', hImage[:cloudCoverPercent])
+                              end
+                           end
+                           if hImage[:cloudCoverPercent].nil? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:cloudCoverPercentage')
+                           end
 
-                        # image description - camera calibration information availability
-                        s = hImage[:cameraCalibrationAvailable]
-                        @xml.tag!('gmd:cameraCalibrationInformationAvailability') do
-                           @xml.tag!('gco:Boolean', s)
-                        end
+                           # image description - compression generation quality
+                           unless hImage[:compressionQuantity].nil?
+                              @xml.tag!('mrc:compressionGenerationQuantity') do
+                                 @xml.tag!('gco:Integer', hImage[:compressionQuantity])
+                              end
+                           end
+                           if hImage[:compressionQuantity].nil? && @hResponseObj[:writerShowTags]
+                              @xml.tag!('mrc:compressionGenerationQuantity')
+                           end
 
-                        # image description - film distortion information availability
-                        s = hImage[:filmDistortionAvailable]
-                        @xml.tag!('gmd:filmDistortionInformationAvailability') do
-                           @xml.tag!('gco:Boolean', s)
-                        end
+                           # image description - triangulation indicator
+                           @xml.tag!('mrc:triangulationIndicator') do
+                              @xml.tag!('gco:Boolean', hImage[:triangulationIndicator])
+                           end
 
-                        # image description - lens distortion information availability
-                        s = hImage[:lensDistortionAvailable]
-                        @xml.tag!('gmd:lensDistortionInformationAvailability') do
-                           @xml.tag!('gco:Boolean', s)
+                           # image description - radiometric calibration data availability
+                           @xml.tag!('mrc:radiometricCalibrationDataAvailability') do
+                              @xml.tag!('gco:Boolean', hImage[:radiometricCalibrationAvailable])
+                           end
+
+                           # image description - camera calibration information availability
+                           @xml.tag!('mrc:cameraCalibrationInformationAvailability') do
+                              @xml.tag!('gco:Boolean', hImage[:cameraCalibrationAvailable])
+                           end
+
+                           # image description - film distortion information availability
+                           @xml.tag!('mrc:filmDistortionInformationAvailability') do
+                              @xml.tag!('gco:Boolean', hImage[:filmDistortionAvailable])
+                           end
+
+                           # image description - lens distortion information availability
+                           @xml.tag!('mrc:lensDistortionInformationAvailability') do
+                              @xml.tag!('gco:Boolean', hImage[:lensDistortionAvailable])
+                           end
+
                         end
 
                      end
