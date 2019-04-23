@@ -17,7 +17,7 @@ class TestWriter191152Usage < TestWriter191152Parent
 
    mdHash = TDClass.base
 
-   hUsage1 = TDClass.build_resourceUsage('usage one')
+   hUsage1 = TDClass.build_resourceUsage(usage:'usage one')
    mdHash[:metadata][:resourceInfo][:resourceUsage] = []
    mdHash[:metadata][:resourceInfo][:resourceUsage] << hUsage1
 
@@ -41,7 +41,7 @@ class TestWriter191152Usage < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       aUsage = hIn[:metadata][:resourceInfo][:resourceUsage]
-      hUsage2 = TDClass.build_resourceUsage('usage two')
+      hUsage2 = TDClass.build_resourceUsage(usage: 'usage two')
       hTimePeriod = TDClass.build_timePeriod('TP002', 'usage two', '2018-05-02T15:12')
       hUsage2[:temporalExtent] << { timePeriod: hTimePeriod }
       hUsage2[:additionalDocumentation] << TDClass.citation

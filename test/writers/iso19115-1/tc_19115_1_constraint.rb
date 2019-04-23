@@ -37,6 +37,8 @@ class TestWriter191151Constraint < TestWriter191151Parent
    def test_constraint_legal
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
+      hConstraint = TDClass.build_legalConstraint
+      hIn[:metadata][:resourceInfo][:constraint][0] = hConstraint
 
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_constraint',
                                                 '//mri:resourceConstraints[2]',

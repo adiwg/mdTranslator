@@ -20,7 +20,7 @@ class TestWriter191152DataIdentification < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   def test_dataIdentification_missing_elements
+   def test_dataIdentification_minimum
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 

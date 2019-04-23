@@ -12,12 +12,13 @@ require_relative 'class_citation'
 require_relative 'class_responsibility'
 require_relative 'class_resolution'
 require_relative 'class_extent'
+require_relative 'class_constraint'
 require_relative 'class_maintenance'
 require_relative 'class_browseGraphic'
 require_relative 'class_format'
 require_relative 'class_keyword'
 require_relative 'class_usage'
-require_relative 'class_constraint'
+require_relative 'class_additionalDocument'
 require_relative 'class_associatedResource'
 require_relative 'class_locale'
 
@@ -43,6 +44,7 @@ module ADIWG
                   responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
                   resolutionClass = MD_Resolution.new(@xml, @hResponseObj)
                   extentClass = EX_Extent.new(@xml, @hResponseObj)
+                  documentClass = AdditionalDocument.new(@xml, @hResponseObj)
                   maintClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
                   graphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
                   formatClass = MD_Format.new(@xml, @hResponseObj)
@@ -130,7 +132,7 @@ module ADIWG
                      aSpatialTypes = hResource[:spatialRepresentationTypes]
                      aSpatialTypes.each do |code|
                         @xml.tag!('mri:spatialRepresentationType') do
-                           codelistClass.writeXML('mri', 'iso_spatialRepresentation', code)
+                           codelistClass.writeXML('mcc', 'iso_spatialRepresentation', code)
                         end
                      end
                      if aSpatialTypes.empty? && @hResponseObj[:writerShowTags]
@@ -205,11 +207,11 @@ module ADIWG
                         @xml.tag!('mri:extent')
                      end
 
-                     # data identification - additional documentation [] {CI_Citation}
+                     # data identification - additional documentation [] {AdditionalDocument}
                      aDocuments = hMetadata[:additionalDocuments]
                      aDocuments.each do |hDoc|
-                        @xml.tag!('mri:additionalDocumentation') do
-                           citationClass.writeXML(hDoc)
+                        unless hDoc.empty?
+                           documentClass.writeXML(hDoc)
                         end
                      end
                      if aDocuments.empty? && @hResponseObj[:writerShowTags]

@@ -17,7 +17,7 @@ class TestWriterMdJsonResourceUsage < TestWriterMdJsonParent
    mdHash = TDClass.base
 
    mdHash[:metadata][:resourceInfo][:resourceUsage] = []
-   mdHash[:metadata][:resourceInfo][:resourceUsage] << TDClass.build_resourceUsage('usage one')
+   mdHash[:metadata][:resourceInfo][:resourceUsage] << TDClass.build_resourceUsage(usage: 'usage one')
 
    @@mdHash = mdHash
 

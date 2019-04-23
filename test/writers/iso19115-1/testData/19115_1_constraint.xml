@@ -48,13 +48,22 @@
       <mco:releasability/>
       <mco:responsibleParty/>
       <mco:accessConstraints>
-        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="access constraint" codeSpace="userCode"/>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="access constraint one" codeSpace="userCode"/>
+      </mco:accessConstraints>
+      <mco:accessConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="access constraint two" codeSpace="userCode"/>
       </mco:accessConstraints>
       <mco:useConstraints>
-        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="use constraint" codeSpace="userCode"/>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="use constraint one" codeSpace="userCode"/>
+      </mco:useConstraints>
+      <mco:useConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="use constraint two" codeSpace="userCode"/>
       </mco:useConstraints>
       <mco:otherConstraints>
-        <gco:CharacterString>other constraint</gco:CharacterString>
+        <gco:CharacterString>other constraint one</gco:CharacterString>
+      </mco:otherConstraints>
+      <mco:otherConstraints>
+        <gco:CharacterString>other constraint two</gco:CharacterString>
       </mco:otherConstraints>
     </mco:MD_LegalConstraints>
   </mri:resourceConstraints>

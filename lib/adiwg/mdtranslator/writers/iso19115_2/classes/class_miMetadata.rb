@@ -95,7 +95,6 @@ module ADIWG
                   hMetadata = intObj[:metadata]
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
-                  aAssocRes = hMetadata[:associatedResources]
                   aDistInfo = hMetadata[:distributorInfo]
                   version = @hResponseObj[:translatorVersion]
 

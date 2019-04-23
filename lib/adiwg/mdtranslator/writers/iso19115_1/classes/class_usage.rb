@@ -31,6 +31,8 @@ module ADIWG
                   responsibilityClass = CI_Responsibility.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
 
+                  outContext = 'resource usage'
+
                   @xml.tag!('mri:MD_Usage') do
 
                      # usage - specific usage (required)
@@ -61,7 +63,7 @@ module ADIWG
                               haveTime = true
                            end
                            if !haveTime
-                              @NameSpace.issueWarning(410, 'mri:usageDateTime', 'resource usage')
+                              @NameSpace.issueWarning(410, 'mri:usageDateTime', outContext)
                            end
                         end
                      end
@@ -82,12 +84,12 @@ module ADIWG
                      # usage - user contact info [] {CI_Responsibility}
                      aResponsibility = hUsage[:userContacts]
                      aResponsibility.each do |hResponsibility|
-                        @xml.tag!('cit:citedResponsibleParty') do
+                        @xml.tag!('mri:userContactInfo') do
                            responsibilityClass.writeXML(hResponsibility, outContext)
                         end
                      end
                      if aResponsibility.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('cit:citedResponsibleParty')
+                        @xml.tag!('mri:userContactInfo')
                      end
 
                      # usage - response []
@@ -105,7 +107,7 @@ module ADIWG
                      aDocuments = hUsage[:additionalDocumentation]
                      aDocuments.each do |hDocument|
                         @xml.tag!('mri:additionalDocumentation') do
-                           citationClass.writeXML(hDocument, 'resource usage')
+                           citationClass.writeXML(hDocument, outContext)
                         end
                      end
                      if aDocuments.empty? && @hResponseObj[:writerShowTags]
@@ -115,7 +117,7 @@ module ADIWG
                      # usage - identification issues {CI_Citation}
                      unless hUsage[:identifiedIssue].empty?
                         @xml.tag!('mri:identifiedIssues') do
-                           citationClass.writeXML(hUsage[:identifiedIssue], 'resource usage')
+                           citationClass.writeXML(hUsage[:identifiedIssue], outContext)
                         end
                      end
                      if hUsage[:identifiedIssue].empty? && @hResponseObj[:writerShowTags]

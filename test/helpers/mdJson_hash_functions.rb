@@ -92,7 +92,7 @@ class MdJsonHashWriter
       return hDistributor
    end
 
-   def build_duration(year = nil, mon = nil, day = nil, hour = nil, min = nil, sec = nil)
+   def build_duration(year: nil, mon: nil, day: nil, hour: nil, min: nil, sec: nil)
       hDuration = {}
       hDuration[:years] = year
       hDuration.delete(:years) if year.nil?
@@ -442,8 +442,8 @@ class MdJsonHashWriter
       add_keyword(hResourceInfo[:keyword][0], 'keyword one', 'KWID001')
       hResourceInfo[:keyword] << build_keywords('keywords two', 'theme two')
       add_keyword(hResourceInfo[:keyword][1], 'keyword two', 'KWID002')
-      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage one')
-      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage two')
+      hResourceInfo[:resourceUsage] << build_resourceUsage(usage: 'resource usage one')
+      hResourceInfo[:resourceUsage] << build_resourceUsage(usage:'resource usage two')
       hResourceInfo[:constraint] << build_useConstraint
       hResourceInfo[:constraint] << build_legalConstraint
       hResourceInfo[:otherResourceLocale] << locale
@@ -453,10 +453,10 @@ class MdJsonHashWriter
       return hResourceInfo
    end
 
-   def build_resourceUsage(usage = nil, startDT = '2018-05-02', endDT = nil, aContacts = ['CID004'])
+   def build_resourceUsage(usage: nil, startDT: '2018-05-02', endDT: nil, aContacts: ['CID004'], timeID: 'TP001')
       hUsage = resourceUsage
       hUsage[:specificUsage] = usage unless usage.nil?
-      hTimePeriod = build_timePeriod('TP001', 'usage one', startDT, endDT)
+      hTimePeriod = build_timePeriod(timeID, 'usage one', startDT, endDT)
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
       hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', aContacts)
       return hUsage
@@ -865,7 +865,7 @@ class MdJsonHashWriter
    end
 
    def add_duration(hTimePeriod, year = nil, mon = nil, day = nil, hour = nil, min = nil, sec = nil)
-      hDuration = build_duration(year, mon, day, hour, min, sec)
+      hDuration = build_duration(year: year, mon: mon, day: day, hour: hour, min: min, sec: sec)
       hTimePeriod[:duration] = hDuration
       return hTimePeriod
    end

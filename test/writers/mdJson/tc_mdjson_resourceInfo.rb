@@ -56,8 +56,8 @@ class TestWriterMdJsonResourceInfo < TestWriterMdJsonParent
 
    # temporal resolution []
    hResInfo[:temporalResolution] = []
-   hResInfo[:temporalResolution] << TDClass.build_duration(1,6)
-   hResInfo[:temporalResolution] << TDClass.build_duration(nil,nil,30)
+   hResInfo[:temporalResolution] << TDClass.build_duration(year: 1, mon: 6)
+   hResInfo[:temporalResolution] << TDClass.build_duration(day: 30)
 
    # extent [+]
    hResInfo[:extent] << TDClass.build_extent
