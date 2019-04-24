@@ -45,12 +45,12 @@ module ADIWG
                      # distributor - order process [{MD_StandardOrderProcess}]
                      aDistOrderProc = hDistributor[:orderProcess]
                      aDistOrderProc.each do |hOrder|
-                        @xml.tag!('gmd:distributionOrderProcess') do
+                        @xml.tag!('mrd:distributionOrderProcess') do
                            orderClass.writeXML(hOrder)
                         end
                      end
                      if aDistOrderProc.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:distributionOrderProcess')
+                        @xml.tag!('mrd:distributionOrderProcess')
                      end
 
                      # distributor - format [] {MD_Format}
@@ -59,15 +59,15 @@ module ADIWG
                      # distributor - transfer options [{MD_DigitalTransferOptions}]
                      aOptions = hDistributor[:transferOptions]
                      aOptions.each do |hOption|
-                        @xml.tag!('gmd:distributorTransferOptions') do
+                        @xml.tag!('mrd:distributorTransferOptions') do
                            transferClass.writeXML(hOption)
                         end
                      end
                      if aOptions.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gmd:distributorTransferOptions')
+                        @xml.tag!('mrd:distributorTransferOptions')
                      end
 
-                  end # gmd:MD_Distributor tag
+                  end # mrd:MD_Distributor tag
                end # writeXML
             end # MD_Distributor class
 
