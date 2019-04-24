@@ -49,12 +49,12 @@ module ADIWG
 
                      # vertical extent - vertical crs ID {MD_ReferenceSystem}
                      unless hVertEle[:crsId].empty?
-                        @xml.tag!('gex:verticalCRS') do
+                        @xml.tag!('gex:verticalCRSId') do
                            referenceClass.writeXML(hVertEle[:crsId])
                         end
                      end
                      if hVertEle[:crsId].empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('gex:verticalCRS')
+                        @xml.tag!('gex:verticalCRSId')
                      end
 
                      # vertical extent - vertical crs {many possible classes}
