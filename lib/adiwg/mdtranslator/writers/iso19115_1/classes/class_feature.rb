@@ -16,7 +16,7 @@ require_relative 'class_geometryCollection'
 module ADIWG
    module Mdtranslator
       module Writers
-         module Iso19115_2
+         module Iso19115_1
 
             class Feature
 

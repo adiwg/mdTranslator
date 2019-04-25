@@ -37,9 +37,9 @@ module ADIWG
                   attributes['gml:id'] = objId
 
                   # Point attributes - srsDimension
-                  s = AdiwgCoordinates.getDimension(hGeoObject[:coordinates])
-                  if !s.nil?
-                     attributes[:srsDimension] = s
+                  nDimension = AdiwgCoordinates.getDimension(hGeoObject[:coordinates])
+                  unless nDimension.nil?
+                     attributes[:srsDimension] = nDimension
                   end
 
                   # Point attributes - srsName (GeoJSON is WGS84)
