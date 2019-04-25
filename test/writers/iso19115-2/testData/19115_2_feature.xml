@@ -378,13 +378,13 @@
           <gco:Decimal>100.0</gco:Decimal>
         </gmd:westBoundLongitude>
         <gmd:eastBoundLongitude>
-          <gco:Decimal>102.0</gco:Decimal>
+          <gco:Decimal>101.0</gco:Decimal>
         </gmd:eastBoundLongitude>
         <gmd:southBoundLatitude>
-          <gco:Decimal>0.0</gco:Decimal>
+          <gco:Decimal>10.0</gco:Decimal>
         </gmd:southBoundLatitude>
         <gmd:northBoundLatitude>
-          <gco:Decimal>1.0</gco:Decimal>
+          <gco:Decimal>11.0</gco:Decimal>
         </gmd:northBoundLatitude>
       </gmd:EX_GeographicBoundingBox>
     </gmd:geographicElement>
@@ -400,14 +400,14 @@
                 <gml:description/>
                 <gml:identifier codeSpace=""/>
                 <gml:name/>
-                <gml:pos>100.0 0.0</gml:pos>
+                <gml:pos>100.0 10.0</gml:pos>
               </gml:Point>
               <gml:LineString gml:id="line_003" srsDimension="2" srsName="WGS84">
                 <gml:description/>
                 <gml:identifier codeSpace=""/>
                 <gml:name/>
-                <gml:pos>101.0 0.0</gml:pos>
-                <gml:pos>102.0 1.0</gml:pos>
+                <gml:pos>100.0 10.0</gml:pos>
+                <gml:pos>101.0 11.0</gml:pos>
               </gml:LineString>
             </gml:geometryMembers>
           </gml:MultiGeometry>

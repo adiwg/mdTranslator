@@ -124,29 +124,15 @@ class TestWriter191151Feature < TestWriter191151Parent
 
    def test_feature_geometryCollection
 
-      collection = {
-         "type": "GeometryCollection",
-         "bbox": [-10.0, -10.0, 10.0, 10.0],
-         "geometries": [
-            {
-               "type": "Point",
-               "coordinates": [100.0, 0.0]
-            },
-            {
-               "type": "LineString",
-               "coordinates": [
-                  [101.0, 0.0],
-                  [102.0, 1.0]
-               ]
-            }
-         ]
-      }
+      hGeoCollection = TDClass.geometryCollection
+      hGeoCollection[:geometries] << TDClass.point
+      hGeoCollection[:geometries] << TDClass.lineString
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hGeoExtent = hIn[:metadata][:resourceInfo][:extent][1][:geographicExtent]
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
-      hGeoElement << collection
+      hGeoElement << hGeoCollection
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[7]',
                                                 '//gex:EX_Extent', 1)
