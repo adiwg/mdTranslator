@@ -19,7 +19,7 @@ module ADIWG
                def initialize(xml, hResponseObj)
                   @xml = xml
                   @hResponseObj = hResponseObj
-                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_2
+                  @NameSpace = ADIWG::Mdtranslator::Writers::Iso19115_1
                end
 
                def writeXML(hDistributor)
