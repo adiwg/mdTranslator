@@ -1,14 +1,14 @@
 # MdTranslator - minitest of
-# writers / iso19115_1 / class_extent
+# writers / iso19115_2 / class_extent
 
 # History:
-#  Stan Smith 2019-04-24 original script
+#  Stan Smith 2019-04-25 original script
 
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
-require_relative 'iso19115_1_test_parent'
+require_relative 'iso19115_2_test_parent'
 
-class TestWriter191151Feature < TestWriter191151Parent
+class TestWriter191152Feature < TestWriter191152Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -27,9 +27,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.point
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[1]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[1]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -44,9 +44,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.lineString
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[2]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[2]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -61,9 +61,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.polygon
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[3]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[3]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -78,9 +78,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiPoint
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[4]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[4]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -95,9 +95,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiLineString
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[5]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[5]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -112,9 +112,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiPolygon
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[6]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[6]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -147,9 +147,9 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << collection
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
-                                                '//gex:EX_Extent[7]',
-                                                '//gex:EX_Extent', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_feature',
+                                                '//gmd:EX_Extent[7]',
+                                                '//gmd:EX_Extent', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
