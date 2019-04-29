@@ -36,12 +36,6 @@ module ADIWG
                      hGrid = hGeoRec[:gridRepresentation]
                      gridClass.writeXML(hGrid, outContext)
 
-                     # georectified - transformation parameter availability {Boolean} (required)
-                     # not included in mdJson 2.0
-                     @xml.tag!('msr:transformationParameterAvailability') do
-                        @xml.tag!('gco:Boolean', 'false')
-                     end
-
                      # georectified - checkpoint availability
                      @xml.tag!('msr:checkPointAvailability') do
                         @xml.tag!('gco:Boolean', hGeoRec[:checkPointAvailable])
@@ -57,21 +51,21 @@ module ADIWG
                         @xml.tag!('msr:checkPointDescription')
                      end
 
-                     # georectified - corner points (required)
-                     # note: 2 - 4 points are required, but XSD only allows 1
-                     # ... coordinates are flattened into one multi-dimensional point
+                     # georectified - corner points (2 or 4 required)
                      aCoords = hGeoRec[:cornerPoints]
-                     unless aCoords.empty?
-                        aCoords = aCoords.flatten
+                     aCoords.each do |aPoint|
                         hPoint = {}
                         hPoint[:type] = 'Point'
-                        hPoint[:coordinates] = aCoords
+                        hPoint[:coordinates] = aPoint
                         @xml.tag!('msr:cornerPoints') do
                            pointClass.writeXML(hPoint, {}, nil)
                         end
                      end
                      if aCoords.empty?
                         @NameSpace.issueWarning(170, 'msr:cornerPoints', 'spatial representation')
+                     end
+                     unless (aCoords.length == 2 || aCoords.length == 4)
+                        @NameSpace.issueWarning(172, 'msr:cornerPoints', 'spatial representation')
                      end
 
                      # georectified - center point
@@ -80,12 +74,12 @@ module ADIWG
                         hPoint = {}
                         hPoint[:type] = 'Point'
                         hPoint[:coordinates] = aCoords
-                        @xml.tag!('msr:centerPoint') do
+                        @xml.tag!('msr:centrePoint') do
                            pointClass.writeXML(hPoint, {}, nil)
                         end
                      end
                      if aCoords.empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('msr:centerPoint')
+                        @xml.tag!('msr:centrePoint')
                      end
 
                      # georectified - point in pixel (required)
