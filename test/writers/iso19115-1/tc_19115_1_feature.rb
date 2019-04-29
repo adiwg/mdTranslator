@@ -27,6 +27,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.point
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[1]',
                                                 '//gex:EX_Extent', 1)
@@ -44,6 +45,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.lineString
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[2]',
                                                 '//gex:EX_Extent', 1)
@@ -61,6 +63,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.polygon
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[3]',
                                                 '//gex:EX_Extent', 1)
@@ -78,6 +81,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiPoint
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[4]',
                                                 '//gex:EX_Extent', 1)
@@ -95,6 +99,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiLineString
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[5]',
                                                 '//gex:EX_Extent', 1)
@@ -112,6 +117,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << TDClass.multiPolygon
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[6]',
                                                 '//gex:EX_Extent', 1)
@@ -133,6 +139,7 @@ class TestWriter191151Feature < TestWriter191151Parent
       hGeoExtent << {geographicElement: []}
       hGeoElement = hGeoExtent[0][:geographicElement]
       hGeoElement << hGeoCollection
+
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_feature',
                                                 '//gex:EX_Extent[7]',
                                                 '//gex:EX_Extent', 1)

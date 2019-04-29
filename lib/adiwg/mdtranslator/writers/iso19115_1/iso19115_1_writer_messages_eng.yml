@@ -53,9 +53,11 @@ messageList:
    - {id: 150, message: "vector object type is missing"}
 
    - {id: 160, message: "GeoJSON geometry is not supported by geometry collection"}
+   - {id: 161, message: "Geometry collection has no geometries"}
 
    - {id: 170, message: "georectified corner points are missing"}
    - {id: 171, message: "georectified point in pixel is missing"}
+   - {id: 172, message: "georectified must have either 2 or 4 corner points"}
 
    - {id: 180, message: "georeferenced parameter is missing"}
 

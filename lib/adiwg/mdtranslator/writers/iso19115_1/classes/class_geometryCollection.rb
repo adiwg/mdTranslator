@@ -60,8 +60,8 @@ module ADIWG
                      end
 
                      # geometry collection - geometry objects (required)
-                     @xml.tag!('gml:geometryMembers') do
-                        unless hGeoObject[:geometryObjects].empty?
+                     unless hGeoObject[:geometryObjects].empty?
+                        @xml.tag!('gml:geometryMembers') do
                            aObjects = hGeoObject[:geometryObjects]
                            aObjects.each do |hGeoObj|
                               case hGeoObj[:type]
@@ -82,6 +82,9 @@ module ADIWG
                               end
                            end
                         end
+                     end
+                     if hGeoObject[:geometryObjects].empty?
+                        @NameSpace.issueWarning(161, nil, 'geometry collection')
                      end
 
                   end # gml:MultiGeometry tag
