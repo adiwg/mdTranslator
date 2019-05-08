@@ -43,9 +43,6 @@ module ADIWG
                            end
                            haveSystem = true
                         end
-                        if hSystem[:systemIdentifier].empty? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('mrs:referenceSystemIdentifier')
-                        end
 
                         # reference system - reference system WKT {MD_Identifier}
                         if hSystem[:systemIdentifier].empty? && !hSystem[:systemWKT].nil?
@@ -54,9 +51,15 @@ module ADIWG
                            hIdentifier[:namespace] = 'www.opengeospatial.org/standards/wkt-crs'
                            hIdentifier[:description] = hSystem[:systemWKT]
                            @xml.tag!('mrs:referenceSystemIdentifier') do
-                              idClass.writeXML(hSystem[:hIdentifier], outContext)
+                              idClass.writeXML(hIdentifier, outContext)
                            end
                            haveSystem = true
+                        end
+
+                        # test for missing reference system identifier / reference system WKT
+                        # both use the same ISO tag
+                        if hSystem[:systemIdentifier].empty? && @hResponseObj[:writerShowTags] && !haveSystem
+                           @xml.tag!('mrs:referenceSystemIdentifier')
                         end
 
                         # reference system - reference system type {MD_ReferenceSystemTypeCode}

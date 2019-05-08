@@ -50,8 +50,8 @@ module ADIWG
                            scopeClass.writeXML(hLineage[:resourceScope], outContext)
                         end
                      end
-                     if hLineage[:scope].empty? && @hResponseObj[:writerShowTags]
-                        @xml.tag!('mrl:statement')
+                     if hLineage[:resourceScope].empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mrl:scope')
                      end
 
                      # lineage - additional documentation [] {CI_Citation}
