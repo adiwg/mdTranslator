@@ -29,7 +29,7 @@ class TestWriter191152OrderProcess < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   def test_onlineResource_complete
+   def test_orderProcess_complete
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
@@ -43,7 +43,7 @@ class TestWriter191152OrderProcess < TestWriter191152Parent
 
    end
 
-   def test_onlineResource_missing_elements
+   def test_orderProcess_missing_elements
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn[:metadata][:resourceDistribution][0][:distributor][0][:orderProcess][0] = { nonElement: 'nonElement' }
