@@ -289,6 +289,14 @@ class MdJsonHashWriter
       return hMaintenance
    end
    
+   def build_measure(type = nil, value = nil, units = nil)
+      hMeasure = measure
+      hMeasure[:type] = type unless type.nil?
+      hMeasure[:value] = value unless value.nil?
+      hMeasure[:unitOfMeasure] = units unless units.nil?
+      return hMeasure
+   end
+
    def build_metadata_full
       hMetadata = metadata
       hMetadata[:metadataInfo] = build_metadataInfo_full
