@@ -97,6 +97,20 @@ class TestWriter191151ReferenceSystem < TestWriter191151Parent
       assert_includes hReturn[3], 'ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system'
       assert_includes hReturn[3], 'ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system'
 
+      # missing elements
+      hRefSystem.delete(:referenceSystemType)
+      hRefSystem.delete(:referenceSystemIdentifier)
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_referenceSystem',
+                                                '//mdb:referenceSystemInfo[4]',
+                                                '//mdb:referenceSystemInfo', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      refute hReturn[2]
+      assert_equal 2, hReturn[3].length
+      assert_includes hReturn[3], 'ERROR: ISO-19115-1 writer: spatial reference system identifier is missing: CONTEXT is resource spatial reference system'
+      assert_includes hReturn[3], 'ERROR: ISO-19115-1 writer: spatial reference system type is missing: CONTEXT is resource spatial reference system'
+
    end
 
 end

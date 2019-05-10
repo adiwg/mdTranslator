@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mco:releasability>
+    <mco:MD_Releasability>
+      <mco:addressee>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="addressee" codeSpace="userCode"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </mco:addressee>
+      <mco:statement>
+        <gco:CharacterString>releasability statement</gco:CharacterString>
+      </mco:statement>
+      <mco:disseminationConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="constraint one" codeSpace="userCode"/>
+      </mco:disseminationConstraints>
+      <mco:disseminationConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="constraint two" codeSpace="userCode"/>
+      </mco:disseminationConstraints>
+    </mco:MD_Releasability>
+  </mco:releasability>
+
+  <mco:releasability>
+    <mco:MD_Releasability>
+      <mco:addressee>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="addressee" codeSpace="userCode"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </mco:addressee>
+      <mco:statement/>
+      <mco:disseminationConstraints/>
+    </mco:MD_Releasability>
+  </mco:releasability>
+
+  <mco:releasability>
+    <mco:MD_Releasability>
+      <mco:addressee/>
+      <mco:statement>
+        <gco:CharacterString>releasability statement</gco:CharacterString>
+      </mco:statement>
+      <mco:disseminationConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="constraint one" codeSpace="userCode"/>
+      </mco:disseminationConstraints>
+      <mco:disseminationConstraints>
+        <mco:MD_RestrictionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_RestrictionCode" codeListValue="constraint two" codeSpace="userCode"/>
+      </mco:disseminationConstraints>
+    </mco:MD_Releasability>
+  </mco:releasability>
+
+</mdb:MD_Metadata>

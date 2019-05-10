@@ -15,6 +15,7 @@ class TestWriter191151Constraint < TestWriter191151Parent
 
    # build mdJson test file in hash
    mdHash = TDClass.base
+
    mdHash[:metadata][:resourceInfo][:constraint][0] = TDClass.constraint
 
    @@mdHash = mdHash
