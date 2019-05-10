@@ -25,18 +25,6 @@
 
   <mri:spatialResolution>
     <mri:MD_Resolution>
-      <mri:equivalentScale>
-        <mri:MD_RepresentativeFraction>
-          <mri:denominator>
-            <gco:Integer>9999</gco:Integer>
-          </mri:denominator>
-        </mri:MD_RepresentativeFraction>
-      </mri:equivalentScale>
-    </mri:MD_Resolution>
-  </mri:spatialResolution>
-
-  <mri:spatialResolution>
-    <mri:MD_Resolution>
       <mri:distance>
         <gco:Distance uom="meters">999</gco:Distance>
       </mri:distance>
@@ -45,9 +33,17 @@
 
   <mri:spatialResolution>
     <mri:MD_Resolution>
-      <mri:levelOfDetail>
-        <gco:CharacterString>level of detail</gco:CharacterString>
-      </mri:levelOfDetail>
+      <mri:angularDistance>
+        <gco:Angle uom="degrees">60</gco:Angle>
+      </mri:angularDistance>
+    </mri:MD_Resolution>
+  </mri:spatialResolution>
+
+  <mri:spatialResolution>
+    <mri:MD_Resolution>
+      <mri:vertical>
+        <gco:Distance uom="feet">10000</gco:Distance>
+      </mri:vertical>
     </mri:MD_Resolution>
   </mri:spatialResolution>
 
