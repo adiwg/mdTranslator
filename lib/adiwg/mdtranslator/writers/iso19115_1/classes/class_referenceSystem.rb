@@ -69,13 +69,13 @@ module ADIWG
                            end
                            haveSystem = true
                         end
-                        if hSystem[:systemType].empty? && @hResponseObj[:writerShowTags]
+                        if hSystem[:systemType].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('mrs:referenceSystemType')
                         end
 
                         if !haveSystem
-                           @NameSpace.issueWarning(380, 'mrs:referenceSystemIdentifier', inContext)
-                           @NameSpace.issueWarning(381, 'mrs:referenceSystemType', inContext)
+                           @NameSpace.issueWarning(380, nil, inContext)
+                           @NameSpace.issueWarning(381, nil, inContext)
                         end
 
                         # reference system parameter sets not implemented in ISO 19115-3
