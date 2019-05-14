@@ -37,6 +37,8 @@
                 <gco:CharacterString>organization name four</gco:CharacterString>
               </cit:name>
               <cit:contactInfo/>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
@@ -67,6 +69,8 @@
                 <gco:CharacterString>organization name four</gco:CharacterString>
               </cit:name>
               <cit:contactInfo/>
+              <cit:logo/>
+              <cit:individual/>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>

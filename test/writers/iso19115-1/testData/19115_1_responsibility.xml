@@ -270,6 +270,8 @@
               <cit:contactType/>
             </cit:CI_Contact>
           </cit:contactInfo>
+          <cit:logo/>
+          <cit:individual/>
         </cit:CI_Organisation>
       </cit:party>
     </cit:CI_Responsibility>

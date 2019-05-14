@@ -125,7 +125,7 @@ class TestWriter191151DataIdentification < TestWriter191151Parent
 
    end
 
-      def test_dataIdentification_nonCompliantTopicCategory
+   def test_dataIdentification_nonCompliantTopicCategory
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
