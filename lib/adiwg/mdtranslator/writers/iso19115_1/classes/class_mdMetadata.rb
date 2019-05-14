@@ -101,6 +101,7 @@ module ADIWG
                              'xmlns:srv' => 'http://standards.iso.org/iso/19115/-3/srv/2.0',
                              'xmlns:gfc' => 'http://standards.iso.org/iso/19110/gfc/1.1',
                              'xmlns:fcc' => 'http://standards.iso.org/iso/19110/fcc/1.0',
+                             'xmlns:mdq' => 'http://standards.iso.org/iso/19157/-2/mdq/1.0',
                              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                              'xsi:schemaLocation' => "http://standards.iso.org/iso/19115/-3/mdt/1.0 #{localSchema}"}) do
 
