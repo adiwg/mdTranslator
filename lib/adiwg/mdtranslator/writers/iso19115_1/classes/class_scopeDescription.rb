@@ -38,7 +38,7 @@ module ADIWG
                      @xml.tag!('mcc:levelDescription') do
                         @xml.tag!('mcc:MD_ScopeDescription') do
                            @xml.tag!('mcc:attributes') do
-                              @xml.tag!('gco:CharacterString', hScopeDesc[:other])
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:attributes])
                            end
                         end
                      end
@@ -49,7 +49,7 @@ module ADIWG
                      @xml.tag!('mcc:levelDescription') do
                         @xml.tag!('mcc:MD_ScopeDescription') do
                            @xml.tag!('mcc:features') do
-                              @xml.tag!('gco:CharacterString', hScopeDesc[:other])
+                              @xml.tag!('gco:CharacterString', hScopeDesc[:features])
                            end
                         end
                      end
