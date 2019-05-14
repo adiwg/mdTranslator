@@ -34,7 +34,8 @@ module ADIWG
                   scopeClass = MD_Scope.new(@xml, @hResponseObj)
 
                   outContext = 'process step'
-                  outContext = inContext + ' process step ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
+                  outContext = inContext + ' process step ' unless inContext.nil?
+                  outContext = outContext + ' ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
 
                   # process step - id
                   attributes = {}
