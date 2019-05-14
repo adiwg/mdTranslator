@@ -16,8 +16,8 @@ class TestWriter191151Contact < TestWriter191151Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   mdHash[:contact] << TDClass.build_person_full()
-   mdHash[:contact] << TDClass.build_organization_full()
+   mdHash[:contact] << TDClass.build_person_full() # CID005
+   mdHash[:contact] << TDClass.build_organization_full() # CID006
    mdHash[:metadata][:resourceInfo][:pointOfContact][0][:party] = []
    mdHash[:metadata][:resourceInfo][:pointOfContact][0][:party] << {contactId: 'CID003'}
    mdHash[:metadata][:resourceInfo][:pointOfContact][0][:party] << {contactId: 'CID004'}
@@ -30,7 +30,7 @@ class TestWriter191151Contact < TestWriter191151Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      # individual minimum
+      # individual
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_contact',
                                                 '//cit:party[1]',
                                                 '//mri:pointOfContact/cit:CI_Responsibility/cit:party', 0)
@@ -39,28 +39,10 @@ class TestWriter191151Contact < TestWriter191151Parent
       assert hReturn[2]
       assert_empty hReturn[3]
 
-      # organization minimum
+      # organization
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_contact',
                                                 '//cit:party[2]',
                                                 '//mri:pointOfContact/cit:CI_Responsibility/cit:party', 1)
-
-      assert_equal hReturn[0], hReturn[1]
-      assert hReturn[2]
-      assert_empty hReturn[3]
-
-      # individual complete
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_contact',
-                                                '//cit:party[3]',
-                                                '//mri:pointOfContact/cit:CI_Responsibility/cit:party', 2)
-
-      assert_equal hReturn[0], hReturn[1]
-      assert hReturn[2]
-      assert_empty hReturn[3]
-
-      # organization complete
-      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_contact',
-                                                '//cit:party[4]',
-                                                '//mri:pointOfContact/cit:CI_Responsibility/cit:party', 3)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]

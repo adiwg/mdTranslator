@@ -28,7 +28,7 @@ class TestWriter191152Contact < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   def test_citation_person_minimal
+   def test_citation_individual_minimal
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
@@ -42,7 +42,7 @@ class TestWriter191152Contact < TestWriter191152Parent
 
    end
 
-   def test_citation_person_complete
+   def test_citation_individual_complete
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 

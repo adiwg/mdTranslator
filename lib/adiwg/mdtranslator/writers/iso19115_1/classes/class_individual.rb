@@ -41,7 +41,7 @@ module ADIWG
                            @xml.tag!('cit:name')
                         end
 
-                        # individual - contact information [] (only one contactInfo in this implementation)
+                        # individual - contact information [] (only one contactInfo supported in this implementation)
                         haveInfo = false
                         unless hContact[:phones].empty? &&
                            hContact[:addresses].empty? &&
@@ -61,12 +61,12 @@ module ADIWG
                         end
 
                         # individual - position
-                        unless hContact[:position].nil?
+                        unless hContact[:positionName].nil?
                            @xml.tag!('cit:positionName') do
-                              @xml.tag!('gco:CharacterString', hContact[:position])
+                              @xml.tag!('gco:CharacterString', hContact[:positionName])
                            end
                         end
-                        if hContact[:position].nil? && @hResponseObj[:writerShowTags]
+                        if hContact[:positionName].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:positionName')
                         end
 

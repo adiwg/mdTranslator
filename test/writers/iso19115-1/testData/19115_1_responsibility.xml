@@ -83,7 +83,9 @@
               <cit:contactType/>
             </cit:CI_Contact>
           </cit:contactInfo>
-          <cit:positionName/>
+          <cit:positionName>
+            <gco:CharacterString>position name</gco:CharacterString>
+          </cit:positionName>
         </cit:CI_Individual>
       </cit:party>
     </cit:CI_Responsibility>
@@ -140,7 +142,9 @@
               <cit:contactType/>
             </cit:CI_Contact>
           </cit:contactInfo>
-          <cit:positionName/>
+          <cit:positionName>
+            <gco:CharacterString>position name</gco:CharacterString>
+          </cit:positionName>
         </cit:CI_Individual>
       </cit:party>
     </cit:CI_Responsibility>
@@ -216,7 +220,9 @@
               <cit:contactType/>
             </cit:CI_Contact>
           </cit:contactInfo>
-          <cit:positionName/>
+          <cit:positionName>
+            <gco:CharacterString>position name</gco:CharacterString>
+          </cit:positionName>
         </cit:CI_Individual>
       </cit:party>
       <cit:party>
