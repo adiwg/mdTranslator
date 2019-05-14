@@ -72,9 +72,9 @@ module ADIWG
                                  graphicClass.writeXML(hLogo)
                               end
                            end
-                           if hLogo.empty?
-                              @NameSpace.issueWarning(273, nil, outContext)
-                           end
+                        end
+                        if aLogos.empty?
+                           @xml.tag!('cit:logo')
                         end
 
                         # organization - individual [] {CI_Individual}
@@ -86,9 +86,9 @@ module ADIWG
                                  individualClass.writeXML(hMember, outContext)
                               end
                            end
-                           if hMember.empty?
-                              @NameSpace.issueWarning(274, nil, outContext)
-                           end
+                        end
+                        if aMembers.empty?
+                           @xml.tag!('cit:individual')
                         end
 
                      end

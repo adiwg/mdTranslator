@@ -61,6 +61,4 @@ class TestWriter191151Individual < TestWriter191151Parent
 
    end
 
-
-
 end
