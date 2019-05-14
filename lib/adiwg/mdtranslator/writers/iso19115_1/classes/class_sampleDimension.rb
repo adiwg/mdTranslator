@@ -105,6 +105,9 @@ module ADIWG
                      @xml.tag!('mrc:standardDeviation')
                   end
 
+                  # sample dimension - other property type - not implemented
+                  # sample dimension - other property - not implemented
+
                   # sample dimension - bits per value {integer}
                   unless hAttribute[:bitsPerValue].nil?
                      @xml.tag!('mrc:bitsPerValue') do
