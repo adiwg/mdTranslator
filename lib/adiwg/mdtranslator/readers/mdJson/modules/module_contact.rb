@@ -105,7 +105,6 @@ module ADIWG
                      end
                   end
 
-                  # TODO need outContext
                   # contact - address [address]
                   if hContact.has_key?('address')
                      aItems = hContact['address']

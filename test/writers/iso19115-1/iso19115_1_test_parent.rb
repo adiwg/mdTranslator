@@ -66,8 +66,6 @@ class TestWriter191151Parent < MiniTest::Test
          hResponseObj[:readerExecutionPass]
 
       xMetadata = Nokogiri::XML(hResponseObj[:writerOutput])
-      # TODO remove write
-      File.write('/mnt/hgfs/ShareDrive/writeOut.xml', xMetadata)
       xGot = xMetadata.xpath(gotPath)[gotSuffix]
       got = xGot.to_s.squeeze(' ')
 
