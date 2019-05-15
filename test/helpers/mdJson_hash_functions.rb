@@ -474,6 +474,7 @@ class MdJsonHashWriter
       hUsage = resourceUsage
       hTimePeriod = build_timePeriod('TP001', 'usage time', '2018-06-24')
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
+      hTimePeriod = build_timePeriod('TP002', 'usage time', '2019-05-15')
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
       hUsage[:additionalDocumentation] << citation_title
       hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', ['CID001'])

@@ -68,6 +68,24 @@ class TestWriter191151TransferOptions < TestWriter191151Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
+      # empty elements
+      hOption = hIn[:metadata][:resourceDistribution][0][:distributor][0][:transferOption][0]
+      hOption[:nonElement] = 'nonElement'
+      hOption[:transferSize] = ''
+      hOption[:unitsOfDistribution] = ''
+      hOption[:onlineOption] = []
+      hOption[:offlineOption] = []
+      hOption[:transferFrequency] = ''
+      hOption[:distributionFormat] = []
+
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_transferOptions',
+                                                '//mrd:distributorTransferOptions[3]',
+                                                '//mrd:distributorTransferOptions', 0)
+
+      assert_equal hReturn[0], hReturn[1]
+      assert hReturn[2]
+      assert_empty hReturn[3]
+
       # missing elements
       hIn[:metadata][:resourceDistribution][0][:distributor][0][:transferOption][0] = { nonElement: 'nonElement' }
 
