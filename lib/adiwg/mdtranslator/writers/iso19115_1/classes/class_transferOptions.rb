@@ -65,12 +65,9 @@ module ADIWG
 
                      # digital transfer options - offline [] {MD_Medium}
                      aOfflineOps = hOption[:offlineOptions]
-                     unless aOfflineOps.empty?
-                        hOffTranOpt = aOfflineOps[0]
-                        unless hOffTranOpt.empty?
-                           @xml.tag!('mrd:offLine') do
-                              mediumClass.writeXML(hOffTranOpt)
-                           end
+                     aOfflineOps.each do |hOffline|
+                        @xml.tag!('mrd:offLine') do
+                           mediumClass.writeXML(hOffline)
                         end
                      end
                      if aOfflineOps.empty? && @hResponseObj[:writerShowTags]
@@ -84,6 +81,9 @@ module ADIWG
                         @xml.tag!('mrd:transferFrequency') do
                            @xml.tag!('gco:TM_PeriodDuration', duration)
                         end
+                     end
+                     if hDuration.empty? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('mrd:transferFrequency')
                      end
 
                      # digital transfer options - distribution format [] {MD_Format}
