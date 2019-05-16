@@ -34,7 +34,7 @@ module ADIWG
                   haveMethod = true unless hLineage[:lineageCitation].empty?
                   aKeywords = hIntObj[:metadata][:resourceInfo][:keywords]
                   aKeywords.each do |hKeyword|
-                     if hKeyword[:keywordType] == 'method'
+                     if %w(method methodology).include?(hKeyword[:keywordType])
                         haveMethod = true
                      end
                   end

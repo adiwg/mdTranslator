@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mri:citation>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>full citation title</gco:CharacterString>
+      </cit:title>
+      <cit:alternateTitle>
+        <gco:CharacterString>alt title one</gco:CharacterString>
+      </cit:alternateTitle>
+      <cit:date>
+        <cit:CI_Date>
+          <cit:date>
+            <gco:DateTime>2017-12-02T13:41:13</gco:DateTime>
+          </cit:date>
+          <cit:dateType>
+            <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+          </cit:dateType>
+        </cit:CI_Date>
+      </cit:date>
+      <cit:edition>
+        <gco:CharacterString>edition</gco:CharacterString>
+      </cit:edition>
+      <cit:identifier>
+        <mcc:MD_Identifier>
+          <mcc:authority/>
+          <mcc:code>
+            <gco:CharacterString>full citation identifier one</gco:CharacterString>
+          </mcc:code>
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
+        </mcc:MD_Identifier>
+      </cit:identifier>
+      <cit:citedResponsibleParty>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Individual>
+              <cit:name>
+                <gco:CharacterString>person name three</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+              <cit:positionName/>
+            </cit:CI_Individual>
+          </cit:party>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>222-222-2222</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </cit:citedResponsibleParty>
+      <cit:presentationForm>
+        <cit:CI_PresentationFormCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode" codeListValue="form one" codeSpace="userCode"/>
+      </cit:presentationForm>
+      <cit:series>
+        <cit:CI_Series>
+          <cit:name>
+            <gco:CharacterString>series name</gco:CharacterString>
+          </cit:name>
+          <cit:issueIdentification>
+            <gco:CharacterString>series issue</gco:CharacterString>
+          </cit:issueIdentification>
+          <cit:page>
+            <gco:CharacterString>issue page</gco:CharacterString>
+          </cit:page>
+        </cit:CI_Series>
+      </cit:series>
+      <cit:otherCitationDetails>
+        <gco:CharacterString>other detail one</gco:CharacterString>
+      </cit:otherCitationDetails>
+      <cit:ISBN/>
+      <cit:ISSN/>
+      <cit:onlineResource>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>https://adiwg.mdtranslator/1</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </cit:onlineResource>
+      <cit:graphic>
+        <mcc:MD_BrowseGraphic>
+          <mcc:fileName>
+            <gco:CharacterString>full citation browse graphic one</gco:CharacterString>
+          </mcc:fileName>
+          <mcc:fileDescription/>
+          <mcc:fileType/>
+          <mcc:imageConstraints/>
+          <mcc:linkage/>
+        </mcc:MD_BrowseGraphic>
+      </cit:graphic>
+    </cit:CI_Citation>
+  </mri:citation>
+
+  <mri:citation>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>full citation title</gco:CharacterString>
+      </cit:title>
+      <cit:alternateTitle>
+        <gco:CharacterString>alt title one</gco:CharacterString>
+      </cit:alternateTitle>
+      <cit:alternateTitle>
+        <gco:CharacterString>alt title two</gco:CharacterString>
+      </cit:alternateTitle>
+      <cit:date>
+        <cit:CI_Date>
+          <cit:date>
+            <gco:DateTime>2017-12-02T13:41:13</gco:DateTime>
+          </cit:date>
+          <cit:dateType>
+            <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+          </cit:dateType>
+        </cit:CI_Date>
+      </cit:date>
+      <cit:date>
+        <cit:CI_Date>
+          <cit:date>
+            <gco:DateTime>2018-04-18T00:00:00</gco:DateTime>
+          </cit:date>
+          <cit:dateType>
+            <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
+          </cit:dateType>
+        </cit:CI_Date>
+      </cit:date>
+      <cit:edition>
+        <gco:CharacterString>edition</gco:CharacterString>
+      </cit:edition>
+      <cit:identifier>
+        <mcc:MD_Identifier>
+          <mcc:authority/>
+          <mcc:code>
+            <gco:CharacterString>full citation identifier one</gco:CharacterString>
+          </mcc:code>
+          <mcc:codeSpace/>
+          <mcc:version/>
+          <mcc:description/>
+        </mcc:MD_Identifier>
+      </cit:identifier>
+      <cit:identifier>
+        <mcc:MD_Identifier>
+          <mcc:authority/>
+          <mcc:code>
+            <gco:CharacterString>full citation identifier two</gco:CharacterString>
+          </mcc:code>
+          <mcc:codeSpace>
+            <gco:CharacterString>ISBN</gco:CharacterString>
+          </mcc:codeSpace>
+          <mcc:version/>
+          <mcc:description/>
+        </mcc:MD_Identifier>
+      </cit:identifier>
+      <cit:identifier>
+        <mcc:MD_Identifier>
+          <mcc:authority/>
+          <mcc:code>
+            <gco:CharacterString>full citation identifier three</gco:CharacterString>
+          </mcc:code>
+          <mcc:codeSpace>
+            <gco:CharacterString>ISSN</gco:CharacterString>
+          </mcc:codeSpace>
+          <mcc:version/>
+          <mcc:description/>
+        </mcc:MD_Identifier>
+      </cit:identifier>
+      <cit:citedResponsibleParty>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Individual>
+              <cit:name>
+                <gco:CharacterString>person name three</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+              <cit:positionName/>
+            </cit:CI_Individual>
+          </cit:party>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>222-222-2222</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </cit:citedResponsibleParty>
+      <cit:citedResponsibleParty>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="publisher" codeSpace="010"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Individual>
+              <cit:name>
+                <gco:CharacterString>person name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>111-111-1111</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
+            </cit:CI_Individual>
+          </cit:party>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>222-222-2222</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </cit:citedResponsibleParty>
+      <cit:citedResponsibleParty>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>222-222-2222</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </cit:citedResponsibleParty>
+      <cit:presentationForm>
+        <cit:CI_PresentationFormCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode" codeListValue="form one" codeSpace="userCode"/>
+      </cit:presentationForm>
+      <cit:presentationForm>
+        <cit:CI_PresentationFormCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_PresentationFormCode" codeListValue="form two" codeSpace="userCode"/>
+      </cit:presentationForm>
+      <cit:series>
+        <cit:CI_Series>
+          <cit:name>
+            <gco:CharacterString>series name</gco:CharacterString>
+          </cit:name>
+          <cit:issueIdentification>
+            <gco:CharacterString>series issue</gco:CharacterString>
+          </cit:issueIdentification>
+          <cit:page>
+            <gco:CharacterString>issue page</gco:CharacterString>
+          </cit:page>
+        </cit:CI_Series>
+      </cit:series>
+      <cit:otherCitationDetails>
+        <gco:CharacterString>other detail one</gco:CharacterString>
+      </cit:otherCitationDetails>
+      <cit:ISBN>
+        <gco:CharacterString>full citation identifier two</gco:CharacterString>
+      </cit:ISBN>
+      <cit:ISSN>
+        <gco:CharacterString>full citation identifier three</gco:CharacterString>
+      </cit:ISSN>
+      <cit:onlineResource>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>https://adiwg.mdtranslator/1</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </cit:onlineResource>
+      <cit:onlineResource>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>https://adiwg.mdtranslator/2</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </cit:onlineResource>
+      <cit:graphic>
+        <mcc:MD_BrowseGraphic>
+          <mcc:fileName>
+            <gco:CharacterString>full citation browse graphic one</gco:CharacterString>
+          </mcc:fileName>
+          <mcc:fileDescription/>
+          <mcc:fileType/>
+          <mcc:imageConstraints/>
+          <mcc:linkage/>
+        </mcc:MD_BrowseGraphic>
+      </cit:graphic>
+      <cit:graphic>
+        <mcc:MD_BrowseGraphic>
+          <mcc:fileName>
+            <gco:CharacterString>full citation browse graphic two</gco:CharacterString>
+          </mcc:fileName>
+          <mcc:fileDescription/>
+          <mcc:fileType/>
+          <mcc:imageConstraints/>
+          <mcc:linkage/>
+        </mcc:MD_BrowseGraphic>
+      </cit:graphic>
+    </cit:CI_Citation>
+  </mri:citation>
+
+  <mri:citation>
+    <cit:CI_Citation>
+      <cit:title>
+        <gco:CharacterString>full citation title</gco:CharacterString>
+      </cit:title>
+      <cit:alternateTitle/>
+      <cit:date/>
+      <cit:edition/>
+      <cit:identifier/>
+      <cit:citedResponsibleParty/>
+      <cit:presentationForm/>
+      <cit:series/>
+      <cit:otherCitationDetails/>
+      <cit:ISBN/>
+      <cit:ISSN/>
+      <cit:onlineResource/>
+      <cit:graphic/>
+    </cit:CI_Citation>
+  </mri:citation>
+
+</mdb:MD_Metadata>

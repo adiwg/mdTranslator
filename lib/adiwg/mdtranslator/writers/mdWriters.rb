@@ -6,8 +6,8 @@
 #  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
 #  Stan Smith 2015-06-22 replace global ($response) with passed in object (hResponseObj)
 #  Stan Smith 2015-03-04 changed method of setting $WriterNS
-#  Stan Smith 2012-12-16 generalized handleWriter to use :writerName
-#  Stan Smith 2014-12-11 original script
+#  Stan Smith 2014-12-16 generalized handleWriter to use :writerName
+#  Stan Smith 2012-12-11 original script
 
 module ADIWG
    module Mdtranslator
@@ -16,13 +16,13 @@ module ADIWG
          def self.handleWriter(intObj, hResponseObj)
 
             # use ':writerRequested' from hResponseObj to build directory path to writer
-            # writer's high-level folder must be placed in 'lib/adiwg/mdtranslator/writers/'
-            # writer's code must must be in folder named '{writer}'
-            # '{writer}' must contain a module named '{writer}_writer.rb'
+            # all writers must be in the folder 'lib/adiwg/mdtranslator/writers/'
+            # place a particular writer's code in a folder by the same name as the writer
+            # the writer must contain a starting point module named '{writer}_writer.rb'
             # '{writer}_writer.rb' must have a method named 'startWriter()'
             # 'startWriter()' must pass two parameters (intObj, hResponseObj)
-            # all writer modules and classes must remain in their private namespace
-            # writer namespace is 'ADIWG::Mdtranslator::Writers::{writer}'
+            # all of the {writer's} modules and classes must be contained in a unique private namespace
+            # the writer's namespace is 'ADIWG::Mdtranslator::Writers::{writer}'
 
             # the writer's high-level
             thisDir = File.dirname(File.expand_path(__FILE__))

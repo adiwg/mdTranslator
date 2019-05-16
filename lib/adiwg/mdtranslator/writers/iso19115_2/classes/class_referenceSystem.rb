@@ -1,6 +1,6 @@
 # ISO <<Class>> MD_ReferenceSystem
 # writer
-# 19115-2 output for ISO 19115-2 XML
+# 19115-2 output for XML
 
 # History:
 #  Stan Smith 2018-10-17 refactor to support schema 2.6.0 changes to projection

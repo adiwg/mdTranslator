@@ -119,8 +119,9 @@ module ADIWG
                      end
 
                      # citation - cited responsible party [{CI_ResponsibleParty}]
-                     # contacts are grouped by role in the internal object
-                     # output a separate <gmd:contact> for each role:contact pairing
+                     # responsibilities are grouped by role in the internal object
+                     # to output in ISO ...
+                     # create a separate record for each role-contact pair
                      # check for duplicates and eliminate
                      aRoleParty = []
                      aRParties = hCitation[:responsibleParties]

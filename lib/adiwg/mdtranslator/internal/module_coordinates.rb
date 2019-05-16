@@ -76,6 +76,9 @@ module AdiwgCoordinates
          unpackGeometry(hGeo, aNorthings, aEastings)
       end
 
+      # return if no coordinates found in geographic object(s)
+      return {} if aNorthings.empty? || aEastings.empty?
+
       # find most north/south points
       north = aNorthings.max
       south = aNorthings.min

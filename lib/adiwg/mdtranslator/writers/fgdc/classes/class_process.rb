@@ -5,7 +5,6 @@
 #  Stan Smith 2018-03-19 refactored error and warning messaging
 #  Stan Smith 2017-12-18 original script
 
-require 'adiwg/mdtranslator/internal/module_dateTimeFun'
 require_relative '../fgdc_writer'
 require_relative 'class_contact'
 

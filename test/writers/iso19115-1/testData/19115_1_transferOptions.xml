@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mrd:distributorTransferOptions>
+    <mrd:MD_DigitalTransferOptions>
+      <mrd:unitsOfDistribution>
+        <gco:CharacterString>MB</gco:CharacterString>
+      </mrd:unitsOfDistribution>
+      <mrd:transferSize>
+        <gco:Real>999</gco:Real>
+      </mrd:transferSize>
+      <mrd:onLine>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>http://adiwg.org/1</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </mrd:onLine>
+      <mrd:offLine>
+        <mrd:MD_Medium>
+          <mrd:name/>
+          <mrd:density/>
+          <mrd:densityUnits/>
+          <mrd:volumes/>
+          <mrd:mediumFormat/>
+          <mrd:mediumNote>
+            <gco:CharacterString>medium note</gco:CharacterString>
+          </mrd:mediumNote>
+          <mrd:identifier/>
+        </mrd:MD_Medium>
+      </mrd:offLine>
+      <mrd:transferFrequency>
+        <gco:TM_PeriodDuration>P9M</gco:TM_PeriodDuration>
+      </mrd:transferFrequency>
+      <mrd:distributionFormat>
+        <mrd:MD_Format>
+          <mrd:formatSpecificationCitation>
+            <cit:CI_Citation>
+              <cit:title>
+                <gco:CharacterString>distribution format one</gco:CharacterString>
+              </cit:title>
+              <cit:alternateTitle/>
+              <cit:date>
+                <cit:CI_Date>
+                  <cit:date>
+                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                  </cit:date>
+                  <cit:dateType>
+                    <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
+                  </cit:dateType>
+                </cit:CI_Date>
+              </cit:date>
+              <cit:edition>
+                <gco:CharacterString>format edition</gco:CharacterString>
+              </cit:edition>
+              <cit:identifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>format identifier</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:identifier>
+              <cit:citedResponsibleParty/>
+              <cit:presentationForm/>
+              <cit:series/>
+              <cit:otherCitationDetails>
+                <gco:CharacterString>format information content</gco:CharacterString>
+              </cit:otherCitationDetails>
+              <cit:ISBN/>
+              <cit:ISSN/>
+              <cit:onlineResource/>
+              <cit:graphic/>
+            </cit:CI_Citation>
+          </mrd:formatSpecificationCitation>
+          <mrd:amendmentNumber>
+            <gco:CharacterString>amendment number</gco:CharacterString>
+          </mrd:amendmentNumber>
+          <mrd:fileDecompressionTechnique>
+            <gco:CharacterString>compression method</gco:CharacterString>
+          </mrd:fileDecompressionTechnique>
+        </mrd:MD_Format>
+      </mrd:distributionFormat>
+    </mrd:MD_DigitalTransferOptions>
+  </mrd:distributorTransferOptions>
+
+  <mrd:distributorTransferOptions>
+    <mrd:MD_DigitalTransferOptions>
+      <mrd:unitsOfDistribution>
+        <gco:CharacterString>MB</gco:CharacterString>
+      </mrd:unitsOfDistribution>
+      <mrd:transferSize>
+        <gco:Real>999</gco:Real>
+      </mrd:transferSize>
+      <mrd:onLine>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>http://adiwg.org/1</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </mrd:onLine>
+      <mrd:onLine>
+        <cit:CI_OnlineResource>
+          <cit:linkage>
+            <gco:CharacterString>http://adiwg.org/2</gco:CharacterString>
+          </cit:linkage>
+          <cit:protocol/>
+          <cit:name/>
+          <cit:description/>
+          <cit:function/>
+        </cit:CI_OnlineResource>
+      </mrd:onLine>
+      <mrd:offLine>
+        <mrd:MD_Medium>
+          <mrd:name/>
+          <mrd:density/>
+          <mrd:densityUnits/>
+          <mrd:volumes/>
+          <mrd:mediumFormat/>
+          <mrd:mediumNote>
+            <gco:CharacterString>medium note</gco:CharacterString>
+          </mrd:mediumNote>
+          <mrd:identifier/>
+        </mrd:MD_Medium>
+      </mrd:offLine>
+      <mrd:offLine>
+        <mrd:MD_Medium>
+          <mrd:name/>
+          <mrd:density/>
+          <mrd:densityUnits/>
+          <mrd:volumes/>
+          <mrd:mediumFormat/>
+          <mrd:mediumNote>
+            <gco:CharacterString>medium note</gco:CharacterString>
+          </mrd:mediumNote>
+          <mrd:identifier/>
+        </mrd:MD_Medium>
+      </mrd:offLine>
+      <mrd:transferFrequency>
+        <gco:TM_PeriodDuration>P9M</gco:TM_PeriodDuration>
+      </mrd:transferFrequency>
+      <mrd:distributionFormat>
+        <mrd:MD_Format>
+          <mrd:formatSpecificationCitation>
+            <cit:CI_Citation>
+              <cit:title>
+                <gco:CharacterString>distribution format one</gco:CharacterString>
+              </cit:title>
+              <cit:alternateTitle/>
+              <cit:date>
+                <cit:CI_Date>
+                  <cit:date>
+                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                  </cit:date>
+                  <cit:dateType>
+                    <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
+                  </cit:dateType>
+                </cit:CI_Date>
+              </cit:date>
+              <cit:edition>
+                <gco:CharacterString>format edition</gco:CharacterString>
+              </cit:edition>
+              <cit:identifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>format identifier</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:identifier>
+              <cit:citedResponsibleParty/>
+              <cit:presentationForm/>
+              <cit:series/>
+              <cit:otherCitationDetails>
+                <gco:CharacterString>format information content</gco:CharacterString>
+              </cit:otherCitationDetails>
+              <cit:ISBN/>
+              <cit:ISSN/>
+              <cit:onlineResource/>
+              <cit:graphic/>
+            </cit:CI_Citation>
+          </mrd:formatSpecificationCitation>
+          <mrd:amendmentNumber>
+            <gco:CharacterString>amendment number</gco:CharacterString>
+          </mrd:amendmentNumber>
+          <mrd:fileDecompressionTechnique>
+            <gco:CharacterString>compression method</gco:CharacterString>
+          </mrd:fileDecompressionTechnique>
+        </mrd:MD_Format>
+      </mrd:distributionFormat>
+      <mrd:distributionFormat>
+        <mrd:MD_Format>
+          <mrd:formatSpecificationCitation>
+            <cit:CI_Citation>
+              <cit:title>
+                <gco:CharacterString>distribution format two</gco:CharacterString>
+              </cit:title>
+              <cit:alternateTitle/>
+              <cit:date>
+                <cit:CI_Date>
+                  <cit:date>
+                    <gco:DateTime>2018-02-01T00:00:00</gco:DateTime>
+                  </cit:date>
+                  <cit:dateType>
+                    <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="revision" codeSpace="003"/>
+                  </cit:dateType>
+                </cit:CI_Date>
+              </cit:date>
+              <cit:edition>
+                <gco:CharacterString>format edition</gco:CharacterString>
+              </cit:edition>
+              <cit:identifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>format identifier</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:identifier>
+              <cit:citedResponsibleParty/>
+              <cit:presentationForm/>
+              <cit:series/>
+              <cit:otherCitationDetails>
+                <gco:CharacterString>format information content</gco:CharacterString>
+              </cit:otherCitationDetails>
+              <cit:ISBN/>
+              <cit:ISSN/>
+              <cit:onlineResource/>
+              <cit:graphic/>
+            </cit:CI_Citation>
+          </mrd:formatSpecificationCitation>
+          <mrd:amendmentNumber>
+            <gco:CharacterString>amendment number</gco:CharacterString>
+          </mrd:amendmentNumber>
+          <mrd:fileDecompressionTechnique>
+            <gco:CharacterString>compression method</gco:CharacterString>
+          </mrd:fileDecompressionTechnique>
+        </mrd:MD_Format>
+      </mrd:distributionFormat>
+    </mrd:MD_DigitalTransferOptions>
+  </mrd:distributorTransferOptions>
+
+  <mrd:distributorTransferOptions>
+    <mrd:MD_DigitalTransferOptions>
+      <mrd:unitsOfDistribution/>
+      <mrd:transferSize/>
+      <mrd:onLine/>
+      <mrd:offLine/>
+      <mrd:transferFrequency/>
+      <mrd:distributionFormat/>
+    </mrd:MD_DigitalTransferOptions>
+  </mrd:distributorTransferOptions>
+
+</mdb:MD_Metadata>

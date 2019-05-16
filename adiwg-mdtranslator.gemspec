@@ -1,6 +1,7 @@
 # coding: utf-8
 # History
 #  Stan Smith 2017-05-16 remove rgeo 0.5 support
+#  Stan Smith 2019-03-19 migrated to version 2 bundler
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
@@ -24,7 +25,7 @@ Gem::Specification.new do |spec|
 
    spec.required_ruby_version = '>= 2.3'
 
-   spec.add_development_dependency "bundler", "~> 1"
+   spec.add_development_dependency "bundler", "~> 2"
    spec.add_development_dependency "rake", "~> 10"
    spec.add_development_dependency "minitest", "~> 5"
 

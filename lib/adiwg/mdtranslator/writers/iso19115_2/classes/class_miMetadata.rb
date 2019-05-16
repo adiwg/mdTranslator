@@ -95,7 +95,6 @@ module ADIWG
                   hMetadata = intObj[:metadata]
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
-                  aAssocRes = hMetadata[:associatedResources]
                   aDistInfo = hMetadata[:distributorInfo]
                   version = @hResponseObj[:translatorVersion]
 
@@ -211,7 +210,7 @@ module ADIWG
 
                      # metadata information - metadata standard name (default)
                      @xml.tag!('gmd:metadataStandardName') do
-                        @xml.tag!('gco:CharacterString', 'ISO 19115-2')
+                        @xml.tag!('gco:CharacterString', 'ISO 19139')
                      end
 
                      # metadata information - metadata standard version (default)
@@ -298,7 +297,7 @@ module ADIWG
                      # metadata information - identification info - required
                      unless hResInfo.empty?
                         @xml.tag!('gmd:identificationInfo') do
-                           dataIdClass.writeXML(hResInfo, aAssocRes, aDistInfo)
+                           dataIdClass.writeXML(hMetadata)
                         end
                      end
                      if hResInfo.empty?

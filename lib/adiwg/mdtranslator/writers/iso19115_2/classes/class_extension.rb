@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2019-03-22 replaced Enumeration class with method
 #  Stan Smith 2018-04-09 add error and warning messaging
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
@@ -11,6 +12,7 @@
 #  Stan Smith 2014-07-08 modify require statements to function in RubyGem structure
 # 	Stan Smith 2013-11-22 original script.
 
+require 'adiwg/mdtranslator/internal/module_codelistFun'
 require_relative '../iso19115_2_writer'
 require_relative 'class_codelist'
 require_relative 'class_enumerationList'
@@ -33,7 +35,6 @@ module ADIWG
 
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
-                  enumerationClass = MD_EnumerationList.new(@xml, @hResponseObj)
                   olResClass = CI_OnlineResource.new(@xml, @hResponseObj)
 
                   outContext = 'extension information'
@@ -89,14 +90,18 @@ module ADIWG
                               @NameSpace.issueWarning(101, 'gmd:definition', outContext)
                            end
 
-                           # extended element info - obligation
-                           s = hExtension[:obligation]
-                           unless s.nil?
-                              @xml.tag!('gmd:obligation') do
-                                 enumerationClass.writeXML('iso_obligation', s)
+                           # extended element info - obligation {MD_ObligationCode}
+                           obligation = hExtension[:obligation]
+                           unless obligation.nil?
+                              if CodelistFun.validateItem('iso_obligation', obligation)
+                                 @xml.tag!('gmd:obligation') do
+                                    @xml.tag!('gmd:MD_ObligationCode', obligation)
+                                 end
+                              else
+                                 @NameSpace.issueWarning(380, 'gmd:obligation', "#{obligation}")
                               end
                            end
-                           if s.nil? && @hResponseObj[:writerShowTags]
+                           if obligation.nil? && @hResponseObj[:writerShowTags]
                               @xml.tag!('gmd:obligation')
                            end
 

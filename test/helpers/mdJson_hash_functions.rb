@@ -92,7 +92,7 @@ class MdJsonHashWriter
       return hDistributor
    end
 
-   def build_duration(year = nil, mon = nil, day = nil, hour = nil, min = nil, sec = nil)
+   def build_duration(year: nil, mon: nil, day: nil, hour: nil, min: nil, sec: nil)
       hDuration = {}
       hDuration[:years] = year
       hDuration.delete(:years) if year.nil?
@@ -289,6 +289,14 @@ class MdJsonHashWriter
       return hMaintenance
    end
    
+   def build_measure(type = nil, value = nil, units = nil)
+      hMeasure = measure
+      hMeasure[:type] = type unless type.nil?
+      hMeasure[:value] = value unless value.nil?
+      hMeasure[:unitOfMeasure] = units unless units.nil?
+      return hMeasure
+   end
+
    def build_metadata_full
       hMetadata = metadata
       hMetadata[:metadataInfo] = build_metadataInfo_full
@@ -442,8 +450,8 @@ class MdJsonHashWriter
       add_keyword(hResourceInfo[:keyword][0], 'keyword one', 'KWID001')
       hResourceInfo[:keyword] << build_keywords('keywords two', 'theme two')
       add_keyword(hResourceInfo[:keyword][1], 'keyword two', 'KWID002')
-      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage one')
-      hResourceInfo[:resourceUsage] << build_resourceUsage('resource usage two')
+      hResourceInfo[:resourceUsage] << build_resourceUsage(usage: 'resource usage one')
+      hResourceInfo[:resourceUsage] << build_resourceUsage(usage:'resource usage two')
       hResourceInfo[:constraint] << build_useConstraint
       hResourceInfo[:constraint] << build_legalConstraint
       hResourceInfo[:otherResourceLocale] << locale
@@ -453,10 +461,10 @@ class MdJsonHashWriter
       return hResourceInfo
    end
 
-   def build_resourceUsage(usage = nil, startDT = '2018-05-02', endDT = nil, aContacts = ['CID004'])
+   def build_resourceUsage(usage: nil, startDT: '2018-05-02', endDT: nil, aContacts: ['CID004'], timeID: 'TP001')
       hUsage = resourceUsage
       hUsage[:specificUsage] = usage unless usage.nil?
-      hTimePeriod = build_timePeriod('TP001', 'usage one', startDT, endDT)
+      hTimePeriod = build_timePeriod(timeID, 'usage one', startDT, endDT)
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
       hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', aContacts)
       return hUsage
@@ -466,6 +474,7 @@ class MdJsonHashWriter
       hUsage = resourceUsage
       hTimePeriod = build_timePeriod('TP001', 'usage time', '2018-06-24')
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
+      hTimePeriod = build_timePeriod('TP002', 'usage time', '2019-05-15')
       hUsage[:temporalExtent] << { timePeriod: hTimePeriod }
       hUsage[:additionalDocumentation] << citation_title
       hUsage[:userContactInfo] << build_responsibleParty('pointOfContact', ['CID001'])
@@ -735,10 +744,60 @@ class MdJsonHashWriter
       return hBbox
    end
 
+   def add_attribute_dash1(hAttGroup, type)
+      # types for ISO 19115-1 [ range | sample | mdBand | miBand ]
+      hAttribute = attribute
+
+      clear_sample = Proc.new {
+         hAttribute[:maxValue] = ''
+         hAttribute[:minValue] = ''
+         hAttribute[:units] = ''
+         hAttribute[:scaleFactor] = ''
+         hAttribute[:offset] = ''
+         hAttribute[:meanValue] = ''
+         hAttribute[:numberOfValues] = ''
+         hAttribute[:standardDeviation] = ''
+         hAttribute[:bitsPerValue] = ''
+      }
+      clear_mdBand = Proc.new {
+         hAttribute[:boundMin] = ''
+         hAttribute[:boundMax] = ''
+         hAttribute[:boundUnits] = ''
+         hAttribute[:peakResponse] = ''
+         hAttribute[:toneGradations] = ''
+      }
+      clear_miBand = Proc.new {
+         hAttribute[:bandBoundaryDefinition] = ''
+         hAttribute[:nominalSpatialResolution] = ''
+         hAttribute[:transferFunctionType] = ''
+         hAttribute[:transmittedPolarization] = ''
+         hAttribute[:detectedPolarization] = ''
+      }
+
+      if type == 'range'
+         clear_sample.call
+         clear_mdBand.call
+         clear_miBand.call
+      end
+
+      if type == 'sample'
+         clear_mdBand.call
+         clear_miBand.call
+      end
+
+      if type == 'mdBand'
+         clear_miBand.call
+      end
+
+      hAttGroup[:attribute] << hAttribute
+      return hAttGroup
+   end
+
    def add_attribute_dash2(hAttGroup, type)
       # types for ISO 19115-2 [ range | mdBand | miBand ]
-      # remove non-ISO-2 elements
       hAttribute = attribute
+
+      # remove non-ISO-2 elements
       hAttribute[:attributeIdentifier] = []
       hAttribute[:meanValue] = ''
       hAttribute[:numberOfValues] = ''
@@ -746,23 +805,34 @@ class MdJsonHashWriter
       hAttribute[:boundMin] = ''
       hAttribute[:boundMax] = ''
       hAttribute[:boundUnits] = ''
-      unless type == 'miBand'
+
+      clear_mdBand = Proc.new {
+         hAttribute[:peakResponse] = ''
+         hAttribute[:toneGradations] = ''
+         hAttribute[:maxValue] = ''
+         hAttribute[:minValue] = ''
+         hAttribute[:units] = ''
+         hAttribute[:bitsPerValue] = ''
+         hAttribute[:scaleFactor] = ''
+         hAttribute[:offset] = ''
+      }
+      clear_miBand = Proc.new {
          hAttribute[:bandBoundaryDefinition] = ''
          hAttribute[:nominalSpatialResolution] = ''
          hAttribute[:transferFunctionType] = ''
          hAttribute[:transmittedPolarization] = ''
          hAttribute[:detectedPolarization] = ''
+      }
+
+      if type == 'range'
+         clear_mdBand.call
+         clear_miBand.call
       end
-      unless type == 'miBand' || type == 'mdBand'
-         hAttribute[:maxValue] = ''
-         hAttribute[:minValue] = ''
-         hAttribute[:units] = ''
-         hAttribute[:peakResponse] = ''
-         hAttribute[:bitsPerValue] = ''
-         hAttribute[:toneGradations] = ''
-         hAttribute[:scaleFactor] = ''
-         hAttribute[:offset] = ''
+
+      if type == 'mdBand'
+         clear_miBand.call
       end
+
       hAttGroup[:attribute] << hAttribute
       return hAttGroup
    end
@@ -804,7 +874,7 @@ class MdJsonHashWriter
    end
 
    def add_duration(hTimePeriod, year = nil, mon = nil, day = nil, hour = nil, min = nil, sec = nil)
-      hDuration = build_duration(year, mon, day, hour, min, sec)
+      hDuration = build_duration(year: year, mon: mon, day: day, hour: hour, min: min, sec: sec)
       hTimePeriod[:duration] = hDuration
       return hTimePeriod
    end
@@ -834,8 +904,6 @@ class MdJsonHashWriter
 
    def add_geodetic(hSpaceRef, datum = nil, ellipse = nil)
       hGeodetic = geodetic
-      hGeodetic[:datumIdentifier][:identifier] = 'identifier'
-      hGeodetic[:ellipsoidIdentifier][:identifier] = 'identifier'
       hGeodetic[:datumName] = datum unless datum.nil?
       hGeodetic[:ellipseName] = ellipse unless ellipse.nil?
       hSpaceRef[:referenceSystemParameterSet] = {}

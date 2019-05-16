@@ -7,7 +7,7 @@ module ADIWG
       module Writers
          module Iso19115_2
 
-            # current version of html writer
+            # current version of ISO 19115-2 writer
             VERSION = '2.2.0'
 
          end

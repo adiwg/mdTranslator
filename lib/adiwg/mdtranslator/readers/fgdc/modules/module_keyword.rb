@@ -222,7 +222,7 @@ module ADIWG
                   nodeName = xKeywords.xpath('.').first.name
                   if nodeName == 'methodid'
                      hKeyword = intMetadataClass.newKeyword
-                     hKeyword[:keywordType] = 'method'
+                     hKeyword[:keywordType] = 'methodology'
 
                      # theme bio.1.1 (methkt) - lineage method keyword thesaurus {citation}
                      thesaurus = xKeywords.xpath('./methkt').text

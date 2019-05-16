@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <cit:onlineResource>
+    <cit:CI_OnlineResource>
+      <cit:linkage>
+        <gco:CharacterString>http://online.adiwg.org/1</gco:CharacterString>
+      </cit:linkage>
+      <cit:protocol>
+        <gco:CharacterString>protocol</gco:CharacterString>
+      </cit:protocol>
+      <cit:name>
+        <gco:CharacterString>online resource name</gco:CharacterString>
+      </cit:name>
+      <cit:description>
+        <gco:CharacterString>online resource description</gco:CharacterString>
+      </cit:description>
+      <cit:function>
+        <cit:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="online resource function" codeSpace="userCode"/>
+      </cit:function>
+    </cit:CI_OnlineResource>
+  </cit:onlineResource>
+
+  <cit:onlineResource>
+    <cit:CI_OnlineResource>
+      <cit:linkage>
+        <gco:CharacterString>http://online.adiwg.org/1</gco:CharacterString>
+      </cit:linkage>
+      <cit:protocol/>
+      <cit:name/>
+      <cit:description/>
+      <cit:function/>
+    </cit:CI_OnlineResource>
+  </cit:onlineResource>
+
+</mdb:MD_Metadata>

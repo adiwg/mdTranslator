@@ -19,7 +19,6 @@ class TestWriter191152Dimension < TestWriter191152Parent
    mdHash = TDClass.base
 
    hGrid = TDClass.build_gridRepresentation()
-   TDClass.add_dimension(hGrid)
    hSpaceRep = TDClass.build_spatialRepresentation('grid', hGrid)
    mdHash[:metadata][:resourceInfo][:spatialRepresentation] = []
    mdHash[:metadata][:resourceInfo][:spatialRepresentation] << hSpaceRep

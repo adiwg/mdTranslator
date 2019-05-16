@@ -714,7 +714,7 @@
             <gco:CharacterString>biota</gco:CharacterString>
           </gmd:keyword>
           <gmd:keyword>
-            <gco:CharacterString>extraTerrestrial</gco:CharacterString>
+            <gco:CharacterString>invalid</gco:CharacterString>
           </gmd:keyword>
           <gmd:type>
             <gmd:MD_KeywordTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_KeywordTypeCode" codeListValue="isoTopicCategory" codeSpace="adiwg002"/>
@@ -750,6 +750,7 @@
       <gmd:topicCategory>
         <gmd:MD_TopicCategoryCode>biota</gmd:MD_TopicCategoryCode>
       </gmd:topicCategory>
+      <gmd:topicCategory gco:nilReason="missing"></gmd:topicCategory>
       <gmd:environmentDescription/>
       <gmd:extent>
         <gmd:EX_Extent>

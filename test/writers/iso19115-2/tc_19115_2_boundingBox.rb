@@ -20,7 +20,7 @@ class TestWriter191152BoundingBox < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   def test_miBand_complete
+   def test_boundingBox_complete
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 

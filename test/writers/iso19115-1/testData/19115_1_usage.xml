@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:gml="www.opengis.net/gml.3.2"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/1.0
+        C:\Users\StanSmith\Projects\ISO\19115\-3\mdt\1.0\mdt.xsd">
+
+  <mri:resourceSpecificUsage>
+    <mri:MD_Usage>
+      <mri:specificUsage>
+        <gco:CharacterString>usage one</gco:CharacterString>
+      </mri:specificUsage>
+      <mri:usageDateTime>
+        <gml:TimePeriod gml:id="TP001">
+          <gml:description>usage one</gml:description>
+          <gml:identifier codeSpace="">time period identifier</gml:identifier>
+          <gml:name>period name one</gml:name>
+          <gml:name>period name two</gml:name>
+          <gml:beginPosition>2018-05-02T00:00:00</gml:beginPosition>
+          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:timeInterval unit="year">1.1</gml:timeInterval>
+        </gml:TimePeriod>
+      </mri:usageDateTime>
+      <mri:userDeterminedLimitations>
+        <gco:CharacterString>user determined limitation</gco:CharacterString>
+      </mri:userDeterminedLimitations>
+      <mri:userContactInfo>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="007"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Organisation>
+              <cit:name>
+                <gco:CharacterString>organization name four</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+              <cit:logo/>
+              <cit:individual/>
+            </cit:CI_Organisation>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </mri:userContactInfo>
+      <mri:response>
+        <gco:CharacterString>response one</gco:CharacterString>
+      </mri:response>
+      <mri:response>
+        <gco:CharacterString>response two</gco:CharacterString>
+      </mri:response>
+      <mri:additionalDocumentation>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>title only citation</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </mri:additionalDocumentation>
+      <mri:identifiedIssues>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>title only citation</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </mri:identifiedIssues>
+    </mri:MD_Usage>
+  </mri:resourceSpecificUsage>
+
+  <mri:resourceSpecificUsage>
+    <mri:MD_Usage>
+      <mri:specificUsage>
+        <gco:CharacterString>specific usage</gco:CharacterString>
+      </mri:specificUsage>
+      <mri:usageDateTime>
+        <gml:TimePeriod gml:id="TP001">
+          <gml:description>usage time</gml:description>
+          <gml:identifier codeSpace="">time period identifier</gml:identifier>
+          <gml:name>period name one</gml:name>
+          <gml:name>period name two</gml:name>
+          <gml:beginPosition>2018-06-24T00:00:00</gml:beginPosition>
+          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:timeInterval unit="year">1.1</gml:timeInterval>
+        </gml:TimePeriod>
+      </mri:usageDateTime>
+      <mri:usageDateTime>
+        <gml:TimePeriod gml:id="TP002">
+          <gml:description>usage time</gml:description>
+          <gml:identifier codeSpace="">time period identifier</gml:identifier>
+          <gml:name>period name one</gml:name>
+          <gml:name>period name two</gml:name>
+          <gml:beginPosition>2019-05-15T00:00:00</gml:beginPosition>
+          <gml:endPosition>2016-12-31T00:00:00</gml:endPosition>
+          <gml:timeInterval unit="year">1.1</gml:timeInterval>
+        </gml:TimePeriod>
+      </mri:usageDateTime>
+      <mri:userDeterminedLimitations>
+        <gco:CharacterString>user determined limitation</gco:CharacterString>
+      </mri:userDeterminedLimitations>
+      <mri:userContactInfo>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="007"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Individual>
+              <cit:name>
+                <gco:CharacterString>person name</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo>
+                <cit:CI_Contact>
+                  <cit:phone>
+                    <cit:CI_Telephone>
+                      <cit:number>
+                        <gco:CharacterString>111-111-1111</gco:CharacterString>
+                      </cit:number>
+                      <cit:numberType>
+                        <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
+                      </cit:numberType>
+                    </cit:CI_Telephone>
+                  </cit:phone>
+                  <cit:address>
+                    <cit:CI_Address>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 1</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:deliveryPoint>
+                        <gco:CharacterString>address line 2</gco:CharacterString>
+                      </cit:deliveryPoint>
+                      <cit:city>
+                        <gco:CharacterString>city</gco:CharacterString>
+                      </cit:city>
+                      <cit:administrativeArea>
+                        <gco:CharacterString>administrative area</gco:CharacterString>
+                      </cit:administrativeArea>
+                      <cit:postalCode>
+                        <gco:CharacterString>postal code</gco:CharacterString>
+                      </cit:postalCode>
+                      <cit:country>
+                        <gco:CharacterString>country</gco:CharacterString>
+                      </cit:country>
+                    </cit:CI_Address>
+                  </cit:address>
+                  <cit:onlineResource/>
+                  <cit:hoursOfService/>
+                  <cit:contactInstructions/>
+                  <cit:contactType/>
+                </cit:CI_Contact>
+              </cit:contactInfo>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
+            </cit:CI_Individual>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </mri:userContactInfo>
+      <mri:userContactInfo>
+        <cit:CI_Responsibility>
+          <cit:role>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="007"/>
+          </cit:role>
+          <cit:extent/>
+          <cit:party>
+            <cit:CI_Individual>
+              <cit:name>
+                <gco:CharacterString>person name three</gco:CharacterString>
+              </cit:name>
+              <cit:contactInfo/>
+              <cit:positionName/>
+            </cit:CI_Individual>
+          </cit:party>
+        </cit:CI_Responsibility>
+      </mri:userContactInfo>
+      <mri:response>
+        <gco:CharacterString>response one</gco:CharacterString>
+      </mri:response>
+      <mri:response>
+        <gco:CharacterString>response two</gco:CharacterString>
+      </mri:response>
+      <mri:additionalDocumentation>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>title only citation</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </mri:additionalDocumentation>
+      <mri:additionalDocumentation>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>title only citation</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </mri:additionalDocumentation>
+      <mri:identifiedIssues>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>title only citation</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </mri:identifiedIssues>
+    </mri:MD_Usage>
+  </mri:resourceSpecificUsage>
+
+  <mri:resourceSpecificUsage>
+    <mri:MD_Usage>
+      <mri:specificUsage>
+        <gco:CharacterString>usage one</gco:CharacterString>
+      </mri:specificUsage>
+      <mri:usageDateTime/>
+      <mri:userDeterminedLimitations/>
+      <mri:userContactInfo/>
+      <mri:response/>
+      <mri:additionalDocumentation/>
+      <mri:identifiedIssues/>
+    </mri:MD_Usage>
+  </mri:resourceSpecificUsage>
+
+</mdb:MD_Metadata>

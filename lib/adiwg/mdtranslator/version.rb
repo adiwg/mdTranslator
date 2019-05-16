@@ -1,7 +1,8 @@
 # adiwg mdTranslator
 
 # version 2 history
-# 2.14.2 2018-11-1  fix fgdc reader error messages
+# 2.15.0 2019-05-15 added ISO 19115-3(1) writer
+# 2.14.2 2018-11-02 changed keywordType from 'method' to 'methodology' for FGDC reader/writer
 # 2.14.1 2018-10-31 add fix for empty verticalDatum in fgdc and iso 19115_2 writers
 # 2.14.0 2018-10-27 refactor taxonomy for multiple taxonomic classifications
 # 2.14.0 2018-10-27 refactor taxonomy for identification reference as citation
@@ -103,7 +104,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.14.2"
+      VERSION = "2.15.0"
    end
 end
 

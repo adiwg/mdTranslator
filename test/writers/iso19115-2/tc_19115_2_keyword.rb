@@ -27,7 +27,7 @@ class TestWriter191152Keyword < TestWriter191152Parent
 
    @@mdHash = mdHash
 
-   def test_image_complete
+   def test_keyword_complete
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 

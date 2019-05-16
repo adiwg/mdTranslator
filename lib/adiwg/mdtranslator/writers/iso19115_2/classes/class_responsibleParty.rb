@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2019-03-14 added test for empty parameters
 #  Stan Smith 2018-04-10 add error and warning messaging
 #  Stan Smith 2016-11-17 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
@@ -39,80 +40,86 @@ module ADIWG
                   outContext = 'responsible party'
                   outContext = inContext + ' responsible party' unless inContext.nil?
 
-                  contactId = hParty[:contactId]
-                  hContact = ADIWG::Mdtranslator::Writers::Iso19115_2.getContact(contactId)
+                  hContact = ADIWG::Mdtranslator::Writers::Iso19115_2.getContact(hParty[:contactId])
+
                   unless hContact.empty?
-                     isOrg = hContact[:isOrganization]
                      @xml.tag!('gmd:CI_ResponsibleParty') do
 
-                        # responsible party
-                        if isOrg
+                        name = hContact[:name]
+                        position = hContact[:positionName]
 
-                           # organization name
-                           s = hContact[:name]
-                           unless s.nil?
+                        # responsible party
+                        if hContact[:isOrganization]
+
+                           # responsible party - organization name
+                           unless name.nil?
                               @xml.tag!('gmd:organisationName') do
-                                 @xml.tag!('gco:CharacterString', s)
+                                 @xml.tag!('gco:CharacterString', name)
                               end
                            end
-                           if s.nil? && @hResponseObj[:writerShowTags]
+                           if name.nil? && @hResponseObj[:writerShowTags]
                               @xml.tag!('gmd:organisationName')
                            end
 
                         else
 
-                           # individual name
-                           s = hContact[:name]
-                           unless s.nil?
+                           # responsible party - individual name
+                           unless name.nil?
                               @xml.tag!('gmd:individualName') do
-                                 @xml.tag!('gco:CharacterString', s)
+                                 @xml.tag!('gco:CharacterString', name)
                               end
                            end
-                           if s.nil? && @hResponseObj[:writerShowTags]
+                           if name.nil? && @hResponseObj[:writerShowTags]
                               @xml.tag!('gmd:individualName')
                            end
 
-                           # position name
-                           s = hContact[:positionName]
-                           unless s.nil?
+                           # responsible party - position name
+                           unless position.nil?
                               @xml.tag!('gmd:positionName') do
-                                 @xml.tag!('gco:CharacterString', s)
+                                 @xml.tag!('gco:CharacterString', position)
                               end
                            end
-                           if s.nil? && @hResponseObj[:writerShowTags]
+                           if position.nil? && @hResponseObj[:writerShowTags]
                               @xml.tag!('gmd:positionName')
                            end
 
                         end
 
                         # responsible party - contact info
-                        if !hContact[:phones].empty? ||
-                           !hContact[:addresses].empty? ||
-                           !hContact[:eMailList].empty? ||
-                           !hContact[:onlineResources].empty? ||
-                           !hContact[:hoursOfService].empty? ||
-                           !hContact[:contactInstructions].nil?
-
+                        haveInfo = false
+                        unless hContact[:phones].empty? &&
+                           hContact[:addresses].empty? &&
+                           hContact[:eMailList].empty? &&
+                           hContact[:onlineResources].empty? &&
+                           hContact[:hoursOfService].empty? &&
+                           hContact[:contactInstructions].nil?
+                           haveInfo = true
+                        end
+                        if haveInfo
                            @xml.tag!('gmd:contactInfo') do
                               contactClass.writeXML(hContact)
                            end
-                        elsif @hResponseObj[:writerShowTags]
+                        end
+                        if !haveInfo && @hResponseObj[:writerShowTags]
                            @xml.tag!('gmd:contactInfo')
                         end
 
                         # responsible party - role (required)
-                        s = role
-                        unless s.nil?
-                           @xml.tag! 'gmd:role' do
-                              codelistClass.writeXML('gmd', 'iso_role', s)
+                        unless role.nil?
+                           @xml.tag!('gmd:role') do
+                              codelistClass.writeXML('gmd', 'iso_role', role)
                            end
                         end
-                        if s.nil?
-                           @NameSpace.issueWarning(270, 'gmd:role', inContext)
+                        if role.nil?
+                           @NameSpace.issueWarning(270, 'gmd:role', outContext)
                         end
 
-                     end # CI_ResponsibleParty tag
-                  end # valid contact returned
+                     end
+                  end
+                  if hContact.empty? && @hResponseObj[:writerShowTags]
+                     @xml.tag!('gmd:CI_ResponsibleParty')
+                  end
+
                end # write XML
             end # CI_ResponsibleParty class
 

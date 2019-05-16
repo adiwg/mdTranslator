@@ -26,7 +26,7 @@ module ADIWG
                   haveMethod = false
                   aKeywords.each do |hKeySet|
                      type = hKeySet[:keywordType]
-                     if type == 'method'
+                     if type == 'method' || type == 'methodology'
                         aKeywords = hKeySet[:keywords]
                         hThesaurus = hKeySet[:thesaurus]
                         thesaurusName = nil

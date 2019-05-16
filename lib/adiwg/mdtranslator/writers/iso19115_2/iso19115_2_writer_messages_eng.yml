@@ -81,6 +81,7 @@ messageList:
    - {id: 260, message: "process step description is missing"}
 
    - {id: 270, message: "responsible party role is missing"}
+   - {id: 270, message: "responsible party is missing"}
 
    - {id: 280, message: "scope level (code) is missing"}
 
@@ -111,3 +112,7 @@ messageList:
    - {id: 351, message: "attribute sequence identifier type is missing"}
 
    - {id: 360, message: "measure type is invalid; must be one of [distance, length, angle, measure, scale]"}
+
+   - {id: 370, message: "invalid obligation code"}
+
+   - {id: 380, message: "invalid topic category"}
