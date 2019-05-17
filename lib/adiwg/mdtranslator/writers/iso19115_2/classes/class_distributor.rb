@@ -39,6 +39,8 @@ module ADIWG
                   formatClass = MD_Format.new(@xml, @hResponseObj)
                   transferClass = MD_DigitalTransferOptions.new(@xml, @hResponseObj)
 
+                  outContext = 'distributor'
+
                   @xml.tag!('gmd:MD_Distributor') do
 
                      # distributor - contact (required) {CI_ResponsibleParty}
@@ -72,7 +74,7 @@ module ADIWG
                         aFormats.each do |hFormat|
                            format = true
                            @xml.tag!('gmd:distributorFormat') do
-                              formatClass.writeXML(hFormat)
+                              formatClass.writeXML(hFormat, outContext + ' format')
                            end
                         end
                      end
