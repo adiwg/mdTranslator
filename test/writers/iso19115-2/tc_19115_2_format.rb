@@ -87,7 +87,7 @@ class TestWriter191152Format < TestWriter191152Parent
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: format version is missing'
+                      'WARNING: ISO-19115-2 writer: format version is missing: CONTEXT is distributor format'
 
    end
 

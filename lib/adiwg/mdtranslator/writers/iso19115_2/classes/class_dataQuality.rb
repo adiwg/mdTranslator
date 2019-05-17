@@ -36,7 +36,7 @@ module ADIWG
                   scopeClass = DQ_Scope.new(@xml, @hResponseObj)
                   lineClass = LI_Lineage.new(@xml, @hResponseObj)
 
-                  outContext = 'data quality'
+                  outContext = 'data quality - lineage'
 
                   @xml.tag!('gmd:DQ_DataQuality') do
 
@@ -48,7 +48,7 @@ module ADIWG
                         end
                      end
                      if hScope.empty?
-                        @NameSpace.issueWarning(60, 'gmd:scope')
+                        @NameSpace.issueWarning(60, 'gmd:scope', outContext)
                      end
 
                      # date quality - report (moved to ISO 19157)
