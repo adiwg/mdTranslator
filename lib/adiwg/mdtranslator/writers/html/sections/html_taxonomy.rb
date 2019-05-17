@@ -8,7 +8,6 @@
 # 	Stan Smith 2015-03-25 original script
 
 require_relative 'html_citation'
-require_relative 'html_identifier'
 require_relative 'html_responsibility'
 require_relative 'html_taxonomyClass'
 
@@ -27,7 +26,6 @@ module ADIWG
 
                   # classes used
                   citationClass = Html_Citation.new(@html)
-                  identifierClass = Html_Identifier.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
                   taxonomicClass = Html_TaxonomyClass.new(@html)
 
@@ -94,7 +92,7 @@ module ADIWG
                   # taxonomy - identification references
                   hTaxonomy[:idReferences].each do |hReference|
                      @html.details do
-                        @html.summary('Non-Authoritative Reference', {'class' => 'h5'})
+                        @html.summary('Non-Authoritative Identification Reference', {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            citationClass.writeHtml(hReference)
                         end

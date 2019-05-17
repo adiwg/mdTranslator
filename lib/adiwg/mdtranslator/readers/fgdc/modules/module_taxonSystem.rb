@@ -2,6 +2,7 @@
 # unpack fgdc taxonomy system
 
 # History:
+#  Stan Smith 2019-05-17 fixed, changed idref output from identifier to citation
 #  Stan Smith 2017-09-20 original script
 
 require 'nokogiri'
@@ -64,10 +65,7 @@ module ADIWG
                      axTaxRef.each do |xTaxRef|
                         hCitation = Citation.unpack(xTaxRef, hResponseObj)
                         unless hCitation.nil?
-                           hIdentifier = intMetadataClass.newIdentifier
-                           hIdentifier[:identifier] = 'none'
-                           hIdentifier[:citation] = hCitation
-                           hTaxonomy[:idReferences] << hIdentifier
+                           hTaxonomy[:idReferences] << hCitation
                         end
                      end
                   end
