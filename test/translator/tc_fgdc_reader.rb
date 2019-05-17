@@ -55,14 +55,14 @@ class TestFgdcReader < MiniTest::Test
 
     def test_fgdc_reader_empty_file
 
-       metadata = ADIWG::Mdtranslator.translate(file: '{}', reader: 'fgdc')
+        metadata = ADIWG::Mdtranslator.translate(file: '{}', reader: 'fgdc')
 
-       refute_empty metadata
-       assert_equal 'fgdc', metadata[:readerRequested]
-       refute metadata[:readerStructurePass]
-       refute_empty metadata[:readerStructureMessages]
+        refute_empty metadata
+        assert_equal 'fgdc', metadata[:readerRequested]
+        refute metadata[:readerStructurePass]
+        refute_empty metadata[:readerStructureMessages]
 
-   end
+    end
 
 end
 
