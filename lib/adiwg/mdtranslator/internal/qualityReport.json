@@ -1,0 +1,58 @@
+{
+   "dataQuality": [
+      {
+         "scope": {},
+         "standaloneQualityReport": {
+            "reportReference": {},
+            "abstract": "stand alone abstract",
+            "elementReport": []
+         },
+         "report": [
+            {
+               "type": "quality report type - enumerated",
+               "dateTime": "2019-06-11T08:10:00",
+               "standaloneQualityReportDetails": "standalone details",
+               "measure": {
+                  "identifier": {},
+                  "name": "name of measure",
+                  "description": "measure description"
+               },
+               "evaluationMethod": {
+                  "dateTime": "2019-06-11T08:35:00",
+                  "methodDescription": "evaluation method description",
+                  "evaluationProcedure": {},
+                  "referenceDocument": [],
+                  "evaluationMethodType": "DQ_EvaluationMethodTypeCode"
+               },
+               "quantitativeResult": [
+                  {
+                     "dateTime": "2019-06-11T09:00:00",
+                     "scope": {},
+                     "value": [9.99, 9.0],
+                     "valueUnits": "value units"
+                  }
+               ],
+               "descriptiveResult": [
+                  {
+                     "dateTime": "2019-06-11T09:00:00",
+                     "scope": {},
+                     "statement": "descriptive result statement"
+                  }
+               ],
+               "conformanceResult": [
+                  {
+                     "dateTime": "2019-06-11T09:00:00",
+                     "scope": {},
+                     "specification": {},
+                     "explanation": "conformance result explanation",
+                     "pass": false
+                  }
+               ],
+               "coverageResult": ["drop this class"],
+               "derivedElementReport": [],
+               "relatedElementReport": []
+            }
+         ]
+      }
+   ]
+}
