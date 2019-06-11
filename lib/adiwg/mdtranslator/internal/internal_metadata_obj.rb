@@ -154,7 +154,138 @@ class InternalMetadata
    end
 
 
-   # contacts--------------------------------
+   # acquisition ----------------------------
+   def newAcquisition
+      {
+         plans: [],
+         planRequirements: [],
+         objectives: [],
+         platforms: [],
+         instruments: [],
+         operations: [],
+         events: [],
+         passes: [],
+         environment: {}
+      }
+   end
+
+   def newEnvironment
+      {
+         averageAirTemperature: nil,
+         maxRelativeHumidity: nil,
+         maxAltitude: nil,
+         meteorologicalConditions: nil
+      }
+   end
+
+   def newEvent
+      {
+         eventId: nil,
+         trigger: nil,
+         context: nil,
+         sequence: nil,
+         dateTime: nil,
+         expectedObjectives: [],
+         relatedPass: nil,
+         relatedSensors: []
+      }
+   end
+
+   def newInstrument
+      {
+         instrumentId: nil,
+         citation: {},
+         identifier: {},
+         instrumentType: nil,
+         description: nil,
+         mountedOn: nil
+      }
+   end
+
+   def newObjective
+      {
+         objectiveId: nil,
+         identifiers: [],
+         priority: nil,
+         objectiveTypes: [],
+         functions: [],
+         extents: [],
+         occurrence: nil,
+         passes: [],
+         sensingInstruments: []
+      }
+   end
+
+   def newPass
+      {
+         passId: nil,
+         identifier: {},
+         extent: {},
+         relatedEvents: []
+      }
+   end
+
+   def newPlan
+      {
+         planId: nil,
+         planType: nil,
+         status: nil,
+         citation: {},
+         planOperations: [],
+         planRequirements: []
+      }
+   end
+
+   def newPlanOperation
+      {
+         operationId: nil,
+         citation: {},
+         identifier: {},
+         status: nil,
+         operationType: nil,
+         objectives: [],
+         parentOperations: nil,
+         childOperations: [],
+         plan: nil,
+         platforms: [],
+         significantEvents: []
+      }
+   end
+
+   def newPlanRequirement
+      {
+         requirementId: nil,
+         citation: {},
+         identifier: {},
+         requestors: [],
+         recipients: [],
+         priority: nil,
+         requestDate: {},
+         expiryDate: nil,
+         satisfiedPlans: []
+      }
+   end
+
+   def newPlatform
+      {
+         platformId: nil,
+         citation: {},
+         identifier: {},
+         description: nil,
+         sponsors: [],
+         instruments: []
+      }
+   end
+
+   def newRequestDate
+      {
+         requestedDateCollection: nil,
+         latestAcceptableDate: nil
+      }
+   end
+
+
+   # contacts -------------------------------
    def newAddress
       {
          addressTypes: [],
@@ -491,6 +622,84 @@ class InternalMetadata
       {
          minRangeValue: nil,
          maxRangeValue: nil
+      }
+   end
+
+
+   # data quality ---------------------------
+   def newDataQuality
+      {
+         scope: {},
+         standaloneReport: {},
+         reports: []
+      }
+   end
+
+   def newConformanceResult
+      {
+         dateTime: nil,
+         scope: {},
+         specification: {},
+         explanation: nil,
+         pass: false
+      }
+   end
+
+   def newDescriptiveResult
+      {
+         dateTime: nil,
+         scope: {},
+         statement: nil
+      }
+   end
+
+   def newEvaluationMethod
+      {
+         dateTime: nil,
+         description: nil,
+         evaluationProcedure: {},
+         referenceDocuments: [],
+         evaluationMethodType: nil
+      }
+   end
+
+   def newQuantitativeResult
+      {
+         dateTime: nil,
+         scope: {},
+         values: [],
+         valueUnits: nil
+      }
+   end
+
+   def newQualityMeasure
+      {
+         identifier: {},
+         nameOfMeasure: nil,
+         description: nil
+      }
+   end
+
+   def newReport
+      {
+         type: nil,
+         dateTime: nil,
+         standaloneQualityReportDetails: nil,
+         qualityMeasure: {},
+         evaluationMethod: {},
+         quantitativeResults: [],
+         descriptiveResults: [],
+         conformanceResults: [],
+         derivedElementReports: [],
+         relatedElementReports: []
+      }
+   end
+
+   def newStandaloneReport
+      {
+         reportReference: {},
+         abstract: nil,
+         elementReports: []
       }
    end
 
