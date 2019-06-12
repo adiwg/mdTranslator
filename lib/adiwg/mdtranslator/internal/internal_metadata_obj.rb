@@ -158,7 +158,7 @@ class InternalMetadata
    def newAcquisition
       {
          plans: [],
-         planRequirements: [],
+         requirements: [],
          objectives: [],
          platforms: [],
          instruments: [],
@@ -210,7 +210,7 @@ class InternalMetadata
          objectiveTypes: [],
          functions: [],
          extents: [],
-         occurrence: nil,
+         occurrences: [],
          passes: [],
          sensingInstruments: []
       }
@@ -232,11 +232,11 @@ class InternalMetadata
          status: nil,
          citation: {},
          planOperations: [],
-         planRequirements: []
+         satisfiedRequirements: []
       }
    end
 
-   def newPlanOperation
+   def newOperation
       {
          operationId: nil,
          citation: {},
@@ -252,7 +252,7 @@ class InternalMetadata
       }
    end
 
-   def newPlanRequirement
+   def newRequirement
       {
          requirementId: nil,
          citation: {},
@@ -260,7 +260,7 @@ class InternalMetadata
          requestors: [],
          recipients: [],
          priority: nil,
-         requestDate: {},
+         requestedDate: {},
          expiryDate: nil,
          satisfiedPlans: []
       }
@@ -277,7 +277,7 @@ class InternalMetadata
       }
    end
 
-   def newRequestDate
+   def newRequestedDate
       {
          requestedDateCollection: nil,
          latestAcceptableDate: nil

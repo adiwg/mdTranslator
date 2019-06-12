@@ -8,21 +8,23 @@
                "status": "MD_ProgressCode",
                "citation": {},
                "planOperation": ["operationId"],
-               "planRequirement": [
-                  {
-                     "citation": {},
-                     "identifier": {},
-                     "requestor": [],
-                     "recipient": [],
-                     "priority": "MI_PriorityCode",
-                     "requestedDate": {
-                        "requestedDateOfCollection": "2019-06-10T16:01:00",
-                        "latestAcceptableDate": "2019-06-13:T16:02:00"
-                     },
-                     "expiryDate": "2019-06-10T15:50:00",
-                     "satisfiedPlan": ["planId"]
-                  }
-               ]
+               "satisfiedRequirement": ["requirementId"]
+            }
+         ],
+         "requirement": [
+            {
+               "requirementId": "requirement ID",
+               "citation": {},
+               "identifier": {},
+               "requestor": [],
+               "recipient": [],
+               "priority": "MI_PriorityCode",
+               "requestedDate": {
+                  "requestedDateOfCollection": "2019-06-10T16:01:00",
+                  "latestAcceptableDate": "2019-06-13:T16:02:00"
+               },
+               "expiryDate": "2019-06-10T15:50:00",
+               "satisfiedPlan": ["planId"]
             }
          ],
          "objective": [
@@ -30,10 +32,8 @@
                "objectiveId": "objective ID",
                "identifier": [],
                "priority": "objective priority",
-               "objectiveType": "MI_ObjectiveTypeCode",
-               "function": [
-                  "objective function one"
-               ],
+               "objectiveType": ["MI_ObjectiveTypeCode"],
+               "function": ["objective function one"],
                "extent": [],
                "objectiveOccurrence": ["eventId"],
                "pass": ["passId"],

@@ -12,7 +12,7 @@
                "type": "quality report type - enumerated",
                "dateTime": "2019-06-11T08:10:00",
                "standaloneQualityReportDetails": "standalone details",
-               "measure": {
+               "qualityMeasure": {
                   "identifier": {},
                   "name": "name of measure",
                   "description": "measure description"
