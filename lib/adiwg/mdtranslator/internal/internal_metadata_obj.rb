@@ -655,11 +655,16 @@ class InternalMetadata
 
    def newEvaluationMethod
       {
-         dateTime: nil,
+         type: nil,
+         dateTime: [],
          description: nil,
          evaluationProcedure: {},
          referenceDocuments: [],
-         evaluationMethodType: nil
+         evaluationMethodType: nil,
+         deductiveSource: 'deductive source',
+         samplingScheme: 'sampling scheme',
+         lotDescription: 'lot description',
+         samplingRatio: 'sampling ratio'
       }
    end
 
@@ -668,14 +673,15 @@ class InternalMetadata
          dateTime: nil,
          scope: {},
          values: [],
-         valueUnits: nil
+         valueUnits: nil,
+         valueRecordType: nil
       }
    end
 
    def newQualityMeasure
       {
          identifier: {},
-         nameOfMeasure: nil,
+         nameOfMeasure: [],
          description: nil
       }
    end
@@ -683,7 +689,7 @@ class InternalMetadata
    def newReport
       {
          type: nil,
-         dateTime: nil,
+         dateTime: [],
          standaloneQualityReportDetails: nil,
          qualityMeasure: {},
          evaluationMethod: {},

@@ -10,26 +10,32 @@
          "report": [
             {
                "type": "quality report type - enumerated",
-               "dateTime": "2019-06-11T08:10:00",
+               "dateTime": ["2019-06-11T08:10:00"],
                "standaloneQualityReportDetails": "standalone details",
                "qualityMeasure": {
                   "identifier": {},
-                  "name": "name of measure",
+                  "name": ["name of measure"],
                   "description": "measure description"
                },
                "evaluationMethod": {
-                  "dateTime": "2019-06-11T08:35:00",
+                  "type": "evaluation method type - enumerated",
+                  "dateTime": ["2019-06-11T08:35:00"],
                   "methodDescription": "evaluation method description",
                   "evaluationProcedure": {},
                   "referenceDocument": [],
-                  "evaluationMethodType": "DQ_EvaluationMethodTypeCode"
+                  "evaluationMethodType": "DQ_EvaluationMethodTypeCode",
+                  "deductiveSource": "deductive source",
+                  "samplingScheme": "sampling scheme",
+                  "lotDescription": "lot description",
+                  "samplingRatio": "sampling ratio"
                },
                "quantitativeResult": [
                   {
                      "dateTime": "2019-06-11T09:00:00",
                      "scope": {},
                      "value": [9.99, 9.0],
-                     "valueUnits": "value units"
+                     "valueUnits": "value units",
+                     "valueRecordType": "value record type"
                   }
                ],
                "descriptiveResult": [
