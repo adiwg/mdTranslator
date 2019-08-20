@@ -156,7 +156,7 @@ and to choose the level of validation for mdJson input files.
             $stdout.write mdReturn.to_json
             return
          else
-            # build a string with messages issues from parser, validator, or reader
+            # build a string with messages issued from parser, validator, or reader
             s = ''
             s += "Failed\n"
             s += "Input failed to pass either file structure, validation, or content requirements\n"
