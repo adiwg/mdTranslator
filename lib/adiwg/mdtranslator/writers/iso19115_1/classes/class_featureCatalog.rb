@@ -2,7 +2,7 @@
 # 19115-1 writer output in XML
 
 # History:
-# 	Stan Smith 2019-08-20 original script. 
+# 	Stan Smith 2019-08-20 original script.
 
 require_relative '../../iso19110/classes/class_fcFeatureCatalogue'
 
