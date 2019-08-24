@@ -30,14 +30,13 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
-               def writeXML(intObj)
+               def writeXML(hDictionary)
 
                   # classes used
                   localeClass = PT_Locale.new(@xml, @hResponseObj)
                   rPartyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
                   featureClass = FC_FeatureType.new(@xml, @hResponseObj)
 
-                  hDictionary = intObj[:dataDictionaries][0]
                   hCitation = hDictionary[:citation]
                   aEntities = hDictionary[:entities]
                   version = @hResponseObj[:translatorVersion]

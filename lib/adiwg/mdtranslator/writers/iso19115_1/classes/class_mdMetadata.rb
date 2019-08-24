@@ -3,6 +3,7 @@
 
 # History:
 # 	Stan Smith 2019-03-12 original script
+#  Stan Smith 2019-08-22 add support for data dictionary (feature catalogue)
 
 require 'uuidtools'
 require 'adiwg/mdtranslator/internal/internal_metadata_obj'
@@ -23,6 +24,7 @@ require_relative 'class_dataIdentification'
 require_relative 'class_maintenance'
 require_relative 'class_spatialRepresentation'
 require_relative 'class_referenceSystem'
+require_relative 'class_featureCatalog'
 
 module ADIWG
    module Mdtranslator
@@ -57,6 +59,7 @@ module ADIWG
                   maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
                   representationClass = SpatialRepresentation.new(@xml, @hResponseObj)
                   referenceSystemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
+                  mdCatalogClass = MD_FeatureCatalogue.new(@xml, @hResponseObj)
 
                   # create shortcuts to sections of internal object
                   hMetadata = intObj[:metadata]
@@ -64,6 +67,7 @@ module ADIWG
                   hResInfo = hMetadata[:resourceInfo]
                   aDistributions = hMetadata[:distributorInfo]
                   aLineage = hMetadata[:lineageInfo]
+                  aDictionaries = intObj[:dataDictionaries]
                   version = @hResponseObj[:translatorVersion]
 
                   # document head
@@ -296,8 +300,7 @@ module ADIWG
 
                      # ###################### End Data Identification #######################
 
-                     # metadata information - content information []
-                     # FC_FeatureCatalogue not implemented
+                     # metadata information - content information [] {coverage and image description}
                      aCoverages = hResInfo[:coverageDescriptions]
                      aCoverages.each do |hCoverage|
                         unless hCoverage.empty?
@@ -311,7 +314,17 @@ module ADIWG
                            end
                         end
                      end
-                     if aCoverages.empty? && @hResponseObj[:writerShowTags]
+
+                     # metadata information - content information [] {data dictionary}
+                     aDictionaries.each_with_index do |hDictionary, index|
+                        unless hDictionary.empty?
+                           @xml.tag!('mdb:contentInfo') do
+                              mdCatalogClass.writeXML(intObj, index)
+                           end
+                        end
+                     end
+
+                     if aCoverages.empty? && aDictionaries.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mdb:contentInfo')
                      end
 

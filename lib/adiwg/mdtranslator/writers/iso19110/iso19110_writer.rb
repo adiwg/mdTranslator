@@ -41,8 +41,8 @@ module ADIWG
                   issueNotice(111)
                end
 
-               dictionary = intObj[:dataDictionaries][whichDict]
-               @domains = dictionary[:domains]
+               hDictionary = intObj[:dataDictionaries][whichDict]
+               @domains = hDictionary[:domains]
 
                # set the format of the output file based on the writer specified
                hResponseObj[:writerOutputFormat] = 'xml'
@@ -53,7 +53,7 @@ module ADIWG
 
                # start writing the ISO 19110 XML record
                metadataWriter = FC_FeatureCatalogue.new(@xml, hResponseObj)
-               metadata = metadataWriter.writeXML(intObj)
+               metadata = metadataWriter.writeXML(hDictionary)
 
                return metadata
 
