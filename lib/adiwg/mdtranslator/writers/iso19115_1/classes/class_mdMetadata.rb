@@ -120,6 +120,8 @@ module ADIWG
 
                                'xmlns:fcc' => 'http://standards.iso.org/iso/19110/fcc/1.0',
                                'xmlns:gfc' => 'http://standards.iso.org/iso/19110/gfc/1.1',
+                               'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
+                               'xmlns:gmx' => 'http://www.isotc211.org/2005/gmx',
 
                                'xsi:schemaLocation' => "http://standards.iso.org/iso/19115/-3/mdt/2.0 #{remoteSchema}"
                             }) do

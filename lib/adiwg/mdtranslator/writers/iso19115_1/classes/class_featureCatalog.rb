@@ -4,7 +4,7 @@
 # History:
 # 	Stan Smith 2019-08-20 original script.
 
-require_relative '../../iso19110/classes/class_fcFeatureCatalogue'
+require_relative '../../iso19110/iso19110_writer'
 
 module ADIWG
    module Mdtranslator
@@ -25,10 +25,11 @@ module ADIWG
                   nameSpace19110 = ADIWG::Mdtranslator::Writers::Iso19110
 
                   # write 19110 record
-                  fcCatalogClass = nameSpace19110.startWriter(intObj, @hResponseObj, whichDict)
+                  fcCatalogClass = nameSpace19110.startWriter(intObj, @hResponseObj, whichDict, true)
 
                   # strip first line
-                  fcArray = fcCatalogClass.split("\n")[1..-1].join
+                  first_line = fcCatalogClass.index("\n")
+                  fcCatalogClass.slice!(0, first_line + 1)
 
                   outContext = 'feature catalog'
 
@@ -37,7 +38,7 @@ module ADIWG
                         @xml.tag!('mrc:featureCatalogue') do
 
                            # data dictionary
-                           @xml << fcArray
+                           @xml << fcCatalogClass
 
                         end
                      end

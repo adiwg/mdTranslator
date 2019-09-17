@@ -22,12 +22,22 @@ class TestWriter191151FeatureCatalogue < TestWriter191151Parent
 
    def test_coverageDescription_featureCatalogue
 
-      hReturn = TestWriter191151Parent.run_test(@@mdHash, '19115_1_coverageDescription', '//mdb:contentInfo[1]',
-                                                '//mdb:contentInfo', 0)
+      hReturn = TestWriter191151Parent.run_test(@@mdHash, '19115_1_featureCatalogue', '//gfc:FC_FeatureCatalogue[1]',
+                                                '//gfc:FC_FeatureCatalogue', 0)
 
-      assert_equal hReturn[0], hReturn[1]
+      # RIDICULOUS
+      # last line of testData XML is imported with an extra space at the fist of the line
+      # I can't seem to get rid of it.  So, these extra steps ....
+      aExpect = hReturn[0].strip.split("\n")
+      aGot = hReturn[1].strip.split("\n")
+      lastLine = aExpect.pop
+      lastLine = aGot.pop
+      assert_equal '</gfc:FC_FeatureCatalogue>', lastLine
+
+      assert_equal aExpect, aGot
       assert hReturn[2]
-      assert_empty hReturn[3]
+      assert_includes hReturn[3], 'WARNING: ISO-19110 writer: feature catalogue feature type is missing'
+
    end
 
 end

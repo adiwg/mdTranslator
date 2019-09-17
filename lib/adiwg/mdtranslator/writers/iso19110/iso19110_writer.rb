@@ -21,7 +21,7 @@ module ADIWG
       module Writers
          module Iso19110
 
-            def self.startWriter(intObj, hResponseObj, whichDict = 0)
+            def self.startWriter(intObj, hResponseObj, whichDict = 0, embed = false)
 
                # load error message array
                file = File.join(File.dirname(__FILE__), 'iso19110_writer_messages_eng') + '.yml'
@@ -53,7 +53,7 @@ module ADIWG
 
                # start writing the ISO 19110 XML record
                metadataWriter = FC_FeatureCatalogue.new(@xml, hResponseObj)
-               metadata = metadataWriter.writeXML(hDictionary)
+               metadata = metadataWriter.writeXML(hDictionary, embed)
 
                return metadata
 
