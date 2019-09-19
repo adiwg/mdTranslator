@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.16.1 2019-09-18 add applicationProfile and protocolRequest to onlineResource
 # 2.16.0 2019-09-17 add 19110:2005 dictionary support to 19115-1
 # 2.15.0 2019-05-15 added ISO 19115-3(1) writer
 # 2.14.2 2018-11-02 changed keywordType from 'method' to 'methodology' for FGDC reader/writer

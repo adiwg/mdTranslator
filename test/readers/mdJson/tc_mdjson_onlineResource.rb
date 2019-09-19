@@ -38,10 +38,12 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       assert_equal 'https://adiwg.org/1', metadata[:olResURI]
-      assert_equal 'protocol', metadata[:olResProtocol]
       assert_equal 'online resource name', metadata[:olResName]
       assert_equal 'online resource description', metadata[:olResDesc]
       assert_equal 'online resource function', metadata[:olResFunction]
+      assert_equal 'application profile', metadata[:olResApplicationProfile]
+      assert_equal 'protocol', metadata[:olResProtocol]
+      assert_equal 'protocol request', metadata[:olResProtocolRequest]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -87,17 +89,21 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['protocol'] = ''
       hIn['name'] = ''
       hIn['description'] = ''
       hIn['function'] = ''
+      hIn['applicationProfile'] = ''
+      hIn['protocol'] = ''
+      hIn['protocolRequest'] = ''
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata[:olResProtocol]
       assert_nil metadata[:olResName]
       assert_nil metadata[:olResDesc]
       assert_nil metadata[:olResFunction]
+      assert_nil metadata[:olResApplicationProfile]
+      assert_nil metadata[:olResProtocol]
+      assert_nil metadata[:olResProtocolRequest]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 
@@ -108,17 +114,21 @@ class TestReaderMdJsonOnlineResource < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn.delete('protocol')
       hIn.delete('name')
       hIn.delete('description')
       hIn.delete('function')
+      hIn.delete('applicationProfile')
+      hIn.delete('protocol')
+      hIn.delete('protocolRequest')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_nil metadata[:olResProtocol]
       assert_nil metadata[:olResName]
       assert_nil metadata[:olResDesc]
       assert_nil metadata[:olResFunction]
+      assert_nil metadata[:olResApplicationProfile]
+      assert_nil metadata[:olResProtocol]
+      assert_nil metadata[:olResProtocolRequest]
       assert hResponse[:readerExecutionPass]
       assert_empty hResponse[:readerExecutionMessages]
 

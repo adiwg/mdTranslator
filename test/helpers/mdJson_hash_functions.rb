@@ -1030,9 +1030,11 @@ class MdJsonHashWriter
       hOnlineRes = build_onlineResource(uri)
       if reqOnly
          hOnlineRes.delete(:name)
-         hOnlineRes.delete(:protocol)
          hOnlineRes.delete(:description)
          hOnlineRes.delete(:function)
+         hOnlineRes.delete(:applicationProfile)
+         hOnlineRes.delete(:protocol)
+         hOnlineRes.delete(:protocolRequest)
       end
       hTranOpt[:onlineOption] << hOnlineRes
       return hTranOpt

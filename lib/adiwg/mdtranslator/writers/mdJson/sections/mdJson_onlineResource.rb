@@ -1,8 +1,9 @@
 # mdJson 2.0 writer - online resource
 
 # History:
-#   Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
-#   Josh Bradley original script
+#  Stan Smith 2019-09-18 add protocolRequest and applicationProfile
+#  Stan Smith 2017-03-11 refactored for mdJson/mdTranslator 2.0
+#  Josh Bradley original script
 
 require 'jbuilder'
 
@@ -17,10 +18,12 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.uri hOlRes[:olResURI]
-                     json.protocol hOlRes[:olResProtocol]
                      json.name hOlRes[:olResName]
                      json.description hOlRes[:olResDesc]
                      json.function hOlRes[:olResFunction]
+                     json.applicationProfile hOlRes[:olResApplicationProfile]
+                     json.protocol hOlRes[:olResProtocol]
+                     json.protocolRequest hOlRes[:olResProtocolRequest]
                   end
 
                end # build

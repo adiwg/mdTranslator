@@ -386,10 +386,12 @@ class InternalMetadata
    def newOnlineResource
       {
          olResURI: nil,
-         olResProtocol: nil,
          olResName: nil,
          olResDesc: nil,
-         olResFunction: nil
+         olResFunction: nil,
+         olResApplicationProfile: nil,
+         olResProtocol: nil,
+         olResProtocolRequest: nil
       }
    end
 

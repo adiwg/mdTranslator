@@ -93,6 +93,7 @@
                 <gmd:URL>https://adiwg.mdtranslator/1</gmd:URL>
               </gmd:linkage>
               <gmd:protocol/>
+              <gmd:applicationProfile/>
               <gmd:name/>
               <gmd:description/>
               <gmd:function/>
@@ -163,6 +164,7 @@
                 <gmd:URL>https://adiwg.mdtranslator/1</gmd:URL>
               </gmd:linkage>
               <gmd:protocol/>
+              <gmd:applicationProfile/>
               <gmd:name/>
               <gmd:description/>
               <gmd:function/>

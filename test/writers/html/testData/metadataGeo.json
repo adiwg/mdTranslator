@@ -124,10 +124,12 @@
          "onlineResource": [
             {
                "uri": "http://ISO.uri/adiwg/1",
-               "protocol": "protocol",
                "name": "name",
                "description": "description",
-               "function": "function"
+               "function": "function",
+               "applicationProfile": "application profile",
+               "protocol": "protocol",
+               "protocolRequest": "protocol request"
             },
             {
                "uri": "http://ISO.uri/adiwg/2"

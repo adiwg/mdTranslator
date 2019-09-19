@@ -47,9 +47,11 @@
             <gco:CharacterString>http://adiwg.org/1</gco:CharacterString>
           </cit:linkage>
           <cit:protocol/>
+          <cit:applicationProfile/>
           <cit:name/>
           <cit:description/>
           <cit:function/>
+          <cit:protocolRequest/>
         </cit:CI_OnlineResource>
       </mrd:onLine>
       <mrd:offLine>
@@ -137,9 +139,11 @@
             <gco:CharacterString>http://adiwg.org/1</gco:CharacterString>
           </cit:linkage>
           <cit:protocol/>
+          <cit:applicationProfile/>
           <cit:name/>
           <cit:description/>
           <cit:function/>
+          <cit:protocolRequest/>
         </cit:CI_OnlineResource>
       </mrd:onLine>
       <mrd:onLine>
@@ -148,9 +152,11 @@
             <gco:CharacterString>http://adiwg.org/2</gco:CharacterString>
           </cit:linkage>
           <cit:protocol/>
+          <cit:applicationProfile/>
           <cit:name/>
           <cit:description/>
           <cit:function/>
+          <cit:protocolRequest/>
         </cit:CI_OnlineResource>
       </mrd:onLine>
       <mrd:offLine>

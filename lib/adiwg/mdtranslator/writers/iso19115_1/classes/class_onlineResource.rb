@@ -2,6 +2,7 @@
 # 19115-1 writer output in XML
 
 # History:
+#  Stan Smith 2019-09-18 add protocolRequest and applicationProfile
 # 	Stan Smith 2019-03-14 original script.
 
 require_relative '../iso19115_1_writer'
@@ -47,7 +48,15 @@ module ADIWG
                         @xml.tag!('cit:protocol')
                      end
 
-                     # online resource - application profile - not implemented
+                     # online resource - application profile
+                     unless hOlResource[:olResApplicationProfile].nil?
+                        @xml.tag!('cit:applicationProfile') do
+                           @xml.tag!('gco:CharacterString', hOlResource[:olResApplicationProfile])
+                        end
+                     end
+                     if hOlResource[:olResApplicationProfile].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('cit:applicationProfile')
+                     end
 
                      # online resource - link name
                      unless hOlResource[:olResName].nil?
@@ -79,7 +88,15 @@ module ADIWG
                         @xml.tag!('cit:function')
                      end
 
-                     # online resource - protocol request - not implemented
+                     # online resource - protocol request
+                     unless hOlResource[:olResProtocolRequest].nil?
+                        @xml.tag!('cit:protocolRequest') do
+                           @xml.tag!('gco:CharacterString', hOlResource[:olResProtocolRequest])
+                        end
+                     end
+                     if hOlResource[:olResProtocolRequest].nil? && @hResponseObj[:writerShowTags]
+                        @xml.tag!('cit:protocolRequest')
+                     end
 
                   end # CI_OnlineResource tag
                end # write XML

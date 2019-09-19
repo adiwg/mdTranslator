@@ -585,9 +585,11 @@ class MdJsonHashWriter
       {
          uri: nil,
          name: 'online resource name',
-         protocol: 'protocol',
          description: 'online resource description',
-         function: 'online resource function'
+         function: 'online resource function',
+         applicationProfile: 'application profile',
+         protocol: 'protocol',
+         protocolRequest: 'protocol request'
       }
    end
 

@@ -22,6 +22,9 @@
       <gmd:protocol>
         <gco:CharacterString>protocol</gco:CharacterString>
       </gmd:protocol>
+      <gmd:applicationProfile>
+        <gco:CharacterString>application profile</gco:CharacterString>
+      </gmd:applicationProfile>
       <gmd:name>
         <gco:CharacterString>online resource name</gco:CharacterString>
       </gmd:name>
@@ -40,6 +43,7 @@
         <gmd:URL>http://online.adiwg.org/1</gmd:URL>
       </gmd:linkage>
       <gmd:protocol/>
+      <gmd:applicationProfile/>
       <gmd:name/>
       <gmd:description/>
       <gmd:function/>
