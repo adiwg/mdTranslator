@@ -25,7 +25,7 @@ class TestWriter191151FeatureCatalogue < TestWriter191151Parent
       hReturn = TestWriter191151Parent.run_test(@@mdHash, '19115_1_featureCatalogue', '//gfc:FC_FeatureCatalogue[1]',
                                                 '//gfc:FC_FeatureCatalogue', 0)
 
-      # RIDICULOUS
+      # TODO figure out what is happening here
       # last line of testData XML is imported with an extra space at the fist of the line
       # I can't seem to get rid of it.  So, these extra steps ....
       aExpect = hReturn[0].strip.split("\n")
