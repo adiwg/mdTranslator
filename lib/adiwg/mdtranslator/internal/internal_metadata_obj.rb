@@ -926,17 +926,10 @@ class InternalMetadata
       }
    end
 
-   def newProcessStep
+   def algorithm
       {
-         stepId: nil,
-         description: nil,
-         rationale: nil,
-         timePeriod: {},
-         processors: [],
-         references: [],
-         stepSources: [],
-         stepProducts: [],
-         scope: {}
+         citation: {},
+         description: nil
       }
    end
 
@@ -949,7 +942,52 @@ class InternalMetadata
          spatialResolution: {},
          referenceSystem: {},
          sourceSteps: [],
-         scope: {}
+         scope: {},
+         processedLevel: {},
+         resolution: {}
+      }
+   end
+
+   def newNominalResolution
+      {
+         scanningResolution: {},
+         groundResolution: {}
+      }
+   end
+
+   def newProcessing
+      {
+         identifier: {},
+         softwareReferences: [],
+         procedureDescription: nil,
+         documentation: [],
+         runtimeParameters: nil,
+         algorithms: []
+      }
+   end
+
+   def newProcessStep
+      {
+         stepId: nil,
+         description: nil,
+         rationale: nil,
+         timePeriod: {},
+         processors: [],
+         references: [],
+         stepSources: [],
+         stepProducts: [],
+         scope: {},
+         outputs: [],
+         processingInformation: {},
+         reports: []
+      }
+   end
+
+   def newProcessStepReport
+      {
+         name: nil,
+         description: nil,
+         fileType: nil
       }
    end
 

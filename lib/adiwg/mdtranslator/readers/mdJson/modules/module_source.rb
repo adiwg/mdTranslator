@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 # History:
+#  Stan Smith 2019-09-22 add LE_Source elements
 #  Stan Smith 2018-06-25 refactored error and warning messaging
 #  Stan Smith 2016-10-17 refactored for mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -112,7 +113,7 @@ module ADIWG
                      end
                   end
 
-                  # source - scope {scope}
+                  # source - scope {scope} (required if)
                   if hSource.has_key?('scope')
                      hObject = hSource['scope']
                      unless hObject.empty?
