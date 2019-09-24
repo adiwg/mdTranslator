@@ -43,9 +43,10 @@ class TestWriter191152OnlineResource < TestWriter191152Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hOLRes = hIn[:contact][2][:onlineResource][0]
       hOLRes.delete(:name)
-      hOLRes.delete(:protocol)
       hOLRes.delete(:description)
       hOLRes.delete(:function)
+      hOLRes.delete(:protocol)
+      hOLRes.delete(:applicationProfile)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_onlineResource',
                                                 '//gmd:onlineResource[2]',

@@ -58,11 +58,11 @@ module ADIWG
                   end
 
                   # source - metadata citation [] {citation}
-                  unless hSource[:metadataCitation].empty?
+                  unless hSource[:metadataCitations].empty?
                      @html.details do
                         @html.summary('Metadata Citations', {'class' => 'h5'})
                         @html.section(:class => 'block') do
-                           hSource[:metadataCitation].each do |hCitation|
+                           hSource[:metadataCitations].each do |hCitation|
                               @html.details do
                                  @html.summary(hCitation[:title], {'class' => 'h5'})
                                  @html.section(:class => 'block') do

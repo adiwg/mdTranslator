@@ -154,7 +154,138 @@ class InternalMetadata
    end
 
 
-   # contacts--------------------------------
+   # acquisition ----------------------------
+   def newAcquisition
+      {
+         plans: [],
+         requirements: [],
+         objectives: [],
+         platforms: [],
+         instruments: [],
+         operations: [],
+         events: [],
+         passes: [],
+         environment: {}
+      }
+   end
+
+   def newEnvironment
+      {
+         averageAirTemperature: nil,
+         maxRelativeHumidity: nil,
+         maxAltitude: nil,
+         meteorologicalConditions: nil
+      }
+   end
+
+   def newEvent
+      {
+         eventId: nil,
+         trigger: nil,
+         context: nil,
+         sequence: nil,
+         dateTime: nil,
+         expectedObjectives: [],
+         relatedPass: nil,
+         relatedSensors: []
+      }
+   end
+
+   def newInstrument
+      {
+         instrumentId: nil,
+         citation: {},
+         identifier: {},
+         instrumentType: nil,
+         description: nil,
+         mountedOn: nil
+      }
+   end
+
+   def newObjective
+      {
+         objectiveId: nil,
+         identifiers: [],
+         priority: nil,
+         objectiveTypes: [],
+         functions: [],
+         extents: [],
+         occurrences: [],
+         passes: [],
+         sensingInstruments: []
+      }
+   end
+
+   def newPass
+      {
+         passId: nil,
+         identifier: {},
+         extent: {},
+         relatedEvents: []
+      }
+   end
+
+   def newPlan
+      {
+         planId: nil,
+         planType: nil,
+         status: nil,
+         citation: {},
+         planOperations: [],
+         satisfiedRequirements: []
+      }
+   end
+
+   def newOperation
+      {
+         operationId: nil,
+         citation: {},
+         identifier: {},
+         status: nil,
+         operationType: nil,
+         objectives: [],
+         parentOperations: nil,
+         childOperations: [],
+         plan: nil,
+         platforms: [],
+         significantEvents: []
+      }
+   end
+
+   def newRequirement
+      {
+         requirementId: nil,
+         citation: {},
+         identifier: {},
+         requestors: [],
+         recipients: [],
+         priority: nil,
+         requestedDate: {},
+         expiryDate: nil,
+         satisfiedPlans: []
+      }
+   end
+
+   def newPlatform
+      {
+         platformId: nil,
+         citation: {},
+         identifier: {},
+         description: nil,
+         sponsors: [],
+         instruments: []
+      }
+   end
+
+   def newRequestedDate
+      {
+         requestedDateCollection: nil,
+         latestAcceptableDate: nil
+      }
+   end
+
+
+   # contacts -------------------------------
    def newAddress
       {
          addressTypes: [],
@@ -255,10 +386,12 @@ class InternalMetadata
    def newOnlineResource
       {
          olResURI: nil,
-         olResProtocol: nil,
          olResName: nil,
          olResDesc: nil,
-         olResFunction: nil
+         olResFunction: nil,
+         olResApplicationProfile: nil,
+         olResProtocol: nil,
+         olResProtocolRequest: nil
       }
    end
 
@@ -495,6 +628,90 @@ class InternalMetadata
    end
 
 
+   # data quality ---------------------------
+   def newDataQuality
+      {
+         scope: {},
+         standaloneReport: {},
+         reports: []
+      }
+   end
+
+   def newConformanceResult
+      {
+         dateTime: nil,
+         scope: {},
+         specification: {},
+         explanation: nil,
+         pass: false
+      }
+   end
+
+   def newDescriptiveResult
+      {
+         dateTime: nil,
+         scope: {},
+         statement: nil
+      }
+   end
+
+   def newEvaluationMethod
+      {
+         type: nil,
+         dateTime: [],
+         description: nil,
+         evaluationProcedure: {},
+         referenceDocuments: [],
+         evaluationMethodType: nil,
+         deductiveSource: 'deductive source',
+         samplingScheme: 'sampling scheme',
+         lotDescription: 'lot description',
+         samplingRatio: 'sampling ratio'
+      }
+   end
+
+   def newQuantitativeResult
+      {
+         dateTime: nil,
+         scope: {},
+         values: [],
+         valueUnits: nil,
+         valueRecordType: nil
+      }
+   end
+
+   def newQualityMeasure
+      {
+         identifier: {},
+         nameOfMeasure: [],
+         description: nil
+      }
+   end
+
+   def newReport
+      {
+         type: nil,
+         dateTime: [],
+         standaloneQualityReportDetails: nil,
+         qualityMeasure: {},
+         evaluationMethod: {},
+         quantitativeResults: [],
+         descriptiveResults: [],
+         conformanceResults: [],
+         derivedElementReports: [],
+         relatedElementReports: []
+      }
+   end
+
+   def newStandaloneReport
+      {
+         reportReference: {},
+         abstract: nil,
+         elementReports: []
+      }
+   end
+
+
    # date-time ------------------------------
    def newDate
       {
@@ -709,6 +926,46 @@ class InternalMetadata
       }
    end
 
+   def newAlgorithm
+      {
+         citation: {},
+         description: nil
+      }
+   end
+
+   def newDataSource
+      {
+         sourceId: nil,
+         description: nil,
+         sourceCitation: {},
+         metadataCitations: [],
+         spatialResolution: {},
+         referenceSystem: {},
+         sourceSteps: [],
+         scope: {},
+         processedLevel: {},
+         resolution: {}
+      }
+   end
+
+   def newNominalResolution
+      {
+         scanningResolution: {},
+         groundResolution: {}
+      }
+   end
+
+   def newProcessing
+      {
+         identifier: {},
+         softwareReferences: [],
+         procedureDescription: nil,
+         documentation: [],
+         runtimeParameters: nil,
+         algorithms: []
+      }
+   end
+
    def newProcessStep
       {
          stepId: nil,
@@ -719,20 +976,18 @@ class InternalMetadata
          references: [],
          stepSources: [],
          stepProducts: [],
-         scope: {}
+         scope: {},
+         output: [],
+         processingInformation: {},
+         reports: []
       }
    end
 
-   def newDataSource
+   def newProcessStepReport
       {
-         sourceId: nil,
+         name: nil,
          description: nil,
-         sourceCitation: {},
-         metadataCitation: [],
-         spatialResolution: {},
-         referenceSystem: {},
-         sourceSteps: [],
-         scope: {}
+         fileType: nil
       }
    end
 

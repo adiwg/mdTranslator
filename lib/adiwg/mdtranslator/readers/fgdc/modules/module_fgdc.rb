@@ -2,6 +2,7 @@
 # unpack fgdc metadata
 
 # History:
+#  Stan Smith 2019-09-19 add citation title to dictionary name
 #  Stan Smith 2017-08-10 original script
 
 require 'nokogiri'
@@ -48,9 +49,18 @@ module ADIWG
                   @intObj[:schema] = hSchema
 
                   # metadata (idinfo 1) - identification information (required)
+                  title = ''
                   xIdInfo = xMetadata.xpath('./idinfo')
                   unless xIdInfo.empty?
                      Identification.unpack(xIdInfo, intObj, hResponseObj)
+                     xCitation = xIdInfo.xpath('./citation')
+                     unless xCitation.empty?
+                        xCiteInfo = xCitation.xpath('./citeinfo')
+                        unless xCiteInfo.empty?
+                           title = xCiteInfo.xpath('./title').text
+                        end
+                     end
+
                   end
                   if xIdInfo.empty?
                      hResponseObj[:readerExecutionMessages] << 'WARNING: FGDC reader: identification information section (idinfo) missing'
@@ -77,7 +87,7 @@ module ADIWG
                   # metadata (eainfo 5) - entity and attribute
                   xEntity = xMetadata.xpath('./eainfo')
                   unless xEntity.empty?
-                     hDictionary = EntityAttribute.unpack(xEntity, hResponseObj)
+                     hDictionary = EntityAttribute.unpack(xEntity, title, hResponseObj)
                      unless hDictionary.nil?
                         @intObj[:dataDictionaries] << hDictionary
                      end

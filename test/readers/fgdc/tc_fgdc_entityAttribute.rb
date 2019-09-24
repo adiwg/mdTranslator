@@ -2,7 +2,8 @@
 # readers / fgdc / module_entityAttribute
 
 # History:
-#   Stan Smith 2017-09-06 original script
+#  Stan Smith 2019-09-19 add citation title to dictionary name
+#  Stan Smith 2017-09-06 original script
 
 require 'adiwg/mdtranslator/readers/fgdc/modules/module_fgdc'
 require_relative 'fgdc_test_parent'
@@ -18,11 +19,11 @@ class TestReaderFgdcEntityAttribute < TestReaderFGDCParent
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDictionary = @@NameSpace.unpack(xIn, hResponse)
+      hDictionary = @@NameSpace.unpack(xIn, 'test title', hResponse)
 
       refute_empty hDictionary
       refute_empty hDictionary[:citation]
-      assert_equal 'FGDC EntityAttribute Section 5', hDictionary[:citation][:title]
+      assert_equal 'Data Dictionary for: test title', hDictionary[:citation][:title]
       assert_equal 3, hDictionary[:domains].length
       assert_equal 4, hDictionary[:entities].length
 

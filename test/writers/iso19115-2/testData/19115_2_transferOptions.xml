@@ -34,6 +34,7 @@
             <gmd:URL>http://adiwg.org/1</gmd:URL>
           </gmd:linkage>
           <gmd:protocol/>
+          <gmd:applicationProfile/>
           <gmd:name/>
           <gmd:description/>
           <gmd:function/>
@@ -68,6 +69,7 @@
             <gmd:URL>http://adiwg.org/1</gmd:URL>
           </gmd:linkage>
           <gmd:protocol/>
+          <gmd:applicationProfile/>
           <gmd:name/>
           <gmd:description/>
           <gmd:function/>
@@ -79,6 +81,7 @@
             <gmd:URL>http://adiwg.org/2</gmd:URL>
           </gmd:linkage>
           <gmd:protocol/>
+          <gmd:applicationProfile/>
           <gmd:name/>
           <gmd:description/>
           <gmd:function/>

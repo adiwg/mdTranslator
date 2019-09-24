@@ -585,9 +585,11 @@ class MdJsonHashWriter
       {
          uri: nil,
          name: 'online resource name',
-         protocol: 'protocol',
          description: 'online resource description',
-         function: 'online resource function'
+         function: 'online resource function',
+         applicationProfile: 'application profile',
+         protocol: 'protocol',
+         protocolRequest: 'protocol request'
       }
    end
 
@@ -1248,6 +1250,35 @@ class MdJsonHashWriter
       }
    end
 
+   def algorithm
+      {
+         citation: citation_title,
+         description: 'description'
+      }
+   end
+
+   def nominalResolution
+      {
+         scanningResolution: {
+            type: 'distance',
+            value: 999.9,
+            unitOfMeasure: 'units'
+         },
+         groundResolution: {}
+      }
+   end
+
+   def processing
+      {
+         identifier: identifier,
+         softwareReference: [],
+         procedureDescription: 'procedure description',
+         documentation: [],
+         runtimeParameters: 'runtime parameters',
+         algorithm: []
+      }
+   end
+
    def processStep
       {
          stepId: 'PS001',
@@ -1256,7 +1287,19 @@ class MdJsonHashWriter
          processor: [],
          stepSource: [],
          stepProduct: [],
-         reference: []
+         reference: [],
+         scope: {},
+         output: [],
+         processingInformation: {},
+         report: []
+      }
+   end
+
+   def processStepReport
+      {
+         name: 'name',
+         description: 'description',
+         fileType: 'file type'
       }
    end
 
@@ -1269,7 +1312,9 @@ class MdJsonHashWriter
          spatialResolution: {scaleFactor: 9999},
          referenceSystem: spatialReferenceSystem,
          sourceProcessStep: [],
-         scope: scope
+         scope: scope,
+         processedLevel: identifier,
+         resolution: nominalResolution
       }
    end
 

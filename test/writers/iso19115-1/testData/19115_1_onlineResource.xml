@@ -33,7 +33,7 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<cit:onlineResource>
+  <cit:onlineResource>
     <cit:CI_OnlineResource>
       <cit:linkage>
         <gco:CharacterString>http://online.adiwg.org/1</gco:CharacterString>
@@ -41,6 +41,9 @@
       <cit:protocol>
         <gco:CharacterString>protocol</gco:CharacterString>
       </cit:protocol>
+      <cit:applicationProfile>
+        <gco:CharacterString>application profile</gco:CharacterString>
+      </cit:applicationProfile>
       <cit:name>
         <gco:CharacterString>online resource name</gco:CharacterString>
       </cit:name>
@@ -50,6 +53,9 @@
       <cit:function>
         <cit:CI_OnLineFunctionCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_OnLineFunctionCode" codeListValue="online resource function" codeSpace="userCode"/>
       </cit:function>
+      <cit:protocolRequest>
+        <gco:CharacterString>protocol request</gco:CharacterString>
+      </cit:protocolRequest>
     </cit:CI_OnlineResource>
   </cit:onlineResource>
 
@@ -59,9 +65,11 @@
         <gco:CharacterString>http://online.adiwg.org/1</gco:CharacterString>
       </cit:linkage>
       <cit:protocol/>
+      <cit:applicationProfile/>
       <cit:name/>
       <cit:description/>
       <cit:function/>
+      <cit:protocolRequest/>
     </cit:CI_OnlineResource>
   </cit:onlineResource>
 

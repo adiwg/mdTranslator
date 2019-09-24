@@ -2,6 +2,7 @@
 # unpack fgdc entity and attribute
 
 # History:
+#  Stan Smith 2019-09-19 add citation title to dictionary name
 #  Stan Smith 2017-08-15 original script
 
 require 'nokogiri'
@@ -16,14 +17,16 @@ module ADIWG
 
             module EntityAttribute
 
-               def self.unpack(xEntity, hResponseObj)
+               def self.unpack(xEntity, title, hResponseObj)
 
                   # instance classes needed in script
                   intMetadataClass = InternalMetadata.new
                   hDictionary = intMetadataClass.newDataDictionary
                   hCitation = intMetadataClass.newCitation
-                  hCitation[:title] = 'FGDC EntityAttribute Section 5'
                   hDictionary[:citation] = hCitation
+
+                  # add dictionary title
+                  hCitation[:title] = 'Data Dictionary for: ' + title
 
                   # entity attribute 5.1 (detailed) - entity attribute detailed description
                   axDetail = xEntity.xpath('./detailed')

@@ -43,9 +43,11 @@ class TestWriter191151OnlineResource < TestWriter191151Parent
 
       # empty elements
       hOLRes[:name] = ''
-      hOLRes[:protocol] = ''
       hOLRes[:description] = ''
       hOLRes[:function] = ''
+      hOLRes[:applicationProfile] = ''
+      hOLRes[:protocol] = ''
+      hOLRes[:protocolRequest] = ''
 
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_onlineResource',
                                                 '//cit:onlineResource[2]',
@@ -57,9 +59,11 @@ class TestWriter191151OnlineResource < TestWriter191151Parent
 
       # missing elements
       hOLRes.delete(:name)
-      hOLRes.delete(:protocol)
       hOLRes.delete(:description)
       hOLRes.delete(:function)
+      hOLRes.delete(:applicationProfile)
+      hOLRes.delete(:protocol)
+      hOLRes.delete(:protocolRequest)
 
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_onlineResource',
                                                 '//cit:onlineResource[2]',

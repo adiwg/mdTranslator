@@ -13,7 +13,7 @@ class TestFgdcReaderDebug < TestDebugParent
       xmlFile = TestDebugParent.get_xml('gulkanaGlacierGPR')
 
       hResponseObj = ADIWG::Mdtranslator.translate(
-         file: xmlFile, reader: 'fgdc', writer: 'html', showAllTags: true, forceValid: true
+         file: xmlFile, reader: 'fgdc', writer: 'mdJson', showAllTags: true, forceValid: true
       )
 
       htmlOut = hResponseObj[:writerOutput]

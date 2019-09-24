@@ -33,7 +33,7 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<mdb:contentInfo>
+  <mdb:contentInfo>
     <mrc:MD_CoverageDescription>
       <mrc:attributeDescription>
         <gco:RecordType>coverage name; coverage description</gco:RecordType>

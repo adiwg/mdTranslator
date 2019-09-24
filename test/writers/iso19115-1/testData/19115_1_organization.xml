@@ -120,9 +120,11 @@
                 <gco:CharacterString>https://adiwg.mdtranslator/1</gco:CharacterString>
               </cit:linkage>
               <cit:protocol/>
+              <cit:applicationProfile/>
               <cit:name/>
               <cit:description/>
               <cit:function/>
+              <cit:protocolRequest/>
             </cit:CI_OnlineResource>
           </cit:onlineResource>
           <cit:onlineResource>
@@ -131,9 +133,11 @@
                 <gco:CharacterString>https://adiwg.mdtranslator/2</gco:CharacterString>
               </cit:linkage>
               <cit:protocol/>
+              <cit:applicationProfile/>
               <cit:name/>
               <cit:description/>
               <cit:function/>
+              <cit:protocolRequest/>
             </cit:CI_OnlineResource>
           </cit:onlineResource>
           <cit:hoursOfService>
@@ -260,9 +264,11 @@
                 <gco:CharacterString>https://adiwg.mdtranslator/1</gco:CharacterString>
               </cit:linkage>
               <cit:protocol/>
+              <cit:applicationProfile/>
               <cit:name/>
               <cit:description/>
               <cit:function/>
+              <cit:protocolRequest/>
             </cit:CI_OnlineResource>
           </cit:onlineResource>
           <cit:onlineResource>
@@ -271,9 +277,11 @@
                 <gco:CharacterString>https://adiwg.mdtranslator/2</gco:CharacterString>
               </cit:linkage>
               <cit:protocol/>
+              <cit:applicationProfile/>
               <cit:name/>
               <cit:description/>
               <cit:function/>
+              <cit:protocolRequest/>
             </cit:CI_OnlineResource>
           </cit:onlineResource>
           <cit:hoursOfService>

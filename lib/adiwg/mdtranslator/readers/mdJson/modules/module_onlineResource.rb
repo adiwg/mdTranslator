@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON V1 to internal data structure
 
 # History:
+#  Stan Smith 2018-09-18 add applicationProfile and protocolRequest
 #  Stan Smith 2018-06-22 refactored error and warning messaging
 # 	Stan Smith 2016-10-03 original script
 #  Stan Smith 2015-07-14 refactored to remove global namespace constants
@@ -42,31 +43,45 @@ module ADIWG
                      @MessagePath.issueError(601, responseObj, inContext)
                   end
 
-                  # resource - web link protocol
-                  if hOnlineRes.has_key?('protocol')
-                     unless hOnlineRes['protocol'] == ''
-                        intOLRes[:olResProtocol] = hOnlineRes['protocol']
-                     end
-                  end
-
-                  # resource - web link name
+                  # resource - name
                   if hOnlineRes.has_key?('name')
                      unless hOnlineRes['name'] == ''
                         intOLRes[:olResName] = hOnlineRes['name']
                      end
                   end
 
-                  # resource - web link description
+                  # resource - description
                   if hOnlineRes.has_key?('description')
                      unless hOnlineRes['description'] == ''
                         intOLRes[:olResDesc] = hOnlineRes['description']
                      end
                   end
 
-                  # resource - web link function
+                  # resource - unction
                   if hOnlineRes.has_key?('function')
                      unless hOnlineRes['function'] == ''
                         intOLRes[:olResFunction] = hOnlineRes['function']
+                     end
+                  end
+
+                  # resource - application profile
+                  if hOnlineRes.has_key?('applicationProfile')
+                     unless hOnlineRes['applicationProfile'] == ''
+                        intOLRes[:olResApplicationProfile] = hOnlineRes['applicationProfile']
+                     end
+                  end
+
+                  # resource - protocol
+                  if hOnlineRes.has_key?('protocol')
+                     unless hOnlineRes['protocol'] == ''
+                        intOLRes[:olResProtocol] = hOnlineRes['protocol']
+                     end
+                  end
+
+                  # resource - protocol request
+                  if hOnlineRes.has_key?('protocolRequest')
+                     unless hOnlineRes['protocolRequest'] == ''
+                        intOLRes[:olResProtocolRequest] = hOnlineRes['protocolRequest']
                      end
                   end
 

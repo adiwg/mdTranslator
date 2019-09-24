@@ -1,0 +1,108 @@
+{
+   "acquisition": [
+      {
+         "plan": [
+            {
+               "planId": "plan ID",
+               "planType": "MI_GeometryTypeCode",
+               "status": "MD_ProgressCode",
+               "citation": {},
+               "planOperation": ["operationId"],
+               "satisfiedRequirement": ["requirementId"]
+            }
+         ],
+         "requirement": [
+            {
+               "requirementId": "requirement ID",
+               "citation": {},
+               "identifier": {},
+               "requestor": [],
+               "recipient": [],
+               "priority": "MI_PriorityCode",
+               "requestedDate": {
+                  "requestedDateOfCollection": "2019-06-10T16:01:00",
+                  "latestAcceptableDate": "2019-06-13:T16:02:00"
+               },
+               "expiryDate": "2019-06-10T15:50:00",
+               "satisfiedPlan": ["planId"]
+            }
+         ],
+         "objective": [
+            {
+               "objectiveId": "objective ID",
+               "identifier": [],
+               "priority": "objective priority",
+               "objectiveType": ["MI_ObjectiveTypeCode"],
+               "function": ["objective function one"],
+               "extent": [],
+               "objectiveOccurrence": ["eventId"],
+               "pass": ["passId"],
+               "sensingInstrument": ["instrumentId"]
+            }
+         ],
+         "platform": [
+            {
+               "platformId": "platform ID",
+               "citation": {},
+               "identifier": {},
+               "description": "platform description",
+               "sponsor": [],
+               "instrument": ["instrumentId"]
+            }
+         ],
+         "instrument": [
+            {
+               "instrumentId": "instrument ID",
+               "citation": [],
+               "identifier": {},
+               "instrumentType": "instrument type",
+               "description": "instrument description",
+               "mountedOn": "platformId"
+            }
+         ],
+         "operation": [
+            {
+               "operationId": "operation ID",
+               "description": "operation description",
+               "citation": {},
+               "identifier": {},
+               "status": "MD_ProgressCode",
+               "operationType": "MI_OperationTypeCode",
+               "objective": ["objectiveId"],
+               "parentOperation": "operationId",
+               "childOperation": ["operationId"],
+               "plan": "planId",
+               "platform": ["platformId"],
+               "significantEvent": ["eventId"]
+            }
+         ],
+         "event": [
+            {
+               "eventId": "event ID",
+               "identifier": {},
+               "trigger": "MI_TriggerCode",
+               "context": "MI_ContextCode",
+               "sequence": "MI_SequenceCode",
+               "time": "2019-06-10T16:07:00",
+               "expectedObjective": ["objectiveId"],
+               "relatedPass": "passId",
+               "relatedSensor": ["instrumentId"]
+            }
+         ],
+         "pass": [
+            {
+               "passId": "pass ID",
+               "identifier": {},
+               "extent": {},
+               "relatedEvent": ["eventId"]
+            }
+         ],
+         "environment": {
+            "averageAirTemperature": 9.9,
+            "maxRelativeHumidity": 9.9,
+            "maxAltitude": 9.9,
+            "meteorologicalConditions": "meteorological conditions"
+         }
+      }
+   ]
+}

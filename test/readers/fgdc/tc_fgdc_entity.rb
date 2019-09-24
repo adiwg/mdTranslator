@@ -18,7 +18,7 @@ class TestReaderFgdcEntity < TestReaderFGDCParent
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDictionary = @@NameSpace.unpack(xIn, hResponse)
+      hDictionary = @@NameSpace.unpack(xIn,'test title', hResponse)
 
       refute_empty hDictionary
       assert_equal 4, hDictionary[:entities].length

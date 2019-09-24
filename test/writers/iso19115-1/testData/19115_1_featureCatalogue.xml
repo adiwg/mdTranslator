@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+        xmlns:mex="http://standards.iso.org/iso/19157/-2/mex/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
+        xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+        xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
+        xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/2.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xmlns:gmd="http://www.isotc211.org/2005/gmd"
+        xmlns:gmx="http://www.isotc211.org/2005/gmx"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0 http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
+
+  <gfc:FC_FeatureCatalogue>
+    <gmx:name>
+      <gco:CharacterString>dictionary title</gco:CharacterString>
+    </gmx:name>
+    <gmx:scope>
+      <gco:CharacterString>subject one</gco:CharacterString>
+    </gmx:scope>
+    <gmx:scope>
+      <gco:CharacterString>subject two</gco:CharacterString>
+    </gmx:scope>
+    <gmx:fieldOfApplication>
+      <gco:CharacterString>use one</gco:CharacterString>
+    </gmx:fieldOfApplication>
+    <gmx:fieldOfApplication>
+      <gco:CharacterString>use two</gco:CharacterString>
+    </gmx:fieldOfApplication>
+    <gmx:versionNumber>
+      <gco:CharacterString>version 1.0.0</gco:CharacterString>
+    </gmx:versionNumber>
+    <gmx:versionDate>
+      <gco:Date>2018-04-05</gco:Date>
+    </gmx:versionDate>
+    <gmx:locale/>
+    <gfc:producer>
+      <gmd:CI_ResponsibleParty>
+        <gmd:individualName>
+          <gco:CharacterString>person name</gco:CharacterString>
+        </gmd:individualName>
+        <gmd:positionName>
+          <gco:CharacterString>position name</gco:CharacterString>
+        </gmd:positionName>
+        <gmd:contactInfo>
+          <gmd:CI_Contact>
+            <gmd:phone>
+              <gmd:CI_Telephone>
+                <gmd:voice>
+                  <gco:CharacterString>phone name: 111-111-1111</gco:CharacterString>
+                </gmd:voice>
+                <gmd:facsimile/>
+              </gmd:CI_Telephone>
+            </gmd:phone>
+            <gmd:address>
+              <gmd:CI_Address>
+                <gmd:deliveryPoint>
+                  <gco:CharacterString>address line 1</gco:CharacterString>
+                </gmd:deliveryPoint>
+                <gmd:deliveryPoint>
+                  <gco:CharacterString>address line 2</gco:CharacterString>
+                </gmd:deliveryPoint>
+                <gmd:city>
+                  <gco:CharacterString>city</gco:CharacterString>
+                </gmd:city>
+                <gmd:administrativeArea>
+                  <gco:CharacterString>administrative area</gco:CharacterString>
+                </gmd:administrativeArea>
+                <gmd:postalCode>
+                  <gco:CharacterString>postal code</gco:CharacterString>
+                </gmd:postalCode>
+                <gmd:country>
+                  <gco:CharacterString>country</gco:CharacterString>
+                </gmd:country>
+                <gmd:electronicMailAddress/>
+              </gmd:CI_Address>
+            </gmd:address>
+            <gmd:onlineResource/>
+            <gmd:hoursOfService/>
+            <gmd:contactInstructions/>
+          </gmd:CI_Contact>
+        </gmd:contactInfo>
+        <gmd:role>
+          <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode"
+                           codeListValue="dictionary role" codeSpace="userCode"/>
+        </gmd:role>
+      </gmd:CI_ResponsibleParty>
+    </gfc:producer>
+    <gfc:functionalLanguage>
+      <gco:CharacterString>dictionary functional language</gco:CharacterString>
+    </gfc:functionalLanguage>
+    <gfc:featureType gco:nilReason="missing"/>
+  </gfc:FC_FeatureCatalogue>
+
+</mdb:MD_Metadata>

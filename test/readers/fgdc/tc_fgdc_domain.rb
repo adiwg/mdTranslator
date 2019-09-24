@@ -18,7 +18,7 @@ class TestReaderFgdcDomain < TestReaderFGDCParent
 
       xIn = @@xDoc.xpath('./metadata/eainfo')
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
-      hDictionary = @@NameSpace.unpack(xIn, hResponse)
+      hDictionary = @@NameSpace.unpack(xIn, 'test title', hResponse)
 
       assert_equal 3, hDictionary[:domains].length
 

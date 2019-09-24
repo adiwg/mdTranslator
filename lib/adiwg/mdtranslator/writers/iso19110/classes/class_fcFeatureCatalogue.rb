@@ -2,6 +2,7 @@
 # writer output in XML
 
 # History:
+#  Stan Smith 2019-09-17 handle namespace setup for dictionary embedded in 19115
 #  Stan Smith 2018-05-03 add variable for changing XSD location
 #  Stan Smith 2018-04-03 refactored error and warning messaging
 #  Stan Smith 2017-01-20 refactored for mdJson/mdTranslator 2.0
@@ -30,14 +31,13 @@ module ADIWG
                   @NameSpace = ADIWG::Mdtranslator::Writers::Iso19110
                end
 
-               def writeXML(intObj)
+               def writeXML(hDictionary, embed)
 
                   # classes used
                   localeClass = PT_Locale.new(@xml, @hResponseObj)
                   rPartyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
                   featureClass = FC_FeatureType.new(@xml, @hResponseObj)
 
-                  hDictionary = intObj[:dataDictionaries][0]
                   hCitation = hDictionary[:citation]
                   aEntities = hDictionary[:entities]
                   version = @hResponseObj[:translatorVersion]
@@ -57,19 +57,24 @@ module ADIWG
                   remoteSchema = 'ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/gfc/gfc.xsd'
 
                   # FC_FeatureCatalogue
-                  @xml.tag!('gfc:FC_FeatureCatalogue',
-                            {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
-                             'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
-                             'xmlns:gco' => 'http://www.isotc211.org/2005/gco',
-                             'xmlns:gml' => 'http://www.opengis.net/gml/3.2',
-                             'xmlns:gsr' => 'http://www.isotc211.org/2005/gsr',
-                             'xmlns:gss' => 'http://www.isotc211.org/2005/gss',
-                             'xmlns:gst' => 'http://www.isotc211.org/2005/gst',
-                             'xmlns:gmx' => 'http://www.isotc211.org/2005/gmx',
-                             'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
-                             'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
-                             'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-                             'xsi:schemaLocation' => "http://www.isotc211.org/2005/gfc #{remoteSchema}"}) do
+                  if embed
+                     attributes = {}
+                  else
+                     attributes = {'xmlns:gmi' => 'http://www.isotc211.org/2005/gmi',
+                                   'xmlns:gmd' => 'http://www.isotc211.org/2005/gmd',
+                                   'xmlns:gco' => 'http://www.isotc211.org/2005/gco',
+                                   'xmlns:gml' => 'http://www.opengis.net/gml/3.2',
+                                   'xmlns:gsr' => 'http://www.isotc211.org/2005/gsr',
+                                   'xmlns:gss' => 'http://www.isotc211.org/2005/gss',
+                                   'xmlns:gst' => 'http://www.isotc211.org/2005/gst',
+                                   'xmlns:gmx' => 'http://www.isotc211.org/2005/gmx',
+                                   'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
+                                   'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
+                                   'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
+                                   'xsi:schemaLocation' => "http://www.isotc211.org/2005/gfc #{remoteSchema}"}
+                  end
+
+                  @xml.tag!('gfc:FC_FeatureCatalogue', attributes) do
 
                      # feature catalogue - name, version, version date are
                      # are taken from citation

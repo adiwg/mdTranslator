@@ -44,10 +44,24 @@ module ADIWG
                      @html.br
                   end
 
+                  # online resource - application profile
+                  unless hOlRes[:olResApplicationProfile].nil?
+                     @html.em('Application Profile: ')
+                     @html.text!(hOlRes[:olResApplicationProfile])
+                     @html.br
+                  end
+
                   # online resource - protocol
                   unless hOlRes[:olResProtocol].nil?
                      @html.em('Protocol: ')
                      @html.text!(hOlRes[:olResProtocol])
+                     @html.br
+                  end
+
+                  # online resource - protocol request
+                  unless hOlRes[:olResProtocolRequest].nil?
+                     @html.em('Protocol Request: ')
+                     @html.text!(hOlRes[:olResProtocolRequest])
                      @html.br
                   end
 

@@ -84,7 +84,7 @@ module ADIWG
                      end
 
                      # source - metadata [] {CI_Citation}
-                     aCitations = hSource[:metadataCitation]
+                     aCitations = hSource[:metadataCitations]
                      aCitations.each do |hCitation|
                         @xml.tag!('mrl:sourceMetadata') do
                            citationClass.writeXML(hCitation, outContext)
