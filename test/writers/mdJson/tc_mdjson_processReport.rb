@@ -1,16 +1,14 @@
-# mdJson 2.0 writer tests - source
+# mdJson 2.0 writer tests - process step report
 
 # History:
-#  Stan Smith 2019-09-24 add LE_Source support
-#  Stan Smith 2018-06-07 refactor to use mdJson construction helpers
-#  Stan Smith 2017-03-19 original script
+#  Stan Smith 2019-09-24 original script
 
 require 'adiwg-mdtranslator'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
-class TestWriterMdJsonSource < TestWriterMdJsonParent
+class TestWriterMdJsonProcessStepReport < TestWriterMdJsonParent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -18,35 +16,35 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hLineage = TDClass.build_lineage
-   hLineage[:source] << TDClass.build_source_full
+   hLineage = TDClass.lineage
+   hLineage[:processStep] << TDClass.processStep
+   hLineage[:processStep][0][:report] << TDClass.processStepReport
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
+
+   TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
 
    # TODO refactor after schema update
-   # def test_schema_source
+   # def test_schema_address
    #
-   #    hIn = Marshal::load(Marshal.dump(@@mdHash))
-   #    hTest = hIn[:metadata][:resourceLineage][0][:source][0]
-   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'lineage.json', :fragment=>'source')
+   #    hTest = @@mdHash[:contact][0][:address][1]
+   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'contact.json', fragment: 'address')
    #    assert_empty errors
    #
    # end
 
-   def test_complete_source
-
-      TDClass.removeEmptyObjects(@@mdHash)
+   def test_complete_processStepReport
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@mdHash.to_json)
-      expect = expect['metadata']['resourceLineage'][0]['source']
+      expect = expect['metadata']['resourceLineage'][0]['processStep'][0]['report'][0]
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['resourceLineage'][0]['source']
+      got = got['metadata']['resourceLineage'][0]['processStep'][0]['report'][0]
 
       assert metadata[:writerPass]
       assert metadata[:readerStructurePass]

@@ -1,6 +1,7 @@
 # mdJson 2.0 writer tests - process step
 
 # History:
+#  Stan Smith 2019-09-24 add LE_Process support
 #  Stan Smith 2018-06-06 refactor to use mdJson construction helpers
 #  Stan Smith 2017-03-19 original script
 

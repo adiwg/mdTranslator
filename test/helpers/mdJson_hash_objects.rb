@@ -1260,6 +1260,7 @@ class MdJsonHashWriter
    def nominalResolution
       {
          scanningResolution: {
+            type: 'distance',
             value: 999.9,
             unitOfMeasure: 'units'
          },

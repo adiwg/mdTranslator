@@ -1,16 +1,14 @@
-# mdJson 2.0 writer tests - source
+# mdJson 2.0 writer tests - nominal resolution
 
 # History:
-#  Stan Smith 2019-09-24 add LE_Source support
-#  Stan Smith 2018-06-07 refactor to use mdJson construction helpers
-#  Stan Smith 2017-03-19 original script
+#  Stan Smith 2019-09-24 original script
 
 require 'adiwg-mdtranslator'
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
-class TestWriterMdJsonSource < TestWriterMdJsonParent
+class TestWriterMdJsonNominalResolution < TestWriterMdJsonParent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -19,7 +17,7 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
    mdHash = TDClass.base
 
    hLineage = TDClass.build_lineage
-   hLineage[:source] << TDClass.build_source_full
+   hLineage[:source] << TDClass.source
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
 
@@ -35,7 +33,7 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
    #
    # end
 
-   def test_complete_source
+   def test_complete_nominalResolution
 
       TDClass.removeEmptyObjects(@@mdHash)
 
@@ -44,9 +42,9 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
          writer: 'mdJson', showAllTags: false)
 
       expect = JSON.parse(@@mdHash.to_json)
-      expect = expect['metadata']['resourceLineage'][0]['source']
+      expect = expect['metadata']['resourceLineage'][0]['source'][0]['resolution']
       got = JSON.parse(metadata[:writerOutput])
-      got = got['metadata']['resourceLineage'][0]['source']
+      got = got['metadata']['resourceLineage'][0]['source'][0]['resolution']
 
       assert metadata[:writerPass]
       assert metadata[:readerStructurePass]
