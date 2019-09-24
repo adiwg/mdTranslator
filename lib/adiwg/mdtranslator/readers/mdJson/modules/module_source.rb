@@ -16,6 +16,8 @@ require_relative 'module_processStep'
 require_relative 'module_spatialReference'
 require_relative 'module_scope'
 require_relative 'module_spatialResolution'
+require_relative 'module_identifier'
+require_relative 'module_nominalResolution'
 
 module ADIWG
    module Mdtranslator
@@ -75,7 +77,7 @@ module ADIWG
                      aCitation.each do |item|
                         hCitation = Citation.unpack(item, responseObj, outContext)
                         unless hCitation.nil?
-                           intSource[:metadataCitation] << hCitation
+                           intSource[:metadataCitations] << hCitation
                         end
                      end
                   end
@@ -121,6 +123,28 @@ module ADIWG
                         unless hReturn.nil?
                            intSource[:scope] = hReturn
                            haveRequired = true
+                        end
+                     end
+                  end
+
+                  # source - processed level {identifier}
+                  if hSource.has_key?('processedLevel')
+                     hObject = hSource['processedLevel']
+                     unless hObject.empty?
+                        hReturn = Identifier.unpack(hObject, responseObj, outContext)
+                        unless hReturn.nil?
+                           intSource[:processedLevel] = hReturn
+                        end
+                     end
+                  end
+
+                  # source - resolution {nominalResolution}
+                  if hSource.has_key?('resolution')
+                     hObject = hSource['resolution']
+                     unless hObject.empty?
+                        hReturn = NominalResolution.unpack(hObject, responseObj, outContext)
+                        unless hReturn.nil?
+                           intSource[:resolution] = hReturn
                         end
                      end
                   end

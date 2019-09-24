@@ -926,7 +926,7 @@ class InternalMetadata
       }
    end
 
-   def algorithm
+   def newAlgorithm
       {
          citation: {},
          description: nil
@@ -938,7 +938,7 @@ class InternalMetadata
          sourceId: nil,
          description: nil,
          sourceCitation: {},
-         metadataCitation: [],
+         metadataCitations: [],
          spatialResolution: {},
          referenceSystem: {},
          sourceSteps: [],
@@ -977,7 +977,7 @@ class InternalMetadata
          stepSources: [],
          stepProducts: [],
          scope: {},
-         outputs: [],
+         output: [],
          processingInformation: {},
          reports: []
       }

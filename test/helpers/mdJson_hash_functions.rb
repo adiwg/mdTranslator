@@ -374,6 +374,17 @@ class MdJsonHashWriter
       return hContact
    end
 
+   def build_processing_full
+      hProcessing = processing
+      hProcessing[:softwareReference] << citation_title
+      hProcessing[:softwareReference] << citation_title
+      hProcessing[:documentation] << citation_title
+      hProcessing[:documentation] << citation_title
+      hProcessing[:algorithm] << algorithm
+      hProcessing[:algorithm] << algorithm
+      return hProcessing
+   end
+
    def build_processStep(id, description = nil, hTimePeriod = nil)
       hStep = processStep
       hStep[:stepId] = id
@@ -394,6 +405,11 @@ class MdJsonHashWriter
       hProcess[:reference] << citation_title
       hProcess[:reference] << citation_title
       hProcess[:scope] = scope
+      hProcess[:output] << build_source('SRC005')
+      hProcess[:output] << build_source('SRC006')
+      hProcess[:processingInformation] = processing
+      hProcess[:report] << processStepReport
+      hProcess[:report] << processStepReport
       return hProcess
    end
 

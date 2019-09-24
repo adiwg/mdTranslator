@@ -26,13 +26,14 @@ class TestWriterMdJsonProcessStep < TestWriterMdJsonParent
 
    @@mdHash = mdHash
 
-   def test_schema_processStep
-
-      hTest = @@mdHash[:metadata][:resourceLineage][0][:processStep][0]
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'lineage.json', :fragment=>'processStep')
-      assert_empty errors
-
-   end
+   # TODO refactor after schema update
+   # def test_schema_processStep
+   #
+   #    hTest = @@mdHash[:metadata][:resourceLineage][0][:processStep][0]
+   #    errors = TestWriterMdJsonParent.testSchema(hTest, 'lineage.json', :fragment=>'processStep')
+   #    assert_empty errors
+   #
+   # end
 
    def test_complete_processStep
 

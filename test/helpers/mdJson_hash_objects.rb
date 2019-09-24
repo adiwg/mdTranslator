@@ -1252,12 +1252,12 @@ class MdJsonHashWriter
 
    def algorithm
       {
-         citation: {},
+         citation: citation_title,
          description: 'description'
       }
    end
 
-   def newNominalResolution
+   def nominalResolution
       {
          scanningResolution: {
             value: 999.9,
@@ -1267,9 +1267,9 @@ class MdJsonHashWriter
       }
    end
 
-   def newProcessing
+   def processing
       {
-         identifier: {},
+         identifier: identifier,
          softwareReference: [],
          procedureDescription: 'procedure description',
          documentation: [],
@@ -1294,7 +1294,7 @@ class MdJsonHashWriter
       }
    end
 
-   def newProcessStepReport
+   def processStepReport
       {
          name: 'name',
          description: 'description',
@@ -1312,8 +1312,8 @@ class MdJsonHashWriter
          referenceSystem: spatialReferenceSystem,
          sourceProcessStep: [],
          scope: scope,
-         processedLevel: {},
-         resolution: {}
+         processedLevel: identifier,
+         resolution: nominalResolution
       }
    end
 

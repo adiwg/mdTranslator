@@ -390,3 +390,18 @@ messageList:
    - {id: 942, message: "voucher repository is missing"}
 
    - {id: 950, message: "local projection object is empty"}
+
+   - {id: 960, message: "nominal resolution object is empty"}
+   - {id: 961, message: "nominal resolution object is missing required elements"}
+   - {id: 962, message: "nominal resolution cannot be both scanning and ground resolutions"}
+
+   - {id: 970, message: "algorithm object is empty"}
+   - {id: 971, message: "algorithm citation is missing"}
+   - {id: 972, message: "algorithm description is missing"}
+
+   - {id: 980, message: "process step report object is empty"}
+   - {id: 981, message: "process step report name is missing"}
+
+   - {id: 990, message: "processing object is empty"}
+   - {id: 991, message: "processing identifier is missing"}
+
