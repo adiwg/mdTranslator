@@ -977,7 +977,6 @@ class InternalMetadata
          stepSources: [],
          stepProducts: [],
          scope: {},
-         output: [],
          processingInformation: {},
          reports: []
       }

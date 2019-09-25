@@ -404,8 +404,6 @@ class MdJsonHashWriter
       hProcess[:reference] << citation_title
       hProcess[:reference] << citation_title
       hProcess[:scope] = scope
-      hProcess[:output] << build_source('SRC005')
-      hProcess[:output] << build_source('SRC006')
       hProcess[:processingInformation] = processing
       hProcess[:report] << processStepReport
       hProcess[:report] << processStepReport

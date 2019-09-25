@@ -1289,7 +1289,6 @@ class MdJsonHashWriter
          stepProduct: [],
          reference: [],
          scope: {},
-         output: [],
          processingInformation: {},
          report: []
       }
