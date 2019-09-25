@@ -376,8 +376,7 @@ class MdJsonHashWriter
 
    def build_processing_full
       hProcessing = processing
-      hProcessing[:softwareReference] << citation_title
-      hProcessing[:softwareReference] << citation_title
+      hProcessing[:softwareReference] = citation_title
       hProcessing[:documentation] << citation_title
       hProcessing[:documentation] << citation_title
       hProcessing[:algorithm] << algorithm

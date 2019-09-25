@@ -38,7 +38,7 @@ class TestReaderMdJsonProcessing < TestReaderMdJsonParent
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
       refute_empty metadata[:identifier]
-      assert_equal 2, metadata[:softwareReferences].length
+      refute_empty metadata[:softwareReference]
       assert_equal 'procedure description', metadata[:procedureDescription]
       assert_equal 2, metadata[:documentation].length
       assert_equal 'runtime parameters', metadata[:runtimeParameters]
@@ -86,7 +86,7 @@ class TestReaderMdJsonProcessing < TestReaderMdJsonParent
       TestReaderMdJsonParent.loadEssential
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       hIn = JSON.parse(hIn.to_json)
-      hIn['softwareReference'] = []
+      hIn['softwareReference'] = {}
       hIn['procedureDescription'] = ''
       hIn['documentation'] = []
       hIn['runtimeParameters'] = ''
@@ -94,7 +94,7 @@ class TestReaderMdJsonProcessing < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_empty metadata[:softwareReferences]
+      assert_empty metadata[:softwareReference]
       assert_nil metadata[:procedureDescription]
       assert_empty metadata[:documentation]
       assert_nil metadata[:runtimeParameters]
@@ -114,7 +114,7 @@ class TestReaderMdJsonProcessing < TestReaderMdJsonParent
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
       metadata = @@NameSpace.unpack(hIn, hResponse, 'testing')
 
-      assert_empty metadata[:softwareReferences]
+      assert_empty metadata[:softwareReference]
       assert_nil metadata[:procedureDescription]
       assert_empty metadata[:documentation]
       assert_nil metadata[:runtimeParameters]

@@ -21,7 +21,7 @@ module ADIWG
 
                   Jbuilder.new do |json|
                      json.identifier Identifier.build(hProcess[:identifier]) unless hProcess[:identifier].empty?
-                     json.softwareReference @Namespace.json_map(hProcess[:softwareReferences], Citation)
+                     json.softwareReference Citation.build(hProcess[:softwareReference]) unless hProcess[:softwareReference].empty?
                      json.procedureDescription hProcess[:procedureDescription]
                      json.documentation @Namespace.json_map(hProcess[:documentation], Citation)
                      json.runtimeParameters hProcess[:runtimeParameters]

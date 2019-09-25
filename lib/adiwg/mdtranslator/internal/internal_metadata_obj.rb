@@ -958,7 +958,7 @@ class InternalMetadata
    def newProcessing
       {
          identifier: {},
-         softwareReferences: [],
+         softwareReference: {},
          procedureDescription: nil,
          documentation: [],
          runtimeParameters: nil,
