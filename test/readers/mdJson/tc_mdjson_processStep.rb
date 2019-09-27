@@ -19,7 +19,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
    TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
-   mdHash = TDClass.build_processStep_full
+   mdHash = TDClass.build_leProcessStep_full
 
    TDClass.removeEmptyObjects(mdHash)
 

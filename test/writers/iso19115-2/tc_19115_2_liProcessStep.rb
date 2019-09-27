@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_processStep
+# writers / iso19115_2 / class_liProcessStep
 
 # History:
 #  Stan Smith 2018-04-26 refactored for error messaging
@@ -10,7 +10,7 @@ require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152ProcessStep < TestWriter191152Parent
+class TestWriter191152liProcessStep < TestWriter191152Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -19,7 +19,7 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
    mdHash = TDClass.base
 
 
-   hStep = TDClass.build_processStep_full
+   hStep = TDClass.build_liProcessStep_full
    hLineage = TDClass.lineage
    hLineage[:processStep] << hStep
    mdHash[:metadata][:resourceLineage] = []
@@ -31,7 +31,7 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_liProcessStep',
                                                 '//gmd:processStep[1]',
                                                 '//gmd:processStep', 0)
 
@@ -47,10 +47,9 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
       hStep = hIn[:metadata][:resourceLineage][0][:processStep][0]
       hStep[:processor].delete_at(1)
       hStep[:stepSource].delete_at(1)
-      hStep[:stepProduct].delete_at(1)
       hStep[:reference].delete_at(1)
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_liProcessStep',
                                                 '//gmd:processStep[2]',
                                                 '//gmd:processStep', 0)
 
@@ -67,12 +66,11 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
       hStep.delete(:stepId)
       hStep.delete(:processor)
       hStep.delete(:stepSource)
-      hStep.delete(:stepProduct)
       hStep.delete(:reference)
       hStep.delete(:timePeriod)
       hStep.delete(:rationale)
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_liProcessStep',
                                                 '//gmd:processStep[3]',
                                                 '//gmd:processStep', 0)
 

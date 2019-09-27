@@ -19,7 +19,7 @@ class TestWriter191151Source < TestWriter191151Parent
    hLineage = TDClass.lineage
 
    # build sources
-   hLineage[:source] << TDClass.build_source_full
+   hLineage[:source] << TDClass.build_leSource_full
 
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage

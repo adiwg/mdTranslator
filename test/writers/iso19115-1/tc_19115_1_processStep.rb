@@ -16,7 +16,7 @@ class TestWriter191151ProcessStep < TestWriter191151Parent
    # build mdJson test file in hash
    mdHash = TDClass.base
 
-   hStep = TDClass.build_processStep_full
+   hStep = TDClass.build_leProcessStep_full
    hLineage = TDClass.lineage
    hLineage[:processStep] << hStep
    mdHash[:metadata][:resourceLineage] = []
@@ -47,7 +47,7 @@ class TestWriter191151ProcessStep < TestWriter191151Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
       aSteps = hIn[:metadata][:resourceLineage][0][:processStep]
-      aSteps << TDClass.build_processStep('PS002', 'step two')
+      aSteps << TDClass.build_leProcessStep('PS002', 'step two')
 
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_processStep',
                                                 '//mrl:processStep[2]',

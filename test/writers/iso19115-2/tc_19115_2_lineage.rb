@@ -30,8 +30,8 @@ class TestWriter191152Lineage < TestWriter191152Parent
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_lineage',
-                                                '//gmd:dataQualityInfo[1]',
-                                                '//gmd:dataQualityInfo', 0)
+                                                '//gmd:lineage[1]',
+                                                '//gmd:lineage', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -47,8 +47,8 @@ class TestWriter191152Lineage < TestWriter191152Parent
       hIn[:metadata][:resourceLineage][0][:source].delete_at(1)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_lineage',
-                                                '//gmd:dataQualityInfo[2]',
-                                                '//gmd:dataQualityInfo', 0)
+                                                '//gmd:lineage[2]',
+                                                '//gmd:lineage', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -65,8 +65,8 @@ class TestWriter191152Lineage < TestWriter191152Parent
       hIn[:metadata][:resourceLineage][0].delete(:source)
 
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_lineage',
-                                                '//gmd:dataQualityInfo[3]',
-                                                '//gmd:dataQualityInfo', 0)
+                                                '//gmd:lineage[3]',
+                                                '//gmd:lineage', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]

@@ -20,27 +20,38 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
 
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
-          <gmd:processStep/>
-          <gmd:source/>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
+  <gmi:report>
+    <gmi:LE_ProcessStepReport>
+      <gmi:name>
+        <gco:CharacterString>name</gco:CharacterString>
+      </gmi:name>
+      <gmi:description>
+        <gco:CharacterString>description</gco:CharacterString>
+      </gmi:description>
+      <gmi:fileType>
+        <gco:CharacterString>file type</gco:CharacterString>
+      </gmi:fileType>
+    </gmi:LE_ProcessStepReport>
+  </gmi:report>
+
+  <gmi:report>
+    <gmi:LE_ProcessStepReport>
+      <gmi:name>
+        <gco:CharacterString>name</gco:CharacterString>
+      </gmi:name>
+      <gmi:description/>
+      <gmi:fileType/>
+    </gmi:LE_ProcessStepReport>
+  </gmi:report>
+
+  <gmi:report>
+    <gmi:LE_ProcessStepReport>
+      <gmi:name gco:nilReason="missing"/>
+      <gmi:description/>
+      <gmi:fileType>
+        <gco:CharacterString>file type</gco:CharacterString>
+      </gmi:fileType>
+    </gmi:LE_ProcessStepReport>
+  </gmi:report>
 
 </gmi:MI_Metadata>

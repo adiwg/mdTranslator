@@ -1,5 +1,5 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_source
+# writers / iso19115_2 / class_liSource
 
 # History:
 #  Stan Smith 2018-04-30 refactored for error messaging
@@ -10,7 +10,7 @@ require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Source < TestWriter191152Parent
+class TestWriter191152liSource < TestWriter191152Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -21,14 +21,13 @@ class TestWriter191152Source < TestWriter191152Parent
    hLineage = TDClass.lineage
 
    # build sources
-   hLineage[:source] << TDClass.build_source_full
-   hLineage[:source] << TDClass.build_source('SRC002','source two')
+   hLineage[:source] << TDClass.build_liSource_full
+   hLineage[:source] << TDClass.build_liSource('SRC002', 'source two')
 
    hLineage[:source][1].delete(:sourceCitation)
    hLineage[:source][1].delete(:metadataCitation)
    hLineage[:source][1].delete(:spatialResolution)
    hLineage[:source][1].delete(:referenceSystem)
-   hLineage[:source][1].delete(:sourceProcessStep)
    hLineage[:source][1].delete(:scope)
 
    mdHash[:metadata][:resourceLineage] = []
@@ -40,7 +39,7 @@ class TestWriter191152Source < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_source',
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_liSource',
                                                 '//gmd:LI_Source[1]',
                                                 '//gmd:LI_Source', 0)
 
@@ -56,7 +55,7 @@ class TestWriter191152Source < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_source',
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_liSource',
                                                 '//gmd:LI_Source[2]',
                                                 '//gmd:LI_Source', 1)
 
@@ -66,6 +65,5 @@ class TestWriter191152Source < TestWriter191152Parent
       assert_includes hReturn[3],
                       'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source citation'
    end
-
 
 end

@@ -973,9 +973,9 @@ class InternalMetadata
          rationale: nil,
          timePeriod: {},
          processors: [],
-         references: [],
          stepSources: [],
          stepProducts: [],
+         references: [],
          scope: {},
          processingInformation: {},
          reports: []

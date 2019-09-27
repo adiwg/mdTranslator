@@ -67,7 +67,7 @@ module ADIWG
                         @xml.tag!('gmd:taxongen')
                      end
 
-                     # taxon system - identification reference (required) [{citation}]
+                     # taxon system - identification reference [] (required) {citation}
                      # convert to RS_Identifier
                      aCitations = hSystem[:idReferences]
                      aCitations.each do |hCitation|
@@ -84,7 +84,7 @@ module ADIWG
                         @NameSpace.issueWarning(311, 'gmd:idref')
                      end
 
-                     # taxon system - observers [{CI_ResponsibleParty}]
+                     # taxon system - observers [] {CI_ResponsibleParty}
                      aObservers = hSystem[:observers]
                      aObservers.each do |hObserver|
                         role = hObserver[:roleName]

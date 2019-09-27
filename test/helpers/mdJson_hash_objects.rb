@@ -1284,6 +1284,7 @@ class MdJsonHashWriter
          stepId: 'PS001',
          description: 'description',
          rationale: 'rationale',
+         timePeriod: {},
          processor: [],
          stepSource: [],
          stepProduct: [],

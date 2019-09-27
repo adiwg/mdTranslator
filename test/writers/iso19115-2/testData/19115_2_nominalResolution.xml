@@ -20,27 +20,20 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
 
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
-          <gmd:processStep/>
-          <gmd:source/>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
+  <gmi:resolution>
+    <gmi:LE_NominalResolution>
+      <gmi:scanningResolution>
+        <gco:Distance uom="units">999.9</gco:Distance>
+      </gmi:scanningResolution>
+    </gmi:LE_NominalResolution>
+  </gmi:resolution>
+
+  <gmi:resolution>
+    <gmi:LE_NominalResolution>
+      <gmi:groundResolution>
+        <gco:Distance uom="units">9.999</gco:Distance>
+      </gmi:groundResolution>
+    </gmi:LE_NominalResolution>
+  </gmi:resolution>
 
 </gmi:MI_Metadata>

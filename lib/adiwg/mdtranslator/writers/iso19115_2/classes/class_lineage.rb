@@ -2,6 +2,7 @@
 # 19115-2 writer output in XML
 
 # History:
+#  Stan Smith 2019-09-25 add support for LE_Source and LE_ProcessStep
 #  Stan Smith 2016-12-13 refactored for mdTranslator/mdJson 2.0
 #  Stan Smith 2015-07-14 refactored to eliminate namespace globals $WriterNS and $IsoNS
 #  Stan Smith 2015-07-14 refactored to make iso19110 independent of iso19115_2 classes
@@ -28,27 +29,28 @@ module ADIWG
                def writeXML(hLineage)
 
                   # classes used
-                  sourceClass = LI_Source.new(@xml, @hResponseObj)
-                  pStepClass = LI_ProcessStep.new(@xml, @hResponseObj)
+                  sourceClass = Source.new(@xml, @hResponseObj)
+                  processClass = ProcessStep.new(@xml, @hResponseObj)
+
+                  outContext = 'lineage'
 
                   @xml.tag!('gmd:LI_Lineage') do
 
                      # lineage - statement
-                     s = hLineage[:statement]
-                     unless s.nil?
+                     unless hLineage[:statement].nil?
                         @xml.tag!('gmd:statement') do
-                           @xml.tag!('gco:CharacterString', s)
+                           @xml.tag!('gco:CharacterString', hLineage[:statement])
                         end
                      end
-                     if s.nil? && @hResponseObj[:writerShowTags]
+                     if hLineage[:statement].nil? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:statement')
                      end
 
                      # lineage - process step [{LI_ProcessStep}]
                      aProcSteps = hLineage[:processSteps]
-                     aProcSteps.each do |pStep|
+                     aProcSteps.each do |hStep|
                         @xml.tag!('gmd:processStep') do
-                           pStepClass.writeXML(pStep)
+                           processClass.writeXML(hStep, outContext)
                         end
                      end
                      if aProcSteps.empty? && @hResponseObj[:writerShowTags]
@@ -59,7 +61,7 @@ module ADIWG
                      aSources = hLineage[:dataSources]
                      aSources.each do |hSource|
                         @xml.tag!('gmd:source') do
-                           sourceClass.writeXML(hSource)
+                           sourceClass.writeXML(hSource, outContext)
                         end
                      end
                      if aSources.empty? && @hResponseObj[:writerShowTags]

@@ -19,7 +19,7 @@ class TestWriterMdJsonSource < TestWriterMdJsonParent
    mdHash = TDClass.base
 
    hLineage = TDClass.build_lineage
-   hLineage[:source] << TDClass.build_source_full
+   hLineage[:source] << TDClass.build_leSource_full
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
 
