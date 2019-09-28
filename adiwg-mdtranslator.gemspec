@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
    spec.add_runtime_dependency "uuidtools", "~> 2.1"
    spec.add_runtime_dependency "json-schema", "~> 2.7"
    spec.add_runtime_dependency "adiwg-mdjson_schemas", ">= 2.7"
-   spec.add_runtime_dependency "adiwg-mdcodes", "~> 2.7"
+   spec.add_runtime_dependency "adiwg-mdcodes", "~> 2.8"
    spec.add_runtime_dependency "jbuilder", "~> 2.5"
    spec.add_runtime_dependency "kramdown", "~> 1.13"
    spec.add_runtime_dependency "coderay", "~> 1.1"
