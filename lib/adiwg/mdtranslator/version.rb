@@ -171,4 +171,3 @@ end
 # 0.13.0 2015-01-28 made data dictionary an array
 #               ... added alias to entity and attribute
 #               ... added local names to iso 19110 writer
-
