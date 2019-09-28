@@ -1,6 +1,7 @@
 # adiwg mdTranslator
 
 # version 2 history
+# 2.17.0 2019-09-28 add support for LE_ProcessStep and LE_Source
 # 2.16.1 2019-09-19 refactor fgdc reader to output FGDC entityAttribute citation title as dictionary citation title
 # 2.16.1 2019-09-18 add applicationProfile and protocolRequest to onlineResource
 # 2.16.0 2019-09-17 add 19110:2005 dictionary support to 19115-1
@@ -107,7 +108,7 @@
 module ADIWG
    module Mdtranslator
       # current mdtranslator version
-      VERSION = "2.16.1"
+      VERSION = "2.17.0"
    end
 end
 
