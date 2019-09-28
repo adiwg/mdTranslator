@@ -14,7 +14,7 @@
 
 require_relative '../iso19115_2_writer'
 require_relative 'class_responsibleParty'
-require_relative 'class_liSource'
+require_relative 'class_source'
 
 module ADIWG
    module Mdtranslator
@@ -33,10 +33,10 @@ module ADIWG
 
                   # classes used
                   partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
-                  sourceClass = LI_Source.new(@xml, @hResponseObj)
+                  sourceClass = Source.new(@xml, @hResponseObj)
 
                   outContext = 'process step'
-                  outContext = 'process step ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
+                  outContext = outContext + ' ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
                   outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   # process step - id
@@ -105,7 +105,7 @@ module ADIWG
                         @xml.tag!('gmd:processor')
                      end
 
-                     # process step - source [] {LI_Source}
+                     # process step - source [] {Source}
                      aSources = hStep[:stepSources]
                      aSources.each do |hSource|
                         @xml.tag!('gmd:source') do

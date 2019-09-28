@@ -1,14 +1,14 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_leSource
+# writers / iso19115_1 / class_leSource
 
 # History:
-#  Stan Smith 2019-09-26 original script
+#  Stan Smith 2019-09-27 original script
 
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
-require_relative 'iso19115_2_test_parent'
+require_relative 'iso19115_1_test_parent'
 
-class TestWriter191152leSource < TestWriter191152Parent
+class TestWriter191151leSource < TestWriter191151Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -39,15 +39,13 @@ class TestWriter191152leSource < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_leSource',
-                                                '//gmi:LE_Source[1]',
-                                                '//gmi:LE_Source', 0)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_leSource',
+                                                '//mrl:LE_Source[1]',
+                                                '//mrl:LE_Source', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                     'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
+      assert_empty hReturn[3]
 
    end
 
@@ -55,15 +53,13 @@ class TestWriter191152leSource < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_leSource',
-                                                '//gmi:LE_Source[2]',
-                                                '//gmi:LE_Source', 1)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_leSource',
+                                                '//mrl:LE_Source[2]',
+                                                '//mrl:LE_Source', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
-      assert_equal 1, hReturn[3].length
-      assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
+      assert_empty hReturn[3]
    end
 
 end

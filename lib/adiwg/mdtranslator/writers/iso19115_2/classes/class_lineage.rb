@@ -46,7 +46,7 @@ module ADIWG
                         @xml.tag!('gmd:statement')
                      end
 
-                     # lineage - process step [{LI_ProcessStep}]
+                     # lineage - process step [] {ProcessStep}
                      aProcSteps = hLineage[:processSteps]
                      aProcSteps.each do |hStep|
                         @xml.tag!('gmd:processStep') do
@@ -57,7 +57,7 @@ module ADIWG
                         @xml.tag!('gmd:processStep')
                      end
 
-                     # lineage - source [{LI_Source}]
+                     # lineage - source [] {Source}
                      aSources = hLineage[:dataSources]
                      aSources.each do |hSource|
                         @xml.tag!('gmd:source') do

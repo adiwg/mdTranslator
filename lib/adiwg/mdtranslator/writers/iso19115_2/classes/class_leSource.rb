@@ -7,7 +7,7 @@
 require_relative 'class_fraction'
 require_relative 'class_referenceSystem'
 require_relative 'class_citation'
-require_relative 'class_leProcessStep'
+require_relative 'class_processStep'
 require_relative 'class_rsIdentifier'
 require_relative 'class_nominalResolution'
 
@@ -29,7 +29,7 @@ module ADIWG
                   fractionClass = MD_RepresentativeFraction.new(@xml, @hResponseObj)
                   systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
-                  stepClass = LE_ProcessStep.new(@xml, @hResponseObj)
+                  stepClass = ProcessStep.new(@xml, @hResponseObj)
                   identifierClass = RS_Identifier.new(@xml, @hResponseObj)
                   resolutionClass = LE_NominalResolution.new(@xml, @hResponseObj)
 
@@ -41,6 +41,7 @@ module ADIWG
                   end
 
                   outContext = 'source'
+                  outContext = outContext + ' ' + hSource[:sourceId].to_s unless hSource[:sourceId].nil?
                   outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   @xml.tag!('gmi:LE_Source', attributes) do
@@ -90,7 +91,7 @@ module ADIWG
 
                      # source - extent [] {EX_Extent} (not implemented)
 
-                     # source - source step [] {LE_ProcessStep}
+                     # source - source step [] {ProcessStep}
                      aSteps = hSource[:sourceSteps]
                      aSteps.each do |hStep|
                         @xml.tag!('gmd:sourceStep') do

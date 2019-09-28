@@ -13,7 +13,7 @@
 require_relative 'class_fraction'
 require_relative 'class_referenceSystem'
 require_relative 'class_citation'
-require_relative 'class_liProcessStep'
+require_relative 'class_processStep'
 
 module ADIWG
    module Mdtranslator
@@ -33,7 +33,7 @@ module ADIWG
                   fractionClass = MD_RepresentativeFraction.new(@xml, @hResponseObj)
                   systemClass = MD_ReferenceSystem.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
-                  stepClass = LI_ProcessStep.new(@xml, @hResponseObj)
+                  stepClass = ProcessStep.new(@xml, @hResponseObj)
 
                   # source - id
                   attributes = {}
@@ -43,6 +43,7 @@ module ADIWG
                   end
 
                   outContext = 'source'
+                  outContext = outContext + ' ' + hSource[:sourceId].to_s unless hSource[:sourceId].nil?
                   outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   @xml.tag!('gmd:LI_Source', attributes) do
@@ -92,7 +93,7 @@ module ADIWG
 
                      # source - extent [] {EX_Extent} (not implemented)
 
-                     # source - source step [] {LI_ProcessStep}
+                     # source - source step [] {ProcessStep}
                      aSteps = hSource[:sourceSteps]
                      aSteps.each do |hStep|
                         @xml.tag!('gmd:sourceStep') do

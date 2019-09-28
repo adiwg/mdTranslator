@@ -338,23 +338,26 @@ class MdJsonHashWriter
    end
 
    def build_liProcessStep_full
-      hProcess = build_leProcessStep_full
+      hProcess = processStep
+      hProcess[:timePeriod] = build_timePeriod('TP001', 'process time', '2018-06-22')
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:stepSource] << build_liSource('SRC001')
+      hProcess[:stepSource] << build_liSource('SRC002')
+      hProcess[:reference] << citation_title
+      hProcess[:reference] << citation_title
+      hProcess[:scope] = scope
       hProcess.delete(:stepProduct)
       hProcess.delete(:processingInformation)
       hProcess.delete(:report)
       return hProcess
    end
 
-   def build_liSource(id, description = nil, resolution = nil, hScope = nil)
+   def build_liSource(id, description = nil, hScope = nil)
       hSource = source
       hSource[:sourceId] = id
       hSource[:sourceCitation] =  citation
       hSource[:description] = description unless description.nil?
-      unless resolution.nil?
-         hResolution = {}
-         hResolution[:scaleFactor] = resolution
-         hSource[:spatialResolution] = hResolution
-      end
       hSource[:scope] = hScope unless hScope.nil?
       hSource.delete(:processedLevel)
       hSource.delete(:resolution)
@@ -362,7 +365,11 @@ class MdJsonHashWriter
    end
 
    def build_liSource_full
-      hSource = build_leSource_full
+      hSource = source
+      hSource[:metadataCitation] << citation_title
+      hSource[:metadataCitation] << citation_title
+      hSource[:sourceProcessStep] << build_liProcessStep('PS001', 'process step one')
+      hSource[:sourceProcessStep] << build_liProcessStep('PS002', 'process step two')
       hSource.delete(:processedLevel)
       hSource.delete(:resolution)
       return hSource

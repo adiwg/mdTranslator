@@ -6,7 +6,7 @@
 
 require_relative '../iso19115_2_writer'
 require_relative 'class_responsibleParty'
-require_relative 'class_leSource'
+require_relative 'class_source'
 require_relative 'class_processing'
 require_relative 'class_processReport'
 
@@ -27,12 +27,12 @@ module ADIWG
 
                   # classes used
                   partyClass = CI_ResponsibleParty.new(@xml, @hResponseObj)
-                  sourceClass = LE_Source.new(@xml, @hResponseObj)
+                  sourceClass = Source.new(@xml, @hResponseObj)
                   processingClass = LE_Processing.new(@xml, @hResponseObj)
                   reportClass = LE_ProcessStepReport.new(@xml, @hResponseObj)
 
                   outContext = 'process step'
-                  outContext = 'process step ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
+                  outContext = outContext + ' ' + hStep[:stepId].to_s unless hStep[:stepId].nil?
                   outContext = inContext + ' ' + outContext unless inContext.nil?
 
                   # process step - id
@@ -99,7 +99,7 @@ module ADIWG
                         @xml.tag!('gmd:processor')
                      end
 
-                     # process step - source [] {LE_Source}
+                     # process step - source [] {Source}
                      aSources = hStep[:stepSources]
                      aSources.each do |hSource|
                         @xml.tag!('gmd:source') do
@@ -121,7 +121,7 @@ module ADIWG
                         @xml.tag!('gmi:processingInformation')
                      end
 
-                     # process step - output [] {LE_Processing}
+                     # process step - output [] {Source}
                      aOutput = hStep[:stepProducts]
                      aOutput.each do |hSource|
                         @xml.tag!('gmi:output') do

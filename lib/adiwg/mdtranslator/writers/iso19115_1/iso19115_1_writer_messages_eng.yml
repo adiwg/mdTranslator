@@ -130,3 +130,14 @@ messageList:
    - {id: 400, message: "invalid topic category"}
 
    - {id: 410, message: "temporal extent must have a TimeInstant or TimePeriod"}
+
+   - {id: 420, message: "algorithm citation is missing"}
+   - {id: 421, message: "algorithm description is missing"}
+
+   - {id: 430, message: "processing identifier is missing"}
+
+   - {id: 440, message: "process step report name is missing"}
+
+   - {id: 450, message: "nominal resolution is missing"}
+
+

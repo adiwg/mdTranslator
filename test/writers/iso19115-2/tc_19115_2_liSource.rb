@@ -47,7 +47,7 @@ class TestWriter191152liSource < TestWriter191152Parent
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                     'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source citation'
+                     'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
 
    end
 
@@ -63,7 +63,7 @@ class TestWriter191152liSource < TestWriter191152Parent
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source citation'
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
    end
 
 end
