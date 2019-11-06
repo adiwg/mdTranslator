@@ -2916,6 +2916,15 @@
                   ],
                   "scope": {
                      "scopeCode": "scopeCode"
+                  },
+                  "processedLevel": {
+                     "identifier": "identifier"
+                  },
+                  "resolution": {
+                     "groundResolution": {
+                        "value": 999.9,
+                        "unitOfMeasure": "units"
+                     }
                   }
                },
                {
@@ -2924,7 +2933,7 @@
             ],
             "processStep": [
                {
-                  "stepId": "stepId",
+                  "stepId": "stepId 001",
                   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                   "rationale": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.",
                   "timePeriod": {
@@ -2998,9 +3007,68 @@
                   ],
                   "scope": {
                      "scopeCode": "scopeCode"
-                  }
+                  },
+                  "output": [
+                     {
+                        "description": "description one",
+                        "resolution": {
+                           "scanningResolution": {
+                              "value": 999.9,
+                              "unitOfMeasure": "units"
+                           }
+                        }
+                     },
+                     {
+                        "description": "description two"
+                     }
+                  ],
+                  "processingInformation": {
+                     "identifier": {
+                        "identifier": "processing info identifier"
+                     },
+                     "softwareReference": {
+                        "title": "software reference title"
+                     },
+                     "procedureDescription": "procedure description",
+                     "documentation": [
+                        {
+                           "title": "documentation title one"
+                        },
+                        {
+                           "title": "documentation title two"
+                        }
+                     ],
+                     "runtimeParameters": "runtime parameters",
+                     "algorithm": [
+                        {
+                           "citation": {
+                              "title": "algorithm one citation title"
+                           },
+                           "description": "algorithm one"
+                        },
+                        {
+                           "citation": {
+                              "title": "algorithm two citation title"
+                           },
+                           "description": "algorithm tow"
+                        }
+                     ]
+                  },
+                  "report": [
+                     {
+                        "name": "report one name",
+                        "description": "report one description",
+                        "fileType": "report one file type"
+                     },
+                     {
+                        "name": "report two name",
+                        "description": "report two description",
+                        "fileType": "report tow file type"
+                     }
+                  ]
                },
                {
+                  "stepId": "stepId 002",
                   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore."
                }
             ]

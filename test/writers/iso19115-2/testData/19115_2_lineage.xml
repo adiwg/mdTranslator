@@ -20,271 +20,312 @@
                  xsi:schemaLocation="http://www.isotc211.org/2005/gmi
                  ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd">
 
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
-          <gmd:processStep>
-            <gmd:LI_ProcessStep id="stepone">
-              <gmd:description>
-                <gco:CharacterString>lineage step one</gco:CharacterString>
-              </gmd:description>
-              <gmd:rationale>
-                <gco:CharacterString>rationale</gco:CharacterString>
-              </gmd:rationale>
-              <gmd:dateTime/>
-              <gmd:processor/>
-              <gmd:source/>
-            </gmd:LI_ProcessStep>
-          </gmd:processStep>
-          <gmd:processStep>
-            <gmd:LI_ProcessStep id="steptwo">
-              <gmd:description>
-                <gco:CharacterString>lineage step two</gco:CharacterString>
-              </gmd:description>
-              <gmd:rationale>
-                <gco:CharacterString>rationale</gco:CharacterString>
-              </gmd:rationale>
-              <gmd:dateTime/>
-              <gmd:processor/>
-              <gmd:source/>
-            </gmd:LI_ProcessStep>
-          </gmd:processStep>
-          <gmd:source>
-            <gmd:LI_Source id="sourceone">
-              <gmd:description>
-                <gco:CharacterString>lineage source one</gco:CharacterString>
-              </gmd:description>
-              <gmd:scaleDenominator>
-                <gmd:MD_RepresentativeFraction>
-                  <gmd:denominator>
-                    <gco:Integer>9999</gco:Integer>
-                  </gmd:denominator>
-                </gmd:MD_RepresentativeFraction>
-              </gmd:scaleDenominator>
-              <gmd:sourceReferenceSystem>
-                <gmd:MD_ReferenceSystem>
-                  <gmd:referenceSystemIdentifier/>
-                </gmd:MD_ReferenceSystem>
-              </gmd:sourceReferenceSystem>
-              <gmd:sourceCitation>
-                <gmd:CI_Citation>
-                  <gmd:title>
-                    <gco:CharacterString>citation title</gco:CharacterString>
-                  </gmd:title>
-                  <gmd:alternateTitle/>
-                  <gmd:date>
-                    <gmd:CI_Date>
-                      <gmd:date>
-                        <gco:Date>2017-11-22</gco:Date>
-                      </gmd:date>
-                      <gmd:dateType>
-                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
-                      </gmd:dateType>
-                    </gmd:CI_Date>
-                  </gmd:date>
-                  <gmd:edition/>
-                  <gmd:identifier/>
-                  <gmd:citedResponsibleParty>
-                    <gmd:CI_ResponsibleParty>
-                      <gmd:individualName>
-                        <gco:CharacterString>person name three</gco:CharacterString>
-                      </gmd:individualName>
-                      <gmd:positionName/>
-                      <gmd:contactInfo/>
-                      <gmd:role>
-                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
-                      </gmd:role>
-                    </gmd:CI_ResponsibleParty>
-                  </gmd:citedResponsibleParty>
-                  <gmd:presentationForm/>
-                  <gmd:series/>
-                  <gmd:otherCitationDetails/>
-                  <gmd:ISBN/>
-                  <gmd:ISSN/>
-                </gmd:CI_Citation>
-              </gmd:sourceCitation>
-              <gmd:sourceStep/>
-            </gmd:LI_Source>
-          </gmd:source>
-          <gmd:source>
-            <gmd:LI_Source id="sourcetwo">
-              <gmd:description>
-                <gco:CharacterString>lineage source two</gco:CharacterString>
-              </gmd:description>
-              <gmd:scaleDenominator>
-                <gmd:MD_RepresentativeFraction>
-                  <gmd:denominator>
-                    <gco:Integer>9999</gco:Integer>
-                  </gmd:denominator>
-                </gmd:MD_RepresentativeFraction>
-              </gmd:scaleDenominator>
-              <gmd:sourceReferenceSystem>
-                <gmd:MD_ReferenceSystem>
-                  <gmd:referenceSystemIdentifier/>
-                </gmd:MD_ReferenceSystem>
-              </gmd:sourceReferenceSystem>
-              <gmd:sourceCitation>
-                <gmd:CI_Citation>
-                  <gmd:title>
-                    <gco:CharacterString>citation title</gco:CharacterString>
-                  </gmd:title>
-                  <gmd:alternateTitle/>
-                  <gmd:date>
-                    <gmd:CI_Date>
-                      <gmd:date>
-                        <gco:Date>2017-11-22</gco:Date>
-                      </gmd:date>
-                      <gmd:dateType>
-                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
-                      </gmd:dateType>
-                    </gmd:CI_Date>
-                  </gmd:date>
-                  <gmd:edition/>
-                  <gmd:identifier/>
-                  <gmd:citedResponsibleParty>
-                    <gmd:CI_ResponsibleParty>
-                      <gmd:individualName>
-                        <gco:CharacterString>person name three</gco:CharacterString>
-                      </gmd:individualName>
-                      <gmd:positionName/>
-                      <gmd:contactInfo/>
-                      <gmd:role>
-                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
-                      </gmd:role>
-                    </gmd:CI_ResponsibleParty>
-                  </gmd:citedResponsibleParty>
-                  <gmd:presentationForm/>
-                  <gmd:series/>
-                  <gmd:otherCitationDetails/>
-                  <gmd:ISBN/>
-                  <gmd:ISSN/>
-                </gmd:CI_Citation>
-              </gmd:sourceCitation>
-              <gmd:sourceStep/>
-            </gmd:LI_Source>
-          </gmd:source>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
-
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope>
-        <gmd:DQ_Scope>
-          <gmd:level>
-            <gmd:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-          </gmd:level>
-          <gmd:extent/>
-          <gmd:levelDescription/>
-        </gmd:DQ_Scope>
-      </gmd:scope>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
-          <gmd:processStep>
-            <gmd:LI_ProcessStep id="stepone">
-              <gmd:description>
-                <gco:CharacterString>lineage step one</gco:CharacterString>
-              </gmd:description>
-              <gmd:rationale>
-                <gco:CharacterString>rationale</gco:CharacterString>
-              </gmd:rationale>
-              <gmd:dateTime/>
-              <gmd:processor/>
-              <gmd:source/>
-            </gmd:LI_ProcessStep>
-          </gmd:processStep>
-          <gmd:source>
-            <gmd:LI_Source id="sourceone">
-              <gmd:description>
-                <gco:CharacterString>lineage source one</gco:CharacterString>
-              </gmd:description>
-              <gmd:scaleDenominator>
-                <gmd:MD_RepresentativeFraction>
-                  <gmd:denominator>
-                    <gco:Integer>9999</gco:Integer>
-                  </gmd:denominator>
-                </gmd:MD_RepresentativeFraction>
-              </gmd:scaleDenominator>
-              <gmd:sourceReferenceSystem>
-                <gmd:MD_ReferenceSystem>
-                  <gmd:referenceSystemIdentifier/>
-                </gmd:MD_ReferenceSystem>
-              </gmd:sourceReferenceSystem>
-              <gmd:sourceCitation>
-                <gmd:CI_Citation>
-                  <gmd:title>
-                    <gco:CharacterString>citation title</gco:CharacterString>
-                  </gmd:title>
-                  <gmd:alternateTitle/>
-                  <gmd:date>
-                    <gmd:CI_Date>
-                      <gmd:date>
-                        <gco:Date>2017-11-22</gco:Date>
-                      </gmd:date>
-                      <gmd:dateType>
-                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
-                      </gmd:dateType>
-                    </gmd:CI_Date>
-                  </gmd:date>
-                  <gmd:edition/>
-                  <gmd:identifier/>
-                  <gmd:citedResponsibleParty>
-                    <gmd:CI_ResponsibleParty>
-                      <gmd:individualName>
-                        <gco:CharacterString>person name three</gco:CharacterString>
-                      </gmd:individualName>
-                      <gmd:positionName/>
-                      <gmd:contactInfo/>
-                      <gmd:role>
-                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
-                      </gmd:role>
-                    </gmd:CI_ResponsibleParty>
-                  </gmd:citedResponsibleParty>
-                  <gmd:presentationForm/>
-                  <gmd:series/>
-                  <gmd:otherCitationDetails/>
-                  <gmd:ISBN/>
-                  <gmd:ISSN/>
-                </gmd:CI_Citation>
-              </gmd:sourceCitation>
-              <gmd:sourceStep/>
-            </gmd:LI_Source>
-          </gmd:source>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
-
-  <gmd:dataQualityInfo>
-    <gmd:DQ_DataQuality>
-      <gmd:scope gco:nilReason="missing"/>
-      <gmd:lineage>
-        <gmd:LI_Lineage>
-          <gmd:statement>
-            <gco:CharacterString>statement</gco:CharacterString>
-          </gmd:statement>
-          <gmd:processStep/>
+  <gmd:lineage>
+    <gmd:LI_Lineage>
+      <gmd:statement>
+        <gco:CharacterString>statement</gco:CharacterString>
+      </gmd:statement>
+      <gmd:processStep>
+        <gmd:LI_ProcessStep id="stepone">
+          <gmd:description>
+            <gco:CharacterString>lineage step one</gco:CharacterString>
+          </gmd:description>
+          <gmd:rationale>
+            <gco:CharacterString>rationale</gco:CharacterString>
+          </gmd:rationale>
+          <gmd:dateTime/>
+          <gmd:processor/>
           <gmd:source/>
-        </gmd:LI_Lineage>
-      </gmd:lineage>
-    </gmd:DQ_DataQuality>
-  </gmd:dataQualityInfo>
+        </gmd:LI_ProcessStep>
+      </gmd:processStep>
+      <gmd:processStep>
+        <gmi:LE_ProcessStep id="steptwo">
+          <gmd:description>
+            <gco:CharacterString>lineage step two</gco:CharacterString>
+          </gmd:description>
+          <gmd:rationale>
+            <gco:CharacterString>rationale</gco:CharacterString>
+          </gmd:rationale>
+          <gmd:dateTime/>
+          <gmd:processor/>
+          <gmd:source/>
+          <gmi:processingInformation/>
+          <gmi:output/>
+          <gmi:report>
+            <gmi:LE_ProcessStepReport>
+              <gmi:name>
+                <gco:CharacterString>name</gco:CharacterString>
+              </gmi:name>
+              <gmi:description>
+                <gco:CharacterString>description</gco:CharacterString>
+              </gmi:description>
+              <gmi:fileType>
+                <gco:CharacterString>file type</gco:CharacterString>
+              </gmi:fileType>
+            </gmi:LE_ProcessStepReport>
+          </gmi:report>
+        </gmi:LE_ProcessStep>
+      </gmd:processStep>
+      <gmd:source>
+        <gmd:LI_Source id="sourceone">
+          <gmd:description>
+            <gco:CharacterString>lineage source one</gco:CharacterString>
+          </gmd:description>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
+          <gmd:sourceCitation>
+            <gmd:CI_Citation>
+              <gmd:title>
+                <gco:CharacterString>citation title</gco:CharacterString>
+              </gmd:title>
+              <gmd:alternateTitle/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
+              <gmd:edition/>
+              <gmd:identifier/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
+              <gmd:presentationForm/>
+              <gmd:series/>
+              <gmd:otherCitationDetails/>
+              <gmd:ISBN/>
+              <gmd:ISSN/>
+            </gmd:CI_Citation>
+          </gmd:sourceCitation>
+          <gmd:sourceStep/>
+        </gmd:LI_Source>
+      </gmd:source>
+      <gmd:source>
+        <gmi:LE_Source id="sourcetwo">
+          <gmd:description>
+            <gco:CharacterString>lineage source two</gco:CharacterString>
+          </gmd:description>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
+          <gmd:sourceCitation>
+            <gmd:CI_Citation>
+              <gmd:title>
+                <gco:CharacterString>citation title</gco:CharacterString>
+              </gmd:title>
+              <gmd:alternateTitle/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
+              <gmd:edition/>
+              <gmd:identifier/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
+              <gmd:presentationForm/>
+              <gmd:series/>
+              <gmd:otherCitationDetails/>
+              <gmd:ISBN/>
+              <gmd:ISSN/>
+            </gmd:CI_Citation>
+          </gmd:sourceCitation>
+          <gmd:sourceStep/>
+          <gmi:processedLevel>
+            <gmd:RS_Identifier>
+              <gmd:authority>
+                <gmd:CI_Citation>
+                  <gmd:title>
+                    <gco:CharacterString>citation title</gco:CharacterString>
+                  </gmd:title>
+                  <gmd:alternateTitle/>
+                  <gmd:date>
+                    <gmd:CI_Date>
+                      <gmd:date>
+                        <gco:Date>2017-11-22</gco:Date>
+                      </gmd:date>
+                      <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                      </gmd:dateType>
+                    </gmd:CI_Date>
+                  </gmd:date>
+                  <gmd:edition/>
+                  <gmd:identifier/>
+                  <gmd:citedResponsibleParty>
+                    <gmd:CI_ResponsibleParty>
+                      <gmd:individualName>
+                        <gco:CharacterString>person name three</gco:CharacterString>
+                      </gmd:individualName>
+                      <gmd:positionName/>
+                      <gmd:contactInfo/>
+                      <gmd:role>
+                        <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                      </gmd:role>
+                    </gmd:CI_ResponsibleParty>
+                  </gmd:citedResponsibleParty>
+                  <gmd:presentationForm/>
+                  <gmd:series/>
+                  <gmd:otherCitationDetails/>
+                  <gmd:ISBN/>
+                  <gmd:ISSN/>
+                </gmd:CI_Citation>
+              </gmd:authority>
+              <gmd:code>
+                <gco:CharacterString>identifier</gco:CharacterString>
+              </gmd:code>
+              <gmd:codeSpace>
+                <gco:CharacterString>namespace</gco:CharacterString>
+              </gmd:codeSpace>
+              <gmd:version>
+                <gco:CharacterString>version</gco:CharacterString>
+              </gmd:version>
+            </gmd:RS_Identifier>
+          </gmi:processedLevel>
+          <gmi:resolution>
+            <gmi:LE_NominalResolution>
+              <gmi:scanningResolution>
+                <gco:Distance uom="units">999.9</gco:Distance>
+              </gmi:scanningResolution>
+            </gmi:LE_NominalResolution>
+          </gmi:resolution>
+        </gmi:LE_Source>
+      </gmd:source>
+    </gmd:LI_Lineage>
+  </gmd:lineage>
+
+  <gmd:lineage>
+    <gmd:LI_Lineage>
+      <gmd:statement>
+        <gco:CharacterString>statement</gco:CharacterString>
+      </gmd:statement>
+      <gmd:processStep>
+        <gmd:LI_ProcessStep id="stepone">
+          <gmd:description>
+            <gco:CharacterString>lineage step one</gco:CharacterString>
+          </gmd:description>
+          <gmd:rationale>
+            <gco:CharacterString>rationale</gco:CharacterString>
+          </gmd:rationale>
+          <gmd:dateTime/>
+          <gmd:processor/>
+          <gmd:source/>
+        </gmd:LI_ProcessStep>
+      </gmd:processStep>
+      <gmd:source>
+        <gmd:LI_Source id="sourceone">
+          <gmd:description>
+            <gco:CharacterString>lineage source one</gco:CharacterString>
+          </gmd:description>
+          <gmd:scaleDenominator>
+            <gmd:MD_RepresentativeFraction>
+              <gmd:denominator>
+                <gco:Integer>9999</gco:Integer>
+              </gmd:denominator>
+            </gmd:MD_RepresentativeFraction>
+          </gmd:scaleDenominator>
+          <gmd:sourceReferenceSystem>
+            <gmd:MD_ReferenceSystem>
+              <gmd:referenceSystemIdentifier/>
+            </gmd:MD_ReferenceSystem>
+          </gmd:sourceReferenceSystem>
+          <gmd:sourceCitation>
+            <gmd:CI_Citation>
+              <gmd:title>
+                <gco:CharacterString>citation title</gco:CharacterString>
+              </gmd:title>
+              <gmd:alternateTitle/>
+              <gmd:date>
+                <gmd:CI_Date>
+                  <gmd:date>
+                    <gco:Date>2017-11-22</gco:Date>
+                  </gmd:date>
+                  <gmd:dateType>
+                    <gmd:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                  </gmd:dateType>
+                </gmd:CI_Date>
+              </gmd:date>
+              <gmd:edition/>
+              <gmd:identifier/>
+              <gmd:citedResponsibleParty>
+                <gmd:CI_ResponsibleParty>
+                  <gmd:individualName>
+                    <gco:CharacterString>person name three</gco:CharacterString>
+                  </gmd:individualName>
+                  <gmd:positionName/>
+                  <gmd:contactInfo/>
+                  <gmd:role>
+                    <gmd:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                  </gmd:role>
+                </gmd:CI_ResponsibleParty>
+              </gmd:citedResponsibleParty>
+              <gmd:presentationForm/>
+              <gmd:series/>
+              <gmd:otherCitationDetails/>
+              <gmd:ISBN/>
+              <gmd:ISSN/>
+            </gmd:CI_Citation>
+          </gmd:sourceCitation>
+          <gmd:sourceStep/>
+        </gmd:LI_Source>
+      </gmd:source>
+    </gmd:LI_Lineage>
+  </gmd:lineage>
+
+  <gmd:lineage>
+    <gmd:LI_Lineage>
+      <gmd:statement>
+        <gco:CharacterString>statement</gco:CharacterString>
+      </gmd:statement>
+      <gmd:processStep/>
+      <gmd:source/>
+    </gmd:LI_Lineage>
+  </gmd:lineage>
 
 </gmi:MI_Metadata>

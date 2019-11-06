@@ -36,7 +36,6 @@ module ADIWG
                      json.stepSource @Namespace.json_map(hStep[:stepSources], Source)
                      json.stepProduct @Namespace.json_map(hStep[:stepProducts], Source)
                      json.scope Scope.build(hStep[:scope]) unless hStep[:scope].empty?
-                     json.output @Namespace.json_map(hStep[:output], Source)
                      json.processingInformation Processing.build(hStep[:processingInformation]) unless hStep[:processingInformation].empty?
                      json.report @Namespace.json_map(hStep[:reports], ProcessStepReport)
                   end

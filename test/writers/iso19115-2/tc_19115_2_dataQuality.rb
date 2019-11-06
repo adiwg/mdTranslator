@@ -19,8 +19,7 @@ class TestWriter191152DataQuality < TestWriter191152Parent
    mdHash = TDClass.base
 
    mdHash[:metadata][:resourceLineage] = []
-   mdHash[:metadata][:resourceLineage] << TDClass.build_lineage_full
-   mdHash[:metadata][:resourceLineage] << TDClass.build_lineage
+   mdHash[:metadata][:resourceLineage] << TDClass.lineage
 
    @@mdHash = mdHash
 
@@ -31,20 +30,6 @@ class TestWriter191152DataQuality < TestWriter191152Parent
       hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataQuality',
                                                 '//gmd:dataQualityInfo[1]',
                                                 '//gmd:dataQualityInfo', 0)
-
-      assert_equal hReturn[0], hReturn[1]
-      assert hReturn[2]
-      assert_empty hReturn[3]
-
-   end
-
-   def test_dataQuality_minimal
-
-      hIn = Marshal::load(Marshal.dump(@@mdHash))
-
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_dataQuality',
-                                                '//gmd:dataQualityInfo[2]',
-                                                '//gmd:dataQualityInfo', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]

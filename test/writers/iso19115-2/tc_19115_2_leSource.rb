@@ -1,16 +1,14 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_source
+# writers / iso19115_2 / class_leSource
 
 # History:
-#  Stan Smith 2018-04-30 refactored for error messaging
-#  Stan Smith 2017-11-20 replace REXML with Nokogiri
-#  Stan Smith 2017-01-10 original script
+#  Stan Smith 2019-09-26 original script
 
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_2_test_parent'
 
-class TestWriter191152Source < TestWriter191152Parent
+class TestWriter191152leSource < TestWriter191152Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -21,8 +19,8 @@ class TestWriter191152Source < TestWriter191152Parent
    hLineage = TDClass.lineage
 
    # build sources
-   hLineage[:source] << TDClass.build_source_full
-   hLineage[:source] << TDClass.build_source('SRC002','source two')
+   hLineage[:source] << TDClass.build_leSource_full
+   hLineage[:source] << TDClass.build_leSource('SRC002', 'source two')
 
    hLineage[:source][1].delete(:sourceCitation)
    hLineage[:source][1].delete(:metadataCitation)
@@ -30,6 +28,7 @@ class TestWriter191152Source < TestWriter191152Parent
    hLineage[:source][1].delete(:referenceSystem)
    hLineage[:source][1].delete(:sourceProcessStep)
    hLineage[:source][1].delete(:scope)
+   hLineage[:source][1].delete(:resolution)
 
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
@@ -40,15 +39,15 @@ class TestWriter191152Source < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_source',
-                                                '//gmd:LI_Source[1]',
-                                                '//gmd:LI_Source', 0)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_leSource',
+                                                '//gmi:LE_Source[1]',
+                                                '//gmi:LE_Source', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                     'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source citation'
+                     'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
 
    end
 
@@ -56,16 +55,15 @@ class TestWriter191152Source < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_source',
-                                                '//gmd:LI_Source[2]',
-                                                '//gmd:LI_Source', 1)
+      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_leSource',
+                                                '//gmi:LE_Source[2]',
+                                                '//gmi:LE_Source', 1)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source citation'
+                      'WARNING: ISO-19115-2 writer: citation dates are missing: CONTEXT is lineage source SRC001 citation'
    end
-
 
 end

@@ -1,16 +1,14 @@
 # MdTranslator - minitest of
-# writers / iso19115_2 / class_processStep
+# writers / iso19115_1 / class_leProcessStep
 
 # History:
-#  Stan Smith 2018-04-26 refactored for error messaging
-#  Stan Smith 2017-11-20 replace REXML with Nokogiri
-#  Stan Smith 2017-01-05 original script
+#  Stan Smith 2019-09-27 original script
 
 require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
-require_relative 'iso19115_2_test_parent'
+require_relative 'iso19115_1_test_parent'
 
-class TestWriter191152ProcessStep < TestWriter191152Parent
+class TestWriter191151leProcessStep < TestWriter191151Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new
@@ -19,7 +17,7 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
    mdHash = TDClass.base
 
 
-   hStep = TDClass.build_processStep_full
+   hStep = TDClass.build_leProcessStep_full
    hLineage = TDClass.lineage
    hLineage[:processStep] << hStep
    mdHash[:metadata][:resourceLineage] = []
@@ -31,9 +29,9 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
 
       hIn = Marshal::load(Marshal.dump(@@mdHash))
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
-                                                '//gmd:processStep[1]',
-                                                '//gmd:processStep', 0)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_leProcessStep',
+                                                '//mrl:processStep[1]',
+                                                '//mrl:processStep', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -49,10 +47,11 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
       hStep[:stepSource].delete_at(1)
       hStep[:stepProduct].delete_at(1)
       hStep[:reference].delete_at(1)
+      hStep[:report].delete_at(1)
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
-                                                '//gmd:processStep[2]',
-                                                '//gmd:processStep', 0)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_leProcessStep',
+                                                '//mrl:processStep[2]',
+                                                '//mrl:processStep', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]
@@ -70,11 +69,14 @@ class TestWriter191152ProcessStep < TestWriter191152Parent
       hStep.delete(:stepProduct)
       hStep.delete(:reference)
       hStep.delete(:timePeriod)
+      hStep.delete(:scope)
       hStep.delete(:rationale)
+      hStep.delete(:processingInformation)
+      hStep[:report].delete_at(1)
 
-      hReturn = TestWriter191152Parent.run_test(hIn, '19115_2_processStep',
-                                                '//gmd:processStep[3]',
-                                                '//gmd:processStep', 0)
+      hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_leProcessStep',
+                                                '//mrl:processStep[3]',
+                                                '//mrl:processStep', 0)
 
       assert_equal hReturn[0], hReturn[1]
       assert hReturn[2]

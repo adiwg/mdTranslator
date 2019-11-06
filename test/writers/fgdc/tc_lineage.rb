@@ -45,31 +45,31 @@ class TestWriterFgdcLineage < TestWriterFGDCParent
    hLineage[:citation] << hCitation1
    hLineage[:citation] << hCitation2
 
-   hSource1 = TDClass.build_source('1', 'lineage source one', 1111, hScope)
-   hSource2 = TDClass.build_source('2', 'lineage source two', 2222, hScope)
+   hSource1 = TDClass.build_leSource('1', 'lineage source one', 1111, hScope)
+   hSource2 = TDClass.build_leSource('2', 'lineage source two', 2222, hScope)
    hLineage[:source] << hSource1
    hLineage[:source] << hSource2
 
-   hProcStep1 = TDClass.build_processStep('a', 'lineage step one', hTimePeriod)
-   hProcStep2 = TDClass.build_processStep('b', 'lineage step two', hTimePeriod)
+   hProcStep1 = TDClass.build_leProcessStep('a', 'lineage step one', hTimePeriod)
+   hProcStep2 = TDClass.build_leProcessStep('b', 'lineage step two', hTimePeriod)
    hLineage[:processStep] << hProcStep1
    hLineage[:processStep] << hProcStep2
 
    # load lineage source
-   hProcStep3 = TDClass.build_processStep('c', 'source step one', hTimePeriod)
-   hProcStep4 = TDClass.build_processStep('d', 'source step two', hTimePeriod)
+   hProcStep3 = TDClass.build_leProcessStep('c', 'source step one', hTimePeriod)
+   hProcStep4 = TDClass.build_leProcessStep('d', 'source step two', hTimePeriod)
    hLineage[:source][0][:sourceProcessStep] << hProcStep3
    hLineage[:source][0][:sourceProcessStep] << hProcStep4
 
    # load lineage process step sources
-   hSource3 = TDClass.build_source('1', 'process step source one', 1111, hScope)
-   hSource4 = TDClass.build_source('3', 'process step source three', 3333, hScope)
+   hSource3 = TDClass.build_leSource('1', 'process step source one', 1111, hScope)
+   hSource4 = TDClass.build_leSource('3', 'process step source three', 3333, hScope)
    hLineage[:processStep][0][:stepSource] << hSource3
    hLineage[:processStep][0][:stepSource] << hSource4
 
    # load lineage process step product
-   hSource5 = TDClass.build_source('2', 'process step product two', 2222, hScope)
-   hSource6 = TDClass.build_source('4', 'process step product four', 4444, hScope)
+   hSource5 = TDClass.build_leSource('2', 'process step product two', 2222, hScope)
+   hSource6 = TDClass.build_leSource('4', 'process step product four', 4444, hScope)
    hLineage[:processStep][1][:stepProduct] << hSource5
    hLineage[:processStep][1][:stepProduct] << hSource6
 

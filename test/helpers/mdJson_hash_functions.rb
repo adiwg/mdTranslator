@@ -262,6 +262,56 @@ class MdJsonHashWriter
       return hCon
    end
 
+   def build_leProcessStep(id, description = nil, hTimePeriod = nil)
+      hStep = processStep
+      hStep[:stepId] = id
+      hStep[:description] = description unless description.nil?
+      hStep[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
+      hStep[:report] << processStepReport
+      return hStep
+   end
+
+   def build_leProcessStep_full
+      hProcess = processStep
+      hProcess[:timePeriod] = build_timePeriod('TP001', 'process time', '2018-06-22')
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:stepSource] << build_leSource('SRC001')
+      hProcess[:stepSource] << build_leSource('SRC002')
+      hProcess[:stepProduct] << build_leSource('SRC003')
+      hProcess[:stepProduct] << build_leSource('SRC004')
+      hProcess[:reference] << citation_title
+      hProcess[:reference] << citation_title
+      hProcess[:scope] = scope
+      hProcess[:processingInformation] = processing
+      hProcess[:report] << processStepReport
+      hProcess[:report] << processStepReport
+      return hProcess
+   end
+
+   def build_leSource(id, description = nil, resolution = nil, hScope = nil)
+      hSource = source
+      hSource[:sourceId] = id
+      hSource[:sourceCitation] =  citation
+      hSource[:description] = description unless description.nil?
+      unless resolution.nil?
+         hResolution = {}
+         hResolution[:scaleFactor] = resolution
+         hSource[:spatialResolution] = hResolution
+      end
+      hSource[:scope] = hScope unless hScope.nil?
+      return hSource
+   end
+
+   def build_leSource_full
+      hSource = source
+      hSource[:metadataCitation] << citation_title
+      hSource[:metadataCitation] << citation_title
+      hSource[:sourceProcessStep] << build_leProcessStep('PS001', 'process step one')
+      hSource[:sourceProcessStep] << build_leProcessStep('PS002', 'process step two')
+      return hSource
+   end
+
    def build_lineage
       hLineage = lineage
       return hLineage
@@ -269,11 +319,60 @@ class MdJsonHashWriter
 
    def build_lineage_full
       hLineage = lineage
-      hLineage[:processStep] << build_processStep('step one', 'lineage step one')
-      hLineage[:processStep] << build_processStep('step two', 'lineage step two')
-      hLineage[:source] << build_source('source one', 'lineage source one')
-      hLineage[:source] << build_source('source two', 'lineage source two')
+      hLineage[:processStep] << build_liProcessStep('step one', 'lineage step one')
+      hLineage[:processStep] << build_leProcessStep('step two', 'lineage step two')
+      hLineage[:source] << build_liSource('source one', 'lineage source one')
+      hLineage[:source] << build_leSource('source two', 'lineage source two')
       return hLineage
+   end
+
+   def build_liProcessStep(id, description = nil, hTimePeriod = nil)
+      hStep = processStep
+      hStep[:stepId] = id
+      hStep[:description] = description unless description.nil?
+      hStep[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
+      hStep.delete(:stepProduct)
+      hStep.delete(:processingInformation)
+      hStep.delete(:report)
+      return hStep
+   end
+
+   def build_liProcessStep_full
+      hProcess = processStep
+      hProcess[:timePeriod] = build_timePeriod('TP001', 'process time', '2018-06-22')
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
+      hProcess[:stepSource] << build_liSource('SRC001')
+      hProcess[:stepSource] << build_liSource('SRC002')
+      hProcess[:reference] << citation_title
+      hProcess[:reference] << citation_title
+      hProcess[:scope] = scope
+      hProcess.delete(:stepProduct)
+      hProcess.delete(:processingInformation)
+      hProcess.delete(:report)
+      return hProcess
+   end
+
+   def build_liSource(id, description = nil, hScope = nil)
+      hSource = source
+      hSource[:sourceId] = id
+      hSource[:sourceCitation] =  citation
+      hSource[:description] = description unless description.nil?
+      hSource[:scope] = hScope unless hScope.nil?
+      hSource.delete(:processedLevel)
+      hSource.delete(:resolution)
+      return hSource
+   end
+
+   def build_liSource_full
+      hSource = source
+      hSource[:metadataCitation] << citation_title
+      hSource[:metadataCitation] << citation_title
+      hSource[:sourceProcessStep] << build_liProcessStep('PS001', 'process step one')
+      hSource[:sourceProcessStep] << build_liProcessStep('PS002', 'process step two')
+      hSource.delete(:processedLevel)
+      hSource.delete(:resolution)
+      return hSource
    end
 
    def build_locale(language = nil, character = nil, country = nil)
@@ -376,41 +475,12 @@ class MdJsonHashWriter
 
    def build_processing_full
       hProcessing = processing
-      hProcessing[:softwareReference] << citation_title
-      hProcessing[:softwareReference] << citation_title
+      hProcessing[:softwareReference] = citation_title
       hProcessing[:documentation] << citation_title
       hProcessing[:documentation] << citation_title
       hProcessing[:algorithm] << algorithm
       hProcessing[:algorithm] << algorithm
       return hProcessing
-   end
-
-   def build_processStep(id, description = nil, hTimePeriod = nil)
-      hStep = processStep
-      hStep[:stepId] = id
-      hStep[:description] = description unless description.nil?
-      hStep[:timePeriod] = hTimePeriod unless hTimePeriod.nil?
-      return hStep
-   end
-
-   def build_processStep_full
-      hProcess = processStep
-      hProcess[:timePeriod] = build_timePeriod('TP001', 'process time', '2018-06-22')
-      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
-      hProcess[:processor] << build_responsibleParty('processor', %w(CID003))
-      hProcess[:stepSource] << build_source('SRC001')
-      hProcess[:stepSource] << build_source('SRC002')
-      hProcess[:stepProduct] << build_source('SRC003')
-      hProcess[:stepProduct] << build_source('SRC004')
-      hProcess[:reference] << citation_title
-      hProcess[:reference] << citation_title
-      hProcess[:scope] = scope
-      hProcess[:output] << build_source('SRC005')
-      hProcess[:output] << build_source('SRC006')
-      hProcess[:processingInformation] = processing
-      hProcess[:report] << processStepReport
-      hProcess[:report] << processStepReport
-      return hProcess
    end
 
    def build_projection(id, name = nil, description = nil, complete = false)
@@ -531,29 +601,6 @@ class MdJsonHashWriter
       hCon[:security][:handlingDescription] = handling unless handling.nil?
       hCon[:security][:userNote] = note unless note.nil?
       return hCon
-   end
-
-   def build_source(id, description = nil, resolution = nil, hScope = nil)
-      hSource = source
-      hSource[:sourceId] = id
-      hSource[:sourceCitation] =  citation
-      hSource[:description] = description unless description.nil?
-      unless resolution.nil?
-         hResolution = {}
-         hResolution[:scaleFactor] = resolution
-         hSource[:spatialResolution] = hResolution
-      end
-      hSource[:scope] = hScope unless hScope.nil?
-      return hSource
-   end
-
-   def build_source_full
-      hSource = source
-      hSource[:metadataCitation] << citation_title
-      hSource[:metadataCitation] << citation_title
-      hSource[:sourceProcessStep] << build_processStep('PS001', 'process step one')
-      hSource[:sourceProcessStep] << build_processStep('PS002', 'process step two')
-      return hSource
    end
 
    def build_spatialReference(type = nil, hIdentifier = nil, hParameters = nil, wkt = nil)

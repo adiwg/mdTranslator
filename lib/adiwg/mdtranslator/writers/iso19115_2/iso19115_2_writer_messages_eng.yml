@@ -116,3 +116,12 @@ messageList:
    - {id: 370, message: "invalid obligation code"}
 
    - {id: 380, message: "invalid topic category"}
+
+   - {id: 390, message: "algorithm citation is missing"}
+   - {id: 391, message: "algorithm description is missing"}
+
+   - {id: 400, message: "nominal resolution is missing"}
+
+   - {id: 410, message: "process step report name is missing"}
+
+   - {id: 420, message: "processing identifier is missing"}

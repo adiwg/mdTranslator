@@ -33,7 +33,7 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<mdb:resourceLineage>
+  <mdb:resourceLineage>
     <mrl:LI_Lineage>
       <mrl:statement>
         <gco:CharacterString>statement</gco:CharacterString>
@@ -358,7 +358,7 @@
         </mrl:LI_Source>
       </mrl:source>
       <mrl:source>
-        <mrl:LI_Source id="sourcetwo">
+        <mrl:LE_Source id="sourcetwo">
           <mrl:description>
             <gco:CharacterString>lineage source two</gco:CharacterString>
           </mrl:description>
@@ -450,7 +450,74 @@
             </mcc:MD_Scope>
           </mrl:scope>
           <mrl:sourceStep/>
-        </mrl:LI_Source>
+          <mrl:processedLevel>
+            <mcc:MD_Identifier>
+              <mcc:authority>
+                <cit:CI_Citation>
+                  <cit:title>
+                    <gco:CharacterString>citation title</gco:CharacterString>
+                  </cit:title>
+                  <cit:alternateTitle/>
+                  <cit:date>
+                    <cit:CI_Date>
+                      <cit:date>
+                        <gco:DateTime>2017-11-22T00:00:00</gco:DateTime>
+                      </cit:date>
+                      <cit:dateType>
+                        <cit:CI_DateTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_DateTypeCode" codeListValue="publication" codeSpace="002"/>
+                      </cit:dateType>
+                    </cit:CI_Date>
+                  </cit:date>
+                  <cit:edition/>
+                  <cit:identifier/>
+                  <cit:citedResponsibleParty>
+                    <cit:CI_Responsibility>
+                      <cit:role>
+                        <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="originator" codeSpace="006"/>
+                      </cit:role>
+                      <cit:extent/>
+                      <cit:party>
+                        <cit:CI_Individual>
+                          <cit:name>
+                            <gco:CharacterString>person name three</gco:CharacterString>
+                          </cit:name>
+                          <cit:contactInfo/>
+                          <cit:positionName/>
+                        </cit:CI_Individual>
+                      </cit:party>
+                    </cit:CI_Responsibility>
+                  </cit:citedResponsibleParty>
+                  <cit:presentationForm/>
+                  <cit:series/>
+                  <cit:otherCitationDetails/>
+                  <cit:ISBN/>
+                  <cit:ISSN/>
+                  <cit:onlineResource/>
+                  <cit:graphic/>
+                </cit:CI_Citation>
+              </mcc:authority>
+              <mcc:code>
+                <gco:CharacterString>identifier</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace>
+                <gco:CharacterString>namespace</gco:CharacterString>
+              </mcc:codeSpace>
+              <mcc:version>
+                <gco:CharacterString>version</gco:CharacterString>
+              </mcc:version>
+              <mcc:description>
+                <gco:CharacterString>description</gco:CharacterString>
+              </mcc:description>
+            </mcc:MD_Identifier>
+          </mrl:processedLevel>
+          <mrl:resolution>
+            <mrl:LE_NominalResolution>
+              <mrl:scanningResolution>
+                <gco:Distance uom="units">999.9</gco:Distance>
+              </mrl:scanningResolution>
+            </mrl:LE_NominalResolution>
+          </mrl:resolution>
+        </mrl:LE_Source>
       </mrl:source>
       <mrl:processStep>
         <mrl:LI_ProcessStep id="stepone">
@@ -468,7 +535,7 @@
         </mrl:LI_ProcessStep>
       </mrl:processStep>
       <mrl:processStep>
-        <mrl:LI_ProcessStep id="steptwo">
+        <mrl:LE_ProcessStep id="steptwo">
           <mrl:description>
             <gco:CharacterString>lineage step two</gco:CharacterString>
           </mrl:description>
@@ -480,7 +547,22 @@
           <mrl:reference/>
           <mrl:scope/>
           <mrl:source/>
-        </mrl:LI_ProcessStep>
+          <mrl:processingInformation/>
+          <mrl:report>
+            <mrl:LE_ProcessStepReport>
+              <mrl:name>
+                <gco:CharacterString>name</gco:CharacterString>
+              </mrl:name>
+              <mrl:description>
+                <gco:CharacterString>description</gco:CharacterString>
+              </mrl:description>
+              <mrl:fileType>
+                <gco:CharacterString>file type</gco:CharacterString>
+              </mrl:fileType>
+            </mrl:LE_ProcessStepReport>
+          </mrl:report>
+          <mrl:output/>
+        </mrl:LE_ProcessStep>
       </mrl:processStep>
     </mrl:LI_Lineage>
   </mdb:resourceLineage>

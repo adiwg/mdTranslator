@@ -19,7 +19,7 @@ class TestWriterMdJsonProcessStep < TestWriterMdJsonParent
    mdHash = TDClass.base
 
    hLineage = TDClass.lineage
-   hLineage[:processStep] << TDClass.build_processStep_full
+   hLineage[:processStep] << TDClass.build_leProcessStep_full
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
 

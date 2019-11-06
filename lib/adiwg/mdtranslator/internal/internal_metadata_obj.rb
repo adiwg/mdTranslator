@@ -958,7 +958,7 @@ class InternalMetadata
    def newProcessing
       {
          identifier: {},
-         softwareReferences: [],
+         softwareReference: {},
          procedureDescription: nil,
          documentation: [],
          runtimeParameters: nil,
@@ -973,11 +973,10 @@ class InternalMetadata
          rationale: nil,
          timePeriod: {},
          processors: [],
-         references: [],
          stepSources: [],
          stepProducts: [],
+         references: [],
          scope: {},
-         output: [],
          processingInformation: {},
          reports: []
       }
