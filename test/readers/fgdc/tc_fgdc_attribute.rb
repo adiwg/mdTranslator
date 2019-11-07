@@ -25,7 +25,6 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
 
       hEntity0 = hDictionary[:entities][0]
       assert_equal 5, hEntity0[:attributes].length
-
       hAttribute0 = hEntity0[:attributes][0]
       refute_empty hAttribute0
       assert_equal 'attribute 1 label', hAttribute0[:attributeName]
@@ -53,6 +52,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_kind_of DateTime, hAttribute0[:timePeriod][0][:endDateTime][:dateTime]
       assert_equal 'YMD', hAttribute0[:timePeriod][0][:endDateTime][:dateResolution]
 
+      #range domain only
       hAttribute1 = hEntity0[:attributes][1]
       refute_empty hAttribute1
       assert_equal 'attribute 2 label', hAttribute1[:attributeName]
@@ -68,7 +68,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       refute hAttribute1[:isCaseSensitive]
       assert_nil hAttribute1[:fieldWidth]
       assert_nil hAttribute1[:missingValue]
-      refute_nil hAttribute1[:domainId]
+      assert_nil hAttribute1[:domainId]
       assert_equal '0', hAttribute1[:minValue]
       assert_equal '40', hAttribute1[:maxValue]
       assert_equal 2, hAttribute1[:valueRange].length
@@ -88,7 +88,7 @@ class TestReaderFgdcAttribute < TestReaderFGDCParent
       assert_equal 'Z', hAttribute4[:valueRange][1][:maxRangeValue]
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 
+      assert_includes hResponse[:readerExecutionMessages],
                       'WARNING: FGDC reader: entity type definition source is missing'
 
    end

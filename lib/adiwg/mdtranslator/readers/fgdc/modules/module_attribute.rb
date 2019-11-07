@@ -59,6 +59,7 @@ module ADIWG
                   end
 
                   # entity attribute 5.1.2.4 (attrdomv) - attribute domain value (required)
+                  domainLength = hDictionary[:domains].length
                   axDomain = xAttribute.xpath('./attrdomv')
                   unless axDomain.empty?
 
@@ -104,9 +105,12 @@ module ADIWG
                   # add domainId to attribute
                   # fgdc allows multiple domain definitions
                   # mdJson allows only one domain definition for an attribute
-                  # take the first, if this is a problem the user will need to fix in the editor
+                  # take the first domain that is assigned to the attribute,
+                  # if this is a problem the user will need to fix in the editor
                   unless hDictionary[:domains].empty?
-                     hAttribute[:domainId] = hDictionary[:domains][0][:domainId]
+                    if hDictionary[:domains].length > domainLength
+                      hAttribute[:domainId] = hDictionary[:domains][domainLength][:domainId]
+                    end
                   end
 
                   axBegin = xAttribute.xpath('./begdatea')
