@@ -47,11 +47,10 @@ module ADIWG
 
                   # processing - software reference
                   if hProcessing.has_key?('softwareReference')
-                     aCitation = hProcessing['softwareReference']
-                     aCitation.each do |item|
-                        hCitation = Citation.unpack(item, responseObj, outContext)
-                        unless hCitation.nil?
-                           intProcessing[:softwareReferences] << hCitation
+                     unless hProcessing['softwareReference'].empty?
+                        hReturn = Citation.unpack(hProcessing['softwareReference'], responseObj, outContext)
+                        unless hReturn.nil?
+                           intProcessing[:softwareReference] = hReturn
                         end
                      end
                   end

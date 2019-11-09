@@ -20,10 +20,10 @@ class TestReaderMdJsonResourceLineage < TestReaderMdJsonParent
    # build mdJson test file in hash
    mdHash = TDClass.build_lineage
    mdHash[:citation] << TDClass.build_citation('lineage citation two', 'CID003')
-   mdHash[:processStep] << TDClass.build_processStep('PST001','process step one')
-   mdHash[:processStep] << TDClass.build_processStep('PST002','process step two')
-   mdHash[:source] << TDClass.build_source('SRC001','source one')
-   mdHash[:source] << TDClass.build_source('SRC002','source two')
+   mdHash[:processStep] << TDClass.build_leProcessStep('PST001', 'process step one')
+   mdHash[:processStep] << TDClass.build_leProcessStep('PST002', 'process step two')
+   mdHash[:source] << TDClass.build_leSource('SRC001', 'source one')
+   mdHash[:source] << TDClass.build_leSource('SRC002', 'source two')
 
    TDClass.removeEmptyObjects(mdHash)
 

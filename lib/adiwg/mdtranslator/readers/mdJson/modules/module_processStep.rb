@@ -110,7 +110,7 @@ module ADIWG
                      end
                   end
 
-                  # process step - step products [] {source}
+                  # process step LE 'output' - step products [] {source}
                   if hProcStep.has_key?('stepProduct')
                      aSources = hProcStep['stepProduct']
                      aSources.each do |item|
@@ -132,18 +132,7 @@ module ADIWG
                      end
                   end
 
-                  # process step - output [] {source}
-                  if hProcStep.has_key?('output')
-                     aSources = hProcStep['output']
-                     aSources.each do |item|
-                        hSource = Source.unpack(item, responseObj, outContext)
-                        unless hSource.nil?
-                           intProcStep[:output] << hSource
-                        end
-                     end
-                  end
-
-                  # process step - processing information {processing}
+                  # process step LE - processing information {processing}
                   if hProcStep.has_key?('processingInformation')
                      unless hProcStep['processingInformation'].empty?
                         hReturn = Processing.unpack(hProcStep['processingInformation'], responseObj, outContext)
@@ -153,7 +142,7 @@ module ADIWG
                      end
                   end
 
-                  # process step - report [] {processReport}
+                  # process step LE - report [] {processReport}
                   if hProcStep.has_key?('report')
                      aReports = hProcStep['report']
                      aReports.each do |item|

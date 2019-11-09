@@ -2,6 +2,7 @@
 # 19115-1 writer output in XML
 
 # History:
+#  Stan Smith 2019-09-25 add support for LE_Source and LE_ProcessStep
 # 	Stan Smith 2019-04-10 original script.
 
 require_relative 'class_scope'
@@ -26,8 +27,8 @@ module ADIWG
                   # classes used
                   scopeClass = MD_Scope.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
-                  sourceClass = LI_Source.new(@xml, @hResponseObj)
-                  processClass = LI_ProcessStep.new(@xml, @hResponseObj)
+                  sourceClass = Source.new(@xml, @hResponseObj)
+                  processClass = ProcessStep.new(@xml, @hResponseObj)
 
                   outContext = 'resource lineage'
                   outContext = inContext + ' resource lineage' unless inContext.nil?
@@ -65,7 +66,7 @@ module ADIWG
                         @xml.tag!('mrl:additionalDocumentation')
                      end
 
-                     # lineage - source [] {LI_Source}
+                     # lineage - source [] {Source}
                      aSources = hLineage[:dataSources]
                      aSources.each do |hSource|
                         @xml.tag!('mrl:source') do
@@ -76,7 +77,7 @@ module ADIWG
                         @xml.tag!('mrl:source')
                      end
 
-                     # lineage - process step [] {LI_ProcessStep}
+                     # lineage - process step [] {ProcessStep}
                      aSteps = hLineage[:processSteps]
                      aSteps.each do |pStep|
                         @xml.tag!('mrl:processStep') do

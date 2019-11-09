@@ -1271,7 +1271,7 @@ class MdJsonHashWriter
    def processing
       {
          identifier: identifier,
-         softwareReference: [],
+         softwareReference: {},
          procedureDescription: 'procedure description',
          documentation: [],
          runtimeParameters: 'runtime parameters',
@@ -1284,12 +1284,12 @@ class MdJsonHashWriter
          stepId: 'PS001',
          description: 'description',
          rationale: 'rationale',
+         timePeriod: {},
          processor: [],
          stepSource: [],
          stepProduct: [],
          reference: [],
          scope: {},
-         output: [],
          processingInformation: {},
          report: []
       }

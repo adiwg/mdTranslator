@@ -19,7 +19,7 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
    TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
-   mdHash = TDClass.build_processStep_full
+   mdHash = TDClass.build_leProcessStep_full
 
    TDClass.removeEmptyObjects(mdHash)
 
@@ -50,7 +50,6 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       assert_equal 2, metadata[:stepSources].length
       assert_equal 2, metadata[:stepProducts].length
       refute_empty metadata[:scope]
-      assert_equal 2, metadata[:output].length
       refute_empty metadata[:processingInformation]
       assert_equal 2, metadata[:reports].length
       assert hResponse[:readerExecutionPass]
@@ -105,7 +104,6 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       hIn['stepSource'] = []
       hIn['stepProduct'] = []
       hIn['scope'] = {}
-      hIn['output'] = []
       hIn['processingInformation'] = {}
       hIn['report'] = []
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -119,7 +117,6 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       assert_empty metadata[:stepSources]
       assert_empty metadata[:stepProducts]
       assert_empty metadata[:scope]
-      assert_empty metadata[:output]
       assert_empty metadata[:processingInformation]
       assert_empty metadata[:reports]
       assert hResponse[:readerExecutionPass]
@@ -140,7 +137,6 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       hIn.delete('stepSource')
       hIn.delete('stepProduct')
       hIn.delete('scope')
-      hIn.delete('output')
       hIn.delete('processingInformation')
       hIn.delete('report')
       hResponse = Marshal::load(Marshal.dump(@@responseObj))
@@ -154,7 +150,6 @@ class TestReaderMdJsonProcessStep < TestReaderMdJsonParent
       assert_empty metadata[:stepSources]
       assert_empty metadata[:stepProducts]
       assert_empty metadata[:scope]
-      assert_empty metadata[:output]
       assert_empty metadata[:processingInformation]
       assert_empty metadata[:reports]
       assert hResponse[:readerExecutionPass]

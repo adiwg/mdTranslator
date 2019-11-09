@@ -2,6 +2,7 @@
 # source
 
 # History:
+#  Stan Smith 2019-09-24 add support for LE_Source
 #  Stan Smith 2017-04-03 refactored for mdTranslator 2.0
 #  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-27 original script
@@ -11,6 +12,8 @@ require_relative 'html_spatialResolution'
 require_relative 'html_spatialReference'
 require_relative 'html_processStep'
 require_relative 'html_scope'
+require_relative 'html_identifier'
+require_relative 'html_nominalResolution'
 
 module ADIWG
    module Mdtranslator
@@ -31,6 +34,8 @@ module ADIWG
                   referenceClass = Html_SpatialReference.new(@html)
                   stepClass = Html_ProcessStep.new(@html)
                   scopeClass = Html_Scope.new(@html)
+                  identifierClass = Html_Identifier.new(@html)
+                  nominalClass = Html_NominalResolution.new(@html)
 
                   # source - source ID
                   unless hSource[:sourceId].nil?
@@ -117,6 +122,26 @@ module ADIWG
                         @html.summary('Scope', {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            scopeClass.writeHtml(hSource[:scope])
+                        end
+                     end
+                  end
+
+                  # source - processed level {identifier}
+                  unless hSource[:processedLevel].empty?
+                     @html.details do
+                        @html.summary('Processed Level', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           identifierClass.writeHtml(hSource[:processedLevel])
+                        end
+                     end
+                  end
+
+                  # source - resolution {nominal resolution}
+                  unless hSource[:resolution].empty?
+                     @html.details do
+                        @html.summary('Nominal Resolution', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           nominalClass.writeHtml(hSource[:resolution])
                         end
                      end
                   end

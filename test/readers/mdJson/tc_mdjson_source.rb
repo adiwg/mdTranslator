@@ -19,7 +19,7 @@ class TestReaderMdJsonSource < TestReaderMdJsonParent
    TDClass = MdJsonHashWriter.new
 
    # build mdJson test file in hash
-   mdHash = TDClass.build_source_full
+   mdHash = TDClass.build_leSource_full
 
    @@mdHash = mdHash
 

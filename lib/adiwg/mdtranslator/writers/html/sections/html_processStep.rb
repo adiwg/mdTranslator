@@ -2,9 +2,10 @@
 # process step
 
 # History:
-#  Stan Smith 2017-08-30 added support for process step sources
-#  Stan Smith 2017-04-03 refactored for mdTranslator 2.0
-#  Stan Smith 2015-07-16 refactored to remove global namespace $HtmlNS
+#  Stan Smith 2019-09-24 add support for LE_ProcessStep
+#  Stan Smith 2017-08-30 add support for process step sources
+#  Stan Smith 2017-04-03 refactor for mdTranslator 2.0
+#  Stan Smith 2015-07-16 refactor to remove global namespace $HtmlNS
 # 	Stan Smith 2015-03-27 original script
 
 require_relative 'html_temporalExtent'
@@ -12,6 +13,8 @@ require_relative 'html_responsibility'
 require_relative 'html_citation'
 require_relative 'html_scope'
 require_relative 'html_source'
+require_relative 'html_processing'
+require_relative 'html_processReport'
 
 module ADIWG
    module Mdtranslator
@@ -27,11 +30,13 @@ module ADIWG
                def writeHtml(hStep)
 
                   # classes used
-                  temporalClass = Html_TemporalExtent.new(@html)
+                  temporalClass = Html_TimePeriod.new(@html)
                   responsibilityClass = Html_Responsibility.new(@html)
                   citationClass = Html_Citation.new(@html)
                   scopeClass = Html_Scope.new(@html)
                   sourceClass = Html_Source.new(@html)
+                  processingClass = Html_Processing.new(@html)
+                  reportClass = Html_ProcessStepReport.new(@html)
 
                   # process step - id
                   unless hStep[:stepId].nil?
@@ -58,10 +63,12 @@ module ADIWG
 
                   # process step - time period {timePeriod}
                   unless hStep[:timePeriod].empty?
-                     temporalObj = {}
-                     temporalObj[:timeInstant] = {}
-                     temporalObj[:timePeriod] = hStep[:timePeriod]
-                     temporalClass.writeHtml(temporalObj)
+                     @html.details do
+                        @html.summary('Time Period', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           temporalClass.writeHtml(hStep[:timePeriod])
+                        end
+                     end
                   end
 
                   # process step - references [] {citation}
@@ -131,6 +138,26 @@ module ADIWG
                         @html.summary('Scope', {'class' => 'h5'})
                         @html.section(:class => 'block') do
                            scopeClass.writeHtml(hStep[:scope])
+                        end
+                     end
+                  end
+
+                  # process step - processing information {processingInformation}
+                  unless hStep[:processingInformation].empty?
+                     @html.details do
+                        @html.summary('Processing Information', {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           processingClass.writeHtml(hStep[:processingInformation])
+                        end
+                     end
+                  end
+
+                  # process step - report [] {processStepReport}
+                  hStep[:reports].each do |hReport|
+                     @html.details do
+                        @html.summary(hReport[:name], {'class' => 'h5'})
+                        @html.section(:class => 'block') do
+                           reportClass.writeHtml(hReport)
                         end
                      end
                   end
