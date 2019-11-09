@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2.17.1](https://github.com/adiwg/mdTranslator/tree/v2.17.1)
+
+[Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.16.1...v2.17.1)
+
+**Closed issues:**
+
+- Enumerated Value lists Description written to the ISO 19110 output? [\#218](https://github.com/adiwg/mdTranslator/issues/218)
+- Support applicationProfile and protocolRequest in onlineResource [\#215](https://github.com/adiwg/mdTranslator/issues/215)
+
+**Merged pull requests:**
+
+- Dev [\#219](https://github.com/adiwg/mdTranslator/pull/219) ([jlblcc](https://github.com/jlblcc))
+- Add support for LE\_ProcessStep and LE\_Source [\#217](https://github.com/adiwg/mdTranslator/pull/217) ([stansmith907](https://github.com/stansmith907))
+
 ## [v2.16.1](https://github.com/adiwg/mdTranslator/tree/v2.16.1) (2019-09-24)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.15.0...v2.16.1)
 
@@ -50,7 +64,6 @@
 **Merged pull requests:**
 
 - Fix issues with sbJson writer and fgdc reader [\#203](https://github.com/adiwg/mdTranslator/pull/203) ([stansmith907](https://github.com/stansmith907))
-- Refactor mdJson writer to use mdJson construction helpers [\#198](https://github.com/adiwg/mdTranslator/pull/198) ([stansmith907](https://github.com/stansmith907))
 
 ## [v2.13.2](https://github.com/adiwg/mdTranslator/tree/v2.13.2) (2018-08-01)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.13.1...v2.13.2)
@@ -69,6 +82,10 @@
 **Closed issues:**
 
 - Issue with YearMonth format date translation from CSDGM to mdJSON [\#197](https://github.com/adiwg/mdTranslator/issues/197)
+
+**Merged pull requests:**
+
+- Refactor mdJson writer to use mdJson construction helpers [\#198](https://github.com/adiwg/mdTranslator/pull/198) ([stansmith907](https://github.com/stansmith907))
 
 ## [v2.13.0](https://github.com/adiwg/mdTranslator/tree/v2.13.0) (2018-05-11)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.12.0...v2.13.0)
@@ -102,7 +119,6 @@
 
 - Refactor taxonomy as an array [\#190](https://github.com/adiwg/mdTranslator/pull/190) ([stansmith907](https://github.com/stansmith907))
 - Refactor FGDC writer messaging [\#189](https://github.com/adiwg/mdTranslator/pull/189) ([stansmith907](https://github.com/stansmith907))
-- Add FGDC CSDGM 1998 reader [\#131](https://github.com/adiwg/mdTranslator/pull/131) ([stansmith907](https://github.com/stansmith907))
 
 ## [v2.10.0](https://github.com/adiwg/mdTranslator/tree/v2.10.0) (2018-03-13)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.9.2...v2.10.0)
@@ -298,6 +314,10 @@
 
 ## [v2.3.0](https://github.com/adiwg/mdTranslator/tree/v2.3.0) (2017-09-12)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.2.0...v2.3.0)
+
+**Merged pull requests:**
+
+- Add FGDC CSDGM 1998 reader [\#131](https://github.com/adiwg/mdTranslator/pull/131) ([stansmith907](https://github.com/stansmith907))
 
 ## [v2.2.0](https://github.com/adiwg/mdTranslator/tree/v2.2.0) (2017-08-31)
 [Full Changelog](https://github.com/adiwg/mdTranslator/compare/v2.1.2...v2.2.0)
