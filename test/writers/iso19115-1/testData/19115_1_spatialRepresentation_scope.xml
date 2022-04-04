@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mdb:MD_Metadata
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:gml="http://www.opengis.net/gml/3.2"
+        xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0"
+        xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0"
+        xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0"
+        xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0"
+        xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0"
+        xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0"
+        xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0"
+        xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
+        xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0"
+        xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0"
+        xmlns:mex="http://standards.iso.org/iso/19157/-2/mex/1.0"
+        xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0"
+        xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0"
+        xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0"
+        xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0"
+        xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0"
+        xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
+        xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0"
+        xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
+        xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/2.0"
+        xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/2.0"
+        xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0"
+        xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0"
+        xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0"
+        xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0"
+        xmlns:fcc="http://standards.iso.org/iso/19110/fcc/1.0"
+        xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
+        xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
+        http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
+
+<mdb:spatialRepresentationInfo>
+      <msr:MD_GridSpatialRepresentation>
+            <msr:scope>
+                  <mcc:MD_Scope>
+                       <mcc:level>
+                             <mcc:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
+                       </mcc:level>
+                       <mcc:extent>
+                             <gex:EX_Extent>
+                                   <gex:description>
+                                         <gco:CharacterString>scope extent one</gco:CharacterString>
+                                   </gex:description>
+                                   <gex:geographicElement/>
+                                   <gex:temporalElement/>
+                                   <gex:verticalElement/>
+                             </gex:EX_Extent>
+                       </mcc:extent>
+                       <mcc:levelDescription>
+                             <mcc:MD_ScopeDescription>
+                                   <mcc:dataset>
+                                         <gco:CharacterString>dataset one</gco:CharacterString>
+                                   </mcc:dataset>
+                             </mcc:MD_ScopeDescription>
+                       </mcc:levelDescription>
+                  </mcc:MD_Scope>
+            </msr:scope>
+      <msr:numberOfDimensions>
+        <gco:Integer>9</gco:Integer>
+      </msr:numberOfDimensions>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:cellGeometry>
+        <msr:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="point" codeSpace="001"/>
+      </msr:cellGeometry>
+      <msr:transformationParameterAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:transformationParameterAvailability>
+    </msr:MD_GridSpatialRepresentation>
+  </mdb:spatialRepresentationInfo>
+
+  <mdb:spatialRepresentationInfo>
+    <msr:MD_VectorSpatialRepresentation>
+      <msr:topologyLevel>
+        <msr:MD_TopologyLevelCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_TopologyLevelCode" codeListValue="topology level" codeSpace="userCode"/>
+      </msr:topologyLevel>
+      <msr:geometricObjects>
+        <msr:MD_GeometricObjects>
+          <msr:geometricObjectType>
+            <msr:MD_GeometricObjectTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_GeometricObjectTypeCode" codeListValue="object type code" codeSpace="userCode"/>
+          </msr:geometricObjectType>
+          <msr:geometricObjectCount>
+            <gco:Integer>9</gco:Integer>
+          </msr:geometricObjectCount>
+        </msr:MD_GeometricObjects>
+      </msr:geometricObjects>
+      <msr:geometricObjects>
+        <msr:MD_GeometricObjects>
+          <msr:geometricObjectType>
+            <msr:MD_GeometricObjectTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_GeometricObjectTypeCode" codeListValue="object type code" codeSpace="userCode"/>
+          </msr:geometricObjectType>
+          <msr:geometricObjectCount>
+            <gco:Integer>9</gco:Integer>
+          </msr:geometricObjectCount>
+        </msr:MD_GeometricObjects>
+      </msr:geometricObjects>
+    </msr:MD_VectorSpatialRepresentation>
+  </mdb:spatialRepresentationInfo>
+
+  <mdb:spatialRepresentationInfo>
+    <msr:MD_Georectified>
+      <msr:numberOfDimensions>
+        <gco:Integer>9</gco:Integer>
+      </msr:numberOfDimensions>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:cellGeometry>
+        <msr:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="point" codeSpace="001"/>
+      </msr:cellGeometry>
+      <msr:transformationParameterAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:transformationParameterAvailability>
+      <msr:checkPointAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:checkPointAvailability>
+      <msr:checkPointDescription>
+        <gco:CharacterString>check point description</gco:CharacterString>
+      </msr:checkPointDescription>
+      <msr:cornerPoints>
+        <gml:Point gml:id="point_001" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:pos>100.0 50.0</gml:pos>
+        </gml:Point>
+      </msr:cornerPoints>
+      <msr:cornerPoints>
+        <gml:Point gml:id="point_002" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:pos>25.0 25.0</gml:pos>
+        </gml:Point>
+      </msr:cornerPoints>
+      <msr:centrePoint>
+        <gml:Point gml:id="point_003" srsDimension="2" srsName="WGS84">
+          <gml:description/>
+          <gml:identifier codeSpace=""/>
+          <gml:name/>
+          <gml:pos>62.0 37.0</gml:pos>
+        </gml:Point>
+      </msr:centrePoint>
+      <msr:pointInPixel>
+        <msr:MD_PixelOrientationCode>upperRight</msr:MD_PixelOrientationCode>
+      </msr:pointInPixel>
+      <msr:transformationDimensionDescription>
+        <gco:CharacterString>transformation dimension description</gco:CharacterString>
+      </msr:transformationDimensionDescription>
+      <msr:transformationDimensionMapping>
+        <gco:CharacterString>transformation dimension mapping</gco:CharacterString>
+      </msr:transformationDimensionMapping>
+    </msr:MD_Georectified>
+  </mdb:spatialRepresentationInfo>
+
+  <mdb:spatialRepresentationInfo>
+    <msr:MD_Georeferenceable>
+      <msr:numberOfDimensions>
+        <gco:Integer>9</gco:Integer>
+      </msr:numberOfDimensions>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:axisDimensionProperties>
+        <msr:MD_Dimension>
+          <msr:dimensionName>
+            <msr:MD_DimensionNameTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_DimensionNameTypeCode" codeListValue="dimension type" codeSpace="userCode"/>
+          </msr:dimensionName>
+          <msr:dimensionSize>
+            <gco:Integer>9</gco:Integer>
+          </msr:dimensionSize>
+          <msr:resolution>
+            <gco:Distance uom="distanceuom">99</gco:Distance>
+          </msr:resolution>
+        </msr:MD_Dimension>
+      </msr:axisDimensionProperties>
+      <msr:cellGeometry>
+        <msr:MD_CellGeometryCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_CellGeometryCode" codeListValue="point" codeSpace="001"/>
+      </msr:cellGeometry>
+      <msr:transformationParameterAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:transformationParameterAvailability>
+      <msr:controlPointAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:controlPointAvailability>
+      <msr:orientationParameterAvailability>
+        <gco:Boolean>false</gco:Boolean>
+      </msr:orientationParameterAvailability>
+      <msr:orientationParameterDescription>
+        <gco:CharacterString>orientation parameter description</gco:CharacterString>
+      </msr:orientationParameterDescription>
+      <msr:georeferencedParameters>
+        <gco:Record>georeferenced parameter</gco:Record>
+      </msr:georeferencedParameters>
+      <msr:parameterCitation>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>parameter citation title one</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </msr:parameterCitation>
+      <msr:parameterCitation>
+        <cit:CI_Citation>
+          <cit:title>
+            <gco:CharacterString>parameter citation title two</gco:CharacterString>
+          </cit:title>
+          <cit:alternateTitle/>
+          <cit:date/>
+          <cit:edition/>
+          <cit:identifier/>
+          <cit:citedResponsibleParty/>
+          <cit:presentationForm/>
+          <cit:series/>
+          <cit:otherCitationDetails/>
+          <cit:ISBN/>
+          <cit:ISSN/>
+          <cit:onlineResource/>
+          <cit:graphic/>
+        </cit:CI_Citation>
+      </msr:parameterCitation>
+    </msr:MD_Georeferenceable>
+  </mdb:spatialRepresentationInfo>
+
+</mdb:MD_Metadata>
