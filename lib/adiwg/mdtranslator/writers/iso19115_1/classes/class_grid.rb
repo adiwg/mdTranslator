@@ -6,6 +6,7 @@
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_dimension'
+require_relative 'class_scope'
 
 module ADIWG
    module Mdtranslator
@@ -25,7 +26,8 @@ module ADIWG
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   dimensionClass = MD_Dimension.new(@xml, @hResponseObj)
-                  
+                  scopeClass = MD_Scope.new(@xml, @hResponseObj)
+
                   # grid - number of dimensions (required)
                   unless hGrid[:numberOfDimensions].nil?
                      @xml.tag!('msr:numberOfDimensions') do
@@ -60,6 +62,12 @@ module ADIWG
                   # grid - transformation parameters availability (required)
                   @xml.tag!('msr:transformationParameterAvailability') do
                      @xml.tag!('gco:Boolean', hGrid[:transformationParameterAvailable])
+                  end
+
+                  hGrid[:scope].each do |scope|
+                     @xml.tag!('msr:scope') do
+                        scopeClass.writeXML(scope, inContext)
+                     end
                   end
 
                end # writeXML

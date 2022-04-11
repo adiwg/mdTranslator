@@ -1181,7 +1181,8 @@ class InternalMetadata
          numberOfDimensions: nil,
          dimension: [],
          cellGeometry: nil,
-         transformationParameterAvailable: false
+         transformationParameterAvailable: false,
+         scope: []
       }
    end
 
@@ -1198,7 +1199,8 @@ class InternalMetadata
    def newVectorInfo
       {
          topologyLevel: nil,
-         vectorObject: []
+         vectorObject: [],
+         scope: []
       }
    end
 
@@ -1218,7 +1220,8 @@ class InternalMetadata
          centerPoint: [],
          pointInPixel: nil,
          transformationDimensionDescription: nil,
-         transformationDimensionMapping: nil
+         transformationDimensionMapping: nil,
+         scope: []
       }
    end
 
@@ -1229,7 +1232,8 @@ class InternalMetadata
          orientationParameterAvailable: false,
          orientationParameterDescription: nil,
          georeferencedParameter: nil,
-         parameterCitation: []
+         parameterCitation: [],
+         scope: []
       }
    end
 

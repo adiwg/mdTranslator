@@ -1574,7 +1574,8 @@ class MdJsonHashWriter
          numberOfDimensions: 9,
          dimension: [],
          cellGeometry: 'point',
-         transformationParameterAvailable: false
+         transformationParameterAvailable: false,
+         scope: []
       }
    end
 
