@@ -28,6 +28,13 @@ module ADIWG
                   dimensionClass = MD_Dimension.new(@xml, @hResponseObj)
                   scopeClass = MD_Scope.new(@xml, @hResponseObj)
 
+                  # grid - scope
+                  hGrid[:scope].each do |scope|
+                     @xml.tag!('msr:scope') do
+                        scopeClass.writeXML(scope, inContext)
+                     end
+                  end
+
                   # grid - number of dimensions (required)
                   unless hGrid[:numberOfDimensions].nil?
                      @xml.tag!('msr:numberOfDimensions') do
@@ -64,11 +71,6 @@ module ADIWG
                      @xml.tag!('gco:Boolean', hGrid[:transformationParameterAvailable])
                   end
 
-                  hGrid[:scope].each do |scope|
-                     @xml.tag!('msr:scope') do
-                        scopeClass.writeXML(scope, inContext)
-                     end
-                  end
 
                end # writeXML
             end # Grid class
