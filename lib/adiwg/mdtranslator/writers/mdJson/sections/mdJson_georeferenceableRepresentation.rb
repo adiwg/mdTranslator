@@ -25,6 +25,7 @@ module ADIWG
                      json.orientationParameterDescription hGeoRef[:orientationParameterDescription]
                      json.georeferencedParameter hGeoRef[:georeferencedParameter]
                      json.parameterCitation @Namespace.json_map(hGeoRef[:parameterCitation], Citation)
+                     json.scope hGeoRef[:scope]
                   end
 
                end # build

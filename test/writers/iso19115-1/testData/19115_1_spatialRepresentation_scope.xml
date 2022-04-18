@@ -33,32 +33,53 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<mdb:spatialRepresentationInfo>
-      <msr:MD_GridSpatialRepresentation>
-            <msr:scope>
-                  <mcc:MD_Scope>
-                       <mcc:level>
-                             <mcc:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
-                       </mcc:level>
-                       <mcc:extent>
-                             <gex:EX_Extent>
-                                   <gex:description>
-                                         <gco:CharacterString>scope extent one</gco:CharacterString>
-                                   </gex:description>
-                                   <gex:geographicElement/>
-                                   <gex:temporalElement/>
-                                   <gex:verticalElement/>
-                             </gex:EX_Extent>
-                       </mcc:extent>
-                       <mcc:levelDescription>
-                             <mcc:MD_ScopeDescription>
-                                   <mcc:dataset>
-                                         <gco:CharacterString>dataset one</gco:CharacterString>
-                                   </mcc:dataset>
-                             </mcc:MD_ScopeDescription>
-                       </mcc:levelDescription>
-                  </mcc:MD_Scope>
-            </msr:scope>
+  <mdb:spatialRepresentationInfo>
+    <msr:MD_GridSpatialRepresentation>
+      <msr:scope>
+        <mcc:MD_Scope>
+          <mcc:level>
+            <mcc:MD_ScopeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#MD_ScopeCode" codeListValue="scope code" codeSpace="userCode"/>
+          </mcc:level>
+          <mcc:extent>
+            <gex:EX_Extent>
+              <gex:description>
+                <gco:CharacterString>description</gco:CharacterString>
+              </gex:description>
+              <gex:geographicElement/>
+              <gex:temporalElement/>
+              <gex:verticalElement/>
+            </gex:EX_Extent>
+          </mcc:extent>
+          <mcc:levelDescription>
+            <mcc:MD_ScopeDescription>
+              <mcc:dataset>
+                <gco:CharacterString>dataset</gco:CharacterString>
+              </mcc:dataset>
+            </mcc:MD_ScopeDescription>
+          </mcc:levelDescription>
+          <mcc:levelDescription>
+            <mcc:MD_ScopeDescription>
+              <mcc:attributes>
+                <gco:CharacterString>attributes</gco:CharacterString>
+              </mcc:attributes>
+            </mcc:MD_ScopeDescription>
+          </mcc:levelDescription>
+          <mcc:levelDescription>
+            <mcc:MD_ScopeDescription>
+              <mcc:features>
+                <gco:CharacterString>features</gco:CharacterString>
+              </mcc:features>
+            </mcc:MD_ScopeDescription>
+          </mcc:levelDescription>
+          <mcc:levelDescription>
+            <mcc:MD_ScopeDescription>
+              <mcc:other>
+                <gco:CharacterString>other</gco:CharacterString>
+              </mcc:other>
+            </mcc:MD_ScopeDescription>
+          </mcc:levelDescription>
+        </mcc:MD_Scope>
+      </msr:scope>
       <msr:numberOfDimensions>
         <gco:Integer>9</gco:Integer>
       </msr:numberOfDimensions>

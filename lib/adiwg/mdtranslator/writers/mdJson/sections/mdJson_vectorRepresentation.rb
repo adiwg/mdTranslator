@@ -20,6 +20,7 @@ module ADIWG
                   Jbuilder.new do |json|
                      json.topologyLevel hVector[:topologyLevel]
                      json.vectorObject @Namespace.json_map(hVector[:vectorObject], VectorObject)
+                     json.scope hVector[:scope]
                   end
 
                end # build

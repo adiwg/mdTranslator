@@ -1547,7 +1547,8 @@ class MdJsonHashWriter
          centerPoint: [62.0, 37.0],
          pointInPixel: 'upperRight',
          transformationDimensionDescription: 'transformation dimension description',
-         transformationDimensionMapping: 'transformation dimension mapping'
+         transformationDimensionMapping: 'transformation dimension mapping',
+         scope: []
       }
    end
 
@@ -1565,7 +1566,8 @@ class MdJsonHashWriter
             {
                title: 'parameter citation title two'
             },
-         ]
+         ],
+         scope: []
       }
    end
 
@@ -1589,7 +1591,8 @@ class MdJsonHashWriter
    def vectorRepresentation
       {
          topologyLevel: 'topology level',
-         vectorObject: []
+         vectorObject: [],
+         scope: []
       }
    end
 

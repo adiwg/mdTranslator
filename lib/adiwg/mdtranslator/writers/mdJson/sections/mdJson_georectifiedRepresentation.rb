@@ -24,6 +24,7 @@ module ADIWG
                      json.pointInPixel hGeoRec[:pointInPixel]
                      json.transformationDimensionDescription hGeoRec[:transformationDimensionDescription]
                      json.transformationDimensionMapping hGeoRec[:transformationDimensionMapping]
+                     json.scope hGeoRec[:scope]
                   end
 
                end # build
