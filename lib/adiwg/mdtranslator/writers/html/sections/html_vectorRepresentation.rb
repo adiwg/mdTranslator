@@ -6,6 +6,7 @@
 #  Stan Smith 2017-03-28 original script
 
 require_relative 'html_vectorObject'
+require_relative 'html_scope'
 
 module ADIWG
    module Mdtranslator
@@ -22,6 +23,18 @@ module ADIWG
 
                   # classes used
                   objectClass = Html_VectorObject.new(@html)
+                  scopeClass = Html_Scope.new(@html)
+
+                  # vector representation - scope
+                  hVector[:scope].each do |scope|
+                     @html.details do
+                        @html.summary('Scope ', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           scopeClass.writeHtml(hVector[:scope])
+                        end
+                     end
+                  end
+
 
                   # vector representation - topology level
                   unless hVector[:topologyLevel].nil?
