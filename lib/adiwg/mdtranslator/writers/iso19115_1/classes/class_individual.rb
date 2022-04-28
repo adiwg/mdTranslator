@@ -6,6 +6,7 @@
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_contact'
+require_relative 'class_identifier'
 
 module ADIWG
    module Mdtranslator
@@ -24,6 +25,7 @@ module ADIWG
 
                   # classes used
                   contactClass = CI_Contact.new(@xml, @hResponseObj)
+                  identifierClass = MD_Identifier.new(@xml, @hResponseObj)
 
                   outContext = 'individual contact'
                   outContext = inContext + ' individual contact' unless inContext.nil?
@@ -68,6 +70,13 @@ module ADIWG
                         end
                         if hContact[:positionName].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('cit:positionName')
+                        end
+
+                        # individual - party identifier
+                        if hContact[:contactId]
+                           @xml.tag!('cit:partyIdentifier') do
+                              identifierClass.writeXML(hContact[:contactId]);
+                           end
                         end
 
                      end
