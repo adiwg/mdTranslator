@@ -42,9 +42,11 @@
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:code>
-            <gco:CharacterString>orcid:8998793497</gco:CharacterString>
+            <gco:CharacterString>8998793497</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace><cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="orcid" codeSpace="adiwg003"></cit:CI_RoleCode></mcc:codeSpace>
+          <mcc:codeSpace>
+            <cit:CI_RoleCode codeList="https://mdtranslator.adiwg.org/api/codelists?format=xml#ADIwg_Namespace" codeListValue="orcid" codeSpace="info:orcid/"/>
+          </mcc:codeSpace>
         </mcc:MD_Identifier>
       <cit:positionName/>
     </cit:CI_Individual>
