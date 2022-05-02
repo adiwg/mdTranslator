@@ -32,6 +32,7 @@
         xmlns:gfc="http://standards.iso.org/iso/19110/gfc/1.1"
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
+
   <cit:party>
     <cit:CI_Individual>
       <cit:name>
@@ -47,7 +48,23 @@
         </mcc:MD_Identifier>
       <cit:positionName/>
     </cit:CI_Individual>
-</cit:party>
+  </cit:party>
+
+  <cit:party>
+    <cit:CI_Individual>
+      <cit:name>
+        <gco:CharacterString>person name three</gco:CharacterString>
+      </cit:name>
+      <cit:contactInfo/>
+      <cit:partyIdentifier>
+        <mcc:MD_Identifier>
+          <mcc:code>
+            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="orcid" codeSpace="adiwg003">orcid:8998793497</cit:CI_RoleCode>
+          </mcc:code>
+        </mcc:MD_Identifier>
+      <cit:positionName/>
+    </cit:CI_Individual>
+  </cit:party>
 
   <cit:party>
     <cit:CI_Organisation>
@@ -58,9 +75,8 @@
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:code>
-            <gco:CharacterString>mcc:code/gco:CharacterString</gco:CharacterString>
+            <gcx:Anchor>ror:https://ror.org/02z5nhe81</gcx:Anchor>
           </mcc:code>
-          </mcc:codeSpace>
         </mcc:MD_Identifier>
       <cit:logo/>
       <cit:individual/>
