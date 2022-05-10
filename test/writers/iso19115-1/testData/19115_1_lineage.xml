@@ -78,6 +78,17 @@
                   </cit:name>
                   <cit:contactInfo/>
                   <cit:positionName/>
+                  <cit:partyIdentifier>
+                    <mcc:MD_Identifier>
+                      <mcc:authority/>
+                      <mcc:code>
+                        <gco:CharacterString>CID003</gco:CharacterString>
+                      </mcc:code>
+                      <mcc:codeSpace/>
+                      <mcc:version/>
+                      <mcc:description/>
+                    </mcc:MD_Identifier>
+                  </cit:partyIdentifier>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -160,6 +171,17 @@
                       </cit:name>
                       <cit:contactInfo/>
                       <cit:positionName/>
+                      <cit:partyIdentifier>
+                        <mcc:MD_Identifier>
+                          <mcc:authority/>
+                          <mcc:code>
+                            <gco:CharacterString>CID003</gco:CharacterString>
+                          </mcc:code>
+                          <mcc:codeSpace/>
+                          <mcc:version/>
+                          <mcc:description/>
+                        </mcc:MD_Identifier>
+                      </cit:partyIdentifier>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -249,6 +271,17 @@
                   </cit:name>
                   <cit:contactInfo/>
                   <cit:positionName/>
+                  <cit:partyIdentifier>
+                    <mcc:MD_Identifier>
+                      <mcc:authority/>
+                      <mcc:code>
+                        <gco:CharacterString>CID003</gco:CharacterString>
+                      </mcc:code>
+                      <mcc:codeSpace/>
+                      <mcc:version/>
+                      <mcc:description/>
+                    </mcc:MD_Identifier>
+                  </cit:partyIdentifier>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -331,6 +364,17 @@
                       </cit:name>
                       <cit:contactInfo/>
                       <cit:positionName/>
+                      <cit:partyIdentifier>
+                        <mcc:MD_Identifier>
+                          <mcc:authority/>
+                          <mcc:code>
+                            <gco:CharacterString>CID003</gco:CharacterString>
+                          </mcc:code>
+                          <mcc:codeSpace/>
+                          <mcc:version/>
+                          <mcc:description/>
+                        </mcc:MD_Identifier>
+                      </cit:partyIdentifier>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -426,6 +470,17 @@
                       </cit:name>
                       <cit:contactInfo/>
                       <cit:positionName/>
+                      <cit:partyIdentifier>
+                        <mcc:MD_Identifier>
+                          <mcc:authority/>
+                          <mcc:code>
+                            <gco:CharacterString>CID003</gco:CharacterString>
+                          </mcc:code>
+                          <mcc:codeSpace/>
+                          <mcc:version/>
+                          <mcc:description/>
+                        </mcc:MD_Identifier>
+                      </cit:partyIdentifier>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -483,6 +538,17 @@
                           </cit:name>
                           <cit:contactInfo/>
                           <cit:positionName/>
+                          <cit:partyIdentifier>
+                            <mcc:MD_Identifier>
+                              <mcc:authority/>
+                              <mcc:code>
+                                <gco:CharacterString>CID003</gco:CharacterString>
+                              </mcc:code>
+                              <mcc:codeSpace/>
+                              <mcc:version/>
+                              <mcc:description/>
+                            </mcc:MD_Identifier>
+                          </cit:partyIdentifier>
                         </cit:CI_Individual>
                       </cit:party>
                     </cit:CI_Responsibility>

@@ -73,9 +73,14 @@ module ADIWG
                         end
 
                         # individual - party identifier
-                        if hContact[:contactId]
+                        if hContact[:contactId] && 
+                           hContact[:contactId].is_a?(Hash)
                            @xml.tag!('cit:partyIdentifier') do
                               identifierClass.writeXML(hContact[:contactId]);
+                           end
+                        elsif hContact[:contactId].is_a?(String)
+                           @xml.tag!('cit:partyIdentifier') do
+                              identifierClass.writeXML({ identifier: hContact[:contactId] })
                            end
                         end
 

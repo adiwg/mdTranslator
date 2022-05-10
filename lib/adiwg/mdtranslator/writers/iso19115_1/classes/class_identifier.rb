@@ -32,12 +32,12 @@ module ADIWG
 
                      # identifier - authority {CI_Citation}
                      hCitation = hIdentifier[:citation]
-                     unless hCitation.empty?
+                     unless hCitation.nil? || hCitation.empty?
                         @xml.tag!('mcc:authority') do
                            citationClass.writeXML(hCitation, outContext)
                         end
                      end
-                     if hCitation.empty? && @hResponseObj[:writerShowTags]
+                     if hCitation.nil? || hCitation.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mcc:authority')
                      end
 
