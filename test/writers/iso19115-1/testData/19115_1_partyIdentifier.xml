@@ -42,10 +42,10 @@
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:code>
-            <gco:CharacterString>8998793497</gco:CharacterString>
+            <gco:CharacterString>https://orcid.org/0000-0002-4472-5965</gco:CharacterString>
           </mcc:code>
           <mcc:codeSpace>
-            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="orcid" codeSpace="adiwg007"/>
+            <gco:CharacterString>orcid</gco:CharacterString>
           </mcc:codeSpace>
         </mcc:MD_Identifier>
       </cit:partyIdentifier>  
@@ -63,10 +63,10 @@
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:code>
-            <gco:CharacterString>02z5nhe81</gco:CharacterString>
+            <gco:CharacterString>ror:02z5nhe81</gco:CharacterString>
           </mcc:code>
           <mcc:codeSpace>
-            <cit:CI_RoleCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_RoleCode" codeListValue="ror" codeSpace="adiwg008"/>
+            <gco:CharacterString>ror</gco:CharacterString>
           </mcc:codeSpace>       
         </mcc:MD_Identifier>
       </cit:partyIdentifier>
