@@ -123,7 +123,13 @@ module ADIWG
                   contactType = nil
                   contactName = nil
                   @contacts.each_with_index do |contact, i|
-                     if contact[:contactId] == contactId
+                     if contact[:contactId] == contactId || 
+                        (
+                           contact[:contactId].is_a?(Hash) && 
+                           contactId.is_a?(Hash) && 
+                           contact[:contactId][:identifier] == contactId['identifier']
+                        )
+
                         contactIndex = i
                         if contact[:isOrganization]
                            contactType = 'organization'

@@ -30,11 +30,18 @@ module ADIWG
                   # load party with contact index, contact type, and name
                   # return nil if contact ID does not exist in contact array
                   if hParty.has_key?('contactId')
-                     intParty[:contactId] = hParty['contactId']
+                     if hParty['contactId'].is_a?(Hash)
+                        intParty[:contactId] = hParty['contactId'].transform_keys(&:to_sym)
+                        context = hParty['contactId']['identifier']
+                     elsif hParty['contactId'].is_a?(String)
+                        intParty[:contactId] = hParty['contactId']
+                        context = hParty['contactId']
+                     end
+
                      unless intParty[:contactId].nil? || intParty[:contactId] == ''
                         hContact = @MessagePath.findContact(hParty['contactId'])
                         if hContact[0].nil?
-                           outContext = 'contact ID ' + intParty[:contactId]
+                           outContext = 'contact ID ' + context
                            outContext = inContext + ' > ' + outContext unless inContext.nil?
                            @MessagePath.issueError(622, responseObj, outContext)
                         else

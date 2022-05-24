@@ -8,7 +8,7 @@ require_relative '../iso19115_1_writer'
 require_relative 'class_contact'
 require_relative 'class_browseGraphic'
 require_relative 'class_individual'
-require_relative 'class_identifier'
+require_relative 'class_partyIdentifier'
 
 module ADIWG
    module Mdtranslator
@@ -29,7 +29,7 @@ module ADIWG
                   contactClass = CI_Contact.new(@xml, @hResponseObj)
                   graphicClass = MD_BrowseGraphic.new(@xml, @hResponseObj)
                   individualClass = CI_Individual.new(@xml, @hResponseObj)
-                  identifierClass = MD_Identifier.new(@xml, @hResponseObj)
+                  identifierClass = MD_PartyIdentifier.new(@xml, @hResponseObj)
 
                   outContext = 'responsible party'
                   outContext = inContext + ' responsible party' unless inContext.nil?

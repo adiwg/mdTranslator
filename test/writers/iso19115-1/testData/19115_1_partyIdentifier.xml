@@ -39,17 +39,20 @@
         <gco:CharacterString>person name</gco:CharacterString>
       </cit:name>
       <cit:contactInfo/>
+      <cit:positionName/>
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>https://orcid.org/0000-0002-4472-5965</gco:CharacterString>
           </mcc:code>
           <mcc:codeSpace>
             <gco:CharacterString>orcid</gco:CharacterString>
           </mcc:codeSpace>
+          <mcc:version/>
+          <mcc:description/>
         </mcc:MD_Identifier>
-      </cit:partyIdentifier>  
-      <cit:positionName/>
+      </cit:partyIdentifier>
     </cit:CI_Individual>
   </cit:party>
 
@@ -60,14 +63,18 @@
         <gco:CharacterString>organization name</gco:CharacterString>
       </cit:name>
       <cit:contactInfo/>
+      <cit:positionName/>
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
+          <mcc:authority/>
           <mcc:code>
             <gco:CharacterString>ror:02z5nhe81</gco:CharacterString>
           </mcc:code>
           <mcc:codeSpace>
             <gco:CharacterString>ror</gco:CharacterString>
           </mcc:codeSpace>       
+          <mcc:version/>
+          <mcc:description>
         </mcc:MD_Identifier>
       </cit:partyIdentifier>
       <cit:logo/>
