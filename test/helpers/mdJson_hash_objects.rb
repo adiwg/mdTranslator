@@ -747,6 +747,13 @@ class MdJsonHashWriter
          maxValue: 9,
          units: 'min/max units',
          scaleFactor: 99.9,
+         rangeElementDescriptions: [
+            {
+               name: 'range element name 1',
+               definition: 'range element definition',
+               rangeElements: [ 'range element record 1' ]
+            }
+         ],
          offset: 1.0,
          meanValue: 50.0,
          numberOfValues: 9,

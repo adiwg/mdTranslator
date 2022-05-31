@@ -27,6 +27,7 @@ module ADIWG
                      json.maxValue hAttribute[:maxValue]
                      json.units hAttribute[:units]
                      json.scaleFactor hAttribute[:scaleFactor]
+                     json.rangeElementDescriptions hAttribute[:rangeElementDescriptions]
                      json.offset hAttribute[:offset]
                      json.meanValue hAttribute[:meanValue]
                      json.numberOfValues hAttribute[:numberOfValues]

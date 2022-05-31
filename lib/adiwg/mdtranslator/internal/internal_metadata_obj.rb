@@ -492,6 +492,7 @@ class InternalMetadata
          maxValue: nil,
          units: nil,
          scaleFactor: nil,
+         rangeElementDescriptions: [],
          offset: nil,
          meanValue: nil,
          numberOfValues: nil,
