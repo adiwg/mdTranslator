@@ -67,9 +67,6 @@ module ADIWG
                      @xml.tag!('mrc:scaleFactor')
                   end
 
-                  unless hAttribute[:rangeElementDescription].nil?
-                     @xml.tag!('mrc:rangeElementDescription')
-                  end
                   hAttribute[:rangeElementDescriptions].each do |red|
                      @xml.tag!('mrc:rangeElementDescription') do
                         rangeElementDescription.writeXML(red, inContext)
