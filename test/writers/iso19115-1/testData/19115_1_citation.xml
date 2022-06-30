@@ -142,9 +142,11 @@
                 <mcc:MD_Identifier>
                   <mcc:authority/>
                   <mcc:code>
-                    <gco:CharacterString>CID002</gco:CharacterString>
+                    <gco:CharacterString>0000-00002</gco:CharacterString>
                   </mcc:code>
-                  <mcc:codeSpace/>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
                   <mcc:version/>
                   <mcc:description/>
                 </mcc:MD_Identifier>
@@ -349,9 +351,11 @@
                 <mcc:MD_Identifier>
                   <mcc:authority/>
                   <mcc:code>
-                    <gco:CharacterString>CID002</gco:CharacterString>
+                    <gco:CharacterString>0000-00002</gco:CharacterString>
                   </mcc:code>
-                  <mcc:codeSpace/>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
                   <mcc:version/>
                   <mcc:description/>
                 </mcc:MD_Identifier>
@@ -418,9 +422,11 @@
                 <mcc:MD_Identifier>
                   <mcc:authority/>
                   <mcc:code>
-                    <gco:CharacterString>CID001</gco:CharacterString>
+                    <gco:CharacterString>0000-00001</gco:CharacterString>
                   </mcc:code>
-                  <mcc:codeSpace/>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
                   <mcc:version/>
                   <mcc:description/>
                 </mcc:MD_Identifier>
@@ -478,9 +484,11 @@
                 <mcc:MD_Identifier>
                   <mcc:authority/>
                   <mcc:code>
-                    <gco:CharacterString>CID002</gco:CharacterString>
+                    <gco:CharacterString>0000-00002</gco:CharacterString>
                   </mcc:code>
-                  <mcc:codeSpace/>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
                   <mcc:version/>
                   <mcc:description/>
                 </mcc:MD_Identifier>
@@ -567,9 +575,11 @@
                 <mcc:MD_Identifier>
                   <mcc:authority/>
                   <mcc:code>
-                    <gco:CharacterString>CID002</gco:CharacterString>
+                    <gco:CharacterString>0000-00002</gco:CharacterString>
                   </mcc:code>
-                  <mcc:codeSpace/>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
                   <mcc:version/>
                   <mcc:description/>
                 </mcc:MD_Identifier>

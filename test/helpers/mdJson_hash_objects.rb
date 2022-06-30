@@ -44,6 +44,12 @@ class MdJsonHashWriter
                      postalCode: 'postal code',
                      country: 'country'
                   }
+               ],
+               externalIdentifiers: [
+                  { 
+                     identifier: '0000-00001', 
+                     namespace: 'ORCID'
+                  }
                ]
             },
             {
@@ -72,17 +78,20 @@ class MdJsonHashWriter
                      postalCode: 'postal code',
                      country: 'country'
                   }
+               ],
+               externalIdentifiers: [
+                  { identifier: '0000-00002', namespace: 'ORCID' }
                ]
             },
             {
                contactId: 'CID003',
                isOrganization: false,
-               name: 'person name three'
+               name: 'person name three',
             },
             {
                contactId: 'CID004',
                isOrganization: true,
-               name: 'organization name four'
+               name: 'organization name four',
             }
          ],
          metadata: {

@@ -29,7 +29,7 @@ class TestWriterMdJsonMdJson < TestWriterMdJsonParent
 
    def test_schema_mdJson
 
-      errors = TestWriterMdJsonParent.testSchema(@@mdHash, 'schema.json')
+      errors = TestWriterMdJsonParent.testSchema(@@mdHash, 'schema.json', remove: ['externalIdentifiers'])
       assert_empty errors
 
    end
@@ -37,6 +37,9 @@ class TestWriterMdJsonMdJson < TestWriterMdJsonParent
    def test_complete_mdJson
 
       TDClass.removeEmptyObjects(@@mdHash)
+
+      @@mdHash[:contact][0].delete(:externalIdentifiers)
+      @@mdHash[:contact][1].delete(:externalIdentifiers)
 
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'normal',
@@ -71,6 +74,22 @@ class TestWriterMdJsonMdJson < TestWriterMdJsonParent
       expect['schema'].delete('version')
       got = JSON.parse(metadata[:writerOutput])
       got['schema'].delete('version')
+
+      # expect['contact'][0].delete('externalIdentifiers')
+      # expect['contact'][1].delete('externalIdentifiers')
+
+      # got['contact'][0].delete('externalIdentifiers')
+      # got['contact'][1].delete('externalIdentifiers')
+
+      File.write(
+         'expected',
+         JSON.pretty_generate(expect)
+      )
+
+      File.write(
+         'actual',
+         JSON.pretty_generate(got)
+      )
 
       assert_equal expect, got
 

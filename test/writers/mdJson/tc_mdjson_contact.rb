@@ -25,7 +25,7 @@ class TestWriterMdJsonContact < TestWriterMdJsonParent
    def test_schema_contact
 
       hTest = @@mdHash[:contact][4]
-      errors = TestWriterMdJsonParent.testSchema(hTest, 'contact.json')
+      errors = TestWriterMdJsonParent.testSchema(hTest, 'contact.json', remove: ['externalIdentifiers'])
       assert_empty errors
 
    end
