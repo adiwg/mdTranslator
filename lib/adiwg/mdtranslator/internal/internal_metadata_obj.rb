@@ -311,8 +311,9 @@ class InternalMetadata
          eMailList: [],
          onlineResources: [],
          hoursOfService: [],
+         externalIdentifiers: [],
          contactInstructions: nil,
-         contactType: nil
+         contactType: nil,
       }
    end
 

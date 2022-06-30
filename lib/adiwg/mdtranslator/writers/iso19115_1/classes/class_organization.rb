@@ -94,15 +94,23 @@ module ADIWG
                         end
 
                         # organization - party identifier
-                         # individual - party identifier
-                        if hContact[:contactId] && 
-                           hContact[:contactId].is_a?(Hash)
-                           @xml.tag!('cit:partyIdentifier') do
-                              identifierClass.writeXML(hContact[:contactId]);
+
+                        if hContact[:externalIdentifiers] && hContact[:externalIdentifiers].length > 0
+                           hContact[:externalIdentifiers].each do |identifier|
+                              @xml.tag!('cit:partyIdentifier') do
+                                 identifierClass.writeXML(identifier);
+                              end
                            end
-                        elsif hContact[:contactId].is_a?(String)
-                           @xml.tag!('cit:partyIdentifier') do
-                              identifierClass.writeXML({ identifier: hContact[:contactId] })
+                        else
+                           if hContact[:contactId] && 
+                              hContact[:contactId].is_a?(Hash)
+                              @xml.tag!('cit:partyIdentifier') do
+                                 identifierClass.writeXML(hContact[:contactId]);
+                              end
+                           elsif hContact[:contactId].is_a?(String)
+                              @xml.tag!('cit:partyIdentifier') do
+                                 identifierClass.writeXML({ identifier: hContact[:contactId] })
+                              end
                            end
                         end
 

@@ -43,6 +43,10 @@ module ADIWG
                   return {}
                end
 
+               if hMdJson.is_a?(Array)
+                  hMdJson = hMdJson.first
+               end
+
                # file must contain an mdJson object
                if hMdJson.empty?
                   hResponseObj[:readerStructureMessages] << 'ERROR: mdJson reader: object is empty'
