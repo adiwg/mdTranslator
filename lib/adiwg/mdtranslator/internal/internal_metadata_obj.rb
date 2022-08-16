@@ -497,6 +497,7 @@ class InternalMetadata
          numberOfValues: nil,
          standardDeviation: nil,
          bitsPerValue: nil,
+         rangeElementDescription: [],
          boundMin: nil,
          boundMax: nil,
          boundUnits: nil,

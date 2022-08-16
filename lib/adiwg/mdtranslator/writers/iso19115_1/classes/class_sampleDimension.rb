@@ -6,6 +6,7 @@
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_unitsOfMeasure'
+require_relative 'class_rangeElementDescription'
 
 module ADIWG
    module Mdtranslator
@@ -24,6 +25,7 @@ module ADIWG
 
                   # classes used
                   uomClass = UnitsOfMeasure.new(@xml, @hResponseObj)
+                  rangeElementDescription = MI_RangeElementDescription.new(@xml, @hResponseObj)
 
                   # sample dimension - max value {real}
                   unless hAttribute[:maxValue].nil?
@@ -63,6 +65,12 @@ module ADIWG
                   end
                   if hAttribute[:scaleFactor].nil? && @hResponseObj[:writerShowTags]
                      @xml.tag!('mrc:scaleFactor')
+                  end
+
+                  hAttribute[:rangeElementDescription].each do |red|
+                     @xml.tag!('mrc:rangeElementDescription') do
+                        rangeElementDescription.writeXML(red, inContext)
+                     end
                   end
 
                   # sample dimension - offset {real}
