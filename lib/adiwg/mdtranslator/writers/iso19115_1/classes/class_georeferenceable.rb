@@ -7,6 +7,7 @@
 require_relative '../iso19115_1_writer'
 require_relative 'class_grid'
 require_relative 'class_citation'
+require_relative 'class_scope'
 
 module ADIWG
    module Mdtranslator
@@ -26,11 +27,20 @@ module ADIWG
                   # classes used
                   gridClass = Grid.new(@xml, @hResponseObj)
                   citationClass = CI_Citation.new(@xml, @hResponseObj)
+                  scopeClass = MD_Scope.new(@xml, @hResponseObj)
+
 
                   outContext = 'georeferenceable representation'
                   outContext = inContext + ' georeferenceable representation' unless inContext.nil?
 
                   @xml.tag!('msr:MD_Georeferenceable') do
+
+                     # georeferenceable - scope
+                     hGeoRef[:scope].each do |scope|
+                        @xml.tag!('msr:scope') do
+                           scopeClass.writeXML(scope, inContext)
+                        end
+                     end
 
                      # georeferenceable - add grid info (required)
                      hGrid = hGeoRef[:gridRepresentation]

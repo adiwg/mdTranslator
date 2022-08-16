@@ -6,6 +6,7 @@
 
 require_relative 'html_gridRepresentation'
 require_relative 'html_citation'
+require_relative 'html_scope'
 
 module ADIWG
    module Mdtranslator
@@ -23,6 +24,18 @@ module ADIWG
                   # classes used
                   gridClass = Html_GridRepresentation.new(@html)
                   citationClass = Html_Citation.new(@html)
+                  scopeClass = Html_Scope.new(@html)
+
+                  # georeferenceable representation - scope
+                  hGeoreferenceable[:scope].each do |scope|
+                     @html.details do
+                        @html.summary('Scope ', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           scopeClass.writeHtml(hGeoreferenceable[:scope])
+                        end
+                     end
+                  end
+
 
                   # georeferenceable representation - grid {gridRepresentation}
                   unless hGeoreferenceable[:gridRepresentation].empty?

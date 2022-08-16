@@ -7,6 +7,7 @@
 require_relative '../iso19115_1_writer'
 require_relative 'class_grid'
 require_relative 'class_point'
+require_relative 'class_scope'
 
 module ADIWG
    module Mdtranslator
@@ -26,11 +27,19 @@ module ADIWG
                   # classes used
                   gridClass = Grid.new(@xml, @hResponseObj)
                   pointClass = Point.new(@xml, @hResponseObj)
+                  scopeClass = MD_Scope.new(@xml, @hResponseObj)
+
 
                   outContext = 'georectified representation'
                   outContext = inContext + ' georectified representation' unless inContext.nil?
 
                   @xml.tag!('msr:MD_Georectified') do
+
+                     hGeoRec[:scope].each do |scope|
+                        @xml.tag!('msr:scope') do
+                           scopeClass.writeXML(scope, inContext)
+                        end
+                     end
 
                      # georectified - add grid info
                      hGrid = hGeoRec[:gridRepresentation]

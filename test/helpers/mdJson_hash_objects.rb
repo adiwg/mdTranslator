@@ -1537,6 +1537,7 @@ class MdJsonHashWriter
 
    def georectified
       {
+         scope: [],
          gridRepresentation: gridRepresentation,
          checkPointAvailable: false,
          checkPointDescription: 'check point description',
@@ -1553,6 +1554,7 @@ class MdJsonHashWriter
 
    def georeferenceable
       {
+         scope: [],
          gridRepresentation: gridRepresentation,
          controlPointAvailable: false,
          orientationParameterAvailable: false,
@@ -1571,6 +1573,7 @@ class MdJsonHashWriter
 
    def gridRepresentation
       {
+         scope: [],
          numberOfDimensions: 9,
          dimension: [],
          cellGeometry: 'point',
@@ -1587,6 +1590,7 @@ class MdJsonHashWriter
 
    def vectorRepresentation
       {
+         scope: [],
          topologyLevel: 'topology level',
          vectorObject: []
       }

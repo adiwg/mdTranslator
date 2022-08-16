@@ -19,6 +19,7 @@ module ADIWG
                   @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                   Jbuilder.new do |json|
+                     json.scope hGeoRef[:scope]
                      json.gridRepresentation Grid.build(hGeoRef[:gridRepresentation]) unless hGeoRef[:gridRepresentation].empty?
                      json.controlPointAvailable hGeoRef[:controlPointAvailable]
                      json.orientationParameterAvailable hGeoRef[:orientationParameterAvailable]
