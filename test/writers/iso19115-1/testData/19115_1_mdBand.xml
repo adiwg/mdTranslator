@@ -88,6 +88,19 @@
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
+      <mrc:rangeElementDescription>
+        <mrc:name>
+          <gco:CharacterString>range element name 1</gco:CharacterString>
+        </mrc:name>
+        <mrc:definition>
+          <gco:CharacterString>range element definition</gco:CharacterString>
+        </mrc:definition>
+        <mrc:rangeElement>
+          <gco:Record>
+            <gco:CharacterString>range element record 1</gco:CharacterString>
+          </gco:Record>
+        </mrc:rangeElement>
+      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -178,6 +191,19 @@
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
+      <mrc:rangeElementDescription>
+        <mrc:name>
+          <gco:CharacterString>range element name 1</gco:CharacterString>
+        </mrc:name>
+        <mrc:definition>
+          <gco:CharacterString>range element definition</gco:CharacterString>
+        </mrc:definition>
+        <mrc:rangeElement>
+          <gco:Record>
+            <gco:CharacterString>range element record 1</gco:CharacterString>
+          </gco:Record>
+        </mrc:rangeElement>
+      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>
@@ -258,6 +284,19 @@
       <mrc:scaleFactor>
         <gco:Real>99.9</gco:Real>
       </mrc:scaleFactor>
+      <mrc:rangeElementDescription>
+        <mrc:name>
+          <gco:CharacterString>range element name 1</gco:CharacterString>
+        </mrc:name>
+        <mrc:definition>
+          <gco:CharacterString>range element definition</gco:CharacterString>
+        </mrc:definition>
+        <mrc:rangeElement>
+          <gco:Record>
+            <gco:CharacterString>range element record 1</gco:CharacterString>
+          </gco:Record>
+        </mrc:rangeElement>
+      </mrc:rangeElementDescription>
       <mrc:offset>
         <gco:Real>1.0</gco:Real>
       </mrc:offset>

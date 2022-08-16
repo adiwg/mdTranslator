@@ -32,6 +32,7 @@ module ADIWG
                      json.numberOfValues hAttribute[:numberOfValues]
                      json.standardDeviation hAttribute[:standardDeviation]
                      json.bitsPerValue hAttribute[:bitsPerValue]
+                     json.rangeElementDescription hAttribute[:rangeElementDescription]
                      json.boundMin hAttribute[:boundMin]
                      json.boundMax hAttribute[:boundMax]
                      json.boundUnits hAttribute[:boundUnits]
