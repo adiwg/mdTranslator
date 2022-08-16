@@ -6,6 +6,7 @@
 # 	Stan Smith 2016-10-19 original script
 
 require_relative 'module_vectorObject'
+require_relative 'module_scope'
 
 module ADIWG
    module Mdtranslator
@@ -48,6 +49,15 @@ module ADIWG
                         unless hVec.nil?
                            intVector[:vectorObject] << hVec
                            haveVector = true
+                        end
+                     end
+                  end
+
+                  if hVector.has_key?('scope')
+                     hVector['scope'].each do |item|
+                        scope =  Scope.unpack(item, responseObj, outContext)
+                        unless scope.nil?
+                           intVector[:scope] << scope
                         end
                      end
                   end

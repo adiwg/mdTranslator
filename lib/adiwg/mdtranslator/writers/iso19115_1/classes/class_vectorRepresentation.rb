@@ -6,6 +6,7 @@
 
 require_relative 'class_codelist'
 require_relative 'class_geometricObjects'
+require_relative 'class_scope'
 
 module ADIWG
    module Mdtranslator
@@ -24,11 +25,19 @@ module ADIWG
                   # classes used
                   codelistClass = MD_Codelist.new(@xml, @hResponseObj)
                   geoObjClass = MD_GeometricObjects.new(@xml, @hResponseObj)
+                  scopeClass = MD_Scope.new(@xml, @hResponseObj)
 
                   outContext = 'vector representation'
                   outContext = inContext + ' vector representation' unless inContext.nil?
 
                   @xml.tag!('msr:MD_VectorSpatialRepresentation') do
+
+                     # vector representation - scope
+                     hVector[:scope].each do |scope|
+                        @xml.tag!('msr:scope') do
+                           scopeClass.writeXML(scope, inContext)
+                        end
+                     end
 
                      # vector representation - topology level
                      unless hVector[:topologyLevel].nil?

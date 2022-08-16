@@ -642,6 +642,21 @@ class MdJsonHashWriter
       return hSpaceRep
    end
 
+   def build_spatialRepresentation_with_scope
+
+      hScope = scope
+      hScope[:scopeExtent] << extent
+      hScope[:scopeDescription] << scopeDescription
+
+      hGridRepresentation = build_gridRepresentation
+      hGridRepresentation[:scope] << hScope
+
+      aSpaceRep = []
+      aSpaceRep << { gridRepresentation: hGridRepresentation}
+
+      aSpaceRep
+   end
+
    def build_spatialResolution(type)
       hResolution = {}
       hResolution[:scaleFactor] = 9999 if type == 'factor'

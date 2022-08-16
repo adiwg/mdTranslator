@@ -135,6 +135,8 @@ class TestWriterMdJsonResourceInfo < TestWriterMdJsonParent
       got = JSON.parse(metadata[:writerOutput])
       got = got['metadata']['resourceInfo']
 
+      TDClass.removeEmptyObjects(got);
+
       assert metadata[:writerPass]
       assert metadata[:readerStructurePass]
       assert metadata[:readerValidationPass]

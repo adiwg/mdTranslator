@@ -18,6 +18,7 @@ module ADIWG
                   @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                   Jbuilder.new do |json|
+                     json.scope hVector[:scope]
                      json.topologyLevel hVector[:topologyLevel]
                      json.vectorObject @Namespace.json_map(hVector[:vectorObject], VectorObject)
                   end

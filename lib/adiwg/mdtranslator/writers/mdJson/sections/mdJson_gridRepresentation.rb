@@ -19,6 +19,7 @@ module ADIWG
                   @Namespace = ADIWG::Mdtranslator::Writers::MdJson
 
                   Jbuilder.new do |json|
+                     json.scope hGrid[:scope]
                      json.numberOfDimensions hGrid[:numberOfDimensions]
                      json.dimension @Namespace.json_map(hGrid[:dimension], Dimension)
                      json.cellGeometry hGrid[:cellGeometry]
