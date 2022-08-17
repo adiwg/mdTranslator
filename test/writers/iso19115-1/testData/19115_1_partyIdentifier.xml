@@ -33,62 +33,21 @@
         xsi:schemaLocation="http://standards.iso.org/iso/19115/-3/mdt/2.0
         http://standards.iso.org/iso/19115/-3/mdt/2.0/mdt.xsd">
 
-<cit:party>
+  <cit:party>
     <cit:CI_Individual>
       <cit:name>
-        <gco:CharacterString>person name</gco:CharacterString>
+        <gco:CharacterString>expected person name</gco:CharacterString>
       </cit:name>
-      <cit:contactInfo>
-        <cit:CI_Contact>
-          <cit:phone>
-            <cit:CI_Telephone>
-              <cit:number>
-                <gco:CharacterString>111-111-1111</gco:CharacterString>
-              </cit:number>
-              <cit:numberType>
-                <cit:CI_TelephoneTypeCode codeList="http://mdtranslator.adiwg.org/api/codelists?format=xml#CI_TelephoneTypeCode" codeListValue="voice" codeSpace="001"/>
-              </cit:numberType>
-            </cit:CI_Telephone>
-          </cit:phone>
-          <cit:address>
-            <cit:CI_Address>
-              <cit:deliveryPoint>
-                <gco:CharacterString>address line 1</gco:CharacterString>
-              </cit:deliveryPoint>
-              <cit:deliveryPoint>
-                <gco:CharacterString>address line 2</gco:CharacterString>
-              </cit:deliveryPoint>
-              <cit:city>
-                <gco:CharacterString>city</gco:CharacterString>
-              </cit:city>
-              <cit:administrativeArea>
-                <gco:CharacterString>administrative area</gco:CharacterString>
-              </cit:administrativeArea>
-              <cit:postalCode>
-                <gco:CharacterString>postal code</gco:CharacterString>
-              </cit:postalCode>
-              <cit:country>
-                <gco:CharacterString>country</gco:CharacterString>
-              </cit:country>
-            </cit:CI_Address>
-          </cit:address>
-          <cit:onlineResource/>
-          <cit:hoursOfService/>
-          <cit:contactInstructions/>
-          <cit:contactType/>
-        </cit:CI_Contact>
-      </cit:contactInfo>
-      <cit:positionName>
-        <gco:CharacterString>position name</gco:CharacterString>
-      </cit:positionName>
+      <cit:contactInfo/>
+      <cit:positionName/>
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:authority/>
           <mcc:code>
-            <gco:CharacterString>0000-00001</gco:CharacterString>
+            <gco:CharacterString>https://orcid.org/0000-0002-4472-5965</gco:CharacterString>
           </mcc:code>
           <mcc:codeSpace>
-            <gco:CharacterString>ORCID</gco:CharacterString>
+            <gco:CharacterString>orcid</gco:CharacterString>
           </mcc:codeSpace>
           <mcc:version/>
           <mcc:description/>
@@ -97,46 +56,29 @@
     </cit:CI_Individual>
   </cit:party>
 
-  <cit:party>
-    <cit:CI_Individual>
-      <cit:name>
-        <gco:CharacterString>person name three</gco:CharacterString>
-      </cit:name>
-      <cit:contactInfo/>
-      <cit:positionName/>
-      <cit:partyIdentifier>
-        <mcc:MD_Identifier>
-          <mcc:authority/>
-          <mcc:code>
-            <gco:CharacterString>CID003</gco:CharacterString>
-          </mcc:code>
-          <mcc:codeSpace/>
-          <mcc:version/>
-          <mcc:description/>
-        </mcc:MD_Identifier>
-      </cit:partyIdentifier>
-    </cit:CI_Individual>
-  </cit:party>
 
   <cit:party>
-    <cit:CI_Individual>
-      <cit:name/>
+    <cit:CI_Organisation>
+      <cit:name>
+        <gco:CharacterString>organization name</gco:CharacterString>
+      </cit:name>
       <cit:contactInfo/>
-      <cit:positionName>
-        <gco:CharacterString>positionName</gco:CharacterString>
-      </cit:positionName>
+      <cit:logo/>
+      <cit:individual/>
       <cit:partyIdentifier>
         <mcc:MD_Identifier>
           <mcc:authority/>
           <mcc:code>
-            <gco:CharacterString>CID003</gco:CharacterString>
+            <gco:CharacterString>ror:02z5nhe81</gco:CharacterString>
           </mcc:code>
-          <mcc:codeSpace/>
+          <mcc:codeSpace>
+            <gco:CharacterString>ror</gco:CharacterString>
+          </mcc:codeSpace>
           <mcc:version/>
           <mcc:description/>
         </mcc:MD_Identifier>
       </cit:partyIdentifier>
-    </cit:CI_Individual>
+    </cit:CI_Organisation>
   </cit:party>
 
 </mdb:MD_Metadata>

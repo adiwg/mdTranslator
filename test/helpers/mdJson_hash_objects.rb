@@ -21,6 +21,12 @@ class MdJsonHashWriter
                contactId: 'CID001',
                isOrganization: false,
                name: 'person name',
+               externalIdentifier: [
+                  {
+                     identifier: '0000-00001', 
+                     namespace: 'ORCID'
+                  }
+               ],
                positionName: 'position name',
                phone: [
                   {
@@ -50,6 +56,9 @@ class MdJsonHashWriter
                contactId: 'CID002',
                isOrganization: true,
                name: 'organization name',
+               externalIdentifier: [
+                  { identifier: '0000-00002', namespace: 'ORCID' }
+               ],
                phone: [
                   {
                      phoneName: 'phone name',
