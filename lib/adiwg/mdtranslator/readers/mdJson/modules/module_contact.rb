@@ -9,6 +9,7 @@ require_relative 'module_onlineResource'
 require_relative 'module_phone'
 require_relative 'module_address'
 require_relative 'module_graphic'
+require_relative 'module_identifier'
 
 module ADIWG
    module Mdtranslator
@@ -40,6 +41,16 @@ module ADIWG
                   end
                   if intContact[:contactId].nil? || intContact[:contactId] == ''
                      @MessagePath.issueError(101, responseObj)
+                  end
+
+                  if hContact.has_key?('externalIdentifier')
+                     aItems = hContact['externalIdentifier']
+                     aItems.each do |item|
+                        hReturn = Identifier.unpack(item, responseObj, outContext)
+                        unless hReturn.nil?
+                           intContact[:externalIdentifier] << hReturn
+                        end
+                     end
                   end
 
                   # contact - is organization (required)

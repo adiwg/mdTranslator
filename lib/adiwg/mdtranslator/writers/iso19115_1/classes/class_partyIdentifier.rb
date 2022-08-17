@@ -1,8 +1,5 @@
-# ISO <<Class>> MD_Identifier
+# ISO <<Class>> MD_Identifier for specific party identfier features for individual and organization
 # 19115-3 output for ISO 19115-1 XML
-
-# History:
-# 	Stan Smith 2019-03-13 original script
 
 require_relative '../iso19115_1_writer'
 require_relative 'class_citation'
@@ -12,7 +9,7 @@ module ADIWG
       module Writers
          module Iso19115_1
 
-            class MD_Identifier
+            class MD_PartyIdentifier
 
                def initialize(xml, hResponseObj)
                   @xml = xml

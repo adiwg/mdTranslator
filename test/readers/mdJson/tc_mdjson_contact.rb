@@ -28,12 +28,13 @@ class TestReaderMdJsonContact < TestReaderMdJsonParent
 
       # test is individual
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      errors = TestReaderMdJsonParent.testSchema(hIn[0], 'contact.json')
+      errors = TestReaderMdJsonParent.testSchema(hIn[0], 'contact.json', remove: ['externalIdentifier'])
+
       assert_empty errors
 
       # test is organization
       hIn = Marshal::load(Marshal.dump(@@mdHash))
-      errors = TestReaderMdJsonParent.testSchema(hIn[1], 'contact.json', :remove => ['positionName'])
+      errors = TestReaderMdJsonParent.testSchema(hIn[1], 'contact.json', :remove => ['positionName', 'externalIdentifier'])
       assert_empty errors
 
    end

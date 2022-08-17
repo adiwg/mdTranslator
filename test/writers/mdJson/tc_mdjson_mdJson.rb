@@ -38,6 +38,9 @@ class TestWriterMdJsonMdJson < TestWriterMdJsonParent
 
       TDClass.removeEmptyObjects(@@mdHash)
 
+      @@mdHash[:contact][0].delete(:externalIdentifier)
+      @@mdHash[:contact][1].delete(:externalIdentifier)
+
       metadata = ADIWG::Mdtranslator.translate(
          file: @@mdHash.to_json, reader: 'mdJson', validate: 'normal',
          writer: 'mdJson', showAllTags: false)

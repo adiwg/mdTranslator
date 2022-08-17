@@ -303,6 +303,7 @@ class InternalMetadata
          contactId: nil,
          isOrganization: false,
          name: nil,
+         externalIdentifier: [],
          positionName: nil,
          memberOfOrgs: [],
          logos: [],
