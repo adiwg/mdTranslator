@@ -26,6 +26,7 @@ Rake::TestTask.new do |t|
       'test/translator/tc*.rb'
    ]
    t.verbose = true
+   t.warning = false
 end
 
 desc 'Run tests'
