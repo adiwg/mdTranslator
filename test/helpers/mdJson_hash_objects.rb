@@ -215,7 +215,8 @@ class MdJsonHashWriter
                      frequency: 'resource maintenance frequency'
                   }
                ]
-            }
+            },
+            dataQuality: []
          },
          metadataRepository: [],
          dataDictionary: []
@@ -1050,6 +1051,12 @@ class MdJsonHashWriter
       }
    end
 
+   def dataQuality
+      {
+         scope: scope
+      }
+   end
+
 
    # graphic ---------------------------------
    def graphic
@@ -1356,7 +1363,8 @@ class MdJsonHashWriter
          resourceDistribution: [],
          associatedResource: [],
          additionalDocumentation: [],
-         funding: []
+         funding: [],
+         dataQuality: []
       }
    end
 

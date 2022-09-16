@@ -157,6 +157,13 @@ class MdJsonHashWriter
       hFunding[:description] = description unless description.nil?
       return hFunding
    end
+
+   def build_dataQuality
+      hDataQuality = dataQuality
+      hDataQuality[:scope] = build_scope_full
+
+      return hDataQuality
+   end
    
    def build_geoJson
       aGeoJson = []
@@ -410,6 +417,7 @@ class MdJsonHashWriter
       hMetadata[:additionalDocumentation] << build_additionalDocumentation
       hMetadata[:funding] << build_funding
       hMetadata[:funding] << build_funding
+      hMetadata[:dataQuality] << build_dataQuality
       removeEmptyObjects(hMetadata)
       return hMetadata
    end
