@@ -33,6 +33,13 @@ module ADIWG
               end
             end
 
+            if hDataQuality.has_key?('standaloneQualityReport')
+              hObject = hDataQuality['standaloneQualityReport']
+              unless hObject.empty?
+                intDataQuality[:standaloneQualityReport] = hObject
+              end
+            end
+
             return intDataQuality
 
           end

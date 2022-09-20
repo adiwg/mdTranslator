@@ -15,6 +15,7 @@ module ADIWG
           def self.build(hDataQuality)
             Jbuilder.new do |json|
               json.scope Scope.build(hDataQuality[:scope])
+              json.standaloneQualityReport hDataQuality[:standaloneQualityReport]
             end
 
           end
