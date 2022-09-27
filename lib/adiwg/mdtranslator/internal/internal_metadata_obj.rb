@@ -636,7 +636,13 @@ class InternalMetadata
       {
          scope: {},
          standaloneReport: {},
-         reports: []
+         report: []
+      }
+   end
+
+   def newDataQualityReport
+      {
+         qualityMeasure: {}
       }
    end
 

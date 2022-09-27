@@ -2,6 +2,7 @@
 # Reader - ADIwg JSON to internal data structure
 
 require_relative 'module_scope'
+require_relative 'module_dataQualityReport'
 
 module ADIWG
   module Mdtranslator
@@ -10,7 +11,7 @@ module ADIWG
 
         module DataQuality
 
-          def self.unpack(hDataQuality, responseObj)
+          def self.unpack(hDataQuality, responseObj, inContext = nil)
             @MessagePath = ADIWG::Mdtranslator::Readers::MdJson::MdJson
 
             if hDataQuality.empty?
@@ -37,6 +38,16 @@ module ADIWG
               hObject = hDataQuality['standaloneQualityReport']
               unless hObject.empty?
                 intDataQuality[:standaloneQualityReport] = hObject
+              end
+            end
+
+            if hDataQuality.has_key?('report')
+              hDataQuality['report'].each do |item|
+                report = DataQualityReport.unpack(item, responseObj, inContext)
+
+                unless report.nil?
+                  intDataQuality[:report] << report
+                end
               end
             end
 

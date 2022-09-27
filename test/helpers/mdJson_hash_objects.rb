@@ -1053,7 +1053,23 @@ class MdJsonHashWriter
 
    def dataQuality
       {
-         scope: scope
+         scope: scope,
+         report: [{
+            qualityMeasure: qualityMeasure
+         }]
+      }
+   end
+
+   def qualityMeasure
+      {
+         identifier: {     
+            identifier: 'identifier',
+            namespace: 'namespace',
+            version: 'version',
+            description: 'description'
+         },
+         name: ['name of measure'],
+         description: 'measure description'
       }
    end
 
