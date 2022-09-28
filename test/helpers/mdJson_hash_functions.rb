@@ -175,6 +175,11 @@ class MdJsonHashWriter
                explanation: "conformance result explanation",
                pass: false
             }],
+            descriptiveResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               statement: "statement"
+            }],
             qualityMeasure: {
                identifier: {
                   identifier: 'identifier',
@@ -187,7 +192,6 @@ class MdJsonHashWriter
             }
             # evaluationMethod: {},
             # quantitativeResults: [],
-            # descriptiveResults: [],
             # derivedElementReports: [],
             # relatedElementReports: []
          }

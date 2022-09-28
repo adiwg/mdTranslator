@@ -696,7 +696,7 @@ class InternalMetadata
          # standaloneQualityReportDetails: nil,
          conformanceResult: [],
          # derivedElementReport: [],
-         # descriptiveResult: [],
+         descriptiveResult: [],
          # evaluationMethod: {},
          qualityMeasure: {},
          # quantitativeResult: [],

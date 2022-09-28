@@ -1,5 +1,6 @@
 require 'jbuilder'
 require_relative 'mdJson_conformanceResult'
+require_relative 'mdJson_descriptiveResult'
 require_relative 'mdJson_qualityMeasure'
 
 module ADIWG
@@ -15,6 +16,7 @@ module ADIWG
             Jbuilder.new do |json|
 
               json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult)
+              json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult)
               json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure])
 
             end

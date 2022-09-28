@@ -1,5 +1,6 @@
 require_relative 'module_scope'
 require_relative 'module_conformanceResult'
+require_relative 'module_descriptiveResult'
 
 module ADIWG
   module Mdtranslator
@@ -28,6 +29,17 @@ module ADIWG
 
                 unless hReturn.nil?
                   intReport[:conformanceResult] << hReturn
+                end
+              end
+            end
+
+            if hReport.has_key?('descriptiveResult')
+              hReport['descriptiveResult'].each do |item|
+                hReturn = DescriptiveResult.unpack(item, responseObj)
+
+                unless hReturn.nil?
+                  intReport[:descriptiveResult] << hReturn
+
                 end
               end
             end
