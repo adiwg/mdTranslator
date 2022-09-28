@@ -166,6 +166,33 @@ class MdJsonHashWriter
          abstract: "standalone quality report 1"
       }
 
+      hDataQuality[:report] = [
+         {
+            conformanceResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               specification: build_citation('alternate metadata title one'),
+               explanation: "conformance result explanation",
+               pass: false
+            }],
+            qualityMeasure: {
+               identifier: {
+                  identifier: 'identifier',
+                  description: 'description',
+                  namespace: 'namespace',
+                  version: 'version'
+               },
+               name: ['name of measure'],
+               description: 'description'
+            }
+            # evaluationMethod: {},
+            # quantitativeResults: [],
+            # descriptiveResults: [],
+            # derivedElementReports: [],
+            # relatedElementReports: []
+         }
+      ]
+
       return hDataQuality
    end
    

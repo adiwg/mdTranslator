@@ -640,12 +640,6 @@ class InternalMetadata
       }
    end
 
-   def newDataQualityReport
-      {
-         qualityMeasure: {}
-      }
-   end
-
    def newConformanceResult
       {
          dateTime: nil,
@@ -697,18 +691,16 @@ class InternalMetadata
       }
    end
 
-   def newReport
+   def newDataQualityReport
       {
-         type: nil,
-         dateTime: [],
-         standaloneQualityReportDetails: nil,
+         # standaloneQualityReportDetails: nil,
+         conformanceResult: [],
+         # derivedElementReport: [],
+         # descriptiveResult: [],
+         # evaluationMethod: {},
          qualityMeasure: {},
-         evaluationMethod: {},
-         quantitativeResults: [],
-         descriptiveResults: [],
-         conformanceResults: [],
-         derivedElementReports: [],
-         relatedElementReports: []
+         # quantitativeResult: [],
+         # relatedElementReport: []
       }
    end
 
