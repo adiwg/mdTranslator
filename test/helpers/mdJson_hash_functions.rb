@@ -189,9 +189,17 @@ class MdJsonHashWriter
                },
                name: ['name of measure'],
                description: 'description'
-            }
+            },
             # evaluationMethod: {},
-            # quantitativeResults: [],
+            quantitativeResult: [
+               {
+                  dateTime: "2019-06-11T09:00:00",
+                  scope: build_scope_full,
+                  value: [9.99, 9.0],
+                  valueUnits: "value units",
+                  valueRecordType: "value record type"
+               }
+            ],
             # derivedElementReports: [],
             # relatedElementReports: []
          }

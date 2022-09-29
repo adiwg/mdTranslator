@@ -1,6 +1,7 @@
 require_relative 'module_scope'
 require_relative 'module_conformanceResult'
 require_relative 'module_descriptiveResult'
+require_relative 'module_quantitativeResult'
 
 module ADIWG
   module Mdtranslator
@@ -57,6 +58,16 @@ module ADIWG
                 name: qualityMeasure['name'],
                 description: qualityMeasure['description']
               }
+            end
+
+            if hReport.has_key?('quantitativeResult')
+              hReport['quantitativeResult'].each do |item|
+                hReturn = QuantitativeResult.unpack(item, responseObj)
+
+                unless hReturn.nil?
+                  intReport[:quantitativeResult] << hReturn
+                end
+              end
             end
 
 

@@ -699,7 +699,7 @@ class InternalMetadata
          descriptiveResult: [],
          # evaluationMethod: {},
          qualityMeasure: {},
-         # quantitativeResult: [],
+         quantitativeResult: [],
          # relatedElementReport: []
       }
    end

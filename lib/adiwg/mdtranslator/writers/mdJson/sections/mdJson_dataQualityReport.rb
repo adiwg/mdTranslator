@@ -2,6 +2,7 @@ require 'jbuilder'
 require_relative 'mdJson_conformanceResult'
 require_relative 'mdJson_descriptiveResult'
 require_relative 'mdJson_qualityMeasure'
+require_relative 'mdJson_quantitativeResult'
 
 module ADIWG
   module Mdtranslator
@@ -18,6 +19,7 @@ module ADIWG
               json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult)
               json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult)
               json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure])
+              json.quantitativeResult @Namespace.json_map(hReport[:quantitativeResult], QuantitativeResult)
 
             end
           end
