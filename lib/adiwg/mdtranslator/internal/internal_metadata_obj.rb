@@ -662,14 +662,14 @@ class InternalMetadata
       {
          type: nil,
          dateTime: [],
-         description: nil,
+         methodDescription: nil,
          evaluationProcedure: {},
          referenceDocuments: [],
          evaluationMethodType: nil,
-         deductiveSource: 'deductive source',
-         samplingScheme: 'sampling scheme',
-         lotDescription: 'lot description',
-         samplingRatio: 'sampling ratio'
+         deductiveSource: nil,
+         samplingScheme: nil,
+         lotDescription: nil,
+         samplingRatio: nil
       }
    end
 
@@ -697,7 +697,7 @@ class InternalMetadata
          conformanceResult: [],
          # derivedElementReport: [],
          descriptiveResult: [],
-         # evaluationMethod: {},
+         evaluationMethod: {},
          qualityMeasure: {},
          quantitativeResult: [],
          # relatedElementReport: []

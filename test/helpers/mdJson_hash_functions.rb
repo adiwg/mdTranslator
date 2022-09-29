@@ -190,7 +190,18 @@ class MdJsonHashWriter
                name: ['name of measure'],
                description: 'description'
             },
-            # evaluationMethod: {},
+            evaluationMethod: {
+               type: 'evaluation method type - enumerated',
+               dateTime: ['2019-06-11T08:35:00'],
+               methodDescription: 'evaluation method description',
+               evaluationProcedure: { },
+               referenceDocument: [ ],
+               evaluationMethodType: 'DQ_EvaluationMethodTypeCode',
+               deductiveSource: 'deductive source',
+               samplingScheme: 'sampling scheme',
+               lotDescription: 'lot description',
+               samplingRatio: 'sampling ratio'
+            },
             quantitativeResult: [
                {
                   dateTime: "2019-06-11T09:00:00",

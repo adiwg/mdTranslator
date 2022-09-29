@@ -2,6 +2,7 @@ require_relative 'module_scope'
 require_relative 'module_conformanceResult'
 require_relative 'module_descriptiveResult'
 require_relative 'module_quantitativeResult'
+require_relative 'module_evaluationMethod'
 
 module ADIWG
   module Mdtranslator
@@ -42,6 +43,14 @@ module ADIWG
                   intReport[:descriptiveResult] << hReturn
 
                 end
+              end
+            end
+
+            if hReport.has_key?('evaluationMethod')
+              hReturn = EvaluationMethod.unpack(hReport['evaluationMethod'], responseObj)
+
+              unless hReturn.nil?
+                intReport[:evaluationMethod] = hReturn
               end
             end
 
