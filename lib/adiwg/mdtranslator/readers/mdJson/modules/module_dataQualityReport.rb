@@ -1,5 +1,6 @@
 require_relative 'module_scope'
 require_relative 'module_conformanceResult'
+require_relative 'module_coverageResult'
 require_relative 'module_descriptiveResult'
 require_relative 'module_quantitativeResult'
 require_relative 'module_evaluationMethod'
@@ -31,6 +32,16 @@ module ADIWG
 
                 unless hReturn.nil?
                   intReport[:conformanceResult] << hReturn
+                end
+              end
+            end
+
+            if hReport.has_key?('coverageResult')
+              hReport['coverageResult'].each do |item|
+                hReturn = CoverageResult.unpack(item, responseObj)
+
+                unless hReturn.nil?
+                  intReport[:coverageResult] << hReturn
                 end
               end
             end

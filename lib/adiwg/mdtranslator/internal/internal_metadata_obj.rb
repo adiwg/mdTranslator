@@ -650,6 +650,18 @@ class InternalMetadata
       }
    end
 
+   def newCoverageResult
+      {
+         dateTime: nil,
+         scope: {},
+         spatialRepresentationType: {},
+         spatialRepresentation: {},
+         resultContent: [],
+         resourceFormat: {},
+         resultFile: {}
+      }
+   end
+
    def newDescriptiveResult
       {
          dateTime: nil,
@@ -695,6 +707,7 @@ class InternalMetadata
       {
          # standaloneQualityReportDetails: nil,
          conformanceResult: [],
+         coverageResult: [],
          # derivedElementReport: [],
          descriptiveResult: [],
          evaluationMethod: {},
