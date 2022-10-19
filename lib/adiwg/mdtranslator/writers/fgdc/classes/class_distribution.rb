@@ -68,7 +68,7 @@ module ADIWG
                         unless hDistribution[:description].nil?
                            @xml.tag!('resdesc', hDistribution[:description])
                         end
-                        if hDistribution[:description].nil?
+                        if hDistribution[:description].nil? && @hResponseObj[:writerShowTags]
                            @xml.tag!('resdesc')
                         end
 
@@ -140,7 +140,7 @@ module ADIWG
                         unless techPre == ''
                            @xml.tag!('techpreq', techPre)
                         end
-                        if techPre == ''
+                        if techPre == '' && @hResponseObj[:writerShowTags]
                            @xml.tag!('techpreq')
                         end
 
