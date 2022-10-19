@@ -27,7 +27,7 @@ module ADIWG
                   haveIndirect = false
                   hResourceInfo[:spatialReferenceSystems].each do |hSystem|
                      unless hSystem[:systemIdentifier].empty?
-                        unless hSystem[:systemIdentifier][:description].empty?
+                        unless hSystem[:systemIdentifier][:description].nil? || hSystem[:systemIdentifier][:description].empty?
                            @xml.tag!('indspref', hSystem[:systemIdentifier][:description])
                            haveIndirect = true
                            break
