@@ -31,7 +31,7 @@ module ADIWG
                   outContext = 'entity code ' + outContext unless outContext.nil?
 
                   # entity detail 5.1.1 (enttype) - entity type
-                  @xml.tag!('enttype') do
+                  @xml.tag!('enttyp') do
 
                      # entity type 5.1.1.1 (enttypl) - entity type label (required)
                      # <- entity.entityCode

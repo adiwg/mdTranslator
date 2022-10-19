@@ -2,11 +2,11 @@
 <metadata>
   <eainfo>
     <detailed>
-      <enttype>
+      <enttyp>
         <enttypl>EID001</enttypl>
         <enttypd>entity 1 definition</enttypd>
         <enttypds>entity 001 source</enttypds>
-      </enttype>
+      </enttyp>
       <attr>
         <attrlabl>ATT001</attrlabl>
         <attrdef>attribute 001 definition</attrdef>
@@ -93,11 +93,11 @@
       </attr>
     </detailed>
     <detailed>
-      <enttype>
+      <enttyp>
         <enttypl>EID002</enttypl>
         <enttypd>entity 2 definition</enttypd>
         <enttypds>entity 002 source</enttypds>
-      </enttype>
+      </enttyp>
     </detailed>
     <overview>
       <eaover>ea overview 1</eaover>
