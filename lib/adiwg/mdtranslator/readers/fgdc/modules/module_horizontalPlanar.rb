@@ -56,7 +56,7 @@ module ADIWG
                   end
 
                   # packing
-                  unless hProjection.empty?
+                  unless hProjection.nil? || hProjection.empty?
                      unless distanceUnits.nil?
                         hProjection[:falseEastingNorthingUnits] = distanceUnits
                      end
