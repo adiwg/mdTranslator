@@ -37,6 +37,28 @@ module ADIWG
                   # therefore, create a separate FGDC distribution record for each distributor
                   # and repeat the distribution information
 
+                  if hDistribution[:distributor].empty?
+                     @xml.tag!('distinfo') do
+                        # distribution 6.2 (resdesc) - resource description
+                        # <- distribution.description
+                        unless hDistribution[:description].nil?
+                           @xml.tag!('resdesc', hDistribution[:description])
+                        end
+                        if hDistribution[:description].nil? && @hResponseObj[:writerShowTags]
+                           @xml.tag!('resdesc')
+                        end
+
+                        # distribution 6.3 (distliab) - liability (required)
+                        # <- distribution.liabilityStatement
+                        unless hDistribution[:liabilityStatement].nil?
+                           @xml.tag!('distliab', hDistribution[:liabilityStatement])
+                        end
+                        if hDistribution[:liabilityStatement].nil?
+                           @NameSpace.issueWarning(111,'distliab')
+                        end
+                     end
+                  end
+
                   hDistribution[:distributor].each do |hDistributor|
 
                      outContext = nil
