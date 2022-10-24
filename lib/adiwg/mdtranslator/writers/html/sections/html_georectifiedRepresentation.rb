@@ -5,6 +5,7 @@
 #  Stan Smith 2017-03-28 original script
 
 require_relative 'html_gridRepresentation'
+require_relative 'html_scope'
 
 module ADIWG
    module Mdtranslator
@@ -21,6 +22,17 @@ module ADIWG
 
                   # classes used
                   gridClass = Html_GridRepresentation.new(@html)
+                  scopeClass = Html_Scope.new(@html)
+
+                  # georectified representation - scope
+                  hGeorectified[:scope].each do |scope|
+                     @html.details do
+                        @html.summary('Scope ', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           scopeClass.writeHtml(hGeorectified[:scope])
+                        end
+                     end
+                  end
 
                   # georectified representation - grid {gridRepresentation}
                   unless hGeorectified[:gridRepresentation].empty?

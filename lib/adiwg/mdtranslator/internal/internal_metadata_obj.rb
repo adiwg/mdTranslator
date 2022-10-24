@@ -303,6 +303,7 @@ class InternalMetadata
          contactId: nil,
          isOrganization: false,
          name: nil,
+         externalIdentifier: [],
          positionName: nil,
          memberOfOrgs: [],
          logos: [],
@@ -497,6 +498,7 @@ class InternalMetadata
          numberOfValues: nil,
          standardDeviation: nil,
          bitsPerValue: nil,
+         rangeElementDescription: [],
          boundMin: nil,
          boundMax: nil,
          boundUnits: nil,
@@ -1178,6 +1180,7 @@ class InternalMetadata
 
    def newGridInfo
       {
+         scope: [],
          numberOfDimensions: nil,
          dimension: [],
          cellGeometry: nil,
@@ -1197,6 +1200,7 @@ class InternalMetadata
 
    def newVectorInfo
       {
+         scope: [],
          topologyLevel: nil,
          vectorObject: []
       }
@@ -1211,6 +1215,7 @@ class InternalMetadata
 
    def newGeorectifiedInfo
       {
+         scope: [],
          gridRepresentation: {},
          checkPointAvailable: false,
          checkPointDescription: nil,
@@ -1224,6 +1229,7 @@ class InternalMetadata
 
    def newGeoreferenceableInfo
       {
+         scope: [],
          gridRepresentation: {},
          controlPointAvailable: false,
          orientationParameterAvailable: false,

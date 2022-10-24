@@ -78,6 +78,7 @@ class TestWriter191151SampleDimension < TestWriter191151Parent
       hAttGroup[:attribute][0].delete(:numberOfValues)
       # hAttGroup[:attribute][0].delete(:standardDeviation)
       hAttGroup[:attribute][0].delete(:bitsPerValue)
+      hAttGroup[:attribute][0].delete(:rangeElementDescription)
       hIn[:metadata][:resourceInfo][:coverageDescription][0][:attributeGroup] << hAttGroup
 
       hReturn = TestWriter191151Parent.run_test(hIn, '19115_1_sampleDimension',

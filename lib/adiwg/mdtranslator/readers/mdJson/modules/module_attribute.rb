@@ -6,6 +6,8 @@
 # 	Stan Smith 2016-10-18 original script
 
 require_relative 'module_identifier'
+require_relative 'module_rangeElementDescription'
+
 
 module ADIWG
    module Mdtranslator
@@ -98,6 +100,16 @@ module ADIWG
                   if hAttribute.has_key?('scaleFactor')
                      unless hAttribute['scaleFactor'] == ''
                         intAttGroup[:scaleFactor] = hAttribute['scaleFactor']
+                     end
+                  end
+
+                  if hAttribute.has_key?('rangeElementDescription')
+                     unless hAttribute['rangeElementDescription'].nil?
+                        intAttGroup[:rangeElementDescription] = []
+
+                        hAttribute['rangeElementDescription'].each do |item|
+                           intAttGroup[:rangeElementDescription] << RangeElementDescription.unpack(item, responseObj, outContext)
+                        end
                      end
                   end
 

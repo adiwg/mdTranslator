@@ -25,6 +25,7 @@ module ADIWG
                      json.contactId hContact[:contactId]
                      json.isOrganization hContact[:isOrganization]
                      json.name hContact[:name]
+                     json.externalIdentifier hContact[:externalIdentifier] unless hContact[:externalIdentifier].empty?
                      json.positionName hContact[:positionName]
                      json.memberOfOrganization hContact[:memberOfOrgs] unless hContact[:memberOfOrgs].empty?
                      json.logoGraphic @Namespace.json_map(hContact[:logos], GraphicOverview)

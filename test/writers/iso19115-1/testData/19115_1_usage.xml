@@ -66,6 +66,17 @@
               <cit:contactInfo/>
               <cit:logo/>
               <cit:individual/>
+              <cit:partyIdentifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>CID004</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:partyIdentifier>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>
@@ -201,6 +212,19 @@
               <cit:positionName>
                 <gco:CharacterString>position name</gco:CharacterString>
               </cit:positionName>
+              <cit:partyIdentifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>0000-00001</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:partyIdentifier>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
@@ -218,6 +242,17 @@
               </cit:name>
               <cit:contactInfo/>
               <cit:positionName/>
+              <cit:partyIdentifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>CID003</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:partyIdentifier>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
