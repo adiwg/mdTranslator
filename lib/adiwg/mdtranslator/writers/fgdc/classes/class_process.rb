@@ -57,6 +57,7 @@ module ADIWG
                      hTimePeriod = hStep[:timePeriod]
                      unless hTimePeriod.empty?
                         hEndDT = hTimePeriod[:endDateTime]
+                        hEndDT = hTimePeriod[:startDateTime] if hEndDT.nil? || hEndDT.empty?
                         unless hEndDT.empty?
                            procDate = AdiwgDateTimeFun.stringDateFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
                            procTime = AdiwgDateTimeFun.stringTimeFromDateTime(hEndDT[:dateTime], hEndDT[:dateResolution])
