@@ -47,6 +47,14 @@ module ADIWG
                      end
                   end
 
+                  # there is a typo in mdEditor for liabilityStatement, handle this edge case
+                  # https://github.com/adiwg/mdEditor/blob/f94770686df07ef76aa111f8f9734b32bbad7f21/app/pods/components/object/md-distribution/template.hbs#L22
+                  if (intDistribution[:liabilityStatement].nil? || intDistribution.empty?) && hDistribution.has_key?('liablityStatement')
+                     unless hDistribution['liablityStatement'] == ''
+                        intDistribution[:liabilityStatement] = hDistribution['liablityStatement']
+                     end
+                  end
+
                   # distribution - distributor [distributor]
                   if hDistribution.has_key?('distributor')
                      aItems = hDistribution['distributor']
