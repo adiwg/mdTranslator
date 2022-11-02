@@ -62,16 +62,6 @@ module ADIWG
                            @xml.tag!('cit:contactInfo')
                         end
 
-                        # individual - position
-                        unless hContact[:positionName].nil?
-                           @xml.tag!('cit:positionName') do
-                              @xml.tag!('gco:CharacterString', hContact[:positionName])
-                           end
-                        end
-                        if hContact[:positionName].nil? && @hResponseObj[:writerShowTags]
-                           @xml.tag!('cit:positionName')
-                        end
-
                         # individual - party identifier
                         if hContact[:externalIdentifier] && hContact[:externalIdentifier].length > 0
                            hContact[:externalIdentifier].each do |identifier|
@@ -90,6 +80,16 @@ module ADIWG
                                  identifierClass.writeXML({ identifier: hContact[:contactId] })
                               end
                            end
+                        end
+
+                        # individual - position
+                        unless hContact[:positionName].nil?
+                           @xml.tag!('cit:positionName') do
+                              @xml.tag!('gco:CharacterString', hContact[:positionName])
+                           end
+                        end
+                        if hContact[:positionName].nil? && @hResponseObj[:writerShowTags]
+                           @xml.tag!('cit:positionName')
                         end
                         
                      end
