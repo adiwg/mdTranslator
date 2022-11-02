@@ -785,8 +785,6 @@
                     <gco:CharacterString>organization name four</gco:CharacterString>
                   </cit:name>
                   <cit:contactInfo/>
-                  <cit:logo/>
-                  <cit:individual/>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -798,6 +796,8 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:logo/>
+                  <cit:individual/>
                 </cit:CI_Organisation>
               </cit:party>
             </cit:CI_Responsibility>
@@ -1635,8 +1635,6 @@
                     <gco:CharacterString>organization name four</gco:CharacterString>
                   </cit:name>
                   <cit:contactInfo/>
-                  <cit:logo/>
-                  <cit:individual/>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -1648,6 +1646,8 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:logo/>
+                  <cit:individual/>
                 </cit:CI_Organisation>
               </cit:party>
             </cit:CI_Responsibility>
@@ -1729,8 +1729,6 @@
                     <gco:CharacterString>organization name four</gco:CharacterString>
                   </cit:name>
                   <cit:contactInfo/>
-                  <cit:logo/>
-                  <cit:individual/>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -1742,6 +1740,8 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:logo/>
+                  <cit:individual/>
                 </cit:CI_Organisation>
               </cit:party>
             </cit:CI_Responsibility>
