@@ -1,0 +1,27 @@
+<metadata>
+  <dataqual>
+    <attracc>
+      <attraccr>The observations were made by PIRO HCD Fishery Biologist and biologists from Guam Environmental Protection Agency and University of Guam Marine Laboratory.  Conditions were marginal and it was difficult to collect detailed data.  GPS coordinates for photos may be up to 10m off due to conditions.</attraccr>
+    </attracc>
+    <logic>Photographers tried to stay as close to the GPS as possible, but had to keep some distance due to waves.</logic>
+    <complete>The survey sites were selected based on safe access.  The team was unable to access some areas.</complete>
+      <posacc>
+        <horizpa>
+          <horizpar>GPS Unit</horizpar>
+           <qhorizpa>
+             <horizpav>1</horizpav>
+             <horizpae>Instrument parameters</horizpae>
+           </qhorizpa>
+        </horizpa>
+        <vertacc>
+          <vertaccr>Instrument parameters</vertaccr>
+        </vertacc>
+      </posacc>
+      <lineage>
+     <procstep>
+       <procdesc>Compact digital point and shoot cameras and housings were used by individual observers to document biota and damage at the site.  Cameras and GPS units were synced prior to survey. GPS units were towed on floats and kept as close to the cameras as possible given conditions.  Original photo and GPS data were downloaded and stored on DVD and hard drive.  Copies of photos and GPS data were post-processed using RoboGEO.  Photos were tagged with GPS coordinates and photos and GPS tracks were converted into shapefiles and Google Earth .kml files.</procdesc>
+        <procdate>Unknown</procdate>
+     </procstep>
+    </lineage>
+  </dataqual>
+</metadata>

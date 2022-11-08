@@ -30,13 +30,14 @@ module ADIWG
                   # data quality 2.1 (qattracc) - Quantitative Attribute Accuracy Assessment
 
                   xQuantitativeAccuracy = xDataQual.xpath('./qattracc')
-                  quantitativeAccuracyValue = xQuantitativeAccuracy.xpath('./attraccv').text
-                  hDataQuality[:report] << {
-                     type: 'DQ_QuantitativeAttributeAccuracy',
-                     quantitativeResult: {
-                        value: quantitativeAccuracyValue
+                  unless xQuantitativeAccuracy.xpath('./attraccv').empty?
+                     hDataQuality[:report] << {
+                        type: 'DQ_QuantitativeAttributeAccuracy',
+                        quantitativeResult: {
+                           value: xQuantitativeAccuracy.xpath('./attraccv').text
+                        }
                      }
-                  }
+                  end
 
                   # data quality 2.2 (logic) - logical consistency (required) (not implemented)
                   xLogic = xDataQual.xpath('./logic')
@@ -90,25 +91,18 @@ module ADIWG
                            }
                         end
 
-                        unless xHorizontal.xpath('horizpae').empty?
+                        unless xHorizontal.xpath('qhorizpa/horizpae').empty?
                            report[:evaluationMethod] = {
                               type: 'DQ_EvaluationMethod',
-                              methodDescription: xHorizontal.xpath('horizpae').text
+                              methodDescription: xHorizontal.xpath('qhorizpa/horizpae').text
                            }
                         end
 
-                        unless xHorizontal.xpath('horizpav').empty?
+                        unless xHorizontal.xpath('qhorizpa/horizpav').empty?
                            report[:quantitativeResult] = {
-                              value: [ xHorizontal.xpath('horizpav').text ]
+                              value: [ xHorizontal.xpath('qhorizpa/horizpav').text ]
                            }
                         end
-
-                        hDataQuality[:report] << {
-                           type: 'DQ_AbsoluteExternalPositionalAccuracy',
-                           qualityMeasure: {
-                              name: 'Horizontal Positional Accuracy Report'
-                           }
-                        }
 
                         unless report.empty?
                            report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
@@ -132,16 +126,16 @@ module ADIWG
                            }
                         end
 
-                        unless xVertical.xpath('vertacce').empty?
+                        unless xVertical.xpath('qvertpa/vertacce').empty?
                            report[:evaluationMethod] = {
                               type: 'DQ_EvaluationMethod',
-                              methodDescription: xVertical.xpath('vertacce').text
+                              methodDescription: xVertical.xpath('qvertpa/vertacce').text
                            }
                         end
 
-                        unless xVertical.xpath('vertaccv').empty?
+                        unless xVertical.xpath('qvertpa/vertaccv').empty?
                            report[:quantitativeResult] = {
-                              value: [ xVertical.xpath('vertaccv').text ]
+                              value: [ xVertical.xpath('qvertpa/vertaccv').text ]
                            }
                         end
 
@@ -170,7 +164,7 @@ module ADIWG
 
                   # data quality 2.6 (cloud) - cloud cover (not implemented)
 
-                  return hMetadata
+                  return hDataQuality
 
                end
 
