@@ -20,7 +20,7 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       xIn = @@xDoc.xpath('./metadata/dataqual')
 
-      hMetadata = @@NameSpace.unpack(xIn, intObj[:metadata], hResponse)
+      hMetadata = @@NameSpace.unpack(xIn, intObj[:metadata], intObj[:metadata][:dataQuality], hResponse)
 
       refute_nil hMetadata
       assert_equal 1, hMetadata[:lineageInfo].length

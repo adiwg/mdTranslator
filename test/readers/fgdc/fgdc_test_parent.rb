@@ -43,8 +43,10 @@ class TestReaderFGDCParent < MiniTest::Test
          hMetadata = intMetadataClass.newMetadata
          hMetadataInfo = intMetadataClass.newMetadataInfo
          hResourceInfo = intMetadataClass.newResourceInfo
+         hDataQuality = intMetadataClass.newDataQuality
          hMetadata[:metadataInfo] = hMetadataInfo
          hMetadata[:resourceInfo] = hResourceInfo
+         hMetadata[:dataQuality] = hDataQuality
          intObj[:metadata] = hMetadata
       end
       ADIWG::Mdtranslator::Readers::Fgdc::Fgdc.set_intObj(intObj)
