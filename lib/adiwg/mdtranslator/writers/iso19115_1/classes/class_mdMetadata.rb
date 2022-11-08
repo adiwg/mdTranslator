@@ -18,6 +18,7 @@ require_relative 'class_onlineResource'
 require_relative 'class_coverageDescription'
 require_relative 'class_imageDescription'
 require_relative 'class_distribution'
+require_relative 'class_dataQuality'
 require_relative 'class_lineage'
 require_relative 'class_constraint'
 require_relative 'class_dataIdentification'
@@ -54,6 +55,7 @@ module ADIWG
                   coverageClass = MD_CoverageDescription.new(@xml, @hResponseObj)
                   imageClass = MD_ImageDescription.new(@xml, @hResponseObj)
                   distributionClass = MD_Distribution.new(@xml, @hResponseObj)
+                  dataQualityClass = DQ_DataQuality.new(@xml, @hResponseObj)
                   lineageClass = LI_Lineage.new(@xml, @hResponseObj)
                   constraintClass = Constraint.new(@xml, @hResponseObj)
                   maintenanceClass = MD_MaintenanceInformation.new(@xml, @hResponseObj)
@@ -66,6 +68,7 @@ module ADIWG
                   hMetaInfo = hMetadata[:metadataInfo]
                   hResInfo = hMetadata[:resourceInfo]
                   aDistributions = hMetadata[:distributorInfo]
+                  aDataQuality = hMetadata[:dataQuality]
                   aLineage = hMetadata[:lineageInfo]
                   aDictionaries = intObj[:dataDictionaries]
                   version = @hResponseObj[:translatorVersion]
@@ -341,6 +344,19 @@ module ADIWG
                      if aDistributions.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('mdb:distributionInfo')
                      end
+
+                     # metadata information - data quality [] { DQ_DataQuality}
+                     aDataQuality.each do |hDataQuality|
+                        unless hDataQuality.empty?
+                           @xml.tag!('mdb:dataQualityInfo') do
+                              dataQualityClass.writeXML(hDataQuality)
+                           end
+                        end
+                     end
+                     if aDataQuality.empty? && @hResponseObj[:writeShowTags]
+                        @xml.tag('mdb:dataQualityInfo')
+                     end
+
 
                      # metadata information - resource lineage [] {LI_Lineage}
                      aLineage.each do |hLineage|
