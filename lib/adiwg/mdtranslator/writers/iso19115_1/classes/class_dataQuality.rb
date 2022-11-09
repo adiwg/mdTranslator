@@ -1,3 +1,4 @@
+require_relative 'class_dataQualityReport'
 
 module ADIWG
   module Mdtranslator
@@ -12,6 +13,8 @@ module ADIWG
 
           def writeXML(hDataQuality)
 
+            reportClass = DataQualityReport.new(@xml, @hResponseObj)
+
             @xml.tag!('mdq:DQ_DataQuality') do
 
               @xml.tag!('mdq:scope') do
@@ -24,9 +27,10 @@ module ADIWG
 
               # reports
               hDataQuality[:report].each do |hReport|
-                @xml.tag!('mdq:report') do
-                  @xml.tag!("mdq:#{hReport[:type]}")
+                unless hReport.nil? || hReport.empty?
+                  reportClass.writeXML(hReport)
                 end
+                
               end
             end
 

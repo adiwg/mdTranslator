@@ -17,11 +17,11 @@ module ADIWG
           def self.build(hReport)
             Jbuilder.new do |json|
 
-              json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult)
-              json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult)
-              json.evaluationMethod EvaluationMethod.build(hReport[:evaluationMethod])
-              json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure])
-              json.quantitativeResult @Namespace.json_map(hReport[:quantitativeResult], QuantitativeResult)
+              json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult) unless hReport[:conformanceResult].nil? || hReport[:conformanceResult].empty? 
+              json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult) unless hReport[:descriptiveResult].nil? || hReport[:descriptiveResult].empty? 
+              json.evaluationMethod EvaluationMethod.build(hReport[:evaluationMethod]) unless hReport[:evaluationMethod].nil?
+              json.qualityMeasure QualityMeasure.build(hReport[:qualityMeasure]) unless hReport[:qualityMeasure].nil?
+              json.quantitativeResult @Namespace.json_map(hReport[:quantitativeResult], QuantitativeResult) unless hReport[:quantitativeResult].nil? || hReport[:quantitativeResult].empty? 
 
             end
           end

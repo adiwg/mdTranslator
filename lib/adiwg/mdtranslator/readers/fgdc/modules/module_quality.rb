@@ -22,9 +22,7 @@ module ADIWG
                   accuracyReport = xAccuracy.xpath('./attraccr').text
                   hDataQuality[:report] << {
                      type: 'DQ_NonQuantitativeAttributeCompleteness',
-                     descriptiveResult: [
-                        statement: accuracyReport
-                     ]
+                     descriptiveResult: [ {statement: accuracyReport} ]
                   }
 
                   # data quality 2.1 (qattracc) - Quantitative Attribute Accuracy Assessment
@@ -33,9 +31,9 @@ module ADIWG
                   unless xQuantitativeAccuracy.xpath('./attraccv').empty?
                      hDataQuality[:report] << {
                         type: 'DQ_QuantitativeAttributeAccuracy',
-                        quantitativeResult: {
+                        quantitativeResult: [{
                            value: xQuantitativeAccuracy.xpath('./attraccv').text
-                        }
+                        }]
                      }
                   end
 
@@ -47,8 +45,8 @@ module ADIWG
                      logic = xLogic.text
                      hDataQuality[:report] << {
                         type: 'DQ_ConceptualConsistency',
-                        descriptiveResult: {
-                           statement: logic
+                        qualityMeasure: {
+                           description: logic
                         }
                      }
                   end
@@ -61,17 +59,17 @@ module ADIWG
                      complete = xComplete.text
                      hDataQuality[:report] << {
                         type: 'DQ_CompletenessOmission',
-                        descriptiveResult: {
+                        descriptiveResult: [{
                            statement: complete
-                        }
+                        }]
                      }
 
                      # we don't know if <complete> is commission or omission, so we'll just put it in both places
                      hDataQuality[:report] << {
                         type: 'DQ_CompletenessCommission',
-                        descriptiveResult: {
+                        descriptiveResult: [{
                            statement: complete
-                        }
+                        }]
                      }
                   end
 
@@ -86,29 +84,32 @@ module ADIWG
                         report = {}
 
                         unless xHorizontal.xpath('horizpar').empty?
-                           report[:descriptiveResult] = {
-                              statement: xHorizontal.xpath('horizpar').text
+                           report[:evaluationMethod] = {
+                              methodDescription: xHorizontal.xpath('horizpar').text
                            }
                         end
 
                         unless xHorizontal.xpath('qhorizpa/horizpae').empty?
-                           report[:evaluationMethod] = {
-                              type: 'DQ_EvaluationMethod',
-                              methodDescription: xHorizontal.xpath('qhorizpa/horizpae').text
+                           report[:qualityMeasure] = {
+                              description: xHorizontal.xpath('qhorizpa/horizpae').text
                            }
                         end
 
                         unless xHorizontal.xpath('qhorizpa/horizpav').empty?
-                           report[:quantitativeResult] = {
+                           report[:quantitativeResult] = [{
                               value: [ xHorizontal.xpath('qhorizpa/horizpav').text ]
-                           }
+                           }]
                         end
 
                         unless report.empty?
                            report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-                           report[:qualityMeasure] = {
-                              name: 'Horizontal Positional Accuracy Report'
-                           }
+                           if report[:qualityMeasure].nil?
+                              report[:qualityMeasure] = {
+                                 name: 'Horizontal Positional Accuracy Report'
+                              }
+                           else
+                              report[:qualityMeasure][:name] = 'Horizontal Positional Accuracy Report'
+                           end
 
                            hDataQuality[:report] << report
                         end
@@ -121,29 +122,32 @@ module ADIWG
                         report = {}
 
                         unless xVertical.xpath('vertaccr').empty?
-                           report[:descriptiveResult] = {
-                              statement: xVertical.xpath('vertaccr').text
+                           report[:evaluationMethod] = {
+                              methodDescription: xVertical.xpath('vertaccr').text
                            }
                         end
 
                         unless xVertical.xpath('qvertpa/vertacce').empty?
-                           report[:evaluationMethod] = {
-                              type: 'DQ_EvaluationMethod',
-                              methodDescription: xVertical.xpath('qvertpa/vertacce').text
+                           report[:qualityMeasure] = {
+                              description: xVertical.xpath('qvertpa/vertacce').text
                            }
                         end
 
                         unless xVertical.xpath('qvertpa/vertaccv').empty?
-                           report[:quantitativeResult] = {
+                           report[:quantitativeResult] = [{
                               value: [ xVertical.xpath('qvertpa/vertaccv').text ]
-                           }
+                           }]
                         end
 
                         unless report.empty?
                            report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
-                           report[:qualityMeasure] = {
-                              name: 'Vertical Positional Accuracy Report'
-                           }
+                           if report[:qualityMeasure].nil?
+                              report[:qualityMeasure] = {
+                                 name: 'Vertical Positional Accuracy Report'
+                              }
+                           else
+                              report[:qualityMeasure][:name] = 'Vertical Positional Accuracy Report'
+                           end
 
                            hDataQuality[:report] << report
                         end
