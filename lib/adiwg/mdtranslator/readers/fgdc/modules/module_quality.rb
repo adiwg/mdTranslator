@@ -63,14 +63,6 @@ module ADIWG
                            statement: complete
                         }]
                      }
-
-                     # we don't know if <complete> is commission or omission, so we'll just put it in both places
-                     hDataQuality[:report] << {
-                        type: 'DQ_CompletenessCommission',
-                        descriptiveResult: [{
-                           statement: complete
-                        }]
-                     }
                   end
 
                   # data quality 2.4 (position) - positional accuracy
