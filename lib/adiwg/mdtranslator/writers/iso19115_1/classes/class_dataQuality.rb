@@ -1,4 +1,5 @@
 require_relative 'class_dataQualityReport'
+require_relative 'class_citation'
 
 module ADIWG
   module Mdtranslator
@@ -14,6 +15,7 @@ module ADIWG
           def writeXML(hDataQuality)
 
             reportClass = DataQualityReport.new(@xml, @hResponseObj)
+            citationClass = CI_Citation.new(@xml, @hResponseObj)
 
             @xml.tag!('mdq:DQ_DataQuality') do
 
@@ -23,6 +25,26 @@ module ADIWG
                     @xml.tag!('mcc:MD_ScopeCode', codeList: "http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode", codeListValue: "series")
                   end
                 end
+              end
+
+              unless hDataQuality[:standaloneQualityReport].nil? || hDataQuality[:standaloneQualityReport].empty?
+
+                @xml.tag!('mdq:standaloneQualityReport') do
+                  @xml.tag!('mdq:DQ_StandaloneQualityReportInformation') do
+                    # reportReference
+
+                    @xml.tag!('mdq:reportReference') do
+                      citationClass.writeXML(hDataQuality[:standaloneQualityReport][:reportReference])
+                    end
+
+
+                    # abstract
+                    @xml.tag!('mdq:abstract') do
+                      @xml.tag!('gco:CharacterString', hDataQuality[:standaloneQualityReport][:abstract])
+                    end
+                  end
+                end
+
               end
 
               # reports

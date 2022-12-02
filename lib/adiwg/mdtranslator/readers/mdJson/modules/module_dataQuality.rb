@@ -3,6 +3,7 @@
 
 require_relative 'module_scope'
 require_relative 'module_dataQualityReport'
+require_relative 'module_citation'
 
 module ADIWG
   module Mdtranslator
@@ -37,7 +38,10 @@ module ADIWG
             if hDataQuality.has_key?('standaloneQualityReport')
               hObject = hDataQuality['standaloneQualityReport']
               unless hObject.empty?
-                intDataQuality[:standaloneQualityReport] = hObject
+                intDataQuality[:standaloneQualityReport] = {
+                  abstract: hObject["abstract"],
+                  reportReference: Citation.unpack(hObject["reportReference"], responseObj, inContext)
+                }
               end
             end
 
