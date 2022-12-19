@@ -25,19 +25,79 @@ module ADIWG
                   # classes used
                   lineageClass = Lineage.new(@xml, @hResponseObj)
 
+                  hDataQuality = intObj.dig(:metadata, :dataQuality, 0)
+
                   # data quality 2.1 (attracc) - attribute accuracy (not implemented)
-                  if @hResponseObj[:writerShowTags]
+                  attribute_completeness_report = hDataQuality[:report].find do |report|
+                     report[:type] == 'DQ_NonQuantitativeAttributeCompleteness' &&
+                     !report.dig(:descriptiveResult, 0, :statement).nil?
+                  end
+
+                  if attribute_completeness_report
+                     @xml.tag!('attracc') do
+                        @xml.tag!('attraccr', attribute_completeness_report[:descriptiveResult][0][:statement])
+                     end
+                  elsif @hResponseObj[:writerShowTags]
                      @xml.tag!('attracc', 'Not Reported')
                   end
 
                   # data quality 2.2 (logic) - logical consistency (not implemented) (required)
-                  @xml.tag!('logic', 'Not Reported')
+                  logic_report = hDataQuality[:report].find do |report|
+                     report[:type] == 'DQ_ConceptualConsistency' &&
+                     !report.dig(:qualityMeasure, :description).nil?
+                  end
+
+                  if logic = logic_report&.dig(:qualityMeasure, :decription)
+                     @xml.tag!('logic', logic)
+                  else
+                     @xml.tag!('logic', 'Not Reported')
+                  end
 
                   # data quality 2.3 (complete) - completion report (not implemented) (required)
-                  @xml.tag!('complete', 'Not Reported')
+                  completeness_report = hDataQuality[:report].find do |report|
+                     report[:type] == 'DQ_CompletenessOmission' &&
+                     !report.dig(:descriptiveResult, 0, :statement).nil?
+                  end
+
+                  if complete = completeness_report&.dig(:descriptiveResult, 0, :statement)
+                     @xml.tag!('complete', complete)
+                  else
+                     @xml.tag!('complete', 'Not Reported')
+                  end
 
                   # data quality 2.4 (position) - positional accuracy (not implemented)
-                  if @hResponseObj[:writerShowTags]
+
+
+                  horizontal_positional_accuracy_report = hDataQuality[:report].find do |report|
+                     report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
+                     report.dig(:qualityMeasure, :name) == 'Horizontal Positional Accuracy Report'
+                  end
+
+                  horizpar = horizontal_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)
+
+
+                  vertical_positional_accuracy_report = hDataQuality[:report].find do |report|
+                     report[:type] == 'DQ_AbsoluteExternalPositionalAccuracy' &&
+                     report.dig(:qualityMeasure, :name) == 'Vertical Positional Accuracy Report'
+                  end
+
+                  vertaccr = vertical_positional_accuracy_report&.dig(:evaluationMethod, :methodDescription)
+
+                  if horizpar || vertaccr
+                     @xml.tag!('posacc') do
+                        if horizpar
+                           @xml.tag!('horizpa') do
+                              @xml.tag!('horizpar', horizpar)
+                           end
+                        end
+
+                        if vertaccr
+                           @xml.tag!('vertacc') do
+                              @xml.tag!('vertaccr', vertaccr)
+                           end
+                        end
+                     end
+                  elsif @hResponseObj[:writerShowTags]
                      @xml.tag!('position', 'Not Reported')
                   end
 
