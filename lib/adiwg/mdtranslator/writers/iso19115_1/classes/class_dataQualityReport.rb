@@ -52,8 +52,10 @@ module ADIWG
                   @xml.tag!('mdq:measure') do
                     @xml.tag!('mdq:DQ_MeasureReference') do
                       unless qualityMeasure[:name].nil?
-                        @xml.tag!('mdq:nameOfMeasure') do
-                          @xml.tag!('gco:CharacterString', qualityMeasure[:name])
+                        qualityMeasure[:name].each do |value|
+                          @xml.tag!('mdq:nameOfMeasure') do
+                            @xml.tag!('gco:CharacterString', value)
+                          end
                         end
                       end
 

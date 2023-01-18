@@ -97,10 +97,10 @@ module ADIWG
                            report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
                            if report[:qualityMeasure].nil?
                               report[:qualityMeasure] = {
-                                 name: 'Horizontal Positional Accuracy Report'
+                                 name: ['Horizontal Positional Accuracy Report']
                               }
                            else
-                              report[:qualityMeasure][:name] = 'Horizontal Positional Accuracy Report'
+                              report[:qualityMeasure][:name] = ['Horizontal Positional Accuracy Report']
                            end
 
                            hDataQuality[:report] << report
@@ -135,10 +135,10 @@ module ADIWG
                            report[:type] = 'DQ_AbsoluteExternalPositionalAccuracy'
                            if report[:qualityMeasure].nil?
                               report[:qualityMeasure] = {
-                                 name: 'Vertical Positional Accuracy Report'
+                                 name: ['Vertical Positional Accuracy Report']
                               }
                            else
-                              report[:qualityMeasure][:name] = 'Vertical Positional Accuracy Report'
+                              report[:qualityMeasure][:name] = ['Vertical Positional Accuracy Report']
                            end
 
                            hDataQuality[:report] << report
