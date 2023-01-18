@@ -27,7 +27,7 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
 
       # require 'pry'; binding.pry
 
-      horizpa = hDataQuality[:report].find{ |h| h.dig(:qualityMeasure, :name) == 'Horizontal Positional Accuracy Report' }
+      horizpa = hDataQuality[:report].find{ |h| h.dig(:qualityMeasure, :name) == ['Horizontal Positional Accuracy Report'] }
       assert_equal 'GPS Unit', horizpa.dig(:evaluationMethod, :methodDescription)
       assert_equal 'Instrument parameters', horizpa.dig(:qualityMeasure, :description)
 

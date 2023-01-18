@@ -68,16 +68,22 @@ module ADIWG
             if hReport.has_key?('qualityMeasure')
               qualityMeasure = hReport['qualityMeasure']
               identifier = qualityMeasure['identifier']
-              intReport[:qualityMeasure] = {
-                identifier: {
+
+              intReport[:qualityMeasure] = {}
+
+              if identifier
+                intReport[:qualityMeasure][:identifier] = {
                   identifier: identifier['identifier'],
                   namespace: identifier['namespace'],
                   version: identifier['version'],
                   description: identifier['description']
-                },
-                name: qualityMeasure['name'],
-                description: qualityMeasure['description']
-              }
+                }
+              end
+
+              if qualityMeasure
+                intReport[:qualityMeasure][:name] = qualityMeasure['name']
+                intReport[:qualityMeasure][:description] = qualityMeasure['description']
+              end
             end
 
             if hReport.has_key?('quantitativeResult')
