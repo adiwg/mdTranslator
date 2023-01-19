@@ -373,6 +373,18 @@ module ADIWG
                         @xml.tag!('gmd:dataQualityInfo')
                      end
 
+                     aDataQuality = hMetadata[:dataQuality]
+                     aDataQuality.each do |hDataQuality|
+                        unless hDataQuality.empty?
+                           @xml.tag!('mdb:dataQualityInfo') do 
+                              dqClass.writeXML(hDataQuality, dataQualityType: 'mdb')
+                           end
+                        end
+                        if aDataQuality.empty? && @hResponseObj[:writeShowTags]
+                           @xml.tag('mdb:dataQualityInfo')
+                        end
+                     end
+
                      # metadata information - metadata constraints {}
                      aCons = hMetaInfo[:metadataConstraints]
                      aCons.each do |hCon|
