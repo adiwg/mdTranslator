@@ -110,7 +110,7 @@ module ADIWG
                   # schema locations
                   # set to 'remoteSchema' before publishing
                   localSchema = 'C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd'
-                  remoteSchema = 'ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'
+                  remoteSchema = 'https://data.noaa.gov/resources/iso19139/schema.xsd'
 
                   # MI_Metadata
                   @xml.tag!('gmi:MI_Metadata',
