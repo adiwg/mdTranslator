@@ -16,7 +16,7 @@ module ADIWG
 
           def self.build(hReport)
             Jbuilder.new do |json|
-
+              json.type hReport[:type]
               json.conformanceResult @Namespace.json_map(hReport[:conformanceResult], ConformanceResult) unless hReport[:conformanceResult].nil? || hReport[:conformanceResult].empty? 
               json.descriptiveResult @Namespace.json_map(hReport[:descriptiveResult], DescriptiveResult) unless hReport[:descriptiveResult].nil? || hReport[:descriptiveResult].empty? 
               json.evaluationMethod EvaluationMethod.build(hReport[:evaluationMethod]) unless hReport[:evaluationMethod].nil?
