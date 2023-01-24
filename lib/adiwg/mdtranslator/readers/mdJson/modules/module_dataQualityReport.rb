@@ -26,6 +26,8 @@ module ADIWG
             intMetadataClass = InternalMetadata.new
             intReport = intMetadataClass.newDataQualityReport
 
+            intReport[:type] = hReport["type"]
+
             if hReport.has_key?('conformanceResult')
               hReport['conformanceResult'].each do |item|
                 hReturn = ConformanceResult.unpack(item, responseObj)
