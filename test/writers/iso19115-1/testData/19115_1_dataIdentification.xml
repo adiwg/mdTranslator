@@ -104,9 +104,6 @@
                       <cit:contactType/>
                     </cit:CI_Contact>
                   </cit:contactInfo>
-                  <cit:positionName>
-                    <gco:CharacterString>position name</gco:CharacterString>
-                  </cit:positionName>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -120,6 +117,9 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:positionName>
+                    <gco:CharacterString>position name</gco:CharacterString>
+                  </cit:positionName>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -194,9 +194,6 @@
                   <cit:contactType/>
                 </cit:CI_Contact>
               </cit:contactInfo>
-              <cit:positionName>
-                <gco:CharacterString>position name</gco:CharacterString>
-              </cit:positionName>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -210,6 +207,9 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
@@ -435,9 +435,6 @@
                       <cit:contactType/>
                     </cit:CI_Contact>
                   </cit:contactInfo>
-                  <cit:positionName>
-                    <gco:CharacterString>position name</gco:CharacterString>
-                  </cit:positionName>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -451,6 +448,9 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:positionName>
+                    <gco:CharacterString>position name</gco:CharacterString>
+                  </cit:positionName>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -527,9 +527,6 @@
                   <cit:contactType/>
                 </cit:CI_Contact>
               </cit:contactInfo>
-              <cit:positionName>
-                <gco:CharacterString>position name</gco:CharacterString>
-              </cit:positionName>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -543,6 +540,9 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
@@ -899,7 +899,6 @@
                         <gco:CharacterString>person name three</gco:CharacterString>
                       </cit:name>
                       <cit:contactInfo/>
-                      <cit:positionName/>
                       <cit:partyIdentifier>
                         <mcc:MD_Identifier>
                           <mcc:authority/>
@@ -911,6 +910,7 @@
                           <mcc:description/>
                         </mcc:MD_Identifier>
                       </cit:partyIdentifier>
+                      <cit:positionName/>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -1057,9 +1057,6 @@
                       <cit:contactType/>
                     </cit:CI_Contact>
                   </cit:contactInfo>
-                  <cit:positionName>
-                    <gco:CharacterString>position name</gco:CharacterString>
-                  </cit:positionName>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -1073,6 +1070,9 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:positionName>
+                    <gco:CharacterString>position name</gco:CharacterString>
+                  </cit:positionName>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -1152,9 +1152,6 @@
                   <cit:contactType/>
                 </cit:CI_Contact>
               </cit:contactInfo>
-              <cit:positionName>
-                <gco:CharacterString>position name</gco:CharacterString>
-              </cit:positionName>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -1168,6 +1165,9 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
@@ -1184,7 +1184,6 @@
                 <gco:CharacterString>person name three</gco:CharacterString>
               </cit:name>
               <cit:contactInfo/>
-              <cit:positionName/>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -1196,6 +1195,7 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:positionName/>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
@@ -1865,7 +1865,6 @@
                         <gco:CharacterString>person name three</gco:CharacterString>
                       </cit:name>
                       <cit:contactInfo/>
-                      <cit:positionName/>
                       <cit:partyIdentifier>
                         <mcc:MD_Identifier>
                           <mcc:authority/>
@@ -1877,6 +1876,7 @@
                           <mcc:description/>
                         </mcc:MD_Identifier>
                       </cit:partyIdentifier>
+                      <cit:positionName/>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -1949,7 +1949,6 @@
                         <gco:CharacterString>person name three</gco:CharacterString>
                       </cit:name>
                       <cit:contactInfo/>
-                      <cit:positionName/>
                       <cit:partyIdentifier>
                         <mcc:MD_Identifier>
                           <mcc:authority/>
@@ -1961,6 +1960,7 @@
                           <mcc:description/>
                         </mcc:MD_Identifier>
                       </cit:partyIdentifier>
+                      <cit:positionName/>
                     </cit:CI_Individual>
                   </cit:party>
                 </cit:CI_Responsibility>
@@ -2120,9 +2120,6 @@
                       <cit:contactType/>
                     </cit:CI_Contact>
                   </cit:contactInfo>
-                  <cit:positionName>
-                    <gco:CharacterString>position name</gco:CharacterString>
-                  </cit:positionName>
                   <cit:partyIdentifier>
                     <mcc:MD_Identifier>
                       <mcc:authority/>
@@ -2136,6 +2133,9 @@
                       <mcc:description/>
                     </mcc:MD_Identifier>
                   </cit:partyIdentifier>
+                  <cit:positionName>
+                    <gco:CharacterString>position name</gco:CharacterString>
+                  </cit:positionName>
                 </cit:CI_Individual>
               </cit:party>
             </cit:CI_Responsibility>
@@ -2210,9 +2210,6 @@
                   <cit:contactType/>
                 </cit:CI_Contact>
               </cit:contactInfo>
-              <cit:positionName>
-                <gco:CharacterString>position name</gco:CharacterString>
-              </cit:positionName>
               <cit:partyIdentifier>
                 <mcc:MD_Identifier>
                   <mcc:authority/>
@@ -2226,6 +2223,9 @@
                   <mcc:description/>
                 </mcc:MD_Identifier>
               </cit:partyIdentifier>
+              <cit:positionName>
+                <gco:CharacterString>position name</gco:CharacterString>
+              </cit:positionName>
             </cit:CI_Individual>
           </cit:party>
         </cit:CI_Responsibility>
