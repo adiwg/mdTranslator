@@ -3,8 +3,6 @@ require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'mdjson_test_parent'
 
-require 'pry'
-
 class TestWriterMdJsonDataQuality < TestWriterMdJsonParent
   TDClass = MdJsonHashWriter.new
 
