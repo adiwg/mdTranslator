@@ -124,6 +124,9 @@ module ADIWG
                              'xmlns:gmx' => 'http://www.isotc211.org/2005/gmx',
                              'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
                              'xmlns:srv' => 'http://www.isotc211.org/2005/srv',
+                             'xmlns:mdb' => 'http://www.isotc211.org/2005/mdb',
+                             'xmlns:mdq' => 'http://www.isotc211.org/2005/mdq',
+                             'xmlns:mcc' => 'http://www.isotc211.org/2005/mcc',
                              'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                              'xsi:schemaLocation' => "http://www.isotc211.org/2005/gmi #{remoteSchema}"}) do
