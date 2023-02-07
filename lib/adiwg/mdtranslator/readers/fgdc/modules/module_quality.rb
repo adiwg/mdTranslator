@@ -17,6 +17,13 @@ module ADIWG
 
                def self.unpack(xDataQual, hMetadata, hDataQuality, hResponseObj)
 
+                  hDataQuality[:scope] = {scopeCode: 'tabularDataset'}
+                  hDataQuality[:systemIdentifier] = {
+                     uid: UUIDTools::UUID.random_create.to_s,
+                     label: "CSDGM Data Quality"
+                  }
+
+
                   # data quality 2.1 (attracc) - attribute accuracy
                   xAccuracy = xDataQual.xpath('./attracc')
                   accuracyReport = xAccuracy.xpath('./attraccr').text

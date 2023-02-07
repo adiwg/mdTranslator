@@ -16,6 +16,7 @@ module ADIWG
           def self.build(hDataQuality)
             Jbuilder.new do |json|
               json.scope Scope.build(hDataQuality[:scope])
+              json.systemIdentifier hDataQuality[:systemIdentifier]
               json.standaloneQualityReport hDataQuality[:standaloneQualityReport]
               json.report @Namespace.json_map(hDataQuality[:report], DataQualityReport)
             end
