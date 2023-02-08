@@ -11,6 +11,19 @@ module ADIWG
 
           def writeHtml(hDataQuality)
             citationClass = Html_Citation.new(@html)
+            scopeClass = Html_Scope.new(@html)
+
+            unless hDataQuality[:scope].nil? || hDataQuality[:scope].empty?
+              @html.section(class: 'block') do
+                @html.details do
+                  @html.summary('Scope', {'class' => 'h5'})
+                  @html.section(class: 'block') do
+                    scopeClass.writeHtml(hDataQuality[:scope])
+                  end
+                end
+              end
+            end
+
 
             unless hDataQuality[:standaloneQualityReport].nil? || 
                    ( hDataQuality[:standaloneQualityReport][:abstract].nil? && 

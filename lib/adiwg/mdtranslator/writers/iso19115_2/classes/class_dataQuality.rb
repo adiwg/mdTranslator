@@ -78,13 +78,17 @@ module ADIWG
                         @xml.tag!('mdq:standaloneQualityReport') do
                            @xml.tag!('mdq:DQ_StandaloneQualityReportInformation') do
                               # reportReference
-                              @xml.tag!('mdq:reportReference') do
-                                 citationClass.writeXML(hDataQuality[:standaloneQualityReport][:reportReference])
+                              unless hDataQuality[:standaloneQualityReport][:reportReference].nil? || hDataQuality[:standaloneQualityReport][:reportReference].empty?
+                                 @xml.tag!('mdq:reportReference') do
+                                    citationClass.writeXML(hDataQuality[:standaloneQualityReport][:reportReference])
+                                 end
                               end
 
-                              # abstract
-                              @xml.tag!('mdq:abstract') do
-                                 @xml.tag!('gco:CharacterString', hDataQuality[:standaloneQualityReport][:abstract])
+                              unless hDataQuality[:standaloneQualityReport][:abstract].nil? || hDataQuality[:standaloneQualityReport][:abstract].empty?
+                                 # abstract
+                                 @xml.tag!('mdq:abstract') do
+                                    @xml.tag!('gco:CharacterString', hDataQuality[:standaloneQualityReport][:abstract])
+                                 end
                               end
                            end
                         end

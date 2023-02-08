@@ -15,7 +15,7 @@ module ADIWG
               json.type hMethod[:type]
               json.dateTime hMethod[:dateTime]
               json.methodDescription hMethod[:methodDescription]
-              json.evaluationProcedure Citation.build(hMethod[:evaluationMethod])
+              json.evaluationProcedure Citation.build(hMethod[:evaluationProcedure])
               json.referenceDocument @Namespace.json_map(hMethod[:referenceDocument], Citation)
               json.evaluationMethodType hMethod[:evaluationMethodType]
               json.deductiveSource hMethod[:deductiveSource]
