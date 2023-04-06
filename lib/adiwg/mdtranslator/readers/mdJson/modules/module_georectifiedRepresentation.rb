@@ -104,6 +104,15 @@ module ADIWG
                      end
                   end
 
+                  if hGeoRec.has_key?('scope')
+                     hGeoRec['scope'].each do |item|
+                        scope = Scope.unpack(item, responseObj, inContext)
+                        unless scope.nil?
+                           intGeoRec[:scope] << scope
+                        end
+                     end
+                  end
+
                   return intGeoRec
 
                end

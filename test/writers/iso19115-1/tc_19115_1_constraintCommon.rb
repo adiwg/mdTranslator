@@ -8,7 +8,7 @@ require_relative '../../helpers/mdJson_hash_objects'
 require_relative '../../helpers/mdJson_hash_functions'
 require_relative 'iso19115_1_test_parent'
 
-class TestWriter191151Constraint < TestWriter191151Parent
+class TestWriter191151ConstraintCommon < TestWriter191151Parent
 
    # instance classes needed in script
    TDClass = MdJsonHashWriter.new

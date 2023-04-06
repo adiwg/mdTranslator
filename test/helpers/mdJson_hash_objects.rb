@@ -21,6 +21,12 @@ class MdJsonHashWriter
                contactId: 'CID001',
                isOrganization: false,
                name: 'person name',
+               externalIdentifier: [
+                  {
+                     identifier: '0000-00001', 
+                     namespace: 'ORCID'
+                  }
+               ],
                positionName: 'position name',
                phone: [
                   {
@@ -50,6 +56,9 @@ class MdJsonHashWriter
                contactId: 'CID002',
                isOrganization: true,
                name: 'organization name',
+               externalIdentifier: [
+                  { identifier: '0000-00002', namespace: 'ORCID' }
+               ],
                phone: [
                   {
                      phoneName: 'phone name',
@@ -206,7 +215,8 @@ class MdJsonHashWriter
                      frequency: 'resource maintenance frequency'
                   }
                ]
-            }
+            },
+            dataQuality: []
          },
          metadataRepository: [],
          dataDictionary: []
@@ -752,6 +762,13 @@ class MdJsonHashWriter
          numberOfValues: 9,
          standardDeviation: 9.9,
          bitsPerValue: 9,
+         rangeElementDescription: [
+            {
+               name: 'range element name 1',
+               definition: 'range element definition',
+               rangeElements: [ 'range element record 1' ]
+            }
+         ],
          boundMin: 100,
          boundMax: 999,
          boundUnits: 'bound min/max units',
@@ -1031,6 +1048,28 @@ class MdJsonHashWriter
             endDateTime: '2018-12-31'
          },
          description: 'funding description'
+      }
+   end
+
+   def dataQuality
+      {
+         scope: scope,
+         report: [{
+            qualityMeasure: qualityMeasure
+         }]
+      }
+   end
+
+   def qualityMeasure
+      {
+         identifier: {     
+            identifier: 'identifier',
+            namespace: 'namespace',
+            version: 'version',
+            description: 'description'
+         },
+         name: ['name of measure'],
+         description: 'measure description'
       }
    end
 
@@ -1340,7 +1379,8 @@ class MdJsonHashWriter
          resourceDistribution: [],
          associatedResource: [],
          additionalDocumentation: [],
-         funding: []
+         funding: [],
+         dataQuality: []
       }
    end
 
@@ -1537,6 +1577,7 @@ class MdJsonHashWriter
 
    def georectified
       {
+         scope: [],
          gridRepresentation: gridRepresentation,
          checkPointAvailable: false,
          checkPointDescription: 'check point description',
@@ -1553,6 +1594,7 @@ class MdJsonHashWriter
 
    def georeferenceable
       {
+         scope: [],
          gridRepresentation: gridRepresentation,
          controlPointAvailable: false,
          orientationParameterAvailable: false,
@@ -1571,6 +1613,7 @@ class MdJsonHashWriter
 
    def gridRepresentation
       {
+         scope: [],
          numberOfDimensions: 9,
          dimension: [],
          cellGeometry: 'point',
@@ -1587,6 +1630,7 @@ class MdJsonHashWriter
 
    def vectorRepresentation
       {
+         scope: [],
          topologyLevel: 'topology level',
          vectorObject: []
       }

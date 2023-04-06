@@ -5,6 +5,7 @@
 #  Stan Smith 2017-04-02 original script
 
 require_relative 'html_identifier'
+require_relative 'html_rangeElementDescription'
 
 module ADIWG
    module Mdtranslator
@@ -20,6 +21,7 @@ module ADIWG
                def writeHtml(hAttribute)
                   # classes used
                   identifierClass = Html_Identifier.new(@html)
+                  rangeElementDescriptionClass = Html_RangeElementDescription.new(@html)
 
                   # attribute - sequence identifier
                   unless hAttribute[:sequenceIdentifier].nil?
@@ -114,6 +116,16 @@ module ADIWG
                      @html.em('Bits Per Value: ')
                      @html.text!(hAttribute[:bitsPerValue].to_s)
                      @html.br
+                  end
+
+                  # attribute - range element description
+                  hAttribute[:rangeElementDescription].each do |red|
+                     @html.details do
+                        @html.summary('Range Element Description', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           rangeElementDescriptionClass.writeHtml(red)
+                        end
+                     end
                   end
 
                   # attribute - bound minimum

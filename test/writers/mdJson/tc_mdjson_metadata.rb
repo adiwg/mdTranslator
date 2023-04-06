@@ -42,6 +42,12 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
    mdHash[:metadata][:funding] << TDClass.build_funding
    mdHash[:metadata][:funding] << TDClass.build_funding
 
+   # data quality []
+   mdHash[:metadata][:dataQuality] = []
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+   mdHash[:metadata][:dataQuality] << TDClass.build_dataQuality
+
+
    TDClass.removeEmptyObjects(mdHash)
 
    @@mdHash = mdHash
@@ -73,6 +79,7 @@ class TestWriterMdJsonMetadata < TestWriterMdJsonParent
       assert_empty metadata[:readerStructureMessages]
       assert_empty metadata[:readerValidationMessages]
       assert_empty metadata[:readerExecutionMessages]
+
       assert_equal expect, got
 
    end

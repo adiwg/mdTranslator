@@ -82,6 +82,19 @@
               <cit:contactType/>
             </cit:CI_Contact>
           </cit:contactInfo>
+          <cit:partyIdentifier>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>0000-00001</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace>
+                <gco:CharacterString>ORCID</gco:CharacterString>
+              </mcc:codeSpace>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </cit:partyIdentifier>
           <cit:positionName>
             <gco:CharacterString>position name</gco:CharacterString>
           </cit:positionName>
@@ -213,6 +226,19 @@
                       <cit:contactType/>
                     </cit:CI_Contact>
                   </cit:contactInfo>
+                  <cit:partyIdentifier>
+                    <mcc:MD_Identifier>
+                      <mcc:authority/>
+                      <mcc:code>
+                        <gco:CharacterString>0000-00001</gco:CharacterString>
+                      </mcc:code>
+                      <mcc:codeSpace>
+                        <gco:CharacterString>ORCID</gco:CharacterString>
+                      </mcc:codeSpace>
+                      <mcc:version/>
+                      <mcc:description/>
+                    </mcc:MD_Identifier>
+                  </cit:partyIdentifier>
                   <cit:positionName>
                     <gco:CharacterString>position name</gco:CharacterString>
                   </cit:positionName>
@@ -290,6 +316,19 @@
                   <cit:contactType/>
                 </cit:CI_Contact>
               </cit:contactInfo>
+              <cit:partyIdentifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>0000-00001</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace>
+                    <gco:CharacterString>ORCID</gco:CharacterString>
+                  </mcc:codeSpace>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:partyIdentifier>
               <cit:positionName>
                 <gco:CharacterString>position name</gco:CharacterString>
               </cit:positionName>

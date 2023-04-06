@@ -142,7 +142,8 @@ class InternalMetadata
          distributorInfo: [],
          associatedResources: [],
          additionalDocuments: [],
-         funding: []
+         funding: [],
+         dataQuality: []
       }
    end
 
@@ -303,6 +304,7 @@ class InternalMetadata
          contactId: nil,
          isOrganization: false,
          name: nil,
+         externalIdentifier: [],
          positionName: nil,
          memberOfOrgs: [],
          logos: [],
@@ -497,6 +499,7 @@ class InternalMetadata
          numberOfValues: nil,
          standardDeviation: nil,
          bitsPerValue: nil,
+         rangeElementDescription: [],
          boundMin: nil,
          boundMax: nil,
          boundUnits: nil,
@@ -633,7 +636,7 @@ class InternalMetadata
       {
          scope: {},
          standaloneReport: {},
-         reports: []
+         report: []
       }
    end
 
@@ -644,6 +647,18 @@ class InternalMetadata
          specification: {},
          explanation: nil,
          pass: false
+      }
+   end
+
+   def newCoverageResult
+      {
+         dateTime: nil,
+         scope: {},
+         spatialRepresentationType: {},
+         spatialRepresentation: {},
+         resultContent: [],
+         resourceFormat: {},
+         resultFile: {}
       }
    end
 
@@ -659,14 +674,14 @@ class InternalMetadata
       {
          type: nil,
          dateTime: [],
-         description: nil,
+         methodDescription: nil,
          evaluationProcedure: {},
          referenceDocuments: [],
          evaluationMethodType: nil,
-         deductiveSource: 'deductive source',
-         samplingScheme: 'sampling scheme',
-         lotDescription: 'lot description',
-         samplingRatio: 'sampling ratio'
+         deductiveSource: nil,
+         samplingScheme: nil,
+         lotDescription: nil,
+         samplingRatio: nil
       }
    end
 
@@ -688,18 +703,17 @@ class InternalMetadata
       }
    end
 
-   def newReport
+   def newDataQualityReport
       {
-         type: nil,
-         dateTime: [],
-         standaloneQualityReportDetails: nil,
-         qualityMeasure: {},
+         # standaloneQualityReportDetails: nil,
+         conformanceResult: [],
+         coverageResult: [],
+         # derivedElementReport: [],
+         descriptiveResult: [],
          evaluationMethod: {},
-         quantitativeResults: [],
-         descriptiveResults: [],
-         conformanceResults: [],
-         derivedElementReports: [],
-         relatedElementReports: []
+         qualityMeasure: {},
+         quantitativeResult: [],
+         # relatedElementReport: []
       }
    end
 
@@ -1178,6 +1192,7 @@ class InternalMetadata
 
    def newGridInfo
       {
+         scope: [],
          numberOfDimensions: nil,
          dimension: [],
          cellGeometry: nil,
@@ -1197,6 +1212,7 @@ class InternalMetadata
 
    def newVectorInfo
       {
+         scope: [],
          topologyLevel: nil,
          vectorObject: []
       }
@@ -1211,6 +1227,7 @@ class InternalMetadata
 
    def newGeorectifiedInfo
       {
+         scope: [],
          gridRepresentation: {},
          checkPointAvailable: false,
          checkPointDescription: nil,
@@ -1224,6 +1241,7 @@ class InternalMetadata
 
    def newGeoreferenceableInfo
       {
+         scope: [],
          gridRepresentation: {},
          controlPointAvailable: false,
          orientationParameterAvailable: false,

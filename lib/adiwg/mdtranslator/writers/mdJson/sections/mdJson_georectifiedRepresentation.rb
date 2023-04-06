@@ -16,6 +16,7 @@ module ADIWG
                def self.build(hGeoRec)
 
                   Jbuilder.new do |json|
+                     json.scope hGeoRec[:scope]
                      json.gridRepresentation Grid.build(hGeoRec[:gridRepresentation]) unless hGeoRec[:gridRepresentation].empty?
                      json.checkPointAvailable hGeoRec[:checkPointAvailable]
                      json.checkPointDescription hGeoRec[:checkPointDescription]

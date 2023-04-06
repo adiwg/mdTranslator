@@ -134,6 +134,17 @@
                   <cit:contactInfo/>
                   <cit:logo/>
                   <cit:individual/>
+                  <cit:partyIdentifier>
+                    <mcc:MD_Identifier>
+                      <mcc:authority/>
+                      <mcc:code>
+                        <gco:CharacterString>CID004</gco:CharacterString>
+                      </mcc:code>
+                      <mcc:codeSpace/>
+                      <mcc:version/>
+                      <mcc:description/>
+                    </mcc:MD_Identifier>
+                  </cit:partyIdentifier>
                 </cit:CI_Organisation>
               </cit:party>
             </cit:CI_Responsibility>
@@ -163,6 +174,17 @@
               <cit:contactInfo/>
               <cit:logo/>
               <cit:individual/>
+              <cit:partyIdentifier>
+                <mcc:MD_Identifier>
+                  <mcc:authority/>
+                  <mcc:code>
+                    <gco:CharacterString>CID004</gco:CharacterString>
+                  </mcc:code>
+                  <mcc:codeSpace/>
+                  <mcc:version/>
+                  <mcc:description/>
+                </mcc:MD_Identifier>
+              </cit:partyIdentifier>
             </cit:CI_Organisation>
           </cit:party>
         </cit:CI_Responsibility>

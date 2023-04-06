@@ -6,6 +6,7 @@
 # 	Stan Smith 2015-07-31 original script
 
 require_relative 'html_dimension'
+require_relative 'html_scope'
 
 module ADIWG
    module Mdtranslator
@@ -22,6 +23,18 @@ module ADIWG
 
                   # classes used
                   dimensionClass = Html_Dimension.new(@html)
+                  scopeClass = Html_Scope.new(@html)
+
+                  # grid representation - scope
+                  hGrid[:scope].each do |scope|
+                     @html.details do
+                        @html.summary('Scope ', 'class' => 'h5')
+                        @html.section(:class => 'block') do
+                           scopeClass.writeHtml(hGrid[:scope])
+                        end
+                     end
+                  end
+
 
                   # grid representation - number of dimensions
                   unless hGrid[:numberOfDimensions].nil?

@@ -6,6 +6,7 @@
 # 	Stan Smith 2016-10-19 original script
 
 require_relative 'module_dimension'
+require_relative 'module_scope'
 
 module ADIWG
    module Mdtranslator
@@ -68,6 +69,15 @@ module ADIWG
                   if hGrid.has_key?('transformationParameterAvailable')
                      if hGrid['transformationParameterAvailable'] === true
                         intGrid[:transformationParameterAvailable] = hGrid['transformationParameterAvailable']
+                     end
+                  end
+
+                  if hGrid.has_key?('scope')
+                     hGrid['scope'].each do |item|
+                        scope = Scope.unpack(item, responseObj, outContext)
+                        unless scope.nil?
+                           intGrid[:scope] << scope
+                        end
                      end
                   end
 

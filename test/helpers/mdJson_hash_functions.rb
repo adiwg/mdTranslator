@@ -157,6 +157,66 @@ class MdJsonHashWriter
       hFunding[:description] = description unless description.nil?
       return hFunding
    end
+
+   def build_dataQuality
+      hDataQuality = dataQuality
+      hDataQuality[:scope] = build_scope_full
+      hDataQuality[:standaloneQualityReport] = {
+         abstract: "standalone quality report 1"
+      }
+
+      hDataQuality[:report] = [
+         {
+            conformanceResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               specification: build_citation('alternate metadata title one'),
+               explanation: "conformance result explanation",
+               pass: false
+            }],
+            descriptiveResult: [{
+               dateTime: "2019-06-11T09:00:00",
+               scope: build_scope_full,
+               statement: "statement"
+            }],
+            qualityMeasure: {
+               identifier: {
+                  identifier: 'identifier',
+                  description: 'description',
+                  namespace: 'namespace',
+                  version: 'version'
+               },
+               name: ['name of measure'],
+               description: 'description'
+            },
+            evaluationMethod: {
+               type: 'evaluation method type - enumerated',
+               dateTime: '2019-06-11T08:35:00',
+               methodDescription: 'evaluation method description',
+               evaluationProcedure: { title: 'EP Title' },
+               referenceDocument: [ ],
+               evaluationMethodType: 'DQ_EvaluationMethodTypeCode',
+               deductiveSource: 'deductive source',
+               samplingScheme: 'sampling scheme',
+               lotDescription: 'lot description',
+               samplingRatio: 'sampling ratio'
+            },
+            quantitativeResult: [
+               {
+                  dateTime: "2019-06-11T09:00:00",
+                  scope: build_scope_full,
+                  value: [9.99, 9.0],
+                  valueUnits: "value units",
+                  valueRecordType: "value record type"
+               }
+            ],
+            # derivedElementReports: [],
+            # relatedElementReports: []
+         }
+      ]
+
+      return hDataQuality
+   end
    
    def build_geoJson
       aGeoJson = []
@@ -410,6 +470,7 @@ class MdJsonHashWriter
       hMetadata[:additionalDocumentation] << build_additionalDocumentation
       hMetadata[:funding] << build_funding
       hMetadata[:funding] << build_funding
+      hMetadata[:dataQuality] << build_dataQuality
       removeEmptyObjects(hMetadata)
       return hMetadata
    end
@@ -640,6 +701,21 @@ class MdJsonHashWriter
       hSpaceRep << {georectifiedRepresentation: build_georectifiedRepresentation}
       hSpaceRep << {georeferenceableRepresentation: build_georeferenceableRepresentation}
       return hSpaceRep
+   end
+
+   def build_spatialRepresentation_with_scope
+
+      hScope = scope
+      hScope[:scopeExtent] << extent
+      hScope[:scopeDescription] << scopeDescription
+
+      hGridRepresentation = build_gridRepresentation
+      hGridRepresentation[:scope] << hScope
+
+      aSpaceRep = []
+      aSpaceRep << { gridRepresentation: hGridRepresentation}
+
+      aSpaceRep
    end
 
    def build_spatialResolution(type)
