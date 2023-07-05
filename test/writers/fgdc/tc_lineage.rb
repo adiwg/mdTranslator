@@ -39,6 +39,8 @@ class TestWriterFgdcLineage < TestWriterFGDCParent
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
 
+   mdHash[:metadata][:dataQuality] << TDClass.dataQuality
+
    hCitation1 = TDClass.build_citation('method citation one', 'CID001')
    hCitation2 = TDClass.build_citation('method citation two', 'CID001')
    hLineage[:citation] = []

@@ -12,6 +12,7 @@ require_relative 'module_distribution'
 require_relative 'module_associatedResource'
 require_relative 'module_additionalDocumentation'
 require_relative 'module_funding'
+require_relative 'module_dataQuality'
 
 module ADIWG
    module Mdtranslator
@@ -113,6 +114,16 @@ module ADIWG
                         hReturn = Funding.unpack(item, responseObj)
                         unless hReturn.nil?
                            intMetadata[:funding] << hReturn
+                        end
+                     end
+                  end
+
+                  if hMetadata.has_key?('dataQuality')
+                     aItems = hMetadata['dataQuality']
+                     aItems.each do |item|
+                        hReturn = DataQuality.unpack(item, responseObj)
+                        unless hReturn.nil?
+                           intMetadata[:dataQuality] << hReturn
                         end
                      end
                   end

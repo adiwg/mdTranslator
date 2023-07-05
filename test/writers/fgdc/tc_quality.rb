@@ -20,6 +20,9 @@ class TestWriterFgdcQuality < TestWriterFGDCParent
    hLineage = TDClass.lineage
    mdHash[:metadata][:resourceLineage] = []
    mdHash[:metadata][:resourceLineage] << hLineage
+   mdHash[:metadata][:dataQuality] << TDClass.dataQuality
+
+   # require 'pry'; binding.pry
 
    @@mdHash = mdHash
 

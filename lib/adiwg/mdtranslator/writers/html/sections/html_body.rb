@@ -12,6 +12,7 @@
 require_relative 'html_contact'
 require_relative 'html_metadataInfo'
 require_relative 'html_resourceInfo'
+require_relative 'html_dataQuality'
 require_relative 'html_lineage'
 require_relative 'html_distribution'
 require_relative 'html_associatedResource'
@@ -38,6 +39,7 @@ module ADIWG
                      metaInfoClass = Html_MetadataInfo.new(@html)
                      contactClass = Html_Contact.new(@html)
                      resourceClass = Html_ResourceInfo.new(@html)
+                     dataQualityClass = Html_DataQuality.new(@html)
                      lineageClass = Html_Lineage.new(@html)
                      distributionClass = Html_Distribution.new(@html)
                      associatedClass = Html_AssociatedResource.new(@html)
@@ -51,6 +53,7 @@ module ADIWG
                      aContacts = intObj[:contacts]
                      hMetaInfo = intObj[:metadata][:metadataInfo]
                      hResourceInfo = intObj[:metadata][:resourceInfo]
+                     aDataQuality = intObj[:metadata][:dataQuality]
                      aLineage = intObj[:metadata][:lineageInfo]
                      aDistribution = intObj[:metadata][:distributorInfo]
                      aAssociated = intObj[:metadata][:associatedResources]
@@ -158,6 +161,17 @@ module ADIWG
                               resourceClass.writeHtml(hResourceInfo)
                            end
                            @html.hr
+                        end
+                     end
+
+                     unless aDataQuality.nil? || aDataQuality.empty?
+                        @html.details do
+                           @html.summary('Data Quality', {'id' => 'body-dataQuality', 'class' => 'h2'})
+                           aDataQuality.each do |hDataQuality|
+                              @html.section(:class => 'block') do
+                                 dataQualityClass.writeHtml(hDataQuality)
+                              end
+                           end
                         end
                      end
 

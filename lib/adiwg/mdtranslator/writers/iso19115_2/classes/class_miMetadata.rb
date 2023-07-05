@@ -110,7 +110,7 @@ module ADIWG
                   # schema locations
                   # set to 'remoteSchema' before publishing
                   localSchema = 'C:\Users\StanSmith\Projects\ISO\19115\NOAA\schema.xsd'
-                  remoteSchema = 'ftp://ftp.ncddc.noaa.gov/pub/Metadata/Online_ISO_Training/Intro_to_ISO/schemas/ISObio/schema.xsd'
+                  remoteSchema = 'https://data.noaa.gov/resources/iso19139/schema.xsd'
 
                   # MI_Metadata
                   @xml.tag!('gmi:MI_Metadata',
@@ -124,6 +124,9 @@ module ADIWG
                              'xmlns:gmx' => 'http://www.isotc211.org/2005/gmx',
                              'xmlns:gfc' => 'http://www.isotc211.org/2005/gfc',
                              'xmlns:srv' => 'http://www.isotc211.org/2005/srv',
+                             'xmlns:mdb' => 'http://www.isotc211.org/2005/mdb',
+                             'xmlns:mdq' => 'http://www.isotc211.org/2005/mdq',
+                             'xmlns:mcc' => 'http://www.isotc211.org/2005/mcc',
                              'xmlns:xlink' => 'http://www.w3.org/1999/xlink',
                              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
                              'xsi:schemaLocation' => "http://www.isotc211.org/2005/gmi #{remoteSchema}"}) do
@@ -371,6 +374,18 @@ module ADIWG
                      end
                      if aDQInfo.empty? && @hResponseObj[:writerShowTags]
                         @xml.tag!('gmd:dataQualityInfo')
+                     end
+
+                     aDataQuality = hMetadata[:dataQuality]
+                     aDataQuality.each do |hDataQuality|
+                        unless hDataQuality.empty?
+                           @xml.tag!('mdb:dataQualityInfo') do 
+                              dqClass.writeXML(hDataQuality, dataQualityType: 'mdb')
+                           end
+                        end
+                        if aDataQuality.empty? && @hResponseObj[:writeShowTags]
+                           @xml.tag('mdb:dataQualityInfo')
+                        end
                      end
 
                      # metadata information - metadata constraints {}

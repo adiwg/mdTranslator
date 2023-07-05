@@ -10,7 +10,7 @@ require_relative 'fgdc_test_parent'
 
 class TestReaderFgdcQuality < TestReaderFGDCParent
 
-   @@xDoc = TestReaderFGDCParent.get_XML('lineage.xml')
+   @@xDoc = TestReaderFGDCParent.get_XML('dataQuality.xml')
    @@NameSpace = ADIWG::Mdtranslator::Readers::Fgdc::Quality
 
    def test_quality_complete
@@ -20,14 +20,18 @@ class TestReaderFgdcQuality < TestReaderFGDCParent
       hResponse = Marshal::load(Marshal.dump(@@hResponseObj))
       xIn = @@xDoc.xpath('./metadata/dataqual')
 
-      hMetadata = @@NameSpace.unpack(xIn, intObj[:metadata], hResponse)
+      hDataQuality = @@NameSpace.unpack(xIn, intObj[:metadata], intObj[:metadata][:dataQuality], hResponse)
 
-      refute_nil hMetadata
-      assert_equal 1, hMetadata[:lineageInfo].length
+      refute_nil hDataQuality
+      assert_equal 1, intObj[:metadata][:lineageInfo].length
+
+      # require 'pry'; binding.pry
+
+      horizpa = hDataQuality[:report].find{ |h| h.dig(:qualityMeasure, :name) == ['Horizontal Positional Accuracy Report'] }
+      assert_equal 'GPS Unit', horizpa.dig(:evaluationMethod, :methodDescription)
+      assert_equal 'Instrument parameters', horizpa.dig(:qualityMeasure, :description)
 
       assert hResponse[:readerExecutionPass]
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact address is missing'
-      assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: contact voice phone is missing'
       assert_includes hResponse[:readerExecutionMessages], 'WARNING: FGDC reader: lineage procedure date is missing'
 
    end

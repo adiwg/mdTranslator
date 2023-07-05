@@ -72,7 +72,7 @@ class TestWriter191152Lineage < TestWriter191152Parent
       assert hReturn[2]
       assert_equal 1, hReturn[3].length
       assert_includes hReturn[3],
-                      'WARNING: ISO-19115-2 writer: data quality scope is missing: CONTEXT is data quality - lineage'
+                      'WARNING: ISO-19115-2 writer: data quality scope is missing: CONTEXT is data quality'
    end
 
 end
