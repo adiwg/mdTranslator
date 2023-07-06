@@ -30,3 +30,37 @@ Or install it yourself as:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## How to test changes during development
+
+These instructions apply to Ruby 2.7.0 and assume you have bundle installed with it.
+
+After cloning the repository, install dependencies:
+
+`bundle` or `bundle install` (same thing)
+
+Then run from the command line:
+
+`bundle exec mdtranslator help`
+
+Example:
+
+This will take the input file `input.json` formatted as mdJson and will translate it into sbJson. This output is displayed on the console, simply redirect to a file to save the output.
+
+`bundle exec mdtranlator tranlate input.json -r mdJson -w sbJson`
+
+### Readers
+
+1. mdJson
+2. sbJson
+3. fgdc
+
+### Writers
+
+1. iso19110
+2. iso19115_1
+3. iso19115_2
+4. mdJson
+5. sbJson
+6. dcat_us
