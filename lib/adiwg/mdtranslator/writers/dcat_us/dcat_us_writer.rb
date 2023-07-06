@@ -1,4 +1,4 @@
-# DCAT_US 1.0 writer
+# dcat_us 1.0 writer
 
 # History:
 #  Johnathan Aspinwall 2023-06-22 original script
@@ -10,9 +10,10 @@ require_relative 'sections/dcat_us_dcat_us'
 module ADIWG
    module Mdtranslator
       module Writers
-         module DCAT_US
+         module Dcat_us
 
             def self.startWriter(intObj, responseObj)
+               # set the contact array for use by the writer
                @contacts = intObj[:contacts]
 
                # set output flag for null properties
@@ -20,10 +21,10 @@ module ADIWG
 
                # set the format of the output file based on the writer specified
                responseObj[:writerOutputFormat] = 'json'
-               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::DCAT_US::VERSION
+               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Dcat_us::VERSION
 
-               # write the DCAT_US metadata record
-               metadata = DCAT_US.build(intObj, responseObj)
+               # write the dcat_us metadata record
+               metadata = Dcat_us.build(intObj, responseObj)
 
                # set writer pass to true if no messages
                # false or warning state will be set by writer code

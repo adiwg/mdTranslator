@@ -1,10 +1,10 @@
-# DCAT-US version history
+# dcat_us version history
 #  Johnathan Aspinwall 2023-06-22 created for mdJson/mdTranslator 2.0
 
 module ADIWG
    module Mdtranslator
       module Writers
-         module DCAT_US
+         module Dcat_us
 
             VERSION = '1.0.0'
 
