@@ -334,6 +334,19 @@
           </cit:partyIdentifier>
           <cit:logo/>
           <cit:individual/>
+          <cit:partyIdentifier>
+            <mcc:MD_Identifier>
+              <mcc:authority/>
+              <mcc:code>
+                <gco:CharacterString>0000-00002</gco:CharacterString>
+              </mcc:code>
+              <mcc:codeSpace>
+                <gco:CharacterString>ORCID</gco:CharacterString>
+              </mcc:codeSpace>
+              <mcc:version/>
+              <mcc:description/>
+            </mcc:MD_Identifier>
+          </cit:partyIdentifier>
         </cit:CI_Organisation>
       </cit:party>
     </cit:CI_Responsibility>

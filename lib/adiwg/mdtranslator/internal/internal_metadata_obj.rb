@@ -142,7 +142,8 @@ class InternalMetadata
          distributorInfo: [],
          associatedResources: [],
          additionalDocuments: [],
-         funding: []
+         funding: [],
+         dataQuality: []
       }
    end
 
@@ -635,7 +636,7 @@ class InternalMetadata
       {
          scope: {},
          standaloneReport: {},
-         reports: []
+         report: []
       }
    end
 
@@ -646,6 +647,18 @@ class InternalMetadata
          specification: {},
          explanation: nil,
          pass: false
+      }
+   end
+
+   def newCoverageResult
+      {
+         dateTime: nil,
+         scope: {},
+         spatialRepresentationType: {},
+         spatialRepresentation: {},
+         resultContent: [],
+         resourceFormat: {},
+         resultFile: {}
       }
    end
 
@@ -661,14 +674,14 @@ class InternalMetadata
       {
          type: nil,
          dateTime: [],
-         description: nil,
+         methodDescription: nil,
          evaluationProcedure: {},
          referenceDocuments: [],
          evaluationMethodType: nil,
-         deductiveSource: 'deductive source',
-         samplingScheme: 'sampling scheme',
-         lotDescription: 'lot description',
-         samplingRatio: 'sampling ratio'
+         deductiveSource: nil,
+         samplingScheme: nil,
+         lotDescription: nil,
+         samplingRatio: nil
       }
    end
 
@@ -690,18 +703,17 @@ class InternalMetadata
       }
    end
 
-   def newReport
+   def newDataQualityReport
       {
-         type: nil,
-         dateTime: [],
-         standaloneQualityReportDetails: nil,
-         qualityMeasure: {},
+         # standaloneQualityReportDetails: nil,
+         conformanceResult: [],
+         coverageResult: [],
+         # derivedElementReport: [],
+         descriptiveResult: [],
          evaluationMethod: {},
-         quantitativeResults: [],
-         descriptiveResults: [],
-         conformanceResults: [],
-         derivedElementReports: [],
-         relatedElementReports: []
+         qualityMeasure: {},
+         quantitativeResult: [],
+         # relatedElementReport: []
       }
    end
 
