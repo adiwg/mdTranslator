@@ -120,7 +120,7 @@ module ADIWG
                         end
 
                         # bounding box bio (altunit) - altitude unit of measure
-                        hBbox[:unitsOfAltitude] = xAltitude.xpath('./altunit').text
+                        hBbox[:unitsOfAltitude] = xAltitude.xpath('./altunits').text
 
                      end
 

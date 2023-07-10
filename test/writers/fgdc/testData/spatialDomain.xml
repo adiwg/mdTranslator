@@ -34,7 +34,7 @@
         <boundalt>
           <altmin>250.0</altmin>
           <altmax>250.0</altmax>
-          <altunit>meters</altunit>
+          <altunits>meters</altunits>
         </boundalt>
       </bounding>
       <dsgpoly>
