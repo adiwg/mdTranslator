@@ -33,7 +33,7 @@ module ADIWG
                Jbuilder.new do |json|
                   json.set!('@context', 'http://www.w3.org/ns/dcat#')
                   json.set!('@id', metaId)
-                  json.set!('@type', 'dcat:Catalog')
+                  json.set!('@type', 'dcat:Dataset')
                   json.set!('title', metadataInfo[:metadataTitle])
                   json.conformsTo 'http://project-open-data.cio.gov/v1.1/schema'
                   json.describedBy 'http://project-open-data.cio.gov/v1.1/schema/catalog.json'
