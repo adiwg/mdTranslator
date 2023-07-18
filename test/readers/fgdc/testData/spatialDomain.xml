@@ -10,7 +10,7 @@
         <boundalt>
           <altmin>100.0</altmin>
           <altmax>1000.0</altmax>
-          <altunit>meters</altunit>
+          <altunits>meters</altunits>
         </boundalt>
       </bounding>
       <dsgpoly>

@@ -135,10 +135,10 @@ module ADIWG
 
                                     # altitude bounding (altunit) - units of altitude
                                     unless hBBox[:unitsOfAltitude].nil?
-                                       @xml.tag!('altunit', hBBox[:unitsOfAltitude])
+                                       @xml.tag!('altunits', hBBox[:unitsOfAltitude])
                                     end
                                     if hBBox[:unitsOfAltitude].nil?  && @hResponseObj[:writerShowTags]
-                                       @xml.tag!('altunit')
+                                       @xml.tag!('altunits')
                                     end
 
                                  end
