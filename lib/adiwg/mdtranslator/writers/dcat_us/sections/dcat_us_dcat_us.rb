@@ -44,17 +44,25 @@ module ADIWG
                   json.set!('dcat:bureauCode', 'ToDo')
                   json.set!('dcat:programCode', 'ToDo')
                   json.set!('dcat:distribution', distribution)
+
                   # json.set!('dcat:license', metadataInfo[:metadataUseConstraints][0][:useLimitation])
                   # json.set!('dcat:rights', metadataInfo[:metadataUseConstraints][0][:useLimitation])
-                  # json.set!('dcat:accessURL', metadataInfo[:metadataOnlineOptions][0][:olResURI])
                   # json.set!('dcat:spatial', metadataInfo[:metadataExtents][0][:geographicExtents][0][:geographicExtent])
                   # json.set!('dcat:temporal', metadataInfo[:metadataExtents][0][:temporalExtents][0][:timePeriod])
+
                   # json.set!('dcat:issued', metadataInfo[:metadataDates][0][:date])
                   # json.set!('dcat:accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
                   # json.set!('dcat:language', metadataInfo[:metadataLocales][0][:languageCode])
+                  # json.set!('dcat:dataQuality', metadataInfo[:metadataMaintenance][:maintenanceNote])
                   # json.set!('dcat:theme', metadataInfo[:metadataTopics][0][:topicCategory])
                   # json.set!('dcat:references', metadataInfo[:metadataCitation])
                   # json.set!('dcat:landingPage', metadataInfo[:metadataOnlineOptions][0][:olResURI])
+                  # json.set!('dcat:isPartOf', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
+                  # json.set!('dcat:systemOfRecords', metadataInfo[:metadataHierarchy][0][:parentMetadata][:metadataId])
+                  # json.set!('dcat:primaryITInvestmentUII', metadataInfo[:metadataId])
+                  # json.set!('dcat:describedBy', metadataInfo[:metadataOnlineOptions][0][:olResURI])
+                  # json.set!('dcat:describedByType', metadataInfo[:metadataOnlineOptions][0][:olResProtocol])
+                  # json.set!('dcat:conformsTo', metadataInfo[:metadataStandards][0][:standardName])
                end
             end
          end
