@@ -7,14 +7,14 @@ module ADIWG
    module Mdtranslator
       module Writers
          module Dcat_us
-            module Id
+            module Identifier
 
                def self.build(intObj)
                   metadataInfo = intObj[:metadata][:metadataInfo]
-                  hMetadataId = metadataInfo[:metadataIdentifier]
-                  unless hMetadataId.empty?
-                     unless hMetadataId[:identifier].nil?
-                        return hMetadataId[:identifier]
+                  metadataIdentifier = metadataInfo[:metadataIdentifier]
+                  unless metadataIdentifier.empty?
+                     unless metadataIdentifier[:identifier].nil?
+                        return metadataIdentifier[:identifier]
                      end
                   end
                   return nil

@@ -1,0 +1,38 @@
+DCAT-US - mdTranslator
+
+Always (always required)
+   Title | dcat:title | citation.title
+   Description | dcat:description | citation.abstract
+   Tags | dcat:keyword | [resourceInfo.keywords *flatten*]
+   Last Update | dcat:modified | citation.dates.[last].date
+   Publisher | dcat:publisher{name} | **
+   Publisher Parent Organization | dcat:publisher{subOrganizationOf} | **
+   Contact Name | dcat:contactPoint{fn} | **
+   Contact Email | dcat:contactPoint{email} | **
+   Unique Identifier | dcat:identifier | metadataInfo.metadataIdentifier.identifier
+   Public Access Level | dcat:accessLevel | 'public'
+   Bureau Code | dcat:bureauCode | **
+   Program Code | dcat:programCode | **
+
+If-Applicable (required if it exists)
+   Distribution | dcat:distribution | [citation.onlineResources[].uri *object*]
+   License | dcat:license | **
+   Rights | dcat:rights | **
+   Endpoint | *removed* | *ignored*
+   Spatial | dcat:spatial | **
+   Temporal | dcat:temporal | **
+
+No (not required)
+   Release Date | dcat:issued | **
+   Frequency |  dcat:accrualPeriodicity | **
+   Language | dcat:language | **
+   Data Quality | dcat:dataQuality | **
+   Category | dcat:theme | **
+   Related Documents | dcat:references | **
+   Homepage URL | dcat:landingPage | **
+   Collection | dcat:isPartOf | **
+   System of Records | dcat:systemOfRecords | **
+   Primary IT Investment | dcat:primaryITInvestmentUII | **
+   Data Dictionary | dcat:describedBy | **
+   Data Dictionary Type | dcat:describedByType | **
+   Data Standard | dcat:conformsTo | **

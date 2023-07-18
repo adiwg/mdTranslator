@@ -48,7 +48,9 @@ Example:
 
 This will take the input file `input.json` formatted as mdJson and will translate it into sbJson. This output is displayed on the console, simply redirect to a file to save the output.
 
-`bundle exec mdtranlator tranlate input.json -r mdJson -w sbJson`
+`bundle exec mdtranslator translate input.json -r mdJson -w sbJson`
+
+`bundle exec mdtranslator translate example_mdJson.json -r mdJson -w dcat_us`
 
 ### Readers
 
