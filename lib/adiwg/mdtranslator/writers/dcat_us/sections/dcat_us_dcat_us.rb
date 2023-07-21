@@ -9,6 +9,8 @@ require_relative 'dcat_us_publisher'
 require_relative 'dcat_us_contact_point'
 require_relative 'dcat_us_identifier'
 require_relative 'dcat_us_distribution'
+require_relative 'dcat_us_spatial'
+require_relative 'dcat_us_temporal'
 
 module ADIWG
    module Mdtranslator
@@ -28,6 +30,11 @@ module ADIWG
                contactPoint = ContactPoint.build(intObj)
                identifier = Identifier.build(intObj)
                distribution = Distribution.build(intObj)
+               spatial = Spatial.build(intObj)
+               temporal = Temporal.build(intObj)
+               puts 'temporal'
+               puts temporal
+               puts
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -47,8 +54,8 @@ module ADIWG
 
                   # json.set!('dcat:license', metadataInfo[:metadataUseConstraints][0][:useLimitation])
                   # json.set!('dcat:rights', metadataInfo[:metadataUseConstraints][0][:useLimitation])
-                  # json.set!('dcat:spatial', metadataInfo[:metadataExtents][0][:geographicExtents][0][:geographicExtent])
-                  # json.set!('dcat:temporal', metadataInfo[:metadataExtents][0][:temporalExtents][0][:timePeriod])
+                  json.set!('dcat:spatial', spatial)
+                  json.set!('dcat:temporal', temporal)
 
                   # json.set!('dcat:issued', metadataInfo[:metadataDates][0][:date])
                   # json.set!('dcat:accrualPeriodicity', metadataInfo[:metadataMaintenance][:maintenanceFrequency])
