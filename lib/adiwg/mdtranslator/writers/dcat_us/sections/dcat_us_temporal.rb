@@ -15,9 +15,6 @@ module ADIWG
                   temporalExtent = extent[:temporalExtents][0]
                   timeInstant = temporalExtent[:timeInstant]
                   dateTime = timeInstant[:timeInstant][:dateTime]
-                  puts 'dateTime'
-                  puts dateTime
-                  puts
                   return dateTime
                end           
 
