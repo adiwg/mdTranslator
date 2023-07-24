@@ -32,9 +32,6 @@ module ADIWG
                distribution = Distribution.build(intObj)
                spatial = Spatial.build(intObj)
                temporal = Temporal.build(intObj)
-               puts 'temporal'
-               puts temporal
-               puts
 
                @Namespace = ADIWG::Mdtranslator::Writers::Dcat_us
 
@@ -52,7 +49,7 @@ module ADIWG
                   json.set!('dcat:programCode', 'ToDo')
                   json.set!('dcat:distribution', distribution)
 
-                  # json.set!('dcat:license', metadataInfo[:metadataUseConstraints][0][:useLimitation])
+                  json.set!('dcat:license', 'https://creativecommons.org/publicdomain/zero/1.0/')
                   # json.set!('dcat:rights', metadataInfo[:metadataUseConstraints][0][:useLimitation])
                   json.set!('dcat:spatial', spatial)
                   json.set!('dcat:temporal', temporal)
