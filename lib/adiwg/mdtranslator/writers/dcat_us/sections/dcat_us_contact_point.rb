@@ -12,11 +12,13 @@ module ADIWG
             module ContactPoint
 
                def self.build(intObj)
-                  metadataInfo = intObj[:metadata][:metadataInfo]
-                  metadataContacts = metadataInfo[:metadataContacts]
+                  resourceInfo = intObj[:metadata][:resourceInfo]
+                  pointOfContact = resourceInfo[:pointOfContacts][0]
+                  contactId = pointOfContact[:parties][0][:contactId]
 
-                  fn = "ToDo"
-                  hasEmail = "ToDo"
+                  contact = Dcat_us.get_contact_by_id(contactId)
+                  fn = contact[:name]
+                  hasEmail = contact[:eMailList][0]
 
                   Jbuilder.new do |json|
                      json.set!('@type', 'vcard:Contact')
