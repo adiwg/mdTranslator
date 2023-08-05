@@ -11,6 +11,7 @@ require_relative 'dcat_us_identifier'
 require_relative 'dcat_us_distribution'
 require_relative 'dcat_us_spatial'
 require_relative 'dcat_us_temporal'
+require_relative 'dcat_us_modified'
 
 module ADIWG
    module Mdtranslator
@@ -25,7 +26,7 @@ module ADIWG
                title = citation[:title]
                description = citation[:abstract]
                keyword = Keyword.build(intObj)
-               modified = citation[:dates][0][:date] # ToDo: create Date section
+               modified = Modified.build(intObj)
                publisher = Publisher.build(intObj)
                contactPoint = ContactPoint.build(intObj)
                identifier = Identifier.build(intObj)
