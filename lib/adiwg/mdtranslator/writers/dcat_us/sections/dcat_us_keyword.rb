@@ -10,15 +10,11 @@ module ADIWG
             module Keyword
  
                def self.build(intObj)
-                  resourceInfo = intObj[:metadata][:resourceInfo]
-                  keywords = resourceInfo[:keywords]
-
-                  unless keywords.empty?
-                     return keywords.flat_map { |keyword| keyword[:keywords].map { |kw| kw[:keyword] } }
-                  end
-                     
-                  return []
-               end
+                  resourceInfo = intObj.dig(:metadata, :resourceInfo)
+                  keywords = resourceInfo&.dig(:keywords)
+                
+                  return keywords&.flat_map { |keyword| keyword[:keywords]&.map { |kw| kw[:keyword] } } || []
+                end                
                 
             end
          end
