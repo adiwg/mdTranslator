@@ -12,19 +12,28 @@ module ADIWG
             module Publisher
 
                def self.build(intObj)
-                  metadataInfo = intObj[:metadata][:metadataInfo]
-                  metadataContacts = metadataInfo[:metadataContacts]
+                  metadata = intObj.dig(:metadata)
+                  responsibleParties = metadata&.dig(:resourceInfo, :citation, :responsibleParties)
+                  distributorInfo = metadata&.dig(:distributorInfo)
 
-                  name = "ToDo"
-                  subOrganizationOf = "ToDo"
+                  publisher = responsibleParties&.detect { |party| party[:roleName] == 'publisher' } || distributorInfo&.first&.dig(:distributor)&.first&.dig(:contact)
+
+                  name = publisher&.dig(:parties)&.first&.dig(:contactName)
+                  contactType = publisher&.dig(:parties)&.first&.dig(:contactType)
+
+                  contactType_to_dcatType = {
+                     'organization' => 'org:Organization',
+                     'individual' => 'org:Individual'
+                  }
+
+                  type = contactType_to_dcatType[contactType]
 
                   Jbuilder.new do |json|
-                     json.set!('@type', 'org:Organization')
+                     json.set!('@type', type)
                      json.set!('name', name)
-                     json.set!('subOrganizationOf', subOrganizationOf)
                   end
-
                end
+
             end
          end
       end
