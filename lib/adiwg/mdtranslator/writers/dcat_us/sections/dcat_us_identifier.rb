@@ -10,15 +10,8 @@ module ADIWG
             module Identifier
 
                def self.build(intObj)
-                  metadataInfo = intObj[:metadata][:metadataInfo]
-                  metadataIdentifier = metadataInfo[:metadataIdentifier]
-                  unless metadataIdentifier.empty?
-                     unless metadataIdentifier[:identifier].nil?
-                        return metadataIdentifier[:identifier]
-                     end
-                  end
-                  return nil
-               end
+                  intObj.dig(:metadata, :resourceInfo, :citation, :onlineResource, :uri)
+                end                
                
             end
          end
