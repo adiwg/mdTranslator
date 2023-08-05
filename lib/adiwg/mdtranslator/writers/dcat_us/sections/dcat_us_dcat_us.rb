@@ -12,6 +12,7 @@ require_relative 'dcat_us_distribution'
 require_relative 'dcat_us_spatial'
 require_relative 'dcat_us_temporal'
 require_relative 'dcat_us_modified'
+require_relative 'dcat_us_access_level'
 
 module ADIWG
    module Mdtranslator
@@ -29,6 +30,7 @@ module ADIWG
                modified = Modified.build(intObj)
                publisher = Publisher.build(intObj)
                contactPoint = ContactPoint.build(intObj)
+               accessLevel = AccessLevel.build(intObj)
                identifier = Identifier.build(intObj)
                distribution = Distribution.build(intObj)
                spatial = Spatial.build(intObj)
@@ -45,7 +47,7 @@ module ADIWG
                   json.set!('dcat:publisher', publisher) 
                   json.set!('dcat:contactPoint', contactPoint)
                   json.set!('dcat:identifier', identifier)
-                  json.set!('dcat:accessLevel', 'public')
+                  json.set!('dcat:accessLevel', accessLevel)
                   json.set!('dcat:bureauCode', 'ToDo')
                   json.set!('dcat:programCode', 'ToDo')
                   json.set!('dcat:distribution', distribution)
