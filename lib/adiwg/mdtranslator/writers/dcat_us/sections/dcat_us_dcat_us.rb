@@ -48,8 +48,8 @@ module ADIWG
                   json.set!('dcat:contactPoint', contactPoint)
                   json.set!('dcat:identifier', identifier)
                   json.set!('dcat:accessLevel', accessLevel)
-                  json.set!('dcat:bureauCode', 'ToDo')
-                  json.set!('dcat:programCode', 'ToDo')
+                  # json.set!('dcat:bureauCode', 'ToDo')
+                  # json.set!('dcat:programCode', 'ToDo')
                   json.set!('dcat:distribution', distribution)
 
                   json.set!('dcat:license', 'https://creativecommons.org/publicdomain/zero/1.0/')

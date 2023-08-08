@@ -11,8 +11,8 @@ module ADIWG
 
                def self.build(intObj)
                   intObj.dig(:metadata, :resourceInfo, :citation, :onlineResource, :uri)
-                end                
-               
+               end                
+
             end
          end
       end
