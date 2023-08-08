@@ -4,8 +4,9 @@ DCAT-US - mdTranslator
 
 ### Always (always required)
 
-| Title | dcat:title | citation.title |
+| Field Name | DCAT Name | mdJson Source |
 | --- | --- | --- |
+| Title | dcat:title | citation.title |
 | Description | dcat:description | citation.abstract |
 | Tags | dcat:keyword | [resourceInfo.keywords *flatten*] **thesauri dropped** |
 | Last Update | dcat:modified | citation.dates.[most recent].date |
