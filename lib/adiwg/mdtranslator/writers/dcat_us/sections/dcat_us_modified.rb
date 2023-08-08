@@ -14,10 +14,11 @@ module ADIWG
                   citation = resourceInfo[:citation]
                   dates = citation[:dates]
                   lastDateIndex = dates.length - 1
+                  # ToDo: mostRecentDateIndex = find most recent date
                   modified = dates[lastDateIndex][:date]
                   return modified
                end
-               
+
             end
          end
       end
