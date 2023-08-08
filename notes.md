@@ -10,14 +10,14 @@ DCAT-US - mdTranslator
 | Description | dcat:description | citation.abstract |
 | Tags | dcat:keyword | [resourceInfo.keywords *flatten*] **thesauri dropped** |
 | Last Update | dcat:modified | citation.dates.[most recent].date |
-| Publisher | dcat:publisher{name} | if citation.responsibleParty [any] role="publisher" then contactId -> contact.name, else if resourceDistribution.distributor.contact NOT NULL then [first contact] contactId -> contact.name <br>*Does the publisher need to be an organization?* |
-| Publisher Parent Organization | dcat:publisher{subOrganizationOf} | if citation.responsibleParty[any].role = "publisher" and contactId -> memberOfOrganization[0] NOT NULL and isOrganization IS TRUE contactId -> contact.name else if resourceDistribution.distributor.contact NOT NULL and contactId -> memberOfOrganization[0] NOT NULL and isOrganization IS TRUE contactId -> contact.name |
+| Publisher | dcat:publisher{name} | if citation.responsibleParty.[any].role = "publisher" then <br>contactId -> contact.name where isOrganization IS TRUE <br>else if resourceDistribution.distributor.contact NOT NULL then <BR>[first contact] contactId -> contact.name where isOrganization IS TRUE <br> |
+| Publisher Parent Organization | dcat:publisher{subOrganizationOf} | if citation.responsibleParty[any].role = "publisher" and contactId -> memberOfOrganization[0] NOT NULL and isOrganization IS TRUE <br> contactId -> contact.name <br>else if resourceDistribution.distributor.contact NOT NULL and contactId -> memberOfOrganization[0] NOT NULL and isOrganization IS TRUE <br>contactId -> contact.name |
 | Contact Name | dcat:contactPoint{fn} | resourceInfo.pointOfContact.parties[0].contactId -> contact.name |
 | Contact Email | dcat:contactPoint{email} | resourceInfo.pointOfContact.parties[0].contactId -> contact.eMailList[0] |
-| Unique Identifier | dcat:identifier | if resourceInfo.citation.identifier.namespace = 'DOI' then resourceInfo.citation.onlineResource.uri else if 'DOI' within resourceInfo.citation.onlineResource.uri resourceInfo.citation.onlineResource.uri |
-| Public Access Level | dcat:accessLevel | [extend codelist MD_RestrictionCode to include 'public',  'restricted  public', 'non-public'] if resourceInfo.constraints.legal[any] one of {'public', 'restricted public', 'non-public'} then resourceInfo.constraints.legal[first] |
-| Bureau Code | dcat:bureauCode | [extend role codelist to include 'bureau'] [extend namespace codelist to include 'bureauCode'] for each resourceInfo.citation.responsibleParty[any] role = 'bureau' contactId -> contact.identifier (identifier must conform to *https://resources.data.gov/schemas/dcat-us/v1.1/omb_bureau_codes.csv*) |
-| Program Code | dcat:programCode | [add new element of program resourceInfo.programCode] [add new codelist of programCode] resourceInfo.program[0,n] |
+| Unique Identifier | dcat:identifier | if resourceInfo.citation.identifier.namespace = "DOI" then resourceInfo.citation.onlineResource.uri <br>else if "DOI" within resourceInfo.citation.onlineResource.uri then <br>resourceInfo.citation.onlineResource.uri |
+| Public Access Level | dcat:accessLevel | [extend codelist MD_RestrictionCode to include "public",  "restricted  public", "non-public"] <br>if resourceInfo.constraints.legal[any] one of {"public", "restricted public", "non-public"} then <br>resourceInfo.constraints.legal[first] |
+| Bureau Code | dcat:bureauCode | [extend role codelist to include "bureau"] [extend namespace codelist to include "bureauCode"] <br>for each resourceInfo.citation.responsibleParty[any] role = "bureau" <br>contactId -> contact.identifier (identifier must conform to *https://resources.data.gov/schemas/dcat-us/v1.1/omb_bureau_codes.csv*) |
+| Program Code | dcat:programCode | [add new element of program resourceInfo.programCode] [add new codelist of programCode] <br>resourceInfo.program[0,n] |
 
 ### If-Applicable (required if it exists)
 
