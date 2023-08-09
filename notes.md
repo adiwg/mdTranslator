@@ -25,8 +25,8 @@ DCAT-US - mdTranslator
 | --- | --- | --- |
 | Distribution | dcat:distribution | if resourceDistribution [0] and for each resourceDistribution [0, n] where resourceDistribution.distributor.transferOption.onlineOption.uri NOT NULL then |
 | - Description | dcat:distribution.description | resourceDistribution.description |
-| - AccessURL | dcat:distribution.accessURL | if citation.onlineResources[].uri [has 'doi' in path] then dcat:distribution.accessURL = resourceDistribution.distributor.transferOption.onlineOption.uri [only one access URL allowed, take first one] |
-| - DownloadURL | dcat.distribution.downloadURL | if citation.onlineResources[].uri [does not have 'doi' in path] then dcat:distribution.downloadURL = resourceDistribution.distributor.transferOption.onlineOption.uri [only one download URL allowed, take first one] |
+| - AccessURL | dcat:distribution.accessURL | if citation.onlineResources [first occurence].uri [path ends in ".html"] then <br> resourceDistribution.distributor.transferOption.onlineOption.uri |
+| - DownloadURL | dcat.distribution.downloadURL | if citation.onlineResources [first occurence].uri [path does not end in ".html"] then <br> resourceDistribution.distributor.transferOption.onlineOption.uri |
 | - MediaType | dcat:distribution.mediaType | add code of ZIP to mediumName codelist; mediumName is not used in mdJSON schema, needs research, add to schema, not clear where it goes in ISO |
 | - Title | dcat:distribution.title | resourceDistribution.distributor.transferOption.onlineOption.name |
 | License | dcat:license | 'https://creativecommons.org/publicdomain/zero/1.0/' [shall we default or read from constraint.reference.citation.uri?]<br>'http://www.usa.gov/publicdomain/label/1.0/'<br>'http://opendatacommons.org/licenses/pddl/1.0/' |
