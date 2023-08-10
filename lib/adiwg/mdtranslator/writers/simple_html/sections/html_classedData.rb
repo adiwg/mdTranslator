@@ -9,7 +9,7 @@ require_relative 'html_classedDataItem'
 module ADIWG
     module Mdtranslator
         module Writers
-            module SimpleHtml
+            module Simple_html
 
                 class MdHtmlClassedData
                     def initialize(html)

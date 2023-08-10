@@ -3,7 +3,7 @@ require_relative 'html_citation'
 module ADIWG
   module Mdtranslator
     module Writers
-      SimpleHtml
+      module Simple_html
         class Html_DataQuality
           def initialize(html)
             @html = html

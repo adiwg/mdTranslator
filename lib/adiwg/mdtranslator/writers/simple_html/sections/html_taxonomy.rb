@@ -14,7 +14,7 @@ require_relative 'html_taxonomyClass'
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             class Html_Taxonomy
 

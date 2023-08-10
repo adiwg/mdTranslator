@@ -13,13 +13,13 @@ require_relative 'sections/html_document'
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             def self.startWriter(intObj, responseObj)
 
                # set the format and version of the output file
                responseObj[:writerOutputFormat] = 'html'
-               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Html::VERSION
+               responseObj[:writerVersion] = ADIWG::Mdtranslator::Writers::Simple_html::VERSION
 
                # create new HTML document
                html = Builder::XmlMarkup.new(indent: 3)

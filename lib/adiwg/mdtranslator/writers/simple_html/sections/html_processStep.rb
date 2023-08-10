@@ -19,7 +19,7 @@ require_relative 'html_processReport'
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             class Html_ProcessStep
 

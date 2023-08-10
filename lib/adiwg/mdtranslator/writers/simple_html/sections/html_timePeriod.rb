@@ -16,7 +16,7 @@ require_relative 'html_duration'
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             class Html_TimePeriod
 

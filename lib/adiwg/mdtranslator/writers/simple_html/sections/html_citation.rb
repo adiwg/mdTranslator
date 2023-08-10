@@ -16,7 +16,7 @@ require_relative 'html_graphic'
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             class Html_Citation
 
@@ -148,13 +148,13 @@ module ADIWG
                   end
 
                   # citation - other div []
-                  unless hCitation[:otherdiv].empty?
-                     hCitation[:otherdiv].each do |detail|
-                        @html.em('Other div: ')
-                        @html.text!(detail)
-                        @html.br
-                     end
-                  end
+                  # unless hCitation[:otherdiv].empty?
+                  #    hCitation[:otherdiv].each do |detail|
+                  #       @html.em('Other div: ')
+                  #       @html.text!(detail)
+                  #       @html.br
+                  #    end
+                  # end
 
                end # writeHtml
             end # Html_Citation

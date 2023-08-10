@@ -4,7 +4,7 @@
 module ADIWG
   module Mdtranslator
     module Writers
-      SimpleHtml
+      module Simple_html
 
         class Html_RangeElementDescription
 

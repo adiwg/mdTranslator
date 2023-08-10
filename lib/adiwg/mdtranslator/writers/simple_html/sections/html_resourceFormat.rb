@@ -7,7 +7,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             class MdHtmlResourceFormat
                def initialize(html)

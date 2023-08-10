@@ -8,7 +8,7 @@
 module ADIWG
    module Mdtranslator
       module Writers
-         module SimpleHtml
+         module Simple_html
 
             # current version of html writer
             VERSION = '2.1.0'
